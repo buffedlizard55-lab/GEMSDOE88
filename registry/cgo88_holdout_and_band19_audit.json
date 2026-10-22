@@ -1,0 +1,446 @@
+{
+  "band_06_tc_is_magnetic_tilt_curvature_not_radiometric_total_count": true,
+  "band_catalog_19": [
+    {
+      "band_index": 1,
+      "band_name": "mag_anom",
+      "clip01": -288.8160437011719,
+      "clip99": 312.2428692626953,
+      "description": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+      "holdout_auc": 0.5069484891901839,
+      "holdout_symmetric_auc": 0.5069484891901839,
+      "invalid_inside": 3061,
+      "median": -57.658660888671875,
+      "valid": 5164312
+    },
+    {
+      "band_index": 2,
+      "band_name": "rtp",
+      "clip01": -460.4590252685547,
+      "clip99": 394.5721917724609,
+      "description": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+      "holdout_auc": 0.5224382521946772,
+      "holdout_symmetric_auc": 0.5224382521946772,
+      "invalid_inside": 3061,
+      "median": -137.2845916748047,
+      "valid": 5164312
+    },
+    {
+      "band_index": 3,
+      "band_name": "tmi_hg",
+      "clip01": 0.6557216715812683,
+      "clip99": 188.49368499755846,
+      "description": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+      "holdout_auc": 0.516217629451792,
+      "holdout_symmetric_auc": 0.516217629451792,
+      "invalid_inside": 3061,
+      "median": 13.15152359008789,
+      "valid": 5164312
+    },
+    {
+      "band_index": 4,
+      "band_name": "geod_2ndinv",
+      "clip01": 1.7509296798706053,
+      "clip99": 57.793777618408186,
+      "description": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+      "holdout_auc": 0.5028154267676127,
+      "holdout_symmetric_auc": 0.5028154267676127,
+      "invalid_inside": 3061,
+      "median": 19.958473205566406,
+      "valid": 5164312
+    },
+    {
+      "band_index": 5,
+      "band_name": "iso_grav_anom_slope",
+      "clip01": 0.015817788019776343,
+      "clip99": 0.3670581120252609,
+      "description": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+      "holdout_auc": 0.5424868540009458,
+      "holdout_symmetric_auc": 0.5424868540009458,
+      "invalid_inside": 3061,
+      "median": 0.10225886106491089,
+      "valid": 5164312
+    },
+    {
+      "band_index": 6,
+      "band_name": "tc",
+      "clip01": 7.710394964218138,
+      "clip99": 29.030098075866693,
+      "description": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+      "holdout_auc": 0.43923950424074126,
+      "holdout_symmetric_auc": 0.5607604957592587,
+      "invalid_inside": 3073,
+      "median": 18.47954559326172,
+      "valid": 5164300
+    },
+    {
+      "band_index": 7,
+      "band_name": "geod_shearrate",
+      "clip01": 0.0,
+      "clip99": 38.5,
+      "description": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+      "holdout_auc": 0.5050565161147866,
+      "holdout_symmetric_auc": 0.5050565161147866,
+      "invalid_inside": 3061,
+      "median": 9.699999809265137,
+      "valid": 5164312
+    },
+    {
+      "band_index": 8,
+      "band_name": "geod_dilaterate",
+      "clip01": -9.600000381469727,
+      "clip99": 27.0,
+      "description": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+      "holdout_auc": 0.5241314173899931,
+      "holdout_symmetric_auc": 0.5241314173899931,
+      "invalid_inside": 3061,
+      "median": 5.5,
+      "valid": 5164312
+    },
+    {
+      "band_index": 9,
+      "band_name": "tmi_vg",
+      "clip01": -0.6880431234836579,
+      "clip99": 0.7850092196464539,
+      "description": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+      "holdout_auc": 0.4870419665524872,
+      "holdout_symmetric_auc": 0.5129580334475128,
+      "invalid_inside": 3061,
+      "median": -0.008779636584222317,
+      "valid": 5164312
+    },
+    {
+      "band_index": 10,
+      "band_name": "deq_n100a15",
+      "clip01": 118.30000305175781,
+      "clip99": 50237.19921875,
+      "description": "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+      "holdout_auc": 0.48764531289073854,
+      "holdout_symmetric_auc": 0.5123546871092615,
+      "invalid_inside": 3061,
+      "median": 623.0039672851562,
+      "valid": 5164312
+    },
+    {
+      "band_index": 11,
+      "band_name": "iso_grav_anom_vg",
+      "clip01": -4.323433542251587,
+      "clip99": 4.2276737213134705,
+      "description": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+      "holdout_auc": 0.5083905985515216,
+      "holdout_symmetric_auc": 0.5083905985515216,
+      "invalid_inside": 3061,
+      "median": -0.07308599352836609,
+      "valid": 5164312
+    },
+    {
+      "band_index": 12,
+      "band_name": "det_elev",
+      "clip01": -466.1735192871094,
+      "clip99": 707.1835522460937,
+      "description": "det_elev - Detrended elevation - topography with regional trends removed",
+      "holdout_auc": 0.5127010989755535,
+      "holdout_symmetric_auc": 0.5127010989755535,
+      "invalid_inside": 3061,
+      "median": -75.486083984375,
+      "valid": 5164312
+    },
+    {
+      "band_index": 13,
+      "band_name": "iso_grav_anom",
+      "clip01": -32.79015983581543,
+      "clip99": 12.871771755218505,
+      "description": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+      "holdout_auc": 0.4872732606503019,
+      "holdout_symmetric_auc": 0.5127267393496981,
+      "invalid_inside": 3061,
+      "median": -7.277862071990967,
+      "valid": 5164312
+    },
+    {
+      "band_index": 14,
+      "band_name": "tmi",
+      "clip01": -427.6447930908203,
+      "clip99": 354.0189025878906,
+      "description": "tmi - Total magnetic intensity - total strength of magnetic field",
+      "holdout_auc": 0.5051163161028733,
+      "holdout_symmetric_auc": 0.5051163161028733,
+      "invalid_inside": 3061,
+      "median": -124.77388763427734,
+      "valid": 5164312
+    },
+    {
+      "band_index": 15,
+      "band_name": "depth_to_base_surf",
+      "clip01": 1.2227413845062256,
+      "clip99": 3403.7407568359367,
+      "description": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+      "holdout_auc": 0.513149699666998,
+      "holdout_symmetric_auc": 0.513149699666998,
+      "invalid_inside": 3061,
+      "median": 315.8881530761719,
+      "valid": 5164312
+    },
+    {
+      "band_index": 16,
+      "band_name": "ieq_n100a15",
+      "clip01": 263.8999938964844,
+      "clip99": 5091.364970703123,
+      "description": "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+      "holdout_auc": 0.506441889514198,
+      "holdout_symmetric_auc": 0.506441889514198,
+      "invalid_inside": 3061,
+      "median": 755.7999877929688,
+      "valid": 5164312
+    },
+    {
+      "band_index": 17,
+      "band_name": "cond_surf",
+      "clip01": 1.1678259372711182,
+      "clip99": 4.486212005615234,
+      "description": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+      "holdout_auc": 0.4962494086668774,
+      "holdout_symmetric_auc": 0.5037505913331226,
+      "invalid_inside": 3061,
+      "median": 2.886409282684326,
+      "valid": 5164312
+    },
+    {
+      "band_index": 18,
+      "band_name": "iso_grav_anom_hg",
+      "clip01": -5.176370668411255,
+      "clip99": 5.396843376159667,
+      "description": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+      "holdout_auc": 0.4819952080486959,
+      "holdout_symmetric_auc": 0.5180047919513041,
+      "invalid_inside": 3061,
+      "median": 0.03506915643811226,
+      "valid": 5164312
+    },
+    {
+      "band_index": 19,
+      "band_name": "det_elev_slope",
+      "clip01": 0.06928003847599029,
+      "clip99": 32.820363693237304,
+      "description": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending",
+      "holdout_auc": 0.5641873153777417,
+      "holdout_symmetric_auc": 0.5641873153777417,
+      "invalid_inside": 3061,
+      "median": 3.729210376739502,
+      "valid": 5164312
+    }
+  ],
+  "cgo88_feature_canaries": {
+    "evidence_class": "HOLDOUT-FEATURE-CANARY",
+    "features": [
+      {
+        "auc": 0.5257834553207751,
+        "feature": "rtp",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.5257834553207751,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.4872252483899282,
+        "feature": "iso_grav_anom",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.5127747516100718,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5144344532314631,
+        "feature": "depth_to_base_surf",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.5144344532314631,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5270210869760557,
+        "feature": "log_rtp_edge",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.5270210869760557,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5455348132375709,
+        "feature": "log_gravity_edge",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.5455348132375709,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5132373340053678,
+        "feature": "edge_alignment",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.5132373340053678,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5459163678743298,
+        "feature": "joint_edge",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.5459163678743298,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.4965407565173685,
+        "feature": "cond_surf",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.5034592434826315,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.48190917750253304,
+        "feature": "iso_grav_anom_hg",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.518090822497467,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.4969298530377336,
+        "feature": "log_cond_edge",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.5030701469622664,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5114481573400547,
+        "feature": "cgo_offset_200m",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.5114481573400547,
+        "withheld_sample": 18569
+      },
+      {
+        "auc": 0.5017285849317064,
+        "feature": "cgo_signed_asym",
+        "negative_sample": 18569,
+        "symmetric_auc": 0.5017285849317064,
+        "withheld_sample": 18569
+      }
+    ],
+    "leakage_threshold": 0.9,
+    "max_symmetric_auc": 0.5459163678743298,
+    "passed": true
+  },
+  "date_utc": "2026-10-22",
+  "decision": {
+    "beats_mgc88_incumbent": false,
+    "elapsed_seconds": 186.88,
+    "experiment_budget_max": 3,
+    "experiment_budget_used_total": 2,
+    "promoted": false,
+    "reason": "CGO-88 (conductivity-gravity 200 m lateral offset using bands 13 iso_grav_anom, 17 cond_surf, 18 iso_grav_anom_hg, 15 depth_to_base_surf) scored HOLDOUT-DTI 0.0227 [0.0154, 0.0309] (pure) and 0.0230 [0.0162, 0.0308] (joint with MGC-88), failing to beat the MGC-88 incumbent HOLDOUT-DTI 0.0389 [0.0264, 0.0532] (paired delta -0.0162 [-0.0281, -0.0073] pure; -0.0158 [-0.0286, -0.0061] joint). Band 17 cond_surf has single-feature symmetric AUC 0.5038 on withheld fault segments and reflects regional basin/playa conductance, inducing cross-quadrant overfitting. MGC-88 remains the unbeaten holdout best (still blocked from submission by the universal positive-footprint registry witness).",
+    "verdict": "negative"
+  },
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "evidence_class": "HOLDOUT-DTI",
+  "holdout_comparison": {
+    "cgo88_joint": {
+      "ci95": [
+        0.01620114865428273,
+        0.03082932953570388
+      ],
+      "dti": 0.023047199634172538,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "fnw": 22141.594167812345,
+      "fpw": 70691.15648225613,
+      "tpw": 751.4058321876489,
+      "withheld_positive_pixels": 22893
+    },
+    "cgo88_pure": {
+      "ci95": [
+        0.01539480853024721,
+        0.03092215758280466
+      ],
+      "dti": 0.02269636294450686,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "fnw": 22153.201990663747,
+      "fpw": 70665.4180197428,
+      "tpw": 739.798009336256,
+      "withheld_positive_pixels": 22893
+    },
+    "mgc88_incumbent": {
+      "ci95": [
+        0.026360055075052378,
+        0.05323626489265121
+      ],
+      "dti": 0.03889145069516291,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "fnw": 21623.628059675288,
+      "fpw": 70352.84139389198,
+      "tpw": 1269.3719403247173,
+      "withheld_positive_pixels": 22893
+    },
+    "paired_delta_cgo88_joint_vs_mgc88": {
+      "ci95": [
+        -0.028571661855422925,
+        -0.006053515283323008
+      ],
+      "delta": -0.01584425106099037,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
+    "paired_delta_cgo88_joint_vs_raw_control": {
+      "ci95": [
+        -0.013809390326024547,
+        0.006140816406895664
+      ],
+      "delta": -0.003664544303807169,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
+    "paired_delta_cgo88_pure_vs_mgc88": {
+      "ci95": [
+        -0.028069230435290766,
+        -0.00734606066104365
+      ],
+      "delta": -0.016195087750656048,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
+    "paired_delta_cgo88_pure_vs_raw_control": {
+      "ci95": [
+        -0.013853089887537869,
+        0.005664075922383714
+      ],
+      "delta": -0.004015380993472848,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
+    "paired_delta_mgc88_vs_raw_control": {
+      "ci95": [
+        0.005638656815708435,
+        0.019674602034172636
+      ],
+      "delta": 0.0121797067571832,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
+    "raw_control": {
+      "ci95": [
+        0.017303192485922162,
+        0.03724830215156441
+      ],
+      "dti": 0.026711743937979707,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "fnw": 22022.194776415003,
+      "fpw": 70557.63862741562,
+      "tpw": 870.8052235849934,
+      "withheld_positive_pixels": 22893
+    }
+  },
+  "radiometric_k_th_u_in_19band_tiff": false,
+  "schema": "gems88.cgo88-audit.v1",
+  "split_version": "buffered-whole-components-loqo-v2",
+  "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "withheld_positive_pixels": 22893
+}

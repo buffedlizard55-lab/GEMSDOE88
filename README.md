@@ -46,8 +46,8 @@ Other binding parts of the project request (retained as the starting brief, not 
 | Gate | Actual automated result | Source of truth |
 |---|---|---|
 | Physical file / values | PASS locally: single-band float32, EPSG:32611, 3730×3292, 100 m, no NaN/inf anywhere, all values in [0,1], zeros outside, 0 on mapped public faults | [on-disk receipt](docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.json), [independent validator](scripts/validate_release.py) |
-| Holdout | **HOLDOUT-DTI 0.0389 [0.0264, 0.0532]**, evaluator `gems57-pooled-hide-v2`, 22,893 withheld positives; matched raw-layer control **HOLDOUT-DTI 0.0267 [0.0173, 0.0372]**, same evaluator/n; paired Δ **+0.0122 [0.0056, 0.0197]** | [holdout receipt](registry/holdout_result.json). Conditional proxy only, never a leaderboard estimate. |
-| Leakage | 7/7 individual features tested; maximum symmetric AUC 0.5459 (<0.90 warning gate) | [canary receipt](registry/leakage_canaries.json) |
+| Holdout | **MGC-88 (Exp 1, incumbent):** **HOLDOUT-DTI 0.0389 [0.0264, 0.0532]**, evaluator `gems57-pooled-hide-v2`, 22,893 withheld positives; matched raw-layer control **HOLDOUT-DTI 0.0267 [0.0173, 0.0372]**, same evaluator/n; paired Δ **+0.0122 [0.0056, 0.0197]**. **CGO-88 (Exp 2, 200 m conductivity-gravity offset):** **HOLDOUT-DTI 0.0227 [0.0154, 0.0309]** (pure) and **0.0230 [0.0162, 0.0308]** (joint), failing to beat MGC-88 (paired Δ **−0.0162 [−0.0281, −0.0073]** pure; **−0.0158 [−0.0286, −0.0061]** joint) | [MGC-88 holdout receipt](registry/holdout_result.json), [CGO-88 & 19-band audit receipt](registry/cgo88_holdout_and_band19_audit.json). Conditional proxy only, never a leaderboard estimate. |
+| Leakage | 7/7 MGC-88 features tested (max symmetric AUC 0.5459 < 0.90); all 19 raw bands in `training_features.tif` tested on disk (max symmetric AUC 0.5642 on `det_elev_slope` < 0.90) | [MGC-88 canary receipt](registry/leakage_canaries.json), [19-band & CGO-88 receipt](registry/cgo88_holdout_and_band19_audit.json) |
 | Registry | **Before dot placement**, full-footprint rank ρ=0.0251 vs H33 and 0.3056 vs dense prior (<0.90). A separate surface-*support* overlap was **not logged at that stage**; the universal witness mathematically implies 1.0 overlap for any nonempty in-footprint support, so we make **no claim of a cleared preplacement gate**. **Final** measured 3-pixel dot overlap 1.0 vs full-footprint prior (>0.70), 0.2115 vs H33 alone. No exhaustive private-registry uniqueness claim. | [witness certificate](registry/witness_certificate.json), [preplacement rank](registry/preplacement_registry.json), [final dots](registry/final_registry.json) |
 | Portal and slot | **NOT approved**, no organizer-confirmed score, **0 slots used**. DrivenData's data and submissions pages redirect unauthenticated readers to login. | [run card](registry/run_card.json), [official data tab](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) |
 
@@ -68,6 +68,7 @@ python -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python scripts/restore_inputs.py               # pinned owner-hosted features, grid, two prior witnesses
 .venv/bin/python scripts/run_experiment.py                # one pre-registered experiment; refuses overwrite
+.venv/bin/python scripts/evaluate_cgo88.py                # 19-band on-disk audit & CGO-88 blocked holdout comparison
 .venv/bin/python scripts/validate_release.py              # independent byte re-read; FORMAT PASS, uniqueness FAIL
 .venv/bin/python scripts/validate_release.py --require-submit # exits 2 here: automatic STOP
 .venv/bin/python -m pytest -q
@@ -87,3 +88,47 @@ If the run already exists, *do not overwrite its receipt*; use a disposable chec
 - A local format PASS is not a guarantee of portal acceptance. The earlier user-reported “Predicted values must be in range [0, 1]” error lacks the original failed file; do not assert its cause. Every published pixel is independently confirmed finite and 0 or 1, and the output has no nodata tag. The site does **not** expose the research TIFF as ready for upload.
 
 **Run card:** [JSON](registry/run_card.json) is the final machine evidence, with a negative verdict. No projection or owner anecdote is labelled an organizer-confirmed score.
+
+<details>
+<summary>Verbatim project prompt archive (reference starting brief)</summary>
+
+```text
+Review the repo.
+
+THE FOLLOWING IS THE HIGHEST URGENCY AND MUST BE FOLLOWED!
+
+MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
+
+There should be an easy to download submission tif file as described by the prompt. Read the entire prompt. A lot of sites mention inspection only and a human inspector, but the inspection needs to be done through the project and needs to be validated for submission without human intervention.
+
+PARALLEL-RUN PROTOCOL — read first. This session is one of several running from this same prompt.
+
+1. LANE. Your lane is the single method paragraph below. Stay inside it. If your raster's rank-correlation with any registry raster exceeds [0.90], or more than [70%] of your dots fall within 3 px of one registry raster's dots, you have drifted into another lane: log it as a duplicate and stop. Check this on the surface before placement AND on the final dots.
+
+2. REUSE, DON'T REBUILD. Use the template's cached feature stack, evaluate_holdout.py and submission_writer.py. Holdout = hide-and-recover: withhold whole fault segments with a buffer, derive every catalogue-based feature only from the visible faults, mask visible faults pixel-exactly, score pooled DTI (alpha 0.2, beta 0.8, 300 m triangular kernel). If a shared tool is wrong, fix it once in the template and report it; never keep a private fork.
+
+3. LABEL EVERY NUMBER as HOLDOUT-DTI (evaluator version, number of withheld positives, 95% CI) or ORGANIZER-CONFIRMED (copied from a submission-page receipt). A projection is never written as a score.
+
+4. LEAKAGE CANARY. Test each feature alone on the holdout before trusting any result. AUC above [0.90] means leakage until proven otherwise.
+
+5. RUN CARD. End with one JSON card: hypothesis; mechanism; the named non-fault process that could mimic it; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator output (no NaN inside the footprint, values in [0,1], CRS/shape/transform match); submission name + note of at most 140 characters; verdict promote / negative. Negative results are deliverables.
+
+6. BUDGET. Stop after [3] experiments or [2] hours. Do not pick submissions: promotion to a real slot is a separate selector step, within the weekly cap shown on the submission page.
+
+WE NEED TO STUDY, ANALYZE, AND UNDERSTAND THE HIGHEST SCORE FROM THE GEMDOE SITE WHERE THE SUBMISSION TIF IS DOWNLOADED FROM WHICH IS THE FOLLOWING:
+https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html
+h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros: 0.2778
+Why and how did this get the highest score and are we able to generate a submission that scores higher than 0.2778?
+Answer the question using Phd level experience, knowledge, and judgement. Then use the answer to generate a unique TIF submission into the competition. Must be unique submission unlike any within the GEMSDOE sites above. Verify working line by line no hallucinations.
+
+Current competition leaderboard GEMSDOE high score: 0.4413
+
+Before implementing, generate 3–5 candidate geological hypotheses we haven't tried yet, each naming: the specific layer(s) involved, the physical signature being targeted (e.g., an edge-detection or curvature transform), why it should catch a fault missing from the USGS/INGENIOUS catalogue rather than one already in it, and how it differs from anything already implemented in this repo. Rank them by expected DTI improvement and implementation cost. Validate the top candidate on our spatially-blocked holdout set before touching a weekly submission slot — do not spend a submission slot on an idea that hasn't beaten the current holdout best. If a candidate can't be validated without new external data, name the specific free, official source needed and check it's obtainable before proposing the idea as viable.
+
+Put this prompt into the repo readme and read it everytime we work on the project as a starting point to make sure we are building what we are aiming for and have a strong base to continue building and improving on making something useful for everyday use. It should solve the problem of having to manually check everything ourselves and having an up to date current feed.
+
+Our Core Values: Maximize P(Win) / Own the Outcome.
+Run this task through multiple passes (Pass 1, Pass 2, Pass 3).
+Go ahead and create a pull request and then merge the pull request onto the main. Make suggestions for what work still needs to be done and any limitations that is in the way of a successful project.
+```
+</details>
