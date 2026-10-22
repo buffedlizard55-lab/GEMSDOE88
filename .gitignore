@@ -1,7 +1,7 @@
 # Local research inputs and environments; only small validated deliverables are published.
 .scratch/
 .venv/
-data/
+/data/
 __pycache__/
 .pytest_cache/
 *.pyc

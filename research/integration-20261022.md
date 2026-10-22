@@ -11,6 +11,10 @@ While the MGC-88 branch was open, three earlier PRs were merged into `main` (thr
 - In the post-run audit, the boolean in the surface-correlation receipt was renamed from ambiguous `preplacement` to `rank_duplicate` (same false value; both measured correlations unchanged). No preplacement surface-support overlap was logged during the one experiment. The universal full-footprint witness mathematically forces 100% forward overlap for any nonempty surface support; the final-dot comparison independently measured 100%. This is an admitted timing/protocol limitation, not retroactive clearance. No further experiment was run.
 - The repository-root `index.html` now truthfully redirects to `docs/index.html` if GitHub Pages is in legacy “branch root” mode. The `docs/` directory also has a Pages deployment workflow. The GitHub Pages configuration API was rate-limited during integration; actual production deployment must be checked separately. The scheduled feed preserves its timestamp if an organizer fetch fails.
 
+## First GitHub CI finding and correction
+
+The first PR checks reproduced a clean checkout and caught what the long-lived workspace masked: `.gitignore` contained unanchored `data/`, which also excluded `docs/data/` (the live run-card and leaderboard JSON). Both workflows therefore failed their site-link and release tests. The ignore rule is now `/data/`, limited to the large root-level research inputs, and both small public JSON feeds are tracked. The clean-checkout finding did **not** change the TIFF, holdout or negative verdict.
+
 ## Evidence classes
 
 The historical mainline dossiers and owner-mirrored data do **not** turn user-reported H33 `0.2778` into an authenticated organizer score. Current MGC-88 results are `HOLDOUT-DTI` only. Local file validation does not imply portal acceptance. The literal full-footprint witness still blocks all nonempty in-footprint candidates under the unmodified uniqueness definition. No weekly DrivenData slot was used.
