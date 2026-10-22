@@ -13,5 +13,6 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python -m pytest -q
+      - run: python scripts/check_site.py
       - run: python scripts/readiness.py
       - run: git diff --exit-code docs/status.json

@@ -32,3 +32,6 @@ The readiness command writes a blocked status as a normal negative result; a suc
 
 ## Publication
 Existing GitHub Pages configuration publishes `main` from the repository root. `index.html` links/redirects into `docs/`; no settings change is required. This session's integration could read Pages settings but received HTTP 403 on an attempted build-mode update. The existing mode is retained.
+
+## Parallel-session integration
+While this PR was open, another session merged input-restoration scripts and receipts. Those tools and evidence are preserved, along with its review at `research/concurrent-review.md` and brief at `research/concurrent-README.md`. Raw numerical-feature restoration recorded by that session is **not** the missing shared derived feature cache. Both validator test suites now run; the CLI retains `--template` and includes the added footprint audit. This repository still has no authorized lane or verified unique candidate.
