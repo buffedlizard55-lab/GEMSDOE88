@@ -88,3 +88,22 @@ def test_pooled_terms_need_paired_truth_counts():
         evaluate_holdout.pooled_summary(
             {"candidate": a, "raw_control": b}, draws=20, candidate="candidate"
         )
+
+
+def test_cgo_features_masking_and_finite_output():
+    from evaluate_cgo88 import cgo_features
+
+    fp = np.zeros((25, 25), bool)
+    fp[3:22, 3:22] = True
+    yy, xx = np.indices((25, 25), dtype=np.float32)
+    grav = np.tanh((xx - 12.0) / 2.0).astype(np.float32)
+    cond = np.tanh((xx - 14.0) / 2.0).astype(np.float32)
+    log_g, log_c, cgo_off, cgo_asym = cgo_features(grav, cond, fp, step_px=2.0)
+    for arr in (log_g, log_c, cgo_off, cgo_asym):
+        assert np.isfinite(arr).all()
+        assert np.all(arr[~fp] == 0.0)
+    assert cgo_off[12, 12] > 0.0
+    with pytest.raises(ValueError, match="invalid shape or step_px"):
+        cgo_features(grav, cond, fp, step_px=0.0)
+    with pytest.raises(ValueError, match="invalid shape or step_px"):
+        cgo_features(grav[:10, :10], cond, fp, step_px=2.0)

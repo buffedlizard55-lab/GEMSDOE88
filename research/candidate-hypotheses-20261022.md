@@ -1,113 +1,141 @@
-# Candidate hypotheses — GEMSDOE88 lane MGC-88 and next hypotheses (2026-10-22)
+# Candidate hypotheses — GEMSDOE88 lane MGC-88, CGO-88 holdout test, and 19-band audit (2026-10-22)
 
-> **Purpose:** Rank 3–5 UNUSED hypotheses by (expected DTI improvement on the
-> spatially-blocked hide-and-recover holdout) vs implementation cost, before any
-> weekly submission slot is considered. All layers are from the 19-band
-> owner-mirrored `training_features.tif` (19 float32 bands, 100 m, EPSG:32611)
-> whose grid was pinned against the organizer-described format on
-> [DrivenData problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#provided-features).
-> No external licensed dataset is required for any hypothesis below; free-official
-> sources are named where relevant for future corroboration only.
+> **Purpose:** Rank 3–5 geological hypotheses by expected DTI improvement on the
+> spatially-blocked hide-and-recover holdout vs implementation cost before any
+> weekly submission slot is considered, and validate the top untried candidate
+> (**CGO-88**) on the spatially-blocked holdout set.
+> Every layer index and `band_name` tag below is verified directly against the
+> 19-band on-disk `data/training_features.tif` (`SHA-256: 4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5`,
+> 19 `float32` bands, 100 m, `EPSG:32611`) and recorded in
+> [`registry/cgo88_holdout_and_band19_audit.json`](../registry/cgo88_holdout_and_band19_audit.json).
 
-## How ranking works
+## How ranking and validation work
 
-- **Expected DTI lift** = expert prior on holdout DTI (gems57-pooled-hide-v2,
-  whole-component 3-px buffer, 20 km block bootstrap) vs the matched raw-layer
-  control on the same split. The current incumbent is MGC-88
-  **HOLDOUT-DTI 0.0389 [0.0264,0.0532]** vs raw control 0.0267
-  [0.0173,0.0372], paired Δ +0.0122 [0.0056,0.0197] (n=22,893 withheld positives).
-  Rankings are qualitative priors, NOT measured scores or organizer receipts.
-- **Implementation cost** = engineering time, RAM/GPU, need to verify band tags,
-  robustness to acquisition seams, and distinctness from already-implemented
-  repo code (`src/gems88/edge.py` = RTP + gravity co-edge with cover covariate;
-  leakage max AUC 0.5459 <0.90).
-- **Novelty check** = how the transform differs from anything already in
-  `src/gems88/` and from the sibling methods cited in the inherited prompt
-  (scarp curvature, Euler deconvolution, tilt/Worm, SGMC fusion, etc.).
-- **Gate before slot** = each hypothesis must (a) pass all 7 single-feature
-  symmetric AUC ≤0.90, (b) beat the incumbent on identical folds with positive
-  paired 95% CI, and (c) clear both surface rank |ρ|≤0.90 and final 3-px
-  forward-overlap ≤0.70 vs every discriminating registry raster, verified by
-  `scripts/validate_release.py`. A universal space-filling prior makes the
-  literal any-raster gate mathematically impossible (see IR-88-01); that
-  selector-level fix must be explicit and must not be a hidden exemption.
+- **Holdout protocol (`gems57-pooled-hide-v2`):** whole 8-connected fault components
+  withheld in 4 eroded quadrants across 2 deterministic seed draws (`seeds=(20, 21)`,
+  `22,893` withheld positive pixels), 3-px feature-context collar, 12-px quadrant
+  boundary erosion, visible-only training outside the test quadrant, pixel-exact
+  masking of visible faults, pooled DTI ($\alpha=0.2$, $\beta=0.8$, 300 m triangular
+  kernel), and 1,000-draw paired 20 km spatial-block bootstrap 95% CIs
+  ([DrivenData metric specification](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#mathematical-representation)).
+- **Current holdout best (incumbent `MGC-88`, Experiment 1 of 3):**
+  **HOLDOUT-DTI `0.0389 [0.0264, 0.0532]`** (`gems57-pooled-hide-v2`, `n=22,893`
+  withheld positives) vs matched raw-layer control **HOLDOUT-DTI `0.0267 [0.0173, 0.0372]`**,
+  paired $\Delta = +0.0122\ [0.0056, 0.0197]$.
+- **Top candidate tested in Experiment 2 of 3 (`CGO-88`):**
+  - Pure `CGO-88` (`iso_grav_anom`, `depth_to_base_surf`, `cond_surf`, `iso_grav_anom_hg`, `log_gravity_edge`, `log_cond_edge`, `cgo_offset_200m`, `cgo_signed_asym`):
+    **HOLDOUT-DTI `0.0227 [0.0154, 0.0309]`** (`gems57-pooled-hide-v2`, `n=22,893`),
+    paired $\Delta$ vs `MGC-88` = **`-0.0162 [-0.0281, -0.0073]`**.
+  - Joint `MGC-88 + CGO-88` (all 12 channels):
+    **HOLDOUT-DTI `0.0230 [0.0162, 0.0308]`** (`gems57-pooled-hide-v2`, `n=22,893`),
+    paired $\Delta$ vs `MGC-88` = **`-0.0158 [-0.0286, -0.0061]`**.
+  - **Outcome:** `CGO-88` is **falsified on the spatially-blocked holdout** and does
+    not beat the current holdout best (`MGC-88` `0.0389`). Per the protocol rule
+    (*"do not spend a submission slot on an idea that hasn't beaten the current holdout best"*),
+    `CGO-88` is rejected and `MGC-88` remains the unbeaten holdout incumbent (still
+    blocked from competition upload by the 100% literal overlap with the universal
+    positive-footprint witness `dense_17gemdoe.tif`, `IR-88-01`).
 
-## Current incumbent (tested, negative)
+## Complete 19-band on-disk verification and single-feature leakage canaries
+
+All 19 bands in `data/training_features.tif` were read on disk (`scripts/evaluate_cgo88.py`).
+Notice two critical facts verified directly from the GeoTIFF metadata (`IR-88-07`):
+1. The exact `band_name` tags are `mag_anom`, `rtp`, `tmi_hg`, `geod_2ndinv`,
+   `iso_grav_anom_slope`, `tc`, `geod_shearrate`, `geod_dilaterate`, `tmi_vg`,
+   `deq_n100a15`, `iso_grav_anom_vg`, `det_elev`, `iso_grav_anom`, `tmi`,
+   `depth_to_base_surf`, `ieq_n100a15`, `cond_surf`, `iso_grav_anom_hg`, and
+   `det_elev_slope`.
+2. The 19-band `training_features.tif` contains **zero** radiometric K, Th, or U
+   bands, and Band 6 (`tc`) carries the embedded TIFF description
+   `tc - Tilt angle or total curvature - magnetic field derivative for edge detection`
+   (not radiometric total count). Radiometric K/Th/U/TC grids belong to the external
+   [USGS GeoDAWN release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
+   (DOI `10.5066/P93LGLVQ`, CC0; mirrored in `GEMSDOE24` as `data/external/geodawn_rad_u8.tif`).
+
+| Band | Verified `band_name` tag | Embedded TIFF description | p01 | p50 | p99 | Holdout symmetric AUC |
+|---:|---|---|---:|---:|---:|---:|
+| 1 | `mag_anom` | Magnetic anomaly - deviation from expected Earth's magnetic field | -288.82 | -57.66 | 312.24 | 0.5069 |
+| 2 | `rtp` | Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects | -460.46 | -137.28 | 394.57 | 0.5224 |
+| 3 | `tmi_hg` | Total magnetic intensity horizontal gradient - rate of change in horizontal direction | 0.66 | 13.15 | 188.49 | 0.5162 |
+| 4 | `geod_2ndinv` | Geodetic second invariant - measure of strain rate tensor magnitude | 1.75 | 19.96 | 57.79 | 0.5028 |
+| 5 | `iso_grav_anom_slope` | Isostatic gravity anomaly slope - gradient of gravity after isostatic correction | 0.0158 | 0.1023 | 0.3671 | 0.5425 |
+| 6 | `tc` | Tilt angle or total curvature - magnetic field derivative for edge detection | 7.71 | 18.48 | 29.03 | 0.5608 |
+| 7 | `geod_shearrate` | Geodetic shear rate - rate of angular deformation from GPS/InSAR | 0.00 | 9.70 | 38.50 | 0.5051 |
+| 8 | `geod_dilaterate` | Geodetic dilatation rate - rate of volumetric strain (expansion/contraction) | -9.60 | 5.50 | 27.00 | 0.5241 |
+| 9 | `tmi_vg` | Total magnetic intensity vertical gradient - rate of change in vertical direction | -0.688 | -0.0088 | 0.785 | 0.5130 |
+| 10 | `deq_n100a15` | Distance to earthquake (n=100km radius, a=15° azimuth parameters) | 118.30 | 623.00 | 50237.20 | 0.5124 |
+| 11 | `iso_grav_anom_vg` | Isostatic gravity anomaly vertical gradient - vertical rate of change | -4.32 | -0.073 | 4.23 | 0.5084 |
+| 12 | `det_elev` | Detrended elevation - topography with regional trends removed | -466.17 | -75.49 | 707.18 | 0.5127 |
+| 13 | `iso_grav_anom` | Isostatic gravity anomaly - gravity after compensating for topographic mass | -32.79 | -7.28 | 12.87 | 0.5127 |
+| 14 | `tmi` | Total magnetic intensity - total strength of magnetic field | -427.64 | -124.77 | 354.02 | 0.5051 |
+| 15 | `depth_to_base_surf` | Depth to basement surface - thickness of sedimentary cover | 1.22 | 315.89 | 3403.74 | 0.5131 |
+| 16 | `ieq_n100a15` | Earthquake intensity or density (n=100km radius, a=15° parameters) | 263.90 | 755.80 | 5091.36 | 0.5064 |
+| 17 | `cond_surf` | Conductivity surface - electrical conductivity of subsurface | 1.17 | 2.89 | 4.49 | 0.5038 |
+| 18 | `iso_grav_anom_hg` | Isostatic gravity anomaly horizontal gradient - horizontal rate of change | -5.18 | 0.035 | 5.40 | 0.5180 |
+| 19 | `det_elev_slope` | Detrended elevation slope - gradient of elevation after detrending | 0.069 | 3.73 | 32.82 | 0.5642 |
+
+All 19 single-band symmetric AUCs are $\le 0.5642$ (well below the $0.90$ leakage canary limit).
+
+## Current incumbent (Experiment 1 of 3 — tested, unbeaten on holdout, blocked by registry witness)
 
 | Field | Detail |
 |-------|--------|
-| **MGC-88 — basin-cover RTP/gravity co-edge** | **Layers:** band 2 `rtp` (reduced-to-pole magnetics), band 13 `iso_grav_anom` (isostatic gravity anomaly), band 15 `depth_to_base_surf` (depth to base of basin fill). All tags verified in owner-mirrored TIFF on 2026-10-22. |
-| **Physical signature** | Gaussian-derivative signed gradients (σ=2 px magnetic, 3 px gravity), log-gradient magnitudes, |cos θ| alignment, joint product = log|∇B|·log|∇g|·|cosθ|, plus raw bands as cover covariate. Targets locally co-located magnetic/gravity edges persisting under thick cover. |
-| **Why off-catalogue** | Basin alluvium can bury a structural contact; a magnetic/gravity juxtaposition may remain detectable where no surface scarp was mapped for USGS/INGENIOUS. |
-| **Named mimic** | Unfaulted lithologic contact, sedimentary facies edge, or magnetic survey flight-line gridding seam (GeoDAWN Area 2 line spacing 400 m = 4 px on 100 m grid — see [USGS GeoDAWN release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)). |
-| **Difference** | Not a single-channel ridge, tilt, or catalogue-tip distance; explicitly tests cross-potential-field geometry. Holdout Δ positive but absolute DTI tiny; **negative verdict** because universal witness forces overlap 1.0 >0.70 regardless of rank ρ=0.025–0.31. No weekly slot used. |
-| **Cost** | Moderate (cache build once, HGB fit 55 iter). Done. |
+| **MGC-88 — basin-cover RTP/gravity co-edge** | **Layers:** Band 2 `rtp`, Band 13 `iso_grav_anom`, Band 15 `depth_to_base_surf`. |
+| **Physical signature** | Footprint-weighted Gaussian-derivative signed gradients ($\sigma=2\text{ px}$ magnetic, $3\text{ px}$ gravity), $\log(1+|\nabla|)$ magnitudes, $|\cos \theta|$ alignment, and joint co-edge product $\log(1+|\nabla B|)\cdot\log(1+|\nabla g|)\cdot|\cos\theta|$, conditioned on `depth_to_base_surf`. |
+| **Why off-catalogue** | Basin alluvium buries surface fault scarps while preserving subsurface density and magnetization juxtapositions across basement-involved faults. |
+| **Named mimic** | Unfaulted lithologic contact, sedimentary facies boundary, or magnetic survey flight-line gridding seam (GeoDAWN Area 2 spacing $400\text{ m} = 4\text{ px}$ on 100 m grid — [USGS GeoDAWN release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)). |
+| **Holdout & gate status** | **HOLDOUT-DTI `0.0389 [0.0264, 0.0532]`** vs raw control **`0.0267 [0.0173, 0.0372]`**, paired $\Delta = +0.0122\ [0.0056, 0.0197]$ (`gems57-pooled-hide-v2`, `n=22,893`). Max canary symmetric AUC `0.5459 <= 0.90`. Verdict: **negative** (`DO NOT SUBMIT`) because the universal positive-footprint witness (`dense_17gemdoe.tif`, `SHA-256: ab0a0a62...`) forces 3-px forward dot overlap = `1.0000 > 0.70`. |
 
-## 5 candidate hypotheses NOT yet tried (ranked by benefit/cost)
+## 5 candidate geological hypotheses ranked by expected DTI lift vs implementation cost
 
-### Rank 1 — CGO: Conductivity–Gravity lateral offset (best benefit/cost)
+### Rank 1 — CGO-88: Conductivity–Gravity 200 m lateral offset (tested in Experiment 2 of 3 — falsified on holdout)
 | Field | Detail |
 |-------|--------|
-| **Layers** | **13** `iso_grav_anom`, **17** `surface_conductivity` (apparent conductance from GeoDAWN AEM), **18** `horizontal_gravity_gradient` (derived gravity edge), **15** `depth_to_base_surf` (cover control). Verified band_names in TIFF; no new source needed. |
-| **Physical signature** | **Signed cross-section offset detector:** compute gradient unit-vectors for gravity (∇g/|∇g|) and log-conductivity (∇σ/|∇σ|) after 2-px Gaussian smoothing; at each pixel project both onto the local structural azimuth (first eigenvector of 2×2 gradient structure tensor of ∇g). Measure signed lateral separation d = (peak_g – peak_σ) · n where n is profile-normal. Score = exp(-(d-200 m)²/80²)·|∇g|·|∇σ|·I[cos(∇g,∇σ) >0.4]. Targets a 100–300 m systematic offset, not perfect co-location. |
-| **Why off-catalogue** | A sealed fault may juxtapose basement density (gravity) while the conductive clay/gouge or brine plume is displaced by dip or by along-fault fluid migration. Such a displaced conductive halo would not be a mapped surface trace but could be the permeable pathway for a blind geothermal system. Conductivity alone also tracks paleo groundwater, so the gravity anchor is required. |
-| **Named mimic** | Depositional facies transition (e.g., playa margin), saline perched aquifer, or AEM system altitude/bird-height seam. The AEM-derived conductance is documented to be sensitive to near-surface brines unrelated to faulting ([INGENIOUS conductance context](https://gdr.openei.org/submissions/1391)). |
-| **Difference from repo** | Repo co-edge MGC-88 rewards *aligned* edges; CGO rewards a *controlled offset* between two different physical properties. Not a simple layer conjunction or SGMC geologic-map fusion (those union mapped faults; CGO is off-catalogue displacement). Sibling “conductive-breach lanes” exist but used pointwise thresholds, not profile offset geometry. |
-| **Expected lift / cost** | **Moderate lift, moderate-high cost.** Gravity+conductivity joint edges were top-ranked in sibling lidar+rad fusion logs; offset adds specificity. Cost: need to implement structure-tensor azimuth and profile peak picker, then blocked holdout (same seeds 20/21). No new download. |
+| **Layers** | **Band 13** `iso_grav_anom`, **Band 17** `cond_surf`, **Band 18** `iso_grav_anom_hg`, **Band 15** `depth_to_base_surf` (plus **Band 2** `rtp` in the joint ablation). All tags verified on disk in `data/training_features.tif`. |
+| **Physical signature** | **Cross-strike 200 m offset co-edge (`cgo_offset_200m`, `cgo_signed_asym`):** compute footprint-weighted Gaussian gradients $\mathbf{g} = \nabla G_{\sigma=3}(\text{iso\_grav\_anom})$ and $\mathbf{c} = \nabla G_{\sigma=2}(\text{cond\_surf})$ with unit normals $\hat{\mathbf{n}}_g, \hat{\mathbf{n}}_c$. Step $\pm 2\text{ px}$ ($\pm 200\text{ m}$) perpendicular to gravity strike along $\pm\hat{\mathbf{n}}_g$, evaluate strike-aligned conductivity edge $\log(1+|\mathbf{c}(\mathbf{x}\pm 2\hat{\mathbf{n}}_g)|)\cdot|\hat{\mathbf{n}}_g(\mathbf{x})\cdot\hat{\mathbf{n}}_c(\mathbf{x}\pm 2\hat{\mathbf{n}}_g)|$, multiply by $\log(1+|\mathbf{g}(\mathbf{x})|)$, and record both maximum offset response and hanging-wall/footwall signed asymmetry. |
+| **Why off-catalogue** | A dipping concealed fault zone can displace the conductive clay gouge or geothermal brine plume $100\text{--}300\text{ m}$ down-dip from the footwall basement gravity step, creating an off-catalogue fluid conduit without a surface scarp. |
+| **Named mimic** | Playa margin / evaporite facies transition, perched saline groundwater aquifer, or AEM bird-height/processing seam ([DOE GDR 1391 INGENIOUS context](https://gdr.openei.org/submissions/1391)). |
+| **Difference from repo** | `MGC-88` tests zero-offset magnetic/gravity co-location; `CGO-88` tests a $200\text{ m}$ cross-strike lateral offset between gravity (`iso_grav_anom`) and electrical conductivity (`cond_surf`). |
+| **Blocked holdout result** | **Tested (`scripts/evaluate_cgo88.py`, [`registry/cgo88_holdout_and_band19_audit.json`](../registry/cgo88_holdout_and_band19_audit.json)):** All 12 leakage canaries passed ($\max \text{AUC}_{\text{sym}} = 0.5459 \le 0.90$; `cgo_offset_200m` $\text{AUC}_{\text{sym}} = 0.5114$, `cgo_signed_asym` $= 0.5017$). Pure `CGO-88` scored **HOLDOUT-DTI `0.0227 [0.0154, 0.0309]`** and joint `MGC-88 + CGO-88` scored **HOLDOUT-DTI `0.0230 [0.0162, 0.0308]`** (`gems57-pooled-hide-v2`, `n=22,893`), both significantly below `MGC-88` **`0.0389 [0.0264, 0.0532]`** (paired $\Delta = -0.0162\ [-0.0281, -0.0073]$ pure; $-0.0158\ [-0.0286, -0.0061]$ joint). Because `cond_surf` reflects broad playa/basin salinity ($\text{AUC}_{\text{sym}} = 0.5038$), tree splits overfit regional basin conductance across quadrants. **Verdict: negative / rejected on holdout.** |
 
-### Rank 2 — MRR: Magnetic residual polarity asymmetry (moderate benefit, high cost)
+### Rank 2 — MRR: Magnetic residual & tilt-curvature polarity asymmetry (moderate benefit, high cost, unrun)
 | Field | Detail |
 |-------|--------|
-| **Layers** | **1** `mag_anomaly` (total-field), **9** `tmi_vertical_gradient`, **14** `tmi` (total-magnetic intensity after leveling), **15** `depth_to_base_surf` (cover). Optionally **2** `rtp` for leveling check. |
-| **Physical signature** | **Directional polarity filter:** remove regional field by 2-km median subtraction (label-blind), compute vertical derivative residual R = ∂T/∂z – α·T_regional where α fitted per 10-km block (robust Huber). Compute asymmetric ridge score A = (R_up – R_down)/( |R_up|+|R_down|+ε ) across a 3-px step, with sign conditioned on cover thickness (thin cover → stronger weight). Uses signed residual, not absolute derivative. |
-| **Why off-catalogue** | A thin buried basalt or magnetite-depleted fault gouge can produce a dipolar magnetic step whose polarity flips across the fault, visible even when no scarp exists. Thick alluvium suppresses topographic expression but not shallow magnetic contrast. |
-| **Named mimic** | Lateral magnetite grade change in unfaulted volcanics, or GeoDAWN Area 1 vs 2 flight-height/line-spacing difference (200 m vs 400 m → different spectral content; [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)). |
-| **Difference** | Repo uses RTP+gravity co-edge magnitude·alignment; MRR uses *intra-magnetic* vertical derivative vs regional anomaly polarity. Distinct from tilt-angle or total-gradient (“worm”) lanes that keep absolute amplitude. |
-| **Expected lift / cost** | **Moderate lift, high cost.** Magnetic-only signals are noisy under cover; need careful line-parallel artifact veto (400 m periodicity test). Cost high due to block-wise robust α. |
+| **Layers** | **Band 1** `mag_anom`, **Band 3** `tmi_hg`, **Band 6** `tc` (magnetic tilt angle / total curvature), **Band 9** `tmi_vg`, **Band 14** `tmi`, **Band 15** `depth_to_base_surf`. Verified in `data/training_features.tif`; no external source required. |
+| **Physical signature** | **Directional polarity & tilt-curvature step filter:** remove 2 km regional median from `mag_anom` (label-blind), compute vertical-gradient residual $R = \text{tmi\_vg} - \alpha\cdot T_{\text{reg}}$, and measure across-strike signed step asymmetry $(R_{+3\text{px}} - R_{-3\text{px}})/(|R_{+3\text{px}}|+|R_{-3\text{px}}|+\epsilon)$ gated by magnetic tilt/curvature `tc` (`Band 6`, $\text{AUC}_{\text{sym}} = 0.5608$) and `depth_to_base_surf`. |
+| **Why off-catalogue** | Magnetite destruction by hydrothermal alteration along a buried fault or a thin displaced volcanic horizon creates an asymmetric dipolar magnetic step and `tc` break even where alluvial fans erase surface scarps. |
+| **Named mimic** | Unfaulted volcanic flow margin, remanent magnetization reversal, or GeoDAWN Area 1 vs Area 2 flight-line spacing transition ($200\text{ m}$ vs $400\text{ m}$ — [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)). |
+| **Difference from repo** | Uses intra-magnetic vertical/horizontal gradient asymmetry and Band 6 `tc` rather than `MGC-88`'s single-scale RTP/gravity co-edge or `CGO-88`'s conductivity offset. |
 
-### Rank 3 — MRR variant not selected: Multi-scale displacement discontinuity (MSDD)
+### Rank 3 — MSDD: Multi-scale gravity/magnetic displacement discontinuity (moderate benefit, high cost, unrun)
 | Field | Detail |
 |-------|--------|
-| **Layers** | **2** `rtp`, **13** `iso_grav_anom`, plus **14** `tmi` as consistency check. |
-| **Physical signature** | **Cross-scale phase-gradient disagreement:** compute log|∇| at σ=1.5,3,6 px for both RTP and gravity; score = Var_σ( arg(∇) ) weighted by min_σ|∇|, i.e., high where edge orientation is coherent at fine scale but diverges at coarse scale — a signature of a discrete displacement discontinuity rather than a gradational contact. Threshold with Hilbert envelope of analytic signal to reject pure amplitude contacts. |
-| **Why off-catalogue** | Offset basement fabric (magnetic) may be laterally displaced from the gravity expression by fault dip; a gradational intrusive contact would show scale-invariant orientation, while a fault truncates fabric. |
-| **Named mimic** | Intrusive margin (e.g., dike swarm) or steep depositional pinchout. Also Euler-depth clustering lanes already test depth, so MSDD tests *orientation* variance instead. |
-| **Difference** | Not Euler deconvolution depth clustering, not tilt-ring, not plain edge magnitude. Repo MGC-88 averages one σ per field; MSDD compares across σ. |
-| **Expected lift / cost** | **Moderate lift, high cost.** Requires 3 scales × 2 fields + orientation stats; needs careful leakage canary (scale features may correlate with footprint edge). |
+| **Layers** | **Band 2** `rtp`, **Band 5** `iso_grav_anom_slope` ($\text{AUC}_{\text{sym}} = 0.5425$), **Band 11** `iso_grav_anom_vg`, **Band 13** `iso_grav_anom`, **Band 18** `iso_grav_anom_hg`. Verified in `data/training_features.tif`. |
+| **Physical signature** | **Cross-scale gradient orientation variance:** compute $\nabla G_\sigma$ at $\sigma \in \{1.5, 3.0, 6.0\}\text{ px}$ for both `rtp` and `iso_grav_anom`, weighting circular variance of gradient azimuth across scales by $\min_\sigma \log(1+|\nabla|)$ and `iso_grav_anom_slope`. |
+| **Why off-catalogue** | Discrete brittle fault truncation produces scale-dependent azimuth twisting at stepovers and terminations, whereas gradational intrusive contacts maintain scale-invariant orientation. |
+| **Named mimic** | Intrusive dike margin or steep paleo-erosional buttress unconformity. |
+| **Difference from repo** | Tests multi-scale orientation variance across $\sigma \in \{1.5, 3, 6\}\text{ px}$ rather than `MGC-88`'s fixed single-scale ($\sigma=2,3\text{ px}$) cosine alignment. |
 
-### Rank 4 — RDC: Radiometric disequilibrium corridor (moderate lift, moderate cost)
+### Rank 4 — TSC: Strain-locked two-sided topographic slope/curvature break (lower-moderate benefit, high cost, unrun)
 | Field | Detail |
 |-------|--------|
-| **Layers** | **K** `radiometric_k` (band index verified in TIFF), **Th** `radiometric_th`, **U** `radiometric_u`, and **TC** `total_count`, plus **19** `slope` and **12** `detrended_elevation` for topographic stratification. (Band numbers cross-checked against `gems-geodawn-numerical-features.tif` tags; [GeoDAWN radiometric provenance](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)). |
-| **Physical signature** | **Locally standardized ratio residuals:** within 1-km sliding windows conditioned on slope/elevation decile, compute z-scores z_U/Th = (U/Th – μ)/σ and z_K/Th. Hydrothermal redistribution detector H = z_U/Th · I[|z_K/Th| <1] masked where TC < 5th percentile (thin cover proxy). Targets U enrichment without K co-enrichment (argillic alteration), coherent over ≥500 m along strike (line-integral filter). |
-| **Why off-catalogue** | Fault-hosted upflow can leach K and precipitate U daughters in fractures, creating a radiometric disequilibrium halo even where the fault does not offset topography (blind system). This would not be a mapped scarp. |
-| **Named mimic** | Weathering, groundwater redox front, or uranium placer unrelated to structure; also flight-line radiometric leveling residual. |
-| **Difference** | Not generic radiometric/slope fusion (those threshold K/Th/U amplitude); RDC tests *ratio disequilibrium conditioned on relief strata* plus along-strike coherence. Repo has no radiometric channel at all. |
-| **Expected lift / cost** | **Lower-moderate lift, moderate cost.** Radiometric signal is shallow (<50 cm penetration) and noisy under alluvium; only useful where cover thin or fractured. Cost moderate (local z-scores, line filtering). No new download. |
+| **Layers** | **Band 12** `det_elev`, **Band 19** `det_elev_slope` ($\text{AUC}_{\text{sym}} = 0.5642$, highest of all 19 bands), **Band 4** `geod_2ndinv`, **Band 7** `geod_shearrate`, **Band 8** `geod_dilaterate`. Verified in `data/training_features.tif`. |
+| **Physical signature** | **Strain-conditioned inflection pair:** compute directional second derivative of `det_elev` normal to `det_elev_slope` ridges, requiring opposite-signed profile curvature across a $200\text{ m}$ step weighted by geodetic dilatation/shear (`geod_dilaterate` $\text{AUC}_{\text{sym}} = 0.5241$, `geod_shearrate`, `geod_2ndinv`). |
+| **Why off-catalogue** | Active distributed transtension/normal faulting across piedmont slopes produces subtle paired convex/concavescarps aligned with geodetic strain rate that were missed where discrete surface rupture traces were not mapped. |
+| **Named mimic** | Pleistocene Lake Lahontan shoreline terraces, fluvial terrace risers, or road/canal embankments. |
+| **Difference from repo** | `MGC-88` and `CGO-88` use zero topographic or geodetic strain bands; `TSC` couples `det_elev` / `det_elev_slope` inflection geometry with GPS/InSAR strain invariants (`geod_2ndinv`, `geod_shearrate`, `geod_dilaterate`). |
 
-### Rank 5 — TSC: Two-sided curvature transverse to strain (lower lift, high cost)
+### Rank 5 — RDC: External GeoDAWN radiometric disequilibrium corridor (external-data dependent, unrun)
 | Field | Detail |
 |-------|--------|
-| **Layers** | **12** `detrended_elevation`, **19** `slope`, **4** `strain_invariant` (from GNSS/InSAR-derived strain; organizer-provided), **7** `shear_strain` and **8** `dilatation`. All are available as provided numerical features (verify tag before use). |
-| **Physical signature** | **Strain-aligned two-sided profile curvature:** compute principal curvature perpendicular to local maximum shear direction (atan2 shear). Score = κ_right · (–κ_left) · I[|κ| > p70] where κ are profile curvatures averaged in 200-m half-windows on either side of a candidate line, requiring opposite sign (one side convex, other concave) and strain-parallel elongation (anisotropy >1.5). Rejects single-ridge maxima. |
-| **Why off-catalogue** | Distributed brittle-ductile transition or blind normal-fault flexure may produce subtle anticlinal/synclinal pair across a fault without a discrete scarp, preserved under pediment veneer; InSAR strain may still show shear concentration. |
-| **Named mimic** | Lacustrine shoreline (Lake Lahontan, ~1330 m elevation — check DEM contour), fluvial terrace riser, or anthropogenic berm/canal. The Walker Lane area has extensive Lahontan shorelines ([USGS Lahontan mapping](https://www.usgs.gov/science/cahill-lake-lahontan)). |
-| **Difference** | Not generic scarp curvature, Radon shoreline, or hydrologic conduit ranking; explicitly requires *paired opposite curvature* locked to strain azimuth. Repo has zero topographic/strain channels. |
-| **Expected lift / cost** | **Lower lift, high cost.** Topographic lanes heavily explored in siblings (scarp-ridge, Radon, lidar U8); many false positives from shorelines. Implementation high: strain-azimuth field + two-sided curvature windows. |
+| **Layers & external source** | Requires external [USGS GeoDAWN radiometric grids](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) (K, Th, U, TC; DOI `10.5066/P93LGLVQ`, CC0; owner-mirrored in `GEMSDOE24` as `data/external/geodawn_rad_u8.tif`, `SHA-256: c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682` — see [`research/mirror-manifest.json`](mirror-manifest.json)) combined with provided **Band 12** `det_elev` and **Band 19** `det_elev_slope`. **Not present inside the 19-band `training_features.tif` (`IR-88-07`).** |
+| **Physical signature** | **Relief-stratified U/Th and K/Th ratio residuals:** within 1 km windows stratified by `det_elev` and `det_elev_slope` deciles, compute standardized $z_{\text{U/Th}}$ and $z_{\text{K/Th}}$ residuals to isolate linear hydrothermal alteration corridors along fractures. |
+| **Why off-catalogue** | Epithermal fluid upflow and argillic alteration can leach K or enrich U along fracture zones lacking a topographic scarp. |
+| **Named mimic** |Felsic volcanic tuff outcrops, playa evaporite/uranium placers, or flight-line radiometric leveling seams. |
+| **Difference & obtainability** | Uses external CC0 USGS GeoDAWN radiometric channels rather than the 19 provided bands; ranked 5th because radiometric gamma-ray penetration is $<50\text{ cm}$ and requires external raster ingestion. |
 
-## What we will actually test next
+## Summary of experimental budget and next steps
 
-1. Restore `training_features.tif` and grid (already pinned: SHA `4371c82e...`, EPSG:32611, 3730×3292, transform (100,0,243350,0,-100,4508550) — verified in `vendor/gems57/grid.py`).
-2. Build label-blind cache for the top candidate (CGO) — conductance+gravity channels with 2-px Gaussian smoothing, exactly as MGC-88's `edge.py` pattern, never using `existing_faults.tif` inside features.
-3. Run buffered-component holdout (seeds 20,21; 3-px context collar, 12-px quadrant erosion) via `vendor/gems57/holdout.py` + `evaluate_holdout.py` (gems57-pooled-hide-v2, α=0.2 β=0.8, 300 m triangular kernel — delegates to `vendor/gems57/metric.py` which implements the organizer formula at [DrivenData metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#mathematical-representation)).
-4. Single-feature leakage canaries (symmetric AUC) must be ≤0.90; then pooled DTI + 20-km block bootstrap CI. Advance only if candidate beats MGC-88's 0.0389 with paired 95% CI >0.
-5. Independent `scripts/validate_release.py` format + uniqueness gate (rank vs dot overlap) — promotion only if every discriminating prior passes literal thresholds; universal space-filling witness (17GEMSDOE E-proba, SHA `ab0a0a62…`, positive on all 5,167,373 footprint cells) is reported, not silently exempted. Selector approval remains separate; no slot spent until green.
-
-## Obtainability notes for future thermal corroboration (NOT required for the 5 above)
-
-- **2 m probe temps** and **paleogeothermal features** are listed at [GDR 1391](https://gdr.openei.org/submissions/1391) (CC BY 4.0, 1.03 MB zip, 82 kB zip). Our sandbox cannot fetch binaries from `gdr.openei.org` (allowlist blocks `gdr.openei.org` binaries); availability must be re-checked on an unrestricted host and license confirmed per-resource before competition use. Even if used, these are *corroboration*, not fault labels — a hot spring can follow permeable lithology, not a fault (see field guide). Rank E in field-guide, not a viable slot candidate until verified.
-- **1 m DEM tiles** (706 of 716) were OCR-recovered from [NLR PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) by sibling GEMSDOE24 and quantized to `lidar_scarp_features_u8.tif`; provenance is documented in `research/mirror-manifest.json`; USGS 3DEP source carries no use restrictions per owner's receipt. Any re-derivation must re-audit the tile list and verify EPSG:32611 resampling.
-- **Organizer-authenticated grid** (`data/bridge/sample_submission.tif` etc.) currently redirects unauthenticated users to login ([data tab](https://www.drivendata.org/competitions/306/competition-doe-gems/data/)). Owner mirrors are SHA-pinned but not organizer-authenticated — do not label local scores ORGANIZER-CONFIRMED.
-
----
-*Generated 2026-10-22 on arena/a1d4a2c6-gemsdoe88. Every layer index was verified against the on-disk TIFF tags, not assumed from the PDF table alone (PDF table omits several derived bands). All URLs fetched as public guidance on 2026-10-22; data pages remain login-walled.*
+1. **Experiment 1 (`MGC-88`):** **HOLDOUT-DTI `0.0389 [0.0264, 0.0532]`** vs raw control **`0.0267 [0.0173, 0.0372]`** (`gems57-pooled-hide-v2`, `n=22,893`). Remains the unbeaten holdout best in this repository.
+2. **Experiment 2 (`CGO-88`):** **HOLDOUT-DTI `0.0227 [0.0154, 0.0309]`** (pure) and **`0.0230 [0.0162, 0.0308]`** (joint with `MGC-88`), failing to beat `MGC-88` (paired $\Delta = -0.0162\ [-0.0281, -0.0073]$ pure; $-0.0158\ [-0.0286, -0.0061]$ joint). Rejected on holdout; no new submission artifact promoted.
+3. **Remaining budget:** 1 experiment remaining (`experiment_budget_used_total = 2` of `3`). Any future session must first resolve the protocol-level universal positive-footprint witness (`dense_17gemdoe.tif`, `IR-88-01`) with explicit selector authorization before any nonempty candidate can pass the literal 3-px / 70% registry overlap gate.

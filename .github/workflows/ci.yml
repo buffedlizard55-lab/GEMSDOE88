@@ -2,7 +2,7 @@ name: Automated research release checks
 on:
   pull_request:
   push:
-    branches: [main, arena/7faad4bb-gemsdoe88]
+    branches: [main, arena/e822d487-gemsdoe88, 'arena/**']
 permissions:
   contents: read
 jobs:
