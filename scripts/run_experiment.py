@@ -287,11 +287,11 @@ def run():
             sha256=digest(path),
             full_footprint_spearman=rho,
             abs_rho=abs(rho),
-            preplacement=(abs(rho) > 0.90),
+            rank_duplicate=(abs(rho) > 0.90),
         )
         del old, a, b
     dump(REGISTRY / "preplacement_registry.json", surface_gate)
-    if any(r["preplacement"] for r in surface_gate.values()):
+    if any(r["rank_duplicate"] for r in surface_gate.values()):
         raise RuntimeError(
             "surface rank correlation >.90 with a registry raster: STOP before placement"
         )

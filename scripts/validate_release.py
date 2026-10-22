@@ -33,6 +33,9 @@ def release_report(root=ROOT):
     root = Path(root)
     card = json.loads((root / "registry" / "run_card.json").read_text())
     published_card = json.loads((root / "docs" / "data" / "run-card.json").read_text())
+    root_site_card = json.loads((root / "docs" / "run_card.json").read_text())
+    if card != root_site_card:
+        raise ValueError("root GitHub Pages run card differs from canonical receipt")
     holdout = json.loads((root / "registry" / "holdout_result.json").read_text())
     canaries = json.loads((root / "registry" / "leakage_canaries.json").read_text())
     if card != published_card:

@@ -1,0 +1,11 @@
+{
+  "evidence_schema_complete": true,
+  "approved_for_weekly_slot": false,
+  "status": "BLOCKED",
+  "problems": [
+    "Literal registry overlap with hash-pinned full-footprint witness: research TIFF is not eligible for submission"
+  ],
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "raster_sha256": "3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b"
+}
