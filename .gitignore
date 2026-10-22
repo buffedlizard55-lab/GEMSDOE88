@@ -1,0 +1,13 @@
+# Local environments and Python caches
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Authorized/private competition data and derived artifacts; keep large rasters out of Git
+/data/
+/.cache/
+/outputs/
+*.tif
+*.tiff
+*.vrt

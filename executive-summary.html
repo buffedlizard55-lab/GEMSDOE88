@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive summary & submission guide — GEMSDOE88</title>
+  <style>
+    :root{--ink:#142c35;--muted:#536b72;--paper:#f4f7f5;--line:#d8e2df;--red:#982f25;--redbg:#fff0ed;--green:#176342;--greenbg:#e8f5ec}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}header{background:#102a35;color:white;padding:28px max(22px,calc((100% - 900px)/2))}header a{color:#b9e7df}main{max-width:900px;margin:26px auto;padding:0 22px}.alert{background:var(--redbg);border:1px solid #e7b6af;border-left:6px solid var(--red);border-radius:9px;padding:18px 20px;margin:18px 0}.ready{background:var(--greenbg);border:1px solid #b5d8c1;border-left:6px solid var(--green);padding:16px 20px;border-radius:9px}.box{background:white;border:1px solid var(--line);border-radius:10px;padding:20px;margin:16px 0}h1{line-height:1.15}h2{margin-top:0}a{color:#075f68;text-underline-offset:3px}code{background:#edf1ef;padding:2px 5px;border-radius:4px}li{margin:.45em 0}.small{color:var(--muted);font-size:.92rem}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:9px;border-bottom:1px solid var(--line);vertical-align:top}footer{max-width:900px;margin:auto;padding:18px 22px 34px;color:var(--muted)}
+  </style>
+</head>
+<body>
+<header><p><a href="index.html">← GEMSDOE88 home</a></p><h1>Executive summary & competition submission guide</h1><p>How to create, validate, and submit a prediction without confusing a research result with a competition score.</p></header>
+<main>
+  <section class="alert" role="alert"><strong>Current status: NOT READY.</strong> There is no prediction TIFF in this repository. Do not submit a file from GEMSDOE88. The required competition data, shared holdout evaluator, registry rasters, and writer are absent, so neither a unique candidate nor an improved holdout result can be established.</section>
+  <section class="box"><h2>What the file must satisfy</h2><p>The competition upload flow accepts a single-band GeoTIFF or a ZIP containing exactly one GeoTIFF. The prediction grid must match the official sample-submission raster in CRS, dimensions, and geotransform. Predictions must be finite values in the closed range [0, 1]; this project validator checks the entire grid to prevent the reported “Predicted values must be in range [0, 1]” rejection. Always review the current competition rules and official template.</p><p>Official references: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem description</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">data and template (login may be required)</a> · <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">DOE/NLR submission guidance</a>.</p></section>
+  <section class="box"><h2>Upload steps — only after a candidate is marked ready</h2><ol>
+    <li>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">competition data page</a> and obtain the official <code>sample_submission.tif</code> plus authorized training data. Keep source and licence details.</li>
+    <li>Run the shared, spatially blocked hide-and-recover evaluation. Withhold whole fault segments with a buffer, build catalogue-derived features only from visible segments, mask visible faults pixel-exactly, test each feature alone for leakage, and report pooled DTI with evaluator version, positive count, and 95% CI.</li>
+    <li>Require the candidate to beat the current holdout best, then compare its surface against the prior registry before placement and compare final emitted dots against all registry rasters. Stop on correlation above 0.90 or if more than 70% of dots fall within 3 pixels of a registry dot set.</li>
+    <li>Write a fresh single-band GeoTIFF using the official writer. Do not copy a prior submission. Use zero outside the footprint if necessary to keep all pixels finite and within [0,1], unless the official submission contract specifies otherwise.</li>
+    <li>Run the format gate:<br><code>python scripts/validate_submission.py --prediction CANDIDATE.tif --reference sample_submission.tif --report candidate-validation.json</code><br>Proceed only if it reports <code>PASS</code>; this is format validation, not a score or uniqueness certificate.</li>
+    <li>Create a unique name and a note of at most 140 characters that identify the hypothesis and method without claiming a projected or unconfirmed score. Preserve the output hash and validation report.</li>
+    <li>On DrivenData, choose “New submission,” attach the validated TIFF (or a ZIP containing only that TIFF), enter the name/note if the form offers them, review the current rules, and submit. Save the organizer receipt. Only the receipt can support an <code>ORGANIZER-CONFIRMED</code> score claim.</li>
+  </ol><p class="small">The portal wording/fields can change. Confirm the current page and the competition's weekly submission allowance before using a slot. Do not spend a slot on an unvalidated hypothesis.</p></section>
+  <section class="box"><h2>What “ready” means here</h2><table><thead><tr><th>Gate</th><th>Current state</th></tr></thead><tbody>
+    <tr><td>Competition rasters and official reference grid in this checkout</td><td><strong>Missing</strong></td></tr>
+    <tr><td>Shared holdout evaluator / writer / cached features</td><td><strong>Missing</strong></td></tr>
+    <tr><td>Holdout DTI, CI, withheld-positive count and leakage canary</td><td><strong>Not measured</strong></td></tr>
+    <tr><td>Registry rank-correlation and dot-overlap checks</td><td><strong>Not measured</strong></td></tr>
+    <tr><td>Candidate TIFF and SHA-256</td><td><strong>Not generated</strong></td></tr>
+    <tr><td>Organizer-confirmed score / receipt</td><td><strong>Not available in this project</strong></td></tr>
+  </tbody></table></section>
+  <section class="ready"><strong>Conclusion:</strong> No file is currently OK to download and submit. This is an intentional safety gate, not a claim that the scientific idea failed. See the <a href="docs/review-and-research.md">research and review memo</a> for the forensic assessment, provisional hypotheses, and exact data blockers.</section>
+</main>
+<footer>Back to <a href="index.html">project status</a> · Read the <a href="README.md">standing brief</a>.</footer>
+</body>
+</html>

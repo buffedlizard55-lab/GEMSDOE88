@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a35">
+  <title>GEMSDOE88 — Evidence before submission</title>
+  <style>
+    :root{--ink:#142c35;--muted:#536b72;--paper:#f4f7f5;--card:#fff;--line:#d8e2df;--teal:#087e78;--red:#982f25;--redbg:#fff0ed;--gold:#805700;--goldbg:#fff6df}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif}header{background:#102a35;color:#f5fbf8;padding:34px max(24px,calc((100% - 1040px)/2)) 38px}header p{margin:6px 0;color:#bdd0cf}main{max-width:1040px;margin:30px auto;padding:0 22px}.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.76rem;font-weight:750;color:#9de1d4}.status{background:var(--redbg);border:1px solid #e7b6af;border-left:6px solid var(--red);padding:20px 22px;border-radius:10px;margin:0 0 22px}.status strong{font-size:1.12rem;color:var(--red)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}.card h2,.card h3{margin-top:0;line-height:1.25}a{color:#075f68;text-underline-offset:3px}a:focus,button:focus{outline:3px solid #e7ad32;outline-offset:3px}.pill{display:inline-block;background:#e7f2ef;color:#1d5753;padding:2px 9px;border-radius:99px;font-size:.82rem;font-weight:700}.muted{color:var(--muted)}ul{padding-left:1.2rem}footer{max-width:1040px;margin:30px auto 0;padding:18px 22px 36px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+  </style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">DOE GEMS · Research & validation</div>
+  <h1>GEMSDOE88</h1>
+  <p>An auditable workflow for discovering unmapped geothermal faults — evidence first, submission second.</p>
+</header>
+<main>
+  <section class="status" aria-labelledby="status-title">
+    <strong id="status-title">⛔ No submission TIFF is ready. Do not download or submit a file from this project.</strong>
+    <div>This checkout has no competition rasters, model features, shared holdout evaluator, registry rasters, or candidate TIFF. No holdout score or uniqueness check has been run. We will not fabricate a prediction or call an unvalidated file a submission.</div>
+  </section>
+  <div class="grid">
+    <section class="card">
+      <span class="pill">Start here</span>
+      <h2>Submission guide</h2>
+      <p>See the exact competition upload steps, required checks, and the current blockers.</p>
+      <p><a href="executive-summary.html">Read the executive summary and submission guide →</a></p>
+    </section>
+    <section class="card">
+      <span class="pill">Review</span>
+      <h2>Findings & research queue</h2>
+      <p>Forensic notes on the cited GEMSDOE32 artifact, four provisional geological hypotheses, source-access gaps, and the holdout/uniqueness gates.</p>
+      <p><a href="docs/review-and-research.md">Open the review and research memo →</a></p>
+    </section>
+    <section class="card">
+      <span class="pill">Tool</span>
+      <h2>GeoTIFF format gate</h2>
+      <p>A local validator checks the candidate raster against the competition's sample grid and rejects non-finite or out-of-range values, including values outside the valid footprint.</p>
+      <p><a href="scripts/validate_submission.py">View validator source</a> · <a href="README.md">Project brief & sources</a></p>
+    </section>
+  </div>
+  <section class="card" style="margin-top:16px">
+    <h2>What is required before a file can be marked ready?</h2>
+    <ul>
+      <li>Authenticated training features, labels, official sample raster, and permitted ancillary data.</li>
+      <li>The shared spatially blocked hide-and-recover evaluator and writer, with feature-only leakage checks.</li>
+      <li>A holdout result with evaluator version, withheld-positive count, and 95% confidence interval that beats the prior holdout best.</li>
+      <li>Pre-placement and final raster comparisons against the registry for correlation and dot overlap.</li>
+      <li>Successful format/range validation and an auditable manifest/hash. A holdout or projection is not an organizer-confirmed score.</li>
+    </ul>
+    <p class="muted">Current run card: <a href="run-card.json">run-card.json</a> · Verdict: negative/blocked; no experiment performed.</p>
+  </section>
+</main>
+<footer>Evidence status is explicit. Official source links and their verification limits are recorded in the <a href="README.md">README</a> and <a href="docs/review-and-research.md">research memo</a>.</footer>
+</body>
+</html>
