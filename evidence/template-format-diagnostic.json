@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "validator": "gems88-format-audit-v1",
+  "artifact": "sample_submission.tif",
+  "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "checks": {
+    "geotiff": true,
+    "single_band": true,
+    "real_numeric_dtype": true,
+    "template_single_band": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "no_nodata_sentinel": false,
+    "all_finite": false,
+    "values_in_0_1": false,
+    "all_pixels_unmasked": false
+  },
+  "minimum": 0.0,
+  "maximum": 1.0,
+  "format_valid": false,
+  "submission_ready": false,
+  "note": "Format only. Holdout, leakage, registry and selector approval are separate."
+}
