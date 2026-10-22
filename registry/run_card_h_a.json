@@ -1,0 +1,55 @@
+{
+  "session": "arena/072d2016-gemsdoe88",
+  "hypothesis": "H-A: buried valley / topographic curvature break coincident with magnetic-gradient sign-flip on deep basin cover, independent of mapped surface fault traces.",
+  "mechanism": "Column-select HistGradientBoosting on gravity edge (band 4), alignment (band 5), depth-to-base (band 2), isotope gravity (band 1); budget 25000; spacing radius 2 px; seed 99. Uses shared 7-channel memmap; no private metric.",
+  "named_non_fault_process": "Glacial trough, erosional channel, sedimentary basin margin; magnetic survey flight-line gridding seams.",
+  "holdout_dti": {
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "note": "Pooled score not independently recomputed for H-A in this session; conditional proxy only; never a leaderboard estimate.",
+    "withheld_positives": 22893,
+    "candidate_dti_projected": null,
+    "confidence_interval_95": [null, null],
+    "evidence_class": "HOLDOUT-DTI (conditional proxy, not new fold)"
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_surface_spearman": {
+      "H33": 0.018,
+      "dense_prior": 0.231,
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "threshold_check": "abs_rho < 0.90 PASS for both"
+    },
+    "final_dot_overlap_3px_pixels": {
+      "H33": 243,
+      "dense_prior": 25000,
+      "dense_prior_fraction": 1.0,
+      "duplicate_under_literal_rule": true,
+      "evidence_class": "REGISTRY-MEASUREMENT"
+    }
+  },
+  "leakage_canary": {
+    "max_symmetric_auc": 0.5459,
+    "threshold": 0.90,
+    "passed": true,
+    "evidence_class": "HOLDOUT-FEATURE-CANARY (reused MGC-88 canary; H-A subset features expected lower)"
+  },
+  "raster_sha256": "74be285821e896a0... (see full receipt docs/downloads/gems88-topo-curvature-radiometric-v1-DO-NOT-SUBMIT.json)",
+  "validator_output": {
+    "format_ok": true,
+    "inside_no_nan": true,
+    "values_0_1": true,
+    "crs_shape_transform_match": true,
+    "positive_outside_footprint": false,
+    "nodata_tag": null,
+    "evidence_class": "AUTOMATED-INDEPENDENT-VALIDATOR"
+  },
+  "submission_name": "gems88-topo-curvature-radiometric-v1-DO-NOT-SUBMIT",
+  "submission_note": "H-A dem-curvature/RTP-sign cross, 25000 dots, research only; universal overlap gate blocks upload",
+  "note_length": 86,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative — universal dense-prior overlap = 1.0 > 0.70; no organizer-confirmed receipt; no weekly slot spent; promotion requires separate selector step within current cap.",
+  "budget_used": 2,
+  "budget_max": 3,
+  "time_budget_s": 23832,
+  "run_card_version": "v1-20261022-H-A"
+}
