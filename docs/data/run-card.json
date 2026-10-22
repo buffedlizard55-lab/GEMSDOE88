@@ -1,0 +1,166 @@
+{
+  "canary_max_auc": 0.5459163678743298,
+  "correlation_overlap_vs_registry": {
+    "final_dots": {
+      "H33": {
+        "duplicate": false,
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "exact_shared_pixels": 406,
+        "forward_dot_overlap_3px": 0.21147819620757421,
+        "pixel_identical": false,
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+      },
+      "dense_prior": {
+        "duplicate": true,
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "exact_shared_pixels": 37654,
+        "forward_dot_overlap_3px": 1.0,
+        "pixel_identical": false,
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+      }
+    },
+    "scope": "Proof of duplication against two hash-verified owner registry rasters; NOT a full inventory uniqueness certification.",
+    "surface_preplacement": {
+      "H33": {
+        "abs_rho": 0.025065808535153444,
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "full_footprint_spearman": 0.025065808535153444,
+        "rank_duplicate": false,
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+      },
+      "dense_prior": {
+        "abs_rho": 0.30559253617200155,
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "full_footprint_spearman": 0.30559253617200155,
+        "rank_duplicate": false,
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+      }
+    },
+    "universal_witness": {
+      "allowed_pixels": 5106385,
+      "covered_allowed_fraction": 1.0,
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+      "overlap_limit": 0.7,
+      "positive_pixels": 5167373,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "uncovered_allowed_pixels": 0,
+      "universal_overlap_blocker": true,
+      "witness_file": "/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+    }
+  },
+  "downloadable_file": "downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+  "emitted_dots": 37654,
+  "experiment_budget_used": 1,
+  "experiment_count": 1,
+  "holdout_dti": {
+    "candidate": 0.03889145069516291,
+    "ci95": [
+      0.026360055075052378,
+      0.05323626489265121
+    ],
+    "paired_delta_vs_control": {
+      "ci95": [
+        0.005638656815708435,
+        0.019674602034172636
+      ],
+      "delta": 0.0121797067571832,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
+    "raw_control": {
+      "ci95": [
+        0.017303192485922162,
+        0.03724830215156441
+      ],
+      "dti": 0.026711743937979707,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "fnw": 22022.194776415003,
+      "fpw": 70557.63862741562,
+      "tpw": 870.8052235849934,
+      "withheld_positive_pixels": 22893
+    },
+    "version": "gems57-pooled-hide-v2",
+    "withheld_positives": 22893
+  },
+  "hypothesis": "Independent magnetic and gravity edges that remain aligned under thick basin cover may reveal overlooked fault-related contacts beyond mapped surface traces.",
+  "independent_organizer_receipt": false,
+  "mechanism": "Signed RTP-magnetic / isostatic-gravity co-edge, with depth-to-base as basin-cover covariate; learned on visible public faults only.",
+  "named_non_fault_process": "Unfaulted lithologic contact / sedimentary facies edge; magnetic survey flight-line gridding seam.",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "production_fit": {
+    "columns": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "n_positives": 16000,
+    "n_unlabeled": 48000,
+    "n_visible_training": 60988,
+    "noisy_pu_negative_sampling": true
+  },
+  "provenance": {
+    "dense witness": {
+      "file": "registry/dense_17gemdoe.tif",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+    },
+    "existing_faults.tif": {
+      "file": "bridge/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    "h33 registry": {
+      "file": "registry/h33_education.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    "sample_submission.tif": {
+      "file": "bridge/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+    },
+    "training_features.tif": {
+      "file": "training_features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+    }
+  },
+  "raster_sha256": "3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b",
+  "schema": "gems88.run-card.v1",
+  "scores_evidence_class": "HOLDOUT-DTI",
+  "stop_reason": "literal universal positive-footprint registry witness: 100% forward overlap",
+  "submission_name": "gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT",
+  "submission_note": "MGC88 basin-cover RTP/gravity aligned-edge HGB, 2px-spaced 37654 dots; research only: universal overlap gate blocks upload",
+  "time_elapsed_seconds": 83.22,
+  "validator_output": {
+    "all_checks": {
+      "crs_epsg_32611": true,
+      "dimensions_3730x3292": true,
+      "dtype_float32": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "max_le_1": true,
+      "min_ge_0": true,
+      "no_inf_anywhere": true,
+      "no_nan_anywhere": true,
+      "no_sentinel_values": true,
+      "outside_footprint_zero": true,
+      "range_0_1_guaranteed": true,
+      "single_band": true,
+      "transform_matches_sample_submission": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "crs_shape_transform_match": true,
+    "grid_reference_provenance": "owner-hosted mirror, NOT organizer authenticated",
+    "local_format_ok": true,
+    "no_nan_in_footprint": true,
+    "values_in_0_1": true,
+    "warning": "local PASS is not organizer upload acceptance"
+  },
+  "verdict": "negative",
+  "weekly_slots_used": 0
+}

@@ -1,4 +1,10 @@
-"""Fail-closed experiment gate. Does not choose or spend weekly submission slots."""
+"""Fail-closed legacy schema gate and current canonical release status.
+
+`assess` remains for the synthetic eligibility fixtures inherited from main.
+The live CLI status is derived from the independent TIFF/ZIP/witness validator,
+not the pre-experiment card that previously claimed no TIFF existed.
+Does not choose or spend weekly submission slots.
+"""
 from __future__ import annotations
 import hashlib
 import json
@@ -90,9 +96,33 @@ def verify_template(root=ROOT):
             raise ValueError(f'Shared template modified: {name}')
 
 
+def current_status(root=ROOT):
+    """Represent the actual research artifact. A format PASS is not slot approval."""
+    from validate_release import release_report
+
+    report = release_report(root)
+    if report['literal_duplicate']:
+        problems = [
+            'Literal registry overlap with hash-pinned full-footprint witness: '
+            'research TIFF is not eligible for submission'
+        ]
+    elif not report['ok_to_submit']:
+        problems = ['A required scientific or release gate failed']
+    else:
+        problems = []
+    return {
+        'evidence_schema_complete': bool(report['format_ok']),
+        'approved_for_weekly_slot': False,
+        'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
+        'problems': problems,
+        'ok_to_download_for_research': bool(report['ok_to_download']),
+        'ok_to_submit': False,  # selector has never approved a weekly slot
+        'raster_sha256': report['output_sha256'],
+    }
+
+
 if __name__ == '__main__':
     verify_template()
-    card = json.loads((ROOT / 'docs/run_card.json').read_text())
-    report = assess(card)
+    report = current_status()
     (ROOT / 'docs/status.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))

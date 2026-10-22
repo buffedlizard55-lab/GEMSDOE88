@@ -1,7 +1,8 @@
+# Local research inputs and environments; only small validated deliverables are published.
+.scratch/
 .venv/
+/data/
 __pycache__/
 .pytest_cache/
-data/
-*.npy
-*.tif
-*.zip
+*.pyc
+*.tmp

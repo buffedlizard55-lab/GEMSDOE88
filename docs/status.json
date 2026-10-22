@@ -1,32 +1,11 @@
 {
-  "evidence_schema_complete": false,
+  "evidence_schema_complete": true,
   "approved_for_weekly_slot": false,
   "status": "BLOCKED",
   "problems": [
-    "No assigned method lane",
-    "Cached feature stack not verified",
-    "No withheld positives",
-    "Missing/invalid HOLDOUT-DTI confidence interval",
-    "Missing/invalid HOLDOUT-DTI estimate",
-    "No paired improvement over current holdout best",
-    "Unidentified holdout incumbent",
-    "Holdout protocol not verified: whole_segments",
-    "Holdout protocol not verified: buffered",
-    "Holdout protocol not verified: visible_only_features",
-    "Holdout protocol not verified: pixel_exact_mask",
-    "Feature-alone leakage canaries missing",
-    "Canaries do not cover all features",
-    "Registry inventory incomplete",
-    "No surface registry comparisons",
-    "Incomplete surface comparisons",
-    "No dots registry comparisons",
-    "Incomplete dots comparisons",
-    "Validator missing/failed: no_nan_inside",
-    "Validator missing/failed: range_0_1",
-    "Validator missing/failed: crs_match",
-    "Validator missing/failed: shape_match",
-    "Validator missing/failed: transform_match",
-    "No generated TIFF",
-    "Validator not bound to raster hash"
-  ]
+    "Literal registry overlap with hash-pinned full-footprint witness: research TIFF is not eligible for submission"
+  ],
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "raster_sha256": "3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b"
 }

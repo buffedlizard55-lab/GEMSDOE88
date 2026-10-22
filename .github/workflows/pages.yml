@@ -1,0 +1,44 @@
+name: Dated public-source feed and Pages site
+on:
+  push:
+    branches: [main]
+    paths: ['docs/**', 'registry/**', 'scripts/**', 'src/**', 'vendor/**', '.github/workflows/pages.yml', 'README.md']
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python scripts/restore_inputs.py --validation
+      - run: pytest -q
+      - run: python scripts/validate_release.py
+      - name: Fetch organizer PUBLIC leaderboard; preserve dated snapshot on failure
+        run: |
+          if ! python scripts/update_leaderboard.py --output docs/data/leaderboard.json; then
+            echo 'Official leaderboard unavailable or markup changed; KEEP dated snapshot and stale indicator.'
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - name: Deploy without pushing a Git branch
+        id: deployment
+        uses: actions/deploy-pages@v4

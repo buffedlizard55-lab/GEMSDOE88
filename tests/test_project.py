@@ -11,10 +11,10 @@ from rasterio.transform import from_origin
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / 'vendor'))
-from scripts.readiness import assess, verify_template
-from scripts.validate_artifact import validate_artifact
-from gems57 import metric, evaluate_holdout, uniqueness
+sys.path.insert(0, str(ROOT / "vendor"))
+from scripts.readiness import assess, current_status, verify_template  # noqa: E402
+from scripts.validate_artifact import validate_artifact  # noqa: E402
+from gems57 import metric, evaluate_holdout, uniqueness  # noqa: E402
 
 
 def test_template_bytes_unchanged():
@@ -22,71 +22,106 @@ def test_template_bytes_unchanged():
 
 
 def test_real_card_stays_blocked():
-    result = assess(json.loads((ROOT / 'docs/run_card.json').read_text()))
-    assert result['status'] == 'BLOCKED'
-    assert not result['approved_for_weekly_slot']
-    assert 'No generated TIFF' in result['problems']
+    assert json.loads((ROOT / "docs/run_card.json").read_text()) == json.loads(
+        (ROOT / "registry/run_card.json").read_text()
+    )
+    result = current_status()
+    assert result["status"] == "BLOCKED"
+    assert not result["approved_for_weekly_slot"]
+    assert not result["ok_to_submit"]
+    assert result["ok_to_download_for_research"]
+    assert any("registry overlap" in problem for problem in result["problems"])
 
 
 def eligible_record(tmp_path):
-    out = tmp_path / 'docs/downloads/unit-test.tif'
+    out = tmp_path / "docs/downloads/unit-test.tif"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_bytes(b'synthetic gate receipt fixture, not a real TIFF')
+    out.write_bytes(b"synthetic gate receipt fixture, not a real TIFF")
     digest = hashlib.sha256(out.read_bytes()).hexdigest()
-    return {'lane': 'test-only', 'feature_cache_verified': True, 'feature_names': ['x'],
-            'experiment_count': 1, 'elapsed_seconds': 1, 'artifact': 'docs/downloads/unit-test.tif',
-            'raster_sha256': digest, 'submission_name': 'synthetic', 'note': 'synthetic fixture',
-            'holdout': {'evidence_class': 'HOLDOUT-DTI', 'evaluator_version': 'gems57-pooled-hide-v2',
-                        'withheld_positives': 10, 'ci95': [.1, .3], 'dti': .2,
-                        'paired_delta_ci95': [.01, .02], 'baseline_sha256': 'test',
-                        'whole_segments': True, 'buffered': True, 'visible_only_features': True,
-                        'pixel_exact_mask': True},
-            'canaries': [{'feature': 'x', 'auc': .6}],
-            'uniqueness': {'registry_complete': True, 'registry_sha256': ['test'],
-                           'surface': [{'sha256': 'test', 'rho': .2, 'overlap_3px': .1}],
-                           'dots': [{'sha256': 'test', 'rho': .2, 'overlap_3px': .1}]},
-            'validator': dict.fromkeys(['no_nan_inside', 'range_0_1', 'crs_match', 'shape_match',
-                                       'transform_match'], True) | {'raster_sha256': digest}}
+    return {
+        "lane": "test-only",
+        "feature_cache_verified": True,
+        "feature_names": ["x"],
+        "experiment_count": 1,
+        "elapsed_seconds": 1,
+        "artifact": "docs/downloads/unit-test.tif",
+        "raster_sha256": digest,
+        "submission_name": "synthetic",
+        "note": "synthetic fixture",
+        "holdout": {
+            "evidence_class": "HOLDOUT-DTI",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "withheld_positives": 10,
+            "ci95": [0.1, 0.3],
+            "dti": 0.2,
+            "paired_delta_ci95": [0.01, 0.02],
+            "baseline_sha256": "test",
+            "whole_segments": True,
+            "buffered": True,
+            "visible_only_features": True,
+            "pixel_exact_mask": True,
+        },
+        "canaries": [{"feature": "x", "auc": 0.6}],
+        "uniqueness": {
+            "registry_complete": True,
+            "registry_sha256": ["test"],
+            "surface": [{"sha256": "test", "rho": 0.2, "overlap_3px": 0.1}],
+            "dots": [{"sha256": "test", "rho": 0.2, "overlap_3px": 0.1}],
+        },
+        "validator": dict.fromkeys(
+            [
+                "no_nan_inside",
+                "range_0_1",
+                "crs_match",
+                "shape_match",
+                "transform_match",
+            ],
+            True,
+        )
+        | {"raster_sha256": digest},
+    }
 
 
 def test_schema_eligibility_is_never_slot_approval(tmp_path):
     result = assess(eligible_record(tmp_path), tmp_path)
-    assert result['status'] == 'SELECTOR_REQUIRED'
-    assert not result['approved_for_weekly_slot']
+    assert result["status"] == "SELECTOR_REQUIRED"
+    assert not result["approved_for_weekly_slot"]
 
 
-@pytest.mark.parametrize('stage', ['surface', 'dots'])
-@pytest.mark.parametrize('field,value', [('rho', .901), ('overlap_3px', .701), ('rho', float('nan'))])
+@pytest.mark.parametrize("stage", ["surface", "dots"])
+@pytest.mark.parametrize(
+    "field,value", [("rho", 0.901), ("overlap_3px", 0.701), ("rho", float("nan"))]
+)
 def test_duplicate_or_undefined_comparison_blocks(tmp_path, stage, field, value):
     card = eligible_record(tmp_path)
-    card['uniqueness'][stage][0][field] = value
-    assert assess(card, tmp_path)['status'] == 'BLOCKED'
+    card["uniqueness"][stage][0][field] = value
+    assert assess(card, tmp_path)["status"] == "BLOCKED"
 
 
 def test_leakage_canary_and_missing_feature(tmp_path):
     card = eligible_record(tmp_path)
-    card['canaries'][0]['auc'] = .901
-    assert assess(card, tmp_path)['status'] == 'BLOCKED'
+    card["canaries"][0]["auc"] = 0.901
+    assert assess(card, tmp_path)["status"] == "BLOCKED"
     card = eligible_record(tmp_path)
-    card['feature_names'].append('untested')
-    assert assess(card, tmp_path)['status'] == 'BLOCKED'
+    card["feature_names"].append("untested")
+    assert assess(card, tmp_path)["status"] == "BLOCKED"
 
 
 def test_hash_and_path_gate(tmp_path):
     card = eligible_record(tmp_path)
-    card['raster_sha256'] = 'wrong'
-    assert assess(card, tmp_path)['status'] == 'BLOCKED'
-    card['artifact'] = '../../outside.tif'
-    assert assess(card, tmp_path)['status'] == 'BLOCKED'
+    card["raster_sha256"] = "wrong"
+    assert assess(card, tmp_path)["status"] == "BLOCKED"
+    card["artifact"] = "../../outside.tif"
+    assert assess(card, tmp_path)["status"] == "BLOCKED"
 
 
 def test_shared_metric_matches_bruteforce():
     rng = np.random.default_rng(81)
-    pred = rng.random((11, 13)) * (rng.random((11, 13)) > .8)
-    truth = rng.random((11, 13)) > .9
+    pred = rng.random((11, 13)) * (rng.random((11, 13)) > 0.8)
+    truth = rng.random((11, 13)) > 0.9
     exact = metric.dti_exact(pred, truth)
     brute = metric.dti_bruteforce(pred, truth)
-    assert exact['dti'] == pytest.approx(brute['dti'])
+    assert exact["dti"] == pytest.approx(brute["dti"])
 
 
 def test_visible_pixels_are_masked_by_shared_evaluator():
@@ -96,10 +131,10 @@ def test_visible_pixels_are_masked_by_shared_evaluator():
     known[8, 8] = True
     pred = truth.astype(float)
     pred[known] = 1
-    fold = {'region': np.ones_like(truth), 'visible': known, 'truth': truth}
+    fold = {"region": np.ones_like(truth), "visible": known, "truth": truth}
     result, terms = evaluate_holdout.evaluate(pred, fold, np.ones_like(truth))
-    assert result['dti'] == pytest.approx(1)
-    assert result['n_emitted'] == 1
+    assert result["dti"] == pytest.approx(1)
+    assert result["n_emitted"] == 1
     assert terms[:, 3].sum() == 1
 
 
@@ -110,59 +145,72 @@ def test_literal_overlap_three_pixels():
 
 
 def write_tif(path, array, **changes):
-    profile = dict(driver='GTiff', width=array.shape[1], height=array.shape[0], count=1,
-                   dtype='float32', crs='EPSG:32611', transform=from_origin(100, 200, 10, 10))
+    profile = dict(
+        driver="GTiff",
+        width=array.shape[1],
+        height=array.shape[0],
+        count=1,
+        dtype="float32",
+        crs="EPSG:32611",
+        transform=from_origin(100, 200, 10, 10),
+    )
     profile.update(changes)
-    with rasterio.open(path, 'w', **profile) as dst:
-        dst.write(array.astype('float32'), 1)
+    with rasterio.open(path, "w", **profile) as dst:
+        dst.write(array.astype("float32"), 1)
 
 
-@pytest.mark.parametrize('bad', [-1, 1.001, np.nan, np.inf])
+@pytest.mark.parametrize("bad", [-1, 1.001, np.nan, np.inf])
 def test_raw_invalid_values_fail_even_when_nodata_masked(tmp_path, bad):
-    sample, candidate = tmp_path / 'sample.tif', tmp_path / 'test.tif'
+    sample, candidate = tmp_path / "sample.tif", tmp_path / "test.tif"
     write_tif(sample, np.ones((4, 5)))
-    a = np.zeros((4, 5)); a[1, 1] = bad
+    a = np.zeros((4, 5))
+    a[1, 1] = bad
     write_tif(candidate, a, nodata=bad if np.isfinite(bad) else np.nan)
-    assert not validate_artifact(candidate, sample)['ok']
+    assert not validate_artifact(candidate, sample)["ok"]
 
 
 def test_format_valid_and_wrong_grid(tmp_path):
-    sample, candidate = tmp_path / 'sample.tif', tmp_path / 'test.tif'
+    sample, candidate = tmp_path / "sample.tif", tmp_path / "test.tif"
     write_tif(sample, np.ones((4, 5)))
     write_tif(candidate, np.zeros((4, 5)))
-    assert validate_artifact(candidate, sample)['ok']
-    write_tif(candidate, np.zeros((4, 5)), crs='EPSG:4326')
-    assert not validate_artifact(candidate, sample)['ok']
+    assert validate_artifact(candidate, sample)["ok"]
+    write_tif(candidate, np.zeros((4, 5)), crs="EPSG:4326")
+    assert not validate_artifact(candidate, sample)["ok"]
 
 
 class Links(HTMLParser):
     def __init__(self):
-        super().__init__(); self.links = []
+        super().__init__()
+        self.links = []
+
     def handle_starttag(self, tag, attrs):
-        self.links.extend(v for k, v in attrs if k in ('href', 'src'))
+        self.links.extend(v for k, v in attrs if k in ("href", "src"))
 
 
 def test_static_site_local_links_exist():
-    for file in (ROOT / 'docs').glob('*.html'):
-        parser = Links(); parser.feed(file.read_text())
+    for file in (ROOT / "docs").glob("*.html"):
+        parser = Links()
+        parser.feed(file.read_text())
         for link in parser.links:
-            if not link.startswith(('https:', 'http:', '#')):
-                assert (file.parent / link.split('#')[0]).is_file(), (file, link)
+            if not link.startswith(("https:", "http:", "#")):
+                assert (file.parent / link.split("#")[0]).is_file(), (file, link)
 
-@pytest.mark.parametrize('count', [None, -1, 4, 1.5, True])
+
+@pytest.mark.parametrize("count", [None, -1, 4, 1.5, True])
 def test_invalid_experiment_budget_blocks(tmp_path, count):
     card = eligible_record(tmp_path)
-    card['experiment_count'] = count
-    assert assess(card, tmp_path)['status'] == 'BLOCKED'
+    card["experiment_count"] = count
+    assert assess(card, tmp_path)["status"] == "BLOCKED"
 
 
 def test_transform_shape_and_interior_nan(tmp_path):
-    sample, candidate = tmp_path / 'sample.tif', tmp_path / 'test.tif'
+    sample, candidate = tmp_path / "sample.tif", tmp_path / "test.tif"
     write_tif(sample, np.ones((4, 5)))
     write_tif(candidate, np.zeros((4, 5)), transform=from_origin(101, 200, 10, 10))
-    assert not validate_artifact(candidate, sample)['transform_match']
+    assert not validate_artifact(candidate, sample)["transform_match"]
     write_tif(candidate, np.zeros((3, 5)))
-    assert not validate_artifact(candidate, sample)['shape_match']
-    a = np.zeros((4, 5)); a[2, 3] = np.nan
+    assert not validate_artifact(candidate, sample)["shape_match"]
+    a = np.zeros((4, 5))
+    a[2, 3] = np.nan
     write_tif(candidate, a)
-    assert not validate_artifact(candidate, sample)['no_nan_inside']
+    assert not validate_artifact(candidate, sample)["no_nan_inside"]

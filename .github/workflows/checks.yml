@@ -12,7 +12,9 @@ jobs:
           python-version: '3.11'
           cache: pip
       - run: pip install -r requirements.txt
+      - run: python scripts/restore_inputs.py --validation
       - run: python -m pytest -q
       - run: python scripts/check_site.py
       - run: python scripts/readiness.py
-      - run: git diff --exit-code docs/status.json
+      - run: python scripts/validate_release.py
+      - run: git diff --exit-code docs/status.json docs/run_card.json registry/template_pin.json
