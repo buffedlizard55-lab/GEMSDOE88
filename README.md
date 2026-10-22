@@ -1,44 +1,37 @@
-# GEMSDOE88 — auditable fault-discovery research
+# GEMSDOE88 — evidence before submission
 
-## Submission status: **BLOCKED — DO NOT SUBMIT**
+**Start every session here and read [the scientific review](research/review.md).**
 
-**No new competition TIFF has been generated or validated.** No previous submission has been copied as a deliverable. No weekly slot was used. [Executive summary](docs/executive-summary.html) · [Website](https://buffedlizard55-lab.github.io/GEMSDOE88/) · [Scientific review](research/review.md) · [Run card](evidence/run-card.json)
+## Submission status: BLOCKED — do not submit
+There is no generated submission TIFF in this repository. No score, global uniqueness, organizer acceptance, or slot eligibility has been established. This is a negative deliverable, not a ready entry. [Submission guide](docs/executive-summary.html) · [Machine-readable run card](docs/run_card.json).
 
-The initial repo contained only this README. Core input rasters have now been restored autonomously from hash-pinned GitHub mirrors, including the numerical feature stack. Mirror integrity is verified; organizer provenance is not. The missing method-lane paragraph, shared template/evaluator/writer, segment holdout and comparison registry prevent a compliant experiment. An all-zero or renamed historical TIFF would not solve these blockers.
+## Standing project brief (operational condensation of the user prompt)
+This section preserves the operative requirements, not a verbatim transcript of the long request.
+- Goal: generate an original competition-format single-band GeoTIFF; a download must clearly say whether it is safe to submit. Never copy an earlier prediction as a new entry.
+- Stay within the assigned parallel-run geological lane. Stop as duplicate if surface or final-dot correlation exceeds 0.90 or dot overlap within three pixels exceeds 70% against a registry entry.
+- Reuse cached features, shared `evaluate_holdout.py` and `submission_writer.py`. Never create a private corrected evaluator.
+- Hide whole fault segments with a buffer; build catalogue-derived features only from visible faults; mask visible pixels exactly; pool DTI with alpha 0.2, beta 0.8 and a triangular 300 m kernel.
+- Test each feature alone. AUC above 0.90 is leakage until proved otherwise. Report HOLDOUT-DTI with evaluator version, withheld positives and 95% CI; ORGANIZER-CONFIRMED requires a submission receipt. Projections are never scores.
+- Propose and rank 3–5 hypotheses before implementation; beat the frozen incumbent on blocked holdout before separate slot selection. Stop after three experiments or two hours. Never upload or spend a weekly slot automatically.
+- End with a JSON run card including hypothesis, mechanism, confounder, holdout/CI, registry comparisons, raster hash, validator output, unique name, short note and promote/negative verdict. Negative results count.
+- Build an accessible GitHub Pages site with a prominent status/download area and executive submission guide. Automatically reject NaNs inside footprint, out-of-range values, and CRS/shape/transform mismatch. No silent clipping.
+- Research official free data; distinguish verified facts from hypotheses and inaccessible sources. Record irregularities, limitations and follow-up work. Do not invent authentication, data, results, receipts or novelty.
+- Review in three passes; test, open a PR and merge when checks pass. Core values: Maximize P(Win) through sound evidence and risk management; Own the Outcome end to end.
 
-## Start every session here — condensed user operating brief
+Conflicting historical score claims in the request are not current verified leaderboard data. The missing lane paragraph, cache, registry and receipts are recorded in the review. The request's assertion that a ready GPU training pipeline exists does not match the initially empty repository.
 
-This is a condensed operating brief, **not the full verbatim prompt**. Read this file and `research/review.md` before further work.
-
-- Generate a scientifically distinct TIFF, not a renamed/copied submission; clearly distinguish downloadable research files, format-valid files and promoted candidates. Make a successful candidate easy to download at the beginning of the site.
-- Stay in the assigned single-method lane. Stop and log duplicates above rank correlation 0.90 or candidate-dot overlap 70% within three pixels; compare surface before placement and final dots against the complete registry.
-- Reuse the shared cached feature stack, `evaluate_holdout.py`, and `submission_writer.py`; repair shared tools once upstream, not in private forks.
-- Hide whole fault segments with a buffer; recompute catalogue features from visible faults; mask visible pixels exactly. Use pooled DTI, alpha 0.2 / beta 0.8, 300 m triangular kernel. Run feature-alone leakage canaries; AUC above 0.90 requires investigation.
-- Label measured performance HOLDOUT-DTI with evaluator version, withheld positives and 95% CI, or ORGANIZER-CONFIRMED with a submission receipt. A projection is not a score. Supplied historical scores remain unverified user reports.
-- Propose and rank three to five geological hypotheses before implementation, naming layers, transforms, hidden-fault mechanism, non-fault mimic, novelty limits and cost. Test the top assigned candidate against the frozen holdout best before promotion.
-- Stop after three experiments or two hours. Selecting a real slot is a separate step within the currently verified weekly cap. Do not automatically submit to DrivenData.
-- End each run with the JSON card specified in the prompt, including negative outcomes. Automate validation; do not substitute human inspection.
-- Audit free official sources; retain provenance and limitations. Never invent results, claim unvisited sources verified, or equate detected faults with geothermal vents.
-- Review in three passes, test edge cases, publish an executive summary, and retain next steps. The requested PR and merge are part of this session.
-
-**Maximize P(Win):** spend scarce submission slots on independently tested improvements, not hopeful projections. **Own the Outcome:** surface defects, fix what can be fixed, and report blocked outcomes without manufacturing evidence.
-
-## Reproduce
-
+## Local verification
 ```sh
 python -m venv .venv
 .venv/bin/pip install -r requirements.txt
-# Requires configured gh access; never put credentials in files.
-.venv/bin/python scripts/restore_inputs.py --features
-.venv/bin/pytest -q
-.venv/bin/python scripts/check_site.py
-# Format audit only, after a legitimate candidate exists:
-.venv/bin/python scripts/validate_artifact.py candidate.tif \
-  --template data/sample_submission.tif --output evidence/format-check.json
+.venv/bin/python -m pytest -q
+.venv/bin/python scripts/readiness.py
+python -m http.server 8000 --bind 0.0.0.0 --directory docs
 ```
+The readiness command writes a blocked status as a normal negative result; a successful process exit does **not** mean ready to submit. No upload code exists. Vendored shared modules are byte-pinned; `registry/template_pin.json` records source commit and hashes. Scientific output must use those modules after the template audit is resolved. The report gate checks recorded evidence; it is not a model trainer or a substitute for computing evidence.
 
-Data are ignored by Git and can be restored using the pinned manifest. The independent format audit rejects nonfinite values, values outside [0,1], masking/nodata, multiband files and mismatched CRS/shape/transform. It does not clip invalid predictions or declare a candidate submission-ready. It is **not** a private replacement for the shared evaluator or writer.
+## Publication
+Existing GitHub Pages configuration publishes `main` from the repository root. `index.html` links/redirects into `docs/`; no settings change is required. This session's integration could read Pages settings but received HTTP 403 on an attempted build-mode update. The existing mode is retained.
 
-## Next steps
-
-Resolve the missing lane and shared template pins; retrieve the complete comparison registry and frozen segment folds/baseline; validate data provenance and current rules; then run one preregistered geological experiment. See [review](research/review.md) for ranked proposals and the source/access table. GPU is optional according to the official reference repository; scientific validation, not GPU availability, is the immediate blocker.
+## Parallel-session integration
+While this PR was open, another session merged input-restoration scripts and receipts. Those tools and evidence are preserved, along with its review at `research/concurrent-review.md` and brief at `research/concurrent-README.md`. Raw numerical-feature restoration recorded by that session is **not** the missing shared derived feature cache. Both validator test suites now run; the CLI retains `--template` and includes the added footprint audit. This repository still has no authorized lane or verified unique candidate.
