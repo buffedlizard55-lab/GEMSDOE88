@@ -1,0 +1,42 @@
+{
+  "bands": {
+    "depth_to_base_surf": {
+      "clip01": 1.2227413845062256,
+      "clip99": 3403.7407568359367,
+      "index": 15,
+      "invalid_inside": 3061,
+      "median": 315.8881530761719,
+      "valid": 5164312
+    },
+    "iso_grav_anom": {
+      "clip01": -32.79015983581543,
+      "clip99": 12.871771755218505,
+      "index": 13,
+      "invalid_inside": 3061,
+      "median": -7.277862071990967,
+      "valid": 5164312
+    },
+    "rtp": {
+      "clip01": -460.4590252685547,
+      "clip99": 394.5721917724609,
+      "index": 2,
+      "invalid_inside": 3061,
+      "median": -137.2845916748047,
+      "valid": 5164312
+    }
+  },
+  "build_source_sha256": "767d9c07deb3fd4ccc1989aad69307e44c4e2dca227e01558a6a2fbf728f35d5",
+  "cache_bytes": 343816480,
+  "cache_sha256": "d3b5c5db0d948bf82ad44b72110ac41a1c7045b25ab5a792baa7cb71ada3d7aa",
+  "description": "Band 2 RTP and band 13 gravity Gaussian-normalized gradients (2 and 3 px); band 15 sediment-cover covariate",
+  "input_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "names": [
+    "rtp",
+    "iso_grav_anom",
+    "depth_to_base_surf",
+    "log_rtp_edge",
+    "log_gravity_edge",
+    "edge_alignment",
+    "joint_edge"
+  ]
+}
