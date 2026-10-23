@@ -1,5 +1,13 @@
 # GEMSDOE88 — DOE GEMS Fault-Discovery Research & Automated GeoTIFF Pipeline
 
+## CURRENT STATE
+
+- **Parent:** R0 `h33-h33-2-b2` (GEMSDOE32), 37,654 dots; rebuilt byte-exactly to SHA-256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`.
+- **Best receipt:** none supplied. R0 `0.2778` remains **CLAIM**, not a receipt; the new PRUNE3 candidate has no organizer score.
+- **TOP_PUBLIC:** **UNSUPPLIED** — the human must provide a dated leaderboard value. **Slots left this week / total:** **UNSUPPLIED**.
+- **Built this session:** `h33-h33-2-b2-prune3-20261023-01d57649`, fixed-count PRUNE3 refill, 2,171 R0 dots changed (5.765655707%), **MODEL −0.003**; BUILT, not submitted.
+- **Next 3 slots:** (1) the built PRUNE3 falsifier only if the human accepts its predicted-negative information value; (2) proposed COLLAR-RELAX1, or PRUNE4 only after a `>=+0.01` PRUNE3 receipt; (3) proposed MARGINAL-CREDIT5. Slots 2–3 are not built. See `SLOT_PLAN.md` and `docs/SUBMIT.md`.
+
 > **READ THIS FIRST EVERY SESSION — PROJECT OPERATING BRIEF & UNMISTAKABLE STATUS**
 >
 > - **OK TO DOWNLOAD FOR RESEARCH: `YES`** — [`docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif) (`22,545` binary off-catalogue dots, `SHA-256: 15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00`) · [One-TIFF `.zip`](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.zip) (`SHA-256: edce6e3f0ba68f6c6142d38cbbd63a2b70d35033cceb7eb66b8554e5bbaacbe2`) · [Byte-level validator receipt](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.json) · [Executive summary & submission instructions](docs/executive-summary.html) · [Machine run card](registry/run_card.json)

@@ -1,0 +1,2 @@
+id,parent,axis,value,n_dots,pct_changed,sha256,status,predicted_change,receipt_score,receipt_date
+h33-h33-2-b2-prune3-20261023-01d57649,h33-h33-2-b2,PRUNE,3,37654,5.765655707,01d57649168d52a0bf2f9aced7aa2280a92b6fd7a0224757d5acc5e925785e96,BUILT,MODEL:-0.003,,
