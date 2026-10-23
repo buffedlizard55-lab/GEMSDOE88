@@ -1,5 +1,7 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+> **2026-10-23 · branch `arena/55aab1ba-gemsdoe88`: BLOCKED.** All 15 manifest inputs are missing; R0 was not rebuilt and no release TIFF was validated in this checkout. The files, names, notes and receipts below are historical records, not a current upload authorization. This session produced no file, form note, or format receipt. Restore authorized pinned inputs, pass exact-parent rebuild and independently re-read/validate any chosen file before a human upload. See `evidence/session_55aab1ba_startup.json`.
+
 > **Human competitor controls all uploads (`buffedlizard55-lab`, 1 entity, `<= 3` slots/week, 1 blind final file by `2026-12-03`).** Agent never logs into or fetches `drivendata.org` or `dropbox.com`. Candidate `.tif`/`.zip` rasters live locally in `releases/` (untracked in Git per `.gitignore` data-use policy; reproducible via `python3 scripts/build_snap_variants.py`, `python3 scripts/build_prune_variants.py`, `python3 scripts/build_prune_sweep_variants.py`, `python3 scripts/build_relief_variants.py` (R1 RELIEF family) and `python3 scripts/build_relief_r0_variants.py` (R0 RELIEF family)), with tracked SHA-256 receipts in `releases/*.json` and `ledger/submissions.csv`.
 
 ## This Session — R0 Family (`AXIS = RELIEF`, Band 12 `det_elev` Area Terciles, Dose `12%` = `4,518` Dots, Constant `N = 37,654`, Parent `h33-h33-2-b2`, Seed `20261023`; concurrent R1 family below, IR-88-38)
