@@ -1,0 +1,219 @@
+{
+  "schema": "gems88.snap-clearance-feasibility.v1",
+  "evidence": "GEOMETRY / not a score or a built variant",
+  "date_utc": "2026-10-23",
+  "git_sha": "c8d4f1db414dfbb061187862475be47479323c66",
+  "seed": "not used (deterministic geometry)",
+  "manifest_inputs_sha256_and_bytes_verified": 15,
+  "r0_rebuilt_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "r0_rebuilt_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis_under_test": "SNAP",
+  "literal_inclusive_clearance": {
+    "parent_dots": 37654,
+    "footprint_px": 5167373,
+    "catalogue_px": 60988,
+    "max_snap_displacement_px": 2.0,
+    "minimum_catalogue_clearance_px": 3.0,
+    "n_parent_below_clearance": 1611,
+    "below_clearance_by_distance_px": {
+      "2.236068": 941,
+      "2.828427": 670
+    },
+    "n_with_legal_destination_within_window_ignoring_occupancy": 1581,
+    "n_without_any_legal_destination_within_window": 30,
+    "min_required_displacement_px": 1.0,
+    "max_required_displacement_px": 8.062258,
+    "unreachable_sources": [
+      {
+        "row": 491,
+        "col": 665,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 2.236068
+      },
+      {
+        "row": 511,
+        "col": 273,
+        "catalogue_px": 2.828427,
+        "min_legal_displacement_px": 2.236068
+      },
+      {
+        "row": 852,
+        "col": 914,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 5.0
+      },
+      {
+        "row": 960,
+        "col": 30,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 2.828427
+      },
+      {
+        "row": 981,
+        "col": 1529,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 3.162278
+      },
+      {
+        "row": 1043,
+        "col": 541,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 5.0
+      },
+      {
+        "row": 1055,
+        "col": 973,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 2.236068
+      },
+      {
+        "row": 1071,
+        "col": 777,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 5.830952
+      },
+      {
+        "row": 1087,
+        "col": 344,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 4.472136
+      },
+      {
+        "row": 1090,
+        "col": 346,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 5.830952
+      },
+      {
+        "row": 1093,
+        "col": 348,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 6.324555
+      },
+      {
+        "row": 1097,
+        "col": 733,
+        "catalogue_px": 2.828427,
+        "min_legal_displacement_px": 2.236068
+      },
+      {
+        "row": 1108,
+        "col": 862,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 8.062258
+      },
+      {
+        "row": 1110,
+        "col": 727,
+        "catalogue_px": 2.828427,
+        "min_legal_displacement_px": 5.0
+      },
+      {
+        "row": 1139,
+        "col": 365,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 3.605551
+      },
+      {
+        "row": 1342,
+        "col": 1544,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 3.162278
+      },
+      {
+        "row": 1427,
+        "col": 1241,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 2.236068
+      },
+      {
+        "row": 1695,
+        "col": 1351,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 5.385165
+      },
+      {
+        "row": 1701,
+        "col": 1349,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 5.830952
+      },
+      {
+        "row": 1825,
+        "col": 894,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 5.656854
+      },
+      {
+        "row": 1899,
+        "col": 1556,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 2.236068
+      },
+      {
+        "row": 2322,
+        "col": 1608,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 5.656854
+      },
+      {
+        "row": 2410,
+        "col": 1673,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 3.605551
+      },
+      {
+        "row": 2433,
+        "col": 1656,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 3.605551
+      },
+      {
+        "row": 2457,
+        "col": 1119,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 4.0
+      },
+      {
+        "row": 2501,
+        "col": 1519,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 3.605551
+      },
+      {
+        "row": 2936,
+        "col": 1298,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 7.211103
+      },
+      {
+        "row": 3099,
+        "col": 1359,
+        "catalogue_px": 2.828427,
+        "min_legal_displacement_px": 2.236068
+      },
+      {
+        "row": 3163,
+        "col": 2161,
+        "catalogue_px": 2.236068,
+        "min_legal_displacement_px": 5.830952
+      },
+      {
+        "row": 3250,
+        "col": 1712,
+        "catalogue_px": 2.828427,
+        "min_legal_displacement_px": 5.09902
+      }
+    ],
+    "pure_snap_possible": false
+  },
+  "historical_strictly_greater_than_3px_clearance": {
+    "n_parent_below_clearance": 2171,
+    "n_without_any_legal_destination_within_window": 54
+  },
+  "decision": "STOP_NO_PURE_R0_SNAP_VARIANT",
+  "explanation": "Even ignoring other dots and spacing, each unreachable R0 dot cannot move <=2 px to the required >=3 px catalogue clearance. Retaining it violates clearance; moving it further or replacing it elsewhere violates the R0 SNAP-only, 1-to-1 <=2 px treatment. No new (parent,axis,value) or SHA was registered.",
+  "slots_used": 0,
+  "new_ledger_rows": 0,
+  "no_hidden_labels_used": true
+}
