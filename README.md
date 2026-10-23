@@ -5,12 +5,14 @@
 
 | Field | Status / Value | Evidence Class & Provenance |
 |---|---|---|
-| **Parent (`R0`)** | `h33-h33-2-b2` (`37,654` unit dots; `0` within `<=2 px`; `2,171` at `2<d_cat<=3 px`) | Manifest-verified, byte-exact rebuild (`zeros` `c55bafc4…`, `NaN` `baeae321…`); historical live `0.2778` is **CLAIM**, not a receipt. |
-| **Best `RECEIPT`** | None (`0` receipt scores/dates in `ledger/submissions.csv`) | Human must paste a portal receipt verbatim; no upload was made this session. |
-| **`TOP_PUBLIC`** | `0.4413` (`2026-10-22`, human-supplied) | UNVERIFIED locally; the live page is authoritative and was not accessed. |
-| **Quota & Slots Left** | One entity; last repository-reported `3/3` rolling-week slots and `~21` total + one blind final | Human must re-confirm current counts and the listed `2026-12-03` deadline before any upload. |
-| **Session Axis Built** | **`AXIS = PRUNE`** on exact R0, `N=37,654`; 320/370/430 m collars | `p3.2px` (`f272cdae`, `7.17586%` moved, `MODEL +0.002`, SGMC `0.095801` PROXY); `p3.7px` (`5508b0b9`, `8.92601%`, `MODEL -0.005`, `0.094869` PROXY); `p4.3px` (`21fa2b26`, `11.91905%`, `MODEL -0.013`, `0.092558` PROXY). All pass disk format gates; PROXY values are not scores. |
-| **Next 3 Slots (`SLOT_PLAN.md`)** | **1.** `h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae` · **2.** `h33-h33-2-b2-PRUNEp3.7px-20261023-5508b0b9` · **3.** `h33-h33-2-b2-PRUNEp4.3px-20261023-21fa2b26` | **No slot spent.** Predictions are MODEL, and a live delta under `0.01` is no evidence. Primary NaN-outside/fallback-zero files are local in `releases/`; validation: `registry/prune_sweep_validation.json`. |
+| **Parent (`R0`)** | `h33-h33-2-b2`, `N=37,654`; `0` within `<=2 px`, `2,171` at `2<d_cat<=3 px` | 15 manifest inputs verified; exact R0 zeros/NaN SHA-256 `c55bafc4…` / `baeae321…`. Historical `0.2778` is **CLAIM**, not a receipt. |
+| **Gate-clean parent (`R1`)** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`, `N=37,654`, min `d_cat=3.1623 px` | Existing R1 primary/zero hashes `6f7ae705…` / `dc6f090d…`; exact parent remains available for re-based work. |
+| **Best `RECEIPT`** | None (`0` portal receipt scores/dates in `ledger/submissions.csv`) | Human must paste a verbatim receipt; no slot was used by this session. |
+| **`TOP_PUBLIC`** | `0.4413` (`2026-10-22`, human-supplied) | `UNVERIFIED` locally; live competition page not accessed. |
+| **Quota & Deadline** | Last repository report: one entity, `3/3` rolling-week slots, `~21` total; `2026-12-03` deadline | Human must reconfirm current counts and deadline before any upload. |
+| **Current Session Axis** | **`AXIS = PRUNE`** on exact R0; `p3.2px`, `p3.7px`, `p4.3px`, all `N=37,654` | Moved `7.17586% / 8.92601% / 11.91905%`; `MODEL +0.002 / -0.005 / -0.013`; all six primary/fallback rasters pass `registry/prune_sweep_validation.json`. |
+| **Previous Session** | **`AXIS = RELIEF`** on R1; up10, up15, down15 tercile transfers | Report-only SGMC PROXY `0.09366 / 0.09252 / 0.08490` vs R1 `0.09608`; all were negative diagnostics, not slot candidates. |
+| **Next 3 Candidate Slots (`SLOT_PLAN.md`)** | **1.** `h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae` · **2.** `h33-h33-2-b2-PRUNEp3.7px-20261023-5508b0b9` · **3.** `h33-h33-2-b2-PRUNEp4.3px-20261023-21fa2b26` | Candidate sequence only, not an upload recommendation. Wait for each receipt; live `|delta|<0.01` is no evidence. The human selects/uploads at most one per slot. |
 <!-- CURRENT STATE END -->
 
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)

@@ -326,6 +326,27 @@
     "predicted_sign_size": "MODEL +0.003 live (range -0.009 to +0.015), the best of the three on the theory that displacement cost dominates field quality at this signal-to-noise.",
     "falsifier": "d1f35 < d2f35 by >= 0.01 falsifies the 'already within 1 px' premise and says R2 (400 m flight spacing) really did leave a 1-2 px bias worth removing."
   },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFup2t10-20261023-cffb5570": {
+    "hypothesis": "A 10% up-section reallocation of dot mass raises live DTI if the private new-fault truth concentrates in the high-detrended-elevation (range-front) tercile the way the off-catalogue USGS fault control does; if instead the parent's dot coverage is already saturated there, the move costs coverage and loses slightly.",
+    "mechanism": "The off-catalogue USGS SGMC control is 5.6x denser per footprint pixel in det_elev tercile 2 (63.6% of its 62,703 px) than in tercile 0 (11.3%), while the competition catalogue is flat across terciles (30.4/40.6/29.0). R1's mass sits between the two (20.4/41.8/37.8). Reallocating 10% up-section therefore trades covered basin/piedmont ground for range-front ground: at 15% dose this costs -0.007 expected DTI under the same label-free field the parent was refilled with and degrades the 12 km block-density CV from 0.570 to 0.691, i.e. the range front is already the saturated tercile, which is why the prediction is a small loss rather than a gain.",
+    "non_fault_mimic": "High det_elev is partly bedrock ridge crest rather than fault-controlled range front; steep-slope cells carry strong TMI/gravity-gradient edges from lithological contacts and cooling joints, which the field rewards without any fault plane being present.",
+    "predicted_sign_size": "MODEL predicted live delta -0.002 vs R1 (range -0.008 to +0.004). Read against up2t15 as a dose pair; |delta| < 0.01 on public chunks is not evidence.",
+    "falsifier": "A live gain >= +0.01 vs R1 falsifies coverage saturation and shows the range-front tercile still has unfilled fault mass; a loss larger than up2t15's would break monotonicity and mark public-chunk noise."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFup2t15-20261023-77588346": {
+    "hypothesis": "The full 15% dose carries the same up-section reallocation as up2t10 with more mass at risk: it is the cleanest test of whether the private truth's relief profile resembles the blind-fault control more than the catalogue's flat profile.",
+    "mechanism": "Same mechanism as up2t10, at the brief's upper dose. Donors are chosen by exact marginal DTI cost under the label-free corroboration field w, receivers by exact marginal DTI gain inside the target tercile, so the only imposed difference is the tercile constraint. The measured outcome of that constraint is a -0.0069 expected-DTI-under-w change, a -0.0036 SGMC off-catalogue change and a 12 km block CV rise from 0.570 to 0.691: the parent is already dense where the range-front evidence is strong, so additional range-front dots are near-duplicates of existing ones.",
+    "non_fault_mimic": "The 15% dose strips the basin and piedmont of 5,648 dots, including the concealed basin faults that Phase-2 expert-expanded labels are most likely to add; a mimic is losing real basin truth while buying lithological edges in the ranges.",
+    "predicted_sign_size": "MODEL predicted live delta -0.004 vs R1 (range -0.010 to +0.002). Monotone ordering up2t15 < up2t10 < R1 < dn2t15 would confirm the saturation reading.",
+    "falsifier": "Live change >= +0.01 vs R1 falsifies coverage saturation and would justify building the same move at 30-50% dose next week; a change at or below dn2t15's would falsify the relief prior outright."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFdn2t15-20261023-ea75b7eb": {
+    "hypothesis": "The mirror-image reallocation is the sign control: if the blind-fault relief prior is real, moving 15% of mass down-section loses more than moving it up-section. If basin-floor concealed faults dominate private truth, this variant wins instead.",
+    "mechanism": "Tercile 0 holds the thinnest share of off-catalogue SGMC fault pixels per footprint pixel (11.3% of its pixels on 33.3% of the area), and potential-field plus scarp evidence there is weaker, so the same 15% of mass converts into fewer true fault pixels; the measured SGMC control falls from 0.09608 (R1) to 0.08490, the largest loss of the three variants. Holding the parent, the count, the collar and the ranking rule fixed makes the direction of the transfer the only difference from up2t15.",
+    "non_fault_mimic": "det_elev is a local detrending, so 'basin' cells include low-relief piedmont ramps and Lake Lahontan shoreline benches that are not structural basins; a mimic is that the variant mostly exchanges two flavours of the same alluvial surface.",
+    "predicted_sign_size": "MODEL predicted live delta -0.007 vs R1 (range -0.014 to -0.001). It is a sign control, not a slot candidate unless one of the up-section variants gains >= +0.01.",
+    "falsifier": "A live gain >= +0.01 vs R1 falsifies the relief prior and points at concealed basin faults as the dominant private-truth reservoir, in which case the next build is a basin-directed reallocation at 30-50% dose."
+  },
   "h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae": {
     "axis": "PRUNE",
     "value": "p3.2px",
