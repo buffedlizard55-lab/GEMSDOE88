@@ -76,3 +76,36 @@ the parent's dot set, not of the collar — and its submission-eligible form is 
   Confounder: bedrock-map bias in SGMC. Falsifier: no ≥0.01 gain and no gain over random donors.
 - **SPACING:** still the one brief-listed axis never built; MASS's saturation diagnostic says
   spacing, not count, binds on H19-5.
+**Note on the two slot tables below:** the MASS session's merged order and the SPACING/SNAP session's order agree on slots 1 (`PRUNEp3px`) and 2 (`PRUNEp3space35`); they differ only on the reserve (MASS session: `MASSr10plus` if the collar is scoped for controlled R0 edits; SPACING session: `PRUNEp4space35` / `poisson28`). Neither table is an upload instruction.
+
+## Concurrent sessions — SPACING (PR #35) + SNAP clearance audit (PR #36)
+
+**`2026-10-23` · AXIS = SPACING (3 built, all HOLD) + `AXIS = SNAP` audit (`0` new variants, pure-R0 SNAP impossible) + merged PR #34 PRUNE refill-mode.** All `15` manifest pins verified; R0 rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`, `37,654` dots). Ledger: **`38`** built rows (`32` audit base + `3` spaced refill + `3` SPACING), **`0`** portal receipts. No `(parent, axis, value)` or SHA-256 collision any way; pre-existing PRUNE `p1/p3/p4` TIFF twins recreated at exact ledger hashes with six fresh disk checks passing (`evidence/session_20261023_prune_revalidation.json`).
+
+**Before any slot:** human supplies current `TOP_PUBLIC`/date, actual weekly/total balance (unknown), R0 receipt (`0.2778` is CLAIM), permission to use/redistribute the public mirrors and old tracked TIFFs, and confirms the provisional `2026-12-03` deadline on the competition page and rules. No automated page access or submissions. Primary/zeros twin = **one** slot; one blind final. Public/private/expert-expanded chunks differ; `|live delta| < 0.01` is no evidence. Without an R0 receipt no paired live delta is established. New `p3space35`/`p4space35` TIFFs are **absent locally**; their receipts require exact reconstruction and fresh validation.
+
+## Session results — refill spacing (PR #34), receiver geometry (SPACING), SNAP clearance (PR #36)
+| Arm | Edit | `N` | refill min NN | four-line field `MODEL` vs R0 | blind `SGMC` `PROXY` vs R0 |
+|---|---|---:|---:|---:|---:|
+| `p3norefill` `fb308615` | `300 m` collar, **no refill** | `35,483` | – | `0.270354` (−0.0157) | `0.093643` (−0.0024) |
+| `p3space35` `49fff49b` | `300 m` collar, `3.5 px` spacing lock | `37,654` | `3.4641 px` | `0.273539` (−0.0112) | `0.101042` (+0.0050) |
+| `p4space35` `07bd8182` | `400 m` collar, `3.5 px` spacing lock | `37,654` | `3.4641 px` | `0.278731` (−0.0228) | `0.102454` (+0.0064) |
+| Arm (on `R1`) | Receiver geometry | moved | receiver min NN | `w`-DTI field `MODEL` vs R1 | blind `SGMC` vs R1 `0.096083` |
+| `poisson28` `60f65400` | farthest-point, `R1 = 2.8 px` decluster | `1,914` | `2.2361 px` | `−0.0026` (pred `+0.003`) | `0.096820` (+0.00074) |
+| `strike` `bc8e6d1a` | along-strike H19-5 alignment | `1,914` | `1.0000 px` | `−0.0059` (pred `+0.000`) | `0.095396` (−0.00069) |
+| `lattice4px` `6c7e0b72` | `4 px` grid, phase frozen | `1,914` | `1.0000 px` | `−0.0059` (pred `−0.004`) | `0.095292` (−0.00079) |
+
+Both sessions' instruments **disagree** (their IR-88-44; SPACING reproduces it: field prefers densified placement, `SGMC` prefers spaced placement), and neither is a live score. Shared substantive finding: **spacing/uniformity is the lever, spaced ancestor support amplifies it** (`p3space35 +0.0050` vs `poisson28 +0.00074`); ancestor support is a confounder, so even a live delta does not isolate spacing alone. `p3norefill` is diagnostic only. Strict spacing locks on `H19-5` at matched count are infeasible (their IR-88-43, agreed); maximal-spacing variants on un-emitted `H19-5` are feasible and built (IR-88-48). Pure-R0 SNAP is geometrically impossible under the literal `3 px` clearance: `30` of `1,611` sub-`3 px` dots have no compliant in-footprint pixel within `<=2 px`, even ignoring collisions — do not substitute a PRUNE refill and call it SNAP (their IR-88-47; `evidence/session_20261023_snap_clearance.json`). Earlier R0 non-PRUNE arms retaining the collar stay HOLD.
+
+## Next three conditional slots (SPACING/SNAP session's ordering)
+| Order | Existing arm / live projection (MODEL vs R0) | What a receipt changes |
+|---|---|---|
+| 1 | `PRUNEp3px-6f7ae705` / +0.005 | Gain `>=0.01` supports the `300 m` collar+refill; loss `<=-0.01` closes this family; otherwise inconclusive. This file alone is freshly validated and locally available (primary + fallback). |
+| 2 | `PRUNEp3space35-49fff49b` / +0.007 | Only if slot 1 does not materially lose, the human approves another test, and exact bytes validate. Gain `>=0.01` **over `p3px`** favors spaced refill; loss `<=-0.01` disfavors it; smaller differences teach nothing. `poisson28` is also above its parent at one-seventh the gain, so slot 2 tests spacing support by effect size. |
+| 3 | Reserve `PRUNEp4space35-07bd8182` / +0.002 | Only if slot 2 materially wins: a `>=0.01` gain vs slot 2 favors widening with spaced refill; `<=-0.01` loss favors `300 m`. Else conserve the slot. |
+
+**HOLD, regardless of old validators:** `SNAPscarp2px-fae77ff4` and all R0 SNAP/CONCENTRATION/RELIEF arms retaining sub-`3 px` mass; all 3 SPACING arms (sub-threshold diagnostics, `|SGMC delta| < 0.001`); `PRUNEp1px` (PRUNE `<3 px` mass allowed by the exception, diagnostic rather than a lead). Human uploads at most one file per slot.
+
+**Weeks:** Oct 23–Nov 5 (wk1–2): receipt/quota/legal checks, conditional PRUNE; Nov 6–19 (wk3–4): combine axes only with independent `>=0.01` receipt evidence on a gate-clean parent; Nov 20–Dec 3 (wk5–6): validate final and fallback from disk, choose one blind final. `TRACKB` is Phase-2 geologist review only.
+
+**Better axes, proposals only:** SUPPORT — new spaced H16-1/H19-4 strands may cover gaps; spaced-support receiver confounder prior is leaderboard-tuned; falsifier: no `>=0.01` live gain at matched count/collar. RANKFIELD — change `p3px` refill ranking at fixed spacing; confounder SGMC map bias; falsifier: no `>=0.01` gain vs randomized ranking. STRIKE_ALIGN — snap on gate-clean `p3px` to coherent edges; confounder lithology / GeoDAWN flight lines; falsifier: no gain over randomized-strike control. Build each separately.
