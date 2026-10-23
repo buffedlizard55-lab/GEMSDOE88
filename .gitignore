@@ -8,10 +8,10 @@ __pycache__/
 .ruff_cache/
 
 # Data & transient computation caches (never commit raw competition/external bulk data)
-.cache/
-data/
-work/
-tmp/
+/.cache/
+/data/
+/work/
+/tmp/
 *.mmap
 *.npz
 Unselected files/
