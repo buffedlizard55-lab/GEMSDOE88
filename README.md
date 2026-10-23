@@ -1,18 +1,16 @@
 # GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
 
 <!-- CURRENT STATE START -->
-## CURRENT STATE (`2026-10-23` · Agent Brief v2 Single-Axis Protocol)
+## CURRENT STATE (`2026-10-23` · startup blocked)
 
-| Field | Status / Value | Evidence Class & Provenance |
-|---|---|---|
-| **Parent (`R0`)** | `h33-h33-2-b2`, `N=37,654`; `0` within `<=2 px`, `2,171` at `2<d_cat<=3 px` | 15 manifest inputs verified; exact R0 zeros/NaN SHA-256 `c55bafc4…` / `baeae321…`. Historical `0.2778` is **CLAIM**, not a receipt. |
-| **Gate-clean parent (`R1`)** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`, `N=37,654`, min `d_cat=3.1623 px` | Existing R1 primary/zero hashes `6f7ae705…` / `dc6f090d…`; exact parent remains available for re-based work. |
-| **Best `RECEIPT`** | None (`0` portal receipt scores/dates in `ledger/submissions.csv`) | Human must paste a verbatim receipt; no slot was used by this session. |
-| **`TOP_PUBLIC`** | `0.4413` (`2026-10-22`, human-supplied) | `UNVERIFIED` locally; live competition page not accessed. |
-| **Quota & Deadline** | Last repository report: one entity, `3/3` rolling-week slots, `~21` total; `2026-12-03` deadline | Human must reconfirm current counts and deadline before any upload. |
-| **Latest Sessions (three ran concurrently on `2026-10-23`)** | **(a)** **`AXIS = PRUNE`** on exact R0; `p3.2px`, `p3.7px`, `p4.3px`, all `N=37,654` | Moved `7.17586% / 8.92601% / 11.91905%`; `MODEL +0.002 / -0.005 / -0.013`; all six primary/fallback rasters pass `registry/prune_sweep_validation.json`; refill densification (min NN `2.83 -> 1.0 px`) disclosed in IR-88-37. |
-| **`AXIS = RELIEF` (b)(d) on `R1`, (c) on `R0`** | **(b)** `up2t10` / `up2t15` / `dn2t15` (`cffb5570` / `77588346` / `ea75b7eb`; `MODEL -0.002 / -0.004 / -0.007`) · **(c)** `basin12` / `pied12` / `range12` (`4cd2af90` / `bae3dfc6` / `30b15f5e`; pre-registered then revised `MODEL -0.010 / -0.008 / -0.003`) · **(d)** preregistered single-source 12% brackets `rng2bas12` / `rng2pmt12` / `bas2rng12` (`56093882` / `52717cf5` / `f4c6dc18`; prereg `MODEL +0.008 / +0.002 / -0.010`, IR-88-39). All: Band 12 `det_elev` area terciles, `N` fixed, every added dot at `d_cat > 3 px` | Report-only SGMC `PROXY`: (b) `0.09366 / 0.09252 / 0.08490` vs R1 `0.09608`; (c) `0.08664 / 0.08752 / 0.09314` vs R0 `0.09606`; (d) `0.08502 / 0.08581 / 0.09390` vs R1 — **nine arms, three builds, two parents all lose, same ordering** (basinward `0.0849 / 0.0850 / 0.0866`). Cause quantified (IR-88-38/41): only `90` spaced H19-5 pixels remain, so every relocation swaps a spaced dot (`0.11–0.16` TP) for a densified one (`0.04–0.07` TP); the PRUNE refill ranking has AUC `0.47` on the blind control. All nine `HOLD`. |
-| **Next 3 Candidate Slots (`SLOT_PLAN.md`)** | **1.** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`R1`, gate-clean, `5.77%` chg, `MODEL +0.005`, SGMC `0.09608`) · **2.** `h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4` (`82.03%` chg, `MODEL +0.006`, SGMC `0.09681`, the only candidate above R0 on the blind control) · **3.** `h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae` (next collar dose, `7.18%` chg, `MODEL +0.002`; alternative `PRUNEp1px-0542a27c` to bracket the collar downward) | Candidate sequence only, not an upload recommendation; the human uploads at most one per slot and waits for each receipt (`|delta| < 0.01` is no evidence). `p3.7px` / `p4.3px` only after a receipt-backed positive `p3.2px`; no slot on `RELIEF` by default (`up2t10` is the only defensible probe). Ledger: `32` rows, `0` receipts. |
+| Field | Status |
+|---|---|
+| Parent | `R0 = h33-h33-2-b2`, historical 37,654 dots; **not rebuilt in this checkout**. All 15 manifest inputs are absent; startup verification failed. See `evidence/session_55aab1ba_startup.json`. |
+| Best receipt | None in the 32-row ledger. R0 `0.2778` remains **CLAIM**. Historical validation reports are not current-checkout validation. |
+| TOP_PUBLIC | Last repository report `0.4413` dated `2026-10-22`; **UNVERIFIED**, human must refresh. |
+| Slots / deadline | Unknown current rolling-week and total budget. Historical `3/3` and `2026-12-03` require human confirmation. No submission made. |
+| This session | Provisional MASS selection rejected as a repeat after ledger inspection; no axis/value executed, no variants, no new predictions. Stopped at mandatory input gate. |
+| Next 3 slots | Conditional existing inventory: `PRUNEp3px-6f7ae705`, then a gate-clean SNAP child only after validation (none endorsed here), then `PRUNEp3.2px-f272cdae` conditional on slot 1. **No upload-ready file validated here**; see `SLOT_PLAN.md`. |
 <!-- CURRENT STATE END -->
 
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)

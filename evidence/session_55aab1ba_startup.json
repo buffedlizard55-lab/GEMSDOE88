@@ -1,0 +1,91 @@
+{
+  "date_utc": "2026-10-23",
+  "branch": "arena/55aab1ba-gemsdoe88",
+  "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+  "status": "BLOCKED_INPUTS_MISSING",
+  "command": "python scripts/restore_r0_prune_inputs.py --verify-only",
+  "exit_code": 1,
+  "manifest_inputs": 15,
+  "missing_inputs": [
+    {
+      "id": "sample_submission",
+      "path": "data/bridge/sample_submission.tif",
+      "expected_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+    },
+    {
+      "id": "existing_faults",
+      "path": "data/bridge/existing_faults.tif",
+      "expected_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    {
+      "id": "training_features",
+      "path": "data/training_features.tif",
+      "expected_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+    },
+    {
+      "id": "parent_r0_zeros",
+      "path": "data/registry/h33_education.tif",
+      "expected_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    {
+      "id": "parent_r0_nan",
+      "path": "data/registry/family_60gemsdoe/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "expected_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd"
+    },
+    {
+      "id": "anc_h19_5",
+      "path": "data/registry/family_60gemsdoe/calib_h195_01922.tif",
+      "expected_sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d"
+    },
+    {
+      "id": "anc_h19_4",
+      "path": "data/registry/family_60gemsdoe/calib_h194_01894.tif",
+      "expected_sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22"
+    },
+    {
+      "id": "anc_h16_1",
+      "path": "data/registry/family_60gemsdoe/calib_h161_01855.tif",
+      "expected_sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea"
+    },
+    {
+      "id": "anc_d1_5",
+      "path": "data/registry/family_60gemsdoe/calib_d15_02477.tif",
+      "expected_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310"
+    },
+    {
+      "id": "anc_d2_8",
+      "path": "data/registry/family_60gemsdoe/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "expected_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8"
+    },
+    {
+      "id": "anc_solo_d2_8",
+      "path": "data/registry/family_60gemsdoe/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+      "expected_sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8"
+    },
+    {
+      "id": "gdr_wellspring_in_footprint",
+      "path": "data/external/gdr_wellspring_in_footprint.csv",
+      "expected_sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea"
+    },
+    {
+      "id": "ext_lidar_scarp_u8",
+      "path": "data/external/lidar_scarp_features_u8.tif",
+      "expected_sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568"
+    },
+    {
+      "id": "ext_geodawn_rad_u8",
+      "path": "data/external/geodawn_rad_u8.tif",
+      "expected_sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682"
+    },
+    {
+      "id": "sgmc_faults_control",
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "expected_sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0"
+    }
+  ],
+  "r0_rebuilt": false,
+  "variants_built": 0,
+  "submissions_made": 0,
+  "axis": "MASS (provisional; existing pairs prevent repeat)",
+  "note": "Historical verification reports were not regenerated. No restore attempted; owner mirror redistribution terms remain unchecked."
+}
