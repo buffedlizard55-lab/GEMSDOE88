@@ -1,0 +1,79 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr1-20261023-a0133e96",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "parent_sha256": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+  "grandparent": "h33-h33-2-b2",
+  "grandparent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "axis": "SNAP",
+  "value": "r1",
+  "fixed_date": "20261023",
+  "git_sha": "f0ab6eb768f51983fc913c051ad3c9f46caab1dc",
+  "edge_field": "0.5*rank(|tmi_hg| b3)+0.5*rank(|iso_grav_anom_hg| b18), training_features.tif 4371c82e",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr1-20261023-a0133e96.tif",
+  "sha256": "a0133e96568e8126d02ae8fa3e911a792a565ec08d9eafb00549e347d2aa1a43",
+  "bytes_nan": 354734,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr1-20261023-a0133e96.zip",
+  "zip_nan_sha256": "04619c7b2a1a764315af0005e1b8879aeb8c4e39ed4639040f7593f6ca4e85d0",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr1-20261023-a0133e96-zeros.tif",
+  "sha256_zeros": "fc0f210883fdba4258060b3bf6ee4cbc85d7ab1e86d91a03edccf862db8222fd",
+  "bytes_zeros": 218603,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr1-20261023-a0133e96-zeros.zip",
+  "zip_zeros_sha256": "62336eab1d45e4354a6dce078768a3b5d8247fa2c2765733ee2dac5fa488084f",
+  "form_note": "PRUNEp3px; SNAP r1 <=1px to max TMI/grav HG, N=37654 held, all >3px; pred +0.002 MODEL",
+  "form_note_chars": 86,
+  "n_dots": 37654,
+  "snap": {
+    "n_dots": 37654,
+    "n_moved": 36296,
+    "pct_moved": 96.3935,
+    "mean_displacement_px_all": 0.9639,
+    "mean_displacement_px_moved": 1.0,
+    "max_displacement_px": 1.0,
+    "mean_edge_before": 0.546211,
+    "mean_edge_after": 0.581824,
+    "n_dots_on_feature_nodata_forced_stay": 15,
+    "displacement_hist_px": {
+      "0.00": 1358,
+      "1.00": 36296
+    }
+  },
+  "parent_diff_vs_prune_p3": {
+    "n_parent": 37654,
+    "common": 1372,
+    "n_added": 36282,
+    "n_removed": 36282,
+    "pct_changed_moved": 96.3563,
+    "pct_changed_sym_diff": 192.7126
+  },
+  "parent_diff_vs_r0": {
+    "n_parent": 37654,
+    "common": 1044,
+    "n_added": 36610,
+    "n_removed": 36610,
+    "pct_changed_moved": 97.2274,
+    "pct_changed_sym_diff": 194.4548
+  },
+  "min_dist_catalogue_px": 3.1623,
+  "dots_le_3px": 0,
+  "predicted_change": "MODEL:+0.002",
+  "predicted_range": "[-0.006,+0.010]",
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "all_dots_gt3px_from_catalogue": true,
+    "reread_from_disk_verified": true
+  },
+  "report_only_sgmc": {
+    "dti": 0.093178,
+    "n_sgmc_off_catalogue_px": 62703,
+    "label": "PROXY (SGMC control, report only)"
+  }
+}

@@ -25,6 +25,22 @@
 - **Form Note (`103 / 140` chars):** `h33-2-b2; PRUNE <=4px held at 37654 (-3825 in 2-4px, +3825 exact marginal gain >4px); pred -0.009 MODEL`
 - **Stats & Receipt:** `37,654` dots (`-3,825` in `2 < d_cat <= 4 px`, `+3,825` at `d_cat > 4 px`; **`10.16%` moved**, `min d_cat = 4.1231 px`). `SGMC` `0.094465` `PROXY`; `12 km` CV `0.5937`. Tracked receipt: `releases/h33-h33-2-b2-PRUNEp4px-20261023-be9fd3d5.json`.
 
+## SNAP Candidates (Built 2026-10-23 — Conditional: Submit ONLY After a PRUNEp3px Receipt)
+
+Parent for all three: `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (N=37,654, all dots >3 px from catalogue; regenerate locally with `python3 scripts/build_snap_variants.py`, rasters stay gitignored per data-use policy). Edge: provided TMI/gravity horizontal-gradient bands (3 `tmi_hg`, 18 `iso_grav_anom_hg`).
+
+### Conditional Slot A (preferred SNAP): `r2g` — Gain-Gated ≤2 px Snap
+- **Primary (`NaN` outside):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2g-20261023-06b3ac6a.tif` (`06b3ac6a74c04e8b09c0c94db72dbd9cdeeece838d3d59a323ccb418dc1e26b9`, 354,539 B) · **Fallback (`0.0` outside):** `…-SNAPr2g-20261023-06b3ac6a-zeros.tif` (`e4980110ff7149eab12011db8fcfb0177a97f09793421d5769c8932ee8bed5db`)
+- **Form note (97/140):** `PRUNEp3px; SNAP r2g <=2px gain>=.05 to max TMI/grav HG, N=37654 held, all >3px; pred +0.003 MODEL` · 42.54% moved, mean disp 0.811 px (1.906 px over moved), MODEL +0.003 vs p3; SGMC PROXY 0.09077 (report only).
+
+### Conditional Slot B: `r1` — ≤1 px Snap
+- **Primary:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr1-20261023-a0133e96.tif` (`a0133e96568e8126d02ae8fa3e911a792a565ec08d9eafb00549e347d2aa1a43`) · **Fallback:** `…-SNAPr1-20261023-a0133e96-zeros.tif` (`fc0f210883fdba4258060b3bf6ee4cbc85d7ab1e86d91a03edccf862db8222fd`)
+- **Form note (86/140):** `PRUNEp3px; SNAP r1 <=1px to max TMI/grav HG, N=37654 held, all >3px; pred +0.002 MODEL` · 96.39% moved 1.00 px, MODEL +0.002; SGMC PROXY 0.09318.
+
+### Deprioritised: `r2` — Ungated ≤2 px Snap (98.06% moved; SGMC PROXY 0.08747, worst)
+- **Primary:** `releases/…-SNAPr2-20261023-93187627.tif` (`93187627037c34d2b16ad4137d42e96282d8fb71084c2ca6e60985a7cd407268`) · **Fallback:** `…-SNAPr2-20261023-93187627-zeros.tif` (`60de781a7df9c26dd3206b65d6f76782b0dc2c726743d68f2d67ad4941327b6e`) · **Form note (86/140):** `PRUNEp3px; SNAP r2 <=2px to max TMI/grav HG, N=37654 held, all >3px; pred +0.004 MODEL`
+- Format receipt for all SNAP files: `registry/snap_variant_validation.json` (independent `validate_variant.py` PASS ×3, re-read from disk) + per-file `releases/*.json`.
+
 ## Other Reconciled Ledger Inventory (`HOLD` / Superseded — `ledger/submissions.csv`)
 - **Score-blind `PRUNE=3` (`h33-h33-2-b2-prune3-20261023-01d57649`, `MODEL -0.003`):** Superseded by physics-ranked `PRUNEp3px` (`6f7ae705`, `MODEL +0.005`).
 - **`CONCENTRATION` (`CONCb10px-m10` `89ffd4f3` `+0.011`, `CONCb10px-m20` `c42cd475` `+0.020`, `CONCb50px-m20` `fae2a52f` `+0.006`):** `HOLD` under strict non-PRUNE `>=3 px` gate because they inherit `R0`'s `2,171` `(2, 3] px` dots; clean Week-2 follow-up applies concentration directly atop `PRUNEp3px` (`>3 px`).

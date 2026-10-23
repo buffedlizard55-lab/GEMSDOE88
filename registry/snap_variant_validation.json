@@ -1,0 +1,721 @@
+{
+  "validator": "validate_variant.py",
+  "gates_all_pass": true,
+  "results": [
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr1-20261023-a0133e96.tif",
+      "sha256": "a0133e96568e8126d02ae8fa3e911a792a565ec08d9eafb00549e347d2aa1a43",
+      "n_dots": 37654,
+      "colour": "nan",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": NaN
+      },
+      "parent_diff": {
+        "common": 1044,
+        "added": 36610,
+        "removed": 36610
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "nan_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "none_within_2px_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "a0133e96568e8126d02ae8fa3e911a792a565ec08d9eafb00549e347d2aa1a43",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr1-20261023-a0133e96"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 1044,
+            "added": 36610,
+            "removed": 36610,
+            "pct_of_parent_changed": 97.23
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr1-20261023-a0133e96-zeros.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr1-20261023-a0133e96.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr1-20261023-a0133e96.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2-20261023-93187627.tif",
+      "sha256": "93187627037c34d2b16ad4137d42e96282d8fb71084c2ca6e60985a7cd407268",
+      "n_dots": 37654,
+      "colour": "nan",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": NaN
+      },
+      "parent_diff": {
+        "common": 579,
+        "added": 37075,
+        "removed": 37075
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "nan_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "none_within_2px_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "93187627037c34d2b16ad4137d42e96282d8fb71084c2ca6e60985a7cd407268",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2-20261023-93187627"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 579,
+            "added": 37075,
+            "removed": 37075,
+            "pct_of_parent_changed": 98.46
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2-20261023-93187627-zeros.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2-20261023-93187627.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2-20261023-93187627.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2g-20261023-06b3ac6a.tif",
+      "sha256": "06b3ac6a74c04e8b09c0c94db72dbd9cdeeece838d3d59a323ccb418dc1e26b9",
+      "n_dots": 37654,
+      "colour": "nan",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": NaN
+      },
+      "parent_diff": {
+        "common": 20195,
+        "added": 17459,
+        "removed": 17459
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "nan_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "none_within_2px_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "06b3ac6a74c04e8b09c0c94db72dbd9cdeeece838d3d59a323ccb418dc1e26b9",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2g-20261023-06b3ac6a"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 20195,
+            "added": 17459,
+            "removed": 17459,
+            "pct_of_parent_changed": 46.37
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2g-20261023-06b3ac6a-zeros.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2g-20261023-06b3ac6a.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2g-20261023-06b3ac6a.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.tif",
+      "sha256": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "n_dots": 37654,
+      "colour": "nan",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": NaN
+      },
+      "parent_diff": {
+        "common": 35483,
+        "added": 2171,
+        "removed": 2171
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "nan_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "none_within_2px_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 35483,
+            "added": 2171,
+            "removed": 2171,
+            "pct_of_parent_changed": 5.77
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-zeros.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475.tif",
+      "sha256": "c42cd4756bd28dde29a8b24ab9cfca75f9a8e2564305655ffe2073b792f4e093",
+      "n_dots": 37654,
+      "colour": "nan",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": NaN
+      },
+      "parent_diff": {
+        "common": 30123,
+        "added": 7531,
+        "removed": 7531
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "nan_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "none_within_2px_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "c42cd4756bd28dde29a8b24ab9cfca75f9a8e2564305655ffe2073b792f4e093",
+            "owners": [
+              "h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 30123,
+            "added": 7531,
+            "removed": 7531,
+            "pct_of_parent_changed": 20.0
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475-zeros.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-CONCb10px-m20-20261023.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    }
+  ]
+}

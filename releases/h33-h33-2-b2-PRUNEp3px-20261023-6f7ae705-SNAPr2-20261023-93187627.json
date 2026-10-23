@@ -1,0 +1,81 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2-20261023-93187627",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "parent_sha256": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+  "grandparent": "h33-h33-2-b2",
+  "grandparent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "axis": "SNAP",
+  "value": "r2",
+  "fixed_date": "20261023",
+  "git_sha": "f0ab6eb768f51983fc913c051ad3c9f46caab1dc",
+  "edge_field": "0.5*rank(|tmi_hg| b3)+0.5*rank(|iso_grav_anom_hg| b18), training_features.tif 4371c82e",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2-20261023-93187627.tif",
+  "sha256": "93187627037c34d2b16ad4137d42e96282d8fb71084c2ca6e60985a7cd407268",
+  "bytes_nan": 353960,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2-20261023-93187627.zip",
+  "zip_nan_sha256": "60ce5e82f6646752e3aa41cc8f7e99a8a729200002d792157a44adf7b07d0d99",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2-20261023-93187627-zeros.tif",
+  "sha256_zeros": "60de781a7df9c26dd3206b65d6f76782b0dc2c726743d68f2d67ad4941327b6e",
+  "bytes_zeros": 218239,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPr2-20261023-93187627-zeros.zip",
+  "zip_zeros_sha256": "9d67fea9fd6e5fd3d632e06bae05b2c13bfa54b097f03cd9b9f316108314f1e4",
+  "form_note": "PRUNEp3px; SNAP r2 <=2px to max TMI/grav HG, N=37654 held, all >3px; pred +0.004 MODEL",
+  "form_note_chars": 86,
+  "n_dots": 37654,
+  "snap": {
+    "n_dots": 37654,
+    "n_moved": 36924,
+    "pct_moved": 98.0613,
+    "mean_displacement_px_all": 1.7594,
+    "mean_displacement_px_moved": 1.7942,
+    "max_displacement_px": 2.0,
+    "mean_edge_before": 0.546211,
+    "mean_edge_after": 0.605273,
+    "n_dots_on_feature_nodata_forced_stay": 15,
+    "displacement_hist_px": {
+      "0.00": 730,
+      "1.00": 2555,
+      "1.41": 8611,
+      "2.00": 25758
+    }
+  },
+  "parent_diff_vs_prune_p3": {
+    "n_parent": 37654,
+    "common": 764,
+    "n_added": 36890,
+    "n_removed": 36890,
+    "pct_changed_moved": 97.971,
+    "pct_changed_sym_diff": 195.942
+  },
+  "parent_diff_vs_r0": {
+    "n_parent": 37654,
+    "common": 579,
+    "n_added": 37075,
+    "n_removed": 37075,
+    "pct_changed_moved": 98.4623,
+    "pct_changed_sym_diff": 196.9246
+  },
+  "min_dist_catalogue_px": 3.1623,
+  "dots_le_3px": 0,
+  "predicted_change": "MODEL:+0.004",
+  "predicted_range": "[-0.008,+0.016]",
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "all_dots_gt3px_from_catalogue": true,
+    "reread_from_disk_verified": true
+  },
+  "report_only_sgmc": {
+    "dti": 0.087468,
+    "n_sgmc_off_catalogue_px": 62703,
+    "label": "PROXY (SGMC control, report only)"
+  }
+}

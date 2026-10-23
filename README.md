@@ -1,5 +1,11 @@
 # GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
 
+> ## CURRENT STATE (2026-10-23, brief v2)
+> - **Parent:** `R0 = h33-h33-2-b2` (37,654 dots, none ≤2 px of catalogue; `0.2778` = **CLAIM**, no receipt in `ledger/`). Rebuilt byte-for-byte this session (`c55bafc4…` zeros / `baeae321…` NaN).
+> - **Best receipt:** none yet — all 13 ledger variants are `BUILT`, `receipt_score` blank. **TOP_PUBLIC: UNVERIFIED** (human to fill; agent never fetches the leaderboard). **Slots left this week: UNVERIFIED** (assume 3 until told otherwise; deadline 2026-12-03).
+> - **This session (AXIS=SNAP, agent default — human did not assign):** 3 SNAP variants on the ≥3 px-compliant parent `PRUNEp3px-20261023-6f7ae705` (`SNAPr1 a0133e96` MODEL +0.002, `SNAPr2 93187627` +0.004, `SNAPr2g 06b3ac6a` +0.003, all N=37,654, all >3 px). Also regenerated the 6 missing CONC/PRUNE release rasters with ledger-identical hashes. REPORT-ONLY SGMC PROXY opposes SNAP (parent 0.09608 → r1 0.09318 / r2g 0.09077 / r2 0.08747): **do not spend a SNAP slot before a PRUNE receipt**.
+> - **Next 3 slots (in order):** 1) `PRUNEp3px 6f7ae705` (MODEL +0.005 vs R0) → 2) `PRUNEp1px 0542a27c` (diagnostic, −0.006) → 3) `PRUNEp4px be9fd3d5` (−0.009). Then SNAPr2g or CONC-on-p3 depending on receipts. See `SLOT_PLAN.md` and `docs/SUBMIT.md`.
+
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)
 >
 > | Gate Question | Automated Machine Decision | Binding Reason & Verifiable Receipt |

@@ -20,3 +20,10 @@
 
 - Supply live `TOP_PUBLIC` + date, available rolling-week slots (`__ / 3`), and confirmation of `AXIS = PRUNE` (`Slot 1 = PRUNEp3px`).
 - Upload chosen single file manually from authenticated browser, log verbatim `receipt_score` and `receipt_date` in `ledger/submissions.csv`, and choose the **one blind final file** before `2026-12-03`.
+
+## AI Session 2026-10-23 (branch `arena/55cdcee8-gemsdoe88`, brief v2, AXIS=SNAP)
+
+- **Human input this session:** pasted agent brief v2 with AXIS / TOP_PUBLIC / slot fields blank; skipped the clarification prompt. Agent therefore defaulted to the highest-value unbuilt axis (`SNAP`), recorded TOP_PUBLIC and slots as `UNVERIFIED`, and treated all prior variants as unsubmitted (no receipts supplied). These defaults are stated in `README.md` CURRENT STATE for the human to override.
+- **AI wrote:** `scripts/build_snap_variants.py` (deterministic SNAP on `PRUNEp3px` using provided bands 3/18, greedy collision resolution, predeclared MODEL predictions, REPORT-ONLY SGMC), `tests/test_snap_axis.py` (12 tests), the `FEATURE_PARTS` fix in `scripts/restore_inputs.py`, SNAP mechanism cards, and the SNAP/CURRENT-STATE sections of `README.md`, `SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md` (IR-88-22/23).
+- **AI verified (not generated):** manifest pins (15/15), R0 rebuilt byte-for-byte by the existing `build_prune_variants.py`, and regenerated 6 missing CONC/PRUNE release rasters with ledger-identical SHA-256s using the repo's existing builders. Agent never contacted drivendata.org/dropbox.com and never submitted anything.
+- **Human must still decide/supply:** AXIS confirmation, TOP_PUBLIC + date, slots left, manual uploads, and `receipt_score`/`receipt_date` entries in `ledger/submissions.csv`.
