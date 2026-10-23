@@ -1,7 +1,7 @@
 # SLOT_PLAN — One Entity, 3 Slots/Week, One Blind Final File by 2026-12-03
 
 **Human-confirmed planning values (2026-10-23):** `1` competitor (`buffedlizard55-lab`), `3/3` live uploads left this rolling week, approximately `21` total slots to the deadline, TOP_PUBLIC `0.4413` dated `2026-10-22`, and **ONE blind final file**. The human must re-confirm the `2026-12-03` deadline and current counts on the competition page.
-**Parent `R0 = h33-h33-2-b2`:** `37,654` dots, `0` within `2 px` of the catalogue, `2,171` in the `2–3 px` collar, `0.2778` `CLAIM` (no receipt). The direct pinned-D2.8 prune rebuild matches `c55bafc4...` byte-for-byte (`IRREGULARITIES.md` IR-88-22).
+**Parent `R0 = h33-h33-2-b2`:** `37,654` dots, `0` within `2 px` of the catalogue, `2,171` in the `2–3 px` collar, `0.2778` `CLAIM` (no receipt). The full pinned five-stage lineage now reproduces both GeoTIFF hashes byte-exactly (`c55bafc4...` zeros; `baeae321...` NaN; `registry/r0_verification.json`).
 
 ## Latest session — human assigned AXIS = CONCENTRATION
 
@@ -26,6 +26,12 @@ No AXIS was assigned by the human (IR-88-21/23); SNAP is the last unbuilt axis o
 4. Useful side effect: a SNAP pass clears `70–73%` of the `2–3 px` collar at constant count.
 
 **Decision:** all three `HOLD`; predicted change `-0.002 … -0.001` is far below the `0.01` evidence bar. Do not spend a slot unless the human wants the axis retired with a live receipt.
+
+## PRUNE artifact recovery (this branch, 2026-10-23)
+
+`p1px`, `p3px`, and `p4px` were already-built `(R0, PRUNE, value)` ledger rows. This branch verified all 15 manifest pins, rebuilt `R0` byte-exactly, and reproduced the existing TIFF/fallback/ZIP hashes after on-disk format and parent-diff checks. This is recovery of existing artifacts—not a new experiment, duplicate pair, submission, or slot use. Predictions remain MODEL only (`p3 +0.005`, `p1 -0.006`, `p4 -0.009`); all are below `0.01`, therefore no evidence. Tracked evidence: `evidence/prune_artifact_rebuild.json`; local rasters remain ignored under `releases/`.
+
+The latest human-confirmed planning values in the repository are `TOP_PUBLIC=0.4413` dated `2026-10-22`, `3/3` rolling-week slots remaining, and approximately `21` total slots. The human must re-confirm the current counts and repository-listed `2026-12-03` deadline on the competition page.
 
 ## Next 3 slots
 

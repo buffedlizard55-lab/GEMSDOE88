@@ -17,12 +17,13 @@
 
 ## CURRENT STATE (`2026-10-23`)
 
-- **Parent:** `R0 = h33-h33-2-b2` — `37,654` unit dots, `0` within `2 px` of the catalogue, pinned `SHA-256 c55bafc4...`; the direct pinned-D2.8 prune rebuild matches the exact bytes (`IRREGULARITIES.md` IR-88-22).
+- **Parent:** `R0 = h33-h33-2-b2` — `37,654` unit dots, `0` within `2 px` of the catalogue; the complete five-stage pinned lineage reproduces both `zeros` (`c55bafc4...`) and `NaN` (`baeae321...`) GeoTIFF hashes byte-exactly (`registry/r0_verification.json`).
 - **Best receipt:** none. `0.2778` on `h33-h33-2-b2` is a **CLAIM** (owner-reported), not a receipt; `ledger/submissions.csv` has no `receipt_score` filled.
 - **TOP_PUBLIC:** **0.4413 dated 2026-10-22**, confirmed by the human for this session; the live competition page remains authoritative.
 - **Slots left:** **3/3 this rolling week; ~21 total**, confirmed by the human for planning; one blind final file due `2026-12-03` (confirm on the competition page).
 - **Next 3 slots** (detail in `SLOT_PLAN.md`): 1) `PRUNEp3px` (`6f7ae705`, MODEL `+0.005`, only gate-clean candidate); 2) re-base the best CONCENTRATION treatment on `PRUNEp3px`; 3) reserve/confirm the better result. An absolute live Δ <0.01 is no evidence.
 - **Latest human-assigned AXIS = CONCENTRATION:** after concurrent-ledger reconciliation, the unique retained dose is `h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6` (5,648 dots relocated, count 37,654, MODEL `+0.008`). It passes format/hash/catalogue gates but is **HOLD**, because it inherits R0’s 2–3 px collar and therefore fails the literal ≥3 px non-PRUNE rule. Concurrent 10%/20% 1 km arms were not duplicated.
+- **PRUNE artifact recovery in this PR:** existing `p1px`, `p3px`, and `p4px` rows were reproduced from 15 pinned inputs. No new experiment, ledger pair, submission, or slot use was created. Predictions are MODEL only (`p3 +0.005`, `p1 -0.006`, `p4 -0.009`); each is below `0.01`, so no evidence. TIFF/fallback/ZIP artifacts remain local and gitignored; the legacy H88 gate above is unrelated, and no overlap/rank threshold was applied to PRUNE.
 
 ---
 
