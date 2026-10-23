@@ -1,6 +1,6 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (reorders the audit-session queue below; all its prerequisites stand)
+## Current session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; integrated queue — supersedes the slot order of every section below; all their prerequisites stand)
 
 **Three new candidates, one per preregistered arm; no slot was used and no submission was made.** Parent
 `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from the pinned lineage and SHA-asserted
@@ -8,68 +8,137 @@
 same `edge_scarp_pot` field (provided bands 19/12/18/3 only; zero external LiDAR) and same deterministic
 spacing-locked allocator as the R0 blind-control winner `SNAPscarp2px-fae77ff4`, which this run reproduced
 exactly (30,889 displaced; SGMC `0.096806` = published). Unlike every R0-parented non-PRUNE arm, **100% of
-dots are `>3 px` from the catalogue** — gate-clean with no waiver (answers the IR-88-43 HOLD). Blind
+dots are `>3 px` from the catalogue** — gate-clean with no waiver, and re-validated after the merge with the
+**hardened** `validate_variant.py` of PR #36 (`registry/snap_r1_scarp_validation.json`, 6/6 PASS). Blind
 off-catalogue SGMC `PROXY` (report-only, never a gate): `scarp1px 0.097567`, `scarp2px 0.097453`,
-`ridge2px 0.096548` vs parent `R1 0.096083` and `R0 0.096060`. Holdout proxy is structurally `0.000000`
-(IR-88-20). Predictions are pre-registration `MODEL` values (`registry/preregistration_snap_r1_scarp.json`),
-never scores; R0's `0.2778` is CLAIM.
+`ridge2px 0.096548` vs parent `R1 0.096083`. Holdout proxy is structurally `0.000000` (IR-88-20). Predictions
+are pre-registration `MODEL` values (`registry/preregistration_snap_r1_scarp.json`), never scores; the
+`w`-field scores the off-support arms negative (`−0.035/−0.077` `MODEL`) and is recorded only as a diagnostic
+(IR-88-38/49). R0's `0.2778` is CLAIM. This session is SNAP on a previously gate-clean parent — the path
+IR-88-47 leaves open after stopping pure-R0 SNAP as geometrically impossible; the parent choice is disclosed
+for human approval, not assumed.
+
+**Integrated queue (matches `SLOT_PLAN.md`; slots 2–3 of the SPACING/audit section below are superseded):**
 
 | Order | Exact submission name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | <=140-char form note | Fresh format receipt |
 |---|---|---|---|
-| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp1px-20261023-1944aaf5` | `h33-2-b2 PRUNEp3px R1; SNAP <=1px to scarp+TMI/grav co-edge, spacing-locked, 100% of dots >3px; pred +0.003 MODEL` | `releases/…-1944aaf5.json` + `registry/snap_r1_scarp_validation.json` (PASS on disk bytes) |
-| 2, conditional | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp2px-20261023-c003d7d7` (dose arbitration) **or** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (attribution) — chosen by the slot-1 receipt per `SLOT_PLAN.md` | `h33-2-b2 PRUNEp3px R1; SNAP <=2px to scarp+TMI/grav co-edge, spacing-locked, 100% of dots >3px; pred +0.006 MODEL` | `releases/…-c003d7d7.json` (same validator PASS) |
-| 3, reserve | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`R1`) if not yet receipted, else `h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae` | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json` |
+| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`R1` anchor; parents nine ledgered R1 arms) | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json` (recreated + hardened-validator PASS, PR #36) |
+| 2 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp1px-20261023-1944aaf5` — substitute `h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b` only after exact byte reconstruction + fresh validation | `h33-2-b2 PRUNEp3px R1; SNAP <=1px to scarp+TMI/grav co-edge, spacing-locked, 100% of dots >3px; pred +0.003 MODEL` | `releases/…-1944aaf5.json` + `registry/snap_r1_scarp_validation.json` (hardened, PASS on disk bytes) |
+| 3, conditional | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp2px-20261023-c003d7d7` (dose arbitration) or `h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182` (needs reconstruction) or conserve — decided by the slot-2 receipt per `SLOT_PLAN.md` | `h33-2-b2 PRUNEp3px R1; SNAP <=2px to scarp+TMI/grav co-edge, spacing-locked, 100% of dots >3px; pred +0.006 MODEL` | `releases/…-c003d7d7.json` (same hardened validator PASS) |
 
 **Before any upload (unchanged prerequisites):** human confirms the rolling-week balance, total slots, deadline
-and current TOP_PUBLIC on the competition pages (unknown in the current brief); privately rebuilds the file
-(`python3 scripts/build_snap_r1_scarp_variants.py` — deterministic, SHA-pinned; rasters are gitignored so they
-are NOT in the repo) or restores it, matches the recorded SHA-256 (`scarp1px` primary
-`1944aaf5da0700f105d5a4443b7334a8e9b732571f86bf1d94d67adcf71dbdb7`, zeros
+and current TOP_PUBLIC on the competition pages (blank in the current brief; repo's `0.4413` is stale);
+privately rebuilds the file (`python3 scripts/build_snap_r1_scarp_variants.py` — deterministic, SHA-pinned;
+rasters are gitignored so they are NOT in the repo) or restores it, matches the recorded SHA-256 (`scarp1px`
+primary `1944aaf5da0700f105d5a4443b7334a8e9b732571f86bf1d94d67adcf71dbdb7`, zeros
 `0fa24aff9a9564b741791f330ae10a76e9b520d5a09cb2d86527fbdba0ee90ae`; `scarp2px` primary
 `c003d7d75a7e7571dd36ba928eba7ff8bf2676171bd2f6a6a424c8d4fc2791ac`, zeros
 `9e0001cee45b39e6a00d6f21de0685521b34391c3a7f13835852e850809c5d53`; control arm `ridge2px` primary
 `f4af84a326d353962e1db5b4dc60cd6c1a0e7ba2885f0811f68d242cac477112`, zeros
-`816c144dbdfe500577b58cbc13158e24715cf842d7842e3817ec72cb85082112` — not queued, diagnostic) and re-runs
-`python3 scripts/validate_variant.py releases/<id>.tif releases/<id>-zeros.tif` on the actual bytes. Human
-uploads **only one twin per slot**, then pastes the portal receipt into `receipt_score`/`receipt_date`.
-A live `|Δ| < 0.01` is no evidence. `scarp1px` vs `scarp2px` is a proxy-level tie (`0.000114`); the sequence
-above follows the preregistered dose rule, not a claim that 1 px is truly better.
+`816c144dbdfe500577b58cbc13158e24715cf842d7842e3817ec72cb85082112` — diagnostic, not queued) and re-runs
+`python3 scripts/validate_variant.py releases/<id>.tif releases/<id>-zeros.tif` (hardened gate) on the actual
+bytes. Human uploads **only one twin per slot**, then pastes the portal receipt into `receipt_score`/
+`receipt_date`. A live `|Δ| < 0.01` is no evidence. `scarp1px` vs `scarp2px` is a proxy-level tie
+(`0.000114`); the queue follows the preregistered dose rule, not a claim that 1 px is truly better.
 
 ---
 
-## Prior session — 2026-10-23 startup audit (prerequisites and corrections stand; queue order superseded above)
+## Concurrent sessions — 2026-10-23 SPACING + SNAP audit (both supersede every historical upload card below)
 
-**No new candidate or submission. AXIS=PRUNE:** requested radii already built;
-2 px is R0. Ledger stays at 32 rows. Full-lineage R0 startup validation passed
-both pinned SHA-256 values after verification of all 15 inputs. Audit receipt:
-`evidence/session_20261023_prune_stop.json` (not a submission-page receipt).
+### SPACING (3 built, all HOLD; slots unchanged; report only)
 
-**Do not upload yet:** current TOP_PUBLIC/date, actual rolling-week balance and
-deadline are unknown. Existing candidate TIFFs below are absent in this checkout;
-their old JSON records are **historical build records, not fresh validations**.
-Privately restore an existing artifact, match its complete recorded hash, and
-independently validate its actual disk bytes, primary/fallback equality, format,
-zero catalogue mass, and applicable collar before a human spends a slot.
-No rank-correlation or dot-overlap uniqueness threshold is permitted.
+**No upload recommended. Human uploads at most one twin per slot and pastes each
+portal receipt into `receipt_score` / `receipt_date`.** Parent `R1 =
+h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` rebuilt with both hashes asserted
+(`6f7ae705…` / `dc6f090d…`); all three arms share 1,914 greedy-decluster donors
+(**5.08%** changed, `10.16%` symmetric difference) and differ only in receiver
+geometry on un-emitted H19-5 at `d_cat > 3 px` (`min d_cat = 3.1623 px`, `0` on
+catalogue, `37,654` dots). Reproduce: `python scripts/build_spacing_variants.py`
+(predictions frozen in `registry/spacing_preregistration.json`). Rasters are
+local-only (gitignored); tracked SHA-256 receipts in `releases/*.json`,
+independent twin validation in `registry/spacing_variant_validation.json`
+(6/6 PASS), mechanism cards in `ledger/mechanism_cards.json`. All three arms are
+sub-threshold diagnostics (`|MODEL| <= 0.004`, `|SGMC delta| < 0.001` vs R1
+`0.096083` PROXY); the conditional slot order (`p3px` → `p3space35`, PR #34) is
+unchanged by SPACING. Reconciled with the concurrent refill-mode arms (IR-88-48);
+ledger now holds 38 rows.
+Hide-and-recover is degenerate `0.000000` (`n = 22,663`) for every `> 3 px` file.
 
-| Order | Exact submission name (primary file is `releases/<name>.tif`; fallback `<name>-zeros.tif`) | <=140-char form note | Historical format record |
-|---|---|---|---|
-| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json` |
-| 2, optional | `h33-h33-2-b2-PRUNEp1px-20261023-0542a27c` | `h33-2-b2; PRUNE <=1px, fixed 37654 dots; predicted -0.006 MODEL` | `releases/h33-h33-2-b2-PRUNEp1px-20261023-0542a27c.json` |
-| 3, reserve | `h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae` | `h33-2-b2; PRUNE <=3.2px, fixed 37654 dots; predicted +0.002 MODEL` | `releases/h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae.json` |
+### `SPACINGpoisson28-60f65400` (MODEL +0.003; declustered-parent candidate, HOLD)
+- **Primary:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGpoisson28-20261023-60f65400.tif` (`SHA-256 60f654005114eb6542cbc31135d15314adb8892c6e3d5abe72f9f4de743aa7f6`, `354,671` B; `.zip  fec70e909de1…`)
+- **Fallback:** `…-SPACINGpoisson28-20261023-60f65400-zeros.tif` (`SHA-256 6816852c233ca9a1dc82d9bd06e10fa784fed02eea5d1089d58b01b4d4586442`, `218,130` B; `.zip 5c59492ff572…`)
+- **Form note (98/140):** `R1(6f7ae705); SPACING poisson farthest-point 5.08% (1914) on H19-5, 37654, >3px; pred +0.003 MODEL`
+- **Stats:** greedy farthest-point receivers (median `2.236 px` from survivors, `0%` within `1.5 px`, min NN `2.2361 px`); SGMC `0.096820` PROXY (`+0.000737` vs R1); `12 km` CV `0.5808`.
 
-Human uploads **only one twin per slot**, then pastes the portal receipt into
-`receipt_score` / `receipt_date` (with verbatim receipt evidence retained privately).
-Check against actual upload history: blank ledger fields do not prove slots remain.
-R0 0.2778 is CLAIM; the above predictions are MODEL, never live scores. A change
-under 0.01 is no evidence. Slot 3 is reserved unless prior receipts support it.
+### `SPACINGstrike-bc8e6d1a` (MODEL +0.000; line-continuity probe, HOLD)
+- **Primary:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGstrike-20261023-bc8e6d1a.tif` (`SHA-256 bc8e6d1ae803109fb99f3fbfe95636980f40f39884564a24970a78671065aee1`, `354,072` B; `.zip b8c44402e896…`)
+- **Fallback:** `…-SPACINGstrike-20261023-bc8e6d1a-zeros.tif` (`SHA-256 4a3d3dbfbaaa45cda1f69099df688de43463182de38f5729442de2c5cd2a0df1`, `218,017` B; `.zip d89515f32745…`)
+- **Form note (98/140):** `R1(6f7ae705); SPACING along-strike receivers 5.08% (1914) on H19-5, 37654, >3px; pred +0.000 MODEL`
+- **Stats:** along-strike receivers (median `|cos| 1.000`, median `1.0 px` from survivors, min NN `1.0 px`); SGMC `0.095396` PROXY (`-0.000687` vs R1); `12 km` CV `0.5741`.
 
-**Corrections to historical sections below:** `SNAPscarp2px-fae77ff4` is HOLD
-(min catalogue distance 2.2361 px; 2,171 dots <=3 px); moving only its additions
-outside the collar does not satisfy the non-PRUNE rule. No label-relief probe is
-recommended. Historical recommendations to upload SNAP in slot 2 or to spend a
-RELIEF slot to probe label composition are withdrawn. Data-use terms for
-preexisting public competition-derived rasters remain unchecked (IR-88-43).
+### `SPACINGlattice4px-6c7e0b72` (MODEL -0.004; negative control, HOLD)
+- **Primary:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGlattice4px-20261023-6c7e0b72.tif` (`SHA-256 6c7e0b72fb089eb057af5ce2e89a5511cd26d4d4690aa3c88a54fdfc202e15c7`, `353,950` B; `.zip 777b9ced5b67…`)
+- **Fallback:** `…-SPACINGlattice4px-20261023-6c7e0b72-zeros.tif` (`SHA-256 2690408c607e67e8d4cc541fd7209ce2cf09f2a7989c3744b48652f53d57f664`, `217,591` B; `.zip a3dfb921e19e…`)
+- **Form note (97/140):** `R1(6f7ae705); SPACING 4px-lattice receivers 5.08% (1914) on H19-5, 37654, >3px; pred -0.004 MODEL`
+- **Stats:** 4 px lattice receivers (`100%` on-node, median `1.0 px` from survivors, min NN `1.0 px`); SGMC `0.095292` PROXY (`-0.000791` vs R1); `12 km` CV `0.5833`. Lattice period (400 m) equals the GeoDAWN line spacing; phase `(0,0)` frozen, never tuned.
+
+---
+
+### SNAP audit (concurrent; AXIS = SNAP, 0 new variants, HOLD retained)
+
+**No new variant, no upload.** R0 matched both pinned SHA-256s after
+all 15 manifest hashes/byte sizes passed. Its 1,611 dots inside the 3 px collar
+include **30 with no compliant pixel <=2 px away**: no pure R0 SNAP can pass the
+non-PRUNE clearance rule (`evidence/session_20261023_snap_clearance.json`).
+Do not substitute a PRUNE refill and call it SNAP. No row was added by this
+session; the concurrent PRUNE refill-mode merge brought the ledger to **35 BUILT,
+zero portal RECEIPTs**. The audit ran against 32 earlier rows.
+
+**Existing, not new: PRUNE p1/p3/p4 were recreated byte-exactly** from pinned
+inputs. All six TIFFs (primary NaN-outside and zeros-outside fallback) were
+re-read from disk and passed CRS/3730×3292 shape/transform/float32/band count,
+finite [0,1] inside, outside encoding, zero catalogue mass, exact ledger SHA,
+parent-diff, and twin/one-file ZIP checks. Audit:
+`evidence/session_20261023_prune_revalidation.json`. These reproduced PRUNE
+rasters are gitignored (older unrelated TIFFs were tracked, see IR-88-43);
+scripts `rebuild_prune_artifacts.py` and `validate_variant.py` reproduce
+and check local files. Do not treat this local validation as a portal receipt.
+
+**Potential slot 1 (conditional only):**
+- **Name:** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
+- **Primary file:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.tif`
+  (NaN outside; SHA-256 `6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9`).
+- **Fallback, never an extra submission:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-zeros.tif`
+  (zeros outside; SHA-256 `dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f`).
+- **Form note (103/140 chars, copied from existing receipt):**
+  `h33-2-b2; PRUNE <=3px held at 37654 (-2171 in 2-3px, +2171 exact marginal gain >3px); pred +0.005 MODEL`
+- **Mechanism:** remove 2,171 R0 collar dots and exact-marginal refill at fixed
+  37,654 count (5.7657% changed, min catalogue distance 3.1623 px). Predicted
+  live delta **MODEL +0.005**, *not* a score; an actual |delta|<0.01 is no evidence.
+
+**Do not upload until the human confirms** TOP_PUBLIC/date, rolling-week/total
+slots, 2026-12-03 deadline on the [competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/),
+R0's actual portal receipt (0.2778 remains CLAIM), and permissions for public
+input mirrors / previously tracked competition rasters. The agent has not fetched
+the portal or rules. Human independently checks the exact bytes and uploads **one**
+file per slot from their own account, then records verbatim `receipt_score` and
+`receipt_date` on the existing ledger row with private receipt evidence (no
+credentials). If p3 materially **loses**, close the collar family rather than
+spend slot 2 reflexively. If it wins or is inconclusive, the human may consider
+already-BUILT `PRUNEp3space35-49fff49b` (MODEL +0.007) as a separate,
+spacing/refill-support test. Its TIFFs are **not present in this checkout**;
+rebuild them at the exact ledger hashes and re-run the independent validator
+before any upload. Only after a material improvement over p3space35 should the
+human reserve slot 3 for `PRUNEp4space35-07bd8182` (MODEL +0.002, also absent
+locally). Their full filenames, hashes, and form notes appear in the historical
+PRUNE refill-mode section below; neither its SGMC PROXY nor its field MODEL is
+a live result (`SLOT_PLAN.md`). Revalidate the chosen exact file immediately
+before upload.
+
+**HOLD:** all R0 SNAP/CONCENTRATION/RELIEF arms retaining sub-3-px dots,
+including `SNAPscarp2px-fae77ff4`; no label-relief probe. Any contrary upload
+suggestion in the archived sections below is withdrawn. PRUNEp1's <3 px mass
+is allowed by the PRUNE exception, but it is a diagnostic rather than a lead.
 
 ---
 
@@ -210,3 +279,39 @@ Ledger after all reconciliations: `32` BUILT rows, `0 RECEIPT`.
 All three primaries and zero-outside fallbacks passed the independent on-disk `validate_variant.py` checks in [`registry/prune_sweep_validation.json`](../registry/prune_sweep_validation.json): GeoTIFF, one `float32` band, `EPSG:32611`, sample shape/transform, values `[0,1]`, no NaN inside, NaN outside on primary, zero outside on fallback, zero catalogue mass, unique SHA-256, fixed count, and disk re-read. Each fallback also passed the strict all-finite format audit (`releases/*-format-audit.json`). This is **format validation only**, not approval to spend a slot. The report-only hide/recover PROXY is degenerate at zero for the `>3 px` collar and is not a gate; blind SGMC values are also PROXY, not competition scores.
 
 **Human:** reconfirm TOP_PUBLIC, deadline, rolling-week/total slot counts, and any live receipt. Select one file manually if desired; after a submission, fill `receipt_score` and `receipt_date` verbatim in `ledger/submissions.csv`. The agent never logs in or submits.
+
+## Session `2026-10-23f` — `AXIS = PRUNE` with a spacing-locked refill (`arena/0c47b598-gemsdoe88`)
+
+Built three arms of `R0 = h33-h33-2-b2` that separate the **collar purge** from the **refill** for the first time. Files (gitignored locally, SHA-256 receipts tracked):
+
+### `h33-h33-2-b2-PRUNEp3norefill-20261023-fb308615`
+- **File:** `releases/h33-h33-2-b2-PRUNEp3norefill-20261023-fb308615.tif` (primary, NaN outside the footprint) · fallback `releases/h33-h33-2-b2-PRUNEp3norefill-20261023-fb308615-zeros.tif`
+- **Submission name:** `h33-h33-2-b2-PRUNEp3norefill-20261023-fb308615`
+- **Form note (68 / 140):** `R0 h33-2-b2; PRUNE<=300m no refill -2171, N 35483; pred +0.003 MODEL`
+- **SHA-256:** `fb308615161ad8f62b063d90972a4c36e7c66e7c58beb3316c81497cfe65261e` (primary) · `a438e92b79dfb7f9f1763c40ffb2d42dd60e45697dfc06fc49efae067d3c1a22` (zeros fallback)
+- **Change:** collar `<= 3 px`, remove `2171`, add `0` (no refill); `N = 35,483`; `5.77000%` moved, `5.77000%` symmetric difference.
+- **Format receipt (re-read from disk):** CRS `EPSG:32611`, `3730 x 3292`, transform matches `sample_submission.tif`, `float32`, 1 band, values in `[0,1]`, finite inside / NaN outside, **0 mass on the catalogue**, `min d_cat = 3.1623 px`, SHA-256 absent from the ledger before write, independent `scripts/validate_variant.py` `PASS`.
+- **Report-only:** four-line field `MODEL 0.270354` (`-0.015708` vs R0); blind off-catalogue `SGMC` `PROXY 0.093643`; hide-and-recover `PROXY 0.000000` (degenerate, `n=22,663`, no weight).
+- **Prediction (MODEL, registered before instruments):** `+0.003` vs R0, range `[-0.008, 0.012]`. Not a score.
+
+### `h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b`
+- **File:** `releases/h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b.tif` (primary, NaN outside the footprint) · fallback `releases/h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b-zeros.tif`
+- **Submission name:** `h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b`
+- **Form note (80 / 140):** `R0 h33-2-b2; PRUNE<=300m +2171 refill >=3.5px spaced, N 37654; pred +0.007 MODEL`
+- **SHA-256:** `49fff49b03c47d7ac3822df185f1efd55b0b30855133360689754ce85167a61a` (primary) · `e0b9d59b765a198aa5327bb99bddf09fec52e2806410a403b63ccce2d204824e` (zeros fallback)
+- **Change:** collar `<= 3 px`, remove `2171`, add `2171` (refill locked at `>= 3.5 px`, observed refill min NN `3.6056 px`); `N = 37,654`; `5.77000%` moved, `11.53000%` symmetric difference.
+- **Format receipt (re-read from disk):** CRS `EPSG:32611`, `3730 x 3292`, transform matches `sample_submission.tif`, `float32`, 1 band, values in `[0,1]`, finite inside / NaN outside, **0 mass on the catalogue**, `min d_cat = 3.1623 px`, SHA-256 absent from the ledger before write, independent `scripts/validate_variant.py` `PASS`.
+- **Report-only:** four-line field `MODEL 0.274896` (`-0.011165` vs R0); blind off-catalogue `SGMC` `PROXY 0.101042`; hide-and-recover `PROXY 0.000000` (degenerate, `n=22,663`, no weight).
+- **Prediction (MODEL, registered before instruments):** `+0.007` vs R0, range `[-0.002, 0.018]`. Not a score.
+
+### `h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182`
+- **File:** `releases/h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182.tif` (primary, NaN outside the footprint) · fallback `releases/h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182-zeros.tif`
+- **Submission name:** `h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182`
+- **Form note (80 / 140):** `R0 h33-2-b2; PRUNE<=400m +3825 refill >=3.5px spaced, N 37654; pred +0.002 MODEL`
+- **SHA-256:** `07bd8182ec4d542aa127601febb2eb37b1458885bce1941593bf846b85f4bb2a` (primary) · `fb7ee110c9ac96a32e53f7d9558bade00d6244f4b5622e35eab83264646e3766` (zeros fallback)
+- **Change:** collar `<= 4 px`, remove `3825`, add `3825` (refill locked at `>= 3.5 px`, observed refill min NN `3.6056 px`); `N = 37,654`; `10.16000%` moved, `20.32000%` symmetric difference.
+- **Format receipt (re-read from disk):** CRS `EPSG:32611`, `3730 x 3292`, transform matches `sample_submission.tif`, `float32`, 1 band, values in `[0,1]`, finite inside / NaN outside, **0 mass on the catalogue**, `min d_cat = 4.1231 px`, SHA-256 absent from the ledger before write, independent `scripts/validate_variant.py` `PASS`.
+- **Report-only:** four-line field `MODEL 0.263231` (`-0.022830` vs R0); blind off-catalogue `SGMC` `PROXY 0.102454`; hide-and-recover `PROXY 0.000000` (degenerate, `n=22,663`, no weight).
+- **Prediction (MODEL, registered before instruments):** `+0.002` vs R0, range `[-0.01, 0.014]`. Not a score.
+
+Upload at most one file per slot; paste the portal receipt into `ledger/submissions.csv` (`receipt_score`, `receipt_date`).

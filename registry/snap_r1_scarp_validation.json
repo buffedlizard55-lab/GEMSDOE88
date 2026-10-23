@@ -24,7 +24,7 @@
           -100.0,
           4508550.0
         ],
-        "nodata": NaN
+        "nodata": "NaN"
       },
       "parent_diff": {
         "common": 5081,
@@ -81,13 +81,21 @@
           "ok": true,
           "detail": 0
         },
+        "axis_declared": {
+          "ok": true,
+          "detail": "SNAP"
+        },
         "zero_mass_on_catalogue": {
           "ok": true,
           "detail": 0
         },
-        "none_within_2px_catalogue": {
+        "non_prune_clearance_ge_3px": {
           "ok": true,
-          "detail": 0
+          "detail": {
+            "axis": "SNAP",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
         },
         "dot_values_are_binary": {
           "ok": true,
@@ -224,13 +232,21 @@
           "ok": true,
           "detail": 0
         },
+        "axis_declared": {
+          "ok": true,
+          "detail": "SNAP"
+        },
         "zero_mass_on_catalogue": {
           "ok": true,
           "detail": 0
         },
-        "none_within_2px_catalogue": {
+        "non_prune_clearance_ge_3px": {
           "ok": true,
-          "detail": 0
+          "detail": {
+            "axis": "SNAP",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
         },
         "dot_values_are_binary": {
           "ok": true,
@@ -310,7 +326,7 @@
           -100.0,
           4508550.0
         ],
-        "nodata": NaN
+        "nodata": "NaN"
       },
       "parent_diff": {
         "common": 10000,
@@ -367,13 +383,21 @@
           "ok": true,
           "detail": 0
         },
+        "axis_declared": {
+          "ok": true,
+          "detail": "SNAP"
+        },
         "zero_mass_on_catalogue": {
           "ok": true,
           "detail": 0
         },
-        "none_within_2px_catalogue": {
+        "non_prune_clearance_ge_3px": {
           "ok": true,
-          "detail": 0
+          "detail": {
+            "axis": "SNAP",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
         },
         "dot_values_are_binary": {
           "ok": true,
@@ -510,13 +534,21 @@
           "ok": true,
           "detail": 0
         },
+        "axis_declared": {
+          "ok": true,
+          "detail": "SNAP"
+        },
         "zero_mass_on_catalogue": {
           "ok": true,
           "detail": 0
         },
-        "none_within_2px_catalogue": {
+        "non_prune_clearance_ge_3px": {
           "ok": true,
-          "detail": 0
+          "detail": {
+            "axis": "SNAP",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
         },
         "dot_values_are_binary": {
           "ok": true,
@@ -596,7 +628,7 @@
           -100.0,
           4508550.0
         ],
-        "nodata": NaN
+        "nodata": "NaN"
       },
       "parent_diff": {
         "common": 28972,
@@ -653,13 +685,21 @@
           "ok": true,
           "detail": 0
         },
+        "axis_declared": {
+          "ok": true,
+          "detail": "SNAP"
+        },
         "zero_mass_on_catalogue": {
           "ok": true,
           "detail": 0
         },
-        "none_within_2px_catalogue": {
+        "non_prune_clearance_ge_3px": {
           "ok": true,
-          "detail": 0
+          "detail": {
+            "axis": "SNAP",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
         },
         "dot_values_are_binary": {
           "ok": true,
@@ -796,13 +836,21 @@
           "ok": true,
           "detail": 0
         },
+        "axis_declared": {
+          "ok": true,
+          "detail": "SNAP"
+        },
         "zero_mass_on_catalogue": {
           "ok": true,
           "detail": 0
         },
-        "none_within_2px_catalogue": {
+        "non_prune_clearance_ge_3px": {
           "ok": true,
-          "detail": 0
+          "detail": {
+            "axis": "SNAP",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
         },
         "dot_values_are_binary": {
           "ok": true,

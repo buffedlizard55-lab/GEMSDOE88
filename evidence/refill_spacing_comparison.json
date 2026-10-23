@@ -1,0 +1,102 @@
+{
+  "schema": "gems88.refill-spacing-comparison.v1",
+  "created_utc": "2026-10-23T21:33:51Z",
+  "parent": {
+    "id": "h33-h33-2-b2",
+    "n_dots": 37654,
+    "rebuilt_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "rebuilt_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd"
+  },
+  "refill_spacing_px": 3.5,
+  "instruments": {
+    "field_model_dti": "MODEL: label-free four-line physical field, exact weighted expected DTI",
+    "sgmc_proxy_dti": "PROXY: blind off-catalogue USGS SGMC faults (>3 px from the catalogue)"
+  },
+  "leakage_canaries": {
+    "passed": true,
+    "max_single_feature_symmetric_auc": 0.56925
+  },
+  "arms": {
+    "R0": {
+      "n_dots": 37654,
+      "field_model_dti": 0.286061,
+      "sgmc_proxy_dti": 0.09606,
+      "nearest_neighbour": {
+        "min_px": 2.8284,
+        "mean_px": 3.7351,
+        "frac_below_2px": 0.0,
+        "frac_below_3px": 0.3032
+      },
+      "field_delta_vs_r0": 0.0,
+      "sgmc_delta_vs_r0": 0.0
+    },
+    "densified300": {
+      "n_dots": 37654,
+      "field_model_dti": 0.281537,
+      "sgmc_proxy_dti": 0.096083,
+      "nearest_neighbour": {
+        "min_px": 1.0,
+        "mean_px": 3.5884,
+        "frac_below_2px": 0.0224,
+        "frac_below_3px": 0.3695
+      },
+      "field_delta_vs_r0": -0.004524,
+      "sgmc_delta_vs_r0": 2.3e-05
+    },
+    "densified400": {
+      "n_dots": 37654,
+      "field_model_dti": 0.273708,
+      "sgmc_proxy_dti": 0.094465,
+      "nearest_neighbour": {
+        "min_px": 1.0,
+        "mean_px": 3.4337,
+        "frac_below_2px": 0.0381,
+        "frac_below_3px": 0.4394
+      },
+      "field_delta_vs_r0": -0.012353,
+      "sgmc_delta_vs_r0": -0.001595
+    },
+    "spaced300": {
+      "n_dots": 37654,
+      "field_model_dti": 0.274896,
+      "sgmc_proxy_dti": 0.101042,
+      "nearest_neighbour": {
+        "min_px": 2.8284,
+        "mean_px": 3.8608,
+        "frac_below_2px": 0.0,
+        "frac_below_3px": 0.2824
+      },
+      "field_delta_vs_r0": -0.011165,
+      "sgmc_delta_vs_r0": 0.004982
+    },
+    "spaced400": {
+      "n_dots": 37654,
+      "field_model_dti": 0.263231,
+      "sgmc_proxy_dti": 0.102454,
+      "nearest_neighbour": {
+        "min_px": 2.8284,
+        "mean_px": 3.9075,
+        "frac_below_2px": 0.0,
+        "frac_below_3px": 0.2677
+      },
+      "field_delta_vs_r0": -0.02283,
+      "sgmc_delta_vs_r0": 0.006394
+    },
+    "norefill3": {
+      "n_dots": 35483,
+      "field_model_dti": 0.270354,
+      "sgmc_proxy_dti": 0.093643,
+      "nearest_neighbour": {
+        "min_px": 2.8284,
+        "mean_px": 3.7706,
+        "frac_below_2px": 0.0,
+        "frac_below_3px": 0.2997
+      },
+      "field_delta_vs_r0": -0.015707,
+      "sgmc_delta_vs_r0": -0.002417
+    }
+  },
+  "verdict": "INSTRUMENTS DISAGREE: the label-free four-line field prefers the densified refill (-0.004524 vs -0.011165 for the spacing-locked refill at the same 300 m collar), while the blind off-catalogue SGMC control prefers the spacing-locked refill (+0.004982 vs +0.000023). Neither is a score and neither decides a slot; a live receipt is the only arbiter.",
+  "report_only": true,
+  "no_submission": true
+}

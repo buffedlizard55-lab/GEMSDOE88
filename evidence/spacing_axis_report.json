@@ -1,0 +1,762 @@
+{
+  "session_date": "2026-10-23",
+  "axis": "SPACING",
+  "preregistration": "registry/spacing_preregistration.json",
+  "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+  "seed": 20261023,
+  "build_script_sha256": "b98e72d462b01bcd4654dec0063f0132b5316546e3402fd3d913f6a9c0afc784",
+  "elapsed_seconds": 200.19,
+  "parent_R1": {
+    "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "n_dots": 37654,
+    "sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+    "sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+    "min_d_cat_px": 3.1623,
+    "nn": {
+      "min_nn_px": 1.0,
+      "median_nn_px": 3.0,
+      "mean_nn_px": 3.5884,
+      "frac_nn_lt_2p8": 0.0965
+    },
+    "diagnostics": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.096083,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5603.04,
+        "fp": 35157.75
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6405,
+        "cv_12km_120px_interior": 0.57
+      }
+    }
+  },
+  "grandparent_R0": {
+    "id": "h33-h33-2-b2",
+    "rebuilt_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "rebuilt_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "diagnostics": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.004006,
+        "ci95": [
+          0.003424,
+          0.00469
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": 0.0,
+        "paired_delta_vs_r0_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.09606,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5602.26,
+        "fp": 35187.58
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6292,
+        "cv_12km_120px_interior": 0.559
+      }
+    }
+  },
+  "n_shift": 1914,
+  "receiver_pool_px": 59310,
+  "receiver_overlap": {
+    "poisson28&strike": 49,
+    "lattice4px&poisson28": 95,
+    "lattice4px&strike": 78
+  },
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.59976,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    },
+    "spacing_geometry": {
+      "spacing_survivor_distance": 0.5097,
+      "spacing_lattice_distance": 0.50108,
+      "spacing_strike_alignment": 0.59976
+    }
+  },
+  "variants": [
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGpoisson28-20261023-60f65400",
+      "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "axis": "SPACING",
+      "value": "poisson28",
+      "seed": 20261023,
+      "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+      "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGpoisson28-20261023-60f65400.tif",
+      "sha256": "60f654005114eb6542cbc31135d15314adb8892c6e3d5abe72f9f4de743aa7f6",
+      "bytes_nan": 354671,
+      "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGpoisson28-20261023-60f65400.zip",
+      "zip_nan_sha256": "fec70e909de152656401d69d36eeb937b290ecf66f1bf0cdcef0ef95f8ff3dde",
+      "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGpoisson28-20261023-60f65400-zeros.tif",
+      "sha256_zeros": "6816852c233ca9a1dc82d9bd06e10fa784fed02eea5d1089d58b01b4d4586442",
+      "bytes_zeros": 218130,
+      "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGpoisson28-20261023-60f65400-zeros.zip",
+      "zip_zeros_sha256": "5c59492ff5725ceb4de6e6ee69d230ccfe386759ba8e6c5809761ad6866567d7",
+      "form_note": "R1(6f7ae705); SPACING poisson farthest-point 5.08% (1914) on H19-5, 37654, >3px; pred +0.003 MODEL",
+      "form_note_chars": 98,
+      "n_dots": 37654,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 1914,
+        "n_removed": 1914,
+        "pct_changed_moved": 5.08,
+        "pct_changed_sym_diff": 10.17,
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 2446
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "spacing_statistics": {
+        "n_donors": 1914,
+        "n_receivers": 1914,
+        "receiver_dist_to_survivor_px": {
+          "median": 2.236,
+          "frac_ge_2p8": 0.1458,
+          "frac_le_1p5": 0.0
+        },
+        "receiver_lattice_dist_px": {
+          "median": 1.414,
+          "frac_on_node": 0.0554
+        },
+        "receiver_strike_align": {
+          "median": 0.8528,
+          "frac_gt_0p9": 0.4425
+        },
+        "donor_dist_to_variant_after_px": {
+          "median": 2.0,
+          "frac_gt_3": 0.0136
+        },
+        "h19_support_within_3px_parent": 0.8638,
+        "h19_support_within_3px_variant": 0.8584,
+        "w_weighted_dti_before": 0.281537,
+        "w_weighted_dti_after": 0.278899,
+        "w_weighted_dti_delta_MODEL": -0.002638,
+        "nn_parent_R1": {
+          "min_nn_px": 1.0,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.5884,
+          "frac_nn_lt_2p8": 0.0965
+        },
+        "nn": {
+          "min_nn_px": 2.2361,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.626,
+          "frac_nn_lt_2p8": 0.0966
+        }
+      },
+      "spacing_definition": {
+        "donors": "greedy minimal decluster (ascending NN, 20 sub-2.8px offsets), 1,914 dots",
+        "receiver_pool": "H19-5 & ~R1 & d_cat>3 px (donor sites excluded)",
+        "pool_px": 59310,
+        "preregistration": "registry/spacing_preregistration.json"
+      },
+      "parent_rebuild_verified": {
+        "R0_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "R0_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+        "R1_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+        "R1_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f"
+      },
+      "leakage_canaries": {
+        "passed": true,
+        "max_symmetric_auc": 0.59976,
+        "channels": {
+          "lidar_scarp_step": 0.56796,
+          "lidar_scarp_asym": 0.56197,
+          "det_elev_hessian_b12": 0.52918,
+          "det_elev_slope_b19": 0.54949,
+          "grav_hg_b18": 0.51671,
+          "tmi_hg_b03": 0.52022,
+          "basement_grad_b15": 0.54422,
+          "rtp_hessian_b02": 0.50269,
+          "geod_strain_b04": 0.56083,
+          "seismic_ieq_b16": 0.54653,
+          "mag_tilt_curv_b06": 0.5434,
+          "mt_cond_grad_b17": 0.50178,
+          "k_th_alteration": 0.51259,
+          "gdr_geotherm_idw": 0.51395,
+          "composite_p_phys": 0.56925
+        },
+        "spacing_geometry": {
+          "spacing_survivor_distance": 0.5097,
+          "spacing_lattice_distance": 0.50108,
+          "spacing_strike_alignment": 0.59976
+        }
+      },
+      "predicted_change": "MODEL:+0.003 vs parent R1 (live, preregistered)",
+      "report_only_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.09682,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5647.15,
+          "fp": 35172.54
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6492,
+          "cv_12km_120px_interior": 0.5808
+        },
+        "sgmc_delta_vs_R1_PROXY": 0.000737,
+        "holdout_note": "Catalogue hide-and-recover is degenerate (0.0) for every >3 px file: kernel R=3 px can earn no credit on hidden catalogue pixels (IR-88-20). Reported for completeness, cannot rank R1 descendants."
+      },
+      "parent_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.096083,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5603.04,
+          "fp": 35157.75
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6405,
+          "cv_12km_120px_interior": 0.57
+        }
+      },
+      "grandparent_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.004006,
+          "ci95": [
+            0.003424,
+            0.00469
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": 0.0,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.09606,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5602.26,
+          "fp": 35187.58
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6292,
+          "cv_12km_120px_interior": 0.559
+        }
+      }
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGlattice4px-20261023-6c7e0b72",
+      "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "axis": "SPACING",
+      "value": "lattice4px",
+      "seed": 20261023,
+      "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+      "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGlattice4px-20261023-6c7e0b72.tif",
+      "sha256": "6c7e0b72fb089eb057af5ce2e89a5511cd26d4d4690aa3c88a54fdfc202e15c7",
+      "bytes_nan": 353950,
+      "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGlattice4px-20261023-6c7e0b72.zip",
+      "zip_nan_sha256": "777b9ced5b67dc680f9e39898e3cc916b3b52476323565f5c788b7f3229b248a",
+      "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGlattice4px-20261023-6c7e0b72-zeros.tif",
+      "sha256_zeros": "2690408c607e67e8d4cc541fd7209ce2cf09f2a7989c3744b48652f53d57f664",
+      "bytes_zeros": 217591,
+      "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGlattice4px-20261023-6c7e0b72-zeros.zip",
+      "zip_zeros_sha256": "a3dfb921e19e127d72ec5afc7c8f5db6fa357eefe505a517ce9637c97f5a8087",
+      "form_note": "R1(6f7ae705); SPACING 4px-lattice receivers 5.08% (1914) on H19-5, 37654, >3px; pred -0.004 MODEL",
+      "form_note_chars": 97,
+      "n_dots": 37654,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 1914,
+        "n_removed": 1914,
+        "pct_changed_moved": 5.08,
+        "pct_changed_sym_diff": 10.17,
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 2418
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "spacing_statistics": {
+        "n_donors": 1914,
+        "n_receivers": 1914,
+        "receiver_dist_to_survivor_px": {
+          "median": 1.0,
+          "frac_ge_2p8": 0.0047,
+          "frac_le_1p5": 0.8751
+        },
+        "receiver_lattice_dist_px": {
+          "median": 0.0,
+          "frac_on_node": 1.0
+        },
+        "receiver_strike_align": {
+          "median": 0.889,
+          "frac_gt_0p9": 0.4791
+        },
+        "donor_dist_to_variant_after_px": {
+          "median": 2.236,
+          "frac_gt_3": 0.0559
+        },
+        "h19_support_within_3px_parent": 0.8638,
+        "h19_support_within_3px_variant": 0.856,
+        "w_weighted_dti_before": 0.281537,
+        "w_weighted_dti_after": 0.275596,
+        "w_weighted_dti_delta_MODEL": -0.005941,
+        "nn_parent_R1": {
+          "min_nn_px": 1.0,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.5884,
+          "frac_nn_lt_2p8": 0.0965
+        },
+        "nn": {
+          "min_nn_px": 1.0,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.5362,
+          "frac_nn_lt_2p8": 0.1334
+        }
+      },
+      "spacing_definition": {
+        "donors": "greedy minimal decluster (ascending NN, 20 sub-2.8px offsets), 1,914 dots",
+        "receiver_pool": "H19-5 & ~R1 & d_cat>3 px (donor sites excluded)",
+        "pool_px": 59310,
+        "preregistration": "registry/spacing_preregistration.json"
+      },
+      "parent_rebuild_verified": {
+        "R0_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "R0_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+        "R1_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+        "R1_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f"
+      },
+      "leakage_canaries": {
+        "passed": true,
+        "max_symmetric_auc": 0.59976,
+        "channels": {
+          "lidar_scarp_step": 0.56796,
+          "lidar_scarp_asym": 0.56197,
+          "det_elev_hessian_b12": 0.52918,
+          "det_elev_slope_b19": 0.54949,
+          "grav_hg_b18": 0.51671,
+          "tmi_hg_b03": 0.52022,
+          "basement_grad_b15": 0.54422,
+          "rtp_hessian_b02": 0.50269,
+          "geod_strain_b04": 0.56083,
+          "seismic_ieq_b16": 0.54653,
+          "mag_tilt_curv_b06": 0.5434,
+          "mt_cond_grad_b17": 0.50178,
+          "k_th_alteration": 0.51259,
+          "gdr_geotherm_idw": 0.51395,
+          "composite_p_phys": 0.56925
+        },
+        "spacing_geometry": {
+          "spacing_survivor_distance": 0.5097,
+          "spacing_lattice_distance": 0.50108,
+          "spacing_strike_alignment": 0.59976
+        }
+      },
+      "predicted_change": "MODEL:-0.004 vs parent R1 (live, preregistered)",
+      "report_only_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.095292,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5555.74,
+          "fp": 35143.74
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6551,
+          "cv_12km_120px_interior": 0.5833
+        },
+        "sgmc_delta_vs_R1_PROXY": -0.000791,
+        "holdout_note": "Catalogue hide-and-recover is degenerate (0.0) for every >3 px file: kernel R=3 px can earn no credit on hidden catalogue pixels (IR-88-20). Reported for completeness, cannot rank R1 descendants."
+      },
+      "parent_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.096083,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5603.04,
+          "fp": 35157.75
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6405,
+          "cv_12km_120px_interior": 0.57
+        }
+      },
+      "grandparent_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.004006,
+          "ci95": [
+            0.003424,
+            0.00469
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": 0.0,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.09606,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5602.26,
+          "fp": 35187.58
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6292,
+          "cv_12km_120px_interior": 0.559
+        }
+      }
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGstrike-20261023-bc8e6d1a",
+      "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "axis": "SPACING",
+      "value": "strike",
+      "seed": 20261023,
+      "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+      "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGstrike-20261023-bc8e6d1a.tif",
+      "sha256": "bc8e6d1ae803109fb99f3fbfe95636980f40f39884564a24970a78671065aee1",
+      "bytes_nan": 354072,
+      "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGstrike-20261023-bc8e6d1a.zip",
+      "zip_nan_sha256": "b8c44402e896561f38a327ccfc94a3f95372874f5fd7113facf39d78968bf8e2",
+      "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGstrike-20261023-bc8e6d1a-zeros.tif",
+      "sha256_zeros": "4a3d3dbfbaaa45cda1f69099df688de43463182de38f5729442de2c5cd2a0df1",
+      "bytes_zeros": 218017,
+      "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGstrike-20261023-bc8e6d1a-zeros.zip",
+      "zip_zeros_sha256": "d89515f32745b6c34ac359d39362365398ef1b5391da8c7b3360bfaed34b9b1b",
+      "form_note": "R1(6f7ae705); SPACING along-strike receivers 5.08% (1914) on H19-5, 37654, >3px; pred +0.000 MODEL",
+      "form_note_chars": 98,
+      "n_dots": 37654,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 1914,
+        "n_removed": 1914,
+        "pct_changed_moved": 5.08,
+        "pct_changed_sym_diff": 10.17,
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 2411
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "spacing_statistics": {
+        "n_donors": 1914,
+        "n_receivers": 1914,
+        "receiver_dist_to_survivor_px": {
+          "median": 1.0,
+          "frac_ge_2p8": 0.0037,
+          "frac_le_1p5": 0.8657
+        },
+        "receiver_lattice_dist_px": {
+          "median": 1.414,
+          "frac_on_node": 0.0726
+        },
+        "receiver_strike_align": {
+          "median": 1.0,
+          "frac_gt_0p9": 1.0
+        },
+        "donor_dist_to_variant_after_px": {
+          "median": 2.236,
+          "frac_gt_3": 0.0517
+        },
+        "h19_support_within_3px_parent": 0.8638,
+        "h19_support_within_3px_variant": 0.8559,
+        "w_weighted_dti_before": 0.281537,
+        "w_weighted_dti_after": 0.275666,
+        "w_weighted_dti_delta_MODEL": -0.005871,
+        "nn_parent_R1": {
+          "min_nn_px": 1.0,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.5884,
+          "frac_nn_lt_2p8": 0.0965
+        },
+        "nn": {
+          "min_nn_px": 1.0,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.4778,
+          "frac_nn_lt_2p8": 0.1303
+        }
+      },
+      "spacing_definition": {
+        "donors": "greedy minimal decluster (ascending NN, 20 sub-2.8px offsets), 1,914 dots",
+        "receiver_pool": "H19-5 & ~R1 & d_cat>3 px (donor sites excluded)",
+        "pool_px": 59310,
+        "preregistration": "registry/spacing_preregistration.json"
+      },
+      "parent_rebuild_verified": {
+        "R0_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "R0_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+        "R1_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+        "R1_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f"
+      },
+      "leakage_canaries": {
+        "passed": true,
+        "max_symmetric_auc": 0.59976,
+        "channels": {
+          "lidar_scarp_step": 0.56796,
+          "lidar_scarp_asym": 0.56197,
+          "det_elev_hessian_b12": 0.52918,
+          "det_elev_slope_b19": 0.54949,
+          "grav_hg_b18": 0.51671,
+          "tmi_hg_b03": 0.52022,
+          "basement_grad_b15": 0.54422,
+          "rtp_hessian_b02": 0.50269,
+          "geod_strain_b04": 0.56083,
+          "seismic_ieq_b16": 0.54653,
+          "mag_tilt_curv_b06": 0.5434,
+          "mt_cond_grad_b17": 0.50178,
+          "k_th_alteration": 0.51259,
+          "gdr_geotherm_idw": 0.51395,
+          "composite_p_phys": 0.56925
+        },
+        "spacing_geometry": {
+          "spacing_survivor_distance": 0.5097,
+          "spacing_lattice_distance": 0.50108,
+          "spacing_strike_alignment": 0.59976
+        }
+      },
+      "predicted_change": "MODEL:+0.000 vs parent R1 (live, preregistered)",
+      "report_only_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.095396,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5561.86,
+          "fp": 35139.0
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6421,
+          "cv_12km_120px_interior": 0.5741
+        },
+        "sgmc_delta_vs_R1_PROXY": -0.000687,
+        "holdout_note": "Catalogue hide-and-recover is degenerate (0.0) for every >3 px file: kernel R=3 px can earn no credit on hidden catalogue pixels (IR-88-20). Reported for completeness, cannot rank R1 descendants."
+      },
+      "parent_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.096083,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5603.04,
+          "fp": 35157.75
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6405,
+          "cv_12km_120px_interior": 0.57
+        }
+      },
+      "grandparent_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.004006,
+          "ci95": [
+            0.003424,
+            0.00469
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": 0.0,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.09606,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5602.26,
+          "fp": 35187.58
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6292,
+          "cv_12km_120px_interior": 0.559
+        }
+      }
+    }
+  ]
+}

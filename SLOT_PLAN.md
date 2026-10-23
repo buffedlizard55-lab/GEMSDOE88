@@ -1,78 +1,34 @@
-# SLOT_PLAN — one entity; at most 3 scored files per rolling week
+# SLOT_PLAN — one entity; <=3 scored uploads per rolling week
 
-**2026-10-23 · AXIS=SNAP on gate-clean `R1` · 3 new variants, all above parent on the blind control.**
-All 15 manifest pins verified; `R0 = h33-h33-2-b2` rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`,
-37,654 dots) and `R1 = PRUNEp3px` (`6f7ae705…`/`dc6f090d…`) re-derived and SHA-asserted before any edit.
-Ledger: **35** built rows, **0** portal receipts. `origin/main` re-checked immediately before building (IR-88-39).
+**`2026-10-23` · four sessions merged: PRUNE refill-mode (PR #34) · SPACING on `R1` (PR #35) · SNAP-clearance audit + hardened gates (PR #36) · SNAP scarp transplant on `R1` (PR #41, this plan's latest update).** All `15` manifest pins verified; `R0` rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`, `37,654` dots); `R1 = PRUNEp3px` re-derived and SHA-asserted (`6f7ae705…`/`dc6f090d…`) before editing. Ledger: **`41`** built rows, **`0`** portal receipts, no `(parent, axis, value)` or SHA-256 collision in any direction.
 
-**Budget/target:** TOP_PUBLIC **not supplied in the current brief** (repository's older `0.4413` of 2026-10-22 is
-stale and UNVERIFIED — human must re-read the leaderboard). Slots left this rolling week / total: **unknown**;
-deadline **2026-12-03 human-confirmation pending**. Human checks the competition page and rules; no automated
-access. One blind final file; primary and zeros twin are alternatives, never two slots.
+**Before any slot:** human supplies current `TOP_PUBLIC`/date (brief left it blank; repo's `0.4413` of `2026-10-22` is stale, IR-88-46), actual weekly/total balance, permission to use/redistribute the public mirrors and old tracked TIFFs, and confirms the provisional `2026-12-03` deadline on the competition page and rules. No automated page access or submissions. Primary/zeros twin = **one** slot; one blind final. `|live delta| < 0.01` is no evidence; without an R0 receipt no paired live delta exists. Locally available + freshly validated with the **hardened** `validate_variant.py`: `R1` twins and all six SNAP-R1 scarp twins. `p3space35`/`p4space35` TIFFs are **absent locally** — exact reconstruction and fresh validation required before any slot.
 
-## Session findings (AXIS=SNAP, parent R1, preregistered in `registry/preregistration_snap_r1_scarp.json`)
+## Session results (all instruments REPORT-ONLY, never gates)
+| Arm | Parent | Edit | blind `SGMC` | field `MODEL` |
+|---|---|---|---:|---:|
+| `p3norefill` `fb308615` | R0 | `300 m` collar purge, **no refill** (`N=35,483`, diagnostic) | `0.093643` (−0.0024) | `−0.0157` |
+| `p3space35` `49fff49b` | R0 | collar purge, `3.5 px` spacing-locked refill from widened pool | `0.101042` (+0.0050) | `−0.0112` |
+| `p4space35` `07bd8182` | R0 | `400 m` collar, same refill | `0.102454` (+0.0064) | `−0.0228` |
+| `poisson28` `60f65400` | R1 | farthest-point receivers for the `1,914` decluster donors | `0.096820` (+0.00074) | `−0.0026` |
+| `strike` `bc8e6d1a` / `lattice4px` `6c7e0b72` | R1 | along-strike / `4 px`-grid receivers | `0.095396 / 0.095292` (both below) | `−0.0059 / −0.0059` |
+| **`scarp1px` `1944aaf5`** | **R1** | spacing-locked snap `<=1 px` to `edge_scarp_pot` crest (26,323 moved, `69.91%`, mean `0.699 px`) | **`0.097567` (+0.00148)** | pre-reg `+0.003`; `w`-field `−0.035` |
+| **`scarp2px` `c003d7d7`** | **R1** | same field, `<=2 px` reach (31,742, `84.30%`, mean `1.344 px`) | **`0.097453` (+0.00137)** | pre-reg `+0.006`; `w`-field `−0.077` |
+| `ridge2px` `f4af84a3` | R1 | control: Hessian-ridge field only, stays on support (6,567, `17.44%`) | `0.096548` (+0.00047) | pre-reg `+0.002`; `w`-field `−0.001` |
 
-The spacing-locked scarp re-centering of R0 (`SNAPscarp2px-fae77ff4`) was the only built candidate above R0 on
-the blind off-catalogue USGS SGMC control — but every R0-parented non-PRUNE arm is HOLD under the literal ≥3 px
-rule (IR-88-43). Transplanting the **same field** (`edge_scarp_pot` = 0.42·b19 slope + 0.23·b12 Hessian ridge +
-0.20·b18 iso-grav HG + 0.15·b3 TMI HG, provided bands only, zero external LiDAR) and the **same deterministic
-spacing-locked allocator** onto `R1` (all dots ≥3.1623 px) yields the first fully gate-clean family that beats
-its parent on the blind control. The R0 winner itself was rebuilt in-run and reproduced exactly (30,889
-displaced; SGMC 0.096806 = published).
+Convergent findings: (1) **the instruments disagree in every session** — the label-free field prefers densified/on-support placement, blind `SGMC` prefers spaced crest placement (IR-88-44/48/49); no arm may be promoted on instrument agreement, and `w` (blind AUC `0.47`) must not adjudicate geometry edits. (2) **Spacing/uniformity is the lever; spaced ancestor support amplifies it** (`p3space35 +0.0050` vs `poisson28 +0.00074`). (3) **Scarp re-centering replicates across parents**: the same field+allocator beat R0 (`fae77ff4`, reproduced exactly in-run at `0.096806`) and beats R1 (`+0.0014/+0.0015`), scarp > ridge both times — the gain is crest emergence, not ribbon de-jittering; `scarp1px` vs `scarp2px` is a proxy-level tie (`+0.000114`), the preregistered dose rule nominates `1 px`, receipts arbitrate. (4) Pure-R0 SNAP is geometrically impossible (IR-88-47): `30` of `1,611` sub-`3 px` dots have no compliant destination within `<=2 px`; the scarp transplant therefore runs on gate-clean `R1` — 100% of dots `>3 px`, hardened validator 6/6 PASS. (5) The capped-gradient SNAP-R1 family (`g2f35/d2f35/d1f35`) sits **below** R1 blind (`0.095051/0.092461/…`) — field shape alone does not pay; geometry does.
 
-| Arm (parent R1) | Moved | Mean disp. | Blind SGMC `PROXY` (R1 = 0.096083, R0-scarp = 0.096806) | 12 km CV | Pre-reg `MODEL` | w-field Δ `MODEL` |
-|---|---:|---:|---:|---:|---:|---:|
-| `SNAPscarp1px-1944aaf5` | 26,323 (69.91%) | 0.699 px | **0.097567** (+0.00148 vs R1) | 0.5710 | +0.003 | −0.035 |
-| `SNAPscarp2px-c003d7d7` | 31,742 (84.30%) | 1.344 px | **0.097453** (+0.00137 vs R1) | 0.5715 | +0.006 | −0.077 |
-| `SNAPridge2px-f4af84a3` | 6,567 (17.44%) | 0.211 px | **0.096548** (+0.00047 vs R1) | 0.5699 | +0.002 | −0.001 |
-
-**Reading.** (1) All three arms beat R1 blind; the off-support crest arms beat the intra-support control,
-replicating the R0 ordering (scarp > ridge) on a second parent — the gain is re-centering onto the physical
-scarp emergence, not mere de-jittering inside the detector's ribbon. (2) `scarp1px` ≥ `scarp2px` by 0.000114 —
-**a proxy-level tie**; the preregistered dose rule nominates the 1 px arm (lower overshoot risk, half the
-displacement), receipts must arbitrate. (3) The in-house physics field w condemns exactly what the blind
-control rewards (−0.03…−0.08 w-MODEL vs +0.0015 SGMC): w pays 0.045+ on H19-5 support and 0.015 off it, while
-23k–30k snapped dots leave support for topographic crests — third confirmation that w must not judge geometry
-edits (AUC 0.47 blind, IR-88-38/41). (4) Holdout proxy is structurally 0.0 for every >3 px file (IR-88-20);
-SGMC/CV remain report-only, never gates.
-
-## Next three slots — conditional sequence, not three automatic uploads
-
-Prerequisites for EVERY upload (unchanged from the 2026-10-23 audit): human confirms quota/deadline/TOP_PUBLIC
-on the competition pages; privately rebuilds the artifact (`python3 scripts/build_snap_r1_scarp_variants.py`,
-deterministic) or restores it, matches the recorded SHA-256 / pixel content, and re-runs
-`python3 scripts/validate_variant.py` on the actual bytes. A live |Δ| < 0.01 is **no evidence**.
-
-| Order | File (MODEL vs parent) | What a receipt changes |
+## Next three *conditional* slots (integrated queue)
+| Order | Arm (blind `SGMC`) | What a receipt changes |
 |---|---|---|
-| 1 | `…-SNAPscarp1px-20261023-1944aaf5` (+0.003 pre-reg; blind SGMC top of inventory) | **≥ +0.01 vs the human's best live score:** scarp re-centering is live; slot 2 = `scarp2px-c003d7d7` to arbitrate dose and pick the final-file geometry. **\|Δ\| < 0.01:** slot 2 = `R1 (PRUNEp3px-6f7ae705)` for attribution (snap-neutral vs snap-blind public chunks). **≤ −0.01:** re-centering hurts live; slot 2 = `R1`, and SNAP closes on both parents (three families agree). |
-| 2 | conditional: `…-SNAPscarp2px-20261023-c003d7d7` (+0.006) or `R1` (+0.005 vs R0) | `scarp2px` ≥ slot-1 receipt + 0.01 ⇒ 200 m reach beats 100 m; reverse ⇒ dose confirmed at 1 px; tie ⇒ keep the 1 px geometry (lower displacement risk). `R1` receipt ≥ slot-1 + 0.01 ⇒ the snap edit itself is the problem, keep the collar step. |
-| 3 | reserve: `R1 = PRUNEp3px-6f7ae705` if not yet receipted, else `PRUNEp3.2px-f272cdae` (+0.002) | Completes the R0→R1→snap attribution chain on live chunks before any week-2 combination. `PRUNEp1px/p3.7px/p4.3px`, all RELIEF/CONC/MASS rows and both R0-parented SNAP families stay HOLD (negative MODEL, collar breach, or dominated on the blind control). |
+| 1 | `PRUNEp3px-6f7ae705` = `R1` | The anchor: parents nine ledgered R1 arms (3 scarp-SNAP, 3 SPACING, 3 capped-SNAP) and the whole scarp family's interpretation. Gain `>=0.01` vs the human's best live score supports the collar+refill lineage; loss `<=-0.01` closes it and demotes every R1 child; `|Δ|<0.01` is inconclusive — slot 2 still distinguishes snap-vs-parent by pair. Locally available, hardened-validated. |
+| 2 | `SNAPscarp1px-R1 1944aaf5` — substitute `PRUNEp3space35 49fff49b` only if the human reconstructs its exact bytes, re-validates, and prefers the larger blind margin (`+0.0050` vs R0) over the parent–child pair | With slot 1 receipted, `scarp1px − R1` is a clean same-parent live delta testing crest re-centering (`>=0.01` promotes scarp geometry; `<=-0.01` closes SNAP on both parents — three families would then agree; `<0.01` inconclusive, slot 3 still arbitrates dose). If `p3space35` runs instead: gain `>=0.01` **over `p3px`** favors spaced refill. |
+| 3 | conditional: `SNAPscarp2px-R1 c003d7d7` (dose) or `PRUNEp4space35 07bd8182` (collar width, needs reconstruction) or conserve | After a non-negative slot-2 scarp receipt: `scarp2px >= scarp1px + 0.01` ⇒ `200 m` reach wins; reverse or tie ⇒ keep `1 px` geometry. After a `p3space35` win: `p4space35` arbitrates `300` vs `400 m`. After any material loss: conserve the slot and re-plan from receipts. |
 
-## Weeks to the provisional deadline (2026-12-03, human-confirm)
-- Oct 23–29: resolve receipts/quota/provenance; run the conditional sequence above (≤3 files).
-- Oct 30–Nov 5: read receipts; if a snap arm confirmed ≥ +0.01, test one pre-registered extension
-  (SNAP-FIXPOINT below) on that parent; do not mint parallel duplicates.
-- Nov 6–19: combine two axes only after each has an independent ≥ +0.01 receipt; name the true parent.
-- Nov 20–Dec 3: confirm the leading file twice, prepare Phase-2 TRACKB for geologist review, choose ONE blind
-  final + fallback twin, re-validate both from disk.
+**HOLD, regardless of old validators:** `SNAPscarp2px-fae77ff4` and all R0 SNAP/CONCENTRATION/RELIEF arms retaining sub-`3 px` mass (IR-88-43/47); all 3 SPACING arms (sub-threshold diagnostics); capped-gradient SNAP-R1 (`g2f35/d2f35/d1f35`, blind-negative); `PRUNEp1px` (exception-legal flank, diagnostic); `ridge2px-R1` and `p3norefill` (diagnostics, never leads). Historical JSON saying "gate pass" on R0 non-PRUNE arms is **not** a current pass (hardened gate, IR-88-47).
 
-## Better axes — proposed only, NOT built this session
-- **SNAP-FIXPOINT:** iterate the 1 px spacing-locked scarp snap to a fixed point (2–3 passes). Mechanism:
-  residual >100 m drift unreachable in one pass. Confounder: compounding percentile-field noise; each pass is
-  a fresh chance to overshoot a thin truth strand. Falsifier: blind SGMC below single-pass `scarp1px`.
-- **SUPPORT:** spaced H16-1/H19-4 ridge pixels as receivers instead of densified H19-5 adds. Mechanism: recover
-  uncovered strand length (IR-88-41). Confounder: ancestor thresholds tuned on the same lineage. Note: today's
-  result weakens the "never leave support" premise — off-support crest pixels beat on-support jitter fixes.
-  Falsifier: no ≥ +0.01 live gain, count-matched and spacing-controlled.
-- **RANKFIELD:** replace w in every drop/refill/ranking decision with a blind-neutral field (H19-5 component
-  length or seeded uniform with a ≥2.8 px lock). Mechanism: w has blind AUC 0.47 and now anti-correlates with
-  the winning geometry edit. Confounder: SGMC bedrock bias. Falsifier: no SGMC gain over R1 at equal count.
-- **STRIKE_ALIGN:** move only dots whose structure-tensor strike matches the local ridge within ±22°.
-  Confounder: drainage/flight-line lineaments. Falsifier: no gain vs a matched random-strike control.
-- **TRACKB (Phase 2):** ≥1 km strike-consistent traces from top-ranked dots + one evidence paragraph per trace;
-  not a weekly-slot candidate unless the human decides.
+**Weeks:** Oct 23–Nov 5 (wk1–2): receipt/quota/legal checks; run slots 1–2. Nov 6–19 (wk3–4): slot 3 by receipt; combine two axes only after each has an independent `>=0.01` receipt on a gate-clean parent, naming the true parent; one pre-registered extension (SNAP-FIXPOINT) only if a scarp arm is receipt-confirmed. Nov 20–Dec 3 (wk5–6): confirm the leading file twice, choose ONE blind final + fallback twin, re-validate both from disk with the hardened validator. `TRACKB` is Phase-2 geologist review only (PR #40 proposes it; unmerged).
 
-**Evidence discipline:** RECEIPT > CLAIM > PROXY > MODEL. Everything above is PROXY/MODEL except the R0 CLAIM
-(0.2778, unreceipted); PROXY instruments are report-only and never gates; dedupe is exact-hash and
-(parent, axis, value) only — no rank-correlation or overlap thresholds.
+**Better axes, proposals only — build each separately, one axis per session:** SNAP-FIXPOINT — iterate the `1 px` spacing-locked scarp snap to a fixed point (2–3 passes) to reach residual `>100 m` drift; confounder: compounding percentile-field noise; falsifier: blind `SGMC` below single-pass `scarp1px`. SUPPORT — spaced H16-1/H19-4 strands as receivers (partly executed by `p3space35`'s widened pool); confounder: leaderboard-tuned ancestor thresholds (IR-88-45); falsifier: no `>=0.01` live gain at matched count/collar. RANKFIELD — replace `w` in every ranking decision with a blind-neutral field (component length or seeded uniform under a `>=2.8 px` lock); confounder: SGMC map bias; falsifier: no `SGMC` gain at equal count. STRIKE_ALIGN — snap on gate-clean `R1` only where structure-tensor strike matches the local ridge within `±22°`; the SPACING `strike` arm's blind loss warns that raw alignment without a spacing lock does not pay; falsifier: no gain over a randomized-strike control at matched spacing.
+
+**Evidence discipline:** RECEIPT > CLAIM > PROXY > MODEL. Everything above is PROXY/MODEL except the R0 CLAIM (`0.2778`, unreceipted). Dedupe is exact-hash and `(parent, axis, value)` only — no rank-correlation or overlap thresholds. Human uploads at most one file per slot.
