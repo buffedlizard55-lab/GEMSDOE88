@@ -1,26 +1,27 @@
-# SLOT_PLAN — One Entity, 3 Slots/Week, One Blind Final File by 2026-12-03
+# SLOT_PLAN — One Entity, 3 Slots/Week, One Blind Final by 2026-12-03
 
-**Entity budget:** `1` competitor (`buffedlizard55-lab`), `3/3` live uploads left this rolling week, `~18–21` total slots to `2026-12-03`, `TOP_PUBLIC = 0.4413` (`2026-10-22`, human-supplied), and **ONE blind final file** judged on private Round 1 (`$50K`) & Round 2 (`$250K`) truth (https://www.drivendata.org/competitions/306/competition-doe-gems/). Parent **`R0 = h33-h33-2-b2`** (`37,654` dots, `0` within `2 px`, `2,171` in `2–3 px`, `0.2778` `CLAIM`) rebuilt byte-for-byte (`zeros` `c55bafc4...`, `nan` `baeae321...`). All `17` built candidates across `MASS` (`3`), `PRUNE` (`4`), `CONCENTRATION` (`4`), and `SNAP` (`6`: `3` unspaced `HOLD` + `3` spacing-locked `d_nn >= 2.828 px`) are logged with distinct SHA-256 hashes in `ledger/submissions.csv`.
+**Parent:** exact `R0 = h33-h33-2-b2`, `N=37,654`; zeros SHA `c55bafc4…`, NaN SHA `baeae321…`. Historical live `0.2778` is **CLAIM**, not a receipt. **TOP_PUBLIC:** `0.4413` (`2026-10-22`, human-supplied; not portal-verified). Last reported budget is `3/3` weekly slots and `~21` total for one entity; the human must reconfirm counts and deadline. No slot was used.
 
-## Session Findings (`AXIS = SNAP`, `<= 2.0 px` Window, `N = 37,654`)
-- **Why unspaced `SNAPw2E1/S2/E2` (`01cf9e98`, `60ced8c7`, `861cd355`) lost blind `SGMC` DTI (`-0.0080` to `-0.0040`, `HOLD`):** Without inter-dot spacing (`min_sep = 1 px`), adjacent `R0` dots slide along strike onto adjacent pixels, opening `400–600 m` kernel gaps (`IR-88-23`, `IR-88-25`).
-- **Spacing-locked `SNAP` (`d_nn >= 2.8284 px`, strictly provided `training_features.tif` Bands `3, 12, 18, 19`, `2,171` collar dots untouched, `100%` of moved dots at `d_cat > 3.0 px`) reverses the `SGMC` sign:**
-  - **`SNAPscarp2px` (`fae77ff4`):** `82.03%` moved (`30,889` dots), mean disp `1.3089 px` (`1.5956 px` moved), **`SGMC = 0.096806` `PROXY` (`+0.00075` vs `R0`)**, `12 km` CV `0.5608`, **`MODEL +0.006 [-0.005,+0.016]`**.
-  - **`SNAPridge2px` (`83d2d231`):** `18.81%` moved (`7,082` dots strictly inside `H19-5` ridge ribbons), mean disp `0.2299 px` (`1.2222 px` moved), **`SGMC = 0.096439` `PROXY` (`+0.00038` vs `R0`)**, `12 km` CV `0.5588`, **`MODEL +0.003 [-0.004,+0.011]`**.
-  - **`SNAPpot2px` (`fc2548e7`):** `82.46%` moved (`31,049` dots on `Bands 3 & 18` TMI+gravity HG crests), mean disp `1.3489 px` (`1.6358 px` moved), `SGMC = 0.095178` (`-0.00088` vs `R0`), `12 km` CV `0.5583`, `MODEL -0.004 [-0.014,+0.006]` — proves pure subsurface potential-field crests pull dots `200–600 m` down-dip into the hanging wall of $60^\circ$ normal faults without surface scarp anchoring (`HOLD` diagnostic).
+## Axis and built files
 
-## Next 3 Slots in Order (Week 1 · `2026-10-23`) & Decision Tree
+The human asked the agent to choose. I chose **PRUNE**: R0 has 2,171 dots at `2 < d_catalogue <= 3 px`; another axis cannot satisfy the strict `>=3 px` rule without mixing in PRUNE. All arms hold count fixed and use the same exact-marginal expected-DTI refill from original H19-5 support. Values/predictions were registered before diagnostics. Percent is relocated R0 dots / 37,654; symmetric difference is twice that.
 
-| Slot | Release ID | Axis / Value | Changed vs `R0` | Mean Disp | Off-Cat `SGMC` `PROXY` (`n=62,703`) | `12 km` CV | Pred $\Delta$ Live (`MODEL`) | What the Live Receipt Changes |
-|---|---|---|---:|---:|---:|---:|---:|---|
-| **1** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` | `PRUNE` `p3px` (`<=3 px`) | `5.77%` (`2,171`) | — | `0.09608` | `0.5700` | **`+0.005`** | **If `>= R0 + 0.01`:** promote as `R1` (`min d_cat > 3 px`). **If `<= R0 - 0.01`:** `2–3 px` splays carry net truth; keep `2 px` collar. |
-| **2** | `h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4` | `SNAP` `scarp2px` (`<=2 px`) | `82.03%` (`30,889`) | `1.31 px` (`1.60 px` moved) | **`0.09681`** | `0.5608` | **`+0.006`** | **If `>= R0 + 0.01`:** spacing-locked `<=200 m` scarp+edge re-centering fixes GeoDAWN drape blur; fuse with `R1`. **If `< +0.01`:** test `SNAPridge2px` (`83d2d231`, `0.23 px` disp) or close `SNAP`. |
-| **3** | `h33-h33-2-b2-PRUNEp1px-20261023-0542a27c` *(or `SNAPridge2px-20261023-83d2d231`)* | `PRUNE` `p1px` / `SNAP` `ridge2px` | `6.76%` / `18.81%` | — / `0.23 px` | `0.09093` / `0.09644` | `0.5647` / `0.5588` | **`-0.006` / `+0.003`** | **If Slot 1 inconclusive (`|Delta| < 0.01`):** run `PRUNEp1px` to bracket `1–2 px` flank toxicity. **If Slot 2 positive:** run `SNAPridge2px` to separate intra-ribbon BFS de-jittering from off-ribbon scarp shift. |
+| Candidate / threshold | Moved (count; exact %) | Min d_catalogue | `MODEL` Δ / range | SHA-8 |
+|---|---:|---:|---:|---|
+| `PRUNEp3.2px` / 320 m | 2,702; **7.17586%** | 3.6056 px | +0.002 `[-0.010,+0.012]` | `f272cdae` |
+| `PRUNEp3.7px` / 370 m | 3,361; **8.92601%** | 4.0000 px | -0.005 `[-0.020,+0.008]` | `5508b0b9` |
+| `PRUNEp4.3px` / 430 m | 4,488; **11.91905%** | 4.4721 px | -0.013 `[-0.030,+0.006]` | `21fa2b26` |
 
-## Weeks 2–6 Schedule & Proposed Orthogonal Axes (`2026-10-30 -> 2026-12-03`)
+Primary NaN-outside rasters and zero-outside fallbacks are local in `releases/`; all six pass `registry/prune_sweep_validation.json`. Report-only: canary max AUC `0.56925`; hide/recover PROXY `0 [0,0]`, `n=22,663` (degenerate, not a gate); blind SGMC PROXY `0.095801 / 0.094869 / 0.092558` vs R0 `0.096060`. Refill min nearest-neighbour spacing is `1.0 px` vs R0 `2.828 px`; this is a disclosed confounder. PROXY is not a score.
 
-- **Week 2 (Slots 4–6) — `CONCENTRATION` & `RELIEF` on Gate-Clean Parent `R1 = PRUNEp3px`:** Re-base `CONCENTRATION` (`b10px-m20` `MODEL +0.020`, `15pct-1km-grad` `MODEL +0.008`) and build `AXIS = RELIEF` (`Band 12 det_elev` terciles) atop `PRUNEp3px` so `min d_cat > 3 px` holds across all `37,654` dots.
-- **Weeks 3–4 (Slots 7–12) — Combine Confirmed Winners (`Delta RECEIPT >= +0.01`) + Proposed Orthogonal Axes:**
-  1. **`DIP_OFFSET_ASYM` (Updip $60^\circ$ Potential-Field Back-Projection):** Shift hanging-wall gravity HG (`Band 18`) and basement gradient (`Band 15`) updip by $\Delta x = z_{\text{base}} \cot 60^\circ$ (`100–600 m`) toward the footwall scarp (`Band 19`), resolving the hanging-wall offset measured in `SNAPpot2px` (Faulds & Hinz 2015, https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11072.pdf). *Confounder:* sub-horizontal basalt caprock margins and Lake Lahontan shorelines (`1,212–1,334 m`). *Falsifier:* `< +0.01` live gain over `SNAPscarp2px`.
-  2. **`RELAY_TIP_STRESS` (Anisotropic Crack-Tip & Stepover Aperture):** Replace isotropic `3 px` collar with directional tip aperture (`1.5 px` within $\pm 22^\circ$ of terminal strike; `3.2 px` normal to flank) plus Coulomb relay bridges (Pollard & Segall 1987, https://doi.org/10.1016/B978-0-12-066266-1.50009-0). *Confounder:* E-W GeoDAWN tie-line leveling ripples crossing tips. *Falsifier:* `< +0.01` live gain over isotropic `PRUNEp3px`.
-- **Weeks 5–6 (Slots 13–18) — Confirmation, `TRACKB` & Single Blind Final Lock (`2026-12-03`):** Confirm top composite on live chunks, prepare `TRACKB` (`>=1 km` strike-consistent GeoJSON + raster traces for Phase 2), and lock **ONE blind final submission** + **ONE `-zeros.tif` fallback**.
+## Next 3 live slots (human submits one file per slot)
+
+1. **`PRUNEp3.2px`:** first increment beyond 300 m. Receipt `>= R0+0.01` supports narrow collar removal; `<= R0-0.01` indicates net truth loss; otherwise no evidence.
+2. **`PRUNEp3.7px`:** only after Slot 1. A receipt at least `0.01` below Slot 1 closes wider collars; a positive `>=0.01` increment supports the next dose.
+3. **`PRUNEp4.3px`:** upper bracket beyond the built 400 m `p4px`. Gain `>=0.01` over both R0 and p4px supports widening; loss `<=-0.01` ends it. Do not submit all blindly; live `|delta|<0.01` is no evidence.
+
+## Weeks to deadline; axes proposed but not built
+
+- **Weeks 1–2 (through 2026-11-05):** confirm receipts, TOP_PUBLIC and slot budget; non-PRUNE work must rebase on gate-clean `R1=PRUNEp3px`.
+- **Weeks 3–4:** only test a receipt-supported axis. **RELIEF:** shift 10–15% across Band 12 terciles; mechanism—range-front/piedmont localization; confounder—fan channels/shoreline breaks; falsifier—live gain `<+0.01` vs R1. **DIP_OFFSET_ASYM:** back-project Bands 18/15 updip (`https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11072.pdf`); confounder—caprock/shorelines; falsifier `<+0.01`. **RELAY_TIP_STRESS:** anisotropic tip/step-over support (`https://doi.org/10.1016/B978-0-12-066266-1.50009-0`); confounder—flight-line corrugation; falsifier `<+0.01` vs isotropic PRUNE.
+- **Weeks 5–6 (to 2026-12-03):** confirm the best receipt-backed candidate, prepare Phase-2 `TRACKB`, then lock one blind final and format-checked fallback. Human confirms the deadline.
