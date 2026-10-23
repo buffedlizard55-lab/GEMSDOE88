@@ -1,0 +1,180 @@
+{
+  "id": "h33-h33-2-b2-MASSr10swap-20261023-cde5b4a5",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis": "MASS",
+  "value": "r10swap",
+  "seed": 20261023,
+  "git_sha": "c8d4f1db414dfbb061187862475be47479323c66",
+  "file_nan": "releases/h33-h33-2-b2-MASSr10swap-20261023-cde5b4a5.tif",
+  "sha256": "cde5b4a5a89ef65bf4230e892466a1326a959b8760dcf732d0333fedff1b17bf",
+  "bytes_nan": 353620,
+  "zip_nan": "releases/h33-h33-2-b2-MASSr10swap-20261023-cde5b4a5.zip",
+  "zip_nan_sha256": "2336f447b2c331e93d15144ef58d79c3ed26e6a5ef1814ec34397e77bd6a8963",
+  "file_zeros": "releases/h33-h33-2-b2-MASSr10swap-20261023-cde5b4a5-zeros.tif",
+  "sha256_zeros": "00a3e85b093bd8a27442485bd11fc51f00560c45497bdf73512a115d0b455a97",
+  "bytes_zeros": 217503,
+  "zip_zeros": "releases/h33-h33-2-b2-MASSr10swap-20261023-cde5b4a5-zeros.zip",
+  "zip_zeros_sha256": "2ef61dfc1a39bbb3dbe1e340b3f78b92570db7f6d8f2c5b28e9b1f320a9efab1",
+  "form_note": "h33-2-b2; MASS swap 3765 lowest for 3765 next-ranked, count fixed 37654; pred -0.001 MODEL",
+  "form_note_chars": 90,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 3765,
+    "n_removed": 3765,
+    "pct_changed_moved": 10.0,
+    "pct_changed_sym_diff": 20.0,
+    "pct_changed_basis": "max",
+    "min_dist_catalogue_px": 2.2361,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 2086,
+    "dots_le_4px": 4194
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "preregistered_prediction": "+0.006",
+  "preregistered_range": "[-0.006, +0.018]",
+  "w_model": {
+    "dti": 0.289,
+    "delta_vs_r0": 0.002939,
+    "T": 17095.879,
+    "S": 37654.0,
+    "M": 7474.955,
+    "denom": 59155.218
+  },
+  "w_model_caveat": "IN-SAMPLE and optimistic: the same field w both ranks and scores the arm, and w is a ~0.68-AUC proxy for fault presence (PROXY, never a score).",
+  "r0_w_model": {
+    "dti": 0.286061,
+    "T": 16924.428,
+    "S": 37654.0,
+    "M": 7261.491
+  },
+  "r0_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  },
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.003899,
+      "ci95": [
+        0.003321,
+        0.004561
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.000107,
+      "paired_delta_vs_r0_ci95": [
+        -0.000195,
+        -3.3e-05
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.092054,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5364.22,
+      "fp": 35186.13
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.661,
+      "cv_12km_120px_interior": 0.594
+    }
+  },
+  "saturation_diagnostic_added_dots": {
+    "n_added": 3765,
+    "mean_px": 1.949,
+    "median_px": 2.236,
+    "p90_px": 2.236,
+    "frac_within_3px_of_a_parent_dot": 0.9822,
+    "frac_within_kernel_radius_3px": 0.9822
+  },
+  "removed_dots": {
+    "n": 3765,
+    "mean_d_cat_px": 34.339,
+    "mean_w": 0.144513
+  },
+  "added_dots": {
+    "n": 3765,
+    "min_d_cat_px": 3.162,
+    "mean_d_cat_px": 26.847,
+    "mean_w": 0.20121
+  },
+  "parent_dots_mean_w": 0.192848,
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    }
+  },
+  "revised_prediction": {
+    "w_model_delta": 0.002939,
+    "sgmc_delta": -0.004006,
+    "revised_model": -0.001,
+    "revised_range": "[-0.006, +0.004]",
+    "rule": "closest-to-zero when signs agree, midpoint when they disagree; band +/-0.005, widened to cover both instruments"
+  },
+  "ranking_control": {
+    "ranked_delta_vs_r0_sgmc": -0.004006,
+    "random_delta_vs_r0_sgmc": -0.004469,
+    "ranking_effect_sgmc": 0.000462,
+    "pure_dose_effect_sgmc": -0.004469,
+    "w_model_delta": 0.002939,
+    "reading": "the w-ranking moves the blind control UP by +0.000462 relative to random donors"
+  }
+}

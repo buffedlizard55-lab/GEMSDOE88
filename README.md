@@ -6,12 +6,12 @@
 | Field | Current evidence |
 |---|---|
 | Parent R0 | `h33-h33-2-b2`, 37,654 dots; all 15 manifest hashes verified this session; full lineage reproduced both SHA-256 values: zeros `c55bafc4…`, NaN `baeae321…`. |
-| Best receipt | **None.** R0 `0.2778` remains **CLAIM**. Ledger has 32 built candidates and no portal receipts. |
+| Best receipt | **None.** R0 `0.2778` remains **CLAIM**. Ledger has 35 built candidates and no portal receipts. |
 | TOP_PUBLIC | **Unknown in current brief.** Older repository value 0.4413 is historical/unconfirmed, not adopted as a target. |
 | Slots left / deadline | **Unknown / unknown.** One entity, at most 3 scored files per rolling week; one blind final. `2026-12-03` requires human confirmation on the competition page. No submissions by this agent. |
-| This session | **AXIS=PRUNE; zero new variants.** Requested 1/3 px arms already built; 2 px is R0. Exact-hash/literal-pair ledger audit passes. No repeat experiments or new ledger rows. See `evidence/session_20261023_prune_stop.json`. |
-| Next three slots | Conditional: existing `PRUNEp3px-6f7ae705` (historical **MODEL +0.005**), optional lower bracket `PRUNEp1px-0542a27c` (**MODEL -0.006**), reserve `PRUNEp3.2px-f272cdae` (**MODEL +0.002**) only after receipt evidence supports widening. Full IDs, prerequisites, and decision tree in `SLOT_PLAN.md` / `docs/SUBMIT.md`. |
-| Holds / limitations | `SNAPscarp2px-fae77ff4` retains 2,171 sub-3-px dots: **HOLD**, not slot 2. Existing PRUNE TIFFs are absent here: historical JSON is not fresh validation. Preexisting tracked competition-derived TIFF/ZIP files remain a data-use concern (IR-88-43). No new bulk data tracked. |
+| This session | **AXIS=MASS (agent-selected); 3 variants of R0 + a random-donor control.** First MASS arms ranked by the parent's own exact-marginal DTI (earlier MASS arms used an ad-hoc score the PR17 audit showed was ~89% a catalogue-collar artefact). `MASSr10minus` 33,889 (`MODEL -0.008`), `MASSr10plus` 41,419 (`MODEL +0.003`), `MASSr10swap` 37,654 (`MODEL -0.001`). **Finding: R0 sits at its mass optimum** — −10% of dots costs `−0.0062` on the blind SGMC control while +10% returns `+0.0011`. Reports: `evidence/mass_r0_axis_report.json`, `evidence/mass_r0_ranking_control.json`. |
+| Next three slots | Conditional: `PRUNEp3px-6f7ae705` (**MODEL +0.005**, gate-clean `>3 px`), then `MASSr10plus-24fd987d` (**MODEL +0.003**) **only if** the human scopes the `>=3 px` rule to let a controlled R0 edit retain R0's own 2,171 collar dots; slot 3 held in reserve. Full decision tree in `SLOT_PLAN.md` / `docs/SUBMIT.md`. |
+| Holds / limitations | Every R0-child arm (MASS included) inherits R0's 2,171 dots at 2–3 px; no arm adds any. `SNAPscarp2px-fae77ff4` stays HOLD. Preregistered MASS predictions were **sign-flipped** by the instruments and revised (IR-88-44); the w-model delta is in-sample and optimistic. Preexisting tracked competition-derived TIFF/ZIP files remain a data-use concern (IR-88-43). No new bulk data tracked. |
 
 This block and the current brief supersede historical instructions below, including
 rank/overlap uniqueness gates, automatic-upload language, and unconfirmed quota claims.

@@ -1,6 +1,55 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current session — 2026-10-23 startup audit (takes precedence over historical cards)
+## Current session — 2026-10-23 · AXIS=MASS on R0 (3 variants + a random-donor control)
+
+**Axis chosen by the agent** (Brief v2 §5: the human asked not to be prompted). Parent
+`h33-h33-2-b2` was rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`, 37,654 dots)
+after all 15 manifest pins verified. Ledger: **35** rows, **0** portal receipts. Every
+number below is `MODEL` or `PROXY`; **nothing here is a score.** No file was submitted.
+
+**Ranking:** exact iterative marginal expected-DTI under the pinned label-free field `w`
+— the parent's own ranking, rebuilt because R0 (`dot_thin(H19-5, 2.8)` & `d_cat > 2 px`)
+stores no per-dot score. Dose 10% = 3,765 dots. Predictions preregistered in
+`registry/mass_r0_preregistration.json`, then **revised** after the report-only
+instruments using a pre-declared rule (`evidence/mass_r0_ranking_control.json`).
+
+**Result: MASS is measured and exhausted.** Losing 10% of R0's dots costs `−0.0062` on
+the blind off-catalogue SGMC control while gaining 10% returns only `+0.0011` — R0 sits
+**at** its mass optimum, inside the 37–44 k band every good file occupies. The `w` ranking
+itself is worth only `+0.0018` over random receivers and `−0.0018` versus random donors.
+
+| Slot | Exact submission name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`) | ≤140-char form note | Revised MODEL |
+|---|---|---|---|
+| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (prior session; gate-clean `>3 px`) | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | +0.005 |
+| 2, **conditional** | `h33-h33-2-b2-MASSr10plus-20261023-24fd987d` | `h33-2-b2; MASS +3765 next-ranked un-emitted dots, d_cat>3px (37654->41419); pred +0.003 MODEL` | **+0.003** [−0.002, +0.011] |
+| not queued | `h33-h33-2-b2-MASSr10swap-20261023-cde5b4a5` | `h33-2-b2; MASS swap 3765 lowest for 3765 next-ranked, count fixed 37654; pred -0.001 MODEL` | −0.001 [−0.006, +0.004] |
+| not queued | `h33-h33-2-b2-MASSr10minus-20261023-6d3dd59e` | `h33-2-b2; MASS -3765 lowest exact-marginal dots (37654->33889); pred -0.008 MODEL` | −0.008 [−0.013, −0.003] |
+
+`MASSr10plus` stats: `41,419` dots (`3,765` added, `0` removed); every added dot at
+`d_cat >= 3.162 px` and outside the catalogue; `0` catalogue mass; `2,171` dots at
+`2–3 px`, **all inherited unchanged from R0** (the arm adds nothing inside 3 px);
+`98.2%` of additions land within `3 px` of a parent dot (mean `2.05 px`) — saturation,
+which is why the gain is small; blind SGMC `0.098918` vs R0 `0.096060` (`PROXY`);
+catalogue holdout `0.003839` vs R0 `0.004010` (degenerate, `n = 22,663`, IR-88-35);
+`12 km` block-density CV `0.5648` vs R0 `0.5590`. Format gates (CRS `EPSG:32611`,
+`3730×3292`, transform, `float32`, 1 band, `[0,1]`, NaN outside / finite inside, zero
+catalogue mass, unique SHA-256, re-read from disk) `PASS` in
+`releases/h33-h33-2-b2-MASSr10plus-20261023-24fd987d.json`.
+
+**Do not upload `MASSr10plus` until the human answers one question:** the brief's `>= 3 px`
+rule (§4.4) is absolute for non-PRUNE axes, and this arm inherits R0's `2,171` collar dots.
+If that rule is read literally, spend slot 2 on `PRUNEp3.2px-f272cdae` instead, or build
+`(PRUNEp3px, MASS, r10plus)` — the gate-clean form of this session's only positive arm
+(proposed in `SLOT_PLAN.md`, not built). A live change under `0.01` is no evidence, and
+`+0.003` is below that threshold: this arm is the best of a weak axis, not a strong pick.
+
+Human uploads **only one twin per slot**, then pastes the portal receipt into
+`receipt_score` / `receipt_date`. Check against actual upload history: blank ledger
+fields do not prove slots remain. R0 `0.2778` is `CLAIM`.
+
+---
+
+## Prior session — 2026-10-23 PRUNE startup audit (superseded by the block above)
 
 **No new candidate or submission. AXIS=PRUNE:** requested radii already built;
 2 px is R0. Ledger stays at 32 rows. Full-lineage R0 startup validation passed
