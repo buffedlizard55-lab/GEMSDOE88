@@ -1,4 +1,5 @@
 # Local research inputs and environments; only small validated deliverables are published.
+.cache/
 .scratch/
 .venv/
 /data/

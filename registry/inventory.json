@@ -1,0 +1,161 @@
+{
+  "schema": "gems88.registry_inventory.v2",
+  "complete_accessible_scan": true,
+  "reviewed_utc": "2026-10-22T00:00:00Z",
+  "scope": "SHA-256-pinned accessible public submission inventory across buffedlizard55-lab repositories (17GEMSDOE..GEMSDOE88), including continuous-surface prior 17GEMSDOE and all discriminating dot/ridge milestones. Private/unlinked organizer submissions cannot be observed without login.",
+  "errors": [],
+  "rasters": [
+    {
+      "repo_first": "17GEMSDOE",
+      "sources": [
+        "17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+      ],
+      "cache_file": "data/registry/dense_17gemdoe.tif",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+    },
+    {
+      "repo_first": "19GEMSDOE",
+      "sources": [
+        "19GEMSDOE__h19-5-powerlaw-budget-multiline.tif"
+      ],
+      "cache_file": "data/registry/gems19_h19_5.tif",
+      "sha256": "ef2ae808eb7179861b9f1ff753fd3ded625ace7b7c158e29cec45bbd8fa3cfaa"
+    },
+    {
+      "repo_first": "GEMSDOE25",
+      "sources": [
+        "GEMSDOE25__dotted-h19-5-d2-8.tif"
+      ],
+      "cache_file": "data/registry/gems25_d28.tif",
+      "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30"
+    },
+    {
+      "repo_first": "GEMSDOE28",
+      "sources": [
+        "GEMSDOE28__h27-4-r1-solo-d2-8.tif"
+      ],
+      "cache_file": "data/registry/gems28_h27_4.tif",
+      "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8"
+    },
+    {
+      "repo_first": "GEMSDOE32",
+      "sources": [
+        "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif"
+      ],
+      "cache_file": "data/registry/h33_education.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    {
+      "repo_first": "GEMSDOE36",
+      "sources": [
+        "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif"
+      ],
+      "cache_file": "data/registry/gems36_anderson_pinn.tif",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a"
+    },
+    {
+      "repo_first": "GEMSDOE49",
+      "sources": [
+        "GEMSDOE49__gate_ortho_w0.25-40k.tif"
+      ],
+      "cache_file": "data/registry/gems49_gate_ortho.tif",
+      "sha256": "3722e26fbf9129874be1fb8c687825803952c57ef1154ed0a21029596bc412f1"
+    },
+    {
+      "repo_first": "57GEMSDOE",
+      "sources": [
+        "57GEMSDOE__h57r2-shipped8-all-flank0-20261009T180433Z-90e532947353-zeros.tif"
+      ],
+      "cache_file": "data/registry/gems57_h57r2.tif",
+      "sha256": "9afe74ab2b2fa631e9276cd8e8685fc76086d96d01181101998309b0c0d06a47"
+    },
+    {
+      "repo_first": "60GEMSDOE",
+      "sources": [
+        "gems60-h68-dem10-lidar-piedmont-dksn-40000-20261011T185033Z-6e9b1e286c45-zeros.tif"
+      ],
+      "cache_file": "data/registry/gems60_h68_piedmont.tif",
+      "sha256": "f4aa17400c7ff9ae12a428862ccaa4e2b0397015a3a7e7b55aa006341599f8ed"
+    },
+    {
+      "repo_first": "GEMSDOE70",
+      "sources": [
+        "gems70-p5-multiphysics-submodular-37654-20261020.tif"
+      ],
+      "cache_file": "data/registry/gems70_p5_multiphysics.tif",
+      "sha256": "f19a78d511f9d822b47ad4d9ce56cf2ccfa415e3d1ca49709a342158de6e7a84"
+    },
+    {
+      "repo_first": "GEMSDOE70",
+      "sources": [
+        "gems70-p5-dual-submod300-oof38k-20261020.tif"
+      ],
+      "cache_file": "data/registry/gems70_p5_dualsubmod.tif",
+      "sha256": "d0e41ce921afcf3af33b7d86d75f6a258653dfbb4d050e864babe643245f0ea8"
+    },
+    {
+      "repo_first": "GEMSDOE78",
+      "sources": [
+        "gems78-h78-gfv-136b-dink-20261022T070254Z-45cd56e7-zeros.tif"
+      ],
+      "cache_file": "data/registry/gems78_h78_gfv.tif",
+      "sha256": "0338383df9c36c0a2581ddc584e6aafa5ce364ba52cd9e56749628bc4301dd07"
+    },
+    {
+      "repo_first": "GEMSDOE80",
+      "sources": [
+        "gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif"
+      ],
+      "cache_file": "data/registry/gems80_adpt_kkt.tif",
+      "sha256": "f538f414fb11169342bb613a9c9c1eb9e075278c511e694d55c96ba0760851f9"
+    },
+    {
+      "repo_first": "GEMSDOE80",
+      "sources": [
+        "gems80-h80-dpvc-updip-vent-submod-41600-20261021-zeros.tif"
+      ],
+      "cache_file": "data/registry/gems80_h80_dpvc.tif",
+      "sha256": "b5a6b686ca06af635d682f38cc898156649ae6508fa27fc651455a031f6261a5"
+    },
+    {
+      "repo_first": "GEMSDOE81",
+      "sources": [
+        "gems81-contasb-poisson44090-buf2-20261021T232312Z-04866ff3-zeros.tif"
+      ],
+      "cache_file": "data/registry/gems81_contasb.tif",
+      "sha256": "5d8cd25771a95cd652b99bc13f4cd6c9c0435ce9763f0159609aa7b5033e33d4"
+    },
+    {
+      "repo_first": "GEMSDOE82",
+      "sources": [
+        "gems82-h82-csam-dinkelbach-41200-20261021-zeros.tif"
+      ],
+      "cache_file": "data/registry/gems82_csam_dink.tif",
+      "sha256": "18bdf3f4eb021b0b2a45aca2627d9c81c656d366618cc9f39f413f2163e01767"
+    },
+    {
+      "repo_first": "GEMSDOE83",
+      "sources": [
+        "gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif"
+      ],
+      "cache_file": "data/registry/gems83_h83_gvcd.tif",
+      "sha256": "79f14dc84cd7760cb44645bc090ed2d33dbcfe789cec844fd83753fcff1082a2"
+    },
+    {
+      "repo_first": "GEMSDOE85",
+      "sources": [
+        "gems85-h85a-foldproper-hgb-maxcov-37654-20261022T221031Z-bf96e456-zeros.tif"
+      ],
+      "cache_file": "data/registry/gems85_h85a_foldproper.tif",
+      "sha256": "ccc8a7a4e53c406de00c5ba40612f5d3df2b0f4afc869dd1b997d5b836a0209b"
+    },
+    {
+      "repo_first": "GEMSDOE88",
+      "sources": [
+        "gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif"
+      ],
+      "cache_file": "docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+      "sha256": "3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b"
+    }
+  ]
+}

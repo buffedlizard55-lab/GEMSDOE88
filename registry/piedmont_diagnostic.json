@@ -1,0 +1,96 @@
+{
+  "available": true,
+  "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+  "definition": "SGMC bedrock/concealed fault traces outside 250m of public catalogue conditioned strictly on known-catalogue piedmont quantiles (rel_10m <= p75(cat), slope_p90 <= p80(cat), depth_to_base_surf >= 250 m); zero parameters fit to leaderboard.",
+  "proxy_positive_pixels": 10314,
+  "scores": {
+    "h88_adhr": {
+      "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+      "proxy_dti": 0.088607,
+      "tpw": 1361.24,
+      "fpw": 34195.76,
+      "emitted_dots": 35034,
+      "proxy_positive_pixels": 10314
+    },
+    "mgc_88_exp1": {
+      "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+      "proxy_dti": 0.039216,
+      "tpw": 619.54,
+      "fpw": 37114.04,
+      "emitted_dots": 37654,
+      "proxy_positive_pixels": 10314
+    },
+    "h33_gemsdoe32_02778": {
+      "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+      "proxy_dti": 0.091621,
+      "tpw": 1457.83,
+      "fpw": 36843.58,
+      "emitted_dots": 37654,
+      "proxy_positive_pixels": 10314
+    },
+    "gems36_anderson_02750": {
+      "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+      "proxy_dti": 0.093346,
+      "tpw": 1508.11,
+      "fpw": 38016.93,
+      "emitted_dots": 38854,
+      "proxy_positive_pixels": 10314
+    },
+    "gems25_d28_02600": {
+      "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+      "proxy_dti": 0.087365,
+      "tpw": 1502.56,
+      "fpw": 43234.08,
+      "emitted_dots": 44090,
+      "proxy_positive_pixels": 10314
+    },
+    "gems70_p5_02478": {
+      "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+      "proxy_dti": 0.109508,
+      "tpw": 1743.96,
+      "fpw": 36626.71,
+      "emitted_dots": 37654,
+      "proxy_positive_pixels": 10314
+    },
+    "gems57_h57r2_00254": {
+      "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+      "proxy_dti": 0.030814,
+      "tpw": 498.66,
+      "fpw": 39161.02,
+      "emitted_dots": 40000,
+      "proxy_positive_pixels": 10314
+    },
+    "gems78_h78_gfv": {
+      "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+      "proxy_dti": 0.078838,
+      "tpw": 1254.06,
+      "fpw": 37023.93,
+      "emitted_dots": 37654,
+      "proxy_positive_pixels": 10314
+    },
+    "gems80_adpt_kkt": {
+      "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+      "proxy_dti": 0.07633,
+      "tpw": 1195.91,
+      "fpw": 35886.7,
+      "emitted_dots": 36500,
+      "proxy_positive_pixels": 10314
+    },
+    "gems83_h83_gvcd": {
+      "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+      "proxy_dti": 0.100699,
+      "tpw": 1605.52,
+      "fpw": 36857.09,
+      "emitted_dots": 37654,
+      "proxy_positive_pixels": 10314
+    },
+    "gems85_h85a_foldproper": {
+      "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
+      "proxy_dti": 0.075047,
+      "tpw": 1187.71,
+      "fpw": 36686.69,
+      "emitted_dots": 37654,
+      "proxy_positive_pixels": 10314
+    }
+  }
+}
