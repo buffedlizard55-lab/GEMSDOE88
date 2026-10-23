@@ -18,6 +18,20 @@ Both files were re-read from disk and passed: one float32 band; EPSG:32611; shap
 
 **Decision status:** BUILT, not submitted, no receipt. Prediction is **MODEL −0.003**, not a score. See `SLOT_PLAN.md` before spending a slot. New PRUNE rasters are intentionally local and Git-ignored because public-repository data-use terms are unchecked; the JSON receipts and reproducible code are tracked.
 
+## CONCENTRATION candidates — HOLD under the literal 3 px gate, otherwise the highest MODEL gain
+
+Built 2026-10-23 on parent R0 (count fixed at 37,654; no mass added inside the 3 px collar; the 2,171 inherited collar dots are untouched). They are **not** eligible while the literal `>=3 px` non-PRUNE gate stands, because they necessarily carry R0's collar. Their rasters are kept local (data-use flag) and tracked receipts hold the hashes: `releases/<id>-receipt.json`; gate evidence: `registry/variant_validation.json`; full statistics: `registry/concentration_report.json`.
+
+| id (submission name) | Moved | MODEL Δ | Primary SHA-256 | Form note |
+|---|---|---|---|---|
+| `h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475` | 7,531 (20 %) | +0.020 `[-0.006,+0.056]` | `c42cd4756bd28dde29a8b24ab9cfca75f9a8e2564305655ffe2073b792f4e093` | `h33-2-b2 CONC 1km 20% coldest->hottest blocks; 37654 dots CV .62->1.26; pred +0.020 MODEL; R0 0.2778 CLAIM` (106/140) |
+| `h33-h33-2-b2-CONCb10px-m10-20261023-89ffd4f3` | 3,765 (10 %) | +0.011 `[-0.002,+0.030]` | `89ffd4f3fbb4de28598c2ac9e994a34280eed39a9652adfee17ecef4a8bbc878` | `h33-2-b2 CONC 1km 10% coldest->hottest blocks; 37654 dots CV .62->1.02; pred +0.011 MODEL; R0 0.2778 CLAIM` (106/140) |
+| `h33-h33-2-b2-CONCb50px-m20-20261023-fae2a52f` | 7,531 (20 %) | +0.006 `[-0.012,+0.028]` | `fae2a52f5117ffd4a0bac016e244f820a0c15b6b81dca14919660fb6ce2da1cc` | `h33-2-b2 CONC 5km 20% coldest->hottest blocks; 37654 dots CV .70->1.36; pred +0.006 MODEL; R0 0.2778 CLAIM` (106/140) |
+
+**Local file pair per row:** `releases/<id>.tif` (NaN outside, nodata=NaN) and `releases/<id>-zeros.tif` (0 outside, nodata=None); scored content is identical, upload **one**. Each has a single-TIFF `.zip` beside it. Both twins were re-read from disk and passed: one band float32; `EPSG:32611`; `3730×3292`; transform `(100,0,243350,0,-100,4508550)`; finite binary values inside the 5,167,373-pixel footprint; 37,654 dots; zero catalogue mass; zero dots ≤2 px; the 2–3 px collar reported (2,171) and unchanged; sha256 absent from the ledger except as its own row.
+
+**Decision status:** BUILT, not submitted, no receipt. `MODEL` and `PROXY` numbers are never scores. See `SLOT_PLAN.md` for the conditional slot order and `IRREGULARITIES.md` item 12 for why this axis is HOLD.
+
 ## Concurrent MASS artifacts — HOLD, not submission-ready
 
 PR #17's audit reproduced all three arrays and corrected their interpretations/predictions (`registry/mass_ranking_audit.json`). They do not use a parent model ranking. They also retain the parent's **2 px**, not the currently required **3 px**, non-PRUNE exclusion, so **do not upload them under this session's gates**. Historical dot-overlap/rank-correlation checks are not uniqueness gates.

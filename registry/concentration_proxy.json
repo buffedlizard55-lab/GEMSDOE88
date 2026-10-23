@@ -1,0 +1,193 @@
+{
+  "evidence_class": "PROXY",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "split_version": "buffered-whole-components-loqo-v2",
+  "seeds": [
+    20,
+    21
+  ],
+  "n_folds": 8,
+  "withheld_positive_pixels": 22893,
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "caveat": "Catalogue hide-and-recover only. R0's 2 px collar was computed on the full catalogue, so this instrument partly rewards geometry the candidate already knew. It is not a gate, not a live score, and not evidence about km-scale priors.",
+  "report_only_others": {
+    "leakage_canary": "not applicable: this axis uses no feature channel -- the only inputs are the parent raster and the pinned catalogue geometry, so there is no single-feature AUC to test",
+    "sgmc_control": "not applicable: no SGMC layer is used by this axis"
+  },
+  "pooled": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "pooled": true,
+    "scores": {
+      "R0_parent": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0038851762665228526,
+        "ci95": [
+          0.0032962089796470615,
+          0.004457438030650979
+        ],
+        "withheld_positive_pixels": 22893,
+        "tpw": 126.10656936923311,
+        "fpw": 70593.84715207116,
+        "fnw": 22766.893430630775
+      },
+      "b10px-m10": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.003895786389481298,
+        "ci95": [
+          0.003304107021733945,
+          0.004468233082869935
+        ],
+        "withheld_positive_pixels": 22893,
+        "tpw": 126.10656936923311,
+        "fpw": 70151.84715207116,
+        "fnw": 22766.893430630775
+      },
+      "b10px-m20": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0039026826982291804,
+        "ci95": [
+          0.0033186930709893643,
+          0.00446983983741406
+        ],
+        "withheld_positive_pixels": 22893,
+        "tpw": 126.10656936923311,
+        "fpw": 69865.84715207116,
+        "fnw": 22766.893430630775
+      },
+      "b50px-m20": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0038907381642843608,
+        "ci95": [
+          0.0032883372199426627,
+          0.004526141577130662
+        ],
+        "withheld_positive_pixels": 22893,
+        "tpw": 126.10656936923311,
+        "fpw": 70361.84715207115,
+        "fnw": 22766.893430630775
+      }
+    },
+    "best_comparable_control": "b10px-m20",
+    "paired_differences": {
+      "b10px-m10": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -1.0610122958445382e-05,
+        "ci95": [
+          -7.955043916869303e-05,
+          6.276359974037867e-05
+        ],
+        "withheld_positive_pixels": 22893
+      },
+      "b10px-m20": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -1.7506431706327836e-05,
+        "ci95": [
+          -0.00012572536890182029,
+          9.137578556357107e-05
+        ],
+        "withheld_positive_pixels": 22893
+      },
+      "b50px-m20": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": -5.56189776150821e-06,
+        "ci95": [
+          -0.00019592140455673023,
+          0.00016683851563966429
+        ],
+        "withheld_positive_pixels": 22893
+      }
+    },
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 155,
+      "draws": 1000,
+      "seed": 88022,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "implementation_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    }
+  },
+  "per_fold_dti": {
+    "R0_parent": {
+      "20_NW": 0.0033190361096884797,
+      "20_NE": 0.004407926168167087,
+      "20_SW": 0.0031089001997361824,
+      "20_SE": 0.004072828198897818,
+      "21_NW": 0.004664369495109798,
+      "21_NE": 0.005103989714363047,
+      "21_SW": 0.004262438821274605,
+      "21_SE": 0.0024381980512183255
+    },
+    "b10px-m10": {
+      "20_NW": 0.0033096108618544395,
+      "20_NE": 0.004290887180751323,
+      "20_SW": 0.003134660834143853,
+      "20_SE": 0.004193974814171997,
+      "21_NW": 0.004651108760015741,
+      "21_NE": 0.004968305304272199,
+      "21_SW": 0.004297574772149348,
+      "21_SE": 0.002507462868735332
+    },
+    "b10px-m20": {
+      "20_NW": 0.003301255102730593,
+      "20_NE": 0.004242456129139622,
+      "20_SW": 0.003171297967523115,
+      "20_SE": 0.004219509538915995,
+      "21_NW": 0.004639352800608956,
+      "21_NE": 0.004912161339538087,
+      "21_SW": 0.004347540457377903,
+      "21_SE": 0.00252203924493995
+    },
+    "b50px-m20": {
+      "20_NW": 0.0034089418041684614,
+      "20_NE": 0.004543511344095293,
+      "20_SW": 0.0027848650549255442,
+      "20_SE": 0.0045397084353915335,
+      "21_NW": 0.004790865512217149,
+      "21_NE": 0.00526118606845626,
+      "21_SW": 0.0038202187359649134,
+      "21_SE": 0.0027041485381660083
+    }
+  },
+  "delta_vs_parent_PROXY": {
+    "b10px-m10": {
+      "delta": 1.0610122958445382e-05,
+      "paired_ci95": [
+        -7.955043916869303e-05,
+        6.276359974037867e-05
+      ]
+    },
+    "b10px-m20": {
+      "delta": 1.7506431706327836e-05,
+      "paired_ci95": [
+        -0.00012572536890182029,
+        9.137578556357107e-05
+      ]
+    },
+    "b50px-m20": {
+      "delta": 5.56189776150821e-06,
+      "paired_ci95": [
+        -0.00019592140455673023,
+        0.00016683851563966429
+      ]
+    }
+  }
+}

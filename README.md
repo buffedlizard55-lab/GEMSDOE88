@@ -1,20 +1,12 @@
 # GEMSDOE88 — DOE GEMS Fault-Discovery Research & Automated GeoTIFF Pipeline
 
-## CURRENT STATE
+## CURRENT STATE (reconciled across concurrent sessions, 2026-10-23)
 
-- **Parent:** R0 `h33-h33-2-b2` (GEMSDOE32), 37,654 dots; rebuilt byte-exactly to SHA-256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`.
-- **Best receipt:** none supplied. R0 `0.2778` remains **CLAIM**, not a receipt; the new PRUNE3 candidate has no organizer score.
-- **TOP_PUBLIC:** **UNSUPPLIED** — the human must provide a dated leaderboard value. **Slots left this week / total:** **UNSUPPLIED**.
-- **Built this session:** `h33-h33-2-b2-prune3-20261023-01d57649`, fixed-count PRUNE3 refill, 2,171 R0 dots changed (5.765655707%), **MODEL −0.003**; BUILT, not submitted. A concurrent branch added three MASS variants; all four pairs are reconciled in the ledger and no further variant is built here.
-- **Concurrent MASS status:** HOLD—the three artifacts retain a 2 px collar and do not pass the current 3 px non-PRUNE gate. PR #17's audit also proves their distance/random ranking is not a parent model ranking and corrects their MODEL predictions; see `registry/mass_ranking_audit.json`.
-- **Next 3 slots:** (1) the built PRUNE3 falsifier only if the human accepts its predicted-negative information value; (2) proposed COLLAR-RELAX1, or PRUNE4 only after a `>=+0.01` PRUNE3 receipt; (3) proposed SPACING bar-matched coverage. Slots 2–3 are not built. See `SLOT_PLAN.md` and `docs/SUBMIT.md`.
-
-> **READ THIS FIRST EVERY SESSION — PROJECT OPERATING BRIEF & UNMISTAKABLE STATUS**
->
-> - **OK TO DOWNLOAD FOR RESEARCH: `YES`** — [`docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif) (`22,545` binary off-catalogue dots, `SHA-256: 15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00`) · [One-TIFF `.zip`](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.zip) (`SHA-256: edce6e3f0ba68f6c6142d38cbbd63a2b70d35033cceb7eb66b8554e5bbaacbe2`) · [Byte-level validator receipt](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.json) · [Executive summary & submission instructions](docs/executive-summary.html) · [Machine run card](registry/run_card.json)
-> - **OK TO SUBMIT INTO THE COMPETITION: `NO — DO NOT SUBMIT`** without explicit selector authorization. While `H88-UGFV` passes **100% of competition format checks**, **48/48 leakage canaries (`max AUC = 0.8321 <= 0.90`)**, **138/138 pre-placement surface Spearman checks (`max |rho| = 0.7222 <= 0.90`)**, and **134/134 genuine fault-prediction dot-overlap checks (`max = 0.6841 < 0.70`, `H33 = 0.3037`)**, **4 archival space-covering calibration rasters** (`dense_17gemdoe.tif` [`100.00%` footprint halo], `calib_r13lattice_00904.tif` [`99.87%`], `r14_union_tips10_lat6.tif` [`76.20%`], `r11_greedy_mp.tif` [`73.97%`]) automatically exceed `0.70` against any full-domain dot set by the Pigeonhole Principle. **Verdict: `negative` under the unamended literal rule · Weekly submission slots spent: `0`.**
-> - **Unique Submission Name:** `gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT`
-> - **Unique Submission Note (`113 / 140` chars):** `H88-UGFV 32ch physics+GDR thermal+self-masked relay CELF (22545 dots); research only: dense witness blocks upload`
+- **Parent R0:** `h33-h33-2-b2` (GEMSDOE32) — 37,654 dots, 0 within 2 px of the catalogue, sha256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`. The 37,654-pixel mask is reproduced exactly; byte-level re-emission is not reproducible under this GDAL build (`registry/r0_verification.json`, `IRREGULARITIES.md` item 10). R0's 0.2778 is still **CLAIM**, not a receipt.
+- **Best receipt:** none. **TOP_PUBLIC / slots left:** **UNSUPPLIED** — the human must paste a dated leaderboard value and the remaining-slot count; the repository's older 0.4413 snapshot is not accepted as this session's human-supplied value.
+- **Built and unsubmitted (7 candidates):** `h33-h33-2-b2-prune3-20261023-01d57649` (2,171 dots changed, MODEL −0.003) is the **only** candidate that satisfies the literal 3 px non-PRUNE gate. Three **CONCENTRATION** variants (1 km ×10 %, 1 km ×20 %, 5 km ×20 %; count fixed at 37,654; MODEL +0.011 / +0.020 / +0.006) inherit R0's 2 px collar and are therefore **HOLD** under that gate. Three **MASS** variants are **HOLD** after PR #17's audit.
+- **This session's axis:** CONCENTRATION (no AXIS was assigned; logged as `IRREGULARITIES.md` item 12). Mechanism: at fixed `n`, `DTI = T/(0.2T + 0.2(n−M) + 0.8|G|)`, so mass welded onto a confident trace costs `0.2(1−k) ≈ 0.07` per dot while mass in an empty km block costs the full `0.2`. All six CONCENTRATION rasters passed every format gate locally (`registry/variant_validation.json`); the rasters stay out of Git per the data-use flag, with hashes in `releases/*-receipt.json` and full statistics in `registry/concentration_report.json`.
+- **Next 3 slots:** (1) PRUNE3 — the only gate-compliant candidate, a predicted-negative falsifier; (2) CONCENTRATION 1 km ×20 % **only if** the human decides the literal 3 px gate does not bind controlled R0 edits (R0 itself, the 0.2778 incumbent, would fail it); (3) CONCENTRATION 1 km ×10 % to read the dose slope. Conditional swaps, mechanisms and falsifiers: `SLOT_PLAN.md`.
 
 ---
 
