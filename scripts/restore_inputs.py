@@ -311,6 +311,13 @@ def main():
             ensure(key, expected)
     if not args.grid_only and not args.validation and not args.verify_only:
         ensure_registry_60()
+    cache_data = ROOT / ".cache" / "data"
+    cache_data.mkdir(parents=True, exist_ok=True)
+    for fname in ("existing_faults.tif", "sample_submission.tif"):
+        src_p = DATA / "bridge" / fname
+        dst_p = cache_data / fname
+        if src_p.is_file() and (not dst_p.is_file() or digest(dst_p) != digest(src_p)):
+            shutil.copy2(src_p, dst_p)
 
 
 if __name__ == "__main__":

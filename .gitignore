@@ -1,8 +1,17 @@
-# Local research inputs and environments; only small validated deliverables are published.
-.scratch/
-.venv/
-/data/
+# Python & environments
 __pycache__/
+*.py[cod]
+*.so
+.venv/
 .pytest_cache/
-*.pyc
-*.tmp
+.mypy_cache/
+.ruff_cache/
+
+# Data & transient computation caches (never commit raw competition/external bulk data)
+/.cache/
+/data/
+/work/
+/tmp/
+*.mmap
+*.npz
+Unselected files/
