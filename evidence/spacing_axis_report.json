@@ -124,13 +124,21 @@
             "ok": true,
             "detail": 0
           },
+          "axis_declared": {
+            "ok": true,
+            "detail": "SPACING"
+          },
           "zero_mass_on_catalogue": {
             "ok": true,
             "detail": 0
           },
-          "none_within_2px_catalogue": {
+          "non_prune_clearance_ge_3px": {
             "ok": true,
-            "detail": 0
+            "detail": {
+              "axis": "SPACING",
+              "positive_pixels_below_3px": 0,
+              "PRUNE_exception": false
+            }
           },
           "dot_values_are_binary": {
             "ok": true,
@@ -267,13 +275,21 @@
             "ok": true,
             "detail": 0
           },
+          "axis_declared": {
+            "ok": true,
+            "detail": "SPACING"
+          },
           "zero_mass_on_catalogue": {
             "ok": true,
             "detail": 0
           },
-          "none_within_2px_catalogue": {
+          "non_prune_clearance_ge_3px": {
             "ok": true,
-            "detail": 0
+            "detail": {
+              "axis": "SPACING",
+              "positive_pixels_below_3px": 0,
+              "PRUNE_exception": false
+            }
           },
           "dot_values_are_binary": {
             "ok": true,
@@ -410,13 +426,21 @@
             "ok": true,
             "detail": 0
           },
+          "axis_declared": {
+            "ok": true,
+            "detail": "SPACING"
+          },
           "zero_mass_on_catalogue": {
             "ok": true,
             "detail": 0
           },
-          "none_within_2px_catalogue": {
+          "non_prune_clearance_ge_3px": {
             "ok": true,
-            "detail": 0
+            "detail": {
+              "axis": "SPACING",
+              "positive_pixels_below_3px": 0,
+              "PRUNE_exception": false
+            }
           },
           "dot_values_are_binary": {
             "ok": true,
@@ -553,13 +577,21 @@
             "ok": true,
             "detail": 0
           },
+          "axis_declared": {
+            "ok": true,
+            "detail": "SPACING"
+          },
           "zero_mass_on_catalogue": {
             "ok": true,
             "detail": 0
           },
-          "none_within_2px_catalogue": {
+          "non_prune_clearance_ge_3px": {
             "ok": true,
-            "detail": 0
+            "detail": {
+              "axis": "SPACING",
+              "positive_pixels_below_3px": 0,
+              "PRUNE_exception": false
+            }
           },
           "dot_values_are_binary": {
             "ok": true,
@@ -696,13 +728,21 @@
             "ok": true,
             "detail": 0
           },
+          "axis_declared": {
+            "ok": true,
+            "detail": "SPACING"
+          },
           "zero_mass_on_catalogue": {
             "ok": true,
             "detail": 0
           },
-          "none_within_2px_catalogue": {
+          "non_prune_clearance_ge_3px": {
             "ok": true,
-            "detail": 0
+            "detail": {
+              "axis": "SPACING",
+              "positive_pixels_below_3px": 0,
+              "PRUNE_exception": false
+            }
           },
           "dot_values_are_binary": {
             "ok": true,
@@ -839,13 +879,21 @@
             "ok": true,
             "detail": 0
           },
+          "axis_declared": {
+            "ok": true,
+            "detail": "SPACING"
+          },
           "zero_mass_on_catalogue": {
             "ok": true,
             "detail": 0
           },
-          "none_within_2px_catalogue": {
+          "non_prune_clearance_ge_3px": {
             "ok": true,
-            "detail": 0
+            "detail": {
+              "axis": "SPACING",
+              "positive_pixels_below_3px": 0,
+              "PRUNE_exception": false
+            }
           },
           "dot_values_are_binary": {
             "ok": true,
@@ -1399,7 +1447,13 @@
   "build_integrity": {
     "finalized_from_interrupted_report_serialization": true,
     "failure_record": "evidence/spacing_first_attempt_failure.json",
-    "no_candidate_or_ledger_change_during_finalization": true
+    "no_candidate_or_ledger_change_during_finalization": true,
+    "revalidated_after_upstream_clearance_gate_update": {
+      "validator": "scripts/validate_variant.py",
+      "all_six_primary_and_fallback_representations_passed": true,
+      "candidate_hashes_or_pixels_changed": false,
+      "ledger_or_prediction_changed": false
+    }
   },
   "no_submission": true
 }

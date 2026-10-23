@@ -9,9 +9,10 @@ in-memory array):
 2. Values inside the scored footprint are finite and in [0, 1].
 3. Outside the footprint: NaN for the primary file, exact 0 for the ``-zeros``
    fallback; the two files must agree inside the footprint.
-4. Zero positive cells on the mapped catalogue and zero cells within 2 px of it
-   (the parent's collar; the 2-3 px ring is reported, not gated).
-5. sha256 is not already in ``ledger/submissions.csv`` (exact-hash dedupe only).
+4. Zero *positive mass* on the mapped catalogue. For all non-PRUNE axes,
+   zero positive mass at catalogue distance < 3 px (the brief's literal
+   >=3 px clearance). PRUNE is the sole exception and may restore a flank.
+5. sha256 is not assigned to a different ledger row (exact-hash dedupe only).
 6. Parent-diff statistics are recorded: common / added / removed dots and the
    percentage of R0's dots that changed.
 7. The single-TIFF ``.zip`` beside the raster unpacks to one file whose sha256
@@ -34,6 +35,7 @@ import argparse
 import csv
 import hashlib
 import json
+import re
 import zipfile
 from pathlib import Path
 
@@ -60,19 +62,50 @@ def twin_of(path: Path) -> Path:
             path.with_name(path.stem + "-zeros.tif"))
 
 
-def ledger_hashes() -> dict[str, str]:
-    """sha256 -> row id, from every hash column of the ledger."""
-    out: dict[str, str] = {}
+def ledger_hashes() -> dict[str, list[str]]:
+    """sha256 -> owning row IDs, from both hash columns of the ledger."""
+    out: dict[str, list[str]] = {}
     p = ROOT / "ledger" / "submissions.csv"
     if not p.is_file():
         return out
-    with p.open(newline="") as f:
+    with p.open(newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             for col in ("sha256", "sha256_zeros"):
                 h = (row.get(col) or "").strip()
                 if h:
-                    out.setdefault(h, []).append(row["id"])  # type: ignore[arg-type]
+                    out.setdefault(h, []).append(row["id"])
     return out
+
+
+def axis_for_file(path: Path) -> str | None:
+    """Use the literal ledger axis, or the final axis token for an unledgered build.
+
+    A child of `...-PRUNEp3px-...` can itself be SNAP: using the first
+    occurrence of 'PRUNE' in a filename would silently exempt that child.
+    """
+    own_id = path.name.removesuffix("-zeros.tif").removesuffix(".tif")
+    if LEDGER.is_file():
+        with LEDGER.open(newline="", encoding="utf-8") as f:
+            matches = [row["axis"] for row in csv.DictReader(f) if row["id"] == own_id]
+        if len(matches) == 1:
+            return matches[0].upper()
+        if matches:  # Duplicate ledger IDs are not a valid axis declaration.
+            return None
+    if not re.search(r"-20\d{6}-[0-9a-f]{8}$", own_id):
+        return None
+    stem = own_id.rsplit("-20", 1)[0]
+    matches = re.findall(r"-(CONCENTRATION|SPACING|TRACKB|RELIEF|PRUNE|SNAP|MASS|CONC)", stem)
+    return matches[-1] if matches else None
+
+
+def clearance_counts(arr: np.ndarray, footprint: np.ndarray, catalogue: np.ndarray,
+                     dist: np.ndarray) -> tuple[int, int]:
+    """Count ANY positive mass (including fractional pixels), not just >0.5 dots."""
+    positive = np.isfinite(arr) & (arr > 0) & footprint
+    return int((positive & catalogue).sum()), int((positive & (dist < 3.0)).sum())
+
+
+LEDGER = ROOT / "ledger" / "submissions.csv"
 
 
 def validate(path: Path, footprint, catalogue, dist, parent, sample_meta, hashes) -> dict:
@@ -83,14 +116,10 @@ def validate(path: Path, footprint, catalogue, dist, parent, sample_meta, hashes
 
     with rasterio.open(path) as src:
         arr = src.read(1)
-        nodata = src.nodata
-        # JSON does not permit a bare NaN literal. Preserve the semantic value
-        # without making a validator receipt non-portable JSON.
-        nodata_json = "NaN" if nodata is not None and np.isnan(nodata) else nodata
         meta = {"driver": src.driver, "count": src.count, "dtype": src.dtypes[0],
                 "crs": str(src.crs), "shape": [src.height, src.width],
                 "transform": [round(float(x), 6) for x in tuple(src.transform)[:6]],
-                "nodata": nodata_json}
+                "nodata": "NaN" if src.nodata is not None and np.isnan(src.nodata) else src.nodata}
     check("geotiff", meta["driver"] == "GTiff", meta["driver"])
     check("single_band", meta["count"] == 1, meta["count"])
     check("float32", meta["dtype"] == "float32", meta["dtype"])
@@ -111,16 +140,20 @@ def validate(path: Path, footprint, catalogue, dist, parent, sample_meta, hashes
         check("nan_outside_footprint", bool(np.isnan(outside).all()), int((~np.isnan(outside)).sum()))
 
     dots = np.where(np.isfinite(arr), arr, 0.0) > 0.5
-    check("zero_mass_on_catalogue", int((dots & catalogue).sum()) == 0, int((dots & catalogue).sum()))
-    dvals = dist[dots]
-    check("none_within_2px_catalogue", int((dvals <= 2.0).sum()) == 0, int((dvals <= 2.0).sum()))
+    axis = axis_for_file(path)
+    check("axis_declared", axis in {"PRUNE", "MASS", "CONC", "CONCENTRATION", "SNAP", "RELIEF", "SPACING", "TRACKB"}, axis)
+    catalogue_mass_px, under_3px = clearance_counts(arr, footprint, catalogue, dist)
+    check("zero_mass_on_catalogue", catalogue_mass_px == 0, catalogue_mass_px)
+    check("non_prune_clearance_ge_3px", axis == "PRUNE" or under_3px == 0,
+          {"axis": axis, "positive_pixels_below_3px": under_3px,
+           "PRUNE_exception": axis == "PRUNE"})
     check("dot_values_are_binary", bool(np.isin(np.unique(arr[footprint][np.isfinite(arr[footprint])]),
                                                 [0.0, 1.0]).all()), len(np.unique(inside)))
 
     h = sha256(path)
     owners = hashes.get(h, [])
-    own_id = path.name.replace("-zeros.tif", ".tif").rsplit(".tif", 1)[0]
-    duplicate = [o for o in owners if not o.startswith(own_id)]
+    own_id = path.name.removesuffix("-zeros.tif").removesuffix(".tif")
+    duplicate = [o for o in owners if o != own_id]
     check("sha256_not_previously_submitted", len(duplicate) == 0, {"sha256": h, "owners": owners})
 
     n_common = int((dots & parent).sum())

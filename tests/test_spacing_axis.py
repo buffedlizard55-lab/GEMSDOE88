@@ -125,7 +125,11 @@ def test_tracked_receipts_ledger_cards_and_preregistration_agree():
     assert report["manifest_inputs_verified"] == 15
     assert report["parent"]["dots"] == 37_654
     assert report["leakage_canary"]["passed"]
-    assert report["independent_validation"]["gates_all_pass"]
+    validation = report["independent_validation"]
+    assert validation["gates_all_pass"]
+    assert len(validation["results"]) == 6
+    assert all(r["checks"]["axis_declared"]["ok"] for r in validation["results"])
+    assert all(r["checks"]["non_prune_clearance_ge_3px"]["ok"] for r in validation["results"])
     common = report["common_normalization"]
     assert common["canonical_dot_thin_2p8_count_on_legal_support"] == 36_718
     assert "strict_2p8_feasible_count_on_legal_support" not in common
