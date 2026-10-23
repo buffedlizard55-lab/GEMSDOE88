@@ -41,6 +41,75 @@ def dump(path, content):
     )
 
 
+def protected_outputs(root=ROOT):
+    """Return every tracked receipt/artifact this experiment could overwrite."""
+    root = Path(root)
+    fixed = (
+        "registry/witness_certificate.json",
+        "registry/feature_receipt.json",
+        "registry/holdout_split.json",
+        "registry/leakage_canaries.json",
+        "registry/holdout_result.json",
+        "registry/preplacement_registry.json",
+        "registry/final_registry.json",
+        "registry/run_card.json",
+        "docs/run_card.json",
+        "docs/data/run-card.json",
+    )
+    generated = tuple(
+        f"docs/downloads/{ARTIFACT_NAME}.{suffix}"
+        for suffix in ("tif", "zip", "json")
+    )
+    return [root / rel for rel in (*fixed, *generated)]
+
+
+def refuse_overwrite(root=ROOT):
+    """Keep prior experiment evidence immutable; reruns belong in a clean copy."""
+    existing = [path for path in protected_outputs(root) if path.exists()]
+    if existing:
+        paths = ", ".join(str(path.relative_to(root)) for path in existing)
+        raise FileExistsError(
+            "Refusing to overwrite existing experiment evidence/artifacts: "
+            f"{paths}. Reproduce only in a disposable clean checkout."
+        )
+
+
+def surface_registry_metrics(surface, prior, footprint, *, radius_px=3.0):
+    """Measure both pre-placement tests against one same-grid registry raster.
+
+    The support-overlap rule is applied to finite positive surface cells using the
+    shared template's literal ``> 0`` support definition, not a private threshold.
+    """
+    surface = np.asarray(surface)
+    prior = np.asarray(prior)
+    footprint = np.asarray(footprint, dtype=bool)
+    if surface.ndim != 2 or surface.shape != prior.shape or surface.shape != footprint.shape:
+        raise ValueError("surface, registry, and footprint must share one 2-D grid")
+    candidate_support = np.isfinite(surface) & (surface > 0) & footprint
+    registry_support = np.isfinite(prior) & (prior > 0) & footprint
+    a = surface[footprint]
+    b = np.where(np.isfinite(prior[footprint]), prior[footprint], 0)
+    if np.ptp(a) == 0 or np.ptp(b) == 0:
+        rho_value = float("nan")
+    else:
+        rho_value = float(spearmanr(a, b).statistic)
+    rho_finite = bool(np.isfinite(rho_value))
+    overlap = uniqueness.dot_overlap(candidate_support, registry_support, radius_px)
+    rank_duplicate = (not rho_finite) or abs(rho_value) > uniqueness.RHO_LIMIT
+    overlap_duplicate = overlap > uniqueness.OVERLAP_LIMIT
+    return dict(
+        full_footprint_spearman=rho_value if rho_finite else None,
+        rank_correlation_finite=rho_finite,
+        abs_rho=abs(rho_value) if rho_finite else None,
+        rank_duplicate=rank_duplicate,
+        positive_surface_cells=int(candidate_support.sum()),
+        positive_registry_cells=int(registry_support.sum()),
+        forward_support_overlap_3px=overlap,
+        overlap_duplicate=overlap_duplicate,
+        duplicate=bool(rank_duplicate or overlap_duplicate),
+    )
+
+
 def checked_inputs():
     expected = {
         "training_features.tif": (
@@ -99,6 +168,8 @@ def run():
     start = time.monotonic()
     if not PREREG.is_file():
         raise FileNotFoundError("preregistration missing")
+    # A rerun must never replace the evidence or the prominently published TIFF.
+    refuse_overwrite()
     input_pins = checked_inputs()
     g = grid.load_grid()
     sample = DATA / "bridge" / "sample_submission.tif"
@@ -268,7 +339,8 @@ def run():
     del predictor
     if not np.isfinite(surface).all() or surface.min() < 0 or surface.max() > 1:
         raise ValueError("nonfinite or out-of-range surface")
-    # RANK-CORRELATION CHECK ON CONTINUOUS SURFACE BEFORE DOT PLACEMENT.
+    # Apply BOTH literal registry tests to the continuous prediction surface
+    # before dot placement: rank correlation and positive-support 3-px overlap.
     surface_gate = {}
     for key, path in [
         ("H33", DATA / "registry" / "h33_education.tif"),
@@ -278,28 +350,21 @@ def run():
             old = src.read(1)
             if (src.shape, src.crs, src.transform) != expected:
                 raise ValueError("registry grid does not match sample")
-        old = np.where(np.isfinite(old), old, 0).astype(np.float32)
-        a = surface[g.footprint]
-        b = old[g.footprint]
-        rho = float(spearmanr(a, b).statistic)
+        metrics = surface_registry_metrics(surface, old, g.footprint, radius_px=3.0)
         surface_gate[key] = dict(
             evidence_class="REGISTRY-MEASUREMENT",
             sha256=digest(path),
-            full_footprint_spearman=rho,
-            abs_rho=abs(rho),
-            rank_duplicate=(abs(rho) > 0.90),
+            **metrics,
         )
-        del old, a, b
+        del old
     dump(REGISTRY / "preplacement_registry.json", surface_gate)
-    if any(r["rank_duplicate"] for r in surface_gate.values()):
+    blocked = [key for key, result in surface_gate.items() if result["duplicate"]]
+    print("PREPLACEMENT REGISTRY", surface_gate, flush=True)
+    if blocked:
         raise RuntimeError(
-            "surface rank correlation >.90 with a registry raster: STOP before placement"
+            "registry duplicate gate tripped on the continuous surface "
+            f"before dot placement: {blocked}"
         )
-    print(
-        "SURFACE RHO",
-        {k: v["full_footprint_spearman"] for k, v in surface_gate.items()},
-        flush=True,
-    )
     production_tie = np.asarray(x[:, 6]).reshape(g.shape)
     dots, production_emission = model.spaced_dots(
         surface, g.footprint & ~g.catalogue, BUDGET, radius=2, tie=production_tie
@@ -421,6 +486,7 @@ def run():
     if len(NOTE) > 140 or len(ARTIFACT_NAME) > 140:
         raise AssertionError("note/name too long")
     dump(REGISTRY / "run_card.json", card)
+    dump(DOCS / "run_card.json", card)
     dump(DOCS / "data" / "run-card.json", card)
     print(
         "FINAL",
