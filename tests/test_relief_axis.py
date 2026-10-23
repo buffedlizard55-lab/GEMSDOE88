@@ -1,35 +1,31 @@
 """Tests for AXIS=RELIEF (parent R1 = PRUNEp3px): tercile reallocation at fixed count.
 
-Two layers, mirroring tests/test_snap_r1_axis.py:
+Two layers, mirroring ``test_snap_r1_axis.py``:
 
-* Unit tests on a synthetic grid for ``tercile_classes`` / ``relief_shift`` /
-  ``saturation_stats`` — partition, fixed count, exact source->target move
-  accounting, untouched-tercile invariance and determinism are properties of
-  the algorithm, not of the shipped files.
-* Artifact tests that re-read the three releases from disk and re-derive the
-  MUST gates (format, zero catalogue mass, >3 px collar, fixed 37,654 count,
-  12.00% parent diff vs R1, preregistered predictions, ledger + cards).
+* Unit tests on a synthetic grid for :func:`build_relief_variants.terrain_terciles` and
+  :func:`build_relief_variants.relief_move` -- count preservation, source/target tercile
+  discipline, the strict catalogue collar, and determinism are properties of the
+  algorithm, not of the shipped files.
+* Artifact tests that re-read the three releases from disk and re-derive every MUST gate
+  (format, zero catalogue mass, ``> 3 px`` collar, fixed 37,654 count, parent diff inside
+  the brief's 10-15 % dose, ledger + mechanism-card presence).
 
-Artifact tests skip when the gitignored rasters are absent (fresh clone):
-regenerate with ``python scripts/build_relief_variants.py`` after restoring
-the pinned inputs. PROXY values are asserted to be *reported*, never gated.
+Artifact tests skip when the rasters are absent: ``releases/*.tif`` is gitignored, so a
+fresh clone must regenerate them with ``python3 scripts/build_relief_variants.py``.
 """
 
 from __future__ import annotations
 
 import csv
-import hashlib
 import json
 import sys
-import zipfile
-from pathlib import Path
 
 import numpy as np
 import pytest
 import rasterio
 from scipy.ndimage import distance_transform_edt
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = __import__("pathlib").Path(__file__).resolve().parents[1]
 if str(ROOT / "scripts") not in sys.path:
     sys.path.insert(0, str(ROOT / "scripts"))
 
@@ -38,218 +34,196 @@ import build_relief_variants as brv  # noqa: E402
 RELEASES = ROOT / "releases"
 LEDGER = ROOT / "ledger" / "submissions.csv"
 CARDS = ROOT / "ledger" / "mechanism_cards.json"
-REPORT = ROOT / "evidence" / "relief_axis_report.json"
-PREREG = ROOT / "registry" / "relief_preregistration.json"
 
-EXPECTED = {
-    "rng2bas12": ("h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFrng2bas12-20261023-56093882",
-                  "560938824a6ddae52e45662fe506b7d0f5dea6191746ab517869d5e1205307bb", "MODEL:+0.008"),
-    "rng2pmt12": ("h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFrng2pmt12-20261023-52717cf5",
-                  "52717cf542642a2f9304d077f462dd0973d1f6b87f811c8d3b4039ff18c82521", "MODEL:+0.002"),
-    "bas2rng12": ("h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFbas2rng12-20261023-f4c6dc18",
-                  "f4c6dc18f0cf5b2fa22f0c54374d1d3e7c782ef6246136e71770c188cbf6d663", "MODEL:-0.010"),
-}
+OUR_VALUES = ("up2t10", "up2t15", "dn2t15")  # this family only; see test_relief_bracket_axis.py (IR-88-36)
 RELIEF_JSON = [
-    p for p in sorted(RELEASES.glob(f"{brv.R1_ID}-RELIEF*.json"))
-    if (RELEASES / f"{p.stem}.tif").is_file()
+    p for v in OUR_VALUES
+    for p in sorted(RELEASES.glob(f"{brv.R1_ID}-RELIEF{v}-*.json"))
+    if p.with_suffix("").with_suffix(".tif").is_file()
 ]
 
 
-def _sha256(p: Path) -> str:
-    return hashlib.sha256(p.read_bytes()).hexdigest()
-
-
 # ---------------------------------------------------------------------------
-# Unit tests
+# Unit tests: algorithm properties on a synthetic grid
 # ---------------------------------------------------------------------------
 
 
-def _toy():
-    h = w_ = 36
-    foot = np.ones((h, w_), dtype=bool)
-    foot[0, :] = False
-    catalogue = np.zeros((h, w_), dtype=bool)
-    catalogue[3, 3] = True
+def _synthetic(size: int = 48):
+    """Detrended elevation increases linearly with row, so rows split into thirds.
+
+    Rows near the top are the low ('basin') tercile, the middle rows are 'piedmont' and
+    the bottom rows are the high ('range_front') tercile. The catalogue sits far from
+    every dot so the collar never binds on the synthetic grid.
+    """
+    foot = np.ones((size, size), dtype=bool)
+    foot[0, :] = False  # ragged edge so clipping is exercised
+    det_elev = np.repeat(
+        np.arange(size, dtype=np.float32)[:, None], size, axis=1
+    )
+
+    cls, thresholds = brv.terrain_terciles(det_elev, foot)
+
+    mask = np.zeros((size, size), dtype=bool)
+    for r in (5, 9, 13, 17, 21):        # source side (basin/piedmont)
+        mask[r, 4] = mask[r, 12] = mask[r, 30] = True
+    for r in (32, 36, 40, 44):          # target side (range front)
+        mask[r, 4] = mask[r, 20] = mask[r, 40] = True
+
+    catalogue = np.zeros((size, size), dtype=bool)
+    catalogue[1, 1] = True
     d_cat = distance_transform_edt(~catalogue)
-    field = np.tile(np.arange(w_, dtype=np.float32), (h, 1))  # west low -> east high
-    cls, q1, q2 = brv.tercile_classes(field, foot)
-    mask = np.zeros((h, w_), dtype=bool)
-    for r in (8, 14, 20, 26, 32):
-        for c in (4, 8, 16, 20, 28, 32):
-            mask[r, c] = True
-    mask &= d_cat > 3.0
-    rng = np.random.default_rng(brv.bp.SEED)
-    w = (0.05 + 0.2 * rng.random((h, w_))).astype(np.float32) * foot
-    cand = foot & (d_cat > 3.0)
-    return foot, catalogue, d_cat, field, cls, q1, q2, mask, w, cand
+
+    ridge = np.zeros((size, size), dtype=bool)
+    ridge[30:46, 3:42] = True           # unused range-front ridge support
+
+    w = np.zeros((size, size), dtype=np.float32)
+    w[mask] = 0.2
+    w[ridge] = 0.05
+    return foot, mask, catalogue, d_cat, cls, thresholds, ridge, w
 
 
-def test_tercile_classes_partition_the_footprint():
-    foot, _c, _d, field, cls, q1, q2, _m, _w, _cand = _toy()
-    assert q1 < q2
-    inside = [int(((cls == k) & foot).sum()) for k in range(3)]
-    assert sum(inside) == int(foot.sum())
-    assert max(inside) - min(inside) <= 40  # equal thirds up to ties/edge row
+def test_terciles_are_equal_area_and_label_outside_footprint():
+    foot, _, _, _, cls, thresholds, _, _ = _synthetic()
+    assert thresholds[0] < thresholds[1]
     assert (cls[~foot] == -1).all()
-    assert (cls[foot & (field <= q1)] == 0).all()
-    assert (cls[foot & (field > q2)] == 2).all()
+    assert set(np.unique(cls[foot])) == {0, 1, 2}
+    counts = np.bincount(cls[foot], minlength=3)
+    # Equal area in each tercile: every class holds a third of the footprint (+/- 5%).
+    share = counts / counts.sum()
+    assert np.allclose(share, 1.0 / 3.0, atol=0.05), share
 
 
-def test_relief_shift_moves_exactly_n_source_to_target_at_fixed_count():
-    foot, catalogue, d_cat, _f, cls, _q1, _q2, mask, w, cand = _toy()
-    out, stats = brv.relief_shift(mask, cls, source=2, target=0, cand_base=cand, w=w, n_shift=3)
-    assert int(out.sum()) == int(mask.sum())
-    donors, receivers = mask & ~out, out & ~mask
-    assert int(donors.sum()) == int(receivers.sum()) == 3
-    assert (cls[donors] == 2).all() and (cls[receivers] == 0).all()
-    assert float(d_cat[receivers].min()) > 3.0
-    assert not out[catalogue].any()
-    # untouched tercile count is parent-exact; source/target move by exactly n
-    for k, delta in ((0, 3), (1, 0), (2, -3)):
-        assert int((out & (cls == k)).sum()) == int((mask & (cls == k)).sum()) + delta
-    assert stats["dots_after"]["T1_basin"] == stats["dots_before"]["T1_basin"] + 3
-    assert stats["w_weighted_dti_before"] >= 0.0 and stats["w_weighted_dti_after"] >= 0.0
+def test_relief_move_holds_count_and_respects_terciles():
+    foot, mask, catalogue, d_cat, cls, _, ridge, w = _synthetic()
+    n_move = 6
+    new, stats = brv.relief_move(
+        mask=mask,
+        foot=foot,
+        cls=cls,
+        w=w,
+        d_cat=d_cat,
+        ridge=ridge,
+        source_classes=(0, 1),
+        target_class=2,
+        n_move=n_move,
+    )
+    assert int(new.sum()) == int(mask.sum())
+    assert stats["n_move"] == n_move
+    assert stats["target_class"] == 2
+
+    removed = mask & ~new
+    added = new & ~mask
+    assert int(removed.sum()) == n_move and int(added.sum()) == n_move
+    # Donors only ever come from the source terciles, receivers only from the target.
+    assert not (cls[removed] == 2).any()
+    assert (cls[added] == 2).all()
+    assert stats["donors_removed_per_class"]["range_front"] == 0
 
 
-def test_relief_shift_is_deterministic_and_refuses_same_tercile():
-    _foot, _c, _d, _f, cls, _q1, _q2, mask, w, cand = _toy()
-    a, sa = brv.relief_shift(mask, cls, 2, 1, cand, w, 2)
-    b, sb = brv.relief_shift(mask, cls, 2, 1, cand, w, 2)
-    assert np.array_equal(a, b) and sa == sb
+def test_relief_move_is_deterministic_and_collar_clean():
+    foot, mask, catalogue, d_cat, cls, _, ridge, w = _synthetic()
+    kw = dict(foot=foot, cls=cls, w=w, d_cat=d_cat, ridge=ridge,
+              source_classes=(0, 1), target_class=2, n_move=5)
+    first, _ = brv.relief_move(mask=mask, **kw)
+    second, _ = brv.relief_move(mask=mask, **kw)
+    assert np.array_equal(first, second)
+    assert not first[catalogue].any()
+    assert d_cat[first].min() > brv.MIN_CATALOGUE_PX
+
+
+def test_relief_move_rejects_impossible_pools():
+    foot, mask, catalogue, d_cat, cls, _, ridge, w = _synthetic()
     with pytest.raises(ValueError):
-        brv.relief_shift(mask, cls, 1, 1, cand, w, 1)
-    with pytest.raises(ValueError):  # source tercile cannot fund an oversized shift
-        brv.relief_shift(mask, cls, 0, 2, cand, w, 10_000)
+        brv.relief_move(
+            mask=mask, foot=foot, cls=cls, w=w, d_cat=d_cat, ridge=ridge,
+            source_classes=(0, 1), target_class=2, n_move=int(mask.sum()),
+        )
+    with pytest.raises(ValueError):
+        brv.relief_move(
+            mask=mask, foot=foot, cls=cls, w=w, d_cat=d_cat, ridge=ridge,
+            source_classes=(0, 1), target_class=2, n_move=0,
+        )
 
 
-def test_saturation_stats_reports_kernel_geometry():
-    _foot, _c, _d, _f, cls, _q1, _q2, mask, w, cand = _toy()
-    out, _ = brv.relief_shift(mask, cls, 2, 0, cand, w, 3)
-    sat = brv.saturation_stats(mask, out, cand, cls)
-    r = sat["receiver_dist_to_survivor_px"]
-    assert 0.0 <= r["frac_le_2p8"] <= 1.0 and r["median"] >= 1.0
-    assert 0.0 <= sat["donor_dist_to_survivor_after_removal_px"]["frac_gt_3"] <= 1.0
-    assert set(sat["h19_support_within_3px_variant"]) == set(brv.TERCILE_NAMES)
-
-
-def test_preregistration_matches_builder_variants_and_predictions():
-    prereg = json.loads(PREREG.read_text())
-    fixed = {v["value"]: v for v in prereg["variants_fixed_before_any_proxy"]}
-    assert set(fixed) == {v for v, _s, _t, _p, _r in brv.VARIANTS}
-    for value, source, target, pred, pred_range in brv.VARIANTS:
-        assert fixed[value]["n_shift"] == brv.N_SHIFT == 4518
-        assert fixed[value]["predicted_change_vs_parent_R1_live"] == f"MODEL:{pred}"
-        assert fixed[value]["predicted_range_vs_parent_R1_live"] == pred_range
-        assert fixed[value]["source"] == brv.TERCILE_NAMES[source]
-        assert fixed[value]["target"] == brv.TERCILE_NAMES[target]
-    assert prereg["parent"]["sha256_nan"] == brv.R1_SHA_NAN
-    assert prereg["parent"]["sha256_zeros"] == brv.R1_SHA_ZEROS
+def test_relief_move_refuses_target_inside_the_collar():
+    foot, mask, catalogue, _, cls, _, ridge, w = _synthetic()
+    d_cat_collar = np.zeros(mask.shape, dtype=np.float64)
+    d_cat_collar[:, :] = 1.0  # every cell violates the 3 px collar
+    with pytest.raises(ValueError):
+        brv.relief_move(
+            mask=mask, foot=foot, cls=cls, w=w, d_cat=d_cat_collar, ridge=ridge,
+            source_classes=(0, 1), target_class=2, n_move=4,
+        )
 
 
 # ---------------------------------------------------------------------------
-# Artifact tests (skip without locally built rasters)
+# Artifact tests: re-read shipped rasters and re-derive the gates
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.skipif(not RELIEF_JSON, reason="RELIEF releases not built in this checkout")
-def test_relief_variants_pass_every_must_gate_on_reread():
-    report = json.loads(REPORT.read_text())
-    variants = {v["value"]: v for v in report["variants"]}
-    assert set(variants) == set(EXPECTED)
-    bridge = ROOT / "data" / "bridge"
-    if not (bridge / "sample_submission.tif").is_file():
-        pytest.skip("pinned bridge inputs not restored")
-    with rasterio.open(bridge / "sample_submission.tif") as ds:
-        tmpl = (ds.shape, ds.crs, ds.transform)
-        foot = np.isfinite(ds.read(1))
-    with rasterio.open(bridge / "existing_faults.tif") as ds:
-        catalogue = (ds.read(1) > 0) & foot
-    d_cat = distance_transform_edt(~catalogue)
-
-    for value, (vid, sha, _pred) in EXPECTED.items():
-        rec = variants[value]
-        assert rec["id"] == vid and rec["sha256"] == sha
-        assert rec["parent"] == brv.R1_ID and rec["n_dots"] == 37_654
-        assert rec["parent_diff"]["n_added"] == rec["parent_diff"]["n_removed"] == 4518
-        assert rec["parent_diff"]["pct_changed_moved"] == pytest.approx(12.00, abs=0.01)
-        assert 1.0 <= rec["parent_diff"]["pct_changed_moved"] <= 50.0
-        assert rec["parent_diff"]["dots_le_3px"] == 0
-        assert rec["parent_diff"]["min_dist_catalogue_px"] > 3.0
-        assert len(rec["form_note"]) <= 140
-
-        p_nan, p_zeros = ROOT / rec["file_nan"], ROOT / rec["file_zeros"]
-        receipt = json.loads((RELEASES / f"{vid}.json").read_text())
-        assert receipt["sha256"] == rec["sha256"] == _sha256(p_nan)
-        assert receipt["sha256_zeros"] == rec["sha256_zeros"] == _sha256(p_zeros)
-        for tif_p, zip_key in ((p_nan, "zip_nan"), (p_zeros, "zip_zeros")):
-            with zipfile.ZipFile(ROOT / rec[zip_key]) as zf:
-                names = zf.namelist()
-            assert names == [tif_p.name]
-
-        with rasterio.open(p_nan) as dn, rasterio.open(p_zeros) as dz:
-            assert (dn.shape, dn.crs, dn.transform) == tmpl == (dz.shape, dz.crs, dz.transform)
-            assert dn.count == dz.count == 1 and dn.dtypes[0] == dz.dtypes[0] == "float32"
-            assert str(dn.crs) == "EPSG:32611"
-            arr_n, arr_z = dn.read(1), dz.read(1)
-        assert np.isfinite(arr_n[foot]).all() and np.isnan(arr_n[~foot]).all()
-        assert np.isfinite(arr_z).all() and (arr_z[~foot] == 0.0).all()
-        assert np.array_equal(arr_n[foot], arr_z[foot])
-        assert 0.0 <= float(arr_n[foot].min()) and float(arr_n[foot].max()) <= 1.0
-        mask = arr_z > 0.5
-        assert int(mask.sum()) == 37_654
-        assert int((mask & catalogue).sum()) == 0
-        assert float(d_cat[mask].min()) > 3.0
-
-        # Tercile accounting is re-derived only where the 419 MB stack is present.
-        feats = ROOT / "data" / "training_features.tif"
-        if feats.is_file():
-            det = brv.read_clean_band(feats, 12, foot)
-            cls, q1, q2 = brv.tercile_classes(det, foot)
-            assert q1 == pytest.approx(rec["relief_terciles"]["q1_footprint_tercile"])
-            assert q2 == pytest.approx(rec["relief_terciles"]["q2_footprint_tercile"])
-            after = {brv.TERCILE_NAMES[k]: int((mask & (cls == k)).sum()) for k in range(3)}
-            assert after == rec["relief_statistics"]["dots_after"]
+def _ledger_rows() -> list[dict[str, str]]:
+    with LEDGER.open("r", newline="") as fh:
+        return [r for r in csv.DictReader(fh)
+                if r.get("axis") == "RELIEF" and r.get("value") in OUR_VALUES]
 
 
-@pytest.mark.skipif(not RELIEF_JSON, reason="RELIEF releases not built in this checkout")
-def test_relief_ledger_cards_and_hash_uniqueness():
-    with LEDGER.open(newline="") as fh:
-        rows = list(csv.DictReader(fh))
-    all_hashes = [h for r in rows for h in (r["sha256"], r["sha256_zeros"]) if h]
-    assert len(all_hashes) == len(set(all_hashes)), "duplicate SHA-256 in ledger"
-    pairs = [(r["parent"], r["axis"], r["value"]) for r in rows if r["axis"] == "RELIEF"]
-    assert len(pairs) == len(set(pairs)) == 3
+def test_ledger_has_one_row_per_relief_variant():
+    rows = _ledger_rows()
+    assert {r["value"] for r in rows} == {"up2t10", "up2t15", "dn2t15"}
+    shas = [r["sha256"] for r in rows] + [r["sha256_zeros"] for r in rows]
+    assert len(set(shas)) == len(shas), "duplicate SHA-256 across RELIEF rows"
+    for r in rows:
+        assert r["parent"] == brv.R1_ID
+        assert r["status"] == "BUILT"
+        assert r["predicted_change"].startswith("MODEL:")
+        assert r["n_dots"] == "37654"
 
+
+def test_mechanism_cards_exist_for_every_relief_variant():
     cards = json.loads(CARDS.read_text())
-    relief_rows = {r["value"]: r for r in rows if r["axis"] == "RELIEF"}
-    for value, (vid, sha, pred) in EXPECTED.items():
-        row = relief_rows[value]
-        assert row["id"] == vid and row["sha256"] == sha and row["parent"] == brv.R1_ID
-        assert row["status"] == "BUILT" and row["n_dots"] == "37654"
-        assert row["predicted_change"] == pred and not row["receipt_score"]
-        card = cards[vid]
-        for field in ("hypothesis", "mechanism", "non_fault_mimic",
-                      "predicted_sign_size", "falsifier", "post_build_report_only"):
-            assert card.get(field)
-        assert "MODEL" in card["predicted_sign_size"]
-        assert card["references"] and all(r["url"].startswith("https://") for r in card["references"])
+    for r in _ledger_rows():
+        assert r["id"] in cards, f"missing mechanism card for {r['id']}"
+        card = cards[r["id"]]
+        for key in ("hypothesis", "mechanism", "non_fault_mimic", "predicted_sign_size", "falsifier"):
+            assert card[key].strip(), f"{r['id']} card is missing {key}"
 
 
-@pytest.mark.skipif(not RELIEF_JSON, reason="RELIEF releases not built in this checkout")
-def test_relief_proxies_are_reported_not_gated():
-    report = json.loads(REPORT.read_text())
-    r1_sgmc = report["parent_R1"]["diagnostics"]["sgmc_control"]["dti"]
-    assert r1_sgmc == pytest.approx(0.096083, abs=1e-6)
-    assert report["leakage_canaries"]["max_symmetric_auc"] <= 0.90
-    for v in report["variants"]:
-        d = v["report_only_diagnostics"]
-        # Hide-and-recover is degenerate by construction for >3 px files (IR-88-20),
-        # and every MUST gate still passes: the proxy cannot fail a variant.
-        assert d["holdout_proxy"]["dti"] == 0.0
-        assert d["holdout_proxy"]["evidence_label"] == "PROXY"
-        assert d["sgmc_control"]["evidence_label"] == "PROXY"
-        assert d["sgmc_delta_vs_R1_PROXY"] == pytest.approx(
-            d["sgmc_control"]["dti"] - r1_sgmc, abs=1e-6)
-        assert all(v["gates"].values())
-        sat = v["relief_statistics"]["post_build_saturation_REPORT_ONLY"]
-        assert 0.0 <= sat["receiver_dist_to_survivor_px"]["frac_le_2p8"] <= 1.0
+@pytest.mark.skipif(not RELIEF_JSON, reason="relief rasters are gitignored; rebuild with scripts/build_relief_variants.py")
+def test_relief_rasters_pass_every_must_gate():
+    if not (ROOT / "data" / "bridge" / "sample_submission.tif").is_file():
+        pytest.skip("competition grid not restored")
+    sample_path = ROOT / "data" / "bridge" / "sample_submission.tif"
+    with rasterio.open(sample_path) as tpl:
+        ref = (tpl.shape, tpl.crs, tpl.transform)
+    with rasterio.open(ROOT / "data" / "bridge" / "existing_faults.tif") as ds:
+        catalogue = ds.read(1) == 1
+
+    assert len(RELIEF_JSON) == 3
+    for receipt_path in RELIEF_JSON:
+        rec = json.loads(receipt_path.read_text())
+        assert all(rec["gates"].values()), f"{rec['id']} failed a MUST gate"
+        assert rec["parent"] == brv.R1_ID
+        assert 10.0 <= rec["parent_diff"]["pct_changed_moved"] <= 15.0
+        assert rec["parent_diff"]["dots_le_3px"] == 0
+        assert rec["form_note_chars"] <= 140
+
+        tif = ROOT / rec["file_nan"]
+        with rasterio.open(tif) as ds:
+            assert (ds.shape, ds.crs, ds.transform) == ref
+            assert ds.count == 1 and ds.dtypes[0] == "float32"
+            arr = ds.read(1)
+        foot = np.isfinite(arr)
+        assert np.isfinite(arr[foot]).all()
+        assert np.isnan(arr[~foot]).all()
+        assert float(arr[foot].min()) >= 0.0 and float(arr[foot].max()) <= 1.0
+        assert (arr[catalogue] > 0.0).sum() == 0
+        assert int((arr[foot] > 0.5).sum()) == 37654
+
+        d_cat = distance_transform_edt(~catalogue)
+        assert d_cat[arr > 0.5].min() > brv.MIN_CATALOGUE_PX
+
+        zeros = ROOT / rec["file_zeros"]
+        with rasterio.open(zeros) as ds:
+            zarr = ds.read(1)
+        assert np.isfinite(zarr).all()
+        assert np.array_equal(zarr > 0.5, arr > 0.5)

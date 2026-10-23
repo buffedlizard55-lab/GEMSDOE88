@@ -1,0 +1,215 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFup2t15-20261023-77588346",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+  "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+  "axis": "RELIEF",
+  "value": "up2t15",
+  "seed": 20261023,
+  "git_sha": "f8855f7edf58efbddae0d6b20c20808eb8274eb3",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFup2t15-20261023-77588346.tif",
+  "sha256": "775883468b1fb9baf4148e54a941db6bd97716b2684c2f78fccd0d967a497006",
+  "bytes_nan": 349438,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFup2t15-20261023-77588346.zip",
+  "zip_nan_sha256": "b2077ae3f6280b2cdb2d83086f379e9ed26fb59c5f19540dec695a18e55f56ee",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFup2t15-20261023-77588346-zeros.tif",
+  "sha256_zeros": "9f12f021b620cb39aeee680a1662f3534ebc9340a2de854235d35eb87c097af0",
+  "bytes_zeros": 213532,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFup2t15-20261023-77588346-zeros.zip",
+  "zip_zeros_sha256": "5fd7abfe20bef0a3ca9e4c44fec9f07b3e87e100851212dde34a7cf69ad506c0",
+  "form_note": "h33-2-b2 PRUNEp3px; RELIEF 15% basin+piedmont->range-front, count fixed; pred -0.004 MODEL",
+  "form_note_chars": 90,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 5648,
+    "n_removed": 5648,
+    "pct_changed_moved": 15.0,
+    "pct_changed_sym_diff": 30.0,
+    "min_dist_catalogue_px": 3.1623,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 0,
+    "dots_le_4px": 2911
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "relief_statistics": {
+    "n_move": 5648,
+    "pct_moved_of_dots": 15.0,
+    "source_classes": [
+      0,
+      1
+    ],
+    "source_class_names": [
+      "basin",
+      "piedmont"
+    ],
+    "target_class": 2,
+    "target_class_name": "range_front",
+    "donor_w_mean": 0.17013,
+    "donor_w_median": 0.17267,
+    "receiver_w_mean": 0.20315,
+    "receiver_w_median": 0.20643,
+    "parent_w_mean": 0.19363,
+    "variant_w_mean": 0.19858,
+    "expected_dti_under_w_parent": 0.281537,
+    "expected_dti_under_w_variant": 0.274673,
+    "expected_dti_under_w_delta": -0.006864,
+    "class_counts_before": {
+      "basin": 7690,
+      "piedmont": 15718,
+      "range_front": 14246
+    },
+    "class_counts_after": {
+      "basin": 6029,
+      "piedmont": 11731,
+      "range_front": 19894
+    },
+    "class_share_before_pct": {
+      "basin": 20.42,
+      "piedmont": 41.74,
+      "range_front": 37.83
+    },
+    "class_share_after_pct": {
+      "basin": 16.01,
+      "piedmont": 31.15,
+      "range_front": 52.83
+    },
+    "donors_removed_per_class": {
+      "basin": 1661,
+      "piedmont": 3987,
+      "range_front": 0
+    },
+    "receiver_nn_dist_px_percentiles": {
+      "0": 1.0,
+      "5": 1.0,
+      "25": 1.0,
+      "50": 1.414,
+      "95": 2.236
+    },
+    "receivers_closer_than_2px": 3579,
+    "receiver_pool_size": 20843,
+    "min_dist_catalogue_px": 3.1623
+  },
+  "terrain_definition": {
+    "band": 12,
+    "band_name": "det_elev (Detrended elevation)",
+    "tercile_thresholds": [
+      -142.8321,
+      38.5885
+    ],
+    "classes": {
+      "0": "basin",
+      "1": "piedmont",
+      "2": "range_front"
+    },
+    "footprint_area_px": {
+      "basin": 1722458,
+      "piedmont": 1722457,
+      "range_front": 1722458
+    },
+    "degree_of_freedom_independence": "tercile assignment uses only the provided detrended-elevation band; no catalogue, holdout or leaderboard information enters the classification"
+  },
+  "parent_rebuild_verified": {
+    "R0_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "R0_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "R1_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+    "R1_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f"
+  },
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    }
+  },
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.092522,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5389.13,
+      "fp": 35034.16
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.7559,
+      "cv_12km_120px_interior": 0.6909
+    }
+  },
+  "report_only_caveat": {
+    "holdout_proxy": "hide-and-recover HOLDOUT-DTI is near-degenerate for this family: R0 scores 0.004006, while R1 and all three RELIEF arms score 0.000000 with identical paired deltas, because every dot is >= 3 px from the withheld catalogue fold. It is reported for completeness and carries no ranking weight.",
+    "sgmc_control": "The off-catalogue USGS SGMC control is the informative PROXY here; it is a blind-fault stand-in, not truth, and has historically anti-correlated with live receipts on some files.",
+    "expert_note": "All three arms are predicted NEGATIVE by three independent report-only signals (expected DTI under the label-free field, SGMC control, 12 km block CV). They exist to measure the sign of the relief effect, not to win a slot."
+  },
+  "parent_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.096083,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5603.04,
+      "fp": 35157.75
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6405,
+      "cv_12km_120px_interior": 0.57
+    }
+  }
+}
