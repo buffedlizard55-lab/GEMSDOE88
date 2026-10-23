@@ -128,7 +128,7 @@
     "evidence_class": "REPRODUCTION",
     "existing_experiment": true,
     "new_ledger_row": false,
-    "git_sha_at_rebuild": "cae13e14af33f573056779296ef4c52c7aebeeaf",
+    "git_sha_at_rebuild": "3e1ec2971bd4c3bea1cb038470e8fdce21cd0100",
     "working_tree_clean_at_rebuild_start": true,
     "rebuild_script_sha256": "b64d785e190bf45230d516d1f175ce09f1cde3b610a89b344c8aaa046cbb6ce2",
     "inputs_verified": 15,
