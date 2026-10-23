@@ -1,43 +1,32 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Concurrent sessions — 2026-10-23 SPACING + SNAP audit (both supersede every historical upload card below)
+## Current precedence — 2026-10-23 TRACKB plus two parent-distinct `AXIS = SPACING` families
 
-### SPACING (3 built, all HOLD; slots unchanged; report only)
+**No submission, portal access, or receipt occurred.** All 15 manifest pins and both byte-exact R0 TIFF hashes were verified. The reconciled ledger has **44 BUILT rows and zero RECEIPTs**; it retains three TRACKB, three R1 SPACING, and three R0 SPACING records in addition to prior axes. R0 `0.2778` is **CLAIM**; predictions are `MODEL` and SGMC/hide-recover values are `PROXY`.
 
-**No upload recommended. Human uploads at most one twin per slot and pastes each
-portal receipt into `receipt_score` / `receipt_date`.** Parent `R1 =
-h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` rebuilt with both hashes asserted
-(`6f7ae705…` / `dc6f090d…`); all three arms share 1,914 greedy-decluster donors
-(**5.08%** changed, `10.16%` symmetric difference) and differ only in receiver
-geometry on un-emitted H19-5 at `d_cat > 3 px` (`min d_cat = 3.1623 px`, `0` on
-catalogue, `37,654` dots). Reproduce: `python scripts/build_spacing_variants.py`
-(predictions frozen in `registry/spacing_preregistration.json`). Rasters are
-local-only (gitignored); tracked SHA-256 receipts in `releases/*.json`,
-independent twin validation in `registry/spacing_variant_validation.json`
-(6/6 PASS), mechanism cards in `ledger/mechanism_cards.json`. All three arms are
-sub-threshold diagnostics (`|MODEL| <= 0.004`, `|SGMC delta| < 0.001` vs R1
-`0.096083` PROXY); the conditional slot order (`p3px` → `p3space35`, PR #34) is
-unchanged by SPACING. Reconciled with the concurrent refill-mode arms (IR-88-48);
-ledger now holds 38 rows.
-Hide-and-recover is degenerate `0.000000` (`n = 22,663`) for every `> 3 px` file.
+**Current clearance rule:** pure R0 SNAP cannot meet the literal non-PRUNE `>=3 px` rule (`30` parent dots lack a legal destination within a 2-px snap). The current validator gates non-PRUNE positive mass at `<3 px`; earlier R0 non-PRUNE records with inherited collar mass are HOLD. Do not rename a PRUNE/refill repair as SNAP.
 
-### `SPACINGpoisson28-60f65400` (MODEL +0.003; declustered-parent candidate, HOLD)
-- **Primary:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGpoisson28-20261023-60f65400.tif` (`SHA-256 60f654005114eb6542cbc31135d15314adb8892c6e3d5abe72f9f4de743aa7f6`, `354,671` B; `.zip  fec70e909de1…`)
-- **Fallback:** `…-SPACINGpoisson28-20261023-60f65400-zeros.tif` (`SHA-256 6816852c233ca9a1dc82d9bd06e10fa784fed02eea5d1089d58b01b4d4586442`, `218,130` B; `.zip 5c59492ff572…`)
-- **Form note (98/140):** `R1(6f7ae705); SPACING poisson farthest-point 5.08% (1914) on H19-5, 37654, >3px; pred +0.003 MODEL`
-- **Stats:** greedy farthest-point receivers (median `2.236 px` from survivors, `0%` within `1.5 px`, min NN `2.2361 px`); SGMC `0.096820` PROXY (`+0.000737` vs R1); `12 km` CV `0.5808`.
+### TRACKB — Phase 2 trace geometry, all HOLD
 
-### `SPACINGstrike-bc8e6d1a` (MODEL +0.000; line-continuity probe, HOLD)
-- **Primary:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGstrike-20261023-bc8e6d1a.tif` (`SHA-256 bc8e6d1ae803109fb99f3fbfe95636980f40f39884564a24970a78671065aee1`, `354,072` B; `.zip b8c44402e896…`)
-- **Fallback:** `…-SPACINGstrike-20261023-bc8e6d1a-zeros.tif` (`SHA-256 4a3d3dbfbaaa45cda1f69099df688de43463182de38f5729442de2c5cd2a0df1`, `218,017` B; `.zip d89515f32745…`)
-- **Form note (98/140):** `R1(6f7ae705); SPACING along-strike receivers 5.08% (1914) on H19-5, 37654, >3px; pred +0.000 MODEL`
-- **Stats:** along-strike receivers (median `|cos| 1.000`, median `1.0 px` from survivors, min NN `1.0 px`); SGMC `0.095396` PROXY (`-0.000687` vs R1); `12 km` CV `0.5741`.
+`traceext10` `05256d87`, `speckle10minus` `3360100c`, and `tracespine10` `a3a183d1` are R1-parented 3,765-dot controlled variants tied to `1,259` tracked `>=1 km` GeoJSON traces. All six TIFF representations passed validation, but `traceext10` SGMC `0.09462` remains below R1 `0.096083`; it is Phase 2 only and does not enter the weekly queue by default. Its detail, GeoJSON, dossier, preregistration, and validation are preserved below and at `evidence/trackb_*` / `registry/trackb_*`.
 
-### `SPACINGlattice4px-6c7e0b72` (MODEL -0.004; negative control, HOLD)
-- **Primary:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGlattice4px-20261023-6c7e0b72.tif` (`SHA-256 6c7e0b72fb089eb057af5ce2e89a5511cd26d4d4690aa3c88a54fdfc202e15c7`, `353,950` B; `.zip 777b9ced5b67…`)
-- **Fallback:** `…-SPACINGlattice4px-20261023-6c7e0b72-zeros.tif` (`SHA-256 2690408c607e67e8d4cc541fd7209ce2cf09f2a7989c3744b48652f53d57f664`, `217,591` B; `.zip a3dfb921e19e…`)
-- **Form note (97/140):** `R1(6f7ae705); SPACING 4px-lattice receivers 5.08% (1914) on H19-5, 37654, >3px; pred -0.004 MODEL`
-- **Stats:** 4 px lattice receivers (`100%` on-node, median `1.0 px` from survivors, min NN `1.0 px`); SGMC `0.095292` PROXY (`-0.000791` vs R1); `12 km` CV `0.5833`. Lattice period (400 m) equals the GeoDAWN line spacing; phase `(0,0)` frozen, never tuned.
+### R1 SPACING — gate-clean receiver geometry, all HOLD
+
+`poisson28` `60f65400`, `lattice4px` `6c7e0b72`, and `strike` `bc8e6d1a` are parented by `R1=PRUNEp3px`, move the same `1,914` donors, and differ only in receiver geometry. Generic R1 records remain at `registry/spacing_preregistration.json`, `evidence/spacing_axis_report.json`, and `registry/spacing_variant_validation.json`. `poisson28` rises only `+0.00074` SGMC vs R1; the other two decrease it.
+
+### R0 SPACING — local-only alternatives, all HOLD
+
+Each R0 candidate has `N=37,654`, zero catalogue mass, `min d_catalogue=3.0 px`, and passes the independent primary/fallback GeoTIFF, hash, ZIP, parent-diff, and re-read gates. They share `5,376` relocations (`1,611` necessary `<3 px` collar repairs plus `3,765` crowded donors), so only replacement ordering differs. The shared repair, `sqrt(5)` guard, and preliminary diagnostic exposure make them neither clean R0 spacing attributions nor default weekly recommendations.
+
+| Value / exact submission name | Primary / fallback (local only) | <=140-char form note | R0 evidence |
+|---|---|---|---|
+| `lattice` | `h33-h33-2-b2-SPACINGlattice-20261023-03d14f38.tif` / `h33-h33-2-b2-SPACINGlattice-20261023-03d14f38-zeros.tif` | `h33-2-b2; SPACING lattice, 5376 relocations, N=37654; pred -0.007 MODEL` | `releases/h33-h33-2-b2-SPACINGlattice-20261023-03d14f38.json`; `evidence/spacing_r0_axis_validation.json` |
+| `poisson` | `h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa.tif` / `h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa-zeros.tif` | `h33-2-b2; SPACING poisson, 5376 relocations, N=37654; pred -0.003 MODEL` | `releases/h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa.json`; `evidence/spacing_r0_axis_validation.json` |
+| `alongstrike` | `h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402.tif` / `h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402-zeros.tif` | `h33-2-b2; SPACING alongstrike, 5376 relocations, N=37654; pred +0.002 MODEL` | `releases/h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402.json`; `evidence/spacing_r0_axis_validation.json` |
+
+**Conditional queue is unchanged:** `PRUNEp3px-6f7ae705`, then only with human receipt/quota approval and fresh exact-byte validation `PRUNEp3space35-49fff49b`, then reserve `PRUNEp4space35-07bd8182`. Neither TRACKB nor either HOLD SPACING family displaces it.
+
+Before a human upload, confirm current TOP_PUBLIC + date, quota, deadline, data-use authorization, and actual upload history; reopen exact bytes and rerun the validator; upload **one twin only**; retain the verbatim receipt and populate `receipt_score` / `receipt_date`. A live `|Δ| < 0.01` is no evidence. No rank-correlation or dot-overlap uniqueness threshold is permitted.
 
 ---
 

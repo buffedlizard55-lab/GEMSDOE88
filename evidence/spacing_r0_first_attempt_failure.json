@@ -1,0 +1,25 @@
+{
+  "schema": "gems88.spacing-build-integrity.v2",
+  "date_utc": "2026-10-23",
+  "axis": "SPACING",
+  "attempts": [
+    {
+      "stage_reached": "after manifest/R0 verification, local raster write, independent validator, and report-only computation; before ledger, mechanism-card, final receipt, and axis-report persistence",
+      "failure": "The along-strike Dijkstra stored path distances as float32 but rejected heap entries by exact float equality. Some reachable diagonal cells remained Infinity; JSON allow_nan=False correctly stopped receipt serialization.",
+      "repair": "Use a tolerance-based stale-heap check, then delete only the failed uncommitted local artifacts and rerun from exact pins.",
+      "ledger_modified": false,
+      "artifacts_removed_before_rerun": true
+    },
+    {
+      "stage_reached": "after corrected candidate creation, independent validation, receipt/card/ledger persistence, and report-only computation; while writing the consolidated axis report",
+      "failure": "The independent validator preserved GeoTIFF nodata as a bare NaN literal. Its valid Python JSON parser result could not be embedded in strict allow_nan=False report JSON.",
+      "repair": "Serialize nodata as the string NaN in the independent validator, add a recursive JSON-safe report serializer, rerun the independent validator on unchanged candidate bytes, and finalize only the missing report/card wording.",
+      "ledger_modified": true,
+      "candidate_hashes_or_pixels_changed_by_repair": false,
+      "candidate_artifacts_removed": false
+    }
+  ],
+  "submission_or_portal_contact": false,
+  "prediction_constants_changed_after_failure": false,
+  "interpretation_limit": "The durable design record is written before the corrected successful report-only pass, but the agent observed preliminary report-only values while debugging. Predictions remain MODEL and all SPACING variants are HOLD; this is not a blind proxy preregistration."
+}

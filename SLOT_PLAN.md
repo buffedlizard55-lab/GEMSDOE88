@@ -1,31 +1,41 @@
-# SLOT_PLAN — one entity; <=3 scored uploads per rolling week
+# SLOT_PLAN — one entity; at most 3 scored files per rolling week; one blind final file
 
-**`2026-10-23` · AXIS = TRACKB (Phase 2 readiness, 3 built, 0 weekly slots) + merged PR #35 SPACING (3 HOLD) + PR #36 SNAP audit + PR #34 PRUNE refill-mode.** All `15` manifest pins verified; `R0` (`c55bafc4…`/`baeae321…`, `37,654` dots) and gate-clean `R1 = PRUNEp3px-6f7ae705` (`min d_cat = 3.1623 px`) rebuilt byte-exactly. Ledger: **`41`** built rows across all 7 brief axes, **`0`** portal receipts, zero `(parent, axis, value)` or SHA-256 collisions. `TRACKB` emitted [`evidence/trackb_traces_geologist.geojson`](evidence/trackb_traces_geologist.geojson) (`4a1d0541…`, `1,259` `>=1.0 km` `LineString` traces totaling `1,753.2 km`, 1 geologist paragraph/trace; dossier [`evidence/trackb_geologist_dossier.md`](evidence/trackb_geologist_dossier.md)) + 3 `10.00%` (`3,765`-dot) `R1` variants: `TRACKBtraceext10` `05256d87` (`N=37,654`, `added_min_nn=2.8284 px`, prereg `MODEL:+0.004`, `SGMC=0.09462 PROXY` — **`+0.00763` above `tracespine10`**), `TRACKBspeckle10minus` `3360100c` (`N=33,889`, prereg `MODEL:+0.003`, `SGMC=0.08666`), and `TRACKBtracespine10` `a3a183d1` (`N=37,654`, `100 m` spines, prereg `MODEL:-0.003`, `SGMC=0.08700`; IR-88-49).
+**2026-10-23 reconciled status:** all 15 pins and byte-exact R0 passed (`N=37,654`; zeros `c55bafc4…`; NaN `baeae321…`). The ledger has **44 BUILT / 0 RECEIPT** rows across 7 axes; all exact `(parent, axis, value)` and primary/zeros hashes are unique. R0 `0.2778` is **CLAIM**, not a portal score. No agent accessed a portal or submitted a file.
 
-**Before any slot:** human supplies current `TOP_PUBLIC`/date, actual weekly/total balance (unknown), R0 receipt (`0.2778` is CLAIM), permission to use/redistribute the public mirrors and old tracked TIFFs, and confirms the provisional `2026-12-03` deadline on the competition page and rules. No automated page access or submissions. Primary/zeros twin = **one** slot; one blind final. Public/private/expert-expanded chunks differ; `|live delta| < 0.01` is no evidence. Without an R0 receipt no paired live delta is established. New `p3space35`/`p4space35` TIFFs are **absent locally**; their receipts require exact reconstruction and fresh validation.
+## Non-negotiable gate context
 
-## Session results — refill spacing (PR #34), receiver geometry (SPACING), SNAP clearance (PR #36)
-| Arm | Edit | `N` | refill min NN | four-line field `MODEL` vs R0 | blind `SGMC` `PROXY` vs R0 |
-|---|---|---:|---:|---:|---:|
-| `p3norefill` `fb308615` | `300 m` collar, **no refill** | `35,483` | – | `0.270354` (−0.0157) | `0.093643` (−0.0024) |
-| `p3space35` `49fff49b` | `300 m` collar, `3.5 px` spacing lock | `37,654` | `3.4641 px` | `0.273539` (−0.0112) | `0.101042` (+0.0050) |
-| `p4space35` `07bd8182` | `400 m` collar, `3.5 px` spacing lock | `37,654` | `3.4641 px` | `0.278731` (−0.0228) | `0.102454` (+0.0064) |
-| Arm (on `R1`) | Receiver geometry | moved | receiver min NN | `w`-DTI field `MODEL` vs R1 | blind `SGMC` vs R1 `0.096083` |
-| `poisson28` `60f65400` | farthest-point, `R1 = 2.8 px` decluster | `1,914` | `2.2361 px` | `−0.0026` (pred `+0.003`) | `0.096820` (+0.00074) |
-| `strike` `bc8e6d1a` | along-strike H19-5 alignment | `1,914` | `1.0000 px` | `−0.0059` (pred `+0.000`) | `0.095396` (−0.00069) |
-| `lattice4px` `6c7e0b72` | `4 px` grid, phase frozen | `1,914` | `1.0000 px` | `−0.0059` (pred `−0.004`) | `0.095292` (−0.00079) |
+- Pure R0 SNAP is stopped: `30` of R0's `1,611` `<3 px` dots lack a legal `>=3 px` destination within a 2-px SNAP. The current validator rejects every non-PRUNE positive pixel at `<3 px`; historic R0 non-PRUNE descendants that inherit collar mass remain HOLD.
+- Primary and `-zeros` fallback files are alternatives, never two slots. A `MODEL`, SGMC, hide/recover value, or `CLAIM` is never a score or promotion gate.
+- The human alone confirms current TOP_PUBLIC/date, quota, deadline, provenance authorization, actual upload history, selected exact bytes, receipt, and blind final file.
 
-Both sessions' instruments **disagree** (their IR-88-44; SPACING reproduces it: field prefers densified placement, `SGMC` prefers spaced placement), and neither is a live score. Shared substantive finding: **spacing/uniformity is the lever, spaced ancestor support amplifies it** (`p3space35 +0.0050` vs `poisson28 +0.00074`); ancestor support is a confounder, so even a live delta does not isolate spacing alone. `p3norefill` is diagnostic only. Strict spacing locks on `H19-5` at matched count are infeasible (their IR-88-43, agreed); maximal-spacing variants on un-emitted `H19-5` are feasible and built (IR-88-48). Pure-R0 SNAP is geometrically impossible under the literal `3 px` clearance: `30` of `1,611` sub-`3 px` dots have no compliant in-footprint pixel within `<=2 px`, even ignoring collisions — do not substitute a PRUNE refill and call it SNAP (their IR-88-47; `evidence/session_20261023_snap_clearance.json`). Earlier R0 non-PRUNE arms retaining the collar stay HOLD.
+## TRACKB — Phase 2 only, no default weekly slot
 
-## Next three *conditional* slots
-| Order | Existing arm / live projection (MODEL vs R0) | What a receipt changes |
+| Parent / arms | Controlled distinction | Report-only reading | Decision |
+|---|---|---|---|
+| Gate-clean `R1`: `traceext10` `05256d87`, `speckle10minus` `3360100c`, `tracespine10` `a3a183d1` | Same 3,765-dot dose: spaced tip/relay extension vs pure isolated-speckle cut vs 100 m continuous-spine control, grounded in tracked `1,259` `>=1 km` GeoJSON traces | SGMC `0.09462 / 0.08666 / 0.08700` vs R1 `0.096083`; `traceext10` recovers far more than spine infill but remains below R1 | Phase-2 **HOLD**. It does not enter the weekly queue unless a human independently decides otherwise. See IR-88-49. |
+
+## Two independent SPACING families — six BUILT, zero slot recommendations
+
+| Parent / arms | Common edit | Registered `MODEL` / report-only reading | Decision |
+|---|---|---|---|
+| Gate-clean `R1`: `poisson28` `60f65400`, `lattice4px` `6c7e0b72`, `strike` `bc8e6d1a` | Same `1,914` greedy-decluster donors (5.08%); receiver geometry only | `+0.003/−0.004/+0.000`; SGMC vs R1 `+0.00074/−0.00079/−0.00069` | HOLD; `poisson28` is maximally uniform feasible geometry, not a strict spacing lock. |
+| R0: `lattice` `03d14f38`, `poisson` `80ede4fa`, `alongstrike` `5cb97402` | Same `5,376` relocations: `1,611` collar repairs + `3,765` donors; ordering only | `−0.007/−0.003/+0.002`; SGMC vs R0 `−0.000165/−0.000325/−0.000222` | HOLD; shared repair and `sqrt(5)` guard make it lower-priority than the R1 family. |
+
+R1 keeps generic `spacing_*` paths. R0 keeps explicit `spacing_r0_*` code/evidence paths, so concurrent work cannot overwrite either lineage. All report-only evidence remains diagnostic only.
+
+## Human-controlled conditional queue
+
+| Order | Existing arm | Preconditions / receipt interpretation |
 |---|---|---|
-| 1 | `PRUNEp3px-6f7ae705` / +0.005 | Gain `>=0.01` supports the `300 m` collar+refill; loss `<=-0.01` closes this family; otherwise inconclusive. This file alone is freshly validated and locally available (primary + fallback). |
-| 2 | `PRUNEp3space35-49fff49b` / +0.007 | Only if slot 1 does not materially lose, the human approves another test, and exact bytes validate. Gain `>=0.01` **over `p3px`** favors spaced refill; loss `<=-0.01` disfavors it; smaller differences teach nothing. `poisson28` is also above its parent at one-seventh the gain, so slot 2 tests spacing support by effect size. |
-| 3 | Reserve `PRUNEp4space35-07bd8182` / +0.002 | Only if slot 2 materially wins: a `>=0.01` gain vs slot 2 favors widening with spaced refill; `<=-0.01` loss favors `300 m`. Else conserve the slot. |
+| 1 | `PRUNEp3px-6f7ae705` (`MODEL +0.005`) | Reconstruct/revalidate the actual selected primary or zeros twin. Gain `>=0.01` supports collar+refill; loss `<=−0.01` closes it; otherwise inconclusive. |
+| 2 | `PRUNEp3space35-49fff49b` (`MODEL +0.007`) | Only after human quota/receipt review and fresh exact-byte validation. It tests spacing support by effect size, not a score. |
+| 3 | Reserve `PRUNEp4space35-07bd8182` (`MODEL +0.002`) | Only after receipt-backed support for slot 2; otherwise conserve the slot. |
 
-**HOLD, regardless of old validators:** `SNAPscarp2px-fae77ff4` and all R0 SNAP/CONCENTRATION/RELIEF arms retaining sub-`3 px` mass; all 3 SPACING arms (sub-threshold diagnostics, `|SGMC delta| < 0.001`); `PRUNEp1px` (PRUNE `<3 px` mass allowed by the exception, diagnostic rather than a lead). Human uploads at most one file per slot.
+`TRACE_ADD_ONLY` is a proposal, not a build: future spaced `>=2.8 px` trace-tip adds on R1 or `p3space35` should avoid dropping singleton donors and require a separate named parent/axis/value. Its falsifier is no `>=0.01` receipt-backed gain at matched collar (IR-88-49).
 
-**Weeks:** Oct 23–Nov 5 (wk1–2): receipt/quota/legal checks, conditional PRUNE; Nov 6–19 (wk3–4): combine axes only with independent `>=0.01` receipt evidence on a gate-clean parent; Nov 20–Dec 3 (wk5–6): validate final and fallback from disk, choose one blind final. `TRACKB` is Phase-2 geologist review only.
+## Before any human upload
 
-**Better axes, proposals only:** **TRACE_ADD_ONLY** — `+4–6%` spaced `>=2.8 px` `>=1 km` trace-tip adds on `R1` or `p3space35` *without* dropping `0.060`-credit singletons (IR-88-49); falsifier: no `>=0.01` live gain over parent at matched collar. **SUPPORT** — new spaced H16-1/H19-4 strands may cover gaps; spaced-support receiver confounder prior is leaderboard-tuned; falsifier: no `>=0.01` live gain at matched count/collar. **RANKFIELD** — change `p3px` refill ranking at fixed spacing; confounder SGMC map bias; falsifier: no `>=0.01` gain vs randomized ranking. **STRIKE_ALIGN** — snap on gate-clean `p3px` to coherent edges; confounder lithology / GeoDAWN flight lines; falsifier: no gain over randomized-strike control. Build each separately.
+1. Confirm current TOP_PUBLIC **with date**, rolling-week/total availability, deadline, data-use authorization, and actual upload history.
+2. Match recorded SHA-256 and rerun `scripts/validate_variant.py` on the actual selected TIFF/twin.
+3. Upload one file only; retain the verbatim receipt and populate `receipt_score` / `receipt_date`. A live `|Δ| < 0.01` is no evidence.
+4. Choose the one blind final file independently. `RECEIPT > CLAIM > PROXY > MODEL`; no local diagnostic chooses it.

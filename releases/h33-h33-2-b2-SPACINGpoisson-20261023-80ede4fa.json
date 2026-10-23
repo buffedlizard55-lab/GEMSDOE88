@@ -1,0 +1,233 @@
+{
+  "id": "h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis": "SPACING",
+  "value": "poisson",
+  "seed": 20261023,
+  "git_sha": "c8d4f1db414dfbb061187862475be47479323c66",
+  "file_nan": "releases/h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa.tif",
+  "sha256": "80ede4fa41283d9d0c9aaadb228cc02a3c2154cdf887978a61cdbd979dfa8578",
+  "bytes_nan": 354637,
+  "zip_nan": "releases/h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa.zip",
+  "zip_nan_sha256": "c406bc7a60aae85fd57ff3710e73f3d48f4e1b1d0cbce7d6c150aaa675ae8fd5",
+  "file_zeros": "releases/h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa-zeros.tif",
+  "sha256_zeros": "e14c765daef7354ee24760e1393c63274f47414aacdf0e59003890b74aad9344",
+  "bytes_zeros": 218201,
+  "zip_zeros": "releases/h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa-zeros.zip",
+  "zip_zeros_sha256": "6dc6f883578ddc5ca6c9e02b496e6bd2ecec1fba24f095157c7b797707dd67a8",
+  "form_note": "h33-2-b2; SPACING poisson, 5376 relocations, N=37654; pred -0.003 MODEL",
+  "form_note_chars": 71,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 5376,
+    "n_removed": 5376,
+    "pct_changed_moved": 14.28,
+    "pct_changed_sym_diff": 28.55,
+    "min_dist_catalogue_px": 3.0,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 725,
+    "dots_le_4px": 2713
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "spacing": {
+    "strategy": "seeded Poisson-disk dart throwing on legal un-emitted H19-5 support",
+    "n_parent": 37654,
+    "n_removed": 5376,
+    "n_added": 5376,
+    "pct_changed_moved": 14.277368,
+    "min_catalogue_distance_px": 3.0,
+    "common_normalization": {
+      "common_collar_removed_n": 1611,
+      "common_crowded_removed_n": 3765,
+      "common_crowded_donor_nn_px": {
+        "min": 2.8284,
+        "median": 2.8284,
+        "max": 2.8284
+      },
+      "parent_legal_n": 36043
+    },
+    "selection": {
+      "selector": "seeded uniform dart order; reject candidates inside the separation disk",
+      "seed": 20261124,
+      "candidate_cells_initially_eligible": 12082,
+      "candidate_cells_selected": 5376,
+      "minimum_separation_guard_px": 2.236068,
+      "blocked_integer_offsets": [
+        [
+          -2,
+          0
+        ],
+        [
+          -1,
+          -1
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          -1,
+          1
+        ],
+        [
+          0,
+          -2
+        ],
+        [
+          0,
+          -1
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          -1
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          0
+        ]
+      ]
+    },
+    "nearest_neighbour_after_px": {
+      "min_px": 2.2361,
+      "p05_px": 2.2361,
+      "median_px": 3.0,
+      "mean_px": 3.5773,
+      "p95_px": 7.2111
+    },
+    "nearest_neighbour_r0_px": {
+      "min_px": 2.8284,
+      "p05_px": 2.8284,
+      "median_px": 3.0,
+      "mean_px": 3.7351,
+      "p95_px": 7.2111
+    },
+    "added_on_previously_unanchored_components": 1978,
+    "added_component_count": 3712
+  },
+  "prediction": {
+    "evidence_label": "MODEL",
+    "delta_vs_r0_claim": -0.003,
+    "range": [
+      -0.016,
+      0.01
+    ],
+    "fixed_before_successful_run_report_only_diagnostics": true,
+    "unchanged_after_prior_serialization_failure": true
+  },
+  "preregistration": "registry/spacing_r0_preregistration.json",
+  "independent_validation": "evidence/spacing_r0_axis_validation.json",
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.095735,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5582.95,
+      "fp": 35187.88
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6363,
+      "cv_12km_120px_interior": 0.5675
+    }
+  },
+  "r0_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  },
+  "leakage_canary": {
+    "evidence_label": "REPORT_ONLY_CANARY",
+    "feature": "pinned ancestor H19-5 binary support",
+    "positive_withheld_catalogue_pixels": 19790,
+    "negative_sample_pixels": 100000,
+    "auc": 0.48857,
+    "symmetric_auc": 0.51143,
+    "passed": true,
+    "threshold": 0.9,
+    "note": "A canary is an investigation stop, never a candidate-promotion gate."
+  },
+  "source_support_geometry_model": {
+    "evidence_label": "MODEL",
+    "meaning": "Exact DTI against H19-5 source support only; circular geometry diagnostic, not a live score or proxy gate.",
+    "dti": 0.777737,
+    "tp": 72647.357,
+    "fp": 0.0,
+    "truth_pixels": 98599
+  },
+  "disposition": "HOLD: lowest-priority geometry experiment; common collar repair and lowered minimum spacing prevent a clean R0 attribution. It is not a recommended weekly-slot candidate without a fresh human decision and a >=0.010 receipt-backed effect."
+}
