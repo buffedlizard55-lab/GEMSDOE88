@@ -1,28 +1,20 @@
-# Generative-AI use disclosure
+# AI_USE — Generative-AI Disclosure (NLR Official Rules §3.6)
 
-Date: 2026-10-23  
-Competition lane: R0 controlled-axis experiments, reconciled GEMSDOE88 branches
+- **Competing Entity (1 human competitor):** `buffedlizard55-lab` (sole submitter, slot owner, and blind-final selector).
+- **AI System Used:** Arena.ai Agent Mode working on branch `arena/4a61d770-gemsdoe88` (reconciled cleanly with concurrent `main` commits `fe8ea6f`, `e079582`, `c3d9485`). Include this disclosure in the final competition narrative per Official Rules §3.6 (https://www.drivendata.org/competitions/306/competition-doe-gems/).
 
-## What AI wrote or changed
+## AI-Generated Code, Artifacts & Analyses (2026-10-23)
 
-**PRUNE3 branch (`arena/ce779c03-gemsdoe88`):** an AI coding agent inspected the repository and pinned public GitHub mirrors; reproduced D2.8 and R0; investigated MASS/SNAP feasibility; wrote the PRUNE3 implementation, restore script, unit tests, manifest, preregistration and feasibility amendment; generated the candidate masks and both GeoTIFF twins; ran format checks and report-only diagnostics; repaired fold-visible diagnostics; and drafted the mechanism card, ledger row, slot plan, submission card, irregularities log, and this disclosure.
+1. **Manifest, Provenance & Scraping Remediation (`registry/data_manifest.json`, `scripts/restore_inputs.py`, `scripts/restore_r0_prune_inputs.py`, `scripts/update_leaderboard.py`, `.github/workflows/pages.yml`):**
+   - Pinned and SHA-256/byte-verified all `15` inputs (`sample_submission.tif`, `existing_faults.tif`, `training_features.tif`, `5` lineage ancestors from `H19-5` to `R0`, USGS 3DEP 1 m LiDAR scarps, GeoDAWN radiometrics, DOE GDR 1391 geothermometry CSV, and USGS SGMC fault control).
+   - Flagged public sibling mirrors (`FLAGGED_DATA_USE_UNCHECKED`), kept candidate `.tif`/`.zip` untracked in `.gitignore` with tracked JSON SHA-256 receipts, and disabled automated `drivendata.org` scraping/cron workflows.
+2. **Deterministic Constant-Mass `AXIS = PRUNE` Builder (`scripts/build_prune_variants.py`, `SEED = 20261023`):**
+   - Rebuilt parent `R0 = h33-h33-2-b2` (`37,654` unit dots) pixel-for-pixel across all 5 lineage steps AND byte-for-byte on both `zeros` (`c55bafc4...`) and `nan` (`baeae321...`) GeoTIFF profiles (`DEFLATE`, `predictor=3`, `zlevel=9`, `256×256` tiles).
+   - Built a 100% label-free 4-line physical corroboration field (`LiDAR/det_elev scarp`, `gravity/magnetic/basement potential`, `geodetic/seismic kinematics`, `GDR geothermometry + K/Th + MT hydro-alteration`). Caught and fixed a live `~catalogue` pre-masking canary trip (`sym_auc = 1.0000 -> max unmasked sym_auc = 0.56925 <= 0.90`).
+   - Emitted `PRUNEp1px` (`0542a27c`), `PRUNEp3px` (`6f7ae705`), and `PRUNEp4px` (`be9fd3d5`) at strict fixed mass `N = 37,654` via exact local-window (`11×11`) marginal-DTI `add`/`drop` solvers, re-read all 6 `.tif` + 6 `.zip` from disk, and computed `REPORT-ONLY` Holdout-DTI + 95% CI, blind `SGMC` control, and `10 km` / `12 km` block-density CV (`evidence/prune_axis_report.json`).
+   - Reconciled prior concurrent `MASS` audit (`HOLD`), score-blind `PRUNE=3`, and `CONCENTRATION` (`HOLD`) ledger rows, mechanism cards, and test suites (`102+` pytest checks green).
 
-**Concurrent MASS branch (`arena/81f0028f-gemsdoe88`):** its AI disclosure records `scripts/generate_axis_variants.py`, three MASS variants (drop10/add10/drop20), distance/random MODEL rankings with seeds 88/90, NaN and zeros twins, mechanism cards, and planning/documentation files.
+## Human Competitor Decisions Required
 
-**MASS audit branch (`arena/1669c22f-gemsdoe88`, PR #17):** AI wrote `scripts/audit_mass_ranking.py`, `registry/mass_ranking_audit.json`, and ranking tests; reconstructed all three arrays bit-exactly; measured collar confounding, seed instability, and prior alignment; corrected MODEL predictions/mechanism cards; and built no new rasters. Its findings are preserved in the reconciled ledger and documents.
-
-**CONCENTRATION branch (`arena/b266c684-gemsdoe88`, PR #18):** an AI coding agent re-verified the three input pins, tested R0's byte- vs pixel-level reproducibility (`scripts/verify_parent_r0.py`), and built the CONCENTRATION axis: `scripts/make_concentration_variants.py` (deterministic coldest→hottest km-block mass relocation at fixed count, one dot left per donor block, receivers welded ≤1.41 px to surviving hosts outside the 3 px collar, no RNG), `scripts/project_concentration.py` (metric-algebra MODEL projection with a scenario grid), `scripts/eval_concentration_proxy.py` (report-only hide-and-recover PROXY on the shared `vendor/gems57` instrument, seeds 20/21, 22,893 withheld positives), `scripts/validate_variant.py` (independent gates re-read from disk), `scripts/finalize_concentration.py` (ledger + cards), plus `tests/test_dti_algebra.py` and `tests/test_concentration_variants.py`. It also reconciled this branch with the PRUNE3 and MASS-audit work during the merge and appended irregularities 10–12.
-
-The agents used GitHub repository content and PyPI packages only for this work. This branch did not access DrivenData or Dropbox, scrape a leaderboard, handle credentials, log into an account, or submit any file. The PRUNE3 candidate does not use lidar-derived features.
-
-## What the human decided or supplied
-
-The human supplied the agent brief, R0 identity, claimed historical scores, competition constraints, and the requirement for reproducible code and generative-AI disclosure. No explicit AXIS value, current `TOP_PUBLIC`, remaining-slot count, R0 receipt, or final-file choice was supplied to the PRUNE3 branch; those omissions are recorded rather than filled from assumption. Earlier branch disclosures remain in Git history.
-
-## Decisions that remain with the human competitor
-
-The human must reconcile all concurrent ledgers, decide whether any eligible candidate deserves a weekly slot, upload at most one twin from their own registered account, copy the actual submission receipt and date into `ledger/submissions.csv`, provide a dated `TOP_PUBLIC` and slot count, confirm the deadline, choose the single final file blind, and make any required sponsor disclosure consistent with this file and the official rules.
-
-## Reproducibility
-
-PRUNE3 inputs and source URLs are in `registry/data_manifest.json`; hashes were verified before use. Its candidate build records seed `20261023` and code Git SHA `2570ec045618337658574add4c55609d22114ac1`. The original prediction and pre-scoring feasibility amendment are preserved separately. MASS seeds, hashes, and audit inputs remain in its generator, audit receipt, and ledger. CONCENTRATION uses only the pinned parent and catalogue geometry (no feature channel, so no leakage-canary input), records no random draws, and keeps its rasters local for the same data-use reason; hashes are in `releases/*-receipt.json`. New PRUNE competition rasters remain local because public-repository data-use terms are unchecked; pre-existing/concurrent public raster exposure is logged in `IRREGULARITIES.md`.
+- Supply live `TOP_PUBLIC` + date, available rolling-week slots (`__ / 3`), and confirmation of `AXIS = PRUNE` (`Slot 1 = PRUNEp3px`).
+- Upload chosen single file manually from authenticated browser, log verbatim `receipt_score` and `receipt_date` in `ledger/submissions.csv`, and choose the **one blind final file** before `2026-12-03`.

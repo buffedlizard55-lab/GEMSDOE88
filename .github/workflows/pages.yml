@@ -1,10 +1,8 @@
-name: Dated public-source feed and Pages site
+name: Static Pages site deploy (no automated DrivenData scrape per Terms of Use)
 on:
   push:
     branches: [main]
     paths: ['docs/**', 'registry/**', 'scripts/**', 'src/**', 'vendor/**', '.github/workflows/pages.yml', 'README.md']
-  schedule:
-    - cron: '17 */6 * * *'
   workflow_dispatch:
 permissions:
   contents: read
@@ -30,11 +28,6 @@ jobs:
       - run: python scripts/restore_inputs.py --validation
       - run: pytest -q
       - run: python scripts/validate_release.py
-      - name: Fetch organizer PUBLIC leaderboard; preserve dated snapshot on failure
-        run: |
-          if ! python scripts/update_leaderboard.py --output docs/data/leaderboard.json; then
-            echo 'Official leaderboard unavailable or markup changed; KEEP dated snapshot and stale indicator.'
-          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -61,6 +61,26 @@ SOURCES = {
                 "registry/h33_education.tif",
                 "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
             ),
+            "registry/rasters/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif": (
+                "registry/family_60gemsdoe/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+                "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+            ),
+            "registry/rasters/calib_h195_01922.tif": (
+                "registry/family_60gemsdoe/calib_h195_01922.tif",
+                "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+            ),
+            "registry/rasters/calib_d15_02477.tif": (
+                "registry/family_60gemsdoe/calib_d15_02477.tif",
+                "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+            ),
+            "registry/rasters/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif": (
+                "registry/family_60gemsdoe/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+                "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+            ),
+            "registry/rasters/GEMSDOE28__h27-4-r1-solo-d2-8.tif": (
+                "registry/family_60gemsdoe/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+                "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+            ),
         },
     ),
     "external": dict(
@@ -118,6 +138,16 @@ SOURCES = {
             "data/external/trace_segments_utm11.csv": (
                 "external/trace_segments_utm11.csv",
                 "c5edf9df3e0e1413c52784884fc38e5b9ca54627b27c6f8baf7713e908f48513",
+            ),
+        },
+    ),
+    "sgmc": dict(
+        repo="GEMSDOE24",
+        ref="07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+        files={
+            "data/external/derived_sgmc_faults_100m_u8.tif": (
+                "external/derived_sgmc_faults_100m_u8.tif",
+                "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
             ),
         },
     ),
@@ -291,9 +321,9 @@ def main():
     targets = (
         ["grid"]
         if args.grid_only
-        else ["grid", "witness", "h33"]
+        else ["grid", "witness", "h33", "sgmc"]
         if args.validation
-        else ["grid", "features", "witness", "h33", "external"]
+        else ["grid", "features", "witness", "h33", "external", "sgmc"]
     )
     for key in targets:
         if key == "features":

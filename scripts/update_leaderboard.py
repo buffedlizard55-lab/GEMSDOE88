@@ -104,14 +104,12 @@ def parse_leaderboard(html):
 
 def update(path, html=None):
     if html is None:
-        request = Request(
-            URL,
-            headers={
-                "User-Agent": "GEMSDOE88-audit-feed/1.0 (read-only public leaderboard)"
-            },
+        raise RuntimeError(
+            "Automated drivendata.org fetching/scraping is disabled per "
+            "https://www.drivendata.org/termsofuse/ and Agent Brief v2 §4.1. "
+            "The human records TOP_PUBLIC manually with date; offline HTML "
+            "fixtures may still be passed explicitly for unit tests."
         )
-        with urlopen(request, timeout=30) as response:
-            html = response.read().decode("utf-8")
     rows = parse_leaderboard(html)
     snapshot = dict(
         evidence_class="ORGANIZER-PUBLIC-LEADERBOARD (not a submission-page receipt)",

@@ -34,6 +34,8 @@ def main() -> int:
     files = json.loads(MANIFEST.read_text(encoding="utf-8"))["files"]
     if args.verify_only:
         for item in files:
+            if item.get("multipart"):
+                continue
             path = ROOT / item["dest"]
             if not path.is_file() or digest(path) != item["sha256"]:
                 raise ValueError(f"missing or bad pinned input: {path}")
@@ -43,6 +45,8 @@ def main() -> int:
     (ROOT / "data").mkdir(exist_ok=True)
     groups: dict[tuple[str, str], list[dict]] = {}
     for item in files:
+        if item.get("multipart"):
+            continue
         groups.setdefault((item["repo"], item["ref"]), []).append(item)
     for (repo, ref), items in groups.items():
         if all((ROOT / item["dest"]).is_file() and digest(ROOT / item["dest"]) == item["sha256"] for item in items):

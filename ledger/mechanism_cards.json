@@ -61,5 +61,26 @@
     "predicted_sign_size": "MODEL +0.006 live, scenario range [-0.012, +0.028]. Point scenario: m_add 0.30, t_rm 0.02, m_rm 0.02, t_add = 0.2 m_add, calibrated on the two CLAIM pairs (0.2778 / 0.2600). The sign is not guaranteed: at m_add <= 0.15 and t_rm >= 0.02 the recall lost from the donors dominates.",
     "confounder": "CV excursion. Under every estimator tried, R0 sits at 0.62 (raw 1 km counts, occupied blocks) / 0.48 (5 km-smoothed density); these variants push it to 1.02-1.36 / 0.67-1.07, far outside the 0.51-0.59 band the brief quotes for the best files. If that band is causal and not an artefact of the estimator, the live change should be negative even though the algebra predicts positive. That is the cleanest way to falsify the folklore.",
     "falsifier": "Live change <= -0.010: concentration past the parent costs real recall, the cold-tail donors were catching isolated blind faults, and the axis is closed. Live change in (-0.010, +0.010): the metric's redundancy credit is too small to matter at 10-20 % and the axis is closed as sub-noise at this dose. Live change >= +0.010 with the 20 % move > 10 % move: mechanism confirmed, scale the dose and combine with the best MASS setting next session."
+  },
+  "h33-h33-2-b2-PRUNEp1px-20261023-0542a27c": {
+    "hypothesis": "Restoring the 100-200 m flank (1 < d_cat <= 2 px) while holding count strictly constant at 37,654 lowers live DTI if near-catalogue detections in H19-5 are dominated by digitizing jitter and aeromagnetic halo side-lobes around already-masked USGS/INGENIOUS traces rather than independent splay faults.",
+    "mechanism": "Known traces are masked pixel-exactly (Forum #11516), so a dot at 141-200 m (d in {sqrt(2), 2}) from a known fault with no off-catalogue splay earns T=0 while adding 0.2 to denominator D = 0.2(T + S - M) + 0.8|G|. Holding S = 37,654 isolates true flank toxicity from the 40,199 -> 37,654 mass drop that confounded GEMSDOE28 -> GEMSDOE32.",
+    "non_fault_mimic": "1:24k-1:100k map-digitization offsets (+/-100 m) and 400 m GeoDAWN aeromagnetic gridding shoulders displace apparent ridge crests 100-200 m off the mapped fault centerline where only the single mapped fault plane exists in nature.",
+    "predicted_sign_size": "MODEL predicted live delta -0.006 vs R0 (range -0.014 to +0.006; <0.01 absolute change counts as inconclusive on public chunks).",
+    "falsifier": "Live score gain >= +0.01 over R0 falsifies flank toxicity and proves 100-200 m damage zones harbor dense unmapped synthetic splays/re-digitized traces (Forum #11516/#11536), showing R0's prior gain came from lower mass rather than 2 px exclusion."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705": {
+    "hypothesis": "Removing R0's remaining 2,171 dots inside the 300 m kernel halo (941 at 224 m, 670 at 283 m, 560 at 300 m) and reallocating them to top exact-marginal-gain un-emitted H19-5 multi-line fault ridges beyond 300 m improves live DTI while bringing 100% of dots into full >=3 px compliance.",
+    "mechanism": "Under GeoDAWN's 400 m flight-line spacing and 150-200 m drape height, basement magnetic/gravity steps across mapped faults cast horizontal-gradient side-lobes 200-300 m wide. Reallocating those 2,171 dots onto uncovered multi-km H19-5 strands at d_cat > 3 px fills 283 m thinning gaps where line-like truth exceeds the 0.2*DTI (~0.056) threshold.",
+    "non_fault_mimic": "Dipping normal-fault footwall/hanging-wall magnetic anomaly peaks shifted 200-300 m down-dip from the already-mapped surface trace, plus range-front alluvial fan apron breaks parallel to mapped master faults.",
+    "predicted_sign_size": "MODEL predicted live delta +0.005 vs R0 (range -0.006 to +0.015; treat |delta| < 0.01 as within public-chunk noise unless directional across p1px -> R0 -> p3px).",
+    "falsifier": "Live score drop <= -0.01 vs R0 falsifies the 300 m side-lobe hypothesis and demonstrates that 200-300 m footwall/hanging-wall step-faults and tight relay splays carry higher true fault density than off-collar H19-5 ridges."
+  },
+  "h33-h33-2-b2-PRUNEp4px-20261023-be9fd3d5": {
+    "hypothesis": "Extending catalogue exclusion to 400 m (one full GeoDAWN flight-line spacing, removing 3,825 dots) over-prunes genuine antithetic range-front step-faults, synthetic splays, and hard-linked relay ramps that cluster 250-400 m from master faults, causing live DTI to turn negative.",
+    "mechanism": "Great Basin normal-fault damage zones and step-over relays routinely host secondary slip planes 300-400 m from master scarps (Faulds & Hinz 2015), where a dot at d_cat > 3 px already suffers zero masked-catalogue kernel waste and earns full multi-pixel line credit T.",
+    "non_fault_mimic": "Broad 400 m upward-continued aeromagnetic/isostatic-gravity regional gradients and pediment erosion surfaces flanking range-front faults without discrete secondary brittle slip.",
+    "predicted_sign_size": "MODEL predicted live delta -0.009 vs R0 (range -0.022 to +0.004), bracketing the upper turning point of the collar curve (100 m, 200 m, 300 m, 400 m) at constant N = 37,654.",
+    "falsifier": "Live score gain >= +0.01 over both R0 and p3px falsifies narrow damage-zone splay clustering and proves test-set new faults are strongly depleted within 400 m of existing USGS/INGENIOUS traces (e.g., due to compilation buffer rules)."
   }
 }
