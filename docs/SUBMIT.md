@@ -4,7 +4,7 @@
 
 **Axis chosen by the agent** (Brief v2 §5: the human asked not to be prompted). Parent
 `h33-h33-2-b2` was rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`, 37,654 dots)
-after all 15 manifest pins verified. Ledger: **35** rows, **0** portal receipts. Every
+after all 15 manifest pins verified. Ledger after three concurrent merges: **44** rows, **0** portal receipts. Every
 number below is `MODEL` or `PROXY`; **nothing here is a score.** No file was submitted.
 
 **Ranking:** exact iterative marginal expected-DTI under the pinned label-free field `w`
@@ -36,12 +36,14 @@ catalogue holdout `0.003839` vs R0 `0.004010` (degenerate, `n = 22,663`, IR-88-3
 catalogue mass, unique SHA-256, re-read from disk) `PASS` in
 `releases/h33-h33-2-b2-MASSr10plus-20261023-24fd987d.json`.
 
-**Do not upload `MASSr10plus` until the human answers one question:** the brief's `>= 3 px`
-rule (§4.4) is absolute for non-PRUNE axes, and this arm inherits R0's `2,171` collar dots.
-If that rule is read literally, spend slot 2 on `PRUNEp3.2px-f272cdae` instead, or build
-`(PRUNEp3px, MASS, r10plus)` — the gate-clean form of this session's only positive arm
-(proposed in `SLOT_PLAN.md`, not built). A live change under `0.01` is no evidence, and
-`+0.003` is below that threshold: this arm is the best of a weak axis, not a strong pick.
+**Do not upload any `MASSr10*` arm.** The concurrent SNAP session (PR #36, IR-88-47) corrected
+`scripts/validate_variant.py` so non-PRUNE axes now fail on *any* positive mass at `<3 px`, and all three
+arms inherit R0's 1,611 dots strictly inside 3 px (2,171 at `<=3 px`, 560 of them at exactly 3 px). They
+are **HOLD** alongside the R0 SNAP / CONCENTRATION / RELIEF families. Spend slot 2 on the gate-clean
+`PRUNEp3space35-49fff49b` (**MODEL +0.007**) instead; if the human wants this session's positive result in
+an uploadable form, the next session should build `(PRUNEp3px-6f7ae705, MASS, r10plus)` (proposed in
+`SLOT_PLAN.md`, not built here). A live change under `0.01` is no evidence, and the mass effect itself is
+`+0.0011` at `+10%` — this is the best arm of a weak axis, not a strong pick.
 
 Human uploads **only one twin per slot**, then pastes the portal receipt into
 `receipt_score` / `receipt_date`. Check against actual upload history: blank ledger
