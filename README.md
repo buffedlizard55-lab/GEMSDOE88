@@ -6,12 +6,12 @@
 | Field | Current evidence |
 |---|---|
 | Parent R0 | `h33-h33-2-b2`, 37,654 dots; all 15 manifest hashes verified this session; full lineage reproduced both SHA-256 values: zeros `c55bafc4…`, NaN `baeae321…`. |
-| Best receipt | **None.** R0 `0.2778` remains **CLAIM**. Ledger has 32 built candidates and no portal receipts. |
+| Best receipt | **None.** R0 `0.2778` remains **CLAIM**. Ledger has 35 built candidates and no portal receipts. |
 | TOP_PUBLIC | **Unknown in current brief.** Older repository value 0.4413 is historical/unconfirmed, not adopted as a target. |
 | Slots left / deadline | **Unknown / unknown.** One entity, at most 3 scored files per rolling week; one blind final. `2026-12-03` requires human confirmation on the competition page. No submissions by this agent. |
-| This session | **AXIS=PRUNE; zero new variants.** Requested 1/3 px arms already built; 2 px is R0. Exact-hash/literal-pair ledger audit passes. No repeat experiments or new ledger rows. See `evidence/session_20261023_prune_stop.json`. |
+| This session | **AXIS=SPACING; 3 variants built, all HOLD.** Shared 1,914-dot decluster donors (5.08%) on gate-clean parent `R1 = PRUNEp3px`; receivers differ only by geometry (farthest-point / 4px-lattice / along-strike), gate-clean, fresh-validated. Preregistered MODEL kept unedited; blind SGMC ordering matches prereg (`poisson28` +0.00074 > `strike` > `lattice4px`, all << 0.01). See `evidence/spacing_axis_report.json`, IR-88-44. |
 | Next three slots | Conditional: existing `PRUNEp3px-6f7ae705` (historical **MODEL +0.005**), optional lower bracket `PRUNEp1px-0542a27c` (**MODEL -0.006**), reserve `PRUNEp3.2px-f272cdae` (**MODEL +0.002**) only after receipt evidence supports widening. Full IDs, prerequisites, and decision tree in `SLOT_PLAN.md` / `docs/SUBMIT.md`. |
-| Holds / limitations | `SNAPscarp2px-fae77ff4` retains 2,171 sub-3-px dots: **HOLD**, not slot 2. Existing PRUNE TIFFs are absent here: historical JSON is not fresh validation. Preexisting tracked competition-derived TIFF/ZIP files remain a data-use concern (IR-88-43). No new bulk data tracked. |
+| Holds / limitations | `SNAPscarp2px-fae77ff4` retains 2,171 sub-3-px dots: **HOLD**, not slot 2. All 3 SPACING arms **HOLD** (sub-threshold diagnostics; `poisson28-60f65400` is the declustered-parent candidate). Existing PRUNE TIFFs are absent here: historical JSON is not fresh validation. Preexisting tracked competition-derived TIFF/ZIP files remain a data-use concern (IR-88-43). No new bulk data tracked. |
 
 This block and the current brief supersede historical instructions below, including
 rank/overlap uniqueness gates, automatic-upload language, and unconfirmed quota claims.

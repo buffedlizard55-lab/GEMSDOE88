@@ -1,11 +1,23 @@
 # SLOT_PLAN — one entity; at most 3 scored files per rolling week
 
-**2026-10-23 · AXIS=PRUNE · no new variants.** All 15 manifest pins verified;
-R0 rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`, 37,654 dots).
-Ledger: **32** built rows, **0** portal receipts. Requested PRUNE radii 1 and 3 px
-already exist; 2 px is R0. Do not repeat them or extend the sweep merely for novelty.
-Audit: `evidence/session_20261023_prune_stop.json`. Historical cards are not fresh
-format validations; existing PRUNE TIFFs are absent from this checkout.
+**2026-10-23 · AXIS=SPACING · 3 variants built, all HOLD.** All 15 manifest pins
+verified; R0 rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`, 37,654
+dots); parent `R1 = PRUNEp3px-6f7ae705` rebuilt with both hashes asserted.
+Ledger: **35** built rows (32 + 3 SPACING), **0** portal receipts. Predictions
+preregistered (`registry/spacing_preregistration.json`), kept unedited.
+
+**What SPACING did:** the only brief axis never built that stays Week-1-eligible
+(TRACKB is Phase 2 only). R0 is already perfect 2.8 px Poisson spacing and
+carries the 2–3 px collar, so SPACING was built on gate-clean R1, whose refills
+hold a 1,914-dot decluster defect (min NN 1.0 px). All three arms share those
+donors (5.08%) and differ ONLY in receiver geometry on un-emitted H19-5 at
+`d_cat > 3 px`, with no field/label ranking. Report-only blind SGMC ordering
+matches preregistration exactly: `poisson28 0.096820 (+0.00074 vs R1)` >
+`strike 0.095396 (-0.00069)` > `lattice4px 0.095292 (-0.00079)`; all magnitudes
+are far below the 0.01 no-evidence line, so no slot changes hands. `poisson28`
+(`60f65400`, MODEL +0.003) is the declustered-parent candidate and the
+receiver-geometry prior for SUPPORT; `strike`/`lattice4px` are HOLD (MODEL
++0.000/-0.004). Details: `evidence/spacing_axis_report.json`, IR-88-44.
 
 **Budget/target:** TOP_PUBLIC **unknown** in the current brief (repository's older
 0.4413 is not adopted as a current target). Slots left this rolling week / total:
@@ -29,6 +41,7 @@ A live difference **under 0.01 is no evidence**; public/private chunks may diffe
 `SNAPscarp2px-fae77ff4` is **HOLD**: its historical card records min catalogue
 distance 2.2361 px and 2,171 dots <=3 px, despite all *added* dots being >3 px.
 This violates the non-PRUNE >=3 px constraint. No label-relief probe is queued.
+No SPACING slot by default: all three arms are sub-threshold diagnostics.
 Catalogue holdout / SGMC remain report-only PROXY, never promotion gates.
 
 ## Weeks to the provisional deadline
@@ -43,9 +56,13 @@ Catalogue holdout / SGMC remain report-only PROXY, never promotion gates.
 - **SUPPORT:** use spaced H16-1/H19-4 ridge support instead of densifying saturated
   H19-5. Mechanism: recover uncovered strand length. Confounder: ancestor tuning.
   Falsifier: no >=0.01 live gain in a count-matched, spacing-controlled experiment.
+  (SPACING prior: place SUPPORT receivers by farthest-point uniformity, not lattice
+  or along-strike — `poisson28` beat both pairwise on the blind control.)
 - **RANKFIELD:** replace the refill field while holding collar/count/spacing fixed.
   Mechanism: better selection of plausible splays. Confounder: bedrock-map bias in
   SGMC. Falsifier: no >=0.01 live gain; SGMC alone cannot establish efficacy.
 - **STRIKE_ALIGN:** strike-consistent edge recentering on a named gate-clean parent.
   Mechanism: coherent fault scarps. Confounder: drainage, lithology, flight lines.
   Falsifier: no improvement over a matched randomized-strike control.
+  (SPACING note: pure along-strike receiver geometry lost to uniformity here, so any
+  STRIKE_ALIGN revival needs a live receipt, not a proxy argument.)
