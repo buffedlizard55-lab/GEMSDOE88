@@ -1,0 +1,292 @@
+{
+  "schema": "gems88.relief-diagnostic.v1",
+  "evidence_label": "PROXY/MODEL diagnostics only; SGMC and catalogue distributions never gate and never select dots",
+  "axis_field": "Band 12 det_elev footprint terciles (see relief_axis_report for exact thresholds)",
+  "footprint_px": 5167373,
+  "band12_det_elev_terciles": {
+    "catalogue": {
+      "counts": [
+        18512,
+        24779,
+        17697
+      ],
+      "share_pct": [
+        30.354,
+        40.629,
+        29.017
+      ],
+      "per_1k_footprint": [
+        10.747,
+        14.386,
+        10.274
+      ]
+    },
+    "sgmc_off_catalogue": {
+      "counts": [
+        7068,
+        15752,
+        39883
+      ],
+      "share_pct": [
+        11.272,
+        25.122,
+        63.606
+      ],
+      "per_1k_footprint": [
+        4.103,
+        9.145,
+        23.155
+      ]
+    },
+    "R0": {
+      "counts": [
+        7701,
+        15739,
+        14214
+      ],
+      "share_pct": [
+        20.452,
+        41.799,
+        37.749
+      ],
+      "per_1k_footprint": [
+        4.471,
+        9.138,
+        8.252
+      ]
+    },
+    "R1": {
+      "counts": [
+        7690,
+        15718,
+        14246
+      ],
+      "share_pct": [
+        20.423,
+        41.743,
+        37.834
+      ],
+      "per_1k_footprint": [
+        4.465,
+        9.125,
+        8.271
+      ]
+    },
+    "candidate_pool_H19_not_R1_gt3px": {
+      "counts": [
+        12877,
+        25590,
+        20843
+      ],
+      "share_pct": [
+        21.711,
+        43.146,
+        35.142
+      ],
+      "per_1k_footprint": [
+        7.476,
+        14.857,
+        12.101
+      ]
+    },
+    "footprint_px": [
+      1722458,
+      1722457,
+      1722458
+    ]
+  },
+  "band19_det_elev_slope_terciles_NOT_USED": {
+    "q1": 1.8019908666610718,
+    "q2": 8.093714078267414,
+    "catalogue": {
+      "counts": [
+        12158,
+        26477,
+        22353
+      ],
+      "share_pct": [
+        19.935,
+        43.413,
+        36.651
+      ],
+      "per_1k_footprint": [
+        7.059,
+        15.372,
+        12.977
+      ]
+    },
+    "sgmc_off_catalogue": {
+      "counts": [
+        2064,
+        15385,
+        45254
+      ],
+      "share_pct": [
+        3.292,
+        24.536,
+        72.172
+      ],
+      "per_1k_footprint": [
+        1.198,
+        8.932,
+        26.273
+      ]
+    },
+    "R0": {
+      "counts": [
+        177,
+        20410,
+        17067
+      ],
+      "share_pct": [
+        0.47,
+        54.204,
+        45.326
+      ],
+      "per_1k_footprint": [
+        0.103,
+        11.849,
+        9.909
+      ]
+    },
+    "R1": {
+      "counts": [
+        176,
+        20339,
+        17139
+      ],
+      "share_pct": [
+        0.467,
+        54.016,
+        45.517
+      ],
+      "per_1k_footprint": [
+        0.102,
+        11.808,
+        9.95
+      ]
+    },
+    "candidate_pool_H19_not_R1_gt3px": {
+      "counts": [
+        272,
+        32554,
+        26484
+      ],
+      "share_pct": [
+        0.459,
+        54.888,
+        44.654
+      ],
+      "per_1k_footprint": [
+        0.158,
+        18.9,
+        15.376
+      ]
+    },
+    "footprint_px": [
+      1722459,
+      1722456,
+      1722458
+    ]
+  },
+  "local_relief_11x11_range_terciles_NOT_USED": {
+    "q1": 42.08297220865885,
+    "q2": 141.84078979492188,
+    "catalogue": {
+      "counts": [
+        12016,
+        25626,
+        23346
+      ],
+      "share_pct": [
+        19.702,
+        42.018,
+        38.28
+      ],
+      "per_1k_footprint": [
+        6.976,
+        14.878,
+        13.554
+      ]
+    },
+    "sgmc_off_catalogue": {
+      "counts": [
+        1450,
+        14671,
+        46582
+      ],
+      "share_pct": [
+        2.312,
+        23.398,
+        74.29
+      ],
+      "per_1k_footprint": [
+        0.842,
+        8.517,
+        27.044
+      ]
+    },
+    "R0": {
+      "counts": [
+        377,
+        16291,
+        20986
+      ],
+      "share_pct": [
+        1.001,
+        43.265,
+        55.734
+      ],
+      "per_1k_footprint": [
+        0.219,
+        9.458,
+        12.184
+      ]
+    },
+    "R1": {
+      "counts": [
+        378,
+        16316,
+        20960
+      ],
+      "share_pct": [
+        1.004,
+        43.331,
+        55.665
+      ],
+      "per_1k_footprint": [
+        0.219,
+        9.473,
+        12.169
+      ]
+    },
+    "candidate_pool_H19_not_R1_gt3px": {
+      "counts": [
+        444,
+        22712,
+        36154
+      ],
+      "share_pct": [
+        0.749,
+        38.294,
+        60.958
+      ],
+      "per_1k_footprint": [
+        0.258,
+        13.186,
+        20.99
+      ]
+    },
+    "footprint_px": [
+      1722458,
+      1722458,
+      1722457
+    ]
+  },
+  "infeasibility_note": "Low Band-19-slope and low local-relief terciles contain <1.1% of parent dots and only a few hundred H19-5 refill candidates, so a 10-15% RELIEF shift into them would require importing a new detector instead of reallocating the parent's mass.",
+  "marginal_return_ratio_catalogue_over_R1_dot_density_by_band12_tercile": {
+    "T1_basin": 2.407,
+    "T2_piedmont": 1.576,
+    "T3_range": 1.242
+  }
+}

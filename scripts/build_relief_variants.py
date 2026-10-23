@@ -68,6 +68,11 @@ R1_ID = bsv.R1_ID
 R1_SHA_NAN = bsv.R1_SHA_NAN
 R1_SHA_ZEROS = bsv.R1_SHA_ZEROS
 
+# This module owns ONE of the two concurrently built RELIEF families (IR-88-39).
+# A rerun replaces ONLY these values; the bracket family lives in
+# scripts/build_relief_bracket_variants.py and must survive untouched.
+OUR_VALUES = {"up2t10", "up2t15", "dn2t15"}
+
 TERRAIN_BAND = 12                 # det_elev - "Detrended elevation"
 TERRAIN_NAMES = {0: "basin", 1: "piedmont", 2: "range_front"}
 MIN_CATALOGUE_PX = 3.0            # Brief §4.4 collar, enforced strictly
@@ -297,7 +302,7 @@ def main() -> int:
     print(f"      band {TERRAIN_BAND} det_elev tercile thresholds: {thresholds[0]:.3f}, {thresholds[1]:.3f}")
     print(f"      footprint area per tercile: {area}")
 
-    # Idempotent re-run: drop previous RELIEF rows/files for this parent.
+    # Idempotent re-run: drop ONLY this family's previous RELIEF rows/files.
     ledger_rows: list[dict[str, str]] = []
     raw_kept_lines: list[str] = []
     fieldnames: list[str] = []
@@ -310,7 +315,7 @@ def main() -> int:
             reader = csv.DictReader(fh)
             fieldnames = list(reader.fieldnames or [])
             for row in reader:
-                if row.get("axis") == "RELIEF" and row.get("parent") == R1_ID:
+                if row.get("axis") == "RELIEF" and row.get("parent") == R1_ID and row.get("value") in OUR_VALUES:
                     continue
                 ledger_rows.append(row)
                 for k in ("sha256", "sha256_zeros"):
@@ -321,15 +326,17 @@ def main() -> int:
         header_line = raw_lines[0] if raw_lines else ""
         for line in raw_lines[1:]:
             parsed = next(csv.reader([line])) if line.strip() else []
-            if len(parsed) > 2 and parsed[2] == "RELIEF" and parsed[1] == R1_ID:
+            if len(parsed) > 3 and parsed[2] == "RELIEF" and parsed[1] == R1_ID and parsed[3] in OUR_VALUES:
                 continue
             raw_kept_lines.append(line)
-    for stale in RELEASES.glob(f"{R1_ID}-RELIEF*"):
-        if stale.suffix in (".tif", ".zip", ".json"):
-            stale.unlink()
+    for _v in OUR_VALUES:
+        for stale in RELEASES.glob(f"{R1_ID}-RELIEF{_v}-*"):
+            if stale.suffix in (".tif", ".zip", ".json"):
+                stale.unlink()
 
     cards = json.loads(CARDS.read_text()) if CARDS.is_file() else {}
-    cards = {k: v for k, v in cards.items() if "-RELIEF" not in k}
+    cards = {k: v for k, v in cards.items()
+             if not any(k.startswith(f"{R1_ID}-RELIEF{_v}-") for _v in OUR_VALUES)}
     arms = {bp.PARENT_ID: lin["r0"], R1_ID: r1}
     built = []
 
@@ -479,7 +486,7 @@ def main() -> int:
         buf = io.StringIO()
         writer = csv.DictWriter(buf, fieldnames=fieldnames, lineterminator="\n")
         for row in ledger_rows:
-            if row.get("axis") == "RELIEF":
+            if row.get("axis") == "RELIEF" and row.get("value") in OUR_VALUES:
                 writer.writerow({k: row.get(k, "") for k in fieldnames})
         body = buf.getvalue().rstrip("\n")
         with LEDGER.open("w", newline="") as fh:

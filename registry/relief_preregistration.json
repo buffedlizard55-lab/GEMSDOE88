@@ -1,0 +1,72 @@
+{
+  "schema": "gems88.relief-preregistration.v1",
+  "written_before_variant_proxy_evaluation": true,
+  "session_date": "2026-10-23",
+  "axis": "RELIEF",
+  "axis_choice_basis": "Human instructed the agent to pick its own session axis (Agent Brief v2 session prompt, 2026-10-23). MASS (3), CONCENTRATION (4), PRUNE (4) and SNAP (9) rows already exist in ledger/submissions.csv; SPACING is the brief's lowest priority and TRACKB is Phase 2 only. RELIEF is the only unbuilt Week 1-2 axis in the brief's default plan. Recorded in IRREGULARITIES.md.",
+  "parent": {
+    "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "label": "R1",
+    "why_not_R0": "Brief v2 section 4.4 requires >=3 px from the catalogue for every non-PRUNE axis. R0 (h33-h33-2-b2) carries 2,171 dots at 2<d_cat<=3 px, so a RELIEF edit of R0 would be unspendable HOLD like the earlier R0-based MASS/CONCENTRATION families. SLOT_PLAN.md Week 2 already scheduled RELIEF on R1. R1 is rebuilt from the pinned lineage and BOTH published SHA-256 values are asserted before editing; if either mismatches the build aborts (never approximate the parent).",
+    "sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+    "sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+    "n_dots": 37654,
+    "live_score_evidence": "R1 has no RECEIPT. Its grandparent R0 live 0.2778 is CLAIM (no receipt in ledger/). All deltas below are MODEL vs R1, never a score."
+  },
+  "relief_definition": {
+    "field": "training_features.tif Band 12 det_elev (detrended elevation), cleaned exactly as scripts/build_prune_variants.py cleans bands (footprint-masked, NaN to 0, |x|>1e20 replaced by footprint median)",
+    "terciles": "Footprint quantiles q1=Q(1/3), q2=Q(2/3) of Band 12 over the 5,167,373 footprint pixels, recomputed deterministically at build time and recorded to full float precision in evidence/relief_axis_report.json (diagnostic values 2026-10-23: q1 approx -143 m, q2 approx +38.6 m). Classes: T1 basin (det_elev<=q1), T2 piedmont/range-front (q1<det_elev<=q2), T3 range (det_elev>q2). Outside footprint: no class.",
+    "why_not_band19_or_local_relief": "Pre-build diagnostic (registry/relief_diagnostic.json, reproduced by the build script): Band 19 det_elev_slope low tercile holds 0.47% of R0 dots and 279 H19-5 refill candidates; 1.1 km local-relief low tercile holds 1.00% of R0 dots and 450 candidates. A 10-15% shift into a flat-basin slope tercile is arithmetically infeasible from the parent's own H19-5 support and would require a new detector (changing the field, not the RELIEF axis; every field-replacement lane scored 0.00-0.19 CLAIM per the brief). Band 12 terciles have 12,851 / 25,616 / 20,843 refill candidates on the R1 basis. SLOT_PLAN.md also specified Band 12 det_elev terciles.",
+    "diagnostic_parent_shares_pct_R1": {"T1_basin": 20.41, "T2_piedmont": 41.75, "T3_range": 37.83},
+    "diagnostic_catalogue_shares_pct": {"T1_basin": 30.35, "T2_piedmont": 40.63, "T3_range": 29.02},
+    "diagnostic_catalogue_density_per_1k_footprint": {"T1_basin": 10.77, "T2_piedmont": 14.36, "T3_range": 10.27},
+    "diagnostic_R1_dot_density_per_1k_footprint": {"T1_basin": 4.46, "T2_piedmont": 9.13, "T3_range": 8.27},
+    "marginal_return_ratio_catalogue_density_over_dot_density": {"T1_basin": 2.41, "T2_piedmont": 1.57, "T3_range": 1.24},
+    "sgmc_warning": "The USGS SGMC off-catalogue control is 63.6% T3 / 72.2% top slope tercile (a bedrock geologic-map compilation, biased to exposed range faults). Its relief gradient points opposite to the catalogue marginal-return gradient. Per Brief sections 3 and 6 it is REPORT ONLY, never a gate and never used to select donors or receivers. The bas2rng12 arm exists precisely so a live receipt can arbitrate between the two source populations."
+  },
+  "allocation_algorithm": "Count fixed at 37,654. Dose n_shift = round(0.12*37654) = 4,518 dots (11.9987% of parent; Brief RELIEF range 10-15%, change gate 1-50%). Step 1: drop the 4,518 parent dots in the SOURCE tercile with the lowest exact marginal DTI loss under the parent's own label-free corroboration field w (scripts/build_prune_variants.select_exact_marginal_dti_drop, the same ranking that built R1). Step 2: add the 4,518 un-emitted H19-5 ridge pixels in the TARGET tercile with the highest exact marginal DTI gain under the same w (select_exact_marginal_dti_add), candidates restricted to footprint, d_cat>3.0 px, target tercile. No RNG. Source/target terciles are disjoint, so no dropped dot can be re-added, the untouched tercile keeps its exact parent count, and every variant differs from R1 ONLY in relief-tercile allocation.",
+  "variants_fixed_before_any_proxy": [
+    {
+      "value": "rng2bas12",
+      "source": "T3_range",
+      "target": "T1_basin",
+      "n_shift": 4518,
+      "predicted_change_vs_parent_R1_live": "MODEL:+0.008",
+      "predicted_range_vs_parent_R1_live": "[-0.008,+0.024]",
+      "rationale": "Primary. Catalogue marginal return per dot is ~1.9x higher in T1 than T3 (ratio 2.41 vs 1.24) because R1 starves basin/piedmont dots relative to catalogue fault density. Post-shift shares (T1 32.4 / T2 41.8 / T3 25.8) near-match the catalogue relief allocation with a deliberate slight basin overshoot for alluvial burial incompleteness in the catalogue itself."
+    },
+    {
+      "value": "rng2pmt12",
+      "source": "T3_range",
+      "target": "T2_piedmont",
+      "n_shift": 4518,
+      "predicted_change_vs_parent_R1_live": "MODEL:+0.002",
+      "predicted_range_vs_parent_R1_live": "[-0.010,+0.014]",
+      "rationale": "Range-front rival. T2 has the highest absolute catalogue fault density (14.36/1k) and hosts the range-front/piedmont systems the Faulds step-over inventory describes, but R1 already allocates T2 near its catalogue share, so the marginal-equalisation model predicts only a weak gain. Separates 'basin receivers were wasted' from 'range donors were valuable' if rng2bas12 fails."
+    },
+    {
+      "value": "bas2rng12",
+      "source": "T1_basin",
+      "target": "T3_range",
+      "n_shift": 4518,
+      "predicted_change_vs_parent_R1_live": "MODEL:-0.010",
+      "predicted_range_vs_parent_R1_live": "[-0.026,+0.006]",
+      "rationale": "Reverse bracket / falsification arm. This is the direction the bedrock-biased SGMC control prefers (SGMC truth-to-dot density ratio highest in T3). Under the primary (catalogue marginal + burial incompleteness) model it should lose: it starves T1 to ~8.4% of dots. Built as a diagnostic; spent live only if rng2bas12 returns <= R1-0.01, which would indicate the new-fault truth is SGMC-like bedrock faulting rather than catalogue-like relief allocation."
+    }
+  ],
+  "decision_rules": {
+    "live_noise_floor": "|delta| < 0.01 on the public chunks is no evidence (Brief section 5).",
+    "if_rng2bas12_ge_R1_plus_001": "Basinward relief reallocation confirmed. Promote it as the new parent for a dose arm (rng2bas at +6% more or a catalogue-exact proportional allocation) and for combining with any other confirmed axis in Weeks 3-4.",
+    "if_rng2bas12_le_R1_minus_001": "Primary relief hypothesis falsified in this direction. Spend the next relief slot on rng2pmt12 (tests whether T2 receivers save the axis) before ever considering bas2rng12; if rng2pmt12 also loses, range dots were load-bearing and RELIEF closes toward T3.",
+    "if_abs_delta_lt_001": "No evidence from one public-chunk receipt. Do not build dose variants; carry rng2pmt12 as the bracket and prioritise the R1 collar receipt and a second orthogonal axis."
+  },
+  "gates": "Brief section 6 MUST gates only: format vs sample_submission.tif, zero catalogue mass, min d_cat>3 px asserted, SHA-256 not in ledger, parent-diff recorded, re-read from disk. Hide-and-recover PROXY (degenerate 0.0 for any >3 px file, IR-88-20), SGMC control and leakage canaries are REPORT ONLY.",
+  "references": [
+    {"claim": "Competition DTI metric/format (supplied by human brief; not fetched by agent)", "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"},
+    {"claim": "Organizer: known faults masked pixel-exactly; new-fault truth may lie within 300 m of known traces (supplied by human brief; not fetched)", "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"},
+    {"claim": "Organizer: new fault includes newly mapped geometry of existing systems (supplied by human brief; not fetched)", "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536"},
+    {"claim": "USGS GeoDAWN Area 2 acquisition (400 m lines, 150-200 m drape) context (supplied by human brief; not fetched)", "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7"},
+    {"claim": "Faulds & Hinz 2015 structural settings of geothermal systems (step-overs/intersections on range-front fault systems); URL as already recorded in SLOT_PLAN.md", "url": "https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11072.pdf"},
+    {"claim": "USGS SGMC source for the report-only off-catalogue control (manifest source_url)", "url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d"}
+  ]
+}
