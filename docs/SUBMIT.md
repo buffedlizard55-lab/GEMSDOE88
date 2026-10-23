@@ -1,5 +1,42 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+## Current session — 2026-10-23 startup audit (takes precedence over historical cards)
+
+**No new candidate or submission. AXIS=PRUNE:** requested radii already built;
+2 px is R0. Ledger stays at 32 rows. Full-lineage R0 startup validation passed
+both pinned SHA-256 values after verification of all 15 inputs. Audit receipt:
+`evidence/session_20261023_prune_stop.json` (not a submission-page receipt).
+
+**Do not upload yet:** current TOP_PUBLIC/date, actual rolling-week balance and
+deadline are unknown. Existing candidate TIFFs below are absent in this checkout;
+their old JSON records are **historical build records, not fresh validations**.
+Privately restore an existing artifact, match its complete recorded hash, and
+independently validate its actual disk bytes, primary/fallback equality, format,
+zero catalogue mass, and applicable collar before a human spends a slot.
+No rank-correlation or dot-overlap uniqueness threshold is permitted.
+
+| Order | Exact submission name (primary file is `releases/<name>.tif`; fallback `<name>-zeros.tif`) | <=140-char form note | Historical format record |
+|---|---|---|---|
+| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json` |
+| 2, optional | `h33-h33-2-b2-PRUNEp1px-20261023-0542a27c` | `h33-2-b2; PRUNE <=1px, fixed 37654 dots; predicted -0.006 MODEL` | `releases/h33-h33-2-b2-PRUNEp1px-20261023-0542a27c.json` |
+| 3, reserve | `h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae` | `h33-2-b2; PRUNE <=3.2px, fixed 37654 dots; predicted +0.002 MODEL` | `releases/h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae.json` |
+
+Human uploads **only one twin per slot**, then pastes the portal receipt into
+`receipt_score` / `receipt_date` (with verbatim receipt evidence retained privately).
+Check against actual upload history: blank ledger fields do not prove slots remain.
+R0 0.2778 is CLAIM; the above predictions are MODEL, never live scores. A change
+under 0.01 is no evidence. Slot 3 is reserved unless prior receipts support it.
+
+**Corrections to historical sections below:** `SNAPscarp2px-fae77ff4` is HOLD
+(min catalogue distance 2.2361 px; 2,171 dots <=3 px); moving only its additions
+outside the collar does not satisfy the non-PRUNE rule. No label-relief probe is
+recommended. Historical recommendations to upload SNAP in slot 2 or to spend a
+RELIEF slot to probe label composition are withdrawn. Data-use terms for
+preexisting public competition-derived rasters remain unchecked (IR-88-43).
+
+---
+
+
 > **Human competitor controls all uploads (`buffedlizard55-lab`, 1 entity, `<= 3` slots/week, 1 blind final file by `2026-12-03`).** Agent never logs into or fetches `drivendata.org` or `dropbox.com`. Candidate `.tif`/`.zip` rasters live locally in `releases/` (untracked in Git per `.gitignore` data-use policy; reproducible via `python3 scripts/build_snap_variants.py`, `python3 scripts/build_prune_variants.py`, `python3 scripts/build_prune_sweep_variants.py`, `python3 scripts/build_relief_variants.py` (R1 RELIEF family) and `python3 scripts/build_relief_r0_variants.py` (R0 RELIEF family)), with tracked SHA-256 receipts in `releases/*.json` and `ledger/submissions.csv`.
 
 ## This Session — R0 Family (`AXIS = RELIEF`, Band 12 `det_elev` Area Terciles, Dose `12%` = `4,518` Dots, Constant `N = 37,654`, Parent `h33-h33-2-b2`, Seed `20261023`; concurrent R1 family below, IR-88-38)

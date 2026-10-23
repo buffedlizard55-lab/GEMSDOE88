@@ -1,0 +1,95 @@
+{
+  "schema": "gems88.session-start-audit.v1",
+  "date_utc": "2026-10-23",
+  "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+  "origin_main_sha_at_explicit_fetch": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+  "axis": "PRUNE",
+  "manifest_inputs_verified": 15,
+  "r0_exact_rebuild": true,
+  "parent_geometry": {
+    "footprint_px": 5167373,
+    "catalogue_px": 60988,
+    "zero_catalogue_mass": true,
+    "min_catalogue_distance_px": 2.23606797749979,
+    "n_within_2px": 0,
+    "n_within_3px": 2171,
+    "dots": 37654
+  },
+  "ledger_sha256": "c393563f4e85ca660eff3250e369d64ae2bf27e0a849426b653c55056e4a02be",
+  "ledger_rows": 32,
+  "remote_ledger_rows": 32,
+  "unique_primary_and_fallback_hashes": true,
+  "unique_literal_parent_axis_value": true,
+  "portal_receipts_with_score_and_date": 0,
+  "requested_prune_radii_px": {
+    "1": {
+      "existing_ids": [
+        "h33-h33-2-b2-PRUNEp1px-20261023-0542a27c"
+      ],
+      "is_parent": false,
+      "do_not_build": true
+    },
+    "2": {
+      "existing_ids": [],
+      "is_parent": true,
+      "do_not_build": true
+    },
+    "3": {
+      "existing_ids": [
+        "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+        "h33-h33-2-b2-prune3-20261023-01d57649"
+      ],
+      "is_parent": false,
+      "do_not_build": true
+    }
+  },
+  "decision": "STOP_NO_NEW_VARIANTS",
+  "new_variants": 0,
+  "new_ledger_rows": 0,
+  "historical_cards": {
+    "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705": {
+      "evidence": "HISTORICAL_BUILD_RECORD_NOT_FRESH_VALIDATION",
+      "minimum_catalogue_distance_px": 3.1623,
+      "collar_eligible_from_record": true,
+      "local_primary_present": false,
+      "predicted_change": "MODEL:+0.005"
+    },
+    "h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4": {
+      "evidence": "HISTORICAL_BUILD_RECORD_NOT_FRESH_VALIDATION",
+      "minimum_catalogue_distance_px": 2.2361,
+      "collar_eligible_from_record": false,
+      "local_primary_present": false,
+      "predicted_change": "MODEL:+0.006"
+    }
+  },
+  "preexisting_tracked_tif_zip_paths_data_use_unchecked": [
+    "docs/downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif",
+    "docs/downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.zip",
+    "docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+    "docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.zip",
+    "docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+    "docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.zip",
+    "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+    "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.zip",
+    "releases/h33-h33-2-b2-MASSm10minus-20261023-7132935e-zeros.tif",
+    "releases/h33-h33-2-b2-MASSm10minus-20261023-7132935e-zeros.zip",
+    "releases/h33-h33-2-b2-MASSm10minus-20261023-7132935e.tif",
+    "releases/h33-h33-2-b2-MASSm10minus-20261023-7132935e.zip",
+    "releases/h33-h33-2-b2-MASSm10plus-20261023-82673b57-zeros.tif",
+    "releases/h33-h33-2-b2-MASSm10plus-20261023-82673b57-zeros.zip",
+    "releases/h33-h33-2-b2-MASSm10plus-20261023-82673b57.tif",
+    "releases/h33-h33-2-b2-MASSm10plus-20261023-82673b57.zip",
+    "releases/h33-h33-2-b2-MASSm20minus-20261023-6c73303c-zeros.tif",
+    "releases/h33-h33-2-b2-MASSm20minus-20261023-6c73303c-zeros.zip",
+    "releases/h33-h33-2-b2-MASSm20minus-20261023-6c73303c.tif",
+    "releases/h33-h33-2-b2-MASSm20minus-20261023-6c73303c.zip",
+    "submissions/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+    "submissions/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.zip"
+  ],
+  "limitations": [
+    "No external rules/deadline verification; prohibited domains not contacted.",
+    "TOP_PUBLIC and rolling-week slot balance unknown in current brief.",
+    "Inspected PRUNEp3px/SNAPscarp2px TIFFs absent; no fresh candidate validation.",
+    "No holdout, leakage-canary, or SGMC rerun; no new model field or candidate."
+  ]
+}

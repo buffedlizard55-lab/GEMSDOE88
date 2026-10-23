@@ -1,40 +1,39 @@
-# SLOT_PLAN — One Entity, 3 Slots/Week, One Blind Final File by 2026-12-03
+# SLOT_PLAN — one entity; at most 3 scored files per rolling week, one blind final file
 
-**Budget:** `1` entity · `3/3` live uploads left this rolling week (`2026-10-23`, human must reconfirm) · `~18–21` slots to `2026-12-03` (human must reconfirm, IR-88-28) · **ONE blind final file** for Round 1 ($50K) and Round 2 ($250K) · `TOP_PUBLIC = 0.4413` (`2026-10-22`, human-supplied, `UNVERIFIED` here) · **`0` receipts in `ledger/submissions.csv`**.
-**Parent** `R0 = h33-h33-2-b2` (`37,654` dots, `0` at `<=2 px`, `2,171` at `2–3 px`, `0.2778` `CLAIM`, rebuilt byte-exact `c55bafc4…`/`baeae321…`). **Gate-clean parent** `R1 = PRUNEp3px` (`6f7ae705`, `min d_cat 3.1623 px`, `N` fixed).
+**`2026-10-23` · AXIS = PRUNE (refill mode, not a repeated radius).** All `15` manifest pins verified; R0 rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`, `37,654` dots). Ledger: **`35`** built rows, **`0`** portal receipts. The concurrent stop-audit (`evidence/session_20261023_prune_stop.json`, PR #33) settled the *radius* question — `1 px` and `3 px` exist and `2 px` is R0 — and this session did not re-mint any of them (IR-88-46): it varied the **refill mode**, which IR-88-37 recorded as an uncontrolled confounder in every earlier arm.
 
-## Session `2026-10-23` — `AXIS = PRUNE`, spacing-locked (non-densifying) refill
-Agent-chosen: every non-PRUNE child of R0 inherits the `2,171`-dot collar and breaks the literal `>=3 px` rule; and every existing PRUNE arm refills with no spacing constraint (`min NN 1.0 px`, IR-88-37), so *collar* and *refill* were confounded. These three arms separate them (`scripts/build_prune_spaced_variants.py`, prereg `registry/prune_spaced_preregistration.json`).
+**Budget/target:** `TOP_PUBLIC` `0.4413` is human-supplied for `2026-10-22` and `UNVERIFIED` here (the stop-audit declined to adopt it). Slots left this rolling week / total: **human must confirm** (`3/3` reported, `~18–21` to the deadline). Deadline `2026-12-03` is **human confirmation pending**. The human checks the [competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/) and [rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf); nothing here is scraped. One blind final file; the primary and its `-zeros` twin are alternatives, never two slots.
 
-| Arm | Edit | `N` | CvR min NN | Four-line field `MODEL` vs R0 | Blind `SGMC` `PROXY` vs R0 |
+## Session result — collar purge vs refill, same count, two instruments
+| Arm | Edit | `N` | refill min NN | four-line field `MODEL` vs R0 | blind `SGMC` `PROXY` vs R0 |
 |---|---|---:|---:|---:|---:|
-| `p3norefill` `fb308615` | cut `2,171` collar dots, **no refill** | `35,483` | `2.83` | `0.270354` (**−0.0157**) | `0.093643` (**−0.0024**) |
-| `p3space35` `49fff49b` | cut `2,171`, refill `2,171` at `>=3.5 px` | `37,654` | `3.61` | `0.274896` (**−0.0112**) | `0.101042` (**+0.0050**) |
-| `p4space35` `07bd8182` | cut `3,825` (`10.16%`), refill `3,825` at `>=3.5 px` | `37,654` | `3.61` | `0.263231` (**−0.0228**) | `0.102454` (**+0.0064**) |
-| *densified `300 m` rebuild = `R1`* | cut `2,171`, constrained-free refill | `37,654` | `1.00` | `0.281537` (−0.0045) | `0.096083` (+0.00002) |
-| *densified `400 m` rebuild = `p4px`* | cut `3,825`, constraint-free refill | `37,654` | `1.00` | `0.273708` (−0.0124) | `0.094465` (−0.0016) |
+| `p3norefill` `fb308615` | `300 m` collar, **no refill** | `35,483` | – | `0.270354` (−0.0157) | `0.093643` (−0.0024) |
+| `p3space35` `49fff49b` | `300 m` collar, `2,171` refills `>=3.5 px` | `37,654` | `3.6056` | `0.274896` (−0.0112) | `0.101042` (+0.0050) |
+| `p4space35` `07bd8182` | `400 m` collar, `3,825` refills `>=3.5 px` | `37,654` | `3.6056` | `0.263231` (−0.0228) | `0.102454` (+0.0064) |
+| *densified `300 m` rebuild = `R1`* | constraint-free refill | `37,654` | `1.000` | `0.281537` (−0.0045) | `0.096083` (+0.00002) |
 
-**What this teaches.** (1) The collar purge alone is negative on **both** instruments → `R1`'s MODEL `+0.005` can only be the refill, not the removal. (2) Locking the refill's spacing buys blind-fault alignment (`SGMC` `+0.005…+0.006`) and costs label-free field credit (`−0.011…−0.023`): **the two instruments disagree**, so neither arm may be promoted without a receipt (IR-88-44). (3) The `p3.7px/p4.3px` decline in the old sweep is not reproduced by a spaced refill at `400 m` on `SGMC` (`+0.0064` vs `−0.0016`), so that decline was partly a refill artefact. Evidence: `evidence/refill_spacing_comparison.json`.
+**Reading.** The purge alone loses on **both** instruments, so `R1`'s registered `MODEL +0.005` can only come from the refill. Spacing-locked refills then trade field credit (`−0.011`; `−0.023`) for blind-fault alignment (`+0.005`; `+0.006`) — a genuine instrument disagreement (IR-88-44), so no arm is promoted on agreement, because there is none. The old `p3.7px/p4.3px` decline is *not* reproduced on `SGMC` by a spaced `400 m` refill (`+0.0064` vs `−0.0016`), so part of that decline was a refill artefact. Evidence: `evidence/refill_spacing_comparison.json`.
 
-## Next 3 Slots (in order) and what each receipt changes
-| Slot | File | Why this file | Receipt decision rule |
-|---|---|---|---|
-| **1** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`R1`) | Only file that is gate-clean, count-fixed and already the base of the RELIEF/SNAP families | `>= R0+0.01` → promote as `R1`, re-base later axes. `|Δ|<0.01` → keep as gate-clean base **and** spend slot 2 on `p3space35`. `<= R0−0.01` → the purge is the culprit (`p3norefill` says so) → close the collar family, go to `CONCENTRATION` on `R0`. |
-| **2** | `h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b` | Highest blind `SGMC` of any `300 m` file and the only arm that tests spacing directly | `>= R1+0.01` → spacing is the mechanism, build `SUPPORT`/`TRACKB` on it. Within `±0.01` of `R1` → spacing is inert, retire it, keep `SGMC` as a weak prior only. `<= R1−0.01` → the field MODEL was right, densified refill wins. |
-| **3** | `h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4` (or `PRUNEp3.2px` `f272cdae` if slot 1 was ≥ `+0.01`) | `SNAPscarp2px` is the only other file above R0 on the blind control (`0.096806`); `p3.2px` brackets the collar upward | `SNAPscarp >= R1+0.01` → fuse scarp re-centring with the winning collar. Otherwise `SNAP` closes for good (two families, IR-88-31/32). |
+## Next three slots — conditional sequence, not three automatic uploads
+| Order | File / predicted live change (`MODEL`) | What a receipt would change |
+|---|---|---|
+| 1 | `PRUNEp3px-6f7ae705`, `+0.005` vs R0 `CLAIM` | First restore the artifact privately, match its full recorded hash, and re-read/validate both twins. `>= +0.01`: the collar+refill package works → re-base later axes. `\|Δ\| < 0.01`: keep it as the gate-clean base **and** spend slot 2. `<= −0.01`: the purge is the culprit (`p3norefill` agrees) → close the collar family and move to `CONCENTRATION` on a gate-clean parent. |
+| 2 | `PRUNEp3space35-49fff49b`, `+0.007` vs R0 `CLAIM` | The only `300 m`, count-fixed, gate-clean file above R0 on the blind fault control, and a direct test of spacing. `>= slot1 + 0.01`: spacing is the mechanism → build `SUPPORT`/`TRACKB` on it. Within `±0.01`: spacing inert, keep `SGMC` as a weak prior only. `<= slot1 − 0.01`: the field `MODEL` was right, densified refill wins. |
+| 3 | **Reserve** `PRUNEp4space35-07bd8182` (spacing dose) **or** `PRUNEp3.2px-f272cdae` (collar bracket) | Spend only on receipt-backed direction: `p4space35` after a positive slot 2 (tests whether alignment keeps paying as the collar widens); `p3.2px` after a positive slot 1 (tests the collar optimum). Otherwise preserve the slot. |
 
-`p4space35` is `HOLD`: 4th in line, only after a **positive** `p3space35` receipt (it is the spacing dose, not a fresh question). Nothing else in the 35-row ledger may be uploaded blind; `MASS`/`CONCENTRATION`/`RELIEF`/`SNAP` on `R0` inherit the collar and stay `HOLD`.
+`p3norefill` is **diagnostic only** (never a slot). `p4space35` is `HOLD` until a positive `p3space35` receipt. `SNAPscarp2px-fae77ff4` is **`HOLD`** — its inherited `min d_cat` is `2.2361 px` with `2,171` dots inside `3 px`, so it breaks the non-PRUNE `>=3 px` rule despite its `SGMC` `0.096806` (IR-88-46). All `MASS` / `CONCENTRATION` / `RELIEF` / R0-`SNAP` rows stay `HOLD` for the same collar reason; the three PRUNE sweep arms (`p3.7px`, `p4.3px`) are not to be uploaded blind. Every upload awaits human confirmation of quota, exact-file dedupe against actual submission history, and a fresh disk validator receipt. A live difference **under `0.01` is no evidence**; public and private chunks may differ.
 
-## Weeks to the deadline
-- **Wk 2 (slots 4–6):** re-base the winning axis on the receipt-winning parent; run `CONCENTRATION b10px-m10` (`89ffd4f3`, highest MODEL in the inventory, `+0.011`) only on a gate-clean parent.
-- **Wk 3–4 (slots 7–12):** combine the two axes with `Δ RECEIPT >= +0.01` each; pre-register one new axis (`SUPPORT` or `RANKFIELD`).
-- **Wk 5–6 (slots 13–18):** confirm the composite twice, prepare `TRACKB` for Phase 2, lock ONE final file plus its `-zeros.tif` fallback and re-validate both.
+## Weeks to the provisional deadline
+- **Oct 23–29:** receipts and quota resolved; the conditional three slots above.
+- **Oct 30–Nov 5:** re-base the receipt-winning axis on the winning parent; run `CONCENTRATION b10px-m10` (`89ffd4f3`, highest `MODEL` in the inventory) only on a gate-clean parent. Do not mint parallel duplicates.
+- **Nov 6–19:** combine two axes only after each has independent `>= 0.01` receipt evidence, naming the actual parent and recording spacing/refill confounding.
+- **Nov 20–Dec 3:** confirm the leading file, prepare Phase-2 `TRACKB` for geologist review, choose one blind final plus its fallback, and freshly validate both.
 
 ## Proposed better axes (not built this session)
-1. **`SUPPORT`** — spaced new support from `H16-1`/`H19-4` (now partly built: the spaced refill borrows this pool). *Mechanism:* spaced dots earn full line credit. *Confounder:* ancestor thresholds were tuned on this same lineage. *Falsifier:* no `SGMC` gain over `R1` at equal count.
-2. **`RANKFIELD`** — replace the four-line ranking with a field neutral on the blind control (component length or seeded random) under the same spacing lock. *Confounder:* `SGMC` bedrock faults may differ from hidden labels. *Falsifier:* `p3space35` vs its random-rank twin within `0.01` live.
-3. **`COVER_DEPTH`** — band 15 `depth_to_base_surf` terciles at fixed count. *Confounder:* smooth tens-of-km interpolation. *Falsifier:* `|Δ|<0.01` across all three terciles.
-4. **`STRIKE_ALIGN`** — move only dots whose structure-tensor strike agrees with the local ridge within `±22°`. *Confounder:* aeolian/pluvial lineaments and tie-line ripples are strike-coherent too. *Falsifier:* no gain over the same edit at random `50%` agreement.
+1. **`SUPPORT`** — spaced new support from `H16-1`/`H19-4` (partly built already: the spaced refill borrows exactly this pool). *Mechanism:* spaced dots earn full line credit. *Confounder:* those thresholds were tuned on this lineage (IR-88-45). *Falsifier:* no `SGMC` gain over `R1` at equal count.
+2. **`RANKFIELD`** — same spacing lock, but rank refills by a field neutral on the blind control (component length, or seeded random). *Confounder:* `SGMC` bedrock faults may differ from the hidden labels. *Falsifier:* `p3space35` and its random-rank twin within `0.01` live.
+3. **`COVER_DEPTH`** — band 15 `depth_to_base_surf` terciles at fixed count. *Confounder:* smooth tens-of-km interpolation. *Falsifier:* `|Δ|<0.01` across all three depth terciles.
+4. **`STRIKE_ALIGN`** — move only dots whose structure-tensor strike agrees with the local ridge within `±22°`. *Confounder:* aeolian/pluvial lineaments and tie-line ripples are strike-coherent too. *Falsifier:* no gain over the identical edit at a random `50%` strike agreement.
 5. **`TRACKB`** (Phase 2 only) — `>=1 km` strike-consistent traces from R0's longest ridge components, one evidence paragraph each.
 
-**Evidence discipline:** `RECEIPT` > `CLAIM` > `PROXY` > `MODEL`. Everything above except R0's `0.2778` (`CLAIM`) is `PROXY`/`MODEL`; a live change under `0.01` on public chunks is **no evidence**.
+**Evidence discipline:** `RECEIPT` (portal) > `CLAIM` > `PROXY` (local holdout / SGMC) > `MODEL`. Everything above except R0's `0.2778` is `PROXY` or `MODEL`; catalogue holdout and `SGMC` stay report-only and never gate promotion.
