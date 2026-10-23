@@ -1,0 +1,73 @@
+{
+  "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-SNAPSHOT",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "checked_utc": "2026-10-22T20:15:00Z",
+  "live": false,
+  "stale_after_hours": 24,
+  "note": "Official DrivenData public leaderboard snapshot verified 2026-10-22 UTC (#1 xiaofanhu 0.4413; #2 cfld__ 0.3904; #3 Batik Shirt Brothers 0.3904). Public rank can change at any time, is evaluated on Round 1 public labels, and does not authenticate any owner submission receipt.",
+  "top_public_dti": 0.4413,
+  "prompt_claimed_top": 0.3195,
+  "prompt_claim_status": "STALE: superseded by the dated official public leaderboard snapshot (0.4413)",
+  "rows": [
+    {
+      "rank": 1,
+      "user": "xiaofanhu",
+      "public_dti": 0.4413,
+      "entries": 27
+    },
+    {
+      "rank": 2,
+      "user": "cfld__",
+      "public_dti": 0.3904,
+      "entries": 15
+    },
+    {
+      "rank": 3,
+      "user": "Batik Shirt Brothers",
+      "public_dti": 0.3904,
+      "entries": 46
+    },
+    {
+      "rank": 4,
+      "user": "BrandenKMurray",
+      "public_dti": 0.3713,
+      "entries": 12
+    },
+    {
+      "rank": 5,
+      "user": "No Fault of Our Own",
+      "public_dti": 0.3539,
+      "entries": 18
+    },
+    {
+      "rank": 6,
+      "user": "JerryDataWorks",
+      "public_dti": 0.3418,
+      "entries": 9
+    },
+    {
+      "rank": 7,
+      "user": "alexoktaba",
+      "public_dti": 0.3416,
+      "entries": 14
+    },
+    {
+      "rank": 8,
+      "user": "joeyfezster",
+      "public_dti": 0.3375,
+      "entries": 11
+    },
+    {
+      "rank": 9,
+      "user": "yifanxu",
+      "public_dti": 0.333,
+      "entries": 8
+    },
+    {
+      "rank": 10,
+      "user": "newway",
+      "public_dti": 0.3328,
+      "entries": 21
+    }
+  ]
+}

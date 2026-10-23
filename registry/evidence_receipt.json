@@ -1,0 +1,31 @@
+{
+  "retrieved_utc": "2026-10-22T21:45:57.673131+00:00",
+  "transport": "GitHub API; snapshots are repository evidence, not organizer score receipts",
+  "files": [
+    {
+      "file": "docs/evidence/GEMSDOE32__evidence__h33_holdout.json",
+      "sha256": "45d3e86ecbc3caa98b5a29a4ae0dd1702d55950df117802bd6e4d3066bddca7b",
+      "bytes": 8885
+    },
+    {
+      "file": "docs/evidence/GEMSDOE32__registry__submission_build.json",
+      "sha256": "0d7c5c3fb0079410e0d519fac45a36b37dc6136f2e42d5c6b2468a29397c478a",
+      "bytes": 11644
+    },
+    {
+      "file": "docs/evidence/GEMSDOE32__registry__feature_receipt.json",
+      "sha256": "7c84acec91470026b3096c489b814dc4fc14a78f0600dd142ed81ba2c32cbcd3",
+      "bytes": 623
+    },
+    {
+      "file": "docs/evidence/GEMSDOE32__registry__data_manifest.json",
+      "sha256": "f08f96e534cf91dbb02d7655a4e6d661837235ebb88b2e5eabdc0b3cc7bcee21",
+      "bytes": 13501
+    },
+    {
+      "file": "docs/evidence/official-reference-README.md",
+      "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+      "bytes": 2367
+    }
+  ]
+}

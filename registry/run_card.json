@@ -1,0 +1,323 @@
+{
+  "canary_max_auc": 0.8321147467495744,
+  "correlation_overlap_vs_registry": {
+    "final_dots": {
+      "H33": {
+        "duplicate": false,
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "exact_shared_pixels": 477,
+        "file": "family_60gemsdoe/GEMSDOE32__h33-2-b2-zeros.tif",
+        "footprint_3px_coverage": null,
+        "forward_dot_overlap_3px": 0.303704,
+        "jaccard_dot_sets": 0.007987,
+        "pixel_identical": false,
+        "raster_kind": "discriminating_fault_prediction",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "their_positive_pixels": 37654
+      },
+      "dense_prior": {
+        "duplicate": true,
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "exact_shared_pixels": 22545,
+        "file": "dense_17gemdoe.tif",
+        "footprint_3px_coverage": 1.0,
+        "forward_dot_overlap_3px": 1.0,
+        "jaccard_dot_sets": 0.004363,
+        "pixel_identical": false,
+        "raster_kind": "space_covering_witness",
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+        "their_positive_pixels": 5167373
+      },
+      "discriminating_dot_rasters_summary": {
+        "all_passed_lt_070": true,
+        "checked_count": 134,
+        "max_forward_dot_overlap_3px": 0.684143
+      },
+      "space_covering_witnesses": [
+        {
+          "duplicate": true,
+          "evidence_class": "REGISTRY-MEASUREMENT",
+          "exact_shared_pixels": 22545,
+          "file": "dense_17gemdoe.tif",
+          "footprint_3px_coverage": 1.0,
+          "forward_dot_overlap_3px": 1.0,
+          "jaccard_dot_sets": 0.004363,
+          "pixel_identical": false,
+          "raster_kind": "space_covering_witness",
+          "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+          "their_positive_pixels": 5167373
+        },
+        {
+          "duplicate": true,
+          "evidence_class": "REGISTRY-MEASUREMENT",
+          "exact_shared_pixels": 895,
+          "file": "family_60gemsdoe/calib_r13lattice_00904.tif",
+          "footprint_3px_coverage": 0.998713,
+          "forward_dot_overlap_3px": 0.99827,
+          "jaccard_dot_sets": 0.003916,
+          "pixel_identical": false,
+          "raster_kind": "space_covering_witness",
+          "sha256": "b4570b406efec198eb2f4d142ad8d0d6184b14b66f2f52b5c4d697f0647dc9b2",
+          "their_positive_pixels": 206895
+        },
+        {
+          "duplicate": true,
+          "evidence_class": "REGISTRY-MEASUREMENT",
+          "exact_shared_pixels": 1285,
+          "file": "family_60gemsdoe/r11_greedy_mp.tif",
+          "footprint_3px_coverage": 0.739731,
+          "forward_dot_overlap_3px": 0.813218,
+          "jaccard_dot_sets": 0.004369,
+          "pixel_identical": false,
+          "raster_kind": "space_covering_witness",
+          "sha256": "033df94ceef16350030a69d5cfdec0afe7bc605bb155d8f3b98b203aabf80abd",
+          "their_positive_pixels": 272853
+        },
+        {
+          "duplicate": true,
+          "evidence_class": "REGISTRY-MEASUREMENT",
+          "exact_shared_pixels": 1645,
+          "file": "family_60gemsdoe/r14_union_tips10_lat6.tif",
+          "footprint_3px_coverage": 0.761973,
+          "forward_dot_overlap_3px": 0.83788,
+          "jaccard_dot_sets": 0.007718,
+          "pixel_identical": false,
+          "raster_kind": "space_covering_witness",
+          "sha256": "c9d1398e464603350e464fff7213a8a5e380f1ccf505e263a685607970ae28ef",
+          "their_positive_pixels": 192231
+        }
+      ],
+      "worst_discriminating_dot_raster": {
+        "duplicate": false,
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "exact_shared_pixels": 2395,
+        "file": "family_60gemsdoe/calib_h25ctx_01280.tif",
+        "footprint_3px_coverage": null,
+        "forward_dot_overlap_3px": 0.684143,
+        "jaccard_dot_sets": 0.012321,
+        "pixel_identical": false,
+        "raster_kind": "discriminating_fault_prediction",
+        "sha256": "1381e784fb8b8340beffd0e735ac9eea89ad35d1a807f8a9bab5506e3fc8275e",
+        "their_positive_pixels": 174232
+      }
+    },
+    "like_for_like_dot_gate": {
+      "max_forward_dot_overlap_3px": 0.684143,
+      "max_spearman_abs": 0.722235,
+      "passed": true,
+      "rasters_checked": 134
+    },
+    "literal_any_raster_gate": {
+      "blocker": "4 space-covering witnesses (>70% study-area 3px halo: dense_17gemdoe.tif 100%, calib_r13lattice_00904.tif 99.87%, r14_union_tips10_lat6.tif 76.20%, r11_greedy_mp.tif 73.97%)",
+      "forward_dot_overlap_3px": 1.0,
+      "passed": false,
+      "rasters_checked": 138,
+      "space_covering_witness_count": 4
+    },
+    "scope": "Complete audit across all 138 SHA-256 unique accessible family GeoTIFFs: ALL 134/134 genuine fault-prediction rasters PASS < 0.70 forward dot overlap (max = 0.6841, H33 = 0.3037); 4 space-covering calibration witnesses exceed 70% footprint coverage by Pigeonhole Principle.",
+    "surface_preplacement": {
+      "H33": {
+        "abs_rho": 0.055838,
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "file": "family_60gemsdoe/GEMSDOE32__h33-2-b2-zeros.tif",
+        "full_footprint_spearman": 0.055838,
+        "rank_duplicate": false,
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+      },
+      "dense_prior": {
+        "abs_rho": 0.722235,
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "file": "dense_17gemdoe.tif",
+        "full_footprint_spearman": 0.722235,
+        "rank_duplicate": false,
+        "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+      },
+      "summary_all_unique_rasters": {
+        "all_passed_le_090": true,
+        "checked_unique_rasters": 138,
+        "max_abs_spearman": 0.722235,
+        "worst_file": "dense_17gemdoe.tif"
+      }
+    },
+    "universal_witness": {
+      "allowed_pixels": 5106385,
+      "covered_allowed_fraction": 1.0,
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+      "overlap_limit": 0.7,
+      "positive_pixels": 5167373,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "uncovered_allowed_pixels": 0,
+      "universal_overlap_blocker": true,
+      "witness_file": "/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+    }
+  },
+  "downloadable_file": "downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+  "emitted_dots": 22545,
+  "experiment_budget_limit": 3,
+  "experiment_budget_used": 3,
+  "experiment_count": 3,
+  "experiment_ladder": [
+    {
+      "ci95": [
+        0.026276647107199597,
+        0.05262617084889261
+      ],
+      "description": "Retained 7-channel RTP/gravity co-edge HGB + fixed 2px spacing (37,654 dots)",
+      "holdout_dti": 0.03889145069516291,
+      "id": "Exp-01-MGC88-Control",
+      "lane": "MGC-88"
+    },
+    {
+      "ci95": [
+        0.0761701449079273,
+        0.10108154374992945
+      ],
+      "description": "Zero-catalogue 32-channel physics + 60-deg up-dip advection + GDR 1391 thermal + CELF submodular",
+      "holdout_dti": 0.08941311249373628,
+      "id": "Exp-02-H88-UGFV-BlindPhys",
+      "lane": "H88-UGFV"
+    },
+    {
+      "ci95": [
+        0.16178143195602038,
+        0.19205736674791138
+      ],
+      "description": "Unified 32ch physics/thermal + 16ch nested self-masked relay/tip completion + Noisy-OR CELF submodular",
+      "holdout_dti": 0.17698989634743498,
+      "id": "Exp-03-H88-UGFV-Submod",
+      "lane": "H88-UGFV"
+    }
+  ],
+  "holdout_dti": {
+    "blind_physics": {
+      "ci95": [
+        0.0761701449079273,
+        0.10108154374992945
+      ],
+      "dti": 0.08941311249373628,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "fnw": 19358.590664768537,
+      "fpw": 102538.50183364573,
+      "tpw": 3534.4093352314667,
+      "withheld_positive_pixels": 22893
+    },
+    "candidate": 0.17698989634743498,
+    "ci95": [
+      0.16178143195602038,
+      0.19205736674791138
+    ],
+    "paired_delta_blind_vs_control": {
+      "ci95": [
+        0.0338627354955401,
+        0.06676177645797389
+      ],
+      "delta": 0.05052166179857337,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
+    "paired_delta_vs_blind_physics": {
+      "ci95": [
+        0.07504068677512968,
+        0.09996556901609287
+      ],
+      "delta": 0.0875767838536987,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
+    "paired_delta_vs_control": {
+      "ci95": [
+        0.12091337454809513,
+        0.15551659893470304
+      ],
+      "delta": 0.13809844565227208,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
+    "raw_control": {
+      "ci95": [
+        0.026276647107199597,
+        0.05262617084889261
+      ],
+      "dti": 0.03889145069516291,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "fnw": 21623.628059675288,
+      "fpw": 70352.84139389198,
+      "tpw": 1269.3719403247173,
+      "withheld_positive_pixels": 22893
+    },
+    "version": "gems57-pooled-hide-v2",
+    "withheld_positives": 22893
+  },
+  "hypothesis": "H88-UGFV: 60-deg normal-fault up-dip basement potential-field advection + Sibson transtensional fault-valve microseismic swarm/alteration/GDR-1391 thermal anomalies + 1m LiDAR / 10m chi knickpoints + nested self-masked fault-tip & multi-strand relay completion with CELF submodular emission.",
+  "independent_organizer_receipt": false,
+  "mechanism": "Independent dual-head probability & expected kernel self-credit calibration fusing 32 zero-catalogue physics/geothermal channels via Noisy-OR with 16 strictly visible-only tip-beam & relay-stepover geometry features, allocated via exact Dinkelbach CELF submodular optimization outside the 200 m collar.",
+  "named_non_fault_process": "GeoDAWN 090-deg E-W 400m flight-line gridding corrugations, Pleistocene Lake Lahontan wave-cut benches (1212/1298/1334 m), unfaulted pluton contacts, and lateral alluvial geothermal outflow plumes.",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "peak_rss_mb": 1123.7,
+  "provenance": {
+    "dense_witness": {
+      "file": "registry/dense_17gemdoe.tif",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+    },
+    "existing_faults.tif": {
+      "file": "bridge/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    "h33_reference": {
+      "file": "registry/h33_education.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    "sample_submission.tif": {
+      "file": "bridge/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+    },
+    "training_features.tif": {
+      "file": "training_features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+    }
+  },
+  "raster_sha256": "15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00",
+  "retained_baseline_download": "downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+  "schema": "gems88.run-card.v1",
+  "scores_evidence_class": "HOLDOUT-DTI",
+  "stop_reason": "literal space-covering registry witnesses (>70% footprint halo) exceed 0.70; all 134 fault-prediction rasters PASS < 0.70",
+  "submission_name": "gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT",
+  "submission_note": "H88-UGFV 32ch physics+GDR thermal+self-masked relay CELF (22545 dots); research only: dense witness blocks upload",
+  "time_elapsed_seconds": 233.28,
+  "validator_output": {
+    "all_checks": {
+      "crs_epsg_32611": true,
+      "dimensions_3730x3292": true,
+      "dtype_float32": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "max_le_1": true,
+      "min_ge_0": true,
+      "no_inf_anywhere": true,
+      "no_nan_anywhere": true,
+      "no_sentinel_values": true,
+      "outside_footprint_zero": true,
+      "range_0_1_guaranteed": true,
+      "single_band": true,
+      "transform_matches_sample_submission": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "crs_shape_transform_match": true,
+    "grid_reference_provenance": "owner-hosted SHA-256 mirror, NOT organizer authenticated",
+    "local_format_ok": true,
+    "no_nan_in_footprint": true,
+    "values_in_0_1": true,
+    "warning": "local PASS is not organizer upload acceptance; literal space-covering witness gate keeps ok_to_submit=false"
+  },
+  "verdict": "negative",
+  "weekly_slots_used": 0,
+  "zip_sha256": "edce6e3f0ba68f6c6142d38cbbd63a2b70d35033cceb7eb66b8554e5bbaacbe2"
+}
