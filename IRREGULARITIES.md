@@ -6,7 +6,7 @@
 
 ## IR-88-17 — Public Sibling GitHub Mirrors & Automated Portal Scraping Disabled
 - **Observed:** Sibling public repos (`buffedlizard55-lab/GEMSDOE`, `GEMSDOE24`, `60GEMSDOE`) host login-walled competition rasters with redistribution terms unchecked; `.github/workflows/pages.yml` and `scripts/update_leaderboard.py` previously ran scheduled `drivendata.org` scraping.
-- **Decision Impact:** Flagged `FLAGGED_DATA_USE_UNCHECKED` in `registry/data_manifest.json`, kept `data/` and `releases/*.{tif,zip}` gitignored (committing SHA-256 JSON receipts only), and disabled automated `drivendata.org` scraping.
+- **Decision Impact:** Flagged `FLAGGED_DATA_USE_UNCHECKED` in `registry/data_manifest.json`, kept new `data/` and `releases/*.{tif,zip}` artifacts gitignored (committing SHA-256 JSON receipts only), documented pre-existing tracked rasters in IR-88-26, and disabled automated `drivendata.org` scraping.
 
 ## IR-88-18 — PR #14 `MASS` Variants Ranked by `0.6*dist + 0.4*uniform` (`HOLD`)
 - **Observed:** Direct audit (`registry/mass_ranking_audit.json`, `scripts/generate_axis_variants.py`) proved shipped `MASS` variants used `0.6 * clip(d_cat/50) + 0.4 * rng.random()` rather than parent physics (`89.4%` of `m10minus` drops fell within `10 px` of catalogue; `Jaccard = 0.167` across seeds).
@@ -24,9 +24,9 @@
 - **Observed:** Earlier concurrent work built 10% and 20% / 1 km parent-density CONCENTRATION arms before this branch merged. In this session the human explicitly selected CONCENTRATION and a distinct official-gradient prior (TMI-HG, gravity slope, gravity-HG) initially produced 10/15/20% arms.
 - **Decision Impact:** Removed the semantically duplicate new 10% and 20% outputs during merge; retained only the unique **15%** official-gradient dose (`4dfb83f6`). It is `HOLD` because it inherits R0’s 2–3 px collar. This avoids repeating an `(axis,value)` experiment while preserving the human-assigned treatment at a new dose.
 
-## IR-88-22 — Parent rebuild paths produced different container-byte results
-- **Observed:** The concurrent five-lineage `scripts/verify_parent_r0.py` path previously re-derived the exact 37,654-pixel mask but did not reproduce container SHA under its writer. This session’s simpler pinned D2.8-ancestor prune (`distance > 2`) plus the original DEFLATE/predictor/tile profile produced **exact SHA-256 `c55bafc4…` and 0 pixel differences**.
-- **Decision Impact:** The session start gate passes using the exact direct reconstruction recorded in `ledger/concentration_build_receipt.json`. The pinned parent remains authoritative; no variant depends on accepting an approximate parent.
+## IR-88-22 — Parent Rebuild Paths Differed; Current Full-Lineage Gate Is Byte-Exact
+- **Observed:** An earlier generic five-lineage `scripts/verify_parent_r0.py` writer re-derived the exact 37,654-pixel mask but missed the container SHA; the human-assigned CONCENTRATION session's direct pinned-D2.8 reconstruction matched `c55bafc4…`. This PR then corrected the full-lineage path: `scripts/verify_parent_r0.py` now verifies all 15 pins and reproduces both `c55bafc4…` (zeros) and `baeae321…` (NaN) byte-exactly, as recorded in `registry/r0_verification.json`.
+- **Decision Impact:** Use the current full-lineage byte-exact gate before rebuilding variants. Earlier nonmatching writer results remain historical only; no approximate parent is accepted.
 
 ## IR-88-23 — AXIS Unassigned Again; SNAP Built by Agent Judgment and Returns a Negative PROXY
 - **Observed:** the brief's §1 slot `AXIS for this session (human assigns)` was empty and the human skipped the clarifying prompt, so the agent selected `SNAP` — the last unbuilt axis of the default order (MASS, CONCENTRATION, PRUNE already in the ledger). All three SNAP arms moved blind off-catalogue SGMC DTI **down** (`-0.00796`, `-0.00396`, `-0.00795`) while raising the mean potential-field edge percentile (`+0.07…0.09`).
@@ -35,3 +35,19 @@
 ## IR-88-24 — Block-density CV depends on the declared block population
 - **Observed:** At 1 km, exact R0 CV is `1.874001` over density in all 50,984 complete-footprint blocks and `0.618596` when zero-density blocks are excluded. The historical `0.51–0.59` report used 12 km blocks elsewhere and cannot be compared to an undefined 1 km calculation. The retained 15% variant moves all-complete-block CV to `1.641677`.
 - **Decision Impact:** Every CV now states block size and inclusion rule. No candidate is tuned to the historical range, and CV remains diagnostic rather than a gate.
+
+## IR-88-25 — Stale Multipart Feature-Raster Paths in Restore Helper
+- **Observed:** the initial `restore_features()` helper requested `data/bridge/training_features.tif.part00`–`part04`, which do not exist at the manifest-pinned commit. The manifest points to `gems-geodawn-numerical-features.tif.part-000` and the pinned commit contains ordered `part-000`–`part-004` files. The failed attempt left only a zero-byte temporary target; it was removed. The fixed helpers now restore and verify the manifest's multipart entry; all 15 inputs pass SHA-256 and byte-length checks.
+- **Decision Impact:** a clean checkout could not reproduce PRUNE ranking from its documented restore path. `scripts/restore_r0_prune_inputs.py` now restores/verifies multipart inputs, and `scripts/verify_parent_r0.py` enforces manifest pins plus byte-exact lineage before rebuilding.
+
+## IR-88-26 — Existing Candidate TIFFs Are Already Tracked in This Public Repository
+- **Observed:** `git ls-files` shows candidate `.tif`/`.zip` files under `docs/downloads/` and `submissions/`, plus three MASS variant TIFF/fallback/ZIP sets under `releases/`. Redistribution terms for owner-mirrored inputs and these generated rasters are not confirmed.
+- **Decision Impact:** regenerated PRUNE TIFFs/ZIPs remain gitignored and are not added by this PR. Existing tracked artifacts were not removed. The human repository owner must decide how to handle them before further publication; no data-use permission is inferred.
+
+## IR-88-27 — Legacy H88 Witness Gate Is Not a PRUNE Candidate Gate
+- **Observed:** the old `validate_release.py`/README status evaluates an H88 research raster against a continuous full-footprint witness and reports 100% forward overlap. The current brief excludes rank-correlation/dot-overlap thresholds as PRUNE gates and specifies exact-hash/repeated `(parent, axis, value)` deduplication.
+- **Decision Impact:** the legacy H88 status remains attached only to that unrelated raster. It was not used to gate PRUNE variants; format, zero-catalogue, exact-hash, parent-diff, and on-disk re-read checks were used.
+
+## IR-88-28 — Competition Deadline Not Portal-Verified
+- **Observed:** the latest human-confirmed planning values recorded on 2026-10-23 are TOP_PUBLIC `0.4413` dated `2026-10-22`, `3/3` rolling-week slots remaining, and approximately `21` total. The agent did not access `drivendata.org`, as prohibited by the brief, so the repository-listed `2026-12-03` deadline remains unverified.
+- **Decision Impact:** the human must re-confirm the deadline and current planning counts on the competition page before live submissions; no portal fact was inferred.

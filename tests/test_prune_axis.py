@@ -310,6 +310,9 @@ def test_emitted_prune_variants_pass_all_must_gates_and_ledger_invariants():
         ):
             assert req_field in card and card[req_field]
         assert "MODEL" in card["predicted_sign_size"]
+        assert card.get("references") and all(
+            item.get("url", "").startswith("https://") for item in card["references"]
+        )
 
         p_nan = ROOT / v["file_nan"]
         p_zeros = ROOT / v["file_zeros"]

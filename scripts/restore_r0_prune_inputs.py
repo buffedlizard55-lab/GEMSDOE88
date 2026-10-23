@@ -34,10 +34,12 @@ def main() -> int:
     files = json.loads(MANIFEST.read_text(encoding="utf-8"))["files"]
     if args.verify_only:
         for item in files:
-            if item.get("multipart"):
-                continue
             path = ROOT / item["dest"]
-            if not path.is_file() or digest(path) != item["sha256"]:
+            if (
+                not path.is_file()
+                or digest(path) != item["sha256"]
+                or path.stat().st_size != item["bytes"]
+            ):
                 raise ValueError(f"missing or bad pinned input: {path}")
             print(f"PIN OK {item['id']} {item['sha256']}")
         return 0
@@ -80,6 +82,31 @@ def main() -> int:
                 if digest(dest) != item["sha256"]:
                     raise ValueError(f"restored hash mismatch: {dest}")
                 print(f"RESTORED/PIN OK {item['id']} {item['sha256']}")
+
+    # Reassemble only multipart files explicitly pinned in this manifest.
+    for item in files:
+        if not item.get("multipart"):
+            continue
+        dest = ROOT / item["dest"]
+        if dest.is_file():
+            if digest(dest) != item["sha256"] or dest.stat().st_size != item["bytes"]:
+                raise ValueError(f"PIN MISMATCH; refusing to overwrite {dest}")
+            print(f"PIN OK {item['id']} {item['sha256']}")
+            continue
+        if item["id"] != "training_features":
+            raise ValueError(f"no pinned multipart restore recipe for {item['id']}")
+        from scripts import restore_inputs
+
+        if (
+            restore_inputs.FEATURE_COMMIT != item["ref"]
+            or restore_inputs.FEATURE_SHA256 != item["sha256"]
+            or restore_inputs.FEATURE_REPO.removesuffix(".git") != f"https://github.com/{item['repo']}"
+        ):
+            raise ValueError("multipart restore constants differ from registry/data_manifest.json")
+        restore_inputs.restore_features()
+        if not dest.is_file() or digest(dest) != item["sha256"] or dest.stat().st_size != item["bytes"]:
+            raise ValueError(f"restored multipart input failed manifest pin: {dest}")
+        print(f"RESTORED/PIN OK {item['id']} {item['sha256']}")
     return 0
 
 

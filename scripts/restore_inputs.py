@@ -22,7 +22,12 @@ DATA = ROOT / "data"
 FEATURE_REPO = "https://github.com/buffedlizard55-lab/GEMSDOE.git"
 FEATURE_COMMIT = "bb2e070a3659f4f5c16ac927e62606f1f7f495a6"
 FEATURE_SHA256 = "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
-FEATURE_PARTS = [f"data/bridge/training_features.tif.part0{i}" for i in range(5)]
+# Multipart paths pinned by registry/data_manifest.json at FEATURE_COMMIT.
+# The names below are the five ordered pieces of that exact 19-band raster.
+FEATURE_PARTS = [
+    f"data/bridge/gems-geodawn-numerical-features.tif.part-{i:03d}"
+    for i in range(5)
+]
 
 VALIDATION_GROUPS = [
   [
