@@ -4,6 +4,7 @@ from scipy.ndimage import distance_transform_edt
 
 from gems57 import metric
 from gems88.r0_prune import bfs_order, dot_thin_from_order, prune3_refill
+from run_r0_prune import canary_report
 
 
 def test_recorded_bfs_thinning_on_unit_line():
@@ -52,6 +53,19 @@ def test_binary_dti_algebra_matches_metric_components():
     G = float(truth.sum())
     algebraic = T / (0.2 * T + 0.2 * (S - M) + 0.8 * G + metric.EPS)
     assert result["dti"] == pytest.approx(algebraic, rel=1e-12, abs=1e-12)
+
+
+def test_canary_retains_invalidated_full_catalogue_check():
+    footprint = np.ones((20, 20), dtype=bool)
+    visible = np.zeros((20, 20), dtype=bool)
+    visible[8:12, 5] = True
+    hidden = np.zeros((20, 20), dtype=bool)
+    hidden[8:12, 10] = True
+    fold = dict(region=footprint, truth=hidden, masked_known=visible, visible=visible)
+    d_full = distance_transform_edt(~(visible | hidden))
+    report = canary_report(np.zeros((20, 20), np.float32), [fold], footprint, d_full)
+    assert report["invalidated_full_catalogue_distance_check"]["symmetric_auc"] == 1.0
+    assert report["rows"][0]["feature"] == "fold_visible_catalogue_distance_px"
 
 
 def test_isolated_truth_dot_credit_bar_uses_exact_marginal_rule():

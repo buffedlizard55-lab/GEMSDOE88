@@ -169,9 +169,11 @@ def rank_auc(pos: np.ndarray, neg: np.ndarray) -> float:
     return float((ranks[:n_pos].sum() - n_pos * (n_pos + 1) / 2) / (n_pos * n_neg))
 
 
-def canary_report(features: dict[str, np.ndarray], folds: list[dict], footprint: np.ndarray) -> dict:
+def canary_report(support: np.ndarray, folds: list[dict], footprint: np.ndarray, d_full: np.ndarray) -> dict:
+    """Single-feature diagnostics with catalogue distance recomputed per visible fold."""
     rng = np.random.default_rng(88)
-    pos_parts, neg_parts = [], []
+    samples = {"fold_visible_catalogue_distance_px": ([], []), "h19_5_binary_support": ([], [])}
+    invalidated_pos, invalidated_neg = [], []
     for fold in folds:
         region = fold["region"] & footprint
         pos = np.flatnonzero(fold["truth"] & region)
@@ -181,36 +183,70 @@ def canary_report(features: dict[str, np.ndarray], folds: list[dict], footprint:
         n = min(len(pos), len(candidates), 2500)
         if n == 0:
             raise ValueError("empty canary sample")
-        pos_parts.append(rng.choice(pos, n, replace=False))
-        neg_parts.append(rng.choice(candidates, n, replace=False))
-    pos_ids, neg_ids = np.concatenate(pos_parts), np.concatenate(neg_parts)
+        pos_ids = rng.choice(pos, n, replace=False)
+        neg_ids = rng.choice(candidates, n, replace=False)
+        d_visible = ndi.distance_transform_edt(~fold["visible"])
+        invalidated_pos.append(d_full.ravel()[pos_ids])
+        invalidated_neg.append(d_full.ravel()[neg_ids])
+        for name, feature in (
+            ("fold_visible_catalogue_distance_px", d_visible),
+            ("h19_5_binary_support", support),
+        ):
+            samples[name][0].append(feature.ravel()[pos_ids])
+            samples[name][1].append(feature.ravel()[neg_ids])
     rows = []
-    for name, feature in features.items():
-        auc = rank_auc(feature.ravel()[pos_ids], feature.ravel()[neg_ids])
+    for name, (pos_parts, neg_parts) in samples.items():
+        pos_values, neg_values = np.concatenate(pos_parts), np.concatenate(neg_parts)
+        auc = rank_auc(pos_values, neg_values)
         rows.append(
             {
                 "feature": name,
                 "auc": auc,
                 "symmetric_auc": max(auc, 1.0 - auc),
-                "withheld_sample": int(len(pos_ids)),
-                "negative_sample": int(len(neg_ids)),
+                "withheld_sample": int(len(pos_values)),
+                "negative_sample": int(len(neg_values)),
             }
         )
+    invalidated_auc = rank_auc(np.concatenate(invalidated_pos), np.concatenate(invalidated_neg))
     return {
         "evidence_class": "PROXY",
         "rows": rows,
         "max_symmetric_auc": max(row["symmetric_auc"] for row in rows),
         "investigation_required": any(row["symmetric_auc"] > 0.90 for row in rows),
-        "note": "Diagnostic only; catalogue distance is an declared exclusion feature, not a hidden-label measurement.",
+        "invalidated_full_catalogue_distance_check": {
+            "symmetric_auc": max(invalidated_auc, 1.0 - invalidated_auc),
+            "status": "INVALIDATED: hidden catalogue geometry was present in the feature",
+        },
+        "note": "Fold-visible distance repairs the invalidated full-catalogue AUC=1 diagnostic; no hidden catalogue geometry enters a fold feature.",
     }
 
 
-def proxy_report(r0: np.ndarray, candidate: np.ndarray, grid: Grid) -> dict:
+def proxy_report(support: np.ndarray, d28: np.ndarray, grid: Grid) -> dict:
+    """Fold-rebuilt mechanism PROXY; never a direct score of the released file.
+
+    Both arms are reconstructed using only each fold's visible catalogue.  The
+    H19-5/D2.8 support remains frozen and already excludes the full catalogue,
+    so no withheld truth pixel itself can be emitted.  This avoids the trivial
+    full-catalogue exclusion artifact while retaining a conservative support
+    limitation shared by both arms.
+    """
     folds, _ = ho.buffered_component_draw(grid, seed=20)
     terms = {"R0": None, "candidate": None}
     fold_scores = {"R0": {}, "candidate": {}}
+    fold_construction = {}
     for fold in folds:
-        for name, mask in (("R0", r0), ("candidate", candidate)):
+        d_visible = ndi.distance_transform_edt(~fold["visible"])
+        r0_fold = d28 & grid.footprint & (d_visible > 2.0)
+        n_fold = int(r0_fold.sum())
+        candidate_fold, _, _, diff = prune3_refill(r0_fold, support, d_visible, n_dots=n_fold)
+        fold_construction[fold["name"]] = {
+            "r0_dots": n_fold,
+            "candidate_dots": int(candidate_fold.sum()),
+            "removed_parent_dots": diff["removed_parent_dots"],
+            "added_dots": diff["added_dots"],
+            "catalogue_context": "fold-visible only",
+        }
+        for name, mask in (("R0", r0_fold), ("candidate", candidate_fold)):
             score, block_terms = eh.evaluate(
                 mask.astype(np.float32),
                 fold,
@@ -225,8 +261,11 @@ def proxy_report(r0: np.ndarray, candidate: np.ndarray, grid: Grid) -> dict:
         "evidence_class": "PROXY",
         "evaluator_version": eh.VERSION,
         "holdout_seed": 20,
+        "design": "fold-visible, fold-rebuilt paired mechanism comparison; not a direct file score",
+        "support_limitation": "H19-5/D2.8 support is frozen and full-catalogue-excised in both arms; original model training is not refit",
         "withheld_positive_pixels": pooled["scores"]["candidate"]["withheld_positive_pixels"],
         "fold_dti": fold_scores,
+        "fold_construction": fold_construction,
         "pooled": pooled,
         "gate": False,
     }, folds
@@ -315,13 +354,9 @@ def main() -> int:
 
     diagnostics = {}
     if not args.skip_diagnostics:
-        proxy, folds = proxy_report(r0, candidate, grid)
+        proxy, folds = proxy_report(support, d28_reference, grid)
         diagnostics["catalogue_hide_recover"] = proxy
-        diagnostics["leakage_canary"] = canary_report(
-            {"catalogue_distance_px": d_cat.astype(np.float32), "h19_5_binary_support": support.astype(np.float32)},
-            folds,
-            grid.footprint,
-        )
+        diagnostics["leakage_canary"] = canary_report(support.astype(np.float32), folds, grid.footprint, d_cat)
         diagnostics["sgmc_control"] = sgmc_report(r0, candidate, grid)
 
     git_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
