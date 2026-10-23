@@ -6,10 +6,10 @@
   "scores": {
     "h88_adhr": {
       "evidence_class": "OFF-CATALOGUE-PIEDMONT-PROXY (DIAGNOSTIC ONLY, NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED)",
-      "proxy_dti": 0.088607,
-      "tpw": 1361.24,
-      "fpw": 34195.76,
-      "emitted_dots": 35034,
+      "proxy_dti": 0.087966,
+      "tpw": 1366.46,
+      "fpw": 35047.1,
+      "emitted_dots": 35894,
       "proxy_positive_pixels": 10314
     },
     "mgc_88_exp1": {

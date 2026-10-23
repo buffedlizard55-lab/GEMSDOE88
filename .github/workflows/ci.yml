@@ -18,7 +18,7 @@ jobs:
       - run: python -m pip install -r requirements.txt
       - name: Restore SHA-pinned grid, .cache/data mirror, and registry witnesses
         run: python scripts/restore_inputs.py --validation
-      - name: Run full unified test suite (all 9 test modules)
+      - name: Run full unified test suite (all 10 test modules)
         run: pytest -v
       - name: Independently reopen published TIFF and verify fail-closed literal gate
         run: |

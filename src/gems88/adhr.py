@@ -258,7 +258,7 @@ def _fuse_log_odds(
     m_phys_raw: np.ndarray,
     k_target: float,
     beta_phys: float = 0.35,
-    pi_unmapped: float = 0.42,
+    pi_unmapped: float = 0.50,
 ) -> tuple[np.ndarray, np.ndarray]:
     """Marginalize over latent mapping completeness M in {0 (unmapped basin), 1 (mapped relay)}:
     P(F=1 | X) = (1 - pi_unmapped) * P_poe(F=1 | X_phys, X_vis) + pi_unmapped * P(F=1 | X_phys).

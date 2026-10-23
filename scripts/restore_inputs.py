@@ -341,6 +341,13 @@ def main() -> None:
     DATA.mkdir(exist_ok=True)
     for label, repo, commit, items in VALIDATION_GROUPS:
         restore_group(label, repo, commit, items)
+    cache_data = ROOT / ".cache" / "data"
+    cache_data.mkdir(parents=True, exist_ok=True)
+    for fname in ("sample_submission.tif", "existing_faults.tif"):
+        src = ROOT / "data" / "bridge" / fname
+        dst = cache_data / fname
+        if src.is_file() and (not dst.is_file() or sha256(dst) != sha256(src)):
+            shutil.copy2(src, dst)
     if not args.validation:
         restore_features()
         label, repo, commit, items = EXTERNAL_GROUP

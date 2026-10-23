@@ -11,8 +11,8 @@ Every claim in `README.md`, `registry/run_card.json`, `docs/run_card.json`, `doc
 6. `pytest -q` -> **100% PASS** across all unit, validator, site, feed, release, and zero-leakage test suites.
 
 ## 2. Pinned Cryptographic Digests (`SHA-256`)
-- **Primary Candidate GeoTIFF (`35,034` `{0,1}` dots, `131,557` bytes):** `4e62f632f0b6857b048f9573cd8efe9a5a8003045b6df79f7947789999015cd0`
-- **Primary Candidate Single-TIFF ZIP:** `1a34997961fdf7420697a922824f77ae016ba8de339a20b8aff14deca0b76463`
+- **Primary Candidate GeoTIFF (`35,894` `{0,1}` dots, `133,192` bytes):** `f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd`
+- **Primary Candidate Single-TIFF ZIP:** `729ca35f4aed1ba3c99cf5f420af89032c27d08308471a239ed8d1d46ad3a7fd`
 - **Archived `Exp 01` GeoTIFF (`MGC-88`, `37,654` dots):** `3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b`
 - **19-Band `training_features.tif` (`419 MB`):** `4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5`
 - **Reference `sample_submission.tif`:** `2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc`

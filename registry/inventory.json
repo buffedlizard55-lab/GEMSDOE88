@@ -156,6 +156,22 @@
       ],
       "cache_file": "docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
       "sha256": "3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b"
+    },
+    {
+      "repo_first": "GEMSDOE88-UGFV",
+      "sources": [
+        "gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif"
+      ],
+      "cache_file": "docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+      "sha256": "15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00"
+    },
+    {
+      "repo_first": "GEMSDOE88-GHMD",
+      "sources": [
+        "gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif"
+      ],
+      "cache_file": "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+      "sha256": "81e580f13b45e1e6aa554eaf5e8c54d1e0064769ba8e7193b6e7f53e3842308a"
     }
   ]
 }

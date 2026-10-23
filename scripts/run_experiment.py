@@ -291,6 +291,17 @@ def main() -> None:
             d_vis_grid = ndi.distance_transform_edt(~folds[0]["visible"])
             for fold in folds:
                 q = fold["fold"]
+                fold_ckpt = ROOT / f".cache/gems88/fold_v3_s{seed}_q{q}.npz"
+                if fold_ckpt.is_file():
+                    fc = np.load(fold_ckpt)
+                    row_entry = json.loads(str(fc["row_json"]))
+                    for name in arms:
+                        bt = fc[f"bt_{name}"]
+                        terms[name] = bt if terms[name] is None else terms[name] + bt
+                        far_terms[name] = [a + b for a, b in zip(far_terms[name], fc[f"far_{name}"].tolist())]
+                    fold_rows.append(row_entry)
+                    print(f"      [ckpt] Seed {seed} {fold['name']:10s} | adhr={row_entry['h88_adhr']['dti']:.4f}", flush=True)
+                    continue
                 f_seed = 88_000 + seed * 10 + q
                 vis = fold["visible"]
                 test_reg = fold["region"]
@@ -334,6 +345,8 @@ def main() -> None:
                 far_truth = fold["truth"] & test_reg & ~fold["masked_known"] & (d_vis_grid > 10.0)
                 far_valid = g.footprint & test_reg & ~fold["masked_known"] & (d_vis_grid > 10.0)
 
+                bt_fold: dict[str, np.ndarray] = {}
+                far_fold: dict[str, list[float]] = {a: [0.0, 0.0, 0.0, 0.0] for a in arms}
                 for name, pred in (
                     ("raw_control", raw_dots),
                     ("mgc_88", mgc_dots),
@@ -341,6 +354,7 @@ def main() -> None:
                     ("h88_adhr", adhr_dots),
                 ):
                     sc, bt = evaluate_holdout.evaluate(pred, fold, g.footprint, BLOCK_SIDE)
+                    bt_fold[name] = bt
                     terms[name] = bt if terms[name] is None else terms[name] + bt
                     row_entry[name] = {
                         "dti": round(float(sc["dti"]), 6),
@@ -350,6 +364,7 @@ def main() -> None:
                     }
                     if np.any(far_truth):
                         fr = metric.dti_exact(pred.astype(np.float64), far_truth, valid=far_valid)
+                        far_fold[name] = [float(fr["tp"]), float(fr["fp"]), float(fr["fn"]), float(fr["n_truth"])]
                         far_terms[name][0] += float(fr["tp"])
                         far_terms[name][1] += float(fr["fp"])
                         far_terms[name][2] += float(fr["fn"])
@@ -358,6 +373,12 @@ def main() -> None:
                 row_entry["cgo_meta"] = cgo_meta
                 row_entry["adhr_meta"] = {k: v for k, v in adhr_meta.items() if k != "width_law"}
                 fold_rows.append(row_entry)
+                np.savez_compressed(
+                    fold_ckpt,
+                    row_json=np.array(json.dumps(row_entry)),
+                    **{f"bt_{k}": bt_fold[k] for k in arms},
+                    **{f"far_{k}": np.asarray(far_fold[k], dtype=np.float64) for k in arms},
+                )
                 print(
                     f"      Seed {seed} {fold['name']:10s} | raw={row_entry['raw_control']['dti']:.4f} "
                     f"| mgc={row_entry['mgc_88']['dti']:.4f} | cgo={row_entry['cgo_88']['dti']:.4f} ({cgo_meta['n_dots']}d) "
@@ -431,12 +452,17 @@ def main() -> None:
             p_old.unlink()
 
     sample_path = ROOT / "data/bridge/sample_submission.tif"
+    submission_note = (
+        f"ADHR88 67-feat 60deg-dip+GDR1391-2m+scarp+relay Dinkelbach {int(prod_meta['n_dots'])} dots "
+        f"(HOLDOUT-DTI {summary['scores']['h88_adhr']['dti']:.4f}); literal 17GEMSDOE overlap=1 blocks auto-submit"
+    )
+    assert len(submission_note) <= 140, f"Note too long ({len(submission_note)}): {submission_note}"
     receipt_writer = submission_writer.write_submission(
         tif_path,
         prod_dots,
         sample_path,
         g.footprint,
-        note=SUBMISSION_NOTE,
+        note=submission_note,
         name=SUBMISSION_NAME,
         catalogue=g.catalogue,
         metadata={"model_id": "gems88-adhr-v2", "hypothesis_id": "H88-ADHR"},
@@ -582,8 +608,14 @@ def main() -> None:
         "raster_sha256": receipt_writer["sha256"],
         "zip_sha256": zip_sha,
         "emitted_dots": int(prod_meta["n_dots"]),
+        "weekly_slots_used": 0,
         "experiment_budget_used": 3,
         "experiment_count": 3,
+        "experiment_ladder": [
+            {"experiment": "Exp 01 · MGC-88", "holdout_dti": sc_mgc["dti"]},
+            {"experiment": "Exp 02 · CGO-88", "holdout_dti": sc_cgo["dti"]},
+            {"experiment": "Exp 03 · H88-ADHR", "holdout_dti": sc_adhr["dti"]},
+        ],
         "time_elapsed_seconds": elapsed,
         "hypothesis": (
             "ADHR-88: Concealed and unmapped Quaternary geothermal faults in the Great Basin "
@@ -649,6 +681,11 @@ def main() -> None:
                 "max_abs_spearman_rho": round(max_pre_rho, 6),
                 "threshold": 0.90,
                 "rank_duplicate": bool(max_pre_rho > 0.90),
+                "summary_all_unique_rasters": {
+                    "checked_unique_rasters": len(pre_audit["rows"]),
+                    "max_abs_spearman": round(max_pre_rho, 6),
+                    "all_passed_le_090": bool(max_pre_rho <= 0.90),
+                },
                 "dense_prior": {
                     "evidence_class": "REGISTRY-MEASUREMENT",
                     "sha256": dense_pre["sha256"],
@@ -672,6 +709,11 @@ def main() -> None:
                 },
             },
             "final_dots": {
+                "discriminating_dot_rasters_summary": {
+                    "checked_count": len(discriminating_rows),
+                    "max_forward_dot_overlap_3px": round(max_disc_overlap, 6),
+                    "all_passed_lt_070": bool(max_disc_overlap <= 0.70),
+                },
                 "dense_prior": {
                     "evidence_class": "REGISTRY-MEASUREMENT",
                     "sha256": dense_final["sha256"],
@@ -710,6 +752,14 @@ def main() -> None:
                     for r in final_audit["rows"]
                 ],
             },
+            "like_for_like_dot_gate": {
+                "passed": bool(not two_phase["like_for_like_reading"]["duplicate"]),
+                "rasters_checked": len(discriminating_rows),
+            },
+            "literal_any_raster_gate": {
+                "passed": bool(not two_phase["literal_reading"]["duplicate"]),
+                "space_covering_witness_count": len(two_phase["literal_firings"]),
+            },
             "two_phase_summary": two_phase,
             "binding_literal_decision": binding,
             "universal_witness": witness_cert,
@@ -725,15 +775,15 @@ def main() -> None:
             "format_audit_file": f"downloads/{audit_path.name}",
         },
         "submission_name": SUBMISSION_NAME,
-        "submission_note": SUBMISSION_NOTE,
-        "submission_note_length": len(SUBMISSION_NOTE),
+        "submission_note": submission_note,
+        "submission_note_length": len(submission_note),
         "verdict": final_verdict,
         "stop_reason": (
             "Literal un-exempted 3px forward overlap = 1.0000 > 0.70 against full-footprint continuous "
-            "prior 17GEMSDOE (5,167,373 / 5,167,373 positive pixels in footprint). Passed all 18 "
+            f"prior 17GEMSDOE (5,167,373 / 5,167,373 positive pixels in footprint). Passed all {len(discriminating_rows)} "
             "sparse/discriminating registry uniqueness checks (max overlap="
             f"{max_disc_overlap:.4f} <= 0.70, max |rho|={max_disc_rho:.4f} <= 0.90) and achieved "
-            f"HOLDOUT-DTI = {sc_adhr['dti']:.5f} (5.32x MGC-88). Human portfolio selector review required "
+            f"HOLDOUT-DTI = {sc_adhr['dti']:.5f}. Human portfolio selector review required "
             "before spending a live DrivenData slot."
         ),
         "ok_to_download": True,
@@ -774,7 +824,7 @@ def main() -> None:
         },
     }
 
-    for dest in ("registry/run_card.json", "docs/run_card.json", "docs/data/run-card.json"):
+    for dest in ("registry/run_card.json", "docs/run_card.json", "docs/data/run-card.json", "evidence/run-card.json"):
         write_json(ROOT / dest, run_card)
 
     print(f"[7/7] COMPLETE in {elapsed:.1f}s -> {tif_path.name} (SHA256={receipt_writer['sha256'][:16]}...)", flush=True)

@@ -13,7 +13,7 @@ In Positive-Unlabeled spatial fault discovery, unlabelled pixels in unmapped bas
 
 Let $p_{\text{joint}}(x) = P(F_x = 1 \mid X_{\text{phys}}, X_{\text{vis}})$ and $p_{\text{phys}}(x) = P(F_x = 1 \mid X_{\text{phys}})$ denote the calibrated 67-feature structural+physical and 44-feature pure-physical probabilities normalized to total fold expectation $k_{\text{target}}$, with corresponding continuous `300 m` triangular-kernel self-credits $m_{\text{joint}}(x), m_{\text{phys}}(x) \in [p(x), 1]$ preserving $\mathbb{E}[\sum_x \max_{g} K(d(x, g))]$ separately from $\mathbb{E}[\sum_x y_x]$ (avoiding Jensen's inequality attenuation on log-odds product-of-experts).
 
-Marginalizing over latent mapping completeness $\pi_{\text{unmapped}} = 0.42$:
+Marginalizing over latent mapping completeness $\pi_{\text{unmapped}} = 0.50$:
 $$p^*(x) = (1 - \pi_{\text{unmapped}})\,p_{\text{joint}}(x) + \pi_{\text{unmapped}}\,p_{\text{phys}}(x), \qquad m^*(x) = (1 - \pi_{\text{unmapped}})\,m_{\text{joint}}(x) + \pi_{\text{unmapped}}\,m_{\text{phys}}(x).$$
 
 In full-domain production (`fit_and_emit_production_adhr`), $p_{\text{phys}}(x)$ and $m_{\text{phys}}(x)$ are predicted strictly **out-of-fold across the 4 spatial quadrants** (`fit on 3 quadrants -> predict on held-out 4th quadrant`), preventing smooth regional fields (`gravity`, `strain`, `magnetics`) from memorizing `200–1,000 m` halos around `existing_faults.tif`.

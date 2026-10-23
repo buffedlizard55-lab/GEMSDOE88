@@ -9,15 +9,15 @@
     "candidate": {
       "evidence_class": "HOLDOUT-DTI",
       "evaluator_version": "gems57-pooled-hide-v2",
-      "dti": 0.19210177057383948,
+      "dti": 0.18788764184958875,
       "ci95": [
-        0.17547419461491712,
-        0.20795859229943325
+        0.17169764852656258,
+        0.20326012211176936
       ],
       "withheld_positive_pixels": 22893,
-      "tpw": 6151.919107746142,
-      "fpw": 62397.43452083705,
-      "fnw": 16741.080892253856
+      "tpw": 6241.143086000586,
+      "fpw": 68273.96686338239,
+      "fnw": 16651.856913999403
     },
     "raw_control": {
       "evidence_class": "HOLDOUT-DTI",
@@ -61,15 +61,15 @@
     "h88_adhr": {
       "evidence_class": "HOLDOUT-DTI",
       "evaluator_version": "gems57-pooled-hide-v2",
-      "dti": 0.19210177057383948,
+      "dti": 0.18788764184958875,
       "ci95": [
-        0.17547419461491712,
-        0.20795859229943325
+        0.17169764852656258,
+        0.20326012211176936
       ],
       "withheld_positive_pixels": 22893,
-      "tpw": 6151.919107746142,
-      "fpw": 62397.43452083705,
-      "fnw": 16741.080892253856
+      "tpw": 6241.143086000586,
+      "fpw": 68273.96686338239,
+      "fnw": 16651.856913999403
     }
   },
   "best_comparable_control": "cgo_88",
@@ -77,30 +77,30 @@
     "raw_control": {
       "evidence_class": "HOLDOUT-DTI",
       "evaluator_version": "gems57-pooled-hide-v2",
-      "delta": 0.1607665079973638,
+      "delta": 0.15655237927311305,
       "ci95": [
-        0.1445934131930416,
-        0.17778154531396298
+        0.1403049486182591,
+        0.17360854251224345
       ],
       "withheld_positive_pixels": 22893
     },
     "mgc_88": {
       "evidence_class": "HOLDOUT-DTI",
       "evaluator_version": "gems57-pooled-hide-v2",
-      "delta": 0.15598441354917064,
+      "delta": 0.15177028482491992,
       "ci95": [
-        0.13980879168788102,
-        0.17143084877287018
+        0.13524591451823878,
+        0.16743883999136405
       ],
       "withheld_positive_pixels": 22893
     },
     "cgo_88": {
       "evidence_class": "HOLDOUT-DTI",
       "evaluator_version": "gems57-pooled-hide-v2",
-      "delta": 0.10168223419483714,
+      "delta": 0.09746810547058642,
       "ci95": [
-        0.08560941651335048,
-        0.11807735460752397
+        0.08211472564810342,
+        0.11336822268905049
       ],
       "withheld_positive_pixels": 22893
     }
@@ -143,10 +143,10 @@
         "fpw": 8811.37
       },
       "h88_adhr": {
-        "dti": 0.175231,
-        "emitted": 5746,
-        "tpw": 478.76,
-        "fpw": 5490.17
+        "dti": 0.169301,
+        "emitted": 6301,
+        "tpw": 481.47,
+        "fpw": 6045.87
       },
       "cgo_meta": {
         "n_dots": 8907,
@@ -154,9 +154,9 @@
         "surrogate_dti": 0.1193700075396604
       },
       "adhr_meta": {
-        "n_dots": 5749,
+        "n_dots": 6304,
         "k_truth_est": 1933.490520870594,
-        "surrogate_dti": 0.18272275375906288
+        "surrogate_dti": 0.16913130284072453
       }
     },
     {
@@ -182,10 +182,10 @@
         "fpw": 6917.54
       },
       "h88_adhr": {
-        "dti": 0.195489,
-        "emitted": 7919,
-        "tpw": 692.31,
-        "fpw": 7546.89
+        "dti": 0.190497,
+        "emitted": 8332,
+        "tpw": 690.47,
+        "fpw": 7964.42
       },
       "cgo_meta": {
         "n_dots": 7036,
@@ -193,9 +193,9 @@
         "surrogate_dti": 0.15532453923073505
       },
       "adhr_meta": {
-        "n_dots": 7925,
+        "n_dots": 8339,
         "k_truth_est": 2384.3695997688196,
-        "surrogate_dti": 0.1729774896979645
+        "surrogate_dti": 0.159813116038834
       }
     },
     {
@@ -221,10 +221,10 @@
         "fpw": 18179.55
       },
       "h88_adhr": {
-        "dti": 0.203102,
-        "emitted": 11539,
-        "tpw": 1105.56,
-        "fpw": 10987.33
+        "dti": 0.199465,
+        "emitted": 12731,
+        "tpw": 1134.14,
+        "fpw": 12171.29
       },
       "cgo_meta": {
         "n_dots": 18463,
@@ -232,9 +232,9 @@
         "surrogate_dti": 0.13091532515539328
       },
       "adhr_meta": {
-        "n_dots": 11550,
+        "n_dots": 12744,
         "k_truth_est": 3711.2020704215756,
-        "surrogate_dti": 0.20313061538067206
+        "surrogate_dti": 0.18937044595817415
       }
     },
     {
@@ -260,10 +260,10 @@
         "fpw": 16728.07
       },
       "h88_adhr": {
-        "dti": 0.187932,
-        "emitted": 7191,
-        "tpw": 774.09,
-        "fpw": 6820.72
+        "dti": 0.184631,
+        "emitted": 7873,
+        "tpw": 786.02,
+        "fpw": 7500.15
       },
       "cgo_meta": {
         "n_dots": 16997,
@@ -271,9 +271,9 @@
         "surrogate_dti": 0.14155638020827935
       },
       "adhr_meta": {
-        "n_dots": 7197,
+        "n_dots": 7879,
         "k_truth_est": 3284.269376484942,
-        "surrogate_dti": 0.2504391157353813
+        "surrogate_dti": 0.23021755899832677
       }
     },
     {
@@ -299,10 +299,10 @@
         "fpw": 10312.55
       },
       "h88_adhr": {
-        "dti": 0.211298,
-        "emitted": 6417,
-        "tpw": 607.15,
-        "fpw": 6088.01
+        "dti": 0.201168,
+        "emitted": 6980,
+        "tpw": 600.55,
+        "fpw": 6654.06
       },
       "cgo_meta": {
         "n_dots": 10429,
@@ -310,9 +310,9 @@
         "surrogate_dti": 0.11257565858076923
       },
       "adhr_meta": {
-        "n_dots": 6426,
+        "n_dots": 6989,
         "k_truth_est": 1982.6485622122357,
-        "surrogate_dti": 0.17381101257607234
+        "surrogate_dti": 0.16101905867193178
       }
     },
     {
@@ -338,10 +338,10 @@
         "fpw": 7433.79
       },
       "h88_adhr": {
-        "dti": 0.179579,
-        "emitted": 7662,
-        "tpw": 624.94,
-        "fpw": 7331.24
+        "dti": 0.179573,
+        "emitted": 8059,
+        "tpw": 639.59,
+        "fpw": 7725.17
       },
       "cgo_meta": {
         "n_dots": 7605,
@@ -349,9 +349,9 @@
         "surrogate_dti": 0.15562341259469065
       },
       "adhr_meta": {
-        "n_dots": 7666,
+        "n_dots": 8063,
         "k_truth_est": 2477.190630986243,
-        "surrogate_dti": 0.17420487164500273
+        "surrogate_dti": 0.16269151734564935
       }
     },
     {
@@ -377,10 +377,10 @@
         "fpw": 18999.03
       },
       "h88_adhr": {
-        "dti": 0.177198,
-        "emitted": 12116,
-        "tpw": 987.3,
-        "fpw": 11619.24
+        "dti": 0.173309,
+        "emitted": 13348,
+        "tpw": 1008.9,
+        "fpw": 12846.1
       },
       "cgo_meta": {
         "n_dots": 19232,
@@ -388,9 +388,9 @@
         "surrogate_dti": 0.13182592558322664
       },
       "adhr_meta": {
-        "n_dots": 12127,
+        "n_dots": 13360,
         "k_truth_est": 3872.1839533687635,
-        "surrogate_dti": 0.20653208204755158
+        "surrogate_dti": 0.1930744587131164
       }
     },
     {
@@ -416,10 +416,10 @@
         "fpw": 15631.75
       },
       "h88_adhr": {
-        "dti": 0.206845,
-        "emitted": 6935,
-        "tpw": 881.81,
-        "fpw": 6513.83
+        "dti": 0.202822,
+        "emitted": 7796,
+        "tpw": 900.0,
+        "fpw": 7366.9
       },
       "cgo_meta": {
         "n_dots": 15949,
@@ -427,9 +427,9 @@
         "surrogate_dti": 0.14350593932671066
       },
       "adhr_meta": {
-        "n_dots": 6941,
+        "n_dots": 7804,
         "k_truth_est": 3221.7908538535335,
-        "surrogate_dti": 0.24052535505950629
+        "surrogate_dti": 0.2194543886878734
       }
     }
   ],
@@ -460,10 +460,10 @@
     },
     "h88_adhr": {
       "evidence_class": "HOLDOUT-DTI-SUBSET (d_vis > 10 px = > 1.0 km whole-component positives)",
-      "dti": 0.116369,
-      "tpw": 1593.13,
-      "fpw": 23694.63,
-      "fnw": 9197.87,
+      "dti": 0.114778,
+      "tpw": 1678.27,
+      "fpw": 28267.09,
+      "fnw": 9112.73,
       "withheld_positive_pixels": 10791
     }
   },
