@@ -249,7 +249,13 @@ def test_ledger_rows_are_unique_and_complete() -> None:
 
 def test_mechanism_cards_cover_every_arm_for_a_geologist() -> None:
     cards = json.loads((ROOT / "ledger" / "mechanism_cards.json").read_text())
-    mine = {k: v for k, v in cards.items() if f"-{AXIS}r" in k}
+    # Scope to THIS family (parent R0, values r10*). The later gate-clean MASS-on-R1
+    # family (`-MASSr1m10*`) shares the "-MASSr" prefix and must not break this test.
+    mine = {
+        k: v
+        for k, v in cards.items()
+        if k.startswith("h33-h33-2-b2-MASSr10") and v.get("parent") == "h33-h33-2-b2"
+    }
     assert len(mine) == 3
     for card in mine.values():
         for field in (

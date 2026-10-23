@@ -1499,5 +1499,68 @@
     "non_fault_mimic": "None needed: the control deliberately moves mass off breaklines, into the smooth interiors of basins and ranges where no fault trace can be favoured. It is designed to score below the parent if the instrument is measuring geometry at all.",
     "predicted_sign_size": "Preregistered MODEL -0.006 live delta vs R1 (range -0.016 to +0.002). Not a slot candidate by construction; its only job is to calibrate the instrument.",
     "falsifier": "SGMC(anti1) >= SGMC(fp2) means the blind SGMC control pays for displacement rather than crest position; the scarp family's PROXY margin is then uninformative and should not be promoted on proxy evidence. SGMC(anti1) <= SGMC(R1) - 0.001 is the result that makes the crest reading credible."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a": {
+    "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "axis": "MASS",
+    "value": "r1m10minus",
+    "preregistered_prediction": "+0.002",
+    "preregistered_range": "[-0.008, +0.010]",
+    "hypothesis": "A removed dot lowers S (the sum of predictions, which enters the DTI denominator) with certainty and lowers T only by the kernel credit it uniquely carries. Under DTI = T / (0.2T + 0.2(S - M) + 0.8|G|) a dot that is redundant with a stronger neighbour on the same strand is pure denominator. R0's drop arm lost, but 2,171 of R0's lowest tail were collar dots that sit ~100-300 m from mapped USGS traces, i.e. in the damage zone of real faults where true new-fault pixels are most likely. R1 cannot lose those.",
+    "mechanism": "drop the 3,765 lowest exact-marginal-DTI dots from the 37,654-dot parent R1. A removed dot lowers S (the sum of predictions, which enters the DTI denominator) with certainty and lowers T only by the kernel credit it uniquely carries. Under DTI = T / (0.2T + 0.2(S - M) + 0.8|G|) a dot that is redundant with a stronger neighbour on the same strand is pure denominator. R0's drop arm lost, but 2,171 of R0's lowest tail were collar dots that sit ~100-300 m from mapped USGS traces, i.e. in the damage zone of real faults where true new-fault pixels are most likely. R1 cannot lose those.",
+    "non_fault_mimic": "The field w is built from potential-field and topographic derivatives at 400 m flight-line spacing (GeoDAWN Area 2), so a genuine but deeply buried or sediment-masked fault carries a weak expression and can rank low. If the new-fault label set is dominated by such blind faults, pruning the low-w tail deletes exactly the population being scored and the arm loses despite the algebra being right.",
+    "predicted_sign_size": "MODEL +0.002 vs R1; below the 0.01 no-evidence floor by construction.",
+    "falsifier": "A live change of -0.01 or worse vs R1 would show that the low-w tail is not dead mass even after the collar confound is removed, which forces the mass curve to be read as absolute (H2) and closes MASS for the remaining slots. A gain >= +0.01 would make mass reduction the cheapest lever in the project and would justify a 20% dose on R1 next.",
+    "post_build_w_model_delta": "-0.008028",
+    "post_build_report_only": {
+      "holdout_proxy_delta_vs_parent": 0.0,
+      "sgmc_off_catalogue_dti": 0.08868,
+      "sgmc_delta_vs_parent": -0.007403,
+      "cv_12km": 0.6047,
+      "cv_12km_parent": 0.57
+    },
+    "evidence_discipline": "Every number above is PROXY or MODEL. The blind SGMC control orders arms; it is not a score. A live |delta| < 0.01 is no evidence (Brief \u00a75)."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df": {
+    "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "axis": "MASS",
+    "value": "r1m10plus",
+    "preregistered_prediction": "-0.011",
+    "preregistered_range": "[-0.021, +0.001]",
+    "hypothesis": "R1's construction already spent its refill budget on the 2,171 highest-marginal candidates of exactly this pool (h19_5 & ~R0 & d_cat > 3 px). The next 3,765 candidates are therefore drawn from a strictly lower part of the same marginal-gain curve, while S rises by 3,765 and the 0.8|G| term is unchanged. Addition should pay less on R1 than the +0.0029 blind that r10plus earned on R0, and may pay nothing.",
+    "mechanism": "add the 3,765 next-ranked un-emitted H19-5 dots at d_cat > 3 px (37,654 -> 41,419); no parent dot is removed. R1's construction already spent its refill budget on the 2,171 highest-marginal candidates of exactly this pool (h19_5 & ~R0 & d_cat > 3 px). The next 3,765 candidates are therefore drawn from a strictly lower part of the same marginal-gain curve, while S rises by 3,765 and the 0.8|G| term is unchanged. Addition should pay less on R1 than the +0.0029 blind that r10plus earned on R0, and may pay nothing.",
+    "non_fault_mimic": "Un-emitted H19-5 support includes genuine second-order structure that the 2.8 px disk suppressed: relay ramps, antithetic splays, and range-front step faults. It also includes ridge crests from flight-line levelling, drainage incision, and lithologic contacts. The arm cannot separate the two, so a positive result cannot be attributed to faults without a trace-level check.",
+    "predicted_sign_size": "MODEL -0.011 vs R1; the strongest of the three negative scenario anchors, and the direct test of saturation on a gate-clean parent.",
+    "falsifier": "A live gain >= +0.01 vs R1 falsifies saturation at this parent, proves the pool still holds unused strand length, and makes count the binding lever rather than the corroboration field.",
+    "post_build_w_model_delta": "+0.008549",
+    "post_build_report_only": {
+      "holdout_proxy_delta_vs_parent": 0.0,
+      "sgmc_off_catalogue_dti": 0.098745,
+      "sgmc_delta_vs_parent": 0.002662,
+      "cv_12km": 0.5751,
+      "cv_12km_parent": 0.57
+    },
+    "evidence_discipline": "Every number above is PROXY or MODEL. The blind SGMC control orders arms; it is not a score. A live |delta| < 0.01 is no evidence (Brief \u00a75)."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f": {
+    "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "axis": "MASS",
+    "value": "r1m10swap",
+    "preregistered_prediction": "+0.006",
+    "preregistered_range": "[-0.004, +0.016]",
+    "hypothesis": "S is frozen by construction, so this arm moves DTI through T and M alone: it is a pure ranking-quality test with the mass term removed. It superposes the denominator saving of the drop arm and the numerator gain of the add arm. R0's swap earned +0.0029 blind while carrying the collar confound; if that confound was diluting the ranking, the gate-clean version should be at least as good.",
+    "mechanism": "count-matched substitution: drop the 3,765 lowest-ranked parent dots and add the 3,765 next-ranked un-emitted dots (d_cat > 3 px); count held at 37,654. S is frozen by construction, so this arm moves DTI through T and M alone: it is a pure ranking-quality test with the mass term removed. It superposes the denominator saving of the drop arm and the numerator gain of the add arm. R0's swap earned +0.0029 blind while carrying the collar confound; if that confound was diluting the ranking, the gate-clean version should be at least as good.",
+    "non_fault_mimic": "The swap inherits every bias of w: potential-field gradients favour basement-step and lithologic-contact lineaments and the GDR-1391 geothermometry term concentrates near known geothermal systems, which is a vent prior, not a fault prior. A live loss would mean the parent's geometric 2.8 px selection is a better fault detector than a 0.68-AUC physical field at equal count.",
+    "predicted_sign_size": "MODEL +0.006 vs R1 (best of the three on the w-model, bounded by w's ceiling).",
+    "falsifier": "A live change below +0.01 closes w-ranked reselection as a lever at this parent and redirects the remaining slots to geometry and support rather than to any field-driven reselection.",
+    "post_build_w_model_delta": "+0.001310",
+    "post_build_report_only": {
+      "holdout_proxy_delta_vs_parent": 0.0,
+      "sgmc_off_catalogue_dti": 0.092489,
+      "sgmc_delta_vs_parent": -0.003594,
+      "cv_12km": 0.6004,
+      "cv_12km_parent": 0.57
+    },
+    "evidence_discipline": "Every number above is PROXY or MODEL. The blind SGMC control orders arms; it is not a score. A live |delta| < 0.01 is no evidence (Brief \u00a75)."
   }
 }

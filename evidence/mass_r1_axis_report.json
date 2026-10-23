@@ -1,0 +1,877 @@
+{
+  "schema": "gems88.mass-r1-axis-report.v1",
+  "session_date": "2026-10-23",
+  "axis": "MASS",
+  "preregistration": "registry/preregistration_mass_r1.json",
+  "parent": {
+    "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "n_dots": 37654,
+    "sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+    "sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+    "min_d_cat_px": 3.1623,
+    "w_model": {
+      "dti": 0.281537,
+      "T": 16639.053,
+      "S": 37654.0,
+      "M": 7290.809
+    }
+  },
+  "r0_reference": {
+    "id": "h33-h33-2-b2",
+    "rebuilt_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "rebuilt_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "n_dots": 37654,
+    "w_model_dti": 0.286061
+  },
+  "verified_inputs": 15,
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    }
+  },
+  "ranking_definition": {
+    "name": "exact iterative marginal expected-DTI gain under the pinned label-free physical corroboration field w",
+    "why": "R1 is a dot set, not a scored surface: it stores no per-dot evidence score. Brief 5 says to rebuild the parent's own ranking from the recorded recipe; the recorded recipe of every lineage step after GEMSDOE32 (the R1 collar prune and its exact-marginal refill, build_prune_variants.py) ranks dots by exact iterative marginal expected-DTI contribution under the canary-clean physical field w. The identical code path and identical field are used here, so the R1 arms are directly comparable to the R0 r10* family arm-for-arm.",
+    "code": "vendor/gems57/metric.py via scripts/build_prune_variants.py::select_exact_marginal_dti_add / ::select_exact_marginal_dti_drop",
+    "field_w": "build_physical_field_and_canaries (19 pinned official bands + parent detector ridges + GDR-1391 geothermometry), every channel leakage-canaried at symmetric AUC <= 0.90",
+    "instrument_note": "w is a PROXY (~0.68-AUC fault model). It both ranks and scores these arms, so the in-sample w-model delta is optimistic and is reported as a diagnostic only, never as a score."
+  },
+  "dose": {
+    "fraction": 0.1,
+    "n_dots": 3765
+  },
+  "candidate_pool_px": 59310,
+  "preregistered_predictions": {
+    "r1m10minus": "+0.002",
+    "r1m10plus": "-0.011",
+    "r1m10swap": "+0.006"
+  },
+  "w_model_deltas": {
+    "r1m10minus": {
+      "dti": 0.273509,
+      "delta_vs_parent_r1": -0.008028,
+      "T": 15952.272,
+      "S": 33889.0,
+      "M": 6720.401,
+      "denom": 58324.407,
+      "note": "IN-SAMPLE and optimistic: w both ranks and scores this arm (PROXY field)."
+    },
+    "r1m10plus": {
+      "dti": 0.290086,
+      "delta_vs_parent_r1": 0.008549,
+      "T": 17359.808,
+      "S": 41419.0,
+      "M": 8061.828,
+      "denom": 59843.629,
+      "note": "IN-SAMPLE and optimistic: w both ranks and scores this arm (PROXY field)."
+    },
+    "r1m10swap": {
+      "dti": 0.282847,
+      "delta_vs_parent_r1": 0.00131,
+      "T": 16711.144,
+      "S": 37654.0,
+      "M": 7456.741,
+      "denom": 59081.914,
+      "note": "IN-SAMPLE and optimistic: w both ranks and scores this arm (PROXY field)."
+    }
+  },
+  "report_only": {
+    "h33-h33-2-b2": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.004006,
+        "ci95": [
+          0.003424,
+          0.00469
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": 0.0,
+        "paired_delta_vs_r0_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.09606,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5602.26,
+        "fp": 35187.58
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6292,
+        "cv_12km_120px_interior": 0.559
+      }
+    },
+    "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.096083,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5603.04,
+        "fp": 35157.75
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6405,
+        "cv_12km_120px_interior": 0.57
+      }
+    },
+    "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a": {
+      "n_dots": 33889,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.08868,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5100.18,
+        "fp": 31649.84
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6687,
+        "cv_12km_120px_interior": 0.6047
+      }
+    },
+    "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df": {
+      "n_dots": 41419,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.098745,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5832.83,
+        "fp": 38702.65
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6455,
+        "cv_12km_120px_interior": 0.5751
+      }
+    },
+    "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.092489,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5389.82,
+        "fp": 35173.13
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6678,
+        "cv_12km_120px_interior": 0.6004
+      }
+    }
+  },
+  "portable_report_only_vs_parent": {
+    "r1m10minus": {
+      "holdout_proxy_dti": 0.0,
+      "holdout_proxy_delta_vs_parent": 0.0,
+      "holdout_withheld_positives": 22663,
+      "sgmc_off_catalogue_dti": 0.08868,
+      "sgmc_delta_vs_parent": -0.007403,
+      "cv_12km": 0.6047,
+      "cv_12km_parent": 0.57
+    },
+    "r1m10plus": {
+      "holdout_proxy_dti": 0.0,
+      "holdout_proxy_delta_vs_parent": 0.0,
+      "holdout_withheld_positives": 22663,
+      "sgmc_off_catalogue_dti": 0.098745,
+      "sgmc_delta_vs_parent": 0.002662,
+      "cv_12km": 0.5751,
+      "cv_12km_parent": 0.57
+    },
+    "r1m10swap": {
+      "holdout_proxy_dti": 0.0,
+      "holdout_proxy_delta_vs_parent": 0.0,
+      "holdout_withheld_positives": 22663,
+      "sgmc_off_catalogue_dti": 0.092489,
+      "sgmc_delta_vs_parent": -0.003594,
+      "cv_12km": 0.6004,
+      "cv_12km_parent": 0.57
+    }
+  },
+  "variants": [
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a",
+      "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "axis": "MASS",
+      "value": "r1m10minus",
+      "seed": 20261023,
+      "git_sha": "539dc3a31dcf5e26a257e9f447a5955b779c118e",
+      "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a.tif",
+      "sha256": "e56b0e5a5c37a50613525ca6934186986654e6b5c65241e87dc6788c6adf7682",
+      "bytes_nan": 339976,
+      "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a.zip",
+      "zip_nan_sha256": "a14cc4dfb269292128b1ebd89840a022b731adf3d7ff8cdf745dbb61f2e2cdad",
+      "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a-zeros.tif",
+      "sha256_zeros": "e01dd362911e9c6f1d218456af2dee46a6a6e00b2bc8bae875d1840c73f3c162",
+      "bytes_zeros": 203501,
+      "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a-zeros.zip",
+      "zip_zeros_sha256": "9fb0ad2e08c36130368d480c57126e737577dc19b778a6e2e36f66ed5e2378fb",
+      "form_note": "R1(PRUNEp3px); MASS -3765 lowest exact-marginal dots 37654->33889; pred +0.002 MODEL",
+      "form_note_chars": 84,
+      "n_dots": 33889,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 0,
+        "n_removed": 3765,
+        "pct_changed_moved": 10.0,
+        "pct_changed_sym_diff": 10.0,
+        "pct_changed_basis": "max",
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 2723
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "parent_rebuild_verified": {
+        "sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+        "sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+        "source": "reconstructed in-run by build_snap_r1_variants.reconstruct_r1 and asserted against the published ledger twins"
+      },
+      "leakage_canaries": {
+        "passed": true,
+        "max_symmetric_auc": 0.56925,
+        "channels": {
+          "lidar_scarp_step": 0.56796,
+          "lidar_scarp_asym": 0.56197,
+          "det_elev_hessian_b12": 0.52918,
+          "det_elev_slope_b19": 0.54949,
+          "grav_hg_b18": 0.51671,
+          "tmi_hg_b03": 0.52022,
+          "basement_grad_b15": 0.54422,
+          "rtp_hessian_b02": 0.50269,
+          "geod_strain_b04": 0.56083,
+          "seismic_ieq_b16": 0.54653,
+          "mag_tilt_curv_b06": 0.5434,
+          "mt_cond_grad_b17": 0.50178,
+          "k_th_alteration": 0.51259,
+          "gdr_geotherm_idw": 0.51395,
+          "composite_p_phys": 0.56925
+        }
+      },
+      "w_model": {
+        "dti": 0.273509,
+        "delta_vs_parent_r1": -0.008028,
+        "T": 15952.272,
+        "S": 33889.0,
+        "M": 6720.401,
+        "denom": 58324.407,
+        "note": "IN-SAMPLE and optimistic: w both ranks and scores this arm (PROXY field)."
+      },
+      "preregistered_prediction": "+0.002",
+      "preregistered_range": "[-0.008, +0.010]",
+      "saturation_diagnostic_added_dots": {
+        "n_added": 0
+      },
+      "added_dots": {
+        "n": 0,
+        "min_d_cat_px": null,
+        "mean_d_cat_px": null,
+        "mean_w": null
+      },
+      "removed_dots": {
+        "n": 3765,
+        "mean_d_cat_px": 32.354,
+        "mean_w": 0.151503,
+        "mean_nn_spacing_px": 4.54
+      },
+      "parent_dots_mean_w": 0.193626,
+      "report_only_diagnostics": {
+        "n_dots": 33889,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.08868,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5100.18,
+          "fp": 31649.84
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6687,
+          "cv_12km_120px_interior": 0.6047
+        }
+      },
+      "parent_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.096083,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5603.04,
+          "fp": 35157.75
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6405,
+          "cv_12km_120px_interior": 0.57
+        }
+      },
+      "r0_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.004006,
+          "ci95": [
+            0.003424,
+            0.00469
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": 0.0,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.09606,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5602.26,
+          "fp": 35187.58
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6292,
+          "cv_12km_120px_interior": 0.559
+        }
+      },
+      "portable_report_only_vs_parent": {
+        "holdout_proxy_dti": 0.0,
+        "holdout_proxy_delta_vs_parent": 0.0,
+        "holdout_withheld_positives": 22663,
+        "sgmc_off_catalogue_dti": 0.08868,
+        "sgmc_delta_vs_parent": -0.007403,
+        "cv_12km": 0.6047,
+        "cv_12km_parent": 0.57
+      }
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df",
+      "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "axis": "MASS",
+      "value": "r1m10plus",
+      "seed": 20261023,
+      "git_sha": "539dc3a31dcf5e26a257e9f447a5955b779c118e",
+      "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df.tif",
+      "sha256": "b2d704df672735bbe7f6d7cca307db0a5a3695ac92f3e7a61b74c935b81fdd93",
+      "bytes_nan": 366285,
+      "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df.zip",
+      "zip_nan_sha256": "5b4f05af7b150a46af973f6a848c093c3f774ac4733aed7845c4e95700223204",
+      "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df-zeros.tif",
+      "sha256_zeros": "fa18a85047665ffbf1e4e3a578ed2b96c7093d4523c5b239d59c4bd3bf369d30",
+      "bytes_zeros": 230573,
+      "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df-zeros.zip",
+      "zip_zeros_sha256": "11addebf42a6ac1ec21a04e2320db79da2f4deee7c5ddc43db9bc4ca748d142c",
+      "form_note": "R1(PRUNEp3px); MASS +3765 next-ranked un-emitted dots d_cat>3px ->41419; pred -0.011 MODEL",
+      "form_note_chars": 90,
+      "n_dots": 41419,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 3765,
+        "n_removed": 0,
+        "pct_changed_moved": 10.0,
+        "pct_changed_sym_diff": 10.0,
+        "pct_changed_basis": "max",
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 3228
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "parent_rebuild_verified": {
+        "sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+        "sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+        "source": "reconstructed in-run by build_snap_r1_variants.reconstruct_r1 and asserted against the published ledger twins"
+      },
+      "leakage_canaries": {
+        "passed": true,
+        "max_symmetric_auc": 0.56925,
+        "channels": {
+          "lidar_scarp_step": 0.56796,
+          "lidar_scarp_asym": 0.56197,
+          "det_elev_hessian_b12": 0.52918,
+          "det_elev_slope_b19": 0.54949,
+          "grav_hg_b18": 0.51671,
+          "tmi_hg_b03": 0.52022,
+          "basement_grad_b15": 0.54422,
+          "rtp_hessian_b02": 0.50269,
+          "geod_strain_b04": 0.56083,
+          "seismic_ieq_b16": 0.54653,
+          "mag_tilt_curv_b06": 0.5434,
+          "mt_cond_grad_b17": 0.50178,
+          "k_th_alteration": 0.51259,
+          "gdr_geotherm_idw": 0.51395,
+          "composite_p_phys": 0.56925
+        }
+      },
+      "w_model": {
+        "dti": 0.290086,
+        "delta_vs_parent_r1": 0.008549,
+        "T": 17359.808,
+        "S": 41419.0,
+        "M": 8061.828,
+        "denom": 59843.629,
+        "note": "IN-SAMPLE and optimistic: w both ranks and scores this arm (PROXY field)."
+      },
+      "preregistered_prediction": "-0.011",
+      "preregistered_range": "[-0.021, +0.001]",
+      "saturation_diagnostic_added_dots": {
+        "n_added": 3765,
+        "mean_px": 1.944,
+        "median_px": 2.0,
+        "p90_px": 2.236,
+        "frac_within_3px_of_a_parent_dot": 0.9981
+      },
+      "added_dots": {
+        "n": 3765,
+        "min_d_cat_px": 3.162,
+        "mean_d_cat_px": 27.871,
+        "mean_w": 0.204786
+      },
+      "removed_dots": {
+        "n": 0,
+        "mean_d_cat_px": null,
+        "mean_w": null,
+        "mean_nn_spacing_px": null
+      },
+      "parent_dots_mean_w": 0.193626,
+      "report_only_diagnostics": {
+        "n_dots": 41419,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.098745,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5832.83,
+          "fp": 38702.65
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6455,
+          "cv_12km_120px_interior": 0.5751
+        }
+      },
+      "parent_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.096083,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5603.04,
+          "fp": 35157.75
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6405,
+          "cv_12km_120px_interior": 0.57
+        }
+      },
+      "r0_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.004006,
+          "ci95": [
+            0.003424,
+            0.00469
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": 0.0,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.09606,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5602.26,
+          "fp": 35187.58
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6292,
+          "cv_12km_120px_interior": 0.559
+        }
+      },
+      "portable_report_only_vs_parent": {
+        "holdout_proxy_dti": 0.0,
+        "holdout_proxy_delta_vs_parent": 0.0,
+        "holdout_withheld_positives": 22663,
+        "sgmc_off_catalogue_dti": 0.098745,
+        "sgmc_delta_vs_parent": 0.002662,
+        "cv_12km": 0.5751,
+        "cv_12km_parent": 0.57
+      }
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f",
+      "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "axis": "MASS",
+      "value": "r1m10swap",
+      "seed": 20261023,
+      "git_sha": "539dc3a31dcf5e26a257e9f447a5955b779c118e",
+      "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f.tif",
+      "sha256": "20dc829f271a4b0a0124288d8a69a4324862b659ff2bcfd7540f391a1586d880",
+      "bytes_nan": 352859,
+      "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f.zip",
+      "zip_nan_sha256": "691c3172ba8a59fcdb4b374877d230df56454848c8d2961502f99eeee1c305fa",
+      "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f-zeros.tif",
+      "sha256_zeros": "93f52691338476cd1c5c91fbf552ca2d8f512d4a8dd65e108cab03bbbc398325",
+      "bytes_zeros": 216752,
+      "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f-zeros.zip",
+      "zip_zeros_sha256": "c23f8d3476daa198cb497dd14aa6e847e5d0dbbb3cf60462e1875d94893d384d",
+      "form_note": "R1(PRUNEp3px); MASS swap 3765 lowest for 3765 next-ranked, count fixed 37654; pred +0.006 MODEL",
+      "form_note_chars": 95,
+      "n_dots": 37654,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 3765,
+        "n_removed": 3765,
+        "pct_changed_moved": 10.0,
+        "pct_changed_sym_diff": 20.0,
+        "pct_changed_basis": "max",
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 3040
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "parent_rebuild_verified": {
+        "sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+        "sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+        "source": "reconstructed in-run by build_snap_r1_variants.reconstruct_r1 and asserted against the published ledger twins"
+      },
+      "leakage_canaries": {
+        "passed": true,
+        "max_symmetric_auc": 0.56925,
+        "channels": {
+          "lidar_scarp_step": 0.56796,
+          "lidar_scarp_asym": 0.56197,
+          "det_elev_hessian_b12": 0.52918,
+          "det_elev_slope_b19": 0.54949,
+          "grav_hg_b18": 0.51671,
+          "tmi_hg_b03": 0.52022,
+          "basement_grad_b15": 0.54422,
+          "rtp_hessian_b02": 0.50269,
+          "geod_strain_b04": 0.56083,
+          "seismic_ieq_b16": 0.54653,
+          "mag_tilt_curv_b06": 0.5434,
+          "mt_cond_grad_b17": 0.50178,
+          "k_th_alteration": 0.51259,
+          "gdr_geotherm_idw": 0.51395,
+          "composite_p_phys": 0.56925
+        }
+      },
+      "w_model": {
+        "dti": 0.282847,
+        "delta_vs_parent_r1": 0.00131,
+        "T": 16711.144,
+        "S": 37654.0,
+        "M": 7456.741,
+        "denom": 59081.914,
+        "note": "IN-SAMPLE and optimistic: w both ranks and scores this arm (PROXY field)."
+      },
+      "preregistered_prediction": "+0.006",
+      "preregistered_range": "[-0.004, +0.016]",
+      "saturation_diagnostic_added_dots": {
+        "n_added": 3765,
+        "mean_px": 1.819,
+        "median_px": 2.0,
+        "p90_px": 2.236,
+        "frac_within_3px_of_a_parent_dot": 0.9984
+      },
+      "added_dots": {
+        "n": 3765,
+        "min_d_cat_px": 3.162,
+        "mean_d_cat_px": 28.65,
+        "mean_w": 0.195575
+      },
+      "removed_dots": {
+        "n": 3765,
+        "mean_d_cat_px": 32.354,
+        "mean_w": 0.151503,
+        "mean_nn_spacing_px": 4.54
+      },
+      "parent_dots_mean_w": 0.193626,
+      "report_only_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.092489,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5389.82,
+          "fp": 35173.13
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6678,
+          "cv_12km_120px_interior": 0.6004
+        }
+      },
+      "parent_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.096083,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5603.04,
+          "fp": 35157.75
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6405,
+          "cv_12km_120px_interior": 0.57
+        }
+      },
+      "r0_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.004006,
+          "ci95": [
+            0.003424,
+            0.00469
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": 0.0,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.09606,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5602.26,
+          "fp": 35187.58
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6292,
+          "cv_12km_120px_interior": 0.559
+        }
+      },
+      "portable_report_only_vs_parent": {
+        "holdout_proxy_dti": 0.0,
+        "holdout_proxy_delta_vs_parent": 0.0,
+        "holdout_withheld_positives": 22663,
+        "sgmc_off_catalogue_dti": 0.092489,
+        "sgmc_delta_vs_parent": -0.003594,
+        "cv_12km": 0.6004,
+        "cv_12km_parent": 0.57
+      }
+    }
+  ],
+  "elapsed_seconds": 206.85,
+  "git_sha": "539dc3a31dcf5e26a257e9f447a5955b779c118e",
+  "external_data": "none; 15 pinned manifest inputs only"
+}
