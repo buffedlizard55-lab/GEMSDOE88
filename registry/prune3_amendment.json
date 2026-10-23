@@ -1,0 +1,16 @@
+{
+  "schema": "gems88.r0-axis-amendment.v1",
+  "amended_utc": "2026-10-23T03:45:00Z",
+  "amended_before": "any candidate GeoTIFF, hide-and-recover score, canary result, SGMC result, or live receipt",
+  "parent_axis_value": ["h33-h33-2-b2", "PRUNE", "3"],
+  "original_rule": "Refill 2171 dots in H19-5 BFS order while retaining strict 2.8 px inhibition against all survivors and additions.",
+  "feasibility_measurement": "Only 475 legal additions exist under that rule; 2171 are required to hold R0's 37654-dot count.",
+  "amended_rule": "Keep every R0 survivor at d_cat>3 fixed. Refill all 2171 removed dots from the original H19-5 support at d_cat>3 in the recorded BFS order, with no additional inhibition. Eligibility excludes survivors, so no duplicate pixels are introduced.",
+  "why_within_axis": "The session brief defines PRUNE as catalogue-radius removal plus fixed-count refill; it does not prescribe a spacing constraint. No new support, physical score, region pattern, or hidden label is introduced.",
+  "declared_confounder": "The refill can reduce nearest-neighbour spacing. Report parent/candidate nearest-neighbour statistics and treat spacing as a confounder, not as an independently optimized axis.",
+  "unchanged_prediction": {
+    "evidence_class": "MODEL",
+    "delta_live_dti": -0.003,
+    "plausible_range": [-0.01, 0.004]
+  }
+}

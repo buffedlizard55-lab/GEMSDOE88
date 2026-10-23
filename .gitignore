@@ -14,4 +14,6 @@ __pycache__/
 /tmp/
 *.mmap
 *.npz
+# New competition candidate rasters stay local; tracked receipts contain hashes only.
+/releases/*.tif
 Unselected files/

@@ -1,20 +1,20 @@
 # GEMSDOE88 — DOE GEMS Fault-Discovery Research & Automated GeoTIFF Pipeline
 
+## CURRENT STATE
+
+- **Parent:** R0 `h33-h33-2-b2` (GEMSDOE32), 37,654 dots; rebuilt byte-exactly to SHA-256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`.
+- **Best receipt:** none supplied. R0 `0.2778` remains **CLAIM**, not a receipt; the new PRUNE3 candidate has no organizer score.
+- **TOP_PUBLIC:** **UNSUPPLIED** — the human must provide a dated leaderboard value. **Slots left this week / total:** **UNSUPPLIED**.
+- **Built this session:** `h33-h33-2-b2-prune3-20261023-01d57649`, fixed-count PRUNE3 refill, 2,171 R0 dots changed (5.765655707%), **MODEL −0.003**; BUILT, not submitted. A concurrent branch added three MASS variants; all four pairs are reconciled in the ledger and no further variant is built here.
+- **Concurrent MASS status:** HOLD—the three artifacts retain a 2 px collar and do not pass the current 3 px non-PRUNE gate. PR #17's audit also proves their distance/random ranking is not a parent model ranking and corrects their MODEL predictions; see `registry/mass_ranking_audit.json`.
+- **Next 3 slots:** (1) the built PRUNE3 falsifier only if the human accepts its predicted-negative information value; (2) proposed COLLAR-RELAX1, or PRUNE4 only after a `>=+0.01` PRUNE3 receipt; (3) proposed SPACING bar-matched coverage. Slots 2–3 are not built. See `SLOT_PLAN.md` and `docs/SUBMIT.md`.
+
 > **READ THIS FIRST EVERY SESSION — PROJECT OPERATING BRIEF & UNMISTAKABLE STATUS**
 >
 > - **OK TO DOWNLOAD FOR RESEARCH: `YES`** — [`docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif) (`22,545` binary off-catalogue dots, `SHA-256: 15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00`) · [One-TIFF `.zip`](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.zip) (`SHA-256: edce6e3f0ba68f6c6142d38cbbd63a2b70d35033cceb7eb66b8554e5bbaacbe2`) · [Byte-level validator receipt](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.json) · [Executive summary & submission instructions](docs/executive-summary.html) · [Machine run card](registry/run_card.json)
 > - **OK TO SUBMIT INTO THE COMPETITION: `NO — DO NOT SUBMIT`** without explicit selector authorization. While `H88-UGFV` passes **100% of competition format checks**, **48/48 leakage canaries (`max AUC = 0.8321 <= 0.90`)**, **138/138 pre-placement surface Spearman checks (`max |rho| = 0.7222 <= 0.90`)**, and **134/134 genuine fault-prediction dot-overlap checks (`max = 0.6841 < 0.70`, `H33 = 0.3037`)**, **4 archival space-covering calibration rasters** (`dense_17gemdoe.tif` [`100.00%` footprint halo], `calib_r13lattice_00904.tif` [`99.87%`], `r14_union_tips10_lat6.tif` [`76.20%`], `r11_greedy_mp.tif` [`73.97%`]) automatically exceed `0.70` against any full-domain dot set by the Pigeonhole Principle. **Verdict: `negative` under the unamended literal rule · Weekly submission slots spent: `0`.**
 > - **Unique Submission Name:** `gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT`
 > - **Unique Submission Note (`113 / 140` chars):** `H88-UGFV 32ch physics+GDR thermal+self-masked relay CELF (22545 dots); research only: dense witness blocks upload`
-
-## CURRENT STATE (agent brief v2 — human must confirm ledger dates)
-
-- **Parent R0:** `h33-h33-2-b2` (GEMSDOE32) — 37,654 dots, 0 within 2 px of catalogue, sha256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`, CLAIM 0.2778 (no receipt in `ledger/`). Rebuilt and hash-matched 2026-10-23.
-- **Best RECEIPT:** none yet (all HOLDOUT-DTI only; H88-UGFV 0.1770 [0.1618,0.1921] n=22,893, seed20+30 pooled).
-- **TOP_PUBLIC:** 0.4413 (#1 xiaofanhu, 2026-10-22) — supersedes prompt's stale 0.3195; verify live at https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ . Gap to incumbent is 0.1635, i.e. **16× the largest effect ever measured in this ledger (+0.007)**.
-- **Slots left this week:** 3 / 3 (0 scored uploads this rolling week, 2026-10-23) / total to deadline 2026-12-03: ~18 (≈6 weeks ×3).
-- **This session AXIS:** MASS — 3 variants of R0 built (drop 10% / add 10% / drop 20%). **Audit finding:** they do *not* use a model ranking (R0's score field is not stored; every H33 raster is binary). The ranking is `0.6·d_catalogue+0.4·uniform(seed)`, so m10minus is really a collar extension (89.4% of drops within 10 px of catalogue) and m10plus places 3,765 isolated lowest-prior dots. See `registry/mass_ranking_audit.json` and IR-88-17/18/19.
-- **Next 3 slots:** 1) `…MASSm10minus…7132935e` (33,889, **+0.004** MODEL [-0.006,+0.014], collar extension) 2) PRUNE ≤3 px, no refill (2,171 dots, +0.002…+0.005) 3) reserved — SPACING bar-matched test, or leave unspent. **Do not submit `…MASSm10plus…82673b57`** (predicted -0.010). Upload the `-zeros` twin. See `SLOT_PLAN.md`, `ledger/submissions.csv`, `docs/SUBMIT.md`.
 
 ---
 
