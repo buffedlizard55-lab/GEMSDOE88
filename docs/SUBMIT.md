@@ -1,5 +1,21 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+## Concurrent session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (`registry/preregistration_mass_r1.json`; IR-88-52; no slot used, nothing submitted)
+
+**Three new gate-clean candidates.** Parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from the pinned lineage and SHA-asserted (`6f7ae705…`/`dc6f090d…`) before editing, after `R0` rebuilt byte-exactly (15/15 pins). Brief §5's literal R0 form is unsatisfiable for non-PRUNE axes (R0 keeps 1,611 sub-`3 px` dots, IR-88-43/47), so the same single-axis edit ran on `R1`. Every arm: 10% dose (3,765 dots), rank = the parent's own recorded recipe, **100% of dots `>3 px`**, deterministic (`SEED=20261023`), `validate_variant.py` 6/6 twin PASS (`registry/mass_r1_validation.json`), files re-read from disk.
+
+| Arm | Exact file (primary; fallback `<name>-zeros.tif`) | Form note (as emitted) | Blind `SGMC` `PROXY` vs `R1 0.096083` |
+|---|---|---|---|
+| `r10plus` (`N=41,419`) | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df` | `h33-2-b2 PRUNEp3px R1; MASS +3765 next-ranked H19-5 dots >3px, 41419; pred +0.004 MODEL` (87 chars) | `0.098745` (`+0.00266`; random donors alone give `+0.00125`) |
+| `r10minus` (`N=33,889`) | `…-MASSr10minus-20261023-e56b0e5a` | `h33-2-b2 PRUNEp3px R1; MASS -3765 lowest exact-marginal dots, 100% >3px; pred -0.004 MODEL` (90 chars) | `0.088680` (`−0.00740`) |
+| `r10swap` (`N=37,654`) | `…-MASSr10swap-20261023-20dc829f` | `h33-2-b2 PRUNEp3px R1; MASS swap 3765 lowest for 3765 next-ranked, count 37654; pred +0.002 MODEL` (97 chars) | `0.092489` (`−0.00359`) |
+
+**Recorded hashes:** `r10plus` primary `b2d704df6727…`, zeros `fa18a8504766…`; `r10minus` primary `e56b0e5a5c37…`, zeros `e01dd362911e…`; `r10swap` primary `20dc829f271a…`, zeros `93f526913384…` (full values in each `releases/<id>.json`). Rebuild rather than trust: `python3 scripts/build_mass_r1_variants.py` regenerates them deterministically; `releases/*.tif` are gitignored and are NOT in the repository. Then re-run `python3 scripts/validate_variant.py releases/<id>.tif releases/<id>-zeros.tif` on the actual bytes.
+
+**Queue position:** `r10plus` is **not** ahead of the `p3space35`/`scarp1px` pair — its `+0.00266` is half a count effect, and IR-88-51 (concurrent session) shows the `SGMC` control cannot distinguish a crest move from a trough move. It is the ready slot-3 option if slot 2 loses, or if the human prefers a mass-then-geometry pairing over the spaced-refill arm.
+
+---
+
 ## Current session — 2026-10-23 `AXIS=SNAP` fixpoint ladder + sign-flip control on gate-clean `R1` (IR-88-51; slot order below updated; no slot used, no submission)
 
 **Nothing in this session is a slot candidate.** Parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`

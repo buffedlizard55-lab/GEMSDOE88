@@ -1,0 +1,63 @@
+{
+  "schema": "gems88.mass-r1-preregistration.v1",
+  "created_utc": "2026-10-23T00:00:00Z",
+  "axis": "MASS",
+  "axis_selection": "The human instructed the agent to choose its own axis (Brief v2 §5). MASS was selected on the gate-clean parent R1 because (1) it is the only axis whose R0 result was measured to be positive on any instrument (r10plus: blind off-catalogue SGMC 0.098918 vs R0 0.096060, delta +0.0029 PROXY; w-model +0.0107 MODEL), (2) IR-88-44/IR-88-47 place every R0-parented non-PRUNE arm on HOLD because R0 carries 1,611 dots strictly inside the literal 3 px non-PRUNE collar, so the R0 form of the arm can never be gate-clean, and (3) SLOT_PLAN.md wk3-4 names exactly this build (\"MASS-on-R1, (R1, MASS, r10plus)\") as the next single-axis session. Precedent for an R1 parent: IR-88-33 and PR #41.",
+  "parent_chain": {
+    "r0": {
+      "id": "h33-h33-2-b2",
+      "n_dots": 37654,
+      "zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "evidence_class": "REBUILT byte-exactly this session (registry/r0_verification.json, 15/15 pins); historical 0.2778 remains CLAIM, not a receipt"
+    },
+    "r1": {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "n_dots": 37654,
+      "zeros_sha256": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "nan_sha256": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "min_dist_catalogue_px": 3.1623,
+      "evidence_class": "REBUILT from the pinned lineage + exact-marginal refill and SHA-asserted before any edit (scripts/build_snap_r1_variants.py::reconstruct_r1); MODEL +0.005 vs R0, no receipt"
+    }
+  },
+  "manifest_sha256": "b8a74af55e8c634e36745efd37191bb3d29bd8bccf9070c1de43f0ef30650598",
+  "git_sha": "539dc3a31dcf5e26a257e9f447a5955b779c118e",
+  "branch": "arena/64a98f5a-gemsdoe88",
+  "ledger_rows_checked_before_build": 47,
+  "uniqueness_check": "No existing (parent, axis, value) row equals (R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705, MASS, r10minus | r10plus | r10swap). All six MASS rows in ledger/submissions.csv are parented on h33-h33-2-b2. No rank-correlation or dot-overlap threshold is applied (Brief §6); dedupe is exact-hash and (parent, axis, value) only.",
+  "ranking_definition": "The parent's own ranking, rebuilt: R1 stores no per-dot score, so the ranking is the exact iterative marginal expected-DTI contribution under the pinned label-free physical corroboration field w (scripts/build_prune_variants.py::select_exact_marginal_dti_add / _drop via vendor/gems57/metric.py, alpha 0.2, beta 0.8, R = 3 px triangular kernel). This is the same ranking that built R1's own 2,171 refills, i.e. literally the parent's recorded ranking recipe, re-run on the parent.",
+  "dose": {
+    "fraction": 0.10,
+    "n_dots": 3765,
+    "basis": "Brief §5 MASS: drop the lowest-ranked 10% / add the next-ranked 10%; 3,765 = round(0.10 * 37,654), the same dose as the R0 family so the two parents are directly comparable"
+  },
+  "arms": [
+    {
+      "value": "r10minus",
+      "operation": "Drop the 3,765 lowest-ranked R1 dots (exact marginal DTI drop); N = 37,654 -> 33,889",
+      "predicted_change": "MODEL:-0.004",
+      "predicted_range": "[-0.014,+0.006]",
+      "prediction_basis": "R0-family anchor: blind SGMC 0.087999 vs R0 0.096060 (delta -0.0081 PROXY); w-model -0.0084 MODEL. On R1 the bottom decile is better ranked than R0's geometric tail (R1's last-chosen 2,171 refills are the lowest-marginal dots and were placed by the same greedy), so the expected cost is roughly half the R0 loss rather than none of it.",
+      "role": "dose-control: measures dead mass on the gate-clean parent"
+    },
+    {
+      "value": "r10plus",
+      "operation": "Add the 3,765 next-ranked un-emitted dots (H19-5 & ~R1 & d_cat > 3 px, exact marginal DTI add); N = 37,654 -> 41,419",
+      "predicted_change": "MODEL:+0.004",
+      "predicted_range": "[-0.008,+0.016]",
+      "prediction_basis": "R0-family anchor: blind SGMC 0.098918 vs R0 0.096060 (delta +0.0029 PROXY); w-model +0.0107 MODEL (in-sample, optimistic). R1 already consumed the 2,171 highest-marginal candidates to build itself, so the next 3,765 are strictly deeper in the pool: the predicted gain is deliberately below the R0 field estimate and is the central question this session answers.",
+      "role": "primary: the gate-clean form of the only instrument-positive MASS arm; the fusion candidate if it clears the no-evidence floor"
+    },
+    {
+      "value": "r10swap",
+      "operation": "Drop the 3,765 lowest-ranked and add the 3,765 next-ranked dots; N fixed at 37,654",
+      "predicted_change": "MODEL:+0.002",
+      "predicted_range": "[-0.008,+0.012]",
+      "prediction_basis": "R0-family anchor: blind SGMC 0.092054 vs R0 0.096060 (delta -0.0040 PROXY); w-model +0.0029 MODEL. Count-matched, so it isolates ranking quality from mass; expected to be the midpoint of the other two arms.",
+      "role": "count-matched control: separates ranking quality from mass"
+    }
+  ],
+  "decision_rule": "Receipts decide, not these numbers. A live |delta| < 0.01 versus the parent actually submitted is no evidence (Brief §5). If r10plus loses live, mass increase is retired as a lever on both parents and the remaining slots go to SNAP/spacing confirmation of R1; if r10plus wins by >= 0.01, the 41,419-dot count becomes the candidate for the final file and the 45,185-dot dose (r20plus) is the next single-axis build.",
+  "evidence_labels": "Every number here is MODEL or PROXY except the R0 CLAIM (0.2778, unreceipted) and the ledger RECEIPT fields, which are empty. No PROXY or MODEL number is a score.",
+  "safety": "No DrivenData page, leaderboard, dropbox or credential was or will be touched. Inputs are the 15 SHA-256-pinned manifest entries only. Nothing is submitted; the human owns every upload."
+}
