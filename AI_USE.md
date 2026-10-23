@@ -1,19 +1,24 @@
 # AI_USE — Generative-AI disclosure per NLR Rules §3.6
 
-**Human:** `buffedlizard55-lab` (entity owner, submitter, approver). **AI:** Arena.ai Agent Mode (branch `arena/81f0028f-gemsdoe88`, commit `c2c9da2` → this PR). Disclosure must be copied into final technical narrative.
+**Human:** `buffedlizard55-lab` (entity owner, submitter, approver). **AI:** Arena.ai Agent Mode. Disclosure must be copied into the final technical narrative.
 
-## What AI wrote (this session, 2026-10-23)
-- `scripts/generate_axis_variants.py` (368 lines): loads pinned `h33_education.tif` (sha `c55b...`) and grid `sample_submission.tif` (`2176d08e...`)/`existing_faults.tif` (`7ba308cc...`), recomputes ranking as `0.6·norm(dist/50)+0.4·rand(seed88)` for parent and `seed90` for candidate pool on `allowed_2px` (dist>2), emits 3 MASS variants (drop10% 33,889, add10% 41,419, drop20% 30,123) with NaN-outside + -zeros fallback, verifies no NaN inside, [0,1], CRS/shape/transform, 0 catalogue, ≥2 px collar, logs sha256/sha8, writes `releases/*.tif` + `.zip`, re-reads from disk, writes `ledger/submissions.csv` + `ledger/mechanism_cards.json` with predicted deltas (-0.008, +0.004, -0.018 MODEL).
-- `SLOT_PLAN.md` (≤1 page): next 3 slots wk1-2 MASS/CONCENTRATION/SNAP/PRUNE/RELIEF, wk3-4 fusion, wk5-6 final+fallback, deadline 2026-12-03.
-- `README.md` CURRENT STATE block: parent, best receipt (none), TOP_PUBLIC 0.4413 (2026-10-22), slots 3/3, next 3 slots.
-- `docs/SUBMIT.md`: file/name/note (≤140) / format receipt per variant.
-- `IRREGULARITIES.md` IR-88-14/15/16: 2 px vs 3 px collar, manifest equivalence, TOP_PUBLIC staleness.
+## Prior revision (2026-10-23, earlier turn) — built the three MASS rasters
 
-## What the human decided
-- Selected AXIS=MASS for this session (per brief §5, human assigns; default plan wk1-2 lists MASS first).
-- Reviewed mechanism cards (hypothesis, mechanism, non-fault mimic Lahontan/E-W corrugation vs tip-relay, predicted sign/size, falsifier Δ≥0.01 live) — approved as MODEL, not score.
-- Will fill `ledger/submissions.csv` receipt_score/date after authenticated submission (never AI-fetched), and will choose ONE final file blind per §3.4.
-- Authorizes `NO — DO NOT SUBMIT` to remain until selector scopes literal 3-px rule (4 space-covering witnesses block literal gate).
+`scripts/generate_axis_variants.py` loads pinned `h33_education.tif` (`c55bafc4…`) and the grid (`sample_submission.tif` `2176d08e…`, `existing_faults.tif` `7ba308cc…`), computes a ranking as `0.6·clip(d_catalogue/50)+0.4·uniform(seed88)` for the parent and `seed90` for the candidate pool on the allowed-2px mask, and emits three variants (drop 10% → 33,889; add 10% → 41,419; drop 20% → 30,123) with NaN-outside and `-zeros` twins. That revision disclosed the formula in this file while `SLOT_PLAN.md` and `mechanism_cards.json` called it "the parent ranking" — an internal contradiction, resolved this turn in favour of the measured facts.
+
+## This revision (2026-10-23) — audited the prior revision, built no new rasters
+
+**What AI wrote:**
+- `scripts/audit_mass_ranking.py` — reconstructs each shipped MASS array bit-for-bit from the recorded formula (all three: `identical_to_on_disk: true`), measures what the ranking actually selects against the catalogue, tests its stability under a seed swap, compares the dropped set to an independent pinned model score, and computes the exact DTI sensitivity curve from `vendor/gems57/metric.py`. No metric fork: the bar and kernel come from the vendor module.
+- `registry/mass_ranking_audit.json` — the generated receipt (Q1 reconstruction, Q2 confound, Q3 stability, Q4 prior alignment, marginal bar, sensitivity by mean credit).
+- `tests/test_mass_ranking.py` — 5 tests that lock those findings so a later session cannot restate the ranking as a model ranking.
+- Corrected `ledger/mechanism_cards.json`, `ledger/submissions.csv`, `SLOT_PLAN.md`, `README.md` (CURRENT STATE only), `docs/SUBMIT.md`, `IRREGULARITIES.md` (IR-88-17…21).
+- Re-verified: all six mirror groups restore with matching SHA-256; R0 rebuilds to 37,654 dots and `c55bafc4…`; 77 tests pass; `check_site.py`, `readiness.py` and `validate_release.py` behave as before.
+
+**What AI decided (and the human may overrule):** kept the three rasters rather than rebuilding them, because (AXIS, value) pairs are built once and rebuilding the same values would burn the dedupe rule for no new information; reclassified m10minus as a collar-extension probe; withdrew m10plus from slot contention; recommended uploading the `-zeros` twin.
+
+**What the human must decide:** whether to spend this week's slots at all (the incumbent is 0.1635 behind #1 while the largest effect ever measured here is +0.007); which of the three to submit, if any; and the ONE final blind file per Rules §3.4. Receipt scores are pasted by the human only — never fetched by AI.
 
 ## Reproducibility
-Inputs: `data/bridge/sample_submission.tif` `data/bridge/existing_faults.tif` `data/registry/h33_education.tif` pinned SHAs above, `data/registry/dense_17gemdoe.tif` witness `ab0a0a62...`. Seed 88/90 fixed, `git SHA` logged in `releases/*.zip` + `ledger`. No `dropbox.com`, no `drivendata.org` fetch, no credentials stored.
+
+Inputs are GitHub owner mirrors pinned in `scripts/restore_inputs.py` and verified by SHA-256 at every run: `sample_submission.tif` `2176d08e…`, `existing_faults.tif` `7ba308cc…`, `h33_education.tif` `c55bafc4…`, dense witness `ab0a0a62…`. Every emitted raster has a fixed seed (88/90) and a logged `git` SHA. No `dropbox.com` contact, no `drivendata.org` fetch, no credentials read, stored or printed, no automated leaderboard access. Model inputs that are *not* organiser numbers (the denominator `D0 = 18,233.29` taken from the prior projected live-mirror build) are labelled as MODEL in `registry/mass_ranking_audit.json`.

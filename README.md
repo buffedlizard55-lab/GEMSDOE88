@@ -9,12 +9,12 @@
 
 ## CURRENT STATE (agent brief v2 — human must confirm ledger dates)
 
-- **Parent R0:** `h33-h33-2-b2` (GEMSDOE32) — 37,654 dots, 0 within 2 px of catalogue, sha256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`, CLAIM 0.2778 (no receipt in `ledger/`).
+- **Parent R0:** `h33-h33-2-b2` (GEMSDOE32) — 37,654 dots, 0 within 2 px of catalogue, sha256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`, CLAIM 0.2778 (no receipt in `ledger/`). Rebuilt and hash-matched 2026-10-23.
 - **Best RECEIPT:** none yet (all HOLDOUT-DTI only; H88-UGFV 0.1770 [0.1618,0.1921] n=22,893, seed20+30 pooled).
-- **TOP_PUBLIC:** 0.4413 (#1 xiaofanhu, 2026-10-22) — supersedes prompt's stale 0.3195; verify live at https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
-- **Slots left this week:** 3 / 3 (0 scored uploads this rolling week, 2026-10-23) / total to deadline 2026-12-03: ~21 (≈7 weeks ×3).
-- **This session AXIS:** MASS — built 3 variants of R0 differing only on MASS (drop 10% / add 10% / drop 20%, by parent ranking rebuilt from distance+rand seed 88/90; 1-50% change, 0 catalogue mass, ≥2 px collar; NaN outside + -zeros fallback; re-read verified).
-- **Next 3 slots:** 1) `h33-h33-2-b2-MASSm10minus-20261023-7132935e` (33,889, -0.008 MODEL) 2) `h33-h33-2-b2-MASSm10plus-20261023-82673b57` (41,419, +0.004 MODEL) 3) CONCENTRATION 15% km-block move (CV report, see `SLOT_PLAN.md`). See `ledger/submissions.csv` and `releases/` for form notes ≤140 chars.
+- **TOP_PUBLIC:** 0.4413 (#1 xiaofanhu, 2026-10-22) — supersedes prompt's stale 0.3195; verify live at https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ . Gap to incumbent is 0.1635, i.e. **16× the largest effect ever measured in this ledger (+0.007)**.
+- **Slots left this week:** 3 / 3 (0 scored uploads this rolling week, 2026-10-23) / total to deadline 2026-12-03: ~18 (≈6 weeks ×3).
+- **This session AXIS:** MASS — 3 variants of R0 built (drop 10% / add 10% / drop 20%). **Audit finding:** they do *not* use a model ranking (R0's score field is not stored; every H33 raster is binary). The ranking is `0.6·d_catalogue+0.4·uniform(seed)`, so m10minus is really a collar extension (89.4% of drops within 10 px of catalogue) and m10plus places 3,765 isolated lowest-prior dots. See `registry/mass_ranking_audit.json` and IR-88-17/18/19.
+- **Next 3 slots:** 1) `…MASSm10minus…7132935e` (33,889, **+0.004** MODEL [-0.006,+0.014], collar extension) 2) PRUNE ≤3 px, no refill (2,171 dots, +0.002…+0.005) 3) reserved — SPACING bar-matched test, or leave unspent. **Do not submit `…MASSm10plus…82673b57`** (predicted -0.010). Upload the `-zeros` twin. See `SLOT_PLAN.md`, `ledger/submissions.csv`, `docs/SUBMIT.md`.
 
 ---
 
