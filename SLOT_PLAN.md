@@ -1,45 +1,50 @@
-# SLOT_PLAN — one entity; at most three scored uploads per rolling week
+# SLOT_PLAN — one entity; <=3 scored uploads per rolling week
 
-**2026-10-23, AXIS=SNAP: STOP; zero new variants/slots.** All 15 pins passed;
+**2026-10-23, AXIS=SNAP: STOP (0 new variants/slots).** All 15 pins passed;
 R0 rebuilt byte-exactly (37,654 dots; zeros `c55bafc4…`, NaN `baeae321…`).
-Of 1,611 R0 dots <3 px from the catalogue, **30 cannot reach any legal
->=3 px footprint pixel within the SNAP <=2 px window**, even ignoring collisions.
-Moving them farther or refilling elsewhere changes axes. Proof:
-`evidence/session_20261023_snap_clearance.json`; IR-88-44. Previous R0
-SNAP/CONCENTRATION/RELIEF arms retaining the collar are HOLD.
+Of 1,611 parent dots <3 px from catalogue, **30 cannot reach any >=3 px
+footprint pixel within <=2 px**, even ignoring collisions. A farther move or
+refill changes axes (IR-88-47; `evidence/session_20261023_snap_clearance.json`).
+Earlier R0 non-PRUNE arms retaining the collar stay HOLD.
 
-Ledger: **32 BUILT / zero RECEIPT**; no repeated `(parent,axis,value)`/hash.
-An [open SPACING PR](https://github.com/buffedlizard55-lab/GEMSDOE88/pull/27)
-has three other arms. Existing PRUNE `p1px/p3px/p4px` TIFF twins were restored
-with *exact ledger SHA-256* and six fresh disk validators passed, without new
-rows (`evidence/session_20261023_prune_revalidation.json`). TIFFs remain
-**gitignored**; primary/fallback are alternatives, not two uploads.
+Concurrent [PRUNE refill-mode work](https://github.com/buffedlizard55-lab/GEMSDOE88/pull/34)
+brings the ledger to **35 BUILT / 0 RECEIPT**; this session reused no pair/hash.
+Existing p1/p3/p4 TIFF twins were restored at exact ledger hashes: six fresh
+disk checks pass (`evidence/session_20261023_prune_revalidation.json`), with
+p3px primary/fallback locally available under gitignored `releases/`. New
+`p3space35`/`p4space35` TIFFs are **absent locally**; their receipts require
+exact reconstruction and fresh validation. Preregistered MODEL +0.007/+0.002
+vs R0 conflicts with the later four-line-field MODEL, while SGMC PROXY favors
+them (`evidence/refill_spacing_comparison.json`). Neither instrument is live.
+`p3norefill` is diagnostic only. Ancestor support in the spaced refill is a
+confounder, so even a live delta does not isolate spacing alone.
 
-**Human confirms before ANY slot:** TOP_PUBLIC/date, rolling-week/total slots
-(unknown), R0 submission receipt (`0.2778` is CLAIM), provenance/redistribution
-permission, and the provisional **2026-12-03** deadline on the
-[competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/)
+**Before any slot:** human supplies current TOP_PUBLIC/date, actual weekly/total
+balance (unknown), R0 receipt (`0.2778` is CLAIM), permission to use/redistribute
+the public mirrors and old tracked TIFFs, and confirms provisional **2026-12-03**
+on the [competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/)
 and [rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf). No automated page
-access. Public chunks do not establish private/expert-expanded performance;
-`|live delta| < 0.01` is no evidence. Predictions below are **MODEL**, not scores.
+access or submissions. Primary/zeros twin = **one** slot; one blind final.
+Public/private/expert-expanded chunks differ; `|live delta|<0.01` is no evidence.
+Without an R0 RECEIPT no paired live delta is established.
 
-## Next three slots — conditional; conserve unused slots
+## Next three *conditional* slots
 
-| Order | Already-BUILT arm / MODEL delta vs R0 | What a RECEIPT changes |
+| Order | Existing arm / live projection (MODEL vs R0) | What a RECEIPT changes |
 |---|---|---|
-| 1 | `PRUNEp3px-6f7ae705` / +0.005 | Upload only after checks above; paired gain >=0.01 favors excluding 300 m halo; loss <=-0.01 favors near-trace splays. Otherwise stop. |
-| 2 | `PRUNEp1px-0542a27c` / -0.006 | Only if slot 1 materially loses: a gain >=0.01 vs R0 supports real 100–200 m splays; else stop. PRUNE is the <3 px exception. |
-| 3 | `PRUNEp4px-be9fd3d5` / -0.009 | Only if slot 1 materially gains: >=0.01 better than p3 favors wider exclusion; <=-0.01 worse favors 300–400 m splays. Else reserve. |
+| 1 | `PRUNEp3px-6f7ae705` / +0.005 | Gain >=0.01 supports 300 m collar+refill; loss <=-0.01 closes this family. Otherwise inconclusive. This file alone is freshly validated here. |
+| 2 | `PRUNEp3space35-49fff49b` / +0.007 | Only if slot 1 does not materially lose, human approves another test, and exact bytes validate. Gain >=0.01 **over p3px** favors spaced refill; loss <=-0.01 disfavors it; smaller differences teach nothing. |
+| 3 | Reserve `PRUNEp4space35-07bd8182` / +0.002 | Only if slot 2 materially wins: a >=0.01 gain vs slot 2 favors widening with spaced refill; <=-0.01 loss favors 300 m. Else conserve the slot. |
 
-**Weeks to deadline:** Oct 23–Nov 5 (wk1–2): receipts, quota and legal checks,
-then at most conditional PRUNE slots. Nov 6–19 (wk3–4): combine two axes only
-if each has independent >=0.01 receipt evidence, on a gate-clean parent.
-Nov 20–Dec 3 (wk5–6): pick one blind final and fallback, re-read/validate
-both; TRACKB is separate geologist-review work, not a weekly probe.
+**Weeks:** Oct 23–Nov 5 (wk1–2): receipt/quota/legal checks, conditional PRUNE;
+Nov 6–19 (wk3–4): combine axes only with independent >=0.01 receipt evidence
+on a gate-clean parent; Nov 20–Dec 3 (wk5–6): validate final and fallback
+from disk, choose one blind final. TRACKB is Phase-2 geologist review only.
 
-**Better axes, not built:** SUPPORT—spaced ancestor H16-1/H19-4 strands may
-recover gaps; confounder ancestor tuning; falsifier no >=0.01 count-matched
-live gain. RANKFIELD—change only p3px refill ranking; confounder SGMC map bias;
-falsifier no >=0.01 gain after spacing matching. STRIKE_ALIGN—snap on gate-clean
-p3px to coherent edges; confounder lithology / [GeoDAWN flight lines](https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7);
-falsifier no gain over randomized-strike control. Each needs its own session.
+**Better axes, proposals only:** SUPPORT—new spaced H16-1/H19-4 strands may
+cover gaps; confounder prior leaderboard tuning; falsifier no >=0.01 live gain
+at matched count/collar. RANKFIELD—change p3px refill ranking at fixed spacing;
+confounder SGMC map bias; falsifier no >=0.01 gain vs randomized ranking.
+STRIKE_ALIGN—snap on gate-clean p3px to coherent edges; confounder lithology /
+[GeoDAWN flight lines](https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7);
+falsifier no gain over randomized-strike control. Build each separately.
