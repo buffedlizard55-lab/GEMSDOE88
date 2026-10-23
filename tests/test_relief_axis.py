@@ -35,7 +35,7 @@ RELEASES = ROOT / "releases"
 LEDGER = ROOT / "ledger" / "submissions.csv"
 CARDS = ROOT / "ledger" / "mechanism_cards.json"
 
-OUR_VALUES = ("up2t10", "up2t15", "dn2t15")  # this family only; see test_relief_bracket_axis.py (IR-88-36)
+OUR_VALUES = ("up2t10", "up2t15", "dn2t15")  # this family only; see test_relief_bracket_axis.py (IR-88-38)
 RELIEF_JSON = [
     p for v in OUR_VALUES
     for p in sorted(RELEASES.glob(f"{brv.R1_ID}-RELIEF{v}-*.json"))

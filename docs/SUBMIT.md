@@ -1,6 +1,6 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-> **Human competitor controls all uploads (`buffedlizard55-lab`, 1 entity, `<= 3` slots/week, 1 blind final file by `2026-12-03`).** Agent never logs into or fetches `drivendata.org` or `dropbox.com`. Candidate `.tif`/`.zip` rasters live locally in `releases/` (untracked in Git per `.gitignore` data-use policy; reproducible via `python3 scripts/build_snap_variants.py`, `python3 scripts/build_prune_variants.py` and `python3 scripts/build_relief_variants.py`), with tracked SHA-256 receipts in `releases/*.json` and `ledger/submissions.csv`.
+> **Human competitor controls all uploads (`buffedlizard55-lab`, 1 entity, `<= 3` slots/week, 1 blind final file by `2026-12-03`).** Agent never logs into or fetches `drivendata.org` or `dropbox.com`. Candidate `.tif`/`.zip` rasters live locally in `releases/` (untracked in Git per `.gitignore` data-use policy; reproducible via `python3 scripts/build_snap_variants.py`, `python3 scripts/build_prune_variants.py`, `python3 scripts/build_prune_sweep_variants.py` and `python3 scripts/build_relief_variants.py`), with tracked SHA-256 receipts in `releases/*.json` and `ledger/submissions.csv`.
 
 ## Session Built Candidates (`AXIS = SNAP`, Spacing-Locked `d_nn >= 2.8284 px`, Constant `N = 37,654`, Parent `h33-h33-2-b2`, Seed `20261023`)
 
@@ -54,13 +54,15 @@ Built to *measure* the basin/piedmont/range-front mass question, not to win a sl
 - **Form Note (`90 / 140` chars):** `h33-2-b2 PRUNEp3px; RELIEF 15% piedmont+range-front->basin, count fixed; pred -0.007 MODEL`
 - **Stats:** `5,648` moved (`15.00%`); tercile shares `basin 20.4 -> 35.4`, `range front 37.8 -> 30.3`; `SGMC` `0.08490` (`-0.01118` vs `R1`, worst of the three); `12 km` CV `0.6432`; `min d_cat = 3.1623 px`.
 
-## Concurrent RELIEF Bracket Family (`rng2bas12` / `rng2pmt12` / `bas2rng12`, also `HOLD` — IR-88-36)
+## Concurrent RELIEF Bracket Family (`rng2bas12` / `rng2pmt12` / `bas2rng12`, also `HOLD` — IR-88-38)
 
-A second session independently built single-source 12% brackets on the same parent/terciles (`scripts/build_relief_bracket_variants.py`, predictions preregistered in `registry/relief_preregistration.json`). Same conclusion as above: **do not upload ahead of Slots 1–2**; two builds now agree (basinward SGMC `0.08490`/`0.08502 PROXY`). All three: `37,654` dots, `4,518 (12.00%)` moved, `min d_cat 3.1623 px`, Band 12 terciles `q1=-142.8321 m`, `q2=+38.5885 m`; full receipts in `evidence/relief_axis_report.json`.
+A second session independently built single-source 12% brackets on the same parent/terciles (`scripts/build_relief_bracket_variants.py`, predictions preregistered in `registry/relief_preregistration.json`). Same conclusion as above: **do not upload**; two builds now agree (basinward SGMC `0.08490`/`0.08502 PROXY`). All three: `37,654` dots, `4,518 (12.00%)` moved, `min d_cat 3.1623 px`, Band 12 terciles `q1=-142.8321 m`, `q2=+38.5885 m`; full receipts in `evidence/relief_axis_report.json`.
 
 - **`rng2bas12` (range→basin):** primary `releases/…-RELIEFrng2bas12-20261023-56093882.tif` (`SHA-256 560938824a6ddae52e45662fe506b7d0f5dea6191746ab517869d5e1205307bb`, `350,762` B) / fallback `…-56093882-zeros.tif` (`a34a51c176fcd53069aa6e7e3d7ea463efca28a833e84b12df9e506c930a6737`, `215,369` B). **Name:** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFrng2bas12-20261023-56093882`. **Form note (95/140):** `R1(6f7ae705); RELIEF range->basin 12% (4518) B12 terciles, 37654, >3px; pred +0.008 MODEL vs R1`. Shares →`32.42/41.74/25.83%`; `w`-DTI `-0.006988 MODEL`; SGMC `0.085018 PROXY`; CV `0.6048`.
 - **`rng2pmt12` (range→piedmont):** `…-RELIEFrng2pmt12-20261023-52717cf5.tif` (`52717cf542642a2f9304d077f462dd0973d1f6b87f811c8d3b4039ff18c82521`, `351,997` B) / `…-52717cf5-zeros.tif` (`a69c94ecbc73ebb465be4cd82bc66898b1e7a58d69fb1f48ad4b17647711502d`, `215,849` B). **Form note (98/140):** `R1(6f7ae705); RELIEF range->piedmont 12% (4518) B12 terciles, 37654, >3px; pred +0.002 MODEL vs R1`. Shares →`20.42/53.74/25.83%`; SGMC `0.085812`; CV `0.5836`.
 - **`bas2rng12` (basin→range):** `…-RELIEFbas2rng12-20261023-f4c6dc18.tif` (`f4c6dc18f0cf5b2fa22f0c54374d1d3e7c782ef6246136e71770c188cbf6d663`, `350,381` B) / `…-f4c6dc18-zeros.tif` (`6902c7391b6c50487ef86bbac82f7167522165d1102062f689a7601c831931f4`, `214,118` B). **Form note (95/140):** `R1(6f7ae705); RELIEF basin->range 12% (4518) B12 terciles, 37654, >3px; pred -0.010 MODEL vs R1`. Shares →`8.42/41.74/49.83%`; SGMC `0.093903`; CV `0.6724`.
+
+Ledger after both merges: `29` BUILT rows, `0 RECEIPT`.
 
 ## Other Reconciled Ledger Inventory (`HOLD` — `ledger/submissions.csv`)
 - **Unspaced `SNAP` (`SNAPw2E1` `01cf9e98` `MODEL -0.002`, `SNAPw2S2` `60ced8c7` `MODEL -0.001`, `SNAPw2E2` `861cd355` `MODEL -0.002`):** `HOLD` due to along-strike bunching (`min_sep = 1 px`, `SGMC` delta `-0.0080` to `-0.0040`); superseded by spacing-locked `SNAPscarp2px` (`fae77ff4`, `d_nn >= 2.8284 px`, `SGMC +0.00075`).
@@ -68,4 +70,44 @@ A second session independently built single-source 12% brackets on the same pare
 - **`MASS` (`MASSm10minus` `7132935e`, `MASSm10plus` `82673b57`, `MASSm20minus` `6c73303c`):** `HOLD` per `registry/mass_ranking_audit.json`.
 
 ## Format Gate Verification Summary
-- All `SNAP`, `PRUNE` and both `RELIEF` families' GeoTIFFs (`EPSG:32611`, `3730×3292`, `Affine(100,0,243350,0,-100,4508550)`, `1` band `float32`, `[0,1]`, `0` NaN inside footprint, `0` on catalogue, unique SHA-256) re-read and verified in `tests/test_snap_axis.py`, `tests/test_prune_axis.py`, `tests/test_relief_axis.py`, `tests/test_relief_bracket_axis.py`, and by independent `scripts/validate_variant.py` (PASS on every twin checked). Ledger: `26` BUILT rows, `0 RECEIPT`; paste verbatim portal `receipt_score`/`receipt_date` after any upload — `R0 0.2778` is `CLAIM`, all else `MODEL`/`PROXY`.
+- All `SNAP`, `PRUNE` and both `RELIEF` families' GeoTIFFs (`EPSG:32611`, `3730×3292`, `Affine(100,0,243350,0,-100,4508550)`, `1` band `float32`, `[0,1]`, `0` NaN inside footprint, `0` on catalogue, unique SHA-256) re-read and verified in `tests/test_snap_axis.py`, `tests/test_prune_axis.py`, `tests/test_relief_axis.py`, `tests/test_relief_bracket_axis.py`, `tests/test_prune_sweep_variants.py`, and independent `scripts/validate_variant.py` (PASS on every twin checked).
+
+## Current R0 PRUNE Collar Dose Sweep — Human Upload Only
+
+**No upload was made by the agent.** These are three reproducible PRUNE experiments from exact parent `R0 = h33-h33-2-b2`; choose at most one per live slot. The `.tif` primary has NaN outside the footprint. The matching `-zeros.tif` is a fallback with zero outside; never upload both for one slot. Raster files and ZIPs are local-only/ignored by Git because data-use terms are unchecked.
+
+- **Entity/budget:** one human competitor; the last repository-reported count is `3/3` weekly slots remaining and about `21` total, to be re-confirmed by the human.
+- **TOP_PUBLIC:** `0.4413`, dated `2026-10-22`, human-supplied and not portal-verified here.
+- **R0 score:** `0.2778` is **CLAIM** (no receipt logged). Candidate changes below are **MODEL**, never scores.
+
+### Candidate files, names, and form notes
+
+### 1. `PRUNEp3.2px` — 320 m collar
+- **Primary:** `releases/h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae.tif`
+- **Fallback:** `releases/h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae-zeros.tif`
+- **Submission name:** `h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae`
+- **Form note (91/140 chars):** `R0 h33-h33-2-b2; PRUNE <= 3.2px (320m), fixed N=37,654, exact DTI refill; pred +0.002 MODEL`
+- **Identity:** primary SHA-256 `f272cdaeb638b9051848e61492c009695643d3d6e53b3d62ce1ad234ff748be5`; fallback SHA-256 `d53a2fadee165452282fb4d8b2be6facf0e7e5eb00c1cf94d6a606ff3d5dbbae`.
+- **Parent difference:** 2,702 removed + 2,702 added; **7.17586% moved**; min catalogue distance `3.6056 px`.
+
+### 2. `PRUNEp3.7px` — 370 m collar
+- **Primary:** `releases/h33-h33-2-b2-PRUNEp3.7px-20261023-5508b0b9.tif`
+- **Fallback:** `releases/h33-h33-2-b2-PRUNEp3.7px-20261023-5508b0b9-zeros.tif`
+- **Submission name:** `h33-h33-2-b2-PRUNEp3.7px-20261023-5508b0b9`
+- **Form note (91/140 chars):** `R0 h33-h33-2-b2; PRUNE <= 3.7px (370m), fixed N=37,654, exact DTI refill; pred -0.005 MODEL`
+- **Identity:** primary SHA-256 `5508b0b9ed9279001297162f357cb11eccb339018941d5e5306626335a8f8a88`; fallback SHA-256 `4a2c0b94bca1d533d4b4203855e2f650de03de3903c45899e1df5a5f32c47c3f`.
+- **Parent difference:** 3,361 removed + 3,361 added; **8.92601% moved**; min catalogue distance `4.0000 px`.
+
+### 3. `PRUNEp4.3px` — 430 m collar
+- **Primary:** `releases/h33-h33-2-b2-PRUNEp4.3px-20261023-21fa2b26.tif`
+- **Fallback:** `releases/h33-h33-2-b2-PRUNEp4.3px-20261023-21fa2b26-zeros.tif`
+- **Submission name:** `h33-h33-2-b2-PRUNEp4.3px-20261023-21fa2b26`
+- **Form note (91/140 chars):** `R0 h33-h33-2-b2; PRUNE <= 4.3px (430m), fixed N=37,654, exact DTI refill; pred -0.013 MODEL`
+- **Identity:** primary SHA-256 `21fa2b2653cf40e48d2436722dc67fe5492b8f07c7d6c8ace81ee50de0a03694`; fallback SHA-256 `ee20c1b843f776e01a41992406b17fbe8d03e3aa46ee381a6bbc13b4d0379fa3`.
+- **Parent difference:** 4,488 removed + 4,488 added; **11.91905% moved**; min catalogue distance `4.4721 px`.
+
+## Format receipt and remaining human action
+
+All three primaries and zero-outside fallbacks passed the independent on-disk `validate_variant.py` checks in [`registry/prune_sweep_validation.json`](../registry/prune_sweep_validation.json): GeoTIFF, one `float32` band, `EPSG:32611`, sample shape/transform, values `[0,1]`, no NaN inside, NaN outside on primary, zero outside on fallback, zero catalogue mass, unique SHA-256, fixed count, and disk re-read. Each fallback also passed the strict all-finite format audit (`releases/*-format-audit.json`). This is **format validation only**, not approval to spend a slot. The report-only hide/recover PROXY is degenerate at zero for the `>3 px` collar and is not a gate; blind SGMC values are also PROXY, not competition scores.
+
+**Human:** reconfirm TOP_PUBLIC, deadline, rolling-week/total slot counts, and any live receipt. Select one file manually if desired; after a submission, fill `receipt_score` and `receipt_date` verbatim in `ledger/submissions.csv`. The agent never logs in or submits.

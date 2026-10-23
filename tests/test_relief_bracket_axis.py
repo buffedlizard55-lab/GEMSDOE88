@@ -1,6 +1,6 @@
 """Tests for AXIS=RELIEF bracket family (parent R1 = PRUNEp3px): single-source tercile brackets.
 
-One of two concurrently built RELIEF families (IR-88-36); the up/dn family is
+One of two concurrently built RELIEF families (IR-88-38); the up/dn family is
 covered by tests/test_relief_axis.py. This module covers only rng2*/bas2*.
 
 Two layers, mirroring tests/test_snap_r1_axis.py:

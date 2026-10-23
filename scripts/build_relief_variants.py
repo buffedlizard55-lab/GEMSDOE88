@@ -68,7 +68,7 @@ R1_ID = bsv.R1_ID
 R1_SHA_NAN = bsv.R1_SHA_NAN
 R1_SHA_ZEROS = bsv.R1_SHA_ZEROS
 
-# This module owns ONE of the two concurrently built RELIEF families (IR-88-36).
+# This module owns ONE of the two concurrently built RELIEF families (IR-88-38).
 # A rerun replaces ONLY these values; the bracket family lives in
 # scripts/build_relief_bracket_variants.py and must survive untouched.
 OUR_VALUES = {"up2t10", "up2t15", "dn2t15"}
