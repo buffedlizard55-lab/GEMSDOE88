@@ -1,5 +1,9 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+## Current checkout override — 2026-10-23 (`cbfc0a92`): DO NOT UPLOAD
+
+Startup stopped: 0/15 manifest inputs available; no fresh R0 rebuild or format validation. This session produced no candidate, submission name, form note, or format receipt. All prior PASS/local-availability claims below are historical. Before a manual upload, restore authorized pinned inputs, match R0 hashes, reconstruct the chosen file, re-read and validate both twins. Upload only one twin per slot.
+
 ## Current session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; integrated queue — supersedes the slot order of every section below; all their prerequisites stand)
 
 **Three new candidates, one per preregistered arm; no slot was used and no submission was made.** Parent
