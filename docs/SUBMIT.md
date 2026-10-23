@@ -32,3 +32,21 @@
 
 ## Format Gate Verification Summary
 - All `6` `PRUNE` GeoTIFFs (`EPSG:32611`, `3730×3292`, `Affine(100,0,243350,0,-100,4508550)`, `1` band `float32`, `[0,1]`, `0` NaN inside footprint, `0` on catalogue, unique SHA-256) re-read and verified in `tests/test_prune_axis.py`. After human upload, record verbatim `receipt_score` + `receipt_date` in `ledger/submissions.csv`.
+
+## Session `2026-10-23` — `AXIS = SNAP` on Parent `R1 = PRUNEp3px` (DOI: **do not spend a slot**)
+
+Three gate-clean, count-preserving geometry variants of `R1` (`37,654` dots, `min d_cat = 3.162 px`, `> 3 px` strictly, `0` mass on catalogue). Each moves at most `35%` of dots by at most `1-2 px` onto the strongest edge cell in the dot's own window; nothing else changes (same source ridges, same exclusions, same count). Rebuild with `python3 scripts/build_snap_variants.py` (pinned inputs, no RNG in the allocation).
+
+| Value | Window | Edge field | Moved | Mean displacement | `.tif` SHA-256 (NaN outside) | Note (`chars`) |
+| :--- | ---: | :--- | ---: | ---: | :--- | :--- |
+| `g2f35` | `<= 2 px` | `tmi_hg 0.55 + iso_grav_anom_hg 0.45` | `34.5%` | `1.92 px` | `4c460fd4f57c8c2198b14c4f563c2ec2a93ce7f363a5631433c7d55975395c7d` | `h33-2-b2 PRUNEp3px; SNAP<=2px to potential-field HG (tmi_hg+grav_hg), 35% moved; pred +0.002 MODEL` (`98`) |
+| `d2f35` | `<= 2 px` | `+ det_elev_slope 0.20 + tc 0.10` | `34.3%` | `1.86 px` | `a98ce2b85cd7a6bcf503a7923fc0144acb21df9ecd622b2aa1f511823d167466` | `h33-2-b2 PRUNEp3px; SNAP<=2px to TMI+grav+scarp+curvature edge, 35% moved; pred +0.001 MODEL` (`92`) |
+| `d1f35` | `<= 1 px` | as `d2f35` | `34.9%` | `1.00 px` | `33783252d6c8b747e7affb6161d57bca8e06228684d8efeac7e1e60057b6dc60` | `h33-2-b2 PRUNEp3px; SNAP<=1px to composite edge, 35% moved; pred +0.003 MODEL` (`77`) |
+
+Fallback twins (`-zeros.tif`, identical inside, `0.0` outside) and single-TIFF `.zip`s sit beside each `.tif`; tracked receipts are `releases/<id>.json`.
+
+**Why they are not slot candidates.** On the blind off-catalogue USGS `SGMC` fault control (`PROXY`, `n = 62,703 px` outside the 300 m halo) every SNAP variant is *worse* than the parent it came from: `R1 = 0.09608` vs `0.09198` (`g2f35`), `0.09246` (`d2f35`), `0.09505` (`d1f35`). Snapping dots onto geophysical edge maxima moves mass *away* from where blind faults actually are — consistent with the weak per-band localisation measured here (percentile rank at catalogue pixels `0.53-0.56` vs `0.50` background). The `12 km` block CV is unchanged (`0.5705-0.5708` vs `0.5700`), so this is not a dispersion effect.
+
+**Decision:** spend slot 1 on `R1` (`6f7ae705`), not on `SNAP`. Keep the three SNAP files as the geometry control: if a future detector beats `R1`, these bound how much of the gain can be re-positioning rather than new evidence. `IRREGULARITIES.md` IR-88-24 records the reason.
+
+**What the human must still supply:** `TOP_PUBLIC` + the date it was read, the `receipt_score` + `receipt_date` for whatever is actually uploaded, and the rolling-week slot count. None of those numbers exist in this repository, and the agent will not fetch or scrape them.

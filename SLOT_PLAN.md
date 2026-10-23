@@ -1,24 +1,42 @@
-# SLOT_PLAN — Single-Entity Schedule (3 Slots/Week · 1 Blind Final File by 2026-12-03)
+# SLOT_PLAN — Single Entity · 3 Slots/Week · One Blind Final File by `2026-12-03`
 
-**Entity budget:** `1` competitor (`buffedlizard55-lab`), `<= 3` live uploads/rolling week, **6 weeks left (`2026-10-23 -> 2026-12-03`, max `18` public slots)**, **ONE blind final file** judged on private Round 1 (`$50K`) & Round 2 (`$250K`) truth (https://www.drivendata.org/competitions/306/competition-doe-gems/). Parent **`R0 = h33-h33-2-b2`** (`37,654` dots, `0` within `2 px`, `0.2778` `CLAIM`) rebuilt byte-for-byte across all 5 lineage steps (`c55bafc4...` / `baeae321...`). Duplicate historical uploads collapsed in `ledger/historical_climb.csv` (`5` unique rungs); all `10` built candidates (`MASS` `HOLD`, score-blind `prune3`, `CONCENTRATION` `HOLD`, and physics-ranked `PRUNEp1px/p3px/p4px`) are logged with distinct SHA-256 hashes in `ledger/submissions.csv`.
+**Entity:** `buffedlizard55-lab` (1 competitor, `<= 3` live uploads per rolling week, **ONE** blind final file scored on both Phases — https://www.drivendata.org/competitions/306/competition-doe-gems/). **Deadline:** `2026-12-03` → **6 weeks / up to 18 public slots** from `2026-10-23`.
+**Unfilled by the human (still blank, do not invent):** `TOP_PUBLIC` + date, `receipt_score` for `R0` (`0.2778` is a `CLAIM`), slots used this rolling week.
 
-## Week 1 (`2026-10-23`) — Active Axis: Constant-Mass `PRUNE` (`N = 37,654`)
+## Where the evidence actually stands
 
-Why `PRUNE` first: `H19-5 -> D2.8 (0.2600) -> SOLO (0.2708) -> R0 (0.2778)` `CLAIM` conflated collar radius with dot count (`44,090 -> 40,199 -> 37,654`) and left `2,171` `R0` dots inside `(2, 3] px` (`300 m` DTI kernel radius). Varying collar radius $B \in \{1, 3, 4\}\text{ px}$ around $R_0$ ($B=2$) at **exact `S = 37,654`** via 4-line physics + exact marginal-DTI `add`/`drop` isolates collar physics without count confounding:
+| Fact | Value | Label |
+| :--- | :--- | :--- |
+| `R0 = h33-h33-2-b2` live score | `0.2778` | **CLAIM** (no receipt) |
+| `R0` rebuilt from pinned lineage on `2026-10-23` | byte-identical, `37,654` dots | verified |
+| `R0` dots inside `2 < d_cat <= 3 px` | `2,171` | verified (IR-88-14) |
+| `R1 = PRUNEp3px` (collar cut at constant count) | `min d_cat = 3.162 px`, `MODEL +0.005` | BUILT |
+| SNAP on `R1` (this session, 3 variants) | blind `SGMC` `0.09198 / 0.09246 / 0.09505` vs `R1` `0.09608` | **PROXY** → negative (IR-88-24) |
 
-| Slot | Release ID | Collar $B$ | Moved vs `R0` | $\min d_{\text{cat}}$ | Holdout-DTI `PROXY` (`n=22,663`, 95% CI) | Off-Cat `SGMC` `PROXY` (`n=62,703`) | `12 km` / `10 km` CV | Pred $\Delta$ Live (`MODEL`) | Decision Rule |
-|---|---|---:|---:|---:|---:|---:|---:|---:|---|
-| **1** | `...-PRUNEp3px-20261023-6f7ae705` | `<=3 px` (`300 m`) | `5.77%` (`2,171`) | `3.16 px` | `0.00000` `[0, 0]`* | **`0.09608`** | **`0.5700`** / `0.6405` | **`+0.005`** | Promote as `R1` if `RECEIPT >= R0 + 0.01` |
-| **2** | `...-PRUNEp1px-20261023-0542a27c` | `<=1 px` (`100 m`) | `6.76%` (`2,545`) | `1.41 px` | `0.03015` `[0.0269, 0.0334]` | `0.09093` | `0.5647` / `0.6322` | **`-0.006`** | Tests `1–2 px` flank toxicity at fixed `N` |
-| **3** | `...-PRUNEp4px-20261023-be9fd3d5` | `<=4 px` (`400 m`) | `10.16%` (`3,825`) | `4.12 px` | `0.00000` `[0, 0]`* | `0.09447` | `0.5937` / `0.6644` | **`-0.009`** | Tests tip-loss turnover beyond `300 m` R |
+Two readings of the ledger matter for the plan. First, the whole climb `0.1922 -> 0.2477 -> 0.2600 -> 0.2708 -> 0.2778` is one lineage edited five times, so the remaining headroom is inside that lineage, not in a new detector. Second, every lane that swapped the field for a single physical signal scored `0.00-0.19`; the dots are the asset.
 
-*\*Triangle-inequality note:* Any post-prune holdout $H \subset C$ has $d(x, H) \ge d(x, C) > 3\text{ px} \Rightarrow \ker(x, H) \equiv 0$, explaining why post-prune catalogue holdouts anti-correlate with `0.2600 -> 0.2708 -> 0.2778` while blind off-catalogue USGS `SGMC` faults (`https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d`) peak at `p3px = 0.09608` and turn over at `p4px = 0.09447`. *(Conditional Slot 2/3 option: if `p3px` passes `>=3 px`, apply `CONCENTRATION 1 km ×20%` [`MODEL +0.020`] directly on `R1 = PRUNEp3px` in Week 2 so both `>=3 px` AND concentration are satisfied cleanly without any gate exemption.)*
+## The next three slots, in order
 
-## Weeks 2–6 Roadmap (`2026-10-30 -> 2026-12-03`)
+**Slot 1 — `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`** (`releases/…-6f7ae705.tif`, note `h33-2-b2; PRUNE <=3px held at 37654 (-2171 in 2-3px, +2171 exact marginal gain >3px); pred +0.005 MODEL`).
+*Question:* is the 300 m collar real, or was the `0.2600 -> 0.2708 -> 0.2778` climb just mass reduction?
+*What each outcome changes:* `>= R0 + 0.01` → the collar is confirmed and `R1` becomes the parent for every later axis. Within `+/- 0.01` → inconclusive (public-chunk noise), keep `R0` as the reference and stop spending slots on collar radius. `<= R0 - 0.01` → the collar thesis is dead; the `2-3 px` dots were carrying truth and the remaining plan shifts entirely to `CONCENTRATION`.
+*Why first:* it is the only built file that satisfies Brief §4.4 with no exemption, and every later non-PRUNE axis needs a compliant parent anyway.
 
-- **Week 2 (Slots 4–6) — `CONCENTRATION` on `>=3 px` `R1` (`PRUNEp3px`):** Re-apply 1 km `×10%` / `×20%` and 5 km `×20%` mass welding on `R1` (`min d_cat > 3 px`, `0` blocks emptied), testing the `+0.011 / +0.020` `MODEL` concentration effect cleanly without any `2–3 px` collar violation.
-- **Weeks 3–4 (Slots 7–12) — Mechanism-Backed Structural Axes** (one axis/week on best `RECEIPT` parent; keep iff `Delta RECEIPT >= +0.01`):
-  1. **`RELAY_TIP_STRESS` (Anisotropic Crack-Tip & Relay Breaching):** Replace isotropic `d_cat > 3 px` circle with directional crack-tip aperture (`r_tip = 1.5 px` within $\pm 22^\circ$ of terminal strike; `r_flank = 3.2 px` normal to trace) plus Coulomb-tension stepover bridges (Pollard & Segall 1987, https://doi.org/10.1016/B978-0-12-066266-1.50009-0). *Confounder:* E-W GeoDAWN tie-line ripples and alluvial fan channels crossing tips. *Falsifier:* `< +0.01` live gain over isotropic `p3px` at fixed count.
-  2. **`DIP_OFFSET_ASYM` (Andersonian $60^\circ$ Hanging-Wall Potential-Field Offset):** Pair `0 m` LiDAR scarp ridges with down-dip gravity HG (`Band 18`) and basement gradient (`Band 15`) shifted `300–900 m` into the hanging wall rather than vertical zero-offset stacking (Faulds & Hinz 2015, https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11072.pdf). *Confounder:* welded tuff caprock edges and Lake Lahontan paleoshorelines (`1,212–1,334 m`) with zero basement throw. *Falsifier:* `< +0.01` live gain vs co-located potential-field scoring.
-  3. **`HYDRO_UPFLOW_GATE` (Quaternary Dilation-Conduit Geothermometry & Potassic Alteration):** Re-weight `d_cat > 3 px` strands by quartz/chalcedony geothermometer anomalies (DOE GDR 1391, https://gdr.openei.org/submissions/1391), GeoDAWN K/Th adularia alteration (https://doi.org/10.5066/P93LGLVQ), and MT clay-cap gradients (`Band 17`). *Confounder:* lateral down-slope thermal outflow plumes in permeable piedmont gravels. *Falsifier:* `< +0.01` live gain vs pure structural geometry.
-- **Weeks 5–6 (Slots 13–18, by `2026-12-03`) — Orthogonal Fusion & Blind Final Lock:** Fuse only `RECEIPT >= +0.01` axes (`12 km` CV inside `0.51–0.59`); lock **1 blind final submission** scoring Round 1 (`$50K`) & Round 2 (`$250K`).
+**Slot 2 — `CONCENTRATION` on `R1`** (`b10px` = 1 km blocks, `m10`; **not built yet** — the existing `CONC*` files are `R0`-based and `HOLD`).
+*Question:* does moving 10% of the mass from the coldest to the hottest 1 km block actually buy the `MODEL +0.011` that the `R0`-based projection claims, once `R1` has removed the collar confound?
+*What each outcome changes:* `>= +0.01` → concentration is real; fuse it with `R1` for the final file and spend slot 3 on the `m20` bracket. `|delta| < 0.01` → the block-density story is a null; the final file should stay a collar-corrected `R1` and effort moves to Phase-2 traces.
+*Guardrail:* report block-density CV before/after; the best historical files sit at `0.51-0.59`, and the `R0`-based `m10` build overshot to `1.02`.
+
+**Slot 3 — confirm or fuse.** If slots 1 and 2 both clear `+0.01`, upload `R1 + CONCENTRATION m10` (one change further along the same lineage) as the confirm step. If only one clears, re-upload the better one only if the human wants a noise estimate — otherwise **bank the slot** and hold it for the final file. Do not spend it on `SNAP`: its blind control is negative.
+
+## Weeks 2-6 (after the three slots above)
+
+- **Weeks 2-3:** build and test `RELIEF` (basin / piedmont / range-front terciles from the detrended-elevation bands, count fixed) and `TRACKB` traces. `RELIEF` is the last untested axis with a mechanism that predicts a *positive* sign; `TRACKB` is the Phase-2 deliverable that the expanded expert labels reward but is not a weekly-slot candidate.
+- **Weeks 4-5:** fuse only axes with a `RECEIPT >= +0.01`. Any axis under `0.01` live is no evidence on public chunks — do not stack nulls and call it a model.
+- **Week 6 (by `2026-12-03`):** choose **one** blind final file and one fallback, re-validate the format of both against `sample_submission.tif`, and freeze. The final file must be the one with the best *mechanism* as well as the best number, because Phase 2 rescores against expert-expanded labels that no public chunk reveals.
+
+## Proposed better axes (mechanism · confounder · falsifier — not built this session)
+
+1. **`KERNEL_MATCH`** — re-weight dot spacing to the 3 px triangular kernel so neighbouring dots stop cannibalising the same truth credit (`M` saturates per dot while `T` saturates per truth cell). *Confounder:* none geological; this is a pure metric-geometry effect and therefore the cleanest remaining test. *Falsifier:* no gain at fixed count after the top-10% redundant dots are dropped and re-spent.
+2. **`TERMINATION_FAN`** — concentrate mass at fault tips and step-overs, where new faults are most likely to be mapped first (Faulds et al. on relay ramps). *Confounder:* fan-apron and shoreline edges mimic tip splays. *Falsifier:* `< +0.01` live over isotropic dots at the same count.
+3. **`LIDAR_GATED_DENSIFY`** — allow only LiDAR-covered sub-areas to take extra dots, since the 1 m scarps localise better than 400 m aeromagnetics. *Confounder:* LiDAR coverage correlates with basin-floor infrastructure. *Falsifier:* gain vanishes when matched on block density.

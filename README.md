@@ -1,5 +1,16 @@
 # GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
 
+> ## CURRENT STATE (`2026-10-23`, single entity `buffedlizard55-lab`, 3 slots/rolling week)
+>
+> | Field | Value |
+> | :--- | :--- |
+> | **Parent** | `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (37,654 dots, `min d_cat = 3.162 px`, rebuilt byte-exactly from the pinned lineage on `2026-10-23`). `R0 = h33-h33-2-b2` is its parent and the only scored ancestor. |
+> | **Best receipt** | **NONE — no receipt is recorded in [ledger/submissions.csv](ledger/submissions.csv).** `R0 = 0.2778` is a `CLAIM`, not a receipt. |
+> | **TOP_PUBLIC** | **UNKNOWN (human must supply value + date).** The agent may not fetch `drivendata.org`; nothing in this repo is a leaderboard number. |
+> | **Slots left** | **UNKNOWN (human must supply `used / 3` for the rolling week).** Candidates built: 13 rows, all `BUILT`, none uploaded. |
+> | **Next 3 slots** | 1. `R1` `PRUNEp3px` (`6f7ae705`) · 2. `CONCENTRATION` on `R1` (not built yet) · 3. best of the first two as the confirm/final candidate. Full reasoning in [SLOT_PLAN.md](SLOT_PLAN.md). |
+> | **This session (AXIS = SNAP)** | 3 gate-clean variants of `R1` built (`g2f35`, `d2f35`, `d1f35`). Blind USGS `SGMC` control is **below** `R1` for all three → **diagnostic only, do not spend a slot** (IR-88-24). |
+>
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)
 >
 > | Gate Question | Automated Machine Decision | Binding Reason & Verifiable Receipt |
