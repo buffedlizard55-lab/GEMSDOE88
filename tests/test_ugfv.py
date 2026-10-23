@@ -133,6 +133,11 @@ def test_run_card_four_way_parity_and_audit_invariants():
     assert reg["literal_any_raster_gate"]["space_covering_witness_count"] == 4
     assert dots["H33"]["forward_dot_overlap_3px"] < 0.70
 
+    status_doc = json.loads((ROOT / "docs/status.json").read_text())
+    assert status_doc["raster_sha256"] == card["raster_sha256"]
+    assert status_doc["ok_to_submit"] is False
+    assert status_doc["ok_to_download_for_research"] is True
+
     tif_path = ROOT / "docs" / card["downloadable_file"]
     zip_path = tif_path.with_suffix(".zip")
     receipt_path = tif_path.with_suffix(".json")
