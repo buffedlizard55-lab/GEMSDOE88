@@ -1,0 +1,422 @@
+{
+  "session_date": "20261023",
+  "axis": "SPACING",
+  "parent_r0": {
+    "id": "h33-h33-2-b2",
+    "n_dots": 37654,
+    "rebuilt_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "rebuilt_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd"
+  },
+  "variants": [
+    {
+      "id": "h33-h33-2-b2-SPACINGlat10-20261023-dc7e0d83",
+      "parent": "h33-h33-2-b2",
+      "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "axis": "SPACING",
+      "value": "lat10",
+      "seed": 20261023,
+      "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+      "file_nan": "releases/h33-h33-2-b2-SPACINGlat10-20261023-dc7e0d83.tif",
+      "sha256": "dc7e0d835353601b9912f8e26e5f7a61083e33773c6eeecd60dbeb2f4b5a016f",
+      "bytes_nan": 354877,
+      "zip_nan": "releases/h33-h33-2-b2-SPACINGlat10-20261023-dc7e0d83.zip",
+      "zip_nan_sha256": "b378bba38eba46780f032804d4b420826be892b1b8135c6e399f1688d93e2e33",
+      "file_zeros": "releases/h33-h33-2-b2-SPACINGlat10-20261023-dc7e0d83-zeros.tif",
+      "sha256_zeros": "7680c34bda5419be6664cf82e644768e06c6a78da6754d1d67526fa8ad488b5b",
+      "bytes_zeros": 218598,
+      "zip_zeros": "releases/h33-h33-2-b2-SPACINGlat10-20261023-dc7e0d83-zeros.zip",
+      "zip_zeros_sha256": "e5f339890aceb47246ff68ba6f2278ec026d11c7686b9eb4b4d277e8b704dc8a",
+      "form_note": "h33-2-b2; SPACING lat10: 3765 dots (10.00%), +/-6px, support-pref, >3px cat, N=37654, min 2.0px; MODEL 0.000 (dc7e0d83)",
+      "form_note_chars": 119,
+      "n_dots": 37654,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 3765,
+        "n_removed": 3765,
+        "pct_changed_moved": 10.0,
+        "pct_changed_sym_diff": 20.0,
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 2671
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "report_only_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY (degenerate)",
+          "note": "all dots at d_cat > 3 px = kernel radius R; every withheld positive lies on the masked catalogue -> kernel credit 0 (IR-88-20)",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.09675,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5643.05,
+          "fp": 35173.82
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6285,
+          "cv_12km_120px_interior": 0.5587
+        },
+        "spacing_stats": {
+          "n_move_requested": 3765,
+          "n_move_booked": 3765,
+          "n_collar_relocated": 2171,
+          "n_crowded_relocated": 1594,
+          "n_kept": 33889,
+          "n_full_footprint_scans": 0,
+          "mean_displacement_px": 4.365213384913203,
+          "mean_displacement_moved_px": 4.365213384913203,
+          "min_dist_catalogue_px": 3.1622776601683795
+        }
+      },
+      "r0_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY (degenerate)",
+          "note": "reference R0 holds 2,171 dots at 2<d_cat<=3 px",
+          "dti": 0.004006,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": 0.0,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.09606,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5602.26,
+          "fp": 35187.58
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6292,
+          "cv_12km_120px_interior": 0.559
+        }
+      },
+      "leakage_canaries": {
+        "passed": true,
+        "max_symmetric_auc": null,
+        "channels": {},
+        "note": "spacing-only edit of the parent mask introduces no new feature channel; the parent's label-free field is unchanged"
+      },
+      "artifact_reconstruction": {
+        "evidence_class": "REPRODUCTION",
+        "existing_experiment": false,
+        "new_ledger_row": true,
+        "git_sha_at_build": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+        "working_tree_clean_at_build_start": true,
+        "rebuild_script": "scripts/build_spacing_variants.py",
+        "rebuild_script_sha256": "0051300f6a8e57e5f6753fae33bf77f99826e879ebfab7685c2e543e38a21563",
+        "inputs_verified": 15,
+        "manifest_pins_verified": true,
+        "r0_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "r0_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd"
+      }
+    },
+    {
+      "id": "h33-h33-2-b2-SPACINGpoi15-20261023-ccce3b36",
+      "parent": "h33-h33-2-b2",
+      "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "axis": "SPACING",
+      "value": "poi15",
+      "seed": 20261023,
+      "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+      "file_nan": "releases/h33-h33-2-b2-SPACINGpoi15-20261023-ccce3b36.tif",
+      "sha256": "ccce3b36d5f86e275c7222c5e813001b5e9643d1c64785f174812efa54a19c2d",
+      "bytes_nan": 354866,
+      "zip_nan": "releases/h33-h33-2-b2-SPACINGpoi15-20261023-ccce3b36.zip",
+      "zip_nan_sha256": "42fa9fc01b3f4904372aa3c94ef16ac37ba5dffcf9110a2d56f0b2afe419e370",
+      "file_zeros": "releases/h33-h33-2-b2-SPACINGpoi15-20261023-ccce3b36-zeros.tif",
+      "sha256_zeros": "14d156845c8bcc1f79e18951fb6c197e8310b2fb338afcd74717a0c59ee810d7",
+      "bytes_zeros": 218626,
+      "zip_zeros": "releases/h33-h33-2-b2-SPACINGpoi15-20261023-ccce3b36-zeros.zip",
+      "zip_zeros_sha256": "00ebe65848fe6eb0e38c8976f36c551ca0b58f6127aa347482646d9072653f89",
+      "form_note": "h33-2-b2; SPACING poi15: 5648 dots (15.00%), +/-6px, support-pref, >3px cat, N=37654, min 2.0px; MODEL 0.000 (ccce3b36)",
+      "form_note_chars": 119,
+      "n_dots": 37654,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 5648,
+        "n_removed": 5648,
+        "pct_changed_moved": 15.0,
+        "pct_changed_sym_diff": 30.0,
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 2670
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "report_only_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY (degenerate)",
+          "note": "all dots at d_cat > 3 px = kernel radius R; every withheld positive lies on the masked catalogue -> kernel credit 0 (IR-88-20)",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.096953,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5654.83,
+          "fp": 35160.55
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6287,
+          "cv_12km_120px_interior": 0.5585
+        },
+        "spacing_stats": {
+          "n_move_requested": 5648,
+          "n_move_booked": 5648,
+          "n_collar_relocated": 2171,
+          "n_crowded_relocated": 3477,
+          "n_kept": 32006,
+          "n_full_footprint_scans": 0,
+          "mean_displacement_px": 3.973751354525355,
+          "mean_displacement_moved_px": 3.973751354525355,
+          "min_dist_catalogue_px": 3.1622776601683795
+        }
+      },
+      "r0_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY (degenerate)",
+          "note": "reference R0 holds 2,171 dots at 2<d_cat<=3 px",
+          "dti": 0.004006,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": 0.0,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.09606,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5602.26,
+          "fp": 35187.58
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6292,
+          "cv_12km_120px_interior": 0.559
+        }
+      },
+      "leakage_canaries": {
+        "passed": true,
+        "max_symmetric_auc": null,
+        "channels": {},
+        "note": "spacing-only edit of the parent mask introduces no new feature channel; the parent's label-free field is unchanged"
+      },
+      "artifact_reconstruction": {
+        "evidence_class": "REPRODUCTION",
+        "existing_experiment": false,
+        "new_ledger_row": true,
+        "git_sha_at_build": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+        "working_tree_clean_at_build_start": true,
+        "rebuild_script": "scripts/build_spacing_variants.py",
+        "rebuild_script_sha256": "0051300f6a8e57e5f6753fae33bf77f99826e879ebfab7685c2e543e38a21563",
+        "inputs_verified": 15,
+        "manifest_pins_verified": true,
+        "r0_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "r0_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd"
+      }
+    },
+    {
+      "id": "h33-h33-2-b2-SPACINGstr20-20261023-8abafca5",
+      "parent": "h33-h33-2-b2",
+      "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "axis": "SPACING",
+      "value": "str20",
+      "seed": 20261023,
+      "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+      "file_nan": "releases/h33-h33-2-b2-SPACINGstr20-20261023-8abafca5.tif",
+      "sha256": "8abafca56c1bd2431717316d04da676bf14e531b8b9bb1d8f00a00be1c94d59a",
+      "bytes_nan": 354865,
+      "zip_nan": "releases/h33-h33-2-b2-SPACINGstr20-20261023-8abafca5.zip",
+      "zip_nan_sha256": "292939550e44ff61878678f327992e1fb05737a6cd99788752628d228abf3a15",
+      "file_zeros": "releases/h33-h33-2-b2-SPACINGstr20-20261023-8abafca5-zeros.tif",
+      "sha256_zeros": "811243dce4e340fd6cd81973954baa31dbd515eaff7980346570b98638be4a2f",
+      "bytes_zeros": 218719,
+      "zip_zeros": "releases/h33-h33-2-b2-SPACINGstr20-20261023-8abafca5-zeros.zip",
+      "zip_zeros_sha256": "d54799f93b316986c0539e7f102b26a793631860f1e20f389c60e16962a9921d",
+      "form_note": "h33-2-b2; SPACING str20: 7531 dots (20.00%), +/-6px, support-pref, >3px cat, N=37654, min 2.0px; MODEL 0.000 (8abafca5)",
+      "form_note_chars": 119,
+      "n_dots": 37654,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 7531,
+        "n_removed": 7531,
+        "pct_changed_moved": 20.0,
+        "pct_changed_sym_diff": 40.0,
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 3015
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "report_only_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY (degenerate)",
+          "note": "all dots at d_cat > 3 px = kernel radius R; every withheld positive lies on the masked catalogue -> kernel credit 0 (IR-88-20)",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.096292,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5615.16,
+          "fp": 35142.2
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6282,
+          "cv_12km_120px_interior": 0.5588
+        },
+        "spacing_stats": {
+          "n_move_requested": 7531,
+          "n_move_booked": 7531,
+          "n_collar_relocated": 2171,
+          "n_crowded_relocated": 5360,
+          "n_kept": 30123,
+          "n_full_footprint_scans": 0,
+          "mean_displacement_px": 3.864094153613938,
+          "mean_displacement_moved_px": 3.864094153613938,
+          "min_dist_catalogue_px": 3.1622776601683795
+        }
+      },
+      "r0_reference_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY (degenerate)",
+          "note": "reference R0 holds 2,171 dots at 2<d_cat<=3 px",
+          "dti": 0.004006,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": 0.0,
+          "paired_delta_vs_r0_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.09606,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5602.26,
+          "fp": 35187.58
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6292,
+          "cv_12km_120px_interior": 0.559
+        }
+      },
+      "leakage_canaries": {
+        "passed": true,
+        "max_symmetric_auc": null,
+        "channels": {},
+        "note": "spacing-only edit of the parent mask introduces no new feature channel; the parent's label-free field is unchanged"
+      },
+      "artifact_reconstruction": {
+        "evidence_class": "REPRODUCTION",
+        "existing_experiment": false,
+        "new_ledger_row": true,
+        "git_sha_at_build": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+        "working_tree_clean_at_build_start": true,
+        "rebuild_script": "scripts/build_spacing_variants.py",
+        "rebuild_script_sha256": "0051300f6a8e57e5f6753fae33bf77f99826e879ebfab7685c2e543e38a21563",
+        "inputs_verified": 15,
+        "manifest_pins_verified": true,
+        "r0_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "r0_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd"
+      }
+    }
+  ],
+  "elapsed_seconds": 44.48,
+  "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a"
+}

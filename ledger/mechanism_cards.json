@@ -724,5 +724,50 @@
     ],
     "submission_name": "h33-h33-2-b2-PRUNEp4.3px-20261023-21fa2b26",
     "form_note": "R0 h33-h33-2-b2; PRUNE <= 4.3px (430m), fixed N=37,654, exact DTI refill; pred -0.013 MODEL"
+  },
+  "h33-h33-2-b2-SPACINGlat10-20261023-dc7e0d83": {
+    "hypothesis": "Dots spaced closer than the ~300 m triangular DTI kernel share kernel credit (overlapping credit cones) and inflate the S - M denominator term without adding true-cover credit. Re-spacing the most crowded R0 dots apart at strictly matched count tests whether dot self-interference suppresses live DTI on unmapped (off-catalogue) faults; lattice, Poisson-disk and along-strike re-placement are three null-spacings that isolate pure spacing from ranking or support changes.",
+    "mechanism": "DTI = T / (0.2 T + 0.2 (S - M) + 0.8 |G|) with T the triangular-kernel credit (R = 300 m = 3 px). A dot beyond 3 px from the masked catalogue earns full line credit against new-fault truth; two dots within ~6 px of each other partially contest the same truth pixels, so M is shared and S still counts both dots. Moving crowded dots to unoccupied support cells beyond the collar keeps S = 37,654 fixed while reducing contested credit. GeoDAWN's 400 m flight-line spacing makes 100-300 m repositioning well within lineament position uncertainty.",
+    "non_fault_mimic": "Apparent spacing is also produced by map-digitization generalization, 400 m aeromagnetic/gravity gridding shoulders, and GeoDAWN tie-line corrugation - none of which is fault density. A spacing-only edit cannot create fault evidence; it can only reallocate existing credit.",
+    "predicted_sign_size": "MODEL predicted live delta = 0.000 vs R0, range [-0.006, +0.006]: matched count, matched support, matched collar, same seed. Treat |live delta| < 0.01 as no evidence (public chunks only).",
+    "falsifier": "A live delta >= +0.01 or <= -0.01 vs R0, or an SGMC off-catalogue control delta beyond +/-0.005, falsifies the null-spacing hypothesis and shows the placement rule matters at this scale.",
+    "held_constant": {
+      "count": 37654,
+      "support": "H19-5 ridge mask (121,131 px)",
+      "catalogue_collar_px": "> 3.0 for every dot",
+      "seed": 20261023,
+      "window_px": "+/-6",
+      "min_dot_spacing_px": 2.0
+    }
+  },
+  "h33-h33-2-b2-SPACINGpoi15-20261023-ccce3b36": {
+    "hypothesis": "Dots spaced closer than the ~300 m triangular DTI kernel share kernel credit (overlapping credit cones) and inflate the S - M denominator term without adding true-cover credit. Re-spacing the most crowded R0 dots apart at strictly matched count tests whether dot self-interference suppresses live DTI on unmapped (off-catalogue) faults; lattice, Poisson-disk and along-strike re-placement are three null-spacings that isolate pure spacing from ranking or support changes.",
+    "mechanism": "DTI = T / (0.2 T + 0.2 (S - M) + 0.8 |G|) with T the triangular-kernel credit (R = 300 m = 3 px). A dot beyond 3 px from the masked catalogue earns full line credit against new-fault truth; two dots within ~6 px of each other partially contest the same truth pixels, so M is shared and S still counts both dots. Moving crowded dots to unoccupied support cells beyond the collar keeps S = 37,654 fixed while reducing contested credit. GeoDAWN's 400 m flight-line spacing makes 100-300 m repositioning well within lineament position uncertainty.",
+    "non_fault_mimic": "Apparent spacing is also produced by map-digitization generalization, 400 m aeromagnetic/gravity gridding shoulders, and GeoDAWN tie-line corrugation - none of which is fault density. A spacing-only edit cannot create fault evidence; it can only reallocate existing credit.",
+    "predicted_sign_size": "MODEL predicted live delta = 0.000 vs R0, range [-0.006, +0.006]: matched count, matched support, matched collar, same seed. Treat |live delta| < 0.01 as no evidence (public chunks only).",
+    "falsifier": "A live delta >= +0.01 or <= -0.01 vs R0, or an SGMC off-catalogue control delta beyond +/-0.005, falsifies the null-spacing hypothesis and shows the placement rule matters at this scale.",
+    "held_constant": {
+      "count": 37654,
+      "support": "H19-5 ridge mask (121,131 px)",
+      "catalogue_collar_px": "> 3.0 for every dot",
+      "seed": 20261023,
+      "window_px": "+/-6",
+      "min_dot_spacing_px": 2.0
+    }
+  },
+  "h33-h33-2-b2-SPACINGstr20-20261023-8abafca5": {
+    "hypothesis": "Dots spaced closer than the ~300 m triangular DTI kernel share kernel credit (overlapping credit cones) and inflate the S - M denominator term without adding true-cover credit. Re-spacing the most crowded R0 dots apart at strictly matched count tests whether dot self-interference suppresses live DTI on unmapped (off-catalogue) faults; lattice, Poisson-disk and along-strike re-placement are three null-spacings that isolate pure spacing from ranking or support changes.",
+    "mechanism": "DTI = T / (0.2 T + 0.2 (S - M) + 0.8 |G|) with T the triangular-kernel credit (R = 300 m = 3 px). A dot beyond 3 px from the masked catalogue earns full line credit against new-fault truth; two dots within ~6 px of each other partially contest the same truth pixels, so M is shared and S still counts both dots. Moving crowded dots to unoccupied support cells beyond the collar keeps S = 37,654 fixed while reducing contested credit. GeoDAWN's 400 m flight-line spacing makes 100-300 m repositioning well within lineament position uncertainty.",
+    "non_fault_mimic": "Apparent spacing is also produced by map-digitization generalization, 400 m aeromagnetic/gravity gridding shoulders, and GeoDAWN tie-line corrugation - none of which is fault density. A spacing-only edit cannot create fault evidence; it can only reallocate existing credit.",
+    "predicted_sign_size": "MODEL predicted live delta = 0.000 vs R0, range [-0.006, +0.006]: matched count, matched support, matched collar, same seed. Treat |live delta| < 0.01 as no evidence (public chunks only).",
+    "falsifier": "A live delta >= +0.01 or <= -0.01 vs R0, or an SGMC off-catalogue control delta beyond +/-0.005, falsifies the null-spacing hypothesis and shows the placement rule matters at this scale.",
+    "held_constant": {
+      "count": 37654,
+      "support": "H19-5 ridge mask (121,131 px)",
+      "catalogue_collar_px": "> 3.0 for every dot",
+      "seed": 20261023,
+      "window_px": "+/-6",
+      "min_dot_spacing_px": 2.0
+    }
   }
 }

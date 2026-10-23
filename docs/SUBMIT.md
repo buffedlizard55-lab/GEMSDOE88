@@ -131,8 +131,38 @@ Ledger after all reconciliations: `32` BUILT rows, `0 RECEIPT`.
 - **Identity:** primary SHA-256 `21fa2b2653cf40e48d2436722dc67fe5492b8f07c7d6c8ace81ee50de0a03694`; fallback SHA-256 `ee20c1b843f776e01a41992406b17fbe8d03e3aa46ee381a6bbc13b4d0379fa3`.
 - **Parent difference:** 4,488 removed + 4,488 added; **11.91905% moved**; min catalogue distance `4.4721 px`.
 
+## This Session — R0 Family (`AXIS = SPACING`, Parent `h33-h33-2-b2`, Seed `20261023`)
+
+Reproduce: `python scripts/build_spacing_variants.py` (re-verifies all 15 manifest SHA-256 pins, byte-exactly rebuilds R0, then builds the three variants). All rasters are gitignored local-only; SHA-256 receipts are tracked in `releases/*.json` and `ledger/submissions.csv`.
+
+Every variant holds `N = 37,654`, moves only the spacing axis (same H19-5 support, same footprint, same collar), relocates all 2,171 R0 dots at `2 < d_cat <= 3 px` beyond 3 px (brief hard constraint #4 for non-PRUNE axes), and re-places the most crowded remaining dots within a +/-6 px window on support-preferred valid cells at a 2.0 px min dot spacing. Doses: 10% / 15% / 20% of R0 dots moved. Report-only instruments are neutral vs R0 (blind SGMC 0.0961 -> 0.0968/0.0970/0.0963; 12 km block-density CV 0.5590 -> 0.5587/0.5585/0.5588; hide-and-recover PROXY degenerate at 0 per IR-88-20). All predictions are `MODEL 0.000` — below the brief's 0.01 no-evidence threshold; `HOLD`, no slot spent.
+
+### 1. `SPACINGlat10` — 10% lattice re-spacing
+- **Primary:** `releases/h33-h33-2-b2-SPACINGlat10-20261023-dc7e0d83.tif`
+- **Fallback:** `releases/h33-h33-2-b2-SPACINGlat10-20261023-dc7e0d83-zeros.tif`
+- **Submission name:** `h33-h33-2-b2-SPACINGlat10-20261023-dc7e0d83`
+- **Form note (119/140 chars):** `h33-2-b2; SPACING lat10: 3765 dots (10.00%), +/-6px, support-pref, >3px cat, N=37654, min 2.0px; MODEL 0.000 (dc7e0d83)`
+- **Identity:** primary SHA-256 `dc7e0d835353601b9912f8e26e5f7a61083e33773c6eeecd60dbeb2f4b5a016f`; fallback SHA-256 `7680c34bda5419be6664cf82e644768e06c6a78da6754d1d67526fa8ad488b5b`.
+- **Parent difference:** 3,765 removed + 3,765 added; **10.00% moved**; min catalogue distance `3.1623 px`; mean displacement `4.37 px`; SGMC `0.09675` PROXY vs R0 `0.096060`; 12 km CV `0.5587` vs R0 `0.5590`.
+
+### 2. `SPACINGpoi15` — 15% Poisson-disk re-spacing
+- **Primary:** `releases/h33-h33-2-b2-SPACINGpoi15-20261023-ccce3b36.tif`
+- **Fallback:** `releases/h33-h33-2-b2-SPACINGpoi15-20261023-ccce3b36-zeros.tif`
+- **Submission name:** `h33-h33-2-b2-SPACINGpoi15-20261023-ccce3b36`
+- **Form note (119/140 chars):** `h33-2-b2; SPACING poi15: 5648 dots (15.00%), +/-6px, support-pref, >3px cat, N=37654, min 2.0px; MODEL 0.000 (ccce3b36)`
+- **Identity:** primary SHA-256 `ccce3b36d5f86e275c7222c5e813001b5e9643d1c64785f174812efa54a19c2d`; fallback SHA-256 `14d156845c8bcc1f79e18951fb6c197e8310b2fb338afcd74717a0c59ee810d7`.
+- **Parent difference:** 5,648 removed + 5,648 added; **15.00% moved**; min catalogue distance `3.1623 px`; mean displacement `3.97 px`; SGMC `0.096953` PROXY vs R0 `0.096060`; 12 km CV `0.5585` vs R0 `0.5590`.
+
+### 3. `SPACINGstr20` — 20% along-strike re-spacing
+- **Primary:** `releases/h33-h33-2-b2-SPACINGstr20-20261023-8abafca5.tif`
+- **Fallback:** `releases/h33-h33-2-b2-SPACINGstr20-20261023-8abafca5-zeros.tif`
+- **Submission name:** `h33-h33-2-b2-SPACINGstr20-20261023-8abafca5`
+- **Form note (119/140 chars):** `h33-2-b2; SPACING str20: 7531 dots (20.00%), +/-6px, support-pref, >3px cat, N=37654, min 2.0px; MODEL 0.000 (8abafca5)`
+- **Identity:** primary SHA-256 `8abafca56c1bd2431717316d04da676bf14e531b8b9bb1d8f00a00be1c94d59a`; fallback SHA-256 `811243dce4e340fd6cd81973954baa31dbd515eaff7980346570b98638be4a2f`.
+- **Parent difference:** 7,531 removed + 7,531 added; **20.00% moved**; min catalogue distance `3.1623 px`; mean displacement `3.86 px`; SGMC `0.096292` PROXY vs R0 `0.096060`; 12 km CV `0.5588` vs R0 `0.5590`.
+
 ## Format receipt and remaining human action
 
-All three primaries and zero-outside fallbacks passed the independent on-disk `validate_variant.py` checks in [`registry/prune_sweep_validation.json`](../registry/prune_sweep_validation.json): GeoTIFF, one `float32` band, `EPSG:32611`, sample shape/transform, values `[0,1]`, no NaN inside, NaN outside on primary, zero outside on fallback, zero catalogue mass, unique SHA-256, fixed count, and disk re-read. Each fallback also passed the strict all-finite format audit (`releases/*-format-audit.json`). This is **format validation only**, not approval to spend a slot. The report-only hide/recover PROXY is degenerate at zero for the `>3 px` collar and is not a gate; blind SGMC values are also PROXY, not competition scores.
+All three primaries and zero-outside fallbacks passed the independent on-disk `validate_variant.py` checks in [`registry/prune_sweep_validation.json`](../registry/prune_sweep_validation.json); the SPACING family passed the same checks in [`registry/spacing_validation.json`](../registry/spacing_validation.json): GeoTIFF, one `float32` band, `EPSG:32611`, sample shape/transform, values `[0,1]`, no NaN inside, NaN outside on primary, zero outside on fallback, zero catalogue mass, unique SHA-256, fixed count, and disk re-read. This is **format validation only**, not approval to spend a slot. The report-only hide/recover PROXY is degenerate at zero for the `>3 px` collar and is not a gate; blind SGMC values are also PROXY, not competition scores.
 
 **Human:** reconfirm TOP_PUBLIC, deadline, rolling-week/total slot counts, and any live receipt. Select one file manually if desired; after a submission, fill `receipt_score` and `receipt_date` verbatim in `ledger/submissions.csv`. The agent never logs in or submits.
