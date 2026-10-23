@@ -458,7 +458,7 @@
           "composite_p_phys": 0.56925
         }
       },
-      "pre_registration": "registry/relief_preregistration.json"
+      "pre_registration": "registry/relief_r0_preregistration.json"
     },
     {
       "id": "h33-h33-2-b2-RELIEFpied12-20261023-bae3dfc6",
@@ -722,7 +722,7 @@
           "composite_p_phys": 0.56925
         }
       },
-      "pre_registration": "registry/relief_preregistration.json"
+      "pre_registration": "registry/relief_r0_preregistration.json"
     },
     {
       "id": "h33-h33-2-b2-RELIEFrange12-20261023-30b15f5e",
@@ -986,7 +986,7 @@
           "composite_p_phys": 0.56925
         }
       },
-      "pre_registration": "registry/relief_preregistration.json"
+      "pre_registration": "registry/relief_r0_preregistration.json"
     }
   ],
   "elapsed_seconds": 215.33,

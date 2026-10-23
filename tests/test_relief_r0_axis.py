@@ -5,7 +5,7 @@ Covers:
 2. Synthetic end-to-end build_relief_variant: count fixed, donors only from donor terciles and never
    from the frozen collar, adds only on un-emitted ridge pixels inside the receiver tercile at
    d_cat > 3 px, deterministic.
-3. Tracked evidence: evidence/relief_axis_report.json, releases/*.json receipts, ledger rows,
+3. Tracked evidence: evidence/relief_r0_axis_report.json, releases/*.json receipts, ledger rows,
    mechanism cards, pre-registration file; on-disk GeoTIFF/ZIP re-read when the untracked rasters
    are present locally (skipped otherwise, e.g. in CI with --validation restore only).
 """
@@ -29,9 +29,9 @@ if str(ROOT / "vendor") not in sys.path:
     sys.path.insert(0, str(ROOT / "vendor"))
 
 from scripts import build_prune_variants as bpv  # noqa: E402
-from scripts import build_relief_variants as brv  # noqa: E402
+from scripts import build_relief_r0_variants as brv  # noqa: E402
 
-REPORT = ROOT / "evidence" / "relief_axis_report.json"
+REPORT = ROOT / "evidence" / "relief_r0_axis_report.json"
 VALUES = {"basin12", "pied12", "range12"}
 
 
@@ -170,7 +170,7 @@ def test_constant_count_relief_shift_is_pure_relocation_in_dti_algebra():
 
 def _report():
     if not REPORT.is_file():
-        pytest.skip("evidence/relief_axis_report.json not present")
+        pytest.skip("evidence/relief_r0_axis_report.json not present")
     return json.loads(REPORT.read_text())
 
 
@@ -213,7 +213,7 @@ def test_relief_variants_receipts_ledger_cards_and_disk_reread():
     assert {r["value"] for r in relief_rows.values()} == VALUES
 
     cards = json.loads((ROOT / "ledger" / "mechanism_cards.json").read_text())
-    prereg = json.loads((ROOT / "registry" / "relief_preregistration.json").read_text())
+    prereg = json.loads((ROOT / "registry" / "relief_r0_preregistration.json").read_text())
 
     for v in rep["variants"]:
         assert v["axis"] == "RELIEF"

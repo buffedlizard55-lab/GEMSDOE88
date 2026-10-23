@@ -7,7 +7,7 @@
 - **All three directions lose on the blind SGMC control** (`PROXY`, `n = 62,703 px`): `basin12` `0.08664` (`-0.0094`), `pied12` `0.08752` (`-0.0085`), `range12` `0.09314` (`-0.0029`) vs `R0 0.09606`; random-donor controls (`0.0884 / 0.0884 / 0.0937`) lose too, so the loss is structural, not a ranking artefact.
 - **Mechanism (IR-88-33):** the parent's own support is exhausted — only `90` un-emitted H19-5 pixels in the whole footprint are `>= 2.8 px` from an R0 dot — so every count-fixed relocation trades a *spaced* dot (loses `0.11–0.16` TP per dot on SGMC) for a *densified* dot `1–2 px` from a surviving neighbour (recovers `0.04–0.07` TP per dot). No tercile is rich enough (range is only `1.4×` basin/piedmont per candidate) to pay a `~2.3×` densification tax.
 - **Side finding:** the PRUNE physics field that ranks drops/refills (also used for `R1 = PRUNEp3px`) has AUC `0.47` for SGMC-credited R0 dots (worse than random); `R1`'s refill quality is therefore unproven on a blind control even though its SGMC number held (`0.09608`).
-- Pre-registered MODEL (`range12 +0.006`, `pied12 +0.003`, `basin12 -0.008`) was revised after the proxies to `-0.003 / -0.008 / -0.010`; both values are in every mechanism card and `registry/relief_preregistration.json`.
+- Pre-registered MODEL (`range12 +0.006`, `pied12 +0.003`, `basin12 -0.008`) was revised after the proxies to `-0.003 / -0.008 / -0.010`; both values are in every mechanism card and `registry/relief_r0_preregistration.json`.
 
 ## Next 3 Slots in Order (Week 1 · `2026-10-23`) & Decision Tree
 
