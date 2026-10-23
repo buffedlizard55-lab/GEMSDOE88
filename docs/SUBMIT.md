@@ -1,8 +1,49 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current session — 2026-10-23 (supersedes every historical upload card below)
+## Concurrent sessions — 2026-10-23 SPACING + SNAP audit (both supersede every historical upload card below)
 
-**AXIS=SNAP: no new variant, no upload.** R0 matched both pinned SHA-256s after
+### SPACING (3 built, all HOLD; slots unchanged; report only)
+
+**No upload recommended. Human uploads at most one twin per slot and pastes each
+portal receipt into `receipt_score` / `receipt_date`.** Parent `R1 =
+h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` rebuilt with both hashes asserted
+(`6f7ae705…` / `dc6f090d…`); all three arms share 1,914 greedy-decluster donors
+(**5.08%** changed, `10.16%` symmetric difference) and differ only in receiver
+geometry on un-emitted H19-5 at `d_cat > 3 px` (`min d_cat = 3.1623 px`, `0` on
+catalogue, `37,654` dots). Reproduce: `python scripts/build_spacing_variants.py`
+(predictions frozen in `registry/spacing_preregistration.json`). Rasters are
+local-only (gitignored); tracked SHA-256 receipts in `releases/*.json`,
+independent twin validation in `registry/spacing_variant_validation.json`
+(6/6 PASS), mechanism cards in `ledger/mechanism_cards.json`. All three arms are
+sub-threshold diagnostics (`|MODEL| <= 0.004`, `|SGMC delta| < 0.001` vs R1
+`0.096083` PROXY); the conditional slot order (`p3px` → `p3space35`, PR #34) is
+unchanged by SPACING. Reconciled with the concurrent refill-mode arms (IR-88-48);
+ledger now holds 38 rows.
+Hide-and-recover is degenerate `0.000000` (`n = 22,663`) for every `> 3 px` file.
+
+### `SPACINGpoisson28-60f65400` (MODEL +0.003; declustered-parent candidate, HOLD)
+- **Primary:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGpoisson28-20261023-60f65400.tif` (`SHA-256 60f654005114eb6542cbc31135d15314adb8892c6e3d5abe72f9f4de743aa7f6`, `354,671` B; `.zip  fec70e909de1…`)
+- **Fallback:** `…-SPACINGpoisson28-20261023-60f65400-zeros.tif` (`SHA-256 6816852c233ca9a1dc82d9bd06e10fa784fed02eea5d1089d58b01b4d4586442`, `218,130` B; `.zip 5c59492ff572…`)
+- **Form note (98/140):** `R1(6f7ae705); SPACING poisson farthest-point 5.08% (1914) on H19-5, 37654, >3px; pred +0.003 MODEL`
+- **Stats:** greedy farthest-point receivers (median `2.236 px` from survivors, `0%` within `1.5 px`, min NN `2.2361 px`); SGMC `0.096820` PROXY (`+0.000737` vs R1); `12 km` CV `0.5808`.
+
+### `SPACINGstrike-bc8e6d1a` (MODEL +0.000; line-continuity probe, HOLD)
+- **Primary:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGstrike-20261023-bc8e6d1a.tif` (`SHA-256 bc8e6d1ae803109fb99f3fbfe95636980f40f39884564a24970a78671065aee1`, `354,072` B; `.zip b8c44402e896…`)
+- **Fallback:** `…-SPACINGstrike-20261023-bc8e6d1a-zeros.tif` (`SHA-256 4a3d3dbfbaaa45cda1f69099df688de43463182de38f5729442de2c5cd2a0df1`, `218,017` B; `.zip d89515f32745…`)
+- **Form note (98/140):** `R1(6f7ae705); SPACING along-strike receivers 5.08% (1914) on H19-5, 37654, >3px; pred +0.000 MODEL`
+- **Stats:** along-strike receivers (median `|cos| 1.000`, median `1.0 px` from survivors, min NN `1.0 px`); SGMC `0.095396` PROXY (`-0.000687` vs R1); `12 km` CV `0.5741`.
+
+### `SPACINGlattice4px-6c7e0b72` (MODEL -0.004; negative control, HOLD)
+- **Primary:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGlattice4px-20261023-6c7e0b72.tif` (`SHA-256 6c7e0b72fb089eb057af5ce2e89a5511cd26d4d4690aa3c88a54fdfc202e15c7`, `353,950` B; `.zip 777b9ced5b67…`)
+- **Fallback:** `…-SPACINGlattice4px-20261023-6c7e0b72-zeros.tif` (`SHA-256 2690408c607e67e8d4cc541fd7209ce2cf09f2a7989c3744b48652f53d57f664`, `217,591` B; `.zip a3dfb921e19e…`)
+- **Form note (97/140):** `R1(6f7ae705); SPACING 4px-lattice receivers 5.08% (1914) on H19-5, 37654, >3px; pred -0.004 MODEL`
+- **Stats:** 4 px lattice receivers (`100%` on-node, median `1.0 px` from survivors, min NN `1.0 px`); SGMC `0.095292` PROXY (`-0.000791` vs R1); `12 km` CV `0.5833`. Lattice period (400 m) equals the GeoDAWN line spacing; phase `(0,0)` frozen, never tuned.
+
+---
+
+### SNAP audit (concurrent; AXIS = SNAP, 0 new variants, HOLD retained)
+
+**No new variant, no upload.** R0 matched both pinned SHA-256s after
 all 15 manifest hashes/byte sizes passed. Its 1,611 dots inside the 3 px collar
 include **30 with no compliant pixel <=2 px away**: no pure R0 SNAP can pass the
 non-PRUNE clearance rule (`evidence/session_20261023_snap_clearance.json`).

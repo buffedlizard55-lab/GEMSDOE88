@@ -973,5 +973,83 @@
       "p3space35": 0.274896,
       "p4space35": 0.263231
     }
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGpoisson28-20261023-60f65400": {
+    "hypothesis": "For a structural geologist: the incumbent's 2,171 exact-marginal refills (IR-88-37) landed at min NN 1.0 px, bunching dots onto already-covered strands where their kernels overlap survivors almost completely. Returns accrue per unit of uncovered strand length (IR-88-41), and only 12-17% of H19-5 support per tercile is uncovered - so the maximally uniform feasible receiver set (greedy farthest-point, median 2.236 px from survivors) should recover the most uncovered strand length per moved dot and reverse the measured densification tax (densified adds earn 0.04-0.07 TP vs 0.11-0.16 TP for spaced dots, IR-88-38).",
+    "mechanism": "Count fixed at 37,654 so DTI changes only through kernel credit T and self-credit M (DTI = T/(0.2T+0.2(S-M)+0.8|G|), S constant). All three arms share the same 1,914 greedy-decluster donors (dots with a surviving neighbour <2.8 px, removed in ascending-NN order); survivors recover min NN 2.8284 px. Receivers are 1,914 un-emitted H19-5 ridge pixels at d_cat>3 px, donor sites excluded. No band, no physics field, no label ranks any dot: the arms differ ONLY in receiver geometry. Each farthest-point receiver maximises its distance to survivors and to already-placed receivers, so its 3 px triangular kernel overlaps existing coverage the least of any feasible H19-5 pixel. Donor removal forfeits little T (donors sit a median 2.236 px from a survivor whose kernel still covers the donor site), while receivers at >=2.8 px earn full fresh line credit wherever they touch uncovered strand.",
+    "non_fault_mimic": "H19-5 ridge support includes non-fault lineaments (fan channels, shorelines, lithologic contacts); uniform coverage spends dots on mimics at exactly the same rate as on faults - this arm tests spacing, not discrimination, and cannot beat a parent whose spacing was already optimal.",
+    "predicted_sign_size": "MODEL predicted live delta +0.003 vs parent R1 (range [-0.005,+0.011], preregistered in registry/spacing_preregistration.json before any PROXY was computed; |delta|<0.01 live is no evidence). Magnitude kept small because only 366/1,914 receivers reach >=2.8 px spacing - most remain partly densified.",
+    "falsifier": "A live RECEIPT <= R1-0.01 falsifies uniformity-as-objective on saturated H19-5 support: either donor removal opened costlier holes than receivers filled, or the parent's exact-marginal refill positions (AUC 0.47, IR-88-38) were load-bearing despite their bunching. A RECEIPT >= R1+0.01 promotes poisson28 as the declustered parent for SUPPORT.",
+    "references": [
+      {
+        "claim": "Competition DTI metric/format (supplied by human brief; not fetched by agent)",
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+      },
+      {
+        "claim": "Organizer: known faults masked pixel-exactly; new-fault truth may lie within 300 m of known traces (supplied by human brief; not fetched)",
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+      },
+      {
+        "claim": "USGS GeoDAWN Area 2 acquisition (400 m lines, 150-200 m drape) context (supplied by human brief; not fetched)",
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7"
+      },
+      {
+        "claim": "USGS SGMC source for the report-only off-catalogue control (manifest source_url)",
+        "url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d"
+      }
+    ],
+    "post_build_report_only": "A-priori preregistered prediction above is unchanged. Measured after build (REPORT ONLY, never gates): parent-field w-weighted DTI delta -0.002638 MODEL; blind SGMC 0.096820 PROXY (+0.000737 vs R1). Receivers land at median 2.24 px from survivors (14.6% >=2.8 px); H19-5 within-3px coverage 0.8638 -> 0.8584. A live loss cannot cleanly falsify receiver geometry (donor removal forfeits coverage too), whereas the pairwise arm ordering tests uniformity vs regularity vs line continuity directly."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGlattice4px-20261023-6c7e0b72": {
+    "hypothesis": "Negative control, built to lose: if receiver geometry must follow strand topology to earn line credit, then strand-agnostic regularity - receivers pinned to a 4 px (400 m) square lattice at fixed phase (0,0), median lattice distance 0.0 px - should underperform both strand-aware arms while paying the identical donor-removal cost. It lands at median 1.0 px from survivors (fully densified) because lattice nodes fall where they fall, not where strands run.",
+    "mechanism": "Count fixed at 37,654 so DTI changes only through kernel credit T and self-credit M (DTI = T/(0.2T+0.2(S-M)+0.8|G|), S constant). All three arms share the same 1,914 greedy-decluster donors (dots with a surviving neighbour <2.8 px, removed in ascending-NN order); survivors recover min NN 2.8284 px. Receivers are 1,914 un-emitted H19-5 ridge pixels at d_cat>3 px, donor sites excluded. No band, no physics field, no label ranks any dot: the arms differ ONLY in receiver geometry. Lattice proximity ranking ignores H19-5 strand direction, strand tips, and coverage gaps alike; the 1.5 px receiver exclusion keeps the set grid-like rather than strand-like. Any kernel credit it earns comes from accidental strand coincidence, so its T per receiver measures the floor that strand-following geometry must beat.",
+    "non_fault_mimic": "The 4 px = 400 m lattice period coincides exactly with the GeoDAWN Area 2 flight-line spacing (brief section 2), so a lattice arm can systematically couple to acquisition-geometry artefacts (leveling seams, line-parallel gridding ripple) if its fixed phase aligns with them - phase (0,0) was frozen in preregistration and never tuned, and any live win must survive a phase-shift control before being trusted.",
+    "predicted_sign_size": "MODEL predicted live delta -0.004 vs parent R1 (range [-0.013,+0.005], preregistered; |delta|<0.01 live is no evidence). Deliberately the weakest arm: densified placement plus strand-ignorant targeting.",
+    "falsifier": "A live RECEIPT >= R1+0.01 for the lattice arm (especially ahead of poisson28) overturns the uncovered-strand model and proves strand-agnostic regularity beats strand-following geometry - the mandatory follow-up is a lattice-phase control (same rule at phase (2,2)) to separate acquisition-geometry coupling from genuine regularity effects.",
+    "references": [
+      {
+        "claim": "Competition DTI metric/format (supplied by human brief; not fetched by agent)",
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+      },
+      {
+        "claim": "Organizer: known faults masked pixel-exactly; new-fault truth may lie within 300 m of known traces (supplied by human brief; not fetched)",
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+      },
+      {
+        "claim": "USGS GeoDAWN Area 2 acquisition (400 m lines, 150-200 m drape) context (supplied by human brief; not fetched)",
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7"
+      },
+      {
+        "claim": "USGS SGMC source for the report-only off-catalogue control (manifest source_url)",
+        "url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d"
+      }
+    ],
+    "post_build_report_only": "A-priori preregistered prediction above is unchanged. Measured after build (REPORT ONLY, never gates): parent-field w-weighted DTI delta -0.005941 MODEL; blind SGMC 0.095292 PROXY (-0.000791 vs R1). Receivers land at median 1.00 px from survivors (0.5% >=2.8 px); H19-5 within-3px coverage 0.8638 -> 0.856. A live loss cannot cleanly falsify receiver geometry (donor removal forfeits coverage too), whereas the pairwise arm ordering tests uniformity vs regularity vs line continuity directly."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SPACINGstrike-20261023-bc8e6d1a": {
+    "hypothesis": "For a structural geologist: where truth is line-like, the marginal bar for a dot drops below the isolated-pixel 0.2*DTI threshold (brief section 2) because neighbours along the line share kernel credit - so receivers placed exactly along local H19-5 strike from their nearest survivor (median |cos| 1.000) should earn multi-pixel line credit T that uniform receivers at the same densification cannot. This arm measures whether line continuity beats uniformity when both are equally densified (median 1.0 px from survivors).",
+    "mechanism": "Count fixed at 37,654 so DTI changes only through kernel credit T and self-credit M (DTI = T/(0.2T+0.2(S-M)+0.8|G|), S constant). All three arms share the same 1,914 greedy-decluster donors (dots with a surviving neighbour <2.8 px, removed in ascending-NN order); survivors recover min NN 2.8284 px. Receivers are 1,914 un-emitted H19-5 ridge pixels at d_cat>3 px, donor sites excluded. No band, no physics field, no label ranks any dot: the arms differ ONLY in receiver geometry. The H19-5 structure-tensor strike field (sigma 1.5 px) orients every receiver along its strand; greedy |cos| ranking with 1.5 px exclusion extends strands and fills along-strike gaps rather than thickening strands across strike. Across-strike thickening (the poisson28 failure mode on saturated support) wastes kernel overlap laterally, while along-strike placement pushes coverage toward strand tips and relay gaps where new-fault truth concentrates.",
+    "non_fault_mimic": "H19-5 strands bundle fault scarps with non-fault lineaments - fan-head trenches, shoreline benches, joint/foliation traces - and along-strike extension follows mimics exactly as faithfully as faults. At X-intersections the tensor strike is ambiguous (coherence drops), so receivers there follow an averaged direction that may match neither strand.",
+    "predicted_sign_size": "MODEL predicted live delta +0.000 vs parent R1 (range [-0.008,+0.008], preregistered; |delta|<0.01 live is no evidence). Centered at zero because along-strike adjacency also risks the IR-88-32 bunching failure (adjacent dots on one strand open 4-6 px gaps elsewhere) - this arm measures which effect wins.",
+    "falsifier": "A live RECEIPT >= R1+0.01 licenses STRIKE_ALIGN (structure-tensor strike agreement as a selector) over further spacing doses; a RECEIPT <= R1-0.01 with poisson28 neutral-or-better closes anisotropic spacing and confirms uniformity as the spacing objective.",
+    "references": [
+      {
+        "claim": "Competition DTI metric/format (supplied by human brief; not fetched by agent)",
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+      },
+      {
+        "claim": "Organizer: known faults masked pixel-exactly; new-fault truth may lie within 300 m of known traces (supplied by human brief; not fetched)",
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+      },
+      {
+        "claim": "USGS GeoDAWN Area 2 acquisition (400 m lines, 150-200 m drape) context (supplied by human brief; not fetched)",
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7"
+      },
+      {
+        "claim": "USGS SGMC source for the report-only off-catalogue control (manifest source_url)",
+        "url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d"
+      }
+    ],
+    "post_build_report_only": "A-priori preregistered prediction above is unchanged. Measured after build (REPORT ONLY, never gates): parent-field w-weighted DTI delta -0.005871 MODEL; blind SGMC 0.095396 PROXY (-0.000687 vs R1). Receivers land at median 1.00 px from survivors (0.4% >=2.8 px); H19-5 within-3px coverage 0.8638 -> 0.8559. A live loss cannot cleanly falsify receiver geometry (donor removal forfeits coverage too), whereas the pairwise arm ordering tests uniformity vs regularity vs line continuity directly."
   }
 }
