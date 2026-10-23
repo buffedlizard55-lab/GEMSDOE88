@@ -1,0 +1,264 @@
+{
+  "id": "h33-h33-2-b2-RELIEFpied12-20261023-bae3dfc6",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis": "RELIEF",
+  "value": "pied12",
+  "seed": 20261023,
+  "git_sha": "0796ccbd44280736ee09369d706358cfd6832f15",
+  "file_nan": "releases/h33-h33-2-b2-RELIEFpied12-20261023-bae3dfc6.tif",
+  "sha256": "bae3dfc68becc7f4c94319abf8f1e6ab16808d05191a83606cffcf3cb558f748",
+  "bytes_nan": 352801,
+  "zip_nan": "releases/h33-h33-2-b2-RELIEFpied12-20261023-bae3dfc6.zip",
+  "zip_nan_sha256": "3bc195cb556c762e25077df25df8bd7cc6ed2af775fb775a4ea267c955b5fc00",
+  "file_zeros": "releases/h33-h33-2-b2-RELIEFpied12-20261023-bae3dfc6-zeros.tif",
+  "sha256_zeros": "8252894345ad9ec08aba80af64c012b9aae6f59caefaadf25a7141ce52a5b0b5",
+  "bytes_zeros": 216676,
+  "zip_zeros": "releases/h33-h33-2-b2-RELIEFpied12-20261023-bae3dfc6-zeros.zip",
+  "zip_zeros_sha256": "83941aaf78e1ea11f342e919808c046ee32b03b15374e1573f37ef36ce2bb567",
+  "form_note": "h33-2-b2; RELIEF 12% of dots (4518) basin+range->piedmont det_elev terciles, N fixed; pred -0.008 MODEL",
+  "form_note_chars": 103,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 4518,
+    "n_removed": 4518,
+    "pct_changed_moved": 12.0,
+    "pct_changed_sym_diff": 24.0,
+    "min_dist_catalogue_px": 2.2361,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 2171,
+    "dots_le_4px": 4117,
+    "min_dist_added_catalogue_px": 3.1623,
+    "collar_dots_2_3px_unchanged": true
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "relief": {
+    "n_move": 4518,
+    "receiver": "piedmont",
+    "donors": [
+      "basin",
+      "range"
+    ],
+    "donor_counts": {
+      "basin": 1575,
+      "range": 2943
+    },
+    "donor_thinning_fraction": {
+      "basin": 0.21878,
+      "range": 0.218843
+    },
+    "movable_parent_dots_by_class": {
+      "basin": 7199,
+      "piedmont": 14836,
+      "range": 13448
+    },
+    "candidate_pool_receiver_px": 26472,
+    "added_min_dcat_px": 3.1623,
+    "added_median_dcat_px": 17.4642,
+    "removed_median_dcat_px": 25.4951,
+    "added_nn_to_retained_parent_px": {
+      "min": 1.0,
+      "median": 2.0,
+      "mean": 1.7317,
+      "share_lt_2px": 0.4768,
+      "share_ge_2p8px": 0.012
+    },
+    "shares_before": {
+      "basin": {
+        "n_dots": 7701,
+        "share": 0.20452,
+        "density_per_1000px": 4.4709
+      },
+      "piedmont": {
+        "n_dots": 15739,
+        "share": 0.41799,
+        "density_per_1000px": 9.1375
+      },
+      "range": {
+        "n_dots": 14214,
+        "share": 0.37749,
+        "density_per_1000px": 8.2522
+      }
+    },
+    "shares_after": {
+      "basin": {
+        "n_dots": 6126,
+        "share": 0.162692,
+        "density_per_1000px": 3.5565
+      },
+      "piedmont": {
+        "n_dots": 20257,
+        "share": 0.537977,
+        "density_per_1000px": 11.7605
+      },
+      "range": {
+        "n_dots": 11271,
+        "share": 0.299331,
+        "density_per_1000px": 6.5436
+      }
+    },
+    "sgmc_decomposition": {
+      "evidence_label": "PROXY",
+      "r0_dti": 0.09606,
+      "after_removal_dti": 0.08524,
+      "after_add_dti": 0.08752,
+      "removal_delta_tp": -714.87,
+      "add_delta_tp": 208.92,
+      "removal_tp_loss_per_dot": 0.1582,
+      "add_tp_gain_per_dot": 0.0462
+    },
+    "sgmc_random_donor_sensitivity": {
+      "evidence_label": "PROXY",
+      "r0_dti": 0.09606,
+      "after_removal_dti": 0.086065,
+      "after_add_dti": 0.088375,
+      "removal_delta_tp": -666.55,
+      "add_delta_tp": 211.54,
+      "removal_tp_loss_per_dot": 0.1475,
+      "add_tp_gain_per_dot": 0.0468,
+      "seed": 20261023,
+      "note": "random uniform donors inside each donor tercile; exact-marginal adds; not a release candidate"
+    }
+  },
+  "relief_classification": {
+    "band": "training_features.tif Band 12 det_elev (detrended elevation, m)",
+    "sentinels_replaced_inside_footprint": 3061,
+    "tercile_cuts_m": [
+      -142.832,
+      38.588
+    ],
+    "classes": {
+      "basin": {
+        "footprint_px": 1722458,
+        "det_elev_mean_m": -245.04,
+        "det_elev_slope_b19_mean": 2.3055,
+        "catalogue_px": 18512,
+        "catalogue_share": 0.3035,
+        "h19_5_px": 27014,
+        "r0_dots": 7701,
+        "r0_share": 0.2045,
+        "r0_density_per_1000px": 4.4709,
+        "r0_collar_dots_2_3px": 502
+      },
+      "piedmont": {
+        "footprint_px": 1722457,
+        "det_elev_mean_m": -65.75,
+        "det_elev_slope_b19_mean": 5.4246,
+        "catalogue_px": 24779,
+        "catalogue_share": 0.4063,
+        "h19_5_px": 51260,
+        "r0_dots": 15739,
+        "r0_share": 0.418,
+        "r0_density_per_1000px": 9.1375,
+        "r0_collar_dots_2_3px": 903
+      },
+      "range": {
+        "footprint_px": 1722458,
+        "det_elev_mean_m": 258.91,
+        "det_elev_slope_b19_mean": 14.4957,
+        "catalogue_px": 17697,
+        "catalogue_share": 0.2902,
+        "h19_5_px": 42857,
+        "r0_dots": 14214,
+        "r0_share": 0.3775,
+        "r0_density_per_1000px": 8.2522,
+        "r0_collar_dots_2_3px": 766
+      }
+    }
+  },
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.00401,
+      "ci95": [
+        0.003425,
+        0.004692
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 3e-06,
+      "paired_delta_vs_r0_ci95": [
+        -4e-05,
+        4.9e-05
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.08752,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5096.31,
+      "fp": 35243.01
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6647,
+      "cv_12km_120px_interior": 0.5818
+    }
+  },
+  "r0_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  },
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    }
+  },
+  "pre_registration": "registry/relief_preregistration.json"
+}

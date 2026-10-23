@@ -325,5 +325,119 @@
     "non_fault_mimic": "Same as d2f35 (fan channels, pediment edges, shoreline breaks); at 1 px, gridding noise inside a single cell is the main non-geological attractor.",
     "predicted_sign_size": "MODEL +0.003 live (range -0.009 to +0.015), the best of the three on the theory that displacement cost dominates field quality at this signal-to-noise.",
     "falsifier": "d1f35 < d2f35 by >= 0.01 falsifies the 'already within 1 px' premise and says R2 (400 m flight spacing) really did leave a 1-2 px bias worth removing."
+  },
+  "h33-h33-2-b2-RELIEFbasin12-20261023-4cd2af90": {
+    "axis": "RELIEF",
+    "value": "basin12",
+    "dose_pct": 12.0,
+    "n_move": 4518,
+    "pct_changed": 12.0,
+    "receiver": "basin",
+    "donors": [
+      "piedmont",
+      "range"
+    ],
+    "pre_registered_model": {
+      "delta_live_vs_r0": -0.008,
+      "range": [
+        -0.018,
+        0.002
+      ],
+      "reason": "basin interiors are blanketed by Quaternary fill; faults there are blind and rarely enter expert-mapped label sets, so dots moved onto basin H19-5 ridges mostly pay S without T"
+    },
+    "final_model": {
+      "delta_live_vs_r0": -0.01,
+      "range": [
+        -0.02,
+        0.0
+      ]
+    },
+    "hypothesis": "Moving 12% of R0's dots (4,518) from the piedmont and range terciles onto un-emitted H19-5 ridges in the basin tercile (detrended elevation below the lower tercile cut) LOWERS live DTI: basin-floor faults are blind beneath Quaternary fill, so the expert-mapped 'new fault' labels that score the public chunks contain few basin-interior pixels, and the relocated dots pay the 0.2*S denominator cost without kernel credit.",
+    "mechanism": "DTI = T / (0.2T + 0.2(S - M) + 0.8|G|). At fixed S the change is driven by Delta T - 0.2*DTI*Delta(T - M). Dots removed from piedmont/range ridges lose line-like truth credit (several truth pixels per dot inside the 300 m triangular kernel); dots added on basin ridges recover credit only where a blind fault was actually mapped (seismic reflection, well ties or lineament work), which is rare in a map-derived label set. Expected sign negative, magnitude proportional to the dose.",
+    "non_fault_mimic": "Basin H19-5 ridges are dominated by GeoDAWN aeromagnetic gradients over buried volcanic flows and by gravity gradients at depositional basin margins; Lake Lahontan shoreline berms and playa edges also produce detrended-elevation and radiometric edges without brittle offset.",
+    "predicted_sign_size": "MODEL (final, after REPORT-ONLY proxies) -0.010 live delta vs R0, range [-0.02, 0.0]; pre-registered a priori value was -0.008 (registry/relief_preregistration.json); a live change under 0.01 in absolute value is no evidence.",
+    "falsifier": "A live receipt >= R0 + 0.01 for basin12 while range12 is <= R0 falsifies the 'blind basins are unlabelled' premise and shows the hidden label set was built from geophysical lineaments rather than from exposure-limited mapping; in that case the final file should move mass basinward, not rangeward.",
+    "report_only_after_build": {
+      "sgmc_control_dti": 0.086644,
+      "sgmc_delta_vs_r0": -0.009416,
+      "holdout_proxy_dti": 0.004016,
+      "cv_12km": 0.6101
+    }
+  },
+  "h33-h33-2-b2-RELIEFpied12-20261023-bae3dfc6": {
+    "axis": "RELIEF",
+    "value": "pied12",
+    "dose_pct": 12.0,
+    "n_move": 4518,
+    "pct_changed": 12.0,
+    "receiver": "piedmont",
+    "donors": [
+      "basin",
+      "range"
+    ],
+    "pre_registered_model": {
+      "delta_live_vs_r0": 0.003,
+      "range": [
+        -0.006,
+        0.012
+      ],
+      "reason": "piedmont already holds R0's highest dot density (9.1 per 1,000 px); new Quaternary scarp mapping (lidar) concentrates here, but marginal H19-5 ridge pixels in this tercile are the most depleted"
+    },
+    "final_model": {
+      "delta_live_vs_r0": -0.008,
+      "range": [
+        -0.018,
+        0.002
+      ]
+    },
+    "hypothesis": "Moving 12% of R0's dots from the basin and range terciles onto un-emitted H19-5 ridges in the piedmont tercile (the alluvial apron / range-front junction band) gives a small positive change: Quaternary fault scarps that cut alluvial fans are the classic targets of new lidar-based fault mapping in the Great Basin, and the range-front master faults of geothermal systems emerge at the piedmont.",
+    "mechanism": "Piedmont truth is line-like and continuous (multi-km scarps), so each added dot on a true scarp earns up to ~3 kernel credits (k = 1, 2/3, 1/3 along strike) against a 0.2 denominator cost; the dots given up in basins carry little credit. The effect is capped because R0 already spends 41.8% of its dots in this tercile (density 9.1 per 1,000 px, the highest of the three), so the marginal un-emitted H19-5 piedmont ridges are the ones the Poisson-disk thinning already passed over.",
+    "non_fault_mimic": "Alluvial-fan terrace risers, incised channel banks, beach ridges of pluvial lakes (1,212-1,334 m) and pediment-bedrock contacts form sharp 100 m detrended-elevation breaks parallel to range fronts without a fault plane.",
+    "predicted_sign_size": "MODEL (final, after REPORT-ONLY proxies) -0.008 live delta vs R0, range [-0.018, 0.002]; pre-registered a priori value was +0.003 (registry/relief_preregistration.json); a live change under 0.01 in absolute value is no evidence.",
+    "falsifier": "A live receipt <= R0 - 0.01 for pied12 falsifies the 'new labels are piedmont scarps' premise (the lineage's piedmont share is already saturated or wrong); a receipt >= R0 + 0.01 with range12 <= R0 confirms it and makes the piedmont the receiver for a larger-dose follow-up.",
+    "report_only_after_build": {
+      "sgmc_control_dti": 0.08752,
+      "sgmc_delta_vs_r0": -0.00854,
+      "holdout_proxy_dti": 0.00401,
+      "cv_12km": 0.5818
+    }
+  },
+  "h33-h33-2-b2-RELIEFrange12-20261023-30b15f5e": {
+    "axis": "RELIEF",
+    "value": "range12",
+    "dose_pct": 12.0,
+    "n_move": 4518,
+    "pct_changed": 12.0,
+    "receiver": "range",
+    "donors": [
+      "basin",
+      "piedmont"
+    ],
+    "pre_registered_model": {
+      "delta_live_vs_r0": 0.006,
+      "range": [
+        -0.005,
+        0.016
+      ],
+      "reason": "bedrock exposure in ranges lets geologists map faults directly; compilations beyond the USGS/INGENIOUS Quaternary catalogue (e.g. state geologic maps) are dominated by bedrock range faults, and R0 under-weights the range tercile (37.7% of dots vs 63.6% of off-catalogue SGMC fault pixels, which was visible in the exploration run before this file was written)"
+    },
+    "final_model": {
+      "delta_live_vs_r0": -0.003,
+      "range": [
+        -0.012,
+        0.008
+      ]
+    },
+    "hypothesis": "Moving 12% of R0's dots from the basin and piedmont terciles onto un-emitted H19-5 ridges in the range tercile (detrended elevation above the upper tercile cut) RAISES live DTI: faults in bedrock ranges are exposed and are mapped directly on geologic maps, so any label compilation that goes beyond the USGS Quaternary / INGENIOUS catalogue is dominated by range faults, while R0 spends only 37.7% of its dots there.",
+    "mechanism": "The independent, blind USGS SGMC fault layer (state geologic map faults not in the catalogue, 62,703 off-catalogue pixels) places 63.6% of its pixels in the range tercile versus 25.1% piedmont and 11.3% basin. If the hidden 'new fault' labels have a similar exposure-controlled relief profile, R0's range tercile is under-served: each dot moved onto a range H19-5 ridge gains line-like kernel credit at fixed S, and the basin dots it replaces were earning little. Expected sign positive, size scaling with dose until range ridges saturate.",
+    "non_fault_mimic": "Lithologic contacts, dikes, bedding and foliation traces, welded-tuff cooling joints and caldera margins all produce magnetic/gravity gradients and topographic breaklines in ranges that H19-5 can ridge-detect without a fault; range-interior faults may also be older, inactive structures that experts exclude from a geothermal-relevant label set.",
+    "predicted_sign_size": "MODEL (final, after REPORT-ONLY proxies) -0.003 live delta vs R0, range [-0.012, 0.008]; pre-registered a priori value was +0.006 (registry/relief_preregistration.json); a live change under 0.01 in absolute value is no evidence.",
+    "falsifier": "A live receipt <= R0 - 0.01 for range12 falsifies the exposure-controlled label premise (the hidden labels are not bedrock-map faults) and closes the range direction; a receipt >= R0 + 0.01 promotes range12 to R1' and motivates an 18-20% dose and a CONCENTRATION arm inside the range tercile.",
+    "report_only_after_build": {
+      "sgmc_control_dti": 0.093143,
+      "sgmc_delta_vs_r0": -0.002917,
+      "holdout_proxy_dti": 0.003999,
+      "cv_12km": 0.6517
+    }
   }
 }
