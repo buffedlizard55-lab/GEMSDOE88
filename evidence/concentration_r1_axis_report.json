@@ -1,0 +1,390 @@
+{
+  "schema": "gems88.concentration-r1-axis-report.v1",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "r1_sgmc_PROXY": 0.096083,
+  "r0_sgmc_PROXY": 0.09606,
+  "w_weighted_dti_R1_MODEL": 0.281537,
+  "arms": {
+    "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m10-20261023-22debd20": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.085305,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 4968.87,
+        "fp": 35461.34
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.7165,
+        "cv_12km_120px_interior": 0.6391
+      },
+      "sgmc_delta_vs_R1_PROXY": -0.010778,
+      "w_weighted_dti_MODEL": 0.261743,
+      "w_delta_vs_R1_MODEL": -0.019794,
+      "holdout_note": "Degenerate (0.000000) for every >3 px file: the 3 px kernel can earn no credit on hidden catalogue pixels (IR-88-20). Reported for completeness only.",
+      "concentration_statistics": {
+        "n_moved": 3765,
+        "pct_of_parent_dots_moved": 9.999,
+        "n_receivers": 3765,
+        "receivers_on_h19_5_support": 0,
+        "receivers_off_h19_5_support_frac": 1.0,
+        "min_receiver_dist_to_survivor_px": 2.8284,
+        "min_receiver_to_receiver_px": 2.8284,
+        "mean_donor_to_nearest_receiver_px": 225.4443,
+        "median_donor_to_nearest_receiver_px": 189.2142,
+        "min_d_cat_px": 3.1623,
+        "donor_block_prior_mean": 0.118196,
+        "receiver_block_prior_mean": 0.668975,
+        "block_cv_before": {
+          "5px": {
+            "block_px": 5,
+            "cv_all_full_blocks": 2.7894,
+            "cv_occupied_full_blocks": 0.4121,
+            "n_full_blocks": 205469,
+            "n_occupied_full_blocks": 27374,
+            "mean_dots_per_occupied_block": 0.1819
+          },
+          "10px": {
+            "block_px": 10,
+            "cv_all_full_blocks": 1.9162,
+            "cv_occupied_full_blocks": 0.628,
+            "n_full_blocks": 50984,
+            "n_occupied_full_blocks": 15216,
+            "mean_dots_per_occupied_block": 0.7249
+          },
+          "20px": {
+            "block_px": 20,
+            "cv_all_full_blocks": 1.3965,
+            "cv_occupied_full_blocks": 0.7526,
+            "n_full_blocks": 12527,
+            "n_occupied_full_blocks": 6651,
+            "mean_dots_per_occupied_block": 2.8944
+          },
+          "50px": {
+            "block_px": 50,
+            "cv_all_full_blocks": 0.9124,
+            "cv_occupied_full_blocks": 0.7083,
+            "n_full_blocks": 1911,
+            "n_occupied_full_blocks": 1566,
+            "mean_dots_per_occupied_block": 18.1413
+          }
+        },
+        "block_cv_after": {
+          "5px": {
+            "block_px": 5,
+            "cv_all_full_blocks": 2.8893,
+            "cv_occupied_full_blocks": 0.4598,
+            "n_full_blocks": 205469,
+            "n_occupied_full_blocks": 26626,
+            "mean_dots_per_occupied_block": 0.1819
+          },
+          "10px": {
+            "block_px": 10,
+            "cv_all_full_blocks": 2.1344,
+            "cv_occupied_full_blocks": 0.8348,
+            "n_full_blocks": 50984,
+            "n_occupied_full_blocks": 15573,
+            "mean_dots_per_occupied_block": 0.7249
+          },
+          "20px": {
+            "block_px": 20,
+            "cv_all_full_blocks": 1.5778,
+            "cv_occupied_full_blocks": 0.941,
+            "n_full_blocks": 12527,
+            "n_occupied_full_blocks": 6769,
+            "mean_dots_per_occupied_block": 2.8953
+          },
+          "50px": {
+            "block_px": 50,
+            "cv_all_full_blocks": 1.0358,
+            "cv_occupied_full_blocks": 0.8468,
+            "n_full_blocks": 1911,
+            "n_occupied_full_blocks": 1583,
+            "mean_dots_per_occupied_block": 18.1104
+          }
+        },
+        "nn_parent": {
+          "min_nn_px": 1.0,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.5884,
+          "frac_nn_lt_2p8": 0.0965
+        },
+        "nn_variant": {
+          "min_nn_px": 1.0,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.7242,
+          "frac_nn_lt_2p8": 0.0874
+        }
+      }
+    },
+    "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m20-20261023-0dd53a9b": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.078119,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 4546.96,
+        "fp": 35669.06
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.8255,
+        "cv_12km_120px_interior": 0.744
+      },
+      "sgmc_delta_vs_R1_PROXY": -0.017964,
+      "w_weighted_dti_MODEL": 0.240098,
+      "w_delta_vs_R1_MODEL": -0.041439,
+      "holdout_note": "Degenerate (0.000000) for every >3 px file: the 3 px kernel can earn no credit on hidden catalogue pixels (IR-88-20). Reported for completeness only.",
+      "concentration_statistics": {
+        "n_moved": 7531,
+        "pct_of_parent_dots_moved": 20.001,
+        "n_receivers": 7531,
+        "receivers_on_h19_5_support": 0,
+        "receivers_off_h19_5_support_frac": 1.0,
+        "min_receiver_dist_to_survivor_px": 2.8284,
+        "min_receiver_to_receiver_px": 2.8284,
+        "mean_donor_to_nearest_receiver_px": 133.893,
+        "median_donor_to_nearest_receiver_px": 116.5161,
+        "min_d_cat_px": 3.1623,
+        "donor_block_prior_mean": 0.141476,
+        "receiver_block_prior_mean": 0.63393,
+        "block_cv_before": {
+          "5px": {
+            "block_px": 5,
+            "cv_all_full_blocks": 2.7894,
+            "cv_occupied_full_blocks": 0.4121,
+            "n_full_blocks": 205469,
+            "n_occupied_full_blocks": 27374,
+            "mean_dots_per_occupied_block": 0.1819
+          },
+          "10px": {
+            "block_px": 10,
+            "cv_all_full_blocks": 1.9162,
+            "cv_occupied_full_blocks": 0.628,
+            "n_full_blocks": 50984,
+            "n_occupied_full_blocks": 15216,
+            "mean_dots_per_occupied_block": 0.7249
+          },
+          "20px": {
+            "block_px": 20,
+            "cv_all_full_blocks": 1.3965,
+            "cv_occupied_full_blocks": 0.7526,
+            "n_full_blocks": 12527,
+            "n_occupied_full_blocks": 6651,
+            "mean_dots_per_occupied_block": 2.8944
+          },
+          "50px": {
+            "block_px": 50,
+            "cv_all_full_blocks": 0.9124,
+            "cv_occupied_full_blocks": 0.7083,
+            "n_full_blocks": 1911,
+            "n_occupied_full_blocks": 1566,
+            "mean_dots_per_occupied_block": 18.1413
+          }
+        },
+        "block_cv_after": {
+          "5px": {
+            "block_px": 5,
+            "cv_all_full_blocks": 2.9798,
+            "cv_occupied_full_blocks": 0.4969,
+            "n_full_blocks": 205469,
+            "n_occupied_full_blocks": 25933,
+            "mean_dots_per_occupied_block": 0.1819
+          },
+          "10px": {
+            "block_px": 10,
+            "cv_all_full_blocks": 2.3201,
+            "cv_occupied_full_blocks": 0.9978,
+            "n_full_blocks": 50984,
+            "n_occupied_full_blocks": 15940,
+            "mean_dots_per_occupied_block": 0.7249
+          },
+          "20px": {
+            "block_px": 20,
+            "cv_all_full_blocks": 1.7969,
+            "cv_occupied_full_blocks": 1.1466,
+            "n_full_blocks": 12527,
+            "n_occupied_full_blocks": 6857,
+            "mean_dots_per_occupied_block": 2.8953
+          },
+          "50px": {
+            "block_px": 50,
+            "cv_all_full_blocks": 1.2233,
+            "cv_occupied_full_blocks": 1.0441,
+            "n_full_blocks": 1911,
+            "n_occupied_full_blocks": 1600,
+            "mean_dots_per_occupied_block": 18.068
+          }
+        },
+        "nn_parent": {
+          "min_nn_px": 1.0,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.5884,
+          "frac_nn_lt_2p8": 0.0965
+        },
+        "nn_variant": {
+          "min_nn_px": 1.0,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.8693,
+          "frac_nn_lt_2p8": 0.0755
+        }
+      }
+    },
+    "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m10lo-20261023-98faac0e": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.096825,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5646.96,
+        "fp": 35146.35
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6115,
+        "cv_12km_120px_interior": 0.5445
+      },
+      "sgmc_delta_vs_R1_PROXY": 0.000742,
+      "w_weighted_dti_MODEL": 0.261032,
+      "w_delta_vs_R1_MODEL": -0.020505,
+      "holdout_note": "Degenerate (0.000000) for every >3 px file: the 3 px kernel can earn no credit on hidden catalogue pixels (IR-88-20). Reported for completeness only.",
+      "concentration_statistics": {
+        "n_moved": 3765,
+        "pct_of_parent_dots_moved": 9.999,
+        "n_receivers": 3765,
+        "receivers_on_h19_5_support": 0,
+        "receivers_off_h19_5_support_frac": 1.0,
+        "min_receiver_dist_to_survivor_px": 2.8284,
+        "min_receiver_to_receiver_px": 2.8284,
+        "mean_donor_to_nearest_receiver_px": 91.3811,
+        "median_donor_to_nearest_receiver_px": 76.0263,
+        "min_d_cat_px": 3.1623,
+        "donor_block_prior_mean": 0.118196,
+        "receiver_block_prior_mean": 0.078571,
+        "block_cv_before": {
+          "5px": {
+            "block_px": 5,
+            "cv_all_full_blocks": 2.7894,
+            "cv_occupied_full_blocks": 0.4121,
+            "n_full_blocks": 205469,
+            "n_occupied_full_blocks": 27374,
+            "mean_dots_per_occupied_block": 0.1819
+          },
+          "10px": {
+            "block_px": 10,
+            "cv_all_full_blocks": 1.9162,
+            "cv_occupied_full_blocks": 0.628,
+            "n_full_blocks": 50984,
+            "n_occupied_full_blocks": 15216,
+            "mean_dots_per_occupied_block": 0.7249
+          },
+          "20px": {
+            "block_px": 20,
+            "cv_all_full_blocks": 1.3965,
+            "cv_occupied_full_blocks": 0.7526,
+            "n_full_blocks": 12527,
+            "n_occupied_full_blocks": 6651,
+            "mean_dots_per_occupied_block": 2.8944
+          },
+          "50px": {
+            "block_px": 50,
+            "cv_all_full_blocks": 0.9124,
+            "cv_occupied_full_blocks": 0.7083,
+            "n_full_blocks": 1911,
+            "n_occupied_full_blocks": 1566,
+            "mean_dots_per_occupied_block": 18.1413
+          }
+        },
+        "block_cv_after": {
+          "5px": {
+            "block_px": 5,
+            "cv_all_full_blocks": 2.9246,
+            "cv_occupied_full_blocks": 0.481,
+            "n_full_blocks": 205469,
+            "n_occupied_full_blocks": 26483,
+            "mean_dots_per_occupied_block": 0.1819
+          },
+          "10px": {
+            "block_px": 10,
+            "cv_all_full_blocks": 2.18,
+            "cv_occupied_full_blocks": 0.8677,
+            "n_full_blocks": 50984,
+            "n_occupied_full_blocks": 15537,
+            "mean_dots_per_occupied_block": 0.7249
+          },
+          "20px": {
+            "block_px": 20,
+            "cv_all_full_blocks": 1.4999,
+            "cv_occupied_full_blocks": 0.8708,
+            "n_full_blocks": 12527,
+            "n_occupied_full_blocks": 6778,
+            "mean_dots_per_occupied_block": 2.8921
+          },
+          "50px": {
+            "block_px": 50,
+            "cv_all_full_blocks": 0.912,
+            "cv_occupied_full_blocks": 0.7265,
+            "n_full_blocks": 1911,
+            "n_occupied_full_blocks": 1594,
+            "mean_dots_per_occupied_block": 18.0644
+          }
+        },
+        "nn_parent": {
+          "min_nn_px": 1.0,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.5884,
+          "frac_nn_lt_2p8": 0.0965
+        },
+        "nn_variant": {
+          "min_nn_px": 1.0,
+          "median_nn_px": 3.0,
+          "mean_nn_px": 3.7148,
+          "frac_nn_lt_2p8": 0.0874
+        }
+      }
+    }
+  }
+}
