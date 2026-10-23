@@ -161,7 +161,12 @@ def test_relief_move_refuses_target_inside_the_collar():
 
 def _ledger_rows() -> list[dict[str, str]]:
     with LEDGER.open("r", newline="") as fh:
-        return [r for r in csv.DictReader(fh) if r.get("axis") == "RELIEF"]
+        # The R0-parented RELIEF family (tests/test_relief_r0_axis.py, IR-88-36) shares the
+        # axis name; this module only owns the R1-parented rows.
+        return [
+            r for r in csv.DictReader(fh)
+            if r.get("axis") == "RELIEF" and r.get("parent") == brv.R1_ID
+        ]
 
 
 def test_ledger_has_one_row_per_relief_variant():
