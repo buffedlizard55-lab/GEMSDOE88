@@ -573,8 +573,9 @@ def write_preregistration(
             "pct_parent_dots_relocated": round(100.0 * n_move / int(lin["r0"].sum()), 6),
             "minimum_interdot_separation_px": round(MIN_SEPARATION_PX, 6),
             "feasibility_note": (
-                "A strict 2.8-pixel minimum allows only 36,718 dots on legal H19-5 support, below R0's "
-                "37,654; sqrt(5) is pre-registered rather than silently relaxing a failed selector."
+                "The canonical dot_thin(H19-5 legal support, 2.8 px) run emitted 36,718 dots, below "
+                "R0's 37,654. This construction-specific diagnostic is not a proof of a global packing "
+                "maximum; the sqrt(5) guard is disclosed rather than silently changing during arm construction."
             ),
         },
         "variants": [
@@ -696,7 +697,10 @@ def finalize_existing_interrupted_build() -> int:
         "preregistration": str(prereg_path.relative_to(ROOT)),
         "common_normalization": {
             **common,
-            "strict_2p8_feasible_count_on_legal_support": 36_718,
+            "canonical_dot_thin_2p8_count_on_legal_support": 36_718,
+            "feasibility_interpretation_correction": (
+                "The 36,718 count is from the canonical dot_thin construction, not a proof of a global packing maximum."
+            ),
             "actual_minimum_separation_guard_px": round(MIN_SEPARATION_PX, 6),
         },
         "leakage_canary": canary,
@@ -964,7 +968,10 @@ def main() -> int:
             **common,
             "total_relocated": n_move,
             "pct_relocated": round(100.0 * n_move / int(r0.sum()), 6),
-            "strict_2p8_feasible_count_on_legal_support": 36_718,
+            "canonical_dot_thin_2p8_count_on_legal_support": 36_718,
+            "feasibility_interpretation_correction": (
+                "The 36,718 count is from the canonical dot_thin construction, not a proof of a global packing maximum."
+            ),
             "actual_minimum_separation_guard_px": round(MIN_SEPARATION_PX, 6),
         },
         "leakage_canary": canary,

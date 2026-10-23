@@ -126,6 +126,11 @@ def test_tracked_receipts_ledger_cards_and_preregistration_agree():
     assert report["parent"]["dots"] == 37_654
     assert report["leakage_canary"]["passed"]
     assert report["independent_validation"]["gates_all_pass"]
+    common = report["common_normalization"]
+    assert common["canonical_dot_thin_2p8_count_on_legal_support"] == 36_718
+    assert "strict_2p8_feasible_count_on_legal_support" not in common
+    assert "not a proof" in common["feasibility_interpretation_correction"]
+    assert "do not treat the file as a blind proxy preregistration" in prereg["attempt_integrity"]["caveat"]
     assert set(v["value"] for v in prereg["variants"]) == VALUES
 
     with (ROOT / "ledger" / "submissions.csv").open(newline="") as f:

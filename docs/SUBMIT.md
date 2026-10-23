@@ -1,38 +1,38 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current session — 2026-10-23 startup audit (takes precedence over historical cards)
+## Current session — 2026-10-23 controlled `AXIS = SPACING` build (takes precedence over historical cards)
 
-**No new candidate or submission. AXIS=PRUNE:** requested radii already built;
-2 px is R0. Ledger stays at 32 rows. Full-lineage R0 startup validation passed
-both pinned SHA-256 values after verification of all 15 inputs. Audit receipt:
-`evidence/session_20261023_prune_stop.json` (not a submission-page receipt).
+**No submission and no portal access occurred.** All 15 manifest pins and the exact R0
+lineage were verified before construction. The reconciled ledger now has **38** built
+rows and **zero** portal receipts. Historical R0 `0.2778` is a **CLAIM**; every
+prediction below is `MODEL`, and every SGMC/hide-recover number is `PROXY`.
 
-**Do not upload yet:** current TOP_PUBLIC/date, actual rolling-week balance and
-deadline are unknown. Existing candidate TIFFs below are absent in this checkout;
-their old JSON records are **historical build records, not fresh validations**.
-Privately restore an existing artifact, match its complete recorded hash, and
-independently validate its actual disk bytes, primary/fallback equality, format,
-zero catalogue mass, and applicable collar before a human spends a slot.
-No rank-correlation or dot-overlap uniqueness threshold is permitted.
+The three new local alternatives each retain `37,654` dots, use zero catalogue mass,
+and pass the independent primary/fallback GeoTIFF, hash, ZIP, parent-diff, and re-read
+gates. They share the same `5,376` R0 relocations (`1,611` mandatory `<3 px` collar
+removals plus `3,765` crowded donors), so **only their replacement ordering differs**.
+They are all **HOLD**: the common collar repair confounds a raw R0 spacing test, and the
+canonical strict-2.8-px thinning diagnostic fell short of the fixed count. Do not spend
+a weekly slot on one without an explicit human decision to run this low-priority
+diagnostic.
 
-| Order | Exact submission name (primary file is `releases/<name>.tif`; fallback `<name>-zeros.tif`) | <=140-char form note | Historical format record |
+| Value / exact submission name | Primary / fallback (local only) | <=140-char form note | Fresh format receipt |
 |---|---|---|---|
-| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json` |
-| 2, optional | `h33-h33-2-b2-PRUNEp1px-20261023-0542a27c` | `h33-2-b2; PRUNE <=1px, fixed 37654 dots; predicted -0.006 MODEL` | `releases/h33-h33-2-b2-PRUNEp1px-20261023-0542a27c.json` |
-| 3, reserve | `h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae` | `h33-2-b2; PRUNE <=3.2px, fixed 37654 dots; predicted +0.002 MODEL` | `releases/h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae.json` |
+| `lattice` | `h33-h33-2-b2-SPACINGlattice-20261023-03d14f38.tif` / `h33-h33-2-b2-SPACINGlattice-20261023-03d14f38-zeros.tif` | `h33-2-b2; SPACING lattice, 5376 relocations, N=37654; pred -0.007 MODEL` | `releases/h33-h33-2-b2-SPACINGlattice-20261023-03d14f38.json`; `evidence/spacing_axis_validation.json` |
+| `poisson` | `h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa.tif` / `h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa-zeros.tif` | `h33-2-b2; SPACING poisson, 5376 relocations, N=37654; pred -0.003 MODEL` | `releases/h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa.json`; `evidence/spacing_axis_validation.json` |
+| `alongstrike` | `h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402.tif` / `h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402-zeros.tif` | `h33-2-b2; SPACING alongstrike, 5376 relocations, N=37654; pred +0.002 MODEL` | `releases/h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402.json`; `evidence/spacing_axis_validation.json` |
 
-Human uploads **only one twin per slot**, then pastes the portal receipt into
-`receipt_score` / `receipt_date` (with verbatim receipt evidence retained privately).
-Check against actual upload history: blank ledger fields do not prove slots remain.
-R0 0.2778 is CLAIM; the above predictions are MODEL, never live scores. A change
-under 0.01 is no evidence. Slot 3 is reserved unless prior receipts support it.
+**Current precedence:** retain the upstream conditional queue—gate-clean
+`PRUNEp3px-6f7ae705`, then (only if human receipt/quota decisions support it)
+`PRUNEp3space35-49fff49b`. The latter is the narrower refill-spacing comparison and
+is not displaced by these HOLD arms. Its MODEL/PROXY evidence is also not a score.
 
-**Corrections to historical sections below:** `SNAPscarp2px-fae77ff4` is HOLD
-(min catalogue distance 2.2361 px; 2,171 dots <=3 px); moving only its additions
-outside the collar does not satisfy the non-PRUNE rule. No label-relief probe is
-recommended. Historical recommendations to upload SNAP in slot 2 or to spend a
-RELIEF slot to probe label composition are withdrawn. Data-use terms for
-preexisting public competition-derived rasters remain unchecked (IR-88-43).
+Before any human upload: confirm current `TOP_PUBLIC` and date, rolling-week/total
+quota, deadline, data-use authorization, and actual upload history; reopen the exact
+primary/fallback bytes and rerun the validator; upload **one twin only**; then retain
+the verbatim receipt and populate `receipt_score` / `receipt_date`. A live
+`|Δ| < 0.01` is no evidence. No rank-correlation or dot-overlap uniqueness threshold
+is allowed.
 
 ---
 
