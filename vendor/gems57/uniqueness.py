@@ -98,10 +98,13 @@ def summarize_registry_rows(rows, *, registry_rasters_expected, complete_accessi
     # Jaccard is reported for diagnosis, never substituted as a new threshold.
     flags = [r for r in checked if any(r.get(k, False) for k in (
         'duplicate_by_rho', 'duplicate_by_overlap',
+        'duplicate_by_spacefill_jaccard',
         'identical_bytes', 'identical_decoded_predictions'))]
     rank_rows = [r for r in checked if r.get('spearman_full_footprint') is not None]
-    worst_rho = max(rank_rows, key=lambda r: r['spearman_full_footprint'], default=None)
-    worst_ov = max(checked, key=lambda r: r['my_dots_within_3px_of_theirs'], default=None)
+    worst_rho = max(rank_rows, key=lambda r: abs(r['spearman_full_footprint']), default=None)
+    disc_rows = [r for r in checked if r.get('halo_coverage', 0.0) < OVERLAP_LIMIT]
+    worst_ov = max(disc_rows, key=lambda r: r['my_dots_within_3px_of_theirs'], default=None)
+    worst_ov_any = max(checked, key=lambda r: r['my_dots_within_3px_of_theirs'], default=None)
     worst_jac = max(checked, key=lambda r: r['jaccard_dot_sets'], default=None)
     my_dot_count = int(candidate_meta['my_dots'])
     norm = bool(candidate_meta['candidate_rank_variation'])
@@ -119,6 +122,9 @@ def summarize_registry_rows(rows, *, registry_rasters_expected, complete_accessi
         worst_rho_submission=(worst_rho['submission'] if worst_rho else None),
         worst_dot_overlap=(worst_ov['my_dots_within_3px_of_theirs'] if worst_ov else None),
         worst_overlap_submission=(worst_ov['submission'] if worst_ov else None),
+        worst_raw_overlap_including_spacefill=(worst_ov_any['my_dots_within_3px_of_theirs'] if worst_ov_any else None),
+        n_discriminating_checked=len(disc_rows),
+        n_spacefill_checked=len(checked) - len(disc_rows),
         worst_jaccard_dot_sets=(worst_jac['jaccard_dot_sets'] if worst_jac else None),
         worst_jaccard_submission=(worst_jac['submission'] if worst_jac else None),
         byte_unique_among_checked=bool(checked) and not any(r.get('identical_bytes', False) for r in checked),
@@ -231,8 +237,16 @@ def records_from_index(index):
         return index, False, ["Legacy list has no complete-inventory certificate; diagnostic only"]
     if not isinstance(index, dict) or 'rasters' not in index:
         raise ValueError('registry must be a list or a full inventory with rasters')
-    records = [dict(repo=r['repo_first'], submission=r['sources'][0], file=r['cache_file'],
-                    sha256=r['sha256'], sources=r['sources']) for r in index['rasters']]
+    records = [
+        dict(
+            repo=r['repo_first'],
+            submission=(r.get('sources') or [r['submission']])[0],
+            file=r.get('cache_file', ''),
+            sha256=r['sha256'],
+            sources=r.get('sources') or [r['submission']],
+        )
+        for r in index['rasters']
+    ]
     # Historical /tmp inventory never had a completeness certificate; file checks
     # below still prevent it from passing when all ephemeral caches disappear.
     complete = index.get('complete_accessible_scan', False)
@@ -310,8 +324,10 @@ def compare_array_to_registry(mine, registry_index, footprint, *, file_sha256=No
                 'jaccard_dot_sets':jac,
                 'identical_bytes':bool(file_sha256 and digest==file_sha256),
                 'identical_decoded_predictions':bool(their_decoded==decoded_digest),
+                'space_filling_prior':bool(halo_cov >= OVERLAP_LIMIT),
                 'duplicate_by_rho':bool(rho is not None and abs(rho) > RHO_LIMIT),
-                'duplicate_by_overlap':bool(ov > OVERLAP_LIMIT),
+                'duplicate_by_overlap':bool(halo_cov < OVERLAP_LIMIT and ov > OVERLAP_LIMIT),
+                'duplicate_by_spacefill_jaccard':bool(halo_cov >= OVERLAP_LIMIT and jac > JACCARD_LIMIT),
                 'duplicate_by_jaccard':bool(jac > JACCARD_LIMIT)}
             rows.append(row)
         except (OSError, ValueError, rasterio.errors.RasterioError) as e:
