@@ -1,5 +1,34 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+## Current session — 2026-10-23 `AXIS=SNAP` fixpoint ladder + sign-flip control on gate-clean `R1` (IR-88-51; slot order below updated; no slot used, no submission)
+
+**Nothing in this session is a slot candidate.** Parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
+re-derived and SHA-asserted (`6f7ae705…`/`dc6f090d…`) after `R0` rebuilt byte-exactly (15/15 pins). Three arms
+were frozen in `registry/preregistration_snap_r1_fixpoint.json` before any proxy ran, all at `N=37,654`, 100% of
+dots `>3 px`, placement lock `>=2.8284 px`, provided bands only (zero external LiDAR):
+
+| Arm | Edit | Net displacement | Blind `SGMC` `PROXY` | Disposition |
+|---|---|---|---|---|
+| `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPfp2-20261023-2882d3c4` (zeros `4813855b…`) | 1 px scarp snap applied **twice** | `1.091 px` mean, 74.23% changed | `0.096423` | **HOLD** — worse than one pass |
+| `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPfp3-20261023-9d86769b` (zeros `fb5e72f7…`) | same snap **three** times | `1.315 px`, 75.87% | `0.094999` | **HOLD** — worse than the parent |
+| `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPanti1-20261023-2f76b21c` (zeros `66064872…`) | same allocator on the **negated** field (weakest response) | `0.724 px`, 72.39% | `0.097260` | **control only** |
+
+Reference points in the same run: `R1 0.096083`, `scarp1px 0.097567`. The sign-flip control is `0.000307` from
+the crest winner — closer to it than the winner is to its parent — so `SGMC` does not separate crest from trough
+motion and may **not** be used to argue for `SNAPscarp1px` (IR-88-51). The dose ladder is negative, so
+`SNAPscarp2px-c003d7d7` is **off the queue**. All six rasters were re-read from disk and re-validated with the
+hardened `validate_variant.py` (`registry/snap_r1_fixpoint_validation.json`, 6/6 PASS); receipts are in
+`releases/<id>.json`; report in `evidence/snap_r1_fixpoint_axis_report.json`. No file needs uploading from this
+session. `R0 0.2778` remains CLAIM.
+
+**Updated integrated queue (slot 1 unchanged; slot 2's fallback is now explicitly unpriced; slot 3 no longer
+contains any SNAP dose arm):** 1. `PRUNEp3px 6f7ae705` (`R1` anchor) · 2. `PRUNEp3space35 49fff49b` only after
+exact byte reconstruction + hardened re-validation, else `SNAPscarp1px 1944aaf5` as an unpriced gate-clean
+mechanism test · 3. conditional `PRUNEp4space35 07bd8182` after a `p3space35` win, else `MASS-on-R1` in a
+separate session, else conserve.
+
+---
+
 ## Current session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; integrated queue — supersedes the slot order of every section below; all their prerequisites stand)
 
 **Three new candidates, one per preregistered arm; no slot was used and no submission was made.** Parent
