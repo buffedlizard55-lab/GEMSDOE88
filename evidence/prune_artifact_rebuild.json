@@ -1,7 +1,7 @@
 {
   "schema": "gems88.prune-artifact-rebuild.v1",
-  "created_utc": "2026-10-23T15:56:11Z",
-  "git_sha_at_rebuild": "3e1ec2971bd4c3bea1cb038470e8fdce21cd0100",
+  "created_utc": "2026-10-23T16:06:34Z",
+  "git_sha_at_rebuild": "19f4868784cd27042eeb0eafcb77a135f4e5cc32",
   "working_tree_clean_at_rebuild_start": true,
   "script_sha256": "b64d785e190bf45230d516d1f175ce09f1cde3b610a89b344c8aaa046cbb6ce2",
   "evidence_class": "REPRODUCTION",
