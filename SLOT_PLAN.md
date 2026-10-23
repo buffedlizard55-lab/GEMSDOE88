@@ -1,117 +1,36 @@
 # SLOT_PLAN — one entity; <=3 scored uploads per rolling week
 
-**2026-10-23 · AXIS=MASS (agent-selected) · 3 variants of R0 + a random-donor control.**
-All 15 manifest pins verified; R0 rebuilt byte-exactly (zeros `c55bafc4…`, NaN
-`baeae321…`, 37,654 dots; 2,171 at <=3 px, 1,611 strictly
-inside 3 px). Ledger: **38** built rows (35 on main + 3 here),
-**0** portal receipts. Random arms are diagnostics: no GeoTIFF, no ledger row.
+**`2026-10-23` · six sessions merged: PRUNE refill-mode (PR #34) · SPACING on `R1` (PR #35) · SNAP-clearance audit + hardened gates (PR #36) · MASS on `R0` (PRs #38/#42) · TRACKB Phase 2 (PR #40) · SNAP scarp transplant on `R1` (PR #41, this plan's latest update).** All `15` manifest pins verified; `R0` rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`, `37,654` dots; `1,611` strictly `<3 px` per IR-88-47's corrected count) and gate-clean `R1 = PRUNEp3px-6f7ae705` (`min d_cat 3.1623 px`) re-derived and SHA-asserted before editing. Ledger: **`47`** built rows across all 7 brief axes, **`0`** portal receipts, zero `(parent, axis, value)` or SHA-256 collisions.
 
-**MASS is now measured, and it is exhausted.** The three MASS rows already in the
-ledger were ranked by `0.6*clip(d_cat/50)+0.4*uniform`, which the PR17 audit showed
-was ~89% a catalogue-collar extension. These arms are the first ranked by the
-parent's own exact-marginal DTI: the dropped dots have mean `w = 0.1445` against a
-parent mean of `0.1928` and sit `34.3 px` from the catalogue, so this is mass, not collar.
+**Before any slot:** human supplies current `TOP_PUBLIC`/date (blank in the current brief; repo's `0.4413` of `2026-10-22` is stale — two same-day briefs disagree on it and on the slot balance, IR-88-49 MASS item), actual weekly/total balance, permission to use/redistribute the public mirrors and old tracked TIFFs, and confirms the provisional `2026-12-03` deadline on the competition page and rules. No automated page access or submissions. Primary/zeros twin = **one** slot; one blind final. `|live delta| < 0.01` is no evidence; without an R0 receipt no paired live delta exists. Locally available + freshly validated with the **hardened** `validate_variant.py`: `R1` twins and all six SNAP-R1 scarp twins. `p3space35`/`p4space35` TIFFs are **absent locally** — exact reconstruction and fresh validation required before any slot.
 
-| Arm | Dots | w-model Δ | Blind SGMC (R0 `0.096060`) | Random-donor control | Dose effect | Ranking effect | Revised MODEL |
-|---|---|---|---|---|---|---|---|
-| `MASSr10minus` `6d3dd59e` | 33,889 | −0.0084 | 0.087999 (−0.0081) | 0.089830 (−0.0062) | −0.0062 | −0.0018 | **−0.008** [−0.013, −0.003] |
-| `MASSr10plus` `24fd987d` | 41,419 | +0.0107 | 0.098918 (**+0.0029**) | 0.097162 (+0.0011) | +0.0011 | +0.0018 | **+0.003** [−0.002, +0.011] |
-| `MASSr10swap` `cde5b4a5` | 37,654 | +0.0029 | 0.092054 (−0.0040) | 0.091592 (−0.0045) | −0.0045 | +0.0005 | **−0.001** [−0.006, +0.004] |
+## Session results (all instruments REPORT-ONLY, never gates; blind `SGMC` vs R0 `0.096060` / R1 `0.096083`)
+| Arm | Parent | Edit | blind `SGMC` | field `MODEL` |
+|---|---|---|---:|---:|
+| `p3norefill` `fb308615` | R0 | `300 m` collar purge, **no refill** (`N=35,483`, diagnostic) | `0.093643` (−0.0024) | `−0.0157` |
+| `p3space35` `49fff49b` | R0 | collar purge, `3.5 px` spacing-locked refill, widened pool | `0.101042` (+0.0050) | `−0.0112` |
+| `p4space35` `07bd8182` | R0 | `400 m` collar, same refill | `0.102454` (+0.0064) | `−0.0228` |
+| `MASSr10minus/plus/swap` | R0 | ±10%/swap dots by exact-marginal DTI (+ random-donor control) | `0.087999 / 0.098918 / 0.092054` | `−0.0084 / +0.0107 / +0.0029` |
+| `poisson28` `60f65400` | R1 | farthest-point receivers, `1,914` decluster donors | `0.096820` (+0.00074) | `−0.0026` |
+| `strike`/`lattice4px` | R1 | along-strike / `4 px`-grid receivers | `0.095396 / 0.095292` (below) | `−0.0059 / −0.0059` |
+| TRACKB `traceext10/speckle10minus/tracespine10` | R1 | Phase-2 trace arms (`10.00%` dose; GeoJSON dossier) | `0.09462 / 0.08666 / 0.08700` (below) | pre-reg `+0.004/+0.003/−0.003` |
+| **`scarp1px` `1944aaf5`** | **R1** | spacing-locked snap `<=1 px` to `edge_scarp_pot` crest (26,323 moved, `69.91%`, mean `0.699 px`) | **`0.097567` (+0.00148)** | pre-reg `+0.003`; `w`-field `−0.035` |
+| **`scarp2px` `c003d7d7`** | **R1** | same field, `<=2 px` reach (31,742, `84.30%`, mean `1.344 px`) | **`0.097453` (+0.00137)** | pre-reg `+0.006`; `w`-field `−0.077` |
+| `ridge2px` `f4af84a3` | R1 | control: Hessian-ridge field only, stays on support (6,567, `17.44%`) | `0.096548` (+0.00047) | pre-reg `+0.002`; `w`-field `−0.001` |
 
-**Reading (both instruments agree on the two pure-mass arms):** R0 sits **at** its
-mass optimum. Losing 10% of the dots costs 5.6× more than gaining 10% returns
-(`−0.0062` vs `+0.0011` on the blind control), the signature of a concave curve
-peaking just above 37,654 dots — inside the 37–44 k band every good file occupies.
-The field `w` adds only `+0.0018` over random receivers and *loses* `0.0018` versus
-random donors, which replicates IR-88-38 (`w` AUC 0.4724 for blind-fault credit).
-Catalogue hide-and-recover is degenerate for all arms (`≈0.0040`, `n = 22,663`,
-deltas `≤1.7e-4`), so it ranks nothing here — IR-88-35 confirmed at family level.
+Convergent findings: (1) **the instruments disagree in every session** — the label-free field prefers densified/on-support placement, blind `SGMC` prefers spaced crest placement (IR-88-44×2/48/49/50); no arm may be promoted on instrument agreement, and `w` (blind AUC `0.47`) must not adjudicate geometry or ranking edits. (2) **Spacing/uniformity is the lever; spaced ancestor support amplifies it** (`p3space35 +0.0050` vs `poisson28 +0.00074`; TRACKB's spaced tip-extension beats densified spine infill `23.6×`). (3) **MASS is measured and exhausted**: R0 sits **at** its mass optimum (losing 10% costs `5.6×` what gaining 10% returns); `r10plus` is the only positive arm but fails the hardened non-PRUNE collar gate — its eligible form is MASS-on-R1, proposed below. (4) **Scarp re-centering replicates across parents**: the same field+allocator beat R0 (`fae77ff4`, reproduced exactly in-run at `0.096806`) and beats R1 (`+0.0014/+0.0015`), scarp > ridge both times — crest emergence, not ribbon de-jittering; `scarp1px` vs `scarp2px` is a proxy-level tie (`+0.000114`); the preregistered dose rule nominates `1 px`, receipts arbitrate. (5) Pure-R0 SNAP is geometrically impossible (IR-88-47): the scarp transplant therefore runs on gate-clean `R1` — 100% of dots `>3 px`, hardened validator 6/6 PASS. (6) The capped-gradient SNAP-R1 family (`g2f35/d2f35/d1f35`) sits **below** R1 blind (`0.095051/0.092461/…`) — field shape alone does not pay; geometry does.
 
-**Budget/target:** TOP_PUBLIC **unknown** in the current brief (the repository's older
-0.4413 is not adopted). Slots left this rolling week / total: **unknown**, never
-inferred from blank receipt fields. Deadline **2026-12-03 is human-confirmation
-pending**, not verified by this session. Human checks the
-[competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/)
-and [rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf); no automated access.
-One blind final file; primary and zeros twin are alternatives, never two slots.
-
-**Reconciliation with the concurrent 2026-10-23 session (PR #36, `AXIS=SNAP`).** That session
-built no variants: it proved pure R0 `SNAP` is geometrically impossible (30 of R0's 1,611 dots
-inside 3 px have no `>=3 px` destination within a `<=2 px` move —
-`evidence/session_20261023_snap_clearance.json`, IR-88-47), added three spacing-locked PRUNE
-refill arms (`p3norefill`, `p3space35`, `p4space35`), and **corrected
-`scripts/validate_variant.py`** so non-PRUNE axes now fail on any positive mass at `<3 px`.
-Consequence for this page: all three `MASSr10*` arms inherit R0's 1,611 collar dots and are
-**HOLD** under the corrected gate, so the merged slot order below puts the gate-clean PRUNE
-arms first. The `MASS` finding itself is unaffected — the mass-response curve is a property of
-the parent's dot set, not of the collar — and its submission-eligible form is `MASS-on-R1`.
-
-## Next three slots — merged order after the PR #36 reconciliation
-
-| Order | File / predicted live change (MODEL) | What a receipt would change |
+## Next three *conditional* slots (integrated queue)
+| Order | Arm (blind `SGMC`) | What a receipt changes |
 |---|---|---|
-| 1 | `PRUNEp3px-6f7ae705`, +0.005 vs R0 | Gate-clean on all 37,654 dots and now locally revalidated byte-for-byte by PR #36. A gain ≥0.01 supports the collar+refill package; a loss ≤−0.01 argues against widening. |
-| 2 | `PRUNEp3space35-49fff49b`, +0.007 vs R0 (PR #36) | Highest MODEL that is also gate-clean, so it outranks `MASSr10plus` (+0.003). Tests whether spacing-locked refill beats unconstrained refill — the confounder IR-88-37 recorded. Requires a fresh artifact rebuild and validation first. |
-| 3 | **Reserve.** `MASSr10plus-24fd987d` (+0.003) only if the human explicitly scopes controlled R0 edits out of the `<3 px` gate **and** slots 1–2 have receipts; otherwise hold the slot. | Spending it as an experiment is only informative if the ≥0.01 threshold is reachable; `+0.003` is below the brief's no-evidence floor. |
+| 1 | `PRUNEp3px-6f7ae705` = `R1` | The anchor: parents twelve ledgered R1 arms (3 scarp-SNAP, 3 SPACING, 3 capped-SNAP, 3 TRACKB) and the whole scarp family's interpretation. Gain `>=0.01` supports the collar+refill lineage; loss `<=-0.01` closes it and demotes every R1 child; `|Δ|<0.01` inconclusive — slot 2 still distinguishes by pair. Locally available, hardened-validated. |
+| 2 | `PRUNEp3space35 49fff49b` (largest gate-eligible blind margin, `+0.0050` vs R0) — **only after exact byte reconstruction + hardened re-validation**; if the bytes cannot be reconstructed, `SNAPscarp1px-R1 1944aaf5` takes slot 2 (top blind margin among locally validated gate-clean arms, `+0.00148` vs R1; same-parent pair with slot 1) | `p3space35` gain `>=0.01` **over `p3px`** favors spacing-locked refill (the IR-88-37 confounder, tested); `scarp1px − R1` is a clean same-parent delta testing crest re-centering (`>=0.01` promotes scarp geometry; `<=-0.01` closes SNAP on both parents — three families would agree; `<0.01` inconclusive, slot 3 still arbitrates dose). |
+| 3 | conditional: `SNAPscarp2px-R1 c003d7d7` (dose) after a non-negative `scarp1px` receipt · `PRUNEp4space35 07bd8182` (collar width, needs reconstruction) after a `p3space35` win · else `MASSr10plus 24fd987d` **only if** the human explicitly scopes controlled R0 collar edits out of the `<3 px` gate — else conserve | `scarp2px >= scarp1px + 0.01` ⇒ `200 m` reach wins; reverse or tie ⇒ keep `1 px`. `p4space35` arbitrates `300` vs `400 m`. `MASSr10plus`'s pre-reg `+0.003` is below the no-evidence floor — spend only as an explicit human gate-scoping decision. After any material loss: conserve and re-plan from receipts. |
 
-## Weeks to the provisional deadline
-- Oct 23–29: human supplies TOP_PUBLIC, slot balance, deadline; slots 1–2 above if quota allows.
-- Oct 30–Nov 5: evaluate receipts. Build **MASS-on-R1** (`(PRUNEp3px-6f7ae705, MASS, r10plus)`) —
-  the gate-clean form of this session's only positive arm — rather than a second dose on R0.
-- Nov 6–19: combine two axes only after each has independent ≥0.01 receipt evidence; name the
-  actual parent and record spacing/refill confounding.
-- Nov 20–Dec 3: confirm the leading file, prepare Phase-2 TRACKB for geologist review, choose one
-  blind final and fallback; freshly validate both.
+**HOLD / off-queue, regardless of old validators:** the three `MASSr10*` arms (hardened collar gate; IR-88-44 MASS addendum); the three TRACKB arms (Phase-2 review; below R1 blind); `SNAPscarp2px-fae77ff4` and all R0 SNAP/CONCENTRATION/RELIEF arms retaining sub-`3 px` mass (IR-88-43/47); all 3 SPACING arms (sub-threshold diagnostics); capped-gradient SNAP-R1 (`g2f35/d2f35/d1f35`, blind-negative); `PRUNEp1px` (exception-legal flank, diagnostic); `ridge2px-R1` and `p3norefill` (diagnostics, never leads). Historical JSON saying "gate pass" on R0 non-PRUNE arms is **not** a current pass (hardened gate, IR-88-47).
 
-## Better axes — proposed only, not built this session
-- **MASS-on-R1:** the same 10% add ranked by exact marginal DTI, but parented on `PRUNEp3px` so no
-  dot is inside 3 px. Mechanism: capture the measured `+0.0011` dose effect without the collar
-  dispute. Confounder: R1 already refilled 2,171 dots onto H19-5 support, shrinking the `>3 px`
-  candidate pool. Falsifier: no ≥0.01 live gain, or a smaller pool that erases the dose effect.
-- **SUPPORT:** spaced H16-1/H19-4 ridge support instead of densifying saturated H19-5 (98.2% of this
-  session's additions landed within 3 px of an existing dot). Mechanism: recover uncovered strand
-  length. Confounder: ancestor tuning. Falsifier: no ≥0.01 gain in a count-matched experiment.
-- **RANKFIELD:** replace the refill field while holding collar/count/spacing fixed; the control here
-  bounds any ranking change at `±0.0018`, so only a materially better field is worth a slot.
-  Confounder: bedrock-map bias in SGMC. Falsifier: no ≥0.01 gain and no gain over random donors.
-- **SPACING:** still the one brief-listed axis never built; MASS's saturation diagnostic says
-  spacing, not count, binds on H19-5.
-**Note on the two slot tables below:** the MASS session's merged order and the SPACING/SNAP session's order agree on slots 1 (`PRUNEp3px`) and 2 (`PRUNEp3space35`); they differ only on the reserve (MASS session: `MASSr10plus` if the collar is scoped for controlled R0 edits; SPACING session: `PRUNEp4space35` / `poisson28`). Neither table is an upload instruction.
+**Weeks:** Oct 23–Nov 5 (wk1–2): receipt/quota/legal checks; run slots 1–2; if a scarp arm is receipt-confirmed, the pre-registered SNAP-FIXPOINT extension may be built. Nov 6–19 (wk3–4): slot 3 by receipt; build **MASS-on-R1** (`(R1, MASS, r10plus)`) — the gate-clean form of MASS's only positive arm — as a separate single-axis session; combine two axes only after each has an independent `>=0.01` receipt on a gate-clean parent, naming the true parent. Nov 20–Dec 3 (wk5–6): confirm the leading file twice, choose ONE blind final + fallback twin, re-validate both from disk with the hardened validator. `TRACKB` is Phase-2 geologist review only (PR #40 merged: dossier + 3 blind-negative arms; off the weekly queue unless the human decides).
 
-## Concurrent sessions — SPACING (PR #35) + SNAP clearance audit (PR #36)
+**Better axes, proposals only — build each separately, one axis per session:** **MASS-on-R1** — the same 10% exact-marginal add on gate-clean `R1`; confounder: R1's refill already shrank the `>3 px` pool; falsifier: no `>=0.01` live gain or an erased dose effect. **TRACE_ADD_ONLY** — `+4–6%` spaced `>=2.8 px` `>=1 km` trace-tip adds on `R1` or `p3space35` *without* dropping `0.060`-credit singletons (TRACKB's IR-88-49); falsifier: no `>=0.01` live gain over parent at matched collar. **SNAP-FIXPOINT** — iterate the `1 px` spacing-locked scarp snap to a fixed point (2–3 passes) to reach residual `>100 m` drift; confounder: compounding percentile-field noise; falsifier: blind `SGMC` below single-pass `scarp1px`. **SUPPORT** — spaced H16-1/H19-4 strands as receivers (partly executed by `p3space35`'s widened pool); confounder: leaderboard-tuned ancestor thresholds (IR-88-45); falsifier: no `>=0.01` live gain at matched count/collar. **RANKFIELD** — replace `w` in every ranking decision with a blind-neutral field (MASS's control bounds any ranking change at `±0.0018`, so only a materially better field is worth a slot); confounder: SGMC map bias; falsifier: no `>=0.01` gain and no gain over random donors. **STRIKE_ALIGN** — snap on gate-clean `R1` only where structure-tensor strike matches the local ridge within `±22°`; the SPACING `strike` arm's blind loss warns that raw alignment without a spacing lock does not pay; falsifier: no gain over a randomized-strike control at matched spacing.
 
-**`2026-10-23` · AXIS = SPACING (3 built, all HOLD) + `AXIS = SNAP` audit (`0` new variants, pure-R0 SNAP impossible) + merged PR #34 PRUNE refill-mode.** All `15` manifest pins verified; R0 rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`, `37,654` dots). Ledger: **`38`** built rows (`32` audit base + `3` spaced refill + `3` SPACING), **`0`** portal receipts. No `(parent, axis, value)` or SHA-256 collision any way; pre-existing PRUNE `p1/p3/p4` TIFF twins recreated at exact ledger hashes with six fresh disk checks passing (`evidence/session_20261023_prune_revalidation.json`).
-
----
-
-## Concurrent session — TRACKB (PR #40)
-
-**`2026-10-23` · AXIS = TRACKB (Phase 2 readiness, 3 built, 0 weekly slots) + merged PR #35 SPACING (3 HOLD) + PR #36 SNAP audit + PR #34 PRUNE refill-mode.** All `15` manifest pins verified; `R0` (`c55bafc4…`/`baeae321…`, `37,654` dots) and gate-clean `R1 = PRUNEp3px-6f7ae705` (`min d_cat = 3.1623 px`) rebuilt byte-exactly. Ledger: **`41`** built rows across all 7 brief axes, **`0`** portal receipts, zero `(parent, axis, value)` or SHA-256 collisions. `TRACKB` emitted [`evidence/trackb_traces_geologist.geojson`](evidence/trackb_traces_geologist.geojson) (`4a1d0541…`, `1,259` `>=1.0 km` `LineString` traces totaling `1,753.2 km`, 1 geologist paragraph/trace; dossier [`evidence/trackb_geologist_dossier.md`](evidence/trackb_geologist_dossier.md)) + 3 `10.00%` (`3,765`-dot) `R1` variants: `TRACKBtraceext10` `05256d87` (`N=37,654`, `added_min_nn=2.8284 px`, prereg `MODEL:+0.004`, `SGMC=0.09462 PROXY` — **`+0.00763` above `tracespine10`**), `TRACKBspeckle10minus` `3360100c` (`N=33,889`, prereg `MODEL:+0.003`, `SGMC=0.08666`), and `TRACKBtracespine10` `a3a183d1` (`N=37,654`, `100 m` spines, prereg `MODEL:-0.003`, `SGMC=0.08700`; IR-88-49).
-
-**Before any slot:** human supplies current `TOP_PUBLIC`/date, actual weekly/total balance (unknown), R0 receipt (`0.2778` is CLAIM), permission to use/redistribute the public mirrors and old tracked TIFFs, and confirms the provisional `2026-12-03` deadline on the competition page and rules. No automated page access or submissions. Primary/zeros twin = **one** slot; one blind final. Public/private/expert-expanded chunks differ; `|live delta| < 0.01` is no evidence. Without an R0 receipt no paired live delta is established. New `p3space35`/`p4space35` TIFFs are **absent locally**; their receipts require exact reconstruction and fresh validation.
-
-## Session results — refill spacing (PR #34), receiver geometry (SPACING), SNAP clearance (PR #36)
-| Arm | Edit | `N` | refill min NN | four-line field `MODEL` vs R0 | blind `SGMC` `PROXY` vs R0 |
-|---|---|---:|---:|---:|---:|
-| `p3norefill` `fb308615` | `300 m` collar, **no refill** | `35,483` | – | `0.270354` (−0.0157) | `0.093643` (−0.0024) |
-| `p3space35` `49fff49b` | `300 m` collar, `3.5 px` spacing lock | `37,654` | `3.4641 px` | `0.273539` (−0.0112) | `0.101042` (+0.0050) |
-| `p4space35` `07bd8182` | `400 m` collar, `3.5 px` spacing lock | `37,654` | `3.4641 px` | `0.278731` (−0.0228) | `0.102454` (+0.0064) |
-| Arm (on `R1`) | Receiver geometry | moved | receiver min NN | `w`-DTI field `MODEL` vs R1 | blind `SGMC` vs R1 `0.096083` |
-| `poisson28` `60f65400` | farthest-point, `R1 = 2.8 px` decluster | `1,914` | `2.2361 px` | `−0.0026` (pred `+0.003`) | `0.096820` (+0.00074) |
-| `strike` `bc8e6d1a` | along-strike H19-5 alignment | `1,914` | `1.0000 px` | `−0.0059` (pred `+0.000`) | `0.095396` (−0.00069) |
-| `lattice4px` `6c7e0b72` | `4 px` grid, phase frozen | `1,914` | `1.0000 px` | `−0.0059` (pred `−0.004`) | `0.095292` (−0.00079) |
-
-Both sessions' instruments **disagree** (their IR-88-44; SPACING reproduces it: field prefers densified placement, `SGMC` prefers spaced placement), and neither is a live score. Shared substantive finding: **spacing/uniformity is the lever, spaced ancestor support amplifies it** (`p3space35 +0.0050` vs `poisson28 +0.00074`); ancestor support is a confounder, so even a live delta does not isolate spacing alone. `p3norefill` is diagnostic only. Strict spacing locks on `H19-5` at matched count are infeasible (their IR-88-43, agreed); maximal-spacing variants on un-emitted `H19-5` are feasible and built (IR-88-48). Pure-R0 SNAP is geometrically impossible under the literal `3 px` clearance: `30` of `1,611` sub-`3 px` dots have no compliant in-footprint pixel within `<=2 px`, even ignoring collisions — do not substitute a PRUNE refill and call it SNAP (their IR-88-47; `evidence/session_20261023_snap_clearance.json`). Earlier R0 non-PRUNE arms retaining the collar stay HOLD.
-
-## Next three conditional slots (SPACING/SNAP session's ordering)
-| Order | Existing arm / live projection (MODEL vs R0) | What a receipt changes |
-|---|---|---|
-| 1 | `PRUNEp3px-6f7ae705` / +0.005 | Gain `>=0.01` supports the `300 m` collar+refill; loss `<=-0.01` closes this family; otherwise inconclusive. This file alone is freshly validated and locally available (primary + fallback). |
-| 2 | `PRUNEp3space35-49fff49b` / +0.007 | Only if slot 1 does not materially lose, the human approves another test, and exact bytes validate. Gain `>=0.01` **over `p3px`** favors spaced refill; loss `<=-0.01` disfavors it; smaller differences teach nothing. `poisson28` is also above its parent at one-seventh the gain, so slot 2 tests spacing support by effect size. |
-| 3 | Reserve `PRUNEp4space35-07bd8182` / +0.002 | Only if slot 2 materially wins: a `>=0.01` gain vs slot 2 favors widening with spaced refill; `<=-0.01` loss favors `300 m`. Else conserve the slot. |
-
-**HOLD, regardless of old validators:** `SNAPscarp2px-fae77ff4` and all R0 SNAP/CONCENTRATION/RELIEF arms retaining sub-`3 px` mass; all 3 SPACING arms (sub-threshold diagnostics, `|SGMC delta| < 0.001`); `PRUNEp1px` (PRUNE `<3 px` mass allowed by the exception, diagnostic rather than a lead). Human uploads at most one file per slot.
-
-**Weeks:** Oct 23–Nov 5 (wk1–2): receipt/quota/legal checks, conditional PRUNE; Nov 6–19 (wk3–4): combine axes only with independent `>=0.01` receipt evidence on a gate-clean parent; Nov 20–Dec 3 (wk5–6): validate final and fallback from disk, choose one blind final. `TRACKB` is Phase-2 geologist review only.
-
-**Better axes, proposals only:** **TRACE_ADD_ONLY** — `+4–6%` spaced `>=2.8 px` `>=1 km` trace-tip adds on `R1` or `p3space35` *without* dropping `0.060`-credit singletons (IR-88-49); falsifier: no `>=0.01` live gain over parent at matched collar. **SUPPORT** — new spaced H16-1/H19-4 strands may cover gaps; spaced-support receiver confounder prior is leaderboard-tuned; falsifier: no `>=0.01` live gain at matched count/collar. **RANKFIELD** — change `p3px` refill ranking at fixed spacing; confounder SGMC map bias; falsifier: no `>=0.01` gain vs randomized ranking. **STRIKE_ALIGN** — snap on gate-clean `p3px` to coherent edges; confounder lithology / GeoDAWN flight lines; falsifier: no gain over randomized-strike control. Build each separately.
+**Evidence discipline:** RECEIPT > CLAIM > PROXY > MODEL. Everything above is PROXY/MODEL except the R0 CLAIM (`0.2778`, unreceipted). Dedupe is exact-hash and `(parent, axis, value)` only — no rank-correlation or overlap thresholds. Human uploads at most one file per slot.

@@ -1,0 +1,258 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp2px-20261023-c003d7d7",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+  "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+  "axis": "SNAP",
+  "value": "scarp2px",
+  "seed": 20261023,
+  "git_sha": "c8d4f1db414dfbb061187862475be47479323c66",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp2px-20261023-c003d7d7.tif",
+  "sha256": "c003d7d75a7e7571dd36ba928eba7ff8bf2676171bd2f6a6a424c8d4fc2791ac",
+  "bytes_nan": 355410,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp2px-20261023-c003d7d7.zip",
+  "zip_nan_sha256": "7e8117a42fa82cca4c242bbc637d17d9c73e6354c03a70bd2bc46d3fb13daa4c",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp2px-20261023-c003d7d7-zeros.tif",
+  "sha256_zeros": "9e0001cee45b39e6a00d6f21de0685521b34391c3a7f13835852e850809c5d53",
+  "bytes_zeros": 219018,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp2px-20261023-c003d7d7-zeros.zip",
+  "zip_zeros_sha256": "56b4bbe5d7f6199823505bf8e0fc24cfebf5c1855ff586de17bc82fb00b16612",
+  "form_note": "h33-2-b2 PRUNEp3px R1; SNAP <=2px to scarp+TMI/grav co-edge, spacing-locked, 100% of dots >3px; pred +0.006 MODEL",
+  "form_note_chars": 113,
+  "n_dots": 37654,
+  "displacement": {
+    "max_window_radius_px": 2.0,
+    "min_interdot_sep_enforced_px": 2.8,
+    "min_interdot_nn_dist_px": 1.0,
+    "mean_interdot_nn_dist_px": 3.8176,
+    "stay_on_h19_5_ridge": false,
+    "n_dots_displaced": 31742,
+    "n_dots_stationary": 5912,
+    "mean_displacement_all_px": 1.3442,
+    "mean_displacement_all_m": 134.42,
+    "mean_displacement_moved_px": 1.5945,
+    "mean_displacement_moved_m": 159.45,
+    "max_displacement_px": 2.0,
+    "displacement_counts_by_d2": {
+      "d_0px_d2_0": 5912,
+      "d_1px_d2_1": 6910,
+      "d_sqrt2px_d2_2": 10176,
+      "d_2px_d2_4": 14656
+    },
+    "mean_edge_response_before": 0.61663,
+    "mean_edge_response_after": 0.68045,
+    "mean_edge_response_gain": 0.06382
+  },
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_common": 5912,
+    "n_added": 31742,
+    "n_removed": 31742,
+    "pct_changed_moved": 84.3,
+    "pct_changed_sym_diff": 168.6,
+    "min_dist_catalogue_px": 3.1623,
+    "min_dist_added_catalogue_px": 3.1623,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 0,
+    "dots_le_4px": 2545
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "none_within_2px_catalogue": true,
+    "all_moved_dots_gt_3px_catalogue": true,
+    "all_dots_gt_3px_catalogue": true,
+    "reread_from_disk_verified": true
+  },
+  "parent_rebuild_verified": {
+    "r0_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "r0_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "r1_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+    "r1_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9"
+  },
+  "spacing_lock_final_configuration": {
+    "n_added_cells": 31742,
+    "min_nn_added_vs_all_px": 2.8284,
+    "spacing_lock_holds_for_every_moved_dot": true,
+    "min_nn_global_px": 1.0,
+    "mean_nn_global_px": 3.8176,
+    "note": "global min NN may be < 2.8284 px: R1's 2,171 exact-marginal refills were selected without a spacing lock (IR-88-37); SNAP never repairs inherited pairs, it only guarantees placement spacing for dots it moves."
+  },
+  "off_h19_5_support": {
+    "stay_on_h19_5": false,
+    "n_dots_off_h19_5_after": 29663,
+    "n_parent_dots_off_h19_5": 0
+  },
+  "w_weighted_dti_MODEL": {
+    "evidence_label": "MODEL",
+    "field": "label-free corroboration field w (build_prune_variants.py)",
+    "dti_parent_r1": 0.281537,
+    "dti_arm": 0.204203,
+    "delta_vs_r1": -0.077335,
+    "caveat": "w under-weights dots off H19-5 support (0.015*p_phys vs 0.045+) and its ranking has blind AUC 0.47 (IR-88-38); recorded as a mechanical diagnostic, the ledger prediction stays the preregistered scenario MODEL."
+  },
+  "preregistration": "registry/preregistration_snap_r1_scarp.json",
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "w_field_channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    },
+    "edge_field_channels": {
+      "tmi_hg_b03": 0.52022,
+      "tmi_crest_b03": 0.50573,
+      "grav_hg_b18": 0.51671,
+      "grav_crest_b18": 0.51035,
+      "det_elev_slope_b19": 0.54949,
+      "det_elev_break_b12": 0.52669,
+      "composite_edge_pot": 0.50076,
+      "composite_edge_scarp_pot": 0.53422
+    }
+  },
+  "mechanism_card": {
+    "hypothesis": "R1's dots inherit from H19-5 the ~1-2 px (100-200 m) displacement of GeoDAWN Area 2 lineaments (400 m flight-line spacing, 150-200 m drape; https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7) relative to the discrete surface fault scarp. Re-centering every dot <=2 px onto the co-registered topographic scarp + TMI/gravity co-edge -- the only edit that beat R0 on the blind off-catalogue SGMC control (0.096806 vs 0.096060 PROXY) -- keeps that gain on the gate-clean parent R1, whose 2,171 w-field refills are exactly the dots whose placement is least proven (refill ranking AUC 0.47 blind, IR-88-38) and most in need of an independent geometric anchor.",
+    "mechanism": "A range-front normal fault at ~60 deg Andersonian dip through 0.5-1.5 km of basin fill puts (i) a topographic breakline at its updip surface emergence (band 19 det_elev_slope, band 12 det_elev Hessian ridge crest) and (ii) magnetisation/density steps imaged as horizontal-gradient maxima (band 18 isostatic gravity, band 3 TMI). The snap field weights the surface emergence 65% and the potential-field edge 35%. A dot at distance d from a line-like truth earns triangular-kernel credit 1 - d/3 inside 300 m, so shifting drifted ridge centroids onto the scarp breakline raises per-truth-pixel credit along off-catalogue traces at fixed S = 37,654: no added wasted mass (0.2*FP_w) and no lost coverage. The >=2.8284 px placement lock stops adjacent dots bunching onto one breakline pixel and opening >300 m along-strike kernel gaps -- the failure mode of the unspaced w2E1/w2E2 arms (SGMC -0.008).",
+    "non_fault_mimic": "Wave-cut Pleistocene Lake Lahontan/Bonneville paleoshorelines (~1,330/1,555 m), welded-tuff mesa rims, and incised alluvial-fan terrace risers form sharp 100 m topographic breaklines inside the snap window of piedmont fault corridors without brittle basement throw; GeoDAWN 400 m flight-line levelling shoulders can attract the 35% potential-field weight.",
+    "predicted_sign_size": "Preregistered MODEL +0.006 live delta vs R1 (scenario range [-0.006,+0.016]), anchored on the identical R0 edit's preregistered +0.006; deliberately NOT additive with R1's own +0.005 MODEL because snapping relocates the same dots the collar refill placed. |live delta| < 0.01 vs the parent actually submitted is no evidence.",
+    "falsifier": "Live receipt <= R1 - 0.01 falsifies scarp re-centering on the refilled parent and says the w-field refills already sit better than topographic crests; if SGMC(arm) <= SGMC(R1) at build time the preregistered decision rule parks the arm at HOLD before any slot is spent."
+  },
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.097453,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5686.21,
+      "fp": 35242.01
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6448,
+      "cv_12km_120px_interior": 0.5715
+    }
+  },
+  "parent_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.096083,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5603.04,
+      "fp": 35157.75
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6405,
+      "cv_12km_120px_interior": 0.57
+    }
+  },
+  "r0_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  },
+  "r0_scarp2px_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003423,
+        0.004689
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.0,
+      "paired_delta_vs_r0_ci95": [
+        -3e-06,
+        3e-06
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.096806,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5648.13,
+      "fp": 35264.29
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.633,
+      "cv_12km_120px_interior": 0.5608
+    }
+  }
+}

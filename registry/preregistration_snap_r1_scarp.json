@@ -1,0 +1,91 @@
+{
+  "schema": "gems88.snap-r1-scarp-preregistration.v1",
+  "created_utc": "2026-10-23T21:42:49Z",
+  "axis": "SNAP",
+  "axis_selection": "The human instructed the agent to select its own axis. SNAP was selected because (1) the spacing-locked scarp snap on R0 (SNAPscarp2px, fae77ff4) is the ONLY built candidate above R0 on the blind off-catalogue USGS SGMC control (0.096806 vs 0.096060 PROXY), and (2) IR-88-43 placed every R0-parented non-PRUNE arm on HOLD because R0 carries 2,171 dots at 2 < d_cat <= 3 px, a literal breach of the brief's >=3 px non-PRUNE rule. Snapping the SAME field and algorithm on the gate-clean parent R1 = PRUNEp3px (all 37,654 dots at d_cat >= 3.1623 px) is the only route that keeps the winning mechanism slot-eligible without a gate waiver. Precedent for the R1 parent: IR-88-33.",
+  "parent_chain": {
+    "r0": {
+      "id": "h33-h33-2-b2",
+      "n_dots": 37654,
+      "zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "evidence_class": "REBUILT byte-exactly this session (registry/r0_verification.json); historical 0.2778 remains CLAIM"
+    },
+    "r1": {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "n_dots": 37654,
+      "zeros_sha256": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "nan_sha256": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "min_dist_catalogue_px": 3.1623,
+      "evidence_class": "REBUILT from the pinned lineage + exact-marginal refill and SHA-asserted before any edit (scripts/build_snap_r1_variants.py::reconstruct_r1); MODEL +0.005 vs R0, no receipt"
+    }
+  },
+  "manifest_sha256": "b8a74af55e8c634e36745efd37191bb3d29bd8bccf9070c1de43f0ef30650598",
+  "git_sha": "c8d4f1db414dfbb061187862475be47479323c66",
+  "origin_main_sha_checked_before_build": "c8d4f1db414dfbb061187862475be47479323c66",
+  "ledger_rows_checked_before_build": 32,
+  "uniqueness_check": "No existing (parent, axis, value) row equals (R1, SNAP, scarp2px | scarp1px | ridge2px): the R1 SNAP family holds only g2f35/d2f35/d1f35 and the R0 SNAP family holds w2E1/w2S2/w2E2/ridge2px/pot2px/scarp2px under parent h33-h33-2-b2. No rank-correlation or dot-overlap threshold is applied (Brief sec. 6).",
+  "treatment": "Geometry-only edit of R1 at fixed count 37,654: each dot may move <= max_r px onto the strongest cell of the SAME percentile-ranked edge field edge_scarp_pot = 0.42*det_elev_slope(b19) + 0.23*det_elev Hessian ridge(b12) + 0.20*iso_grav_anom_hg(b18) + 0.15*tmi_hg(b3) built by scripts/build_snap_variants.py::build_snap_edge_fields_and_canaries (provided competition bands only; ZERO external LiDAR), using the SAME deterministic spacing-locked bijection scripts/build_snap_variants.py::snap_dots_within_window (min_sep 2.8 -> 2.8284 px on Z^2, best-gain-first, ties by (row, col)). Targets must satisfy foot & ~catalogue & d_cat > 3.0 px. Unlike the R0 family, ALL R1 dots are eligible (R1 has no d_cat <= 3 px dots), and ridge2px additionally restricts targets to H19-5 support (stay_on_h19=True).",
+  "arms": [
+    {
+      "value": "scarp2px",
+      "field": "edge_scarp_pot",
+      "max_r_px": 2.0,
+      "min_sep_px": 2.8,
+      "stay_on_h19_5": false,
+      "role": "primary: full-dose transplant of the only blind-control-positive mechanism onto the gate-clean parent; the fusion candidate (collar-prune + scarp re-centering) for the single blind final file",
+      "predicted_change": "MODEL:+0.006",
+      "predicted_range": "[-0.006,+0.016]",
+      "prediction_basis": "Scenario anchor = R0-family preregistered MODEL for the identical edit on R0 (+0.006, SGMC +0.00075 PROXY). Not additive with R1's own +0.005 MODEL: snapping relocates most dots including R1's 2,171 refills, so the collar and snap edits overlap; refill quality is unproven (ranking AUC 0.47 blind, IR-88-38), which widens the range downward."
+    },
+    {
+      "value": "scarp1px",
+      "field": "edge_scarp_pot",
+      "max_r_px": 1.0,
+      "min_sep_px": 2.8,
+      "stay_on_h19_5": false,
+      "role": "displacement-dose bracket: same field, half the window; tests whether the re-centering gain survives when the kernel cost of moving is capped at 100 m",
+      "predicted_change": "MODEL:+0.003",
+      "predicted_range": "[-0.006,+0.012]",
+      "prediction_basis": "Half-dose anchor of the scarp2px scenario; the R1 f35 family preregistered its 1 px arm at +0.003 on the same lower-variance argument (credit 1 - d/3 falls linearly, overshoot risk falls quadratically)."
+    },
+    {
+      "value": "ridge2px",
+      "field": "edge_scarp_pot",
+      "max_r_px": 2.0,
+      "min_sep_px": 2.8,
+      "stay_on_h19_5": true,
+      "role": "support-locked control: separates 're-center onto the physical scarp crest (may leave H19-5 ribbons)' from 're-center within the parent detector's own support'; on R0 this pair ordered scarp2px 0.096806 > ridge2px 0.096439 PROXY",
+      "predicted_change": "MODEL:+0.002",
+      "predicted_range": "[-0.005,+0.010]",
+      "prediction_basis": "R0-family ridge2px preregistered +0.003; discounted because R1's 2,171 refills were already placed at w-field maxima ON H19-5 support, leaving less intra-ribbon jitter to fix."
+    }
+  ],
+  "invariants_asserted_at_build_time": [
+    "count fixed at 37,654 (bijection; added == removed)",
+    "zero mass on catalogue pixels",
+    "EVERY dot (not only moved/added) at d_cat > 3.0 px: gate-clean without waiver, unlike every R0-parented non-PRUNE arm (IR-88-43)",
+    "displacement <= max_r px Euclidean",
+    "spacing lock at placement: every moved dot >= 2.8284 px from every other dot in the FINAL configuration; inherited unmoved refill pairs may stay closer (R1 min NN 1.0 px, IR-88-37) and are reported, never silently repaired",
+    "deterministic: no RNG in the allocation; fixed seed 20261023 in canary negative sampling only",
+    "provided bands only (3, 12, 18, 19 of data/training_features.tif); external_lidar_used = false",
+    "SNAP is exempt from the Brief sec. 5 1-50% change rule; the exact pct changed is recorded for every arm anyway",
+    "primary (.tif NaN-outside) and fallback (-zeros.tif) twins re-read from disk and gated before any receipt is written"
+  ],
+  "report_only_instruments": {
+    "holdout_proxy": "catalogue hide-and-recover (gems57-pooled-hide-v2, seeds 20+30). Structurally 0.000000 for every all-dots->3px file (triangle inequality, IR-88-20): reported, never a gate.",
+    "sgmc_control": "blind off-catalogue USGS SGMC faults (62,703 px, >3 px outside catalogue dilation). PRIMARY report-only ordering instrument. Reference values: R0 0.096060, R1 0.096083, R0-scarp2px 0.096806, R0-ridge2px 0.096439, R0-pot2px 0.095178.",
+    "block_density_cv": "10 km / 12 km interior block CV; best files reportedly 0.51-0.59 (R0 12 km CV 0.5590, R1 0.5700).",
+    "leakage_canary": "every field channel + composite audited on buffered whole-component holdout; symmetric AUC > 0.90 aborts the build (R0 SNAP family max was 0.54949).",
+    "w_weighted_dti_delta": "mechanical MODEL diagnostic under the label-free corroboration field w; known to under-weight off-support dots (w = 0.015*p_phys off H19-5) and blind-AUC 0.47 (IR-88-38), so it is recorded but the preregistered scenario MODEL above is the ledger prediction."
+  },
+  "decision_rules_preregistered_before_proxies": [
+    "SGMC(arm) > SGMC(R1) = 0.096083 -> arm is slot-eligible as a gate-clean SNAP candidate (replaces the HOLDed R0-parented scarp arm in the queue).",
+    "SGMC(scarp2px-R1) >= SGMC(scarp2px-R0) = 0.096806 -> fusion dominates both components on the blind control; recommend as the leading gate-clean candidate for the next slot and for the blind-final shortlist, ahead of R1 alone.",
+    "SGMC(arm) <= SGMC(R1) -> HOLD: the scarp re-centering does not transfer to the refilled parent; do not queue.",
+    "scarp1px >= scarp2px on SGMC -> displacement dose is the binding risk; prefer the 1 px arm as final-file geometry.",
+    "ridge2px >= scarp2px on SGMC -> the gain is intra-support de-jittering, not crest re-centering; keep future snaps support-locked.",
+    "Live receipts, not proxies, decide promotion: |live delta| < 0.01 is no evidence; public chunks are a subset of the private truth."
+  ],
+  "predictions_are": "MODEL, not scores; PROXY instruments are report-only and never gates; no portal receipt exists for any candidate in this repository (0 receipts / 32 rows at prereg time)."
+}

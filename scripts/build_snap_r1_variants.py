@@ -66,6 +66,10 @@ CARDS = ROOT / "ledger" / "mechanism_cards.json"
 R1_ID = "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705"
 R1_SHA_NAN = "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9"
 R1_SHA_ZEROS = "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f"
+# This builder owns ONLY these (parent=R1, axis=SNAP, value) rows/cards/files. The R0
+# SNAP family and the R1 scarp transplant family (scripts/build_snap_r1_scarp_variants.py)
+# must survive an idempotent re-run untouched (IR-88-39 discipline).
+OWN_VALUES = frozenset({"g2f35", "d2f35", "d1f35"})
 
 MOVE_FRACTION = 0.35          # share of dots allowed to move (Brief §5 cap = 0.50)
 MIN_CATALOGUE_PX = 3.0        # Brief §4.4 collar, enforced strictly (>) on every target cell
@@ -337,9 +341,13 @@ def main() -> int:
             reader = csv.DictReader(fh)
             fieldnames = list(reader.fieldnames or [])
             for row in reader:
-                # Replace only this family (parent R1); the R0 SNAP family lives in
-                # scripts/build_snap_variants.py and must survive this re-run.
-                if row.get("axis") == "SNAP" and row.get("parent") == R1_ID:
+                # Replace only THIS family's rows (parent R1, own values); the R0 SNAP
+                # family and the R1 scarp transplant family must survive this re-run.
+                if (
+                    row.get("axis") == "SNAP"
+                    and row.get("parent") == R1_ID
+                    and row.get("value") in OWN_VALUES
+                ):
                     continue
                 ledger_rows.append(row)
                 for k in ("sha256", "sha256_zeros"):
@@ -352,14 +360,24 @@ def main() -> int:
         header_line = raw_lines[0] if raw_lines else ""
         for line in raw_lines[1:]:
             parsed = next(csv.reader([line])) if line.strip() else []
-            if len(parsed) > 2 and parsed[2] == "SNAP" and parsed[1] == R1_ID:
+            if (
+                len(parsed) > 3
+                and parsed[2] == "SNAP"
+                and parsed[1] == R1_ID
+                and parsed[3] in OWN_VALUES
+            ):
                 continue
             raw_kept_lines.append(line)
-    for stale in RELEASES.glob(f"{R1_ID}-SNAP*"):
-        stale.unlink()
+    for v_name in OWN_VALUES:
+        for stale in RELEASES.glob(f"{R1_ID}-SNAP{v_name}-*"):
+            stale.unlink()
 
     cards = json.loads(CARDS.read_text()) if CARDS.is_file() else {}
-    cards = {k: v for k, v in cards.items() if "-SNAP" not in k}
+    cards = {
+        k: v
+        for k, v in cards.items()
+        if not any(k.startswith(f"{R1_ID}-SNAP{val}-") for val in OWN_VALUES)
+    }
     arms = {bp.PARENT_ID: lin["r0"], R1_ID: r1}
     built = []
 
@@ -450,7 +468,16 @@ def main() -> int:
         )
 
     if fieldnames:
-        new_snap_rows = [r for r in ledger_rows if r.get("axis") == "SNAP"]
+        # Re-serialise ONLY this family's freshly built rows. Every other row (including
+        # the R0 SNAP family and other R1 families) already survives verbatim in
+        # raw_kept_lines; selecting all SNAP rows here used to duplicate them on re-run.
+        new_snap_rows = [
+            r
+            for r in ledger_rows
+            if r.get("axis") == "SNAP"
+            and r.get("parent") == R1_ID
+            and r.get("value") in OWN_VALUES
+        ]
         import io as _io
         buf = _io.StringIO()
         writer = csv.DictWriter(buf, fieldnames=fieldnames, lineterminator="\n")
