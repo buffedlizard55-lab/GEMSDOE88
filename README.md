@@ -15,6 +15,17 @@
 
 ---
 
+## CURRENT STATE (`2026-10-23`)
+
+- **Parent:** `R0 = h33-h33-2-b2` — `37,654` unit dots, `0` within `2 px` of the catalogue, pinned `SHA-256 c55bafc4...` (verified from `registry/data_manifest.json`; the dot mask re-derives exactly, the GeoTIFF container bytes do not — `IRREGULARITIES.md` IR-88-22).
+- **Best receipt:** none. `0.2778` on `h33-h33-2-b2` is a **CLAIM** (owner-reported), not a receipt; `ledger/submissions.csv` has no `receipt_score` filled.
+- **TOP_PUBLIC:** `____` — human must copy it with a date from the leaderboard (no other target number is valid; the older `0.4413` note in this file is unverified and not a target).
+- **Slots left this week:** `__ / 3`; one blind final file due `2026-12-03` (confirm on the competition page).
+- **Next 3 slots** (detail in `SLOT_PLAN.md`): 1) `PRUNEp3px` (`6f7ae705`, MODEL `+0.005`, only gate-clean candidate); 2) `CONCENTRATION b10px-m20` re-applied on top of `PRUNEp3px`; 3) the better of the two, held as the final-file candidate.
+- **Latest session (AXIS = SNAP):** three SNAP variants built and gate-passed (`01cf9e98`, `60ced8c7`, `861cd355`), all `HOLD` — the blind SGMC PROXY moved **negative** (`-0.0080`, `-0.0040`, `-0.0080`), i.e. snapping dots onto potential-field gradient maxima loses blind-fault proximity. Predicted live change `MODEL -0.002` (below the 0.01 evidence bar).
+
+---
+
 ## Permanent User Prompt: Operational Requirements
 
 **Highest urgency: “MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.”**
