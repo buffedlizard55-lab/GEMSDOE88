@@ -1,88 +1,42 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-> **Human competitor controls all uploads (`buffedlizard55-lab`, 1 entity, `<= 3` slots/week, 1 blind final file). Repository-listed deadline `2026-12-03` is unverified; human must confirm on the [competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/).** Agent never logs into or fetches `drivendata.org` or `dropbox.com`. Newly regenerated PRUNE `.tif`/`.zip` rasters live locally in gitignored `releases/` (`.venv/bin/python scripts/rebuild_prune_artifacts.py` reproduces existing PRUNE rows without adding experiments); older tracked rasters are flagged in `IRREGULARITIES.md` IR-88-26. SHA-256 receipts remain tracked in `releases/*.json` and `ledger/submissions.csv`. The legacy H88 witness/overlap decision in `README.md` is unrelated to these PRUNE rows. For this brief, do not apply rank-correlation or dot-overlap thresholds; use exact-hash and repeated `(parent, axis, value)` de-duplication plus the stated format/catalogue gates.
+> **Human competitor controls all uploads (`buffedlizard55-lab`, 1 entity, `<= 3` slots/week, 1 blind final file by `2026-12-03`).** Agent never logs into or fetches `drivendata.org` or `dropbox.com`. Candidate `.tif`/`.zip` rasters live locally in `releases/` (untracked in Git per `.gitignore` data-use policy; reproducible via `python3 scripts/build_snap_variants.py` and `python3 scripts/build_prune_variants.py`), with tracked SHA-256 receipts in `releases/*.json` and `ledger/submissions.csv`.
 
-## Recommended Session Candidates (`AXIS = PRUNE`, Constant `N = 37,654`, Parent `h33-h33-2-b2`, Seed `20261023`)
+## Session Built Candidates (`AXIS = SNAP`, Spacing-Locked `d_nn >= 2.8284 px`, Constant `N = 37,654`, Parent `h33-h33-2-b2`, Seed `20261023`)
 
-### Slot 1 (Recommended Primary): `p3px` — Exact `300 m` Kernel-Radius Collar + Physics Marginal-DTI Refill
-- **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.tif` (`SHA-256`: `6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9`, `354,519` B; `.zip` `cd050562f260b89944620c7f9b061fc388df6337549b9e0fb69cc7b2304bcba7`)
-- **Fallback GeoTIFF (`0.0` outside, identical inside):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-zeros.tif` (`SHA-256`: `dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f`, `218,257` B; `.zip` `d5d168eaa44053ac1044d472c78b8bdf34b13a02ff396938572083e6a612cdc6`)
+### 1. `SNAPscarp2px` (Primary `SNAP` Candidate — Recommended Slot 2): `<= 2 px` (`200 m`) Co-Registered Scarp + TMI/Gravity Edge Snap
+- **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4.tif` (`SHA-256`: `fae77ff4e120be7541fd04e9b4fc6651282b8100b9c078eae667d03f5aeee293`, `356,181` B; `.zip` `6cfc27584d03728ef81842d50c1a3753407b9cc3adc4e71cc71a5fd781293426`)
+- **Fallback GeoTIFF (`0.0` outside, identical inside):** `releases/h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4-zeros.tif` (`SHA-256`: `a801b23f057b10d9373664b6d8dd1ca958790416864d654ee364b9054d5063ce`, `219,741` B; `.zip` `d86a05420682db7b6280be5c983debd4725d1f2909ce463cc71721fcbf602140`)
+- **Submission Name:** `h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4`
+- **Form Note (`105 / 140` chars):** `h33-2-b2; SNAP <=2px to provided scarp+TMI/grav co-edge (82.03% chg, mean disp 1.31px); pred +0.006 MODEL`
+- **Stats & Format Receipt:** `37,654` dots (`30,889` displaced `<= 2.0 px`, **`82.03%` changed**; **mean displacement `1.3089 px` [`130.9 m`] overall, `1.5956 px` [`159.6 m`] moved**; `min d_nn = 2.8284 px`; `0` on catalogue, `0` `<= 2 px`, `2,171` in `2–3 px` unchanged, `100%` of moved dots at `d_cat > 3.0 px`). Blind USGS `SGMC` **`0.096806` `PROXY`** (highest of `SNAP` & `PRUNE` sweeps); `12 km` CV `0.5608`. Tracked receipt: `releases/h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4.json`.
+
+### 2. `SNAPridge2px` (Intra-Ribbon `H19-5` `SNAP` Candidate — Slot 3 Option): `<= 2 px` (`200 m`) Snap Inside `H19-5` Parent Ridges
+- **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-SNAPridge2px-20261023-83d2d231.tif` (`SHA-256`: `83d2d231d09c92023993f578e9db4f1838d05e1f3339a5d4cab9b24d31f76c28`, `355,703` B; `.zip` `0225cf929ff5af88546f69de53d4ffff2ec9d32c66e4a835d548f34c1b69a66f`)
+- **Fallback GeoTIFF (`0.0` outside):** `releases/h33-h33-2-b2-SNAPridge2px-20261023-83d2d231-zeros.tif` (`SHA-256`: `ef301ff3d4c3994c7f60da37edc1931645903116e0ef731379a87b541d30bb5c`, `219,369` B; `.zip` `cf594c39523b911540e322b65be510fd54f932c3320660d203eee34f6ddb27fe`)
+- **Submission Name:** `h33-h33-2-b2-SNAPridge2px-20261023-83d2d231`
+- **Form Note (`108 / 140` chars):** `h33-2-b2; SNAP <=2px on H19-5 ridge to scarp+TMI/grav peak (18.81% chg, mean disp 0.23px); pred +0.003 MODEL`
+- **Stats & Format Receipt:** `37,654` dots (`7,082` displaced `<= 2.0 px` strictly within `H19-5` ridge ribbons, **`18.81%` changed**; **mean displacement `0.2299 px` [`23.0 m`] overall, `1.2222 px` [`122.2 m`] moved**; `min d_nn = 2.8284 px`). Blind `SGMC` `0.096439` `PROXY`; `12 km` CV `0.5588`. Tracked receipt: `releases/h33-h33-2-b2-SNAPridge2px-20261023-83d2d231.json`.
+
+### 3. `SNAPpot2px` (Subsurface Potential-Field Diagnostic Control — `HOLD`): `<= 2 px` (`200 m`) Snap to TMI + Gravity Horizontal-Gradient Crests
+- **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-SNAPpot2px-20261023-fc2548e7.tif` (`SHA-256`: `fc2548e7c6721ac0797e77637b0544862563891f4dfe76cdd3892dd9f63e85dd`, `356,515` B; `.zip` `fa75f415b42caff6d8fdb028525ea53cfb3520d368a466540990755dabdb7ffa`)
+- **Fallback GeoTIFF (`0.0` outside):** `releases/h33-h33-2-b2-SNAPpot2px-20261023-fc2548e7-zeros.tif` (`SHA-256`: `f802bce81bbad9d82da905195024a85cfee4a4e24da40218e15eaa55bfbc2fb3`, `220,087` B; `.zip` `11c0a7cf9944035546d9b1b0a475681a8f3c80c162bce6d8286129f447c0f84d`)
+- **Submission Name:** `h33-h33-2-b2-SNAPpot2px-20261023-fc2548e7`
+- **Form Note (`104 / 140` chars):** `h33-2-b2; SNAP <=2px to provided TMI+gravity HG crests (82.46% chg, mean disp 1.35px); pred -0.004 MODEL`
+- **Stats & Format Receipt:** `37,654` dots (`31,049` displaced `<= 2.0 px` on `Bands 3 & 18`, **`82.46%` changed**; **mean displacement `1.3489 px` [`134.9 m`] overall, `1.6358 px` [`163.6 m`] moved**; `min d_nn = 2.8284 px`). Blind `SGMC` `0.095178` `PROXY` (`-0.00088` vs `R0`: hanging-wall dip offset); `12 km` CV `0.5583`. Tracked receipt: `releases/h33-h33-2-b2-SNAPpot2px-20261023-fc2548e7.json`.
+
+## Recommended Slot 1 (`AXIS = PRUNE`, Strict `> 3 px` Collar Compliance)
+- **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.tif` (`SHA-256`: `6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9`)
+- **Fallback GeoTIFF (`0.0` outside):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-zeros.tif` (`SHA-256`: `dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f`)
 - **Submission Name:** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
 - **Form Note (`103 / 140` chars):** `h33-2-b2; PRUNE <=3px held at 37654 (-2171 in 2-3px, +2171 exact marginal gain >3px); pred +0.005 MODEL`
-- **Stats & Receipt:** `37,654` dots (`-2,171` in `2 < d_cat <= 3 px`, `+2,171` on `H19-5` ridges at `d_cat > 3 px`; **`5.77%` moved**, `min d_cat = 3.1623 px`, `0` on catalogue). Blind USGS `SGMC` `0.096083` `PROXY` (highest of sweep); `12 km` CV `0.5700`. Tracked receipt: `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json`.
+- **Stats & Receipt:** `37,654` dots (`-2,171` in `2 < d_cat <= 3 px`, `+2,171` on `H19-5` ridges at `d_cat > 3 px`; **`5.77%` moved**, `min d_cat = 3.1623 px`, `0` on catalogue). Blind USGS `SGMC` `0.096083` `PROXY`; `12 km` CV `0.5700`. Tracked receipt: `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json`.
+- **Other `PRUNE` brackets:** `PRUNEp1px` (`0542a27c`, `6.76%` moved, `MODEL -0.006`) and `PRUNEp4px` (`be9fd3d5`, `10.16%` moved, `MODEL -0.009`).
 
-### Slot 2 (Lower Collar Bracket): `p1px` — `100 m` Flank Restoration at Fixed `N = 37,654`
-- **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-PRUNEp1px-20261023-0542a27c.tif` (`SHA-256`: `0542a27cd3518f3f5cd6d7b48ff8e2de50e81b233cbc6ffb343b254b241314ac`, `355,283` B; `.zip` `758f531c025b10864ab6d14b816be5142825657eb399e490cbb54f5dcaebc61f`)
-- **Fallback GeoTIFF (`0.0` outside):** `releases/h33-h33-2-b2-PRUNEp1px-20261023-0542a27c-zeros.tif` (`SHA-256`: `d4a16a38ccc276e897458a258d882f3905c3bf7494162ac9967d22b4131818d3`, `219,051` B; `.zip` `95109ea50d2c682f29833511943d858f7feb4dbf3e94e965ab991090aeb0a1e5`)
-- **Submission Name:** `h33-h33-2-b2-PRUNEp1px-20261023-0542a27c`
-- **Form Note (`99 / 140` chars):** `h33-2-b2; PRUNE <=1px held at 37654 (+2545 1-2px flank, -2545 low marginal gain); pred -0.006 MODEL`
-- **Stats & Receipt:** `37,654` dots (`+2,545` `SOLO-D2.8` flank dots in `1 < d_cat <= 2 px`, `-2,545` lowest marginal-gain off-collar dots; **`6.76%` moved**, `min d_cat = 1.4142 px`). Holdout-DTI `0.030145` `[0.026907, 0.033396]` (`n=22,663`) `PROXY`; `SGMC` `0.090926` `PROXY`; `12 km` CV `0.5647`. Tracked receipt: `releases/h33-h33-2-b2-PRUNEp1px-20261023-0542a27c.json`.
-
-### Slot 3 (Upper Collar Bracket): `p4px` — `400 m` Halo Collar at Fixed `N = 37,654`
-- **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-PRUNEp4px-20261023-be9fd3d5.tif` (`SHA-256`: `be9fd3d5e8b8cc74a41701a50e88dbed3d6600f02c149262064f57004b188698`, `353,307` B; `.zip` `c8bdb5e902aaf3ec621b5f2caec404a35514236ed35178a4f553952432960bd9`)
-- **Fallback GeoTIFF (`0.0` outside):** `releases/h33-h33-2-b2-PRUNEp4px-20261023-be9fd3d5-zeros.tif` (`SHA-256`: `6dd6e0af7e6936f7a8f06625895d29137769c20243865d5c31ea61947a54f4f9`, `217,306` B; `.zip` `d9c00fae0e1c01ad47717c3d57895cc66cb26d6f6abea01aeea64a818f3dfb91`)
-- **Submission Name:** `h33-h33-2-b2-PRUNEp4px-20261023-be9fd3d5`
-- **Form Note (`103 / 140` chars):** `h33-2-b2; PRUNE <=4px held at 37654 (-3825 in 2-4px, +3825 exact marginal gain >4px); pred -0.009 MODEL`
-- **Stats & Receipt:** `37,654` dots (`-3,825` in `2 < d_cat <= 4 px`, `+3,825` at `d_cat > 4 px`; **`10.16%` moved**, `min d_cat = 4.1231 px`). `SGMC` `0.094465` `PROXY`; `12 km` CV `0.5937`. Tracked receipt: `releases/h33-h33-2-b2-PRUNEp4px-20261023-be9fd3d5.json`.
-
-
-## AXIS = SNAP Variants (`scripts/build_snap_variants.py`, seed `20261023`, parent `h33-h33-2-b2`) — ALL `HOLD`
-
-Three controlled edits of `R0`; each moves dots `<=2 px` onto a potential-field edge maximum, holds the count at `37,654`, and forbids destinations on the catalogue or within `3 px` of it. Rationale and the negative result are in `SLOT_PLAN.md`; hashes below are from the tracked receipts.
-
-### `w2E1` — `SNAP`, window `<=2 px`, count held at `37,654` (`HOLD`, negative PROXY)
-- **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-SNAPw2E1-20261023-01cf9e98.tif` (`SHA-256`: `01cf9e9851dc47b282f15fa7edd35c9afc9e8841fc255c116066f70fd8eb2669`, `354,938` B; `.zip` `c2d5d81b092e71ed315ddde720fc1a8016f8f161dc3ea88ac34c826fe99dd539`)
-- **Fallback GeoTIFF (`0.0` outside, identical inside):** `releases/h33-h33-2-b2-SNAPw2E1-20261023-01cf9e98-zeros.tif` (`SHA-256`: `135b42b8909d04a4b4bde81d1187eaea65679823b511962c5dafa3f98858ffec`, `219,097` B; `.zip` `7e6a8f793f52aa9990d2c32803cee9de0447a9797b105daa5245dc9d44b0d40f`)
-- **Submission Name:** `h33-h33-2-b2-SNAPw2E1-20261023-01cf9e98`
-- **Form Note (`74 / 140` chars):** `h33-2-b2; SNAP<=2px to max |grad rtp+igrav|; 37654 held; pred -0.002 MODEL`
-- **Format receipt:** `scripts/validate_variant.py` **PASS** on both files (CRS/shape/transform/dtype/band, `[0,1]`, `0` NaN inside footprint, NaN-or-0 outside, `0` on catalogue, `0` within `2 px`, unique SHA-256). Parent diff: `-35,771` / `+35,771` dots (`95.0%` moved), `min d_cat 2.2361 px`, `644` dots left in the `2–3 px` collar. Blind SGMC `PROXY` `0.088098` (Δ `-0.00796` vs `R0`), `12 km` CV `0.5582`.
-- **Why it is `HOLD`:** blind off-catalogue SGMC DTI **fell** vs `R0`; predicted live change is `MODEL -0.002 … -0.001`, below the `0.01` evidence bar, and it inherits `R0`'s `2–3 px` collar. Upload only if the human wants the axis retired with a live receipt; it is not a slot-1 candidate.
-
-### `w2S2` — `SNAP`, window `<=2 px`, count held at `37,654` (`HOLD`, negative PROXY)
-- **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-SNAPw2S2-20261023-60ced8c7.tif` (`SHA-256`: `60ced8c7129f90730ccd6e867d7d837fae2b58b695052ff9ce73119cf00f05c1`, `355,660` B; `.zip` `c887f62a2e00397f5576e1360bf5802f2b39d1fed006a628dadb06975f19183d`)
-- **Fallback GeoTIFF (`0.0` outside, identical inside):** `releases/h33-h33-2-b2-SNAPw2S2-20261023-60ced8c7-zeros.tif` (`SHA-256`: `68e5f41b1b077966695fbe5faeb4f30d81fbd29bc26867abb9ec548e0999e1eb`, `219,400` B; `.zip` `61c5febb0b89f37830bd5fea073fc3c5f9c951000eb3bd058c05d6f8fb850835`)
-- **Submission Name:** `h33-h33-2-b2-SNAPw2S2-20261023-60ced8c7`
-- **Form Note (`75 / 140` chars):** `h33-2-b2; SNAP<=2px to 200m-scale edge, gain>=0.25z only; pred -0.001 MODEL`
-- **Format receipt:** `scripts/validate_variant.py` **PASS** on both files (CRS/shape/transform/dtype/band, `[0,1]`, `0` NaN inside footprint, NaN-or-0 outside, `0` on catalogue, `0` within `2 px`, unique SHA-256). Parent diff: `-19,617` / `+19,617` dots (`52.1%` moved), `min d_cat 2.2361 px`, `1565` dots left in the `2–3 px` collar. Blind SGMC `PROXY` `0.092105` (Δ `-0.00396` vs `R0`), `12 km` CV `0.5578`.
-- **Why it is `HOLD`:** blind off-catalogue SGMC DTI **fell** vs `R0`; predicted live change is `MODEL -0.002 … -0.001`, below the `0.01` evidence bar, and it inherits `R0`'s `2–3 px` collar. Upload only if the human wants the axis retired with a live receipt; it is not a slot-1 candidate.
-
-### `w2E2` — `SNAP`, window `<=2 px`, count held at `37,654` (`HOLD`, negative PROXY)
-- **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-SNAPw2E2-20261023-861cd355.tif` (`SHA-256`: `861cd35571845bd5392baa91ee621ceb912c3381d6a50e312a5fec37a6f08f5e`, `354,584` B; `.zip` `810701ca1c3af65684dab9a06f11271f487d11784f71cfc6676cbda2028e5209`)
-- **Fallback GeoTIFF (`0.0` outside, identical inside):** `releases/h33-h33-2-b2-SNAPw2E2-20261023-861cd355-zeros.tif` (`SHA-256`: `3f999d79ce5b4466ef9b5bb76ecb877ffa35e85c6808baf871a39d440084e5d5`, `218,699` B; `.zip` `c07d4b594a049cb37e619c96d0b70b3e53e5e74e8b9d48d43af42b54bd27780c`)
-- **Submission Name:** `h33-h33-2-b2-SNAPw2E2-20261023-861cd355`
-- **Form Note (`78 / 140` chars):** `h33-2-b2; SNAP<=2px on organizer tmi/igrav derivative bands; pred -0.002 MODEL`
-- **Format receipt:** `scripts/validate_variant.py` **PASS** on both files (CRS/shape/transform/dtype/band, `[0,1]`, `0` NaN inside footprint, NaN-or-0 outside, `0` on catalogue, `0` within `2 px`, unique SHA-256). Parent diff: `-35,725` / `+35,725` dots (`94.88%` moved), `min d_cat 2.2361 px`, `579` dots left in the `2–3 px` collar. Blind SGMC `PROXY` `0.088113` (Δ `-0.00795` vs `R0`), `12 km` CV `0.5575`.
-- **Why it is `HOLD`:** blind off-catalogue SGMC DTI **fell** vs `R0`; predicted live change is `MODEL -0.002 … -0.001`, below the `0.01` evidence bar, and it inherits `R0`'s `2–3 px` collar. Upload only if the human wants the axis retired with a live receipt; it is not a slot-1 candidate.
-
-## Latest CONCENTRATION 15% (`HOLD` — inherited collar)
-
-- **File:** `releases/h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6.tif`
-- **Fallback:** `releases/h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6-zeros.tif`
-- **Name:** `h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6`
-- **Note:** `h33-2-b2; CONC 15% in 1km gradient blocks; count 37654; pred +0.008 MODEL`
-- **SHA-256:** `4dfb83f6a97f4265e442a3f1ed156986d3c25eb9ebb5e8d49d3784b5cec1eb43`
-- **Receipt:** 37,654 dots; 5,648 removed + 5,648 added; float32 EPSG:32611; sample shape/transform; finite [0,1] inside; NaN outside; zero catalogue mass; disk re-read. **Do not upload:** minimum catalogue distance √5 px fails the literal ≥3 px non-PRUNE constraint. Re-base on PRUNEp3 first.
-
-## Other Reconciled Ledger Inventory (`HOLD` / Superseded — `ledger/submissions.csv`)
-- **Score-blind `PRUNE=3` (`h33-h33-2-b2-prune3-20261023-01d57649`, `MODEL -0.003`):** Superseded by physics-ranked `PRUNEp3px` (`6f7ae705`, `MODEL +0.005`).
-- **`CONCENTRATION` (`CONCb10px-m10` `89ffd4f3` `+0.011`, `CONCb10px-m20` `c42cd475` `+0.020`, `CONCb50px-m20` `fae2a52f` `+0.006`):** `HOLD` under strict non-PRUNE `>=3 px` gate because they inherit `R0`'s `2,171` `(2, 3] px` dots; clean Week-2 follow-up applies concentration directly atop `PRUNEp3px` (`>3 px`).
-- **`MASS` (`MASSm10minus` `7132935e`, `MASSm10plus` `82673b57`, `MASSm20minus` `6c73303c`):** `HOLD` per `registry/mass_ranking_audit.json` (`0.6*dist + 0.4*uniform` ranking).
+## Other Reconciled Ledger Inventory (`HOLD` — `ledger/submissions.csv`)
+- **Unspaced `SNAP` (`SNAPw2E1` `01cf9e98` `MODEL -0.002`, `SNAPw2S2` `60ced8c7` `MODEL -0.001`, `SNAPw2E2` `861cd355` `MODEL -0.002`):** `HOLD` due to along-strike bunching (`min_sep = 1 px`, `SGMC` delta `-0.0080` to `-0.0040`); superseded by spacing-locked `SNAPscarp2px` (`fae77ff4`, `d_nn >= 2.8284 px`, `SGMC +0.00075`).
+- **`CONCENTRATION` (`CONCb10px-m10` `89ffd4f3` `+0.011`, `CONCb10px-m20` `c42cd475` `+0.020`, `CONCb50px-m20` `fae2a52f` `+0.006`, `CONCENTRATION15pct` `4dfb83f6` `+0.008`):** `HOLD` under literal non-PRUNE `>=3 px` gate (`R0`'s `2,171` `2–3 px` dots inherited); re-base atop `PRUNEp3px` in Week 2.
+- **`MASS` (`MASSm10minus` `7132935e`, `MASSm10plus` `82673b57`, `MASSm20minus` `6c73303c`):** `HOLD` per `registry/mass_ranking_audit.json`.
 
 ## Format Gate Verification Summary
-- All `6` `PRUNE` GeoTIFFs and all `6` `SNAP` GeoTIFFs (`EPSG:32611`, `3730×3292`, `Affine(100,0,243350,0,-100,4508550)`, `1` band `float32`, `[0,1]`, `0` NaN inside footprint, `0` on catalogue, unique SHA-256) re-read and verified in `tests/test_prune_axis.py`. After human upload, record verbatim `receipt_score` + `receipt_date` in `ledger/submissions.csv`.
-
-## Session `2026-10-23c` — `AXIS = SNAP` on parent `R1 = PRUNEp3px` (DIAGNOSTIC — do not spend a slot)
-
-The `2026-10-23b` SNAP family is `R0`-based and keeps `579–1,565` dots inside the `2–3 px` collar. This family edits the gate-clean `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` instead (byte-exact rebuild asserted first). Same count (`37,654`), strict `> 3 px` collar, `1–50%` move budget respected, NaN outside the footprint. Rebuild: `python3 scripts/build_snap_r1_variants.py`.
-
-| Value | Window | Edge field | Moved | Mean disp. | `.tif` SHA-256 (NaN outside) | Note (`chars`) |
-| :--- | ---: | :--- | ---: | ---: | :--- | :--- |
-| `g2f35` | `≤ 2 px` | `tmi_hg 0.55 + iso_grav_anom_hg 0.45` | `34.5%` | `1.92 px` | `4c460fd4f57c8c2198b14c4f563c2ec2a93ce7f363a5631433c7d55975395c7d` | `h33-2-b2 PRUNEp3px; SNAP<=2px to potential-field HG (tmi_hg+grav_hg), 35% moved; pred +0.002 MODEL` (`98`) |
-| `d2f35` | `≤ 2 px` | `+ det_elev_slope 0.20 + tc 0.10` | `34.3%` | `1.86 px` | `a98ce2b85cd7a6bcf503a7923fc0144acb21df9ecd622b2aa1f511823d167466` | `h33-2-b2 PRUNEp3px; SNAP<=2px to TMI+grav+scarp+curvature edge, 35% moved; pred +0.001 MODEL` (`92`) |
-| `d1f35` | `≤ 1 px` | as `d2f35` | `34.9%` | `1.00 px` | `33783252d6c8b747e7affb6161d57bca8e06228684d8efeac7e1e60057b6dc60` | `h33-2-b2 PRUNEp3px; SNAP<=1px to composite edge, 35% moved; pred +0.003 MODEL` (`77`) |
-
-Fallback twins (`-zeros.tif`) and single-TIFF `.zip`s sit beside each raster; tracked receipts are `releases/<id>.json`.
-
-**Why they are `BUILT` and not `HOLD`, yet still not slot candidates.** They satisfy every format and collar gate, but the blind off-catalogue USGS `SGMC` control (`PROXY`, `n = 62,703 px`) falls below the parent they came from: `R1 = 0.09608` vs `0.09198` / `0.09246` / `0.09505`, with the loss shrinking as displacement shrinks and the `12 km` CV unchanged (`0.5705–0.5708` vs `0.5700`). Together with the `R0`-based family the axis is retired: dot *positions* are already at the noise floor of the supplied bands, so the remaining headroom is in *where mass is spent* (`CONCENTRATION` / `RELIEF`). Recorded as IR-88-31.
-
-**What the human must still supply:** `receipt_score` + `receipt_date` for whatever is actually uploaded. `TOP_PUBLIC 0.4413 (2026-10-22)` and `3/3` slots are recorded in `SLOT_PLAN.md` from the human-confirmed `2026-10-23` planning values; re-confirm them on the competition page before spending a slot.
+- All `SNAP` and `PRUNE` GeoTIFFs (`EPSG:32611`, `3730×3292`, `Affine(100,0,243350,0,-100,4508550)`, `1` band `float32`, `[0,1]`, `0` NaN inside footprint, `0` on catalogue, unique SHA-256) re-read and verified in `tests/test_snap_axis.py`, `tests/test_prune_axis.py`, and `scripts/validate_variant.py`.

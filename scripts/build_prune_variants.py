@@ -1056,10 +1056,10 @@ def main() -> int:
     existing_rows: list[dict[str, str]] = []
     existing_shas: set[str] = {PARENT_SHA_ZEROS, PARENT_SHA_NAN}
     if ledger_path.is_file():
-        with ledger_path.open("r", newline="") as f:
+        with ledger_path.open("r", newline="", encoding="utf-8") as f:
             for row in csv.DictReader(f):
-                if row.get("axis") == "PRUNE":
-                    continue  # idempotent re-run of this script replaces only PRUNE rows
+                if row.get("axis") == "PRUNE" and row.get("value") in ("p1px", "p3px", "p4px"):
+                    continue  # idempotent re-run of this script replaces only p1px/p3px/p4px rows
                 existing_rows.append(row)
                 if row.get("sha256"):
                     existing_shas.add(row["sha256"])
@@ -1146,6 +1146,23 @@ def main() -> int:
         built_receipts.append(rec)
         cards[rec["id"]] = card
         arms_for_eval[rec["id"]] = mask
+        prune_meta = {
+            "p1px": (
+                "[-0.012,-0.001]",
+                "unmasked 4-line physics + exact marginal DTI drop at fixed 37654 count",
+                "Slot 2 diagnostic control: tests 1-2 px flank toxicity at constant N (AXIS=PRUNE).",
+            ),
+            "p3px": (
+                "[+0.001,+0.011]",
+                "unmasked 4-line physics + exact marginal DTI refill on H19-5 ridges at d_cat>3 px",
+                "RECOMMENDED SLOT 1: fully compliant (>=3 px, 0 catalogue, constant 37654, blind SGMC peak 0.09608).",
+            ),
+            "p4px": (
+                "[-0.018,+0.002]",
+                "unmasked 4-line physics + exact marginal DTI refill on H19-5 ridges at d_cat>4 px",
+                "Slot 3 upper collar bracket: tests tip-loss turnover beyond 300 m kernel radius.",
+            ),
+        }[val]
         new_ledger_rows.append(
             {
                 "id": rec["id"],
@@ -1153,14 +1170,17 @@ def main() -> int:
                 "axis": "PRUNE",
                 "value": val,
                 "n_dots": str(rec["n_dots"]),
-                "%_changed": f"{rec['parent_diff']['pct_changed_moved']:.2f}",
+                "pct_changed": f"{rec['parent_diff']['pct_changed_moved']:.2f}",
                 "sha256": rec["sha256"],
                 "sha256_zeros": rec["sha256_zeros"],
                 "status": "BUILT",
-                "predicted_change": pred_delta,
+                "predicted_change": f"MODEL:{pred_delta}",
+                "predicted_range": prune_meta[0],
+                "ranking_basis": prune_meta[1],
                 "receipt_score": "",
                 "receipt_date": "",
                 "description": desc,
+                "recommendation": prune_meta[2],
             }
         )
 
@@ -1190,14 +1210,17 @@ def main() -> int:
         "axis",
         "value",
         "n_dots",
-        "%_changed",
+        "pct_changed",
         "sha256",
         "sha256_zeros",
         "status",
         "predicted_change",
+        "predicted_range",
+        "ranking_basis",
         "receipt_score",
         "receipt_date",
         "description",
+        "recommendation",
     ]
     with ledger_path.open("w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator="\n")

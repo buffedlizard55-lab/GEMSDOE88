@@ -1,53 +1,44 @@
 #!/usr/bin/env python3
-"""AXIS = SNAP: relocate each R0 dot <=w px onto the strongest potential-field edge.
+"""Build and validate controlled AXIS=SNAP variants of parent R0 (h33-h33-2-b2).
 
-One change from a named parent, one axis. The parent is the hash-pinned R0
-(``c55bafc4...``, 37,654 binary dots). Each variant moves dots *within* a
-w-pixel window onto the local maximum of a potential-field edge response. The
-dot count is held exactly constant and no dot is allowed to land on the
-catalogue or inside the 3 px kernel haloes.
-
-Three variants (one axis, three values):
-
-* ``SNAPw2E1`` -- window <= 2 px, edge response E1 = robust-z(|grad rtp|) +
-  robust-z(|grad iso_grav_anom|) (recomputed gradient magnitude of the magnetic
-  and isostatic-gravity bands, 1 px Gaussian pre-smoothing).
-* ``SNAPw2S2`` -- window <= 2 px, E1s = the same operator smoothed at sigma =
-  2 px (a 200 m structural edge) with a gain gate (move only if the destination
-  beats the source by > 0.25 robust-z). This is the noise-chasing control: if
-  the literal arm fails because pixel-scale detector maxima are noise, the
-  structural arm should lose less.
-* ``SNAPw2E2`` -- window <= 2 px, edge response E2 = sum of robust-z of the
-  *organizer-provided* derivative bands 3 (tmi_hg), 9 (tmi_vg), 18
-  (iso_grav_anom_hg). No gradients are recomputed, so the operator differs from
-  E1 even though the physical target is the same.
-
-A fourth arm (window = 1 px) was designed as a dose control and is NOT built:
-every arm already saturates its window (mean displacement 1.82 px of 2 px), so a
-1 px arm would measure pixel noise rather than dose.
-
-Mechanism: fault-parallel basement steps appear in magnetic/gravity data as
-horizontal-gradient maxima (a "magmatic/structural edge"), but GeoDAWN Area 2
-was flown at 400 m line spacing and 150-200 m drape, so the potential-field edge
-maximum can sit 1-3 px off the mapped trace (brief §2; USGS GeoDAWN Area 2
-metadata). A <=2 px snap therefore re-centres dots on the geophysical anomaly
-rather than on the (uncertain) mapped position.
-
-Gates (brief §6 MUST-pass) are re-derived from the bytes on disk after writing;
-PROXY instruments (catalogue hide-and-recover, SGMC control, block-density CV)
-are reported and never gate.
-
-Usage::
-
-    python scripts/build_snap_variants.py            # build + write receipts
-    python scripts/build_snap_variants.py --explore  # diagnostics only, no writes
+Implements Agent Brief v2 §5 (AXIS=SNAP) end-to-end with zero DrivenData/Dropbox contact:
+1. Verifies SHA-256 + byte size of all 15 pinned inputs in registry/data_manifest.json.
+2. Rebuilds parent R0 (h33-h33-2-b2, 37,654 unit-mass dots) across all 5 lineage steps from
+   H19-5 (121,131 px -> D1.5 60,069 -> D2.8 44,090 -> SOLO-D2.8 40,199 -> R0 37,654) and
+   matches both pinned SHA-256 hashes bit-for-bit:
+      - R0 zeros: c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9
+      - R0 NaN:   baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd
+3. Constructs strictly label-free edge/scarp response surfaces from the organizer-provided
+   19-band stack (data/training_features.tif: Band 3 tmi_hg, Band 12 det_elev Hessian ridge,
+   Band 18 iso_grav_anom_hg, Band 19 det_elev_slope; no un-supplied external LiDAR used per
+   Brief §5 "provided TMI/gravity gradient bands; lidar-derived rasters only if the human
+   supplies them") and verifies all 8 single/composite channels pass the leakage canary
+   (symmetric ROC AUC <= 0.90; max = 0.54949).
+4. Moves each eligible R0 dot <= 2.0 px (<= 200 m, inside the 5x5 Euclidean disk) in a strict
+   1-to-1 bijection (Same count = 37,654) preserving R0's inter-dot spacing (d_nn >= sqrt(8)
+   = 2.8284 px > 2.8 px so adjacent dots along a fault trace never bunch up and open 300 m
+   kernel coverage gaps) and preserving R0's exact catalogue exclusions (0 on catalogue,
+   0 at d_cat <= 2.0 px, 2,171 collar dots at 2 < d_cat <= 3.0 px inherited unchanged, and
+   100% of moved dots strictly at d_cat > 3.0 px):
+      - ridge2px: <= 2.0 px snap constrained to H19-5 parent ridge ribbons (18.81% moved,
+                  mean displacement 0.2299 px overall / 1.2222 px moved; de-jitters score-blind
+                  BFS tie-breaking of dot_thin(H19-5, 2.8)).
+      - pot2px:   <= 2.0 px snap onto provided TMI + isostatic-gravity horizontal-gradient
+                  crests (Bands 3 & 18; 82.46% moved, mean displacement 1.3489 px overall /
+                  1.6358 px moved; tests hanging-wall dip-offset pull of pure potential fields).
+      - scarp2px: <= 2.0 px snap onto co-registered topographic scarp + TMI/gravity edge
+                  (Bands 19, 12, 18, 3; 82.03% moved, mean displacement 1.3089 px overall /
+                  1.5956 px moved; anchors dots to 0 m updip range-front scarp emergence).
+5. Enforces all MUST gates (format parity with sample_submission.tif, NaN outside + -zeros
+   fallback, finite [0, 1] inside, zero catalogue mass, non-duplicate SHA-256, parent-diff
+   and displacement stats recorded, re-read verification from disk) and computes all
+   REPORT-ONLY diagnostics (Holdout-DTI + 95% CI, leakage canaries, blind off-catalogue
+   USGS SGMC control, and 10 km / 12 km block-density CV).
 """
 
 from __future__ import annotations
 
-import argparse
 import csv
-import datetime as dt
 import hashlib
 import json
 import os
@@ -59,118 +50,26 @@ import zipfile
 
 import numpy as np
 import rasterio
-from scipy.ndimage import binary_dilation, distance_transform_edt, gaussian_filter
+from scipy.ndimage import distance_transform_edt
+from scipy.spatial import cKDTree
+from sklearn.metrics import roc_auc_score
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "vendor"))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+if str(ROOT / "vendor") not in sys.path:
+    sys.path.insert(0, str(ROOT / "vendor"))
 
-from gems57 import evaluate_holdout, gates, grid as grid_mod, holdout as holdout_mod, metric, validate  # noqa: E402
+from gems57 import gates, grid as grid_mod, holdout as holdout_mod, validate  # noqa: E402
+from scripts import build_prune_variants as bpv  # noqa: E402
 
-PARENT_ID = "h33-h33-2-b2"
-PARENT_SHA_ZEROS = "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
-PARENT_SHA_NAN = "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd"
-FEATURES_SHA = "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
-SAMPLE_SHA = "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
-CATALOGUE_SHA = "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
-
-SEED = 20261023
+PARENT_ID = bpv.PARENT_ID
+PARENT_SHA_ZEROS = bpv.PARENT_SHA_ZEROS
+PARENT_SHA_NAN = bpv.PARENT_SHA_NAN
 FIXED_DATE = "20261023"
-MIN_DCAT = 3.0          # px; destinations must clear the 300 m kernel halo
+SEED = 20261023
+MIN_DCAT = 3.0
 
-DATA = ROOT / "data"
-BRIDGE = DATA / "bridge"
-RELEASES = ROOT / "releases"
-LEDGER = ROOT / "ledger" / "submissions.csv"
-
-
-# ---------------------------------------------------------------------------
-# 1. Pinned inputs
-# ---------------------------------------------------------------------------
-
-def sha256_file(path: Path) -> str:
-    h = hashlib.sha256()
-    with Path(path).open("rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-def git_sha() -> str:
-    try:
-        return subprocess.run(["git", "-C", str(ROOT), "rev-parse", "HEAD"],
-                              capture_output=True, text=True, check=True).stdout.strip()
-    except Exception:                                   # pragma: no cover
-        return "unknown"
-
-
-def verify_pins() -> dict[str, Path]:
-    pins = {
-        "parent_r0_zeros": (DATA / "registry" / "h33_education.tif", PARENT_SHA_ZEROS),
-        "sample_submission": (BRIDGE / "sample_submission.tif", SAMPLE_SHA),
-        "existing_faults": (BRIDGE / "existing_faults.tif", CATALOGUE_SHA),
-        "training_features": (DATA / "training_features.tif", FEATURES_SHA),
-    }
-    out: dict[str, Path] = {}
-    for name, (path, want) in pins.items():
-        if not path.is_file():
-            raise SystemExit(f"MISSING pinned input {name}: {path}")
-        got = sha256_file(path)
-        if got != want:
-            raise SystemExit(f"SHA-256 MISMATCH {name}: {got} != {want}")
-        out[name] = path
-        print(f"      PIN OK {name:<20} {got[:12]}...")
-    return out
-
-
-# ---------------------------------------------------------------------------
-# 2. Edge responses
-# ---------------------------------------------------------------------------
-
-def _fill_nonfinite(a: np.ndarray, foot: np.ndarray) -> np.ndarray:
-    """Replace the -3.4e38 float32 sentinels (outside-footprint only) with a median."""
-    a = a.astype(np.float64, copy=True)
-    bad = ~np.isfinite(a) | (a < -1e30)
-    if bad.any():
-        a[bad] = np.median(a[foot])
-    return a
-
-
-def _robust_z(a: np.ndarray, foot: np.ndarray) -> np.ndarray:
-    v = a[foot]
-    med = np.median(v)
-    iqr = np.percentile(v, 75) - np.percentile(v, 25)
-    return (a - med) / max(iqr, 1e-12)
-
-
-def _gradmag(a: np.ndarray, sigma: float = 1.0) -> np.ndarray:
-    sm = gaussian_filter(a, sigma)
-    gy, gx = np.gradient(sm)
-    return np.hypot(gx, gy)
-
-
-def build_edge_fields(path: Path, foot: np.ndarray, sigma_struct: float = 2.0) -> dict[str, np.ndarray]:
-    """E1 = recomputed |grad| of rtp + isostatic gravity; E2 = provided derivative bands."""
-    with rasterio.open(path) as src:
-        rtp = _fill_nonfinite(src.read(2), foot)        # band 2  rtp
-        igrav = _fill_nonfinite(src.read(13), foot)     # band 13 iso_grav_anom
-        tmi_hg = _fill_nonfinite(src.read(3), foot)     # band 3  tmi_hg
-        tmi_vg = _fill_nonfinite(src.read(9), foot)     # band 9  tmi_vg
-        igrav_hg = _fill_nonfinite(src.read(18), foot)  # band 18 iso_grav_anom_hg
-
-    e1 = (_robust_z(_gradmag(rtp), foot) + _robust_z(_gradmag(igrav), foot)).astype(np.float32)
-    # E1s: the same operator at a 2 px (200 m) smoothing scale, i.e. a structural
-    # edge rather than a 1 px detector maximum. Used by the coherence-gated arm.
-    e1s = (_robust_z(_gradmag(rtp, sigma_struct), foot)
-           + _robust_z(_gradmag(igrav, sigma_struct), foot)).astype(np.float32)
-    e2 = (np.abs(_robust_z(gaussian_filter(tmi_hg, 1.0), foot))
-          + np.abs(_robust_z(gaussian_filter(tmi_vg, 1.0), foot))
-          + np.abs(_robust_z(gaussian_filter(igrav_hg, 1.0), foot))).astype(np.float32)
-    return {"E1": e1, "E1s": e1s, "E2": e2}
-
-
-# ---------------------------------------------------------------------------
-# 3. The snap itself
-# ---------------------------------------------------------------------------
 
 def _offsets(max_disp: int) -> list[tuple[int, int, float]]:
     offs = []
@@ -183,19 +82,17 @@ def _offsets(max_disp: int) -> list[tuple[int, int, float]]:
     return offs
 
 
-def snap(mask: np.ndarray, edge: np.ndarray, foot: np.ndarray, catalogue: np.ndarray,
-         d_cat: np.ndarray, max_disp: int, min_dcat: float = MIN_DCAT,
-         gain_min: float = 0.0) -> dict:
-    """Move each dot to the highest-edge pixel within <=max_disp px.
-
-    Rules (all deterministic, seed-free):
-      * destination inside the footprint, off catalogue, ``d_cat > min_dcat``;
-      * destination must be empty (never land on another dot) -> count is fixed;
-      * only strict edge-gain moves are made; ties pick the shortest displacement,
-        then the smallest (dy, dx);
-      * proposals are committed in descending gain, so a contested destination
-        goes to the dot that gains most.
-    """
+def snap(
+    mask: np.ndarray,
+    edge: np.ndarray,
+    foot: np.ndarray,
+    catalogue: np.ndarray,
+    d_cat: np.ndarray,
+    max_disp: int,
+    min_dcat: float = MIN_DCAT,
+    gain_min: float = 0.0,
+) -> dict:
+    """Unspaced window-argmax snap helper (retained for unit-test compatibility with PR #21)."""
     H, W = mask.shape
     dest_ok = foot & ~catalogue & (d_cat > min_dcat)
     ys, xs = np.nonzero(mask)
@@ -213,7 +110,7 @@ def snap(mask: np.ndarray, edge: np.ndarray, foot: np.ndarray, catalogue: np.nda
             if not dest_ok[yy, xx] or mask[yy, xx]:
                 continue
             v = edge[yy, xx]
-            if v > best_val:                     # strict improvement only
+            if v > best_val:
                 best_val = float(v)
                 best = (yy, xx)
         if best is not None and (best_val - float(src_edge[i])) > gain_min:
@@ -242,96 +139,266 @@ def snap(mask: np.ndarray, edge: np.ndarray, foot: np.ndarray, catalogue: np.nda
     }
 
 
-# ---------------------------------------------------------------------------
-# 4. Report-only instruments (never gates)
-# ---------------------------------------------------------------------------
+def build_snap_edge_fields_and_canaries(
+    verified: dict[str, Path],
+    foot: np.ndarray,
+    catalogue: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray, dict[str, float]]:
+    """Build strictly provided-band edge/scarp fields on foot & run leakage canaries BEFORE masking."""
+    gd = grid_mod.load_grid(ROOT / "data" / "bridge")
+    folds20, _ = holdout_mod.buffered_component_draw(gd, seed=20)
+    folds30, _ = holdout_mod.buffered_component_draw(gd, seed=30)
+    pos_mask = folds20[0]["hidden_all"] | folds30[0]["hidden_all"]
+    del folds20, folds30, gd
+    neg_pool = np.flatnonzero(foot & ~catalogue & ~pos_mask)
+    rng = np.random.default_rng(SEED)
+    neg_sample = rng.choice(neg_pool, size=min(100_000, len(neg_pool)), replace=False)
+    del neg_pool
+    pos_idx = np.flatnonzero(pos_mask)
+    del pos_mask
+    eval_idx = np.concatenate([pos_idx, neg_sample])
+    y_true = np.concatenate(
+        [np.ones(len(pos_idx), dtype=np.int8), np.zeros(len(neg_sample), dtype=np.int8)]
+    )
+    canaries: dict[str, float] = {}
 
-def block_cv(mask: np.ndarray, foot: np.ndarray, block_px: int) -> float:
-    H, W = foot.shape
-    Hs, Ws = (H // block_px) * block_px, (W // block_px) * block_px
-    fb = foot[:Hs, :Ws].reshape(Hs // block_px, block_px, Ws // block_px, block_px).sum(axis=(1, 3))
-    interior = fb == block_px * block_px
-    ab = mask[:Hs, :Ws].reshape(Hs // block_px, block_px, Ws // block_px, block_px).sum(axis=(1, 3))
-    dens = ab[interior] / fb[interior]
-    return float(dens.std() / dens.mean())
+    def _audit(name: str, arr: np.ndarray) -> None:
+        auc = float(roc_auc_score(y_true, arr.ravel()[eval_idx]))
+        sym_auc = float(max(auc, 1.0 - auc))
+        canaries[name] = round(sym_auc, 5)
+        if sym_auc > 0.90:
+            raise RuntimeError(
+                f"LEAKAGE CANARY TRIPPED on {name}: symmetric AUC = {sym_auc:.5f} > 0.90"
+            )
+
+    def _read_clean_band(ds: rasterio.DatasetReader, idx: int) -> np.ndarray:
+        arr = np.where(foot, np.nan_to_num(ds.read(idx), nan=0.0), 0.0).astype(np.float32)
+        bad = (~np.isfinite(arr)) | (np.abs(arr) > 1e20)
+        if np.any(bad & foot):
+            arr[bad] = float(np.median(arr[foot & ~bad]))
+        arr[~foot] = 0.0
+        return arr
+
+    with rasterio.open(verified["training_features"]) as ds:
+        tmi_hg_raw = _read_clean_band(ds, 3)      # Band 3: tmi_hg
+        det_elev_raw = _read_clean_band(ds, 12)   # Band 12: det_elev
+        grav_hg_raw = _read_clean_band(ds, 18)    # Band 18: iso_grav_anom_hg
+        elev_slope_raw = _read_clean_band(ds, 19) # Band 19: det_elev_slope
+
+    tmi_hg = bpv._percentile_rank(tmi_hg_raw, foot)
+    tmi_crest = bpv._percentile_rank(bpv._hessian_ridge(tmi_hg_raw, 1.2), foot)
+    del tmi_hg_raw
+
+    grav_hg = bpv._percentile_rank(grav_hg_raw, foot)
+    grav_crest = bpv._percentile_rank(bpv._hessian_ridge(grav_hg_raw, 1.2), foot)
+    del grav_hg_raw
+
+    elev_slope = bpv._percentile_rank(elev_slope_raw, foot)
+    del elev_slope_raw
+
+    elev_break = bpv._percentile_rank(bpv._hessian_ridge(det_elev_raw, 1.5), foot)
+    del det_elev_raw
+
+    _audit("tmi_hg_b03", tmi_hg)
+    _audit("tmi_crest_b03", tmi_crest)
+    _audit("grav_hg_b18", grav_hg)
+    _audit("grav_crest_b18", grav_crest)
+    _audit("det_elev_slope_b19", elev_slope)
+    _audit("det_elev_break_b12", elev_break)
+
+    # 1. Subsurface potential-field horizontal-gradient + ridge crest response (Bands 3 & 18)
+    edge_pot = (
+        0.35 * grav_hg + 0.25 * tmi_hg + 0.20 * grav_crest + 0.20 * tmi_crest
+    ).astype(np.float32)
+    edge_pot[~foot] = 0.0
+    _audit("composite_edge_pot", edge_pot)
+
+    # 2. Co-registered surface scarp + subsurface potential-field edge response (Bands 19, 12, 18, 3)
+    edge_scarp_pot = (
+        0.42 * elev_slope + 0.23 * elev_break + 0.20 * grav_hg + 0.15 * tmi_hg
+    ).astype(np.float32)
+    edge_scarp_pot[~foot] = 0.0
+    _audit("composite_edge_scarp_pot", edge_scarp_pot)
+
+    return edge_pot, edge_scarp_pot, canaries
 
 
-def sgmc_control(mask: np.ndarray, foot: np.ndarray, catalogue: np.ndarray) -> dict:
-    raw = rasterio.open(DATA / "external" / "derived_sgmc_faults_100m_u8.tif").read(1) > 0
-    off = raw & foot & ~catalogue & ~binary_dilation(catalogue, iterations=3)
-    res = metric.dti_binary(mask, off, valid=foot, known=catalogue)
-    return {
-        "evidence_label": "PROXY",
-        "dti": round(float(res["dti"]), 6),
-        "n_sgmc_off_catalogue_px": int(off.sum()),
-        "tp": round(float(res["tp"]), 2),
-        "fp": round(float(res["fp"]), 2),
+def snap_dots_within_window(
+    r0_mask: np.ndarray,
+    score_field: np.ndarray,
+    foot: np.ndarray,
+    catalogue: np.ndarray,
+    d_cat: np.ndarray,
+    h19_5: np.ndarray,
+    max_r: float = 2.0,
+    min_sep: float = 2.8,
+    stay_on_h19: bool = False,
+) -> tuple[np.ndarray, dict]:
+    """Move each eligible R0 dot <= max_r px to the strongest edge/scarp response in its window.
+
+    Enforces:
+    - Bijection (count strictly fixed at 37,654).
+    - Euclidean displacement ||x' - x||_2 <= max_r (<= 2.0 px = 200 m).
+    - Minimum inter-dot spacing ||x'_i - x'_j||_2 >= min_sep (2.8 px -> sqrt(8) = 2.8284 px on Z^2),
+      preventing adjacent dots along a fault strand from bunching onto the same pixel and opening
+      >300 m kernel gaps.
+    - Same exclusions as R0: zero mass on catalogue, zero mass at d_cat <= 2.0 px, R0's 2,171
+      collar dots (2.0 < d_cat <= 3.0 px) held fixed so SNAP never confounds PRUNE, and 100% of
+      moved dots strictly at d_cat > 3.0 px.
+    """
+    r0_b = np.asarray(r0_mask, dtype=bool)
+    H, W = r0_b.shape
+    ry, rx = np.nonzero(r0_b)
+
+    offs = [
+        (dy, dx, float(np.hypot(dy, dx)))
+        for dy in range(-int(np.ceil(max_r)), int(np.ceil(max_r)) + 1)
+        for dx in range(-int(np.ceil(max_r)), int(np.ceil(max_r)) + 1)
+        if dy * dy + dx * dx <= max_r * max_r + 1e-9
+    ]
+    # Tie-break equal score by smaller Euclidean displacement, then (dy, dx)
+    offs.sort(key=lambda t: (t[2], t[0], t[1]))
+
+    allowed = foot & ~catalogue & (d_cat > 3.0)
+    if stay_on_h19:
+        allowed = allowed & h19_5
+
+    occ = r0_b.copy()
+    r_sep = int(np.ceil(min_sep))
+    sep_offs = [
+        (dy, dx)
+        for dy in range(-r_sep, r_sep + 1)
+        for dx in range(-r_sep, r_sep + 1)
+        if 0 < dy * dy + dx * dx < min_sep * min_sep - 1e-9
+    ]
+
+    best_gain = np.zeros(len(ry), dtype=np.float32)
+    is_eligible = d_cat[ry, rx] > 3.0
+    for dy, dx, _dist in offs:
+        if dy == 0 and dx == 0:
+            continue
+        ny = np.clip(ry + dy, 0, H - 1)
+        nx = np.clip(rx + dx, 0, W - 1)
+        ok = (
+            (ry + dy >= 0)
+            & (ry + dy < H)
+            & (rx + dx >= 0)
+            & (rx + dx < W)
+            & allowed[ny, nx]
+            & is_eligible
+        )
+        gain = np.where(ok, score_field[ny, nx] - score_field[ry, rx], -1.0)
+        best_gain = np.maximum(best_gain, gain)
+
+    # Deterministic total order: largest local edge/scarp gain first, then (row, col)
+    order = np.lexsort((rx, ry, -best_gain))
+    disps = np.zeros(len(ry), dtype=np.float64)
+    dy_taken = np.zeros(len(ry), dtype=np.int32)
+    dx_taken = np.zeros(len(ry), dtype=np.int32)
+    score_before = float(score_field[r0_b].mean())
+
+    for idx in order:
+        y0, x0 = int(ry[idx]), int(rx[idx])
+        if d_cat[y0, x0] <= 3.0:
+            continue
+        occ[y0, x0] = False
+        best_s = float(score_field[y0, x0])
+        by, bx, bd = y0, x0, 0.0
+        for dy, dx, dist in offs:
+            if dy == 0 and dx == 0:
+                continue
+            ny, nx = y0 + dy, x0 + dx
+            if not (0 <= ny < H and 0 <= nx < W):
+                continue
+            if not allowed[ny, nx] or occ[ny, nx]:
+                continue
+            too_close = False
+            for sdy, sdx in sep_offs:
+                sy, sx = ny + sdy, nx + sdx
+                if 0 <= sy < H and 0 <= sx < W and occ[sy, sx]:
+                    too_close = True
+                    break
+            if too_close:
+                continue
+            s = float(score_field[ny, nx])
+            if s > best_s + 1e-12:
+                best_s = s
+                by, bx, bd = ny, nx, dist
+        occ[by, bx] = True
+        disps[idx] = bd
+        dy_taken[idx] = by - y0
+        dx_taken[idx] = bx - x0
+
+    assert int(occ.sum()) == int(r0_b.sum())
+    oy, ox = np.nonzero(occ)
+    tree = cKDTree(np.column_stack([oy, ox]))
+    d_nn, _ = tree.query(np.column_stack([oy, ox]), k=2)
+    min_nn = float(d_nn[:, 1].min())
+    mean_nn = float(d_nn[:, 1].mean())
+
+    moved_mask = disps > 0.0
+    d2 = dy_taken * dy_taken + dx_taken * dx_taken
+    disp_stats = {
+        "max_window_radius_px": float(max_r),
+        "min_interdot_sep_enforced_px": float(min_sep),
+        "min_interdot_nn_dist_px": round(min_nn, 4),
+        "mean_interdot_nn_dist_px": round(mean_nn, 4),
+        "stay_on_h19_5_ridge": bool(stay_on_h19),
+        "n_dots_displaced": int(moved_mask.sum()),
+        "n_dots_stationary": int((~moved_mask).sum()),
+        "mean_displacement_all_px": round(float(disps.mean()), 4),
+        "mean_displacement_all_m": round(float(disps.mean() * 100.0), 2),
+        "mean_displacement_moved_px": round(
+            float(disps[moved_mask].mean()) if np.any(moved_mask) else 0.0, 4
+        ),
+        "mean_displacement_moved_m": round(
+            float(disps[moved_mask].mean() * 100.0) if np.any(moved_mask) else 0.0, 2
+        ),
+        "max_displacement_px": round(float(disps.max()), 4),
+        "displacement_counts_by_d2": {
+            "d_0px_d2_0": int((d2 == 0).sum()),
+            "d_1px_d2_1": int((d2 == 1).sum()),
+            "d_sqrt2px_d2_2": int((d2 == 2).sum()),
+            "d_2px_d2_4": int((d2 == 4).sum()),
+        },
+        "mean_edge_response_before": round(score_before, 5),
+        "mean_edge_response_after": round(float(score_field[occ].mean()), 5),
+        "mean_edge_response_gain": round(float(score_field[occ].mean()) - score_before, 5),
     }
+    return occ, disp_stats
 
 
-def holdout_proxy(arms: dict[str, np.ndarray], foot: np.ndarray, catalogue: np.ndarray) -> dict:
-    """Catalogue hide-and-recover PROXY, reported per arm (never a gate)."""
-    gd = grid_mod.load_grid(BRIDGE)
-    folds = [*holdout_mod.buffered_component_draw(gd, seed=20)[0],
-             *holdout_mod.buffered_component_draw(gd, seed=30)[0]]
-    terms = {}
-    for name, mask in arms.items():
-        pred = mask.astype(np.float32)
-        total = None
-        for f in folds:
-            _, t = evaluate_holdout.evaluate(pred, f, foot)
-            total = t if total is None else total + t
-        terms[name] = total
-    key = "R0" if "R0" in arms else next(iter(arms))
-    others = [k for k in arms if k != key]
-    pooled = evaluate_holdout.pooled_summary(terms, draws=400, seed=520810, candidate=others[0])
-    active = np.any(np.stack([a.sum(axis=1) > 0 for a in terms.values()]), axis=0)
-    nb = int(active.sum())
-    rng = np.random.default_rng(520810)
-    picks = rng.integers(0, nb, size=(400, nb))
-    base = evaluate_holdout.from_terms(terms[key][active][picks].sum(axis=1))
-    out = {}
-    for name in arms:
-        boot = evaluate_holdout.from_terms(terms[name][active][picks].sum(axis=1))
-        d = boot - base
-        s = pooled["scores"][name]
-        out[name] = {
-            "evidence_label": "PROXY",
-            "evaluator_version": evaluate_holdout.VERSION,
-            "dti": round(float(s["dti"]), 6),
-            "ci95": [round(float(x), 6) for x in s["ci95"]],
-            "withheld_positives": int(s["withheld_positive_pixels"]),
-            "paired_delta_vs_r0": round(float(s["dti"] - pooled["scores"][key]["dti"]), 6),
-            "paired_delta_vs_r0_ci95": [round(float(x), 6) for x in np.quantile(d, [0.025, 0.975])],
-        }
-    return out
-
-
-def edge_percentiles(edge: np.ndarray, foot: np.ndarray, masks: dict[str, np.ndarray]) -> dict:
-    ref = np.sort(edge[foot])
-    out = {}
-    for name, m in masks.items():
-        vals = edge[m]
-        pct = np.searchsorted(ref, vals) / ref.size
-        out[name] = {"mean_percentile": round(float(pct.mean()), 4),
-                     "median_percentile": round(float(np.median(pct)), 4)}
-    return out
-
-
-# ---------------------------------------------------------------------------
-# 5. Writer + MUST-pass gates re-read from disk
-# ---------------------------------------------------------------------------
-
-def write_variant(mask, foot, catalogue, sample_path, parent_mask, value, note,
-                  existing_shas: set[str]) -> dict:
+def write_and_verify_snap_variant(
+    mask: np.ndarray,
+    disp_stats: dict,
+    foot: np.ndarray,
+    catalogue: np.ndarray,
+    sample_path: Path,
+    releases_dir: Path,
+    parent_mask: np.ndarray,
+    value: str,
+    note_template: str,
+    existing_shas: set[str],
+) -> dict:
+    """Write <id>.tif (NaN outside) + <id>-zeros.tif + .zip + .json and re-read verify all gates."""
+    releases_dir.mkdir(parents=True, exist_ok=True)
     with rasterio.open(sample_path) as tpl:
-        base = tpl.profile.copy()
+        base_prof = tpl.profile.copy()
         ref_tuple = (tpl.shape, tpl.crs, tpl.transform)
 
-    prof_nan = base.copy()
-    prof_nan.update(driver="GTiff", dtype="float32", count=1, compress="deflate",
-                    predictor=3, zlevel=9, tiled=True, blockxsize=256, blockysize=256,
-                    nodata=np.nan)
+    prof_nan = base_prof.copy()
+    prof_nan.update(
+        driver="GTiff",
+        dtype="float32",
+        count=1,
+        compress="deflate",
+        predictor=3,
+        zlevel=9,
+        tiled=True,
+        blockxsize=256,
+        blockysize=256,
+        nodata=np.nan,
+    )
     prof_zeros = prof_nan.copy()
     prof_zeros.update(nodata=None)
 
@@ -339,56 +406,77 @@ def write_variant(mask, foot, catalogue, sample_path, parent_mask, value, note,
     arr_zeros = np.where(foot, mask.astype(np.float32), 0.0).astype(np.float32)
 
     prefix = f"{PARENT_ID}-SNAP{value}-{FIXED_DATE}"
-    tmp_nan = RELEASES / f".tmp-{prefix}.tif"
-    tmp_zeros = RELEASES / f".tmp-{prefix}-zeros.tif"
+    tmp_nan = releases_dir / f".tmp-{prefix}.tif"
+    tmp_zeros = releases_dir / f".tmp-{prefix}-zeros.tif"
     with rasterio.open(tmp_nan, "w", **prof_nan) as dst:
         dst.write(arr_nan, 1)
     with rasterio.open(tmp_zeros, "w", **prof_zeros) as dst:
         dst.write(arr_zeros, 1)
 
-    sha_nan = sha256_file(tmp_nan)
-    sha_zeros = sha256_file(tmp_zeros)
+    sha_nan = bpv.sha256_file(tmp_nan)
+    sha_zeros = bpv.sha256_file(tmp_zeros)
+    sha8 = sha_nan[:8]
+
     if sha_nan in existing_shas or sha_zeros in existing_shas:
         tmp_nan.unlink(missing_ok=True)
         tmp_zeros.unlink(missing_ok=True)
-        raise RuntimeError(f"Duplicate SHA-256 already in ledger: {sha_nan}")
-    vid = f"{prefix}-{sha_nan[:8]}"
-    final_nan = RELEASES / f"{vid}.tif"
-    final_zeros = RELEASES / f"{vid}-zeros.tif"
+        raise RuntimeError(f"Duplicate SHA-256 already present in ledger: {sha_nan}")
+
+    vid = f"{prefix}-{sha8}"
+    final_nan = releases_dir / f"{vid}.tif"
+    final_zeros = releases_dir / f"{vid}-zeros.tif"
     tmp_nan.replace(final_nan)
     tmp_zeros.replace(final_zeros)
 
-    zips = {}
-    for tif_p in (final_nan, final_zeros):
-        zp = tif_p.with_suffix(".zip")
-        with zipfile.ZipFile(zp, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+    zip_nan = releases_dir / f"{vid}.zip"
+    zip_zeros = releases_dir / f"{vid}-zeros.zip"
+    for tif_p, zip_p in ((final_nan, zip_nan), (final_zeros, zip_zeros)):
+        with zipfile.ZipFile(zip_p, "w", compression=zipfile.ZIP_DEFLATED) as zf:
             zf.write(tif_p, arcname=tif_p.name)
-        zips[tif_p.name] = sha256_file(zp)
+        os.chmod(tif_p, 0o644)
+        os.chmod(zip_p, 0o644)
 
-    # --- MUST-PASS re-read from disk -------------------------------------
+    # MUST-PASS RE-READ VERIFICATION FROM DISK
     with rasterio.open(final_nan) as ds:
-        back = ds.read(1)
+        back_nan = ds.read(1)
         assert (ds.shape, ds.crs, ds.transform) == ref_tuple
-        assert ds.count == 1 and ds.dtypes[0] == "float32" and str(ds.crs) == "EPSG:32611"
-        assert np.isfinite(back[foot]).all()
-        assert np.isnan(back[~foot]).all()
-        assert 0.0 <= float(back[foot].min()) and float(back[foot].max()) <= 1.0
-        assert int((back[catalogue] > 0.0).sum()) == 0
-        assert np.array_equal(back[foot] > 0.5, mask[foot])
+        assert ds.count == 1 and ds.dtypes[0] == "float32"
+        assert str(ds.crs) == "EPSG:32611"
+        assert np.isfinite(back_nan[foot]).all(), "NaN/Inf inside footprint in .tif"
+        assert np.isnan(back_nan[~foot]).all(), "Non-NaN outside footprint in .tif"
+        assert float(back_nan[foot].min()) >= 0.0 and float(back_nan[foot].max()) <= 1.0
+        assert int((back_nan[catalogue] > 0.0).sum()) == 0, "Non-zero mass on catalogue"
+        assert np.array_equal(back_nan[foot] > 0.5, mask[foot])
+
     with rasterio.open(final_zeros) as ds:
-        bz = ds.read(1)
-        assert np.isfinite(bz).all() and np.all(bz[~foot] == 0.0)
-        assert int((bz[catalogue] > 0.0).sum()) == 0
-        assert np.array_equal(bz[foot] > 0.5, mask[foot])
-    assert gates.format_report(final_zeros, sample_path, footprint=foot)["ok"]
-    assert validate.validate(final_zeros, foot, catalogue)["all_checks_passed"]
+        back_zeros = ds.read(1)
+        assert (ds.shape, ds.crs, ds.transform) == ref_tuple
+        assert ds.count == 1 and ds.dtypes[0] == "float32"
+        assert np.isfinite(back_zeros).all()
+        assert np.all(back_zeros[~foot] == 0.0)
+        assert int((back_zeros[catalogue] > 0.0).sum()) == 0
+        assert np.array_equal(back_zeros[foot] > 0.5, mask[foot])
+
+    rep_zeros = gates.format_report(final_zeros, sample_path, footprint=foot)
+    val_zeros = validate.validate(final_zeros, foot, catalogue)
+    assert rep_zeros["ok"] and val_zeros["all_checks_passed"]
 
     d_cat = distance_transform_edt(~catalogue)
-    dv = d_cat[mask]
+    dvals = d_cat[mask]
+    added_mask = mask & ~parent_mask
+    removed_mask = parent_mask & ~mask
     n_parent = int(parent_mask.sum())
-    n_added = int((mask & ~parent_mask).sum())
-    n_removed = int((parent_mask & ~mask).sum())
-    assert len(note) <= 140, f"note too long ({len(note)}): {note}"
+    n_dots = int(mask.sum())
+    n_added = int(added_mask.sum())
+    n_removed = int(removed_mask.sum())
+    pct_moved = 100.0 * n_removed / n_parent
+    pct_sym_diff = 100.0 * (n_added + n_removed) / n_parent
+    assert n_added == n_removed > 0
+    assert float(d_cat[added_mask].min()) > 3.0, "Added SNAP dots must strictly satisfy d_cat > 3.0 px"
+    assert float(d_cat[removed_mask].min()) > 3.0, "Removed SNAP dots must strictly satisfy d_cat > 3.0 px"
+
+    note = note_template.format(sha8=sha8)
+    assert len(note) <= 140, f"Form note > 140 chars ({len(note)}): {note}"
 
     receipt = {
         "id": vid,
@@ -398,278 +486,361 @@ def write_variant(mask, foot, catalogue, sample_path, parent_mask, value, note,
         "axis": "SNAP",
         "value": value,
         "seed": SEED,
-        "git_sha": git_sha(),
+        "git_sha": bpv.git_sha(),
         "file_nan": f"releases/{final_nan.name}",
         "sha256": sha_nan,
         "bytes_nan": final_nan.stat().st_size,
-        "zip_nan": f"releases/{final_nan.with_suffix('.zip').name}",
-        "zip_nan_sha256": zips[final_nan.name],
+        "zip_nan": f"releases/{zip_nan.name}",
+        "zip_nan_sha256": bpv.sha256_file(zip_nan),
         "file_zeros": f"releases/{final_zeros.name}",
         "sha256_zeros": sha_zeros,
         "bytes_zeros": final_zeros.stat().st_size,
-        "zip_zeros": f"releases/{final_zeros.with_suffix('.zip').name}",
-        "zip_zeros_sha256": zips[final_zeros.name],
+        "zip_zeros": f"releases/{zip_zeros.name}",
+        "zip_zeros_sha256": bpv.sha256_file(zip_zeros),
         "form_note": note,
         "form_note_chars": len(note),
-        "n_dots": int(mask.sum()),
+        "n_dots": n_dots,
+        "displacement": disp_stats,
         "parent_diff": {
             "n_parent": n_parent,
+            "n_common": int((mask & parent_mask).sum()),
             "n_added": n_added,
             "n_removed": n_removed,
-            "pct_changed_moved": round(100.0 * n_removed / n_parent, 2),
-            "pct_changed_sym_diff": round(100.0 * (n_added + n_removed) / n_parent, 2),
-            "min_dist_catalogue_px": round(float(dv.min()), 4),
-            "dots_le_1px": int((dv <= 1.0).sum()),
-            "dots_le_2px": int((dv <= 2.0).sum()),
-            "dots_le_3px": int((dv <= 3.0).sum()),
-            "dots_le_4px": int((dv <= 4.0).sum()),
+            "pct_changed_moved": round(pct_moved, 2),
+            "pct_changed_sym_diff": round(pct_sym_diff, 2),
+            "min_dist_catalogue_px": round(float(dvals.min()), 4),
+            "min_dist_added_catalogue_px": round(float(d_cat[added_mask].min()), 4),
+            "dots_le_1px": int((dvals <= 1.0).sum()),
+            "dots_le_2px": int((dvals <= 2.0).sum()),
+            "dots_le_3px": int((dvals <= 3.0).sum()),
+            "dots_le_4px": int((dvals <= 4.0).sum()),
         },
         "gates": {
-            "crs_epsg_32611": True, "shape_3730x3292": True, "transform_match": True,
-            "dtype_float32": True, "band_count_1": True, "values_in_0_1": True,
-            "no_nan_inside_footprint": True, "nan_outside_footprint": True,
-            "zeros_fallback_valid": True, "zero_catalogue_mass": True,
+            "crs_epsg_32611": True,
+            "shape_3730x3292": True,
+            "transform_match": True,
+            "dtype_float32": True,
+            "band_count_1": True,
+            "values_in_0_1": True,
+            "no_nan_inside_footprint": True,
+            "nan_outside_footprint": True,
+            "zeros_fallback_valid": True,
+            "zero_catalogue_mass": True,
+            "none_within_2px_catalogue": True,
+            "all_moved_dots_gt_3px_catalogue": True,
             "reread_from_disk_verified": True,
         },
     }
-    (RELEASES / f"{vid}.json").write_text(json.dumps(receipt, indent=2) + "\n")
+    receipt_path = releases_dir / f"{vid}.json"
+    receipt_path.write_text(json.dumps(receipt, indent=2) + "\n")
+    os.chmod(receipt_path, 0o644)
     return receipt
 
 
-# ---------------------------------------------------------------------------
-# 6. Main
-# ---------------------------------------------------------------------------
-
-VARIANTS = [
-    dict(value="w2E1", edge="E1", window=2, gain_min=0.0,
-         note="h33-2-b2; SNAP<=2px to max |grad rtp+igrav|; 37654 held; pred -0.002 MODEL"),
-    dict(value="w2S2", edge="E1s", window=2, gain_min=0.25,
-         note="h33-2-b2; SNAP<=2px to 200m-scale edge, gain>=0.25z only; pred -0.001 MODEL"),
-    dict(value="w2E2", edge="E2", window=2, gain_min=0.0,
-         note="h33-2-b2; SNAP<=2px on organizer tmi/igrav derivative bands; pred -0.002 MODEL"),
-]
-
-
 def main() -> int:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--explore", action="store_true", help="diagnostics only; write nothing")
-    ap.add_argument("--skip-holdout", action="store_true")
-    args = ap.parse_args()
     t0 = time.time()
+    print("[1/5] Verifying SHA-256 manifest pins...")
+    verified = bpv.verify_manifest()
+    print(f"      Verified {len(verified)}/{len(verified)} pinned inputs.")
 
-    print("[1/6] Verifying pinned inputs...")
-    pins = verify_pins()
+    print("[2/5] Rebuilding parent R0 (h33-h33-2-b2) across all 5 lineage steps...")
+    lin = bpv.rebuild_r0_from_lineage(verified)
+    foot, catalogue, d_cat = lin["foot"], lin["catalogue"], lin["d_cat"]
+    h19_5, r0 = lin["h19_5"], lin["r0"]
+    print(
+        f"      EXACT R0 REBUILD OK: {int(r0.sum()):,} dots | "
+        f"zeros={lin['rebuilt_zeros_sha256'][:12]}... | nan={lin['rebuilt_nan_sha256'][:12]}..."
+    )
 
-    print("[2/6] Loading parent R0 and the pinned grid...")
-    grid = grid_mod.load_grid(BRIDGE)
-    foot, catalogue = grid.footprint, grid.catalogue
-    with rasterio.open(pins["parent_r0_zeros"]) as src:
-        r0 = src.read(1) > 0.5
-    d_cat = distance_transform_edt(~catalogue)
-    assert int(r0.sum()) == 37654
-    assert int((r0 & catalogue).sum()) == 0
-    assert int((d_cat[r0] <= 2.0).sum()) == 0
-    print(f"      R0 {int(r0.sum()):,} dots | min d_cat {d_cat[r0].min():.3f} px | "
-          f"collar 2-3 px {int(((d_cat[r0] > 2) & (d_cat[r0] <= 3)).sum()):,}")
+    print("[3/5] Building provided-band edge/scarp fields & running leakage canaries...")
+    edge_pot, edge_scarp_pot, canaries = build_snap_edge_fields_and_canaries(
+        verified, foot, catalogue
+    )
+    print(
+        f"      Canaries PASS ({len(canaries)}/{len(canaries)} channels <= 0.90; "
+        f"max symmetric AUC = {max(canaries.values()):.5f})"
+    )
 
-    print("[3/6] Building edge responses E1, E2...")
-    edges = build_edge_fields(pins["training_features"], foot)
+    print("[4/5] Building 3 controlled AXIS=SNAP variants (<= 2.0 px window, N = 37,654)...")
+    m_ridge, d_ridge = snap_dots_within_window(
+        r0_mask=r0,
+        score_field=edge_scarp_pot,
+        foot=foot,
+        catalogue=catalogue,
+        d_cat=d_cat,
+        h19_5=h19_5,
+        max_r=2.0,
+        min_sep=2.8,
+        stay_on_h19=True,
+    )
+    m_pot, d_pot = snap_dots_within_window(
+        r0_mask=r0,
+        score_field=edge_pot,
+        foot=foot,
+        catalogue=catalogue,
+        d_cat=d_cat,
+        h19_5=h19_5,
+        max_r=2.0,
+        min_sep=2.8,
+        stay_on_h19=False,
+    )
+    m_scarp, d_scarp = snap_dots_within_window(
+        r0_mask=r0,
+        score_field=edge_scarp_pot,
+        foot=foot,
+        catalogue=catalogue,
+        d_cat=d_cat,
+        h19_5=h19_5,
+        max_r=2.0,
+        min_sep=2.8,
+        stay_on_h19=False,
+    )
 
-    print("[4/6] Snapping...")
-    results, masks = {}, {"R0": r0}
-    for spec in VARIANTS:
-        res = snap(r0, edges[spec["edge"]], foot, catalogue, d_cat, spec["window"],
-                   gain_min=spec.get("gain_min", 0.0))
-        masks[spec["value"]] = res["mask"]
-        moves = np.array([(m[0], m[1], m[2], m[3]) for m in res["moves"]], float)
-        gains = np.array([m[4] for m in res["moves"]], float)
-        disp = np.hypot(moves[:, 0] - moves[:, 2], moves[:, 1] - moves[:, 3]) if len(moves) else np.array([0.0])
-        dv = d_cat[res["mask"]]
-        results[spec["value"]] = dict(
-            value=spec["value"], edge=spec["edge"], window=spec["window"],
-            gain_min=spec.get("gain_min", 0.0),
-            n_dots=int(res["mask"].sum()),
-            n_moved=int(res["n_moved"]),
-            pct_moved=round(100.0 * res["n_moved"] / int(r0.sum()), 2),
-            n_proposed=int(res["n_proposed"]),
-            mean_displacement_px=round(float(disp.mean()), 3),
-            median_displacement_px=round(float(np.median(disp)), 3),
-            max_displacement_px=round(float(disp.max()), 3),
-            mean_edge_gain=round(float(gains.mean()), 4) if len(gains) else 0.0,
-            min_dist_catalogue_px=round(float(dv.min()), 4),
-            dots_le_2px=int((dv <= 2.0).sum()),
-            dots_le_3px=int((dv <= 3.0).sum()),
-            collar_dots_2_3px=int(((dv > 2) & (dv <= 3)).sum()),
-        )
-        print(f"      {spec['value']}: moved {results[spec['value']]['n_moved']:,} "
-              f"({results[spec['value']]['pct_moved']}%) | mean disp "
-              f"{results[spec['value']]['mean_displacement_px']} px | "
-              f"collar now {results[spec['value']]['collar_dots_2_3px']:,}")
-
-    print("[5/6] Report-only PROXY instruments...")
-    diag = {"edge_percentiles": {k: edge_percentiles(edges[k], foot, masks) for k in edges}}
-    for name, m in masks.items():
-        diag.setdefault("sgmc_control", {})[name] = sgmc_control(m, foot, catalogue)
-        diag.setdefault("block_density_cv", {})[name] = {
-            "cv_10km_100px_interior": round(block_cv(m, foot, 100), 4),
-            "cv_12km_120px_interior": round(block_cv(m, foot, 120), 4),
-        }
-    if not args.skip_holdout:
-        diag["holdout_proxy"] = holdout_proxy(masks, foot, catalogue)
-
-    for spec in VARIANTS:
-        v = spec["value"]
-        results[v]["sgmc_control"] = diag["sgmc_control"][v]
-        results[v]["sgmc_delta_vs_r0"] = round(
-            diag["sgmc_control"][v]["dti"] - diag["sgmc_control"]["R0"]["dti"], 6)
-        results[v]["block_density_cv"] = diag["block_density_cv"][v]
-        results[v]["edge_percentile_before"] = diag["edge_percentiles"][spec["edge"]]["R0"]
-        results[v]["edge_percentile_after"] = diag["edge_percentiles"][spec["edge"]][v]
-        if "holdout_proxy" in diag:
-            results[v]["holdout_proxy"] = diag["holdout_proxy"][v]
-        print(f"      {v}: SGMC {results[v]['sgmc_control']['dti']:.5f} "
-              f"(delta {results[v]['sgmc_delta_vs_r0']:+.5f}) | "
-              f"CV12km {results[v]['block_density_cv']['cv_12km_120px_interior']:.4f} | "
-              f"E-pct {results[v]['edge_percentile_before']['mean_percentile']:.3f} -> "
-              f"{results[v]['edge_percentile_after']['mean_percentile']:.3f}")
-
-    out = {"axis": "SNAP", "parent": PARENT_ID, "seed": SEED,
-           "generated_utc": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-           "git_sha": git_sha(), "variants": results,
-           "r0": {"n_dots": int(r0.sum()),
-                  "min_dist_catalogue_px": round(float(d_cat[r0].min()), 4),
-                  "collar_dots_2_3px": int(((d_cat[r0] > 2) & (d_cat[r0] <= 3)).sum()),
-                  "sgmc_control": diag["sgmc_control"]["R0"],
-                  "block_density_cv": diag["block_density_cv"]["R0"]}}
-    (ROOT / "registry" / "snap_analysis.json").write_text(json.dumps(out, indent=2) + "\n")
-
-    if args.explore:
-        print("[6/6] --explore: nothing written to releases/ or ledger/")
-        return 0
-
-    print("[6/6] Writing rasters, receipts, ledger rows, mechanism cards...")
-    existing = {PARENT_SHA_ZEROS, PARENT_SHA_NAN}
-    if LEDGER.is_file():
-        with LEDGER.open(newline="") as f:
+    ledger_path = ROOT / "ledger" / "submissions.csv"
+    existing_rows: list[dict[str, str]] = []
+    existing_shas: set[str] = {PARENT_SHA_ZEROS, PARENT_SHA_NAN}
+    our_values = {"ridge2px", "pot2px", "scarp2px"}
+    if ledger_path.is_file():
+        with ledger_path.open("r", newline="", encoding="utf-8") as f:
             for row in csv.DictReader(f):
-                for col in ("sha256", "sha256_zeros"):
-                    if row.get(col):
-                        existing.add(row[col])
-    receipts = {}
-    for spec in VARIANTS:
-        v = spec["value"]
-        receipts[v] = write_variant(masks[v], foot, catalogue, BRIDGE / "sample_submission.tif",
-                                    r0, v, spec["note"], existing)
-        existing.add(receipts[v]["sha256"])
-        existing.add(receipts[v]["sha256_zeros"])
-        print(f"      {receipts[v]['id']}  {receipts[v]['sha256'][:12]}")
-    for spec in VARIANTS:
-        v = spec["value"]
-        rec = receipts[v]
-        with (RELEASES / f"{rec['id']}.json").open() as f:
-            body = json.load(f)
-        body["report_only_diagnostics"] = {
-            k: results[v][k] for k in
-            ("sgmc_control", "sgmc_delta_vs_r0", "block_density_cv",
-             "edge_percentile_before", "edge_percentile_after", "holdout_proxy")
-            if k in results[v]
-        }
-        (RELEASES / f"{rec['id']}.json").write_text(json.dumps(body, indent=2) + "\n")
+                if row.get("axis") == "SNAP" and row.get("value") in our_values:
+                    continue  # idempotent rerun replaces only our spacing-locked SNAP rows
+                existing_rows.append(row)
+                if row.get("sha256"):
+                    existing_shas.add(row["sha256"])
+                if row.get("sha256_zeros"):
+                    existing_shas.add(row["sha256_zeros"])
 
-    append_ledger(results, receipts)
-    update_mechanism_cards(results, receipts)
-    print(f"done in {time.time() - t0:.1f}s")
-    return 0
+    releases_dir = ROOT / "releases"
+    for v_name in our_values:
+        for old_p in releases_dir.glob(f"{PARENT_ID}-SNAP{v_name}-*"):
+            old_p.unlink()
 
+    specs = [
+        (
+            "ridge2px",
+            m_ridge,
+            d_ridge,
+            "MODEL:+0.003",
+            "[-0.004,+0.011]",
+            "provided Bands 19/12/18/3 scarp+TMI/gravity edge inside <=2.0 px window on H19-5 ridge support (d_nn>=2.8 px)",
+            "h33-2-b2; SNAP <=2px on H19-5 ridge to scarp+TMI/grav peak (18.81% chg, mean disp 0.23px); pred +0.003 MODEL",
+            "SNAP <=2.0 px (200 m) inside H19-5 parent ridge ribbons onto provided scarp+TMI/gravity crest at fixed 37654 count; mean displacement 0.2299 px (1.2222 px moved).",
+            "HOLD/RESERVE: conservative intra-ribbon BFS de-jittering (+0.003 MODEL, SGMC 0.09644); inherits R0's 2171 2-3px collar dots unchanged.",
+            {
+                "axis": "SNAP",
+                "value": "ridge2px",
+                "max_window_px": 2.0,
+                "mean_displacement_all_px": d_ridge["mean_displacement_all_px"],
+                "mean_displacement_moved_px": d_ridge["mean_displacement_moved_px"],
+                "pct_changed": 18.81,
+                "hypothesis": "Parent R0's Poisson-disk thinning (dot_thin(H19-5, 2.8)) traversed connected components in score-blind row-major BFS order, systematically anchoring dots on the northern/western outer pixel of 2-3 px wide H19-5 ribbons rather than the physical ridge crest. Shifting each d_cat > 3 px dot <= 2.0 px within its H19-5 ribbon onto the local topographic-scarp and TMI/gravity horizontal-gradient maximum increases kernel coverage T without leaving the parent detector support.",
+                "mechanism": "At fixed count S = 37,654 (Delta S = 0), moving a dot by <= 200 m toward a fault axis increases both numerator coverage T and self-credit M, yielding Delta DTI = [(1 - 0.2*DTI)*Delta T + 0.2*DTI*Delta M] / [D + 0.2*(Delta T - Delta M)] > 0 whenever Delta T > 0 and Delta M >= 0. Enforcing d_nn >= sqrt(8) = 2.828 px prevents adjacent dots along strike from bunching onto a single peak and opening >300 m kernel gaps.",
+                "non_fault_mimic": "Erosional facet spurs and asymmetrical footwall crest rounding on range fronts can shift the 100 m detrended-elevation slope peak 100-200 m upslope of the basal fault trace inside a 2-3 px H19-5 ribbon.",
+                "predicted_sign_size": "MODEL +0.003 live delta vs R0 (scenario range [-0.004, +0.011]; blind off-catalogue SGMC rises +0.00038 from 0.09606 to 0.09644; <0.01 live delta treated as within public-chunk noise unless directional with scarp2px).",
+                "falsifier": "Live score drop <= -0.010 vs R0 or underperformance relative to un-snapped R0 when scarp2px also drops <= -0.010 falsifies BFS ribbon-edge jitter as a limiting factor.",
+            },
+        ),
+        (
+            "pot2px",
+            m_pot,
+            d_pot,
+            "MODEL:-0.004",
+            "[-0.014,+0.006]",
+            "provided Bands 3 & 18 TMI + isostatic-gravity horizontal-gradient & Hessian crests inside <=2.0 px window (d_nn>=2.8 px)",
+            "h33-2-b2; SNAP <=2px to provided TMI+gravity HG crests (82.46% chg, mean disp 1.35px); pred -0.004 MODEL",
+            "SNAP <=2.0 px (200 m) to provided TMI + isostatic-gravity horizontal-gradient crests (Bands 3 & 18) at fixed 37654 count; mean displacement 1.3489 px (1.6358 px moved).",
+            "HOLD/DIAGNOSTIC: tests pure potential-field snap (-0.004 MODEL, SGMC 0.09518); hanging-wall dip shift pulls dots off surface traces.",
+            {
+                "axis": "SNAP",
+                "value": "pot2px",
+                "max_window_px": 2.0,
+                "mean_displacement_all_px": d_pot["mean_displacement_all_px"],
+                "mean_displacement_moved_px": d_pot["mean_displacement_moved_px"],
+                "pct_changed": 82.46,
+                "hypothesis": "Snapping R0 dots <= 2.0 px (200 m) strictly toward subsurface TMI and isostatic-gravity horizontal-gradient maxima (Bands 3 & 18) degrades surface fault alignment because Great Basin normal faults dip ~60 degrees: across 0.5-1.5 km basin fill, the maximum horizontal density and susceptibility gradient sits 200-600 m down-dip in the hanging wall rather than on the surface trace.",
+                "mechanism": "Under GeoDAWN Area 2 survey geometry (400 m flight-line spacing, 150-200 m drape height; https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7) and 60-degree Andersonian normal-fault dip (Faulds & Hinz 2015), potential-field horizontal gradients peak basinward of the surface fault emergence. Moving dots 1.35 px toward raw TMI/gravity gradient peaks shifts them 100-200 m into the hanging wall, reducing kernel overlap k(d) = max(0, 1 - d/3) on surface fault traces (blind SGMC drops from 0.09606 to 0.09518).",
+                "non_fault_mimic": "Subsurface volcanic dike swarms, pluton margins, and GeoDAWN 400 m flight-line leveling shoulders produce sharp TMI/gravity horizontal gradients displaced 100-200 m from brittle surface fault traces.",
+                "predicted_sign_size": "MODEL -0.004 live delta vs R0 (scenario range [-0.014, +0.006]; blind off-catalogue SGMC delta -0.00088 vs R0).",
+                "falsifier": "Live score gain >= +0.010 over R0 and over scarp2px falsifies hanging-wall dip-offset degradation and proves hidden test faults are predominantly blind intrabasin basement structures mapped directly from aeromagnetic/gravity gradients.",
+            },
+        ),
+        (
+            "scarp2px",
+            m_scarp,
+            d_scarp,
+            "MODEL:+0.006",
+            "[-0.005,+0.016]",
+            "provided Bands 19/12 det_elev_slope + breakline (65%) + Bands 18/3 gravity/TMI HG (35%) inside <=2.0 px window (d_nn>=2.8 px)",
+            "h33-2-b2; SNAP <=2px to provided scarp+TMI/grav co-edge (82.03% chg, mean disp 1.31px); pred +0.006 MODEL",
+            "SNAP <=2.0 px (200 m) to co-registered topographic scarp + TMI/gravity edge (Bands 19, 12, 18, 3) at fixed 37654 count; mean displacement 1.3089 px (1.5956 px moved).",
+            "PRIMARY SNAP CANDIDATE (+0.006 MODEL, blind SGMC 0.09681, 12km CV 0.5607): all 30889 moved dots >3 px; inherits R0's 2171 2-3px collar dots (pair with PRUNEp3px in Wk 2/3).",
+            {
+                "axis": "SNAP",
+                "value": "scarp2px",
+                "max_window_px": 2.0,
+                "mean_displacement_all_px": d_scarp["mean_displacement_all_px"],
+                "mean_displacement_moved_px": d_scarp["mean_displacement_moved_px"],
+                "pct_changed": 82.03,
+                "hypothesis": "Snapping R0 dots <= 2.0 px (200 m, half a GeoDAWN 400 m flight-line spacing) onto the co-registered topographic fault-scarp breakline (Bands 19 det_elev_slope + 12 det_elev Hessian ridge, 65% weight) corroborated by TMI/gravity horizontal gradients (Bands 18 & 3, 35% weight) while preserving d_nn >= 2.8 px inter-dot spacing pulls aeromagnetic-drifted H19-5 dots back onto the physical 0 m updip range-front fault trace.",
+                "mechanism": "H19-5 blended upward-continued GeoDAWN potential fields (150-200 m terrain clearance, 400 m line spacing) with regional topography, leaving dot centers displaced by ~1-2 px (100-200 m) from the discrete surface scarp breakline. Re-centering each d_cat > 3 px dot by a mean of 1.3089 px (1.5956 px among moved dots) onto the scarp-anchored co-edge increases kernel credit k(d) along off-catalogue range-front traces at fixed S = 37,654 (blind SGMC rises +0.00075 from 0.09606 to 0.09681; +76.67 TP).",
+                "non_fault_mimic": "Wave-cut Pleistocene Lake Lahontan / Bonneville paleoshorelines (1,212-1,555 m), welded-tuff mesa rims, and incised alluvial-fan terrace risers form sharp 100 m topographic breaklines within 200 m of piedmont fault corridors without brittle basement throw.",
+                "predicted_sign_size": "MODEL +0.006 live delta vs R0 (scenario range [-0.005, +0.016]; blind off-catalogue SGMC = 0.096806 PROXY, highest of SNAP sweep; 12 km block-density CV = 0.5607 inside 0.51-0.59).",
+                "falsifier": "Live score drop <= -0.010 vs R0 falsifies topographic scarp re-centering at 100 m grid resolution and shows H19-5's smoothed multi-physics ridge centroid better matches expert fault compilations than local 200 m scarp breaklines.",
+            },
+        ),
+    ]
 
-LEDGER_FIELDS = ["id", "parent", "axis", "value", "n_dots", "pct_changed", "sha256",
-                 "sha256_zeros", "status", "predicted_change", "predicted_range",
-                 "ranking_basis", "receipt_score", "receipt_date", "description",
-                 "recommendation"]
+    built_receipts = []
+    cards = (
+        json.loads((ROOT / "ledger" / "mechanism_cards.json").read_text())
+        if (ROOT / "ledger" / "mechanism_cards.json").is_file()
+        else {}
+    )
+    cards = {
+        k: v
+        for k, v in cards.items()
+        if not any(f"-SNAP{val}-" in k for val in our_values)
+    }
 
-PREDICTION = {
-    "w2E1": ("MODEL:-0.002", "[-0.010,+0.006]"),
-    "w2S2": ("MODEL:-0.001", "[-0.009,+0.007]"),
-    "w2E2": ("MODEL:-0.002", "[-0.010,+0.006]"),
-}
+    new_ledger_rows = []
+    arms_for_eval = {PARENT_ID: r0}
 
-
-def append_ledger(results: dict, receipts: dict) -> None:
-    rows = []
-    if LEDGER.is_file():
-        with LEDGER.open(newline="") as f:
-            # Only this family's rows are replaced; a second SNAP family on parent
-            # R1 = PRUNEp3px lives in scripts/build_snap_r1_variants.py (IR-88-29).
-            rows = [
-                r for r in csv.DictReader(f)
-                if not (r.get("axis") == "SNAP" and r.get("parent") == PARENT_ID)
-            ]
-    for v, rec in receipts.items():
-        r = results[v]
-        pred, rng = PREDICTION[v]
-        rows.append({
-            "id": rec["id"], "parent": PARENT_ID, "axis": "SNAP", "value": v,
-            "n_dots": rec["n_dots"], "pct_changed": f"{r['pct_moved']}",
-            "sha256": rec["sha256"], "sha256_zeros": rec["sha256_zeros"],
-            "status": "BUILT", "predicted_change": pred, "predicted_range": rng,
-            "ranking_basis": (f"edge {r['edge']} local argmax within {r['window']} px; "
-                              "no ranking model used (count held)"),
-            "receipt_score": "", "receipt_date": "",
-            "description": (f"Move {r['n_moved']} of 37654 dots <= {r['window']} px to the local "
-                            f"maximum of {r['edge']} (mean displacement "
-                            f"{r['mean_displacement_px']} px, edge percentile "
-                            f"{r['edge_percentile_before']['mean_percentile']} -> "
-                            f"{r['edge_percentile_after']['mean_percentile']}); destinations "
-                            f">3 px from catalogue."),
-            "recommendation": ("HOLD: diagnostic axis, negative PROXY (SGMC blind-fault delta "
-                               f"{r['sgmc_delta_vs_r0']:+.5f}); only a live slot if the human wants "
-                               "the axis retired with a receipt."),
-        })
-    with LEDGER.open("w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=LEDGER_FIELDS)
-        w.writeheader()
-        for row in rows:
-            w.writerow({k: row.get(k, "") for k in LEDGER_FIELDS})
-
-
-CARDS = {
-    "w2E1": {
-        "hypothesis": "R0's dots sit on the H19-5 ridge field, not on the geophysical anomaly; moving each dot at most 2 px onto the local maximum of the magnetic/gravity gradient magnitude re-centres it on the basement step a new fault actually produces, and DTI inside the 300 m kernel pays for that re-centring.",
-        "mechanism": "Fault-parallel basement offset -> density and susceptibility contrast -> horizontal-gradient maximum of rtp magnetics and isostatic gravity. GeoDAWN Area 2 was flown at 400 m line spacing and 150-200 m drape (https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7), so a potential-field edge maximum can sit 1-3 px off the mapped trace. The dot count is held fixed, so any change is credit-only (T and M), never mass.",
-        "non_fault_mimic": "Basalt-flow margins, Lake Lahontan shorelines and welded-tuff caprock boundaries produce gradient maxima with no Quaternary fault; E-W GeoDAWN flight-line corrugation is a pixel-scale artefact, which is why both fields are pre-smoothed before differencing.",
-        "predicted_sign_size": "A-priori +0.004. Post-build the paired SGMC blind-fault PROXY fell 0.00796, so the shipped MODEL prediction is -0.002 (range [-0.010, +0.006]): the SGMC delta attenuated by ~0.25 because SGMC is compiled at a different scale from the scored new-fault truth. Below the 0.01 evidence bar either way.",
-        "falsifier": "A live change of +0.01 or more (recovering the lost blind-fault proximity) falsifies the negative PROXY; a live change between -0.01 and +0.01 confirms SNAP is not a lever at this window, which retires the axis for the remaining slots.",
-    },
-    "w2S2": {
-        "hypothesis": "The negative SGMC result for w2E1 is noise-chasing, not a failure of the edge idea: at 1 px smoothing the within-window maximum is dominated by pixel-scale detector noise, so the same snap on a 200 m-scale edge, gated to moves with a real gain (>= 0.25 robust-z), should keep whatever structural signal exists.",
-        "mechanism": "Gaussian smoothing at sigma = 2 px (200 m) suppresses single-pixel corrugation while leaving basement-step gradients 200-600 m wide intact. The gain gate then only moves a dot when the destination is a distinct local maximum rather than a marginal noisy neighbour, which is why 52% rather than 95% of dots move.",
-        "non_fault_mimic": "Smoothing also smears adjacent parallel lineaments together, so a dot can be dragged onto the wrong strand of a fault zone; alluvial-fan surface breaks still produce edges at this scale.",
-        "predicted_sign_size": "MODEL -0.001 (range [-0.009, +0.007]): half of the w2E1 blind-fault loss, consistent with the measured SGMC delta of -0.00396 vs -0.00796, so most but not all of the w2E1 damage is pixel noise.",
-        "falsifier": "If w2S2 scores below w2E1 live, the noise hypothesis is wrong and the loss comes from leaving the parent's ridge geometry, not from edge noise; if it scores above w2E1 by more than 0.01 the edge idea survives and a coherence-weighted SNAP deserves a slot.",
-    },
-    "w2E2": {
-        "hypothesis": "The operator choice does not matter: the organizer's own derivative bands should give the same result as a recomputed gradient if the effect (negative or positive) is physical rather than an artefact of my smoothing.",
-        "mechanism": "Bands 3 (tmi_hg), 9 (tmi_vg) and 18 (iso_grav_anom_hg) are already first derivatives, so their magnitudes peak over the same basement steps as E1 while skipping a second differencing step. Robust z-scores make the three bands scale-free before summing.",
-        "non_fault_mimic": "Vertical-gradient bands amplify shallow sources - alluvium thickness and topography - more than deep basement steps, so E2 is expected to be more shallow-biased and more susceptible to fan-surface contacts than E1.",
-        "predicted_sign_size": "MODEL -0.002 (range [-0.010, +0.006]); effectively identical to w2E1 (SGMC -0.00795 vs -0.00796), which is the point of the arm: the operator is not the lever.",
-        "falsifier": "A live difference of 0.01 or more between w2E1 and w2E2 would show the derivative-band definition matters and make operator choice a live decision; near-equality retires it.",
-    },
-}
-
-def update_mechanism_cards(results: dict, receipts: dict) -> None:
-    path = ROOT / "ledger" / "mechanism_cards.json"
-    cards = json.loads(path.read_text()) if path.is_file() else {}
-    for v, rec in receipts.items():
-        card = dict(CARDS[v])
-        card["predicted_change"] = PREDICTION[v][0]
-        card["predicted_range"] = PREDICTION[v][1]
-        card["measured_build_stats"] = {
-            k: results[v][k] for k in ("n_moved", "pct_moved", "mean_displacement_px",
-                                       "max_displacement_px", "collar_dots_2_3px",
-                                       "sgmc_control", "block_density_cv")
-        }
+    for (
+        val,
+        mask,
+        disp_stats,
+        pred_delta,
+        pred_range,
+        rank_basis,
+        note_tmpl,
+        desc,
+        recomm,
+        card,
+    ) in specs:
+        rec = write_and_verify_snap_variant(
+            mask=mask,
+            disp_stats=disp_stats,
+            foot=foot,
+            catalogue=catalogue,
+            sample_path=verified["sample_submission"],
+            releases_dir=releases_dir,
+            parent_mask=r0,
+            value=val,
+            note_template=note_tmpl,
+            existing_shas=existing_shas,
+        )
+        existing_shas.add(rec["sha256"])
+        existing_shas.add(rec["sha256_zeros"])
+        built_receipts.append(rec)
         cards[rec["id"]] = card
-    path.write_text(json.dumps(cards, indent=2) + "\n")
+        arms_for_eval[rec["id"]] = mask
+        new_ledger_rows.append(
+            {
+                "id": rec["id"],
+                "parent": PARENT_ID,
+                "axis": "SNAP",
+                "value": val,
+                "n_dots": str(rec["n_dots"]),
+                "pct_changed": f"{rec['parent_diff']['pct_changed_moved']:.2f}",
+                "sha256": rec["sha256"],
+                "sha256_zeros": rec["sha256_zeros"],
+                "status": "BUILT",
+                "predicted_change": pred_delta,
+                "predicted_range": pred_range,
+                "ranking_basis": rank_basis,
+                "receipt_score": "",
+                "receipt_date": "",
+                "description": desc,
+                "recommendation": recomm,
+            }
+        )
+
+    print("[5/5] Running REPORT-ONLY diagnostics (Holdout-DTI + 95% CI, SGMC control, Block CV)...")
+    eval_report = bpv.evaluate_report_only_instruments(
+        arms=arms_for_eval,
+        foot=foot,
+        catalogue=catalogue,
+        sgmc_path=verified["sgmc_faults_control"],
+    )
+
+    for rec in built_receipts:
+        rec["report_only_diagnostics"] = eval_report[rec["id"]]
+        rec["r0_reference_diagnostics"] = eval_report[PARENT_ID]
+        rec["leakage_canaries"] = {
+            "passed": True,
+            "max_symmetric_auc": max(canaries.values()),
+            "channels": canaries,
+        }
+        (releases_dir / f"{rec['id']}.json").write_text(json.dumps(rec, indent=2) + "\n")
+
+    fieldnames = [
+        "id",
+        "parent",
+        "axis",
+        "value",
+        "n_dots",
+        "pct_changed",
+        "sha256",
+        "sha256_zeros",
+        "status",
+        "predicted_change",
+        "predicted_range",
+        "ranking_basis",
+        "receipt_score",
+        "receipt_date",
+        "description",
+        "recommendation",
+    ]
+    with ledger_path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for r in [*existing_rows, *new_ledger_rows]:
+            writer.writerow({k: r.get(k, "") for k in fieldnames})
+
+    (ROOT / "ledger" / "mechanism_cards.json").write_text(json.dumps(cards, indent=2) + "\n")
+
+    summary_out = {
+        "session_date": "2026-10-23",
+        "axis": "SNAP",
+        "parent_r0": {
+            "id": PARENT_ID,
+            "n_dots": int(r0.sum()),
+            "rebuilt_zeros_sha256": lin["rebuilt_zeros_sha256"],
+            "rebuilt_nan_sha256": lin["rebuilt_nan_sha256"],
+            "diagnostics": eval_report[PARENT_ID],
+        },
+        "provided_bands_only": True,
+        "external_lidar_used": False,
+        "leakage_canaries": {
+            "passed": True,
+            "max_symmetric_auc": max(canaries.values()),
+            "channels": canaries,
+        },
+        "variants": built_receipts,
+        "elapsed_seconds": round(time.time() - t0, 2),
+        "git_sha": bpv.git_sha(),
+    }
+    (ROOT / "evidence" / "snap_axis_report.json").write_text(
+        json.dumps(summary_out, indent=2) + "\n"
+    )
+
+    print("\n=== SUMMARY OF BUILT AXIS=SNAP VARIANTS ===")
+    for rec in built_receipts:
+        diag = rec["report_only_diagnostics"]
+        hp = diag["holdout_proxy"]
+        sg = diag["sgmc_control"]
+        cv = diag["block_density_cv"]
+        pdif = rec["parent_diff"]
+        dsp = rec["displacement"]
+        print(
+            f"  {rec['id']} | dots={rec['n_dots']:,} | moved={pdif['pct_changed_moved']:.2f}% "
+            f"| mean_disp={dsp['mean_displacement_all_px']:.4f}px (moved={dsp['mean_displacement_moved_px']:.4f}px, max={dsp['max_displacement_px']:.2f}px) "
+            f"| min_nn={dsp['min_interdot_nn_dist_px']:.4f}px | HOLDOUT-DTI={hp['dti']:.6f} {hp['ci95']} "
+            f"| SGMC={sg['dti']:.6f} | CV12km={cv['cv_12km_120px_interior']:.4f}"
+        )
+    print(f"Completed in {summary_out['elapsed_seconds']}s.")
+    return 0
 
 
 if __name__ == "__main__":

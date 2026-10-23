@@ -1,65 +1,26 @@
 # SLOT_PLAN — One Entity, 3 Slots/Week, One Blind Final File by 2026-12-03
 
-**Human-confirmed planning values (2026-10-23):** `1` competitor (`buffedlizard55-lab`), `3/3` live uploads left this rolling week, approximately `21` total slots to the deadline, TOP_PUBLIC `0.4413` dated `2026-10-22`, and **ONE blind final file**. The human must re-confirm the `2026-12-03` deadline and current counts on the competition page.
-**Parent `R0 = h33-h33-2-b2`:** `37,654` dots, `0` within `2 px` of the catalogue, `2,171` in the `2–3 px` collar, `0.2778` `CLAIM` (no receipt). The full pinned five-stage lineage now reproduces both GeoTIFF hashes byte-exactly (`c55bafc4...` zeros; `baeae321...` NaN; `registry/r0_verification.json`).
+**Entity budget:** `1` competitor (`buffedlizard55-lab`), `3/3` live uploads left this rolling week, `~18–21` total slots to `2026-12-03`, `TOP_PUBLIC = 0.4413` (`2026-10-22`, human-supplied), and **ONE blind final file** judged on private Round 1 (`$50K`) & Round 2 (`$250K`) truth (https://www.drivendata.org/competitions/306/competition-doe-gems/). Parent **`R0 = h33-h33-2-b2`** (`37,654` dots, `0` within `2 px`, `2,171` in `2–3 px`, `0.2778` `CLAIM`) rebuilt byte-for-byte (`zeros` `c55bafc4...`, `nan` `baeae321...`). All `17` built candidates across `MASS` (`3`), `PRUNE` (`4`), `CONCENTRATION` (`4`), and `SNAP` (`6`: `3` unspaced `HOLD` + `3` spacing-locked `d_nn >= 2.828 px`) are logged with distinct SHA-256 hashes in `ledger/submissions.csv`.
 
-## Latest session — human assigned AXIS = CONCENTRATION
+## Session Findings (`AXIS = SNAP`, `<= 2.0 px` Window, `N = 37,654`)
+- **Why unspaced `SNAPw2E1/S2/E2` (`01cf9e98`, `60ced8c7`, `861cd355`) lost blind `SGMC` DTI (`-0.0080` to `-0.0040`, `HOLD`):** Without inter-dot spacing (`min_sep = 1 px`), adjacent `R0` dots slide along strike onto adjacent pixels, opening `400–600 m` kernel gaps (`IR-88-23`, `IR-88-25`).
+- **Spacing-locked `SNAP` (`d_nn >= 2.8284 px`, strictly provided `training_features.tif` Bands `3, 12, 18, 19`, `2,171` collar dots untouched, `100%` of moved dots at `d_cat > 3.0 px`) reverses the `SGMC` sign:**
+  - **`SNAPscarp2px` (`fae77ff4`):** `82.03%` moved (`30,889` dots), mean disp `1.3089 px` (`1.5956 px` moved), **`SGMC = 0.096806` `PROXY` (`+0.00075` vs `R0`)**, `12 km` CV `0.5608`, **`MODEL +0.006 [-0.005,+0.016]`**.
+  - **`SNAPridge2px` (`83d2d231`):** `18.81%` moved (`7,082` dots strictly inside `H19-5` ridge ribbons), mean disp `0.2299 px` (`1.2222 px` moved), **`SGMC = 0.096439` `PROXY` (`+0.00038` vs `R0`)**, `12 km` CV `0.5588`, **`MODEL +0.003 [-0.004,+0.011]`**.
+  - **`SNAPpot2px` (`fc2548e7`):** `82.46%` moved (`31,049` dots on `Bands 3 & 18` TMI+gravity HG crests), mean disp `1.3489 px` (`1.6358 px` moved), `SGMC = 0.095178` (`-0.00088` vs `R0`), `12 km` CV `0.5583`, `MODEL -0.004 [-0.014,+0.006]` — proves pure subsurface potential-field crests pull dots `200–600 m` down-dip into the hanging wall of $60^\circ$ normal faults without surface scarp anchoring (`HOLD` diagnostic).
 
-R0 was first rebuilt from the pinned D2.8 ancestor and matched SHA-256 `c55bafc…` exactly in this environment. Concurrent mainline work had already built semantically equivalent 10% and 20% / 1 km arms, so ledger reconciliation retained only the unique **15%** dose: `h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6`. It relocates 5,648 dots from low- to high-prior 1 km blocks ranked by official TMI/gravity gradients; count stays 37,654; all-complete-block density CV is 1.874→1.642; predicted live Δ is `MODEL +0.008` (below the 0.01 evidence bar). **HOLD:** it inherits R0’s 2–3 px collar and fails the literal ≥3 px non-PRUNE rule. Re-base only after a positive PRUNEp3 result.
+## Next 3 Slots in Order (Week 1 · `2026-10-23`) & Decision Tree
 
-## Concurrent session `2026-10-23b` — AXIS = SNAP: built, PROXY-negative, `HOLD`
+| Slot | Release ID | Axis / Value | Changed vs `R0` | Mean Disp | Off-Cat `SGMC` `PROXY` (`n=62,703`) | `12 km` CV | Pred $\Delta$ Live (`MODEL`) | What the Live Receipt Changes |
+|---|---|---|---:|---:|---:|---:|---:|---|
+| **1** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` | `PRUNE` `p3px` (`<=3 px`) | `5.77%` (`2,171`) | — | `0.09608` | `0.5700` | **`+0.005`** | **If `>= R0 + 0.01`:** promote as `R1` (`min d_cat > 3 px`). **If `<= R0 - 0.01`:** `2–3 px` splays carry net truth; keep `2 px` collar. |
+| **2** | `h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4` | `SNAP` `scarp2px` (`<=2 px`) | `82.03%` (`30,889`) | `1.31 px` (`1.60 px` moved) | **`0.09681`** | `0.5608` | **`+0.006`** | **If `>= R0 + 0.01`:** spacing-locked `<=200 m` scarp+edge re-centering fixes GeoDAWN drape blur; fuse with `R1`. **If `< +0.01`:** test `SNAPridge2px` (`83d2d231`, `0.23 px` disp) or close `SNAP`. |
+| **3** | `h33-h33-2-b2-PRUNEp1px-20261023-0542a27c` *(or `SNAPridge2px-20261023-83d2d231`)* | `PRUNE` `p1px` / `SNAP` `ridge2px` | `6.76%` / `18.81%` | — / `0.23 px` | `0.09093` / `0.09644` | `0.5647` / `0.5588` | **`-0.006` / `+0.003`** | **If Slot 1 inconclusive (`|Delta| < 0.01`):** run `PRUNEp1px` to bracket `1–2 px` flank toxicity. **If Slot 2 positive:** run `SNAPridge2px` to separate intra-ribbon BFS de-jittering from off-ribbon scarp shift. |
 
-No AXIS was assigned by the human (IR-88-21/23); SNAP is the last unbuilt axis of the brief's default order, so it was built. Three variants of `R0`, each differing **only** in how far and onto which edge field a dot may move. Count held at `37,654`; every destination required `d_cat > 3 px`.
+## Weeks 2–6 Schedule & Proposed Orthogonal Axes (`2026-10-30 -> 2026-12-03`)
 
-| Release (`releases/…`) | Rule | Moved | Mean disp. | Edge pct | Collar left | SGMC `PROXY` | Δ SGMC vs `R0` | Pred. live `MODEL` |
-|---|---|---:|---:|---:|---:|---:|---:|---:|
-| `…-SNAPw2E1-20261023-01cf9e98` | `<=2 px` to max `\|∇rtp\|+\|∇igrav\|`, `σ=1 px` | `35,771` (95.0%) | `1.82 px` | `0.564→0.655` | `644` | `0.08810` | **`-0.00796`** | `-0.002` |
-| `…-SNAPw2S2-20261023-60ced8c7` | `<=2 px`, `σ=2 px` edge, gain `>=0.25 z` | `19,617` (52.1%) | `1.90 px` | `0.565→0.629` | `1,565` | `0.09211` | **`-0.00396`** | `-0.001` |
-| `…-SNAPw2E2-20261023-861cd355` | `<=2 px` on organizer bands 3/9/18 | `35,725` (94.9%) | `1.81 px` | `0.568→0.658` | `579` | `0.08811` | **`-0.00795`** | `-0.002` |
-
-`R0` reference: SGMC `0.09606`, collar `2,171`, `12 km` CV `0.5590`. All three sit inside the reported `0.51–0.59` CV band (`0.5575–0.5582`) and pass every MUST-pass gate (`scripts/validate_variant.py` PASS on primary and zeros files).
-
-**What it teaches (PROXY, never a score):**
-1. Edge capture is real but weak: mean edge percentile rises ~`+0.07–0.09`, yet blind off-catalogue SGMC DTI **falls** in every arm — the ~200 dots lost from within `300 m` of a blind USGS fault cost more than the percentile gain buys.
-2. Half the loss is pixel noise: the `σ=2 px`, gain-gated arm moves half as many dots and loses half as much.
-3. Operator choice is irrelevant (`w2E1` vs `w2E2` differ by `0.00002`): the effect is *displacement off the parent's ridge geometry*, not which derivative band is used.
-4. Useful side effect: a SNAP pass clears `70–73%` of the `2–3 px` collar at constant count.
-
-**Decision:** all three `HOLD`; predicted change `-0.002 … -0.001` is far below the `0.01` evidence bar. Do not spend a slot unless the human wants the axis retired with a live receipt.
-
-## Concurrent session `2026-10-23c` — `AXIS = SNAP` on the gate-clean parent `R1 = PRUNEp3px`
-
-The `2026-10-23b` SNAP family above is built on `R0`, so it inherits the `2–3 px` collar and is not spendable. The same axis was therefore also built on `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`, whose SHA-256 was reproduced from the pinned lineage before the edit (`6f7ae705…` / `dc6f090d…`).
-
-| Release (`releases/…`) | Field | Moved (≤ 35% cap) | Mean disp. | `min d_cat` | SGMC `PROXY` | Δ vs `R1` | Pred. `MODEL` |
-|---|---|---:|---:|---:|---:|---:|---:|
-| `…-SNAPg2f35-20261023-4c460fd4` | `tmi_hg 0.55 + grav_hg 0.45` | `13,004` (`34.5%`) | `1.92 px` | `3.162 px` | `0.09198` | `-0.00410` | `+0.002` |
-| `…-SNAPd2f35-20261023-a98ce2b8` | `+ det_elev_slope 0.20 + tc 0.10` | `12,932` (`34.3%`) | `1.86 px` | `3.162 px` | `0.09246` | `-0.00362` | `+0.001` |
-| `…-SNAPd1f35-20261023-33783252` | same composite, `≤1 px` | `13,152` (`34.9%`) | `1.00 px` | `3.162 px` | `0.09505` | `-0.00103` | `+0.003` |
-
-`R1` reference: SGMC `0.09608`, `12 km` CV `0.5700`. All three pass every MUST gate, hold the count at `37,654`, sit strictly outside the `300 m` collar and stay inside the `1–50%` move budget that the `R0` family overran (`52–95%`).
-
-**What it adds beyond `2026-10-23b`:** with the collar confound removed, the loss still scales with displacement and is still present at `1.00 px` — so the effect is *localisation*, not collar bookkeeping. The supplied potential-field and elevation-edge bands localise catalogue pixels only weakly here (percentile rank `0.53–0.56` vs `0.50` background), which bounds how much any future geometry-only axis can earn. **Decision: retire the SNAP axis** (both families) and spend slots on mass placement instead.
-
-## PRUNE artifact recovery (this branch, 2026-10-23)
-
-`p1px`, `p3px`, and `p4px` were already-built `(R0, PRUNE, value)` ledger rows. This branch verified all 15 manifest pins, rebuilt `R0` byte-exactly, and reproduced the existing TIFF/fallback/ZIP hashes after on-disk format and parent-diff checks. This is recovery of existing artifacts—not a new experiment, duplicate pair, submission, or slot use. Predictions remain MODEL only (`p3 +0.005`, `p1 -0.006`, `p4 -0.009`); all are below `0.01`, therefore no evidence. Tracked evidence: `evidence/prune_artifact_rebuild.json`; local rasters remain ignored under `releases/`.
-
-The latest human-confirmed planning values in the repository are `TOP_PUBLIC=0.4413` dated `2026-10-22`, `3/3` rolling-week slots remaining, and approximately `21` total slots. The human must re-confirm the current counts and repository-listed `2026-12-03` deadline on the competition page.
-
-
-## Next 3 slots
-
-| Slot | File | Why | What the result changes |
-|---|---|---|---|
-| **1** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`6f7ae705…`) | Only candidate already satisfying the literal `>=3 px` collar (`min d_cat 3.162 px`) at constant count; best blind SGMC of the PRUNE sweep (`0.09608`). | `>= R0 + 0.01` promotes it to `R1` and every later axis inherits a gate-clean parent; `< R0` retires the 300 m side-lobe argument. |
-| **2** | `CONCENTRATION b10px-m20` **re-based on** `PRUNEp3px` (not built yet) | Existing `c42cd475` inherits `R0`'s collar and is `HOLD`; re-based it is gate-clean and carries the largest positive projection (`MODEL +0.020`). | Positive → concentration becomes the fusion partner for the final file; flat → the `0.51–0.59` CV band is descriptive, not causal. |
-| **3** | best of slots 1–2, re-validated (or `RELIEF` on `R1`) | Reserve/confirm slot. | Locks the blind final candidate and its fallback. |
-
-## Weeks 2–6
-`CONCENTRATION` on `R1` (slots 4–6) → one structural axis from the list below per week (7–12), keeping an axis only if `Δ RECEIPT >= +0.01` → weeks 5–6 fuse the winners, re-validate format on both final and fallback, and lock the single blind file.
-
-## Proposed better axes (mechanism · confounder · falsifier) — not built
-1. **`SNAP_COHERENCE`** — move a dot `<=2 px` only along the local edge **normal** and only when it sits on the edge flank, preserving along-strike position. *Mechanism:* flight-line drape blurs only the across-strike offset. *Confounder:* fan-surface contacts parallel to range fronts. *Falsifier:* `<= +0.01` live vs `R0`.
-2. **`CV_MATCHED_WELD`** — combine the `PRUNEp3px` collar with a density re-weld so `12 km` CV lands in `0.51–0.59` and the collar stays clean. *Mechanism:* tests whether the CV band is causal rather than a by-product of mass. *Confounder:* CV was read off 37–44k-dot files, so mass and CV stay partly confounded. *Falsifier:* no live gain at matched mass.
-3. **`TRACKB`** (Phase 2 only) — strike-consistent `>=1 km` traces from `R0`'s top dots as GeoJSON + raster with one evidence paragraph each; not a weekly-slot candidate.
+- **Week 2 (Slots 4–6) — `CONCENTRATION` & `RELIEF` on Gate-Clean Parent `R1 = PRUNEp3px`:** Re-base `CONCENTRATION` (`b10px-m20` `MODEL +0.020`, `15pct-1km-grad` `MODEL +0.008`) and build `AXIS = RELIEF` (`Band 12 det_elev` terciles) atop `PRUNEp3px` so `min d_cat > 3 px` holds across all `37,654` dots.
+- **Weeks 3–4 (Slots 7–12) — Combine Confirmed Winners (`Delta RECEIPT >= +0.01`) + Proposed Orthogonal Axes:**
+  1. **`DIP_OFFSET_ASYM` (Updip $60^\circ$ Potential-Field Back-Projection):** Shift hanging-wall gravity HG (`Band 18`) and basement gradient (`Band 15`) updip by $\Delta x = z_{\text{base}} \cot 60^\circ$ (`100–600 m`) toward the footwall scarp (`Band 19`), resolving the hanging-wall offset measured in `SNAPpot2px` (Faulds & Hinz 2015, https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11072.pdf). *Confounder:* sub-horizontal basalt caprock margins and Lake Lahontan shorelines (`1,212–1,334 m`). *Falsifier:* `< +0.01` live gain over `SNAPscarp2px`.
+  2. **`RELAY_TIP_STRESS` (Anisotropic Crack-Tip & Stepover Aperture):** Replace isotropic `3 px` collar with directional tip aperture (`1.5 px` within $\pm 22^\circ$ of terminal strike; `3.2 px` normal to flank) plus Coulomb relay bridges (Pollard & Segall 1987, https://doi.org/10.1016/B978-0-12-066266-1.50009-0). *Confounder:* E-W GeoDAWN tie-line leveling ripples crossing tips. *Falsifier:* `< +0.01` live gain over isotropic `PRUNEp3px`.
+- **Weeks 5–6 (Slots 13–18) — Confirmation, `TRACKB` & Single Blind Final Lock (`2026-12-03`):** Confirm top composite on live chunks, prepare `TRACKB` (`>=1 km` strike-consistent GeoJSON + raster traces for Phase 2), and lock **ONE blind final submission** + **ONE `-zeros.tif` fallback**.
