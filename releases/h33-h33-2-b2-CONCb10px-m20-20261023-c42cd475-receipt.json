@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "candidate": "h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475",
+  "axis": "CONCENTRATION",
+  "parent": {
+    "id": "h33-h33-2-b2",
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "n_dots": 37654
+  },
+  "file": {
+    "primary": "releases/h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475.tif",
+    "zeros": "releases/h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475-zeros.tif",
+    "sha256": "c42cd4756bd28dde29a8b24ab9cfca75f9a8e2564305655ffe2073b792f4e093",
+    "sha256_zeros": "bf66292d9d199a174f7ba53aa463c1f0d1ef14d3adf4aa7c28d37b175b4c7948",
+    "zip": "releases/h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475.zip",
+    "zip_sha256": "454f918d444c1c91582a25640ed269bb6d7ae191345c797979a8abc6c99c7863",
+    "zip_zeros": "releases/h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475-zeros.zip",
+    "zip_zeros_sha256": "9d8e39695a8cb93b17c8c2ecf5dd212ce2d7455dace6ab7e863e1387e9d36281",
+    "tracked_in_git": false,
+    "why_local": "competition raster; public-repository data-use terms unchecked"
+  },
+  "submission": {
+    "name": "h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475",
+    "note": "h33-2-b2 CONC 1km 20% coldest->hottest blocks; 37654 dots CV .62->1.26; pred +0.020 MODEL; R0 0.2778 CLAIM",
+    "note_chars": 106,
+    "upload_one_twin_only": true
+  },
+  "built": {
+    "n_dots": 37654,
+    "n_moved": 7531,
+    "pct_of_parent_dots_moved": 20.0005,
+    "block_px": 10,
+    "blocks_emptied": 0,
+    "added_distance_to_host_px_mean": 1.0436,
+    "dots_within_2px_catalogue": 0,
+    "dots_within_3px_catalogue": 2171,
+    "cv_occupied_before": 0.6179,
+    "cv_occupied_after": 1.2574,
+    "cv_smoothed_5blocks_before": 0.4821,
+    "cv_smoothed_5blocks_after": 0.7905
+  },
+  "prediction": {
+    "label": "MODEL",
+    "delta": 0.0195,
+    "range": [
+      -0.0058,
+      0.0559
+    ],
+    "source": "registry/concentration_projection.json"
+  },
+  "gates": {
+    "validator": "scripts/validate_variant.py",
+    "evidence": "registry/variant_validation.json",
+    "primary_all_pass": true,
+    "zeros_all_pass": true,
+    "note": "checks were run against the bytes on disk before the files were untracked"
+  },
+  "report_only": {
+    "proxy": "registry/concentration_proxy.json",
+    "proxy_delta_vs_parent": 0.0,
+    "proxy_power": "none: R0's 2 px collar already excluded the withheld strands",
+    "leakage_canary": "not applicable: no feature channel used",
+    "sgmc_control": "not applicable"
+  },
+  "disposition": "HOLD: inherits R0's 2 px collar, so not eligible under the literal 3 px non-PRUNE gate. Predicted gain is the highest in the inventory if the human scopes that gate away from controlled R0 edits.",
+  "rebuild": "python scripts/make_concentration_variants.py && python scripts/project_concentration.py && python scripts/finalize_concentration.py && python scripts/write_concentration_receipts.py",
+  "provenance": {
+    "git_sha": "baee52d65d88245e9765ebd916a82e5712540d8f",
+    "generated_utc": "2026-10-23T03:43:47.244895+00:00",
+    "builder": "scripts/make_concentration_variants.py"
+  }
+}

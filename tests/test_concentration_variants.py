@@ -55,18 +55,43 @@ def _variant_ids(report):
     return [vid[:-4] if vid.endswith(".tif") else vid for vid in report["variants"]]
 
 
+def _rasters_present(report):
+    return all((ROOT / v[k]["path"]).is_file()
+               for v in report["variants"].values() for k in ("nan", "zeros"))
+
+
 def test_three_variants_with_distinct_hashes(report, ledger_rows):
     assert len(report["variants"]) == 3
     shas = []
     for vid, v in report["variants"].items():
         shas += [v["nan"]["sha256"], v["zeros"]["sha256"]]
-        assert (RELEASES / v["nan"]["path"].split("/")[-1]).is_file()
-        assert (RELEASES / v["zeros"]["path"].split("/")[-1]).is_file()
     assert len(set(shas)) == 6, "variant hashes must be unique"
-    ledger_shas = {r["sha256"] for r in ledger_rows} | {r["sha256_zeros"] for r in ledger_rows}
-    assert len(ledger_shas) == len(ledger_rows) * 2
+    ledger_shas = [r["sha256"] for r in ledger_rows] + [r["sha256_zeros"] for r in ledger_rows]
+    assert len(set(ledger_shas)) == len(ledger_shas) == 14, "14 unique hashes across 7 rows"
 
 
+def test_receipts_are_tracked_and_match_the_report(report, projection, ledger_rows):
+    """The rasters stay local; the receipts must still carry identity and hashes."""
+    ledger = {r["id"]: r for r in ledger_rows}
+    for vid, v in report["variants"].items():
+        base = vid[:-4] if vid.endswith(".tif") else vid
+        receipt = json.loads((RELEASES / f"{base}-receipt.json").read_text())
+        assert receipt["candidate"] == base
+        assert receipt["file"]["sha256"] == v["nan"]["sha256"] == ledger[base]["sha256"]
+        assert receipt["file"]["sha256_zeros"] == v["zeros"]["sha256"] == ledger[base]["sha256_zeros"]
+        assert receipt["submission"]["name"] == base
+        assert 20 <= len(receipt["submission"]["note"]) <= 140
+        assert receipt["submission"]["note_chars"] == len(receipt["submission"]["note"])
+        assert receipt["gates"]["primary_all_pass"] and receipt["gates"]["zeros_all_pass"]
+        point = projection["variants"][vid]["point_estimate"]
+        assert receipt["prediction"]["delta"] == pytest.approx(point, abs=1e-4)
+        assert receipt["disposition"].startswith("HOLD"), "collar inheritance must stay visible"
+        assert receipt["file"]["tracked_in_git"] is False
+
+
+@pytest.mark.skipif(not (RELEASES / "h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475.tif").is_file(),
+                    reason="release rasters are local-only (data-use flag); the tracked receipt "
+                           "records the gate run performed before untracking")
 def test_every_release_passes_every_must_pass_gate(report):
     validator = _load_validator()
     with rasterio.open(CACHE / "sample_submission.tif") as src:
@@ -128,9 +153,12 @@ def test_ledger_matches_releases_and_projection(report, projection, ledger_rows)
         assert row["sha256_zeros"] == v["zeros"]["sha256"]
         assert row["status"] == "BUILT"
         assert row["receipt_score"] == "" and row["receipt_date"] == ""
+        assert row["recommendation"].startswith("HOLD")
         point = projection["variants"][row["id"] + ".tif"]["point_estimate"]
-        assert row["predicted_change"] == f"{point:+.3f}"
-        assert row["pct_changed"] and abs(float(row["pct_changed"]) - 10.0) < 0.01 or \
+        assert row["predicted_change"] == f"MODEL:{point:+.3f}"
+        lo, hi = projection["variants"][row["id"] + ".tif"]["range_scenarios"]
+        assert row["predicted_range"] == f"[{lo:+.3f},{hi:+.3f}]"
+        assert abs(float(row["pct_changed"]) - 10.0) < 0.01 or \
                abs(float(row["pct_changed"]) - 20.0) < 0.01
 
 

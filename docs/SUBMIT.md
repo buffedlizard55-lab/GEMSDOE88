@@ -1,45 +1,45 @@
-# Submission checklist — human uploads ONE file per slot (DrivenData form)
+# Human submission card — no automated submission
 
-> **No file here is pre-approved for submission.** Every candidate passes 100 % of the competition *format* gates (EPSG:32611, 3730×3292, float32, one band, values in [0,1], finite inside the footprint, NaN outside + a `-zeros` fallback that is bit-equal inside, zero mass on the mapped catalogue, zero dots within 2 px of it, sha256 not already in the ledger) — see `registry/variant_validation.json`. Promotion is a **human** decision; nothing in this repo submits anything.
+## PRUNE3 — the only candidate built in this branch
 
-## Candidates — AXIS = CONCENTRATION, parent `h33-h33-2-b2`, built 2026-10-23
+**Candidate ID / submission name:** `h33-h33-2-b2-prune3-20261023-01d57649`  
+**Form note (91/140 characters):** `R0 h33-h33-2-b2; PRUNE<=3px + fixed-count H19 BFS refill (2171 dots); MODEL -0.003 live DTI`
 
-Every candidate: 37,654 dots (mass held fixed), 0 dots ≤ 2 px from the catalogue, 2,171 dots in the 2–3 px collar (inherited from R0, unchanged), no block emptied, no RNG. Predicted changes are **MODEL** values from `registry/concentration_projection.json`, not scores.
+Choose **only one** TIFF for a slot. Do not upload both twins.
 
-### 1. 1 km × 20 % — recommended Slot 1
-- **File (NaN outside, per spec):** `releases/h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475.tif` — sha256 `c42cd4756bd28dde29a8b24ab9cfca75f9a8e2564305655ffe2073b792f4e093`
-- **Fallback (zeros outside):** `releases/h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475-zeros.tif` — sha256 `bf66292d9d199a174f7ba53aa463c1f0d1ef14d3adf4aa7c28d37b175b4c7948`
-- **Zip (one TIFF, byte-identical):** `releases/h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475.zip`
-- **Submission name:** `h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475`
-- **Submission note (106 / 140):** `h33-2-b2 CONC 1km 20% coldest->hottest blocks; 37654 dots CV .62->1.26; pred +0.020 MODEL; R0 0.2778 CLAIM`
-- **Parent diff:** 7,531 dots moved (20.00 %), 30,123 common with R0, receivers 1.04 px from their host on average.
-- **Format receipt:** one band float32, `EPSG:32611`, 3730×3292, `Affine(100, 0, 243350, 0, -100, 4508550)`, matches `sample_submission.tif` (`2176d08e…`); 0 non-finite inside, NaN outside, `-zeros` twin 0 outside and identical inside; re-read verified after write.
+| Choice | Local file | SHA-256 | Outside footprint |
+|---|---|---|---|
+| Primary | `releases/h33-h33-2-b2-prune3-20261023-01d57649.tif` | `01d57649168d52a0bf2f9aced7aa2280a92b6fd7a0224757d5acc5e925785e96` | NaN; nodata=NaN |
+| Fallback | `releases/h33-h33-2-b2-prune3-20261023-01d57649-zeros.tif` | `4131e37133a3c5a874c42fb7c975ec4ecb7b4be946b794ff9c9852afa575e225` | 0; nodata=None |
 
-### 2. 1 km × 10 % — the slope, read with #1
-- **File:** `releases/h33-h33-2-b2-CONCb10px-m10-20261023-89ffd4f3.tif` — sha256 `89ffd4f3fbb4de28598c2ac9e994a34280eed39a9652adfee17ecef4a8bbc878`
-- **Fallback:** `releases/h33-h33-2-b2-CONCb10px-m10-20261023-89ffd4f3-zeros.tif` — sha256 `c6cdc230f24923b14ec03cf256ab1e034c9322add5dc673e7a6f3ad59648dc0d`
-- **Name:** `h33-h33-2-b2-CONCb10px-m10-20261023-89ffd4f3`
-- **Note (106 / 140):** `h33-2-b2 CONC 1km 10% coldest->hottest blocks; 37654 dots CV .62->1.02; pred +0.011 MODEL; R0 0.2778 CLAIM`
-- **Parent diff:** 3,765 dots moved (10.00 %); 90 % of R0's dots untouched.
+**Format receipt:** `releases/h33-h33-2-b2-prune3-20261023-01d57649-receipt.json` and `releases/h33-h33-2-b2-prune3-20261023-01d57649-validation.json`.
 
-### 3. 5 km × 20 % — scale control
-- **File:** `releases/h33-h33-2-b2-CONCb50px-m20-20261023-fae2a52f.tif` — sha256 `fae2a52f5117ffd4a0bac016e244f820a0c15b6b81dca14919660fb6ce2da1cc`
-- **Fallback:** `releases/h33-h33-2-b2-CONCb50px-m20-20261023-fae2a52f-zeros.tif` — sha256 `586e3a047e249a251cbdf8f0c57062362688718649bcc141b9aea2cea676f5b2`
-- **Name:** `h33-h33-2-b2-CONCb50px-m20-20261023-fae2a52f`
-- **Note (106 / 140):** `h33-2-b2 CONC 5km 20% coldest->hottest blocks; 37654 dots CV .70->1.36; pred +0.006 MODEL; R0 0.2778 CLAIM`
+Both files were re-read from disk and passed: one float32 band; EPSG:32611; shape `(3730,3292)`; sample transform `(100,0,243350,0,-100,4508550)`; finite binary values inside the 5,167,373-pixel footprint; 37,654 dots; zero catalogue mass; every dot `d_cat>3 px`; identical scored content. Parent R0 independently rebuilt to `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`.
 
-### Still on the shelf (MASS axis, built 2026-10-23)
-`h33-h33-2-b2-MASSm10minus-20261023-7132935e` (33,889 dots, −0.008 MODEL),
-`…-MASSm10plus-20261023-82673b57` (41,419, +0.004),
-`…-MASSm20minus-20261023-6c73303c` (30,123, −0.018).
-Their ranking is a *reconstructed* ordering (`0.6·norm(dist/50) + 0.4·rand(88)`), not the parent's own ranking — see `IRREGULARITIES.md` IR-88-18 before spending a slot on one.
+**Decision status:** BUILT, not submitted, no receipt. Prediction is **MODEL −0.003**, not a score. See `SLOT_PLAN.md` before spending a slot. New PRUNE rasters are intentionally local and Git-ignored because public-repository data-use terms are unchecked; the JSON receipts and reproducible code are tracked.
 
-## Validation steps (human, from their own authenticated account)
+## CONCENTRATION candidates — HOLD under the literal 3 px gate, otherwise the highest MODEL gain
 
-1. `python scripts/restore_inputs.py --validation` — grid pins verified (`2176d08e…`, `7ba308cc…`); parent `c55bafc4…` restored.
-2. `python -m pytest -q` — includes `tests/test_dti_algebra.py` and `tests/test_concentration_variants.py`.
-3. `python scripts/validate_variant.py releases/<id>.tif releases/<id>-zeros.tif` — must print PASS for both.
-4. Open the chosen `.tif` in QGIS/GDAL: `gdalinfo -stats` should show `Band 1 Type=Float32`, `Size is 3292, 3730`, `NoData=nan` (or the `-zeros` twin with 0 outside).
-5. Upload **ONE** file per slot, paste the note, then copy the receipt id/timestamp/score into `ledger/submissions.csv` (`receipt_score`, `receipt_date`) and mark the row `RECEIPT`.
+Built 2026-10-23 on parent R0 (count fixed at 37,654; no mass added inside the 3 px collar; the 2,171 inherited collar dots are untouched). They are **not** eligible while the literal `>=3 px` non-PRUNE gate stands, because they necessarily carry R0's collar. Their rasters are kept local (data-use flag) and tracked receipts hold the hashes: `releases/<id>-receipt.json`; gate evidence: `registry/variant_validation.json`; full statistics: `registry/concentration_report.json`.
 
-> Irregularities that change a decision: `IRREGULARITIES.md` (IR-88-14 collar, IR-88-17 byte-sha, IR-88-18 reconstructed MASS ranking, IR-88-19 CV band). Generative-AI disclosure: `AI_USE.md`.
+| id (submission name) | Moved | MODEL Δ | Primary SHA-256 | Form note |
+|---|---|---|---|---|
+| `h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475` | 7,531 (20 %) | +0.020 `[-0.006,+0.056]` | `c42cd4756bd28dde29a8b24ab9cfca75f9a8e2564305655ffe2073b792f4e093` | `h33-2-b2 CONC 1km 20% coldest->hottest blocks; 37654 dots CV .62->1.26; pred +0.020 MODEL; R0 0.2778 CLAIM` (106/140) |
+| `h33-h33-2-b2-CONCb10px-m10-20261023-89ffd4f3` | 3,765 (10 %) | +0.011 `[-0.002,+0.030]` | `89ffd4f3fbb4de28598c2ac9e994a34280eed39a9652adfee17ecef4a8bbc878` | `h33-2-b2 CONC 1km 10% coldest->hottest blocks; 37654 dots CV .62->1.02; pred +0.011 MODEL; R0 0.2778 CLAIM` (106/140) |
+| `h33-h33-2-b2-CONCb50px-m20-20261023-fae2a52f` | 7,531 (20 %) | +0.006 `[-0.012,+0.028]` | `fae2a52f5117ffd4a0bac016e244f820a0c15b6b81dca14919660fb6ce2da1cc` | `h33-2-b2 CONC 5km 20% coldest->hottest blocks; 37654 dots CV .70->1.36; pred +0.006 MODEL; R0 0.2778 CLAIM` (106/140) |
+
+**Local file pair per row:** `releases/<id>.tif` (NaN outside, nodata=NaN) and `releases/<id>-zeros.tif` (0 outside, nodata=None); scored content is identical, upload **one**. Each has a single-TIFF `.zip` beside it. Both twins were re-read from disk and passed: one band float32; `EPSG:32611`; `3730×3292`; transform `(100,0,243350,0,-100,4508550)`; finite binary values inside the 5,167,373-pixel footprint; 37,654 dots; zero catalogue mass; zero dots ≤2 px; the 2–3 px collar reported (2,171) and unchanged; sha256 absent from the ledger except as its own row.
+
+**Decision status:** BUILT, not submitted, no receipt. `MODEL` and `PROXY` numbers are never scores. See `SLOT_PLAN.md` for the conditional slot order and `IRREGULARITIES.md` item 12 for why this axis is HOLD.
+
+## Concurrent MASS artifacts — HOLD, not submission-ready
+
+PR #17's audit reproduced all three arrays and corrected their interpretations/predictions (`registry/mass_ranking_audit.json`). They do not use a parent model ranking. They also retain the parent's **2 px**, not the currently required **3 px**, non-PRUNE exclusion, so **do not upload them under this session's gates**. Historical dot-overlap/rank-correlation checks are not uniqueness gates.
+
+| ID / submission name | Audited MODEL prediction | Primary / zeros SHA-256 | Updated form note |
+|---|---|---|---|
+| `h33-h33-2-b2-MASSm10minus-20261023-7132935e` | `+0.004` `[-0.006,+0.014]`; collar extension, not pure MASS | `7132935e1210208cfbc5dc02d0d393816b7e6b35a706fce44020a3513b7fa201` / `58d9ebdbdd9234d5bbe8e248c1b385d7b7ffb03461c94f9624c2eb02d13ac412` | `h33-2-b2 33889 dots, collar cut 2->10px vs catalogue; pred +0.004 MODEL; parent 0.2778 CLAIM` |
+| `h33-h33-2-b2-MASSm10plus-20261023-82673b57` | `-0.010` `[-0.014,+0.002]`; isolated low-prior additions | `82673b574213e45cce34f26f6c8918f99ba78ef04f1a41ec420f1a8559329474` / `384f2a3c802b12823ee4510215d6fe825140ed3842b57e80278fe940c37bc6df` | `h33-2-b2 MASSm10plus 41419 isolated low-prior dots; pred -0.010 MODEL; parent 0.2778 CLAIM` |
+| `h33-h33-2-b2-MASSm20minus-20261023-6c73303c` | `+0.001` `[-0.015,+0.017]`; nested deeper cut | `6c73303cd5055a5af1dc0801a78821db66d8dcd28ab9244d34341c73836e2c4d` / `c31659134bf513a768a1566c0527dc111df60e209ad14eecf7291adab67864f2` | `h33-2-b2 MASSm20minus 30123 dots nested collar cut; pred +0.001 MODEL; parent 0.2778 CLAIM` |
+
+All receipt fields remain empty. After any authorized human upload, copy the actual submission-page score and date verbatim into `ledger/submissions.csv`; never infer a receipt from a MODEL or PROXY value.
