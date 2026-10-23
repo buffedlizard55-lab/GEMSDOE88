@@ -5,13 +5,14 @@
 
 | Field | Status / Value | Evidence Class & Provenance |
 |---|---|---|
-| **Parent (`R0`)** | `h33-h33-2-b2` (`GEMSDOE32`, `37,654` unit dots, `0` within `<= 2 px` of catalogue, `2,171` in `2 < d_cat <= 3 px`) | Rebuilt byte-for-byte from `H19-5` (`zeros` SHA-256 `c55bafc4...`, `nan` SHA-256 `baeae321...`) and re-verified this session; live `0.2778` is **`CLAIM`** (`0` receipts in `ledger/`). |
-| **Gate-clean parent (`R1`)** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`37,654` dots, `min d_cat = 3.162 px`, `zeros` `dc6f090d...`, `nan` `6f7ae705...`) | Rebuilt and both hashes asserted before this session's builds (`scripts/build_relief_variants.py`). |
-| **Best `RECEIPT`** | `None` (`0` portal receipts logged in `ledger/submissions.csv`) | **`CLAIM` only (`0.2778`)** until the human pastes verbatim `receipt_score` + `receipt_date`. |
-| **`TOP_PUBLIC`** | `0.4413` (`2026-10-22`, human-supplied; live competition page authoritative) | `UNVERIFIED` locally (automated `drivendata.org` access disabled per Terms of Use). |
-| **Quota & Slots Left** | `1` entity (`buffedlizard55-lab`) · Rolling week: **`3 / 3`** · Total to `2026-12-03`: **`~21`** + **`1` blind final file** | Official Rules (`https://docs.nlr.gov/docs/fy26osti/96647.pdf`). |
-| **Session Axis Built** | **`AXIS = RELIEF`** (band 12 `det_elev` equal-area terciles, `N = 37,654`, parent `R1`, fixed count) | `up2t10` (`cffb5570`, `10.00%`, `SGMC = 0.09366` `PROXY`, `MODEL -0.002`), `up2t15` (`77588346`, `15.00%`, `SGMC = 0.09252`, `MODEL -0.004`), `dn2t15` (`ea75b7eb`, `15.00%`, control, `SGMC = 0.08490`, `MODEL -0.007`). All three lose to parent `R1` (`SGMC 0.09608`, `12 km` CV `0.5700`): the range front is already saturated. |
-| **Next 3 Slots (`SLOT_PLAN.md`)** | **1.** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`PRUNE <=3 px`, `5.77%` chg, `MODEL +0.005`, `SGMC 0.09608` `PROXY`)<br>**2.** `h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4` (`SNAP <=2 px` scarp+edge, `82.03%` chg, `MODEL +0.006`, `SGMC 0.09681` `PROXY`)<br>**3.** `h33-h33-2-b2-PRUNEp1px-20261023-0542a27c` (`PRUNE <=1 px`, `MODEL -0.006`) — the three `RELIEF` arms are diagnostics, not slot candidates | Details in `SLOT_PLAN.md`, `docs/SUBMIT.md`, `ledger/submissions.csv`, `releases/*RELIEF*.json`. |
+| **Parent (`R0`)** | `h33-h33-2-b2`, `N=37,654`; `0` within `<=2 px`, `2,171` at `2<d_cat<=3 px` | 15 manifest inputs verified; exact R0 zeros/NaN SHA-256 `c55bafc4…` / `baeae321…`. Historical `0.2778` is **CLAIM**, not a receipt. |
+| **Gate-clean parent (`R1`)** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`, `N=37,654`, min `d_cat=3.1623 px` | Existing R1 primary/zero hashes `6f7ae705…` / `dc6f090d…`; exact parent remains available for re-based work. |
+| **Best `RECEIPT`** | None (`0` portal receipt scores/dates in `ledger/submissions.csv`) | Human must paste a verbatim receipt; no slot was used by this session. |
+| **`TOP_PUBLIC`** | `0.4413` (`2026-10-22`, human-supplied) | `UNVERIFIED` locally; live competition page not accessed. |
+| **Quota & Deadline** | Last repository report: one entity, `3/3` rolling-week slots, `~21` total; `2026-12-03` deadline | Human must reconfirm current counts and deadline before any upload. |
+| **Current Session Axis** | **`AXIS = PRUNE`** on exact R0; `p3.2px`, `p3.7px`, `p4.3px`, all `N=37,654` | Moved `7.17586% / 8.92601% / 11.91905%`; `MODEL +0.002 / -0.005 / -0.013`; all six primary/fallback rasters pass `registry/prune_sweep_validation.json`. |
+| **Previous Session** | **`AXIS = RELIEF`** on R1; up10, up15, down15 tercile transfers | Report-only SGMC PROXY `0.09366 / 0.09252 / 0.08490` vs R1 `0.09608`; all were negative diagnostics, not slot candidates. |
+| **Next 3 Candidate Slots (`SLOT_PLAN.md`)** | **1.** `h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae` · **2.** `h33-h33-2-b2-PRUNEp3.7px-20261023-5508b0b9` · **3.** `h33-h33-2-b2-PRUNEp4.3px-20261023-21fa2b26` | Candidate sequence only, not an upload recommendation. Wait for each receipt; live `|delta|<0.01` is no evidence. The human selects/uploads at most one per slot. |
 <!-- CURRENT STATE END -->
 
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)

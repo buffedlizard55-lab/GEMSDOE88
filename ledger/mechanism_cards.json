@@ -346,5 +346,167 @@
     "non_fault_mimic": "det_elev is a local detrending, so 'basin' cells include low-relief piedmont ramps and Lake Lahontan shoreline benches that are not structural basins; a mimic is that the variant mostly exchanges two flavours of the same alluvial surface.",
     "predicted_sign_size": "MODEL predicted live delta -0.007 vs R1 (range -0.014 to -0.001). It is a sign control, not a slot candidate unless one of the up-section variants gains >= +0.01.",
     "falsifier": "A live gain >= +0.01 vs R1 falsifies the relief prior and points at concealed basin faults as the dominant private-truth reservoir, in which case the next build is a basin-directed reallocation at 30-50% dose."
+  },
+  "h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae": {
+    "axis": "PRUNE",
+    "value": "p3.2px",
+    "threshold_px": 3.2,
+    "threshold_m": 320.0,
+    "hypothesis": "Extending R0's exclusion from 300 m to 320 m removes a narrow fringe of catalogue-adjacent potential-field side-lobes while the fixed-count refill retains detections on independently corroborated H19-5 line support.",
+    "mechanism": "The organizer says known pixels are masked pixel-exactly, while adjacent pixels are scored normally. A constant N=37,654 isolates relocation: remove 2,702 parent dots through 320 m and refill the same count on the original H19-5 support strictly outside the collar. Each addition is selected by the shared metric's exact iterative expected-DTI marginal gain on one fixed, label-free four-line physical field (surface scarp, potential-field edge, strain/seismic, hydrothermal), not by an isolated-truth shortcut. No minimum-spacing optimization is added; nearest-neighbour change is disclosed as a possible confounder.",
+    "non_fault_mimic": "Long-wavelength magnetic/gravity side-lobes, pediment and alluvial-fan margins, and wave-cut shoreline breaks can parallel range-front structures without new fault slip. Conversely, a true antithetic splay or relay can lie inside the removed collar; the organizer explicitly allows new-fault truth within 300 m of known traces.",
+    "predicted_sign_size": "MODEL predicted live delta +0.002 vs R0, plausible range [-0.010,+0.012]. Projection interpolates/extrapolates the prior PRUNE p3px (+0.005 MODEL) and p4px (-0.009 MODEL) anchors; it is not a receipt or PROXY. Treat |live delta| < 0.01 as no evidence on public chunks.",
+    "falsifier": "A same-entity live receipt >= +0.01 vs R0 supports removal of side-lobe false positives at this collar. A receipt <= -0.01 falsifies that direction and indicates net fault truth was removed. A |delta| < 0.01 is inconclusive; compare the registered 320 m -> 370 m -> 430 m dose sequence only after receipts are supplied.",
+    "fixed_count": 37654,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 2702,
+      "n_removed": 2702,
+      "pct_changed_moved": 7.18,
+      "pct_changed_sym_diff": 14.35,
+      "min_dist_catalogue_px": 3.6056,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 2162
+    },
+    "ranking_basis": "Exact iterative marginal expected-DTI gain via vendor/gems57/metric.py and scripts/build_prune_variants.py::select_exact_marginal_dti_add; candidate pool is the original H19-5 binary support outside the threshold; fixed label-free physical field across all variants; no isolated-pixel shortcut or random tie score",
+    "four_line_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic, and hydrothermal lines; all single-channel canaries must be <= 0.90 before the field is used",
+    "nearest_neighbour_stats": {
+      "min_px": 1.0,
+      "mean_px": 3.5366144905630783,
+      "p05_px": 2.23606797749979,
+      "p95_px": 7.0710678118654755
+    },
+    "spacing_confounded_not_optimized": true,
+    "report_only_not_gates": [
+      "hide-and-recover catalogue PROXY",
+      "single-feature leakage canary",
+      "blind SGMC control"
+    ],
+    "references": [
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "The organizer describes pixel-exact masking of known USGS/INGENIOUS pixels; pixels adjacent to known traces are scored normally."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "The organizer describes new-fault truth as including new geometry and allows it to occur within 300 m of known traces; this is the key collar-loss confounder."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "The provided GeoDAWN resolution note reports 400 m line spacing in Area 2; used only as a positional-uncertainty context, not as a target label."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae",
+    "form_note": "R0 h33-h33-2-b2; PRUNE <= 3.2px (320m), fixed N=37,654, exact DTI refill; pred +0.002 MODEL"
+  },
+  "h33-h33-2-b2-PRUNEp3.7px-20261023-5508b0b9": {
+    "axis": "PRUNE",
+    "value": "p3.7px",
+    "threshold_px": 3.7,
+    "threshold_m": 370.0,
+    "hypothesis": "Extending the collar to 370 m may begin to remove genuine secondary splays that sit just beyond the kernel radius; exact marginal refill is predicted to recover only part of that lost credit.",
+    "mechanism": "The organizer says known pixels are masked pixel-exactly, while adjacent pixels are scored normally. A constant N=37,654 isolates relocation: remove 3,361 parent dots through 370 m and refill the same count on the original H19-5 support strictly outside the collar. Each addition is selected by the shared metric's exact iterative expected-DTI marginal gain on one fixed, label-free four-line physical field (surface scarp, potential-field edge, strain/seismic, hydrothermal), not by an isolated-truth shortcut. No minimum-spacing optimization is added; nearest-neighbour change is disclosed as a possible confounder.",
+    "non_fault_mimic": "Long-wavelength magnetic/gravity side-lobes, pediment and alluvial-fan margins, and wave-cut shoreline breaks can parallel range-front structures without new fault slip. Conversely, a true antithetic splay or relay can lie inside the removed collar; the organizer explicitly allows new-fault truth within 300 m of known traces.",
+    "predicted_sign_size": "MODEL predicted live delta -0.005 vs R0, plausible range [-0.020,+0.008]. Projection interpolates/extrapolates the prior PRUNE p3px (+0.005 MODEL) and p4px (-0.009 MODEL) anchors; it is not a receipt or PROXY. Treat |live delta| < 0.01 as no evidence on public chunks.",
+    "falsifier": "A same-entity live receipt >= +0.01 vs R0 supports removal of side-lobe false positives at this collar. A receipt <= -0.01 falsifies that direction and indicates net fault truth was removed. A |delta| < 0.01 is inconclusive; compare the registered 320 m -> 370 m -> 430 m dose sequence only after receipts are supplied.",
+    "fixed_count": 37654,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 3361,
+      "n_removed": 3361,
+      "pct_changed_moved": 8.93,
+      "pct_changed_sym_diff": 17.85,
+      "min_dist_catalogue_px": 4.0,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 868
+    },
+    "ranking_basis": "Exact iterative marginal expected-DTI gain via vendor/gems57/metric.py and scripts/build_prune_variants.py::select_exact_marginal_dti_add; candidate pool is the original H19-5 binary support outside the threshold; fixed label-free physical field across all variants; no isolated-pixel shortcut or random tie score",
+    "four_line_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic, and hydrothermal lines; all single-channel canaries must be <= 0.90 before the field is used",
+    "nearest_neighbour_stats": {
+      "min_px": 1.0,
+      "mean_px": 3.475241835948151,
+      "p05_px": 2.0,
+      "p95_px": 7.0
+    },
+    "spacing_confounded_not_optimized": true,
+    "report_only_not_gates": [
+      "hide-and-recover catalogue PROXY",
+      "single-feature leakage canary",
+      "blind SGMC control"
+    ],
+    "references": [
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "The organizer describes pixel-exact masking of known USGS/INGENIOUS pixels; pixels adjacent to known traces are scored normally."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "The organizer describes new-fault truth as including new geometry and allows it to occur within 300 m of known traces; this is the key collar-loss confounder."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "The provided GeoDAWN resolution note reports 400 m line spacing in Area 2; used only as a positional-uncertainty context, not as a target label."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp3.7px-20261023-5508b0b9",
+    "form_note": "R0 h33-h33-2-b2; PRUNE <= 3.7px (370m), fixed N=37,654, exact DTI refill; pred -0.005 MODEL"
+  },
+  "h33-h33-2-b2-PRUNEp4.3px-20261023-21fa2b26": {
+    "axis": "PRUNE",
+    "value": "p4.3px",
+    "threshold_px": 4.3,
+    "threshold_m": 430.0,
+    "hypothesis": "A 430 m collar, slightly wider than the reported 400 m GeoDAWN line spacing, will remove some real range-front step-fault/relay splays, so this upper bracket is expected to lose live DTI at fixed count.",
+    "mechanism": "The organizer says known pixels are masked pixel-exactly, while adjacent pixels are scored normally. A constant N=37,654 isolates relocation: remove 4,488 parent dots through 430 m and refill the same count on the original H19-5 support strictly outside the collar. Each addition is selected by the shared metric's exact iterative expected-DTI marginal gain on one fixed, label-free four-line physical field (surface scarp, potential-field edge, strain/seismic, hydrothermal), not by an isolated-truth shortcut. No minimum-spacing optimization is added; nearest-neighbour change is disclosed as a possible confounder.",
+    "non_fault_mimic": "Long-wavelength magnetic/gravity side-lobes, pediment and alluvial-fan margins, and wave-cut shoreline breaks can parallel range-front structures without new fault slip. Conversely, a true antithetic splay or relay can lie inside the removed collar; the organizer explicitly allows new-fault truth within 300 m of known traces.",
+    "predicted_sign_size": "MODEL predicted live delta -0.013 vs R0, plausible range [-0.030,+0.006]. Projection interpolates/extrapolates the prior PRUNE p3px (+0.005 MODEL) and p4px (-0.009 MODEL) anchors; it is not a receipt or PROXY. Treat |live delta| < 0.01 as no evidence on public chunks.",
+    "falsifier": "A same-entity live receipt >= +0.01 vs R0 supports removal of side-lobe false positives at this collar. A receipt <= -0.01 falsifies that direction and indicates net fault truth was removed. A |delta| < 0.01 is inconclusive; compare the registered 320 m -> 370 m -> 430 m dose sequence only after receipts are supplied.",
+    "fixed_count": 37654,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 4488,
+      "n_removed": 4488,
+      "pct_changed_moved": 11.92,
+      "pct_changed_sym_diff": 23.84,
+      "min_dist_catalogue_px": 4.4721,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 0
+    },
+    "ranking_basis": "Exact iterative marginal expected-DTI gain via vendor/gems57/metric.py and scripts/build_prune_variants.py::select_exact_marginal_dti_add; candidate pool is the original H19-5 binary support outside the threshold; fixed label-free physical field across all variants; no isolated-pixel shortcut or random tie score",
+    "four_line_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic, and hydrothermal lines; all single-channel canaries must be <= 0.90 before the field is used",
+    "nearest_neighbour_stats": {
+      "min_px": 1.0,
+      "mean_px": 3.367341272985471,
+      "p05_px": 2.0,
+      "p95_px": 6.708203932499369
+    },
+    "spacing_confounded_not_optimized": true,
+    "report_only_not_gates": [
+      "hide-and-recover catalogue PROXY",
+      "single-feature leakage canary",
+      "blind SGMC control"
+    ],
+    "references": [
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "The organizer describes pixel-exact masking of known USGS/INGENIOUS pixels; pixels adjacent to known traces are scored normally."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "The organizer describes new-fault truth as including new geometry and allows it to occur within 300 m of known traces; this is the key collar-loss confounder."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "The provided GeoDAWN resolution note reports 400 m line spacing in Area 2; used only as a positional-uncertainty context, not as a target label."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp4.3px-20261023-21fa2b26",
+    "form_note": "R0 h33-h33-2-b2; PRUNE <= 4.3px (430m), fixed N=37,654, exact DTI refill; pred -0.013 MODEL"
   }
 }
