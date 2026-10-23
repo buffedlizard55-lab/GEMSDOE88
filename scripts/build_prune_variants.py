@@ -827,8 +827,21 @@ def write_and_verify_variant(
     value: str,
     note_template: str,
     existing_shas: set[str],
+    *,
+    parent_id: str = PARENT_ID,
+    parent_sha_zeros: str = PARENT_SHA_ZEROS,
+    parent_sha_nan: str = PARENT_SHA_NAN,
+    date: str = FIXED_DATE,
+    min_catalogue_px: float = 0.0,
 ) -> dict:
-    """Write <id>.tif (NaN outside) + <id>-zeros.tif + .zip + .json and re-read verify all gates."""
+    """Write <id>.tif (NaN outside) + <id>-zeros.tif + .zip + .json and re-read verify all gates.
+
+    ``parent_id``/``parent_sha_*``/``date`` default to the R0 ``PRUNE`` family so the
+    original call sites are unchanged; later axes (e.g. ``SNAP`` on ``R1 = PRUNEp3px``)
+    pass their own parent so the filename states the parent that was actually edited.
+    ``min_catalogue_px`` lets a caller assert a stricter collar than "zero mass on
+    catalogue" (the brief's 3 px non-PRUNE rule) instead of reporting it.
+    """
     releases_dir.mkdir(parents=True, exist_ok=True)
     with rasterio.open(sample_path) as tpl:
         base_prof = tpl.profile.copy()
@@ -853,7 +866,7 @@ def write_and_verify_variant(
     arr_nan = np.where(foot, mask.astype(np.float32), np.nan).astype(np.float32)
     arr_zeros = np.where(foot, mask.astype(np.float32), 0.0).astype(np.float32)
 
-    prefix = f"{PARENT_ID}-{axis}{value}-{FIXED_DATE}"
+    prefix = f"{parent_id}-{axis}{value}-{date}"
     tmp_nan = releases_dir / f".tmp-{prefix}.tif"
     tmp_zeros = releases_dir / f".tmp-{prefix}-zeros.tif"
     with rasterio.open(tmp_nan, "w", **prof_nan) as dst:
@@ -918,15 +931,19 @@ def write_and_verify_variant(
     pct_moved = 100.0 * n_removed / n_parent
     pct_sym_diff = 100.0 * (n_added + n_removed) / n_parent
     assert 1.0 <= pct_moved <= 50.0, f"Moved % outside [1, 50]: {pct_moved:.2f}%"
+    if min_catalogue_px > 0.0:
+        assert float(dvals.min()) >= min_catalogue_px, (
+            f"min d_cat {dvals.min():.3f} px violates the {min_catalogue_px} px collar"
+        )
 
     note = note_template.format(sha8=sha8)
     assert len(note) <= 140, f"Form note > 140 chars ({len(note)}): {note}"
 
     receipt = {
         "id": vid,
-        "parent": PARENT_ID,
-        "parent_sha256_zeros": PARENT_SHA_ZEROS,
-        "parent_sha256_nan": PARENT_SHA_NAN,
+        "parent": parent_id,
+        "parent_sha256_zeros": parent_sha_zeros,
+        "parent_sha256_nan": parent_sha_nan,
         "axis": axis,
         "value": value,
         "seed": SEED,
@@ -1206,7 +1223,7 @@ def main() -> int:
         "recommendation",
     ]
     with ledger_path.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         for r in [*existing_rows, *new_ledger_rows]:
             writer.writerow({k: r.get(k, "") for k in fieldnames})

@@ -22,7 +22,12 @@ DATA = ROOT / "data"
 FEATURE_REPO = "https://github.com/buffedlizard55-lab/GEMSDOE.git"
 FEATURE_COMMIT = "bb2e070a3659f4f5c16ac927e62606f1f7f495a6"
 FEATURE_SHA256 = "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
-FEATURE_PARTS = [f"data/bridge/gems-geodawn-numerical-features.tif.part-00{i}" for i in range(5)]
+# Multipart paths pinned by registry/data_manifest.json at FEATURE_COMMIT.
+# The names below are the five ordered pieces of that exact 19-band raster.
+FEATURE_PARTS = [
+    f"data/bridge/gems-geodawn-numerical-features.tif.part-{i:03d}"
+    for i in range(5)
+]
 
 VALIDATION_GROUPS = [
   [
@@ -104,6 +109,16 @@ VALIDATION_GROUPS = [
         "registry/rasters/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
         "data/registry/family_60gemsdoe/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
         "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8"
+      ],
+      [
+        "registry/rasters/calib_h194_01894.tif",
+        "data/registry/family_60gemsdoe/calib_h194_01894.tif",
+        "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22"
+      ],
+      [
+        "registry/rasters/calib_h161_01855.tif",
+        "data/registry/family_60gemsdoe/calib_h161_01855.tif",
+        "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea"
       ]
     ]
   ],

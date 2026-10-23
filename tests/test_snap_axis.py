@@ -222,7 +222,11 @@ def test_emitted_snap_variants_pass_all_must_gates_and_displacement_invariants()
     shas_z = [r["sha256_zeros"] for r in sub_rows]
     assert len(shas) == len(set(shas)) == len(sub_rows)
     assert len(shas_z) == len(set(shas_z)) == len(sub_rows)
-    snap_rows = {r["id"]: r for r in sub_rows if r["axis"] == "SNAP"}
+    snap_rows = {
+        r["id"]: r
+        for r in sub_rows
+        if r["axis"] == "SNAP" and r["parent"] == "h33-h33-2-b2"
+    }
     assert len(snap_rows) == 6
     assert {r["value"] for r in snap_rows.values()} == {
         "w2E1",

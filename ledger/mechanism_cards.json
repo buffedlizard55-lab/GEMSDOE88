@@ -67,21 +67,79 @@
     "mechanism": "Known traces are masked pixel-exactly (Forum #11516), so a dot at 141-200 m (d in {sqrt(2), 2}) from a known fault with no off-catalogue splay earns T=0 while adding 0.2 to denominator D = 0.2(T + S - M) + 0.8|G|. Holding S = 37,654 isolates true flank toxicity from the 40,199 -> 37,654 mass drop that confounded GEMSDOE28 -> GEMSDOE32.",
     "non_fault_mimic": "1:24k-1:100k map-digitization offsets (+/-100 m) and 400 m GeoDAWN aeromagnetic gridding shoulders displace apparent ridge crests 100-200 m off the mapped fault centerline where only the single mapped fault plane exists in nature.",
     "predicted_sign_size": "MODEL predicted live delta -0.006 vs R0 (range -0.014 to +0.006; <0.01 absolute change counts as inconclusive on public chunks).",
-    "falsifier": "Live score gain >= +0.01 over R0 falsifies flank toxicity and proves 100-200 m damage zones harbor dense unmapped synthetic splays/re-digitized traces (Forum #11516/#11536), showing R0's prior gain came from lower mass rather than 2 px exclusion."
+    "falsifier": "Live score gain >= +0.01 over R0 falsifies flank toxicity and proves 100-200 m damage zones harbor dense unmapped synthetic splays/re-digitized traces (Forum #11516/#11536), showing R0's prior gain came from lower mass rather than 2 px exclusion.",
+    "references": [
+      {
+        "claim": "Competition DTI metric, alpha/beta and 300 m triangular kernel; source page supplied by the human brief (not fetched by the agent).",
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+      },
+      {
+        "claim": "Organizer forum clarification on pixel-exact known-fault masking and nearby new-fault truth; source page supplied by the human brief (not fetched by the agent).",
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+      },
+      {
+        "claim": "Organizer definition of new-fault geometry, including new geometry on known systems; source page supplied by the human brief (not fetched by the agent).",
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536"
+      },
+      {
+        "claim": "USGS GeoDAWN survey acquisition context; source URL supplied by the human brief (not fetched by the agent).",
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7"
+      }
+    ]
   },
   "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705": {
     "hypothesis": "Removing R0's remaining 2,171 dots inside the 300 m kernel halo (941 at 224 m, 670 at 283 m, 560 at 300 m) and reallocating them to top exact-marginal-gain un-emitted H19-5 multi-line fault ridges beyond 300 m improves live DTI while bringing 100% of dots into full >=3 px compliance.",
     "mechanism": "Under GeoDAWN's 400 m flight-line spacing and 150-200 m drape height, basement magnetic/gravity steps across mapped faults cast horizontal-gradient side-lobes 200-300 m wide. Reallocating those 2,171 dots onto uncovered multi-km H19-5 strands at d_cat > 3 px fills 283 m thinning gaps where line-like truth exceeds the 0.2*DTI (~0.056) threshold.",
     "non_fault_mimic": "Dipping normal-fault footwall/hanging-wall magnetic anomaly peaks shifted 200-300 m down-dip from the already-mapped surface trace, plus range-front alluvial fan apron breaks parallel to mapped master faults.",
     "predicted_sign_size": "MODEL predicted live delta +0.005 vs R0 (range -0.006 to +0.015; treat |delta| < 0.01 as within public-chunk noise unless directional across p1px -> R0 -> p3px).",
-    "falsifier": "Live score drop <= -0.01 vs R0 falsifies the 300 m side-lobe hypothesis and demonstrates that 200-300 m footwall/hanging-wall step-faults and tight relay splays carry higher true fault density than off-collar H19-5 ridges."
+    "falsifier": "Live score drop <= -0.01 vs R0 falsifies the 300 m side-lobe hypothesis and demonstrates that 200-300 m footwall/hanging-wall step-faults and tight relay splays carry higher true fault density than off-collar H19-5 ridges.",
+    "references": [
+      {
+        "claim": "Competition DTI metric, alpha/beta and 300 m triangular kernel; source page supplied by the human brief (not fetched by the agent).",
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+      },
+      {
+        "claim": "Organizer forum clarification on pixel-exact known-fault masking and nearby new-fault truth; source page supplied by the human brief (not fetched by the agent).",
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+      },
+      {
+        "claim": "Organizer definition of new-fault geometry, including new geometry on known systems; source page supplied by the human brief (not fetched by the agent).",
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536"
+      },
+      {
+        "claim": "USGS GeoDAWN survey acquisition context; source URL supplied by the human brief (not fetched by the agent).",
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7"
+      }
+    ]
   },
   "h33-h33-2-b2-PRUNEp4px-20261023-be9fd3d5": {
     "hypothesis": "Extending catalogue exclusion to 400 m (one full GeoDAWN flight-line spacing, removing 3,825 dots) over-prunes genuine antithetic range-front step-faults, synthetic splays, and hard-linked relay ramps that cluster 250-400 m from master faults, causing live DTI to turn negative.",
     "mechanism": "Great Basin normal-fault damage zones and step-over relays routinely host secondary slip planes 300-400 m from master scarps (Faulds & Hinz 2015), where a dot at d_cat > 3 px already suffers zero masked-catalogue kernel waste and earns full multi-pixel line credit T.",
     "non_fault_mimic": "Broad 400 m upward-continued aeromagnetic/isostatic-gravity regional gradients and pediment erosion surfaces flanking range-front faults without discrete secondary brittle slip.",
     "predicted_sign_size": "MODEL predicted live delta -0.009 vs R0 (range -0.022 to +0.004), bracketing the upper turning point of the collar curve (100 m, 200 m, 300 m, 400 m) at constant N = 37,654.",
-    "falsifier": "Live score gain >= +0.01 over both R0 and p3px falsifies narrow damage-zone splay clustering and proves test-set new faults are strongly depleted within 400 m of existing USGS/INGENIOUS traces (e.g., due to compilation buffer rules)."
+    "falsifier": "Live score gain >= +0.01 over both R0 and p3px falsifies narrow damage-zone splay clustering and proves test-set new faults are strongly depleted within 400 m of existing USGS/INGENIOUS traces (e.g., due to compilation buffer rules).",
+    "references": [
+      {
+        "claim": "Competition DTI metric, alpha/beta and 300 m triangular kernel; source page supplied by the human brief (not fetched by the agent).",
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+      },
+      {
+        "claim": "Organizer forum clarification on pixel-exact known-fault masking and nearby new-fault truth; source page supplied by the human brief (not fetched by the agent).",
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+      },
+      {
+        "claim": "Organizer definition of new-fault geometry, including new geometry on known systems; source page supplied by the human brief (not fetched by the agent).",
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536"
+      },
+      {
+        "claim": "USGS GeoDAWN survey acquisition context; source URL supplied by the human brief (not fetched by the agent).",
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7"
+      },
+      {
+        "claim": "Faulds & Hinz 2015 structural context for normal-fault stepovers/relay structures; citation URL already recorded in SLOT_PLAN.md.",
+        "url": "https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11072.pdf"
+      }
+    ]
   },
   "h33-h33-2-b2-SNAPridge2px-20261023-83d2d231": {
     "axis": "SNAP",
@@ -246,5 +304,26 @@
         "min_catalogue_distance_px": 2.23606797749979
       }
     }
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPg2f35-20261023-4c460fd4": {
+    "hypothesis": "H19-5 ridge crests sit a systematic 1-2 px off the true fault plane because GeoDAWN Area 2 was flown at 400 m spacing / 150-200 m drape; snapping the highest-gain third of dots onto the potential-field horizontal-gradient maximum moves mass onto the basement offset itself and raises live DTI at fixed count.",
+    "mechanism": "A normal fault offsets magnetisation and density across its plane, so |grad TMI| and |grad isostatic gravity| peak over the fault. Within the 3 px (300 m) triangular kernel a dot keeps credit 1 - d/3, so cutting a systematic 2 px offset to 0.5 px raises per-truth credit from ~0.33 to ~0.83 on the moved dots while consuming no extra mass.",
+    "non_fault_mimic": "400 m aeromagnetic flight-line corrugation and upward-continuation side-lobes produce horizontal-gradient maxima parallel to, but 100-300 m off, the mapped trace; welded-tuff caprock and Lake Lahontan shoreline breaks also produce strong gradients with no fault.",
+    "predicted_sign_size": "MODEL +0.002 live (range -0.010 to +0.014). Individual bands localise faults only weakly here (percentile rank at catalogue pixels 0.53-0.56 vs 0.50 background), so |delta| < 0.01 is the expected outcome and is itself the result: geometry is not the binding constraint.",
+    "falsifier": "Live delta <= -0.01 while d1f35 (same field, 1 px) is also negative falsifies the flight-line-offset hypothesis and shows R0/R1 ridge crests are already at or inside the noise floor; any gain >= +0.01 justifies a full re-detection on the same fields rather than more snapping."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPd2f35-20261023-a98ce2b8": {
+    "hypothesis": "Adding surface scarp and curvature evidence to the potential-field edges recovers blind faults whose geophysical offset is too deep or too weak to dominate |grad TMI|, so the composite snaps more dots onto real traces than the potential-field field alone.",
+    "mechanism": "Near-surface scarps put a step in detrended elevation (slope) and a ridge in the tilt/curvature operator at the same plane that carries the deeper density/magnetic offset; summing percentile ranks lets either charge the target while requiring neither, which is what a partially buried normal fault looks like.",
+    "non_fault_mimic": "Alluvial-fan channels, pediment edges and anthropogenic cut-slopes produce elevation slope and curvature ridges with no shear; curvature also lights up playa margins and the 1,330 m Lahontan shoreline.",
+    "predicted_sign_size": "MODEL +0.001 live (range -0.011 to +0.013). Paired with g2f35 the field effect should be small; if the composite wins by >= 0.01 over g2f35, surface scarps localise better than potential fields in this area.",
+    "falsifier": "d2f35 - g2f35 <= -0.01 means elevation-derived edges actively mislead and only potential-field geometry should be trusted in any later fusion step."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPd1f35-20261023-33783252": {
+    "hypothesis": "If R0/R1 ridge crests are already within ~1 px of the truth plane, a 1 px snap captures the remaining localisation gain at almost no kernel cost, whereas a 2 px snap overshoots and loses credit; the 1 px variant should therefore match or beat the 2 px variant.",
+    "mechanism": "A dot that is correct stays within 1-2 px of truth after a 1 px move, and a dot that is 2 px off gains without crossing to the far side of the feature. The asymmetric cost of overshoot (credit 1-d/3, hard zero at 3 px) makes the smaller move the lower-variance of the two.",
+    "non_fault_mimic": "Same as d2f35 (fan channels, pediment edges, shoreline breaks); at 1 px, gridding noise inside a single cell is the main non-geological attractor.",
+    "predicted_sign_size": "MODEL +0.003 live (range -0.009 to +0.015), the best of the three on the theory that displacement cost dominates field quality at this signal-to-noise.",
+    "falsifier": "d1f35 < d2f35 by >= 0.01 falsifies the 'already within 1 px' premise and says R2 (400 m flight spacing) really did leave a 1-2 px bias worth removing."
   }
 }
