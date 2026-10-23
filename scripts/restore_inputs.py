@@ -63,6 +63,36 @@ SOURCES = {
             ),
         },
     ),
+    "gems36": dict(
+        repo="GEMSDOE36",
+        ref="c9ad59ec6f969ed931d089a03044c1567a633e84",
+        files={
+            "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif": (
+                "registry/gems36_anderson_pinn.tif",
+                "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+            ),
+        },
+    ),
+    "gems70": dict(
+        repo="GEMSDOE70",
+        ref="158aec19800d4c7b8ca9fb94b06567e2b7d61e8d",
+        files={
+            "docs/downloads/gems70-p5-dual-submod300-oof38k-20261020.tif": (
+                "registry/gems70_p8_oof38k.tif",
+                "d0e41ce921afcf3af33b7d86d75f6a258653dfbb4d050e864babe643245f0ea8",
+            ),
+        },
+    ),
+    "gems73": dict(
+        repo="GEMSDOE73",
+        ref="eadf59cebba634cc68271408685bcd1346e422df",
+        files={
+            "docs/downloads/gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif": (
+                "registry/gems73_mcsc_blakely.tif",
+                "fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249",
+            ),
+        },
+    ),
 }
 TRAIN_HASH = "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
 
@@ -183,9 +213,9 @@ def main():
     targets = (
         ["grid"]
         if args.grid_only
-        else ["grid", "witness", "h33"]
+        else ["grid", "witness", "h33", "gems36", "gems70", "gems73"]
         if args.validation
-        else ["grid", "features", "witness", "h33"]
+        else ["grid", "features", "witness", "h33", "gems36", "gems70", "gems73"]
     )
     for key in targets:
         if key == "features":

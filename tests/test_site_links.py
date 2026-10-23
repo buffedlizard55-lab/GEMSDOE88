@@ -49,5 +49,8 @@ def test_pages_have_local_links_assets_and_clear_status():
                 linked.feed(target.read_text())
                 assert u.fragment in linked.ids, (page, href)
     assert (
+        docs / "downloads/gems88-str88-multiphysics-submod-37654-20261023-v1-DO-NOT-SUBMIT.tif"
+    ).is_file()
+    assert (
         docs / "downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif"
     ).is_file()

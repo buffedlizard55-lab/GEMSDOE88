@@ -1,22 +1,66 @@
 {
   "alpha": 0.2,
-  "best_comparable_control": "raw_control",
+  "best_comparable_control": "str88_spaced",
   "beta": 0.8,
   "bootstrap": {
     "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval.",
-    "clusters": 152,
+    "clusters": 157,
     "confidence": 0.95,
     "draws": 1000,
     "method": "paired physical spatial-cluster percentile",
     "seed": 88022
   },
-  "conditional_training": "LOQO visible-only labelled positives, noisy unlabeled negatives; no hidden truth feature",
+  "conditional_training": "LOQO visible-only labelled positives, prevalence-calibrated PU unlabeled negatives; zero hidden truth or catalogue proximity features",
   "evaluator_version": "gems57-pooled-hide-v2",
   "evidence_class": "HOLDOUT-DTI",
+  "experiment_id": "STR-88",
   "folds": [
     {
       "arms": {
         "candidate": {
+          "dti": 0.11040432430905608,
+          "emission": {
+            "expected_covered_credit": 3237.295885743112,
+            "expected_self_credit": 2409.2623872458935,
+            "n_dots": 8000,
+            "requested": 8000,
+            "rounds": 2,
+            "surrogate_dti": 0.23421688138367408
+          },
+          "fnw": 1572.114033765925,
+          "fpw": 7848.066151358521,
+          "tpw": 350.885966234075,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 40283,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.01068365244434001
+          }
+        },
+        "mgc88_incumbent": {
+          "dti": 0.035386955610740074,
           "emission": {
             "emitted": 8000,
             "poolsize": 200000,
@@ -43,6 +87,7 @@
           }
         },
         "raw_control": {
+          "dti": 0.022391513372657733,
           "emission": {
             "emitted": 8000,
             "poolsize": 200000,
@@ -63,6 +108,46 @@
             "n_visible_training": 40283,
             "noisy_pu_negative_sampling": true
           }
+        },
+        "str88_spaced": {
+          "dti": 0.09021386587103758,
+          "emission": {
+            "emitted": 8000,
+            "poolsize": 200000,
+            "radius_px": 2,
+            "requested": 8000
+          },
+          "fnw": 1637.8437463570965,
+          "fpw": 7827.301901965882,
+          "tpw": 285.1562536429035,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 40283,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.01068365244434001
+          }
         }
       },
       "boundary_buffer_px": 12,
@@ -75,6 +160,49 @@
     {
       "arms": {
         "candidate": {
+          "dti": 0.09587872928920504,
+          "emission": {
+            "expected_covered_credit": 4462.536535564387,
+            "expected_self_credit": 3371.6741003245115,
+            "n_dots": 9919,
+            "requested": 9919,
+            "rounds": 3,
+            "surrogate_dti": 0.27511937154944066
+          },
+          "fnw": 1991.27903053214,
+          "fpw": 9749.83081481523,
+          "tpw": 375.72096946785985,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 38391,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.010940792447259573
+          }
+        },
+        "mgc88_incumbent": {
+          "dti": 0.03623078857197331,
           "emission": {
             "emitted": 9919,
             "poolsize": 247975,
@@ -101,6 +229,7 @@
           }
         },
         "raw_control": {
+          "dti": 0.03339831723029029,
           "emission": {
             "emitted": 9919,
             "poolsize": 247975,
@@ -121,6 +250,46 @@
             "n_visible_training": 38391,
             "noisy_pu_negative_sampling": true
           }
+        },
+        "str88_spaced": {
+          "dti": 0.0619177002557878,
+          "emission": {
+            "emitted": 9919,
+            "poolsize": 247975,
+            "radius_px": 2,
+            "requested": 9919
+          },
+          "fnw": 2125.7059891403596,
+          "fpw": 9775.765177614125,
+          "tpw": 241.29401085964054,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 38391,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.010940792447259573
+          }
         }
       },
       "boundary_buffer_px": 12,
@@ -133,6 +302,49 @@
     {
       "arms": {
         "candidate": {
+          "dti": 0.08470051367888465,
+          "emission": {
+            "expected_covered_credit": 2485.0805329255236,
+            "expected_self_credit": 2164.7246634215117,
+            "n_dots": 9793,
+            "requested": 9793,
+            "rounds": 2,
+            "surrogate_dti": 0.20588080161092462
+          },
+          "fnw": 3354.8815023766056,
+          "fpw": 9604.303778898366,
+          "tpw": 426.11849762339455,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 32233,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.009098471412768233
+          }
+        },
+        "mgc88_incumbent": {
+          "dti": 0.035497840950639514,
           "emission": {
             "emitted": 9793,
             "poolsize": 244825,
@@ -159,6 +371,7 @@
           }
         },
         "raw_control": {
+          "dti": 0.025566737853920583,
           "emission": {
             "emitted": 9793,
             "poolsize": 244825,
@@ -179,6 +392,46 @@
             "n_visible_training": 32233,
             "noisy_pu_negative_sampling": true
           }
+        },
+        "str88_spaced": {
+          "dti": 0.058118050936313934,
+          "emission": {
+            "emitted": 9793,
+            "poolsize": 244825,
+            "radius_px": 2,
+            "requested": 9793
+          },
+          "fnw": 3490.1159209896678,
+          "fpw": 9610.39415417444,
+          "tpw": 290.88407901033224,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 32233,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.009098471412768233
+          }
         }
       },
       "boundary_buffer_px": 12,
@@ -191,6 +444,49 @@
     {
       "arms": {
         "candidate": {
+          "dti": 0.08815681216638534,
+          "emission": {
+            "expected_covered_credit": 2053.4904983584665,
+            "expected_self_credit": 1736.576954483986,
+            "n_dots": 7891,
+            "requested": 7891,
+            "rounds": 2,
+            "surrogate_dti": 0.1754600608496617
+          },
+          "fnw": 2877.6752823152783,
+          "fpw": 7744.858885892265,
+          "tpw": 372.3247176847218,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 34113,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.008987426613089348
+          }
+        },
+        "mgc88_incumbent": {
+          "dti": 0.029361360817543463,
           "emission": {
             "emitted": 7891,
             "poolsize": 197275,
@@ -217,6 +513,7 @@
           }
         },
         "raw_control": {
+          "dti": 0.025976910889091098,
           "emission": {
             "emitted": 7891,
             "poolsize": 197275,
@@ -237,6 +534,46 @@
             "n_visible_training": 34113,
             "noisy_pu_negative_sampling": true
           }
+        },
+        "str88_spaced": {
+          "dti": 0.056580206073688924,
+          "emission": {
+            "emitted": 7891,
+            "poolsize": 197275,
+            "radius_px": 2,
+            "requested": 7891
+          },
+          "fnw": 3012.483069981518,
+          "fpw": 7751.884355401444,
+          "tpw": 237.51693001848219,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 34113,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.008987426613089348
+          }
         }
       },
       "boundary_buffer_px": 12,
@@ -249,6 +586,49 @@
     {
       "arms": {
         "candidate": {
+          "dti": 0.10907276714198555,
+          "emission": {
+            "expected_covered_credit": 2528.33386416778,
+            "expected_self_credit": 2078.9786188602448,
+            "n_dots": 8000,
+            "requested": 8000,
+            "rounds": 2,
+            "surrogate_dti": 0.2017890122038812
+          },
+          "fnw": 1571.8223377917725,
+          "fpw": 7850.937575218098,
+          "tpw": 346.1776622082274,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 40211,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.010660742823995274
+          }
+        },
+        "mgc88_incumbent": {
+          "dti": 0.03262063051472436,
           "emission": {
             "emitted": 8000,
             "poolsize": 200000,
@@ -275,6 +655,7 @@
           }
         },
         "raw_control": {
+          "dti": 0.018896135959483595,
           "emission": {
             "emitted": 8000,
             "poolsize": 200000,
@@ -295,6 +676,46 @@
             "n_visible_training": 40211,
             "noisy_pu_negative_sampling": true
           }
+        },
+        "str88_spaced": {
+          "dti": 0.09964760985044804,
+          "emission": {
+            "emitted": 8000,
+            "poolsize": 200000,
+            "radius_px": 2,
+            "requested": 8000
+          },
+          "fnw": 1603.22080446005,
+          "fpw": 7807.839261057916,
+          "tpw": 314.7791955399501,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 40211,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.010660742823995274
+          }
         }
       },
       "boundary_buffer_px": 12,
@@ -307,6 +728,49 @@
     {
       "arms": {
         "candidate": {
+          "dti": 0.12029184202103921,
+          "emission": {
+            "expected_covered_credit": 4377.103322149004,
+            "expected_self_credit": 3334.0977446585894,
+            "n_dots": 9919,
+            "requested": 9919,
+            "rounds": 2,
+            "surrogate_dti": 0.27191685788433
+          },
+          "fnw": 1888.5998326969998,
+          "fpw": 9719.186060580047,
+          "tpw": 472.40016730300033,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 38240,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.010892333950299739
+          }
+        },
+        "mgc88_incumbent": {
+          "dti": 0.05521401862951783,
           "emission": {
             "emitted": 9919,
             "poolsize": 247975,
@@ -333,6 +797,7 @@
           }
         },
         "raw_control": {
+          "dti": 0.0355646385113284,
           "emission": {
             "emitted": 9919,
             "poolsize": 247975,
@@ -353,6 +818,46 @@
             "n_visible_training": 38240,
             "noisy_pu_negative_sampling": true
           }
+        },
+        "str88_spaced": {
+          "dti": 0.07998814628458628,
+          "emission": {
+            "emitted": 9919,
+            "poolsize": 247975,
+            "radius_px": 2,
+            "requested": 9919
+          },
+          "fnw": 2049.1021408301494,
+          "fpw": 9740.60716422218,
+          "tpw": 311.89785916985073,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 38240,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.010892333950299739
+          }
         }
       },
       "boundary_buffer_px": 12,
@@ -365,6 +870,49 @@
     {
       "arms": {
         "candidate": {
+          "dti": 0.08346588094494634,
+          "emission": {
+            "expected_covered_credit": 2581.641174236182,
+            "expected_self_credit": 2230.5397834032774,
+            "n_dots": 9793,
+            "requested": 9793,
+            "rounds": 2,
+            "surrogate_dti": 0.21081342912111348
+          },
+          "fnw": 3391.0254216383123,
+          "fpw": 9604.293235046986,
+          "tpw": 421.9745783616876,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 32033,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.009038651784056556
+          }
+        },
+        "mgc88_incumbent": {
+          "dti": 0.03911710072646214,
           "emission": {
             "emitted": 9793,
             "poolsize": 244825,
@@ -391,6 +939,7 @@
           }
         },
         "raw_control": {
+          "dti": 0.023937248710270274,
           "emission": {
             "emitted": 9793,
             "poolsize": 244825,
@@ -411,6 +960,46 @@
             "n_visible_training": 32033,
             "noisy_pu_negative_sampling": true
           }
+        },
+        "str88_spaced": {
+          "dti": 0.06649852885295408,
+          "emission": {
+            "emitted": 9793,
+            "poolsize": 244825,
+            "radius_px": 2,
+            "requested": 9793
+          },
+          "fnw": 3478.230085629712,
+          "fpw": 9584.45718980769,
+          "tpw": 334.7699143702879,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 32033,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.009038651784056556
+          }
         }
       },
       "boundary_buffer_px": 12,
@@ -423,6 +1012,49 @@
     {
       "arms": {
         "candidate": {
+          "dti": 0.11668102828199227,
+          "emission": {
+            "expected_covered_credit": 1976.0543187236826,
+            "expected_self_credit": 1702.8857359588146,
+            "n_dots": 7891,
+            "requested": 7891,
+            "rounds": 2,
+            "surrogate_dti": 0.17074206107669168
+          },
+          "fnw": 2963.724641281775,
+          "fpw": 7687.088067189425,
+          "tpw": 516.2753587182249,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 34236,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.009017722527238073
+          }
+        },
+        "mgc88_incumbent": {
+          "dti": 0.04650082689532962,
           "emission": {
             "emitted": 7891,
             "poolsize": 197275,
@@ -449,6 +1081,7 @@
           }
         },
         "raw_control": {
+          "dti": 0.026811622466062647,
           "emission": {
             "emitted": 7891,
             "poolsize": 197275,
@@ -469,6 +1102,46 @@
             "n_visible_training": 34236,
             "noisy_pu_negative_sampling": true
           }
+        },
+        "str88_spaced": {
+          "dti": 0.11129865817044271,
+          "emission": {
+            "emitted": 7891,
+            "poolsize": 197275,
+            "radius_px": 2,
+            "requested": 7891
+          },
+          "fnw": 2989.7955157987817,
+          "fpw": 7611.8258016679565,
+          "tpw": 490.2044842012182,
+          "training": {
+            "columns": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17
+            ],
+            "n_positives": 32000,
+            "n_unlabeled": 96000,
+            "n_visible_training": 34236,
+            "noisy_pu_negative_sampling": true,
+            "prevalence_calibrated_weights": true,
+            "prevalence_pi": 0.009017722527238073
+          }
         }
       },
       "boundary_buffer_px": 12,
@@ -486,23 +1159,66 @@
     "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
   },
   "paired_differences": {
+    "mgc88_incumbent": {
+      "ci95": [
+        0.044486113634224396,
+        0.07573157541676974
+      ],
+      "delta": 0.06076326922884967,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
     "raw_control": {
       "ci95": [
-        0.005638656815708435,
-        0.019674602034172636
+        0.058312948446250366,
+        0.08678926852271661
       ],
-      "delta": 0.0121797067571832,
+      "delta": 0.07294297598603287,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "withheld_positive_pixels": 22893
+    },
+    "str88_spaced": {
+      "ci95": [
+        0.01679552968053763,
+        0.02883000546005875
+      ],
+      "delta": 0.02313831195743077,
       "evaluator_version": "gems57-pooled-hide-v2",
       "evidence_class": "HOLDOUT-DTI",
       "withheld_positive_pixels": 22893
     }
   },
+  "paired_differences_spaced_vs_mgc88": {
+    "ci95": [
+      0.020712244958252635,
+      0.05440397859752735
+    ],
+    "delta": 0.0376249572714189,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evidence_class": "HOLDOUT-DTI",
+    "withheld_positive_pixels": 22893
+  },
   "pooled": true,
   "scores": {
     "candidate": {
       "ci95": [
-        0.026360055075052378,
-        0.05323626489265121
+        0.08777158637140234,
+        0.11104233804065076
+      ],
+      "dti": 0.09965471992401258,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "fnw": 19611.122082398793,
+      "fpw": 69808.56456899893,
+      "tpw": 3281.877917601192,
+      "withheld_positive_pixels": 22893
+    },
+    "mgc88_incumbent": {
+      "ci95": [
+        0.026214744646106927,
+        0.05230217149730139
       ],
       "dti": 0.03889145069516291,
       "evaluator_version": "gems57-pooled-hide-v2",
@@ -514,8 +1230,8 @@
     },
     "raw_control": {
       "ci95": [
-        0.017303192485922162,
-        0.03724830215156441
+        0.01764872766472414,
+        0.037797380155018455
       ],
       "dti": 0.026711743937979707,
       "evaluator_version": "gems57-pooled-hide-v2",
@@ -523,6 +1239,19 @@
       "fnw": 22022.194776415003,
       "fpw": 70557.63862741562,
       "tpw": 870.8052235849934,
+      "withheld_positive_pixels": 22893
+    },
+    "str88_spaced": {
+      "ci95": [
+        0.06376762755304156,
+        0.08825606020490838
+      ],
+      "dti": 0.07651640796658181,
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "evidence_class": "HOLDOUT-DTI",
+      "fnw": 20386.49727318734,
+      "fpw": 69710.07500591161,
+      "tpw": 2506.502726812666,
       "withheld_positive_pixels": 22893
     }
   },

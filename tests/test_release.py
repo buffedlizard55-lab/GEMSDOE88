@@ -45,6 +45,7 @@ def test_cgo88_and_band19_audit_receipt():
     doc_audit = json.loads(
         (ROOT / "docs/evidence/cgo88_holdout_and_band19_audit.json").read_text()
     )
+    mgc_holdout = json.loads((ROOT / "registry/mgc88_holdout_result.json").read_text())
     holdout = json.loads((ROOT / "registry/holdout_result.json").read_text())
     meta = json.loads((ROOT / "evidence/input-metadata.json").read_text())
     assert reg_audit == doc_audit
@@ -65,8 +66,14 @@ def test_cgo88_and_band19_audit_receipt():
         assert desc.startswith(entry["band_name"] + " - ")
         assert 0.5 <= entry["holdout_symmetric_auc"] <= 0.90
     comp = reg_audit["holdout_comparison"]
-    assert comp["mgc88_incumbent"] == holdout["scores"]["candidate"]
-    assert comp["raw_control"] == holdout["scores"]["raw_control"]
+    assert comp["mgc88_incumbent"] == mgc_holdout["scores"]["candidate"]
+    assert comp["raw_control"] == mgc_holdout["scores"]["raw_control"]
+    assert holdout["scores"]["mgc88_incumbent"]["dti"] == pytest.approx(
+        comp["mgc88_incumbent"]["dti"]
+    )
+    assert holdout["scores"]["raw_control"]["dti"] == pytest.approx(
+        comp["raw_control"]["dti"]
+    )
     assert comp["cgo88_pure"]["dti"] < comp["mgc88_incumbent"]["dti"]
     assert comp["cgo88_joint"]["dti"] < comp["mgc88_incumbent"]["dti"]
     assert comp["paired_delta_cgo88_pure_vs_mgc88"]["ci95"][1] < 0
@@ -74,6 +81,41 @@ def test_cgo88_and_band19_audit_receipt():
     assert reg_audit["decision"]["beats_mgc88_incumbent"] is False
     assert reg_audit["decision"]["promoted"] is False
     assert reg_audit["decision"]["verdict"] == "negative"
+
+
+def test_str88_experiment3_and_official_band_verification():
+    str_rec = json.loads((ROOT / "registry/str88_experiment_receipt.json").read_text())
+    doc_rec = json.loads((ROOT / "docs/evidence/str88_experiment_receipt.json").read_text())
+    holdout = json.loads((ROOT / "registry/holdout_result.json").read_text())
+    card = json.loads((ROOT / "registry/run_card.json").read_text())
+    assert str_rec == doc_rec
+    assert str_rec["experiment_id"] == card["experiment_id"] == "STR-88"
+    assert str_rec["experiment_budget_used"] == card["experiment_budget_used"] == 3
+    assert str_rec["beats_mgc88_with_positive_95ci"] is True
+    assert str_rec["like_for_like_discrete_uniqueness_passed"] is True
+    assert str_rec["literal_dense_prior_duplicate"] is True
+    assert str_rec["leakage_canaries"]["max_symmetric_auc"] <= 0.90
+    assert len(str_rec["leakage_canaries"]["features"]) == 18
+    assert holdout["scores"]["candidate"]["dti"] > holdout["scores"]["mgc88_incumbent"]["dti"]
+    assert holdout["paired_differences"]["mgc88_incumbent"]["ci95"][0] > 0.0
+    assert holdout["paired_differences"]["raw_control"]["ci95"][0] > 0.0
+    # Verify prospective IR-88-06 closure on preplacement registry
+    pre = card["correlation_overlap_vs_registry"]["surface_preplacement"]
+    assert len(pre) == 6
+    for entry in pre.values():
+        assert "positive_support_overlap_3px" in entry
+        assert "top_1pct_crest_overlap_3px" in entry
+        assert abs(entry["full_footprint_spearman"]) <= 0.90
+    # Verify official organizer reference notebook band/grid equivalence receipt
+    nb_ver = json.loads(
+        (ROOT / "evidence/official-reference-band-verification.json").read_text()
+    )
+    doc_nb_ver = json.loads(
+        (ROOT / "docs/evidence/official-reference-band-verification.json").read_text()
+    )
+    assert nb_ver == doc_nb_ver
+    assert nb_ver["all_19_band_tags_match_exact"] is True
+    assert len(nb_ver["bands"]) == 19
 
 
 def test_no_hallucinated_band_names_or_urls_in_docs():
@@ -87,9 +129,14 @@ def test_no_hallucinated_band_names_or_urls_in_docs():
         "radiometric_k",
     )
     for rel in (
+        "README.md",
+        "docs/index.html",
+        "docs/executive-summary.html",
         "docs/research.html",
         "research/candidate-hypotheses-20261022.md",
         "docs/research/candidate-hypotheses-20261022.md",
+        "research/candidate-hypotheses-20261023.md",
+        "docs/research/candidate-hypotheses-20261023.md",
         "knowledge/field-guide.md",
     ):
         text = (ROOT / rel).read_text()

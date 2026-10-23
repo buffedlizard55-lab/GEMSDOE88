@@ -45,13 +45,18 @@ def release_report(root=ROOT):
         (root / "docs" / "evidence" / "preplacement_surface_reaudit.json").read_text()
     )
     if surface_audit != published_surface_audit:
-        raise ValueError("published pre-placement surface audit differs from canonical receipt")
+        raise ValueError(
+            "published pre-placement surface audit differs from canonical receipt"
+        )
     if (
         surface_audit.get("evidence_class") != "REGISTRY-MEASUREMENT"
-        or surface_audit.get("reproduced_final_dots_pixel_identical_to_published_tif") is not True
+        or surface_audit.get("reproduced_final_dots_pixel_identical_to_published_tif")
+        is not True
         or int(surface_audit.get("positive_surface_cells_in_footprint", 0)) <= 0
     ):
-        raise ValueError("pre-placement surface reconstruction is incomplete or mismatched")
+        raise ValueError(
+            "pre-placement surface reconstruction is incomplete or mismatched"
+        )
     audit_rows = surface_audit.get("registry_checks", {})
     card_rows = card["correlation_overlap_vs_registry"]["surface_preplacement"]
     if set(audit_rows) != set(card_rows):
@@ -65,7 +70,9 @@ def release_report(root=ROOT):
             "duplicate",
         ):
             if card_rows[key].get(field) != row.get(field):
-                raise ValueError(f"run card pre-placement {key}.{field} differs from receipt")
+                raise ValueError(
+                    f"run card pre-placement {key}.{field} differs from receipt"
+                )
     if card != published_card:
         raise ValueError("website scientific run card differs from repository receipt")
     primary = holdout["scores"]["candidate"]
@@ -150,6 +157,33 @@ def release_report(root=ROOT):
         > 1e-9
     ):
         raise ValueError("prior/release overlap assertion stale")
+    discrete_witnesses = {
+        "H33": root / "data" / "registry" / "h33_education.tif",
+        "GEMSDOE36": root / "data" / "registry" / "gems36_anderson_pinn.tif",
+        "GEMSDOE70": root / "data" / "registry" / "gems70_p8_oof38k.tif",
+        "GEMSDOE73": root / "data" / "registry" / "gems73_mcsc_blakely.tif",
+        "MGC88_exp1": root
+        / "docs"
+        / "downloads"
+        / "gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+    }
+    discrete_overlaps = {}
+    final_dots_card = card["correlation_overlap_vs_registry"]["final_dots"]
+    for dkey, dpath in discrete_witnesses.items():
+        if dkey in final_dots_card and dpath.is_file():
+            entry = final_dots_card[dkey]
+            if digest(dpath) != entry["sha256"]:
+                raise ValueError(f"discrete witness SHA mismatch on {dkey}")
+            with rasterio.open(dpath) as dds:
+                d_arr = dds.read(1)
+            d_meas = uniqueness.dot_overlap(
+                raster > 0, (np.isfinite(d_arr) & (d_arr > 0)) & gd.footprint, 3
+            )
+            if abs(d_meas - entry["forward_dot_overlap_3px"]) > 1e-9:
+                raise ValueError(f"stale discrete dot overlap on {dkey}")
+            if d_meas > 0.70:
+                raise ValueError(f"discrete sibling duplicate (>0.70) on {dkey}")
+            discrete_overlaps[dkey] = d_meas
     release_ok = bool(
         report["ok"]
         and local["all_checks_passed"]
@@ -171,6 +205,8 @@ def release_report(root=ROOT):
         zip_one_matching_tif=True,
         registry_witness_sha256=cert["witness_sha256"],
         registry_forward_overlap_3px=measured,
+        discrete_sibling_overlaps_3px=discrete_overlaps,
+        like_for_like_discrete_unique=all(v <= 0.70 for v in discrete_overlaps.values()),
         preplacement_surface_audit_sha256=digest(
             root / "registry" / "preplacement_surface_reaudit.json"
         ),
@@ -178,8 +214,7 @@ def release_report(root=ROOT):
             "reproduced_final_dots_pixel_identical_to_published_tif"
         ],
         preplacement_surface_support_overlaps_3px={
-            key: row["forward_support_overlap_3px"]
-            for key, row in audit_rows.items()
+            key: row["forward_support_overlap_3px"] for key, row in audit_rows.items()
         },
         preplacement_surface_registry_duplicate={
             key: row["duplicate"] for key, row in audit_rows.items()
