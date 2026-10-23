@@ -1,0 +1,146 @@
+{
+  "schema_version": 2,
+  "updated_utc": "2026-10-23T03:45:00Z",
+  "policy": "Agent Brief v2 §4.2–§4.3: SHA-256 verify all pinned inputs before use. Zero contact with dropbox.com or drivendata.org. Competition rasters remain gitignored in data/ and excluded from all commits and releases.",
+  "public_mirror_flag": {
+    "status": "FLAGGED_DATA_USE_UNCHECKED",
+    "detail": "Sibling public GitHub repositories buffedlizard55-lab/GEMSDOE, buffedlizard55-lab/GEMSDOE24, and buffedlizard55-lab/60GEMSDOE host mirrors of login-walled DrivenData competition files (training_features.tif, labels.tif, existing_faults.tif, sample_submission.tif) with data-use redistribution terms unchecked. Logged in IRREGULARITIES.md (IR-88-17); GEMSDOE88 never tracks or releases competition input rasters."
+  },
+  "files": [
+    {
+      "id": "sample_submission",
+      "local_path": "data/bridge/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597,
+      "source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/data/official/sample_submission.tif",
+      "upstream_origin": "DrivenData competition #306 grid/footprint template (owner mirror; not organizer-authenticated)",
+      "license": "Competition data (data-use redistribution terms unchecked on public sibling mirror; gitignored locally)"
+    },
+    {
+      "id": "existing_faults",
+      "local_path": "data/bridge/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/data/official/existing_faults.tif",
+      "upstream_origin": "USGS/INGENIOUS mapped fault catalogue raster on competition grid (owner mirror)",
+      "license": "USGS/DOE INGENIOUS public-domain source rasterized on competition grid (gitignored locally)"
+    },
+    {
+      "id": "training_features",
+      "local_path": "data/training_features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844,
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE/tree/bb2e070a3659f4f5c16ac927e62606f1f7f495a6/data/bridge",
+      "upstream_origin": "19-band competition geophysical/topographic stack (USGS GeoDAWN + INGENIOUS derived; owner mirror)",
+      "license": "Competition feature stack (flagged public sibling mirror; gitignored locally)"
+    },
+    {
+      "id": "parent_r0_zeros",
+      "local_path": "data/registry/h33_education.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "bytes": 219065,
+      "source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
+      "upstream_origin": "Parent R0 h33-h33-2-b2 (-zeros encoding, 37,654 dots, CLAIM 0.2778)",
+      "license": "Competitor own prior build artifact"
+    },
+    {
+      "id": "parent_r0_nan",
+      "local_path": "data/registry/family_60gemsdoe/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "bytes": 355443,
+      "source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "upstream_origin": "Parent R0 h33-h33-2-b2 (-nan encoding, 37,654 dots, pixel-identical inside footprint)",
+      "license": "Competitor own prior build artifact"
+    },
+    {
+      "id": "anc_h19_5",
+      "local_path": "data/registry/family_60gemsdoe/calib_h195_01922.tif",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "bytes": 1712322,
+      "source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/calib_h195_01922.tif",
+      "upstream_origin": "Lineage ancestor H19-5 multi-line corroborated ridge field (121,131 px, CLAIM 0.1922)",
+      "license": "Competitor own prior build artifact"
+    },
+    {
+      "id": "anc_h19_4",
+      "local_path": "data/registry/family_60gemsdoe/calib_h194_01894.tif",
+      "sha256": "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22",
+      "bytes": 1716768,
+      "source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/calib_h194_01894.tif",
+      "upstream_origin": "Lineage corroborator H19-4 ridge field (CLAIM 0.1894)",
+      "license": "Competitor own prior build artifact"
+    },
+    {
+      "id": "anc_h16_1",
+      "local_path": "data/registry/family_60gemsdoe/calib_h161_01855.tif",
+      "sha256": "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea",
+      "bytes": 1718028,
+      "source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/calib_h161_01855.tif",
+      "upstream_origin": "Lineage corroborator H16-1 baseline ridge field (CLAIM 0.1855)",
+      "license": "Competitor own prior build artifact"
+    },
+    {
+      "id": "anc_d1_5",
+      "local_path": "data/registry/family_60gemsdoe/calib_d15_02477.tif",
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "bytes": 1632732,
+      "source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/calib_d15_02477.tif",
+      "upstream_origin": "Lineage step D1.5 (dot_thin(H19-5, 1.5), 60,069 dots, CLAIM 0.2477)",
+      "license": "Competitor own prior build artifact"
+    },
+    {
+      "id": "anc_d2_8",
+      "local_path": "data/registry/family_60gemsdoe/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "bytes": 1603424,
+      "source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "upstream_origin": "Lineage step D2.8 (dot_thin(H19-5, 2.8), 44,090 dots, CLAIM 0.2600)",
+      "license": "Competitor own prior build artifact"
+    },
+    {
+      "id": "anc_solo_d2_8",
+      "local_path": "data/registry/family_60gemsdoe/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+      "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "bytes": 830036,
+      "source_url": "https://github.com/buffedlizard55-lab/60GEMSDOE/blob/02563d07fb85d2f4d35887503d380d34d4017197/registry/rasters/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+      "upstream_origin": "Lineage step SOLO-D2.8 (D2.8 minus d_cat<=1 px, 40,199 dots, CLAIM 0.2708)",
+      "license": "Competitor own prior build artifact"
+    },
+    {
+      "id": "gdr_wellspring_in_footprint",
+      "local_path": "data/external/gdr_wellspring_in_footprint.csv",
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "bytes": 2146771,
+      "source_url": "https://gdr.openei.org/submissions/1391",
+      "upstream_origin": "DOE GDR 1391 INGENIOUS Well & Spring Temperature and Chemistry (DOI 10.15121/1881483); dist_known_fault_px excluded from features",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "ext_lidar_scarp_u8",
+      "local_path": "data/external/lidar_scarp_features_u8.tif",
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+      "bytes": 36943606,
+      "source_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/",
+      "upstream_origin": "USGS 3DEP 1 m DEM derived scarp amplitude/step/asymmetry bands (706 tiles)",
+      "license": "US Public Domain (17 U.S.C. § 105)"
+    },
+    {
+      "id": "ext_geodawn_rad_u8",
+      "local_path": "data/external/geodawn_rad_u8.tif",
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+      "bytes": 26612970,
+      "source_url": "https://doi.org/10.5066/P93LGLVQ",
+      "upstream_origin": "USGS GeoDAWN radiometric K/Th/U/TC grids",
+      "license": "US Public Domain (17 U.S.C. § 105)"
+    },
+    {
+      "id": "sgmc_faults_control",
+      "local_path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602,
+      "source_url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d",
+      "upstream_origin": "USGS State Geologic Map Compilation (SGMC) mapped faults rasterized to 100 m grid — REPORT-ONLY evaluation control, never used in model or ranking",
+      "license": "US Public Domain (17 U.S.C. § 105)"
+    }
+  ]
+}

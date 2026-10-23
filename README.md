@@ -9,12 +9,15 @@
 
 ## CURRENT STATE (agent brief v2 — human must confirm ledger dates)
 
-- **Parent R0:** `h33-h33-2-b2` (GEMSDOE32) — 37,654 dots, 0 within 2 px of catalogue, sha256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`, CLAIM 0.2778 (no receipt in `ledger/`).
-- **Best RECEIPT:** none yet (all HOLDOUT-DTI only; H88-UGFV 0.1770 [0.1618,0.1921] n=22,893, seed20+30 pooled).
-- **TOP_PUBLIC:** 0.4413 (#1 xiaofanhu, 2026-10-22) — supersedes prompt's stale 0.3195; verify live at https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
-- **Slots left this week:** 3 / 3 (0 scored uploads this rolling week, 2026-10-23) / total to deadline 2026-12-03: ~21 (≈7 weeks ×3).
-- **This session AXIS:** MASS — built 3 variants of R0 differing only on MASS (drop 10% / add 10% / drop 20%, by parent ranking rebuilt from distance+rand seed 88/90; 1-50% change, 0 catalogue mass, ≥2 px collar; NaN outside + -zeros fallback; re-read verified).
-- **Next 3 slots:** 1) `h33-h33-2-b2-MASSm10minus-20261023-7132935e` (33,889, -0.008 MODEL) 2) `h33-h33-2-b2-MASSm10plus-20261023-82673b57` (41,419, +0.004 MODEL) 3) CONCENTRATION 15% km-block move (CV report, see `SLOT_PLAN.md`). See `ledger/submissions.csv` and `releases/` for form notes ≤140 chars.
+- **Parent R0:** `h33-h33-2-b2` (`GEMSDOE32`) — rebuilt bit-for-bit from 5-stage `H19-5` lineage (`37,654` unit dots, `0` within `2 px` of catalogue; `zeros` sha256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`, `nan` sha256 `baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd`), `0.2778` `CLAIM` (no receipt in `ledger/`).
+- **Best RECEIPT:** none on file yet (`receipt_score` blank across `ledger/submissions.csv`; human supplies verbatim portal receipt + timestamp).
+- **TOP_PUBLIC:** `UNVERIFIED` live (prior local `status.json` logged `0.4413` `CLAIM` on `2026-10-22`; agent never fetches `drivendata.org` — human must confirm live value + date at https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/).
+- **Slots left this week / total:** `__ / 3` rolling week (`2026-10-23`, human confirms) · max `18` public slots (`6 weeks × 3/week`) to `2026-12-03` (`23:59 UTC`) + **1 blind final selection** scoring both Round 1 (`$50K`) & Round 2 (`$250K`).
+- **This session AXIS:** **`PRUNE` at fixed count `N = 37,654`** (unbuilt axis; replaces PR #14's `DEPRECATED` `rng.random()` `MASS` rows without mass confounding). Built 3 deterministic variants of `R0` (`seed=20261023`, `15/15` SHA-256 inputs verified, `15/15` unmasked physical canaries `<= 0.5693 <= 0.90`, `0` catalogue mass, `NaN`-outside + `-zeros.tif` fallback, disk re-read verified):
+  1. **`h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`** (`<=3 px` / `300 m` kernel radius, `37,654` dots, `5.77%` moved, `0` within `3 px`; **`+0.005` `MODEL`**; blind USGS `SGMC` peak `0.09608` `PROXY`, `12 km` CV `0.5700`) — **recommended Slot 1**
+  2. **`h33-h33-2-b2-PRUNEp1px-20261023-0542a27c`** (`<=1 px` / `100 m`, `37,654` dots, `6.76%` moved; **`-0.006` `MODEL`**; `SGMC` `0.09093` `PROXY`, post-prune holdout `0.03015` `[0.0269, 0.0334]` `n=22,663` `PROXY`, `12 km` CV `0.5647`) — **Slot 2 flank-toxicity control**
+  3. **`h33-h33-2-b2-PRUNEp4px-20261023-be9fd3d5`** (`<=4 px` / `400 m` halo, `37,654` dots, `10.16%` moved, `0` within `4 px`; **`-0.009` `MODEL`**; `SGMC` `0.09447` `PROXY`, `12 km` CV `0.5937`) — **Slot 3 tip-loss bracket**
+  See [`SLOT_PLAN.md`](SLOT_PLAN.md), [`docs/SUBMIT.md`](docs/SUBMIT.md), [`ledger/submissions.csv`](ledger/submissions.csv), and [`IRREGULARITIES.md`](IRREGULARITIES.md).
 
 ---
 

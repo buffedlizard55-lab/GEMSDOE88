@@ -1,35 +1,25 @@
-# SLOT PLAN — GEMS Prize (DrivenData #306) — Entity week tracking
+# SLOT_PLAN — Single-Entity Schedule (3 Slots/Week · 1 Blind Final File by 2026-12-03)
 
-> **Deadline:** 2026-12-03 17:00 ET (confirm on competition page). **Quota:** 3 scored submissions / rolling week, 1 final blind pick. **Week claimed:** 2026-10-23. **Slots left this week:** 3/3 (0 scored uploads this roll). **Total slots to deadline:** ~21 (7 weeks ×3).
+**Entity budget:** `1` competitor (`buffedlizard55-lab`), `<= 3` live uploads/rolling week, **6 weeks left (`2026-10-23 -> 2026-12-03`, max `18` public slots)**, **ONE blind final file** judged on private Round 1 (`$50K`) & Round 2 (`$250K`) truth (DrivenData #306 rules: https://www.drivendata.org/competitions/306/competition-doe-gems/). Parent **`R0 = h33-h33-2-b2`** (`37,654` dots, `0` within `2 px`, `0.2778` `CLAIM`) rebuilt byte-for-byte from 5-stage `H19-5` lineage (`c55bafc4...` / `baeae321...`). Duplicate historical uploads collapsed in `ledger/historical_climb.csv` (`5` unique rungs); PR #14 `MASS` rows marked `DEPRECATED` (`rng.random()` ranking bug; see `IRREGULARITIES.md`).
 
-## This session (AXIS=MASS) — built 2026-10-23
+## Week 1 (`2026-10-23`) — Active Axis: `PRUNE` at Fixed Count `N = 37,654`
 
-Parent **R0 = h33-h33-2-b2 (GEMSDOE32)**: 37,654 unit-mass dots, 0 within 2 px of catalogue, `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`. Claimed 0.2778 CLAIM (no receipt in ledger/). Verified grid SHA: sample_submission `2176d08e...`, existing_faults `7ba308cc...`.
+Why `PRUNE` first: `H19-5 -> D2.8 (0.2600) -> SOLO (0.2708) -> R0 (0.2778)` `CLAIM` conflated collar radius with dot count (`44,090 -> 40,199 -> 37,654`) and stopped at `2 px`, leaving `2,171` `R0` dots inside `(2, 3] px` (`300 m` DTI kernel radius). Varying collar radius $B \in \{1, 3, 4\}\text{ px}$ around $R_0$ ($B=2$) at **exact `S = 37,654`** via exact marginal-DTI `add`/`drop` isolates collar physics cleanly:
 
-| ID | Axis | Value | n_dots | % changed | sha8 | Predicted live Δ | Status |
-|---|---|---|---|---|---|---|---|
-| h33-h33-2-b2-MASSm10minus-20261023-7132935e | MASS | m10minus (drop lowest 10%) | 33,889 | 10.00% | 7132935e | -0.008 | BUILT |
-| h33-h33-2-b2-MASSm10plus-20261023-82673b57 | MASS | m10plus (add next 10%) | 41,419 | 10.00% | 82673b57 | +0.004 | BUILT |
-| h33-h33-2-b2-MASSm20minus-20261023-6c73303c | MASS | m20minus (drop lowest 20%) | 30,123 | 20.00% | 6c73303c | -0.018 | BUILT |
+| Slot | Release ID | Collar $B$ | Moved vs `R0` | $\min d_{\text{cat}}$ | Holdout-DTI `PROXY` (`n=22,663`, 95% CI) | Off-Cat `SGMC` `PROXY` (`n=62,703`) | `12 km` / `10 km` CV | Pred $\Delta$ Live (`MODEL`) | Decision Rule |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|
+| **1** | `...-PRUNEp3px-20261023-6f7ae705` | `<=3 px` (`300 m`) | `5.77%` (`2,171`) | `3.16 px` | `0.00000` `[0, 0]`* | **`0.09608`** | **`0.5700`** / `0.6405` | **`+0.005`** | Promote as new `R1` if `RECEIPT >= R0 + 0.01` |
+| **2** | `...-PRUNEp1px-20261023-0542a27c` | `<=1 px` (`100 m`) | `6.76%` (`2,545`) | `1.41 px` | `0.03015` `[0.0269, 0.0334]` | `0.09093` | `0.5647` / `0.6322` | **`-0.006`** | Tests if `1–2 px` flank hurts at constant `N` |
+| **3** | `...-PRUNEp4px-20261023-be9fd3d5` | `<=4 px` (`400 m`) | `10.16%` (`3,825`) | `4.12 px` | `0.00000` `[0, 0]`* | `0.09447` | `0.5937` / `0.6644` | **`-0.009`** | Tests if `3–4 px` prune clips real splay tips |
 
-All 3 keep ≥2 px from catalogue (parent's 2 px rule) and 0 on catalogue. Inside footprint values {0,1}, outside NaN (plus -zeros fallback). Re-read verified.
+*\*Triangle-inequality note:* Any post-prune holdout $H \subset C$ has $d(x, H) \ge d(x, C) > 3\text{ px} \Rightarrow \ker(x, H) \equiv 0$, proving mathematically why post-hoc catalogue holdout anti-correlated with `0.2600 -> 0.2708 -> 0.2778` while independent off-catalogue USGS `SGMC` faults (`https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d`) peak at `p3px = 0.09608` and turn over at `p4px = 0.09447` as `12 km` CV exits `[0.51, 0.59]`.
 
-**Mechanism summary:** Rank = 0.6·norm(dist_>2px/50)+0.4·rand(seed88) on parent; candidate pool ranked identically on allowed_2px (seed90). Marginal DTI threshold ~0.056 at DTI 0.28. Low tail dominated by Lahontan benches + E-W flight-line corrugation mimics.
+## Weeks 2–6 Roadmap (`2026-10-30 -> 2026-12-03`)
 
-## Next 3 slots in order (default wk1-2 plan)
-
-1. **Slot 1 — MASSm10minus (33,889)** — Least risky mass elasticity probe. If Δ ≥+0.01 live, parent over-dense → advance to MASSm20minus/m30minus; if Δ ≤-0.01, parent near-optimal mass, pivot to CONCENTRATION. Falsifier in `ledger/mechanism_cards.json`.
-
-2. **Slot 2 — MASSm10plus (41,419)** — Tests tip-relay undersampling. If Δ ≥+0.01, add logic validated → next combine MASS+PRUNE; if Δ ≤-0.015, added dots are outflow/pluton noise, abandon add path, try CONCENTRATION.
-
-3. **Slot 3 — CONCENTRATION 15% (1 km blocks, CV report)** — Move 15% dots from lowest-prior to highest-prior 10 px (1 km) blocks (prior = parent density + physics tip-beam). Report CV before/after (H33 CV ~0.55; best files 0.51-0.59). If CV→0.58 and Δ>+0.01, evidence for km-scale geothermal focus; if CV→0.70 and Δ<0, over-concentration penalty.
-
-## Weeks to deadline (7 weeks, 21 slots max, 1 final blind)
-
-- **Wk1-2 (now → 11-05):** MASS (3 variants above), CONCENTRATION (m10/m15/m20, same count, block CV 0.51-0.59), SNAP (≤2 px snap to edge/scarp, mean displacement report, count fixed), PRUNE (≤1/≤2/≤3 px, refill count), RELIEF (basin/piedmont/range-front tercile shifts 10-15%, count fixed). Each (AXIS,value) built once; check ledger.
-
-- **Wk3-4:** Combine two best axes by live Δ (e.g., best MASS + best CONCENTRATION). Pre-register fusion (e.g., MASSm10minus + CONC15) at identical mass, keep 1-50% change budget.
-
-- **Wk5-6:** Confirm leader on private-like holdout (PROXY, never gate), pick final + fallback, re-validate format of both (CRS EPSG:32611 3730×3292 float32 [0,1] NaN outside), disclose AI_USE.md, submit single blind file per Rules §3.4.
-
-> Evidence labels: RECEIPT (submission-page receipt) | CLAIM (owner-reported) | PROXY (local holdout) | MODEL (projection). Treat Δ<0.01 live as no evidence (public chunks only).
+- **Week 2 (Slots 4–6) — `MASS` (Physics-Ranked, Unconfounded):** Using `R1 = argmax(Week 1 RECEIPT)` (`>=3 px`), test `-10%` (`33,889`), `+10%` (`41,419`), `-20%` (`30,123`) ranked strictly by exact multi-pixel marginal DTI gain on unmasked 4-line physics (never random tie-breaking).
+- **Weeks 3–4 (Slots 7–12) — Mechanism-Backed Structural Axes** (one axis/week on best `RECEIPT` parent; keep iff `Delta RECEIPT >= +0.01`):
+  1. **`RELAY_TIP_STRESS` (Anisotropic Crack-Tip & Relay Breaching):** Replace isotropic `d_cat > 3 px` circle with directional crack-tip aperture (`r_tip = 1.5 px` within $\pm 22^\circ$ of mapped terminal strike; `r_flank = 3.2 px` normal to trace) plus Coulomb-tension relay bridges across `<2.5 km` en-échelon stepovers (Pollard & Segall 1987, https://doi.org/10.1016/B978-0-12-066266-1.50009-0). *Confounder:* E-W GeoDAWN flight-line tie ripples and range-front alluvial fan channels crossing fault tips. *Falsifier:* `< +0.01` live gain over isotropic `p3px` at fixed mass.
+  2. **`DIP_OFFSET_ASYM` (Andersonian $60^\circ$ Hanging-Wall Potential-Field Offset):** Score candidate scarp ridges (`0 m` LiDAR/elevation step) by pairing them with down-dip horizontal gravity gradient (`Band 18`) and basement slope (`Band 15`) shifted `300–900 m` into the hanging wall rather than zero-offset vertical co-location (Faulds & Hinz 2015, https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11072.pdf). *Confounder:* flat-lying welded tuff caprock edges and Pleistocene Lake Lahontan shorelines (`1,212–1,334 m`), which create sharp scarps with zero hanging-wall basement step. *Falsifier:* `< +0.01` live gain vs co-located potential-field scoring.
+  3. **`HYDRO_UPFLOW_GATE` (Quaternary Dilation-Conduit Geothermometry & Potassic Alteration):** Re-allocate constant-count dots toward `d_cat > 3 px` strands corroborated by quartz/chalcedony geothermometer anomalies (DOE GDR 1391, https://gdr.openei.org/submissions/1391), airborne K/Th adularia alteration (GeoDAWN, https://doi.org/10.5066/P93LGLVQ), and MT clay-cap gradients (`Band 17`). *Confounder:* lateral down-slope thermal outflow plumes in permeable piedmont gravels away from parent conduits. *Falsifier:* `< +0.01` live gain vs pure structural geometry.
+- **Week 5 (Slots 13–15) — Orthogonal Fusion & Sub-Pixel `SNAP`:** Combine ONLY axes with `RECEIPT >= +0.01` via exact marginal-DTI submodular allocation (`12 km` CV held inside `0.51–0.59`); test `1 px` LiDAR scarp ridge snap.
+- **Week 6 (Slots 16–18, by `2026-12-03`) — Blind Final Selection:** Re-verify reproducibility on `RECEIPT` champion; reserve 1 slot for conservative `R0`/`R1` hedge; lock **1 single final submission** avoiding public-split overfitting across the 87% blind holdout.
