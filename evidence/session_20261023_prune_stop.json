@@ -1,8 +1,8 @@
 {
   "schema": "gems88.session-start-audit.v1",
   "date_utc": "2026-10-23",
-  "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
-  "origin_main_sha_at_explicit_fetch": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+  "git_sha": "c8d4f1db414dfbb061187862475be47479323c66",
+  "origin_main_sha_at_explicit_fetch": "c8d4f1db414dfbb061187862475be47479323c66",
   "axis": "PRUNE",
   "manifest_inputs_verified": 15,
   "r0_exact_rebuild": true,
