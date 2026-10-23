@@ -20,12 +20,12 @@ Both files were re-read from disk and passed: one float32 band; EPSG:32611; shap
 
 ## Concurrent MASS artifacts — HOLD, not submission-ready
 
-These three files arrived through the concurrent branch merged into this PR. They use the parent's **2 px**, not the currently required **3 px**, non-PRUNE exclusion. Do not upload them under this session's gates. Their historical dot-overlap/rank-correlation checks are not used as uniqueness gates; exact hashes are recorded in the ledger.
+PR #17's audit reproduced all three arrays and corrected their interpretations/predictions (`registry/mass_ranking_audit.json`). They do not use a parent model ranking. They also retain the parent's **2 px**, not the currently required **3 px**, non-PRUNE exclusion, so **do not upload them under this session's gates**. Historical dot-overlap/rank-correlation checks are not uniqueness gates.
 
-| ID / submission name | Primary SHA-256 | Zeros SHA-256 | Form note |
+| ID / submission name | Audited MODEL prediction | Primary / zeros SHA-256 | Updated form note |
 |---|---|---|---|
-| `h33-h33-2-b2-MASSm10minus-20261023-7132935e` | `7132935e1210208cfbc5dc02d0d393816b7e6b35a706fce44020a3513b7fa201` | `58d9ebdbdd9234d5bbe8e248c1b385d7b7ffb03461c94f9624c2eb02d13ac412` | `h33-2-b2 MASSm10minus 33889 dots drop10% low-rank; pred -0.008 MODEL; parent 0.2778 CLAIM` |
-| `h33-h33-2-b2-MASSm10plus-20261023-82673b57` | `82673b574213e45cce34f26f6c8918f99ba78ef04f1a41ec420f1a8559329474` | `384f2a3c802b12823ee4510215d6fe825140ed3842b57e80278fe940c37bc6df` | `h33-2-b2 MASSm10plus 41419 dots add10% next-rank; pred +0.004 MODEL; parent 0.2778 CLAIM` |
-| `h33-h33-2-b2-MASSm20minus-20261023-6c73303c` | `6c73303cd5055a5af1dc0801a78821db66d8dcd28ab9244d34341c73836e2c4d` | `c31659134bf513a768a1566c0527dc111df60e209ad14eecf7291adab67864f2` | `h33-2-b2 MASSm20minus 30123 dots drop20% low-rank; pred -0.018 MODEL; parent 0.2778 CLAIM` |
+| `h33-h33-2-b2-MASSm10minus-20261023-7132935e` | `+0.004` `[-0.006,+0.014]`; collar extension, not pure MASS | `7132935e1210208cfbc5dc02d0d393816b7e6b35a706fce44020a3513b7fa201` / `58d9ebdbdd9234d5bbe8e248c1b385d7b7ffb03461c94f9624c2eb02d13ac412` | `h33-2-b2 33889 dots, collar cut 2->10px vs catalogue; pred +0.004 MODEL; parent 0.2778 CLAIM` |
+| `h33-h33-2-b2-MASSm10plus-20261023-82673b57` | `-0.010` `[-0.014,+0.002]`; isolated low-prior additions | `82673b574213e45cce34f26f6c8918f99ba78ef04f1a41ec420f1a8559329474` / `384f2a3c802b12823ee4510215d6fe825140ed3842b57e80278fe940c37bc6df` | `h33-2-b2 MASSm10plus 41419 isolated low-prior dots; pred -0.010 MODEL; parent 0.2778 CLAIM` |
+| `h33-h33-2-b2-MASSm20minus-20261023-6c73303c` | `+0.001` `[-0.015,+0.017]`; nested deeper cut | `6c73303cd5055a5af1dc0801a78821db66d8dcd28ab9244d34341c73836e2c4d` / `c31659134bf513a768a1566c0527dc111df60e209ad14eecf7291adab67864f2` | `h33-2-b2 MASSm20minus 30123 dots nested collar cut; pred +0.001 MODEL; parent 0.2778 CLAIM` |
 
 All receipt fields remain empty. After any authorized human upload, copy the actual submission-page score and date verbatim into `ledger/submissions.csv`; never infer a receipt from a MODEL or PROXY value.

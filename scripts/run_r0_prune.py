@@ -83,9 +83,12 @@ LEDGER_FIELDS = [
     "sha256_zeros",
     "status",
     "predicted_change",
+    "predicted_range",
+    "ranking_basis",
     "receipt_score",
     "receipt_date",
     "description",
+    "recommendation",
 ]
 
 
@@ -411,9 +414,12 @@ def main() -> int:
                 "sha256_zeros": zeros_hash,
                 "status": "BUILT",
                 "predicted_change": PREDICTED,
+                "predicted_range": "[-0.010,+0.004]",
+                "ranking_basis": "score-blind H19 BFS with fixed-count PRUNE3 refill",
                 "receipt_score": "",
                 "receipt_date": "",
                 "description": "R0 PRUNE<=3px plus fixed-count H19 BFS refill; 2171 parent dots changed; not submitted.",
+                "recommendation": "Optional human falsifier slot only; no automatic submission.",
             }
         )
     print(f"BUILT {candidate_id}\nNAN {nan_hash}\nZEROS {zeros_hash}\nRECEIPT {receipt_path}", flush=True)

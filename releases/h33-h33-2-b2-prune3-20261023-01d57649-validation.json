@@ -85,9 +85,12 @@
     "sha256_zeros": "4131e37133a3c5a874c42fb7c975ec4ecb7b4be946b794ff9c9852afa575e225",
     "status": "BUILT",
     "predicted_change": "MODEL:-0.003",
+    "predicted_range": "[-0.010,+0.004]",
+    "ranking_basis": "score-blind H19 BFS with fixed-count PRUNE3 refill",
     "receipt_score": "",
     "receipt_date": "",
-    "description": "R0 PRUNE<=3px plus fixed-count H19 BFS refill; 2171 parent dots changed; not submitted."
+    "description": "R0 PRUNE<=3px plus fixed-count H19 BFS refill; 2171 parent dots changed; not submitted.",
+    "recommendation": "Optional human falsifier slot only; no automatic submission."
   },
   "historical_exact_hash_duplicate": false,
   "submission_slots_used": 0
