@@ -14,11 +14,57 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "vendor"))
 from scripts.readiness import assess, current_status, verify_template  # noqa: E402
 from scripts.validate_artifact import validate_artifact  # noqa: E402
+from run_experiment import refuse_overwrite, surface_registry_metrics  # noqa: E402
 from gems57 import metric, evaluate_holdout, uniqueness  # noqa: E402
 
 
 def test_template_bytes_unchanged():
     verify_template()
+
+
+def test_preplacement_surface_gate_checks_support_overlap():
+    footprint = np.ones((11, 11), dtype=bool)
+    surface = np.zeros((11, 11), dtype=np.float32)
+    surface[5, 5] = 0.5
+    prior = np.broadcast_to(np.arange(1, 12, dtype=np.float32), (11, 11)).copy()
+    result = surface_registry_metrics(surface, prior, footprint, radius_px=3.0)
+    assert result["rank_duplicate"] is False
+    assert result["forward_support_overlap_3px"] == 1.0
+    assert result["overlap_duplicate"] is True
+    assert result["duplicate"] is True
+
+
+def test_preplacement_surface_gate_fails_closed_on_undefined_rank():
+    footprint = np.ones((5, 5), dtype=bool)
+    result = surface_registry_metrics(
+        np.zeros((5, 5), dtype=np.float32),
+        np.ones((5, 5), dtype=np.float32),
+        footprint,
+    )
+    assert result["rank_correlation_finite"] is False
+    assert result["rank_duplicate"] is True
+
+
+def test_experiment_refuses_to_overwrite_published_evidence():
+    with pytest.raises(FileExistsError, match="Refusing to overwrite"):
+        refuse_overwrite(ROOT)
+
+
+def test_preplacement_surface_reaudit_is_bound_to_run_card():
+    audit = json.loads((ROOT / "registry/preplacement_surface_reaudit.json").read_text())
+    published = json.loads(
+        (ROOT / "docs/evidence/preplacement_surface_reaudit.json").read_text()
+    )
+    card = json.loads((ROOT / "registry/run_card.json").read_text())
+    assert audit == published
+    assert audit["reproduced_final_dots_pixel_identical_to_published_tif"] is True
+    assert audit["positive_surface_cells_in_footprint"] > 0
+    assert audit["registry_checks"]["H33"]["forward_support_overlap_3px"] <= 0.70
+    assert audit["registry_checks"]["dense_prior"]["forward_support_overlap_3px"] == 1.0
+    for key, row in audit["registry_checks"].items():
+        saved = card["correlation_overlap_vs_registry"]["surface_preplacement"][key]
+        assert saved["forward_support_overlap_3px"] == row["forward_support_overlap_3px"]
+        assert saved["duplicate"] == row["duplicate"]
 
 
 def test_real_card_stays_blocked():

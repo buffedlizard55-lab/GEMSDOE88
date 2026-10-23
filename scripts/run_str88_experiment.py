@@ -35,6 +35,7 @@ from gems57 import evaluate_holdout, grid, holdout, submission_writer, uniquenes
 from gems88 import edge, model, str88  # noqa: E402
 from readiness import verify_template  # noqa: E402
 from restore_inputs import digest  # noqa: E402
+from run_experiment import surface_registry_metrics  # noqa: E402
 
 DATA = ROOT / "data"
 REGISTRY = ROOT / "registry"
@@ -352,27 +353,33 @@ def run() -> dict:
     ]
     p99_thresh = float(np.percentile(surface[allowed_mask], 99.0))
     surface_gate = {}
+    reaudit_checks = {}
     for key, ref_path in ref_paths:
         with rasterio.open(ref_path) as src:
             old = src.read(1)
-            if (src.shape, src.crs, src.transform) != expected_grid:
+            gmatch = (src.shape, src.crs, src.transform) == expected_grid
+            if not gmatch:
                 raise ValueError(f"Registry grid mismatch on {ref_path}")
-        old = np.where(np.isfinite(old), old, 0.0).astype(np.float32)
-        rho = float(spearmanr(surface[g.footprint], old[g.footprint]).statistic)
-        t_ref = (old > 0) & g.footprint
-        # Prospectively close IR-88-06: log both support>0 overlap and top-1% crest overlap!
-        ov_support = uniqueness.dot_overlap(surface > 0, t_ref, 3.0)
+        old_clean = np.where(np.isfinite(old), old, 0.0).astype(np.float32)
+        m = surface_registry_metrics(surface, old_clean, g.footprint, radius_px=3.0)
+        t_ref = (old_clean > 0) & g.footprint
         ov_top1pct = uniqueness.dot_overlap(surface > p99_thresh, t_ref, 3.0)
+        sha = digest(ref_path)
         surface_gate[key] = dict(
             evidence_class="REGISTRY-MEASUREMENT",
-            sha256=digest(ref_path),
-            full_footprint_spearman=rho,
-            abs_rho=abs(rho),
-            rank_duplicate=bool(abs(rho) > 0.90),
-            positive_support_overlap_3px=ov_support,
+            **m,
+            sha256=sha,
+            positive_support_overlap_3px=m["forward_support_overlap_3px"],
             top_1pct_crest_overlap_3px=ov_top1pct,
         )
-        del old, t_ref
+        reaudit_checks[key] = dict(
+            **m,
+            grid_match=bool(gmatch),
+            sha256=sha,
+            positive_support_overlap_3px=m["forward_support_overlap_3px"],
+            top_1pct_crest_overlap_3px=ov_top1pct,
+        )
+        del old, old_clean, t_ref
 
     if any(r["rank_duplicate"] for r in surface_gate.values()):
         raise RuntimeError(f"Pre-placement surface rank correlation > 0.90: {surface_gate}")

@@ -38,6 +38,41 @@ def release_report(root=ROOT):
         raise ValueError("root GitHub Pages run card differs from canonical receipt")
     holdout = json.loads((root / "registry" / "holdout_result.json").read_text())
     canaries = json.loads((root / "registry" / "leakage_canaries.json").read_text())
+    surface_audit = json.loads(
+        (root / "registry" / "preplacement_surface_reaudit.json").read_text()
+    )
+    published_surface_audit = json.loads(
+        (root / "docs" / "evidence" / "preplacement_surface_reaudit.json").read_text()
+    )
+    if surface_audit != published_surface_audit:
+        raise ValueError(
+            "published pre-placement surface audit differs from canonical receipt"
+        )
+    if (
+        surface_audit.get("evidence_class") != "REGISTRY-MEASUREMENT"
+        or surface_audit.get("reproduced_final_dots_pixel_identical_to_published_tif")
+        is not True
+        or int(surface_audit.get("positive_surface_cells_in_footprint", 0)) <= 0
+    ):
+        raise ValueError(
+            "pre-placement surface reconstruction is incomplete or mismatched"
+        )
+    audit_rows = surface_audit.get("registry_checks", {})
+    card_rows = card["correlation_overlap_vs_registry"]["surface_preplacement"]
+    if set(audit_rows) != set(card_rows):
+        raise ValueError("run card and surface audit registry keys differ")
+    for key, row in audit_rows.items():
+        for field in (
+            "full_footprint_spearman",
+            "forward_support_overlap_3px",
+            "rank_duplicate",
+            "overlap_duplicate",
+            "duplicate",
+        ):
+            if card_rows[key].get(field) != row.get(field):
+                raise ValueError(
+                    f"run card pre-placement {key}.{field} differs from receipt"
+                )
     if card != published_card:
         raise ValueError("website scientific run card differs from repository receipt")
     primary = holdout["scores"]["candidate"]
@@ -172,6 +207,18 @@ def release_report(root=ROOT):
         registry_forward_overlap_3px=measured,
         discrete_sibling_overlaps_3px=discrete_overlaps,
         like_for_like_discrete_unique=all(v <= 0.70 for v in discrete_overlaps.values()),
+        preplacement_surface_audit_sha256=digest(
+            root / "registry" / "preplacement_surface_reaudit.json"
+        ),
+        preplacement_surface_reproduces_final_dots=surface_audit[
+            "reproduced_final_dots_pixel_identical_to_published_tif"
+        ],
+        preplacement_surface_support_overlaps_3px={
+            key: row["forward_support_overlap_3px"] for key, row in audit_rows.items()
+        },
+        preplacement_surface_registry_duplicate={
+            key: row["duplicate"] for key, row in audit_rows.items()
+        },
         literal_duplicate=duplicate,
         ok_to_download=card["ok_to_download"],
         ok_to_submit=submit_ok,
