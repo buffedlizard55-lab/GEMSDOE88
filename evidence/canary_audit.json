@@ -1,0 +1,253 @@
+{
+  "run_id": "GEMSDOE88-H88-GHMD-20261022",
+  "threshold": 0.9,
+  "all_passed": true,
+  "physics_seed20": {
+    "seed_label": "Seed20_Physics",
+    "n_features_tested": 83,
+    "n_positives": 11321,
+    "n_negatives_sampled": 400000,
+    "threshold": 0.9,
+    "max_symmetric_auc": 0.65856,
+    "top10_features": [
+      {
+        "feature": "sgmc_bedrock_logdist",
+        "raw_auc": 0.34144,
+        "symmetric_auc": 0.65856
+      },
+      {
+        "feature": "lidar1m_upface_max",
+        "raw_auc": 0.60246,
+        "symmetric_auc": 0.60246
+      },
+      {
+        "feature": "lidar1m_downface_max",
+        "raw_auc": 0.59817,
+        "symmetric_auc": 0.59817
+      },
+      {
+        "feature": "lidar1m_cross_max",
+        "raw_auc": 0.59715,
+        "symmetric_auc": 0.59715
+      },
+      {
+        "feature": "lidar1m_lappos_max",
+        "raw_auc": 0.59189,
+        "symmetric_auc": 0.59189
+      },
+      {
+        "feature": "lidar1m_lapneg_max",
+        "raw_auc": 0.58894,
+        "symmetric_auc": 0.58894
+      },
+      {
+        "feature": "dem10_slope_std",
+        "raw_auc": 0.58801,
+        "symmetric_auc": 0.58801
+      },
+      {
+        "feature": "lidar1m_step_max",
+        "raw_auc": 0.58696,
+        "symmetric_auc": 0.58696
+      },
+      {
+        "feature": "lidar1m_ex_max",
+        "raw_auc": 0.58559,
+        "symmetric_auc": 0.58559
+      },
+      {
+        "feature": "dem10_curv_prof_absmax",
+        "raw_auc": 0.58534,
+        "symmetric_auc": 0.58534
+      }
+    ],
+    "flagged_count": 0,
+    "passed": true
+  },
+  "physics_seed30": {
+    "seed_label": "Seed30_Physics",
+    "n_features_tested": 83,
+    "n_positives": 11342,
+    "n_negatives_sampled": 400000,
+    "threshold": 0.9,
+    "max_symmetric_auc": 0.64745,
+    "top10_features": [
+      {
+        "feature": "sgmc_bedrock_logdist",
+        "raw_auc": 0.35255,
+        "symmetric_auc": 0.64745
+      },
+      {
+        "feature": "h88_det_elev_dog_1_5",
+        "raw_auc": 0.4186,
+        "symmetric_auc": 0.5814
+      },
+      {
+        "feature": "lidar1m_upface_max",
+        "raw_auc": 0.57882,
+        "symmetric_auc": 0.57882
+      },
+      {
+        "feature": "lidar1m_downface_max",
+        "raw_auc": 0.57179,
+        "symmetric_auc": 0.57179
+      },
+      {
+        "feature": "lidar1m_cross_max",
+        "raw_auc": 0.57153,
+        "symmetric_auc": 0.57153
+      },
+      {
+        "feature": "b07_geod_shearrate_-_geodetic_shear_rate_-_rate_of_angular_deformation_from_gps/insar",
+        "raw_auc": 0.5705,
+        "symmetric_auc": 0.5705
+      },
+      {
+        "feature": "b05_iso_grav_anom_slope_-_isostatic_gravity_anomaly_slope_-_gradient_of_gravity_after_isostatic_correction",
+        "raw_auc": 0.57014,
+        "symmetric_auc": 0.57014
+      },
+      {
+        "feature": "lidar1m_lappos_max",
+        "raw_auc": 0.56746,
+        "symmetric_auc": 0.56746
+      },
+      {
+        "feature": "h88_det_elev_canyon_trough",
+        "raw_auc": 0.56681,
+        "symmetric_auc": 0.56681
+      },
+      {
+        "feature": "lidar1m_lapneg_max",
+        "raw_auc": 0.56545,
+        "symmetric_auc": 0.56545
+      }
+    ],
+    "flagged_count": 0,
+    "passed": true
+  },
+  "geodesic_relay_seed20": {
+    "seed_label": "Seed20_GeodesicRelay",
+    "n_features_tested": 16,
+    "n_positives": 11321,
+    "n_negatives_sampled": 400000,
+    "threshold": 0.9,
+    "max_symmetric_auc": 0.76354,
+    "top10_features": [
+      {
+        "feature": "oof_relay_midpoint_symmetry",
+        "raw_auc": 0.76354,
+        "symmetric_auc": 0.76354
+      },
+      {
+        "feature": "oof_relay_bridge_log_action",
+        "raw_auc": 0.24255,
+        "symmetric_auc": 0.75745
+      },
+      {
+        "feature": "oof_relay_bridge_proximity",
+        "raw_auc": 0.75745,
+        "symmetric_auc": 0.75745
+      },
+      {
+        "feature": "oof_tip_wingcrack_18deg_splay",
+        "raw_auc": 0.75635,
+        "symmetric_auc": 0.75635
+      },
+      {
+        "feature": "oof_eikonal_100m_log_action",
+        "raw_auc": 0.2467,
+        "symmetric_auc": 0.7533
+      },
+      {
+        "feature": "oof_log1p_d_vis",
+        "raw_auc": 0.24762,
+        "symmetric_auc": 0.75238
+      },
+      {
+        "feature": "oof_exp_d_vis_5",
+        "raw_auc": 0.75238,
+        "symmetric_auc": 0.75238
+      },
+      {
+        "feature": "oof_exp_d_vis_14",
+        "raw_auc": 0.75238,
+        "symmetric_auc": 0.75238
+      },
+      {
+        "feature": "oof_tip_physics_path_integral",
+        "raw_auc": 0.7473,
+        "symmetric_auc": 0.7473
+      },
+      {
+        "feature": "oof_tip_strike_ray",
+        "raw_auc": 0.74704,
+        "symmetric_auc": 0.74704
+      }
+    ],
+    "flagged_count": 0,
+    "passed": true
+  },
+  "geodesic_relay_seed30": {
+    "seed_label": "Seed30_GeodesicRelay",
+    "n_features_tested": 16,
+    "n_positives": 11342,
+    "n_negatives_sampled": 400000,
+    "threshold": 0.9,
+    "max_symmetric_auc": 0.76508,
+    "top10_features": [
+      {
+        "feature": "oof_tip_wingcrack_18deg_splay",
+        "raw_auc": 0.76508,
+        "symmetric_auc": 0.76508
+      },
+      {
+        "feature": "oof_tip_physics_path_integral",
+        "raw_auc": 0.76331,
+        "symmetric_auc": 0.76331
+      },
+      {
+        "feature": "oof_relay_midpoint_symmetry",
+        "raw_auc": 0.7627,
+        "symmetric_auc": 0.7627
+      },
+      {
+        "feature": "oof_tip_strike_ray",
+        "raw_auc": 0.76254,
+        "symmetric_auc": 0.76254
+      },
+      {
+        "feature": "oof_relay_bridge_log_action",
+        "raw_auc": 0.24343,
+        "symmetric_auc": 0.75657
+      },
+      {
+        "feature": "oof_relay_bridge_proximity",
+        "raw_auc": 0.75657,
+        "symmetric_auc": 0.75657
+      },
+      {
+        "feature": "oof_eikonal_100m_log_action",
+        "raw_auc": 0.24652,
+        "symmetric_auc": 0.75348
+      },
+      {
+        "feature": "oof_log1p_d_vis",
+        "raw_auc": 0.25113,
+        "symmetric_auc": 0.74887
+      },
+      {
+        "feature": "oof_exp_d_vis_5",
+        "raw_auc": 0.74887,
+        "symmetric_auc": 0.74887
+      },
+      {
+        "feature": "oof_exp_d_vis_14",
+        "raw_auc": 0.74887,
+        "symmetric_auc": 0.74887
+      }
+    ],
+    "flagged_count": 0,
+    "passed": true
+  }
+}

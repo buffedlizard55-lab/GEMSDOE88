@@ -1,0 +1,126 @@
+{
+  "file": "gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+  "sha256": "15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00",
+  "bytes": 110864,
+  "submission_name": "gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT",
+  "note": "H88-UGFV 32ch physics+GDR thermal+self-masked relay CELF (22545 dots); research only: dense witness blocks upload",
+  "note_chars": 113,
+  "validator": {
+    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+    "bytes": 110864,
+    "sha256": "15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0018360376125201583,
+    "emitted_positive_pixels": 22545,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 22545,
+    "footprint_fraction": 0.004362951929345917
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+    "bytes": 110864,
+    "sha256": "15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0018360376125201583,
+    "n_nonzero": 22545,
+    "mass": 22545.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "edce6e3f0ba68f6c6142d38cbbd63a2b70d35033cceb7eb66b8554e5bbaacbe2",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H88-UGFV",
+    "scientific_status": "research candidate blocked only by space-covering registry witnesses",
+    "submission_permission": "NO: 4 space-covering witnesses (>70% footprint halo) exceed 0.70; all 134 fault-prediction rasters PASS < 0.70",
+    "experiment_count": 3,
+    "not_organizer_accepted": true
+  }
+}

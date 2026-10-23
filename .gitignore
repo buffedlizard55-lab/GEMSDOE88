@@ -4,6 +4,18 @@
 .venv/
 /data/
 __pycache__/
+*.py[cod]
+*.so
+.venv/
 .pytest_cache/
-*.pyc
-*.tmp
+.mypy_cache/
+.ruff_cache/
+
+# Data & transient computation caches (never commit raw competition/external bulk data)
+/.cache/
+/data/
+/work/
+/tmp/
+*.mmap
+*.npz
+Unselected files/

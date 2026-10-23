@@ -1,0 +1,56 @@
+{
+  "run_id": "GEMSDOE88-H88-GHMD-20261022",
+  "preregistered_utc": "2026-10-22T00:10:00Z",
+  "branch": "arena/512df5fe-gemsdoe88",
+  "lane": "H88-GHMD",
+  "lane_title": "Geothermal Hydro-Mechanical De-Biased Fault Discovery & Exact Correlation-Free Dual-Head Expected-DTI Fractional Allocation",
+  "evaluation_contract": {
+    "shared_evaluator": "vendor/gems57/evaluate_holdout.py",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "primary_seed": 20,
+    "withheld_positive_pixels_seed20": 11321,
+    "replication_seed": 30,
+    "withheld_positive_pixels_seed30": 11342,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_px": 3.0,
+    "kernel_radius_m": 300.0,
+    "bootstrap_block_px": 200,
+    "bootstrap_draws": 2000,
+    "matched_global_dot_budget": 37654
+  },
+  "protocol_gates": {
+    "max_single_feature_symmetric_auc": 0.90,
+    "max_spearman_rank_correlation_all_1167": 0.90,
+    "max_3px_forward_overlap_all_1086_discriminating": 0.70,
+    "max_jaccard_all_1167": 0.50,
+    "max_experiments": 3,
+    "all_finite_0_1_on_entire_3730x3292_grid": true,
+    "zero_positive_dots_within_2px_of_catalogue": true
+  },
+  "experiments": [
+    {
+      "id": "EXP-88-1",
+      "name": "Zero-Catalogue Dual-Head Multi-Physics Geothermal & Up-Dip Tectono-Geomorphic Ensemble",
+      "uses_catalogue_features": false,
+      "emission": "Greedy Poisson-disk NMS (d >= 2.8 px, S = 37,654 binary dots, d_vis > 2.0 px)",
+      "hypothesis_tested": "De-jittered centerline classification p_phys(x) + exact 300 m kernel self-credit regression q_phys(x) across zero-catalogue multi-physics layers (19 competition bands including b07-b10 seismicity, 1m/10m 3DEP scarps, cross-catchment fluvial chi/ksn wavefronts, 60-deg up-dip hanging-wall gravity/basement pullback, block-deseamed GeoDAWN K/Th/U + RTP oxidation trough + MT clay-cap boiling triad, DOE GDR-1391 3,800 2m temperature probes + geothermometry + sinter/travertine vents + volcanic vents, SGMC pre-Quaternary bedrock reactivation, and Lahontan paleoshoreline + TIGER roadcut suppression) outperforms all prior pure-physics / non-catalogue baselines including Fold-Fair H33-2-B2 and GEMSDOE70 P8."
+    },
+    {
+      "id": "EXP-88-2",
+      "name": "Out-of-Fold Physics-Guided Minimum-Action Crustal Geodesics, 6-Color Bilateral Relay Tomography & Domain-Calibrated Two-Population Fusion",
+      "uses_catalogue_features": true,
+      "catalogue_leakage_control": "Strictly computed per fold from fold-visible skeleton V_k and strictly out-of-fold Stage-1 q_phys^(-k); all derived channels gated by Single-Feature Leakage Canary <= 0.90.",
+      "emission": "Greedy Poisson-disk NMS (d >= 2.8 px, S = 37,654 binary dots, d_vis > 2.0 px)",
+      "hypothesis_tested": "Non-Euclidean minimum-action fracture propagation w(u->v) = ||du||_2 / (0.06 + q_phys^(-k)(v)^0.85) + 6-coloring two-component relay bridge tomography B_bridge(x) + PU radial covariate-shift calibration increases HOLDOUT-DTI across all 4 quadrants over EXP-88-1 at identical S = 37,654 greedy NMS emission while preserving balanced far-field discovery (~48% live mass at d_cat > 15 px, >20% at d_cat > 35 px)."
+    },
+    {
+      "id": "EXP-88-3",
+      "name": "Exact Correlation-Free Dual-Head Expected-DTI Fractional Submodular Allocation via Dinkelbach Lazy CELF + 1-Swap Polish",
+      "uses_catalogue_features": true,
+      "surface_frozen_from": "EXP-88-2 (zero retraining; pure allocation test at identical S = 37,654 dots)",
+      "emission": "Exact Dual-Head Expected-DTI Fractional Optimizer: max_D [(1 - 0.2*lambda)*sum_g p(g)*max_{x in D} k(||x-g||_2) - 0.2*lambda*sum_{x in D}(1 - q(x))] + post-greedy 1-swap local search (S = 37,654 binary dots, d_cat > 2.0 px)",
+      "hypothesis_tested": "Replacing heuristic greedy NMS with exact zero-independence dual-head Expected-DTI fractional optimization + 1-swap local search improves HOLDOUT-DTI across all 4 quadrants on both Seed 20 and Seed 30 without any spatial independence assumption."
+    }
+  ]
+}
