@@ -163,5 +163,49 @@
         "cv_12km_120px_interior": 0.5575
       }
     }
+  },
+  "h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6": {
+    "hypothesis": "Undiscovered geothermal-relevant faults are concentrated in kilometre-scale zones where independent magnetic and gravity boundary responses agree.",
+    "mechanism": "Relocated exactly 15% of R0 dots from low-prior to high-prior 1 km blocks using official TMI/gravity gradients; total mass stayed 37,654.",
+    "non_fault_mimic": "Lithologic contacts, pluton margins, basin-depth gradients, and acquisition-line corrugation can create the same magnetic/gravity boundaries.",
+    "predicted_live_change_MODEL": "+0.008",
+    "falsifier": "An absolute live change below 0.01 is no evidence; a decline of at least 0.01 falsifies this concentration level on public chunks.",
+    "parent_diff": {
+      "removed": 5648,
+      "added": 5648,
+      "relocated_pct": 15,
+      "symmetric_diff_pct": 29.9995
+    },
+    "block_definition": "10x10 pixels = 1 km x 1 km; CV over density in all 100%-footprint blocks",
+    "block_density_cv_before": {
+      "all_full_blocks": 1.8740009535119062,
+      "occupied_full_blocks": 0.61859627687813,
+      "n_full_blocks": 50984,
+      "n_occupied_full_blocks": 15624
+    },
+    "block_density_cv_after": {
+      "all_full_blocks": 1.6416774258173297,
+      "occupied_full_blocks": 0.7360058603611722,
+      "n_full_blocks": 50984,
+      "n_occupied_full_blocks": 21272
+    },
+    "prior_bands": [
+      "tmi_hg",
+      "iso_grav_anom_slope",
+      "iso_grav_anom_hg"
+    ],
+    "git_sha_at_build": "0d63cb22b651a0c5c96d68a45fe025dce2a81ed3",
+    "format_report": {
+      "nan": {
+        "sha256": "4dfb83f6a97f4265e442a3f1ed156986d3c25eb9ebb5e8d49d3784b5cec1eb43",
+        "n_dots": 37654,
+        "min_catalogue_distance_px": 2.23606797749979
+      },
+      "zeros": {
+        "sha256": "3a79b811326ccf7654dd876ad6a8ef0bddc1e1952d3c97f4b0d801353c29918b",
+        "n_dots": 37654,
+        "min_catalogue_distance_px": 2.23606797749979
+      }
+    }
   }
 }

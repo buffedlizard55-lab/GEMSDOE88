@@ -1,9 +1,13 @@
 # SLOT_PLAN — One Entity, 3 Slots/Week, One Blind Final File by 2026-12-03
 
-**Entity budget:** `1` competitor (`buffedlizard55-lab`), `<= 3` live uploads/rolling week, **6 weeks left (`2026-10-23 -> 2026-12-03`, max `18` public slots)**, **ONE blind final file** scored on Round 1 (`$50K`) private chunks and re-scored in Round 2 (`$250K`) against expert-expanded labels (https://www.drivendata.org/competitions/306/competition-doe-gems/).
-**Parent `R0 = h33-h33-2-b2`:** `37,654` dots, `0` within `2 px` of the catalogue, `2,171` in the `2–3 px` collar, `0.2778` `CLAIM` (no receipt). Pinned `c55bafc4...`; the dot mask re-derives exactly in this sandbox, the GeoTIFF container bytes do not (`IRREGULARITIES.md` IR-88-22).
+**Human-confirmed planning values (2026-10-23):** `1` competitor (`buffedlizard55-lab`), `3/3` live uploads left this rolling week, approximately `21` total slots to the deadline, TOP_PUBLIC `0.4413` dated `2026-10-22`, and **ONE blind final file**. The human must re-confirm the `2026-12-03` deadline and current counts on the competition page.
+**Parent `R0 = h33-h33-2-b2`:** `37,654` dots, `0` within `2 px` of the catalogue, `2,171` in the `2–3 px` collar, `0.2778` `CLAIM` (no receipt). The direct pinned-D2.8 prune rebuild matches `c55bafc4...` byte-for-byte (`IRREGULARITIES.md` IR-88-22).
 
-## Session `2026-10-23b` — AXIS = SNAP: built, PROXY-negative, `HOLD`
+## Latest session — human assigned AXIS = CONCENTRATION
+
+R0 was first rebuilt from the pinned D2.8 ancestor and matched SHA-256 `c55bafc…` exactly in this environment. Concurrent mainline work had already built semantically equivalent 10% and 20% / 1 km arms, so ledger reconciliation retained only the unique **15%** dose: `h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6`. It relocates 5,648 dots from low- to high-prior 1 km blocks ranked by official TMI/gravity gradients; count stays 37,654; all-complete-block density CV is 1.874→1.642; predicted live Δ is `MODEL +0.008` (below the 0.01 evidence bar). **HOLD:** it inherits R0’s 2–3 px collar and fails the literal ≥3 px non-PRUNE rule. Re-base only after a positive PRUNEp3 result.
+
+## Concurrent session `2026-10-23b` — AXIS = SNAP: built, PROXY-negative, `HOLD`
 
 No AXIS was assigned by the human (IR-88-21/23); SNAP is the last unbuilt axis of the brief's default order, so it was built. Three variants of `R0`, each differing **only** in how far and onto which edge field a dot may move. Count held at `37,654`; every destination required `d_cat > 3 px`.
 

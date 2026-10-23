@@ -23,6 +23,14 @@ def test_official_kernel_and_example():
         assert fast[key] == pytest.approx(slow[key])
     assert fast["tp"] == pytest.approx(2 / 3)
 
+    # Agent brief v2 algebra: with T=kernel credit, S=sum prediction,
+    # M=sum(p * max_g k), the ordinary DTI denominator is exactly
+    # 0.2*T + 0.2*(S-M) + 0.8*|G|.
+    t, s, m, n_truth = 2.4, 7.5, 1.9, 11
+    brief_form = t / (0.2 * t + 0.2 * (s - m) + 0.8 * n_truth)
+    ordinary_form = t / (t + 0.2 * (s - m) + 0.8 * (n_truth - t))
+    assert brief_form == pytest.approx(ordinary_form)
+
 
 def test_nan_and_sentinel_are_not_gradient_lineaments():
     a = np.full((15, 15), 8.0, np.float32)

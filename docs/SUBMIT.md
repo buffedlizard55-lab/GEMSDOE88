@@ -54,6 +54,15 @@ Three controlled edits of `R0`; each moves dots `<=2 px` onto a potential-field 
 - **Format receipt:** `scripts/validate_variant.py` **PASS** on both files (CRS/shape/transform/dtype/band, `[0,1]`, `0` NaN inside footprint, NaN-or-0 outside, `0` on catalogue, `0` within `2 px`, unique SHA-256). Parent diff: `-35,725` / `+35,725` dots (`94.88%` moved), `min d_cat 2.2361 px`, `579` dots left in the `2–3 px` collar. Blind SGMC `PROXY` `0.088113` (Δ `-0.00795` vs `R0`), `12 km` CV `0.5575`.
 - **Why it is `HOLD`:** blind off-catalogue SGMC DTI **fell** vs `R0`; predicted live change is `MODEL -0.002 … -0.001`, below the `0.01` evidence bar, and it inherits `R0`'s `2–3 px` collar. Upload only if the human wants the axis retired with a live receipt; it is not a slot-1 candidate.
 
+## Latest CONCENTRATION 15% (`HOLD` — inherited collar)
+
+- **File:** `releases/h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6.tif`
+- **Fallback:** `releases/h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6-zeros.tif`
+- **Name:** `h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6`
+- **Note:** `h33-2-b2; CONC 15% in 1km gradient blocks; count 37654; pred +0.008 MODEL`
+- **SHA-256:** `4dfb83f6a97f4265e442a3f1ed156986d3c25eb9ebb5e8d49d3784b5cec1eb43`
+- **Receipt:** 37,654 dots; 5,648 removed + 5,648 added; float32 EPSG:32611; sample shape/transform; finite [0,1] inside; NaN outside; zero catalogue mass; disk re-read. **Do not upload:** minimum catalogue distance √5 px fails the literal ≥3 px non-PRUNE constraint. Re-base on PRUNEp3 first.
+
 ## Other Reconciled Ledger Inventory (`HOLD` / Superseded — `ledger/submissions.csv`)
 - **Score-blind `PRUNE=3` (`h33-h33-2-b2-prune3-20261023-01d57649`, `MODEL -0.003`):** Superseded by physics-ranked `PRUNEp3px` (`6f7ae705`, `MODEL +0.005`).
 - **`CONCENTRATION` (`CONCb10px-m10` `89ffd4f3` `+0.011`, `CONCb10px-m20` `c42cd475` `+0.020`, `CONCb50px-m20` `fae2a52f` `+0.006`):** `HOLD` under strict non-PRUNE `>=3 px` gate because they inherit `R0`'s `2,171` `(2, 3] px` dots; clean Week-2 follow-up applies concentration directly atop `PRUNEp3px` (`>3 px`).
