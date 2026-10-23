@@ -1,0 +1,58 @@
+{
+  "evidence_class": "HOLDOUT-FEATURE-CANARY",
+  "features": [
+    {
+      "auc": 0.5257834553207751,
+      "feature": "rtp",
+      "negative_sample": 18569,
+      "symmetric_auc": 0.5257834553207751,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.4872252483899282,
+      "feature": "iso_grav_anom",
+      "negative_sample": 18569,
+      "symmetric_auc": 0.5127747516100718,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5144344532314631,
+      "feature": "depth_to_base_surf",
+      "negative_sample": 18569,
+      "symmetric_auc": 0.5144344532314631,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5270210869760557,
+      "feature": "log_rtp_edge",
+      "negative_sample": 18569,
+      "symmetric_auc": 0.5270210869760557,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5455348132375709,
+      "feature": "log_gravity_edge",
+      "negative_sample": 18569,
+      "symmetric_auc": 0.5455348132375709,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5132373340053678,
+      "feature": "edge_alignment",
+      "negative_sample": 18569,
+      "symmetric_auc": 0.5132373340053678,
+      "withheld_sample": 18569
+    },
+    {
+      "auc": 0.5459163678743298,
+      "feature": "joint_edge",
+      "negative_sample": 18569,
+      "symmetric_auc": 0.5459163678743298,
+      "withheld_sample": 18569
+    }
+  ],
+  "leakage_threshold": 0.9,
+  "max_symmetric_auc": 0.5459163678743298,
+  "passed": true,
+  "split_version": "buffered-whole-components-loqo-v2"
+}

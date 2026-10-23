@@ -122,6 +122,33 @@ def release_report(root=ROOT):
         > 1e-9
     ):
         raise ValueError("prior/release overlap assertion stale")
+    discrete_witnesses = {
+        "H33": root / "data" / "registry" / "h33_education.tif",
+        "GEMSDOE36": root / "data" / "registry" / "gems36_anderson_pinn.tif",
+        "GEMSDOE70": root / "data" / "registry" / "gems70_p8_oof38k.tif",
+        "GEMSDOE73": root / "data" / "registry" / "gems73_mcsc_blakely.tif",
+        "MGC88_exp1": root
+        / "docs"
+        / "downloads"
+        / "gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+    }
+    discrete_overlaps = {}
+    final_dots_card = card["correlation_overlap_vs_registry"]["final_dots"]
+    for dkey, dpath in discrete_witnesses.items():
+        if dkey in final_dots_card and dpath.is_file():
+            entry = final_dots_card[dkey]
+            if digest(dpath) != entry["sha256"]:
+                raise ValueError(f"discrete witness SHA mismatch on {dkey}")
+            with rasterio.open(dpath) as dds:
+                d_arr = dds.read(1)
+            d_meas = uniqueness.dot_overlap(
+                raster > 0, (np.isfinite(d_arr) & (d_arr > 0)) & gd.footprint, 3
+            )
+            if abs(d_meas - entry["forward_dot_overlap_3px"]) > 1e-9:
+                raise ValueError(f"stale discrete dot overlap on {dkey}")
+            if d_meas > 0.70:
+                raise ValueError(f"discrete sibling duplicate (>0.70) on {dkey}")
+            discrete_overlaps[dkey] = d_meas
     release_ok = bool(
         report["ok"]
         and local["all_checks_passed"]
@@ -143,6 +170,8 @@ def release_report(root=ROOT):
         zip_one_matching_tif=True,
         registry_witness_sha256=cert["witness_sha256"],
         registry_forward_overlap_3px=measured,
+        discrete_sibling_overlaps_3px=discrete_overlaps,
+        like_for_like_discrete_unique=all(v <= 0.70 for v in discrete_overlaps.values()),
         literal_duplicate=duplicate,
         ok_to_download=card["ok_to_download"],
         ok_to_submit=submit_ok,

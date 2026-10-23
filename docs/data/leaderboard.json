@@ -1,8 +1,10 @@
 {
   "evidence_class": "ORGANIZER-PUBLIC-LEADERBOARD (not a submission-page receipt)",
   "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-  "retrieved_at_utc": "2026-10-22T22:55:00+00:00",
+  "retrieved_at_utc": "2026-10-23T00:15:00+00:00",
   "verified_via": "functions.fetch_page public page (no participant login)",
+  "rank_5_prize_cutoff_public_dti": 0.3539,
+  "rank_50_ssr_floor_public_dti": 0.2817,
   "observed_top10": [
     {
       "rank": 1,

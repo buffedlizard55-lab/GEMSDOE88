@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "experiment_id": "STR-88",
+  "experiment_index": 3,
+  "experiment_budget_max": 3,
+  "preregistered_before_execution": true,
+  "preregistered_at_utc": "2026-10-23T00:20:00Z",
+  "hypothesis_title": "Zero-catalogue multi-physics curvilinear Hessian crest + spin-2 axial strike consensus + exact-shell submodular 300 m DTI allocation",
+  "lane": "zero-catalogue multi-physics structural contact & degraded scarp detection",
+  "excluded_bands_and_signals": [
+    "existing_faults.tif (never used as model input feature; used solely as PU visible label in fit and pixel-exact ~visible mask in allocation)",
+    "Band 17 cond_surf (falsified in Experiment 2 CGO-88: symmetric holdout AUC 0.5038, cross-quadrant playa salinity drift)",
+    "Raw regional DC baselines of det_elev, iso_grav_anom, rtp, mag_anom, tmi, depth_to_base_surf, geod_2ndinv (excluded to prevent cross-quadrant baseline overfitting)"
+  ],
+  "channels_18": [
+    "topo_slope_100m (Band 19 det_elev_slope)",
+    "topo_grad_300m (|grad G_3(Band 12 det_elev)|)",
+    "topo_ridge_200m (2^2 * max(0, -lambda_min(Hessian G_2(Band 19 det_elev_slope))))",
+    "topo_lap_abs_200m (|Laplacian G_2(Band 12 det_elev)|)",
+    "grav_slope_100m (Band 5 iso_grav_anom_slope)",
+    "grav_hg_100m (Band 18 iso_grav_anom_hg)",
+    "grav_ridge_300m (3^2 * max(0, -lambda_min(Hessian G_3(Band 5 iso_grav_anom_slope))))",
+    "grav_tilt_abs (|atan2(Band 11 iso_grav_anom_vg, Band 18 iso_grav_anom_hg + 1e-6)|)",
+    "mag_log_hg (log1p(max(0, Band 3 tmi_hg)))",
+    "mag_tilt_abs (|atan2(Band 9 tmi_vg, Band 3 tmi_hg + 1e-3)|)",
+    "mag_ridge_200m (2^2 * max(0, -lambda_min(Hessian G_2(log1p(max(0, Band 3 tmi_hg))))))",
+    "tc_grad_200m (|grad G_2(Band 6 tc)|)",
+    "spin2_mp_consensus (4-modality spin-2 axial strike director norm across det_elev, rtp, iso_grav_anom, tc)",
+    "spin2_mp_persist_400m (400 m Gaussian-integrated spin-2 director norm; analytically zero on circular plugs/cones)",
+    "mgc_grav_mag_align (|hat_grad_3(iso_grav_anom) . hat_grad_2(rtp)| * log1p(|grad iso_grav_anom| * |grad rtp|))",
+    "basement_depth_grad_400m (|grad G_4(Band 15 depth_to_base_surf)|)",
+    "local_basin_relief_2500m (Band 15 depth_to_base_surf - G_25(Band 15 depth_to_base_surf))",
+    "strain_extensional_ratio (Band 8 geod_dilaterate / (|Band 7 geod_shearrate| + |Band 8 geod_dilaterate| + 1e-9))"
+  ],
+  "named_non_fault_mimics": [
+    "Circular Tertiary volcanic plugs, domes, and maars (suppressed analytically because spin-2 director exp(i*2*theta) integrates to zero around closed circular contours under G_4)",
+    "Pleistocene Lake Lahontan wave-cut shorelines and E-W flight-line leveling seams (suppressed because shorelines/seams lack coincident 300 m gravity basement-step ridges and orthogonal spin-2 directors cancel)",
+    "Playa evaporite salinity pans (eliminated by excluding Band 17 cond_surf and all raw elevation/depth DC baselines)"
+  ],
+  "model_and_allocator": {
+    "classifier": "HistGradientBoostingClassifier(max_iter=150, learning_rate=0.06, max_leaf_nodes=31, min_samples_leaf=80, l2_regularization=2.0)",
+    "calibration": "Inverse-prevalence sample weighting matching true visible fault prevalence pi_vis = #(valid & visible) / #valid",
+    "self_credit": "Exact 6-shell ordered Bernoulli-max tail sum on 300 m triangular kernel (bounded strictly in [0, 1], eliminating Jensen clipping bias)",
+    "allocator": "vendor.gems57.emit.dinkelbach_allocate(min_spacing_px=2.85, budget=37654 on full grid, proportional round(37654 * valid_fold / 5167373) on holdout folds, pixel-exact allowed = valid & ~visible)"
+  },
+  "evaluation_contract": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "seeds": [20, 21],
+    "quadrants": 4,
+    "withheld_positives_expected": 22893,
+    "bootstrap_block_side_px": 200,
+    "bootstrap_draws": 1000,
+    "bootstrap_seed": 88022,
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "uniqueness_thresholds": {
+      "max_abs_spearman_rho": 0.90,
+      "max_dot_overlap_3px": 0.70,
+      "literal_dense_prior_rule": "IR-88-01 stays binding: overlap against 17GEMSDOE dense_17gemdoe.tif keeps verdict='negative' and ok_to_submit=false even when like-for-like discrete overlap passes."
+    },
+    "promotion_to_repo_best_criterion": "STR-88 pooled HOLDOUT-DTI exceeds MGC-88 incumbent (0.0389) AND paired 20 km block-bootstrap 95% CI lower bound on (STR-88 - MGC-88) > 0.0 AND all 18 leakage canaries <= 0.90 AND like-for-like discrete registry gates pass (|rho| <= 0.90, 3-px overlap <= 0.70 against H33, GEMSDOE36, GEMSDOE70, GEMSDOE73, and MGC-88)."
+  }
+}

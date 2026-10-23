@@ -107,3 +107,89 @@ def test_cgo_features_masking_and_finite_output():
         cgo_features(grav, cond, fp, step_px=0.0)
     with pytest.raises(ValueError, match="invalid shape or step_px"):
         cgo_features(grav[:10, :10], cond, fp, step_px=2.0)
+
+
+def test_str88_neumann_boundary_no_rim_spike_and_hessian_crest():
+    from gems88.str88 import grad_footprint, hessian_crest
+
+    valid = np.zeros((35, 35), dtype=bool)
+    valid[5:30, 5:30] = True
+    const = np.full((35, 35), -3.4028235e38, dtype=np.float32)
+    const[valid] = 42.0
+    _, _, gm = grad_footprint(const, valid, sigma=2.0)
+    hc = hessian_crest(const, valid, sigma=2.0)
+    assert float(np.max(gm)) < 1e-4
+    assert float(np.max(hc)) < 1e-4
+
+    yy, xx = np.indices((35, 35), dtype=np.float32)
+    ridge = np.exp(-((xx - 17.0) ** 2) / (2.0 * 2.0**2)).astype(np.float32)
+    trough = -ridge
+    hc_ridge = hessian_crest(ridge, valid, sigma=2.0)
+    hc_trough = hessian_crest(trough, valid, sigma=2.0)
+    assert hc_ridge[17, 17] > 0.25
+    assert hc_trough[17, 17] == pytest.approx(0.0, abs=1e-6)
+    assert np.all(hc_ridge[~valid] == 0.0)
+
+
+def test_str88_spin2_cancels_circular_plug_and_reinforces_linear_fault():
+    from gems88.str88 import spin2_multiphysics
+
+    valid = np.ones((45, 45), dtype=bool)
+    yy, xx = np.indices((45, 45), dtype=np.float32)
+    plug = np.exp(-(((yy - 22.0) ** 2 + (xx - 22.0) ** 2) / (2.0 * 4.0**2))).astype(np.float32)
+    _, persist_plug = spin2_multiphysics([(plug, 2.0), (plug, 2.0)], valid, persist_sigma=4.0)
+    assert float(persist_plug[22, 22]) < 1e-5
+
+    # Polarity-reversed modalities across the same N-S fault reinforce identically.
+    step_pos = np.tanh((xx - 22.0) / 2.0).astype(np.float32)
+    step_neg = -step_pos
+    c_same, p_same = spin2_multiphysics([(step_pos, 2.0), (step_neg, 2.0)], valid, persist_sigma=4.0)
+    assert float(c_same[22, 22]) > 1.8
+    assert float(p_same[22, 22]) > 0.8
+
+    # Orthogonal E-W survey seam vs N-S shore cancels spin-2 consensus at intersection.
+    seam_ew = np.tanh((yy - 22.0) / 2.0).astype(np.float32)
+    c_orth, _ = spin2_multiphysics([(step_pos, 2.0), (seam_ew, 2.0)], valid, persist_sigma=4.0)
+    assert float(c_orth[22, 22]) < 1e-5
+
+
+def test_str88_exact_bernoulli_self_credit_matches_binary_and_mc():
+    from gems88.str88 import exact_bernoulli_self_credit
+
+    # Binary limit: must equal exact DTI max kernel proximity to G.
+    g = np.zeros((15, 15), dtype=np.float32)
+    g[7, 7] = 1.0
+    g[7, 10] = 1.0
+    sc = exact_bernoulli_self_credit(g)
+    assert sc[7, 7] == pytest.approx(1.0, abs=1e-6)
+    assert sc[7, 8] == pytest.approx(2.0 / 3.0, abs=1e-6)
+    assert sc[8, 8] == pytest.approx(1.0 - np.sqrt(2.0) / 3.0, abs=1e-6)
+    assert sc[0, 0] == pytest.approx(0.0, abs=1e-6)
+
+    # Probabilistic check against Monte Carlo draws.
+    rng = np.random.default_rng(1234)
+    p = rng.uniform(0.0, 0.35, size=(11, 11)).astype(np.float32)
+    exact_center = float(exact_bernoulli_self_credit(p)[5, 5])
+    yy, xx = np.indices((11, 11), dtype=np.float32)
+    kern = np.maximum(0.0, 1.0 - np.hypot(yy - 5.0, xx - 5.0) / 3.0)
+    draws = rng.random((8000, 11, 11)) < p[None, :, :]
+    mc_center = float(np.mean(np.max(draws * kern[None, :, :], axis=(1, 2))))
+    assert exact_center == pytest.approx(mc_center, abs=0.015)
+
+
+def test_str88_dinkelbach_allocator_respects_mask_spacing_and_budget():
+    from scipy.spatial.distance import pdist
+    from gems88.str88 import allocate_str88_dinkelbach
+
+    yy, xx = np.indices((40, 40), dtype=np.float32)
+    post = (0.25 * np.exp(-((xx - 20.0) ** 2) / 18.0) + 0.01).astype(np.float32)
+    valid = np.ones((40, 40), dtype=bool)
+    visible = np.zeros((40, 40), dtype=bool)
+    visible[18:22, 19:21] = True
+    dots, info = allocate_str88_dinkelbach(post, valid, visible, budget=15, min_spacing_px=2.85)
+    assert set(np.unique(dots).tolist()).issubset({0.0, 1.0})
+    assert int(dots.sum()) == 15 == info["n_dots"]
+    assert not np.any((dots > 0) & visible)
+    coords = np.argwhere(dots > 0)
+    assert float(np.min(pdist(coords))) > 2.85 - 1e-6
+
