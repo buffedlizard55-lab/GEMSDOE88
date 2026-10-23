@@ -1,0 +1,6 @@
+site,name,score,evidence_label,encoding,n_dots,sha8,parent,receipt
+19GEMSDOE,gems19-h19-5-powerlaw-budget-multiline-corroborated,0.1922,CLAIM,nan,121131,ec1f9b56,H16-1,N
+GEMSDOE24,gems24-h25-1-dotted-h19-5-d1-5,0.2477,CLAIM,nan,60069,68d0e2e4,H19-5,N
+GEMSDOE25,gems25-dotted-h19-5-d2-8,0.2600,CLAIM,nan+zeros_collapsed,44090,91eae1ca,H19-5,N
+GEMSDOE28,gems28-h27-4-r1-solo-d2-8,0.2708,CLAIM,zeros,40199,2fc94a38,D2.8,N
+GEMSDOE32,h33-h33-2-b2,0.2778,CLAIM,zeros+nan_collapsed,37654,c55bafc4,SOLO-D2.8,N

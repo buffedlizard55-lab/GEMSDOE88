@@ -26,7 +26,7 @@ DATA = ROOT / "data"
 SAMPLE = DATA / "bridge/sample_submission.tif"
 CATALOGUE = DATA / "bridge/existing_faults.tif"
 FEATURES = DATA / "training_features.tif"
-ANCESTOR = DATA / "scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
+ANCESTOR = DATA / "registry/family_60gemsdoe/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif"
 PARENT_MIRROR = DATA / "registry/h33_education.tif"
 PARENT_ID = "h33-h33-2-b2"
 DATE = "20261023"
@@ -165,13 +165,17 @@ def validate(path: Path, sample_grid: tuple, foot: np.ndarray, catalogue: np.nda
 
 def update_ledgers(rows: list[dict], cards: dict) -> None:
     ledger = ROOT / "ledger/submissions.csv"
-    fields = ["id", "parent", "axis", "value", "n_dots", "%_changed", "sha256",
-              "sha256_zeros", "status", "predicted_change", "block_cv_before",
-              "block_cv_after", "description", "receipt_score", "receipt_date"]
+    fields = ["id", "parent", "axis", "value", "n_dots", "pct_changed", "sha256",
+              "sha256_zeros", "status", "predicted_change", "predicted_range",
+              "ranking_basis", "receipt_score", "receipt_date", "description",
+              "recommendation"]
     existing = []
     if ledger.exists():
         with ledger.open(newline="") as f:
-            existing = list(csv.DictReader(f))
+            reader = csv.DictReader(f)
+            existing = list(reader)
+            if reader.fieldnames != fields:
+                raise ValueError(f"unexpected ledger schema: {reader.fieldnames}")
     ids = {r["id"] for r in existing}
     pairs = {(r.get("parent"), r.get("axis"), r.get("value")) for r in existing}
     for row in rows:
@@ -261,11 +265,13 @@ def main() -> None:
 
     release_dir = ROOT / "releases"
     release_dir.mkdir(exist_ok=True)
-    predictions = {10: "+0.004", 15: "+0.008", 20: "+0.003"}
+    # Concurrent mainline work already built semantically equivalent 10% and
+    # 20% / 1 km arms. Keep only the unique 15% dose after ledger reconciliation.
+    predictions = {15: "MODEL:+0.008"}
     rows_out, cards, receipts = [], {}, {}
     git_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
 
-    for pct in (10, 15, 20):
+    for pct in (15,):
         moved = int(round(n_parent * pct / 100.0))
         rm_idx = remove_order[:moved]
         add_idx = add_order[:moved]
@@ -303,12 +309,14 @@ def main() -> None:
                        f"{cv_after['all_full_blocks']:.3f}.")
         rows_out.append({
             "id": identifier, "parent": PARENT_ID, "axis": "CONCENTRATION",
-            "value": f"{pct}pct-1km", "n_dots": n_parent, "%_changed": f"{pct:.2f}",
+            "value": f"15pct-1km-grad", "n_dots": n_parent,
+            "pct_changed": f"{pct:.2f}",
             "sha256": nan_report["sha256"], "sha256_zeros": zero_report["sha256"],
             "status": "BUILT", "predicted_change": predictions[pct],
-            "block_cv_before": f"{cv_before['all_full_blocks']:.6f}",
-            "block_cv_after": f"{cv_after['all_full_blocks']:.6f}",
+            "predicted_range": "[-0.005,+0.020]",
+            "ranking_basis": "low->high 1 km blocks by official TMI-HG/gravity-slope/gravity-HG mean",
             "description": description, "receipt_score": "", "receipt_date": "",
+            "recommendation": "HOLD: unique 15% dose; inherited R0 2 px collar conflicts with literal non-PRUNE >=3 px gate.",
         })
         cards[identifier] = {
             "hypothesis": "Undiscovered geothermal-relevant faults are concentrated in kilometre-scale zones where independent magnetic and gravity boundary responses agree.",

@@ -24,7 +24,10 @@ def main() -> None:
         parent = (ds.read(1) > 0) & foot
     rows = list(csv.DictReader((ROOT / "ledger/submissions.csv").open()))
     rows = [r for r in rows if r["axis"] == "CONCENTRATION"]
-    assert len(rows) == 3
+    # Mainline reconciliation removed semantically duplicate 10%/20% arms;
+    # this branch contributes the unique official-gradient 15% dose only.
+    rows = [r for r in rows if r["value"] == "15pct-1km-grad"]
+    assert len(rows) == 1
     all_ledger_hashes = {r["sha256"] for r in list(csv.DictReader((ROOT / "ledger/submissions.csv").open()))}
     assert len(all_ledger_hashes) == sum(1 for _ in csv.DictReader((ROOT / "ledger/submissions.csv").open()))
     for row in rows:
@@ -40,7 +43,7 @@ def main() -> None:
             dots = (arr > 0) & foot
             assert dots.sum() == 37_654 and not np.any(dots & mapped)
             assert np.min(distance[dots]) > 2.0
-            moved = round(37_654 * float(row["%_changed"]) / 100)
+            moved = round(37_654 * float(row["pct_changed"]) / 100)
             assert np.count_nonzero(parent & ~dots) == moved
             assert np.count_nonzero(dots & ~parent) == moved
         print("PASS", row["id"], row["sha256"])

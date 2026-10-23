@@ -1,0 +1,85 @@
+{
+  "id": "h33-h33-2-b2-SNAPw2E1-20261023-01cf9e98",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis": "SNAP",
+  "value": "w2E1",
+  "seed": 20261023,
+  "git_sha": "f0ab6eb768f51983fc913c051ad3c9f46caab1dc",
+  "file_nan": "releases/h33-h33-2-b2-SNAPw2E1-20261023-01cf9e98.tif",
+  "sha256": "01cf9e9851dc47b282f15fa7edd35c9afc9e8841fc255c116066f70fd8eb2669",
+  "bytes_nan": 354938,
+  "zip_nan": "releases/h33-h33-2-b2-SNAPw2E1-20261023-01cf9e98.zip",
+  "zip_nan_sha256": "c2d5d81b092e71ed315ddde720fc1a8016f8f161dc3ea88ac34c826fe99dd539",
+  "file_zeros": "releases/h33-h33-2-b2-SNAPw2E1-20261023-01cf9e98-zeros.tif",
+  "sha256_zeros": "135b42b8909d04a4b4bde81d1187eaea65679823b511962c5dafa3f98858ffec",
+  "bytes_zeros": 219097,
+  "zip_zeros": "releases/h33-h33-2-b2-SNAPw2E1-20261023-01cf9e98-zeros.zip",
+  "zip_zeros_sha256": "7e6a8f793f52aa9990d2c32803cee9de0447a9797b105daa5245dc9d44b0d40f",
+  "form_note": "h33-2-b2; SNAP<=2px to max |grad rtp+igrav|; 37654 held; pred -0.002 MODEL",
+  "form_note_chars": 74,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 35771,
+    "n_removed": 35771,
+    "pct_changed_moved": 95.0,
+    "pct_changed_sym_diff": 190.0,
+    "min_dist_catalogue_px": 2.2361,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 644,
+    "dots_le_4px": 3266
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "report_only_diagnostics": {
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.088098,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5131.19,
+      "fp": 35278.07
+    },
+    "sgmc_delta_vs_r0": -0.007962,
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6287,
+      "cv_12km_120px_interior": 0.5582
+    },
+    "edge_percentile_before": {
+      "mean_percentile": 0.5641,
+      "median_percentile": 0.5963
+    },
+    "edge_percentile_after": {
+      "mean_percentile": 0.6551,
+      "median_percentile": 0.7243
+    },
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.001407,
+      "ci95": [
+        0.001147,
+        0.001717
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.002599,
+      "paired_delta_vs_r0_ci95": [
+        -0.003158,
+        -0.002128
+      ]
+    }
+  }
+}

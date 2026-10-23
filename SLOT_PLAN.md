@@ -1,27 +1,44 @@
-# SLOT PLAN — GEMS Prize #306
+# SLOT_PLAN — One Entity, 3 Slots/Week, One Blind Final File by 2026-12-03
 
-**Human-confirmed 2026-10-23:** TOP_PUBLIC **0.4413** (leaderboard date 2026-10-22); 3/3 scored slots remain this rolling week; ~21 total to deadline. Deadline **2026-12-03 17:00 ET** remains page-confirmation-required. One entity; one blind final.
+**Human-confirmed planning values (2026-10-23):** `1` competitor (`buffedlizard55-lab`), `3/3` live uploads left this rolling week, approximately `21` total slots to the deadline, TOP_PUBLIC `0.4413` dated `2026-10-22`, and **ONE blind final file**. The human must re-confirm the `2026-12-03` deadline and current counts on the competition page.
+**Parent `R0 = h33-h33-2-b2`:** `37,654` dots, `0` within `2 px` of the catalogue, `2,171` in the `2–3 px` collar, `0.2778` `CLAIM` (no receipt). The direct pinned-D2.8 prune rebuild matches `c55bafc4...` byte-for-byte (`IRREGULARITIES.md` IR-88-22).
 
-## Current controlled experiment
+## Latest session — human assigned AXIS = CONCENTRATION
 
-Parent **R0 `h33-h33-2-b2`**: 37,654 unit dots; exact rebuild SHA-256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`; live 0.2778 **CLAIM** (no receipt). Human assigned **CONCENTRATION**. Treatment moves 10/15/20% of dots from low-prior to high-prior 10×10-pixel (**1 km**) blocks at fixed count. Frozen block prior = robust mean of official TMI horizontal gradient, isostatic-gravity slope, and gravity horizontal gradient. Parent density CV is **1.874** over all complete footprint blocks (**0.619** over occupied complete blocks); the earlier “~0.55” report used no recorded definition and is not comparable.
+R0 was first rebuilt from the pinned D2.8 ancestor and matched SHA-256 `c55bafc…` exactly in this environment. Concurrent mainline work had already built semantically equivalent 10% and 20% / 1 km arms, so ledger reconciliation retained only the unique **15%** dose: `h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6`. It relocates 5,648 dots from low- to high-prior 1 km blocks ranked by official TMI/gravity gradients; count stays 37,654; all-complete-block density CV is 1.874→1.642; predicted live Δ is `MODEL +0.008` (below the 0.01 evidence bar). **HOLD:** it inherits R0’s 2–3 px collar and fails the literal ≥3 px non-PRUNE rule. Re-base only after a positive PRUNEp3 result.
 
-| Order | Candidate | Move | all-block CV | Predicted live Δ |
-|---|---|---:|---:|---:|
-| 1 | `h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6` | 15% / 5,648 | 1.874→1.642 | +0.008 MODEL |
-| 2 | `h33-h33-2-b2-CONCENTRATION10pct-20261023-43c15f56` | 10% / 3,765 | 1.874→1.724 | +0.004 MODEL |
-| 3 | `h33-h33-2-b2-CONCENTRATION20pct-20261023-88fd49f0` | 20% / 7,531 | 1.874→1.557 | +0.003 MODEL |
+## Concurrent session `2026-10-23b` — AXIS = SNAP: built, PROXY-negative, `HOLD`
 
-**Adaptive decision:** submit Slot 1 first. An absolute live change <0.01 is no evidence. If ≥+0.01, spend Slot 2 on 10% to bracket the dose, then Slot 3 on 20%; if ≤−0.01, stop CONCENTRATION and use the remaining slots for SNAP and PRUNE. Human copies receipt/date into the ledger; AI never submits.
+No AXIS was assigned by the human (IR-88-21/23); SNAP is the last unbuilt axis of the brief's default order, so it was built. Three variants of `R0`, each differing **only** in how far and onto which edge field a dot may move. Count held at `37,654`; every destination required `d_cat > 3 px`.
 
-## Weeks to deadline
+| Release (`releases/…`) | Rule | Moved | Mean disp. | Edge pct | Collar left | SGMC `PROXY` | Δ SGMC vs `R0` | Pred. live `MODEL` |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `…-SNAPw2E1-20261023-01cf9e98` | `<=2 px` to max `\|∇rtp\|+\|∇igrav\|`, `σ=1 px` | `35,771` (95.0%) | `1.82 px` | `0.564→0.655` | `644` | `0.08810` | **`-0.00796`** | `-0.002` |
+| `…-SNAPw2S2-20261023-60ced8c7` | `<=2 px`, `σ=2 px` edge, gain `>=0.25 z` | `19,617` (52.1%) | `1.90 px` | `0.565→0.629` | `1,565` | `0.09211` | **`-0.00396`** | `-0.001` |
+| `…-SNAPw2E2-20261023-861cd355` | `<=2 px` on organizer bands 3/9/18 | `35,725` (94.9%) | `1.81 px` | `0.568→0.658` | `579` | `0.08811` | **`-0.00795`** | `-0.002` |
 
-- **Wk1–2:** resolve CONCENTRATION adaptively; then SNAP (≤2 px, official TMI/gravity edge; fixed count), PRUNE (1/2/3 px, refill), RELIEF (10–15%, fixed count). MASS values already in ledger are not rebuilt.
-- **Wk3–4:** combine only two axes with live effects ≥0.01; pre-register the combination and preserve one-change ancestry.
-- **Wk5–6:** confirmation; choose final and fallback blind; re-run format/hash checks on both.
-- **Final week:** human verifies current rules/deadline, reproducibility and AI disclosure; upload one final only.
+`R0` reference: SGMC `0.09606`, collar `2,171`, `12 km` CV `0.5590`. All three sit inside the reported `0.51–0.59` CV band (`0.5575–0.5582`) and pass every MUST-pass gate (`scripts/validate_variant.py` PASS on primary and zeros files).
 
-## Better future axes — propose only
+**What it teaches (PROXY, never a score):**
+1. Edge capture is real but weak: mean edge percentile rises ~`+0.07–0.09`, yet blind off-catalogue SGMC DTI **falls** in every arm — the ~200 dots lost from within `300 m` of a blind USGS fault cost more than the percentile gain buys.
+2. Half the loss is pixel noise: the `σ=2 px`, gain-gated arm moves half as many dots and loses half as much.
+3. Operator choice is irrelevant (`w2E1` vs `w2E2` differ by `0.00002`): the effect is *displacement off the parent's ridge geometry*, not which derivative band is used.
+4. Useful side effect: a SNAP pass clears `70–73%` of the `2–3 px` collar at constant count.
 
-- **STRIKE-CONSENSUS:** reallocate to km blocks where magnetic and gravity gradient orientations agree; mechanism: through-going structure; confounder: lithologic contacts; falsifier: no ≥0.01 live gain over scalar-gradient CONCENTRATION.
-- **UNCERTAINTY-BAND:** spread mass ±1–3 px normal to long responses, motivated by ~300 m GeoDAWN positional uncertainty; confounder: flight-line smear; falsifier: exact centerlines outperform at matched mass.
+**Decision:** all three `HOLD`; predicted change `-0.002 … -0.001` is far below the `0.01` evidence bar. Do not spend a slot unless the human wants the axis retired with a live receipt.
+
+## Next 3 slots
+
+| Slot | File | Why | What the result changes |
+|---|---|---|---|
+| **1** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`6f7ae705…`) | Only candidate already satisfying the literal `>=3 px` collar (`min d_cat 3.162 px`) at constant count; best blind SGMC of the PRUNE sweep (`0.09608`). | `>= R0 + 0.01` promotes it to `R1` and every later axis inherits a gate-clean parent; `< R0` retires the 300 m side-lobe argument. |
+| **2** | `CONCENTRATION b10px-m20` **re-based on** `PRUNEp3px` | Existing `c42cd475` inherits `R0`'s collar and is `HOLD`; re-based it is gate-clean and carries the largest positive projection (`MODEL +0.020`). | Positive → concentration becomes the fusion partner for the final file; flat → the `0.51–0.59` CV band is descriptive, not causal. |
+| **3** | best of slots 1–2, re-validated (or `RELIEF` on `R1`) | Reserve/confirm slot. | Locks the blind final candidate and its fallback. |
+
+## Weeks 2–6
+`CONCENTRATION` on `R1` (slots 4–6) → one structural axis from the list below per week (7–12), keeping an axis only if `Δ RECEIPT >= +0.01` → weeks 5–6 fuse the winners, re-validate format on both final and fallback, and lock the single blind file.
+
+## Proposed better axes (mechanism · confounder · falsifier) — not built
+1. **`SNAP_COHERENCE`** — move a dot `<=2 px` only along the local edge **normal** and only when it sits on the edge flank, preserving along-strike position. *Mechanism:* flight-line drape blurs only the across-strike offset. *Confounder:* fan-surface contacts parallel to range fronts. *Falsifier:* `<= +0.01` live vs `R0`.
+2. **`CV_MATCHED_WELD`** — combine the `PRUNEp3px` collar with a density re-weld so `12 km` CV lands in `0.51–0.59` and the collar stays clean. *Mechanism:* tests whether the CV band is causal rather than a by-product of mass. *Confounder:* CV was read off 37–44k-dot files, so mass and CV stay partly confounded. *Falsifier:* no live gain at matched mass.
+3. **`TRACKB`** (Phase 2 only) — strike-consistent `>=1 km` traces from `R0`'s top dots as GeoJSON + raster with one evidence paragraph each; not a weekly-slot candidate.

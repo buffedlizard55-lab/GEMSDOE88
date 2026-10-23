@@ -1,4 +1,8 @@
-# Python & environments
+# Local research inputs and environments; only small validated deliverables are published.
+.cache/
+.scratch/
+.venv/
+/data/
 __pycache__/
 *.py[cod]
 *.so
@@ -14,4 +18,7 @@ __pycache__/
 /tmp/
 *.mmap
 *.npz
+# New competition candidate rasters stay local; tracked receipts contain hashes only.
+/releases/*.tif
 Unselected files/
+/releases/*.zip

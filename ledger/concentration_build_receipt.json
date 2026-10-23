@@ -15,14 +15,6 @@
     "n_occupied_full_blocks": 15624
   },
   "variants": {
-    "h33-h33-2-b2-CONCENTRATION10pct-20261023-43c15f56": {
-      "file": "releases/h33-h33-2-b2-CONCENTRATION10pct-20261023-43c15f56.tif",
-      "fallback": "releases/h33-h33-2-b2-CONCENTRATION10pct-20261023-43c15f56-zeros.tif",
-      "name": "h33-h33-2-b2-CONCENTRATION10pct-20261023-43c15f56",
-      "note": "h33-2-b2; CONC 10% in 1km gradient blocks; count 37654; pred +0.004 MODEL",
-      "sha256": "43c15f56fdc27c9e288dc185229e0bd726fff13ba05afd42003b79cda4157323",
-      "sha256_zeros": "555bee16916ffee2b760951a69308ba36937629b96edfe4d8b1dcf3868e48c84"
-    },
     "h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6": {
       "file": "releases/h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6.tif",
       "fallback": "releases/h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6-zeros.tif",
@@ -30,14 +22,6 @@
       "note": "h33-2-b2; CONC 15% in 1km gradient blocks; count 37654; pred +0.008 MODEL",
       "sha256": "4dfb83f6a97f4265e442a3f1ed156986d3c25eb9ebb5e8d49d3784b5cec1eb43",
       "sha256_zeros": "3a79b811326ccf7654dd876ad6a8ef0bddc1e1952d3c97f4b0d801353c29918b"
-    },
-    "h33-h33-2-b2-CONCENTRATION20pct-20261023-88fd49f0": {
-      "file": "releases/h33-h33-2-b2-CONCENTRATION20pct-20261023-88fd49f0.tif",
-      "fallback": "releases/h33-h33-2-b2-CONCENTRATION20pct-20261023-88fd49f0-zeros.tif",
-      "name": "h33-h33-2-b2-CONCENTRATION20pct-20261023-88fd49f0",
-      "note": "h33-2-b2; CONC 20% in 1km gradient blocks; count 37654; pred +0.003 MODEL",
-      "sha256": "88fd49f0f7b5b660538a0a686d0b11af8ac4f08ea88114db75192301e5b171d6",
-      "sha256_zeros": "5fb878573caede794dde8395da646952ea54d2887ac2bf66ea39b1f88e1ae4b6"
     }
   },
   "git_sha_at_build": "0d63cb22b651a0c5c96d68a45fe025dce2a81ed3",
@@ -45,5 +29,6 @@
     "catalogue_hide_and_recover_PROXY": "NOT RUN: a static parent excludes the full catalogue; a fair fold-specific rebuild recipe/ranking is unavailable, so a number would be misleading",
     "leakage_canary": "Existing repository canary suite passed; selected official gradient bands are not label-derived. No candidate score was gated on it.",
     "SGMC_control": "NOT RUN for these variants; never used as a gate"
-  }
+  },
+  "reconciliation": "10% and 20% arms removed after concurrent main introduced semantically equivalent 1 km CONCENTRATION doses; retained unique 15% official-gradient dose."
 }
