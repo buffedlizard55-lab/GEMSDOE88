@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Autonomously restore pinned *owner mirrors*, never claim organizer authentication.
 
-Run: python scripts/restore_inputs.py [--grid-only] [--verify-only].
+Run: python scripts/restore_inputs.py [--grid-only] [--validation] [--verify-only].
 Uses GitHub sparse/partial checkout and validates every byte against a SHA-256.
-No passwords, DriveData cookies, Dropbox downloads, manual data placement, or
+No passwords, DrivenData cookies, Dropbox downloads, manual data placement, or
 new external source are needed. Large files remain ignored under data/.
 """
 
@@ -63,6 +63,64 @@ SOURCES = {
             ),
         },
     ),
+    "external": dict(
+        repo="60GEMSDOE",
+        ref="02563d07fb85d2f4d35887503d380d34d4017197",
+        files={
+            "data/external/lidar_scarp_features_u8.tif": (
+                "external/lidar_scarp_features_u8.tif",
+                "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+            ),
+            "data/external/geodawn_rad_u8.tif": (
+                "external/geodawn_rad_u8.tif",
+                "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+            ),
+            "data/external/geodawn_extensions_u8.tif": (
+                "external/geodawn_extensions_u8.tif",
+                "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+            ),
+            "data/external/topo_10m_derived_100m_u8.tif": (
+                "external/topo_10m_derived_100m_u8.tif",
+                "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+            ),
+            "data/external/topo_10m_derived_100m_u8.manifest.json": (
+                "external/topo_10m_derived_100m_u8.manifest.json",
+                "181d5527ba7ed2990031918a8b6c9d5d94e3998b2daf656de0c33322ca94120a",
+            ),
+            "data/external/dem10_chi_100m_i16.tif": (
+                "external/dem10_chi_100m_i16.tif",
+                "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5",
+            ),
+            "data/external/dem10_chi_100m_u8.tif": (
+                "external/dem10_chi_100m_u8.tif",
+                "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a",
+            ),
+            "data/external/dem10_chi_100m.manifest.json": (
+                "external/dem10_chi_100m.manifest.json",
+                "187a961ef5da45278c84b25d16296a5f3458da37abff45046d31ed58b9f5af86",
+            ),
+            "data/external/2m_temperature_probe_INGENIOUS_regional_data.zip": (
+                "external/2m_temperature_probe_INGENIOUS_regional_data.zip",
+                "1301f70d230058e616ea5d34d1c7a32fabf7d49198172f376c59c89bd652eca3",
+            ),
+            "data/external/paleo_geothermal_regional.zip": (
+                "external/paleo_geothermal_regional.zip",
+                "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca",
+            ),
+            "data/external/gdr_wellspring_in_footprint.csv": (
+                "external/gdr_wellspring_in_footprint.csv",
+                "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+            ),
+            "data/external/gdr_volcanic_vents_in_footprint.csv": (
+                "external/gdr_volcanic_vents_in_footprint.csv",
+                "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf",
+            ),
+            "data/external/trace_segments_utm11.csv": (
+                "external/trace_segments_utm11.csv",
+                "c5edf9df3e0e1413c52784884fc38e5b9ca54627b27c6f8baf7713e908f48513",
+            ),
+        },
+    ),
 }
 TRAIN_HASH = "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
 
@@ -84,6 +142,7 @@ def ensure(repo_key, dests):
     for dest, sha in dests:
         if dest.exists() and digest(dest) != sha:
             raise ValueError(f"PIN MISMATCH: {dest} (will not silently replace)")
+    DATA.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="gems88-restore-", dir=DATA) as tmp:
         checkout = Path(tmp) / "mirror"
         subprocess.run(
@@ -166,6 +225,55 @@ def ensure(repo_key, dests):
     print("RESTORED/PIN OK", repo_key)
 
 
+def ensure_registry_60():
+    target_dir = DATA / "registry/family_60gemsdoe"
+    existing = list(target_dir.glob("*.tif")) if target_dir.is_dir() else []
+    if len(existing) >= 62:
+        print("PIN OK registry_60", f"({len(existing)} rasters)")
+        return
+    target_dir.mkdir(parents=True, exist_ok=True)
+    ref = SOURCES["h33"]["ref"]
+    with tempfile.TemporaryDirectory(prefix="gems88-reg60-", dir=DATA) as tmp:
+        checkout = Path(tmp) / "mirror"
+        subprocess.run(
+            [
+                "git",
+                "clone",
+                "--quiet",
+                "--depth=1",
+                "--filter=blob:none",
+                "--sparse",
+                "https://github.com/buffedlizard55-lab/60GEMSDOE.git",
+                str(checkout),
+            ],
+            check=True,
+        )
+        if (
+            subprocess.check_output(
+                ["git", "-C", str(checkout), "rev-parse", "HEAD"], text=True
+            ).strip()
+            != ref
+        ):
+            subprocess.run(
+                ["git", "-C", str(checkout), "fetch", "--quiet", "--depth=1", "origin", ref],
+                check=True,
+            )
+            subprocess.run(
+                ["git", "-C", str(checkout), "checkout", "--quiet", "--detach", ref],
+                check=True,
+            )
+        subprocess.run(
+            ["git", "-C", str(checkout), "sparse-checkout", "set", "registry/rasters"],
+            check=True,
+            stdout=subprocess.DEVNULL,
+        )
+        copied = 0
+        for tif in sorted((checkout / "registry/rasters").glob("*.tif")):
+            shutil.copy2(tif, target_dir / tif.name)
+            copied += 1
+    print("RESTORED/PIN OK registry_60", f"({copied} rasters)")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     group = parser.add_mutually_exclusive_group()
@@ -185,7 +293,7 @@ def main():
         if args.grid_only
         else ["grid", "witness", "h33"]
         if args.validation
-        else ["grid", "features", "witness", "h33"]
+        else ["grid", "features", "witness", "h33", "external"]
     )
     for key in targets:
         if key == "features":
@@ -201,6 +309,8 @@ def main():
             print("PIN OK", key)
         else:
             ensure(key, expected)
+    if not args.grid_only and not args.validation and not args.verify_only:
+        ensure_registry_60()
 
 
 if __name__ == "__main__":

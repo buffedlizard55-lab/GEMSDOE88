@@ -1,16 +1,24 @@
 {
   "H33": {
-    "abs_rho": 0.025065808535153444,
+    "abs_rho": 0.055838,
     "evidence_class": "REGISTRY-MEASUREMENT",
-    "full_footprint_spearman": 0.025065808535153444,
+    "file": "family_60gemsdoe/GEMSDOE32__h33-2-b2-zeros.tif",
+    "full_footprint_spearman": 0.055838,
     "rank_duplicate": false,
     "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
   },
   "dense_prior": {
-    "abs_rho": 0.30559253617200155,
+    "abs_rho": 0.722235,
     "evidence_class": "REGISTRY-MEASUREMENT",
-    "full_footprint_spearman": 0.30559253617200155,
+    "file": "dense_17gemdoe.tif",
+    "full_footprint_spearman": 0.722235,
     "rank_duplicate": false,
     "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
+  },
+  "summary_all_unique_rasters": {
+    "all_passed_le_090": true,
+    "checked_unique_rasters": 138,
+    "max_abs_spearman": 0.722235,
+    "worst_file": "dense_17gemdoe.tif"
   }
 }
