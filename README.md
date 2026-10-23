@@ -9,6 +9,7 @@
   2. **`h33-h33-2-b2-PRUNEp1px-20261023-0542a27c`** (`<=1 px` / `100 m`, `6.76%` moved; **`MODEL -0.006`**; Holdout-DTI `0.03015` `[0.0269, 0.0334]` `n=22,663` `PROXY`; `SGMC` `0.09093` `PROXY`; `12 km` CV `0.5647`) — **Slot 2 flank-toxicity control**.
   3. **`h33-h33-2-b2-PRUNEp4px-20261023-be9fd3d5`** (`<=4 px` / `400 m` halo, `10.16%` moved, `min d_cat = 4.123 px`; **`MODEL -0.009`**; `SGMC` `0.09447` `PROXY`; `12 km` CV `0.5937`) — **Slot 3 upper collar bracket** (or swap in `CONCENTRATION 1 km ×20%` `c42cd475`, `MODEL +0.020`, if human scopes non-PRUNE `>=3 px` gate for `R0` edits).
   See [`SLOT_PLAN.md`](SLOT_PLAN.md), [`docs/SUBMIT.md`](docs/SUBMIT.md), [`ledger/submissions.csv`](ledger/submissions.csv), and [`IRREGULARITIES.md`](IRREGULARITIES.md).
+- **Dropped (PR #19):** a second CONCENTRATION experiment with an independent physics-gradient prior (bands 13/2/12 Sobel gmag, 2.85 px spacing; MODEL 0.000) was built and **DROPPED as redundant** — the CONCENTRATION axis is already built by PR #18 (parent-density, weld-to-host, MODEL +0.011/+0.020/+0.006) and the concurrent tests expect exactly three variants. See `IRREGULARITIES.md` IR-88-21 and `AI_USE.md`.
 
 ---
 
