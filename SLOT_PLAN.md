@@ -1,8 +1,9 @@
-# SLOT_PLAN — one entity; at most 3 scored files per rolling week
+# SLOT_PLAN — one entity; <=3 scored uploads per rolling week
 
 **2026-10-23 · AXIS=MASS (agent-selected) · 3 variants of R0 + a random-donor control.**
 All 15 manifest pins verified; R0 rebuilt byte-exactly (zeros `c55bafc4…`, NaN
-`baeae321…`, 37,654 dots, 2,171 of them at 2–3 px). Ledger: **35** built rows,
+`baeae321…`, 37,654 dots; 2,171 at <=3 px, 1,611 strictly
+inside 3 px). Ledger: **38** built rows (35 on main + 3 here),
 **0** portal receipts. Random arms are diagnostics: no GeoTIFF, no ledger row.
 
 **MASS is now measured, and it is exhausted.** The three MASS rows already in the
@@ -34,44 +35,44 @@ pending**, not verified by this session. Human checks the
 and [rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf); no automated access.
 One blind final file; primary and zeros twin are alternatives, never two slots.
 
-## Next three slots — conditional, and no MASS arm earns one on its own
+**Reconciliation with the concurrent 2026-10-23 session (PR #36, `AXIS=SNAP`).** That session
+built no variants: it proved pure R0 `SNAP` is geometrically impossible (30 of R0's 1,611 dots
+inside 3 px have no `>=3 px` destination within a `<=2 px` move —
+`evidence/session_20261023_snap_clearance.json`, IR-88-47), added three spacing-locked PRUNE
+refill arms (`p3norefill`, `p3space35`, `p4space35`), and **corrected
+`scripts/validate_variant.py`** so non-PRUNE axes now fail on any positive mass at `<3 px`.
+Consequence for this page: all three `MASSr10*` arms inherit R0's 1,611 collar dots and are
+**HOLD** under the corrected gate, so the merged slot order below puts the gate-clean PRUNE
+arms first. The `MASS` finding itself is unaffected — the mass-response curve is a property of
+the parent's dot set, not of the collar — and its submission-eligible form is `MASS-on-R1`.
+
+## Next three slots — merged order after the PR #36 reconciliation
 
 | Order | File / predicted live change (MODEL) | What a receipt would change |
 |---|---|---|
-| 1 | `PRUNEp3px-6f7ae705`, +0.005 vs R0 | Standing recommendation from the prior session: gate-clean (`>3 px` on all 37,654 dots). Restore the artifact privately, match its full recorded hash, re-read and validate both twins. A gain ≥0.01 supports the collar+refill package; a loss ≤−0.01 argues against widening. |
-| 2 | `MASSr10plus-24fd987d`, +0.003 vs R0 | Only arm in the inventory predicted **positive by two independent instruments**. Spend **only if** the human scopes the `>=3 px` rule as "a controlled single-axis edit may retain the parent's own 2,171 collar dots" — it adds nothing inside 3 px (`min d_cat` of new dots `3.162 px`). A receipt ≥+0.01 would prove R0 is under-massed and re-open count; anything under 0.01 is no evidence and retires MASS. |
-| 3 | **Reserve.** Do not spend. | Reserve until slot 1 and (if used) slot 2 have receipts. If the collar is read literally and slot 2 is skipped, the reserve becomes `PRUNEp3.2px-f272cdae` (+0.002) only after a receipt supports widening. |
-
-Every upload awaits human confirmation of quota, exact-file dedupe against actual
-submission history, legal data provenance, and a fresh disk validator receipt.
-A live difference **under 0.01 is no evidence**; public/private chunks may differ.
-`SNAPscarp2px-fae77ff4` stays **HOLD** (min catalogue distance 2.2361 px).
-Holdout / SGMC / CV remain report-only PROXY, never promotion gates.
+| 1 | `PRUNEp3px-6f7ae705`, +0.005 vs R0 | Gate-clean on all 37,654 dots and now locally revalidated byte-for-byte by PR #36. A gain ≥0.01 supports the collar+refill package; a loss ≤−0.01 argues against widening. |
+| 2 | `PRUNEp3space35-49fff49b`, +0.007 vs R0 (PR #36) | Highest MODEL that is also gate-clean, so it outranks `MASSr10plus` (+0.003). Tests whether spacing-locked refill beats unconstrained refill — the confounder IR-88-37 recorded. Requires a fresh artifact rebuild and validation first. |
+| 3 | **Reserve.** `MASSr10plus-24fd987d` (+0.003) only if the human explicitly scopes controlled R0 edits out of the `<3 px` gate **and** slots 1–2 have receipts; otherwise hold the slot. | Spending it as an experiment is only informative if the ≥0.01 threshold is reachable; `+0.003` is below the brief's no-evidence floor. |
 
 ## Weeks to the provisional deadline
-- Oct 23–29: human supplies TOP_PUBLIC, slot balance, deadline and the collar-scope
-  decision; slots 1–2 above if quota allows.
-- Oct 30–Nov 5: evaluate receipts. If `r10plus` is positive, build **MASS on R1**
-  (`(PRUNEp3px-6f7ae705, MASS, r10plus)`) — the gate-clean form of this session's
-  only positive arm — rather than a second mass dose on R0.
-- Nov 6–19: combine two axes only after each has independent ≥0.01 receipt evidence;
-  name the actual parent and record spacing/refill confounding.
-- Nov 20–Dec 3: confirm the leading file, prepare Phase-2 TRACKB for geologist review,
-  choose one blind final and fallback; freshly validate both.
+- Oct 23–29: human supplies TOP_PUBLIC, slot balance, deadline; slots 1–2 above if quota allows.
+- Oct 30–Nov 5: evaluate receipts. Build **MASS-on-R1** (`(PRUNEp3px-6f7ae705, MASS, r10plus)`) —
+  the gate-clean form of this session's only positive arm — rather than a second dose on R0.
+- Nov 6–19: combine two axes only after each has independent ≥0.01 receipt evidence; name the
+  actual parent and record spacing/refill confounding.
+- Nov 20–Dec 3: confirm the leading file, prepare Phase-2 TRACKB for geologist review, choose one
+  blind final and fallback; freshly validate both.
 
 ## Better axes — proposed only, not built this session
-- **MASS-on-R1:** the same 10% add ranked by exact marginal DTI, but parented on
-  `PRUNEp3px` so no dot is inside 3 px. Mechanism: capture the measured `+0.0011`
-  dose effect without the collar dispute. Confounder: R1 already refilled 2,171 dots
-  onto H19-5 support, shrinking the `>3 px` candidate pool. Falsifier: no ≥0.01 live
-  gain, or a smaller candidate pool that erases the dose effect.
-- **SUPPORT:** spaced H16-1/H19-4 ridge support instead of densifying saturated H19-5
-  (98.2% of this session's additions landed within 3 px of an existing dot).
-  Mechanism: recover uncovered strand length. Confounder: ancestor tuning.
-  Falsifier: no ≥0.01 gain in a count-matched, spacing-controlled experiment.
-- **RANKFIELD:** replace the refill field while holding collar/count/spacing fixed;
-  the control here bounds any ranking change at `±0.0018`, so only a materially
-  better field is worth a slot. Confounder: bedrock-map bias in SGMC.
-  Falsifier: no ≥0.01 live gain and no improvement over random donors.
-- **SPACING:** still the one brief-listed axis never built; MASS's saturation
-  diagnostic says spacing, not count, binds on H19-5.
+- **MASS-on-R1:** the same 10% add ranked by exact marginal DTI, but parented on `PRUNEp3px` so no
+  dot is inside 3 px. Mechanism: capture the measured `+0.0011` dose effect without the collar
+  dispute. Confounder: R1 already refilled 2,171 dots onto H19-5 support, shrinking the `>3 px`
+  candidate pool. Falsifier: no ≥0.01 live gain, or a smaller pool that erases the dose effect.
+- **SUPPORT:** spaced H16-1/H19-4 ridge support instead of densifying saturated H19-5 (98.2% of this
+  session's additions landed within 3 px of an existing dot). Mechanism: recover uncovered strand
+  length. Confounder: ancestor tuning. Falsifier: no ≥0.01 gain in a count-matched experiment.
+- **RANKFIELD:** replace the refill field while holding collar/count/spacing fixed; the control here
+  bounds any ranking change at `±0.0018`, so only a materially better field is worth a slot.
+  Confounder: bedrock-map bias in SGMC. Falsifier: no ≥0.01 gain and no gain over random donors.
+- **SPACING:** still the one brief-listed axis never built; MASS's saturation diagnostic says
+  spacing, not count, binds on H19-5.
