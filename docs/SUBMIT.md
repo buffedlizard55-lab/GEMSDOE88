@@ -1,33 +1,49 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (integrated queue; supersedes the slot order of every section below)
+## Concurrent session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (`registry/preregistration_mass_r1.json`; IR-88-52; no slot used, nothing submitted)
 
-**Three new gate-clean candidates; no slot was used and nothing was submitted.** Parent
-`R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from the pinned lineage and SHA-asserted
-(`6f7ae705…`/`dc6f090d…`) before editing, after `R0` rebuilt byte-exactly (15/15 pins). Every arm is at the brief's
-10% dose (3,765 dots), ranked by the parent's own recorded recipe (exact marginal expected-DTI under the label-free
-field `w`), **100% of dots `>3 px`** from the catalogue, and independently re-validated with
-`validate_variant.py` (`registry/mass_r1_validation.json`, 6/6 twin PASS). Blind off-catalogue SGMC `PROXY`
-(report-only, never a gate): `r10plus 0.098745` (`+0.00266` vs `R1 0.096083`), `r10minus 0.088680` (`−0.00740`),
-`r10swap 0.092489` (`−0.00359`); a same-pool same-count random-donor control scores `0.097335` (`+0.00125`), so
-about half of the add-arm gain is pure count and the ranking premium is `+0.00141`. Holdout proxy is structurally
-`0.000000` (IR-88-20). Predictions are preregistration `MODEL` values
-(`registry/preregistration_mass_r1.json`), never scores; R0's `0.2778` is CLAIM. See IR-88-51.
+**Three new gate-clean candidates.** Parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from the pinned lineage and SHA-asserted (`6f7ae705…`/`dc6f090d…`) before editing, after `R0` rebuilt byte-exactly (15/15 pins). Brief §5's literal R0 form is unsatisfiable for non-PRUNE axes (R0 keeps 1,611 sub-`3 px` dots, IR-88-43/47), so the same single-axis edit ran on `R1`. Every arm: 10% dose (3,765 dots), rank = the parent's own recorded recipe, **100% of dots `>3 px`**, deterministic (`SEED=20261023`), `validate_variant.py` 6/6 twin PASS (`registry/mass_r1_validation.json`), files re-read from disk.
 
-| Order | Exact submission name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | <=140-char form note | Fresh format receipt |
+| Arm | Exact file (primary; fallback `<name>-zeros.tif`) | Form note (as emitted) | Blind `SGMC` `PROXY` vs `R1 0.096083` |
 |---|---|---|---|
-| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`R1` anchor; parents all 15 gate-clean rows) | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json` |
-| 2 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df` | `h33-2-b2 PRUNEp3px R1; MASS +3765 next-ranked H19-5 dots >3px, 41419; pred +0.004 MODEL` (87 chars, as emitted) | `releases/…-b2d704df.json` + `registry/mass_r1_validation.json` |
-| 3, conditional | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp1px-20261023-1944aaf5` (different mechanism) or `…-SNAPscarp2px-…-c003d7d7` (dose) or conserve — decided by the slot-2 receipt per `SLOT_PLAN.md` | `h33-2-b2 PRUNEp3px R1; SNAP <=1px to scarp+TMI/grav co-edge, spacing-locked, 100% of dots >3px; pred +0.003 MODEL` | `releases/…-1944aaf5.json` + `registry/snap_r1_scarp_validation.json` |
+| `r10plus` (`N=41,419`) | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df` | `h33-2-b2 PRUNEp3px R1; MASS +3765 next-ranked H19-5 dots >3px, 41419; pred +0.004 MODEL` (87 chars) | `0.098745` (`+0.00266`; random donors alone give `+0.00125`) |
+| `r10minus` (`N=33,889`) | `…-MASSr10minus-20261023-e56b0e5a` | `h33-2-b2 PRUNEp3px R1; MASS -3765 lowest exact-marginal dots, 100% >3px; pred -0.004 MODEL` (90 chars) | `0.088680` (`−0.00740`) |
+| `r10swap` (`N=37,654`) | `…-MASSr10swap-20261023-20dc829f` | `h33-2-b2 PRUNEp3px R1; MASS swap 3765 lowest for 3765 next-ranked, count 37654; pred +0.002 MODEL` (97 chars) | `0.092489` (`−0.00359`) |
 
-**Before any upload (unchanged):** confirm the rolling-week balance, total slots, deadline and current `TOP_PUBLIC`
-(blank in the brief; the repo's `0.4413` is stale); rebuild privately
-(`python3 scripts/build_mass_r1_variants.py` — deterministic, SHA-pinned; `releases/*.tif` are gitignored and NOT
-in the repo) and match the recorded hashes (`r10plus` primary `b2d704df6727…`, zeros `fa18a8504766…`; `r10minus` primary
-`e56b0e5a…`, zeros `e01dd362…`; `r10swap` primary `20dc829f…`, zeros `93f52691…` — see each `releases/<id>.json`),
-then re-run `python3 scripts/validate_variant.py releases/<id>.tif releases/<id>-zeros.tif` on the actual bytes.
-Upload **one twin per slot**, then paste the portal receipt into `receipt_score`/`receipt_date`. A live `|Δ| < 0.01`
-is no evidence.
+**Recorded hashes:** `r10plus` primary `b2d704df6727…`, zeros `fa18a8504766…`; `r10minus` primary `e56b0e5a5c37…`, zeros `e01dd362911e…`; `r10swap` primary `20dc829f271a…`, zeros `93f526913384…` (full values in each `releases/<id>.json`). Rebuild rather than trust: `python3 scripts/build_mass_r1_variants.py` regenerates them deterministically; `releases/*.tif` are gitignored and are NOT in the repository. Then re-run `python3 scripts/validate_variant.py releases/<id>.tif releases/<id>-zeros.tif` on the actual bytes.
+
+**Queue position:** `r10plus` is **not** ahead of the `p3space35`/`scarp1px` pair — its `+0.00266` is half a count effect, and IR-88-51 (concurrent session) shows the `SGMC` control cannot distinguish a crest move from a trough move. It is the ready slot-3 option if slot 2 loses, or if the human prefers a mass-then-geometry pairing over the spaced-refill arm.
+
+---
+
+## Current session — 2026-10-23 `AXIS=SNAP` fixpoint ladder + sign-flip control on gate-clean `R1` (IR-88-51; slot order below updated; no slot used, no submission)
+
+**Nothing in this session is a slot candidate.** Parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
+re-derived and SHA-asserted (`6f7ae705…`/`dc6f090d…`) after `R0` rebuilt byte-exactly (15/15 pins). Three arms
+were frozen in `registry/preregistration_snap_r1_fixpoint.json` before any proxy ran, all at `N=37,654`, 100% of
+dots `>3 px`, placement lock `>=2.8284 px`, provided bands only (zero external LiDAR):
+
+| Arm | Edit | Net displacement | Blind `SGMC` `PROXY` | Disposition |
+|---|---|---|---|---|
+| `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPfp2-20261023-2882d3c4` (zeros `4813855b…`) | 1 px scarp snap applied **twice** | `1.091 px` mean, 74.23% changed | `0.096423` | **HOLD** — worse than one pass |
+| `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPfp3-20261023-9d86769b` (zeros `fb5e72f7…`) | same snap **three** times | `1.315 px`, 75.87% | `0.094999` | **HOLD** — worse than the parent |
+| `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPanti1-20261023-2f76b21c` (zeros `66064872…`) | same allocator on the **negated** field (weakest response) | `0.724 px`, 72.39% | `0.097260` | **control only** |
+
+Reference points in the same run: `R1 0.096083`, `scarp1px 0.097567`. The sign-flip control is `0.000307` from
+the crest winner — closer to it than the winner is to its parent — so `SGMC` does not separate crest from trough
+motion and may **not** be used to argue for `SNAPscarp1px` (IR-88-51). The dose ladder is negative, so
+`SNAPscarp2px-c003d7d7` is **off the queue**. All six rasters were re-read from disk and re-validated with the
+hardened `validate_variant.py` (`registry/snap_r1_fixpoint_validation.json`, 6/6 PASS); receipts are in
+`releases/<id>.json`; report in `evidence/snap_r1_fixpoint_axis_report.json`. No file needs uploading from this
+session. `R0 0.2778` remains CLAIM.
+
+**Updated integrated queue (slot 1 unchanged; slot 2's fallback is now explicitly unpriced; slot 3 no longer
+contains any SNAP dose arm):** 1. `PRUNEp3px 6f7ae705` (`R1` anchor) · 2. `PRUNEp3space35 49fff49b` only after
+exact byte reconstruction + hardened re-validation, else `SNAPscarp1px 1944aaf5` as an unpriced gate-clean
+mechanism test · 3. conditional `PRUNEp4space35 07bd8182` after a `p3space35` win, else `MASS-on-R1` in a
+separate session, else conserve.
+
+---
 
 ## Current session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; integrated queue — supersedes the slot order of every section below; all their prerequisites stand)
 

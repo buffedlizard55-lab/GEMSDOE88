@@ -1,0 +1,68 @@
+{
+  "schema": "gems88.preregistration.snap-r1-fixpoint.v1",
+  "written_date": "2026-10-23",
+  "written_before_any_build": true,
+  "session_axis": "SNAP",
+  "parent": {
+    "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "alias": "R1",
+    "sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+    "sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+    "n_dots": 37654,
+    "why_this_parent": "R1 is the only gate-clean parent (min d_cat = 3.1623 px, 100% of dots strictly > 3 px). Every R0-parented non-PRUNE arm is HOLD under the corrected collar gate (IR-88-47).",
+    "how_rebuilt": "scripts/build_snap_r1_variants.py::reconstruct_r1 asserts both pinned SHA-256 values before any edit."
+  },
+  "question": "Does the scarp re-centering gain have a dose-response in the field, or is the whole family a displacement artefact that a sign-flipped control would reproduce?",
+  "field": {
+    "name": "edge_scarp_pot",
+    "recipe": "percentile ranks inside the footprint of 0.42*b19 det_elev_slope + 0.23*b12 det_elev Hessian ridge + 0.20*b18 iso_grav_anom_hg + 0.15*b3 tmi_hg",
+    "source": "provided competition 19-band stack only; external LiDAR used = false",
+    "builder": "scripts/build_snap_variants.py::build_snap_edge_fields_and_canaries",
+    "same_field_as": "R0 SNAPscarp2px (fae77ff4) and the R1 scarp family (1944aaf5 / c003d7d7 / f4af84a3)"
+  },
+  "allocator": {
+    "function": "scripts/build_snap_variants.py::snap_dots_within_window",
+    "window_px": 1.0,
+    "window_m": 100.0,
+    "spacing_lock_min_sep_px": 2.8,
+    "spacing_lock_grid_px": 2.8284,
+    "count": "fixed at 37654 (bijection)",
+    "gates": [
+      "zero mass on catalogue",
+      "every moved target d_cat > 3.0 px",
+      "no RNG",
+      "ties by (row, col)"
+    ]
+  },
+  "arms": {
+    "fp2": {
+      "edit": "apply the 1 px spacing-locked scarp snap twice (second pass starts from the first pass output)",
+      "role": "dose extension: remove residual drift left by pass 1",
+      "predicted_change": "MODEL:+0.003",
+      "predicted_range": "[-0.007,+0.013]",
+      "decision_rule": "Blind SGMC above scarp1px (0.097567) by >= 0.0005 promotes fp2 over a single pass; SGMC below parent R1 (0.096083) parks it at HOLD."
+    },
+    "fp3": {
+      "edit": "apply the same 1 px snap three times",
+      "role": "saturation test: does the climb to a local field maximum keep paying",
+      "predicted_change": "MODEL:+0.002",
+      "predicted_range": "[-0.008,+0.012]",
+      "decision_rule": "Compare with fp2. SGMC(fp3) <= SGMC(fp2) means the single-pass dose is saturated; a continued rise means the field maximum, not the 1 px step, is what pays."
+    },
+    "anti1": {
+      "edit": "one pass of the SAME allocator on the NEGATED field (each dot moves <= 1 px onto the weakest edge_scarp_pot cell in its window)",
+      "role": "sign-flip negative control: separates 'crest position' from 'any displacement'",
+      "predicted_change": "MODEL:-0.006",
+      "predicted_range": "[-0.016,+0.002]",
+      "decision_rule": "If SGMC(anti1) >= SGMC(fp2), the blind SGMC instrument rewards displacement per se and the scarp family's +0.0015 carries no crest information. If SGMC(anti1) < R1 while fp2 > R1, the direction of the move is doing the work."
+    }
+  },
+  "predictions_are_not_scores": "All three predictions are MODEL projections anchored on the R1 scarp family's blind PROXY ordering. No receipt exists for any file in this lineage; |live delta| < 0.01 is no evidence.",
+  "report_only_instruments": {
+    "catalogue_hide_and_recover": "PROXY, reported with n withheld positives and 95% CI; never a gate",
+    "sgmc_control": "PROXY off-catalogue control; never a gate",
+    "leakage_canary": "single-feature AUC > 0.90 stops the build",
+    "block_density_cv": "reported for context (10 km / 12 km); not a gate and no threshold applied"
+  },
+  "stop_rule": "Three arms or two hours, whichever comes first. No submission, no leaderboard access, no page fetch."
+}
