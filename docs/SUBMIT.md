@@ -1,12 +1,12 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-> **Human competitor controls all uploads (`buffedlizard55-lab`, 1 entity, `<= 3` slots/week, 1 blind final file by `2026-12-03`).** Agent never logs into or fetches `drivendata.org` or `dropbox.com`. Candidate `.tif`/`.zip` rasters live locally in `releases/` (untracked in Git per `.gitignore` data-use policy; reproducible via `python3 scripts/build_relief_r0_variants.py`, `python3 scripts/build_snap_variants.py` and `python3 scripts/build_prune_variants.py`), with tracked SHA-256 receipts in `releases/*.json` and `ledger/submissions.csv`.
+> **Human competitor controls all uploads (`buffedlizard55-lab`, 1 entity, `<= 3` slots/week, 1 blind final file by `2026-12-03`).** Agent never logs into or fetches `drivendata.org` or `dropbox.com`. Candidate `.tif`/`.zip` rasters live locally in `releases/` (untracked in Git per `.gitignore` data-use policy; reproducible via `python3 scripts/build_snap_variants.py`, `python3 scripts/build_prune_variants.py`, `python3 scripts/build_relief_variants.py` (R1 family) and `python3 scripts/build_relief_r0_variants.py` (R0 family)), with tracked SHA-256 receipts in `releases/*.json` and `ledger/submissions.csv`.
 
-## Session Built Candidates (`AXIS = RELIEF`, Band 12 `det_elev` Area Terciles, Dose `12%` = `4,518` Dots, Constant `N = 37,654`, Parent `h33-h33-2-b2`, Seed `20261023`)
+## This Session — R0 Family (`AXIS = RELIEF`, Band 12 `det_elev` Area Terciles, Dose `12%` = `4,518` Dots, Constant `N = 37,654`, Parent `h33-h33-2-b2`, Seed `20261023`; concurrent R1 family below, IR-88-36)
 
-> **Reproduce:** `python scripts/build_relief_r0_variants.py` (rebuilds R0 byte-for-byte first; rasters are gitignored, SHA-256 receipts tracked). **Status: all three are `HOLD`; `range12` is the only one worth a slot, and only as a label-relief probe (see `SLOT_PLAN.md`).** Pre-registered predictions: `registry/relief_r0_preregistration.json`.
+> **Reproduce:** `python scripts/build_relief_r0_variants.py` (rebuilds R0 byte-for-byte first; rasters are gitignored, SHA-256 receipts tracked). **Status: all three are `HOLD` and inherit R0's `2,171` collar dots (same disposition as the R0 `SNAP`/`CONCENTRATION` families). If a RELIEF label-relief probe is ever spent, prefer the gate-clean R1 arm `RELIEFup2t10` (`cffb5570`, below) over `range12`; see `SLOT_PLAN.md`.** Pre-registered predictions: `registry/relief_r0_preregistration.json`.
 
-### `RELIEFrange12` (Least-Negative Arm — Slot 3 Option as a Probe): 12% of dots (4,518) basin+piedmont -> range tercile
+### `RELIEFrange12` (Least-Negative R0 Arm — Diagnostic Only): 12% of dots (4,518) basin+piedmont -> range tercile
 - **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-RELIEFrange12-20261023-30b15f5e.tif` (`SHA-256`: `30b15f5e601cbc443cdbe250b336836c413b307dfdb23077f7a3a54edd741dde`, `351,646` B; `.zip` `77d31f35e4ed8b49ecde5f2c533ab5896430019fc964a46a72517d855cbc3e0e`)
 - **Fallback GeoTIFF (`0.0` outside, identical inside):** `releases/h33-h33-2-b2-RELIEFrange12-20261023-30b15f5e-zeros.tif` (`SHA-256`: `5690895c119a66c5511823922ebb560b50a2f4344bda49e63de403c904b797ca`, `215,626` B; `.zip` `4d2347ccf39e07c4a06aeee63947b33c1876be91a28f91aca3b8b2fcc0d462e3`)
 - **Submission Name:** `h33-h33-2-b2-RELIEFrange12-20261023-30b15f5e`
@@ -58,10 +58,31 @@
 - **Stats & Receipt:** `37,654` dots (`-2,171` in `2 < d_cat <= 3 px`, `+2,171` on `H19-5` ridges at `d_cat > 3 px`; **`5.77%` moved**, `min d_cat = 3.1623 px`, `0` on catalogue). Blind USGS `SGMC` `0.096083` `PROXY`; `12 km` CV `0.5700`. Tracked receipt: `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json`.
 - **Other `PRUNE` brackets:** `PRUNEp1px` (`0542a27c`, `6.76%` moved, `MODEL -0.006`) and `PRUNEp4px` (`be9fd3d5`, `10.16%` moved, `MODEL -0.009`).
 
+## This Session — R1 Family (`AXIS = RELIEF`, parent `R1 = PRUNEp3px`, `N = 37,654`, fixed count; PR #28)
+
+Built to *measure* the basin/piedmont/range-front mass question, not to win a slot: all three arms are predicted **negative** by three independent report-only instruments. Do **not** upload one ahead of `PRUNEp3px` (Slot 1) or `SNAPscarp2px` (Slot 2). If the human wants the axis closed with a receipt, `up2t15` is the informative one (largest dose, least-negative `SGMC`).
+
+### `RELIEFup2t15` (`15%` basin+piedmont -> range front)
+- **Primary GeoTIFF (`NaN` outside):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFup2t15-20261023-77588346.tif` (`SHA-256`: `775883468b1fb9baf4148e54a941db6bd97716b2684c2f78fccd0d967a497006`, `349,438` B)
+- **Fallback GeoTIFF (`0.0` outside, identical inside):** `...-RELIEFup2t15-20261023-77588346-zeros.tif` (`SHA-256`: `9f12f021b620cb39aeee680a1662f3534ebc9340a2de854235d35eb87c097af0`, `213,532` B)
+- **Submission Name:** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFup2t15-20261023-77588346`
+- **Form Note (`90 / 140` chars):** `h33-2-b2 PRUNEp3px; RELIEF 15% basin+piedmont->range-front, count fixed; pred -0.004 MODEL`
+- **Stats & Format Receipt:** `37,654` dots, `5,648` removed + `5,648` added (**`15.00%` changed**, `30.00%` symmetric difference); tercile shares `basin 20.4 -> 16.0`, `piedmont 41.7 -> 31.2`, `range front 37.8 -> 52.8`; `min d_cat = 3.1623 px` (`0` dots at `<= 3 px`); `3,579` of `5,648` receivers within `2 px` of a survivor. `SGMC` off-catalogue `0.09252` `PROXY` (`-0.00356` vs `R1`); expected DTI under the label-free field `-0.00686`; `12 km` CV `0.6909`. All `12` format gates re-read from disk: `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFup2t15-20261023-77588346.json`.
+
+### `RELIEFup2t10` (`10%` dose bracket)
+- **Primary / fallback:** `...-RELIEFup2t10-20261023-cffb5570.tif` (`SHA-256` `cffb55707adfa4d074d3b3e4ea3dd46935710f512bf5dff93d2cea280c6e2659`, `351,463` B) / `...-cffb5570-zeros.tif` (`46f9f614674552ff0527ada5e39dfb70de48d5f236827c34ac3362ab0e8cd62d`, `215,432` B)
+- **Form Note (`90 / 140` chars):** `h33-2-b2 PRUNEp3px; RELIEF 10% basin+piedmont->range-front, count fixed; pred -0.002 MODEL`
+- **Stats:** `3,765` moved (`10.00%`); `SGMC` `0.09366` (`-0.00242` vs `R1`); `12 km` CV `0.6467`; `min d_cat = 3.1623 px`.
+
+### `RELIEFdn2t15` (`15%` down-section sign control)
+- **Primary / fallback:** `...-RELIEFdn2t15-20261023-ea75b7eb.tif` (`SHA-256` `ea75b7eb6b0551b2572f5bd0d06072461994efb4951bf108e756b3022da957b9`, `347,979` B) / `...-ea75b7eb-zeros.tif` (`2f0f661aef0081165e07ac6fe73f93aa1ec5fd6677e8ec50198eba4421ed3c0c`, `213,003` B)
+- **Form Note (`90 / 140` chars):** `h33-2-b2 PRUNEp3px; RELIEF 15% piedmont+range-front->basin, count fixed; pred -0.007 MODEL`
+- **Stats:** `5,648` moved (`15.00%`); tercile shares `basin 20.4 -> 35.4`, `range front 37.8 -> 30.3`; `SGMC` `0.08490` (`-0.01118` vs `R1`, worst of the three); `12 km` CV `0.6432`; `min d_cat = 3.1623 px`.
+
 ## Other Reconciled Ledger Inventory (`HOLD` — `ledger/submissions.csv`)
 - **Unspaced `SNAP` (`SNAPw2E1` `01cf9e98` `MODEL -0.002`, `SNAPw2S2` `60ced8c7` `MODEL -0.001`, `SNAPw2E2` `861cd355` `MODEL -0.002`):** `HOLD` due to along-strike bunching (`min_sep = 1 px`, `SGMC` delta `-0.0080` to `-0.0040`); superseded by spacing-locked `SNAPscarp2px` (`fae77ff4`, `d_nn >= 2.8284 px`, `SGMC +0.00075`).
 - **`CONCENTRATION` (`CONCb10px-m10` `89ffd4f3` `+0.011`, `CONCb10px-m20` `c42cd475` `+0.020`, `CONCb50px-m20` `fae2a52f` `+0.006`, `CONCENTRATION15pct` `4dfb83f6` `+0.008`):** `HOLD` under literal non-PRUNE `>=3 px` gate (`R0`'s `2,171` `2–3 px` dots inherited); re-base atop `PRUNEp3px` in Week 2.
 - **`MASS` (`MASSm10minus` `7132935e`, `MASSm10plus` `82673b57`, `MASSm20minus` `6c73303c`):** `HOLD` per `registry/mass_ranking_audit.json`.
 
 ## Format Gate Verification Summary
-- All `SNAP` and `PRUNE` GeoTIFFs (`EPSG:32611`, `3730×3292`, `Affine(100,0,243350,0,-100,4508550)`, `1` band `float32`, `[0,1]`, `0` NaN inside footprint, `0` on catalogue, unique SHA-256) re-read and verified in `tests/test_snap_axis.py`, `tests/test_prune_axis.py`, and `scripts/validate_variant.py`.
+- All `SNAP`, `PRUNE` and `RELIEF` GeoTIFFs (`EPSG:32611`, `3730×3292`, `Affine(100,0,243350,0,-100,4508550)`, `1` band `float32`, `[0,1]`, `0` NaN inside footprint, `0` on catalogue, unique SHA-256) re-read and verified in `tests/test_snap_axis.py`, `tests/test_prune_axis.py`, `tests/test_relief_axis.py`, and `scripts/validate_variant.py`.
