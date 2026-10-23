@@ -1,0 +1,175 @@
+{
+  "id": "h33-h33-2-b2-MASSr10minus-20261023-6d3dd59e",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis": "MASS",
+  "value": "r10minus",
+  "seed": 20261023,
+  "git_sha": "c8d4f1db414dfbb061187862475be47479323c66",
+  "file_nan": "releases/h33-h33-2-b2-MASSr10minus-20261023-6d3dd59e.tif",
+  "sha256": "6d3dd59e6ef73b79b645bc172cf2da2d80a8806334d2df84fb729b026cf2f2a9",
+  "bytes_nan": 340651,
+  "zip_nan": "releases/h33-h33-2-b2-MASSr10minus-20261023-6d3dd59e.zip",
+  "zip_nan_sha256": "5f13f927ca03bbd7a1ecb01918680732303a2133a0dc6a1d5d9a039c94ebcf9e",
+  "file_zeros": "releases/h33-h33-2-b2-MASSr10minus-20261023-6d3dd59e-zeros.tif",
+  "sha256_zeros": "d4608a6271c636ea1f5ca00d704b0b1bafc7ebaa31b00e4306cf60c9f58be08b",
+  "bytes_zeros": 204045,
+  "zip_zeros": "releases/h33-h33-2-b2-MASSr10minus-20261023-6d3dd59e-zeros.zip",
+  "zip_zeros_sha256": "71b4bb5f4d35c5684c225304cfb487c869524d4a00c139a853b5548b67bb5739",
+  "form_note": "h33-2-b2; MASS -3765 lowest exact-marginal dots (37654->33889); pred -0.008 MODEL",
+  "form_note_chars": 81,
+  "n_dots": 33889,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 0,
+    "n_removed": 3765,
+    "pct_changed_moved": 10.0,
+    "pct_changed_sym_diff": 10.0,
+    "pct_changed_basis": "max",
+    "min_dist_catalogue_px": 2.2361,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 2086,
+    "dots_le_4px": 3641
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "preregistered_prediction": "+0.003",
+  "preregistered_range": "[-0.008, +0.014]",
+  "w_model": {
+    "dti": 0.277631,
+    "delta_vs_r0": -0.00843,
+    "T": 16206.981,
+    "S": 33889.0,
+    "M": 6717.398,
+    "denom": 58375.95
+  },
+  "w_model_caveat": "IN-SAMPLE and optimistic: the same field w both ranks and scores the arm, and w is a ~0.68-AUC proxy for fault presence (PROXY, never a score).",
+  "r0_w_model": {
+    "dti": 0.286061,
+    "T": 16924.428,
+    "S": 37654.0,
+    "M": 7261.491
+  },
+  "r0_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  },
+  "report_only_diagnostics": {
+    "n_dots": 33889,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004077,
+      "ci95": [
+        0.003473,
+        0.004774
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 7.1e-05,
+      "paired_delta_vs_r0_ci95": [
+        -1.8e-05,
+        0.000148
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.087999,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5060.69,
+      "fp": 31668.39
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6578,
+      "cv_12km_120px_interior": 0.5926
+    }
+  },
+  "saturation_diagnostic_added_dots": {
+    "n_added": 0
+  },
+  "removed_dots": {
+    "n": 3765,
+    "mean_d_cat_px": 34.339,
+    "mean_w": 0.144513
+  },
+  "added_dots": {
+    "n": 0,
+    "min_d_cat_px": null,
+    "mean_d_cat_px": null,
+    "mean_w": null
+  },
+  "parent_dots_mean_w": 0.192848,
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    }
+  },
+  "revised_prediction": {
+    "w_model_delta": -0.00843,
+    "sgmc_delta": -0.008061,
+    "revised_model": -0.008,
+    "revised_range": "[-0.013, -0.003]",
+    "rule": "closest-to-zero when signs agree, midpoint when they disagree; band +/-0.005, widened to cover both instruments"
+  },
+  "ranking_control": {
+    "ranked_delta_vs_r0_sgmc": -0.008061,
+    "random_delta_vs_r0_sgmc": -0.00623,
+    "ranking_effect_sgmc": -0.001831,
+    "pure_dose_effect_sgmc": -0.00623,
+    "w_model_delta": -0.00843,
+    "reading": "the w-ranking moves the blind control DOWN by -0.001831 relative to random donors"
+  }
+}

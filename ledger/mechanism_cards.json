@@ -1370,5 +1370,92 @@
     ],
     "submission_name": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1",
     "form_note": "R1(6f7ae705); TRACKB 10% (3765) speckles->100m spines of >=1km traces; pred -0.003 MODEL"
+  },
+  "h33-h33-2-b2-MASSr10minus-20261023-6d3dd59e": {
+    "parent": "h33-h33-2-b2",
+    "axis": "MASS",
+    "value": "r10minus",
+    "preregistered_prediction": "+0.003",
+    "preregistered_range": "[-0.008, +0.014]",
+    "hypothesis": "R0 carries dead mass. The 37,654-dot Poisson-disk thinning of H19-5 at 2.8 px was selected for SPACING, not for evidence, so roughly a tenth of those dots sit on aeromagnetic ridge crests that no independent physical channel corroborates. Deleting the 3,765 dots whose removal costs the least kernel credit T while still removing one unit of mass S raises DTI, because DTI = T / (0.2T + 0.2(S-M) + 0.8|G|) penalises every emitted dot through S whether or not it lands on a fault.",
+    "mechanism": "Under the 300 m triangular kernel a dot only pays if its credit exceeds 0.2*DTI (about 0.056 at DTI 0.28). Dots that (a) already lie within 300 m of a stronger neighbour on the same strand, or (b) sit on a ridge that the TMI horizontal-gradient, isostatic-gravity gradient, and GDR-1391 geothermometry channels all fail to support, contribute S but almost no T. Removing them shrinks the denominator 0.2(T + S - M) + 0.8|G| immediately and shrinks T only by the third-order residual credit they uniquely held.",
+    "non_fault_mimic": "The corroboration field w is built from potential-field and topographic derivatives. A genuine but deeply buried, low-offset, or sediment-masked fault carries a weak magnetic and gravity expression, and 400 m GeoDAWN flight-line spacing (Area 2) can place its ridge crest up to a kernel radius off the true trace. Pruning 'low-w' dots therefore preferentially deletes blind and low-slip faults \u2014 precisely the population most likely to be in the new-fault label set \u2014 so a live score DROP is the expected outcome if w is a poor fault detector rather than a good one.",
+    "predicted_sign_size": "Preregistered MODEL +0.003 vs R0 (range -0.008 to +0.014). The w-field in-sample delta is reported alongside; it is optimistic because w both ranks and scores. REVISED to -0.008 MODEL after the report-only instruments (w -0.0084, blind SGMC -0.0081); the preregistered value +0.003 is retained above so the correction is auditable.",
+    "falsifier": "A live change less than +0.01 (or any negative change) falsifies the dead-mass hypothesis under the brief's no-evidence rule and shows that R0's dot count is already at or below the point where further deletion removes more true credit than wasted mass. A gain of >= +0.01 would make continued mass reduction the cheapest available lever and would imply the 2.8 px thinning is evidence-blind.",
+    "post_build_w_model_delta": "-0.008430",
+    "post_build_report_only": {
+      "holdout_proxy_delta_vs_r0": 7.1e-05,
+      "holdout_proxy_ci95": [
+        -1.8e-05,
+        0.000148
+      ],
+      "sgmc_off_catalogue_dti": 0.087999,
+      "r0_sgmc_off_catalogue_dti": 0.09606,
+      "cv_12km": 0.5926,
+      "r0_cv_12km": 0.559,
+      "sgmc_delta_vs_r0": -0.008061,
+      "ranking_effect_sgmc": -0.001831,
+      "pure_dose_effect_sgmc": -0.00623
+    },
+    "revised_prediction": "-0.008",
+    "revised_range": "[-0.013, -0.003]"
+  },
+  "h33-h33-2-b2-MASSr10plus-20261023-24fd987d": {
+    "parent": "h33-h33-2-b2",
+    "axis": "MASS",
+    "value": "r10plus",
+    "preregistered_prediction": "-0.008",
+    "preregistered_range": "[-0.018, +0.002]",
+    "hypothesis": "Adding mass does not help: the un-emitted H19-5 support is kernel-saturated. Every un-emitted H19-5 pixel survived the 2.8 px dot-thinning, which means it lies within 280 m of an already-emitted dot \u2014 inside the 300 m triangular kernel that already credits that strand \u2014 so a new dot there raises S by one and T by almost nothing, and DTI falls.",
+    "mechanism": "The kernel credits a truth pixel by the BEST dot within 300 m, C_A(g) = max_x k(||g-x||). Once a strand is sampled every 280 m, the marginal dot on that strand has near-zero dT. The exact marginal-gain greedy therefore spends its 3,765 additions on whatever residual w it can still find \u2014 strand tips, step-over gaps, and low-w flanks \u2014 and the mean dT per added dot is the direct measurement of how saturated the parent field is.",
+    "non_fault_mimic": "H19-5 is a multi-line ridge detector, so the un-emitted pool also contains genuine second-order features: antithetic splays, relay ramps, and range-front step-faults that the 2.8 px disk suppressed. If those carry real new-fault labels, additions pay. Conversely, ridge crests produced by flight-line levelling artefacts, drainage incision, and lithologic contacts are also in the pool and pay nothing, so the arm conflates 'add coverage' with 'add ridge artefacts'.",
+    "predicted_sign_size": "Preregistered MODEL -0.008 vs R0 (range -0.018 to +0.002). A large negative result retires mass increase as a lever and supports the read that GEMSDOE76-81's 0.00-0.19 lanes failed from weak signals, not from too few dots. REVISED to +0.003 MODEL after the report-only instruments (w +0.0107, blind SGMC +0.0029); the preregistered value -0.008 is retained above so the correction is auditable.",
+    "falsifier": "A live gain >= +0.01 falsifies saturation and proves the parent field has substantial unsampled strand length at 100 m resolution, which would re-open count as the primary lever and make the 2.8 px thinning the binding constraint rather than the corroboration field.",
+    "post_build_w_model_delta": "+0.010735",
+    "post_build_report_only": {
+      "holdout_proxy_delta_vs_r0": -0.000167,
+      "holdout_proxy_ci95": [
+        -0.000198,
+        -0.00014
+      ],
+      "sgmc_off_catalogue_dti": 0.098918,
+      "r0_sgmc_off_catalogue_dti": 0.09606,
+      "cv_12km": 0.5648,
+      "r0_cv_12km": 0.559,
+      "sgmc_delta_vs_r0": 0.002858,
+      "ranking_effect_sgmc": 0.001756,
+      "pure_dose_effect_sgmc": 0.001102
+    },
+    "revised_prediction": "+0.003",
+    "revised_range": "[-0.002, +0.011]"
+  },
+  "h33-h33-2-b2-MASSr10swap-20261023-cde5b4a5": {
+    "parent": "h33-h33-2-b2",
+    "axis": "MASS",
+    "value": "r10swap",
+    "preregistered_prediction": "+0.006",
+    "preregistered_range": "[-0.006, +0.018]",
+    "hypothesis": "Ranking quality, not mass, is what is left on the table. At a fixed 37,654 dots, replacing the 3,765 dots with the smallest exact marginal credit by the 3,765 best un-emitted candidates must move DTI through T alone: S is unchanged, so a gain means the parent's geometric thinning is measurably worse than a w-ranked selection at the same dot budget.",
+    "mechanism": "S is frozen, so DTI changes only through T and M. The dropped dots are chosen to minimise lost T; the added dots are chosen to maximise gained T on cells the parent never sampled (d_cat > 3 px, outside R0). The arm is the superposition of r10minus's denominator saving and r10plus's numerator gain, and its outcome is the product of how redundant the worst decile is and how much uncovered credit the best decile can reach.",
+    "non_fault_mimic": "The swap is a pure w-ranking play, so it inherits every bias of w: TMI/gravity gradients favour basement-step and lithologic-contact lineaments, and the GDR-1391 geothermometry term is concentrated near known geothermal systems. If the new-fault labels are dominated by Quaternary scarps with little potential-field expression, the swap will systematically trade real scarps for geophysically loud but geologically dead lineaments \u2014 a live loss even though the w-model predicts a gain.",
+    "predicted_sign_size": "Preregistered MODEL +0.006 vs R0 (range -0.006 to +0.018). Best of the three on the w-model but bounded by w's ~0.68-AUC ceiling and by saturation of the un-emitted pool. REVISED to -0.001 MODEL after the report-only instruments (w +0.0029, blind SGMC -0.0040); the preregistered value +0.006 is retained above so the correction is auditable.",
+    "falsifier": "A live change below +0.01 falsifies w-ranked reselection as a lever and says the parent's geometric thinning is already as good as the corroboration field can rank \u2014 which would redirect the remaining slots to SPACING/TRACKB rather than to any field-driven reselection.",
+    "post_build_w_model_delta": "+0.002939",
+    "post_build_report_only": {
+      "holdout_proxy_delta_vs_r0": -0.000107,
+      "holdout_proxy_ci95": [
+        -0.000195,
+        -3.3e-05
+      ],
+      "sgmc_off_catalogue_dti": 0.092054,
+      "r0_sgmc_off_catalogue_dti": 0.09606,
+      "cv_12km": 0.594,
+      "r0_cv_12km": 0.559,
+      "sgmc_delta_vs_r0": -0.004006,
+      "ranking_effect_sgmc": 0.000462,
+      "pure_dose_effect_sgmc": -0.004469
+    },
+    "revised_prediction": "-0.001",
+    "revised_range": "[-0.006, +0.004]"
   }
 }

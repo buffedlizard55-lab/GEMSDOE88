@@ -833,6 +833,7 @@ def write_and_verify_variant(
     parent_sha_nan: str = PARENT_SHA_NAN,
     date: str = FIXED_DATE,
     min_catalogue_px: float = 0.0,
+    pct_basis: str = "moved",
 ) -> dict:
     """Write <id>.tif (NaN outside) + <id>-zeros.tif + .zip + .json and re-read verify all gates.
 
@@ -928,7 +929,14 @@ def write_and_verify_variant(
     n_dots = int(mask.sum())
     n_added = int((mask & ~parent_mask).sum())
     n_removed = int((parent_mask & ~mask).sum())
-    pct_moved = 100.0 * n_removed / n_parent
+    # ``pct_basis='moved'`` (default) scores the change by parent dots REMOVED, which is
+    # the correct basis for count-preserving relocation axes (PRUNE/SNAP/RELIEF).
+    # ``pct_basis='max'`` scores it by max(added, removed), so a pure ADD arm that
+    # changes 10% of the parent's dots without removing any still reports 10%.
+    if pct_basis == "max":
+        pct_moved = 100.0 * max(n_added, n_removed) / n_parent
+    else:
+        pct_moved = 100.0 * n_removed / n_parent
     pct_sym_diff = 100.0 * (n_added + n_removed) / n_parent
     assert 1.0 <= pct_moved <= 50.0, f"Moved % outside [1, 50]: {pct_moved:.2f}%"
     if min_catalogue_px > 0.0:
@@ -967,6 +975,7 @@ def write_and_verify_variant(
             "n_removed": n_removed,
             "pct_changed_moved": round(pct_moved, 2),
             "pct_changed_sym_diff": round(pct_sym_diff, 2),
+            "pct_changed_basis": pct_basis,
             "min_dist_catalogue_px": round(float(dvals.min()), 4),
             "dots_le_1px": int((dvals <= 1.0).sum()),
             "dots_le_2px": int((dvals <= 2.0).sum()),

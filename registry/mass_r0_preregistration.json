@@ -1,0 +1,69 @@
+{
+  "schema": "gems88.mass-r0-preregistration.v1",
+  "session_date": "2026-10-23",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis_assignment": {
+    "axis": "MASS",
+    "chosen_by": "agent (Brief v2 §5: 'Do not prompt me over choosing an Axis for the session, pick your own session')",
+    "why_this_axis": "The three ledger MASS rows (m10minus/m10plus/m20minus) were built on an ad-hoc score '0.6*clip(d_catalogue_px/50,0,1)+0.4*uniform(seed)', which the PR17 audit showed was 89.4%/85.2% a collar-extension artefact, not a mass test. No (MASS, value) pair in the ledger uses the parent's own exact-marginal ranking, which is what Brief §5 mandates. MASS is therefore the only axis with a brief-mandated arm still unbuilt.",
+    "ledger_pairs_checked": [
+      "MASS: m10minus, m10plus, m20minus (ad-hoc ranking; NOT the parent ranking)",
+      "CONCENTRATION: b10px-m10, b10px-m20, b50px-m20, 15pct-1km-grad",
+      "PRUNE: 3, p1px, p2px(=R0), p3px, p3.2px, p3.7px, p4px, p4.3px",
+      "SNAP: w2E1, w2S2, w2E2, pot2px, ridge2px, scarp2px, d1f35, d2f35, g2f35",
+      "RELIEF: up2t10, up2t15, dn2t15, rng2bas12, rng2pmt12, bas2rng12, basin12, pied12, range12",
+      "SPACING: none built (lowest priority)",
+      "TRACKB: none built (Phase 2, not a weekly-slot candidate)"
+    ]
+  },
+  "ranking_definition": {
+    "name": "exact iterative marginal expected-DTI gain under the pinned physical corroboration field w",
+    "why": "R0 = dot_thin(H19-5, 2.8) & (d_cat > 2 px) is a pure geometric Poisson-disk thinning; the parent stores NO per-dot score, so the ranking must be rebuilt. Brief §5 says rebuild it from the recorded recipe; the recorded recipe of every later lineage step (GEMSDOE32 PRUNE, R1 = PRUNEp3px) ranks by exact iterative marginal expected-DTI contribution under the same canary-clean, label-free physical field w. That is adopted here as 'the parent's own ranking'.",
+    "code": "vendor/gems57/metric.py via scripts/build_prune_variants.py::select_exact_marginal_dti_add / ::select_exact_marginal_dti_drop",
+    "field_w": "build_physical_field_and_canaries (19 official bands + parent detector ridges + GDR 1391 geothermometry), all channels leakage-canaried at symmetric AUC <= 0.90"
+  },
+  "fixed_dose": {
+    "fraction": 0.10,
+    "n_dots": 3765,
+    "parent_dots": 37654,
+    "source": "Brief §5 MASS: 'drop the lowest-ranked 10% / add the next-ranked 10%'"
+  },
+  "arms": {
+    "r10minus": {
+      "operation": "drop the 3,765 lowest exact-marginal-DTI dots from the full 37,654-dot parent set",
+      "resulting_dots": 33889,
+      "preregistered_prediction": "+0.003",
+      "preregistered_range": "[-0.008, +0.014]",
+      "reason": "A removed dot lowers S by 1 for certain and lowers T only by the credit it uniquely carried. Under DTI = T / (0.2T + 0.2(S-M) + 0.8|G|) the denominator falls even when T is unchanged, so the ranking targets exactly the dots with the smallest T-loss per unit of S. The gain is capped because w is only a ~0.68-AUC proxy for truth: roughly a third of 'low-prior' dots may sit on real unmapped faults."
+    },
+    "r10plus": {
+      "operation": "add the 3,765 next-ranked un-emitted dots (H19-5 support, d_cat > 3 px, never parent-emitted)",
+      "resulting_dots": 41419,
+      "preregistered_prediction": "-0.008",
+      "preregistered_range": "[-0.018, +0.002]",
+      "reason": "Every un-emitted H19-5 pixel was skipped by the 2.8 px dot-thinning, so the surviving candidates sit mostly 100-280 m from an already-emitted dot, i.e. inside the 300 m triangular kernel that already credits that strand. Saturation: T barely moves while S rises by 3,765. This is the falsifiable core of the 'mass is not the lever' reading of GEMSDOE76-81."
+    },
+    "r10swap": {
+      "operation": "count-matched substitution: drop the 3,765 lowest-ranked parent dots and add the 3,765 next-ranked un-emitted dots (d_cat > 3 px); count held at 37,654",
+      "resulting_dots": 37654,
+      "preregistered_prediction": "+0.006",
+      "preregistered_range": "[-0.006, +0.018]",
+      "reason": "The only arm that isolates ranking quality from mass: S is fixed at 37,654 so any change must come from moving mass from low-credit to higher-credit cells. Predicted to be the best of the three but still bounded by the same ~0.68-AUC ceiling on w and by the saturation of the un-emitted pool."
+    }
+  },
+  "shared_constraints": {
+    "catalogue_collar_for_new_dots": "d_cat > 3.0 px (Brief §4.4: >=3 px unless AXIS=PRUNE; MASS is not PRUNE)",
+    "inherited_collardots": "2,171 parent dots at 2 < d_cat <= 3 px are left untouched on every arm, because moving them would confound MASS with PRUNE; they are counted and reported, and every arm therefore inherits R0's min d_cat of 2.2361 px",
+    "count": "r10minus 33,889; r10plus 41,419; r10swap 37,654",
+    "seed": 20261023,
+    "gate": "MUST pass exact R0 sha256 rebuild, format parity with sample_submission.tif, zero catalogue mass, unique sha256, re-read from disk"
+  },
+  "decision_rule": "Live |delta| < 0.01 vs R0 is no evidence (Brief §5). Holdout PROXY and the w-model delta are report-only and never promote or gate an arm.",
+  "human_confirmation_pending": [
+    "TOP_PUBLIC with date (blank in Brief v2 §1)",
+    "slots left this rolling week / total (blank in Brief v2 §1)",
+    "deadline 2026-12-03 (Brief v2 says confirm on the competition page)"
+  ]
+}

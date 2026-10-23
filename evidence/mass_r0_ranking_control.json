@@ -1,0 +1,83 @@
+{
+  "schema": "gems88.mass-r0-ranking-control.v1",
+  "session_date": "2026-10-23",
+  "purpose": "separate the pure MASS (dose) effect from the w-RANKING effect on the blind off-catalogue SGMC control",
+  "seed": 20261023,
+  "dose": 3765,
+  "control_construction": {
+    "rand10minus": "3,765 parent dots removed uniformly at random (default_rng(20261023))",
+    "rand10plus": "3,765 candidates drawn uniformly at random from H19-5 & ~R0 & d_cat>3px",
+    "rand10swap": "both of the above at fixed count 37,654",
+    "note": "diagnostics only: no GeoTIFF, no ledger row, no (axis, value) pair, never a candidate"
+  },
+  "sgmc_off_catalogue_px": 62703,
+  "sgmc_scores": {
+    "R0": 0.09606,
+    "rand10minus": 0.08983,
+    "rand10plus": 0.097162,
+    "rand10swap": 0.091592
+  },
+  "cv_12km": {
+    "R0": 0.559,
+    "rand10minus": 0.5614,
+    "rand10plus": 0.5648,
+    "rand10swap": 0.5677
+  },
+  "dot_counts": {
+    "R0": 37654,
+    "rand10minus": 33889,
+    "rand10plus": 41419,
+    "rand10swap": 37654
+  },
+  "decomposition": {
+    "r10minus": {
+      "ranked_delta_vs_r0_sgmc": -0.008061,
+      "random_delta_vs_r0_sgmc": -0.00623,
+      "ranking_effect_sgmc": -0.001831,
+      "pure_dose_effect_sgmc": -0.00623,
+      "w_model_delta": -0.00843,
+      "reading": "the w-ranking moves the blind control DOWN by -0.001831 relative to random donors"
+    },
+    "r10plus": {
+      "ranked_delta_vs_r0_sgmc": 0.002858,
+      "random_delta_vs_r0_sgmc": 0.001102,
+      "ranking_effect_sgmc": 0.001756,
+      "pure_dose_effect_sgmc": 0.001102,
+      "w_model_delta": 0.010735,
+      "reading": "the w-ranking moves the blind control UP by +0.001756 relative to random donors"
+    },
+    "r10swap": {
+      "ranked_delta_vs_r0_sgmc": -0.004006,
+      "random_delta_vs_r0_sgmc": -0.004469,
+      "ranking_effect_sgmc": 0.000462,
+      "pure_dose_effect_sgmc": -0.004469,
+      "w_model_delta": 0.002939,
+      "reading": "the w-ranking moves the blind control UP by +0.000462 relative to random donors"
+    }
+  },
+  "revised_predictions": {
+    "r10minus": {
+      "w_model_delta": -0.00843,
+      "sgmc_delta": -0.008061,
+      "revised_model": -0.008,
+      "revised_range": "[-0.013, -0.003]",
+      "rule": "closest-to-zero when signs agree, midpoint when they disagree; band +/-0.005, widened to cover both instruments"
+    },
+    "r10plus": {
+      "w_model_delta": 0.010735,
+      "sgmc_delta": 0.002858,
+      "revised_model": 0.003,
+      "revised_range": "[-0.002, +0.011]",
+      "rule": "closest-to-zero when signs agree, midpoint when they disagree; band +/-0.005, widened to cover both instruments"
+    },
+    "r10swap": {
+      "w_model_delta": 0.002939,
+      "sgmc_delta": -0.004006,
+      "revised_model": -0.001,
+      "revised_range": "[-0.006, +0.004]",
+      "rule": "closest-to-zero when signs agree, midpoint when they disagree; band +/-0.005, widened to cover both instruments"
+    }
+  },
+  "elapsed_seconds": 14.74,
+  "git_sha": "c8d4f1db414dfbb061187862475be47479323c66"
+}
