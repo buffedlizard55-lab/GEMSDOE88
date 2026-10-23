@@ -725,6 +725,255 @@
     "submission_name": "h33-h33-2-b2-PRUNEp4.3px-20261023-21fa2b26",
     "form_note": "R0 h33-h33-2-b2; PRUNE <= 4.3px (430m), fixed N=37,654, exact DTI refill; pred -0.013 MODEL"
   },
+  "h33-h33-2-b2-PRUNEp3norefill-20261023-fb308615": {
+    "axis": "PRUNE",
+    "value": "p3norefill",
+    "collar_px": 3.0,
+    "collar_m": 300.0,
+    "refill": false,
+    "refill_spacing_px": null,
+    "change_vs_parent": "Remove 2,171 R0 dots at d_catalogue <= 300 m and add nothing; N falls to 35,483 (-5.77%).",
+    "hypothesis": "The 2-3 px collar dots are net-negative: they sit on potential-field side-lobes of already-mapped traces, so they add mass S and catalogue disagreement |G| faster than they add new-fault credit T. Removing them without replacement should therefore score above R0 even though the file is 5.8% lighter.",
+    "mechanism": "For a binary dot field the metric is DTI = T / (0.2T + 0.2(S-M) + 0.8|G|), so a dot always pays 0.2 of mass and can only recover credit T where it is the nearest dot to a true new-fault pixel. Two dots 1 px apart cannot both be that nearest dot, which is why the ledger measured densified adds at 0.04-0.07 TP/dot and spaced ones at 0.11-0.16. The collar dots at 200-300 m from mapped traces are the strongest candidate false-positive population available (they are potential-field side-lobes of a known trace, and the known trace itself is masked and unscored), so removing them and refilling only on non-redundant, independent ridge support is the cleanest available mass-and-location edit.",
+    "non_fault_mimic": "Long-wavelength magnetic/gravity side-lobes, pediment and alluvial-fan margins, and wave-cut shoreline breaks parallel range-front structures without new fault slip; in the other direction, a genuine antithetic splay or relay step can sit inside the 200-300 m collar, and the organizer explicitly allows new-fault truth within 300 m of known traces.",
+    "predicted_sign_size": "MODEL predicted live delta +0.003 vs R0 (CLAIM 0.2778), plausible range [-0.008,+0.012]. This is a projection, not a score; any live |delta| < 0.01 on public chunks is no evidence.",
+    "falsifier": "A reception of <= R0 - 0.01 falsifies the collar hypothesis for this arm; a paired comparison with the densifying R1 (PRUNEp3px, MODEL +0.005) tests whether spacing is what pays: if p3norefill and p3space35 both land within +-0.01 of R0 while R1 does not, the whole collar family is noise. If p4space35 beats p3space35 by >= 0.01, the existing p3.7px/p4.3px decline was a refill artefact, not splay loss.",
+    "fixed_count": 35483,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 0,
+      "n_removed": 2171,
+      "pct_changed_moved": 5.77,
+      "pct_changed_sym_diff": 5.77,
+      "min_dist_catalogue_px": 3.1623,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 1654
+    },
+    "ranking_basis": "Exact iterative marginal expected-DTI gain (vendor/gems57/metric.py) among only those refill cells that keep a >= spacing_px separation from every surviving parent dot and from every already-chosen refill; candidate pool is the union of the H19-5, H19-4 and H16-1 ridge supports outside the collar; one fixed label-free physical field for all arms; no isolated-pixel shortcut and no random tie score",
+    "four_line_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic and hydrothermal lines",
+    "nearest_neighbour_stats": {
+      "R0": {
+        "min_px": 2.8284271247461903,
+        "mean_px": 3.7350977393055036,
+        "p05_px": 2.8284271247461903,
+        "p95_px": 7.211102550927978
+      },
+      "candidate": {
+        "min_px": 2.8284271247461903,
+        "mean_px": 3.770608000369435,
+        "p05_px": 2.8284271247461903,
+        "p95_px": 7.280109889280518
+      },
+      "refill_min_nn_px": null
+    },
+    "report_only_not_gates": [
+      "hide-and-recover catalogue PROXY",
+      "single-feature leakage canary",
+      "blind off-catalogue SGMC control",
+      "10 km and 12 km dot-density CV"
+    ],
+    "references": [
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "Known USGS/INGENIOUS pixels are masked pixel-exactly; adjacent pixels are scored normally, so a collar dot is neither free nor certainly wrong."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New-fault truth may lie within 300 m of known traces, which is why both removing and refilling inside/near the collar must be tested rather than assumed."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 line spacing is 400 m; used only as positional-uncertainty context for how far a dot may be re-centred, never as a label."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp3norefill-20261023-fb308615",
+    "form_note": "R0 h33-2-b2; PRUNE<=300m no refill -2171, N 35483; pred +0.003 MODEL",
+    "instrument_disagreement": "The label-free physics field prefers the densified refill; the blind off-catalogue SGMC control prefers the spacing-locked refill. Neither instrument is a score and neither decides a slot. The densified 300 m rebuild reproduces the ledger's R1 SGMC value (0.096083) exactly, which validates the comparison baseline.",
+    "sgmc_off_catalogue_proxy": {
+      "R0": 0.09606,
+      "densified_refill_300m": 0.096083,
+      "densified_refill_400m": 0.094465,
+      "p3norefill": 0.093643,
+      "p3space35": 0.101042,
+      "p4space35": 0.102454
+    },
+    "four_line_field_model": {
+      "R0": 0.286061,
+      "densified_refill_300m": 0.281537,
+      "densified_refill_400m": 0.273708,
+      "p3norefill": 0.270354,
+      "p3space35": 0.274896,
+      "p4space35": 0.263231
+    }
+  },
+  "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b": {
+    "axis": "PRUNE",
+    "value": "p3space35",
+    "collar_px": 3.0,
+    "collar_m": 300.0,
+    "refill": true,
+    "refill_spacing_px": 3.5,
+    "change_vs_parent": "Remove 2,171 R0 dots at d_catalogue <= 300 m; add back 2,171 dots from the H19-5/H19-4/H16-1 ridge supports that are >= 3.5 px from every other dot in the output (observed refill min NN 3.606 px); N held at 37,654.",
+    "hypothesis": "Holding N=37,654 while replacing the collar dots with refills that are >= 3.5 px (350 m) from every other dot keeps each refill non-redundant on the 3 px kernel, so it earns full line credit instead of the 0.04-0.07 TP/dot a densified refill forfeits; this should beat R1 = PRUNEp3px (MODEL +0.005), whose refill min NN is 1.0 px.",
+    "mechanism": "For a binary dot field the metric is DTI = T / (0.2T + 0.2(S-M) + 0.8|G|), so a dot always pays 0.2 of mass and can only recover credit T where it is the nearest dot to a true new-fault pixel. Two dots 1 px apart cannot both be that nearest dot, which is why the ledger measured densified adds at 0.04-0.07 TP/dot and spaced ones at 0.11-0.16. The collar dots at 200-300 m from mapped traces are the strongest candidate false-positive population available (they are potential-field side-lobes of a known trace, and the known trace itself is masked and unscored), so removing them and refilling only on non-redundant, independent ridge support is the cleanest available mass-and-location edit.",
+    "non_fault_mimic": "Long-wavelength magnetic/gravity side-lobes, pediment and alluvial-fan margins, and wave-cut shoreline breaks parallel range-front structures without new fault slip; in the other direction, a genuine antithetic splay or relay step can sit inside the 200-300 m collar, and the organizer explicitly allows new-fault truth within 300 m of known traces.",
+    "predicted_sign_size": "MODEL predicted live delta +0.007 vs R0 (CLAIM 0.2778), plausible range [-0.002,+0.018]. This is a projection, not a score; any live |delta| < 0.01 on public chunks is no evidence.",
+    "falsifier": "A reception of <= R0 - 0.01 falsifies the collar hypothesis for this arm; a paired comparison with the densifying R1 (PRUNEp3px, MODEL +0.005) tests whether spacing is what pays: if p3norefill and p3space35 both land within +-0.01 of R0 while R1 does not, the whole collar family is noise. If p4space35 beats p3space35 by >= 0.01, the existing p3.7px/p4.3px decline was a refill artefact, not splay loss.",
+    "fixed_count": 37654,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 2171,
+      "n_removed": 2171,
+      "pct_changed_moved": 5.77,
+      "pct_changed_sym_diff": 11.53,
+      "min_dist_catalogue_px": 3.1623,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 2245
+    },
+    "ranking_basis": "Exact iterative marginal expected-DTI gain (vendor/gems57/metric.py) among only those refill cells that keep a >= spacing_px separation from every surviving parent dot and from every already-chosen refill; candidate pool is the union of the H19-5, H19-4 and H16-1 ridge supports outside the collar; one fixed label-free physical field for all arms; no isolated-pixel shortcut and no random tie score",
+    "four_line_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic and hydrothermal lines",
+    "nearest_neighbour_stats": {
+      "R0": {
+        "min_px": 2.8284271247461903,
+        "mean_px": 3.7350977393055036,
+        "p05_px": 2.8284271247461903,
+        "p95_px": 7.211102550927978
+      },
+      "candidate": {
+        "min_px": 2.8284271247461903,
+        "mean_px": 3.860790807848182,
+        "p05_px": 2.8284271247461903,
+        "p95_px": 7.810249675906654
+      },
+      "refill_min_nn_px": 3.605551275463989
+    },
+    "report_only_not_gates": [
+      "hide-and-recover catalogue PROXY",
+      "single-feature leakage canary",
+      "blind off-catalogue SGMC control",
+      "10 km and 12 km dot-density CV"
+    ],
+    "references": [
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "Known USGS/INGENIOUS pixels are masked pixel-exactly; adjacent pixels are scored normally, so a collar dot is neither free nor certainly wrong."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New-fault truth may lie within 300 m of known traces, which is why both removing and refilling inside/near the collar must be tested rather than assumed."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 line spacing is 400 m; used only as positional-uncertainty context for how far a dot may be re-centred, never as a label."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b",
+    "form_note": "R0 h33-2-b2; PRUNE<=300m +2171 refill >=3.5px spaced, N 37654; pred +0.007 MODEL",
+    "instrument_disagreement": "The label-free physics field prefers the densified refill; the blind off-catalogue SGMC control prefers the spacing-locked refill. Neither instrument is a score and neither decides a slot. The densified 300 m rebuild reproduces the ledger's R1 SGMC value (0.096083) exactly, which validates the comparison baseline.",
+    "sgmc_off_catalogue_proxy": {
+      "R0": 0.09606,
+      "densified_refill_300m": 0.096083,
+      "densified_refill_400m": 0.094465,
+      "p3norefill": 0.093643,
+      "p3space35": 0.101042,
+      "p4space35": 0.102454
+    },
+    "four_line_field_model": {
+      "R0": 0.286061,
+      "densified_refill_300m": 0.281537,
+      "densified_refill_400m": 0.273708,
+      "p3norefill": 0.270354,
+      "p3space35": 0.274896,
+      "p4space35": 0.263231
+    }
+  },
+  "h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182": {
+    "axis": "PRUNE",
+    "value": "p4space35",
+    "collar_px": 4.0,
+    "collar_m": 400.0,
+    "refill": true,
+    "refill_spacing_px": 3.5,
+    "change_vs_parent": "Remove 3,825 R0 dots at d_catalogue <= 400 m; add back 3,825 dots from the H19-5/H19-4/H16-1 ridge supports that are >= 3.5 px from every other dot in the output (observed refill min NN 3.606 px); N held at 37,654.",
+    "hypothesis": "A 400 m collar removes 1.8x more parent dots; if the existing p3.7px (-0.005) and p4.3px (-0.013) decline was caused by their densifying refill and not by losing real splays, the same collar with a spaced refill should recover to roughly break-even or slightly positive.",
+    "mechanism": "For a binary dot field the metric is DTI = T / (0.2T + 0.2(S-M) + 0.8|G|), so a dot always pays 0.2 of mass and can only recover credit T where it is the nearest dot to a true new-fault pixel. Two dots 1 px apart cannot both be that nearest dot, which is why the ledger measured densified adds at 0.04-0.07 TP/dot and spaced ones at 0.11-0.16. The collar dots at 200-300 m from mapped traces are the strongest candidate false-positive population available (they are potential-field side-lobes of a known trace, and the known trace itself is masked and unscored), so removing them and refilling only on non-redundant, independent ridge support is the cleanest available mass-and-location edit.",
+    "non_fault_mimic": "Long-wavelength magnetic/gravity side-lobes, pediment and alluvial-fan margins, and wave-cut shoreline breaks parallel range-front structures without new fault slip; in the other direction, a genuine antithetic splay or relay step can sit inside the 200-300 m collar, and the organizer explicitly allows new-fault truth within 300 m of known traces.",
+    "predicted_sign_size": "MODEL predicted live delta +0.002 vs R0 (CLAIM 0.2778), plausible range [-0.010,+0.014]. This is a projection, not a score; any live |delta| < 0.01 on public chunks is no evidence.",
+    "falsifier": "A reception of <= R0 - 0.01 falsifies the collar hypothesis for this arm; a paired comparison with the densifying R1 (PRUNEp3px, MODEL +0.005) tests whether spacing is what pays: if p3norefill and p3space35 both land within +-0.01 of R0 while R1 does not, the whole collar family is noise. If p4space35 beats p3space35 by >= 0.01, the existing p3.7px/p4.3px decline was a refill artefact, not splay loss.",
+    "fixed_count": 37654,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 3825,
+      "n_removed": 3825,
+      "pct_changed_moved": 10.16,
+      "pct_changed_sym_diff": 20.32,
+      "min_dist_catalogue_px": 4.1231,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 0
+    },
+    "ranking_basis": "Exact iterative marginal expected-DTI gain (vendor/gems57/metric.py) among only those refill cells that keep a >= spacing_px separation from every surviving parent dot and from every already-chosen refill; candidate pool is the union of the H19-5, H19-4 and H16-1 ridge supports outside the collar; one fixed label-free physical field for all arms; no isolated-pixel shortcut and no random tie score",
+    "four_line_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic and hydrothermal lines",
+    "nearest_neighbour_stats": {
+      "R0": {
+        "min_px": 2.8284271247461903,
+        "mean_px": 3.7350977393055036,
+        "p05_px": 2.8284271247461903,
+        "p95_px": 7.211102550927978
+      },
+      "candidate": {
+        "min_px": 2.8284271247461903,
+        "mean_px": 3.9074890837727687,
+        "p05_px": 2.8284271247461903,
+        "p95_px": 7.810249675906654
+      },
+      "refill_min_nn_px": 3.605551275463989
+    },
+    "report_only_not_gates": [
+      "hide-and-recover catalogue PROXY",
+      "single-feature leakage canary",
+      "blind off-catalogue SGMC control",
+      "10 km and 12 km dot-density CV"
+    ],
+    "references": [
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "Known USGS/INGENIOUS pixels are masked pixel-exactly; adjacent pixels are scored normally, so a collar dot is neither free nor certainly wrong."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New-fault truth may lie within 300 m of known traces, which is why both removing and refilling inside/near the collar must be tested rather than assumed."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 line spacing is 400 m; used only as positional-uncertainty context for how far a dot may be re-centred, never as a label."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182",
+    "form_note": "R0 h33-2-b2; PRUNE<=400m +3825 refill >=3.5px spaced, N 37654; pred +0.002 MODEL",
+    "instrument_disagreement": "The label-free physics field prefers the densified refill; the blind off-catalogue SGMC control prefers the spacing-locked refill. Neither instrument is a score and neither decides a slot. The densified 300 m rebuild reproduces the ledger's R1 SGMC value (0.096083) exactly, which validates the comparison baseline.",
+    "sgmc_off_catalogue_proxy": {
+      "R0": 0.09606,
+      "densified_refill_300m": 0.096083,
+      "densified_refill_400m": 0.094465,
+      "p3norefill": 0.093643,
+      "p3space35": 0.101042,
+      "p4space35": 0.102454
+    },
+    "four_line_field_model": {
+      "R0": 0.286061,
+      "densified_refill_300m": 0.281537,
+      "densified_refill_400m": 0.273708,
+      "p3norefill": 0.270354,
+      "p3space35": 0.274896,
+      "p4space35": 0.263231
+    }
+  },
   "h33-h33-2-b2-SPACINGlattice-20261023-03d14f38": {
     "axis": "SPACING",
     "value": "lattice",
