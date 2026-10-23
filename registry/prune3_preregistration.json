@@ -1,0 +1,38 @@
+{
+  "schema": "gems88.r0-axis-experiment.v1",
+  "preregistered_utc": "2026-10-23T03:35:00Z",
+  "parent": {
+    "id": "h33-h33-2-b2",
+    "repository": "GEMSDOE32",
+    "zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "n_dots": 37654,
+    "claimed_live_dti": 0.2778,
+    "evidence_class": "CLAIM"
+  },
+  "axis": "PRUNE",
+  "value": "3",
+  "seed": 20261023,
+  "change": "From R0 remove every dot with Euclidean catalogue distance <=3 px; refill the same number from the original H19-5 binary support at distance >3 px in the parent's recorded geodesic BFS visitation order, while preserving the original 2.8 px inhibition rule.",
+  "fixed_count": 37654,
+  "hypothesis": "The 0-300 m catalogue collar contains recoverable new-fault truth. Moving R0's collar dots to more distant H19-5 support at fixed mass will therefore cause a small live loss rather than continue the gains obtained by earlier pruning without refill.",
+  "mechanism": "Known catalogue pixels are masked, but new-fault truth may occur within the 300 m kernel radius of known traces. Count is fixed, so the edit changes only kernel credit and self-credit, not emitted mass. The refill uses no new geological score or hidden-label information.",
+  "non_fault_mimic": "Catalogue generalization/rasterization can displace a mapped line from its real trace; alluvial channels and map-edge/BFS artifacts inside the binary H19-5 support can mimic fault lineaments during refill.",
+  "predicted_live_change": {
+    "evidence_class": "MODEL",
+    "delta_dti": -0.003,
+    "plausible_range": [-0.01, 0.004],
+    "no_evidence_band": "abs(receipt_delta) < 0.01"
+  },
+  "falsifier": "A same-entity receipt increase of at least +0.01 DTI over R0 falsifies the predicted small-loss mechanism. A decrease of at least 0.01 supports it; a smaller absolute change is no evidence because only public chunks are observed.",
+  "not_a_gate": [
+    "catalogue hide-and-recover PROXY",
+    "single-feature leakage canary diagnostics",
+    "SGMC control"
+  ],
+  "excluded_variants": {
+    "PRUNE_1": "R0 already has no dots <=1 px, so the specified fixed-count edit is an exact repeat.",
+    "PRUNE_2": "R0 is itself the <=2 px prune, so the specified fixed-count edit is an exact repeat.",
+    "MASS": "H19-5 is binary at every R0 dot and D2.8/R0 thinning is score-blind; no non-degenerate parent ranking is stored.",
+    "SNAP": "The non-PRUNE >=3 px rule conflicts with R0's >2 px construction: 30 dots have no destination simultaneously within 2 px and >=3 px from the catalogue. Resolving them would add a second axis."
+  }
+}

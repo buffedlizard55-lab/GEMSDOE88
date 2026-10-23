@@ -1,0 +1,127 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp1px-20261023-0542a27c",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis": "PRUNE",
+  "value": "p1px",
+  "seed": 20261023,
+  "git_sha": "baee52d65d88245e9765ebd916a82e5712540d8f",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp1px-20261023-0542a27c.tif",
+  "sha256": "0542a27cd3518f3f5cd6d7b48ff8e2de50e81b233cbc6ffb343b254b241314ac",
+  "bytes_nan": 355283,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp1px-20261023-0542a27c.zip",
+  "zip_nan_sha256": "4a939dc1b8f7fb65b38d6f4c92ab11a29adfb10734d6b3f788db00f0fc260770",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp1px-20261023-0542a27c-zeros.tif",
+  "sha256_zeros": "d4a16a38ccc276e897458a258d882f3905c3bf7494162ac9967d22b4131818d3",
+  "bytes_zeros": 219051,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp1px-20261023-0542a27c-zeros.zip",
+  "zip_zeros_sha256": "782e265464c4495868b7d87f6d6b9a9f9ab92f674868dc4ba7a75604cc3017c3",
+  "form_note": "h33-2-b2; PRUNE <=1px held at 37654 (+2545 1-2px flank, -2545 low marginal gain); pred -0.006 MODEL",
+  "form_note_chars": 99,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 2545,
+    "n_removed": 2545,
+    "pct_changed_moved": 6.76,
+    "pct_changed_sym_diff": 13.52,
+    "min_dist_catalogue_px": 1.4142,
+    "dots_le_1px": 0,
+    "dots_le_2px": 2545,
+    "dots_le_3px": 4649,
+    "dots_le_4px": 6239
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.030145,
+      "ci95": [
+        0.026907,
+        0.033396
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.026139,
+      "paired_delta_vs_r0_ci95": [
+        0.023095,
+        0.029028
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.090926,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5299.14,
+      "fp": 35286.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6322,
+      "cv_12km_120px_interior": 0.5647
+    }
+  },
+  "r0_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  },
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    }
+  }
+}

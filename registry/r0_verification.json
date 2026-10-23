@@ -1,0 +1,134 @@
+{
+  "checks": {
+    "pin_sample_submission": {
+      "ok": true,
+      "detail": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+    },
+    "pin_existing_faults": {
+      "ok": true,
+      "detail": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    "pin_parent_R0": {
+      "ok": true,
+      "detail": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    "n_dots_37654": {
+      "ok": true,
+      "detail": 37654
+    },
+    "all_dots_in_footprint": {
+      "ok": true,
+      "detail": 0
+    },
+    "zero_on_catalogue": {
+      "ok": true,
+      "detail": 0
+    },
+    "none_within_2px": {
+      "ok": true,
+      "detail": 0
+    },
+    "reemit_array_identical": {
+      "ok": true,
+      "detail": {
+        "parent_profile": {
+          "sha256": "761adf6c9f336f239fb28747a201231895b62440d8874b1a57eb9f3a8e608de0",
+          "sha256_matches_parent": false,
+          "array_identical": true,
+          "n_differing_px": 0,
+          "profile": {
+            "driver": "GTiff",
+            "dtype": "float32",
+            "nodata": "None",
+            "width": "3292",
+            "height": "3730",
+            "count": "1",
+            "crs": "EPSG:32611",
+            "transform": "| 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00|",
+            "blockxsize": "256",
+            "blockysize": "256",
+            "tiled": "True",
+            "compress": "deflate",
+            "interleave": "band"
+          }
+        },
+        "lzw_profile": {
+          "sha256": "8544717908d4f4283841ea30b1e1d34c599ea0f43d5e8e51e24a6e3419194d1f",
+          "sha256_matches_parent": false,
+          "array_identical": true,
+          "n_differing_px": 0,
+          "profile": {
+            "driver": "GTiff",
+            "dtype": "float32",
+            "nodata": "None",
+            "width": "3292",
+            "height": "3730",
+            "count": "1",
+            "crs": "EPSG:32611",
+            "transform": "| 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00|",
+            "blockxsize": "3292",
+            "blockysize": "1",
+            "tiled": "False",
+            "compress": "lzw",
+            "interleave": "band"
+          }
+        }
+      }
+    }
+  },
+  "ok": true,
+  "parent_geometry": {
+    "min_dist_px": 2.2360680103302,
+    "n_within_3px": 2171,
+    "frac_within_3px": 0.057656557072289796,
+    "footprint_px": 5167373,
+    "catalogue_px": 60988,
+    "dot_density_frac_of_footprint": 0.007286874781441169
+  },
+  "reemit": {
+    "parent_profile": {
+      "sha256": "761adf6c9f336f239fb28747a201231895b62440d8874b1a57eb9f3a8e608de0",
+      "sha256_matches_parent": false,
+      "array_identical": true,
+      "n_differing_px": 0,
+      "profile": {
+        "driver": "GTiff",
+        "dtype": "float32",
+        "nodata": "None",
+        "width": "3292",
+        "height": "3730",
+        "count": "1",
+        "crs": "EPSG:32611",
+        "transform": "| 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00|",
+        "blockxsize": "256",
+        "blockysize": "256",
+        "tiled": "True",
+        "compress": "deflate",
+        "interleave": "band"
+      }
+    },
+    "lzw_profile": {
+      "sha256": "8544717908d4f4283841ea30b1e1d34c599ea0f43d5e8e51e24a6e3419194d1f",
+      "sha256_matches_parent": false,
+      "array_identical": true,
+      "n_differing_px": 0,
+      "profile": {
+        "driver": "GTiff",
+        "dtype": "float32",
+        "nodata": "None",
+        "width": "3292",
+        "height": "3730",
+        "count": "1",
+        "crs": "EPSG:32611",
+        "transform": "| 100.00, 0.00, 243350.00|\n| 0.00,-100.00, 4508550.00|\n| 0.00, 0.00, 1.00|",
+        "blockxsize": "3292",
+        "blockysize": "1",
+        "tiled": "False",
+        "compress": "lzw",
+        "interleave": "band"
+      }
+    }
+  },
+  "byte_sha_reproduced": false,
+  "note": "The reproducible object is the 37,654-pixel dot mask (array identity). Byte-level sha256 equality additionally requires the same GDAL/zlib build; it is reported, not enforced, and every variant is named by the sha256 of the bytes we actually write."
+}
