@@ -10,11 +10,11 @@
 ## CURRENT STATE (agent brief v2 — human must confirm ledger dates)
 
 - **Parent R0:** `h33-h33-2-b2` (GEMSDOE32) — 37,654 dots, 0 within 2 px of catalogue, sha256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`, CLAIM 0.2778 (no receipt in `ledger/`).
-- **Best RECEIPT:** none yet (all HOLDOUT-DTI only; H88-UGFV 0.1770 [0.1618,0.1921] n=22,893, seed20+30 pooled).
+- **Best RECEIPT:** none yet (all HOLDOUT-DTI only; H88-UGFV 0.1770 [0.1618,0.1921] n=22,893, seeds 20 and 21 pooled (`registry/holdout_split.json`)).
 - **TOP_PUBLIC:** 0.4413 (#1 xiaofanhu, 2026-10-22) — supersedes prompt's stale 0.3195; verify live at https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
 - **Slots left this week:** 3 / 3 (0 scored uploads this rolling week, 2026-10-23) / total to deadline 2026-12-03: ~21 (≈7 weeks ×3).
-- **This session AXIS:** MASS — built 3 variants of R0 differing only on MASS (drop 10% / add 10% / drop 20%, by parent ranking rebuilt from distance+rand seed 88/90; 1-50% change, 0 catalogue mass, ≥2 px collar; NaN outside + -zeros fallback; re-read verified).
-- **Next 3 slots:** 1) `h33-h33-2-b2-MASSm10minus-20261023-7132935e` (33,889, -0.008 MODEL) 2) `h33-h33-2-b2-MASSm10plus-20261023-82673b57` (41,419, +0.004 MODEL) 3) CONCENTRATION 15% km-block move (CV report, see `SLOT_PLAN.md`). See `ledger/submissions.csv` and `releases/` for form notes ≤140 chars.
+- **This session AXIS:** CONCENTRATION (brief left it blank; MASS was already built on 2026-10-23 and is still unsubmitted). Built 3 variants of R0 differing **only** in where mass sits: count fixed at 37,654; blocks 10 px (1 km) with 10 % and 20 % of dots moved coldest→hottest, plus 20 % at 50 px (5 km) as a scale control. Prior = 2-block-smoothed parent density; donors keep one dot per block (no disguised pruning); receivers welded ≤1.41 px to a surviving host dot and never inside the 3 px collar. NaN outside + `-zeros` fallback, re-read verified, all 6 files pass `scripts/validate_variant.py` (`registry/variant_validation.json`).
+- **Next 3 slots:** 1) `h33-h33-2-b2-CONCb10px-m20-20261023-c42cd475` (20 %, +0.020 MODEL) 2) `h33-h33-2-b2-CONCb10px-m10-20261023-89ffd4f3` (10 %, +0.011 MODEL) 3) `h33-h33-2-b2-MASSm10minus-20261023-7132935e` (33,889, −0.008 MODEL). CV excursion (0.62 → 1.26 raw 1 km) is the main risk; the PROXY is flat (Δ 0.0000, no power here). Rationale and conditional swaps: `SLOT_PLAN.md`; form notes ≤140 chars: `docs/SUBMIT.md`; rows: `ledger/submissions.csv`.
 
 ---
 
