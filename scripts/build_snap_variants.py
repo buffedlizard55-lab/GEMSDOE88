@@ -379,8 +379,18 @@ def write_and_verify_snap_variant(
     value: str,
     note_template: str,
     existing_shas: set[str],
+    *,
+    parent_id: str = PARENT_ID,
+    parent_sha_zeros: str = PARENT_SHA_ZEROS,
+    parent_sha_nan: str = PARENT_SHA_NAN,
 ) -> dict:
-    """Write <id>.tif (NaN outside) + <id>-zeros.tif + .zip + .json and re-read verify all gates."""
+    """Write <id>.tif (NaN outside) + <id>-zeros.tif + .zip + .json and re-read verify all gates.
+
+    ``parent_id``/``parent_sha_*`` default to the R0 SNAP family so the original
+    call sites are unchanged; the R1 scarp family (scripts/build_snap_r1_scarp_variants.py)
+    passes the gate-clean parent it actually edits.
+    """
+
     releases_dir.mkdir(parents=True, exist_ok=True)
     with rasterio.open(sample_path) as tpl:
         base_prof = tpl.profile.copy()
@@ -405,7 +415,7 @@ def write_and_verify_snap_variant(
     arr_nan = np.where(foot, mask.astype(np.float32), np.nan).astype(np.float32)
     arr_zeros = np.where(foot, mask.astype(np.float32), 0.0).astype(np.float32)
 
-    prefix = f"{PARENT_ID}-SNAP{value}-{FIXED_DATE}"
+    prefix = f"{parent_id}-SNAP{value}-{FIXED_DATE}"
     tmp_nan = releases_dir / f".tmp-{prefix}.tif"
     tmp_zeros = releases_dir / f".tmp-{prefix}-zeros.tif"
     with rasterio.open(tmp_nan, "w", **prof_nan) as dst:
@@ -480,9 +490,9 @@ def write_and_verify_snap_variant(
 
     receipt = {
         "id": vid,
-        "parent": PARENT_ID,
-        "parent_sha256_zeros": PARENT_SHA_ZEROS,
-        "parent_sha256_nan": PARENT_SHA_NAN,
+        "parent": parent_id,
+        "parent_sha256_zeros": parent_sha_zeros,
+        "parent_sha256_nan": parent_sha_nan,
         "axis": "SNAP",
         "value": value,
         "seed": SEED,
@@ -528,6 +538,7 @@ def write_and_verify_snap_variant(
             "zero_catalogue_mass": True,
             "none_within_2px_catalogue": True,
             "all_moved_dots_gt_3px_catalogue": True,
+            "all_dots_gt_3px_catalogue": bool(dvals.min() > 3.0),
             "reread_from_disk_verified": True,
         },
     }
@@ -603,8 +614,16 @@ def main() -> int:
     if ledger_path.is_file():
         with ledger_path.open("r", newline="", encoding="utf-8") as f:
             for row in csv.DictReader(f):
-                if row.get("axis") == "SNAP" and row.get("value") in our_values:
-                    continue  # idempotent rerun replaces only our spacing-locked SNAP rows
+                if (
+                    row.get("axis") == "SNAP"
+                    and row.get("value") in our_values
+                    and row.get("parent") == PARENT_ID
+                ):
+                    # Idempotent rerun replaces only THIS parent's spacing-locked SNAP
+                    # rows; the R1-parented families (g2f35/d2f35/d1f35 and the scarp
+                    # transplant scarp2px/scarp1px/ridge2px) reuse value names under a
+                    # different parent and must survive (IR-88-39 discipline).
+                    continue
                 existing_rows.append(row)
                 if row.get("sha256"):
                     existing_shas.add(row["sha256"])
@@ -700,7 +719,7 @@ def main() -> int:
     cards = {
         k: v
         for k, v in cards.items()
-        if not any(f"-SNAP{val}-" in k for val in our_values)
+        if not any(k.startswith(f"{PARENT_ID}-SNAP{val}-") for val in our_values)
     }
 
     new_ledger_rows = []

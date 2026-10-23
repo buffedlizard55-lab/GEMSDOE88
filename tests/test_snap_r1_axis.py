@@ -37,9 +37,14 @@ CARDS = ROOT / "ledger" / "mechanism_cards.json"
 
 # Receipts are tracked but the rasters are gitignored, so a fresh clone has JSONs without
 # TIFFs. Gate the artifact tests on the raster actually existing, not on the receipt.
+# Scoped to THIS family's values: the R1 scarp transplant family
+# (scripts/build_snap_r1_scarp_variants.py, values scarp2px/scarp1px/ridge2px) shares the
+# parent and axis and is covered by tests/test_snap_r1_scarp_axis.py (IR-88-39 discipline).
+F35_VALUES = {"g2f35", "d2f35", "d1f35"}
 SNAP_JSON = [
     p for p in sorted(RELEASES.glob(f"{bsv.R1_ID}-SNAP*.json"))
     if p.with_suffix("").with_suffix(".tif").is_file()
+    and json.loads(p.read_text()).get("value") in F35_VALUES
 ]
 
 
@@ -187,7 +192,7 @@ def test_snap_ledger_and_mechanism_cards():
     with LEDGER.open(newline="") as fh:
         rows = [
             r for r in csv.DictReader(fh)
-            if r["axis"] == "SNAP" and r["parent"] == bsv.R1_ID
+            if r["axis"] == "SNAP" and r["parent"] == bsv.R1_ID and r["value"] in F35_VALUES
         ]
     assert len(rows) == 3
     assert len({r["sha256"] for r in rows}) == 3

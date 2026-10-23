@@ -1,0 +1,258 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPridge2px-20261023-f4af84a3",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+  "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+  "axis": "SNAP",
+  "value": "ridge2px",
+  "seed": 20261023,
+  "git_sha": "c8d4f1db414dfbb061187862475be47479323c66",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPridge2px-20261023-f4af84a3.tif",
+  "sha256": "f4af84a326d353962e1db5b4dc60cd6c1a0e7ba2885f0811f68d242cac477112",
+  "bytes_nan": 354811,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPridge2px-20261023-f4af84a3.zip",
+  "zip_nan_sha256": "5cac237d60c9930c0d9a3c82ea76b64ac45a29d45db8bd31a6f27609ca0d7d5c",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPridge2px-20261023-f4af84a3-zeros.tif",
+  "sha256_zeros": "816c144dbdfe500577b58cbc13158e24715cf842d7842e3817ec72cb85082112",
+  "bytes_zeros": 218491,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPridge2px-20261023-f4af84a3-zeros.zip",
+  "zip_zeros_sha256": "51cee4452ae01153227208e5dddee55a07800d1c354346f837a36242890f9371",
+  "form_note": "h33-2-b2 PRUNEp3px R1; SNAP <=2px on H19-5 support to scarp co-edge, spacing-locked, 100% of dots >3px; pred +0.002 MODEL",
+  "form_note_chars": 121,
+  "n_dots": 37654,
+  "displacement": {
+    "max_window_radius_px": 2.0,
+    "min_interdot_sep_enforced_px": 2.8,
+    "min_interdot_nn_dist_px": 1.0,
+    "mean_interdot_nn_dist_px": 3.6226,
+    "stay_on_h19_5_ridge": true,
+    "n_dots_displaced": 6567,
+    "n_dots_stationary": 31087,
+    "mean_displacement_all_px": 0.2114,
+    "mean_displacement_all_m": 21.14,
+    "mean_displacement_moved_px": 1.2122,
+    "mean_displacement_moved_m": 121.22,
+    "max_displacement_px": 2.0,
+    "displacement_counts_by_d2": {
+      "d_0px_d2_0": 31087,
+      "d_1px_d2_1": 4220,
+      "d_sqrt2px_d2_2": 1628,
+      "d_2px_d2_4": 719
+    },
+    "mean_edge_response_before": 0.61663,
+    "mean_edge_response_after": 0.62302,
+    "mean_edge_response_gain": 0.00639
+  },
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_common": 31087,
+    "n_added": 6567,
+    "n_removed": 6567,
+    "pct_changed_moved": 17.44,
+    "pct_changed_sym_diff": 34.88,
+    "min_dist_catalogue_px": 3.1623,
+    "min_dist_added_catalogue_px": 3.1623,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 0,
+    "dots_le_4px": 2878
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "none_within_2px_catalogue": true,
+    "all_moved_dots_gt_3px_catalogue": true,
+    "all_dots_gt_3px_catalogue": true,
+    "reread_from_disk_verified": true
+  },
+  "parent_rebuild_verified": {
+    "r0_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "r0_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "r1_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+    "r1_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9"
+  },
+  "spacing_lock_final_configuration": {
+    "n_added_cells": 6567,
+    "min_nn_added_vs_all_px": 2.8284,
+    "spacing_lock_holds_for_every_moved_dot": true,
+    "min_nn_global_px": 1.0,
+    "mean_nn_global_px": 3.6226,
+    "note": "global min NN may be < 2.8284 px: R1's 2,171 exact-marginal refills were selected without a spacing lock (IR-88-37); SNAP never repairs inherited pairs, it only guarantees placement spacing for dots it moves."
+  },
+  "off_h19_5_support": {
+    "stay_on_h19_5": true,
+    "n_dots_off_h19_5_after": 0,
+    "n_parent_dots_off_h19_5": 0
+  },
+  "w_weighted_dti_MODEL": {
+    "evidence_label": "MODEL",
+    "field": "label-free corroboration field w (build_prune_variants.py)",
+    "dti_parent_r1": 0.281537,
+    "dti_arm": 0.28053,
+    "delta_vs_r1": -0.001007,
+    "caveat": "w under-weights dots off H19-5 support (0.015*p_phys vs 0.045+) and its ranking has blind AUC 0.47 (IR-88-38); recorded as a mechanical diagnostic, the ledger prediction stays the preregistered scenario MODEL."
+  },
+  "preregistration": "registry/preregistration_snap_r1_scarp.json",
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "w_field_channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    },
+    "edge_field_channels": {
+      "tmi_hg_b03": 0.52022,
+      "tmi_crest_b03": 0.50573,
+      "grav_hg_b18": 0.51671,
+      "grav_crest_b18": 0.51035,
+      "det_elev_slope_b19": 0.54949,
+      "det_elev_break_b12": 0.52669,
+      "composite_edge_pot": 0.50076,
+      "composite_edge_scarp_pot": 0.53422
+    }
+  },
+  "mechanism_card": {
+    "hypothesis": "If the blind-control gain of scarp snapping is intra-support de-jittering (dot_thin's score-blind BFS anchored dots on the northern/western outer pixel of 2-3 px wide H19-5 ribbons), restricting targets to H19-5 preserves most of it; if the gain is off-support crest reach, this arm loses to scarp2px as it did on R0 (0.096439 vs 0.096806 PROXY). On R1 the contrast also probes the 2,171 refills: they were placed at w-field maxima ON support, so intra-support jitter should be smaller for them than for BFS-thinned R0 dots.",
+    "mechanism": "Targets must satisfy h19_5 & foot & ~catalogue & d_cat > 3.0 px; moves stay inside the 2-3 px ribbon, so displacement is small (R0 analog: mean 0.23 px over all dots) and the kernel cost of a wrong move is bounded by the ribbon width. The >=2.8284 px placement lock again prevents along-strike bunching; bijection keeps S = 37,654.",
+    "non_fault_mimic": "The ribbon itself: intra-support de-jittering cannot fix a genuinely mislocated ribbon (a drifted aeromagnetic lineament with no surface fault); pluvial-shoreline breaklines that run along H19-5 ribbons attract the same field within support.",
+    "predicted_sign_size": "Preregistered MODEL +0.002 live delta vs R1 (scenario range [-0.005,+0.010]); discounted from the R0 family's ridge2px +0.003 because R1's refills were already placed at on-support field maxima.",
+    "falsifier": "SGMC(ridge2px) >= SGMC(scarp2px) reverses the R0 ordering and says the gain is intra-support de-jittering, so future snaps must stay support-locked; live receipts <= R1 - 0.01 for both ridge2px and scarp2px close SNAP on R1 (three families then agree: IR-88-31/32, f35, this one)."
+  },
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.096548,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5630.71,
+      "fp": 35159.27
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6408,
+      "cv_12km_120px_interior": 0.5699
+    }
+  },
+  "parent_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.096083,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5603.04,
+      "fp": 35157.75
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6405,
+      "cv_12km_120px_interior": 0.57
+    }
+  },
+  "r0_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  },
+  "r0_scarp2px_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003423,
+        0.004689
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.0,
+      "paired_delta_vs_r0_ci95": [
+        -3e-06,
+        3e-06
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.096806,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5648.13,
+      "fp": 35264.29
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.633,
+      "cv_12km_120px_interior": 0.5608
+    }
+  }
+}

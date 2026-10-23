@@ -1,20 +1,16 @@
 # GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
 
 <!-- CURRENT STATE START -->
-## CURRENT STATE (2026-10-23 · Agent Brief v2)
+## CURRENT STATE (`2026-10-23` · Agent Brief v2 · AXIS=SNAP scarp transplant on gate-clean `R1`)
 
-| Field | Current evidence |
-|---|---|
-| Parent R0 | `h33-h33-2-b2`, 37,654 dots; all 15 manifest hashes verified this session; full lineage reproduced both SHA-256 values: zeros `c55bafc4…`, NaN `baeae321…`. |
-| Best receipt | **None.** R0 `0.2778` remains **CLAIM**. Ledger has 32 built candidates and no portal receipts. |
-| TOP_PUBLIC | **Unknown in current brief.** Older repository value 0.4413 is historical/unconfirmed, not adopted as a target. |
-| Slots left / deadline | **Unknown / unknown.** One entity, at most 3 scored files per rolling week; one blind final. `2026-12-03` requires human confirmation on the competition page. No submissions by this agent. |
-| This session | **AXIS=PRUNE; zero new variants.** Requested 1/3 px arms already built; 2 px is R0. Exact-hash/literal-pair ledger audit passes. No repeat experiments or new ledger rows. See `evidence/session_20261023_prune_stop.json`. |
-| Next three slots | Conditional: existing `PRUNEp3px-6f7ae705` (historical **MODEL +0.005**), optional lower bracket `PRUNEp1px-0542a27c` (**MODEL -0.006**), reserve `PRUNEp3.2px-f272cdae` (**MODEL +0.002**) only after receipt evidence supports widening. Full IDs, prerequisites, and decision tree in `SLOT_PLAN.md` / `docs/SUBMIT.md`. |
-| Holds / limitations | `SNAPscarp2px-fae77ff4` retains 2,171 sub-3-px dots: **HOLD**, not slot 2. Existing PRUNE TIFFs are absent here: historical JSON is not fresh validation. Preexisting tracked competition-derived TIFF/ZIP files remain a data-use concern (IR-88-43). No new bulk data tracked. |
-
-This block and the current brief supersede historical instructions below, including
-rank/overlap uniqueness gates, automatic-upload language, and unconfirmed quota claims.
+| Field | Status / Value | Evidence Class & Provenance |
+|---|---|---|
+| **Parent chain** | `R0 = h33-h33-2-b2` (`N=37,654`; rebuilt byte-exactly: zeros `c55bafc4…`, NaN `baeae321…`) → `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`N=37,654`, min `d_cat = 3.1623 px`; re-derived and SHA-asserted before any edit: `6f7ae705…`/`dc6f090d…`) | 15/15 manifest pins SHA-256+byte verified (`registry/r0_verification.json`); R0 `0.2778` remains **CLAIM** (no receipt). |
+| **This session (`AXIS=SNAP`, parent `R1`)** | 3 spacing-locked scarp-transplant arms, preregistered before any proxy (`registry/preregistration_snap_r1_scarp.json`): **`SNAPscarp1px-1944aaf5`** (26,323 moved / `69.91%`, mean disp `0.699 px`), **`SNAPscarp2px-c003d7d7`** (31,742 / `84.30%`, `1.344 px`), **`SNAPridge2px-f4af84a3`** (6,567 / `17.44%`, `0.211 px`); all `N=37,654`, **100% of dots `>3 px`** (gate-clean, no IR-88-43 waiver), moved dots locked `>=2.8284 px`, provided bands only (19/12/18/3), zero external LiDAR | Blind off-catalogue SGMC `PROXY`: **`0.097567 / 0.097453 / 0.096548` vs parent `R1 0.096083`** — first fully gate-clean family above its parent on the blind control; R0 winner `SNAPscarp2px-fae77ff4` rebuilt in-run and reproduced exactly (`0.096806`, 30,889 displaced). Pre-reg `MODEL +0.003 / +0.006 / +0.002`; w-field Δ `MODEL −0.035 / −0.077 / −0.001` (w condemned what the blind control rewarded — third strike against w as a geometry judge, IR-88-38/44). `scarp1px` vs `scarp2px` is a proxy-level tie (`+0.000114`). All six twins/zeros rasters PASS `scripts/validate_variant.py` (`registry/snap_r1_scarp_validation.json`); holdout proxy structurally `0.0` (IR-88-20); canaries max sym-AUC `0.56925 ≤ 0.90`. |
+| **Best `RECEIPT`** | None (`0` portal receipt scores/dates in `ledger/submissions.csv`, 35 rows) | Human must paste a verbatim receipt; this session used no slot and made no submission. |
+| **`TOP_PUBLIC`** | **Not supplied in the current brief**; repository's older `0.4413` (`2026-10-22`) is stale and `UNVERIFIED` | Human must re-read the leaderboard; no automated access (terms). |
+| **Quota & Deadline** | Slots left this rolling week / total: **unknown**; deadline `2026-12-03` **human-confirmation pending** | Human reconfirms counts and deadline on the competition page before any upload. |
+| **Next 3 candidate slots (`SLOT_PLAN.md`)** | **1.** `…-SNAPscarp1px-20261023-1944aaf5` (blind-control top of inventory, gate-clean) · **2.** conditional: `…-SNAPscarp2px-20261023-c003d7d7` (dose arbitration) or `R1 PRUNEp3px-6f7ae705` (attribution) — decided by the slot-1 receipt · **3.** reserve `R1` if not yet receipted, else `PRUNEp3.2px-f272cdae` | Candidate sequence only, never an upload recommendation; every upload awaits human quota/provenance confirmation, a private rebuild-or-restore with recorded-hash match, and a fresh `validate_variant.py` run on the actual bytes; `\|Δ\| < 0.01` live is no evidence. All R0-parented non-PRUNE arms stay HOLD (IR-88-43 collar breach). |
 <!-- CURRENT STATE END -->
 
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)

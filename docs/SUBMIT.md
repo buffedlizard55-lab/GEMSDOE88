@@ -1,6 +1,43 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current session — 2026-10-23 startup audit (takes precedence over historical cards)
+## Current session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (reorders the audit-session queue below; all its prerequisites stand)
+
+**Three new candidates, one per preregistered arm; no slot was used and no submission was made.** Parent
+`R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from the pinned lineage and SHA-asserted
+(`6f7ae705…`/`dc6f090d…`) before editing; `R0` rebuilt byte-exactly first (15/15 pins verified). Every arm:
+same `edge_scarp_pot` field (provided bands 19/12/18/3 only; zero external LiDAR) and same deterministic
+spacing-locked allocator as the R0 blind-control winner `SNAPscarp2px-fae77ff4`, which this run reproduced
+exactly (30,889 displaced; SGMC `0.096806` = published). Unlike every R0-parented non-PRUNE arm, **100% of
+dots are `>3 px` from the catalogue** — gate-clean with no waiver (answers the IR-88-43 HOLD). Blind
+off-catalogue SGMC `PROXY` (report-only, never a gate): `scarp1px 0.097567`, `scarp2px 0.097453`,
+`ridge2px 0.096548` vs parent `R1 0.096083` and `R0 0.096060`. Holdout proxy is structurally `0.000000`
+(IR-88-20). Predictions are pre-registration `MODEL` values (`registry/preregistration_snap_r1_scarp.json`),
+never scores; R0's `0.2778` is CLAIM.
+
+| Order | Exact submission name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | <=140-char form note | Fresh format receipt |
+|---|---|---|---|
+| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp1px-20261023-1944aaf5` | `h33-2-b2 PRUNEp3px R1; SNAP <=1px to scarp+TMI/grav co-edge, spacing-locked, 100% of dots >3px; pred +0.003 MODEL` | `releases/…-1944aaf5.json` + `registry/snap_r1_scarp_validation.json` (PASS on disk bytes) |
+| 2, conditional | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp2px-20261023-c003d7d7` (dose arbitration) **or** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (attribution) — chosen by the slot-1 receipt per `SLOT_PLAN.md` | `h33-2-b2 PRUNEp3px R1; SNAP <=2px to scarp+TMI/grav co-edge, spacing-locked, 100% of dots >3px; pred +0.006 MODEL` | `releases/…-c003d7d7.json` (same validator PASS) |
+| 3, reserve | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`R1`) if not yet receipted, else `h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae` | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json` |
+
+**Before any upload (unchanged prerequisites):** human confirms the rolling-week balance, total slots, deadline
+and current TOP_PUBLIC on the competition pages (unknown in the current brief); privately rebuilds the file
+(`python3 scripts/build_snap_r1_scarp_variants.py` — deterministic, SHA-pinned; rasters are gitignored so they
+are NOT in the repo) or restores it, matches the recorded SHA-256 (`scarp1px` primary
+`1944aaf5da0700f105d5a4443b7334a8e9b732571f86bf1d94d67adcf71dbdb7`, zeros
+`0fa24aff9a9564b741791f330ae10a76e9b520d5a09cb2d86527fbdba0ee90ae`; `scarp2px` primary
+`c003d7d75a7e7571dd36ba928eba7ff8bf2676171bd2f6a6a424c8d4fc2791ac`, zeros
+`9e0001cee45b39e6a00d6f21de0685521b34391c3a7f13835852e850809c5d53`; control arm `ridge2px` primary
+`f4af84a326d353962e1db5b4dc60cd6c1a0e7ba2885f0811f68d242cac477112`, zeros
+`816c144dbdfe500577b58cbc13158e24715cf842d7842e3817ec72cb85082112` — not queued, diagnostic) and re-runs
+`python3 scripts/validate_variant.py releases/<id>.tif releases/<id>-zeros.tif` on the actual bytes. Human
+uploads **only one twin per slot**, then pastes the portal receipt into `receipt_score`/`receipt_date`.
+A live `|Δ| < 0.01` is no evidence. `scarp1px` vs `scarp2px` is a proxy-level tie (`0.000114`); the sequence
+above follows the preregistered dose rule, not a claim that 1 px is truly better.
+
+---
+
+## Prior session — 2026-10-23 startup audit (prerequisites and corrections stand; queue order superseded above)
 
 **No new candidate or submission. AXIS=PRUNE:** requested radii already built;
 2 px is R0. Ledger stays at 32 rows. Full-lineage R0 startup validation passed
