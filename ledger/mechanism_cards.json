@@ -724,5 +724,392 @@
     ],
     "submission_name": "h33-h33-2-b2-PRUNEp4.3px-20261023-21fa2b26",
     "form_note": "R0 h33-h33-2-b2; PRUNE <= 4.3px (430m), fixed N=37,654, exact DTI refill; pred -0.013 MODEL"
+  },
+  "h33-h33-2-b2-SPACINGlattice-20261023-03d14f38": {
+    "axis": "SPACING",
+    "value": "lattice",
+    "hypothesis": "A grid-phase control should lose credit because Nevada fault traces change strike, whereas a global 400 m hex phase preferentially retains raster geometry rather than the local structural fabric.",
+    "mechanism": "R0 was produced by deterministic component-BFS thinning at 2.8 pixels. A global lattice is a deliberately non-geologic spacing control: if it matches or beats the other arms, claimed along-strike benefit is not evidence of actual structural continuity. This arm uses 4-pixel hexagonal lattice residual, pinned to the grid origin; all arms retain N=37,654 and use the same 5,376 R0 removals, so the only arm-to-arm treatment is the spacing ordering of legal replacements.",
+    "non_fault_mimic": "Drainage-line pixels, lithologic contacts, pediment margins, and the rasterized orientation of the H19 detector can form long or regular-looking strings without an unmapped brittle fault.",
+    "predicted_sign_size": "MODEL predicted live delta -0.007 versus the R0 CLAIM; plausible band [-0.020,+0.006]. Constants were fixed before the successful-run report-only pass, but a prior serialization failure exposed preliminary diagnostics; see the failure record. A public live change with magnitude below 0.010 is no evidence.",
+    "falsifier": "Against a contemporaneously validated collar-clean control, a live delta <= -0.010 falsifies the stated spacing mechanism; >= +0.010 supports it. R0 has no receipt, so a one-sided comparison to its owner-reported CLAIM alone remains provisional.",
+    "mandatory_common_normalization": "All arms remove R0's 1,611 dots at d_catalogue <3 px to satisfy the hard non-PRUNE collar (R0 dots exactly 3 px away are legal and retained), and move the same 3,765 crowded legal donors. This shared change is a spacing/collar confounder, not a second claimed mechanism.",
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 5376,
+      "n_removed": 5376,
+      "pct_changed_moved": 14.28,
+      "pct_changed_sym_diff": 28.55,
+      "min_dist_catalogue_px": 3.0,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 752,
+      "dots_le_4px": 2744
+    },
+    "spacing": {
+      "strategy": "4-pixel hexagonal lattice residual, pinned to the grid origin",
+      "n_parent": 37654,
+      "n_removed": 5376,
+      "n_added": 5376,
+      "pct_changed_moved": 14.277368,
+      "min_catalogue_distance_px": 3.0,
+      "common_normalization": {
+        "common_collar_removed_n": 1611,
+        "common_crowded_removed_n": 3765,
+        "common_crowded_donor_nn_px": {
+          "min": 2.8284,
+          "median": 2.8284,
+          "max": 2.8284
+        },
+        "parent_legal_n": 36043
+      },
+      "selection": {
+        "selector": "ascending distance to a fixed 4-pixel hex-lattice vertex",
+        "hex_lattice_pitch_px": 4.0,
+        "candidate_lattice_residual_px": {
+          "median": 1.432,
+          "p90": 2.1087
+        },
+        "candidate_cells_initially_eligible": 12082,
+        "candidate_cells_selected": 5376,
+        "minimum_separation_guard_px": 2.236068,
+        "blocked_integer_offsets": [
+          [
+            -2,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            -2
+          ],
+          [
+            0,
+            -1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "nearest_neighbour_after_px": {
+        "min_px": 2.2361,
+        "p05_px": 2.2361,
+        "median_px": 3.0,
+        "mean_px": 3.5822,
+        "p95_px": 7.2111
+      },
+      "nearest_neighbour_r0_px": {
+        "min_px": 2.8284,
+        "p05_px": 2.8284,
+        "median_px": 3.0,
+        "mean_px": 3.7351,
+        "p95_px": 7.2111
+      },
+      "added_on_previously_unanchored_components": 2019,
+      "added_component_count": 3793
+    },
+    "submission_name": "h33-h33-2-b2-SPACINGlattice-20261023-03d14f38",
+    "form_note": "h33-2-b2; SPACING lattice, 5376 relocations, N=37654; pred -0.007 MODEL",
+    "report_only_not_gates": [
+      "catalogue hide-and-recover PROXY",
+      "single-feature leakage canary",
+      "SGMC mapped-fault control",
+      "H19 support-geometry MODEL"
+    ]
+  },
+  "h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa": {
+    "axis": "SPACING",
+    "value": "poisson",
+    "hypothesis": "Evenly spaced dots can reduce locally redundant kernel overlap, but R0 was already created by 2.8-pixel geodesic thinning, so a new global Poisson realization is more likely to discard useful ridge-phase information than to improve it.",
+    "mechanism": "R0 was produced by deterministic component-BFS thinning at 2.8 pixels. Poisson-disk placement reduces very short neighbour pairs without inferring a local fault strike; it isolates generic coverage regularity from geologic line following. This arm uses seeded Poisson-disk dart throwing on legal un-emitted H19-5 support; all arms retain N=37,654 and use the same 5,376 R0 removals, so the only arm-to-arm treatment is the spacing ordering of legal replacements.",
+    "non_fault_mimic": "Drainage-line pixels, lithologic contacts, pediment margins, and the rasterized orientation of the H19 detector can form long or regular-looking strings without an unmapped brittle fault.",
+    "predicted_sign_size": "MODEL predicted live delta -0.003 versus the R0 CLAIM; plausible band [-0.016,+0.010]. Constants were fixed before the successful-run report-only pass, but a prior serialization failure exposed preliminary diagnostics; see the failure record. A public live change with magnitude below 0.010 is no evidence.",
+    "falsifier": "Against a contemporaneously validated collar-clean control, a live delta <= -0.010 falsifies the stated spacing mechanism; >= +0.010 supports it. R0 has no receipt, so a one-sided comparison to its owner-reported CLAIM alone remains provisional.",
+    "mandatory_common_normalization": "All arms remove R0's 1,611 dots at d_catalogue <3 px to satisfy the hard non-PRUNE collar (R0 dots exactly 3 px away are legal and retained), and move the same 3,765 crowded legal donors. This shared change is a spacing/collar confounder, not a second claimed mechanism.",
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 5376,
+      "n_removed": 5376,
+      "pct_changed_moved": 14.28,
+      "pct_changed_sym_diff": 28.55,
+      "min_dist_catalogue_px": 3.0,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 725,
+      "dots_le_4px": 2713
+    },
+    "spacing": {
+      "strategy": "seeded Poisson-disk dart throwing on legal un-emitted H19-5 support",
+      "n_parent": 37654,
+      "n_removed": 5376,
+      "n_added": 5376,
+      "pct_changed_moved": 14.277368,
+      "min_catalogue_distance_px": 3.0,
+      "common_normalization": {
+        "common_collar_removed_n": 1611,
+        "common_crowded_removed_n": 3765,
+        "common_crowded_donor_nn_px": {
+          "min": 2.8284,
+          "median": 2.8284,
+          "max": 2.8284
+        },
+        "parent_legal_n": 36043
+      },
+      "selection": {
+        "selector": "seeded uniform dart order; reject candidates inside the separation disk",
+        "seed": 20261124,
+        "candidate_cells_initially_eligible": 12082,
+        "candidate_cells_selected": 5376,
+        "minimum_separation_guard_px": 2.236068,
+        "blocked_integer_offsets": [
+          [
+            -2,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            -2
+          ],
+          [
+            0,
+            -1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "nearest_neighbour_after_px": {
+        "min_px": 2.2361,
+        "p05_px": 2.2361,
+        "median_px": 3.0,
+        "mean_px": 3.5773,
+        "p95_px": 7.2111
+      },
+      "nearest_neighbour_r0_px": {
+        "min_px": 2.8284,
+        "p05_px": 2.8284,
+        "median_px": 3.0,
+        "mean_px": 3.7351,
+        "p95_px": 7.2111
+      },
+      "added_on_previously_unanchored_components": 1978,
+      "added_component_count": 3712
+    },
+    "submission_name": "h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa",
+    "form_note": "h33-2-b2; SPACING poisson, 5376 relocations, N=37654; pred -0.003 MODEL",
+    "report_only_not_gates": [
+      "catalogue hide-and-recover PROXY",
+      "single-feature leakage canary",
+      "SGMC mapped-fault control",
+      "H19 support-geometry MODEL"
+    ]
+  },
+  "h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402": {
+    "axis": "SPACING",
+    "value": "alongstrike",
+    "hypothesis": "At a fixed dot budget, prioritising the farthest geodesic gaps on connected ridge support may extend kernel coverage along a physical fault strand better than R0's row-major component BFS phase.",
+    "mechanism": "R0 was produced by deterministic component-BFS thinning at 2.8 pixels. Graph distance is measured only along connected H19-5 ridge pixels, so the arm spends its replacement budget first at unrepresented along-support gaps rather than by map-grid phase. This arm uses H19-5-component geodesic gap priority plus the shared separation guard; all arms retain N=37,654 and use the same 5,376 R0 removals, so the only arm-to-arm treatment is the spacing ordering of legal replacements.",
+    "non_fault_mimic": "Drainage-line pixels, lithologic contacts, pediment margins, and the rasterized orientation of the H19 detector can form long or regular-looking strings without an unmapped brittle fault.",
+    "predicted_sign_size": "MODEL predicted live delta +0.002 versus the R0 CLAIM; plausible band [-0.012,+0.016]. Constants were fixed before the successful-run report-only pass, but a prior serialization failure exposed preliminary diagnostics; see the failure record. A public live change with magnitude below 0.010 is no evidence.",
+    "falsifier": "Against a contemporaneously validated collar-clean control, a live delta <= -0.010 falsifies the stated spacing mechanism; >= +0.010 supports it. R0 has no receipt, so a one-sided comparison to its owner-reported CLAIM alone remains provisional.",
+    "mandatory_common_normalization": "All arms remove R0's 1,611 dots at d_catalogue <3 px to satisfy the hard non-PRUNE collar (R0 dots exactly 3 px away are legal and retained), and move the same 3,765 crowded legal donors. This shared change is a spacing/collar confounder, not a second claimed mechanism.",
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 5376,
+      "n_removed": 5376,
+      "pct_changed_moved": 14.28,
+      "pct_changed_sym_diff": 28.55,
+      "min_dist_catalogue_px": 3.0,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 647,
+      "dots_le_4px": 2530
+    },
+    "spacing": {
+      "strategy": "H19-5-component geodesic gap priority plus the shared separation guard",
+      "n_parent": 37654,
+      "n_removed": 5376,
+      "n_added": 5376,
+      "pct_changed_moved": 14.277368,
+      "min_catalogue_distance_px": 3.0,
+      "common_normalization": {
+        "common_collar_removed_n": 1611,
+        "common_crowded_removed_n": 3765,
+        "common_crowded_donor_nn_px": {
+          "min": 2.8284,
+          "median": 2.8284,
+          "max": 2.8284
+        },
+        "parent_legal_n": 36043
+      },
+      "selection": {
+        "selector": "descending graph-geodesic gap; long unanchored-component size fallback",
+        "support_components": 23207,
+        "components_without_retained_anchor": 3464,
+        "candidate_cells_on_previously_unanchored_components": 5109,
+        "candidate_geodesic_px": {
+          "min": 1.0,
+          "median": 1.0,
+          "p90": 2.4142,
+          "max": 38.9411
+        },
+        "candidate_cells_initially_eligible": 12082,
+        "candidate_cells_selected": 5376,
+        "minimum_separation_guard_px": 2.236068,
+        "blocked_integer_offsets": [
+          [
+            -2,
+            0
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            -1,
+            0
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            -2
+          ],
+          [
+            0,
+            -1
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ]
+        ]
+      },
+      "nearest_neighbour_after_px": {
+        "min_px": 2.2361,
+        "p05_px": 2.2361,
+        "median_px": 3.0,
+        "mean_px": 3.5713,
+        "p95_px": 7.2111
+      },
+      "nearest_neighbour_r0_px": {
+        "min_px": 2.8284,
+        "p05_px": 2.8284,
+        "median_px": 3.0,
+        "mean_px": 3.7351,
+        "p95_px": 7.2111
+      },
+      "added_on_previously_unanchored_components": 1128,
+      "added_component_count": 2789
+    },
+    "submission_name": "h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402",
+    "form_note": "h33-2-b2; SPACING alongstrike, 5376 relocations, N=37654; pred +0.002 MODEL",
+    "report_only_not_gates": [
+      "catalogue hide-and-recover PROXY",
+      "single-feature leakage canary",
+      "SGMC mapped-fault control",
+      "H19 support-geometry MODEL"
+    ]
   }
 }

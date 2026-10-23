@@ -83,10 +83,14 @@ def validate(path: Path, footprint, catalogue, dist, parent, sample_meta, hashes
 
     with rasterio.open(path) as src:
         arr = src.read(1)
+        nodata = src.nodata
+        # JSON does not permit a bare NaN literal. Preserve the semantic value
+        # without making a validator receipt non-portable JSON.
+        nodata_json = "NaN" if nodata is not None and np.isnan(nodata) else nodata
         meta = {"driver": src.driver, "count": src.count, "dtype": src.dtypes[0],
                 "crs": str(src.crs), "shape": [src.height, src.width],
                 "transform": [round(float(x), 6) for x in tuple(src.transform)[:6]],
-                "nodata": src.nodata}
+                "nodata": nodata_json}
     check("geotiff", meta["driver"] == "GTiff", meta["driver"])
     check("single_band", meta["count"] == 1, meta["count"])
     check("float32", meta["dtype"] == "float32", meta["dtype"])
