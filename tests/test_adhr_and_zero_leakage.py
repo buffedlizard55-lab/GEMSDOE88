@@ -193,4 +193,3 @@ def test_feature_dimensions_and_evidence_labels_consistent():
     for fold in holdout["folds"]:
         assert fold["h88_adhr"]["dti"] > fold["cgo_88"]["dti"] > fold["mgc_88"]["dti"]
         assert fold["h88_adhr"]["dti"] > fold["raw_control"]["dti"]
-

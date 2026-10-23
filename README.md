@@ -6,11 +6,14 @@
 > | :--- | :--- |
 > | **Parent** | `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (37,654 dots, `min d_cat = 3.162 px`, rebuilt byte-exactly from the pinned lineage on `2026-10-23`). `R0 = h33-h33-2-b2` is its parent and the only scored ancestor. |
 > | **Best receipt** | **NONE — no receipt is recorded in [ledger/submissions.csv](ledger/submissions.csv).** `R0 = 0.2778` is a `CLAIM`, not a receipt. |
-> | **TOP_PUBLIC** | **UNKNOWN (human must supply value + date).** The agent may not fetch `drivendata.org`; nothing in this repo is a leaderboard number. |
-> | **Slots left** | **UNKNOWN (human must supply `used / 3` for the rolling week).** Candidates built: 13 rows, all `BUILT`, none uploaded. |
-> | **Next 3 slots** | 1. `R1` `PRUNEp3px` (`6f7ae705`) · 2. `CONCENTRATION` on `R1` (not built yet) · 3. best of the first two as the confirm/final candidate. Full reasoning in [SLOT_PLAN.md](SLOT_PLAN.md). |
-> | **This session (AXIS = SNAP)** | 3 gate-clean variants of `R1` built (`g2f35`, `d2f35`, `d1f35`). Blind USGS `SGMC` control is **below** `R1` for all three → **diagnostic only, do not spend a slot** (IR-88-24). |
->
+> | **TOP_PUBLIC** | `0.4413`, dated `2026-10-22` — **human-supplied**, recorded in [SLOT_PLAN.md](SLOT_PLAN.md) by the concurrent `2026-10-23` session. Not fetchable by the agent; re-check on the competition page. |
+> | **Slots left** | `3 / 3` this rolling week, ~`21` to the `2026-12-03` deadline — **human-supplied** (same source). |
+> | **Next 3 slots** | 1. `R1` `PRUNEp3px` (`6f7ae705`) · 2. `CONCENTRATION b10px-m20` **re-based on `R1`** (not built yet) · 3. best of the first two, re-validated, as the confirm/final candidate. Full reasoning in [SLOT_PLAN.md](SLOT_PLAN.md). |
+> | **Ledger** | `17` rows, all `BUILT`, none uploaded: `4` `PRUNE`, `4` `CONCENTRATION`, `3` `MASS`, `6` `SNAP` (two families — see below). |
+> | **SNAP families (both negative `PROXY`)** | On `R0`: `w2E1` / `w2S2` / `w2E2` (`HOLD`, inherit the `2–3 px` collar; blind `SGMC` `-0.0040 … -0.0080` vs `R0`). On `R1`: `g2f35` / `d2f35` / `d1f35` (gate-clean, strict `> 3 px`; blind `SGMC` `0.09198 / 0.09246 / 0.09505` vs `R1` `0.09608`). Neither family should be spent on a slot ([IR-88-27](IRREGULARITIES.md)). |
+
+---
+
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)
 >
 > | Gate Question | Automated Machine Decision | Binding Reason & Verifiable Receipt |
@@ -23,6 +26,17 @@
 > | **Primary Pages & Machine Receipts** | **0 weekly submission slots used · `ORGANIZER-CONFIRMED` score: None** | [Executive Summary (`How to Submit`)](docs/executive-summary.html) · [Research & Audits](docs/research.html) · [Verified Sources](docs/sources.html) · [Canonical Run Card](registry/run_card.json) · [Live Site](https://buffedlizard55-lab.github.io/GEMSDOE88/) |
 
 ---
+
+---
+
+## CURRENT STATE (`2026-10-23`)
+
+- **Parent:** `R0 = h33-h33-2-b2` — `37,654` unit dots, `0` within `2 px` of the catalogue, pinned `SHA-256 c55bafc4...`; the direct pinned-D2.8 prune rebuild matches the exact bytes (`IRREGULARITIES.md` IR-88-22).
+- **Best receipt:** none. `0.2778` on `h33-h33-2-b2` is a **CLAIM** (owner-reported), not a receipt; `ledger/submissions.csv` has no `receipt_score` filled.
+- **TOP_PUBLIC:** **0.4413 dated 2026-10-22**, confirmed by the human for this session; the live competition page remains authoritative.
+- **Slots left:** **3/3 this rolling week; ~21 total**, confirmed by the human for planning; one blind final file due `2026-12-03` (confirm on the competition page).
+- **Next 3 slots** (detail in `SLOT_PLAN.md`): 1) `PRUNEp3px` (`6f7ae705`, MODEL `+0.005`, only gate-clean candidate); 2) re-base the best CONCENTRATION treatment on `PRUNEp3px`; 3) reserve/confirm the better result. An absolute live Δ <0.01 is no evidence.
+- **Latest human-assigned AXIS = CONCENTRATION:** after concurrent-ledger reconciliation, the unique retained dose is `h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6` (5,648 dots relocated, count 37,654, MODEL `+0.008`). It passes format/hash/catalogue gates but is **HOLD**, because it inherits R0’s 2–3 px collar and therefore fails the literal ≥3 px non-PRUNE rule. Concurrent 10%/20% 1 km arms were not duplicated.
 
 ---
 

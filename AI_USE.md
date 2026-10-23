@@ -1,7 +1,7 @@
 # AI_USE — Generative-AI Disclosure (NLR Official Rules §3.6)
 
 - **Competing Entity (1 human competitor):** `buffedlizard55-lab` (sole submitter, slot owner, and blind-final selector).
-- **AI System Used:** Arena.ai Agent Mode working on branch `arena/4a61d770-gemsdoe88` (reconciled cleanly with concurrent `main` commits `fe8ea6f`, `e079582`, `c3d9485`). Include this disclosure in the final competition narrative per Official Rules §3.6 (https://www.drivendata.org/competitions/306/competition-doe-gems/).
+- **AI System Used:** Arena.ai Agent Mode across the recorded Arena branches, including current branch `arena/2918f370-gemsdoe88`. Include this disclosure in the final competition narrative per Official Rules §3.6 (https://www.drivendata.org/competitions/306/competition-doe-gems/).
 
 ## AI-Generated Code, Artifacts & Analyses (2026-10-23)
 
@@ -16,11 +16,11 @@
 
 **Branch `arena/55bfd384-gemsdoe88` (PR #19):** an AI coding agent independently built a second CONCENTRATION experiment with an independent physics-gradient prior (bands 13/2/12 Sobel gmag, 2.85 px spacing; MODEL 0.000) but **DROPPED it as redundant** — the CONCENTRATION axis is already built by PR #18 (parent-density, weld-to-host, MODEL +0.011/+0.020/+0.006) and the concurrent test suite expects exactly three variants. The race condition is documented in `IRREGULARITIES.md` item 13; candidate rasters and the generator were removed to keep the ledger and tests consistent.
 
-## AI-Generated Code, Artifacts & Analyses (`2026-10-23`, branch `arena/6eba43d3-gemsdoe88`)
+## AI-Generated Code, Artifacts & Analyses (`2026-10-23`, branch `arena/6eba43d3-gemsdoe88`, merged onto `main` after concurrent SNAP/CONCENTRATION sessions)
 
 1. **Fixed input restoration (`scripts/restore_inputs.py`):** corrected the pinned feature-stack part names (`gems-geodawn-numerical-features.tif.part-00N`) after the GitHub contents API showed the old `training_features.tif.part0N` paths never existed, and added the two manifest ancestors (`anc_h19_4`, `anc_h16_1`) the script had never restored. All `15/15` pinned inputs now hash-verify.
 2. **Parent verification:** `scripts/verify_parent_r0.py` re-ran clean — `R0` is byte-identical to its pin (`c55bafc4…` zeros, `baeae321…` NaN), `37,654` dots, `0` on catalogue, nothing at `<= 2 px`. `scripts/build_snap_variants.py` then rebuilt `R1 = PRUNEp3px` from the lineage and asserted both published hashes (`6f7ae705…` / `dc6f090d…`) before editing it.
-3. **`AXIS = SNAP` builder (`scripts/build_snap_variants.py`, `tests/test_snap_axis.py`):** deterministic, count-preserving displacement of up to `35%` of `R1` dots by `<= 1-2 px` onto the strongest percentile-ranked edge cell in each dot's own window, with a strict `> 3 px` catalogue collar on every target and every emitted raster re-read from disk. Three variants (`g2f35`, `d2f35`, `d1f35`) plus receipts, ledger rows and mechanism cards. `9` new tests; full suite `115` passed, `1` skipped.
+3. **`AXIS = SNAP` builder on `R1` (`scripts/build_snap_r1_variants.py`, `tests/test_snap_r1_axis.py`; the concurrent `R0`-based family keeps the original module name):** deterministic, count-preserving displacement of up to `35%` of `R1` dots by `<= 1-2 px` onto the strongest percentile-ranked edge cell in each dot's own window, with a strict `> 3 px` catalogue collar on every target and every emitted raster re-read from disk. Three variants (`g2f35`, `d2f35`, `d1f35`) plus receipts, ledger rows and mechanism cards. `9` new tests; full suite `115` passed, `1` skipped.
 4. **Report-only instruments:** blind USGS `SGMC` off-catalogue control, catalogue hide-and-recover holdout (degenerate `0.0` for any `> 3 px` raster; IR-88-20) and `10 km` / `12 km` block-density CV. Result recorded in IR-88-24: SNAP is below its parent on the blind control, so the three files are labelled diagnostic, not slot candidates.
 
 **What the human decided, and what the agent decided:** the human answered none of the three session questions (axis, parent, leaderboard facts). The agent chose `SNAP` and the `R1` parent under the standing decision rule ("maximize P(win)") and Brief §4.4, and recorded both choices in `IRREGULARITIES.md` IR-88-22. The human still owns every upload, every `receipt_score`, the `TOP_PUBLIC` number, the rolling-week slot count and the single blind final file.
@@ -29,3 +29,16 @@
 
 - Supply live `TOP_PUBLIC` + date, available rolling-week slots (`__ / 3`), and confirmation of `AXIS = PRUNE` (`Slot 1 = PRUNEp3px`).
 - Upload chosen single file manually from authenticated browser, log verbatim `receipt_score` and `receipt_date` in `ledger/submissions.csv`, and choose the **one blind final file** before `2026-12-03`.
+
+## Session `2026-10-23b` — AXIS = SNAP (branch `arena/c4f505a4-gemsdoe88`)
+
+- **AI wrote:** `scripts/build_snap_variants.py` (edge fields, deterministic window-argmax snap, gate re-read writer, receipt/ledger/card emission), `tests/test_snap_axis.py`, `registry/snap_analysis.json`, the three SNAP mechanism cards, and the SNAP sections of `SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md` and the README CURRENT STATE block.
+- **AI decided (no human input available):** the AXIS (SNAP, last unbuilt in the default order); the three variant definitions (literal 2 px edge argmax, 200 m-scale gain-gated edge, organizer derivative bands); the `d_cat > 3 px` destination rule; dropping the planned 1 px dose arm because every arm already saturated its window (mean displacement `1.82 px` of `2 px`); and correcting the predicted sign from `+0.004` to `-0.002` after the blind SGMC measurement, with both values kept in the cards.
+- **Human must decide:** whether any SNAP file is uploaded at all (all are `HOLD`, negative PROXY) and the blind final file.
+
+## Latest session — human-assigned CONCENTRATION (branch `arena/2918f370-gemsdoe88`)
+
+- **Human decided:** AXIS=CONCENTRATION; TOP_PUBLIC `0.4413` dated `2026-10-22`; planning counts `3/3` this rolling week and approximately `21` total. Human remains the sole submitter and receipt/final selector.
+- **AI wrote:** `scripts/generate_concentration_variants.py`, `scripts/validate_concentration_releases.py`, DTI algebra coverage, the exact parent-build receipt, mechanism card, ledger row, release twins, and current planning/submission disclosures.
+- **Reconciliation:** concurrent main already contained semantically equivalent 10%/20% 1 km arms, so those newly generated outputs were removed before merge. The only retained new dose is 15% (`4dfb83f6`), based on official TMI/gravity gradients. It is `HOLD` because it inherits R0’s 2–3 px collar.
+- **Evidence labels:** R0 `0.2778` is CLAIM; candidate `+0.008` is MODEL; no candidate-specific hide-and-recover number was reported because static full-catalogue exclusion makes that proxy misleading. Build/code commit `0d63cb22b651a0c5c96d68a45fe025dce2a81ed3`.

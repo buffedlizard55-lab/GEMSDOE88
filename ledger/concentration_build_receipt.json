@@ -1,0 +1,34 @@
+{
+  "parent_rebuild_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_dots": 37654,
+  "block_px": 10,
+  "block_m": 1000,
+  "prior_bands": [
+    "tmi_hg",
+    "iso_grav_anom_slope",
+    "iso_grav_anom_hg"
+  ],
+  "cv_before": {
+    "all_full_blocks": 1.8740009535119062,
+    "occupied_full_blocks": 0.61859627687813,
+    "n_full_blocks": 50984,
+    "n_occupied_full_blocks": 15624
+  },
+  "variants": {
+    "h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6": {
+      "file": "releases/h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6.tif",
+      "fallback": "releases/h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6-zeros.tif",
+      "name": "h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6",
+      "note": "h33-2-b2; CONC 15% in 1km gradient blocks; count 37654; pred +0.008 MODEL",
+      "sha256": "4dfb83f6a97f4265e442a3f1ed156986d3c25eb9ebb5e8d49d3784b5cec1eb43",
+      "sha256_zeros": "3a79b811326ccf7654dd876ad6a8ef0bddc1e1952d3c97f4b0d801353c29918b"
+    }
+  },
+  "git_sha_at_build": "0d63cb22b651a0c5c96d68a45fe025dce2a81ed3",
+  "report_only_diagnostics": {
+    "catalogue_hide_and_recover_PROXY": "NOT RUN: a static parent excludes the full catalogue; a fair fold-specific rebuild recipe/ranking is unavailable, so a number would be misleading",
+    "leakage_canary": "Existing repository canary suite passed; selected official gradient bands are not label-derived. No candidate score was gated on it.",
+    "SGMC_control": "NOT RUN for these variants; never used as a gate"
+  },
+  "reconciliation": "10% and 20% arms removed after concurrent main introduced semantically equivalent 1 km CONCENTRATION doses; retained unique 15% official-gradient dose."
+}

@@ -1,42 +1,58 @@
-# SLOT_PLAN — Single Entity · 3 Slots/Week · One Blind Final File by `2026-12-03`
+# SLOT_PLAN — One Entity, 3 Slots/Week, One Blind Final File by 2026-12-03
 
-**Entity:** `buffedlizard55-lab` (1 competitor, `<= 3` live uploads per rolling week, **ONE** blind final file scored on both Phases — https://www.drivendata.org/competitions/306/competition-doe-gems/). **Deadline:** `2026-12-03` → **6 weeks / up to 18 public slots** from `2026-10-23`.
-**Unfilled by the human (still blank, do not invent):** `TOP_PUBLIC` + date, `receipt_score` for `R0` (`0.2778` is a `CLAIM`), slots used this rolling week.
+**Human-confirmed planning values (2026-10-23):** `1` competitor (`buffedlizard55-lab`), `3/3` live uploads left this rolling week, approximately `21` total slots to the deadline, TOP_PUBLIC `0.4413` dated `2026-10-22`, and **ONE blind final file**. The human must re-confirm the `2026-12-03` deadline and current counts on the competition page.
+**Parent `R0 = h33-h33-2-b2`:** `37,654` dots, `0` within `2 px` of the catalogue, `2,171` in the `2–3 px` collar, `0.2778` `CLAIM` (no receipt). The direct pinned-D2.8 prune rebuild matches `c55bafc4...` byte-for-byte (`IRREGULARITIES.md` IR-88-22).
 
-## Where the evidence actually stands
+## Latest session — human assigned AXIS = CONCENTRATION
 
-| Fact | Value | Label |
-| :--- | :--- | :--- |
-| `R0 = h33-h33-2-b2` live score | `0.2778` | **CLAIM** (no receipt) |
-| `R0` rebuilt from pinned lineage on `2026-10-23` | byte-identical, `37,654` dots | verified |
-| `R0` dots inside `2 < d_cat <= 3 px` | `2,171` | verified (IR-88-14) |
-| `R1 = PRUNEp3px` (collar cut at constant count) | `min d_cat = 3.162 px`, `MODEL +0.005` | BUILT |
-| SNAP on `R1` (this session, 3 variants) | blind `SGMC` `0.09198 / 0.09246 / 0.09505` vs `R1` `0.09608` | **PROXY** → negative (IR-88-24) |
+R0 was first rebuilt from the pinned D2.8 ancestor and matched SHA-256 `c55bafc…` exactly in this environment. Concurrent mainline work had already built semantically equivalent 10% and 20% / 1 km arms, so ledger reconciliation retained only the unique **15%** dose: `h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6`. It relocates 5,648 dots from low- to high-prior 1 km blocks ranked by official TMI/gravity gradients; count stays 37,654; all-complete-block density CV is 1.874→1.642; predicted live Δ is `MODEL +0.008` (below the 0.01 evidence bar). **HOLD:** it inherits R0’s 2–3 px collar and fails the literal ≥3 px non-PRUNE rule. Re-base only after a positive PRUNEp3 result.
 
-Two readings of the ledger matter for the plan. First, the whole climb `0.1922 -> 0.2477 -> 0.2600 -> 0.2708 -> 0.2778` is one lineage edited five times, so the remaining headroom is inside that lineage, not in a new detector. Second, every lane that swapped the field for a single physical signal scored `0.00-0.19`; the dots are the asset.
+## Concurrent session `2026-10-23b` — AXIS = SNAP: built, PROXY-negative, `HOLD`
 
-## The next three slots, in order
+No AXIS was assigned by the human (IR-88-21/23); SNAP is the last unbuilt axis of the brief's default order, so it was built. Three variants of `R0`, each differing **only** in how far and onto which edge field a dot may move. Count held at `37,654`; every destination required `d_cat > 3 px`.
 
-**Slot 1 — `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`** (`releases/…-6f7ae705.tif`, note `h33-2-b2; PRUNE <=3px held at 37654 (-2171 in 2-3px, +2171 exact marginal gain >3px); pred +0.005 MODEL`).
-*Question:* is the 300 m collar real, or was the `0.2600 -> 0.2708 -> 0.2778` climb just mass reduction?
-*What each outcome changes:* `>= R0 + 0.01` → the collar is confirmed and `R1` becomes the parent for every later axis. Within `+/- 0.01` → inconclusive (public-chunk noise), keep `R0` as the reference and stop spending slots on collar radius. `<= R0 - 0.01` → the collar thesis is dead; the `2-3 px` dots were carrying truth and the remaining plan shifts entirely to `CONCENTRATION`.
-*Why first:* it is the only built file that satisfies Brief §4.4 with no exemption, and every later non-PRUNE axis needs a compliant parent anyway.
+| Release (`releases/…`) | Rule | Moved | Mean disp. | Edge pct | Collar left | SGMC `PROXY` | Δ SGMC vs `R0` | Pred. live `MODEL` |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `…-SNAPw2E1-20261023-01cf9e98` | `<=2 px` to max `\|∇rtp\|+\|∇igrav\|`, `σ=1 px` | `35,771` (95.0%) | `1.82 px` | `0.564→0.655` | `644` | `0.08810` | **`-0.00796`** | `-0.002` |
+| `…-SNAPw2S2-20261023-60ced8c7` | `<=2 px`, `σ=2 px` edge, gain `>=0.25 z` | `19,617` (52.1%) | `1.90 px` | `0.565→0.629` | `1,565` | `0.09211` | **`-0.00396`** | `-0.001` |
+| `…-SNAPw2E2-20261023-861cd355` | `<=2 px` on organizer bands 3/9/18 | `35,725` (94.9%) | `1.81 px` | `0.568→0.658` | `579` | `0.08811` | **`-0.00795`** | `-0.002` |
 
-**Slot 2 — `CONCENTRATION` on `R1`** (`b10px` = 1 km blocks, `m10`; **not built yet** — the existing `CONC*` files are `R0`-based and `HOLD`).
-*Question:* does moving 10% of the mass from the coldest to the hottest 1 km block actually buy the `MODEL +0.011` that the `R0`-based projection claims, once `R1` has removed the collar confound?
-*What each outcome changes:* `>= +0.01` → concentration is real; fuse it with `R1` for the final file and spend slot 3 on the `m20` bracket. `|delta| < 0.01` → the block-density story is a null; the final file should stay a collar-corrected `R1` and effort moves to Phase-2 traces.
-*Guardrail:* report block-density CV before/after; the best historical files sit at `0.51-0.59`, and the `R0`-based `m10` build overshot to `1.02`.
+`R0` reference: SGMC `0.09606`, collar `2,171`, `12 km` CV `0.5590`. All three sit inside the reported `0.51–0.59` CV band (`0.5575–0.5582`) and pass every MUST-pass gate (`scripts/validate_variant.py` PASS on primary and zeros files).
 
-**Slot 3 — confirm or fuse.** If slots 1 and 2 both clear `+0.01`, upload `R1 + CONCENTRATION m10` (one change further along the same lineage) as the confirm step. If only one clears, re-upload the better one only if the human wants a noise estimate — otherwise **bank the slot** and hold it for the final file. Do not spend it on `SNAP`: its blind control is negative.
+**What it teaches (PROXY, never a score):**
+1. Edge capture is real but weak: mean edge percentile rises ~`+0.07–0.09`, yet blind off-catalogue SGMC DTI **falls** in every arm — the ~200 dots lost from within `300 m` of a blind USGS fault cost more than the percentile gain buys.
+2. Half the loss is pixel noise: the `σ=2 px`, gain-gated arm moves half as many dots and loses half as much.
+3. Operator choice is irrelevant (`w2E1` vs `w2E2` differ by `0.00002`): the effect is *displacement off the parent's ridge geometry*, not which derivative band is used.
+4. Useful side effect: a SNAP pass clears `70–73%` of the `2–3 px` collar at constant count.
 
-## Weeks 2-6 (after the three slots above)
+**Decision:** all three `HOLD`; predicted change `-0.002 … -0.001` is far below the `0.01` evidence bar. Do not spend a slot unless the human wants the axis retired with a live receipt.
 
-- **Weeks 2-3:** build and test `RELIEF` (basin / piedmont / range-front terciles from the detrended-elevation bands, count fixed) and `TRACKB` traces. `RELIEF` is the last untested axis with a mechanism that predicts a *positive* sign; `TRACKB` is the Phase-2 deliverable that the expanded expert labels reward but is not a weekly-slot candidate.
-- **Weeks 4-5:** fuse only axes with a `RECEIPT >= +0.01`. Any axis under `0.01` live is no evidence on public chunks — do not stack nulls and call it a model.
-- **Week 6 (by `2026-12-03`):** choose **one** blind final file and one fallback, re-validate the format of both against `sample_submission.tif`, and freeze. The final file must be the one with the best *mechanism* as well as the best number, because Phase 2 rescores against expert-expanded labels that no public chunk reveals.
+## Concurrent session `2026-10-23c` — `AXIS = SNAP` on the gate-clean parent `R1 = PRUNEp3px`
 
-## Proposed better axes (mechanism · confounder · falsifier — not built this session)
+The `2026-10-23b` SNAP family above is built on `R0`, so it inherits the `2–3 px` collar and is not spendable. The same axis was therefore also built on `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`, whose SHA-256 was reproduced from the pinned lineage before the edit (`6f7ae705…` / `dc6f090d…`).
 
-1. **`KERNEL_MATCH`** — re-weight dot spacing to the 3 px triangular kernel so neighbouring dots stop cannibalising the same truth credit (`M` saturates per dot while `T` saturates per truth cell). *Confounder:* none geological; this is a pure metric-geometry effect and therefore the cleanest remaining test. *Falsifier:* no gain at fixed count after the top-10% redundant dots are dropped and re-spent.
-2. **`TERMINATION_FAN`** — concentrate mass at fault tips and step-overs, where new faults are most likely to be mapped first (Faulds et al. on relay ramps). *Confounder:* fan-apron and shoreline edges mimic tip splays. *Falsifier:* `< +0.01` live over isotropic dots at the same count.
-3. **`LIDAR_GATED_DENSIFY`** — allow only LiDAR-covered sub-areas to take extra dots, since the 1 m scarps localise better than 400 m aeromagnetics. *Confounder:* LiDAR coverage correlates with basin-floor infrastructure. *Falsifier:* gain vanishes when matched on block density.
+| Release (`releases/…`) | Field | Moved (≤ 35% cap) | Mean disp. | `min d_cat` | SGMC `PROXY` | Δ vs `R1` | Pred. `MODEL` |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `…-SNAPg2f35-20261023-4c460fd4` | `tmi_hg 0.55 + grav_hg 0.45` | `13,004` (`34.5%`) | `1.92 px` | `3.162 px` | `0.09198` | `-0.00410` | `+0.002` |
+| `…-SNAPd2f35-20261023-a98ce2b8` | `+ det_elev_slope 0.20 + tc 0.10` | `12,932` (`34.3%`) | `1.86 px` | `3.162 px` | `0.09246` | `-0.00362` | `+0.001` |
+| `…-SNAPd1f35-20261023-33783252` | same composite, `≤1 px` | `13,152` (`34.9%`) | `1.00 px` | `3.162 px` | `0.09505` | `-0.00103` | `+0.003` |
+
+`R1` reference: SGMC `0.09608`, `12 km` CV `0.5700`. All three pass every MUST gate, hold the count at `37,654`, sit strictly outside the `300 m` collar and stay inside the `1–50%` move budget that the `R0` family overran (`52–95%`).
+
+**What it adds beyond `2026-10-23b`:** with the collar confound removed, the loss still scales with displacement and is still present at `1.00 px` — so the effect is *localisation*, not collar bookkeeping. The supplied potential-field and elevation-edge bands localise catalogue pixels only weakly here (percentile rank `0.53–0.56` vs `0.50` background), which bounds how much any future geometry-only axis can earn. **Decision: retire the SNAP axis** (both families) and spend slots on mass placement instead.
+
+## Next 3 slots
+
+| Slot | File | Why | What the result changes |
+|---|---|---|---|
+| **1** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`6f7ae705…`) | Only candidate already satisfying the literal `>=3 px` collar (`min d_cat 3.162 px`) at constant count; best blind SGMC of the PRUNE sweep (`0.09608`). | `>= R0 + 0.01` promotes it to `R1` and every later axis inherits a gate-clean parent; `< R0` retires the 300 m side-lobe argument. |
+| **2** | `CONCENTRATION b10px-m20` **re-based on** `PRUNEp3px` (not built yet) | Existing `c42cd475` inherits `R0`'s collar and is `HOLD`; re-based it is gate-clean and carries the largest positive projection (`MODEL +0.020`). | Positive → concentration becomes the fusion partner for the final file; flat → the `0.51–0.59` CV band is descriptive, not causal. |
+| **3** | best of slots 1–2, re-validated (or `RELIEF` on `R1`) | Reserve/confirm slot. | Locks the blind final candidate and its fallback. |
+
+## Weeks 2–6
+`CONCENTRATION` on `R1` (slots 4–6) → one structural axis from the list below per week (7–12), keeping an axis only if `Δ RECEIPT >= +0.01` → weeks 5–6 fuse the winners, re-validate format on both final and fallback, and lock the single blind file.
+
+## Proposed better axes (mechanism · confounder · falsifier) — not built
+1. **`SNAP_COHERENCE`** — move a dot `<=2 px` only along the local edge **normal** and only when it sits on the edge flank, preserving along-strike position. *Mechanism:* flight-line drape blurs only the across-strike offset. *Confounder:* fan-surface contacts parallel to range fronts. *Falsifier:* `<= +0.01` live vs `R0`.
+2. **`CV_MATCHED_WELD`** — combine the `PRUNEp3px` collar with a density re-weld so `12 km` CV lands in `0.51–0.59` and the collar stays clean. *Mechanism:* tests whether the CV band is causal rather than a by-product of mass. *Confounder:* CV was read off 37–44k-dot files, so mass and CV stay partly confounded. *Falsifier:* no live gain at matched mass.
+3. **`TRACKB`** (Phase 2 only) — strike-consistent `>=1 km` traces from `R0`'s top dots as GeoJSON + raster with one evidence paragraph each; not a weekly-slot candidate.
