@@ -1,35 +1,27 @@
-# SLOT PLAN — GEMS Prize (DrivenData #306) — Entity week tracking
+# SLOT PLAN — GEMS Prize #306
 
-> **Deadline:** 2026-12-03 17:00 ET (confirm on competition page). **Quota:** 3 scored submissions / rolling week, 1 final blind pick. **Week claimed:** 2026-10-23. **Slots left this week:** 3/3 (0 scored uploads this roll). **Total slots to deadline:** ~21 (7 weeks ×3).
+**Human-confirmed 2026-10-23:** TOP_PUBLIC **0.4413** (leaderboard date 2026-10-22); 3/3 scored slots remain this rolling week; ~21 total to deadline. Deadline **2026-12-03 17:00 ET** remains page-confirmation-required. One entity; one blind final.
 
-## This session (AXIS=MASS) — built 2026-10-23
+## Current controlled experiment
 
-Parent **R0 = h33-h33-2-b2 (GEMSDOE32)**: 37,654 unit-mass dots, 0 within 2 px of catalogue, `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`. Claimed 0.2778 CLAIM (no receipt in ledger/). Verified grid SHA: sample_submission `2176d08e...`, existing_faults `7ba308cc...`.
+Parent **R0 `h33-h33-2-b2`**: 37,654 unit dots; exact rebuild SHA-256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`; live 0.2778 **CLAIM** (no receipt). Human assigned **CONCENTRATION**. Treatment moves 10/15/20% of dots from low-prior to high-prior 10×10-pixel (**1 km**) blocks at fixed count. Frozen block prior = robust mean of official TMI horizontal gradient, isostatic-gravity slope, and gravity horizontal gradient. Parent density CV is **1.874** over all complete footprint blocks (**0.619** over occupied complete blocks); the earlier “~0.55” report used no recorded definition and is not comparable.
 
-| ID | Axis | Value | n_dots | % changed | sha8 | Predicted live Δ | Status |
-|---|---|---|---|---|---|---|---|
-| h33-h33-2-b2-MASSm10minus-20261023-7132935e | MASS | m10minus (drop lowest 10%) | 33,889 | 10.00% | 7132935e | -0.008 | BUILT |
-| h33-h33-2-b2-MASSm10plus-20261023-82673b57 | MASS | m10plus (add next 10%) | 41,419 | 10.00% | 82673b57 | +0.004 | BUILT |
-| h33-h33-2-b2-MASSm20minus-20261023-6c73303c | MASS | m20minus (drop lowest 20%) | 30,123 | 20.00% | 6c73303c | -0.018 | BUILT |
+| Order | Candidate | Move | all-block CV | Predicted live Δ |
+|---|---|---:|---:|---:|
+| 1 | `h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6` | 15% / 5,648 | 1.874→1.642 | +0.008 MODEL |
+| 2 | `h33-h33-2-b2-CONCENTRATION10pct-20261023-43c15f56` | 10% / 3,765 | 1.874→1.724 | +0.004 MODEL |
+| 3 | `h33-h33-2-b2-CONCENTRATION20pct-20261023-88fd49f0` | 20% / 7,531 | 1.874→1.557 | +0.003 MODEL |
 
-All 3 keep ≥2 px from catalogue (parent's 2 px rule) and 0 on catalogue. Inside footprint values {0,1}, outside NaN (plus -zeros fallback). Re-read verified.
+**Adaptive decision:** submit Slot 1 first. An absolute live change <0.01 is no evidence. If ≥+0.01, spend Slot 2 on 10% to bracket the dose, then Slot 3 on 20%; if ≤−0.01, stop CONCENTRATION and use the remaining slots for SNAP and PRUNE. Human copies receipt/date into the ledger; AI never submits.
 
-**Mechanism summary:** Rank = 0.6·norm(dist_>2px/50)+0.4·rand(seed88) on parent; candidate pool ranked identically on allowed_2px (seed90). Marginal DTI threshold ~0.056 at DTI 0.28. Low tail dominated by Lahontan benches + E-W flight-line corrugation mimics.
+## Weeks to deadline
 
-## Next 3 slots in order (default wk1-2 plan)
+- **Wk1–2:** resolve CONCENTRATION adaptively; then SNAP (≤2 px, official TMI/gravity edge; fixed count), PRUNE (1/2/3 px, refill), RELIEF (10–15%, fixed count). MASS values already in ledger are not rebuilt.
+- **Wk3–4:** combine only two axes with live effects ≥0.01; pre-register the combination and preserve one-change ancestry.
+- **Wk5–6:** confirmation; choose final and fallback blind; re-run format/hash checks on both.
+- **Final week:** human verifies current rules/deadline, reproducibility and AI disclosure; upload one final only.
 
-1. **Slot 1 — MASSm10minus (33,889)** — Least risky mass elasticity probe. If Δ ≥+0.01 live, parent over-dense → advance to MASSm20minus/m30minus; if Δ ≤-0.01, parent near-optimal mass, pivot to CONCENTRATION. Falsifier in `ledger/mechanism_cards.json`.
+## Better future axes — propose only
 
-2. **Slot 2 — MASSm10plus (41,419)** — Tests tip-relay undersampling. If Δ ≥+0.01, add logic validated → next combine MASS+PRUNE; if Δ ≤-0.015, added dots are outflow/pluton noise, abandon add path, try CONCENTRATION.
-
-3. **Slot 3 — CONCENTRATION 15% (1 km blocks, CV report)** — Move 15% dots from lowest-prior to highest-prior 10 px (1 km) blocks (prior = parent density + physics tip-beam). Report CV before/after (H33 CV ~0.55; best files 0.51-0.59). If CV→0.58 and Δ>+0.01, evidence for km-scale geothermal focus; if CV→0.70 and Δ<0, over-concentration penalty.
-
-## Weeks to deadline (7 weeks, 21 slots max, 1 final blind)
-
-- **Wk1-2 (now → 11-05):** MASS (3 variants above), CONCENTRATION (m10/m15/m20, same count, block CV 0.51-0.59), SNAP (≤2 px snap to edge/scarp, mean displacement report, count fixed), PRUNE (≤1/≤2/≤3 px, refill count), RELIEF (basin/piedmont/range-front tercile shifts 10-15%, count fixed). Each (AXIS,value) built once; check ledger.
-
-- **Wk3-4:** Combine two best axes by live Δ (e.g., best MASS + best CONCENTRATION). Pre-register fusion (e.g., MASSm10minus + CONC15) at identical mass, keep 1-50% change budget.
-
-- **Wk5-6:** Confirm leader on private-like holdout (PROXY, never gate), pick final + fallback, re-validate format of both (CRS EPSG:32611 3730×3292 float32 [0,1] NaN outside), disclose AI_USE.md, submit single blind file per Rules §3.4.
-
-> Evidence labels: RECEIPT (submission-page receipt) | CLAIM (owner-reported) | PROXY (local holdout) | MODEL (projection). Treat Δ<0.01 live as no evidence (public chunks only).
+- **STRIKE-CONSENSUS:** reallocate to km blocks where magnetic and gravity gradient orientations agree; mechanism: through-going structure; confounder: lithologic contacts; falsifier: no ≥0.01 live gain over scalar-gradient CONCENTRATION.
+- **UNCERTAINTY-BAND:** spread mass ±1–3 px normal to long responses, motivated by ~300 m GeoDAWN positional uncertainty; confounder: flight-line smear; falsifier: exact centerlines outperform at matched mass.

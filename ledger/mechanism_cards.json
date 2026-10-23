@@ -19,5 +19,137 @@
     "non_fault_mimic": "Same as m10minus plus 10m detrended-elevation scarps >15m that are actually fluvial knickpoints (chi>45) not seismogenic; they score high on lidar scarp feature but low on 60deg up-dip advection and MT clay-cap triad.",
     "predicted_sign_size": "MODEL predicted live delta -0.018 (range -0.030 to -0.005). Moderate negative confirms parent near optimal mass; if positive, suggests parent over-dense and private truth is sparser than public catalogue.",
     "falsifier": "If live score improves >=+0.01, mass hypothesis inverted: private new-fault density is lower than holdout (SW quadrant bias) and current 0.7-0.85% footprint density is excessive; would motivate MASS -30% test."
+  },
+  "h33-h33-2-b2-CONCENTRATION10pct-20261023-43c15f56": {
+    "hypothesis": "Undiscovered geothermal-relevant faults are concentrated in kilometre-scale zones where independent magnetic and gravity boundary responses agree.",
+    "mechanism": "Relocated exactly 10% of R0 dots from low-prior to high-prior 1 km blocks using official TMI/gravity gradients; total mass stayed 37,654.",
+    "non_fault_mimic": "Lithologic contacts, pluton margins, basin-depth gradients, and acquisition-line corrugation can create the same magnetic/gravity boundaries.",
+    "predicted_live_change_MODEL": "+0.004",
+    "falsifier": "An absolute live change below 0.01 is no evidence; a decline of at least 0.01 falsifies this concentration level on public chunks.",
+    "parent_diff": {
+      "removed": 3765,
+      "added": 3765,
+      "relocated_pct": 10,
+      "symmetric_diff_pct": 19.9979
+    },
+    "block_definition": "10x10 pixels = 1 km x 1 km; CV over density in all 100%-footprint blocks",
+    "block_density_cv_before": {
+      "all_full_blocks": 1.8740009535119062,
+      "occupied_full_blocks": 0.61859627687813,
+      "n_full_blocks": 50984,
+      "n_occupied_full_blocks": 15624
+    },
+    "block_density_cv_after": {
+      "all_full_blocks": 1.724229550163863,
+      "occupied_full_blocks": 0.7147746403353888,
+      "n_full_blocks": 50984,
+      "n_occupied_full_blocks": 19389
+    },
+    "prior_bands": [
+      "tmi_hg",
+      "iso_grav_anom_slope",
+      "iso_grav_anom_hg"
+    ],
+    "git_sha_at_build": "baee52d65d88245e9765ebd916a82e5712540d8f",
+    "format_report": {
+      "nan": {
+        "sha256": "43c15f56fdc27c9e288dc185229e0bd726fff13ba05afd42003b79cda4157323",
+        "n_dots": 37654,
+        "min_catalogue_distance_px": 2.23606797749979
+      },
+      "zeros": {
+        "sha256": "555bee16916ffee2b760951a69308ba36937629b96edfe4d8b1dcf3868e48c84",
+        "n_dots": 37654,
+        "min_catalogue_distance_px": 2.23606797749979
+      }
+    }
+  },
+  "h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6": {
+    "hypothesis": "Undiscovered geothermal-relevant faults are concentrated in kilometre-scale zones where independent magnetic and gravity boundary responses agree.",
+    "mechanism": "Relocated exactly 15% of R0 dots from low-prior to high-prior 1 km blocks using official TMI/gravity gradients; total mass stayed 37,654.",
+    "non_fault_mimic": "Lithologic contacts, pluton margins, basin-depth gradients, and acquisition-line corrugation can create the same magnetic/gravity boundaries.",
+    "predicted_live_change_MODEL": "+0.008",
+    "falsifier": "An absolute live change below 0.01 is no evidence; a decline of at least 0.01 falsifies this concentration level on public chunks.",
+    "parent_diff": {
+      "removed": 5648,
+      "added": 5648,
+      "relocated_pct": 15,
+      "symmetric_diff_pct": 29.9995
+    },
+    "block_definition": "10x10 pixels = 1 km x 1 km; CV over density in all 100%-footprint blocks",
+    "block_density_cv_before": {
+      "all_full_blocks": 1.8740009535119062,
+      "occupied_full_blocks": 0.61859627687813,
+      "n_full_blocks": 50984,
+      "n_occupied_full_blocks": 15624
+    },
+    "block_density_cv_after": {
+      "all_full_blocks": 1.6416774258173297,
+      "occupied_full_blocks": 0.7360058603611722,
+      "n_full_blocks": 50984,
+      "n_occupied_full_blocks": 21272
+    },
+    "prior_bands": [
+      "tmi_hg",
+      "iso_grav_anom_slope",
+      "iso_grav_anom_hg"
+    ],
+    "git_sha_at_build": "baee52d65d88245e9765ebd916a82e5712540d8f",
+    "format_report": {
+      "nan": {
+        "sha256": "4dfb83f6a97f4265e442a3f1ed156986d3c25eb9ebb5e8d49d3784b5cec1eb43",
+        "n_dots": 37654,
+        "min_catalogue_distance_px": 2.23606797749979
+      },
+      "zeros": {
+        "sha256": "3a79b811326ccf7654dd876ad6a8ef0bddc1e1952d3c97f4b0d801353c29918b",
+        "n_dots": 37654,
+        "min_catalogue_distance_px": 2.23606797749979
+      }
+    }
+  },
+  "h33-h33-2-b2-CONCENTRATION20pct-20261023-88fd49f0": {
+    "hypothesis": "Undiscovered geothermal-relevant faults are concentrated in kilometre-scale zones where independent magnetic and gravity boundary responses agree.",
+    "mechanism": "Relocated exactly 20% of R0 dots from low-prior to high-prior 1 km blocks using official TMI/gravity gradients; total mass stayed 37,654.",
+    "non_fault_mimic": "Lithologic contacts, pluton margins, basin-depth gradients, and acquisition-line corrugation can create the same magnetic/gravity boundaries.",
+    "predicted_live_change_MODEL": "+0.003",
+    "falsifier": "An absolute live change below 0.01 is no evidence; a decline of at least 0.01 falsifies this concentration level on public chunks.",
+    "parent_diff": {
+      "removed": 7531,
+      "added": 7531,
+      "relocated_pct": 20,
+      "symmetric_diff_pct": 40.0011
+    },
+    "block_definition": "10x10 pixels = 1 km x 1 km; CV over density in all 100%-footprint blocks",
+    "block_density_cv_before": {
+      "all_full_blocks": 1.8740009535119062,
+      "occupied_full_blocks": 0.61859627687813,
+      "n_full_blocks": 50984,
+      "n_occupied_full_blocks": 15624
+    },
+    "block_density_cv_after": {
+      "all_full_blocks": 1.557219105781095,
+      "occupied_full_blocks": 0.7453012661068895,
+      "n_full_blocks": 50984,
+      "n_occupied_full_blocks": 23155
+    },
+    "prior_bands": [
+      "tmi_hg",
+      "iso_grav_anom_slope",
+      "iso_grav_anom_hg"
+    ],
+    "git_sha_at_build": "baee52d65d88245e9765ebd916a82e5712540d8f",
+    "format_report": {
+      "nan": {
+        "sha256": "88fd49f0f7b5b660538a0a686d0b11af8ac4f08ea88114db75192301e5b171d6",
+        "n_dots": 37654,
+        "min_catalogue_distance_px": 2.23606797749979
+      },
+      "zeros": {
+        "sha256": "5fb878573caede794dde8395da646952ea54d2887ac2bf66ea39b1f88e1ae4b6",
+        "n_dots": 37654,
+        "min_catalogue_distance_px": 2.23606797749979
+      }
+    }
   }
 }

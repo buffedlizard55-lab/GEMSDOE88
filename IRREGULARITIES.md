@@ -14,9 +14,9 @@
 
 **Reported:** Brief v2 §4.2: "only files pinned in registry/data_manifest.json (or repo's equivalent); verify sha256 before use."
 
-**Observed:** Repo has no `registry/data_manifest.json`; equivalent is `scripts/restore_inputs.py` SOURCES dict with SHA pins for `sample_submission.tif` (`2176d08e...`) and `existing_faults.tif` (`7ba308cc...`), verified before use. `training_features.tif` (`4371c82e...`) is absent locally (requires large external mirror) but not needed for MASS geometry-only variants; parent ranking rebuilt from distance+rand (MODEL) and documented in `ledger/mechanism_cards.json`.
+**Observed:** Repo has no `registry/data_manifest.json`; the checked-in equivalent is `docs/evidence/GEMSDOE32__registry__data_manifest.json` plus `scripts/restore_inputs.py`. For this CONCENTRATION session the grid, R0 mirror, D2.8 ancestor, and official 19-band feature raster were restored only from immutable GitHub owner-mirror refs and matched pins `2176d08e…`, `7ba308cc…`, `c55bafc…`, `91eae1ca…`, and `4371c82e…`.
 
-**Decision:** No external fetch beyond GitHub owner mirrors (allowed hosts `github.com`, `codeload.github.com`). Grid pins verified; training feature mirror marked UNVERIFIED for this session.
+**Decision:** Added the pinned D2.8 ancestor to `restore_inputs.py` so R0 is rebuilt, not merely copied. The parent rebuild matched SHA-256 exactly. No external source or unpinned byte was used.
 
 ## IR-88-16 — TOP_PUBLIC stale in prompt (2026-10-23)
 
@@ -25,3 +25,11 @@
 **Observed:** Automated `registry/leakage_canaries.json` not relevant; `run_card.json` and `docs/status.json` record `competition_leaderboard_high 0.4413` (#1 xiaofanhu, 2026-10-22). No scraped leaderboard; URL cited only.
 
 **Decision:** README CURRENT STATE cites 0.4413 as TOP_PUBLIC with date and instructs re-check on competition page; no automated fetch performed per §4.1 ban.
+
+## IR-88-17 — Reported block-density CV lacked a definition (2026-10-23)
+
+**Reported:** The inherited slot plan said the best files “reportedly sit at 0.51–0.59” and called H33 CV ~0.55, without naming whether zero-density blocks, partial footprint blocks, or occupied blocks were included.
+
+**Observed:** For exact R0 at 1 km (10×10 pixel) blocks, CV is **1.874001** over dot density in all 50,984 complete-footprint blocks and **0.618596** when zero-density blocks are excluded. Neither reproduces ~0.55. CONCENTRATION 10/15/20% changes the all-block CV to 1.724230/1.641677/1.557219.
+
+**Decision:** Use the standard, reproducible all-complete-block definition as the primary report and retain occupied-block CV as a secondary diagnostic. Do not tune candidates to an undefined historical range.

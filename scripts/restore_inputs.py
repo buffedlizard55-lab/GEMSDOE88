@@ -63,6 +63,18 @@ SOURCES = {
             ),
         },
     ),
+    # The exact named parent is rebuilt from this byte-pinned D2.8 ancestor,
+    # rather than accepted merely because a mirror of the parent exists.
+    "r0_ancestor": dict(
+        repo="GEMSDOE24",
+        ref="07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+        files={
+            "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif": (
+                "scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+                "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+            ),
+        },
+    ),
     "external": dict(
         repo="60GEMSDOE",
         ref="02563d07fb85d2f4d35887503d380d34d4017197",
@@ -291,9 +303,9 @@ def main():
     targets = (
         ["grid"]
         if args.grid_only
-        else ["grid", "witness", "h33"]
+        else ["grid", "witness", "h33", "r0_ancestor"]
         if args.validation
-        else ["grid", "features", "witness", "h33", "external"]
+        else ["grid", "features", "witness", "h33", "r0_ancestor", "external"]
     )
     for key in targets:
         if key == "features":
