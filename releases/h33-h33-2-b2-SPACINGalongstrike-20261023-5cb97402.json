@@ -158,8 +158,8 @@
     "fixed_before_successful_run_report_only_diagnostics": true,
     "unchanged_after_prior_serialization_failure": true
   },
-  "preregistration": "registry/spacing_preregistration.json",
-  "independent_validation": "evidence/spacing_axis_validation.json",
+  "preregistration": "registry/spacing_r0_preregistration.json",
+  "independent_validation": "evidence/spacing_r0_axis_validation.json",
   "report_only_diagnostics": {
     "n_dots": 37654,
     "holdout_proxy": {

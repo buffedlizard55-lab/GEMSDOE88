@@ -1,50 +1,108 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current precedence — 2026-10-23 SNAP clearance audit + controlled `AXIS = SPACING` build
+## Current precedence — 2026-10-23 reconciled R1 and R0 `AXIS = SPACING` families
 
-**No submission, portal access, or score receipt occurred.** All 15 manifest pins and
-both byte-exact R0 TIFF hashes were verified. The reconciled ledger contains **38
-BUILT rows and zero RECEIPTs**. R0 `0.2778` is **CLAIM**; predictions are `MODEL` and
-SGMC/hide-recover numbers are `PROXY`.
+**No submission, portal access, or receipt occurred.** All 15 manifest pins and both
+byte-exact R0 TIFF hashes were verified. The ledger has **41 BUILT rows and zero
+RECEIPTs**. R0 `0.2778` is **CLAIM**; all predictions are `MODEL` and all SGMC/
+hide-recover readings are `PROXY`.
 
-**SNAP correction:** pure R0 SNAP is not buildable under the literal non-PRUNE `>=3 px`
-clearance: `30` of `1,611` parent dots below that clearance have no legal destination
-within a `<=2 px` move (`evidence/session_20261023_snap_clearance.json`). Do not
-rename a PRUNE/refill repair as SNAP. The current validator gates any non-PRUNE
-positive mass at `<3 px`; older R0 SNAP/CONCENTRATION/RELIEF format claims do not
-override that gate.
+**Current clearance rule:** pure R0 SNAP cannot meet the literal non-PRUNE `>=3 px`
+rule (`30` parent dots lack a legal destination within a 2-px snap). The current
+validator gates all non-PRUNE positive mass at `<3 px`; earlier R0 non-PRUNE records
+with inherited collar mass are HOLD. Do not rename a PRUNE/refill repair as SNAP.
 
-**Existing PRUNE p1/p3/p4:** an upstream revalidation reproduced their recorded TIFF
-hashes and passed fresh disk checks (`evidence/session_20261023_prune_revalidation.json`).
-This is not a portal receipt and current ignored bytes may be absent: reconstruct and
-revalidate the exact selected twin again before any upload.
+### R1 family — gate-clean receiver geometry, all HOLD
 
-### New local `SPACING` alternatives — all HOLD, never automatic slots
+`poisson28` `60f65400`, `lattice4px` `6c7e0b72`, and `strike` `bc8e6d1a` are parented
+by `R1=PRUNEp3px`, move the same `1,914` donors, and differ only in receiver geometry.
+Their tracked receipts and current report remain at `registry/spacing_preregistration.json`,
+`evidence/spacing_axis_report.json`, and `registry/spacing_variant_validation.json`.
+They do not earn a slot: `poisson28`'s SGMC increase is only `+0.00074` vs R1; the
+other two decrease it.
 
-Each candidate is `N=37,654`, has zero catalogue mass and `min d_catalogue=3.0 px`,
-and passed current independent primary/fallback TIFF, hash, ZIP, parent-diff, and
-re-read gates. They share `5,376` relocations (`1,611` `<3 px` collar removals plus
-`3,765` crowded donors); **only replacement ordering differs**. That common repair,
-the fixed `sqrt(5)` separation guard, and prior diagnostic exposure mean no arm is a
-clean R0 spacing attribution or a default weekly recommendation.
+### R0 family — local-only alternatives, all HOLD
 
-| Value / exact submission name | Primary / fallback (local only) | <=140-char form note | Current receipt |
+Each R0 candidate has `N=37,654`, zero catalogue mass, `min d_catalogue=3.0 px`, and
+passes the current independent primary/fallback GeoTIFF, hash, ZIP, parent-diff, and
+re-read gates. They share `5,376` relocations (`1,611` necessary `<3 px` collar repairs
+plus `3,765` crowded donors), so only replacement ordering differs. The shared repair,
+`sqrt(5)` guard, and prior diagnostic exposure mean these are not clean R0 spacing
+attributions or default weekly recommendations.
+
+| Value / exact submission name | Primary / fallback (local only) | <=140-char form note | R0 evidence |
 |---|---|---|---|
-| `lattice` | `h33-h33-2-b2-SPACINGlattice-20261023-03d14f38.tif` / `h33-h33-2-b2-SPACINGlattice-20261023-03d14f38-zeros.tif` | `h33-2-b2; SPACING lattice, 5376 relocations, N=37654; pred -0.007 MODEL` | `releases/h33-h33-2-b2-SPACINGlattice-20261023-03d14f38.json`; `evidence/spacing_axis_validation.json` |
-| `poisson` | `h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa.tif` / `h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa-zeros.tif` | `h33-2-b2; SPACING poisson, 5376 relocations, N=37654; pred -0.003 MODEL` | `releases/h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa.json`; `evidence/spacing_axis_validation.json` |
-| `alongstrike` | `h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402.tif` / `h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402-zeros.tif` | `h33-2-b2; SPACING alongstrike, 5376 relocations, N=37654; pred +0.002 MODEL` | `releases/h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402.json`; `evidence/spacing_axis_validation.json` |
+| `lattice` | `h33-h33-2-b2-SPACINGlattice-20261023-03d14f38.tif` / `h33-h33-2-b2-SPACINGlattice-20261023-03d14f38-zeros.tif` | `h33-2-b2; SPACING lattice, 5376 relocations, N=37654; pred -0.007 MODEL` | `releases/h33-h33-2-b2-SPACINGlattice-20261023-03d14f38.json`; `evidence/spacing_r0_axis_validation.json` |
+| `poisson` | `h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa.tif` / `h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa-zeros.tif` | `h33-2-b2; SPACING poisson, 5376 relocations, N=37654; pred -0.003 MODEL` | `releases/h33-h33-2-b2-SPACINGpoisson-20261023-80ede4fa.json`; `evidence/spacing_r0_axis_validation.json` |
+| `alongstrike` | `h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402.tif` / `h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402-zeros.tif` | `h33-2-b2; SPACING alongstrike, 5376 relocations, N=37654; pred +0.002 MODEL` | `releases/h33-h33-2-b2-SPACINGalongstrike-20261023-5cb97402.json`; `evidence/spacing_r0_axis_validation.json` |
 
-**Conditional queue remains:** revalidated `PRUNEp3px-6f7ae705`, then only with human
+**Conditional queue is unchanged:** `PRUNEp3px-6f7ae705`, then only with human
 receipt/quota approval and fresh exact-byte validation `PRUNEp3space35-49fff49b`, then
-reserve `PRUNEp4space35-07bd8182`. The PRUNE spacing comparison is narrower and is not
-displaced by these HOLD arms. Neither its MODEL/PROXY nor any SPACING diagnostic is a
-score.
+reserve `PRUNEp4space35-07bd8182`. Neither HOLD SPACING family displaces it.
 
 Before a human upload, confirm current `TOP_PUBLIC` + date, quota, deadline, data-use
-authorization, and actual upload history; re-open exact bytes and rerun the validator;
+authorization, and actual upload history; reopen exact bytes and rerun the validator;
 upload **one twin only**; retain the verbatim receipt and populate `receipt_score` /
 `receipt_date`. A live `|Δ| < 0.01` is no evidence. No rank-correlation or dot-overlap
 uniqueness threshold is permitted.
+
+---
+
+### SNAP audit (concurrent; AXIS = SNAP, 0 new variants, HOLD retained)
+
+**No new variant, no upload.** R0 matched both pinned SHA-256s after
+all 15 manifest hashes/byte sizes passed. Its 1,611 dots inside the 3 px collar
+include **30 with no compliant pixel <=2 px away**: no pure R0 SNAP can pass the
+non-PRUNE clearance rule (`evidence/session_20261023_snap_clearance.json`).
+Do not substitute a PRUNE refill and call it SNAP. No row was added by this
+session; the concurrent PRUNE refill-mode merge brought the ledger to **35 BUILT,
+zero portal RECEIPTs**. The audit ran against 32 earlier rows.
+
+**Existing, not new: PRUNE p1/p3/p4 were recreated byte-exactly** from pinned
+inputs. All six TIFFs (primary NaN-outside and zeros-outside fallback) were
+re-read from disk and passed CRS/3730×3292 shape/transform/float32/band count,
+finite [0,1] inside, outside encoding, zero catalogue mass, exact ledger SHA,
+parent-diff, and twin/one-file ZIP checks. Audit:
+`evidence/session_20261023_prune_revalidation.json`. These reproduced PRUNE
+rasters are gitignored (older unrelated TIFFs were tracked, see IR-88-43);
+scripts `rebuild_prune_artifacts.py` and `validate_variant.py` reproduce
+and check local files. Do not treat this local validation as a portal receipt.
+
+**Potential slot 1 (conditional only):**
+- **Name:** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
+- **Primary file:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.tif`
+  (NaN outside; SHA-256 `6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9`).
+- **Fallback, never an extra submission:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-zeros.tif`
+  (zeros outside; SHA-256 `dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f`).
+- **Form note (103/140 chars, copied from existing receipt):**
+  `h33-2-b2; PRUNE <=3px held at 37654 (-2171 in 2-3px, +2171 exact marginal gain >3px); pred +0.005 MODEL`
+- **Mechanism:** remove 2,171 R0 collar dots and exact-marginal refill at fixed
+  37,654 count (5.7657% changed, min catalogue distance 3.1623 px). Predicted
+  live delta **MODEL +0.005**, *not* a score; an actual |delta|<0.01 is no evidence.
+
+**Do not upload until the human confirms** TOP_PUBLIC/date, rolling-week/total
+slots, 2026-12-03 deadline on the [competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/),
+R0's actual portal receipt (0.2778 remains CLAIM), and permissions for public
+input mirrors / previously tracked competition rasters. The agent has not fetched
+the portal or rules. Human independently checks the exact bytes and uploads **one**
+file per slot from their own account, then records verbatim `receipt_score` and
+`receipt_date` on the existing ledger row with private receipt evidence (no
+credentials). If p3 materially **loses**, close the collar family rather than
+spend slot 2 reflexively. If it wins or is inconclusive, the human may consider
+already-BUILT `PRUNEp3space35-49fff49b` (MODEL +0.007) as a separate,
+spacing/refill-support test. Its TIFFs are **not present in this checkout**;
+rebuild them at the exact ledger hashes and re-run the independent validator
+before any upload. Only after a material improvement over p3space35 should the
+human reserve slot 3 for `PRUNEp4space35-07bd8182` (MODEL +0.002, also absent
+locally). Their full filenames, hashes, and form notes appear in the historical
+PRUNE refill-mode section below; neither its SGMC PROXY nor its field MODEL is
+a live result (`SLOT_PLAN.md`). Revalidate the chosen exact file immediately
+before upload.
+
+**HOLD:** all R0 SNAP/CONCENTRATION/RELIEF arms retaining sub-3-px dots,
+including `SNAPscarp2px-fae77ff4`; no label-relief probe. Any contrary upload
+suggestion in the archived sections below is withdrawn. PRUNEp1's <3 px mass
+is allowed by the PRUNE exception, but it is a diagnostic rather than a lead.
 
 ---
 

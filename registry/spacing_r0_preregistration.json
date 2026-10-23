@@ -1,0 +1,81 @@
+{
+  "schema": "gems88.spacing-preregistration.v1",
+  "created_utc": "2026-10-23T21:47:59Z",
+  "git_sha": "c8d4f1db414dfbb061187862475be47479323c66",
+  "origin_main_sha_checked_before_build": "0d2d60112cf1d1c08f3ec62085e3c31d761cbbd3",
+  "manifest_sha256": "b8a74af55e8c634e36745efd37191bb3d29bd8bccf9070c1de43f0ef30650598",
+  "parent": {
+    "id": "h33-h33-2-b2",
+    "dots": 37654,
+    "zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "evidence": "R0 0.2778 is CLAIM, not a receipt"
+  },
+  "axis": "SPACING",
+  "axis_selection": "MASS, CONCENTRATION, SNAP, PRUNE, and RELIEF values are already represented in the reconciled ledger. SPACING has no existing value and is explicitly lowest priority in the brief; TRACKB is Phase-2 geologist preparation rather than a weekly candidate.",
+  "support": "pinned ancestor H19-5 binary ridge support only; no external data or fault-likelihood feature",
+  "hard_constraints": {
+    "catalogue_mass": 0,
+    "minimum_catalogue_distance_px": 3.0,
+    "count_fixed": 37654,
+    "seed": 20261023
+  },
+  "common_normalization": {
+    "common_collar_removed_n": 1611,
+    "common_crowded_removed_n": 3765,
+    "common_crowded_donor_nn_px": {
+      "min": 2.8284,
+      "median": 2.8284,
+      "max": 2.8284
+    },
+    "parent_legal_n": 36043,
+    "total_parent_dots_relocated": 5376,
+    "pct_parent_dots_relocated": 14.277368,
+    "minimum_interdot_separation_px": 2.236068,
+    "feasibility_note": "A strict 2.8-pixel minimum allows only 36,718 dots on legal H19-5 support, below R0's 37,654; sqrt(5) is pre-registered rather than silently relaxing a failed selector."
+  },
+  "variants": [
+    {
+      "value": "lattice",
+      "strategy": "4-pixel hexagonal lattice residual, pinned to the grid origin",
+      "predicted_change": "MODEL:-0.007",
+      "predicted_range": [
+        -0.02,
+        0.006
+      ],
+      "hypothesis": "A grid-phase control should lose credit because Nevada fault traces change strike, whereas a global 400 m hex phase preferentially retains raster geometry rather than the local structural fabric."
+    },
+    {
+      "value": "poisson",
+      "strategy": "seeded Poisson-disk dart throwing on legal un-emitted H19-5 support",
+      "predicted_change": "MODEL:-0.003",
+      "predicted_range": [
+        -0.016,
+        0.01
+      ],
+      "hypothesis": "Evenly spaced dots can reduce locally redundant kernel overlap, but R0 was already created by 2.8-pixel geodesic thinning, so a new global Poisson realization is more likely to discard useful ridge-phase information than to improve it."
+    },
+    {
+      "value": "alongstrike",
+      "strategy": "H19-5-component geodesic gap priority plus the shared separation guard",
+      "predicted_change": "MODEL:+0.002",
+      "predicted_range": [
+        -0.012,
+        0.016
+      ],
+      "hypothesis": "At a fixed dot budget, prioritising the farthest geodesic gaps on connected ridge support may extend kernel coverage along a physical fault strand better than R0's row-major component BFS phase."
+    }
+  ],
+  "report_only_not_gates": [
+    "hide-and-recover catalogue PROXY with 95% CI",
+    "single static-feature leakage canary",
+    "SGMC control",
+    "H19 source-support geometry MODEL"
+  ],
+  "attempt_integrity": {
+    "first_attempt_failure_record": "evidence/spacing_r0_first_attempt_failure.json",
+    "prediction_constants_unchanged_after_failure": true,
+    "caveat": "The durable design record is written before this successful run's diagnostics, but a prior local serialization failure exposed preliminary report-only values. No prediction was revised; do not treat the file as a blind proxy preregistration."
+  },
+  "no_submission": true
+}
