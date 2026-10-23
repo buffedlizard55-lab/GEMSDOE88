@@ -20,4 +20,4 @@
 
 - R0’s 0.2778 is **CLAIM**, not RECEIPT. Predicted changes are **MODEL**, never scores; |live Δ|<0.01 is no evidence.
 - Inputs are owner-hosted GitHub mirrors matched to checked-in SHA-256 pins, not independently authenticated organizer downloads. Competition pages were not fetched.
-- Build-time git parent: `baee52d65d88245e9765ebd916a82e5712540d8f`; final PR commit records the completed code/docs. Seeds are unnecessary because selection is deterministic.
+- Build/code commit: `0d63cb22b651a0c5c96d68a45fe025dce2a81ed3`; final PR commit records the completed code/docs. Seeds are unnecessary because selection is deterministic.

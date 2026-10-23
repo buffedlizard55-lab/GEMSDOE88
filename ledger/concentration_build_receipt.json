@@ -40,7 +40,7 @@
       "sha256_zeros": "5fb878573caede794dde8395da646952ea54d2887ac2bf66ea39b1f88e1ae4b6"
     }
   },
-  "git_sha_at_build": "baee52d65d88245e9765ebd916a82e5712540d8f",
+  "git_sha_at_build": "0d63cb22b651a0c5c96d68a45fe025dce2a81ed3",
   "report_only_diagnostics": {
     "catalogue_hide_and_recover_PROXY": "NOT RUN: a static parent excludes the full catalogue; a fair fold-specific rebuild recipe/ranking is unavailable, so a number would be misleading",
     "leakage_canary": "Existing repository canary suite passed; selected official gradient bands are not label-derived. No candidate score was gated on it.",
