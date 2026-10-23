@@ -43,6 +43,69 @@ bytes. Human uploads **only one twin per slot**, then pastes the portal receipt 
 
 ---
 
+## Concurrent session — 2026-10-23 · AXIS=MASS on R0 (PRs #38/#42; 3 variants + a random-donor control; slot order superseded by the block above)
+
+**Axis chosen by the agent** (Brief v2 §5: the human asked not to be prompted). Parent
+`h33-h33-2-b2` was rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`, 37,654 dots)
+after all 15 manifest pins verified. Ledger after three concurrent merges: **44** rows, **0** portal receipts. Every
+number below is `MODEL` or `PROXY`; **nothing here is a score.** No file was submitted.
+
+**Ranking:** exact iterative marginal expected-DTI under the pinned label-free field `w`
+— the parent's own ranking, rebuilt because R0 (`dot_thin(H19-5, 2.8)` & `d_cat > 2 px`)
+stores no per-dot score. Dose 10% = 3,765 dots. Predictions preregistered in
+`registry/mass_r0_preregistration.json`, then **revised** after the report-only
+instruments using a pre-declared rule (`evidence/mass_r0_ranking_control.json`).
+
+**Result: MASS is measured and exhausted.** Losing 10% of R0's dots costs `−0.0062` on
+the blind off-catalogue SGMC control while gaining 10% returns only `+0.0011` — R0 sits
+**at** its mass optimum, inside the 37–44 k band every good file occupies. The `w` ranking
+itself is worth only `+0.0018` over random receivers and `−0.0018` versus random donors.
+
+| Slot | Exact submission name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`) | ≤140-char form note | Revised MODEL |
+|---|---|---|---|
+| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (prior session; gate-clean `>3 px`) | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | +0.005 |
+| 2, **conditional** | `h33-h33-2-b2-MASSr10plus-20261023-24fd987d` | `h33-2-b2; MASS +3765 next-ranked un-emitted dots, d_cat>3px (37654->41419); pred +0.003 MODEL` | **+0.003** [−0.002, +0.011] |
+| not queued | `h33-h33-2-b2-MASSr10swap-20261023-cde5b4a5` | `h33-2-b2; MASS swap 3765 lowest for 3765 next-ranked, count fixed 37654; pred -0.001 MODEL` | −0.001 [−0.006, +0.004] |
+| not queued | `h33-h33-2-b2-MASSr10minus-20261023-6d3dd59e` | `h33-2-b2; MASS -3765 lowest exact-marginal dots (37654->33889); pred -0.008 MODEL` | −0.008 [−0.013, −0.003] |
+
+`MASSr10plus` stats: `41,419` dots (`3,765` added, `0` removed); every added dot at
+`d_cat >= 3.162 px` and outside the catalogue; `0` catalogue mass; `2,171` dots at
+`2–3 px`, **all inherited unchanged from R0** (the arm adds nothing inside 3 px);
+`98.2%` of additions land within `3 px` of a parent dot (mean `2.05 px`) — saturation,
+which is why the gain is small; blind SGMC `0.098918` vs R0 `0.096060` (`PROXY`);
+catalogue holdout `0.003839` vs R0 `0.004010` (degenerate, `n = 22,663`, IR-88-35);
+`12 km` block-density CV `0.5648` vs R0 `0.5590`. Format gates (CRS `EPSG:32611`,
+`3730×3292`, transform, `float32`, 1 band, `[0,1]`, NaN outside / finite inside, zero
+catalogue mass, unique SHA-256, re-read from disk) `PASS` in
+`releases/h33-h33-2-b2-MASSr10plus-20261023-24fd987d.json`.
+
+**Do not upload any `MASSr10*` arm.** The concurrent SNAP session (PR #36, IR-88-47) corrected
+`scripts/validate_variant.py` so non-PRUNE axes now fail on *any* positive mass at `<3 px`, and all three
+arms inherit R0's 1,611 dots strictly inside 3 px (2,171 at `<=3 px`, 560 of them at exactly 3 px). They
+are **HOLD** alongside the R0 SNAP / CONCENTRATION / RELIEF families. Spend slot 2 on the gate-clean
+`PRUNEp3space35-49fff49b` (**MODEL +0.007**) instead; if the human wants this session's positive result in
+an uploadable form, the next session should build `(PRUNEp3px-6f7ae705, MASS, r10plus)` (proposed in
+`SLOT_PLAN.md`, not built here). A live change under `0.01` is no evidence, and the mass effect itself is
+`+0.0011` at `+10%` — this is the best arm of a weak axis, not a strong pick.
+
+Human uploads **only one twin per slot**, then pastes the portal receipt into
+`receipt_score` / `receipt_date`. Check against actual upload history: blank ledger
+fields do not prove slots remain. R0 `0.2778` is `CLAIM`.
+
+---
+
+## Prior session — 2026-10-23 PRUNE startup audit (superseded by the block above)
+
+**Gate correction from the concurrent session (PR #36, IR-88-47):** `scripts/validate_variant.py`
+now rejects any positive mass at `<3 px` for non-PRUNE axes, and all three `MASSr10*` arms inherit
+R0's 1,611 collar dots. **`MASSr10plus` is therefore HOLD**, not a slot candidate, alongside the R0
+SNAP / CONCENTRATION / RELIEF families. The submission-eligible form of this session's only
+positive result is `(R1 = PRUNEp3px-6f7ae705, MASS, r10plus)`, proposed in `SLOT_PLAN.md`.
+
+## Concurrent session — 2026-10-23 · AXIS=SNAP on R0 (PR #36; read together with the block above)
+
+---
+
 ## Concurrent sessions — 2026-10-23 SPACING + SNAP audit (both supersede every historical upload card below)
 
 ### SPACING (3 built, all HOLD; slots unchanged; report only)

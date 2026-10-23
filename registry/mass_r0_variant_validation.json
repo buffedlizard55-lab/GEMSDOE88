@@ -1,0 +1,114 @@
+{
+  "schema": "gems88.mass-r0-variant-validation.v1",
+  "session_date": "2026-10-23",
+  "parent": {
+    "id": "h33-h33-2-b2",
+    "n_dots": 37654,
+    "dots_le_3px": 2171
+  },
+  "reference": {
+    "sample_submission": "/home/user/GEMSDOE88/data/bridge/sample_submission.tif",
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611"
+  },
+  "variants": {
+    "h33-h33-2-b2-MASSr10minus-20261023-6d3dd59e": {
+      "value": "r10minus",
+      "n_dots": 33889,
+      "n_added": 0,
+      "n_removed": 3765,
+      "min_d_cat_px": 2.2361,
+      "dots_le_3px": 2086,
+      "sgmc_off_catalogue_dti_PROXY": 0.087999,
+      "checks": {
+        "files_exist": true,
+        "sha256_nan_matches_receipt": true,
+        "sha256_zeros_matches_receipt": true,
+        "crs_epsg_32611": true,
+        "shape_transform_match_sample": true,
+        "dtype_float32_single_band": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_outside_footprint": true,
+        "twins_identical_inside": true,
+        "zero_catalogue_mass": true,
+        "dot_count_matches": true,
+        "no_new_sub_3px_mass": true,
+        "pct_changed_in_1_50": true,
+        "form_note_chars_le_140": true,
+        "sha256_not_in_ledger_before_build": true,
+        "sgmc_matches_axis_report": true,
+        "parent_diff_matches_receipt": true
+      },
+      "all_checks_passed": true
+    },
+    "h33-h33-2-b2-MASSr10plus-20261023-24fd987d": {
+      "value": "r10plus",
+      "n_dots": 41419,
+      "n_added": 3765,
+      "n_removed": 0,
+      "min_d_cat_px": 2.2361,
+      "dots_le_3px": 2171,
+      "sgmc_off_catalogue_dti_PROXY": 0.098918,
+      "checks": {
+        "files_exist": true,
+        "sha256_nan_matches_receipt": true,
+        "sha256_zeros_matches_receipt": true,
+        "crs_epsg_32611": true,
+        "shape_transform_match_sample": true,
+        "dtype_float32_single_band": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_outside_footprint": true,
+        "twins_identical_inside": true,
+        "zero_catalogue_mass": true,
+        "dot_count_matches": true,
+        "no_new_sub_3px_mass": true,
+        "pct_changed_in_1_50": true,
+        "form_note_chars_le_140": true,
+        "sha256_not_in_ledger_before_build": true,
+        "sgmc_matches_axis_report": true,
+        "parent_diff_matches_receipt": true
+      },
+      "all_checks_passed": true
+    },
+    "h33-h33-2-b2-MASSr10swap-20261023-cde5b4a5": {
+      "value": "r10swap",
+      "n_dots": 37654,
+      "n_added": 3765,
+      "n_removed": 3765,
+      "min_d_cat_px": 2.2361,
+      "dots_le_3px": 2086,
+      "sgmc_off_catalogue_dti_PROXY": 0.092054,
+      "checks": {
+        "files_exist": true,
+        "sha256_nan_matches_receipt": true,
+        "sha256_zeros_matches_receipt": true,
+        "crs_epsg_32611": true,
+        "shape_transform_match_sample": true,
+        "dtype_float32_single_band": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_outside_footprint": true,
+        "twins_identical_inside": true,
+        "zero_catalogue_mass": true,
+        "dot_count_matches": true,
+        "no_new_sub_3px_mass": true,
+        "pct_changed_in_1_50": true,
+        "form_note_chars_le_140": true,
+        "sha256_not_in_ledger_before_build": true,
+        "sgmc_matches_axis_report": true,
+        "parent_diff_matches_receipt": true
+      },
+      "all_checks_passed": true
+    }
+  },
+  "all_checks_passed": true,
+  "git_sha": "a30aec740c70ecd574620946a068dec4c5bf88d0"
+}
