@@ -27,18 +27,33 @@ No AXIS was assigned by the human (IR-88-21/23); SNAP is the last unbuilt axis o
 
 **Decision:** all three `HOLD`; predicted change `-0.002 … -0.001` is far below the `0.01` evidence bar. Do not spend a slot unless the human wants the axis retired with a live receipt.
 
+## Concurrent session `2026-10-23c` — `AXIS = SNAP` on the gate-clean parent `R1 = PRUNEp3px`
+
+The `2026-10-23b` SNAP family above is built on `R0`, so it inherits the `2–3 px` collar and is not spendable. The same axis was therefore also built on `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`, whose SHA-256 was reproduced from the pinned lineage before the edit (`6f7ae705…` / `dc6f090d…`).
+
+| Release (`releases/…`) | Field | Moved (≤ 35% cap) | Mean disp. | `min d_cat` | SGMC `PROXY` | Δ vs `R1` | Pred. `MODEL` |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `…-SNAPg2f35-20261023-4c460fd4` | `tmi_hg 0.55 + grav_hg 0.45` | `13,004` (`34.5%`) | `1.92 px` | `3.162 px` | `0.09198` | `-0.00410` | `+0.002` |
+| `…-SNAPd2f35-20261023-a98ce2b8` | `+ det_elev_slope 0.20 + tc 0.10` | `12,932` (`34.3%`) | `1.86 px` | `3.162 px` | `0.09246` | `-0.00362` | `+0.001` |
+| `…-SNAPd1f35-20261023-33783252` | same composite, `≤1 px` | `13,152` (`34.9%`) | `1.00 px` | `3.162 px` | `0.09505` | `-0.00103` | `+0.003` |
+
+`R1` reference: SGMC `0.09608`, `12 km` CV `0.5700`. All three pass every MUST gate, hold the count at `37,654`, sit strictly outside the `300 m` collar and stay inside the `1–50%` move budget that the `R0` family overran (`52–95%`).
+
+**What it adds beyond `2026-10-23b`:** with the collar confound removed, the loss still scales with displacement and is still present at `1.00 px` — so the effect is *localisation*, not collar bookkeeping. The supplied potential-field and elevation-edge bands localise catalogue pixels only weakly here (percentile rank `0.53–0.56` vs `0.50` background), which bounds how much any future geometry-only axis can earn. **Decision: retire the SNAP axis** (both families) and spend slots on mass placement instead.
+
 ## PRUNE artifact recovery (this branch, 2026-10-23)
 
 `p1px`, `p3px`, and `p4px` were already-built `(R0, PRUNE, value)` ledger rows. This branch verified all 15 manifest pins, rebuilt `R0` byte-exactly, and reproduced the existing TIFF/fallback/ZIP hashes after on-disk format and parent-diff checks. This is recovery of existing artifacts—not a new experiment, duplicate pair, submission, or slot use. Predictions remain MODEL only (`p3 +0.005`, `p1 -0.006`, `p4 -0.009`); all are below `0.01`, therefore no evidence. Tracked evidence: `evidence/prune_artifact_rebuild.json`; local rasters remain ignored under `releases/`.
 
 The latest human-confirmed planning values in the repository are `TOP_PUBLIC=0.4413` dated `2026-10-22`, `3/3` rolling-week slots remaining, and approximately `21` total slots. The human must re-confirm the current counts and repository-listed `2026-12-03` deadline on the competition page.
 
+
 ## Next 3 slots
 
 | Slot | File | Why | What the result changes |
 |---|---|---|---|
 | **1** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`6f7ae705…`) | Only candidate already satisfying the literal `>=3 px` collar (`min d_cat 3.162 px`) at constant count; best blind SGMC of the PRUNE sweep (`0.09608`). | `>= R0 + 0.01` promotes it to `R1` and every later axis inherits a gate-clean parent; `< R0` retires the 300 m side-lobe argument. |
-| **2** | `CONCENTRATION b10px-m20` **re-based on** `PRUNEp3px` | Existing `c42cd475` inherits `R0`'s collar and is `HOLD`; re-based it is gate-clean and carries the largest positive projection (`MODEL +0.020`). | Positive → concentration becomes the fusion partner for the final file; flat → the `0.51–0.59` CV band is descriptive, not causal. |
+| **2** | `CONCENTRATION b10px-m20` **re-based on** `PRUNEp3px` (not built yet) | Existing `c42cd475` inherits `R0`'s collar and is `HOLD`; re-based it is gate-clean and carries the largest positive projection (`MODEL +0.020`). | Positive → concentration becomes the fusion partner for the final file; flat → the `0.51–0.59` CV band is descriptive, not causal. |
 | **3** | best of slots 1–2, re-validated (or `RELIEF` on `R1`) | Reserve/confirm slot. | Locks the blind final candidate and its fallback. |
 
 ## Weeks 2–6

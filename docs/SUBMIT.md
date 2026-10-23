@@ -70,3 +70,19 @@ Three controlled edits of `R0`; each moves dots `<=2 px` onto a potential-field 
 
 ## Format Gate Verification Summary
 - All `6` `PRUNE` GeoTIFFs and all `6` `SNAP` GeoTIFFs (`EPSG:32611`, `3730×3292`, `Affine(100,0,243350,0,-100,4508550)`, `1` band `float32`, `[0,1]`, `0` NaN inside footprint, `0` on catalogue, unique SHA-256) re-read and verified in `tests/test_prune_axis.py`. After human upload, record verbatim `receipt_score` + `receipt_date` in `ledger/submissions.csv`.
+
+## Session `2026-10-23c` — `AXIS = SNAP` on parent `R1 = PRUNEp3px` (DIAGNOSTIC — do not spend a slot)
+
+The `2026-10-23b` SNAP family is `R0`-based and keeps `579–1,565` dots inside the `2–3 px` collar. This family edits the gate-clean `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` instead (byte-exact rebuild asserted first). Same count (`37,654`), strict `> 3 px` collar, `1–50%` move budget respected, NaN outside the footprint. Rebuild: `python3 scripts/build_snap_r1_variants.py`.
+
+| Value | Window | Edge field | Moved | Mean disp. | `.tif` SHA-256 (NaN outside) | Note (`chars`) |
+| :--- | ---: | :--- | ---: | ---: | :--- | :--- |
+| `g2f35` | `≤ 2 px` | `tmi_hg 0.55 + iso_grav_anom_hg 0.45` | `34.5%` | `1.92 px` | `4c460fd4f57c8c2198b14c4f563c2ec2a93ce7f363a5631433c7d55975395c7d` | `h33-2-b2 PRUNEp3px; SNAP<=2px to potential-field HG (tmi_hg+grav_hg), 35% moved; pred +0.002 MODEL` (`98`) |
+| `d2f35` | `≤ 2 px` | `+ det_elev_slope 0.20 + tc 0.10` | `34.3%` | `1.86 px` | `a98ce2b85cd7a6bcf503a7923fc0144acb21df9ecd622b2aa1f511823d167466` | `h33-2-b2 PRUNEp3px; SNAP<=2px to TMI+grav+scarp+curvature edge, 35% moved; pred +0.001 MODEL` (`92`) |
+| `d1f35` | `≤ 1 px` | as `d2f35` | `34.9%` | `1.00 px` | `33783252d6c8b747e7affb6161d57bca8e06228684d8efeac7e1e60057b6dc60` | `h33-2-b2 PRUNEp3px; SNAP<=1px to composite edge, 35% moved; pred +0.003 MODEL` (`77`) |
+
+Fallback twins (`-zeros.tif`) and single-TIFF `.zip`s sit beside each raster; tracked receipts are `releases/<id>.json`.
+
+**Why they are `BUILT` and not `HOLD`, yet still not slot candidates.** They satisfy every format and collar gate, but the blind off-catalogue USGS `SGMC` control (`PROXY`, `n = 62,703 px`) falls below the parent they came from: `R1 = 0.09608` vs `0.09198` / `0.09246` / `0.09505`, with the loss shrinking as displacement shrinks and the `12 km` CV unchanged (`0.5705–0.5708` vs `0.5700`). Together with the `R0`-based family the axis is retired: dot *positions* are already at the noise floor of the supplied bands, so the remaining headroom is in *where mass is spent* (`CONCENTRATION` / `RELIEF`). Recorded as IR-88-31.
+
+**What the human must still supply:** `receipt_score` + `receipt_date` for whatever is actually uploaded. `TOP_PUBLIC 0.4413 (2026-10-22)` and `3/3` slots are recorded in `SLOT_PLAN.md` from the human-confirmed `2026-10-23` planning values; re-confirm them on the competition page before spending a slot.

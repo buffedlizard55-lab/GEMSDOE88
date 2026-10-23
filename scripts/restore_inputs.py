@@ -109,6 +109,16 @@ VALIDATION_GROUPS = [
         "registry/rasters/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
         "data/registry/family_60gemsdoe/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
         "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8"
+      ],
+      [
+        "registry/rasters/calib_h194_01894.tif",
+        "data/registry/family_60gemsdoe/calib_h194_01894.tif",
+        "89109a3bd2cd3b12e7a0f388113c519843acfc9c4f46825affefc3e63dd99b22"
+      ],
+      [
+        "registry/rasters/calib_h161_01855.tif",
+        "data/registry/family_60gemsdoe/calib_h161_01855.tif",
+        "055309694ed499ca3d87e76b3f5e81c292aef6e39c418d33ff5a817aa1309bea"
       ]
     ]
   ],

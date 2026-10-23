@@ -1,5 +1,19 @@
 # GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
 
+> ## CURRENT STATE (`2026-10-23`, single entity `buffedlizard55-lab`, 3 slots/rolling week)
+>
+> | Field | Value |
+> | :--- | :--- |
+> | **Parent** | `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (37,654 dots, `min d_cat = 3.162 px`, rebuilt byte-exactly from the pinned lineage on `2026-10-23`). `R0 = h33-h33-2-b2` is its parent and the only scored ancestor. |
+> | **Best receipt** | **NONE — no receipt is recorded in [ledger/submissions.csv](ledger/submissions.csv).** `R0 = 0.2778` is a `CLAIM`, not a receipt. |
+> | **TOP_PUBLIC** | `0.4413`, dated `2026-10-22` — **human-supplied**, recorded in [SLOT_PLAN.md](SLOT_PLAN.md) by the concurrent `2026-10-23` session. Not fetchable by the agent; re-check on the competition page. |
+> | **Slots left** | `3 / 3` this rolling week, ~`21` to the `2026-12-03` deadline — **human-supplied** (same source). |
+> | **Next 3 slots** | 1. `R1` `PRUNEp3px` (`6f7ae705`) · 2. `CONCENTRATION b10px-m20` **re-based on `R1`** (not built yet) · 3. best of the first two, re-validated, as the confirm/final candidate. Full reasoning in [SLOT_PLAN.md](SLOT_PLAN.md). |
+> | **Ledger** | `17` rows, all `BUILT`, none uploaded: `4` `PRUNE`, `4` `CONCENTRATION`, `3` `MASS`, `6` `SNAP` (two families — see below). |
+> | **SNAP families (both negative `PROXY`)** | On `R0`: `w2E1` / `w2S2` / `w2E2` (`HOLD`, inherit the `2–3 px` collar; blind `SGMC` `-0.0040 … -0.0080` vs `R0`). On `R1`: `g2f35` / `d2f35` / `d1f35` (gate-clean, strict `> 3 px`; blind `SGMC` `0.09198 / 0.09246 / 0.09505` vs `R1` `0.09608`). Neither family should be spent on a slot ([IR-88-31](IRREGULARITIES.md)). |
+
+---
+
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)
 >
 > | Gate Question | Automated Machine Decision | Binding Reason & Verifiable Receipt |

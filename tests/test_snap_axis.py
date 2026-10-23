@@ -92,11 +92,19 @@ def test_snap_gain_gate_suppresses_marginal_moves():
 # Ledger / release consistency
 # ---------------------------------------------------------------------------
 
+# Scoped to this family: a second SNAP family on parent R1 = PRUNEp3px landed in the
+# same session (tests/test_snap_r1_axis.py, IR-88-29); both share the ledger.
+SNAP_PARENT = "h33-h33-2-b2"
+
+
 def _ledger_rows():
     if not LEDGER.is_file():
         pytest.skip("no ledger")
     with LEDGER.open(newline="") as f:
-        return [r for r in csv.DictReader(f) if r.get("axis") == "SNAP"]
+        return [
+            r for r in csv.DictReader(f)
+            if r.get("axis") == "SNAP" and r.get("parent") == SNAP_PARENT
+        ]
 
 
 def test_ledger_has_three_unique_snap_variants():
@@ -107,7 +115,7 @@ def test_ledger_has_three_unique_snap_variants():
     assert len(shas) == 6
     assert {r["value"] for r in rows} == {"w2E1", "w2S2", "w2E2"}
     for r in rows:
-        assert r["parent"] == "h33-h33-2-b2"
+        assert r["parent"] == SNAP_PARENT
         assert r["status"] == "BUILT"
         assert r["predicted_change"].startswith("MODEL:")
         assert int(r["n_dots"]) == 37654
