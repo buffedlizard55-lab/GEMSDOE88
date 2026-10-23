@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "note": "Session inputs are SHA-256 pinned owner mirrors. Pins prove byte integrity, not organizer authentication. No DrivenData or Dropbox access is used.",
+  "files": [
+    {
+      "id": "sample_submission",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+      "path": "data/official/sample_submission.tif",
+      "dest": "data/bridge/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "provenance": "Owner-mirrored competition grid; organizer authentication UNVERIFIED."
+    },
+    {
+      "id": "existing_faults",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+      "path": "data/official/existing_faults.tif",
+      "dest": "data/bridge/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "provenance": "Owner-mirrored competition catalogue; organizer authentication UNVERIFIED."
+    },
+    {
+      "id": "h19_5",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "path": "inputs/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "dest": "data/scored/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "provenance": "Binary parent support used to reproduce D2.8 and refill PRUNE3."
+    },
+    {
+      "id": "d2_8",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "dest": "data/scored/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "provenance": "Pinned intermediate used only as a pixel-exact reproduction oracle."
+    },
+    {
+      "id": "r0_reference",
+      "repo": "buffedlizard55-lab/60GEMSDOE",
+      "ref": "02563d07fb85d2f4d35887503d380d34d4017197",
+      "path": "registry/rasters/GEMSDOE32__h33-2-b2-zeros.tif",
+      "dest": "data/registry/h33_education.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "provenance": "R0 zeros-twin reference; 0.2778 is CLAIM until a receipt is supplied."
+    },
+    {
+      "id": "sgmc_control_report_only",
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "dest": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/07345ea0604953d7efb858d9cfbc21e20c7aca0b/data/external/derived_sgmc_faults_100m_u8.tif",
+      "license": "Derived from USGS SGMC; USGS public-domain policy: https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits (policy URL not fetched in this sandbox).",
+      "provenance": "REPORT-ONLY SGMC control; not used to construct or rank the candidate."
+    }
+  ]
+}
