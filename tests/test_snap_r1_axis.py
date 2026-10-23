@@ -35,7 +35,12 @@ RELEASES = ROOT / "releases"
 LEDGER = ROOT / "ledger" / "submissions.csv"
 CARDS = ROOT / "ledger" / "mechanism_cards.json"
 
-SNAP_JSON = sorted(RELEASES.glob(f"{bsv.R1_ID}-SNAP*.json"))
+# Receipts are tracked but the rasters are gitignored, so a fresh clone has JSONs without
+# TIFFs. Gate the artifact tests on the raster actually existing, not on the receipt.
+SNAP_JSON = [
+    p for p in sorted(RELEASES.glob(f"{bsv.R1_ID}-SNAP*.json"))
+    if p.with_suffix("").with_suffix(".tif").is_file()
+]
 
 
 # ---------------------------------------------------------------------------
