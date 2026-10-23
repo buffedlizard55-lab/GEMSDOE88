@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from scripts import restore_inputs
+import restore_inputs  # conftest adds the scripts directory to sys.path
 
 ROOT = Path(__file__).resolve().parents[1]
 
