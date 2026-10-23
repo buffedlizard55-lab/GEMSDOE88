@@ -1,0 +1,23 @@
+{
+  "h33-h33-2-b2-MASSm10minus-20261023-7132935e": {
+    "hypothesis": "Parent H33 retains ~10% low-marginal-gain dots near the 2-3px collar and in low-geothermal-prior blocks; pruning them reduces FP-weighted denominator faster than TP loss.",
+    "mechanism": "DTI = T/(0.2(T+S-M)+0.8|G|); removing dots with credit m_self <0.2*DTI/(1-0.2*DTI) ~0.056 at DTI 0.28 improves score even if TP loss is small. Low-ranked dots are those with low p_oof and low q_oof (physics self-credit).",
+    "non_fault_mimic": "Pleistocene Lake Lahontan benches (1212/1298/1334m) and GeoDAWN E-W flight-line corrugations produce subparallel lineaments that pass gravity/RTP edge filters but lack tip-relay linkage; they dominate low-rank tail.",
+    "predicted_sign_size": "MODEL predicted live delta -0.008 (range -0.018 to +0.002). Small negative because parent already pruned to 0 within 2px; remaining low-rank dots still carry ~0.03-0.05 marginal credit via line-like truth clustering.",
+    "falsifier": "If live score rises >=+0.01 within 1 week, hypothesis falsified: low-rank tail contains undetected new-fault lineaments (e.g., blind relay breccia zones with weak surface expression)."
+  },
+  "h33-h33-2-b2-MASSm10plus-20261023-82673b57": {
+    "hypothesis": "Parent under-samples high-prior fault-tip extensions and inter-step relay zones where physics+geodesic model scores 0.08-0.15 but NMS spacing excluded them; adding next-ranked 10% captures these relays.",
+    "mechanism": "Tip strike rays (Pollard & Segall 1987, 24px) and bilateral relay bridge tomography predict discrete undetected segments 0.5-2km beyond visible termini; Noisy-OR fusion gives p>0.12 and q~0.18 in 300m kernel, enough to cross DTI threshold for line-like truth.",
+    "non_fault_mimic": "Lateral alluvial geothermal outflow plumes and unfaulted pluton contacts can inflate GDR 2m temperature + resistivity without fault slip; they cluster near range-front but lack eikonal conductivity (w<0.06) and tip-path integral.",
+    "predicted_sign_size": "MODEL predicted live delta +0.004 (range -0.012 to +0.016). Small positive because added dots rank 37k-41k (p_oof ~0.09) sits near marginal threshold; if new faults are spatially sparse, FP penalty may dominate.",
+    "falsifier": "If live score drops <=-0.015, falsified: added dots are dominantly non-fault geothermal noise (outflow, paleoshorelines) or parent's spacing already optimal; also check holdout PROXY: H33 hide-and-recover rose from 0.092 to 0.108 with similar +10% add (n=37654) but correlated only +0.54 with live."
+  },
+  "h33-h33-2-b2-MASSm20minus-20261023-6c73303c": {
+    "hypothesis": "Mass-DTI elasticity is concave: doubling prune to 20% crosses into retaining only high-precision core (p_oof>0.25, q>0.22) but sacrifices recall on isolated blind faults where kernel halo is sole credit.",
+    "mechanism": "Dinkelbach CELF ranking shows marginal gain d(DTI)/dS ~ (M -0.2*DTI)/denominator; below 30k dots, each removed dot loses ~0.08 TP_w but saves 1.0 FP_w; net DTI change turns negative beyond 15% prune because private test chunks may contain dispersed low-density fault fabrics.",
+    "non_fault_mimic": "Same as m10minus plus 10m detrended-elevation scarps >15m that are actually fluvial knickpoints (chi>45) not seismogenic; they score high on lidar scarp feature but low on 60deg up-dip advection and MT clay-cap triad.",
+    "predicted_sign_size": "MODEL predicted live delta -0.018 (range -0.030 to -0.005). Moderate negative confirms parent near optimal mass; if positive, suggests parent over-dense and private truth is sparser than public catalogue.",
+    "falsifier": "If live score improves >=+0.01, mass hypothesis inverted: private new-fault density is lower than holdout (SW quadrant bias) and current 0.7-0.85% footprint density is excessive; would motivate MASS -30% test."
+  }
+}

@@ -7,6 +7,15 @@
 > - **Unique Submission Name:** `gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT`
 > - **Unique Submission Note (`113 / 140` chars):** `H88-UGFV 32ch physics+GDR thermal+self-masked relay CELF (22545 dots); research only: dense witness blocks upload`
 
+## CURRENT STATE (agent brief v2 — human must confirm ledger dates)
+
+- **Parent R0:** `h33-h33-2-b2` (GEMSDOE32) — 37,654 dots, 0 within 2 px of catalogue, sha256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`, CLAIM 0.2778 (no receipt in `ledger/`).
+- **Best RECEIPT:** none yet (all HOLDOUT-DTI only; H88-UGFV 0.1770 [0.1618,0.1921] n=22,893, seed20+30 pooled).
+- **TOP_PUBLIC:** 0.4413 (#1 xiaofanhu, 2026-10-22) — supersedes prompt's stale 0.3195; verify live at https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+- **Slots left this week:** 3 / 3 (0 scored uploads this rolling week, 2026-10-23) / total to deadline 2026-12-03: ~21 (≈7 weeks ×3).
+- **This session AXIS:** MASS — built 3 variants of R0 differing only on MASS (drop 10% / add 10% / drop 20%, by parent ranking rebuilt from distance+rand seed 88/90; 1-50% change, 0 catalogue mass, ≥2 px collar; NaN outside + -zeros fallback; re-read verified).
+- **Next 3 slots:** 1) `h33-h33-2-b2-MASSm10minus-20261023-7132935e` (33,889, -0.008 MODEL) 2) `h33-h33-2-b2-MASSm10plus-20261023-82673b57` (41,419, +0.004 MODEL) 3) CONCENTRATION 15% km-block move (CV report, see `SLOT_PLAN.md`). See `ledger/submissions.csv` and `releases/` for form notes ≤140 chars.
+
 ---
 
 ## Permanent User Prompt: Operational Requirements
