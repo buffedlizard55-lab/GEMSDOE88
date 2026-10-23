@@ -1,7 +1,7 @@
 # SLOT_PLAN — One Entity, 3 Slots/Week, One Blind Final File by 2026-12-03
 
 **Human-confirmed planning values (2026-10-23):** `1` competitor (`buffedlizard55-lab`), `3/3` live uploads left this rolling week, approximately `21` total slots to the deadline, TOP_PUBLIC `0.4413` dated `2026-10-22`, and **ONE blind final file**. The human must re-confirm the `2026-12-03` deadline and current counts on the competition page.
-**Parent `R0 = h33-h33-2-b2`:** `37,654` dots, `0` within `2 px` of the catalogue, `2,171` in the `2–3 px` collar, `0.2778` `CLAIM` (no receipt). The direct pinned-D2.8 prune rebuild matches `c55bafc4...` byte-for-byte (`IRREGULARITIES.md` IR-88-22).
+**Parent `R0 = h33-h33-2-b2`:** `37,654` dots, `0` within `2 px` of the catalogue, `2,171` in the `2–3 px` collar, `0.2778` `CLAIM` (no receipt). The full pinned five-stage lineage now reproduces both GeoTIFF hashes byte-exactly (`c55bafc4...` zeros; `baeae321...` NaN; `registry/r0_verification.json`).
 
 ## Latest session — human assigned AXIS = CONCENTRATION
 
@@ -40,6 +40,13 @@ The `2026-10-23b` SNAP family above is built on `R0`, so it inherits the `2–3 
 `R1` reference: SGMC `0.09608`, `12 km` CV `0.5700`. All three pass every MUST gate, hold the count at `37,654`, sit strictly outside the `300 m` collar and stay inside the `1–50%` move budget that the `R0` family overran (`52–95%`).
 
 **What it adds beyond `2026-10-23b`:** with the collar confound removed, the loss still scales with displacement and is still present at `1.00 px` — so the effect is *localisation*, not collar bookkeeping. The supplied potential-field and elevation-edge bands localise catalogue pixels only weakly here (percentile rank `0.53–0.56` vs `0.50` background), which bounds how much any future geometry-only axis can earn. **Decision: retire the SNAP axis** (both families) and spend slots on mass placement instead.
+
+## PRUNE artifact recovery (this branch, 2026-10-23)
+
+`p1px`, `p3px`, and `p4px` were already-built `(R0, PRUNE, value)` ledger rows. This branch verified all 15 manifest pins, rebuilt `R0` byte-exactly, and reproduced the existing TIFF/fallback/ZIP hashes after on-disk format and parent-diff checks. This is recovery of existing artifacts—not a new experiment, duplicate pair, submission, or slot use. Predictions remain MODEL only (`p3 +0.005`, `p1 -0.006`, `p4 -0.009`); all are below `0.01`, therefore no evidence. Tracked evidence: `evidence/prune_artifact_rebuild.json`; local rasters remain ignored under `releases/`.
+
+The latest human-confirmed planning values in the repository are `TOP_PUBLIC=0.4413` dated `2026-10-22`, `3/3` rolling-week slots remaining, and approximately `21` total slots. The human must re-confirm the current counts and repository-listed `2026-12-03` deadline on the competition page.
+
 
 ## Next 3 slots
 

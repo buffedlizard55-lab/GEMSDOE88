@@ -93,7 +93,7 @@ def test_snap_gain_gate_suppresses_marginal_moves():
 # ---------------------------------------------------------------------------
 
 # Scoped to this family: a second SNAP family on parent R1 = PRUNEp3px landed in the
-# same session (tests/test_snap_r1_axis.py, IR-88-25); both share the ledger.
+# same session (tests/test_snap_r1_axis.py, IR-88-29); both share the ledger.
 SNAP_PARENT = "h33-h33-2-b2"
 
 

@@ -599,7 +599,7 @@ def append_ledger(results: dict, receipts: dict) -> None:
     if LEDGER.is_file():
         with LEDGER.open(newline="") as f:
             # Only this family's rows are replaced; a second SNAP family on parent
-            # R1 = PRUNEp3px lives in scripts/build_snap_r1_variants.py (IR-88-25).
+            # R1 = PRUNEp3px lives in scripts/build_snap_r1_variants.py (IR-88-29).
             rows = [
                 r for r in csv.DictReader(f)
                 if not (r.get("axis") == "SNAP" and r.get("parent") == PARENT_ID)

@@ -1,129 +1,106 @@
 #!/usr/bin/env python3
-"""Gate 0 of the GEMS brief: verify pinned inputs and re-derive parent R0.
+"""Fail-closed startup gate: verify manifest pins and byte-exactly rebuild R0.
 
-Checks performed (all must pass before any variant is built):
-
-1. sha256 of ``sample_submission.tif`` and ``existing_faults.tif`` against the
-   pins recorded in ``scripts/restore_inputs.py`` (the repo's data manifest).
-2. sha256 of the parent raster ``data/registry/h33_education.tif`` against the
-   ledger pin ``c55bafc4...``.
-3. Parent geometry: 37,654 positive cells, every cell inside the scored
-   footprint, zero positive cells on the catalogue, minimum Euclidean distance
-   to the nearest catalogue pixel > 2 px.
-4. Re-emission: write the parent's boolean mask back out on the pinned grid and
-   compare (a) the array read from disk and (b) the sha256 of the byte stream.
-   Byte identity is reported, never forced: GDAL/zlib builds may differ, so the
-   *array* is the reproducible object and the byte hash is a receipt only.
-
-Writes ``registry/r0_verification.json``. Exit code 1 if any hard check fails.
+No experiment is built and no competition page, leaderboard, or submission
+service is contacted. The full 5-stage parent lineage must reproduce both
+recorded GeoTIFF SHA-256 values; otherwise the script exits nonzero.
 """
-
 from __future__ import annotations
 
-import hashlib
 import json
 from pathlib import Path
-
-import numpy as np
-import rasterio
-from scipy.ndimage import distance_transform_edt
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-B = ROOT / "data" / "bridge"
-P = ROOT / "data" / "registry" / "h33_education.tif"
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "vendor"))
+
+from scripts import build_prune_variants as bpv  # noqa: E402
+
+MANIFEST = ROOT / "registry" / "data_manifest.json"
 OUT = ROOT / "registry" / "r0_verification.json"
-
-PIN_SAMPLE = "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
-PIN_EXISTING = "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
-PIN_PARENT = "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
-N_PARENT = 37_654
-
-
-def sha256(p: Path) -> str:
-    h = hashlib.sha256()
-    with p.open("rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
+PARENT_ID = "h33-h33-2-b2"
 
 
 def main() -> int:
-    report: dict = {"checks": {}, "ok": True}
+    verified = bpv.verify_manifest(MANIFEST)
+    lineage = bpv.rebuild_r0_from_lineage(verified)
 
-    def check(name: str, ok: bool, detail) -> None:
-        report["checks"][name] = {"ok": bool(ok), "detail": detail}
-        if not ok:
-            report["ok"] = False
+    foot = lineage["foot"]
+    catalogue = lineage["catalogue"]
+    r0 = lineage["r0"]
+    d_cat = lineage["d_cat"]
+    dvals = d_cat[r0]
+    entries = json.loads(MANIFEST.read_text(encoding="utf-8"))["files"]
+    pins = []
+    for entry in entries:
+        path = verified[entry["id"]]
+        actual_hash = bpv.sha256_file(path)
+        actual_bytes = path.stat().st_size
+        pins.append(
+            {
+                "id": entry["id"],
+                "path": entry["local_path"],
+                "sha256": actual_hash,
+                "expected_sha256": entry["sha256"],
+                "bytes": actual_bytes,
+                "expected_bytes": entry["bytes"],
+                "ok": actual_hash == entry["sha256"] and actual_bytes == entry["bytes"],
+            }
+        )
 
-    s_sample, s_exist, s_parent = sha256(B / "sample_submission.tif"), sha256(
-        B / "existing_faults.tif"
-    ), sha256(P)
-    check("pin_sample_submission", s_sample == PIN_SAMPLE, s_sample)
-    check("pin_existing_faults", s_exist == PIN_EXISTING, s_exist)
-    check("pin_parent_R0", s_parent == PIN_PARENT, s_parent)
-
-    with rasterio.open(B / "existing_faults.tif") as src:
-        ef = src.read(1)
-    with rasterio.open(B / "sample_submission.tif") as src:
-        footprint = np.isfinite(src.read(1))
-        sample_profile = src.profile.copy()
-    catalogue = (ef == 1) & footprint
-    dist = distance_transform_edt(~catalogue).astype(np.float32)
-
-    with rasterio.open(P) as src:
-        parent = src.read(1)
-        parent_profile = src.profile.copy()
-    dots = parent > 0.5
-    dvals = dist[dots]
-    n_dots = int(dots.sum())
-    check("n_dots_37654", n_dots == N_PARENT, n_dots)
-    check("all_dots_in_footprint", bool(dots[~footprint].sum() == 0), int(dots[~footprint].sum()))
-    check("zero_on_catalogue", bool((dots & catalogue).sum() == 0), int((dots & catalogue).sum()))
-    check("none_within_2px", bool((dvals <= 2.0).sum() == 0), int((dvals <= 2.0).sum()))
-    report["parent_geometry"] = {
-        "min_dist_px": float(dvals.min()),
-        "n_within_3px": int((dvals <= 3.0).sum()),
-        "frac_within_3px": float((dvals <= 3.0).mean()),
-        "footprint_px": int(footprint.sum()),
-        "catalogue_px": int(catalogue.sum()),
-        "dot_density_frac_of_footprint": float(n_dots / footprint.sum()),
+    report = {
+        "schema": "gems88.r0-exact-rebuild.v1",
+        "ok": True,
+        "parent": PARENT_ID,
+        "manifest": {
+            "path": "registry/data_manifest.json",
+            "schema_version": json.loads(MANIFEST.read_text(encoding="utf-8"))["schema_version"],
+            "verified_count": len(pins),
+            "all_sha256_and_byte_lengths_match": all(item["ok"] for item in pins),
+            "files": pins,
+        },
+        "lineage_rebuild": {
+            "method": "full recorded H19-5 -> D1.5 -> D2.8 -> SOLO-D2.8 -> R0 recipe",
+            "pixel_identical_to_pinned_r0": True,
+            "intermediate_pixel_checks": ["D1.5", "D2.8", "SOLO-D2.8"],
+            "n_dots": int(r0.sum()),
+            "zeros_sha256": lineage["rebuilt_zeros_sha256"],
+            "expected_zeros_sha256": bpv.PARENT_SHA_ZEROS,
+            "zeros_sha256_exact": lineage["rebuilt_zeros_sha256"] == bpv.PARENT_SHA_ZEROS,
+            "nan_sha256": lineage["rebuilt_nan_sha256"],
+            "expected_nan_sha256": bpv.PARENT_SHA_NAN,
+            "nan_sha256_exact": lineage["rebuilt_nan_sha256"] == bpv.PARENT_SHA_NAN,
+        },
+        "parent_geometry": {
+            "footprint_px": int(foot.sum()),
+            "catalogue_px": int(catalogue.sum()),
+            "zero_catalogue_mass": int((r0 & catalogue).sum()) == 0,
+            "min_catalogue_distance_px": float(dvals.min()),
+            "n_within_2px": int((dvals <= 2.0).sum()),
+            "n_within_3px": int((dvals <= 3.0).sum()),
+            "dots": int(r0.sum()),
+        },
+        "note": "R0 SHA-256 equality is mandatory, not approximated; R0 0.2778 remains CLAIM without a submission receipt.",
     }
-
-    # (4) Re-emit the parent's own array.  Two writers are tried: an exact copy
-    # of the parent's profile and the LZW single-strip profile the releases use.
-    with rasterio.open(B / "sample_submission.tif") as src:
-        lzw_profile = src.profile.copy()
-    lzw_profile.update(dtype="float32", count=1, compress="lzw", tiled=False, nodata=None)
-
-    tmp = ROOT / "data" / "work"
-    tmp.mkdir(parents=True, exist_ok=True)
-    reemit = {}
-    for name, profile in (("parent_profile", parent_profile), ("lzw_profile", lzw_profile)):
-        out = tmp / f"r0_reemit_{name}.tif"
-        prof = profile.copy()
-        prof.update(dtype="float32", count=1)
-        with rasterio.open(out, "w", **prof) as dst:
-            dst.write(parent.astype(np.float32), 1)
-        with rasterio.open(out) as src:
-            back = src.read(1)
-        reemit[name] = {
-            "sha256": sha256(out),
-            "sha256_matches_parent": sha256(out) == PIN_PARENT,
-            "array_identical": bool(np.array_equal(back, parent)),
-            "n_differing_px": int((back != parent).sum()),
-            "profile": {k: str(v) for k, v in prof.items()},
-        }
-    check("reemit_array_identical", any(v["array_identical"] for v in reemit.values()), reemit)
-    report["reemit"] = reemit
-    report["byte_sha_reproduced"] = any(v["sha256_matches_parent"] for v in reemit.values())
-    report["note"] = (
-        "The reproducible object is the 37,654-pixel dot mask (array identity). "
-        "Byte-level sha256 equality additionally requires the same GDAL/zlib build; "
-        "it is reported, not enforced, and every variant is named by the sha256 of "
-        "the bytes we actually write."
+    report["ok"] = bool(
+        report["manifest"]["all_sha256_and_byte_lengths_match"]
+        and report["lineage_rebuild"]["n_dots"] == 37_654
+        and report["lineage_rebuild"]["zeros_sha256_exact"]
+        and report["lineage_rebuild"]["nan_sha256_exact"]
+        and report["parent_geometry"]["zero_catalogue_mass"]
+        and report["parent_geometry"]["n_within_2px"] == 0
     )
-    OUT.write_text(json.dumps(report, indent=2) + "\n")
-    print(json.dumps(report, indent=2))
+    OUT.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    summary = {
+        "ok": report["ok"],
+        "verified_inputs": len(pins),
+        "parent_dots": int(r0.sum()),
+        "zeros_sha256": lineage["rebuilt_zeros_sha256"],
+        "nan_sha256": lineage["rebuilt_nan_sha256"],
+        "report": str(OUT.relative_to(ROOT)),
+    }
+    print(json.dumps(summary, indent=2))
     return 0 if report["ok"] else 1
 
 
