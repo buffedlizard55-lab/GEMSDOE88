@@ -14,7 +14,7 @@ off-catalogue SGMC `PROXY` (report-only, never a gate): `scarp1px 0.097567`, `sc
 `ridge2px 0.096548` vs parent `R1 0.096083`. Holdout proxy is structurally `0.000000` (IR-88-20). Predictions
 are pre-registration `MODEL` values (`registry/preregistration_snap_r1_scarp.json`), never scores; the
 `w`-field scores the off-support arms negative (`−0.035/−0.077` `MODEL`) and is recorded only as a diagnostic
-(IR-88-38/49). R0's `0.2778` is CLAIM. This session is SNAP on a previously gate-clean parent — the path
+(IR-88-38/50). R0's `0.2778` is CLAIM. This session is SNAP on a previously gate-clean parent — the path
 IR-88-47 leaves open after stopping pure-R0 SNAP as geometrically impossible; the parent choice is disclosed
 for human approval, not assumed.
 
@@ -22,7 +22,7 @@ for human approval, not assumed.
 
 | Order | Exact submission name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | <=140-char form note | Fresh format receipt |
 |---|---|---|---|
-| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`R1` anchor; parents nine ledgered R1 arms) | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json` (recreated + hardened-validator PASS, PR #36) |
+| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`R1` anchor; parents twelve ledgered R1 arms) | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json` (recreated + hardened-validator PASS, PR #36) |
 | 2 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp1px-20261023-1944aaf5` — substitute `h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b` only after exact byte reconstruction + fresh validation | `h33-2-b2 PRUNEp3px R1; SNAP <=1px to scarp+TMI/grav co-edge, spacing-locked, 100% of dots >3px; pred +0.003 MODEL` | `releases/…-1944aaf5.json` + `registry/snap_r1_scarp_validation.json` (hardened, PASS on disk bytes) |
 | 3, conditional | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp2px-20261023-c003d7d7` (dose arbitration) or `h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182` (needs reconstruction) or conserve — decided by the slot-2 receipt per `SLOT_PLAN.md` | `h33-2-b2 PRUNEp3px R1; SNAP <=2px to scarp+TMI/grav co-edge, spacing-locked, 100% of dots >3px; pred +0.006 MODEL` | `releases/…-c003d7d7.json` (same hardened validator PASS) |
 
@@ -315,3 +315,29 @@ Built three arms of `R0 = h33-h33-2-b2` that separate the **collar purge** from 
 - **Prediction (MODEL, registered before instruments):** `+0.002` vs R0, range `[-0.01, 0.014]`. Not a score.
 
 Upload at most one file per slot; paste the portal receipt into `ledger/submissions.csv` (`receipt_score`, `receipt_date`).
+
+---
+
+## Phase 2 `AXIS = TRACKB` Deliverables (`2026-10-23` · Not a Weekly Slot Unless Human Decides)
+
+Per Agent Brief v2 §5, `TRACKB` prepares the `$250k` Phase 2 structural-geologist fault-trace submission and is **not** queued for a weekly Phase 1 public-leaderboard slot unless the human explicitly overrides. All three variants are built from gate-clean `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`min d_cat = 3.1623 px > 3.0 px`) via `.venv/bin/python scripts/build_trackb_variants.py` (`SEED = 20261023`) and pass PR #36's strict `< 3 px` non-PRUNE clearance gate in [`registry/trackb_variant_validation.json`](../registry/trackb_variant_validation.json).
+
+- **Geologist vector deliverable (tracked):** [`evidence/trackb_traces_geologist.geojson`](../evidence/trackb_traces_geologist.geojson) (`SHA-256: 4a1d05415928b2f2ebf885fb6af3342fc60d9a1c88460e790ece43c0a2dbc305`, `1,259` strike-consistent `>= 1.0 km` `LineString` traces totaling `1,753.2 km`, WGS84 + UTM `EPSG:32611` endpoints + 1 geologist evidence paragraph per trace; top-25 dossier in [`evidence/trackb_geologist_dossier.md`](../evidence/trackb_geologist_dossier.md)).
+
+### 1. Preferred Phase 2 Raster — `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87`
+- **Primary (`NaN` outside footprint):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87.tif` (`SHA-256: 05256d87c0b46211b7c13f348e1dc02f1ede3f73b0169c788c7ccb00e504e859`)
+- **Fallback (`0.0` outside if portal rejects `NaN`):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87-zeros.tif` (`SHA-256: 16003173ddbe068541734cc638ec931ff824d9386d62f3026028fc79fb2dcf49`)
+- **Form note (`92 / 140` chars):** `R1(6f7ae705); TRACKB 10% (3765) speckles->spaced >=2.8px >=1km trace tips; pred +0.004 MODEL`
+- **Change & diagnostics (report-only, not scores):** `N = 37,654`, `10.00%` moved vs `R1` (`15.61%` vs `R0`), `min d_cat = 3.1623 px`, `added_min_nn = 2.8284 px`; preregistered `MODEL:+0.004` `[-0.008,+0.016]`; blind `SGMC = 0.09462 PROXY` (`-0.00146` vs `R1`, **`+0.00763` above `tracespine10` and `+0.00796` above `speckle10minus`**).
+
+### 2. Pure Speckle-Cut Control — `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c`
+- **Primary (`NaN` outside):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c.tif` (`SHA-256: 3360100cde278dd83de9da97664c1b2c0218155ee86a62dcfcd2062ebcc7e20a`)
+- **Fallback (`0.0` outside):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c-zeros.tif` (`SHA-256: aa655ef6082b4ffe18a823a03c81b00cc948789f195196631150d16f0ea7e3eb`)
+- **Form note (`92 / 140` chars):** `R1(6f7ae705); TRACKB -10% (3765) isolated <450m speckles off >=1km traces; pred +0.003 MODEL`
+- **Change & diagnostics:** `N = 33,889`, `-10.00%` vs `R1` (`0` added), `min d_cat = 3.1623 px`; preregistered `MODEL:+0.003` `[-0.008,+0.012]`; blind `SGMC = 0.08666 PROXY` (`-0.00942` vs `R1`).
+
+### 3. Continuous-Spine Control — `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1`
+- **Primary (`NaN` outside):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1.tif` (`SHA-256: a3a183d163d1dec0b230b559bef46113c35dbb2f7f1e9ec46bc1e57e10c9947d`)
+- **Fallback (`0.0` outside):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1-zeros.tif` (`SHA-256: be47ad67baf2f6bb15b91b26ebd9a00ef44e2459867fe2591e74c7ba0436cf66`)
+- **Form note (`88 / 140` chars):** `R1(6f7ae705); TRACKB 10% (3765) speckles->100m spines of >=1km traces; pred -0.003 MODEL`
+- **Change & diagnostics:** `N = 37,654`, `10.00%` moved vs `R1` onto `100 m` spines, `min d_cat = 3.1623 px`; preregistered `MODEL:-0.003` `[-0.012,+0.006]`; blind `SGMC = 0.08700 PROXY` (`-0.00909` vs `R1` — confirms `100 m` spine saturation tax, IR-88-49).

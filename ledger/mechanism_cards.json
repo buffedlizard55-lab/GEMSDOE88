@@ -1052,6 +1052,325 @@
     ],
     "post_build_report_only": "A-priori preregistered prediction above is unchanged. Measured after build (REPORT ONLY, never gates): parent-field w-weighted DTI delta -0.005871 MODEL; blind SGMC 0.095396 PROXY (-0.000687 vs R1). Receivers land at median 1.00 px from survivors (0.4% >=2.8 px); H19-5 within-3px coverage 0.8638 -> 0.8559. A live loss cannot cleanly falsify receiver geometry (donor removal forfeits coverage too), whereas the pairwise arm ordering tests uniformity vs regularity vs line continuity directly."
   },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c": {
+    "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "lineage_root": "h33-h33-2-b2",
+    "axis": "TRACKB",
+    "value": "speckle10minus",
+    "hypothesis": "Crustal geothermal faults in the Great Basin propagate as coherent >= 1 km structural breaks, whereas completely isolated 1-dot H19-5 peaks (0 R1 neighbors within 450 m) are predominantly sub-resolution non-fault point clutter whose true fault credit lies below the DTI break-even bar 0.2 * DTI (~0.056); removing the 10% lowest-marginal-gain isolated speckles trims denominator waste while leaving all 1,259 >= 1 km Phase 2 traces intact.",
+    "mechanism": "Under DTI = T / (0.2*T + 0.2*(S - M) + 0.8*|G|), removing 3,765 isolated singletons cuts 0.2*S by 753.0 denominator units with zero neighbor-coverage interaction (nearest surviving dot > 450 m > R = 300 m). In Phase 2 ($250k), USGS/NBMG reviewers expand truth labels around mappable fault traces, never around isolated 100 m speckles.",
+    "non_fault_mimic": "Circular Tertiary volcanic plugs/vents, boulder-armored alluvial fan bars, stock-pond or playa desiccation highs, and single-line 400 m GeoDAWN tie-line spikes produce isolated point ridges; conversely, a buried horst tip or short cross-fault transfer could appear as an isolated crest and be lost by pruning.",
+    "predicted_sign_size": "Preregistered MODEL:+0.003 live vs R1 (plausible range [-0.008,+0.012]); post-build report-only blind SGMC PROXY = 0.08666 (delta vs R1 -0.00942, vs R0 -0.00940); label-free w-DTI delta = -0.01427 MODEL. Treat |live delta| < 0.01 as no evidence.",
+    "falsifier": "Phase 1 live receipt <= R1 - 0.01 falsifies low-credit speckle pruning / tip projection and proves isolated crests carry >= break-even off-catalogue truth; for traceext10 vs tracespine10, tracespine10 beating traceext10 by >= 0.01 falsifies the spacing-lock advantage over continuous 100 m trace rasterization.",
+    "n_dots": 33889,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 0,
+      "n_removed": 3765,
+      "pct_changed_moved": 10.0,
+      "pct_changed_sym_diff": 10.0,
+      "min_dist_catalogue_px": 3.1623,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 2587
+    },
+    "r0_diff": {
+      "n_ref": 37654,
+      "n_cand": 33889,
+      "n_common": 31777,
+      "n_added": 2112,
+      "n_removed": 5877,
+      "pct_removed_of_ref": 15.6079,
+      "pct_half_sym_diff_of_ref": 10.6084,
+      "pct_full_sym_diff_of_ref": 21.2169
+    },
+    "nearest_neighbour_stats": {
+      "min_px": 1.0,
+      "mean_px": 3.1196,
+      "median_px": 3.0,
+      "p05_px": 2.2361,
+      "p95_px": 4.1231
+    },
+    "geojson_deliverable": {
+      "path": "evidence/trackb_traces_geologist.geojson",
+      "sha256": "4a1d05415928b2f2ebf885fb6af3342fc60d9a1c88460e790ece43c0a2dbc305",
+      "trace_count": 1259,
+      "trace_dots_preserved": 6516
+    },
+    "report_only_diagnostics": {
+      "n_dots": 33889,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.086659,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 4981.37,
+        "fp": 31618.51
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6687,
+        "cv_12km_120px_interior": 0.593
+      },
+      "sgmc_delta_vs_r1": -0.009424,
+      "sgmc_delta_vs_r0": -0.009401,
+      "donor_mean_sgmc_credit_per_dot": 0.05996,
+      "added_mean_sgmc_credit_per_dot": 0.0,
+      "trace_dot_mean_sgmc_credit_per_dot": 0.07215,
+      "w_expected_dti_model": 0.267271,
+      "w_expected_dti_delta_vs_r1": -0.014267,
+      "leakage_canary_max_sym_auc": 0.56925
+    },
+    "report_only_not_gates": [
+      "catalogue hide-and-recover PROXY (degenerate 0.0 for >3 px rasters; IR-88-20)",
+      "single-feature leakage canary (15/15 <= 0.90)",
+      "blind off-catalogue USGS SGMC control"
+    ],
+    "references": [
+      {
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+        "claim": "DTI alpha=0.2, beta=0.8, 300 m triangular kernel; Phase 2 ($250k) rescores after expert geologist review expands fault labels."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New-fault truth includes unmapped geometry of fault systems outside pixel-exact USGS/INGENIOUS mask."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 400 m line spacing motivates positional uncertainty and single-line point-clutter filtering."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c",
+    "form_note": "R1(6f7ae705); TRACKB -10% (3765) isolated <450m speckles off >=1km traces; pred +0.003 MODEL"
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87": {
+    "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "lineage_root": "h33-h33-2-b2",
+    "axis": "TRACKB",
+    "value": "traceext10",
+    "hypothesis": "Normal-fault displacement tapers toward fault tips (D/L ~ 1e-3 to 1e-2) and steps across 300-900 m en-echelon relay ramps (Faulds & Hinz 2015), causing fixed-threshold H19-5 ridges to terminate prematurely; reallocating 3,765 isolated speckles onto mutually >= 2.8 px-spaced pixels inside <= 950 m, +-25 deg along-strike tip/relay cones captures unmapped tip and relay truth without incurring the IR-88-38 densification tax.",
+    "mechanism": "Count is held fixed at 37,654 so global mass S is unchanged. Enforcing d_nn >= 2.8284 px guarantees every added dot opens a fresh 300 m triangular-kernel footprint along the projected strike of an established >= 1 km fault trace rather than duplicating coverage 1-2 px beside an existing dot, directly addressing Phase 2 expert trace expansion.",
+    "non_fault_mimic": "Linear pediment-alluvial contacts, coalescing bajada channels, Lake Lahontan/Bonneville strandlines, and aeromagnetic flight-line corrugation continue straight past true fault terminations, pulling tip projections into unfaulted basin fill where slip genuinely died out.",
+    "predicted_sign_size": "Preregistered MODEL:+0.004 live vs R1 (plausible range [-0.008,+0.016]); post-build report-only blind SGMC PROXY = 0.09462 (delta vs R1 -0.00146, vs R0 -0.00144); label-free w-DTI delta = -0.01191 MODEL. Treat |live delta| < 0.01 as no evidence.",
+    "falsifier": "Phase 1 live receipt <= R1 - 0.01 falsifies low-credit speckle pruning / tip projection and proves isolated crests carry >= break-even off-catalogue truth; for traceext10 vs tracespine10, tracespine10 beating traceext10 by >= 0.01 falsifies the spacing-lock advantage over continuous 100 m trace rasterization.",
+    "n_dots": 37654,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 3765,
+      "n_removed": 3765,
+      "pct_changed_moved": 10.0,
+      "pct_changed_sym_diff": 20.0,
+      "min_dist_catalogue_px": 3.1623,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 2759
+    },
+    "r0_diff": {
+      "n_ref": 37654,
+      "n_cand": 37654,
+      "n_common": 31777,
+      "n_added": 5877,
+      "n_removed": 5877,
+      "pct_removed_of_ref": 15.6079,
+      "pct_half_sym_diff_of_ref": 15.6079,
+      "pct_full_sym_diff_of_ref": 31.2158
+    },
+    "nearest_neighbour_stats": {
+      "min_px": 1.0,
+      "mean_px": 3.2094,
+      "median_px": 3.0,
+      "p05_px": 2.2361,
+      "p95_px": 4.4721,
+      "added_min_nn_px": 2.8284,
+      "added_median_nn_px": 4.1231
+    },
+    "geojson_deliverable": {
+      "path": "evidence/trackb_traces_geologist.geojson",
+      "sha256": "4a1d05415928b2f2ebf885fb6af3342fc60d9a1c88460e790ece43c0a2dbc305",
+      "trace_count": 1259,
+      "trace_dots_preserved": 6516
+    },
+    "report_only_diagnostics": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.094623,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5516.43,
+        "fp": 35167.6
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.681,
+        "cv_12km_120px_interior": 0.6045
+      },
+      "sgmc_delta_vs_r1": -0.00146,
+      "sgmc_delta_vs_r0": -0.001437,
+      "donor_mean_sgmc_credit_per_dot": 0.05996,
+      "added_mean_sgmc_credit_per_dot": 0.05735,
+      "trace_dot_mean_sgmc_credit_per_dot": 0.07215,
+      "w_expected_dti_model": 0.269629,
+      "w_expected_dti_delta_vs_r1": -0.011909,
+      "leakage_canary_max_sym_auc": 0.56925
+    },
+    "report_only_not_gates": [
+      "catalogue hide-and-recover PROXY (degenerate 0.0 for >3 px rasters; IR-88-20)",
+      "single-feature leakage canary (15/15 <= 0.90)",
+      "blind off-catalogue USGS SGMC control"
+    ],
+    "references": [
+      {
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+        "claim": "DTI alpha=0.2, beta=0.8, 300 m triangular kernel; Phase 2 ($250k) rescores after expert geologist review expands fault labels."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New-fault truth includes unmapped geometry of fault systems outside pixel-exact USGS/INGENIOUS mask."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 400 m line spacing motivates positional uncertainty and single-line point-clutter filtering."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87",
+    "form_note": "R1(6f7ae705); TRACKB 10% (3765) speckles->spaced >=2.8px >=1km trace tips; pred +0.004 MODEL"
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1": {
+    "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "lineage_root": "h33-h33-2-b2",
+    "axis": "TRACKB",
+    "value": "tracespine10",
+    "hypothesis": "Phase 2 continuous-trace rasterization diagnostic control: infilling the 100 m polyline spines between 2.8 px-spaced dots on the highest-ranked >= 1 km GeoJSON traces creates unambiguous continuous raster lines for human/geologist inspection, but on Phase 1 DTI is predicted to lose slightly (-0.003 MODEL) due to the IR-88-38/IR-88-41 kernel densification tax.",
+    "mechanism": "Two flanking trace dots 2.83-4.24 px apart already supply 0.29-0.53 triangular-kernel coverage at intermediate spine pixels, capping marginal T gain at <= 0.47-0.71 even on exact truth while still charging ~0.2 denominator units where truth is offset > 100 m; paired against traceext10 at identical N=37,654 and identical 3,765 speckle removals, this isolates continuous-line densification from spaced trace extension.",
+    "non_fault_mimic": "Straightened Bresenham segments across <= 450 m dot steps can bridge minor non-tectonic erosional scarps, shoreline benches, or dikes, concentrating extra mass onto a single false lineament.",
+    "predicted_sign_size": "Preregistered MODEL:-0.003 live vs R1 (plausible range [-0.012,+0.006]); post-build report-only blind SGMC PROXY = 0.08700 (delta vs R1 -0.00909, vs R0 -0.00906); label-free w-DTI delta = -0.01049 MODEL. Treat |live delta| < 0.01 as no evidence.",
+    "falsifier": "Phase 1 live receipt <= R1 - 0.01 falsifies low-credit speckle pruning / tip projection and proves isolated crests carry >= break-even off-catalogue truth; for traceext10 vs tracespine10, tracespine10 beating traceext10 by >= 0.01 falsifies the spacing-lock advantage over continuous 100 m trace rasterization.",
+    "n_dots": 37654,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 3765,
+      "n_removed": 3765,
+      "pct_changed_moved": 10.0,
+      "pct_changed_sym_diff": 20.0,
+      "min_dist_catalogue_px": 3.1623,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 2643
+    },
+    "r0_diff": {
+      "n_ref": 37654,
+      "n_cand": 37654,
+      "n_common": 31777,
+      "n_added": 5877,
+      "n_removed": 5877,
+      "pct_removed_of_ref": 15.6079,
+      "pct_half_sym_diff_of_ref": 15.6079,
+      "pct_full_sym_diff_of_ref": 31.2158
+    },
+    "nearest_neighbour_stats": {
+      "min_px": 1.0,
+      "mean_px": 2.7362,
+      "median_px": 2.8284,
+      "p05_px": 1.0,
+      "p95_px": 4.1231,
+      "added_min_nn_px": 1.0,
+      "added_median_nn_px": 1.0
+    },
+    "geojson_deliverable": {
+      "path": "evidence/trackb_traces_geologist.geojson",
+      "sha256": "4a1d05415928b2f2ebf885fb6af3342fc60d9a1c88460e790ece43c0a2dbc305",
+      "trace_count": 1259,
+      "trace_dots_preserved": 6516
+    },
+    "report_only_diagnostics": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.086997,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5063.51,
+        "fp": 35141.81
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6833,
+        "cv_12km_120px_interior": 0.6012
+      },
+      "sgmc_delta_vs_r1": -0.009086,
+      "sgmc_delta_vs_r0": -0.009063,
+      "donor_mean_sgmc_credit_per_dot": 0.05996,
+      "added_mean_sgmc_credit_per_dot": 0.0642,
+      "trace_dot_mean_sgmc_credit_per_dot": 0.07215,
+      "w_expected_dti_model": 0.271049,
+      "w_expected_dti_delta_vs_r1": -0.010488,
+      "leakage_canary_max_sym_auc": 0.56925
+    },
+    "report_only_not_gates": [
+      "catalogue hide-and-recover PROXY (degenerate 0.0 for >3 px rasters; IR-88-20)",
+      "single-feature leakage canary (15/15 <= 0.90)",
+      "blind off-catalogue USGS SGMC control"
+    ],
+    "references": [
+      {
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+        "claim": "DTI alpha=0.2, beta=0.8, 300 m triangular kernel; Phase 2 ($250k) rescores after expert geologist review expands fault labels."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New-fault truth includes unmapped geometry of fault systems outside pixel-exact USGS/INGENIOUS mask."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 400 m line spacing motivates positional uncertainty and single-line point-clutter filtering."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1",
+    "form_note": "R1(6f7ae705); TRACKB 10% (3765) speckles->100m spines of >=1km traces; pred -0.003 MODEL"
+  },
   "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp2px-20261023-c003d7d7": {
     "hypothesis": "R1's dots inherit from H19-5 the ~1-2 px (100-200 m) displacement of GeoDAWN Area 2 lineaments (400 m flight-line spacing, 150-200 m drape; https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7) relative to the discrete surface fault scarp. Re-centering every dot <=2 px onto the co-registered topographic scarp + TMI/gravity co-edge -- the only edit that beat R0 on the blind off-catalogue SGMC control (0.096806 vs 0.096060 PROXY) -- keeps that gain on the gate-clean parent R1, whose 2,171 w-field refills are exactly the dots whose placement is least proven (refill ranking AUC 0.47 blind, IR-88-38) and most in need of an independent geometric anchor.",
     "mechanism": "A range-front normal fault at ~60 deg Andersonian dip through 0.5-1.5 km of basin fill puts (i) a topographic breakline at its updip surface emergence (band 19 det_elev_slope, band 12 det_elev Hessian ridge crest) and (ii) magnetisation/density steps imaged as horizontal-gradient maxima (band 18 isostatic gravity, band 3 TMI). The snap field weights the surface emergence 65% and the potential-field edge 35%. A dot at distance d from a line-like truth earns triangular-kernel credit 1 - d/3 inside 300 m, so shifting drifted ridge centroids onto the scarp breakline raises per-truth-pixel credit along off-catalogue traces at fixed S = 37,654: no added wasted mass (0.2*FP_w) and no lost coverage. The >=2.8284 px placement lock stops adjacent dots bunching onto one breakline pixel and opening >300 m along-strike kernel gaps -- the failure mode of the unspaced w2E1/w2E2 arms (SGMC -0.008).",
