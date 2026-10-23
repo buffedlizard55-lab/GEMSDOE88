@@ -145,7 +145,10 @@ def test_axis_invariants(report):
 
 
 def test_ledger_matches_releases_and_projection(report, projection, ledger_rows):
-    conc = [r for r in ledger_rows if r["axis"] == "CONCENTRATION"]
+    # This report covers the original three parent-density arms. Later,
+    # independently receipted doses may coexist in the cumulative ledger.
+    report_ids = {vid[:-4] if vid.endswith(".tif") else vid for vid in report["variants"]}
+    conc = [r for r in ledger_rows if r["id"] in report_ids]
     assert len(conc) == 3
     for row in conc:
         v = report["variants"][row["id"] + ".tif"]

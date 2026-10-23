@@ -5,10 +5,10 @@
 
 | Field | Status / Value | Evidence Class & Provenance |
 |---|---|---|
-| **Parent (`R0`)** | `h33-h33-2-b2` (`GEMSDOE32`, `37,654` unit dots, `0` within `<= 2 px` of catalogue, `2,171` in `2 < d_cat <= 3 px`) | Rebuilt byte-for-byte from `H19-5` across all 5 lineage steps (`zeros` SHA-256 `c55bafc4...`, `nan` SHA-256 `baeae321...`); live `0.2778` is **`CLAIM`** (`0` receipts in `ledger/`). |
+| **Parent (`R0`)** | `h33-h33-2-b2` (`GEMSDOE32`, `37,654` unit dots, `0` within `<= 2 px` of catalogue, `2,171` in `2 < d_cat <= 3 px`) | Rebuilt byte-for-byte from `H19-5` (`zeros` SHA-256 `c55bafc4...`, `nan` SHA-256 `baeae321...`); live `0.2778` is **`CLAIM`** (`0` receipts in `ledger/`). |
 | **Best `RECEIPT`** | `None` (`0` portal receipts logged in `ledger/submissions.csv`) | **`CLAIM` only (`0.2778`)** until human pastes verbatim portal `receipt_score` + `receipt_date`. |
-| **`TOP_PUBLIC`** | `____ (as of YYYY-MM-DD; human fills from live leaderboard)` | `UNVERIFIED` locally (automated `drivendata.org` access disabled per Terms of Use). |
-| **Quota & Slots Left** | `1` entity (`buffedlizard55-lab`) · Rolling week: **`__ / 3`** · Total to `2026-12-03`: **`__ / 18`** + **`1` blind final file** | Official Rules (`https://docs.nlr.gov/docs/fy26osti/96647.pdf`). |
+| **`TOP_PUBLIC`** | `0.4413` (`2026-10-22`, human-supplied; live competition page authoritative) | `UNVERIFIED` locally (automated `drivendata.org` access disabled per Terms of Use). |
+| **Quota & Slots Left** | `1` entity (`buffedlizard55-lab`) · Rolling week: **`3 / 3`** · Total to `2026-12-03`: **`~21`** + **`1` blind final file** | Official Rules (`https://docs.nlr.gov/docs/fy26osti/96647.pdf`). |
 | **Session Axis Built** | **`AXIS = SNAP`** (`<= 2.0 px` / `200 m` window, `N = 37,654`, `d_nn >= 2.828 px`, provided `training_features.tif` Bands `3, 12, 18, 19` only; zero external LiDAR) | `SNAPscarp2px` (`fae77ff4`, `82.03%` chg, mean disp `1.3089 px` [`1.5956 px` moved], `SGMC = 0.09681` `PROXY`, `MODEL +0.006`), `SNAPridge2px` (`83d2d231`, `18.81%` chg, mean disp `0.2299 px` [`1.2222 px` moved], `SGMC = 0.09644` `PROXY`, `MODEL +0.003`), `SNAPpot2px` (`fc2548e7`, `82.46%` chg, mean disp `1.3489 px` [`1.6358 px` moved], `SGMC = 0.09518` `PROXY`, `MODEL -0.004`). |
 | **Next 3 Slots (`SLOT_PLAN.md`)** | **1.** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`PRUNE <=3 px`, `5.77%` chg, `MODEL +0.005`, `SGMC 0.09608` `PROXY`)<br>**2.** `h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4` (`SNAP <=2 px` scarp+edge, `82.03%` chg, `MODEL +0.006`, `SGMC 0.09681` `PROXY`)<br>**3.** `h33-h33-2-b2-PRUNEp1px-20261023-0542a27c` (`PRUNE <=1 px`, `MODEL -0.006`) *or* `h33-h33-2-b2-SNAPridge2px-20261023-83d2d231` (`SNAP` `H19-5` ridge, `18.81%` chg, `MODEL +0.003`) | Details in `SLOT_PLAN.md`, `docs/SUBMIT.md`, `ledger/submissions.csv`, `evidence/snap_axis_report.json`. |
 <!-- CURRENT STATE END -->
@@ -23,8 +23,6 @@
 > | **Candidate Short Note (`138 / 140` chars)** | `ADHR88 67-feat 60deg-dip+GDR1391-2m+scarp+relay Dinkelbach 35894 dots (HOLDOUT-DTI 0.1879); literal 17GEMSDOE overlap=1 blocks auto-submit` | **`.tif` SHA-256:** `f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd`<br>**`.zip` SHA-256:** `729ca35f4aed1ba3c99cf5f420af89032c27d08308471a239ed8d1d46ad3a7fd` |
 > | **Archived Baseline (`Exp 01`, Research Only)** | `gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT` | [Archived `Exp 01` `.tif`](docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif) · [`.zip`](docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.zip) · `SHA-256: 3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b` |
 > | **Primary Pages & Machine Receipts** | **0 weekly submission slots used · `ORGANIZER-CONFIRMED` score: None** | [Executive Summary (`How to Submit`)](docs/executive-summary.html) · [Research & Audits](docs/research.html) · [Verified Sources](docs/sources.html) · [Canonical Run Card](registry/run_card.json) · [Live Site](https://buffedlizard55-lab.github.io/GEMSDOE88/) |
-
----
 
 ---
 

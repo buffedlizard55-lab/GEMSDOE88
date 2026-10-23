@@ -37,10 +37,66 @@ if str(ROOT / "vendor") not in sys.path:
 from gems57 import metric  # noqa: E402
 from scripts import build_prune_variants as bpv  # noqa: E402
 from scripts import build_snap_variants as bsv  # noqa: E402
+from scripts.build_snap_variants import MIN_DCAT, snap  # noqa: E402
 
 
 def _sha256_bytes(b: bytes) -> str:
     return hashlib.sha256(b).hexdigest()
+
+
+def _toy():
+    h = w = 40
+    foot = np.ones((h, w), bool)
+    catalogue = np.zeros((h, w), bool)
+    catalogue[18, 5:35] = True
+    yy, _xx = np.mgrid[0:h, 0:w]
+    d_cat = np.abs(yy - 18).astype(float)
+    rng = np.random.default_rng(7)
+    edge = rng.random((h, w)).astype(np.float32)
+    mask = np.zeros((h, w), bool)
+    idx = rng.choice(h * w, size=60, replace=False)
+    mask.reshape(-1)[idx] = True
+    mask &= foot & ~catalogue
+    return mask, edge, foot, catalogue, d_cat
+
+
+def test_snap_holds_count_and_exclusions():
+    mask, edge, foot, catalogue, d_cat = _toy()
+    res = snap(mask, edge, foot, catalogue, d_cat, max_disp=2)
+    out = res["mask"]
+    assert int(out.sum()) == int(mask.sum())
+    assert int((out & catalogue).sum()) == 0
+    moved = out & ~mask
+    assert moved.sum() > 0
+    assert float(d_cat[moved].min()) > MIN_DCAT
+    ys, xs = np.nonzero(moved)
+    for y, x in zip(ys, xs):
+        win = mask[max(0, y - 2):y + 3, max(0, x - 2):x + 3]
+        assert win.any()
+
+
+def test_snap_only_moves_uphill_and_is_deterministic():
+    mask, edge, foot, catalogue, d_cat = _toy()
+    a = snap(mask, edge, foot, catalogue, d_cat, max_disp=2)["mask"]
+    b = snap(mask, edge, foot, catalogue, d_cat, max_disp=2)["mask"]
+    assert np.array_equal(a, b)
+    for y, x, yy, xx, gain in snap(mask, edge, foot, catalogue, d_cat, max_disp=2)["moves"]:
+        assert gain > 0
+        assert edge[yy, xx] > edge[y, x]
+
+
+def test_snap_window_one_cannot_reach_two_pixels():
+    mask, edge, foot, catalogue, d_cat = _toy()
+    res = snap(mask, edge, foot, catalogue, d_cat, max_disp=1)
+    for y, x, yy, xx, _g in res["moves"]:
+        assert abs(yy - y) <= 1 and abs(xx - x) <= 1
+
+
+def test_snap_gain_gate_suppresses_marginal_moves():
+    mask, edge, foot, catalogue, d_cat = _toy()
+    loose = snap(mask, edge, foot, catalogue, d_cat, max_disp=2, gain_min=0.0)["n_moved"]
+    tight = snap(mask, edge, foot, catalogue, d_cat, max_disp=2, gain_min=0.4)["n_moved"]
+    assert tight < loose
 
 
 def test_constant_count_snap_algebra_identity():
@@ -167,7 +223,15 @@ def test_emitted_snap_variants_pass_all_must_gates_and_displacement_invariants()
     assert len(shas) == len(set(shas)) == len(sub_rows)
     assert len(shas_z) == len(set(shas_z)) == len(sub_rows)
     snap_rows = {r["id"]: r for r in sub_rows if r["axis"] == "SNAP"}
-    assert len(snap_rows) == 3
+    assert len(snap_rows) == 6
+    assert {r["value"] for r in snap_rows.values()} == {
+        "w2E1",
+        "w2S2",
+        "w2E2",
+        "ridge2px",
+        "pot2px",
+        "scarp2px",
+    }
 
     cards = json.loads((ROOT / "ledger" / "mechanism_cards.json").read_text())
 

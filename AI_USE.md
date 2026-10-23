@@ -1,7 +1,7 @@
 # AI_USE — Generative-AI Disclosure (NLR Official Rules §3.6)
 
 - **Competing Entity (1 human competitor):** `buffedlizard55-lab` (sole submitter, slot owner, and blind-final selector).
-- **AI System Used:** Arena.ai Agent Mode working on branch `arena/4a61d770-gemsdoe88` (reconciled cleanly with concurrent `main` commits `fe8ea6f`, `e079582`, `c3d9485`). Include this disclosure in the final competition narrative per Official Rules §3.6 (https://www.drivendata.org/competitions/306/competition-doe-gems/).
+- **AI System Used:** Arena.ai Agent Mode across the recorded Arena branches, including current branch `arena/2918f370-gemsdoe88`. Include this disclosure in the final competition narrative per Official Rules §3.6 (https://www.drivendata.org/competitions/306/competition-doe-gems/).
 
 ## AI-Generated Code, Artifacts & Analyses (2026-10-23)
 
@@ -25,3 +25,16 @@
 
 - Supply live `TOP_PUBLIC` + date, available rolling-week slots (`__ / 3`), and confirmation of `AXIS = SNAP` (`Slot 2 = SNAPscarp2px`) alongside `Slot 1 = PRUNEp3px`.
 - Upload chosen single file manually from authenticated browser, log verbatim `receipt_score` and `receipt_date` in `ledger/submissions.csv`, and choose the **one blind final file** before `2026-12-03`.
+
+## Session `2026-10-23b` — AXIS = SNAP (branch `arena/c4f505a4-gemsdoe88`)
+
+- **AI wrote:** `scripts/build_snap_variants.py` (edge fields, deterministic window-argmax snap, gate re-read writer, receipt/ledger/card emission), `tests/test_snap_axis.py`, `registry/snap_analysis.json`, the three SNAP mechanism cards, and the SNAP sections of `SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md` and the README CURRENT STATE block.
+- **AI decided (no human input available):** the AXIS (SNAP, last unbuilt in the default order); the three variant definitions (literal 2 px edge argmax, 200 m-scale gain-gated edge, organizer derivative bands); the `d_cat > 3 px` destination rule; dropping the planned 1 px dose arm because every arm already saturated its window (mean displacement `1.82 px` of `2 px`); and correcting the predicted sign from `+0.004` to `-0.002` after the blind SGMC measurement, with both values kept in the cards.
+- **Human must decide:** whether any SNAP file is uploaded at all (all are `HOLD`, negative PROXY) and the blind final file.
+
+## Latest session — human-assigned CONCENTRATION (branch `arena/2918f370-gemsdoe88`)
+
+- **Human decided:** AXIS=CONCENTRATION; TOP_PUBLIC `0.4413` dated `2026-10-22`; planning counts `3/3` this rolling week and approximately `21` total. Human remains the sole submitter and receipt/final selector.
+- **AI wrote:** `scripts/generate_concentration_variants.py`, `scripts/validate_concentration_releases.py`, DTI algebra coverage, the exact parent-build receipt, mechanism card, ledger row, release twins, and current planning/submission disclosures.
+- **Reconciliation:** concurrent main already contained semantically equivalent 10%/20% 1 km arms, so those newly generated outputs were removed before merge. The only retained new dose is 15% (`4dfb83f6`), based on official TMI/gravity gradients. It is `HOLD` because it inherits R0’s 2–3 px collar.
+- **Evidence labels:** R0 `0.2778` is CLAIM; candidate `+0.008` is MODEL; no candidate-specific hide-and-recover number was reported because static full-catalogue exclusion makes that proxy misleading. Build/code commit `0d63cb22b651a0c5c96d68a45fe025dce2a81ed3`.

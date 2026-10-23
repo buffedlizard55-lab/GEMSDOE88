@@ -68,6 +68,75 @@ PARENT_SHA_ZEROS = bpv.PARENT_SHA_ZEROS
 PARENT_SHA_NAN = bpv.PARENT_SHA_NAN
 FIXED_DATE = "20261023"
 SEED = 20261023
+MIN_DCAT = 3.0
+
+
+def _offsets(max_disp: int) -> list[tuple[int, int, float]]:
+    offs = []
+    for dy in range(-max_disp, max_disp + 1):
+        for dx in range(-max_disp, max_disp + 1):
+            r = float(np.hypot(dy, dx))
+            if 0.0 < r <= max_disp:
+                offs.append((dy, dx, r))
+    offs.sort(key=lambda t: (t[2], t[0], t[1]))
+    return offs
+
+
+def snap(
+    mask: np.ndarray,
+    edge: np.ndarray,
+    foot: np.ndarray,
+    catalogue: np.ndarray,
+    d_cat: np.ndarray,
+    max_disp: int,
+    min_dcat: float = MIN_DCAT,
+    gain_min: float = 0.0,
+) -> dict:
+    """Unspaced window-argmax snap helper (retained for unit-test compatibility with PR #21)."""
+    H, W = mask.shape
+    dest_ok = foot & ~catalogue & (d_cat > min_dcat)
+    ys, xs = np.nonzero(mask)
+    src_edge = edge[ys, xs]
+    offs = _offsets(max_disp)
+
+    proposals: list[tuple[float, int, int, int, int]] = []
+    for i, (y, x) in enumerate(zip(ys.tolist(), xs.tolist())):
+        best_val = src_edge[i]
+        best: tuple[int, int] | None = None
+        for dy, dx, _r in offs:
+            yy, xx = y + dy, x + dx
+            if not (0 <= yy < H and 0 <= xx < W):
+                continue
+            if not dest_ok[yy, xx] or mask[yy, xx]:
+                continue
+            v = edge[yy, xx]
+            if v > best_val:
+                best_val = float(v)
+                best = (yy, xx)
+        if best is not None and (best_val - float(src_edge[i])) > gain_min:
+            proposals.append((best_val - float(src_edge[i]), int(y), int(x), best[0], best[1]))
+
+    proposals.sort(key=lambda t: (-t[0], t[1], t[2]))
+    claimed: set[tuple[int, int]] = set()
+    new_mask = mask.copy()
+    moves: list[tuple[int, int, int, int, float]] = []
+    for gain, y, x, yy, xx in proposals:
+        if (yy, xx) in claimed:
+            continue
+        claimed.add((yy, xx))
+        new_mask[y, x] = False
+        new_mask[yy, xx] = True
+        moves.append((y, x, yy, xx, gain))
+
+    assert int(new_mask.sum()) == int(mask.sum()), "SNAP must hold the dot count fixed"
+    return {
+        "mask": new_mask,
+        "n_proposed": len(proposals),
+        "n_moved": len(moves),
+        "moves": moves,
+        "max_disp": max_disp,
+        "min_dcat": min_dcat,
+    }
 
 
 def build_snap_edge_fields_and_canaries(
@@ -530,11 +599,12 @@ def main() -> int:
     ledger_path = ROOT / "ledger" / "submissions.csv"
     existing_rows: list[dict[str, str]] = []
     existing_shas: set[str] = {PARENT_SHA_ZEROS, PARENT_SHA_NAN}
+    our_values = {"ridge2px", "pot2px", "scarp2px"}
     if ledger_path.is_file():
         with ledger_path.open("r", newline="", encoding="utf-8") as f:
             for row in csv.DictReader(f):
-                if row.get("axis") == "SNAP":
-                    continue  # idempotent rerun replaces only SNAP rows
+                if row.get("axis") == "SNAP" and row.get("value") in our_values:
+                    continue  # idempotent rerun replaces only our spacing-locked SNAP rows
                 existing_rows.append(row)
                 if row.get("sha256"):
                     existing_shas.add(row["sha256"])
@@ -542,8 +612,9 @@ def main() -> int:
                     existing_shas.add(row["sha256_zeros"])
 
     releases_dir = ROOT / "releases"
-    for old_p in releases_dir.glob(f"{PARENT_ID}-SNAP*"):
-        old_p.unlink()
+    for v_name in our_values:
+        for old_p in releases_dir.glob(f"{PARENT_ID}-SNAP{v_name}-*"):
+            old_p.unlink()
 
     specs = [
         (
@@ -626,7 +697,11 @@ def main() -> int:
         if (ROOT / "ledger" / "mechanism_cards.json").is_file()
         else {}
     )
-    cards = {k: v for k, v in cards.items() if "-SNAP" not in k}
+    cards = {
+        k: v
+        for k, v in cards.items()
+        if not any(f"-SNAP{val}-" in k for val in our_values)
+    }
 
     new_ledger_rows = []
     arms_for_eval = {PARENT_ID: r0}

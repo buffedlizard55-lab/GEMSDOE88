@@ -121,5 +121,130 @@
     "non_fault_mimic": "Wave-cut Pleistocene Lake Lahontan / Bonneville paleoshorelines (1,212-1,555 m), welded-tuff mesa rims, and incised alluvial-fan terrace risers form sharp 100 m topographic breaklines within 200 m of piedmont fault corridors without brittle basement throw.",
     "predicted_sign_size": "MODEL +0.006 live delta vs R0 (scenario range [-0.005, +0.016]; blind off-catalogue SGMC = 0.096806 PROXY, highest of SNAP sweep; 12 km block-density CV = 0.5607 inside 0.51-0.59).",
     "falsifier": "Live score drop <= -0.010 vs R0 falsifies topographic scarp re-centering at 100 m grid resolution and shows H19-5's smoothed multi-physics ridge centroid better matches expert fault compilations than local 200 m scarp breaklines."
+  },
+  "h33-h33-2-b2-SNAPw2E1-20261023-01cf9e98": {
+    "hypothesis": "R0's dots sit on the H19-5 ridge field, not on the geophysical anomaly; moving each dot at most 2 px onto the local maximum of the magnetic/gravity gradient magnitude re-centres it on the basement step a new fault actually produces, and DTI inside the 300 m kernel pays for that re-centring.",
+    "mechanism": "Fault-parallel basement offset -> density and susceptibility contrast -> horizontal-gradient maximum of rtp magnetics and isostatic gravity. GeoDAWN Area 2 was flown at 400 m line spacing and 150-200 m drape (https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7), so a potential-field edge maximum can sit 1-3 px off the mapped trace. The dot count is held fixed, so any change is credit-only (T and M), never mass.",
+    "non_fault_mimic": "Basalt-flow margins, Lake Lahontan shorelines and welded-tuff caprock boundaries produce gradient maxima with no Quaternary fault; E-W GeoDAWN flight-line corrugation is a pixel-scale artefact, which is why both fields are pre-smoothed before differencing.",
+    "predicted_sign_size": "A-priori +0.004. Post-build the paired SGMC blind-fault PROXY fell 0.00796, so the shipped MODEL prediction is -0.002 (range [-0.010, +0.006]): the SGMC delta attenuated by ~0.25 because SGMC is compiled at a different scale from the scored new-fault truth. Below the 0.01 evidence bar either way.",
+    "falsifier": "A live change of +0.01 or more (recovering the lost blind-fault proximity) falsifies the negative PROXY; a live change between -0.01 and +0.01 confirms SNAP is not a lever at this window, which retires the axis for the remaining slots.",
+    "predicted_change": "MODEL:-0.002",
+    "predicted_range": "[-0.010,+0.006]",
+    "measured_build_stats": {
+      "n_moved": 35771,
+      "pct_moved": 95.0,
+      "mean_displacement_px": 1.819,
+      "max_displacement_px": 2.0,
+      "collar_dots_2_3px": 644,
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.088098,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5131.19,
+        "fp": 35278.07
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6287,
+        "cv_12km_120px_interior": 0.5582
+      }
+    }
+  },
+  "h33-h33-2-b2-SNAPw2S2-20261023-60ced8c7": {
+    "hypothesis": "The negative SGMC result for w2E1 is noise-chasing, not a failure of the edge idea: at 1 px smoothing the within-window maximum is dominated by pixel-scale detector noise, so the same snap on a 200 m-scale edge, gated to moves with a real gain (>= 0.25 robust-z), should keep whatever structural signal exists.",
+    "mechanism": "Gaussian smoothing at sigma = 2 px (200 m) suppresses single-pixel corrugation while leaving basement-step gradients 200-600 m wide intact. The gain gate then only moves a dot when the destination is a distinct local maximum rather than a marginal noisy neighbour, which is why 52% rather than 95% of dots move.",
+    "non_fault_mimic": "Smoothing also smears adjacent parallel lineaments together, so a dot can be dragged onto the wrong strand of a fault zone; alluvial-fan surface breaks still produce edges at this scale.",
+    "predicted_sign_size": "MODEL -0.001 (range [-0.009, +0.007]): half of the w2E1 blind-fault loss, consistent with the measured SGMC delta of -0.00396 vs -0.00796, so most but not all of the w2E1 damage is pixel noise.",
+    "falsifier": "If w2S2 scores below w2E1 live, the noise hypothesis is wrong and the loss comes from leaving the parent's ridge geometry, not from edge noise; if it scores above w2E1 by more than 0.01 the edge idea survives and a coherence-weighted SNAP deserves a slot.",
+    "predicted_change": "MODEL:-0.001",
+    "predicted_range": "[-0.009,+0.007]",
+    "measured_build_stats": {
+      "n_moved": 19617,
+      "pct_moved": 52.1,
+      "mean_displacement_px": 1.904,
+      "max_displacement_px": 2.0,
+      "collar_dots_2_3px": 1565,
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.092105,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5367.8,
+        "fp": 35217.24
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6286,
+        "cv_12km_120px_interior": 0.5578
+      }
+    }
+  },
+  "h33-h33-2-b2-SNAPw2E2-20261023-861cd355": {
+    "hypothesis": "The operator choice does not matter: the organizer's own derivative bands should give the same result as a recomputed gradient if the effect (negative or positive) is physical rather than an artefact of my smoothing.",
+    "mechanism": "Bands 3 (tmi_hg), 9 (tmi_vg) and 18 (iso_grav_anom_hg) are already first derivatives, so their magnitudes peak over the same basement steps as E1 while skipping a second differencing step. Robust z-scores make the three bands scale-free before summing.",
+    "non_fault_mimic": "Vertical-gradient bands amplify shallow sources - alluvium thickness and topography - more than deep basement steps, so E2 is expected to be more shallow-biased and more susceptible to fan-surface contacts than E1.",
+    "predicted_sign_size": "MODEL -0.002 (range [-0.010, +0.006]); effectively identical to w2E1 (SGMC -0.00795 vs -0.00796), which is the point of the arm: the operator is not the lever.",
+    "falsifier": "A live difference of 0.01 or more between w2E1 and w2E2 would show the derivative-band definition matters and make operator choice a live decision; near-equality retires it.",
+    "predicted_change": "MODEL:-0.002",
+    "predicted_range": "[-0.010,+0.006]",
+    "measured_build_stats": {
+      "n_moved": 35725,
+      "pct_moved": 94.88,
+      "mean_displacement_px": 1.811,
+      "max_displacement_px": 2.0,
+      "collar_dots_2_3px": 579,
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.088113,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5132.02,
+        "fp": 35273.7
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6296,
+        "cv_12km_120px_interior": 0.5575
+      }
+    }
+  },
+  "h33-h33-2-b2-CONCENTRATION15pct-20261023-4dfb83f6": {
+    "hypothesis": "Undiscovered geothermal-relevant faults are concentrated in kilometre-scale zones where independent magnetic and gravity boundary responses agree.",
+    "mechanism": "Relocated exactly 15% of R0 dots from low-prior to high-prior 1 km blocks using official TMI/gravity gradients; total mass stayed 37,654.",
+    "non_fault_mimic": "Lithologic contacts, pluton margins, basin-depth gradients, and acquisition-line corrugation can create the same magnetic/gravity boundaries.",
+    "predicted_live_change_MODEL": "+0.008",
+    "falsifier": "An absolute live change below 0.01 is no evidence; a decline of at least 0.01 falsifies this concentration level on public chunks.",
+    "parent_diff": {
+      "removed": 5648,
+      "added": 5648,
+      "relocated_pct": 15,
+      "symmetric_diff_pct": 29.9995
+    },
+    "block_definition": "10x10 pixels = 1 km x 1 km; CV over density in all 100%-footprint blocks",
+    "block_density_cv_before": {
+      "all_full_blocks": 1.8740009535119062,
+      "occupied_full_blocks": 0.61859627687813,
+      "n_full_blocks": 50984,
+      "n_occupied_full_blocks": 15624
+    },
+    "block_density_cv_after": {
+      "all_full_blocks": 1.6416774258173297,
+      "occupied_full_blocks": 0.7360058603611722,
+      "n_full_blocks": 50984,
+      "n_occupied_full_blocks": 21272
+    },
+    "prior_bands": [
+      "tmi_hg",
+      "iso_grav_anom_slope",
+      "iso_grav_anom_hg"
+    ],
+    "git_sha_at_build": "0d63cb22b651a0c5c96d68a45fe025dce2a81ed3",
+    "format_report": {
+      "nan": {
+        "sha256": "4dfb83f6a97f4265e442a3f1ed156986d3c25eb9ebb5e8d49d3784b5cec1eb43",
+        "n_dots": 37654,
+        "min_catalogue_distance_px": 2.23606797749979
+      },
+      "zeros": {
+        "sha256": "3a79b811326ccf7654dd876ad6a8ef0bddc1e1952d3c97f4b0d801353c29918b",
+        "n_dots": 37654,
+        "min_catalogue_distance_px": 2.23606797749979
+      }
+    }
   }
 }
