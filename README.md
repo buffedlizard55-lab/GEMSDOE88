@@ -3,16 +3,19 @@
 <!-- CURRENT STATE START -->
 ## CURRENT STATE (2026-10-23 · Agent Brief v2)
 
-| Field | Status / Value | Evidence Class & Provenance |
-|---|---|---|
-| **Parent (`R0`)** | `h33-h33-2-b2`, `N=37,654`; `0` dots at `<=2 px`, `2,171` at `2<d_cat<=3 px`, `min d_cat=2.2361 px` | `15/15` manifest inputs SHA-256 + byte-length verified; R0 rebuilt byte-exactly (`zeros c55bafc4…`, `nan baeae321…`, `registry/r0_verification.json`). Historical `0.2778` is **CLAIM**, not a receipt. |
-| **Gate-clean parent (`R1`)** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`, `N=37,654`, `min d_cat=3.1623 px` | `releases/…-6f7ae705.json`; its construction is reproduced bit-for-bit by `scripts/compare_refill_spacing.py` (blind `SGMC` `0.096083` matches the ledger). |
-| **Best `RECEIPT`** | **None** (`0` portal receipt scores/dates in `ledger/submissions.csv`, `35` rows) | The human must paste a verbatim receipt; no slot was used by any session so far. |
-| **`TOP_PUBLIC`** | `0.4413` (`2026-10-22`, human-supplied) | `UNVERIFIED` locally, and the concurrent stop-audit declined to adopt it as a current target (IR-88-46); the competition page is never accessed from this repo. |
-| **Quota & Deadline** | One entity, `3/3` rolling-week slots left (human must confirm), `~18–21` total, `2026-12-03` deadline | Human must reconfirm both before any upload. |
-| **This session (`AXIS = PRUNE`, agent-chosen; refill mode, not a radius repeat)** | Three arms that separate the collar purge from the refill: `p3norefill` `fb308615` (`N=35,483`, `-2,171`, `5.77%`), `p3space35` `49fff49b` (`N=37,654`, refill locked at `>=3.5 px`, `5.77%` moved / `11.53%` sym-diff), `p4space35` `07bd8182` (`N=37,654`, `400 m` collar, `10.16%` moved / `20.32%` sym-diff) | All format gates + independent `scripts/validate_variant.py` `PASS`; zero catalogue mass; `min d_cat 3.1623 / 4.1231 px`; refill `min NN 3.6056 px` vs `R1`'s `1.0 px`; seed `20261023`; `scripts/build_prune_spaced_variants.py`, prereg `registry/prune_spaced_preregistration.json`, cards in `ledger/mechanism_cards.json`. No existing PRUNE radius was re-minted (IR-88-46). |
-| **Instrument reading (report only, never a gate)** | Label-free four-line field `MODEL` vs R0: `-0.0157 / -0.0112 / -0.0228`. Blind off-catalogue `SGMC` `PROXY`: `0.093643 / 0.101042 / 0.102454` (R0 `0.096060`; densified `R1` rebuild `0.096083`) | **The two instruments disagree** (IR-88-44): the field prefers the densified refill, `SGMC` prefers the spacing-locked one. Hide-and-recover holdout is degenerate for this family (`R0 0.004006`, all gate-clean arms `0.000000`, `n=22,663` withheld) and carries no weight. Full comparison: `evidence/refill_spacing_comparison.json`. |
-| **Next 3 Candidate Slots (`SLOT_PLAN.md`)** | **1.** `PRUNEp3px` `6f7ae705` (`R1`, gate-clean; restore and re-validate privately first) · **2.** `PRUNEp3space35` `49fff49b` (highest blind `SGMC` of any `300 m` file) · **3.** reserve: `PRUNEp4space35` `07bd8182` after a positive slot-2 receipt, else `PRUNEp3.2px` `f272cdae` | Candidate sequence only, not an upload recommendation. `SNAPscarp2px` is **`HOLD`** (inherited `min d_cat 2.2361 px`, non-PRUNE `>=3 px` rule, IR-88-46); the human uploads at most one file per slot and a live `|Δ|<0.01` is no evidence. |
+| Field | Current evidence |
+|---|---|
+| Parent R0 | `h33-h33-2-b2`, 37,654 dots; all 15 manifest SHA-256/size pins passed; full lineage matched zeros `c55bafc4…` and NaN `baeae321…` exactly. Its 0.2778 remains **CLAIM**, not a portal receipt. |
+| Best RECEIPT / target | **None.** Ledger: 35 BUILT rows, no portal receipts. **TOP_PUBLIC/date unknown** in the current brief; historical 0.4413 is not adopted as a current target. |
+| Slots / deadline | One entity, <=3 scored uploads per rolling week, one blind final. Rolling-week/total slots **unknown**; human confirms the provisional `2026-12-03` deadline on the competition page. |
+| This session (AXIS=SNAP) | **0 new variants / 0 new ledger rows / 0 uploads.** Of R0's 1,611 dots at <3 px from the catalogue, 30 have no >=3 px in-footprint destination within a <=2 px SNAP, even without collisions. Pure R0 SNAP is impossible (`evidence/session_20261023_snap_clearance.json`; IR-88-47). |
+| Concurrent PRUNE work | Main gained 3 additional, separate refill-mode BUILT rows (`p3norefill`, `p3space35`, `p4space35`); **35 total**, zero receipts. Four-line MODEL and blind SGMC PROXY disagree on the spacing-locked refills (`evidence/refill_spacing_comparison.json`); neither is a live score. |
+| Existing artifacts recovered | PREEXISTING PRUNE p1/p3/p4 TIFF twins recreated with exact ledger hashes, no new experiment. Six passed fresh independent disk validation. Locally available: `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.tif` and its `-zeros.tif` alternative (gitignored); `evidence/session_20261023_prune_revalidation.json`. |
+| Next three *conditional* slots | Existing `PRUNEp3px-6f7ae705` (**MODEL +0.005**); `PRUNEp3space35-49fff49b` (**MODEL +0.007**) only after fresh artifact rebuild/validation and an informative first receipt; reserve `PRUNEp4space35-07bd8182` (**MODEL +0.002**) only after spacing evidence. Otherwise conserve slots. Full decision tree: `SLOT_PLAN.md` / `docs/SUBMIT.md`. |
+| Holds / limitations | R0 SNAP/CONCENTRATION/RELIEF controls retain positive mass <3 px: **HOLD**, regardless of old validators. Previously tracked competition-derived TIFF/ZIP files and public input mirrors have unchecked data-use terms; human must confirm provenance and quota. Do not treat live |delta|<0.01 as evidence. |
+
+This block and the current brief supersede historical instructions below, including
+rank/overlap uniqueness gates, automatic-upload language, and unconfirmed quota claims.
 <!-- CURRENT STATE END -->
 
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)

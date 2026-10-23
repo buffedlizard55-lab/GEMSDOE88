@@ -1,38 +1,60 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current session — 2026-10-23 startup audit (takes precedence over historical cards)
+## Current session — 2026-10-23 (supersedes every historical upload card below)
 
-**No new candidate or submission. AXIS=PRUNE:** requested radii already built;
-2 px is R0. Ledger stays at 32 rows. Full-lineage R0 startup validation passed
-both pinned SHA-256 values after verification of all 15 inputs. Audit receipt:
-`evidence/session_20261023_prune_stop.json` (not a submission-page receipt).
+**AXIS=SNAP: no new variant, no upload.** R0 matched both pinned SHA-256s after
+all 15 manifest hashes/byte sizes passed. Its 1,611 dots inside the 3 px collar
+include **30 with no compliant pixel <=2 px away**: no pure R0 SNAP can pass the
+non-PRUNE clearance rule (`evidence/session_20261023_snap_clearance.json`).
+Do not substitute a PRUNE refill and call it SNAP. No row was added by this
+session; the concurrent PRUNE refill-mode merge brought the ledger to **35 BUILT,
+zero portal RECEIPTs**. The audit ran against 32 earlier rows.
 
-**Do not upload yet:** current TOP_PUBLIC/date, actual rolling-week balance and
-deadline are unknown. Existing candidate TIFFs below are absent in this checkout;
-their old JSON records are **historical build records, not fresh validations**.
-Privately restore an existing artifact, match its complete recorded hash, and
-independently validate its actual disk bytes, primary/fallback equality, format,
-zero catalogue mass, and applicable collar before a human spends a slot.
-No rank-correlation or dot-overlap uniqueness threshold is permitted.
+**Existing, not new: PRUNE p1/p3/p4 were recreated byte-exactly** from pinned
+inputs. All six TIFFs (primary NaN-outside and zeros-outside fallback) were
+re-read from disk and passed CRS/3730×3292 shape/transform/float32/band count,
+finite [0,1] inside, outside encoding, zero catalogue mass, exact ledger SHA,
+parent-diff, and twin/one-file ZIP checks. Audit:
+`evidence/session_20261023_prune_revalidation.json`. These reproduced PRUNE
+rasters are gitignored (older unrelated TIFFs were tracked, see IR-88-43);
+scripts `rebuild_prune_artifacts.py` and `validate_variant.py` reproduce
+and check local files. Do not treat this local validation as a portal receipt.
 
-| Order | Exact submission name (primary file is `releases/<name>.tif`; fallback `<name>-zeros.tif`) | <=140-char form note | Historical format record |
-|---|---|---|---|
-| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json` |
-| 2, optional | `h33-h33-2-b2-PRUNEp1px-20261023-0542a27c` | `h33-2-b2; PRUNE <=1px, fixed 37654 dots; predicted -0.006 MODEL` | `releases/h33-h33-2-b2-PRUNEp1px-20261023-0542a27c.json` |
-| 3, reserve | `h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae` | `h33-2-b2; PRUNE <=3.2px, fixed 37654 dots; predicted +0.002 MODEL` | `releases/h33-h33-2-b2-PRUNEp3.2px-20261023-f272cdae.json` |
+**Potential slot 1 (conditional only):**
+- **Name:** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
+- **Primary file:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.tif`
+  (NaN outside; SHA-256 `6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9`).
+- **Fallback, never an extra submission:** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-zeros.tif`
+  (zeros outside; SHA-256 `dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f`).
+- **Form note (103/140 chars, copied from existing receipt):**
+  `h33-2-b2; PRUNE <=3px held at 37654 (-2171 in 2-3px, +2171 exact marginal gain >3px); pred +0.005 MODEL`
+- **Mechanism:** remove 2,171 R0 collar dots and exact-marginal refill at fixed
+  37,654 count (5.7657% changed, min catalogue distance 3.1623 px). Predicted
+  live delta **MODEL +0.005**, *not* a score; an actual |delta|<0.01 is no evidence.
 
-Human uploads **only one twin per slot**, then pastes the portal receipt into
-`receipt_score` / `receipt_date` (with verbatim receipt evidence retained privately).
-Check against actual upload history: blank ledger fields do not prove slots remain.
-R0 0.2778 is CLAIM; the above predictions are MODEL, never live scores. A change
-under 0.01 is no evidence. Slot 3 is reserved unless prior receipts support it.
+**Do not upload until the human confirms** TOP_PUBLIC/date, rolling-week/total
+slots, 2026-12-03 deadline on the [competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/),
+R0's actual portal receipt (0.2778 remains CLAIM), and permissions for public
+input mirrors / previously tracked competition rasters. The agent has not fetched
+the portal or rules. Human independently checks the exact bytes and uploads **one**
+file per slot from their own account, then records verbatim `receipt_score` and
+`receipt_date` on the existing ledger row with private receipt evidence (no
+credentials). If p3 materially **loses**, close the collar family rather than
+spend slot 2 reflexively. If it wins or is inconclusive, the human may consider
+already-BUILT `PRUNEp3space35-49fff49b` (MODEL +0.007) as a separate,
+spacing/refill-support test. Its TIFFs are **not present in this checkout**;
+rebuild them at the exact ledger hashes and re-run the independent validator
+before any upload. Only after a material improvement over p3space35 should the
+human reserve slot 3 for `PRUNEp4space35-07bd8182` (MODEL +0.002, also absent
+locally). Their full filenames, hashes, and form notes appear in the historical
+PRUNE refill-mode section below; neither its SGMC PROXY nor its field MODEL is
+a live result (`SLOT_PLAN.md`). Revalidate the chosen exact file immediately
+before upload.
 
-**Corrections to historical sections below:** `SNAPscarp2px-fae77ff4` is HOLD
-(min catalogue distance 2.2361 px; 2,171 dots <=3 px); moving only its additions
-outside the collar does not satisfy the non-PRUNE rule. No label-relief probe is
-recommended. Historical recommendations to upload SNAP in slot 2 or to spend a
-RELIEF slot to probe label composition are withdrawn. Data-use terms for
-preexisting public competition-derived rasters remain unchecked (IR-88-43).
+**HOLD:** all R0 SNAP/CONCENTRATION/RELIEF arms retaining sub-3-px dots,
+including `SNAPscarp2px-fae77ff4`; no label-relief probe. Any contrary upload
+suggestion in the archived sections below is withdrawn. PRUNEp1's <3 px mass
+is allowed by the PRUNE exception, but it is a diagnostic rather than a lead.
 
 ---
 
