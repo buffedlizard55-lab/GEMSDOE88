@@ -1,5 +1,15 @@
 # GEMSDOE88 — DOE GEMS Fault-Discovery Research & Automated GeoTIFF Pipeline
 
+## CURRENT STATE (2026-10-23)
+
+- **Parent:** h33-h33-2-b2 (GEMSDOE32) — 37654 dots, 0 within 2px, sha c55bafc4… (CLAIM 0.2778, no receipt)
+- **Best receipt:** none (this repo has no ORGANIZER-CONFIRMED receipt; H33 is CLAIM per brief)
+- **TOP_PUBLIC:** 0.4413 by xiaofanhu on 2026-10-22 (verified leaderboard.json, stale after 24h)
+- **Slots left this week:** 2/3 (built 3 MASS variants, 0 submitted) — **Slots total used:** 0
+- **Next 3 slots (in order):** 1) h33-h33-2-b2-MASSm10-20261023-06d99a7c MASS_m10 (n=31935), 2) h33-h33-2-b2-MASSp10-20261023-8fe48581 MASS_p10 (n=39248), 3) h33-h33-2-b2-MASSswap10-20261023-21cf4658 swap10 (n=35483)
+- **Build status:** 3 variants BUILT, validated (CRS EPSG:32611 3730x3292, float32, 0.7/0.3 NaN/zeros pair, zero catalogue mass, sha unique, parent-diff recorded, re-read OK)
+- **Evidence labels:** All scores labelled CLAIM/PROXY/MODEL per brief; no HOLDOUT-DTI claimed without receipt; external facts carry URL (see knowledge/field-guide.md)
+
 > **READ THIS FIRST EVERY SESSION — PROJECT OPERATING BRIEF & UNMISTAKABLE STATUS**
 >
 > - **OK TO DOWNLOAD FOR RESEARCH: `YES`** — [`docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif) (`22,545` binary off-catalogue dots, `SHA-256: 15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00`) · [One-TIFF `.zip`](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.zip) (`SHA-256: edce6e3f0ba68f6c6142d38cbbd63a2b70d35033cceb7eb66b8554e5bbaacbe2`) · [Byte-level validator receipt](docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.json) · [Executive summary & submission instructions](docs/executive-summary.html) · [Machine run card](registry/run_card.json)

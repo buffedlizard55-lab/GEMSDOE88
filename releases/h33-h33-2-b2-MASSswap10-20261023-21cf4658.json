@@ -1,0 +1,28 @@
+{
+  "id": "h33-h33-2-b2-MASSswap10-20261023-21cf4658",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "axis": "MASS",
+  "value": "swap10",
+  "n_dots": 35483,
+  "pct_changed_vs_parent_pct": 15.188293408402831,
+  "sha256_nan": "21cf4658471809ffbe4a2e13db4c708ee4b9bbfcad5563d2e52ed3d8efa3af72",
+  "sha256_zeros": "7195e26d3891714ff6c0913023cf0b4eb0849491553498096080f00e29ee7de3",
+  "predicted_change_model": 0.002,
+  "mechanism_card": {
+    "hypothesis": "Swapping 10% lowest-ranked for next-ranked tests pure ranking quality at fixed mass (constant S), isolating T vs FP trade-off",
+    "mechanism": "Constant S holds denominator 0.2(S-M) stable; DTI change = \u0394T / (0.2(T+S-M)+0.8|G|); positive if replacement dots have higher expected kernel overlap with blind truth",
+    "non_fault_mimic": "Flight-line corrugation (400m Area2 spacing) creates periodic ranking noise; swapping may exchange real fault dots for artifact-aligned dots",
+    "predicted_sign_and_size": "+0.002",
+    "falsifier": "If live DTI unchanged (<0.01), ranking is no better than random at this mass; if negative, next-ranked pool is farther from geothermal signal than dropped near-cat fringe"
+  },
+  "validation": {
+    "format": "EPSG:32611 3730x3292 float32 1band [0,1] NaN outside / zeros fallback, 0 on_catalogue, re-read OK",
+    "zero_catalogue_mass": true,
+    "sha_not_in_ledger_before": true,
+    "parent_diff_recorded": true,
+    "report_only_proxy": "Not gated; catalogue hide-and-recover PROXY not run (n withheld positives withheld; leakage canary max AUC 0.8321 from registry/leakage_canaries.json; SGMC control not run)"
+  },
+  "evidence_label": "MODEL projection, not RECEIPT or PROXY score",
+  "block_density_CV": "Not computed for MASS; for CONCENTRATION would report CV before/after (best files 0.51-0.59)"
+}

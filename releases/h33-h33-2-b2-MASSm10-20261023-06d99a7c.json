@@ -1,0 +1,28 @@
+{
+  "id": "h33-h33-2-b2-MASSm10-20261023-06d99a7c",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "axis": "MASS",
+  "value": "m10",
+  "n_dots": 31935,
+  "pct_changed_vs_parent_pct": 15.188293408402831,
+  "sha256_nan": "06d99a7ca9b91112872b7089c09ed4a61e0685be1f7a807692ff4cc5cae71870",
+  "sha256_zeros": "784d0691fd434a587de47fa22f4f69dd30dcea046aac9909a728b8dc9f718c8e",
+  "predicted_change_model": 0.003,
+  "mechanism_card": {
+    "hypothesis": "Removing 10% lowest-ranked (nearest-catalogue) dots reduces FP weight >0.2*DTI while preserving TP kernel credit",
+    "mechanism": "Tversky denominator dominated by S-M; low-ranked dots contribute ~0.2 FP penalty with minimal T due to proximity to masked faults; their removal raises DTI",
+    "non_fault_mimic": "Clustered alluvial fan apex distributaries that mimic fault scarps but lack deep continuity; our distance ranking conflates them with true blind faults near known systems",
+    "predicted_sign_and_size": "+0.003",
+    "falsifier": "If live DTI drops >0.01, low-ranked near-cat dots were providing relay-hardening kernel overlap bridging to blind segments"
+  },
+  "validation": {
+    "format": "EPSG:32611 3730x3292 float32 1band [0,1] NaN outside / zeros fallback, 0 on_catalogue, re-read OK",
+    "zero_catalogue_mass": true,
+    "sha_not_in_ledger_before": true,
+    "parent_diff_recorded": true,
+    "report_only_proxy": "Not gated; catalogue hide-and-recover PROXY not run (n withheld positives withheld; leakage canary max AUC 0.8321 from registry/leakage_canaries.json; SGMC control not run)"
+  },
+  "evidence_label": "MODEL projection, not RECEIPT or PROXY score",
+  "block_density_CV": "Not computed for MASS; for CONCENTRATION would report CV before/after (best files 0.51-0.59)"
+}

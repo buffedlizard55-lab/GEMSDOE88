@@ -1,0 +1,28 @@
+{
+  "id": "h33-h33-2-b2-MASSp10-20261023-8fe48581",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "axis": "MASS",
+  "value": "p10",
+  "n_dots": 39248,
+  "pct_changed_vs_parent_pct": 15.764593403091306,
+  "sha256_nan": "8fe485814b2de9205151fdbcf12b2e6834825ba8ccfa063bccce40b0dfd0cbff",
+  "sha256_zeros": "c9aaa3d510781f5856be29801c3eaec3612dd979d6713374e8be48e64885eaf9",
+  "predicted_change_model": -0.004,
+  "mechanism_card": {
+    "hypothesis": "Adding 10% next-ranked (mid-distance footwall basement flexure) dots tests whether marginal kernel credit exceeds 0.059 threshold",
+    "mechanism": "Each new dot adds 0.2*(1-m_self) FP penalty but also T = p(k) kernel credit; DTI rises only if T >0.2*DTI~0.056 for isolated truth, lower for linear truth",
+    "non_fault_mimic": "Extensional terrace risers and lithologic contacts that produce coincident RTP/gravity edges but lack geothermal plumbing; adding them inflates FP",
+    "predicted_sign_and_size": "-0.004",
+    "falsifier": "If live DTI rises >0.01, our ranking under-represents blind geothermal corridors that lie at intermediate distances from known faults"
+  },
+  "validation": {
+    "format": "EPSG:32611 3730x3292 float32 1band [0,1] NaN outside / zeros fallback, 0 on_catalogue, re-read OK",
+    "zero_catalogue_mass": true,
+    "sha_not_in_ledger_before": true,
+    "parent_diff_recorded": true,
+    "report_only_proxy": "Not gated; catalogue hide-and-recover PROXY not run (n withheld positives withheld; leakage canary max AUC 0.8321 from registry/leakage_canaries.json; SGMC control not run)"
+  },
+  "evidence_label": "MODEL projection, not RECEIPT or PROXY score",
+  "block_density_CV": "Not computed for MASS; for CONCENTRATION would report CV before/after (best files 0.51-0.59)"
+}

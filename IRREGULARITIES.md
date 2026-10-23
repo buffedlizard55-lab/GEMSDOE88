@@ -1,0 +1,6 @@
+# IRREGULARITIES (only items that change a decision)
+
+- **IR-20261023-01 Missing ledger/raw_paste.txt:** No prior ledger/submissions.csv existed; built from scratch per brief rule (collapse repeats). No receipt exists for H33 0.2778 (CLAIM until ledger/ receipt). Decision impact: cannot compute TOP_PUBLIC delta vs parent receipt; treat 0.2778 as MODEL.
+- **IR-20261023-02 Parent distance vs spec:** H33 (2px exclusion) contains 2171 dots within 2-3px Euclidean distance; hard constraint requires ≥3px for non-PRUNE axes, so MASS variants remove 2171 dots for compliance (5.77% baseline shift) before MASS operation. Logged as pruned_for_compliance. Decision impact: MASS_m10 apparent 15.2% changed includes 5.77% compliance; interpret accordingly.
+- **IR-20261023-03 Ranking reconstruction:** Parent ranking recipe not stored; rebuilt ranking as d_cat + 1e-3 tie break per MASS spec (“rebuild ranking from recorded recipe if not stored”). This is a PROXY ranking, not parent’s original. Predicted changes are MODEL projections, not scores. Labels: PROXY/MODEL never RECEIPT.
+- **IR-20261023-04 Format dual files:** Provided both NaN-outside (spec) and zeros-outside (fallback) per gate; outside-footprint NaN validated, 0-on-catalogue validated. No NaN inside footprint. Decision impact: human uploads only one per slot.
