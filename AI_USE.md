@@ -20,3 +20,9 @@
 
 - Supply live `TOP_PUBLIC` + date, available rolling-week slots (`__ / 3`), and confirmation of `AXIS = PRUNE` (`Slot 1 = PRUNEp3px`).
 - Upload chosen single file manually from authenticated browser, log verbatim `receipt_score` and `receipt_date` in `ledger/submissions.csv`, and choose the **one blind final file** before `2026-12-03`.
+
+## Session `2026-10-23b` — AXIS = SNAP (branch `arena/c4f505a4-gemsdoe88`)
+
+- **AI wrote:** `scripts/build_snap_variants.py` (edge fields, deterministic window-argmax snap, gate re-read writer, receipt/ledger/card emission), `tests/test_snap_axis.py`, `registry/snap_analysis.json`, the three SNAP mechanism cards, and the SNAP sections of `SLOT_PLAN.md`, `docs/SUBMIT.md`, `IRREGULARITIES.md` and the README CURRENT STATE block.
+- **AI decided (no human input available):** the AXIS (SNAP, last unbuilt in the default order); the three variant definitions (literal 2 px edge argmax, 200 m-scale gain-gated edge, organizer derivative bands); the `d_cat > 3 px` destination rule; dropping the planned 1 px dose arm because every arm already saturated its window (mean displacement `1.82 px` of `2 px`); and correcting the predicted sign from `+0.004` to `-0.002` after the blind SGMC measurement, with both values kept in the cards.
+- **Human must decide:** whether any SNAP file is uploaded at all (all are `HOLD`, negative PROXY), the `TOP_PUBLIC` value and date, slots used this week, and the blind final file.

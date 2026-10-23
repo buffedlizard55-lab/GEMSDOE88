@@ -1,0 +1,85 @@
+{
+  "id": "h33-h33-2-b2-SNAPw2E2-20261023-861cd355",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis": "SNAP",
+  "value": "w2E2",
+  "seed": 20261023,
+  "git_sha": "f0ab6eb768f51983fc913c051ad3c9f46caab1dc",
+  "file_nan": "releases/h33-h33-2-b2-SNAPw2E2-20261023-861cd355.tif",
+  "sha256": "861cd35571845bd5392baa91ee621ceb912c3381d6a50e312a5fec37a6f08f5e",
+  "bytes_nan": 354584,
+  "zip_nan": "releases/h33-h33-2-b2-SNAPw2E2-20261023-861cd355.zip",
+  "zip_nan_sha256": "810701ca1c3af65684dab9a06f11271f487d11784f71cfc6676cbda2028e5209",
+  "file_zeros": "releases/h33-h33-2-b2-SNAPw2E2-20261023-861cd355-zeros.tif",
+  "sha256_zeros": "3f999d79ce5b4466ef9b5bb76ecb877ffa35e85c6808baf871a39d440084e5d5",
+  "bytes_zeros": 218699,
+  "zip_zeros": "releases/h33-h33-2-b2-SNAPw2E2-20261023-861cd355-zeros.zip",
+  "zip_zeros_sha256": "c07d4b594a049cb37e619c96d0b70b3e53e5e74e8b9d48d43af42b54bd27780c",
+  "form_note": "h33-2-b2; SNAP<=2px on organizer tmi/igrav derivative bands; pred -0.002 MODEL",
+  "form_note_chars": 78,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 35725,
+    "n_removed": 35725,
+    "pct_changed_moved": 94.88,
+    "pct_changed_sym_diff": 189.75,
+    "min_dist_catalogue_px": 2.2361,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 579,
+    "dots_le_4px": 3312
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "report_only_diagnostics": {
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.088113,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5132.02,
+      "fp": 35273.7
+    },
+    "sgmc_delta_vs_r0": -0.007947,
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6296,
+      "cv_12km_120px_interior": 0.5575
+    },
+    "edge_percentile_before": {
+      "mean_percentile": 0.5682,
+      "median_percentile": 0.6085
+    },
+    "edge_percentile_after": {
+      "mean_percentile": 0.6584,
+      "median_percentile": 0.7188
+    },
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.001347,
+      "ci95": [
+        0.001057,
+        0.001665
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.002659,
+      "paired_delta_vs_r0_ci95": [
+        -0.0031,
+        -0.00221
+      ]
+    }
+  }
+}
