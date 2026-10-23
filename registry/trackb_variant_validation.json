@@ -1,0 +1,912 @@
+{
+  "validator": "validate_variant.py",
+  "gates_all_pass": true,
+  "results": [
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c.tif",
+      "sha256": "3360100cde278dd83de9da97664c1b2c0218155ee86a62dcfcd2062ebcc7e20a",
+      "n_dots": 33889,
+      "colour": "nan",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": "NaN"
+      },
+      "parent_diff": {
+        "common": 31777,
+        "added": 2112,
+        "removed": 5877
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "nan_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "axis_declared": {
+          "ok": true,
+          "detail": "TRACKB"
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "non_prune_clearance_ge_3px": {
+          "ok": true,
+          "detail": {
+            "axis": "TRACKB",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "3360100cde278dd83de9da97664c1b2c0218155ee86a62dcfcd2062ebcc7e20a",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 31777,
+            "added": 2112,
+            "removed": 5877,
+            "pct_of_parent_changed": 10.61
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c-zeros.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c-zeros.tif",
+      "sha256": "aa655ef6082b4ffe18a823a03c81b00cc948789f195196631150d16f0ea7e3eb",
+      "n_dots": 33889,
+      "colour": "zeros",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "parent_diff": {
+        "common": 31777,
+        "added": 2112,
+        "removed": 5877
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "zeros_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "axis_declared": {
+          "ok": true,
+          "detail": "TRACKB"
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "non_prune_clearance_ge_3px": {
+          "ok": true,
+          "detail": {
+            "axis": "TRACKB",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "aa655ef6082b4ffe18a823a03c81b00cc948789f195196631150d16f0ea7e3eb",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 31777,
+            "added": 2112,
+            "removed": 5877,
+            "pct_of_parent_changed": 10.61
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c-zeros.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c-zeros.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87.tif",
+      "sha256": "05256d87c0b46211b7c13f348e1dc02f1ede3f73b0169c788c7ccb00e504e859",
+      "n_dots": 37654,
+      "colour": "nan",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": "NaN"
+      },
+      "parent_diff": {
+        "common": 31777,
+        "added": 5877,
+        "removed": 5877
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "nan_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "axis_declared": {
+          "ok": true,
+          "detail": "TRACKB"
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "non_prune_clearance_ge_3px": {
+          "ok": true,
+          "detail": {
+            "axis": "TRACKB",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "05256d87c0b46211b7c13f348e1dc02f1ede3f73b0169c788c7ccb00e504e859",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 31777,
+            "added": 5877,
+            "removed": 5877,
+            "pct_of_parent_changed": 15.61
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87-zeros.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87-zeros.tif",
+      "sha256": "16003173ddbe068541734cc638ec931ff824d9386d62f3026028fc79fb2dcf49",
+      "n_dots": 37654,
+      "colour": "zeros",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "parent_diff": {
+        "common": 31777,
+        "added": 5877,
+        "removed": 5877
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "zeros_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "axis_declared": {
+          "ok": true,
+          "detail": "TRACKB"
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "non_prune_clearance_ge_3px": {
+          "ok": true,
+          "detail": {
+            "axis": "TRACKB",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "16003173ddbe068541734cc638ec931ff824d9386d62f3026028fc79fb2dcf49",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 31777,
+            "added": 5877,
+            "removed": 5877,
+            "pct_of_parent_changed": 15.61
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87-zeros.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87-zeros.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1.tif",
+      "sha256": "a3a183d163d1dec0b230b559bef46113c35dbb2f7f1e9ec46bc1e57e10c9947d",
+      "n_dots": 37654,
+      "colour": "nan",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": "NaN"
+      },
+      "parent_diff": {
+        "common": 31777,
+        "added": 5877,
+        "removed": 5877
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "nan_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "axis_declared": {
+          "ok": true,
+          "detail": "TRACKB"
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "non_prune_clearance_ge_3px": {
+          "ok": true,
+          "detail": {
+            "axis": "TRACKB",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "a3a183d163d1dec0b230b559bef46113c35dbb2f7f1e9ec46bc1e57e10c9947d",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 31777,
+            "added": 5877,
+            "removed": 5877,
+            "pct_of_parent_changed": 15.61
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1-zeros.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1-zeros.tif",
+      "sha256": "be47ad67baf2f6bb15b91b26ebd9a00ef44e2459867fe2591e74c7ba0436cf66",
+      "n_dots": 37654,
+      "colour": "zeros",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "parent_diff": {
+        "common": 31777,
+        "added": 5877,
+        "removed": 5877
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "zeros_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "axis_declared": {
+          "ok": true,
+          "detail": "TRACKB"
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "non_prune_clearance_ge_3px": {
+          "ok": true,
+          "detail": {
+            "axis": "TRACKB",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": false
+          }
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "be47ad67baf2f6bb15b91b26ebd9a00ef44e2459867fe2591e74c7ba0436cf66",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 31777,
+            "added": 5877,
+            "removed": 5877,
+            "pct_of_parent_changed": 15.61
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1-zeros.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1-zeros.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    }
+  ]
+}
