@@ -325,5 +325,107 @@
     "non_fault_mimic": "Same as d2f35 (fan channels, pediment edges, shoreline breaks); at 1 px, gridding noise inside a single cell is the main non-geological attractor.",
     "predicted_sign_size": "MODEL +0.003 live (range -0.009 to +0.015), the best of the three on the theory that displacement cost dominates field quality at this signal-to-noise.",
     "falsifier": "d1f35 < d2f35 by >= 0.01 falsifies the 'already within 1 px' premise and says R2 (400 m flight spacing) really did leave a 1-2 px bias worth removing."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFrng2bas12-20261023-56093882": {
+    "hypothesis": "For a structural geologist: the incumbent spends its mass like a bedrock map. It holds 37.8% of dots in detrended-elevation highs (range interiors and crests, where bedrock is exposed and the USGS/INGENIOUS catalogue is most complete) but only 20.4% in detrended lows (basins and lower piedmonts), where the catalogue itself puts 30.4% of fault pixels on the same one-third of the area. Catalogue fault density per 1,000 footprint pixels is nearly equal in basin and range (10.8 vs 10.3), yet R1 dot density is 4.5 vs 8.3, so the marginal kernel return on the next basin dot is roughly twice that on the next range dot. New faults - including newly mapped geometry of known systems - should therefore be relatively enriched in the alluviated basin/piedmont population, where scarps are buried or degraded and pre-GeoDAWN mapping was poorest.",
+    "mechanism": "Count fixed at 37,654 so DTI changes only through kernel credit T and self-credit M (DTI = T/(0.2T+0.2(S-M)+0.8|G|), S constant). Donors are the 4,518 source-tercile dots whose removal loses least exact marginal DTI under the parent field w; receivers are the 4,518 target-tercile H19-5 pixels gaining most, all at d_cat>3 px. Terciles are footprint quantiles of Band 12 det_elev (q1=-142.8 m, q2=38.6 m). Shares basin/piedmont/range move 20.4/41.7/37.8% -> 32.4/41.7/25.8%. Range-front normal faults throw basin fill against bedrock; their surface and shallow traces run along piedmonts and basin margins (detrended lows/mids), and intra-basin growth faults never reach exposed bedrock. Moving the weakest range dots basinward raises expected T per dot because basin receiver pixels sit on the parent's own highest-gain H19-5 strands in terrain the parent under-samples relative to fault density, while range donors are chosen where neighbouring dots already cover the same w-weighted strand.",
+    "non_fault_mimic": "Alluvial-fan channel networks, fan-head trenches, playa and Pleistocene Lake Lahontan shoreline benches, and buried lithologic contacts in the basin fill can all generate linear H19-5 ridge/valley-skeleton detections in detrended lows with no brittle fault throw.",
+    "predicted_sign_size": "MODEL predicted live delta +0.008 vs parent R1 (range [-0.008,+0.024], preregistered in registry/relief_preregistration.json before any PROXY was computed; |delta|<0.01 live is no evidence). Parent-field w-weighted DTI delta and the bedrock-biased SGMC PROXY delta are recorded separately in the release receipt and are expected to understate/oppose this prediction.",
+    "falsifier": "A live RECEIPT <= R1-0.01 falsifies basinward reallocation at 12% dose: either basin H19-5 receivers are dominantly fan/shoreline mimics or the new-fault population is bedrock-range faulting (then rng2pmt12 and ultimately bas2rng12 bracket the truth). A RECEIPT >= R1+0.01 confirms the direction and licenses a dose/proportional-allocation follow-up.",
+    "references": [
+      {
+        "claim": "Competition DTI metric/format (supplied by human brief; not fetched by agent)",
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+      },
+      {
+        "claim": "Organizer: known faults masked pixel-exactly; new-fault truth may lie within 300 m of known traces (supplied by human brief; not fetched)",
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+      },
+      {
+        "claim": "Organizer: new fault includes newly mapped geometry of existing systems (supplied by human brief; not fetched)",
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536"
+      },
+      {
+        "claim": "USGS GeoDAWN Area 2 acquisition (400 m lines, 150-200 m drape) context (supplied by human brief; not fetched)",
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7"
+      },
+      {
+        "claim": "Faulds & Hinz 2015: structural settings (step-overs, intersections, terminations) of Great Basin geothermal systems on range-front fault systems; URL as already recorded in SLOT_PLAN.md",
+        "url": "https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11072.pdf"
+      },
+      {
+        "claim": "USGS SGMC source for the report-only off-catalogue control (manifest source_url)",
+        "url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d"
+      }
+    ],
+    "post_build_report_only": "A-priori preregistered prediction above is unchanged. Measured after build (REPORT ONLY, never gates): parent-field w-weighted DTI delta -0.006988 MODEL; blind SGMC 0.085018 PROXY (-0.011065 vs R1). Saturation diagnostic: 99.9% of receivers land <=2.8 px from a survivor (median 1.41 px) while 61.8% of donor sites end >3 px from the nearest survivor; H19-5 support within-3px coverage by tercile moves parent {'T1_basin': 0.8255, 'T2_piedmont': 0.872, 'T3_range': 0.8781} -> variant {'T1_basin': 0.8292, 'T2_piedmont': 0.872, 'T3_range': 0.8026}. A live loss therefore cannot cleanly falsify the relief direction (it may reflect receiver saturation), whereas a live gain >=+0.01 despite saturation would be strong support."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFrng2pmt12-20261023-52717cf5": {
+    "hypothesis": "For a structural geologist: if the geothermal-relevant new faults are concentrated where the catalogue fault density per unit area is highest - the piedmont/range-front tercile (14.4 fault pixels per 1,000 footprint pixels, vs 10.8 basin and 10.3 range), i.e. along the range-front fault systems whose step-overs, intersections and terminations host Great Basin geothermal systems (Faulds & Hinz 2015) - then feeding range-interior dots into the piedmont tercile should win even though R1 already holds the piedmont near its catalogue share (41.8% of dots vs 40.6% of catalogue pixels).",
+    "mechanism": "Count fixed at 37,654 so DTI changes only through kernel credit T and self-credit M (DTI = T/(0.2T+0.2(S-M)+0.8|G|), S constant). Donors are the 4,518 source-tercile dots whose removal loses least exact marginal DTI under the parent field w; receivers are the 4,518 target-tercile H19-5 pixels gaining most, all at d_cat>3 px. Terciles are footprint quantiles of Band 12 det_elev (q1=-142.8 m, q2=38.6 m). Shares basin/piedmont/range move 20.4/41.7/37.8% -> 20.4/53.7/25.8%. Piedmont receivers are the parent's highest-gain un-emitted H19-5 strands in the detrended mid-band: range-front scarps, relay ramps between en echelon segments, and faulted fan surfaces at the bedrock/alluvium transition. At fixed S the gain must come from higher T and M per moved dot; the question this arm answers is whether absolute fault density (piedmont) beats marginal under-sampling (basin).",
+    "non_fault_mimic": "Alluvial-fan terrace risers, the erosional bases of triangular facets, and pluvial shoreline benches concentrated at the piedmont break can imitate range-front scarps in detrended mid elevations without active faulting.",
+    "predicted_sign_size": "MODEL predicted live delta +0.002 vs parent R1 (range [-0.010,+0.014], preregistered; |delta|<0.01 live is no evidence). Deliberately weaker than rng2bas12 because the parent already allocates the piedmont at its catalogue share.",
+    "falsifier": "If rng2bas12 loses live (>=0.01 below R1) but rng2pmt12 wins (>=0.01 above R1), basin receivers are the problem, not range donors, and the axis optimum is the range front. If both lose, range-interior dots were load-bearing and RELIEF should close toward the ranges.",
+    "references": [
+      {
+        "claim": "Competition DTI metric/format (supplied by human brief; not fetched by agent)",
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+      },
+      {
+        "claim": "Organizer: known faults masked pixel-exactly; new-fault truth may lie within 300 m of known traces (supplied by human brief; not fetched)",
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+      },
+      {
+        "claim": "Organizer: new fault includes newly mapped geometry of existing systems (supplied by human brief; not fetched)",
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536"
+      },
+      {
+        "claim": "USGS GeoDAWN Area 2 acquisition (400 m lines, 150-200 m drape) context (supplied by human brief; not fetched)",
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7"
+      },
+      {
+        "claim": "Faulds & Hinz 2015: structural settings (step-overs, intersections, terminations) of Great Basin geothermal systems on range-front fault systems; URL as already recorded in SLOT_PLAN.md",
+        "url": "https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11072.pdf"
+      },
+      {
+        "claim": "USGS SGMC source for the report-only off-catalogue control (manifest source_url)",
+        "url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d"
+      }
+    ],
+    "post_build_report_only": "A-priori preregistered prediction above is unchanged. Measured after build (REPORT ONLY, never gates): parent-field w-weighted DTI delta -0.005036 MODEL; blind SGMC 0.085812 PROXY (-0.010271 vs R1). Saturation diagnostic: 99.6% of receivers land <=2.8 px from a survivor (median 1.41 px) while 61.8% of donor sites end >3 px from the nearest survivor; H19-5 support within-3px coverage by tercile moves parent {'T1_basin': 0.8255, 'T2_piedmont': 0.872, 'T3_range': 0.8781} -> variant {'T1_basin': 0.8256, 'T2_piedmont': 0.8753, 'T3_range': 0.8042}. A live loss therefore cannot cleanly falsify the relief direction (it may reflect receiver saturation), whereas a live gain >=+0.01 despite saturation would be strong support."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFbas2rng12-20261023-f4c6dc18": {
+    "hypothesis": "Reverse bracket, built to be proven wrong under the primary hypothesis: if the hidden new-fault population resembles a state bedrock geologic-map compilation (the USGS SGMC off-catalogue control is 63.6% range-tercile pixels at 23.2 per 1,000 footprint pixels, vs 4.1 in the basin tercile), then mass should move INTO the ranges, where unmapped intra-range and bedrock faults would dominate and basin dots are mostly spent on fan drainage lineaments.",
+    "mechanism": "Count fixed at 37,654 so DTI changes only through kernel credit T and self-credit M (DTI = T/(0.2T+0.2(S-M)+0.8|G|), S constant). Donors are the 4,518 source-tercile dots whose removal loses least exact marginal DTI under the parent field w; receivers are the 4,518 target-tercile H19-5 pixels gaining most, all at d_cat>3 px. Terciles are footprint quantiles of Band 12 det_elev (q1=-142.8 m, q2=38.6 m). Shares basin/piedmont/range move 20.4/41.7/37.8% -> 8.4/41.7/49.8%. This arm starves the basin tercile to single-digit dot share and loads the range tercile to about half of all dots, using the same exact-marginal donor/receiver ranking as the other arms so that only the relief direction differs. Under catalogue-like truth its basin donors forfeit the highest marginal-return terrain; under SGMC-like truth its range receivers harvest dense bedrock fault pixels.",
+    "non_fault_mimic": "Bedrock lithologic contacts, dike swarms, joint/foliation lineaments, ridge crests and range-interior drainages generate strong linear detections in detrended highs; a bedrock map also records many range faults precisely because they are exposed, which is a mapping-completeness bias rather than a hidden-fault density.",
+    "predicted_sign_size": "MODEL predicted live delta -0.010 vs parent R1 (range [-0.026,+0.006], preregistered; |delta|<0.01 live is no evidence). The bedrock-biased SGMC PROXY is expected to prefer this arm; that preference is reported, never gated on.",
+    "falsifier": "A live RECEIPT >= R1+0.01 for this arm (after a directional rng2bas12 loss) falsifies the burial-incompleteness model and establishes that the scored new-fault population is dominated by exposed bedrock faulting; RELIEF would then be re-aimed range-ward. It is HOLD unless that rng2bas12 result occurs.",
+    "references": [
+      {
+        "claim": "Competition DTI metric/format (supplied by human brief; not fetched by agent)",
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+      },
+      {
+        "claim": "Organizer: known faults masked pixel-exactly; new-fault truth may lie within 300 m of known traces (supplied by human brief; not fetched)",
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"
+      },
+      {
+        "claim": "Organizer: new fault includes newly mapped geometry of existing systems (supplied by human brief; not fetched)",
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536"
+      },
+      {
+        "claim": "USGS GeoDAWN Area 2 acquisition (400 m lines, 150-200 m drape) context (supplied by human brief; not fetched)",
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7"
+      },
+      {
+        "claim": "Faulds & Hinz 2015: structural settings (step-overs, intersections, terminations) of Great Basin geothermal systems on range-front fault systems; URL as already recorded in SLOT_PLAN.md",
+        "url": "https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11072.pdf"
+      },
+      {
+        "claim": "USGS SGMC source for the report-only off-catalogue control (manifest source_url)",
+        "url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d"
+      }
+    ],
+    "post_build_report_only": "A-priori preregistered prediction above is unchanged. Measured after build (REPORT ONLY, never gates): parent-field w-weighted DTI delta -0.011189 MODEL; blind SGMC 0.093903 PROXY (-0.002180 vs R1). Saturation diagnostic: 99.9% of receivers land <=2.8 px from a survivor (median 1.41 px) while 59.9% of donor sites end >3 px from the nearest survivor; H19-5 support within-3px coverage by tercile moves parent {'T1_basin': 0.8255, 'T2_piedmont': 0.872, 'T3_range': 0.8781} -> variant {'T1_basin': 0.6614, 'T2_piedmont': 0.8703, 'T3_range': 0.881}. A live loss therefore cannot cleanly falsify the relief direction (it may reflect receiver saturation), whereas a live gain >=+0.01 despite saturation would be strong support."
   }
 }

@@ -1,0 +1,241 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFrng2bas12-20261023-56093882",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+  "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+  "axis": "RELIEF",
+  "value": "rng2bas12",
+  "seed": 20261023,
+  "git_sha": "0796ccbd44280736ee09369d706358cfd6832f15",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFrng2bas12-20261023-56093882.tif",
+  "sha256": "560938824a6ddae52e45662fe506b7d0f5dea6191746ab517869d5e1205307bb",
+  "bytes_nan": 350762,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFrng2bas12-20261023-56093882.zip",
+  "zip_nan_sha256": "39de06a325161560c4ed121ccd2e6028dd0d31b2f782641bad638056564eddf3",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFrng2bas12-20261023-56093882-zeros.tif",
+  "sha256_zeros": "a34a51c176fcd53069aa6e7e3d7ea463efca28a833e84b12df9e506c930a6737",
+  "bytes_zeros": 215369,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-RELIEFrng2bas12-20261023-56093882-zeros.zip",
+  "zip_zeros_sha256": "5ae522f9135ee07ce762c9d9fcb8d024b7e439e14bcb1dc7e03bfef1d92b2bdf",
+  "form_note": "R1(6f7ae705); RELIEF range->basin 12% (4518) B12 terciles, 37654, >3px; pred +0.008 MODEL vs R1",
+  "form_note_chars": 95,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 4518,
+    "n_removed": 4518,
+    "pct_changed_moved": 12.0,
+    "pct_changed_sym_diff": 24.0,
+    "min_dist_catalogue_px": 3.1623,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 0,
+    "dots_le_4px": 2927
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "relief_statistics": {
+    "source": "T3_range",
+    "target": "T1_basin",
+    "n_shift": 4518,
+    "candidate_pool_target_not_parent": 12877,
+    "dots_before": {
+      "T1_basin": 7690,
+      "T2_piedmont": 15718,
+      "T3_range": 14246
+    },
+    "dots_after": {
+      "T1_basin": 12208,
+      "T2_piedmont": 15718,
+      "T3_range": 9728
+    },
+    "share_pct_before": {
+      "T1_basin": 20.423,
+      "T2_piedmont": 41.743,
+      "T3_range": 37.834
+    },
+    "share_pct_after": {
+      "T1_basin": 32.422,
+      "T2_piedmont": 41.743,
+      "T3_range": 25.835
+    },
+    "mean_w_donors": 0.172272,
+    "mean_w_receivers": 0.213221,
+    "mean_w_survivors": 0.196538,
+    "w_weighted_dti_before": 0.281537,
+    "w_weighted_dti_after": 0.274549,
+    "w_weighted_dti_delta_MODEL": -0.006988,
+    "nn_parent_R1": {
+      "min_nn_px": 1.0,
+      "median_nn_px": 3.0,
+      "frac_nn_lt_2p8": 0.0965
+    },
+    "nn": {
+      "min_nn_px": 1.0,
+      "median_nn_px": 2.8284,
+      "frac_nn_lt_2p8": 0.314
+    },
+    "post_build_saturation_REPORT_ONLY": {
+      "receiver_dist_to_survivor_px": {
+        "median": 1.414,
+        "frac_le_1p5": 0.7703,
+        "frac_le_2p8": 0.9993,
+        "frac_gt_3": 0.0004
+      },
+      "donor_dist_to_survivor_after_removal_px": {
+        "median": 3.162,
+        "frac_gt_3": 0.6182,
+        "frac_gt_5": 0.29
+      },
+      "h19_support_within_3px_parent": {
+        "T1_basin": 0.8255,
+        "T2_piedmont": 0.872,
+        "T3_range": 0.8781
+      },
+      "h19_support_within_3px_variant": {
+        "T1_basin": 0.8292,
+        "T2_piedmont": 0.872,
+        "T3_range": 0.8026
+      }
+    }
+  },
+  "relief_terciles": {
+    "field": "training_features.tif Band 12 det_elev",
+    "q1_footprint_tercile": -142.8320770263672,
+    "q2_footprint_tercile": 38.58847300211585,
+    "classes": "T1_basin <=q1; T2_piedmont (q1,q2]; T3_range >q2",
+    "preregistration": "registry/relief_preregistration.json"
+  },
+  "parent_rebuild_verified": {
+    "R0_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "R0_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "R1_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+    "R1_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f"
+  },
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    },
+    "relief_stratifier": {
+      "det_elev_b12_raw": 0.50432,
+      "det_elev_tercile_class": 0.50088
+    }
+  },
+  "predicted_change": "MODEL:+0.008 vs parent R1 (live, preregistered)",
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.085018,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 4948.49,
+      "fp": 35264.38
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6797,
+      "cv_12km_120px_interior": 0.6048
+    },
+    "sgmc_delta_vs_R1_PROXY": -0.011065,
+    "holdout_note": "Catalogue hide-and-recover is degenerate (0.0) for every >3 px file: kernel R=3 px can earn no credit on hidden catalogue pixels (IR-88-20). Reported for completeness, cannot rank R1 descendants."
+  },
+  "parent_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.096083,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5603.04,
+      "fp": 35157.75
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6405,
+      "cv_12km_120px_interior": 0.57
+    }
+  },
+  "grandparent_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  }
+}
