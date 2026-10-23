@@ -50,7 +50,7 @@ SEED = 20261023
 COLLAR_PX = 3.0
 # sqrt(5) is the tightest integer-grid guard that allows a fixed-N, 3-pixel
 # collar-clean field on this finite H19-5 support.  R0's original D2.8 field
-# had minimum NN sqrt(8); the feasibility result is recorded in IR-88-49.
+# had minimum NN sqrt(8); the feasibility result is recorded in IR-88-50.
 MIN_SEPARATION_PX = math.sqrt(5.0)
 HEX_LATTICE_PITCH_PX = 4.0
 COMMON_CROWDED_DONOR_N = 3_765  # round(10% of R0's 37,654 dots)

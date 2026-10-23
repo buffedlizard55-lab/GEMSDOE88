@@ -1,0 +1,413 @@
+{
+  "schema": "gems88.trackb_axis_report.v1",
+  "axis": "TRACKB",
+  "seed": 20261023,
+  "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+  "elapsed_sec": 213.39,
+  "parent_r0": {
+    "id": "h33-h33-2-b2",
+    "n_dots": 37654,
+    "sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "sgmc_proxy": 0.09606,
+    "cv_12km": 0.559
+  },
+  "parent_r1": {
+    "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "n_dots": 37654,
+    "sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+    "sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+    "min_d_cat_px": 3.1623,
+    "sgmc_proxy": 0.096083,
+    "cv_12km": 0.57
+  },
+  "leakage_canaries": {
+    "channel_count": 15,
+    "max_symmetric_auc": 0.56925,
+    "all_le_0_90": true,
+    "per_channel": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    }
+  },
+  "trace_inventory": {
+    "geojson_path": "evidence/trackb_traces_geologist.geojson",
+    "geojson_sha256": "4a1d05415928b2f2ebf885fb6af3342fc60d9a1c88460e790ece43c0a2dbc305",
+    "geojson_bytes": 2128827,
+    "dossier_path": "evidence/trackb_geologist_dossier.md",
+    "trace_count": 1259,
+    "total_trace_dots": 6516,
+    "total_length_km": 1753.16,
+    "zone_counts": {
+      "basin floor": 301,
+      "piedmont bajada": 580,
+      "range front / bedrock block": 378
+    },
+    "donor_pool_stats": {
+      "isolation_radius_px": 4.5,
+      "isolated_pool_count": 4363,
+      "n_dropped": 3765,
+      "trace_dots_preserved": 6516,
+      "trace_dots_total": 6516
+    },
+    "spine_pool_px": 10609,
+    "tip_cone_pool_px": 80082,
+    "trace_dot_mean_sgmc_credit": 0.07215,
+    "isolated_donor_mean_sgmc_credit": 0.05996
+  },
+  "variants": [
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c",
+      "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "axis": "TRACKB",
+      "value": "speckle10minus",
+      "seed": 20261023,
+      "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+      "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c.tif",
+      "sha256": "3360100cde278dd83de9da97664c1b2c0218155ee86a62dcfcd2062ebcc7e20a",
+      "bytes_nan": 338630,
+      "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c.zip",
+      "zip_nan_sha256": "9f4380fde3ed920258845b6dd3896dd64a64f1d95bbabdd541be74aa9288a042",
+      "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c-zeros.tif",
+      "sha256_zeros": "aa655ef6082b4ffe18a823a03c81b00cc948789f195196631150d16f0ea7e3eb",
+      "bytes_zeros": 202289,
+      "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBspeckle10minus-20261023-3360100c-zeros.zip",
+      "zip_zeros_sha256": "13c1c225d888e3b3ba483286edbb89b82fe348b100d8afb7cefa5116880bbd0f",
+      "form_note": "R1(6f7ae705); TRACKB -10% (3765) isolated <450m speckles off >=1km traces; pred +0.003 MODEL",
+      "form_note_chars": 92,
+      "n_dots": 33889,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 0,
+        "n_removed": 3765,
+        "pct_changed_moved": 10.0,
+        "pct_changed_sym_diff": 10.0,
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 2587
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "ranking_basis": "exact-marginal-DTI drop of 3765 isolated 1-dot speckles (0 neighbors <=450m, off all 1259 >=1km traces); 0 added",
+      "description": "Phase 2 TRACKB pure speckle cut: drop 3,765 (10.00%) isolated <450 m non-trace speckles (N=33,889, d_cat>3 px); all 1259 >=1 km GeoJSON traces preserved intact.",
+      "preregistered_prediction": "MODEL:+0.003",
+      "preregistered_range": "[-0.008,+0.012]",
+      "r0_diff": {
+        "n_ref": 37654,
+        "n_cand": 33889,
+        "n_common": 31777,
+        "n_added": 2112,
+        "n_removed": 5877,
+        "pct_removed_of_ref": 15.6079,
+        "pct_half_sym_diff_of_ref": 10.6084,
+        "pct_full_sym_diff_of_ref": 21.2169
+      },
+      "nearest_neighbour_stats": {
+        "min_px": 1.0,
+        "mean_px": 3.1196,
+        "median_px": 3.0,
+        "p05_px": 2.2361,
+        "p95_px": 4.1231
+      },
+      "geojson_traces": {
+        "path": "evidence/trackb_traces_geologist.geojson",
+        "sha256": "4a1d05415928b2f2ebf885fb6af3342fc60d9a1c88460e790ece43c0a2dbc305",
+        "trace_count": 1259,
+        "trace_dots_preserved": 6516
+      },
+      "report_only_diagnostics": {
+        "n_dots": 33889,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.086659,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 4981.37,
+          "fp": 31618.51
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6687,
+          "cv_12km_120px_interior": 0.593
+        },
+        "sgmc_delta_vs_r1": -0.009424,
+        "sgmc_delta_vs_r0": -0.009401,
+        "donor_mean_sgmc_credit_per_dot": 0.05996,
+        "added_mean_sgmc_credit_per_dot": 0.0,
+        "trace_dot_mean_sgmc_credit_per_dot": 0.07215,
+        "w_expected_dti_model": 0.267271,
+        "w_expected_dti_delta_vs_r1": -0.014267,
+        "leakage_canary_max_sym_auc": 0.56925
+      }
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87",
+      "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "axis": "TRACKB",
+      "value": "traceext10",
+      "seed": 20261023,
+      "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+      "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87.tif",
+      "sha256": "05256d87c0b46211b7c13f348e1dc02f1ede3f73b0169c788c7ccb00e504e859",
+      "bytes_nan": 351698,
+      "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87.zip",
+      "zip_nan_sha256": "5cb75ff97d0844272e2ee0ece8af9e66be48ee03cf3bc2693c2b964e79fb84e0",
+      "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87-zeros.tif",
+      "sha256_zeros": "16003173ddbe068541734cc638ec931ff824d9386d62f3026028fc79fb2dcf49",
+      "bytes_zeros": 215665,
+      "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtraceext10-20261023-05256d87-zeros.zip",
+      "zip_zeros_sha256": "994f65d3ea68efa8ff6aab6f51373fa81732416c2fbdeaf14ff78fe85e6de2ea",
+      "form_note": "R1(6f7ae705); TRACKB 10% (3765) speckles->spaced >=2.8px >=1km trace tips; pred +0.004 MODEL",
+      "form_note_chars": 92,
+      "n_dots": 37654,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 3765,
+        "n_removed": 3765,
+        "pct_changed_moved": 10.0,
+        "pct_changed_sym_diff": 20.0,
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 2759
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "ranking_basis": "exact-marginal-DTI drop of 3765 isolated speckles + spaced (d_nn>=2.8284px) exact-marginal add in <=950m +-25deg >=1km trace tip/relay cones",
+      "description": "Phase 2 TRACKB spaced trace extension: move 3,765 dots (10.00%, N=37,654, d_cat>3 px, d_nn>=2.83 px) from isolated speckles onto along-strike tip & relay cones of 1259 >=1 km traces.",
+      "preregistered_prediction": "MODEL:+0.004",
+      "preregistered_range": "[-0.008,+0.016]",
+      "r0_diff": {
+        "n_ref": 37654,
+        "n_cand": 37654,
+        "n_common": 31777,
+        "n_added": 5877,
+        "n_removed": 5877,
+        "pct_removed_of_ref": 15.6079,
+        "pct_half_sym_diff_of_ref": 15.6079,
+        "pct_full_sym_diff_of_ref": 31.2158
+      },
+      "nearest_neighbour_stats": {
+        "min_px": 1.0,
+        "mean_px": 3.2094,
+        "median_px": 3.0,
+        "p05_px": 2.2361,
+        "p95_px": 4.4721,
+        "added_min_nn_px": 2.8284,
+        "added_median_nn_px": 4.1231
+      },
+      "geojson_traces": {
+        "path": "evidence/trackb_traces_geologist.geojson",
+        "sha256": "4a1d05415928b2f2ebf885fb6af3342fc60d9a1c88460e790ece43c0a2dbc305",
+        "trace_count": 1259,
+        "trace_dots_preserved": 6516
+      },
+      "report_only_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.094623,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5516.43,
+          "fp": 35167.6
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.681,
+          "cv_12km_120px_interior": 0.6045
+        },
+        "sgmc_delta_vs_r1": -0.00146,
+        "sgmc_delta_vs_r0": -0.001437,
+        "donor_mean_sgmc_credit_per_dot": 0.05996,
+        "added_mean_sgmc_credit_per_dot": 0.05735,
+        "trace_dot_mean_sgmc_credit_per_dot": 0.07215,
+        "w_expected_dti_model": 0.269629,
+        "w_expected_dti_delta_vs_r1": -0.011909,
+        "leakage_canary_max_sym_auc": 0.56925
+      }
+    },
+    {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1",
+      "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "axis": "TRACKB",
+      "value": "tracespine10",
+      "seed": 20261023,
+      "git_sha": "1a694b0713b7fc61eeccf7d46f1db279a02a1e3a",
+      "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1.tif",
+      "sha256": "a3a183d163d1dec0b230b559bef46113c35dbb2f7f1e9ec46bc1e57e10c9947d",
+      "bytes_nan": 349311,
+      "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1.zip",
+      "zip_nan_sha256": "dffc528e3525d89a466bc4737c9b38c328d9fadb84bb76bfeb94fde89ffa406c",
+      "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1-zeros.tif",
+      "sha256_zeros": "be47ad67baf2f6bb15b91b26ebd9a00ef44e2459867fe2591e74c7ba0436cf66",
+      "bytes_zeros": 214046,
+      "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1-zeros.zip",
+      "zip_zeros_sha256": "8771e3604e2a560ebb7bab1f78468ace0b168484f43e56095d7cb0e4242990a5",
+      "form_note": "R1(6f7ae705); TRACKB 10% (3765) speckles->100m spines of >=1km traces; pred -0.003 MODEL",
+      "form_note_chars": 88,
+      "n_dots": 37654,
+      "parent_diff": {
+        "n_parent": 37654,
+        "n_added": 3765,
+        "n_removed": 3765,
+        "pct_changed_moved": 10.0,
+        "pct_changed_sym_diff": 20.0,
+        "min_dist_catalogue_px": 3.1623,
+        "dots_le_1px": 0,
+        "dots_le_2px": 0,
+        "dots_le_3px": 0,
+        "dots_le_4px": 2643
+      },
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      },
+      "ranking_basis": "exact-marginal-DTI drop of 3765 isolated speckles + exact-marginal 100m polyline spine infill along top-ranked >=1km GeoJSON traces",
+      "description": "Phase 2 TRACKB continuous-spine control: move 3,765 dots (10.00%, N=37,654, d_cat>3 px) from isolated speckles onto 100 m polyline spines of top-ranked >=1 km GeoJSON traces.",
+      "preregistered_prediction": "MODEL:-0.003",
+      "preregistered_range": "[-0.012,+0.006]",
+      "r0_diff": {
+        "n_ref": 37654,
+        "n_cand": 37654,
+        "n_common": 31777,
+        "n_added": 5877,
+        "n_removed": 5877,
+        "pct_removed_of_ref": 15.6079,
+        "pct_half_sym_diff_of_ref": 15.6079,
+        "pct_full_sym_diff_of_ref": 31.2158
+      },
+      "nearest_neighbour_stats": {
+        "min_px": 1.0,
+        "mean_px": 2.7362,
+        "median_px": 2.8284,
+        "p05_px": 1.0,
+        "p95_px": 4.1231,
+        "added_min_nn_px": 1.0,
+        "added_median_nn_px": 1.0
+      },
+      "geojson_traces": {
+        "path": "evidence/trackb_traces_geologist.geojson",
+        "sha256": "4a1d05415928b2f2ebf885fb6af3342fc60d9a1c88460e790ece43c0a2dbc305",
+        "trace_count": 1259,
+        "trace_dots_preserved": 6516
+      },
+      "report_only_diagnostics": {
+        "n_dots": 37654,
+        "holdout_proxy": {
+          "evidence_label": "PROXY",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "dti": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "withheld_positives": 22663,
+          "paired_delta_vs_r0": -0.004006,
+          "paired_delta_vs_r0_ci95": [
+            -0.00469,
+            -0.003424
+          ]
+        },
+        "sgmc_control": {
+          "evidence_label": "PROXY",
+          "dti": 0.086997,
+          "n_sgmc_off_catalogue_px": 62703,
+          "tp": 5063.51,
+          "fp": 35141.81
+        },
+        "block_density_cv": {
+          "cv_10km_100px_interior": 0.6833,
+          "cv_12km_120px_interior": 0.6012
+        },
+        "sgmc_delta_vs_r1": -0.009086,
+        "sgmc_delta_vs_r0": -0.009063,
+        "donor_mean_sgmc_credit_per_dot": 0.05996,
+        "added_mean_sgmc_credit_per_dot": 0.0642,
+        "trace_dot_mean_sgmc_credit_per_dot": 0.07215,
+        "w_expected_dti_model": 0.271049,
+        "w_expected_dti_delta_vs_r1": -0.010488,
+        "leakage_canary_max_sym_auc": 0.56925
+      }
+    }
+  ]
+}

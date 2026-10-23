@@ -1,0 +1,73 @@
+{
+  "schema": "gems88.trackb_preregistration.v1",
+  "frozen_utc": "2026-10-23T21:35:00Z",
+  "frozen_before_any_variant_proxy": true,
+  "axis": "TRACKB",
+  "seed": 20261023,
+  "rationale_for_axis_selection": "Human instructed 'Do not prompt me over choosing an Axis for the session, pick your own session.' Across main (32 rows) and open PRs, MASS (3), PRUNE (7), CONCENTRATION (4), SNAP (9), RELIEF (9), and SPACING (open PR #27) have all been built, whereas TRACKB (Phase 2, $250k of the $300k prize pool) has 0 built candidates anywhere in the repository.",
+  "parents": {
+    "r0": {
+      "id": "h33-h33-2-b2",
+      "n_dots": 37654,
+      "sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+      "note": "Byte-exact lineage rebuild required before any variant is emitted; R0 0.2778 is CLAIM."
+    },
+    "immediate_gate_clean_parent": {
+      "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+      "n_dots": 37654,
+      "sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+      "sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+      "min_d_cat_px": 3.162278,
+      "note": "Re-based on gate-clean R1 per IR-88-33/IR-88-36 so every emitted dot strictly satisfies Brief v2 §4.4 (d_cat > 3.0 px) with zero collar confounding; 35,483 (94.23%) of R1's dots are R0's exact off-collar dots. Diffs against BOTH R1 and R0 are recorded and verified inside [1%, 50%]."
+    }
+  },
+  "trace_extraction_protocol": {
+    "source_dots": "R0 off-collar dots (R0 & (d_cat > 3.0), n = 35,483, 100% present in R1), ordered by parent 4-line label-free physical fault field w(x) descending",
+    "max_step_m": 450.0,
+    "catalogue_clearance": "Every 450 m link checked at 6 interpolated grid points for footprint membership and d_cat > 3.0 px (never crosses mapped faults)",
+    "max_deflection_deg": 25.0,
+    "min_arc_length_m": 1000.0,
+    "min_chord_length_m": 1000.0,
+    "max_tortuosity": 1.20,
+    "deliverables": [
+      "evidence/trackb_traces_geologist.geojson (RFC 7946 WGS84 LineString FeatureCollection with UTM EPSG:32611 endpoints and one structural-geologist evidence paragraph per trace)",
+      "evidence/trackb_geologist_dossier.md (Phase 2 structural geology summary & top-ranked fault trace cards)"
+    ]
+  },
+  "variants": [
+    {
+      "value": "speckle10minus",
+      "dose_dots": 3765,
+      "dose_pct_of_r1": 10.0,
+      "target_n_dots": 33889,
+      "donor_rule": "Lowest exact-marginal-DTI isolated 1-dot speckles in R1 (0 R1 neighbors within 450 m and not on any >= 1.0 km trace)",
+      "receiver_rule": "None (pure non-trace speckle prune; all >= 1.0 km traces preserved 100% intact)",
+      "preregistered_predicted_change": "MODEL:+0.003",
+      "preregistered_predicted_range": "[-0.008,+0.012]",
+      "slot_role": "Phase 2 / non-weekly-slot candidate unless human decides; isolates denominator savings (-753.0 units at alpha=0.2) from removing isolated <450 m non-fault point clutter."
+    },
+    {
+      "value": "traceext10",
+      "dose_dots": 3765,
+      "dose_pct_of_r1": 10.0,
+      "target_n_dots": 37654,
+      "donor_rule": "Identical 3,765 isolated 1-dot non-trace speckles as speckle10minus",
+      "receiver_rule": "3,765 mutually >= 2.8 px-spaced (d_nn >= 2.8284 px) pixels at d_cat > 3.0 px inside <= 950 m, +-25 deg along-strike tip and en-echelon relay cones of the >= 1.0 km traces, prioritized by ancestor ridge support (H19-5 | H19-4 | H16-1) + parent physical field w(x)",
+      "preregistered_predicted_change": "MODEL:+0.004",
+      "preregistered_predicted_range": "[-0.008,+0.016]",
+      "slot_role": "Phase 2 primary constant-mass TRACKB candidate (not a weekly slot unless human decides); tests spaced along-strike trace tip/relay continuation free of the IR-88-38 densification tax."
+    },
+    {
+      "value": "tracespine10",
+      "dose_dots": 3765,
+      "dose_pct_of_r1": 10.0,
+      "target_n_dots": 37654,
+      "donor_rule": "Identical 3,765 isolated 1-dot non-trace speckles as speckle10minus",
+      "receiver_rule": "3,765 un-emitted 100 m polyline spine pixels (d_cat > 3.0 px) between consecutive vertices of top-ranked >= 1.0 km traces via exact iterative marginal expected-DTI gain under w(x)",
+      "preregistered_predicted_change": "MODEL:-0.003",
+      "preregistered_predicted_range": "[-0.012,+0.006]",
+      "slot_role": "Phase 2 continuous-line rasterization diagnostic control (HOLD for Phase 1 slots); tests visual/expert continuous 100 m trace delineation against the predicted IR-88-38/IR-88-41 Phase 1 kernel-densification tax."
+    }
+  ]
+}

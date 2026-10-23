@@ -1,20 +1,20 @@
 # GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
 
 <!-- CURRENT STATE START -->
-## CURRENT STATE (2026-10-23 · two independent SPACING families reconciled)
+## CURRENT STATE (2026-10-23 · TRACKB plus two parent-distinct SPACING families reconciled)
 
 | Field | Status / value | Evidence class & provenance |
 |---|---|---|
-| **Exact ancestry** | `R0 = h33-h33-2-b2`, `N=37,654`; zeros `c55bafc4…`, NaN `baeae321…`; `R1 = PRUNEp3px-6f7ae705`, `min d_cat=3.1623 px` | All 15 manifest pins SHA-256/byte verified; R0 is byte-exact. Historical R0 `0.2778` is **CLAIM**, never a receipt. |
-| **Ledger / receipts** | `41` BUILT rows, `0` portal receipts | Exact `(parent, axis, value)` and primary/zeros hash pairs are unique after retaining all six parent-distinct SPACING rows. No slot was used. |
-| **R1 SPACING family (gate-clean parent)** | `poisson28` `60f65400`, `lattice4px` `6c7e0b72`, `strike` `bc8e6d1a`; each moves `1,914` dots (5.08%) | R1-family paths retain the generic `spacing_*` names. `poisson28` SGMC `0.096820` vs R1 `0.096083`; lattice/strike are lower. All are **HOLD** diagnostics, not slots. |
-| **R0 SPACING family (this branch)** | `lattice` `03d14f38`, `poisson` `80ede4fa`, `alongstrike` `5cb97402`; each fixed `N=37,654`, `5,376` relocations, zero catalogue mass, `min d_cat=3.0 px` | Namespaced evidence: `registry/spacing_r0_preregistration.json`, `evidence/spacing_r0_axis_report.json`, `evidence/spacing_r0_axis_validation.json`; local TIFF/ZIP twins remain gitignored. |
-| **R0 limitation** | Every R0 arm shares removal of `1,611` `<3 px` collar dots plus `3,765` crowded donors; only replacement ordering differs | The collar repair confounds raw R0 spacing attribution. Canonical `dot_thin(...,2.8 px)` emitted `36,718`, not a global-packing proof. R0 arms use a disclosed `sqrt(5)` guard and remain **HOLD**. |
-| **SNAP / validator correction** | Pure R0 SNAP stopped: `30` of `1,611` `<3 px` dots have no legal `>=3 px` destination within 2 px | `evidence/session_20261023_snap_clearance.json`. Validator now gates non-PRUNE positive mass at `<3 px`; historic R0 non-PRUNE artifacts inheriting the collar remain HOLD. |
-| **Priority** | Keep the conditional PRUNE sequence: `p3px` → `p3space35` → reserve `p4space35` | Neither SPACING family displaces it. `MODEL` / SGMC / hide-recover evidence is never a score or promotion gate. |
-| **Human-only inputs** | Current TOP_PUBLIC + date; quota; deadline; data-use authorization; exact selected twin; verbatim receipt | Revalidate actual bytes immediately before an upload, use one twin per slot, and record `receipt_score` / `receipt_date`. No portal, credential, leaderboard, Dropbox, or submission action occurred. |
+| **Exact ancestry** | `R0=h33-h33-2-b2`, `N=37,654`; zeros `c55bafc4…`, NaN `baeae321…`; `R1=PRUNEp3px-6f7ae705`, `min d_cat=3.1623 px` | All 15 manifest pins SHA-256/byte verified; R0 is byte-exact. Historical R0 `0.2778` remains **CLAIM**, never a receipt. |
+| **Ledger / receipts** | `44` BUILT rows across 7 axes; `0` portal receipts; `43` mechanism cards | Exact `(parent, axis, value)` and primary/zeros hashes are unique. The historical `prune3` row remains the one cardless record. No slot was used. |
+| **TRACKB family (R1; Phase 2)** | `traceext10` `05256d87`, `speckle10minus` `3360100c`, `tracespine10` `a3a183d1`; each has a 3,765-dot dose | Tracked `1,259` `>=1 km` GeoJSON traces / dossier; all six local TIFF representations passed validation. `traceext10` SGMC `0.09462` is still below R1 `0.096083`; all are Phase-2 **HOLD**, not weekly-slot defaults. |
+| **R1 SPACING family (gate-clean parent)** | `poisson28` `60f65400`, `lattice4px` `6c7e0b72`, `strike` `bc8e6d1a`; each moves `1,914` dots (5.08%) | Generic `spacing_*` paths belong only to R1. `poisson28` SGMC `0.096820` vs R1 `0.096083`; lattice/strike are lower. All are **HOLD** diagnostics. |
+| **R0 SPACING family** | `lattice` `03d14f38`, `poisson` `80ede4fa`, `alongstrike` `5cb97402`; each has `N=37,654`, `5,376` relocations, zero catalogue mass, `min d_cat=3.0 px` | Explicit `spacing_r0_*` paths preserve this independent parent: `registry/spacing_r0_preregistration.json`, `evidence/spacing_r0_axis_report.json`, `evidence/spacing_r0_axis_validation.json`; TIFF/ZIP twins stay local and gitignored. |
+| **R0 limitation** | Each R0 arm shares removal of `1,611` `<3 px` collar dots and `3,765` crowded donors; only replacement ordering varies | The collar repair confounds a raw R0 spacing attribution. Canonical `dot_thin(...,2.8 px)` emitted `36,718`, not a global-packing proof. `sqrt(5)` guard; all R0 arms remain **HOLD**. |
+| **Gate / priority** | Literal validator rejects non-PRUNE positive mass at `<3 px`; pure R0 SNAP remains stopped | Conditional human queue stays `p3px` → `p3space35` → reserve `p4space35`. Neither TRACKB nor either HOLD SPACING family displaces it. `MODEL` / `PROXY` values are never scores. |
+| **Human-only controls** | TOP_PUBLIC + date, quota, deadline, data-use authorization, exact twin, verbatim receipt, blind final selection | Revalidate actual bytes immediately before an upload, select one twin per slot, and record `receipt_score` / `receipt_date`. No portal, credential, Dropbox, leaderboard, or submission action occurred. |
 
-This block supersedes historical upload advice below, including automatic-upload language and stale collar validation.
+This block supersedes historical upload advice below, including automatic-upload language and stale clearance validation.
 <!-- CURRENT STATE END -->
 
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)
