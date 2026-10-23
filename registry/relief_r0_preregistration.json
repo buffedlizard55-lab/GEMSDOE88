@@ -1,0 +1,27 @@
+{
+  "schema": "gems88.relief-preregistration.v1",
+  "written_utc": "2026-10-23T19:40:00Z",
+  "written_before": "any RELIEF variant was built or any REPORT-ONLY proxy (hide-and-recover, SGMC control, block CV) was computed for a RELIEF arm",
+  "axis": "RELIEF",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "why_this_axis": "MASS, PRUNE, CONCENTRATION and SNAP are already in ledger/submissions.csv (17 rows); RELIEF is the first unbuilt axis in the brief's default order (SPACING is lowest priority, TRACKB is Phase 2). The human left AXIS unassigned and asked the agent to pick.",
+  "design": {
+    "relief_field": "training_features.tif Band 12 det_elev (detrended elevation), -3.4e38 sentinels inside the footprint replaced by the footprint median; terciles by footprint AREA so each class holds one third of the 5,167,373 footprint pixels",
+    "classes": {"1": "basin (lowest tercile)", "2": "piedmont (middle tercile)", "3": "range-front/range (highest tercile)"},
+    "dose": "12% of N = 37,654 -> 4,518 dots moved (inside the brief's 10-15% band; one dose, three directions)",
+    "direction_variants": ["basin12: donors = piedmont + range -> receiver = basin", "pied12: donors = basin + range -> receiver = piedmont", "range12: donors = basin + piedmont -> receiver = range"],
+    "donor_rule": "each donor tercile loses the same FRACTION of its movable dots (proportional thinning), so a 'toward X' variant does not silently become a single-tercile swap",
+    "frozen": "R0's 2,171 collar dots (2 < d_cat <= 3 px) are never donors; all added dots sit at d_cat > 3 px on un-emitted H19-5 ridge pixels; count fixed at 37,654",
+    "within_tercile_ranking": "exact iterative marginal expected-DTI gain under the same label-free physics field used for PRUNEp3px (scripts/build_prune_variants.py, 15 canary-checked channels), identical machinery for drops and adds in all three arms so that differences BETWEEN arms isolate relief"
+  },
+  "pre_registered_model_predictions": {
+    "evidence_label": "MODEL",
+    "basin12": {"delta_live_vs_r0": -0.008, "range": [-0.018, 0.002], "reason": "basin interiors are blanketed by Quaternary fill; faults there are blind and rarely enter expert-mapped label sets, so dots moved onto basin H19-5 ridges mostly pay S without T"},
+    "pied12": {"delta_live_vs_r0": 0.003, "range": [-0.006, 0.012], "reason": "piedmont already holds R0's highest dot density (9.1 per 1,000 px); new Quaternary scarp mapping (lidar) concentrates here, but marginal H19-5 ridge pixels in this tercile are the most depleted"},
+    "range12": {"delta_live_vs_r0": 0.006, "range": [-0.005, 0.016], "reason": "bedrock exposure in ranges lets geologists map faults directly; compilations beyond the USGS/INGENIOUS Quaternary catalogue (e.g. state geologic maps) are dominated by bedrock range faults, and R0 under-weights the range tercile (37.7% of dots vs 63.6% of off-catalogue SGMC fault pixels, which was visible in the exploration run before this file was written)"}
+  },
+  "disclosure": "The off-catalogue SGMC tercile shares (basin 11.3%, piedmont 25.1%, range 63.6%) were printed by the exploration script BEFORE these predictions were written, so the range12 prior is not blind to the SGMC control. The per-arm SGMC DTI values were not computed before this file was written.",
+  "falsification_rule": "treat any live change under 0.01 in absolute value as no evidence (public chunks only); a direction is confirmed only if its receipt exceeds R0 by >= 0.01 AND the opposite direction does not"
+}

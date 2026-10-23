@@ -73,7 +73,7 @@ N_SHIFT = int(round(0.12 * N_DOTS))  # 4,518 == 11.9987% of the parent
 MIN_CATALOGUE_PX = 3.0
 
 TERCILE_NAMES = ("T1_basin", "T2_piedmont", "T3_range")
-# This module owns ONE of the two concurrently built RELIEF families (IR-88-38).
+# This module owns ONE of the two concurrently built RELIEF families (IR-88-39).
 # A rerun replaces ONLY these values; the up/dn family lives in
 # scripts/build_relief_variants.py and must survive untouched.
 OUR_VALUES = {"rng2bas12", "rng2pmt12", "bas2rng12"}

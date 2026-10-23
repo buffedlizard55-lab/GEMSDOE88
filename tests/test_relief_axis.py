@@ -35,7 +35,7 @@ RELEASES = ROOT / "releases"
 LEDGER = ROOT / "ledger" / "submissions.csv"
 CARDS = ROOT / "ledger" / "mechanism_cards.json"
 
-OUR_VALUES = ("up2t10", "up2t15", "dn2t15")  # this family only; see test_relief_bracket_axis.py (IR-88-38)
+OUR_VALUES = ("up2t10", "up2t15", "dn2t15")  # this family only; see test_relief_bracket_axis.py (IR-88-39)
 RELIEF_JSON = [
     p for v in OUR_VALUES
     for p in sorted(RELEASES.glob(f"{brv.R1_ID}-RELIEF{v}-*.json"))
@@ -163,8 +163,12 @@ def test_relief_move_refuses_target_inside_the_collar():
 
 def _ledger_rows() -> list[dict[str, str]]:
     with LEDGER.open("r", newline="") as fh:
+        # The R0-parented RELIEF family (tests/test_relief_r0_axis.py, IR-88-38) shares the
+        # axis name, and the R1 bracket family (tests/test_relief_bracket_axis.py, IR-88-39)
+        # shares the parent; this module only owns the up/dn values on R1.
         return [r for r in csv.DictReader(fh)
-                if r.get("axis") == "RELIEF" and r.get("value") in OUR_VALUES]
+                if r.get("axis") == "RELIEF" and r.get("parent") == brv.R1_ID
+                and r.get("value") in OUR_VALUES]
 
 
 def test_ledger_has_one_row_per_relief_variant():
