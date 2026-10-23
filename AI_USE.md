@@ -16,7 +16,12 @@
 
 **Branch `arena/55bfd384-gemsdoe88` (PR #19):** an AI coding agent independently built a second CONCENTRATION experiment with an independent physics-gradient prior (bands 13/2/12 Sobel gmag, 2.85 px spacing; MODEL 0.000) but **DROPPED it as redundant** — the CONCENTRATION axis is already built by PR #18 (parent-density, weld-to-host, MODEL +0.011/+0.020/+0.006) and the concurrent test suite expects exactly three variants. The race condition is documented in `IRREGULARITIES.md` item 13; candidate rasters and the generator were removed to keep the ledger and tests consistent.
 
+3. **Deterministic Constant-Count `AXIS = SNAP` Builder (`scripts/build_snap_variants.py`, `tests/test_snap_axis.py`, `evidence/snap_axis_report.json`, Branch `arena/8ec8bb04-gemsdoe88`):**
+   - Verified all `15` SHA-256 manifest pins (`registry/data_manifest.json`), fixed the multipart `FEATURE_PARTS` filename pattern in `scripts/restore_inputs.py`, and rebuilt parent `R0 = h33-h33-2-b2` (`37,654` dots) byte-for-byte on both `zeros` (`c55bafc4...`) and `nan` (`baeae321...`) profiles.
+   - Constructed strictly provided-band edge/scarp response surfaces (`data/training_features.tif` Bands 3 `tmi_hg`, 12 `det_elev` Hessian breakline, 18 `iso_grav_anom_hg`, 19 `det_elev_slope`; zero external LiDAR used per Brief §5) and verified all `8/8` channels pass the leakage canary (`max sym_auc = 0.54949 <= 0.90`).
+   - Built 3 controlled `<= 2.0 px` (`200 m`) `SNAP` variants at exact count `N = 37,654` with `d_nn >= 2.8284 px > 2.8 px` spacing lock and exact `R0` exclusions (`0` on catalogue, `0` `<= 2 px`, `2,171` `2–3 px` collar dots untouched, `100%` of moved dots at `d_cat > 3.0 px`): `SNAPridge2px` (`83d2d231`, `18.81%` changed, mean disp `0.2299 px` all / `1.2222 px` moved, `SGMC = 0.096439`, `MODEL +0.003`), `SNAPpot2px` (`fc2548e7`, `82.46%` changed, mean disp `1.3489 px` all / `1.6358 px` moved, `SGMC = 0.095178`, `MODEL -0.004`), and `SNAPscarp2px` (`fae77ff4`, `82.03%` changed, mean disp `1.3089 px` all / `1.5956 px` moved, `SGMC = 0.096806`, `MODEL +0.006`).
+
 ## Human Competitor Decisions Required
 
-- Supply live `TOP_PUBLIC` + date, available rolling-week slots (`__ / 3`), and confirmation of `AXIS = PRUNE` (`Slot 1 = PRUNEp3px`).
+- Supply live `TOP_PUBLIC` + date, available rolling-week slots (`__ / 3`), and confirmation of `AXIS = SNAP` (`Slot 2 = SNAPscarp2px`) alongside `Slot 1 = PRUNEp3px`.
 - Upload chosen single file manually from authenticated browser, log verbatim `receipt_score` and `receipt_date` in `ledger/submissions.csv`, and choose the **one blind final file** before `2026-12-03`.

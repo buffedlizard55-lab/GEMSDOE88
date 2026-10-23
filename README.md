@@ -1,5 +1,18 @@
 # GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
 
+<!-- CURRENT STATE START -->
+## CURRENT STATE (`2026-10-23` · Agent Brief v2 Single-Axis Protocol)
+
+| Field | Status / Value | Evidence Class & Provenance |
+|---|---|---|
+| **Parent (`R0`)** | `h33-h33-2-b2` (`GEMSDOE32`, `37,654` unit dots, `0` within `<= 2 px` of catalogue, `2,171` in `2 < d_cat <= 3 px`) | Rebuilt byte-for-byte from `H19-5` across all 5 lineage steps (`zeros` SHA-256 `c55bafc4...`, `nan` SHA-256 `baeae321...`); live `0.2778` is **`CLAIM`** (`0` receipts in `ledger/`). |
+| **Best `RECEIPT`** | `None` (`0` portal receipts logged in `ledger/submissions.csv`) | **`CLAIM` only (`0.2778`)** until human pastes verbatim portal `receipt_score` + `receipt_date`. |
+| **`TOP_PUBLIC`** | `____ (as of YYYY-MM-DD; human fills from live leaderboard)` | `UNVERIFIED` locally (automated `drivendata.org` access disabled per Terms of Use). |
+| **Quota & Slots Left** | `1` entity (`buffedlizard55-lab`) · Rolling week: **`__ / 3`** · Total to `2026-12-03`: **`__ / 18`** + **`1` blind final file** | Official Rules (`https://docs.nlr.gov/docs/fy26osti/96647.pdf`). |
+| **Session Axis Built** | **`AXIS = SNAP`** (`<= 2.0 px` / `200 m` window, `N = 37,654`, `d_nn >= 2.828 px`, provided `training_features.tif` Bands `3, 12, 18, 19` only; zero external LiDAR) | `SNAPscarp2px` (`fae77ff4`, `82.03%` chg, mean disp `1.3089 px` [`1.5956 px` moved], `SGMC = 0.09681` `PROXY`, `MODEL +0.006`), `SNAPridge2px` (`83d2d231`, `18.81%` chg, mean disp `0.2299 px` [`1.2222 px` moved], `SGMC = 0.09644` `PROXY`, `MODEL +0.003`), `SNAPpot2px` (`fc2548e7`, `82.46%` chg, mean disp `1.3489 px` [`1.6358 px` moved], `SGMC = 0.09518` `PROXY`, `MODEL -0.004`). |
+| **Next 3 Slots (`SLOT_PLAN.md`)** | **1.** `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`PRUNE <=3 px`, `5.77%` chg, `MODEL +0.005`, `SGMC 0.09608` `PROXY`)<br>**2.** `h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4` (`SNAP <=2 px` scarp+edge, `82.03%` chg, `MODEL +0.006`, `SGMC 0.09681` `PROXY`)<br>**3.** `h33-h33-2-b2-PRUNEp1px-20261023-0542a27c` (`PRUNE <=1 px`, `MODEL -0.006`) *or* `h33-h33-2-b2-SNAPridge2px-20261023-83d2d231` (`SNAP` `H19-5` ridge, `18.81%` chg, `MODEL +0.003`) | Details in `SLOT_PLAN.md`, `docs/SUBMIT.md`, `ledger/submissions.csv`, `evidence/snap_axis_report.json`. |
+<!-- CURRENT STATE END -->
+
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)
 >
 > | Gate Question | Automated Machine Decision | Binding Reason & Verifiable Receipt |

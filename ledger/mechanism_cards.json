@@ -82,5 +82,44 @@
     "non_fault_mimic": "Broad 400 m upward-continued aeromagnetic/isostatic-gravity regional gradients and pediment erosion surfaces flanking range-front faults without discrete secondary brittle slip.",
     "predicted_sign_size": "MODEL predicted live delta -0.009 vs R0 (range -0.022 to +0.004), bracketing the upper turning point of the collar curve (100 m, 200 m, 300 m, 400 m) at constant N = 37,654.",
     "falsifier": "Live score gain >= +0.01 over both R0 and p3px falsifies narrow damage-zone splay clustering and proves test-set new faults are strongly depleted within 400 m of existing USGS/INGENIOUS traces (e.g., due to compilation buffer rules)."
+  },
+  "h33-h33-2-b2-SNAPridge2px-20261023-83d2d231": {
+    "axis": "SNAP",
+    "value": "ridge2px",
+    "max_window_px": 2.0,
+    "mean_displacement_all_px": 0.2299,
+    "mean_displacement_moved_px": 1.2222,
+    "pct_changed": 18.81,
+    "hypothesis": "Parent R0's Poisson-disk thinning (dot_thin(H19-5, 2.8)) traversed connected components in score-blind row-major BFS order, systematically anchoring dots on the northern/western outer pixel of 2-3 px wide H19-5 ribbons rather than the physical ridge crest. Shifting each d_cat > 3 px dot <= 2.0 px within its H19-5 ribbon onto the local topographic-scarp and TMI/gravity horizontal-gradient maximum increases kernel coverage T without leaving the parent detector support.",
+    "mechanism": "At fixed count S = 37,654 (Delta S = 0), moving a dot by <= 200 m toward a fault axis increases both numerator coverage T and self-credit M, yielding Delta DTI = [(1 - 0.2*DTI)*Delta T + 0.2*DTI*Delta M] / [D + 0.2*(Delta T - Delta M)] > 0 whenever Delta T > 0 and Delta M >= 0. Enforcing d_nn >= sqrt(8) = 2.828 px prevents adjacent dots along strike from bunching onto a single peak and opening >300 m kernel gaps.",
+    "non_fault_mimic": "Erosional facet spurs and asymmetrical footwall crest rounding on range fronts can shift the 100 m detrended-elevation slope peak 100-200 m upslope of the basal fault trace inside a 2-3 px H19-5 ribbon.",
+    "predicted_sign_size": "MODEL +0.003 live delta vs R0 (scenario range [-0.004, +0.011]; blind off-catalogue SGMC rises +0.00038 from 0.09606 to 0.09644; <0.01 live delta treated as within public-chunk noise unless directional with scarp2px).",
+    "falsifier": "Live score drop <= -0.010 vs R0 or underperformance relative to un-snapped R0 when scarp2px also drops <= -0.010 falsifies BFS ribbon-edge jitter as a limiting factor."
+  },
+  "h33-h33-2-b2-SNAPpot2px-20261023-fc2548e7": {
+    "axis": "SNAP",
+    "value": "pot2px",
+    "max_window_px": 2.0,
+    "mean_displacement_all_px": 1.3489,
+    "mean_displacement_moved_px": 1.6358,
+    "pct_changed": 82.46,
+    "hypothesis": "Snapping R0 dots <= 2.0 px (200 m) strictly toward subsurface TMI and isostatic-gravity horizontal-gradient maxima (Bands 3 & 18) degrades surface fault alignment because Great Basin normal faults dip ~60 degrees: across 0.5-1.5 km basin fill, the maximum horizontal density and susceptibility gradient sits 200-600 m down-dip in the hanging wall rather than on the surface trace.",
+    "mechanism": "Under GeoDAWN Area 2 survey geometry (400 m flight-line spacing, 150-200 m drape height; https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7) and 60-degree Andersonian normal-fault dip (Faulds & Hinz 2015), potential-field horizontal gradients peak basinward of the surface fault emergence. Moving dots 1.35 px toward raw TMI/gravity gradient peaks shifts them 100-200 m into the hanging wall, reducing kernel overlap k(d) = max(0, 1 - d/3) on surface fault traces (blind SGMC drops from 0.09606 to 0.09518).",
+    "non_fault_mimic": "Subsurface volcanic dike swarms, pluton margins, and GeoDAWN 400 m flight-line leveling shoulders produce sharp TMI/gravity horizontal gradients displaced 100-200 m from brittle surface fault traces.",
+    "predicted_sign_size": "MODEL -0.004 live delta vs R0 (scenario range [-0.014, +0.006]; blind off-catalogue SGMC delta -0.00088 vs R0).",
+    "falsifier": "Live score gain >= +0.010 over R0 and over scarp2px falsifies hanging-wall dip-offset degradation and proves hidden test faults are predominantly blind intrabasin basement structures mapped directly from aeromagnetic/gravity gradients."
+  },
+  "h33-h33-2-b2-SNAPscarp2px-20261023-fae77ff4": {
+    "axis": "SNAP",
+    "value": "scarp2px",
+    "max_window_px": 2.0,
+    "mean_displacement_all_px": 1.3089,
+    "mean_displacement_moved_px": 1.5956,
+    "pct_changed": 82.03,
+    "hypothesis": "Snapping R0 dots <= 2.0 px (200 m, half a GeoDAWN 400 m flight-line spacing) onto the co-registered topographic fault-scarp breakline (Bands 19 det_elev_slope + 12 det_elev Hessian ridge, 65% weight) corroborated by TMI/gravity horizontal gradients (Bands 18 & 3, 35% weight) while preserving d_nn >= 2.8 px inter-dot spacing pulls aeromagnetic-drifted H19-5 dots back onto the physical 0 m updip range-front fault trace.",
+    "mechanism": "H19-5 blended upward-continued GeoDAWN potential fields (150-200 m terrain clearance, 400 m line spacing) with regional topography, leaving dot centers displaced by ~1-2 px (100-200 m) from the discrete surface scarp breakline. Re-centering each d_cat > 3 px dot by a mean of 1.3089 px (1.5956 px among moved dots) onto the scarp-anchored co-edge increases kernel credit k(d) along off-catalogue range-front traces at fixed S = 37,654 (blind SGMC rises +0.00075 from 0.09606 to 0.09681; +76.67 TP).",
+    "non_fault_mimic": "Wave-cut Pleistocene Lake Lahontan / Bonneville paleoshorelines (1,212-1,555 m), welded-tuff mesa rims, and incised alluvial-fan terrace risers form sharp 100 m topographic breaklines within 200 m of piedmont fault corridors without brittle basement throw.",
+    "predicted_sign_size": "MODEL +0.006 live delta vs R0 (scenario range [-0.005, +0.016]; blind off-catalogue SGMC = 0.096806 PROXY, highest of SNAP sweep; 12 km block-density CV = 0.5607 inside 0.51-0.59).",
+    "falsifier": "Live score drop <= -0.010 vs R0 falsifies topographic scarp re-centering at 100 m grid resolution and shows H19-5's smoothed multi-physics ridge centroid better matches expert fault compilations than local 200 m scarp breaklines."
   }
 }
