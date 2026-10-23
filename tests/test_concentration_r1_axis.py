@@ -260,7 +260,7 @@ def test_ledger_cards_and_report_agree_with_the_receipts():
     for row in rows:
         assert row["status"] == "BUILT"
         assert row["receipt_score"] == "" and row["receipt_date"] == ""
-        assert row["predicted_change"] == ccv.PREDICTIONS[row["value"]][0]
+        assert row["predicted_change"] == f"MODEL:{ccv.PREDICTIONS[row['value']][0]}"
         assert row["predicted_range"] == ccv.PREDICTIONS[row["value"]][1]
         assert row["n_dots"] == str(ccv.N_DOTS)
         rec = json.loads((RELEASES / f"{row['id']}.json").read_text())

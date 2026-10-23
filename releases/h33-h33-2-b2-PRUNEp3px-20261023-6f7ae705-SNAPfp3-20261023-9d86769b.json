@@ -1,0 +1,225 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPfp3-20261023-9d86769b",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+  "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+  "axis": "SNAP",
+  "value": "fp3",
+  "seed": 20261023,
+  "git_sha": "539dc3a31dcf5e26a257e9f447a5955b779c118e",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPfp3-20261023-9d86769b.tif",
+  "sha256": "9d86769bef116d8f44f2cd73b384cdc375c1102b60131b9dec4be6b6cad63baa",
+  "bytes_nan": 355417,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPfp3-20261023-9d86769b.zip",
+  "zip_nan_sha256": "b85340c9f9ee8a4a19ce83bd6207507caf4484b7a92de7f9a5361619878515db",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPfp3-20261023-9d86769b-zeros.tif",
+  "sha256_zeros": "fb5e72f7b189696321baccba4908b6fd34792e3826bb25b645787b33d6ca140f",
+  "bytes_zeros": 219023,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPfp3-20261023-9d86769b-zeros.zip",
+  "zip_zeros_sha256": "7889cefdc7079ce719f48a5e59974865a2ec1c4d063fb5c396657b92f740f5cf",
+  "form_note": "R1; SNAP 1px scarp snap x3, spacing-locked, all dots >3px; pred +0.002 MODEL",
+  "form_note_chars": 76,
+  "n_dots": 37654,
+  "displacement": {
+    "n_dots_displaced": 11901,
+    "mean_displacement_all_px": 0.3161,
+    "min_interdot_nn_dist_px": 1.0,
+    "passes": 3,
+    "field_sign": "crest (strongest response)",
+    "cumulative_vs_parent": {
+      "reference": "nearest pinned-parent R1 dot, per final dot",
+      "n_dots_moved_net": 28569,
+      "pct_dots_moved_net": 75.87,
+      "mean_net_displacement_all_px": 1.3147,
+      "mean_net_displacement_all_m": 131.47,
+      "max_net_displacement_px": 3.0,
+      "mean_net_displacement_moved_px": 1.7328
+    }
+  },
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_common": 9085,
+    "n_added": 28569,
+    "n_removed": 28569,
+    "pct_changed_moved": 75.87,
+    "pct_changed_sym_diff": 151.74,
+    "min_dist_catalogue_px": 3.1623,
+    "min_dist_added_catalogue_px": 3.1623,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 0,
+    "dots_le_4px": 2726
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "none_within_2px_catalogue": true,
+    "all_moved_dots_gt_3px_catalogue": true,
+    "all_dots_gt_3px_catalogue": true,
+    "reread_from_disk_verified": true
+  },
+  "parent_rebuild_verified": {
+    "r0_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "r0_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "r1_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+    "r1_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9"
+  },
+  "spacing_lock_final_configuration": {
+    "n_added_cells": 28569,
+    "min_nn_added_vs_all_px": 2.8284,
+    "spacing_lock_holds_for_every_moved_dot": true,
+    "min_nn_global_px": 1.0,
+    "mean_nn_global_px": 3.7861,
+    "note": "global min NN may be < 2.8284 px: R1's 2,171 exact-marginal refills were selected without a spacing lock (IR-88-37); SNAP never repairs inherited pairs, it only guarantees placement spacing for dots it moves."
+  },
+  "off_h19_5_support": {
+    "stay_on_h19_5": false,
+    "n_dots_off_h19_5_after": 26024,
+    "n_parent_dots_off_h19_5": 0
+  },
+  "preregistration": "registry/preregistration_snap_r1_fixpoint.json",
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "w_field_channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    },
+    "edge_field_channels": {
+      "tmi_hg_b03": 0.52022,
+      "tmi_crest_b03": 0.50573,
+      "grav_hg_b18": 0.51671,
+      "grav_crest_b18": 0.51035,
+      "det_elev_slope_b19": 0.54949,
+      "det_elev_break_b12": 0.52669,
+      "composite_edge_pot": 0.50076,
+      "composite_edge_scarp_pot": 0.53422
+    }
+  },
+  "mechanism_card": {
+    "hypothesis": "If the crest is real and the greedy climb is monotone, the third pass should add little relative to the second; if it instead keeps raising blind credit, the arm is walking toward a field maximum that is not the mapped trace, and the family's gain is an artefact of the field rather than of fault geometry.",
+    "mechanism": "Identical allocator and field as fp2 with one more iteration. Concave-down curvature of the score surface around the composite crest means successive passes have diminishing per-pass gain; a still-rising third pass implies a broad, non-fault-aligned maximum (shoreline or flight-line shoulder).",
+    "non_fault_mimic": "Same mimic set as fp2: paleoshorelines, tuff rims, fan-terrace risers, flight-line levelling. On a third pass, topographic artefacts with wider crests overtake narrow fault breaklines by construction of a greedy maximum search.",
+    "predicted_sign_size": "Preregistered MODEL +0.002 live delta vs R1 (range -0.008 to +0.012). Deliberately below fp2: the expected marginal gain of a pass decays. |live delta| < 0.01 is no evidence.",
+    "falsifier": "SGMC(fp3) > SGMC(fp2) by >= 0.001 contradicts the saturation hypothesis and says the field is being climbed past the fault trace; SGMC(fp3) <= SGMC(R1) parks the arm at HOLD."
+  },
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.094999,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5540.87,
+      "fp": 35273.64
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6446,
+      "cv_12km_120px_interior": 0.5722
+    }
+  },
+  "parent_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.096083,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5603.04,
+      "fp": 35157.75
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6405,
+      "cv_12km_120px_interior": 0.57
+    }
+  },
+  "r0_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  },
+  "scarp1px_reference_diagnostics": {
+    "evidence_label": "PROXY",
+    "source": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp1px-20261023-1944aaf5.json",
+    "sgmc_control_dti": 0.097567
+  },
+  "w_weighted_dti_MODEL": {
+    "evidence_label": "MODEL",
+    "dti_parent_r1": 0.281537,
+    "dti_arm": 0.20689,
+    "caveat": "w under-weights off-H19-5 dots and its ranking has blind AUC 0.47 (IR-88-38); diagnostic only."
+  }
+}

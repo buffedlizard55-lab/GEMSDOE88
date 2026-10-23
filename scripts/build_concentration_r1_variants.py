@@ -566,7 +566,7 @@ def main() -> int:
             "id": rec["id"], "parent": R1_ID, "axis": "CONCENTRATION", "value": value,
             "n_dots": rec["n_dots"], "pct_changed": f"{stats['pct_of_parent_dots_moved']:.2f}",
             "sha256": rec["sha256"], "sha256_zeros": rec["sha256_zeros"], "status": "BUILT",
-            "predicted_change": pred, "predicted_range": pred_range,
+            "predicted_change": f"MODEL:{pred}", "predicted_range": pred_range,
             "ranking_basis": ranking_basis, "receipt_score": "", "receipt_date": "",
             "description": descriptions[value], "recommendation": recommendations[value],
         })
