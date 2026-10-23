@@ -16,7 +16,16 @@
 
 **Branch `arena/55bfd384-gemsdoe88` (PR #19):** an AI coding agent independently built a second CONCENTRATION experiment with an independent physics-gradient prior (bands 13/2/12 Sobel gmag, 2.85 px spacing; MODEL 0.000) but **DROPPED it as redundant** — the CONCENTRATION axis is already built by PR #18 (parent-density, weld-to-host, MODEL +0.011/+0.020/+0.006) and the concurrent test suite expects exactly three variants. The race condition is documented in `IRREGULARITIES.md` item 13; candidate rasters and the generator were removed to keep the ledger and tests consistent.
 
+## AI-Generated Code, Artifacts & Analyses (2026-10-23, continued)
+
+4. **`AXIS = SPACING` builder (`scripts/build_spacing_variants.py`, `SEED = 20261023`):**
+   - Verified manifest pins (`sample_submission`, `existing_faults`, parent R0 zeros `c55bafc4…`) before use; rebuilt nothing new on R0 (array-verified earlier: 37,654 dots, `min d_cat = 2.236 px`).
+   - Held fixed: parent mask, count `N = 37,654`, exclusions (footprint, `d_cat > 2 px`), seed; kept = top ~75% (28,241 dots) by rebuilt ranking `0.6*clip(d_cat/50,0,1)+0.4*Uniform(seed88)` (parent recipe not stored); moved = bottom ~25% (9,413 target).
+   - `SPACINGlattice25` (`beefad84`, 24.94% moved), `SPACINGpoissondisk25` (`e15a5f06`, 24.95%, 12 px Poisson-disk), `SPACINGalongstrike25` (`b0fc5114`, 24.64%, structure-tensor strike, 0 fallbacks); 1 band `float32`, `NaN` outside / `0` outside twins, `.zip` per TIFF, receipt JSON per variant with full gate block + report-only diagnostics (block CV 10 km / 12 km, SGMC proximity).
+   - All 6 rasters pass `scripts/validate_variant.py` MUST-pass gates from disk; unique SHA-256 not in ledger; ledger rows (`status BUILT`, `predicted_change MODEL:0.000`, `predicted_range [-0.010,+0.010]`) and 3 mechanism cards appended; `registry/variant_validation.json` written.
+
 ## Human Competitor Decisions Required
 
-- Supply live `TOP_PUBLIC` + date, available rolling-week slots (`__ / 3`), and confirmation of `AXIS = PRUNE` (`Slot 1 = PRUNEp3px`).
+- **`AXIS = SPACING` confirmed for this session** (human-assigned; PRUNE/MASS/CONCENTRATION rows already in ledger; SPACING is lowest priority per `SLOT_PLAN.md`).
+- Supply live `TOP_PUBLIC` + date, available rolling-week slots (`__ / 3`).
 - Upload chosen single file manually from authenticated browser, log verbatim `receipt_score` and `receipt_date` in `ledger/submissions.csv`, and choose the **one blind final file** before `2026-12-03`.

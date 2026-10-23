@@ -1,0 +1,70 @@
+{
+  "id": "h33-h33-2-b2-SPACINGalongstrike25-20261023-b0fc5114",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis": "SPACING",
+  "value": "alongstrike25",
+  "seed": 20261023,
+  "git_sha": "f0ab6eb768f51983fc913c051ad3c9f46caab1dc",
+  "file_nan": "releases/h33-h33-2-b2-SPACINGalongstrike25-20261023-b0fc5114.tif",
+  "sha256": "b0fc51142c0be9da1b924c4083406e9a5595a9f1566d6998b36b19f1e0303ba5",
+  "bytes_nan": 352242,
+  "zip_nan": "releases/h33-h33-2-b2-SPACINGalongstrike25-20261023-b0fc5114.zip",
+  "zip_nan_sha256": "de97ad765d23ea83316a79fda82b95f79c1f73616c5d27a2b4c46da48004edee",
+  "file_zeros": "releases/h33-h33-2-b2-SPACINGalongstrike25-20261023-b0fc5114-zeros.tif",
+  "sha256_zeros": "d69fedaca0c6fedfc5e1aee23512b2a7f012c1df659fcc5c3b72c0181498e708",
+  "bytes_zeros": 216095,
+  "zip_zeros": "releases/h33-h33-2-b2-SPACINGalongstrike25-20261023-b0fc5114-zeros.zip",
+  "zip_zeros_sha256": "5ec86d2ad4f37ecbcbf8c9e41ff3e3777f39f6a6a1b138427353a4c23166c5e2",
+  "form_note": "h33-2-b2; SPACING alongstrike held at 37654 (~25% respaced along local strike; same >=2 px collar); pred MODEL 0.000",
+  "form_note_chars": 116,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 9277,
+    "n_removed": 9277,
+    "pct_changed_moved": 24.64,
+    "pct_changed_sym_diff": 49.27,
+    "min_dist_catalogue_px": 2.2361,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 941,
+    "dots_le_4px": 1699
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "spacing_diagnostics": {
+    "kept_dots": 28241,
+    "moved_dots": 9413,
+    "pct_moved": 24.9987,
+    "fallback_count": 0,
+    "step_px": [
+      2.0,
+      7.0
+    ],
+    "block_cv_10km": 0.7074,
+    "block_cv_12km": 0.6478,
+    "min_dist_catalogue_px": 2.2361,
+    "kept_to_new_mean_px": 6.61606868654229,
+    "kept_to_new_p50_px": 5.0,
+    "sgmc_close_3px": 14751,
+    "sgmc_total_px": 83593
+  },
+  "report_only_not_gated": [
+    "catalogue hide-and-recover PROXY",
+    "leakage canary",
+    "SGMC control"
+  ]
+}

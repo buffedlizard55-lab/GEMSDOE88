@@ -22,3 +22,15 @@ Why `PRUNE` first: `H19-5 -> D2.8 (0.2600) -> SOLO (0.2708) -> R0 (0.2778)` `CLA
   2. **`DIP_OFFSET_ASYM` (Andersonian $60^\circ$ Hanging-Wall Potential-Field Offset):** Pair `0 m` LiDAR scarp ridges with down-dip gravity HG (`Band 18`) and basement gradient (`Band 15`) shifted `300–900 m` into the hanging wall rather than vertical zero-offset stacking (Faulds & Hinz 2015, https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11072.pdf). *Confounder:* welded tuff caprock edges and Lake Lahontan paleoshorelines (`1,212–1,334 m`) with zero basement throw. *Falsifier:* `< +0.01` live gain vs co-located potential-field scoring.
   3. **`HYDRO_UPFLOW_GATE` (Quaternary Dilation-Conduit Geothermometry & Potassic Alteration):** Re-weight `d_cat > 3 px` strands by quartz/chalcedony geothermometer anomalies (DOE GDR 1391, https://gdr.openei.org/submissions/1391), GeoDAWN K/Th adularia alteration (https://doi.org/10.5066/P93LGLVQ), and MT clay-cap gradients (`Band 17`). *Confounder:* lateral down-slope thermal outflow plumes in permeable piedmont gravels. *Falsifier:* `< +0.01` live gain vs pure structural geometry.
 - **Weeks 5–6 (Slots 13–18, by `2026-12-03`) — Orthogonal Fusion & Blind Final Lock:** Fuse only `RECEIPT >= +0.01` axes (`12 km` CV inside `0.51–0.59`); lock **1 blind final submission** scoring Round 1 (`$50K`) & Round 2 (`$250K`).
+
+## This session (`2026-10-23`) — `AXIS = SPACING` (human-assigned; lowest priority per plan)
+
+Built **3 matched-count (`N = 37,654`) `SPACING` variants of `R0`**, each moving ~`25.00%` of dots (target 9,413 of 37,654; kept = top ~75% by rebuilt ranking `0.6*clip(d_cat/50,0,1)+0.4*Uniform(seed88)`; parent recipe not stored) onto pattern sites inside the same allowed domain (footprint, `d_cat > 2 px`). All format gates PASS (`scripts/validate_variant.py`, re-read from disk), unique SHA-256 (not in ledger), status `BUILT`, predicted `MODEL 0.000` (`|Δ| < 0.01` = no evidence per brief v2 §5). **Slots spent this week: 0** (human uploads only; no receipt yet).
+
+| Variant | Release id | Exact moved | Min `d_cat` | MODEL pred |
+|---|---|---:|---:|---:|
+| lattice | `h33-h33-2-b2-SPACINGlattice25-20261023-beefad84` | `24.94%` (9,390) | `2.236 px` | `0.000` |
+| poissondisk | `h33-h33-2-b2-SPACINGpoissondisk25-20261023-e15a5f06` | `24.95%` (9,393) | `2.236 px` | `0.000` |
+| alongstrike | `h33-h33-2-b2-SPACINGalongstrike25-20261023-b0fc5114` | `24.64%` (9,277) | `2.236 px` | `0.000` |
+
+**Next 3 slots (in order):** (1) Week 2 — `CONCENTRATION` atop `PRUNEp3px` (`>=3 px` collar clean) only if the human scopes the `2–3 px` collar gate off controlled edits of `R0`; (2–3) Weeks 3–4 mechanism axes (`RELAY_TIP_STRESS`, `DIP_OFFSET_ASYM`) on the best `RECEIPT` parent, keeping iff `Δ RECEIPT >= +0.01`. `SPACING` enters Week 5–6 fusion only if a variant logs live `Δ >= +0.01`.

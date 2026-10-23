@@ -82,5 +82,26 @@
     "non_fault_mimic": "Broad 400 m upward-continued aeromagnetic/isostatic-gravity regional gradients and pediment erosion surfaces flanking range-front faults without discrete secondary brittle slip.",
     "predicted_sign_size": "MODEL predicted live delta -0.009 vs R0 (range -0.022 to +0.004), bracketing the upper turning point of the collar curve (100 m, 200 m, 300 m, 400 m) at constant N = 37,654.",
     "falsifier": "Live score gain >= +0.01 over both R0 and p3px falsifies narrow damage-zone splay clustering and proves test-set new faults are strongly depleted within 400 m of existing USGS/INGENIOUS traces (e.g., due to compilation buffer rules)."
+  },
+  "h33-h33-2-b2-SPACINGlattice25-20261023-beefad84": {
+    "hypothesis": "Geothermal faults segment at characteristic along-strike length scales; respacing the marginal 25% of dots on a square lattice at matched density (~2.3 km pitch) captures segmented strand centres that R0's retained clusters split across adjacent dots.",
+    "mechanism": "DTI = T / (0.2 T + 0.2 (S - M) + 0.8 |G|): holding S = 37,654 isolates the spacing topology. A lattice places one dot per ~5.3 km^2 cell, removing sub-segment duplicate dots (FP_w waste) and assigning each segment's credit to its centre where line-like truth clears the k > 0.2*DTI (~0.056) threshold.",
+    "non_fault_mimic": "Quasi-regular alluvial-fan distributary bifurcations, lake-terrace scarps and DEM tile-grid artifacts can produce regular ~2 km lineations that a lattice rewards without any slip.",
+    "predicted_sign_size": "MODEL predicted live delta 0.000 (range [-0.010,+0.010]); matched count means TP/FP mass unchanged, so |delta| < 0.01 counts as no evidence per brief v2.",
+    "falsifier": "Live gain >= +0.01 for lattice25 but not poissondisk25/alongstrike25 implicates grid or flight-line aliasing rather than fault segmentation; no gain on all three means location/mass dominate spacing."
+  },
+  "h33-h33-2-b2-SPACINGpoissondisk25-20261023-e15a5f06": {
+    "hypothesis": "Damage-zone main traces repel secondary slip within ~1 km; respacing the marginal 25% on a Poisson-disk field (12 px / 1.2 km min separation) reduces dot crowding on the same structures and lets kernel credit T concentrate on isolated blind strands.",
+    "mechanism": "Fixed S with Poisson-disk minimum separation lowers multi-dot overlap of the 300 m triangular kernel on adjacent strands, cutting FP_w denominator waste while keeping TP_w on line-like truth whose credit exceeds k > 0.2*DTI (~0.056).",
+    "non_fault_mimic": "Randomly spaced cooling joints, unseeded microfracture sets and homogeneous background fracture density pass a Poisson-disk filter without any seismogenic slip.",
+    "predicted_sign_size": "MODEL predicted live delta 0.000 (range [-0.010,+0.010]); |delta| < 0.01 counts as no evidence.",
+    "falsifier": "Live gain >= +0.01 proves crowding was suppressing score; three-way null result means spacing topology is not predictive for this footprint."
+  },
+  "h33-h33-2-b2-SPACINGalongstrike25-20261023-b0fc5114": {
+    "hypothesis": "Unmapped geothermal faults grow as along-strike relay and splay clusters; respacing the marginal 25% along local strike (from the parent field's structure tensor) concentrates dots on strike-continuous segments rather than scattered isolations.",
+    "mechanism": "Strike-consistent placement preserves along-strike linkage where a 300 m kernel bridges echelon splays into one credited line, while moving dots off non-fault isolations reduces FP_w; count S and exclusions identical to R0.",
+    "non_fault_mimic": "Antithetic synthetic splays and anticlinal bend fractures that never link to a master fault align along strike locally but carry no slip; they would collect kernel credit without truth support.",
+    "predicted_sign_size": "MODEL predicted live delta 0.000 (range [-0.010,+0.010]); |delta| < 0.01 counts as no evidence.",
+    "falsifier": "Live gain >= +0.01 for alongstrike25 only supports strike-linked clusters; null on all three axes means spacing is not predictive at fixed N."
   }
 }

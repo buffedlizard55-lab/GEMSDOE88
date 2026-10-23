@@ -1,5 +1,12 @@
 # GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
 
+## CURRENT STATE (`2026-10-23`, branch `arena/840b1f0d-gemsdoe88`, session of `scripts/build_spacing_variants.py`)
+
+- **Parent `R0 = h33-h33-2-b2` rebuilt and verified:** manifest pins match (`sample_submission 2176d08e…`, `existing_faults 7ba308cc…`, parent zeros `c55bafc4…` / nan `baeae321…`), `37,654` dots, `min d_cat = 2.236 px` (> 2 px), `2,171` dots in the `(2, 3] px` collar. Best evidence = `CLAIM 0.2778`; no organizer receipt in `ledger/`.
+- **`TOP_PUBLIC`: `__`** (human fills from the leaderboard, with date — no other target number is valid). **Slots left this week: `__ / 3`** (human).
+- **`AXIS = SPACING` (human-assigned).** Built this session: `SPACINGlattice25` (`beefad84`), `SPACINGpoissondisk25` (`e15a5f06`), `SPACINGalongstrike25` (`b0fc5114`) — matched count `N = 37,654`, exactly `~25.00%` changed (24.64–24.95%), same `>= 2 px` exclusions, all `BUILT`, no live receipts yet; predicted `MODEL 0.000` (`|Δ| < 0.01` = no evidence).
+- **Next 3 slots:** see `SLOT_PLAN.md`; spend a slot only on a live `RECEIPT >= R0 + 0.01`.
+
 > ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)
 >
 > | Gate Question | Automated Machine Decision | Binding Reason & Verifiable Receipt |

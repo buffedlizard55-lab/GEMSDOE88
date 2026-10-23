@@ -25,6 +25,16 @@
 - **Form Note (`103 / 140` chars):** `h33-2-b2; PRUNE <=4px held at 37654 (-3825 in 2-4px, +3825 exact marginal gain >4px); pred -0.009 MODEL`
 - **Stats & Receipt:** `37,654` dots (`-3,825` in `2 < d_cat <= 4 px`, `+3,825` at `d_cat > 4 px`; **`10.16%` moved**, `min d_cat = 4.1231 px`). `SGMC` `0.094465` `PROXY`; `12 km` CV `0.5937`. Tracked receipt: `releases/h33-h33-2-b2-PRUNEp4px-20261023-be9fd3d5.json`.
 
+## Session candidates (`AXIS = SPACING`, `2026-10-23`, human uploads ONE file per slot)
+
+| Variant | Primary GeoTIFF (`NaN` outside) | Fallback (`-zeros.tif`) | Submission name | Form note (`<= 140` chars) | Format receipt |
+|---|---|---|---|---|---|
+| lattice | `releases/h33-h33-2-b2-SPACINGlattice25-20261023-beefad84.tif` (`SHA-256: beefad84240a…`) | `…-beefad84-zeros.tif` (`SHA-256: 6ea9c953e6b5…`) | `h33-h33-2-b2-SPACINGlattice25-20261023-beefad84` | `h33-2-b2; SPACING lattice held at 37654 (~25% respaced; same >=2 px collar); pred MODEL 0.000` (`93 / 140`) | `releases/h33-h33-2-b2-SPACINGlattice25-20261023-beefad84.json` |
+| poissondisk | `releases/h33-h33-2-b2-SPACINGpoissondisk25-20261023-e15a5f06.tif` (`SHA-256: e15a5f06c580…`) | `…-e15a5f06-zeros.tif` (`SHA-256: 702cc4f7c536…`) | `h33-h33-2-b2-SPACINGpoissondisk25-20261023-e15a5f06` | `h33-2-b2; SPACING poissondisk held at 37654 (~25% respaced, 12 px min separation; same >=2 px collar); pred MODEL 0.000` (`119 / 140`) | `releases/h33-h33-2-b2-SPACINGpoissondisk25-20261023-e15a5f06.json` |
+| alongstrike | `releases/h33-h33-2-b2-SPACINGalongstrike25-20261023-b0fc5114.tif` (`SHA-256: b0fc51142c0b…`) | `…-b0fc5114-zeros.tif` (`SHA-256: d69fedaca0c6…`) | `h33-h33-2-b2-SPACINGalongstrike25-20261023-b0fc5114` | `h33-2-b2; SPACING alongstrike held at 37654 (~25% respaced along local strike; same >=2 px collar); pred MODEL 0.000` (`116 / 140`) | `releases/h33-h33-2-b2-SPACINGalongstrike25-20261023-b0fc5114.json` |
+
+All three: `37,654` dots, EPSG:32611, `3730×3292`, `100 m`, single band `float32`, values in `[0,1]`, `0` NaN inside footprint, `NaN` outside (primary) / `0` outside (fallback), `0` mass on catalogue, `min d_cat = 2.236 px`, format gates re-verified from disk (`scripts/validate_variant.py`, `registry/variant_validation.json`). Predicted live change `MODEL:0.000` (`[-0.010,+0.010]`); treat `|Δ| < 0.01` as no evidence. Human picks at most one per slot, logs verbatim `receipt_score` + `receipt_date` in `ledger/submissions.csv`, and uploads manually from the authenticated DrivenData account.
+
 ## Other Reconciled Ledger Inventory (`HOLD` / Superseded — `ledger/submissions.csv`)
 - **Score-blind `PRUNE=3` (`h33-h33-2-b2-prune3-20261023-01d57649`, `MODEL -0.003`):** Superseded by physics-ranked `PRUNEp3px` (`6f7ae705`, `MODEL +0.005`).
 - **`CONCENTRATION` (`CONCb10px-m10` `89ffd4f3` `+0.011`, `CONCb10px-m20` `c42cd475` `+0.020`, `CONCb50px-m20` `fae2a52f` `+0.006`):** `HOLD` under strict non-PRUNE `>=3 px` gate because they inherit `R0`'s `2,171` `(2, 3] px` dots; clean Week-2 follow-up applies concentration directly atop `PRUNEp3px` (`>3 px`).
