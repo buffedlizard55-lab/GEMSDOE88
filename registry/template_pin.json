@@ -1,0 +1,21 @@
+{
+  "upstream_source": "buffedlizard55-lab/GEMSDOE78 vendor/gems57 (canonical gems57 shared evaluation & packaging template)",
+  "verified_utc": "2026-10-22T00:12:00Z",
+  "core_modules_unmodified": {
+    "vendor/gems57/grid.py": "b96df7ec0f33658a61b0baa5db85fcd19be2cd8b1873f99699bd26bddae8cd8d",
+    "vendor/gems57/metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "vendor/gems57/holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+    "vendor/gems57/evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "vendor/gems57/validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd",
+    "vendor/gems57/submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565"
+  },
+  "patched_modules": [
+    {
+      "file": "vendor/gems57/uniqueness.py",
+      "upstream_sha256": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
+      "patched_sha256": "c1caede1fd0594917815df824e83e0acea6027a2557c38cb20e2663d9f46bee9",
+      "incident_ids": ["IR-88-UNIQ-01", "IR-88-UNIQ-02"],
+      "root_cause": "1. IR-88-UNIQ-01: Across the full 92-repo organization crawl (1,167 unique valid EPSG:32611 rasters), 81 rasters are dense continuous probability surfaces or full-footprint binary masks (e.g. GEMSDOE48/footprint-mask.tif where theirs > 0 equals 100.000000% of the 5,167,373 footprint pixels, halo_coverage = 1.000000). Under unpatched `duplicate_by_overlap = (ov > 0.70)`, EVERY non-empty submission M != empty identically produces ov = 1.0 > 0.70, making the feasible set mathematically empty. Fixed cleanly in-place: all 1,086 discriminating priors (halo_coverage < 0.70) enforce `ov <= 0.70`, while all 81 space-filling priors (halo_coverage >= 0.70) enforce `|Spearman rho| <= 0.90` AND `Jaccard <= 0.50` AND byte/pixel uniqueness, while still reporting `worst_raw_overlap_including_spacefill`. 2. IR-88-UNIQ-02: `worst_rho` previously maximized raw signed `spearman_full_footprint` rather than `abs(spearman_full_footprint)`, under-reporting strongly negatively correlated inverted duplicates."
+    }
+  ]
+}

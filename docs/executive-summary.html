@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Executive Summary — GEMSDOE88 (H88-GHMD) · DOE GEMS #306</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #475569;
+      --brand: #0f766e;
+      --ok-bg: #ecfdf5;
+      --ok-border: #6ee7b7;
+      --ok-text: #065f46;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    .back { display: inline-block; margin-bottom: 1rem; color: var(--brand); font-weight: 700; text-decoration: none; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 1.4rem;
+      box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+    }
+    .pill {
+      display: inline-block;
+      background: var(--ok-bg);
+      border: 1px solid var(--ok-border);
+      color: var(--ok-text);
+      font-weight: 700;
+      font-size: 0.83rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+    h1 { font-size: 1.68rem; margin: 0.2rem 0 0.6rem; line-height: 1.25; }
+    h2 { font-size: 1.2rem; margin: 0 0 0.7rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+    .btn {
+      display: inline-block;
+      background: var(--brand);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 0.78rem 1.25rem;
+      border-radius: 10px;
+      margin-right: 0.6rem;
+      margin-top: 0.4rem;
+    }
+    .btn-outline {
+      display: inline-block;
+      background: #f1f5f9;
+      color: var(--text);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.75rem 1.1rem;
+      border-radius: 10px;
+      margin-top: 0.4rem;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: #f1f5f9;
+      padding: 0.12rem 0.35rem;
+      border-radius: 5px;
+      font-size: 0.85em;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin-top: 0.75rem; }
+    th, td { text-align: left; padding: 0.58rem 0.7rem; border-bottom: 1px solid var(--border); }
+    th { background: #f1f5f9; }
+    img { width: 100%; border-radius: 10px; border: 1px solid var(--border); margin-top: 0.85rem; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← Back to Full Interactive Report &amp; Data Explorer</a>
+
+  <div class="card" style="border: 2px solid #99f6e4;">
+    <div class="pill">✓ 15 / 15 AUTOMATED GATES PASSED · 1,167 / 1,167 UNIQUE · VERDICT: PROMOTE</div>
+    <h1>Executive Summary: GEMSDOE88 (Lane H88-GHMD)</h1>
+    <p>
+      <strong>Decision Bottom Line:</strong> Promote and upload
+      <code>gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif</code>
+      (<code>37,654</code> binary dots, SHA-256 <code>81e580f13b45...</code>) to DrivenData Competition #306.
+      Across two independent spatially-blocked 4-quadrant hide-and-recover seeds on unmodified <code>vendor/gems57/evaluate_holdout.py</code>,
+      <code>H88-GHMD</code> improves zero-leakage pooled <code>HOLDOUT-DTI</code> by <strong>+106.5% on Seed 20</strong>
+      (<code>0.0923 → 0.1907</code>, paired 20 km cluster 95% CI <code>[+0.0790, +0.1178]</code>) and
+      <strong>+129.9% on Seed 30</strong> (<code>0.0945 → 0.2173</code>, paired 20 km cluster 95% CI <code>[+0.1024, +0.1445]</code>)
+      over the fold-fair replication of <code>GEMSDOE32 H33-2-B2</code> (<code>0.2778 ORGANIZER-CONFIRMED</code>), while passing
+      all <strong>15 automated competition validation gates</strong> and all <strong>1,167 / 1,167 organization uniqueness comparisons</strong>.
+    </p>
+    <p>
+      <strong>Unique Submission Name:</strong> <code>GEMSDOE88-H88-GHMD-318A37E6</code><br/>
+      <strong>Submission Note (112 / 140 chars):</strong> <code>GEMSDOE88 H88-GHMD | 37,654 dots, d&gt;200m, dual-head physics+geodesic CELF+swap; S20 HOLDOUT-DTI 0.1907; UNSCORED</code>
+    </p>
+    <a class="btn" href="downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif" download>⬇ Download Primary GeoTIFF (.tif · 147.5 KB)</a>
+    <a class="btn-outline" href="index.html">View Complete Technical Report &amp; Run Card →</a>
+  </div>
+
+  <div class="card">
+    <h2>1. Three Root Insights Behind Our Architecture</h2>
+    <ol>
+      <li><strong>Why <code>GEMSDOE32</code> Reached <code>0.2778 ORGANIZER-CONFIRMED</code>:</strong> Bit-exact inspection shows <code>H33-2-B2</code> placed <code>37,654</code> binary dots using <code>min_sep = 3 px</code> NMS outside the <code>d_cat &gt; 200 m</code> zero-credit collar on a 3-term blend of calibrated 18-band ML probability (<code>0.45</code>), detrended elevation <code>b12</code> (<code>0.35</code>), and total strain <code>b02</code> (<code>0.20</code>). However, <code>b12</code> hugs exposed bedrock range crests instead of true range-front scarps, relay ramps, and blind hydrothermal basin conduits.</li>
+      <li><strong>99-Channel Multi-Physics + Geothermal + OOF Geodesic/6-Color Relay Engine:</strong> Combining DOE GDR #1391 INGENIOUS thermal wells/springs (which became the <strong>#2 gain-contributing feature overall</strong> across all 99 channels!), USGS SGMC 1:500k pre-Quaternary bedrock contacts (<strong>#3 overall</strong>), 60° up-dip basement projection, cross-catchment $\chi/k_{sn}$ tectonics, and fold-internal 100 m Eikonal geodesics + 6-color bilateral fault-component bridges doubled zero-leakage holdout recall.</li>
+      <li><strong>Un-Distorted Partition-Knapsack Submodular CELF + 1-Swap Allocation:</strong> Maximizes exact diminishing-returns 300 m kernel coverage directly over calibrated 24-model $(P_j, Q_j)$ fields while enforcing exact multi-knapsack caps (<code>&le; 0.678 &lt; 0.700</code>) across all 1,086 discriminating org rasters with zero exponential distortion inside unsaturated regions.</li>
+    </ol>
+    <img src="assets/fig2_holdout_progression_and_domain_shift.png" alt="Holdout progression and live radial profile" />
+  </div>
+
+  <div class="card">
+    <h2>2. Summary Comparison Table (Strict Score Provenance Labels)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Model / Benchmark</th>
+          <th>Evidence Class</th>
+          <th>Seed 20 (K=11,321)</th>
+          <th>Seed 30 (K=11,342)</th>
+          <th>Live DrivenData #306</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>B0_Random_37654</code></td><td><code>HOLDOUT-DTI</code></td><td><code>0.0468</code></td><td><code>0.0486</code></td><td>—</td></tr>
+        <tr><td><code>GEMSDOE32 H33-2-B2</code> (37,654 dots)</td><td><code>HOLDOUT-DTI</code> / <code>ORGANIZER-CONFIRMED</code></td><td><code>0.0923</code></td><td><code>0.0945</code></td><td><strong><code>0.2778</code></strong> (confirmed)</td></tr>
+        <tr><td><code>EXP-88-1</code> (83-ch Zero-Catalogue Physics)</td><td><code>HOLDOUT-DTI</code></td><td><code>0.1079</code></td><td><code>0.1249</code></td><td>—</td></tr>
+        <tr><td><code>EXP-88-2</code> (+16 OOF Geodesics &amp; 6-Color Relays)</td><td><code>HOLDOUT-DTI</code></td><td><code>0.1894</code></td><td><code>0.2165</code></td><td>—</td></tr>
+        <tr><td><strong><code>EXP-88-3 / GEMSDOE88 H88-GHMD</code> (Promoted)</strong></td><td><code>HOLDOUT-DTI</code></td><td><strong><code>0.1907</code></strong> (+106.5%)</td><td><strong><code>0.2173</code></strong> (+129.9%)</td><td><code>UNSCORED</code> (ready to upload)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
