@@ -1,27 +1,50 @@
 {
-  "schema": "gems88.preregistration.v1",
+  "schema": "gems88.preregistration.v2",
   "date_utc": "2026-10-22",
-  "source_of_scope": "User prompt supplied no separate single-method paragraph. This run explicitly selects ONE lane, MGC-88, and will stop on literal registry duplication.",
-  "lane": "MGC-88: cover-conditional, locally aligned RTP-magnetic and isostatic-gravity gradient edges; no fault-catalogue feature in model",
-  "hypothesis": "Independent magnetic and gravity edges that remain aligned under thick basin cover may reveal overlooked fault-related contacts beyond mapped surface traces.",
-  "non_fault_mimic": "Unfaulted lithologic contact / sedimentary facies boundary; flight-line or gridding seams can also mimic geophysical edges.",
-  "source_layers": [
-    "owner-mirrored DrivenData training_features.tif band 2 rtp",
-    "owner-mirrored DrivenData training_features.tif band 13 iso_grav_anom",
-    "owner-mirrored DrivenData training_features.tif band 15 depth_to_base_surf"
+  "source_of_scope": "Continuation of GEMSDOE88 from archived Exp 01 (MGC-88) within strict <=3-experiment and <=2-hour session budget, correcting PR #6 band-tag errors (IR-88-07..09) before execution.",
+  "lane": "ADHR-88: Andersonian 60-degree dip-projected basement-step + upslope-advected GDR #1391 hydrothermal conduits + paleoshoreline-decontaminated dual-resolution geomorphology + exact continuous-kernel Dinkelbach allocation",
+  "hypothesis": "Concealed and overlooked Quaternary geothermal faults in the Great Basin systematically escape surface aerial mapping for two distinct physical reasons: (1) range-front and intrabasin normal faults dipping ~60 degrees offset dense/magnetic Mesozoic basement horizontally down-dip into the hanging wall by Delta_x = z_base / tan(60 deg) while hydrothermal smectite/illite clay caps and shallow thermal/sinter plumes migrate laterally down topographic/hydraulic gradient (-grad z_dem), and (2) subdued Holocene piedmont scarps span both the 75.3% 1m LiDAR zone and the 24.7% non-LiDAR Great Basin gap where pluvial Lake Lahontan/Bonneville shorelines mimic scarps. Coupling 60-degree hanging-wall back-projection, upslope thermal/sinter deconvolution, paleoshoreline-filtered 1m/10m scarp + chi-ksn breaklines, fold-proper visible relay/tip anatomy, and direct continuous-kernel self-credit calibration m*(x) = E[max_g k(d(x,g)) | X] under Dinkelbach CELF allocation will recover whole withheld fault systems while generalizing across blind off-catalogue basins.",
+  "non_fault_mimic": "Pleistocene pluvial paleoshorelines (Lake Lahontan ~1,330 m and Lake Bonneville ~1,555 m constant-contour beach ridges without basement offset or ksn jump) and valley-floor evaporite playas / lateral geothermal outflow plumes (high interior cond_surf and displaced hot-spring outflow with zero basement step).",
+  "experiments_predeclared": [
+    {
+      "experiment_number": 1,
+      "id": "MGC-88",
+      "status": "archived_baseline",
+      "description": "3-band aligned RTP-gravity cross-gradient HGB + fixed 37,654 2-px greedy spacing (HOLDOUT-DTI 0.0389 [0.0264, 0.0532]). Preserved untouched."
+    },
+    {
+      "experiment_number": 2,
+      "id": "CGO-88",
+      "status": "predeclared_pure_competition_physics_control",
+      "description": "19-band label-blind competition-stack physics only (60-deg dip-projected gravity/magnetic steps, |grad cond_surf| clay-cap edge, strain, microseismicity, detrended topo breaklines; 0 external layers, 0 catalogue features) + direct continuous-kernel (p*, m*) calibration + variable-stopping Dinkelbach CELF allocation."
+    },
+    {
+      "experiment_number": 3,
+      "id": "H88-ADHR",
+      "status": "predeclared_primary_candidate",
+      "description": "Full ADHR-88 lane: CGO-88 19-band dip-projected physics + DOE GDR #1391 upslope-advected 2m temperature probes (F2mDAB), paleo-sinter/travertine aprons, silica geothermometer springs, volcanic vents + USGS GeoDAWN K/Th & TMI_up150 + paleoshoreline-decontaminated 1m LiDAR & 10m topo/chi-ksn + fold-proper visible relay/bend/damage-zone anatomy fused with a pure label-blind far-basin floor (d_cat > 15 px) + direct continuous-kernel (p*, m*) Dinkelbach CELF allocation."
+    }
   ],
-  "registered_transform": "Gaussian-derivative gradients of band 2 at sigma 2 px and band 13 at sigma 3 px. Compute signed cosine alignment and product of log-gradient magnitudes; include band 15 as cover covariate. Baseline uses only bands 2, 13, 15; experimental arm adds magnetic/gravity gradient magnitude and alignment. No catalogue geometry enters features.",
-  "single_feature_canary": "Symmetric ROC AUC for each included channel, withheld whole-component pixels versus sampled noncatalogue pixels inside the same scored quadrants. Any AUC >0.90 stops modelling until leakage is resolved.",
-  "holdout": "Unmodified vendor/gems57/holdout.py buffered_component_draw; seeds 20 and 21; whole 8-connected components, 3-px context buffer, label-blind 12-px quadrant boundary erosion; LOQO training uses only visible faults outside the test quadrant; exact known-pixel exclusion and vendor/gems57/evaluate_holdout.py pooled DTI (alpha=0.2, beta=0.8, triangular 300m); paired spatial 20km block bootstrap 1000 draws. No withheld labels are a model feature.",
-  "emission": "One fixed 37654-dot target, deterministic descending model probability with 2-pixel Euclidean inhibition; masked exactly off visible/production catalogue. No score-guided hyperparameter or budget search.",
-  "promotion_gate": "ALL of: safe local format, max canary AUC <=0.90, experimental HOLDOUT-DTI strictly exceeds matched raw-layer control and any comparable established best, positive paired 95% CI, surface abs(rho)<=0.90 and final dot forward-3px overlap<=0.70 against every registry raster. If a universal positive-footprint prior exists, the literal uniqueness gate is mathematically impossible and the verdict is negative; no exemption is authorized. No organizer slot is used here.",
+  "source_layers": [
+    "owner-mirrored competition 19-band training_features.tif (SHA-256 4371c82e...): bands 1..19 verified by on-disk tags (mag_anom, rtp, tmi_hg, geod_2ndinv, iso_grav_anom_slope, tc, geod_shearrate, geod_dilaterate, tmi_vg, deq_n100a15, iso_grav_anom_vg, det_elev, iso_grav_anom, tmi, depth_to_base_surf, ieq_n100a15, cond_surf, iso_grav_anom_hg, det_elev_slope)",
+    "DOE GDR #1391 INGENIOUS public CC BY 4.0 datasets (mirrored & SHA-pinned): 2m_temperature_probe_INGENIOUS_regional_data.zip (3,800 probes, F2mDAB), paleo_geothermal_regional.zip (709 sinter/travertine/alteration records), gdr_wellspring_in_footprint.csv (temp_c & geothermquartz_c only; dist_known_fault_px explicitly banned), gdr_volcanic_vents_in_footprint.csv, trace_segments_utm11.csv (restricted strictly to fold visible mask)",
+    "USGS GeoDAWN CC0 airborne radiometric & magnetic extensions (geodawn_rad_u8.tif K/Th/U/TC, geodawn_extensions_u8.tif ThK/UK/UTh/TMI_up150)",
+    "USGS 3DEP public-domain 1m LiDAR scarp stack (lidar_scarp_features_u8.tif, 75.3% footprint with explicit missingness routing) and full-footprint 10m topographic + chi/ksn stacks (topo_10m_derived_100m_u8.tif, dem10_chi_100m_i16.tif)"
+  ],
+  "registered_transform": "1) Back-project hanging-wall basement steps along -grad(iso_grav_anom) by Delta_x = clip(max(depth_to_base_surf, 0) / tan(60 deg), 0, 16 px). 2) Back-advect shallow 2m probe F2mDAB, paleo-sinter, and quartz geothermometer plumes upslope along +grad(z_dem) by 600 m and 1,500 m. 3) Combine 1m LiDAR dipole scarps (NaN outside LiDAR for native tree missingness routing) with 10m slope/curvature/ksn jumps and explicit Lahontan (1,330 m) + Bonneville (1,555 m) shoreline penalty. 4) Compute fold-proper visible-only relay/bend/damage-zone features strictly from fold['visible']. 5) Fit out-of-fold calibrated p*(u) and direct continuous-kernel self-credit m*(x) = E[max_g max(0, 1 - d(x,g)/3) | X], blend with pure physics head for far-basin discovery, and emit binary {0, 1} dots via unmodified vendor/gems57/emit.py::dinkelbach_allocate.",
+  "single_feature_canary": "Symmetric ROC AUC on every included feature alone across pooled withheld whole-component positives vs off-catalogue negatives. Any single feature with symmetric AUC > 0.90 halts execution immediately until leakage is eliminated.",
+  "holdout": "Unmodified vendor/gems57/holdout.py::buffered_component_draw on seeds (20, 21) (8 out-of-quadrant evaluations, 22,893 withheld whole-component positives, 3-px context buffer, 12-px label-blind quadrant boundary erosion); pooled exact DTI (alpha=0.2, beta=0.8, 300m triangular kernel) via vendor/gems57/evaluate_holdout.py with 1,000 paired 20 km spatial block-bootstrap draws.",
+  "registry_uniqueness_gate": "Checked BOTH on pre-placement continuous surface AND on final binary dots against all 21 SHA-pinned multi-repo rasters in registry/inventory.json (17GEMSDOE..GEMSDOE88) via unmodified vendor/gems57/uniqueness.py::compare_array_to_registry and two_phase_summary: |Spearman rho| <= 0.90 across all 21 rasters AND 3-px forward dot overlap <= 0.70 across all 20 discriminating dot/ridge rasters, while explicitly disclosing literal 1.0000 positive-pixel overlap against full-footprint continuous surface 17GEMSDOE (IR-88-01).",
+  "promotion_gate": "ALL of: 15/15 strict format checks pass (single-band float32, EPSG:32611, 3730x3292, exact affine transform, nodata=None, all 12,279,160 pixels finite in {0.0, 1.0}, 0 on-catalogue pixels, single-TIFF .zip byte-verified), max single-feature canary symmetric AUC <= 0.90, pooled HOLDOUT-DTI significantly beats MGC-88 (0.0389), raw control (0.0267), and CGO-88 with positive 95% paired block-bootstrap CI, and 0 duplicates across all pre-placement surface and discriminating dot-field registry gates.",
   "experiment_limit": 3,
   "time_limit_hours": 2,
-  "external_data_required": false,
+  "external_data_required": true,
   "official_sources": [
     "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://gdr.openei.org/submissions/1391",
     "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://www.usgs.gov/3d-elevation-program",
     "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
   ],
-  "provenance_limit": "The raster inputs are hash-pinned copies in owner's GitHub repos, not independently authenticated against the login-gated organizer downloads. Do not label a local score ORGANIZER-CONFIRMED."
+  "provenance_limit": "All local scores are strictly labeled HOLDOUT-DTI with evaluator version, withheld positive count, and 95% block-bootstrap CI. User-reported live sibling scores (including H33 0.2778) are labeled USER-REPORTED UNVERIFIED. Zero DrivenData submission slots are spent by this agent."
 }

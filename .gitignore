@@ -1,4 +1,8 @@
-# Python & environments
+# Local research inputs and environments; only small validated deliverables are published.
+.cache/
+.scratch/
+.venv/
+/data/
 __pycache__/
 *.py[cod]
 *.so
