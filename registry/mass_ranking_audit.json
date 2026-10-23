@@ -1,0 +1,164 @@
+{
+ "schema": "gems88.mass_ranking_audit.v1",
+ "parent_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+ "parent_dots": 37654,
+ "ranking_as_built": "0.6*clip(d_catalogue_px/50,0,1) + 0.4*uniform(seed)",
+ "q1_reconstruction": {
+  "all_variants_reproduced": true,
+  "detail": {
+   "MASSm10minus": {
+    "release_present": true,
+    "reconstructed_sha8": "7132935e",
+    "identical_to_on_disk": true,
+    "n_dots": 33889,
+    "frac_changed": 10.0
+   },
+   "MASSm10plus": {
+    "release_present": true,
+    "reconstructed_sha8": "82673b57",
+    "identical_to_on_disk": true,
+    "n_dots": 41419,
+    "frac_changed": 10.0
+   },
+   "MASSm20minus": {
+    "release_present": true,
+    "reconstructed_sha8": "6c73303c",
+    "identical_to_on_disk": true,
+    "n_dots": 30123,
+    "frac_changed": 20.0
+   }
+  }
+ },
+ "q2_what_the_ranking_ranks": {
+  "MASSm10minus": {
+   "n_dropped": 3765,
+   "mean_dist_to_catalogue_px": 5.69,
+   "mean_dist_kept_px": 31.59,
+   "frac_dropped_within_px": {
+    "5": 0.535,
+    "10": 0.894,
+    "20": 1.0,
+    "50": 1.0
+   },
+   "baseline_frac_within_px": {
+    "5": 0.15,
+    "10": 0.302,
+    "20": 0.508,
+    "50": 0.801
+   },
+   "enrichment_vs_random": {
+    "5": 3.58,
+    "10": 2.96,
+    "20": 1.97,
+    "50": 1.25
+   },
+   "d_catalogue_saturates_at_50px_frac_of_parent": 0.2
+  },
+  "MASSm20minus": {
+   "n_dropped": 7531,
+   "mean_dist_to_catalogue_px": 7.31,
+   "mean_dist_kept_px": 34.42,
+   "frac_dropped_within_px": {
+    "5": 0.421,
+    "10": 0.754,
+    "20": 0.993,
+    "50": 1.0
+   },
+   "baseline_frac_within_px": {
+    "5": 0.15,
+    "10": 0.302,
+    "20": 0.508,
+    "50": 0.801
+   },
+   "enrichment_vs_random": {
+    "5": 2.81,
+    "10": 2.5,
+    "20": 1.96,
+    "50": 1.25
+   },
+   "d_catalogue_saturates_at_50px_frac_of_parent": 0.2
+  }
+ },
+ "q3_stability": {
+  "MASSm10minus": {
+   "n_dropped": 3765,
+   "overlap_with_seed99": 1078,
+   "jaccard_with_seed99": 0.167,
+   "pearson_score_vs_alt": 0.767,
+   "verdict": "unstable (<0.5 Jaccard: the ranking is majority noise)"
+  },
+  "MASSm20minus": {
+   "n_dropped": 7531,
+   "overlap_with_seed99": 3486,
+   "jaccard_with_seed99": 0.301,
+   "pearson_score_vs_alt": 0.767,
+   "verdict": "unstable (<0.5 Jaccard: the ranking is majority noise)"
+  }
+ },
+ "q4_prior_alignment": {
+  "MASSm10minus": {
+   "mean_dense_prior_dropped": 0.5611,
+   "mean_dense_prior_kept": 0.382,
+   "parent_mean_dense_prior": 0.3999,
+   "interpretation": "dropped dots are NOT the low-prior dots"
+  },
+  "MASSm20minus": {
+   "mean_dense_prior_dropped": 0.5355,
+   "mean_dense_prior_kept": 0.366,
+   "parent_mean_dense_prior": 0.3999,
+   "interpretation": "dropped dots are NOT the low-prior dots"
+  }
+ },
+ "marginal_gain_bar": {
+  "dti_reference": 0.2778,
+  "alpha_times_dti": 0.0556,
+  "equivalent_catalogue_distance_px": 2.83,
+  "kernel_at_that_distance": 0.0556,
+  "note": "a dot pays only if unseen truth lies within this distance; beyond it the dot is a fixed 0.2 denominator cost"
+ },
+ "catalogue_collar_baseline": {
+  "5": 0.15,
+  "10": 0.302,
+  "20": 0.508,
+  "50": 0.801
+ },
+ "denominator_model": {
+  "D0_from": "docs/evidence/GEMSDOE32__registry__submission_build.json (projected live-mirror build)",
+  "D0": 18233.289656199096,
+  "dti_claim": 0.2778,
+  "T0_implied": 5065.2,
+  "note": "D0 is a MODEL input from a prior projected build, not an organiser number"
+ },
+ "sensitivity": {
+  "MASSm10minus": {
+   "operator": "drop",
+   "n_changed": 3765,
+   "predicted_delta_if_credit_zero": 0.012,
+   "predicted_delta_if_credit_half_bar": 0.006,
+   "predicted_delta_if_credit_at_bar": 0.0,
+   "predicted_delta_if_credit_one": -0.2034,
+   "break_even_credit": 0.0556,
+   "caveat": "credit is to UNSEEN truth and is not observable; these are MODEL values conditional on a stated mean credit, not scores"
+  },
+  "MASSm10plus": {
+   "operator": "add",
+   "n_changed": 3765,
+   "predicted_delta_if_credit_zero": -0.011,
+   "predicted_delta_if_credit_half_bar": -0.0055,
+   "predicted_delta_if_credit_at_bar": 0.0,
+   "predicted_delta_if_credit_one": 0.1873,
+   "break_even_credit": 0.0556,
+   "caveat": "credit is to UNSEEN truth and is not observable; these are MODEL values conditional on a stated mean credit, not scores"
+  },
+  "MASSm20minus": {
+   "operator": "drop",
+   "n_changed": 7531,
+   "predicted_delta_if_credit_zero": 0.025,
+   "predicted_delta_if_credit_half_bar": 0.0125,
+   "predicted_delta_if_credit_at_bar": 0.0,
+   "predicted_delta_if_credit_one": -0.4252,
+   "break_even_credit": 0.0556,
+   "caveat": "credit is to UNSEEN truth and is not observable; these are MODEL values conditional on a stated mean credit, not scores"
+  }
+ }
+}

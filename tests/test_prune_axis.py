@@ -316,6 +316,17 @@ def test_emitted_prune_variants_pass_all_must_gates_and_ledger_invariants():
         z_nan = ROOT / v["zip_nan"]
         z_zeros = ROOT / v["zip_zeros"]
 
+        # Verify tracked JSON receipt in releases/ always
+        rec_path = ROOT / "releases" / f"{v['id']}.json"
+        assert rec_path.is_file()
+        rec = json.loads(rec_path.read_text())
+        assert rec["sha256"] == v["sha256"]
+        assert rec["sha256_zeros"] == v["sha256_zeros"]
+
+        # Re-read local rasters/zips from disk whenever present (gitignored in CI per data-use flag)
+        if not (p_nan.is_file() and p_zeros.is_file()):
+            continue
+
         assert bpv.sha256_file(p_nan) == v["sha256"]
         assert bpv.sha256_file(p_zeros) == v["sha256_zeros"]
         with zipfile.ZipFile(z_nan) as zf:
