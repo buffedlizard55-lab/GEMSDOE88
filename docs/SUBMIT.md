@@ -1,5 +1,34 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+## Current session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (integrated queue; supersedes the slot order of every section below)
+
+**Three new gate-clean candidates; no slot was used and nothing was submitted.** Parent
+`R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from the pinned lineage and SHA-asserted
+(`6f7ae705…`/`dc6f090d…`) before editing, after `R0` rebuilt byte-exactly (15/15 pins). Every arm is at the brief's
+10% dose (3,765 dots), ranked by the parent's own recorded recipe (exact marginal expected-DTI under the label-free
+field `w`), **100% of dots `>3 px`** from the catalogue, and independently re-validated with
+`validate_variant.py` (`registry/mass_r1_validation.json`, 6/6 twin PASS). Blind off-catalogue SGMC `PROXY`
+(report-only, never a gate): `r10plus 0.098745` (`+0.00266` vs `R1 0.096083`), `r10minus 0.088680` (`−0.00740`),
+`r10swap 0.092489` (`−0.00359`); a same-pool same-count random-donor control scores `0.097335` (`+0.00125`), so
+about half of the add-arm gain is pure count and the ranking premium is `+0.00141`. Holdout proxy is structurally
+`0.000000` (IR-88-20). Predictions are preregistration `MODEL` values
+(`registry/preregistration_mass_r1.json`), never scores; R0's `0.2778` is CLAIM. See IR-88-51.
+
+| Order | Exact submission name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | <=140-char form note | Fresh format receipt |
+|---|---|---|---|
+| 1 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`R1` anchor; parents all 15 gate-clean rows) | `h33-2-b2; PRUNE <=3px, fixed 37654 dots; predicted +0.005 MODEL` | `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705.json` |
+| 2 | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df` | `h33-2-b2 PRUNEp3px R1; MASS +3765 next-ranked H19-5 dots >3px, 41419; pred +0.004 MODEL` (87 chars, as emitted) | `releases/…-b2d704df.json` + `registry/mass_r1_validation.json` |
+| 3, conditional | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPscarp1px-20261023-1944aaf5` (different mechanism) or `…-SNAPscarp2px-…-c003d7d7` (dose) or conserve — decided by the slot-2 receipt per `SLOT_PLAN.md` | `h33-2-b2 PRUNEp3px R1; SNAP <=1px to scarp+TMI/grav co-edge, spacing-locked, 100% of dots >3px; pred +0.003 MODEL` | `releases/…-1944aaf5.json` + `registry/snap_r1_scarp_validation.json` |
+
+**Before any upload (unchanged):** confirm the rolling-week balance, total slots, deadline and current `TOP_PUBLIC`
+(blank in the brief; the repo's `0.4413` is stale); rebuild privately
+(`python3 scripts/build_mass_r1_variants.py` — deterministic, SHA-pinned; `releases/*.tif` are gitignored and NOT
+in the repo) and match the recorded hashes (`r10plus` primary `b2d704df6727…`, zeros `fa18a8504766…`; `r10minus` primary
+`e56b0e5a…`, zeros `e01dd362…`; `r10swap` primary `20dc829f…`, zeros `93f52691…` — see each `releases/<id>.json`),
+then re-run `python3 scripts/validate_variant.py releases/<id>.tif releases/<id>-zeros.tif` on the actual bytes.
+Upload **one twin per slot**, then paste the portal receipt into `receipt_score`/`receipt_date`. A live `|Δ| < 0.01`
+is no evidence.
+
 ## Current session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; integrated queue — supersedes the slot order of every section below; all their prerequisites stand)
 
 **Three new candidates, one per preregistered arm; no slot was used and no submission was made.** Parent
