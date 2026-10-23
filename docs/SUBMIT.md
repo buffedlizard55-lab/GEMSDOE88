@@ -1,5 +1,31 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+## Current session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (this PR; **no slot candidate** — the queue below is unchanged)
+
+**Three new gate-clean candidates, all built from parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
+(re-derived and SHA-asserted `6f7ae705…`/`dc6f090d…` in-run after `R0` rebuilt byte-exactly, 15/15 pins
+verified). No slot was used and no submission was made.** Preregistered before any computation in
+`registry/preregistration_mass_r1.json`; the question was whether R0's mass curve survives removal of the
+`3 px` collar confound. It does: `−0.0074 / +0.0027 / −0.0036` on R1 versus `−0.0081 / +0.0029 / −0.0040`
+on R0 (max difference `0.00066`), so **MASS is closed on both parents** and none of these three files is
+queued for a slot. Blind off-catalogue SGMC `PROXY` (report-only, never a gate): parent `R1 0.096083`,
+`r1m10minus 0.088680`, `r1m10plus 0.098745`, `r1m10swap 0.092489`. Holdout proxy is structurally `0.000000`
+(`n = 22,663` withheld positives, IR-88-20/35). Every dot in all three files is `> 3 px` from the catalogue
+(`min d_cat 3.1623 px`, `0` dots `<= 3 px`); format gates PASS on the disk bytes
+(`registry/mass_r1_variant_validation.json`, 6/6 PASS, hardened `validate_variant.py`).
+
+| # | Exact name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | ≤140-char form note | SHA-256 primary / zeros | Status |
+|---|---|---|---|---|
+| — | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df` | `R1(PRUNEp3px); MASS +3765 next-ranked un-emitted dots d_cat>3px ->41419; pred -0.011 MODEL` | `b2d704df6727…81fdd93` / `fa18a8504766…bf369d30` | built + validated, **not queued** (`+0.0027` `< 0.01` floor) |
+| — | `…-MASSr1m10swap-20261023-20dc829f` | `R1(PRUNEp3px); MASS swap 3765 lowest for 3765 next-ranked, count fixed 37654; pred +0.006 MODEL` | `20dc829f271a…1586d880` / `93f526913384…bc398325` | built + validated, **not queued** (`−0.0036`) |
+| — | `…-MASSr1m10minus-20261023-e56b0e5a` | `R1(PRUNEp3px); MASS -3765 lowest exact-marginal dots 37654->33889; pred +0.002 MODEL` | `e56b0e5a5c37…6adf7682` / `e01dd362911e…73f3c162` | built + validated, **not queued** (`−0.0074`) |
+
+Rebuild (deterministic, fixed seed): `python3 scripts/build_mass_r1_variants.py`; the rasters are gitignored,
+so a fresh clone must regenerate them before any upload. Do **not** spend a slot on these files: their
+preregistered falsifiers fired and the only positive arm sits at a quarter of the evidence floor.
+
+---
+
 ## Current session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; integrated queue — supersedes the slot order of every section below; all their prerequisites stand)
 
 **Three new candidates, one per preregistered arm; no slot was used and no submission was made.** Parent
