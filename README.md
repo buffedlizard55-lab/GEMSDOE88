@@ -5,7 +5,8 @@
 - **Parent:** R0 `h33-h33-2-b2` (GEMSDOE32), 37,654 dots; rebuilt byte-exactly to SHA-256 `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9`.
 - **Best receipt:** none supplied. R0 `0.2778` remains **CLAIM**, not a receipt; the new PRUNE3 candidate has no organizer score.
 - **TOP_PUBLIC:** **UNSUPPLIED** — the human must provide a dated leaderboard value. **Slots left this week / total:** **UNSUPPLIED**.
-- **Built this session:** `h33-h33-2-b2-prune3-20261023-01d57649`, fixed-count PRUNE3 refill, 2,171 R0 dots changed (5.765655707%), **MODEL −0.003**; BUILT, not submitted.
+- **Built this session:** `h33-h33-2-b2-prune3-20261023-01d57649`, fixed-count PRUNE3 refill, 2,171 R0 dots changed (5.765655707%), **MODEL −0.003**; BUILT, not submitted. A concurrent branch added three MASS variants; all four pairs are reconciled in the ledger and no further variant is built here.
+- **Concurrent MASS status:** HOLD—the three artifacts retain a 2 px collar and do not pass the current 3 px non-PRUNE gate. See `IRREGULARITIES.md`.
 - **Next 3 slots:** (1) the built PRUNE3 falsifier only if the human accepts its predicted-negative information value; (2) proposed COLLAR-RELAX1, or PRUNE4 only after a `>=+0.01` PRUNE3 receipt; (3) proposed MARGINAL-CREDIT5. Slots 2–3 are not built. See `SLOT_PLAN.md` and `docs/SUBMIT.md`.
 
 > **READ THIS FIRST EVERY SESSION — PROJECT OPERATING BRIEF & UNMISTAKABLE STATUS**

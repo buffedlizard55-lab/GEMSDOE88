@@ -80,10 +80,12 @@ LEDGER_FIELDS = [
     "n_dots",
     "pct_changed",
     "sha256",
+    "sha256_zeros",
     "status",
     "predicted_change",
     "receipt_score",
     "receipt_date",
+    "description",
 ]
 
 
@@ -137,7 +139,8 @@ def known_hashes() -> set[str]:
     hashes = {expected for _, expected in PINS.values()}
     if LEDGER.is_file():
         with LEDGER.open(newline="", encoding="utf-8") as f:
-            hashes.update(row["sha256"] for row in csv.DictReader(f) if row.get("sha256"))
+            for row in csv.DictReader(f):
+                hashes.update(value for value in (row.get("sha256"), row.get("sha256_zeros")) if value)
     # Exact-hash dedupe only. No rank-correlation or overlap uniqueness gate.
     for directory in (DATA / "registry", ROOT / "submissions", ROOT / "docs" / "downloads", RELEASES):
         if not directory.is_dir():
@@ -405,10 +408,12 @@ def main() -> int:
                 "n_dots": R0_DOTS,
                 "pct_changed": f"{diff['pct_parent_dots_changed']:.9f}",
                 "sha256": nan_hash,
+                "sha256_zeros": zeros_hash,
                 "status": "BUILT",
                 "predicted_change": PREDICTED,
                 "receipt_score": "",
                 "receipt_date": "",
+                "description": "R0 PRUNE<=3px plus fixed-count H19 BFS refill; 2171 parent dots changed; not submitted.",
             }
         )
     print(f"BUILT {candidate_id}\nNAN {nan_hash}\nZEROS {zeros_hash}\nRECEIPT {receipt_path}", flush=True)

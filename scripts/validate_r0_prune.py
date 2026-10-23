@@ -75,19 +75,22 @@ def main() -> int:
     if len(matching) != 1:
         raise ValueError("ledger must contain exactly one row for the candidate")
     row = matching[0]
-    if row["sha256"] != primary["sha256"] or row["status"] != "BUILT":
+    if row["sha256"] != primary["sha256"] or row.get("sha256_zeros") != zeros["sha256"] or row["status"] != "BUILT":
         raise ValueError("ledger hash/status mismatch")
     if not np.isclose(float(row["pct_changed"]), diff["pct_parent_dots_changed"], rtol=0, atol=5e-10):
         raise ValueError("ledger percent-changed mismatch")
-    if sum(r["sha256"] == primary["sha256"] for r in rows) != 1:
-        raise ValueError("duplicate primary SHA-256 in ledger")
+    candidate_hashes = {primary["sha256"], zeros["sha256"]}
+    for other in rows:
+        if other["id"] != card["id"] and candidate_hashes & {other.get("sha256"), other.get("sha256_zeros")}:
+            raise ValueError("candidate hash duplicates another ledger row")
 
     # Historical exact-hash check only; never a similarity/overlap gate.
     historical = set()
-    for directory in (ROOT / "data" / "registry", ROOT / "submissions", ROOT / "docs" / "downloads"):
+    for directory in (ROOT / "data" / "registry", ROOT / "submissions", ROOT / "docs" / "downloads", RELEASES):
         if directory.is_dir():
             for path in directory.rglob("*.tif"):
-                historical.add(sha256_file(path))
+                if path not in (primary_path, zeros_path):
+                    historical.add(sha256_file(path))
     if primary["sha256"] in historical or zeros["sha256"] in historical:
         raise ValueError("candidate twin duplicates an accessible historical raster")
 
