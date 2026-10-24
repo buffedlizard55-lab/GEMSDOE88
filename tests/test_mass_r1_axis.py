@@ -109,7 +109,7 @@ def test_ledger_rows_are_complete_and_unique() -> None:
         assert "preregistered" in r["description"].lower()
         assert "SGMC" in r["description"]
         assert len(r["id"]) <= 140
-    shas = [r["sha256"] for r in _rows()] + [r["sha256_zeros"] for r in _rows()]
+    shas = [r["sha256"] for r in _rows()] + [r["sha256_zeros"] for r in _rows() if r["sha256_zeros"] != r["sha256"]]  # single-file de-novo rows: sha256_zeros == sha256 (no distinct NaN twin), count once
     shas = [s for s in shas if s]
     assert len(shas) == len(set(shas)), "duplicate SHA-256 in ledger"
 

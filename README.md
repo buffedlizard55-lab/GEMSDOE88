@@ -10,6 +10,9 @@
 > **Pages:** [Executive summary](docs/executive-summary.html) · [Site](docs/index.html) · [Why 0.2778 / hypotheses](research/session-20261024-audit-why-0.2778.md) · [IR-88-59](IRREGULARITIES.md)
 <!-- GATE-BANNER:END -->
 
+> ## ⛔ 2026-10-24 TILTZERO — NEW UNIQUE TIF, NEGATIVE, DO NOT SUBMIT (this session)
+> **New unique de-novo TIF (not a copy):** `docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif` (SHA-256 `5487d793…`, 37,654 binary dots, [0,1], 0 NaN, format-valid). HOLDOUT-DTI **0.055083** [0.046419,0.063081] (22,663 withheld, gems57-pooled-hide-v2) beats R0 0.004006 but **fails** the preregistered bar of beating shipped PROVCREST 0.076277; SGMC PROXY 0.0710 < R0 0.0961. Uniqueness worst sparse |ρ| 0.0168, overlap 0.3724; canary max 0.53056. Verdict **negative** in `registry/tiltzero_run_card.json` — download for audit only, **do not submit**. The OK-TO-SUBMIT file remains PROVCREST below. Agent spent **0** slots; ORGANIZER-CONFIRMED score: none. Why h33 scored a user-reported 0.2778 and the 5 ranked hypotheses for this session: `research/candidate-hypotheses-20261024-tiltzero.md`.
+
 ---
 
 ## Permanent User Prompt: Operational Requirements

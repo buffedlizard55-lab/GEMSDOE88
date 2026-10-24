@@ -1,0 +1,124 @@
+{
+  "file": "gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+  "sha256": "5487d7937c92dce12a87185b0b3ba7c800b78e655ecafd47fbdb41404d29f011",
+  "bytes": 146021,
+  "submission_name": "GEMSDOE88-TILTZERO-RANK-A2150EEB",
+  "note": "TILTZERO-rank de novo B9/3+B11/18 tilt0 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0551 vs R0 0.0040; UNSCORED",
+  "note_chars": 111,
+  "validator": {
+    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+    "bytes": 146021,
+    "sha256": "5487d7937c92dce12a87185b0b3ba7c800b78e655ecafd47fbdb41404d29f011",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+    "bytes": 146021,
+    "sha256": "5487d7937c92dce12a87185b0b3ba7c800b78e655ecafd47fbdb41404d29f011",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "2f39a484598382c93e90b46bc7f572b691af8bfb10c5ec88512c649d96257cd3",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "TILTZERO-CONCORD de-novo emission: coincident tilt-angle zero-crossings of organizer-provided training_features.tif magnetic field (Band 9 tmi_vg / Band 3 tmi_hg) and gravity field (Band 11 iso_grav_anom_vg / Band 18 iso_grav_anom_hg). Surface = geometric mean of percentile ranks of magnetic analytic signal sqrt(B3^2+B9^2), magnetic tilt-closeness exp(-(atan2(B9,B3)/0.15)^2), gravity analytic signal sqrt(B18^2+B11^2), gravity tilt-closeness exp(-(atan2(B11,B18)/0.15)^2), each percentile-ranked inside footprint. 1-D directional NMS pool on that surface, exactly 37,654 binary dots de novo at >=3.5 px mutual spacing and >3.0 px from catalogue (visible-only inside holdout folds). No Hessian crest (PROVCREST lane), no Bands 19/15, no external data, no catalogue-derived ranking.",
+    "winner_arm": "tiltzero_rank",
+    "holdout_winner_dti": 0.055082960044316454
+  }
+}
