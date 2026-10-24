@@ -1,0 +1,21 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "date_utc": "2026-10-24",
+  "frozen_before_experiment": true,
+  "lane_selection_caveat": "The user's 'single method paragraph below' is absent. This autonomous session selects only PHASE-88; do not interpret this as permission to relax the literal registry rule.",
+  "ranking": [
+    {"rank":1,"id":"PHASE-88","expected_dti_improvement":"unknown; might gain in covered basins but no empirical claim before test","cost":"medium; 19-band competition raster already hash-pinned in restore_inputs.py","layers":"provided training_features.tif RTP magnetic anomaly band 2; isostatic gravity anomaly band 13 (check raster tags before use)","physical_signature":"locally standardized, Gaussian-smoothed gravity/magnetic gradient directional disagreement, weighted by adjacent offset and gradient strength; orientation-agnostic cross-gradient determinant plus normalized dot product","off_catalogue_rationale":"a buried basement displacement may deflect magnetic boundaries away from gravity density interfaces while leaving no trace in a surface fault catalogue","non_fault_mimic":"unfaulted lithologic intrusive contacts, magnetic remanence, flight-line seam or gravity interpolation discontinuity","difference_from_repo":"misalignment of TWO field gradient vectors, not CGO co-edge agreement, MRR within-magnetic residual, RTP trough, radon, scarp or mapped-fault extrapolation"},
+    {"rank":2,"id":"RADIOMETRIC-RELIEF-QUADRATURE","expected_dti_improvement":"unknown; low due prior radiometric negatives","cost":"low; requires 19-band competition raster only","layers":"provided radiometric K/Th bands and detrended DEM band 12","physical_signature":"orientation-dependent quadrature of K/Th enrichment and relief curvature across ridge axes","off_catalogue_rationale":"alteration without a visible scarplet could mark a concealed fluid-flow structure","non_fault_mimic":"potassic tuff contact or soil-transport sorting","difference_from_repo":"quadrature, not K/Th antisymmetric step or anomaly count"},
+    {"rank":3,"id":"SHEAR-GRAVITY-DECOUPLING","expected_dti_improvement":"unknown; very uncertain due coarse geodetic strain","cost":"low; requires 19-band competition raster only","layers":"provided second invariant of strain and gravity slope","physical_signature":"nonlinear local contrast of surface strain ridge against perpendicular gravity boundary","off_catalogue_rationale":"newly active buried fault may affect strain where old mapped gravity contacts do not","non_fault_mimic":"regional strain inversion smoothing or unbroken lithological boundary","difference_from_repo":"strain/gravity angular decoupling, rather than raw strain weighted emission or gravity edge alone"}
+  ],
+  "selected":"PHASE-88",
+  "experiments_budget":3,
+  "holdout_seeds":[20,21],
+  "dot_budget":37654,
+  "preplacement_max_abs_rho":0.90,
+  "final_max_dot_overlap_3px":0.70,
+  "canary_max_symmetric_auc":0.90,
+  "promotion_rule":"positive paired 95% CI versus best on identical buffered folds AND literal all-registry uniqueness; selector handles actual slot separately",
+  "sources":["https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/","https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and","https://github.com/drivendataorg/gems-prize-reference-solution"],
+  "data_provenance_limit":"Restored owner GitHub mirror is SHA-pinned, NOT an independently authenticated organizer download. No new external data source is required."
+}

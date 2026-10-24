@@ -1,6 +1,12 @@
 # Competition submission guide (current decision: DO NOT SUBMIT)
 
-**Current candidate: KTH-88. Research download: YES. Competition submission: NO.** Its holdout is far below the stored comparable incumbent and the literal registry-overlap rule fails. No weekly slot has been used; no `ORGANIZER-CONFIRMED` score exists.
+## Latest PHASE-88 research artifact — download YES; submit NO
+
+[Download the TIFF](downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif) · [single-TIFF ZIP](downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.zip) · [machine audit](data/phase88_validation.json) · [run card](data/phase88_run_card.json). SHA-256: `28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b`. Archival name `GEMSDOE88-PHASE-D7D02AB4`; note (96/140): `RTP/gravity cross-gradient disagreement; 37654 dots; HOLDOUT-DTI 0.0531; UNSCORED; DO NOT SUBMIT`.
+
+**Automatic verdict: NOT OK TO SUBMIT.** Format tests pass, but HOLDOUT-DTI `0.053062` (95% CI `[0.046064, 0.060233]`, 22,893 withheld positives, `gems57-pooled-hide-v2`) is below the same-split incumbent, and the dot overlap is 0.9090 with a GEMSDOE87 raster and 1.0 with the dense 17GEMSDOE prior (>0.70). No contest slot was spent. To re-open the file and verify this status without manual inspection run `python scripts/restore_inputs.py --validation && python scripts/validate_phase88.py`. `--require-submit` deliberately exits 2. No organizer receipt is available. The following KTH-88 record is archived.
+
+**Archived candidate: KTH-88. Research download: YES. Competition submission: NO.** Its holdout is far below the stored comparable incumbent and the literal registry-overlap rule fails. No weekly slot has been used; no `ORGANIZER-CONFIRMED` score exists.
 
 - GeoTIFF: [`gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif`](downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif)
 - Single-TIFF ZIP: [`gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip`](downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip)
@@ -33,7 +39,7 @@ The official problem page defines the submission grid and [metric/format](https:
 python scripts/restore_inputs.py --validation
 python scripts/check_site.py
 python scripts/validate_kth88.py
-python scripts/validate_kth88.py --require-submit  # expected exit 2 for current KTH-88
+python scripts/validate_phase88.py --require-submit  # expected exit 2 for current PHASE-88
 python scripts/readiness.py
 python scripts/validate_current.py
 python scripts/validate_current.py --require-submit  # expected exit 2 today

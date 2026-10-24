@@ -26,22 +26,15 @@
   const banner = document.querySelector('[data-card-status]');
   if (banner) {
     try {
-      const response = await fetch('data/mag_psg_current_release.json', { cache: 'no-store' });
+      const response = await fetch('data/phase88_validation.json', { cache: 'no-store' });
       if (!response.ok) throw new Error('latest run validation unavailable');
       const data = await response.json();
-      // Fail closed: format-valid research artifact is downloadable; slot decision is separate.
-      // New MAG-PSG is format-valid (ok_to_submit true in sparse sense) but HOLDOUT negative.
-      if (data.format_valid === true && data.no_nan_inside === true && data.all_values_in_0_1 === true && data.crs_shape_transform_match === true) {
-        if (data.ok_to_submit === true && data.duplicate_sparse === false) {
-          banner.textContent = 'MAG-PSG · DOWNLOAD: YES · FORMAT-VALID (will pass portal [0,1] check) · scientific HOLD (holdout 0.0058 < 0.1879) — negative deliverable';
-        } else if (data.ok_to_download === true) {
-          banner.textContent = 'MAG-PSG · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT · see holdout/duplication gate';
-        } else {
-          banner.textContent = 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
-        }
-      } else {
-        banner.textContent = 'DO NOT SUBMIT · format validation failed';
-      }
+      // Fail closed. A locally valid research artifact must never be presented
+      // as slot-cleared or organizer-accepted, even if the old status.json is green.
+      banner.textContent = data.ok_to_download === true && data.ok_to_submit === false &&
+          data.local_format_audit?.ok === true && data.tif_and_single_member_zip_validated === true
+        ? 'PHASE-88 · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT · binding registry duplicate'
+        : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
     } catch (_) {
       banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';
     }
