@@ -18,7 +18,7 @@ The K/Th inputs are uncalibrated u8 indices, not measured elemental abundance. T
 ### Pass 2 — full tests and byte-level validators
 
 - This checkout lacks ignored template/registry inputs, so the local full suite was **277 passed, 36 skipped** (0 failed; 47 Rasterio pending-deprecation warnings). Input-dependent checks skip explicitly in this clean checkout. Local `scripts/validate_current.py` re-hashes KTH's saved TIFF/ZIP and agrees with the saved independent format audit; this is not a fresh grid/portal validation.
-- The already-merged PR #67 mainline workflow restored SHA-pinned validation inputs and reported **290 passed, 23 skipped**, with `scripts/validate_kth88.py` research-format validation, site, readiness, current-release and expected-negative slot checks passing. Those checks validate a research download, not portal acceptance. Fresh CI for this branch's merge reconciliation is still pending.
+- The already-merged PR #67 mainline workflow restored SHA-pinned validation inputs and reported **290 passed, 23 skipped**, with `scripts/validate_kth88.py` research-format validation, site, readiness, current-release and expected-negative slot checks passing. Those checks validate a research download, not portal acceptance. Fresh CI for this branch's merge reconciliation also passed: test run `40112495118` and preflight `40112498287` both succeeded.
 - `scripts/readiness.py` reports `BLOCKED`, not slot approval. `scripts/validate_release.py` is a historical MRR gate and is not the latest-candidate authority.
 - Final local site/current consistency check passed. `docs/status.json` and `docs/data/current_release.json` bind to the KTH hash `5c7f1cb7…c259fd7bf`.
 
