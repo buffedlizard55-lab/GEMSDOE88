@@ -1,9 +1,10 @@
-"""Fail-closed legacy schema gate and current canonical release status.
+"""Fail-closed legacy schema gate and latest-experiment site status.
 
-`assess` remains for the synthetic eligibility fixtures inherited from main.
-The live CLI status is derived from the independent TIFF/ZIP/witness validator,
-not the pre-experiment card that previously claimed no TIFF existed.
-Does not choose or spend weekly submission slots.
+`assess` remains for synthetic eligibility fixtures inherited from main.
+The live status follows the landing page's latest MDPS-88 artifact and binds
+its run card, gate, audit, and on-disk TIFF hash. The legacy PHASE-88
+``current_release.json`` record is not used as the latest-experiment pointer.
+This module does not choose or spend weekly submission slots.
 """
 from __future__ import annotations
 import hashlib
@@ -97,29 +98,72 @@ def verify_template(root=ROOT):
 
 
 def current_status(root=ROOT):
-    """Represent the actual research artifact. A format PASS is not slot approval."""
-    # Derive the site's current status from the same canonical artifact and
-    # fail-closed gate used by validate_current.py. `validate_release.py` is a
-    # historical MRR-BPR audit and must not silently become the live feed.
-    from validate_current import release_report
-
-    report = release_report(root)
+    """Report the landing page's latest experiment, never a compatibility archive."""
+    card = json.loads((root / 'registry/mdps88_run_card.json').read_text())
+    gate = json.loads((root / 'docs/data/mdps88-gate.json').read_text())
+    audit = json.loads((root / 'docs/data/mdps88_validation.json').read_text())
+    artifact = root / card['raster']['file']
     problems = []
-    if report['holdout_dti'] < report['incumbent_best_dti']:
-        problems.append('HOLDOUT: candidate point estimate is below the stored incumbent')
-    if report['duplicate'] or report['literal_registry_overlap_3px'] > 0.70:
-        problems.append('UNIQUENESS: literal registry overlap exceeds 0.70')
-    if not report['format_valid']:
-        problems.append('FORMAT: saved-byte validation failed')
+    exists = artifact.is_file()
+    digest = hashlib.sha256(artifact.read_bytes()).hexdigest() if exists else None
+    card_digest = card['raster']['sha256']
+    integrity_ok = (exists and digest == card_digest == gate.get('sha256')
+                    == audit.get('sha256') and audit.get('audit_passed') is True)
+    if not integrity_ok:
+        problems.append('FORMAT: current artifact or independent byte-audit hash is missing/mismatched')
+    checks = audit.get('checks', {})
+    format_flags = ('single_band_float32', 'grid_matches_sample', 'nodata_is_none',
+                    'all_finite', 'range_0_1', 'zero_dots_on_catalogue',
+                    'zero_dots_outside_footprint', 'zip_one_member',
+                    'zip_member_bytes_identical', 'zip_sha_matches_card')
+    format_ok = integrity_ok and all(checks.get(flag) is True for flag in format_flags)
+    if gate.get('ok_to_download') is not True or audit.get('ok_to_download') is not True or not format_ok:
+        problems.append('FORMAT: research-download validation is not passing')
+    holdout = card.get('holdout', {})
+    far = holdout.get('far', {})
+    paired = far.get('paired_vs_base283', {})
+    far_ci = far.get('ci95')
+    holdout_ok = (holdout.get('evidence_class') == 'HOLDOUT-DTI'
+                  and holdout.get('evaluator_version') == 'gems57-pooled-hide-v2'
+                  and finite(far.get('dti')) and isinstance(far_ci, list) and len(far_ci) == 2
+                  and all(finite(x) for x in far_ci) and 0 <= far_ci[0] <= far['dti'] <= far_ci[1] <= 1
+                  and finite(far.get('withheld_positive_pixels')) and far['withheld_positive_pixels'] > 0)
+    if not holdout_ok:
+        problems.append('HOLDOUT: latest card lacks a valid labelled far holdout result and confidence interval')
+    stored_best = holdout.get('stored_reference_unpaired', {}).get('dti')
+    if not finite(stored_best) or far.get('dti', 0) <= stored_best:
+        problems.append('HOLDOUT: far candidate does not exceed stored holdout best')
+    ci = paired.get('ci95')
+    paired_ci_valid = (isinstance(ci, list) and len(ci) == 2 and all(finite(x) for x in ci)
+                       and ci[0] <= ci[1])
+    paired_ok = paired_ci_valid and ci[0] > 0
+    if not paired_ok:
+        problems.append('HOLDOUT: paired improvement over the fold-fair control is not established')
+    uniqueness = card.get('correlation_overlap_vs_registry', {})
+    rho = uniqueness.get('surface_preplacement_worst_abs_spearman')
+    overlap = uniqueness.get('worst_literal_forward_overlap_3px')
+    # Binding user rule is literal: do not replace a positive-everywhere prior
+    # with a top-k/like-for-like reinterpretation. Keep that diagnostic separate.
+    if not finite(rho) or abs(rho) > .90:
+        problems.append('UNIQUENESS: pre-placement surface rank-correlation exceeds 0.90 or is missing')
+    if not finite(overlap) or overlap > .70:
+        problems.append('UNIQUENESS: literal final-dot overlap exceeds 0.70 or is missing')
     return {
-        'evidence_schema_complete': bool(report['format_valid']),
+        'latest_experiment': card.get('run_id'),
+        'evidence_schema_complete': bool(format_ok and holdout_ok and paired_ci_valid and finite(rho) and finite(overlap)),
         'approved_for_weekly_slot': False,
         'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
         'problems': problems,
-        'ok_to_download_for_research': bool(report['research_download_ok']),
-        'ok_to_submit': False,  # selector has never approved a weekly slot
-        'raster_sha256': report['file_sha256'],
-        'policy': 'binding-literal-all-registry-v1',
+        'ok_to_download_for_research': bool(format_ok and gate.get('ok_to_download') is True),
+        'ok_to_submit': False,  # no candidate has selector authorization
+        'raster_sha256': digest,
+        'evidence_class': holdout.get('evidence_class'),
+        'holdout_evaluator': holdout.get('evaluator_version'),
+        'holdout_far_dti': far.get('dti'),
+        'holdout_far_ci95': far.get('ci95'),
+        'withheld_far_positive_pixels': far.get('withheld_positive_pixels'),
+        'literal_registry_overlap_3px': uniqueness.get('worst_literal_forward_overlap_3px'),
+        'policy': 'literal-user-lane-rule-v1',
     }
 
 

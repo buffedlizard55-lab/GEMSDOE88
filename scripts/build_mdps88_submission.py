@@ -32,6 +32,12 @@ ADHR_FAR_STORED = 0.11478
 LANE_CAP = 0.66
 
 
+def strict_literal_overlap_pass(decision: dict, maximum: float = 0.70) -> bool:
+    """Apply the prompt's literal overlap gate, including dense priors."""
+    value = decision.get("worst_literal_forward_overlap")
+    return isinstance(value, (int, float)) and math.isfinite(value) and 0.0 <= value <= maximum
+
+
 def sha256(p: Path) -> str:
     h = hashlib.sha256()
     with p.open("rb") as f:
@@ -236,7 +242,12 @@ def main():
     sci_ok = bool(gate_far_paired and gate_far_adhr and gate_all_base and gate_canary)
     uniq_ok = bool(not decision["duplicate"])
     surface_dup = bool(decision0["worst_abs_spearman"] is not None and decision0["worst_abs_spearman"] > 0.90)
-    ok_submit_candidate = bool(sci_ok and uniq_ok and not surface_dup)
+    # Preserve the user's literal 70% rule even when the optional v3 diagnostic
+    # uses like-for-like support for dense rasters. A positive-everywhere prior
+    # makes this gate fail for every nonempty candidate; do not silently exempt it.
+    literal_pass = strict_literal_overlap_pass(decision)
+    literal_duplicate = not literal_pass
+    ok_submit_candidate = bool(sci_ok and uniq_ok and not surface_dup and not literal_duplicate)
     stem_cfg = "mix" if cand_name == "mdps_mix" else "far"
     base_name = f"gems88-mdps88-{stem_cfg}-{int(emitted.sum())}dots-20261024"
     provisional = base_name + "-zeros" + ("" if ok_submit_candidate else "-DO-NOT-SUBMIT")
@@ -307,6 +318,8 @@ def main():
             "worst_literal_file": decision["worst_literal_forward_overlap_file"],
             "space_filling_priors": decision["space_filling_files"],
             "duplicate": decision["duplicate"],
+            "literal_duplicate_under_prompt": literal_duplicate,
+            "literal_binding_overlap_threshold": 0.70,
             "surface_preplacement_worst_abs_spearman": decision0["worst_abs_spearman"],
             "surface_preplacement_duplicate_by_rho": surface_dup,
             "lane_cap_repairs": repair_log,
@@ -330,6 +343,7 @@ def main():
         "gates": {"canary_le_0.90": gate_canary, "far_paired_ci_gt_0_vs_base283": gate_far_paired,
                   "far_gt_stored_adhr_0.11478_unpaired": gate_far_adhr,
                   "overall_ge_base283": gate_all_base, "uniqueness_v3_pass": uniq_ok,
+                  "strict_literal_uniqueness_pass": bool(not literal_duplicate),
                   "surface_preplacement_pass": bool(not surface_dup),
                   "format_all_checks_passed": bool(v["all_checks_passed"]),
                   "zip_one_member_bytes_match": bool(zip_member_ok and zip_bytes_match)},
@@ -338,7 +352,8 @@ def main():
         "approved_for_weekly_slot": False,
         "verdict": "promote" if ok_to_submit else "negative",
         "verdict_reason": ("all frozen gates pass; human selector still required before any slot"
-                           if ok_to_submit else "one or more frozen gates failed (see gates); do not spend a weekly slot"),
+                           if ok_to_submit else ("literal 3-px overlap exceeds 0.70; " if literal_duplicate else "")
+                           + "one or more frozen gates failed (see gates); do not spend a weekly slot"),
         "organizer_confirmed_score": None,
         "slots_used_by_this_session": 0,
         "seconds": round(time.monotonic() - t0, 1),

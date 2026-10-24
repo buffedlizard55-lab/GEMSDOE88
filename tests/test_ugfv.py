@@ -88,7 +88,7 @@ def test_dinkelbach_knapsack_halo_constraints_enforced():
 
 
 def test_run_card_four_way_parity_and_audit_invariants():
-    """The canonical card now describes the current MRR negative deliverable."""
+    """The immutable MRR card stays historical while the feed follows MDPS-88."""
     paths = [
         ROOT / "registry/run_card.json",
         ROOT / "docs/data/run-card.json",
@@ -133,12 +133,15 @@ def test_run_card_four_way_parity_and_audit_invariants():
     # record (MDPS-88 since 2026-10-24; KTH-era current_release.json is kept
     # as that candidate's historical release record), while the four-way MRR
     # card remains immutable history.
+    from scripts.readiness import current_status
+    status = current_status(ROOT)
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
     current_doc = json.loads((ROOT / "docs/data/mdps88-gate.json").read_text())
-    assert status_doc["raster_sha256"] == current_doc["sha256"]
-    assert status_doc["raster_sha256"] != card["raster_sha256"]
-    assert status_doc["ok_to_submit"] is False
-    assert status_doc["ok_to_download_for_research"] is True
+    assert status["raster_sha256"] == status_doc["raster_sha256"] == current_doc["sha256"]
+    assert status["raster_sha256"] != card["raster_sha256"]
+    assert status["ok_to_submit"] is False and status["status"] == "BLOCKED"
+    assert status["ok_to_download_for_research"] is True
+    assert any(p.startswith("UNIQUENESS:") for p in status["problems"])
 
     tif_path = ROOT / card["artifact"]
     zip_path = ROOT / card["zip_artifact"]

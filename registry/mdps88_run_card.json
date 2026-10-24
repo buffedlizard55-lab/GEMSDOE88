@@ -146,7 +146,10 @@
   "surface_preplacement_duplicate_by_rho": false,
   "lane_cap_repairs": [],
   "scope_limit": "restored registry rasters (18 pinned + family) + tracked docs/downloads + releases tifs on disk this session; sibling rasters not restored are NOT covered",
-  "rows_file": "evidence/mdps88_uniqueness_20261024.json"
+  "rows_file": "evidence/mdps88_uniqueness_20261024.json",
+  "literal_duplicate_under_prompt": true,
+  "literal_binding_overlap_threshold": 0.7,
+  "literal_binding_failure_reason": "1.0 of final dots are within 3 px of dense_17gemdoe.tif, which is positive across the full footprint; the lane instruction has no dense-prior exemption."
  },
  "raster": {
   "file": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
@@ -238,13 +241,14 @@
   "uniqueness_v3_pass": true,
   "surface_preplacement_pass": true,
   "format_all_checks_passed": true,
-  "zip_one_member_bytes_match": true
+  "zip_one_member_bytes_match": true,
+  "strict_literal_uniqueness_pass": false
  },
  "ok_to_download": true,
  "ok_to_submit": false,
  "approved_for_weekly_slot": false,
  "verdict": "negative",
- "verdict_reason": "one or more frozen gates failed (see gates); do not spend a weekly slot",
+ "verdict_reason": "negative: paired HOLDOUT-DTI improvement is inconclusive and below the stored holdout reference; the literal lane uniqueness rule also fails because 100% of final dots are within 3 px of the positive-everywhere dense_17gemdoe registry raster. Research download only.",
  "organizer_confirmed_score": null,
  "slots_used_by_this_session": 0,
  "seconds": 122.1

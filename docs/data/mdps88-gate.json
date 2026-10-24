@@ -10,11 +10,12 @@
  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
  "blocking_reasons": [
   "HOLDOUT far paired 95% CI crosses zero vs fold-fair control (HOLDOUT-DTI delta +0.0036 [-0.0060,+0.0128], gems57-pooled-hide-v2, 10791 far withheld positives)",
-  "HOLDOUT far 0.0727 below stored same-fold ADHR far 0.11478 (unpaired reference) and overall 0.0667 below control 0.1085 (22893 withheld positives)"
+  "HOLDOUT far 0.0727 below stored same-fold ADHR far 0.11478 (unpaired reference) and overall 0.0667 below control 0.1085 (22893 withheld positives)",
+  "UNIQUENESS: literal lane rule fails; 100% of final dots are within 3 px of dense_17gemdoe.tif (positive across the full footprint; no dense-prior exemption)."
  ],
  "passing": [
   "leakage canary max symmetric AUC 0.5948 <= 0.90 (44 features)",
-  "uniqueness v3: 44 rasters, worst excess 3px overlap 0.226, worst |Spearman| 0.106, duplicate=false",
+  "Non-binding v3 sparse/like-for-like diagnostic: 44 rasters, excess 3px overlap 0.226 and |Spearman| 0.106; this does not pass the literal user lane rule, which fails at 1.0 overlap with dense_17gemdoe.tif.",
   "format: independent audit all checks pass; values finite in [0,1]; CRS/shape/transform match sample; one-member ZIP byte-identical"
  ],
  "submission_name_archival": "GEMSDOE88-MDPS88-MIX-20261024",

@@ -1,5 +1,7 @@
 # Remaining work, blockers and access needed — after MDC-88 (2026-10-24)
 
+> **Supersession note (2026-10-24 multipass review):** The proposed H-QTS work below is a historical next-step handoff, not authorization to switch the current method lane. The prompt does not include the promised single-method paragraph; the full feature stack is absent in a clean checkout; and the literal no-dense-exemption uniqueness rule blocks every nonempty candidate at 1.0 overlap with `dense_17gemdoe.tif`. The earlier statement that `registry/kdmc_gate.json` is `ok_to_submit: true` is specific to a different gate interpretation and is not sufficient for current submission clearance. Do not promote MDC-88 or start H-QTS until the lane/data contract and uniqueness policy are explicitly resolved. See [`repo-review-20261024-multipass.md`](repo-review-20261024-multipass.md).
+
 ## Immediate next steps (in order)
 
 1. **Run H-QTS** (`research/candidate-hypotheses-20261024-mdc88.md`, rank 1): decoupled
