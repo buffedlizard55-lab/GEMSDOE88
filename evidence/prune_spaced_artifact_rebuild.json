@@ -1,0 +1,100 @@
+{
+  "schema": "gems88.prune-spaced-artifact-rebuild.v1",
+  "created_utc": "2026-10-24T05:27:35Z",
+  "purpose": "Recreate the two ledgered spacing-locked PRUNE rasters that are absent from this checkout so the slot queue is executable. No new experiment, no ledger edit, no slot.",
+  "git_sha": "256f86281403d7dedf7aa04d7ad8da0c0f077ae7",
+  "manifest": {
+    "path": "registry/data_manifest.json",
+    "verified_input_count": 15,
+    "all_manifest_inputs_verified": true
+  },
+  "parent": {
+    "id": "h33-h33-2-b2",
+    "n_dots": 37654,
+    "zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "byte_exact": true
+  },
+  "source_support_pixels": {
+    "anc_h19_5": 121131,
+    "anc_h19_4": 123779,
+    "anc_h16_1": 123939
+  },
+  "leakage_canaries": {
+    "passed": true,
+    "max": 0.56925
+  },
+  "arms": {
+    "p3space35": {
+      "ledger_id": "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b",
+      "sha256": "49fff49b03c47d7ac3822df185f1efd55b0b30855133360689754ce85167a61a",
+      "sha256_zeros": "e0b9d59b765a198aa5327bb99bddf09fec52e2806410a403b63ccce2d204824e",
+      "expected_sha256": "49fff49b03c47d7ac3822df185f1efd55b0b30855133360689754ce85167a61a",
+      "expected_sha256_zeros": "e0b9d59b765a198aa5327bb99bddf09fec52e2806410a403b63ccce2d204824e",
+      "byte_exact": true,
+      "n_dots": 37654,
+      "collar_px": 3.0,
+      "spacing_px": 3.5,
+      "n_removed": 2171,
+      "n_added": 2171,
+      "min_catalogue_distance_px": 3.1623,
+      "refill_spacing_pool_cells": 6632,
+      "refill_min_nn_px": null,
+      "file_nan": "releases/h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b.tif",
+      "file_zeros": "releases/h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b-zeros.tif",
+      "form_note": "R0 h33-2-b2; PRUNE<=300m +2171 refill >=3.5px spaced, N 37654; pred +0.007 MODEL",
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      }
+    },
+    "p4space35": {
+      "ledger_id": "h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182",
+      "sha256": "07bd8182ec4d542aa127601febb2eb37b1458885bce1941593bf846b85f4bb2a",
+      "sha256_zeros": "fb7ee110c9ac96a32e53f7d9558bade00d6244f4b5622e35eab83264646e3766",
+      "expected_sha256": "07bd8182ec4d542aa127601febb2eb37b1458885bce1941593bf846b85f4bb2a",
+      "expected_sha256_zeros": "fb7ee110c9ac96a32e53f7d9558bade00d6244f4b5622e35eab83264646e3766",
+      "byte_exact": true,
+      "n_dots": 37654,
+      "collar_px": 4.0,
+      "spacing_px": 3.5,
+      "n_removed": 3825,
+      "n_added": 3825,
+      "min_catalogue_distance_px": 4.1231,
+      "refill_spacing_pool_cells": 6427,
+      "refill_min_nn_px": null,
+      "file_nan": "releases/h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182.tif",
+      "file_zeros": "releases/h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182-zeros.tif",
+      "form_note": "R0 h33-2-b2; PRUNE<=400m +3825 refill >=3.5px spaced, N 37654; pred +0.002 MODEL",
+      "gates": {
+        "crs_epsg_32611": true,
+        "shape_3730x3292": true,
+        "transform_match": true,
+        "dtype_float32": true,
+        "band_count_1": true,
+        "values_in_0_1": true,
+        "no_nan_inside_footprint": true,
+        "nan_outside_footprint": true,
+        "zeros_fallback_valid": true,
+        "zero_catalogue_mass": true,
+        "reread_from_disk_verified": true
+      }
+    }
+  },
+  "all_byte_exact": true,
+  "hardened_validator": {
+    "out": "registry/prune_spaced_rebuild_validation.json",
+    "returncode": 0
+  },
+  "no_submission": true,
+  "slots_used": 0
+}
