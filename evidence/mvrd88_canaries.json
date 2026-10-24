@@ -1,0 +1,659 @@
+{
+  "schema": "gems88.leakage_canaries.v2",
+  "method": "Single-feature symmetric ROC AUC across Seed-20 whole-component withheld positives vs 8x off-catalogue negatives inside active scored regions",
+  "threshold": 0.9,
+  "features_tested": 92,
+  "mvrd_features_tested": 85,
+  "adhr_features_tested": 67,
+  "max_symmetric_auc": 0.771627,
+  "all_pass": true,
+  "passed": true,
+  "features": [
+    {
+      "feature": "rtp_grad_200m",
+      "roc_auc": 0.537238,
+      "symmetric_auc": 0.537238,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "rtp_grad_800m",
+      "roc_auc": 0.539435,
+      "symmetric_auc": 0.539435,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "grav_grad_200m",
+      "roc_auc": 0.528601,
+      "symmetric_auc": 0.528601,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "grav_grad_800m",
+      "roc_auc": 0.524835,
+      "symmetric_auc": 0.524835,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "aligned_dip_edge_300m",
+      "roc_auc": 0.52963,
+      "symmetric_auc": 0.52963,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "aligned_dip_edge_1000m",
+      "roc_auc": 0.514049,
+      "symmetric_auc": 0.514049,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "dip_grav_step_60deg",
+      "roc_auc": 0.527494,
+      "symmetric_auc": 0.527494,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "dip_mag_step_60deg",
+      "roc_auc": 0.530877,
+      "symmetric_auc": 0.530877,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "dip_grav_vg_60deg",
+      "roc_auc": 0.518827,
+      "symmetric_auc": 0.518827,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "dip_cond_edge_60deg",
+      "roc_auc": 0.520005,
+      "symmetric_auc": 0.520005,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "cond_surf_raw",
+      "roc_auc": 0.480172,
+      "symmetric_auc": 0.519828,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "cond_edge_300m",
+      "roc_auc": 0.519708,
+      "symmetric_auc": 0.519708,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "cond_grav_xgrad",
+      "roc_auc": 0.518959,
+      "symmetric_auc": 0.518959,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "iso_grav_hg_signed",
+      "roc_auc": 0.490677,
+      "symmetric_auc": 0.509323,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "iso_grav_vg",
+      "roc_auc": 0.514638,
+      "symmetric_auc": 0.514638,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "tmi_hg_log",
+      "roc_auc": 0.529821,
+      "symmetric_auc": 0.529821,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "tmi_vg",
+      "roc_auc": 0.486032,
+      "symmetric_auc": 0.513968,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mag_tc",
+      "roc_auc": 0.470499,
+      "symmetric_auc": 0.529501,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "depth_to_base_log",
+      "roc_auc": 0.525332,
+      "symmetric_auc": 0.525332,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "piedmont_transition",
+      "roc_auc": 0.545369,
+      "symmetric_auc": 0.545369,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "det_elev",
+      "roc_auc": 0.51416,
+      "symmetric_auc": 0.51416,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "det_elev_slope",
+      "roc_auc": 0.564595,
+      "symmetric_auc": 0.564595,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "det_elev_curv",
+      "roc_auc": 0.543564,
+      "symmetric_auc": 0.543564,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "geod_strain_2ndinv",
+      "roc_auc": 0.566898,
+      "symmetric_auc": 0.566898,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "geod_transtension",
+      "roc_auc": 0.541508,
+      "symmetric_auc": 0.541508,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "seismic_prox",
+      "roc_auc": 0.462961,
+      "symmetric_auc": 0.537039,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "probe2m_dab_local",
+      "roc_auc": 0.524258,
+      "symmetric_auc": 0.524258,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "probe2m_dab_reg",
+      "roc_auc": 0.493733,
+      "symmetric_auc": 0.506267,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "paleo_sinter_prox",
+      "roc_auc": 0.476453,
+      "symmetric_auc": 0.523547,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "well_temp_anom",
+      "roc_auc": 0.494696,
+      "symmetric_auc": 0.505304,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "well_geotherm_qtz",
+      "roc_auc": 0.504039,
+      "symmetric_auc": 0.504039,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "hydro_upslope_feeder",
+      "roc_auc": 0.52866,
+      "symmetric_auc": 0.52866,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "volcanic_vent_prox",
+      "roc_auc": 0.490209,
+      "symmetric_auc": 0.509791,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "rad_k_over_th",
+      "roc_auc": 0.481532,
+      "symmetric_auc": 0.518468,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mag_demag_trough",
+      "roc_auc": 0.485924,
+      "symmetric_auc": 0.514076,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "lidar_has_cov",
+      "roc_auc": 0.532191,
+      "symmetric_auc": 0.532191,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "lidar_scarp_dipole",
+      "roc_auc": 0.58939,
+      "symmetric_auc": 0.58939,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "lidar_scarp_coh",
+      "roc_auc": 0.547718,
+      "symmetric_auc": 0.547718,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "topo10_slope_p90",
+      "roc_auc": 0.570001,
+      "symmetric_auc": 0.570001,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "topo10_curv_prof",
+      "roc_auc": 0.58537,
+      "symmetric_auc": 0.58537,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "topo10_hs_lineament",
+      "roc_auc": 0.577504,
+      "symmetric_auc": 0.577504,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "chi_step_max",
+      "roc_auc": 0.499735,
+      "symmetric_auc": 0.500265,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "ksn_jump_norm",
+      "roc_auc": 0.504248,
+      "symmetric_auc": 0.504248,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "pluvial_shoreline_pen",
+      "roc_auc": 0.565247,
+      "symmetric_auc": 0.565247,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mag_remanence_diff",
+      "roc_auc": 0.511981,
+      "symmetric_auc": 0.511981,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mag_remanence_grad_300m",
+      "roc_auc": 0.527981,
+      "symmetric_auc": 0.527981,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_vg_regional_resid",
+      "roc_auc": 0.514877,
+      "symmetric_auc": 0.514877,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mag_analytic_signal_log",
+      "roc_auc": 0.529812,
+      "symmetric_auc": 0.529812,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mag_tilt_contact_shallow",
+      "roc_auc": 0.512525,
+      "symmetric_auc": 0.512525,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_demag_on_grav_step",
+      "roc_auc": 0.511857,
+      "symmetric_auc": 0.511857,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "dip_analytic_signal_60deg",
+      "roc_auc": 0.530799,
+      "symmetric_auc": 0.530799,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "lidar_monoclinal_polarity",
+      "roc_auc": 0.579937,
+      "symmetric_auc": 0.579937,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "lidar_cross_scarp_jump",
+      "roc_auc": 0.592133,
+      "symmetric_auc": 0.592133,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "lidar_grav_strike_align",
+      "roc_auc": 0.511757,
+      "symmetric_auc": 0.511757,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "topo10_aspect_coherence",
+      "roc_auc": 0.492294,
+      "symmetric_auc": 0.507706,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "topo10_bajada_scarp_index",
+      "roc_auc": 0.604861,
+      "symmetric_auc": 0.604861,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "topo10_steep_concentration",
+      "roc_auc": 0.602882,
+      "symmetric_auc": 0.602882,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "tectonic_knickzone_power",
+      "roc_auc": 0.55339,
+      "symmetric_auc": 0.55339,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "chi_divide_asymmetry",
+      "roc_auc": 0.518701,
+      "symmetric_auc": 0.518701,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "rad_u_th_redox",
+      "roc_auc": 0.550051,
+      "symmetric_auc": 0.550051,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "rad_redox_clay_xgrad",
+      "roc_auc": 0.527002,
+      "symmetric_auc": 0.527002,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "transtension_grav_lock",
+      "roc_auc": 0.502872,
+      "symmetric_auc": 0.502872,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "d",
+      "roc_auc": 0.245799,
+      "symmetric_auc": 0.754201,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "d_perp",
+      "roc_auc": 0.239501,
+      "symmetric_auc": 0.760499,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "d_par_abs",
+      "roc_auc": 0.411546,
+      "symmetric_auc": 0.588454,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "side",
+      "roc_auc": 0.469568,
+      "symmetric_auc": 0.530432,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "log_len",
+      "roc_auc": 0.411038,
+      "symmetric_auc": 0.588962,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "sin2",
+      "roc_auc": 0.490088,
+      "symmetric_auc": 0.509912,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "cos2",
+      "roc_auc": 0.505147,
+      "symmetric_auc": 0.505147,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "coherence",
+      "roc_auc": 0.40728,
+      "symmetric_auc": 0.59272,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "density",
+      "roc_auc": 0.55102,
+      "symmetric_auc": 0.55102,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "sin2d",
+      "roc_auc": 0.432282,
+      "symmetric_auc": 0.567718,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "cos2d",
+      "roc_auc": 0.4186,
+      "symmetric_auc": 0.5814,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "sense_sgn",
+      "roc_auc": 0.488389,
+      "symmetric_auc": 0.511611,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "sense_side",
+      "roc_auc": 0.492456,
+      "symmetric_auc": 0.507544,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "host_bend_turn",
+      "roc_auc": 0.524812,
+      "symmetric_auc": 0.524812,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "host_bend_asym",
+      "roc_auc": 0.504296,
+      "symmetric_auc": 0.504296,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "scarp_rel_cos2",
+      "roc_auc": 0.582236,
+      "symmetric_auc": 0.582236,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "d2",
+      "roc_auc": 0.228373,
+      "symmetric_auc": 0.771627,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "relay_ratio",
+      "roc_auc": 0.410259,
+      "symmetric_auc": 0.589741,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "relay_facing",
+      "roc_auc": 0.616382,
+      "symmetric_auc": 0.616382,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "two_host_strike_cos2",
+      "roc_auc": 0.52675,
+      "symmetric_auc": 0.52675,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "superposed_log_len2",
+      "roc_auc": 0.487003,
+      "symmetric_auc": 0.512997,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "sense_transition",
+      "roc_auc": 0.523814,
+      "symmetric_auc": 0.523814,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "d_over_w",
+      "roc_auc": 0.264845,
+      "symmetric_auc": 0.735155,
+      "threshold": 0.9,
+      "pass": true
+    }
+  ],
+  "mgc_baseline_features": [
+    {
+      "feature": "mgc::rtp",
+      "roc_auc": 0.524263,
+      "symmetric_auc": 0.524263,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mgc::iso_grav_anom",
+      "roc_auc": 0.484095,
+      "symmetric_auc": 0.515905,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mgc::depth_to_base_surf",
+      "roc_auc": 0.517851,
+      "symmetric_auc": 0.517851,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mgc::log_rtp_edge",
+      "roc_auc": 0.52235,
+      "symmetric_auc": 0.52235,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mgc::log_gravity_edge",
+      "roc_auc": 0.530423,
+      "symmetric_auc": 0.530423,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mgc::edge_alignment",
+      "roc_auc": 0.508154,
+      "symmetric_auc": 0.508154,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mgc::joint_edge",
+      "roc_auc": 0.532936,
+      "symmetric_auc": 0.532936,
+      "threshold": 0.9,
+      "pass": true
+    }
+  ]
+}
