@@ -428,3 +428,15 @@ canonical producer so CI's reproducibility check is meaningful. The latest MDPS 
 continues to use its explicitly named validation/run-card files; neither record permits
 submission. Historical root `run_card.json` still contains older promote/receipt claims;
 these are not current authorization and were not verified as organizer receipts here.
+
+### IR-88-86 integration pass
+
+Main advanced with concurrent IBL-88 while PR #79 was being checked. Preserved all named
+IBL cards, experiments and TIFF/ZIP artifacts and linked its research download on both
+pages, without its unsupported uniqueness exemption. The merge had overwritten the
+historical schema-specific root/alias cards with a different IBL schema, breaking ten
+existing tests and validator byte parity (some aliases also referenced nonexistent
+pre-rename filenames). Restored those historical aliases from the pre-integration commit;
+IBL remains available under its explicit `ibl88_run_card.json` names. No experimental
+results were discarded or reclassified as an organizer score. Re-ran verification after
+integration, not merely the pre-merge code.

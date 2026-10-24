@@ -7,11 +7,13 @@ Read [PROMPT.md](PROMPT.md) and this notice at every session start. The standing
 
 **IR-88-86 correction:** MDPS-88's prior uniqueness PASS was incorrect under the requested rule. The shared template v3 gate now uses literal overlap for all callers; chance correction remains diagnostic only. Existing historical outputs are not new scores or authorizations. Automatically reproduce with `python scripts/restore_inputs.py --validation`, then `python scripts/audit_literal_protocol.py` and `python scripts/validate_mdps88.py --require-submit` (expected exit 2).
 
+**Concurrent merge:** IBL-88 arrived during this review. Its [research TIFF](docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif) and [historical card](registry/ibl88_run_card.json) are preserved; DO NOT SUBMIT. The universal literal blocker also applies to that candidate. This audit independently revalidated MDPS, not IBL scientific performance.
+
 ---
 
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
-> ## ⛔ Latest experiment (merged after PHASE-88): MDPS-88 — format-valid, literal-duplicate TIF; OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
+> ## ⛔ Audited experiment (parallel IBL merge retained): MDPS-88 — format-valid, literal-duplicate TIF; OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
 > [⬇ Download the MDPS-88 GeoTIFF (research only)](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [one-file ZIP](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON run card](registry/mdps88_run_card.json) · [independent audit](docs/data/mdps88_validation.json) · [executive submission guide](docs/executive-summary.html).
 > **Name (archival):** `GEMSDOE88-MDPS88-MIX-20261024` · **Note (106/140):** `MDPS-88 matched-domain physics mix, 29742 dots; HOLDOUT far 0.0727 overall 0.0667; UNSCORED; DO NOT SUBMIT` · **SHA-256:** `bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd`.
 > 29,742 de-novo dots (not a copy/subset of any prior: exact-pixel overlap vs H33 1.9%; worst chance-corrected 3 px excess 0.226, |ρ| 0.106 over 44 priors; literal 1.0 only vs the space-filling witness). All-finite `[0,1]` zeros encoding; independent byte audit PASS (`scripts/validate_mdps88.py`, `--require-submit` exits 2). **Blocked by frozen scientific gates:** HOLDOUT-DTI far `0.0727 [0.0591,0.0863]`, paired Δ vs fold-fair control `+0.0036 [−0.0060,+0.0128]` (crosses 0); overall `0.0667` vs `0.1085`; below stored ADHR far `0.11478`. Canary 0.5948 PASS. SGMC PROXY 0.0667 vs H33 0.0940. Dossier: [`docs/research/hypotheses-20261024-mdps88.md`](docs/research/hypotheses-20261024-mdps88.md) (ranked hypotheses + reproduced 0.2778 lineage forensics). Findings IR-88-83/84/85. **0 slots; no ORGANIZER-CONFIRMED score.** PHASE-88 below remains the canonical `current_release.json` record; both are DO NOT SUBMIT.
