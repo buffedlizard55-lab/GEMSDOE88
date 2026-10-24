@@ -1,5 +1,7 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> **Latest independent review (2026-10-24):** [review, fixes, verification scope and blockers](research/review-bff2fa68-20261024.md) · [fresh latest-download JSON audit](evidence/latest_download_review_20261024.json). **DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO.** No new TIFF generated: the verified literal duplicate-stop rule blocks every nonempty candidate. Start each session with [the standing user prompt](PROMPT.md); it is a condensed record, not a verbatim transcript.
+
 > ## ⛔ Latest session lane (2026-10-24): `H88-TDKL` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (held under literal `17GEMSDOE` dense witness & post-merge concurrent stratified lanes)
 > [⬇ **Download H88-TDKL GeoTIFF (`.tif`, 118 KB, research only)**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`)**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/tdkl88_run_card.json) · [Gate v3 Verdict](registry/tdkl88_gate_verdict.json) · [8-Fold Holdout Evidence](evidence/tdkl88_holdout_20261024.json) · [179-Raster Uniqueness Audit](evidence/tdkl88_uniqueness_20261024.json) · [Research Dossier](research/hypotheses-20261024-tdkl88.md) · [Executive Submission Guide](docs/executive-summary.html).
 >

@@ -362,6 +362,9 @@ def restore_group(label: str, repo: str, commit: str, items: list[list[str] | tu
     if not missing:
         print(f"PIN OK  {label} ({len(items)} files)")
         return
+    # Public helpers also call restore_group directly on fresh checkouts.
+    # Do not rely on main() to create the ignored data directory first.
+    DATA.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(dir=DATA) as tmp:
         co = sparse_fetch(repo, commit, [src for src, _, _ in missing], Path(tmp))
         for src, dst, want in missing:
