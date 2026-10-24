@@ -1,8 +1,15 @@
-"""Audit local site links and forbid unlabeled research TIFF/ZIP downloads.
+"""Audit local site links, the visible submit decision, and the one-click download placement.
 
-This is a site guard, not the scientific/format gate; validate_release.py is
-canonical for the current research artifact. A blocked experiment may still
-publish a clearly marked research-only file for independent audit.
+This is a site guard, not the scientific/format gate; ``validate_release.py`` is canonical.
+Rules (all machine-checked, no human input):
+
+* every local link resolves; every TIFF/ZIP link lives under ``docs/downloads``;
+* a published TIFF/ZIP whose gate verdict is not "ok to submit" must carry ``DO-NOT-SUBMIT`` in its
+  file name (earlier research files too); the one gated file may carry ``GATE-PASS`` only when
+  ``registry/gate_verdict.json`` says ``ok_to_submit``;
+* ``docs/index.html`` and ``docs/executive-summary.html`` show the exact verdict label from
+  ``registry/gate_verdict.json`` and link the headline TIFF within the first part of ``<main>``;
+* ``README.md`` shows the label and the headline download link in its first 4,000 characters.
 """
 from html.parser import HTMLParser
 import json
@@ -10,6 +17,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
+TOP_WINDOW = 9000  # characters after <main> within which the headline TIFF link must appear
 
 
 class Links(HTMLParser):
@@ -22,15 +30,25 @@ class Links(HTMLParser):
 
 
 def main(root=ROOT):
+    # archived Exp 1-3 record (H88-ADHR) must keep telling the truth
     card = json.loads((root / 'registry/run_card.json').read_text())
     assert card['verdict'] == 'negative' and card['ok_to_submit'] is False
     assert len(card['submission_note']) <= 140
+    gv = json.loads((root / 'registry/gate_verdict.json').read_text())
+    name, label, ok_submit = gv['name'], gv['label'], bool(gv['ok_to_submit'])
+    assert label in ('OK TO DOWNLOAD - OK TO SUBMIT', 'OK TO DOWNLOAD - NOT OK TO SUBMIT', 'NOT OK TO DOWNLOAD OR SUBMIT')
+    head_tif = f'downloads/{name}.tif'
+    assert (root / 'docs' / head_tif).is_file(), 'headline TIFF missing'
+    assert name.endswith('GATE-PASS' if ok_submit else 'DO-NOT-SUBMIT'), 'file name does not encode the verdict'
     pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
     assert len(pages) >= 5
     for page in pages:
         text = page.read_text()
-        if page.name in ('index.html', 'executive-summary.html'):
-            assert 'DO NOT SUBMIT' in text, f'Missing safety banner: {page}'
+        if page.name in ('index.html', 'executive-summary.html') and page.parent.name == 'docs':
+            assert ('GATE PASS' if ok_submit else 'DO NOT SUBMIT') in text, f'Missing decision banner: {page}'
+            assert label.replace('-', '&ndash;') in text or label in text, f'Missing verdict label {label!r}: {page}'
+            i = text.find('<main')
+            assert i >= 0 and head_tif in text[i:i + TOP_WINDOW], f'Headline TIFF link not at the top of {page.name}'
         parser = Links()
         parser.feed(text)
         for link in parser.links:
@@ -42,8 +60,14 @@ def main(root=ROOT):
             assert path.is_file(), f'Broken link: {page.name}: {link}'
             if path.suffix.lower() in ('.tif', '.tiff', '.zip'):
                 assert path.is_relative_to(root / 'docs/downloads'), link
+                if path.name.startswith(name):
+                    continue  # the gated headline file: its suffix was checked above
                 assert 'DO-NOT-SUBMIT' in path.name, f'Unmarked research download: {link}'
-    print('PASS: site links, explicit negative decision, clearly marked research downloads')
+    readme = (root / 'README.md').read_text()
+    top = readme[:4000]
+    assert f'docs/downloads/{name}.tif' in top, 'README top lacks the one-click TIFF link'
+    assert label in top, 'README top lacks the verdict label'
+    print(f'PASS: site links, verdict {label!r}, headline TIFF at the top of site/README, marked research downloads')
 
 
 if __name__ == '__main__':

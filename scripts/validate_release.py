@@ -154,14 +154,103 @@ def release_report(root=ROOT):
     )
 
 
+def release_report_v3(root=ROOT):
+    """Independent re-verification of the CURRENT headline candidate (gems88-gate-v3).
+
+    Everything is recomputed from the committed bytes; nothing is trusted from the receipts except
+    to compare against.  Works in CI without the large input rasters (uses pinned grid constants);
+    when data/bridge is present the portal-parity check also compares against the official sample.
+    """
+    sys.path.insert(0, str(root / "src"))
+    from gems88 import gate  # noqa: E402 -- project gate library
+
+    gv = json.loads((root / "registry" / "gate_verdict.json").read_text())
+    card = json.loads((root / "registry" / "run_card_20261024.json").read_text())
+    site_card = json.loads((root / "docs" / "data" / "run-card-20261024.json").read_text())
+    if card != site_card:
+        raise ValueError("site run card differs from registry run card (v3)")
+    name = gv["name"]
+    rcpt = json.loads((root / "docs" / "downloads" / f"{name}.json").read_text())
+    tif = root / "docs" / "downloads" / f"{name}.tif"
+    zp = root / "docs" / "downloads" / f"{name}.zip"
+    if not tif.is_file() or not zp.is_file():
+        raise FileNotFoundError("v3 TIF/ZIP missing")
+    errs = []
+    if not (card["submission_name"] == rcpt["name"] == gv["name"] == name):
+        errs.append("name disagreement")
+    if card["submission_note"] != rcpt["note"] or len(rcpt["note"]) > 140 or len(name) > 140 or not rcpt["note"]:
+        errs.append("note disagreement or > 140 chars")
+    sha = digest(tif)
+    zsha = digest(zp)
+    if not (sha == card["raster_sha256"] == rcpt["sha256"] == gv["sha256"]):
+        errs.append("raster sha256 mismatch")
+    if not (zsha == card["zip_sha256"] == rcpt["zip_sha256"] == gv["zip_sha256"]):
+        errs.append("zip sha256 mismatch")
+    with zipfile.ZipFile(zp) as z:
+        if z.namelist() != [tif.name] or z.read(tif.name) != tif.read_bytes():
+            errs.append("ZIP must contain exactly the matching TIFF")
+    # re-open like a portal (grid constants pinned; sample used when present)
+    sample = root / "data" / "bridge" / "sample_submission.tif"
+    fp = None
+    if sample.is_file() and (root / "data" / "bridge" / "existing_faults.tif").is_file():
+        fp = grid.load_grid(root / "data" / "bridge").footprint
+        pv = gate.portal_validate(tif, sample, fp)
+        pz = gate.portal_validate(zp, sample, fp)
+        portal_ok = bool(pv["ok"] and pz["ok"] and pv["array_sha256"] == pz["array_sha256"])
+        if not portal_ok:
+            errs.append("portal-parity re-open failed: " + "; ".join((pv["problems"] + pz["problems"])[:3]))
+    else:
+        with rasterio.open(tif) as ds:
+            a = ds.read(1)
+            e = gate.EXPECTED
+            ok = (ds.count == 1 and ds.dtypes[0] == "float32" and ds.crs.to_epsg() == e["epsg"] and ds.shape == e["shape"]
+                  and tuple(ds.transform)[:6] == e["transform"] and ds.nodata is None
+                  and bool(np.isfinite(a).all()) and float(a.min()) >= 0 and float(a.max()) <= 1)
+        portal_ok = bool(ok)
+        if not ok:
+            errs.append("pinned-constant re-open failed")
+        pv = dict(n_dots=int((a > 0).sum()))
+    if card["gate"]["ok_to_submit"] != gv["ok_to_submit"] or card["gate"]["label"] != gv["label"]:
+        errs.append("run card gate differs from gate verdict")
+    if gv["ok_to_submit"]:
+        if not name.endswith("GATE-PASS") or card["verdict"] != "promote-to-selector-only" or gv["blocking_reasons"]:
+            errs.append("file name / verdict inconsistent with ok_to_submit=true")
+    else:
+        if not name.endswith("DO-NOT-SUBMIT") or card["verdict"] != "negative" or not gv["blocking_reasons"]:
+            errs.append("file name / verdict inconsistent with ok_to_submit=false")
+    # holdout + canary evidence bound to the receipts
+    ho = json.loads((root / "evidence" / "halo_experiments_20261024.json").read_text())
+    arm = rcpt["arm"]
+    sc = ho["pooled"]["all__candidate_fbmt"]["scores"][arm]
+    if abs(sc["dti"] - card["holdout"]["emitted_arm_overall"]["dti"]) > 1e-12 or sc["withheld_positive_pixels"] != card["holdout"]["emitted_arm_overall"]["withheld_positives"]:
+        errs.append("holdout evidence differs from run card")
+    if not ho["canary"]["passed"] or ho["canary"]["max_symmetric_auc"] > 0.90:
+        errs.append("leakage canary failed")
+    uq = json.loads((root / "registry" / "uniqueness_v3.json").read_text())
+    rows = [r for r in uq["rows"] if not r.get("error")]
+    worst = max((r["like_for_like_overlap_3px"] for r in rows), default=1.0)
+    worst_rho = max((max(abs(r["rho_final"]), abs(r["rho_preplacement"])) for r in rows), default=1.0)
+    if uq["unique_like_for_like"] != (worst <= 0.70 and worst_rho <= 0.90 and uq["missing"] == 0):
+        errs.append("uniqueness summary inconsistent with its rows")
+    if uq["candidate_dots"] != pv["n_dots"]:
+        errs.append("uniqueness candidate dot count differs from the file")
+    if errs:
+        raise ValueError("; ".join(errs))
+    return dict(policy=gate.POLICY_VERSION, name=name, raster_sha256=sha, zip_sha256=zsha, portal_parity_reopen_ok=portal_ok,
+                ok_to_download=gv["ok_to_download"], ok_to_submit=gv["ok_to_submit"], label=gv["label"],
+                blocking_reasons=gv["blocking_reasons"], unique_like_for_like=uq["unique_like_for_like"],
+                worst_like_for_like_overlap=worst, worst_abs_rho=worst_rho)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--require-submit", action="store_true")
     args = parser.parse_args()
-    result = release_report()
-    print(json.dumps(result, indent=2))
-    if args.require_submit and not result["ok_to_submit"]:
-        print("AUTOMATIC SUBMISSION GATE: FAIL. No upload permitted.", file=sys.stderr)
+    legacy = release_report()
+    current = release_report_v3()
+    print(json.dumps(dict(current_headline_candidate_v3=current, archived_h88_adhr_literal_gate=legacy), indent=2))
+    if args.require_submit and not current["ok_to_submit"]:
+        print("AUTOMATIC SUBMISSION GATE: FAIL (" + "; ".join(current["blocking_reasons"]) + "). No upload permitted.", file=sys.stderr)
         return 2
     return 0
 

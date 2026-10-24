@@ -23,19 +23,16 @@
   const cardStatus = document.querySelector('[data-card-status]');
   if (cardStatus) {
     try {
-      const response = await fetch('data/run-card.json', { cache: 'no-store' });
-      if (!response.ok) throw new Error('card not available');
-      const card = await response.json();
-      const formatOk = card.validator_output?.all_checks_passed === true || card.validator_output?.local_format_ok === true;
-      const safe = card.verdict === 'promote-to-selector-only' &&
-        card.ok_to_submit === true &&
-        formatOk &&
-        card.correlation_overlap_vs_registry?.universal_witness?.universal_overlap_blocker === false;
-      cardStatus.textContent = safe
-        ? 'OK TO DOWNLOAD: YES · SUBMISSION GATE PASSED (human selector check still required)'
-        : 'OK TO DOWNLOAD: YES · DO NOT SUBMIT AUTOMATICALLY (literal 17GEMSDOE full-footprint witness overlap = 1.0000 > 0.70; 18/18 sparse siblings PASS)';
+      const response = await fetch('data/gate-verdict.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('verdict not available');
+      const v = await response.json();
+      if (v.policy !== 'gems88-gate-v3' || typeof v.ok_to_submit !== 'boolean' || typeof v.label !== 'string') throw new Error('verdict malformed');
+      const why = (v.blocking_reasons || []).map((r) => String(r).split(':')[0]).join(' + ');
+      cardStatus.textContent = v.ok_to_submit
+        ? `${v.label} · GATE PASS (selector and the website slot limit still decide)`
+        : `${v.label} · DO NOT SUBMIT · blocked by ${why || 'unknown gate'}`;
     } catch (_) {
-      cardStatus.textContent = 'DO NOT SUBMIT · verification data unavailable';
+      cardStatus.textContent = 'DO NOT SUBMIT · verification data unavailable (fail-closed)';
     }
   }
   for (const button of document.querySelectorAll('[data-copy]')) {

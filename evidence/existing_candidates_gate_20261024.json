@@ -1,0 +1,96 @@
+{
+ "policy": "gems88-gate-v3",
+ "note": "read-only comparison; earlier receipts unchanged",
+ "rows": [
+  {
+   "file": "gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif",
+   "sha256": "f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd",
+   "dots": 35894,
+   "fingerprint": {
+    "median_d_cat_px": 6.4031242374328485,
+    "share_le2": 0.0,
+    "share_gt10": 0.26235582548615366,
+    "share_gt25": 0.042346910347133226
+   },
+   "fingerprint_screen_pass": false,
+   "unique_like_for_like": true,
+   "unique_literal": false,
+   "worst_like_for_like_overlap": {
+    "label": "GEMSDOE88-GHMD:gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+    "value": 0.6796121914526104
+   },
+   "like_for_like_blockers": [],
+   "portal_ok_values_and_grid": true,
+   "portal_layout_parity_with_sample": false,
+   "portal_problems": []
+  },
+  {
+   "file": "gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+   "sha256": "3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b",
+   "dots": 37654,
+   "fingerprint": {
+    "median_d_cat_px": 11.045361017187261,
+    "share_le2": 0.15206883730812132,
+    "share_gt10": 0.522095926063632,
+    "share_gt25": 0.2863440803101928
+   },
+   "fingerprint_screen_pass": false,
+   "unique_like_for_like": true,
+   "unique_literal": false,
+   "worst_like_for_like_overlap": {
+    "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "value": 0.4716630371275296
+   },
+   "like_for_like_blockers": [],
+   "portal_ok_values_and_grid": true,
+   "portal_layout_parity_with_sample": false,
+   "portal_problems": []
+  },
+  {
+   "file": "gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+   "sha256": "15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00",
+   "dots": 22545,
+   "fingerprint": {
+    "median_d_cat_px": 5.385164807134504,
+    "share_le2": 0.0,
+    "share_gt10": 0.19277001552450654,
+    "share_gt25": 0.018718119316921713
+   },
+   "fingerprint_screen_pass": false,
+   "unique_like_for_like": false,
+   "unique_literal": false,
+   "worst_like_for_like_overlap": {
+    "label": "sibling:GEMSDOE86__docs__downloads__gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+    "value": 0.7196717675759592
+   },
+   "like_for_like_blockers": [
+    "sibling:GEMSDOE86__docs__downloads__gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif"
+   ],
+   "portal_ok_values_and_grid": true,
+   "portal_layout_parity_with_sample": false,
+   "portal_problems": []
+  },
+  {
+   "file": "gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+   "sha256": "81e580f13b45e1e6aa554eaf5e8c54d1e0064769ba8e7193b6e7f53e3842308a",
+   "dots": 37654,
+   "fingerprint": {
+    "median_d_cat_px": 9.219544457292887,
+    "share_le2": 0.0,
+    "share_gt10": 0.4618898390609231,
+    "share_gt25": 0.32570244861103737
+   },
+   "fingerprint_screen_pass": false,
+   "unique_like_for_like": true,
+   "unique_literal": false,
+   "worst_like_for_like_overlap": {
+    "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "value": 0.48212673288362456
+   },
+   "like_for_like_blockers": [],
+   "portal_ok_values_and_grid": true,
+   "portal_layout_parity_with_sample": false,
+   "portal_problems": []
+  }
+ ]
+}

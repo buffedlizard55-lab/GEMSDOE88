@@ -3,9 +3,19 @@
   "approved_for_weekly_slot": false,
   "status": "BLOCKED",
   "problems": [
-    "Literal registry overlap with hash-pinned full-footprint witness: research TIFF is not eligible for submission"
+    "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+    "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
   ],
+  "ok_to_download": true,
   "ok_to_download_for_research": true,
   "ok_to_submit": false,
-  "raster_sha256": "f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd"
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "policy": "gems88-gate-v3",
+  "candidate_name": "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT",
+  "raster_sha256": "974b5d4b2009849c977ddb4210eb17d2fb93f8765011580931028d4fc707bada",
+  "archived_h88_adhr": {
+    "raster_sha256": "f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd",
+    "literal_duplicate": true,
+    "note": "previous headline; see evidence/existing_candidates_gate_20261024.json"
+  }
 }

@@ -1,5 +1,43 @@
 # GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
 
+**Standing prompt (re-read at every session):** [`PROMPT.md`](PROMPT.md) · **Core values: Maximize P(Win) · Own the Outcome** ·
+official sources: [NLR rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/) ·
+[metric & submission format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [live leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) ·
+[reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
+
+<!-- SESSION STATE START -->
+## ⬇ DOWNLOAD + SUBMIT DECISION (machine gate `gems88-gate-v3`, 2026-10-24, zero human input)
+
+### [⬇ **Download the GeoTIFF (one click)**](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif) · [ZIP with the single TIFF](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.zip) · [receipt](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.json) · [portal-parity audit](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.format-audit.json)
+
+| Question | Machine answer | Binding evidence |
+|---|---|---|
+| **OK to download?** | **YES** | Re-opened like a portal from the `.tif` **and** from the `.zip` member: 1 band, `float32`, EPSG:32611, `3730×3292`, transform = official sample, **0 NaN/Inf**, values `{0,1}` inside `[0,1]`, nodata undeclared, same LZW/1-row-strip layout as the official sample, second decoder (`tifffile`) pixel-identical, TIFF = ZIP member. |
+| **OK to submit?** | **`OK TO DOWNLOAD - NOT OK TO SUBMIT`** | Blocked by two machine gates: **(1) HOLDOUT** - best arm `HOLDOUT-DTI` 0.10725 (n=22,893) is below the stored H88-ADHR bar 0.18789; **(2) FINGERPRINT** - only 30.9% of dots are >25 px from any mapped fault (screen: ≥35%). No slot is spent on an unproven idea. |
+| **Unique?** | **YES (like-for-like)** | Max 3-px overlap **0.596** ≤ 0.70, max \|ρ\| **0.239** ≤ 0.90 over **215 registry rasters / 110 distinct dot sets**, including every raster published by GEMSDOE86, 87, 89, 92 (90 and 91 publish none) - [`registry/uniqueness_v3.json`](registry/uniqueness_v3.json). The *literal* rule fails only against dense rasters that no raster can pass (random dots score 1.00) - see [`IRREGULARITIES.md`](IRREGULARITIES.md) IR-88-58. |
+| **Portal name** (72/140) | `gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT` | unique; encodes the verdict |
+| **Portal note** (131/140) | `GEMS88 label-blind 44-layer geophysics+topography classifier, 300 m halo, exact-DTI dots; 38680 dots. Holdout negative vs ADHR bar.` | |
+| **Evidence labels** | `HOLDOUT-DTI` overall **0.10725** [0.09344, 0.12080] (n=22,893); far subset **0.07152** [0.05857, 0.08380] (n=10,791); evaluator `gems57-pooled-hide-v2`; canary max AUC **0.5948** (≤0.90) | **`ORGANIZER-CONFIRMED`: none. Slots spent: 0.** |
+| **Raster SHA-256** | `974b5d4b2009849c977ddb4210eb17d2fb93f8765011580931028d4fc707bada` | ZIP `ae80e61b0b06ba51429521c63991b9a13736ab48f771159e7dacae1c41613634` |
+
+**What this means.** The file is a valid, unique research raster. The project's own gates say *do not spend a weekly slot on it*; the two blockers are
+stated above and in [`registry/gate_verdict.json`](registry/gate_verdict.json). Selecting and submitting remain human decisions
+(rules §3.4/§3.5; the website's slot limit prevails over the "three per week" wording - [staff, thread 11553](https://community.drivendata.org/t/submission-amount-question/11553)).
+How to submit, step by step: [`docs/executive-summary.html`](docs/executive-summary.html) · site: [`docs/index.html`](docs/index.html).
+
+### This session in five lines
+1. **Why H33 (owner-reported 0.2778) leads** - [`research/h33-forensics-20261024.md`](research/h33-forensics-20261024.md): verified strict subset chain H19-5 ⊃ D2.8 ⊃ SOLO ⊃ H33 (only subtractions; the 6,436 dots removed from D2.8 all lay ≤2 px from a mapped fault), a lattice of ~3 px spacing, and a non-catalogue-hugging profile; public positive pool inferred ≈13-15 k px, average dot credit ≈0.14 (≈2.6× break-even).
+2. **Best predictor of the reported public ordering** - share of dots >25 px from the catalogue: Spearman **+0.90** (n=20 owner-reported rasters). It is a *necessary screen*, not a selector; SGMC proxies and catalogue hide-and-recover do not rank-order the top scores.
+3. **Three pre-registered hypotheses, all negative** ([`research/hypotheses-20261024.md`](research/hypotheses-20261024.md)): far-basin-matched training, catalogue-completeness residual, ridge-continuity prior - none beat the control on 8 folds.
+4. **Corrections to earlier claims:** the literal 17GEMSDOE rule is vacuous (IR-88-58); the R0-perturbation ledger is not unique (IR-88-59); **H88-ADHR's holdout gain is catalogue adjacency - only 4.2% of its dots are >25 px away** (IR-88-60); in-sample production fits memorise known faults (IR-88-61).
+5. **Honest bottom line:** no unique raster in this repository clears every gate. If you want a slot-worthy file now, the evidence favours H33-lane rasters from the sibling sites over anything new here.
+<!-- SESSION STATE END -->
+
+---
+
+**Archived state from earlier sessions (kept for audit; where it conflicts with the block above, the block above governs):**
+
+
 <!-- CURRENT STATE START -->
 ## CURRENT STATE (`2026-10-24` · Agent Brief v2 · reconciled `64`-row ledger across all 7 brief axes · PRs #51/#52 (`IR-88-54/55`) + **`AXIS=PRUNE` single-factor deconfounding triad (`lt3space35`, `p3space35fp`, `p3space35prov` — this PR, `IR-88-56`)**)
 
@@ -14,11 +52,10 @@
 | **Prior axis closures (`MASS`, `CONCENTRATION`, `SNAP`, `RELIEF`, `SPACING`, `TRACKB`)** | `MASS` (`9` rows on `R0` & `R1`, IR-88-52/53: mass curve parent-invariant within `0.00066`, `R0/R1` at mass optimum) · `CONCENTRATION` (`7` rows, IR-88-52: cold-block mirror `0.096825` beats hot-block `0.085305/0.078119`) · `SNAP` (`15` rows, IR-88-50/51: `scarp1px 0.097567` fails `anti1 0.097260` sign-flip separation by `0.00031`) · `RELIEF` (`9` rows: all negative `HOLD`) · `SPACING` (`3` rows on `R1`: `poisson28 +0.00074` sub-threshold) · `TRACKB` (`3` rows on `R1`, IR-88-49: Phase 2 geologist map `evidence/trackb_traces_geologist.geojson`) | Every non-`PRUNE` axis is empirically falsified/closed (`MASS`, `CONCENTRATION`, `RELIEF`), indistinguishable from a sign-flipped control (`SNAP`), sub-threshold (`SPACING`), or Phase 2 only (`TRACKB`). Hide-and-recover (`0.000000` on all `>=3 px` arms) is degenerate (IR-88-20/35). No `PROXY` or `MODEL` value is a live score. |
 | **Next 3 Candidate Slots (`SLOT_PLAN.md`)** | **1.** `PRUNEp3px 6f7ae705` (calibrates gate-clean `R1` live vs `R0` `CLAIM`) · **2.** **`PRUNEp3space35fp 8d29a2f7`** (`+0.00589` blind, matched `300 m` collar to Slot 1 so the receipt pair isolates refill geometry with zero collar/field/RNG confound) — or **`PRUNEp4space35 07bd8182`** (`+0.00639` blind, `400 m` collar peak) · **3.** conditional after Slot 1 & Slot 2 receipts: pair the other collar (`p4space35` vs `p3space35fp`) if Slot 2 > Slot 1, `PRUNEp3space35prov 0237d5b9` if sibling-free provenance is preferred, or `PRUNElt3space35 0b522c7f` if Slot 1 loses live | Candidate sequence only (`docs/SUBMIT.md`); every upload awaits human quota/`TOP_PUBLIC`/deadline confirmation, and any live `\|Δ\| < 0.01` on public chunks is no evidence. |
 
-This block and the current brief supersede historical instructions below, including
-rank/overlap uniqueness gates, automatic-upload language, and unconfirmed quota claims.
+**Superseded on one point (IR-88-59):** the claim that this brief supersedes the rank/overlap uniqueness gates is *not* backed by the standing prompt ([`PROMPT.md`](PROMPT.md)); the `64` R0-perturbation rows all descend from R0 and the measured sibling perturbations overlap R0 by >70% in 62/66 (GEMSDOE89), 30/34 (87) and 18/22 (92) cases, so they are *not* unique under the lane rule. The `TOP_PUBLIC` 0.4413 is now live-verified (2026-10-24).
 <!-- CURRENT STATE END -->
 
-> ## AUTOMATED GATE DECISION (READ THIS FIRST — ZERO HUMAN INTERVENTION REQUIRED)
+> ## ARCHIVED: previous headline decision for H88-ADHR (superseded by the gate block at the top of this file)
 >
 > | Gate Question | Automated Machine Decision | Binding Reason & Verifiable Receipt |
 > | :--- | :--- | :--- |
@@ -31,7 +68,7 @@ rank/overlap uniqueness gates, automatic-upload language, and unconfirmed quota 
 
 ---
 
-## Permanent User Prompt: Operational Requirements
+## Permanent User Prompt: Operational Requirements (historical summary — [`PROMPT.md`](PROMPT.md) is authoritative)
 
 **Highest urgency: “MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.”**
 

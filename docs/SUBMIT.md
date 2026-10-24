@@ -1,3 +1,6 @@
+> **2026-10-24 notice:** this long document predates gate v3 and describes the earlier H88-ADHR candidate. The current decision, one-click download and submission steps are in
+> [`executive-summary.html`](executive-summary.html) and `registry/gate_verdict.json` (**OK TO DOWNLOAD - NOT OK TO SUBMIT** for `gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT`). Where this file disagrees, the executive summary governs.
+
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
 ## 2026-10-24 · `AXIS=PRUNE` single-factor deconfounding triad (`IR-88-56`) — **`PRUNEp3space35fp` (`8d29a2f7`) leads all `300 m`-collar arms (`0.101947` blind `PROXY`, zero `w`, zero RNG)**

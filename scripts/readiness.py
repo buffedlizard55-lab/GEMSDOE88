@@ -97,27 +97,26 @@ def verify_template(root=ROOT):
 
 
 def current_status(root=ROOT):
-    """Represent the actual research artifact. A format PASS is not slot approval."""
-    from validate_release import release_report
+    """Represent the CURRENT headline candidate (gems88-gate-v3).  A format PASS is not slot approval."""
+    from validate_release import release_report, release_report_v3
 
-    report = release_report(root)
-    if report['literal_duplicate']:
-        problems = [
-            'Literal registry overlap with hash-pinned full-footprint witness: '
-            'research TIFF is not eligible for submission'
-        ]
-    elif not report['ok_to_submit']:
-        problems = ['A required scientific or release gate failed']
-    else:
-        problems = []
+    v3 = release_report_v3(root)
+    legacy = release_report(root)  # archived H88-ADHR record; must keep verifying
+    problems = list(v3['blocking_reasons'])
     return {
-        'evidence_schema_complete': bool(report['format_ok']),
+        'evidence_schema_complete': bool(v3['portal_parity_reopen_ok']),
         'approved_for_weekly_slot': False,
         'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
         'problems': problems,
-        'ok_to_download_for_research': bool(report['ok_to_download']),
-        'ok_to_submit': False,  # selector has never approved a weekly slot
-        'raster_sha256': report['output_sha256'],
+        'ok_to_download': bool(v3['ok_to_download']),
+        'ok_to_download_for_research': bool(v3['ok_to_download']),
+        'ok_to_submit': bool(v3['ok_to_submit']),
+        'label': v3['label'],
+        'policy': v3['policy'],
+        'candidate_name': v3['name'],
+        'raster_sha256': v3['raster_sha256'],
+        'archived_h88_adhr': {'raster_sha256': legacy['output_sha256'], 'literal_duplicate': bool(legacy['literal_duplicate']),
+                              'note': 'previous headline; see evidence/existing_candidates_gate_20261024.json'},
     }
 
 

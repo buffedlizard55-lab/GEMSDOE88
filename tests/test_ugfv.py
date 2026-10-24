@@ -134,7 +134,7 @@ def test_run_card_four_way_parity_and_audit_invariants():
     assert dots["H33"]["forward_dot_overlap_3px"] < 0.70
 
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
-    assert status_doc["raster_sha256"] == card["raster_sha256"]
+    assert status_doc["archived_h88_adhr"]["raster_sha256"] == card["raster_sha256"]
     assert status_doc["ok_to_submit"] is False
     assert status_doc["ok_to_download_for_research"] is True
 
