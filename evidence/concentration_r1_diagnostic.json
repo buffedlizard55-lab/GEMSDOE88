@@ -1,0 +1,67 @@
+{
+  "schema": "gems88.concentration-r1-confounder-diagnostic.v1",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "evidence_label": "PROXY (report only; never a gate)",
+  "sgmc_off_catalogue_px": 62703,
+  "note": "Receivers in all three arms are off the H19-5 support, so their credit comes from incident alignment with off-catalogue SGMC traces. Distance-to-control is the confounder test: if the hot-block receivers sit further from the control map than the cold-block receivers, the arm difference is geography, not prior.",
+  "arms": {
+    "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m10-20261023-22debd20": {
+      "donors": {
+        "n": 3765,
+        "median_dist_to_sgmc_off_catalogue_px": 14.14,
+        "frac_within_3px_of_sgmc": 0.1591,
+        "mean_isolated_kernel_credit_per_dot": 0.083,
+        "frac_on_h19_5_support": 1.0
+      },
+      "receivers": {
+        "n": 3765,
+        "median_dist_to_sgmc_off_catalogue_px": 31.78,
+        "frac_within_3px_of_sgmc": 0.0064,
+        "mean_isolated_kernel_credit_per_dot": 0.0024,
+        "frac_on_h19_5_support": 0.0
+      }
+    },
+    "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m20-20261023-0dd53a9b": {
+      "donors": {
+        "n": 7531,
+        "median_dist_to_sgmc_off_catalogue_px": 16.55,
+        "frac_within_3px_of_sgmc": 0.1451,
+        "mean_isolated_kernel_credit_per_dot": 0.0742,
+        "frac_on_h19_5_support": 1.0
+      },
+      "receivers": {
+        "n": 7531,
+        "median_dist_to_sgmc_off_catalogue_px": 31.58,
+        "frac_within_3px_of_sgmc": 0.0145,
+        "mean_isolated_kernel_credit_per_dot": 0.0063,
+        "frac_on_h19_5_support": 0.0
+      }
+    },
+    "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m10lo-20261023-98faac0e": {
+      "donors": {
+        "n": 3765,
+        "median_dist_to_sgmc_off_catalogue_px": 14.14,
+        "frac_within_3px_of_sgmc": 0.1591,
+        "mean_isolated_kernel_credit_per_dot": 0.083,
+        "frac_on_h19_5_support": 1.0
+      },
+      "receivers": {
+        "n": 3765,
+        "median_dist_to_sgmc_off_catalogue_px": 16.12,
+        "frac_within_3px_of_sgmc": 0.1668,
+        "mean_isolated_kernel_credit_per_dot": 0.0861,
+        "frac_on_h19_5_support": 0.0
+      }
+    }
+  },
+  "baseline": {
+    "random_footprint_px": {
+      "median_dist_to_sgmc_off_catalogue_px": 26.42,
+      "frac_within_3px_of_sgmc": 0.0855
+    },
+    "parent_R1_dots": {
+      "median_dist_to_sgmc_off_catalogue_px": 17.2,
+      "frac_within_3px_of_sgmc": 0.1327
+    }
+  }
+}

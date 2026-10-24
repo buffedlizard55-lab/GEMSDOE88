@@ -1,6 +1,27 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (this PR, IR-88-52; **no slot candidate** — the queue below is unchanged)
+## 2026-10-23 · `AXIS=CONCENTRATION` on gate-clean `R1` (IR-88-52) — **no upload recommended**
+
+**Three new candidates were built, gate-clean, and all three are `HOLD`; the slot order in the SNAP sections below is unchanged.**
+
+Parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from the pinned lineage and SHA-asserted
+(`6f7ae705…`/`dc6f090d…`) before editing, after `R0` rebuilt byte-exactly (15/15 pins verified). Predictions were
+frozen before any proxy (`registry/preregistration_concentration_r1.json`): `MODEL +0.005 / +0.009 / -0.005` vs `R1`.
+Measured after build (REPORT ONLY): blind off-catalogue SGMC `PROXY` `phys10-m10 0.085305`, `phys10-m20 0.078119`,
+mirror `phys10-m10lo 0.096825` vs parent `R1 0.096083`. **The hypothesis is falsified and inverted** — the two
+hot-prior arms are the largest negative proxy deltas in the ledger and the mirror control is the best of the three;
+`evidence/concentration_r1_diagnostic.json` shows why (hot-prior ground is farthest from the off-catalogue control).
+`CONCENTRATION` is closed as a slot axis. Do **not** upload any of these three files.
+
+| Candidate (gitignored; rebuild with `python3 scripts/build_concentration_r1_variants.py`) | SHA-256 primary | Gate status |
+|---|---|---|
+| `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m10-20261023-22debd20` | `22debd2032c7d16c3cb9cf6e068cb6fd9b9445dff2407812d9678f229f93e038` (zeros `0d013f7f…`) | hardened gate PASS, `HOLD`, `PROXY −0.01078` |
+| `…-CONCENTRATIONphys10-m20-20261023-0dd53a9b` | `0dd53a9bd914472e1c5b7dd7a09567a7a9354b0c93c1b09f9d03159e707a225a` (zeros `4ccea897…`) | hardened gate PASS, `HOLD`, `PROXY −0.01796` |
+| `…-CONCENTRATIONphys10-m10lo-20261023-98faac0e` | `98faac0efb0b4620a02ef2f28998b03ee7526064ccec24a2a6e144e131680fcc` (zeros `75474f9c…`) | hardened gate PASS, `HOLD`, `PROXY +0.00074` (control) |
+
+Rasters stay gitignored; only hashes, receipts and rebuild scripts are tracked. No slot was used, no receipt exists.
+
+## Prior session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (this PR, IR-88-52; **no slot candidate** — the queue below is unchanged)
 
 **Three new gate-clean candidates, all built from parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
 (re-derived and SHA-asserted `6f7ae705…`/`dc6f090d…` in-run after `R0` rebuilt byte-exactly, 15/15 pins

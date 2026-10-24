@@ -1562,5 +1562,314 @@
       "cv_12km_parent": 0.57
     },
     "evidence_discipline": "Every number above is PROXY or MODEL. The blind SGMC control orders arms; it is not a score. A live |delta| < 0.01 is no evidence (Brief \u00a75)."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m10-20261023-22debd20": {
+    "hypothesis": "Relocating 3,765 (10.00%) of the parent's dots out of the coldest 1 km blocks and into the *hottest* 1 km blocks, ranked by the provided TMI/gravity horizontal gradients, raises DTI because the parent's mass is already maximally packed on its own lineament support and therefore buys no new coverage, while the potential-field prior still ranks where unmapped traces are.",
+    "mechanism": "DTI = T/(0.2T + 0.2(S-M) + 0.8|G|). |G| is fixed at 37,654, so the edit is a pure swap: each removed dot stops paying its 0.2*DTI denominator share, and each receiver pays 0.2*(1-DTI) at most. A dot placed in open ground with no truth within 300 m earns T = 0 and loses ~0.03 of DTI score; a dot that lands on an unmapped trace earns 0.5-1.0 and gains ~10-18x that. The >=2.8 px spacing lock keeps the receivers from collapsing back onto each other, which is the failure mode of the R0 family's 1.04 px host-welded receivers.",
+    "non_fault_mimic": "Lake Lahontan shoreline benches (~1212/1294/1334 m) and GeoDAWN 400 m flight-line corrugation both produce TMI and gravity-gradient edges at kilometre scale that are not faults, and hot-spring / vent clusters raise the prior without being fault pixels. The mirror arm quantifies this: if the prior were pure bench/flight-line artefact, the cold-block arm would match or beat the hot-block arm.",
+    "predicted_sign_and_size": "MODEL +0.005 (10% dose) / +0.009 (20% dose) vs parent R1 on the live public chunks; mirror arm MODEL -0.005. Ranges are wide because the metric is dominated by unseen line-like truth and a |live delta| < 0.01 is no evidence.",
+    "falsifier": "phys10-m20 <= phys10-m10 and |phys10-m10 - phys10-m10lo| < 0.003 on the blind control, or all three arms |live delta| < 0.01: then the km-scale potential-field prior carries no usable order information and CONCENTRATION closes on both parents.",
+    "confounder": "Support widening is inseparable from the treatment: because the parent is saturated, hot-block receivers necessarily leave the H19-5 support. The mirror arm holds that constant and flips only the prior, so phys10-m10 - phys10-m10lo is the prior effect and phys10-m20 - phys10-m10 is the dose.",
+    "measured_after_build_REPORT_ONLY": {
+      "n_moved": 3765,
+      "pct_of_parent_dots_moved": 9.999,
+      "n_receivers": 3765,
+      "receivers_on_h19_5_support": 0,
+      "receivers_off_h19_5_support_frac": 1.0,
+      "min_receiver_dist_to_survivor_px": 2.8284,
+      "min_receiver_to_receiver_px": 2.8284,
+      "mean_donor_to_nearest_receiver_px": 225.4443,
+      "median_donor_to_nearest_receiver_px": 189.2142,
+      "min_d_cat_px": 3.1623,
+      "donor_block_prior_mean": 0.118196,
+      "receiver_block_prior_mean": 0.668975,
+      "block_cv_before": {
+        "5px": {
+          "block_px": 5,
+          "cv_all_full_blocks": 2.7894,
+          "cv_occupied_full_blocks": 0.4121,
+          "n_full_blocks": 205469,
+          "n_occupied_full_blocks": 27374,
+          "mean_dots_per_occupied_block": 0.1819
+        },
+        "10px": {
+          "block_px": 10,
+          "cv_all_full_blocks": 1.9162,
+          "cv_occupied_full_blocks": 0.628,
+          "n_full_blocks": 50984,
+          "n_occupied_full_blocks": 15216,
+          "mean_dots_per_occupied_block": 0.7249
+        },
+        "20px": {
+          "block_px": 20,
+          "cv_all_full_blocks": 1.3965,
+          "cv_occupied_full_blocks": 0.7526,
+          "n_full_blocks": 12527,
+          "n_occupied_full_blocks": 6651,
+          "mean_dots_per_occupied_block": 2.8944
+        },
+        "50px": {
+          "block_px": 50,
+          "cv_all_full_blocks": 0.9124,
+          "cv_occupied_full_blocks": 0.7083,
+          "n_full_blocks": 1911,
+          "n_occupied_full_blocks": 1566,
+          "mean_dots_per_occupied_block": 18.1413
+        }
+      },
+      "block_cv_after": {
+        "5px": {
+          "block_px": 5,
+          "cv_all_full_blocks": 2.8893,
+          "cv_occupied_full_blocks": 0.4598,
+          "n_full_blocks": 205469,
+          "n_occupied_full_blocks": 26626,
+          "mean_dots_per_occupied_block": 0.1819
+        },
+        "10px": {
+          "block_px": 10,
+          "cv_all_full_blocks": 2.1344,
+          "cv_occupied_full_blocks": 0.8348,
+          "n_full_blocks": 50984,
+          "n_occupied_full_blocks": 15573,
+          "mean_dots_per_occupied_block": 0.7249
+        },
+        "20px": {
+          "block_px": 20,
+          "cv_all_full_blocks": 1.5778,
+          "cv_occupied_full_blocks": 0.941,
+          "n_full_blocks": 12527,
+          "n_occupied_full_blocks": 6769,
+          "mean_dots_per_occupied_block": 2.8953
+        },
+        "50px": {
+          "block_px": 50,
+          "cv_all_full_blocks": 1.0358,
+          "cv_occupied_full_blocks": 0.8468,
+          "n_full_blocks": 1911,
+          "n_occupied_full_blocks": 1583,
+          "mean_dots_per_occupied_block": 18.1104
+        }
+      },
+      "nn_parent": {
+        "min_nn_px": 1.0,
+        "median_nn_px": 3.0,
+        "mean_nn_px": 3.5884,
+        "frac_nn_lt_2p8": 0.0965
+      },
+      "nn_variant": {
+        "min_nn_px": 1.0,
+        "median_nn_px": 3.0,
+        "mean_nn_px": 3.7242,
+        "frac_nn_lt_2p8": 0.0874
+      }
+    },
+    "post_build_report_only": "Preregistered MODEL +0.005 is unchanged and is the prediction. Measured after build (REPORT ONLY, never a gate): blind SGMC 0.085305 PROXY (-0.010778 vs R1 0.096083); w-weighted DTI -0.019794 MODEL. w is defined on H19-5 support and is structurally blind to off-support placement (AUC 0.47, IR-88-38), so its sign is a confounder check, not evidence."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m20-20261023-0dd53a9b": {
+    "hypothesis": "Relocating 7,531 (20.00%) of the parent's dots out of the coldest 1 km blocks and into the *hottest* 1 km blocks, ranked by the provided TMI/gravity horizontal gradients, raises DTI because the parent's mass is already maximally packed on its own lineament support and therefore buys no new coverage, while the potential-field prior still ranks where unmapped traces are.",
+    "mechanism": "DTI = T/(0.2T + 0.2(S-M) + 0.8|G|). |G| is fixed at 37,654, so the edit is a pure swap: each removed dot stops paying its 0.2*DTI denominator share, and each receiver pays 0.2*(1-DTI) at most. A dot placed in open ground with no truth within 300 m earns T = 0 and loses ~0.03 of DTI score; a dot that lands on an unmapped trace earns 0.5-1.0 and gains ~10-18x that. The >=2.8 px spacing lock keeps the receivers from collapsing back onto each other, which is the failure mode of the R0 family's 1.04 px host-welded receivers.",
+    "non_fault_mimic": "Lake Lahontan shoreline benches (~1212/1294/1334 m) and GeoDAWN 400 m flight-line corrugation both produce TMI and gravity-gradient edges at kilometre scale that are not faults, and hot-spring / vent clusters raise the prior without being fault pixels. The mirror arm quantifies this: if the prior were pure bench/flight-line artefact, the cold-block arm would match or beat the hot-block arm.",
+    "predicted_sign_and_size": "MODEL +0.005 (10% dose) / +0.009 (20% dose) vs parent R1 on the live public chunks; mirror arm MODEL -0.005. Ranges are wide because the metric is dominated by unseen line-like truth and a |live delta| < 0.01 is no evidence.",
+    "falsifier": "phys10-m20 <= phys10-m10 and |phys10-m10 - phys10-m10lo| < 0.003 on the blind control, or all three arms |live delta| < 0.01: then the km-scale potential-field prior carries no usable order information and CONCENTRATION closes on both parents.",
+    "confounder": "Support widening is inseparable from the treatment: because the parent is saturated, hot-block receivers necessarily leave the H19-5 support. The mirror arm holds that constant and flips only the prior, so phys10-m10 - phys10-m10lo is the prior effect and phys10-m20 - phys10-m10 is the dose.",
+    "measured_after_build_REPORT_ONLY": {
+      "n_moved": 7531,
+      "pct_of_parent_dots_moved": 20.001,
+      "n_receivers": 7531,
+      "receivers_on_h19_5_support": 0,
+      "receivers_off_h19_5_support_frac": 1.0,
+      "min_receiver_dist_to_survivor_px": 2.8284,
+      "min_receiver_to_receiver_px": 2.8284,
+      "mean_donor_to_nearest_receiver_px": 133.893,
+      "median_donor_to_nearest_receiver_px": 116.5161,
+      "min_d_cat_px": 3.1623,
+      "donor_block_prior_mean": 0.141476,
+      "receiver_block_prior_mean": 0.63393,
+      "block_cv_before": {
+        "5px": {
+          "block_px": 5,
+          "cv_all_full_blocks": 2.7894,
+          "cv_occupied_full_blocks": 0.4121,
+          "n_full_blocks": 205469,
+          "n_occupied_full_blocks": 27374,
+          "mean_dots_per_occupied_block": 0.1819
+        },
+        "10px": {
+          "block_px": 10,
+          "cv_all_full_blocks": 1.9162,
+          "cv_occupied_full_blocks": 0.628,
+          "n_full_blocks": 50984,
+          "n_occupied_full_blocks": 15216,
+          "mean_dots_per_occupied_block": 0.7249
+        },
+        "20px": {
+          "block_px": 20,
+          "cv_all_full_blocks": 1.3965,
+          "cv_occupied_full_blocks": 0.7526,
+          "n_full_blocks": 12527,
+          "n_occupied_full_blocks": 6651,
+          "mean_dots_per_occupied_block": 2.8944
+        },
+        "50px": {
+          "block_px": 50,
+          "cv_all_full_blocks": 0.9124,
+          "cv_occupied_full_blocks": 0.7083,
+          "n_full_blocks": 1911,
+          "n_occupied_full_blocks": 1566,
+          "mean_dots_per_occupied_block": 18.1413
+        }
+      },
+      "block_cv_after": {
+        "5px": {
+          "block_px": 5,
+          "cv_all_full_blocks": 2.9798,
+          "cv_occupied_full_blocks": 0.4969,
+          "n_full_blocks": 205469,
+          "n_occupied_full_blocks": 25933,
+          "mean_dots_per_occupied_block": 0.1819
+        },
+        "10px": {
+          "block_px": 10,
+          "cv_all_full_blocks": 2.3201,
+          "cv_occupied_full_blocks": 0.9978,
+          "n_full_blocks": 50984,
+          "n_occupied_full_blocks": 15940,
+          "mean_dots_per_occupied_block": 0.7249
+        },
+        "20px": {
+          "block_px": 20,
+          "cv_all_full_blocks": 1.7969,
+          "cv_occupied_full_blocks": 1.1466,
+          "n_full_blocks": 12527,
+          "n_occupied_full_blocks": 6857,
+          "mean_dots_per_occupied_block": 2.8953
+        },
+        "50px": {
+          "block_px": 50,
+          "cv_all_full_blocks": 1.2233,
+          "cv_occupied_full_blocks": 1.0441,
+          "n_full_blocks": 1911,
+          "n_occupied_full_blocks": 1600,
+          "mean_dots_per_occupied_block": 18.068
+        }
+      },
+      "nn_parent": {
+        "min_nn_px": 1.0,
+        "median_nn_px": 3.0,
+        "mean_nn_px": 3.5884,
+        "frac_nn_lt_2p8": 0.0965
+      },
+      "nn_variant": {
+        "min_nn_px": 1.0,
+        "median_nn_px": 3.0,
+        "mean_nn_px": 3.8693,
+        "frac_nn_lt_2p8": 0.0755
+      }
+    },
+    "post_build_report_only": "Preregistered MODEL +0.009 is unchanged and is the prediction. Measured after build (REPORT ONLY, never a gate): blind SGMC 0.078119 PROXY (-0.017964 vs R1 0.096083); w-weighted DTI -0.041439 MODEL. w is defined on H19-5 support and is structurally blind to off-support placement (AUC 0.47, IR-88-38), so its sign is a confounder check, not evidence."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m10lo-20261023-98faac0e": {
+    "hypothesis": "Relocating 3,765 (10.00%) of the parent's dots out of the coldest 1 km blocks and into the *coldest* 1 km blocks, ranked by the provided TMI/gravity horizontal gradients, raises DTI because the parent's mass is already maximally packed on its own lineament support and therefore buys no new coverage, while the potential-field prior still ranks where unmapped traces are.",
+    "mechanism": "DTI = T/(0.2T + 0.2(S-M) + 0.8|G|). |G| is fixed at 37,654, so the edit is a pure swap: each removed dot stops paying its 0.2*DTI denominator share, and each receiver pays 0.2*(1-DTI) at most. A dot placed in open ground with no truth within 300 m earns T = 0 and loses ~0.03 of DTI score; a dot that lands on an unmapped trace earns 0.5-1.0 and gains ~10-18x that. The >=2.8 px spacing lock keeps the receivers from collapsing back onto each other, which is the failure mode of the R0 family's 1.04 px host-welded receivers.",
+    "non_fault_mimic": "Lake Lahontan shoreline benches (~1212/1294/1334 m) and GeoDAWN 400 m flight-line corrugation both produce TMI and gravity-gradient edges at kilometre scale that are not faults, and hot-spring / vent clusters raise the prior without being fault pixels. The mirror arm quantifies this: if the prior were pure bench/flight-line artefact, the cold-block arm would match or beat the hot-block arm.",
+    "predicted_sign_and_size": "MODEL +0.005 (10% dose) / +0.009 (20% dose) vs parent R1 on the live public chunks; mirror arm MODEL -0.005. Ranges are wide because the metric is dominated by unseen line-like truth and a |live delta| < 0.01 is no evidence.",
+    "falsifier": "phys10-m20 <= phys10-m10 and |phys10-m10 - phys10-m10lo| < 0.003 on the blind control, or all three arms |live delta| < 0.01: then the km-scale potential-field prior carries no usable order information and CONCENTRATION closes on both parents.",
+    "confounder": "Support widening is inseparable from the treatment: because the parent is saturated, hot-block receivers necessarily leave the H19-5 support. The mirror arm holds that constant and flips only the prior, so phys10-m10 - phys10-m10lo is the prior effect and phys10-m20 - phys10-m10 is the dose.",
+    "measured_after_build_REPORT_ONLY": {
+      "n_moved": 3765,
+      "pct_of_parent_dots_moved": 9.999,
+      "n_receivers": 3765,
+      "receivers_on_h19_5_support": 0,
+      "receivers_off_h19_5_support_frac": 1.0,
+      "min_receiver_dist_to_survivor_px": 2.8284,
+      "min_receiver_to_receiver_px": 2.8284,
+      "mean_donor_to_nearest_receiver_px": 91.3811,
+      "median_donor_to_nearest_receiver_px": 76.0263,
+      "min_d_cat_px": 3.1623,
+      "donor_block_prior_mean": 0.118196,
+      "receiver_block_prior_mean": 0.078571,
+      "block_cv_before": {
+        "5px": {
+          "block_px": 5,
+          "cv_all_full_blocks": 2.7894,
+          "cv_occupied_full_blocks": 0.4121,
+          "n_full_blocks": 205469,
+          "n_occupied_full_blocks": 27374,
+          "mean_dots_per_occupied_block": 0.1819
+        },
+        "10px": {
+          "block_px": 10,
+          "cv_all_full_blocks": 1.9162,
+          "cv_occupied_full_blocks": 0.628,
+          "n_full_blocks": 50984,
+          "n_occupied_full_blocks": 15216,
+          "mean_dots_per_occupied_block": 0.7249
+        },
+        "20px": {
+          "block_px": 20,
+          "cv_all_full_blocks": 1.3965,
+          "cv_occupied_full_blocks": 0.7526,
+          "n_full_blocks": 12527,
+          "n_occupied_full_blocks": 6651,
+          "mean_dots_per_occupied_block": 2.8944
+        },
+        "50px": {
+          "block_px": 50,
+          "cv_all_full_blocks": 0.9124,
+          "cv_occupied_full_blocks": 0.7083,
+          "n_full_blocks": 1911,
+          "n_occupied_full_blocks": 1566,
+          "mean_dots_per_occupied_block": 18.1413
+        }
+      },
+      "block_cv_after": {
+        "5px": {
+          "block_px": 5,
+          "cv_all_full_blocks": 2.9246,
+          "cv_occupied_full_blocks": 0.481,
+          "n_full_blocks": 205469,
+          "n_occupied_full_blocks": 26483,
+          "mean_dots_per_occupied_block": 0.1819
+        },
+        "10px": {
+          "block_px": 10,
+          "cv_all_full_blocks": 2.18,
+          "cv_occupied_full_blocks": 0.8677,
+          "n_full_blocks": 50984,
+          "n_occupied_full_blocks": 15537,
+          "mean_dots_per_occupied_block": 0.7249
+        },
+        "20px": {
+          "block_px": 20,
+          "cv_all_full_blocks": 1.4999,
+          "cv_occupied_full_blocks": 0.8708,
+          "n_full_blocks": 12527,
+          "n_occupied_full_blocks": 6778,
+          "mean_dots_per_occupied_block": 2.8921
+        },
+        "50px": {
+          "block_px": 50,
+          "cv_all_full_blocks": 0.912,
+          "cv_occupied_full_blocks": 0.7265,
+          "n_full_blocks": 1911,
+          "n_occupied_full_blocks": 1594,
+          "mean_dots_per_occupied_block": 18.0644
+        }
+      },
+      "nn_parent": {
+        "min_nn_px": 1.0,
+        "median_nn_px": 3.0,
+        "mean_nn_px": 3.5884,
+        "frac_nn_lt_2p8": 0.0965
+      },
+      "nn_variant": {
+        "min_nn_px": 1.0,
+        "median_nn_px": 3.0,
+        "mean_nn_px": 3.7148,
+        "frac_nn_lt_2p8": 0.0874
+      }
+    },
+    "post_build_report_only": "Preregistered MODEL -0.005 is unchanged and is the prediction. Measured after build (REPORT ONLY, never a gate): blind SGMC 0.096825 PROXY (+0.000742 vs R1 0.096083); w-weighted DTI -0.020505 MODEL. w is defined on H19-5 support and is structurally blind to off-support placement (AUC 0.47, IR-88-38), so its sign is a confounder check, not evidence."
   }
 }

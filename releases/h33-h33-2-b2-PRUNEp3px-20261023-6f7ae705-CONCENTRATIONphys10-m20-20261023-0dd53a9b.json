@@ -1,0 +1,185 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m20-20261023-0dd53a9b",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+  "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+  "axis": "CONCENTRATION",
+  "value": "phys10-m20",
+  "seed": 20261023,
+  "git_sha": "539dc3a31dcf5e26a257e9f447a5955b779c118e",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m20-20261023-0dd53a9b.tif",
+  "sha256": "0dd53a9bd914472e1c5b7dd7a09567a7a9354b0c93c1b09f9d03159e707a225a",
+  "bytes_nan": 348219,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m20-20261023-0dd53a9b.zip",
+  "zip_nan_sha256": "eca8221efd4469429ac086403eb6d4bf40527aabe8c9796259dcf50590048401",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m20-20261023-0dd53a9b-zeros.tif",
+  "sha256_zeros": "4ccea897bca9f323ca54e52f90d1b55b8676b2e339c11b2e9457655b1aa90f65",
+  "bytes_zeros": 212006,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCENTRATIONphys10-m20-20261023-0dd53a9b-zeros.zip",
+  "zip_zeros_sha256": "66439236cdeffd9680adff0d064bdf7671729951aa9e04f3d8b94dbb1071c483",
+  "form_note": "R1 6f7ae705; CONC 20% cold->hottest 1km blocks, >=2.8px spacing lock, 37654 dots; pred +0.009 MODEL",
+  "form_note_chars": 99,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 7531,
+    "n_removed": 7531,
+    "pct_changed_moved": 20.0,
+    "pct_changed_sym_diff": 40.0,
+    "pct_changed_basis": "moved",
+    "min_dist_catalogue_px": 3.1623,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 0,
+    "dots_le_4px": 2867
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "concentration_statistics": {
+    "n_moved": 7531,
+    "pct_of_parent_dots_moved": 20.001,
+    "n_receivers": 7531,
+    "receivers_on_h19_5_support": 0,
+    "receivers_off_h19_5_support_frac": 1.0,
+    "min_receiver_dist_to_survivor_px": 2.8284,
+    "min_receiver_to_receiver_px": 2.8284,
+    "mean_donor_to_nearest_receiver_px": 133.893,
+    "median_donor_to_nearest_receiver_px": 116.5161,
+    "min_d_cat_px": 3.1623,
+    "donor_block_prior_mean": 0.141476,
+    "receiver_block_prior_mean": 0.63393,
+    "block_cv_before": {
+      "5px": {
+        "block_px": 5,
+        "cv_all_full_blocks": 2.7894,
+        "cv_occupied_full_blocks": 0.4121,
+        "n_full_blocks": 205469,
+        "n_occupied_full_blocks": 27374,
+        "mean_dots_per_occupied_block": 0.1819
+      },
+      "10px": {
+        "block_px": 10,
+        "cv_all_full_blocks": 1.9162,
+        "cv_occupied_full_blocks": 0.628,
+        "n_full_blocks": 50984,
+        "n_occupied_full_blocks": 15216,
+        "mean_dots_per_occupied_block": 0.7249
+      },
+      "20px": {
+        "block_px": 20,
+        "cv_all_full_blocks": 1.3965,
+        "cv_occupied_full_blocks": 0.7526,
+        "n_full_blocks": 12527,
+        "n_occupied_full_blocks": 6651,
+        "mean_dots_per_occupied_block": 2.8944
+      },
+      "50px": {
+        "block_px": 50,
+        "cv_all_full_blocks": 0.9124,
+        "cv_occupied_full_blocks": 0.7083,
+        "n_full_blocks": 1911,
+        "n_occupied_full_blocks": 1566,
+        "mean_dots_per_occupied_block": 18.1413
+      }
+    },
+    "block_cv_after": {
+      "5px": {
+        "block_px": 5,
+        "cv_all_full_blocks": 2.9798,
+        "cv_occupied_full_blocks": 0.4969,
+        "n_full_blocks": 205469,
+        "n_occupied_full_blocks": 25933,
+        "mean_dots_per_occupied_block": 0.1819
+      },
+      "10px": {
+        "block_px": 10,
+        "cv_all_full_blocks": 2.3201,
+        "cv_occupied_full_blocks": 0.9978,
+        "n_full_blocks": 50984,
+        "n_occupied_full_blocks": 15940,
+        "mean_dots_per_occupied_block": 0.7249
+      },
+      "20px": {
+        "block_px": 20,
+        "cv_all_full_blocks": 1.7969,
+        "cv_occupied_full_blocks": 1.1466,
+        "n_full_blocks": 12527,
+        "n_occupied_full_blocks": 6857,
+        "mean_dots_per_occupied_block": 2.8953
+      },
+      "50px": {
+        "block_px": 50,
+        "cv_all_full_blocks": 1.2233,
+        "cv_occupied_full_blocks": 1.0441,
+        "n_full_blocks": 1911,
+        "n_occupied_full_blocks": 1600,
+        "mean_dots_per_occupied_block": 18.068
+      }
+    },
+    "nn_parent": {
+      "min_nn_px": 1.0,
+      "median_nn_px": 3.0,
+      "mean_nn_px": 3.5884,
+      "frac_nn_lt_2p8": 0.0965
+    },
+    "nn_variant": {
+      "min_nn_px": 1.0,
+      "median_nn_px": 3.0,
+      "mean_nn_px": 3.8693,
+      "frac_nn_lt_2p8": 0.0755
+    }
+  },
+  "prior": {
+    "bands_1indexed": [
+      3,
+      5,
+      18
+    ],
+    "band_descriptions": [
+      "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+      "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+      "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change"
+    ],
+    "construction": "mean of robust_unit(band) over bands 3,5,18; 10-99 pct clip"
+  },
+  "preregistration": "registry/preregistration_concentration_r1.json",
+  "parent_rebuild_verified": {
+    "R0_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "R0_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "R1_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+    "R1_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f"
+  },
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    }
+  },
+  "predicted_change": "MODEL:+0.009 vs parent R1 (live, preregistered)"
+}
