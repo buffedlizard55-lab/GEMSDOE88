@@ -4,7 +4,7 @@
 
 - GeoTIFF: [`gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif`](downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif)
 - Single-TIFF ZIP: [`gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip`](downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip)
-- Run card: [`../registry/mdps88_run_card.json`](../registry/mdps88_run_card.json) · Gate record: [`data/mdps88-gate.json`](data/mdps88-gate.json)
+- Run card: [run card](data/mdps88_run_card.json) · Gate record: [`data/mdps88-gate.json`](data/mdps88-gate.json)
 - Independent audit: [`data/mdps88_validation.json`](data/mdps88_validation.json) (`scripts/validate_mdps88.py`; `--require-submit` exits 2)
 - TIFF SHA-256: `bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd`
 - **HOLDOUT-DTI (far, primary):** 0.0727 [0.0591, 0.0863], 10,791 withheld positives; paired vs fold-fair control +0.0036 [−0.0060, +0.0128] (crosses 0). **Overall:** 0.0667 vs control 0.1085 (22,893 withheld). Evaluator `gems57-pooled-hide-v2`.
@@ -13,7 +13,7 @@
 - **Name (archival only):** `GEMSDOE88-MDPS88-MIX-20261024`
 - **Note (archival only, 106/140):** `MDPS-88 matched-domain physics mix, 29742 dots; HOLDOUT far 0.0727 overall 0.0667; UNSCORED; DO NOT SUBMIT`
 
-Do not upload MDPS-88. The name/note are retained for audit only.
+Do not upload MDPS-88. The name/note are retained for audit only. The canonical `current_release.json` record (PHASE-88, sha256 `28e6e912…324b`) is likewise **DO NOT SUBMIT** (HOLDOUT-DTI 0.0531; literal overlap 0.9090/1.0 — see `data/phase88_validation.json`).
 
 ## Why a previous upload attempt returned “Predicted values must be in range [0, 1]”
 

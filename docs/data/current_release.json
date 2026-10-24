@@ -1,30 +1,30 @@
 {
   "schema": "gems88.current-release.v1",
-  "file": "docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
-  "file_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
-  "zip_sha256": "e21c8aac70fdcca59fedd5e4b9ee2d8148dc34b12ea6b158698eb7ff5f9e75ca",
+  "file": "docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+  "file_sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b",
+  "zip_sha256": "301e176d2cddf7f28c3d83f0b2d383bce0ba8c193df32ab6382dbd356acaca25",
   "format_valid": true,
   "no_nan_inside": true,
   "all_values_in_0_1": true,
   "crs_shape_transform_match": true,
   "zip_one_exact_tif": true,
   "positive_pixels": 37654,
-  "canary_max_auc": 0.5096994974324838,
-  "holdout_dti": 0.05265580824432912,
+  "canary_max_auc": 0.5510007383986306,
+  "holdout_dti": 0.05306174540296061,
   "holdout_ci95": [
-    0.045911112529722096,
-    0.059150702260526954
+    0.04606433072520727,
+    0.06023288744301309
   ],
   "holdout_evaluator": "gems57-pooled-hide-v2",
   "withheld_positive_pixels": 22893,
   "incumbent_best_dti": 0.18788764184958875,
   "literal_registry_overlap_3px": 1.0,
-  "registry_rasters_checked": 222,
+  "registry_rasters_checked": 223,
   "duplicate": true,
   "research_download_ok": true,
   "ok_to_submit": false,
   "approved_for_weekly_slot": false,
   "verdict": "negative",
-  "reason": "Duplicate by literal >70% forward 3px registry overlap (including an independent GEMSDOE87 prior); stop.",
-  "provenance": "owner-mirrored inputs; independent organizer authentication unavailable"
+  "reason": "DUPLICATE under literal 3-px overlap: stop.",
+  "provenance": "hash-pinned owner mirror; not independently authenticated organizer sample"
 }
