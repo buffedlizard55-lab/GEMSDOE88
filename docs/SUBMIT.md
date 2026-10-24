@@ -1,5 +1,19 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+## 2026-10-24 · `AXIS=PRUNE` single-factor deconfounding triad (`IR-88-56`) — **`PRUNEp3space35fp` (`8d29a2f7`) leads all `300 m`-collar arms (`0.101947` blind `PROXY`, zero `w`, zero RNG)**
+
+Parent `R0 = h33-h33-2-b2` rebuilt byte-exactly (`15/15` pins, zeros `c55bafc4…`, NaN `baeae321…`). Predictions frozen before any proxy (`registry/preregistration_prune_deconfound.json`). All three arms hold `N = 37,654` fixed, `0` mass on `existing_faults.tif`, `0` positive pixels `< 3.0 px`, and pass hardened `validate_variant.py` `6/6` (`registry/prune_deconfound_validation.json`). Upload primary `<id>.tif` (`NaN` outside footprint) first; upload `<id>-zeros.tif` (`0.0` outside) **only if** the portal rejects `NaN`. Live `|delta| < 0.01` is **no evidence**.
+
+| Candidate (gitignored; rebuild with `python3 scripts/build_prune_deconfound_variants.py`) | SHA-256 primary (`.tif`) / fallback (`-zeros.tif`) | ≤140-char form note | Role & Blind `SGMC` (`PROXY`) |
+|---|---|---|---|
+| **`h33-h33-2-b2-PRUNEp3space35fp-20261024-8d29a2f7`** | `8d29a2f7a9d37b9795a5e14bb9ae9c406ed0f02d1a9100e70a0fec924a52c516` /<br>`261de02c10559feaecccc1c5e314cf3074909317e581be1a31c410fa1ac70f87` | `h33-2-b2; PRUNE <=3px (-2171) +2171 >=3.5px farthest-point null-rank refill, N=37654; pred +0.008 MODEL` | **Matched-collar Slot 2 option** (pairs cleanly with Slot 1 `PRUNEp3px 6f7ae705` at identical `2,171` donors; `min_nn = 5.66 px`, `91.9% >= 6 px`, zero `w`, zero RNG): **`0.101947`** (`+0.00589` vs `R0`; beats `p3space35`, `p3space35rand`, `p3.5space35`, and `p3space45`) |
+| `h33-h33-2-b2-PRUNEp3space35prov-20261024-0237d5b9` | `0237d5b991f4b2bd64ad1a5b9580b25add1b748a18ec3e6ffbe102670d894c3d` /<br>`5c1e756400f412969cb28031d9b65aa032495f46a3f4750be2bf655c3e504d7b` | `h33-2-b2; PRUNE <=3px (-2171) +2171 >=3.5px provided-band B19/3/18/15 crest refill, N=37654; pred +0.004 MODEL` | **Sibling-free provenance backup** (`100%` competition Bands 19/3/18/15 crests + `H19-5`, `157,085 px`, zero `H19-4/H16-1`, zero external LiDAR/GDR): **`0.100965`** (`+0.00491`, `98.5%` of `p3space35`) |
+| `h33-h33-2-b2-PRUNElt3space35-20261024-0b522c7f` | `0b522c7fcdbf3343fa21dd5224466902166924b52e2467557ef9b52e8f37da5d` /<br>`6fdbdcf1b5f4b5229ed623a04880f686fad5f81c354a63c574fd685c99b83aff` | `h33-2-b2; PRUNE d_cat<3px (-1611, keep 560 d=3px) +1611 >=3.5px refill, N=37654; pred +0.006 MODEL` | **Strict `< 3.0 px` surgical fallback** (keeps all `560` zero-kernel `d_cat == 3.0 px` `R0` dots if Slot 1 loses live): `0.099236` (`+0.00318`) |
+
+**Before any upload, the human must confirm** current `TOP_PUBLIC` + date, rolling-week (`<= 3`/week, one entity) & total slot balance, `2026-12-03` deadline, and mirror data-use terms, and after each upload paste verbatim `receipt_score` and `receipt_date` into `ledger/submissions.csv`.
+
+---
+
 ## 2026-10-24 · `AXIS=PRUNE` spacing-lock dose ladder (IR-88-55) — **no upload recommended from the new arms; every spaced-refill file is now upload-ready**
 
 Parent `R0 = h33-h33-2-b2` rebuilt byte-exactly (`15/15` pins, zeros `c55bafc4…`, NaN `baeae321…`). Predictions frozen

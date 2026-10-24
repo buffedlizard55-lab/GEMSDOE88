@@ -1,0 +1,610 @@
+{
+  "validator": "validate_variant.py",
+  "gates_all_pass": true,
+  "results": [
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b.tif",
+      "sha256": "49fff49b03c47d7ac3822df185f1efd55b0b30855133360689754ce85167a61a",
+      "n_dots": 37654,
+      "colour": "nan",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": "NaN"
+      },
+      "parent_diff": {
+        "common": 35483,
+        "added": 2171,
+        "removed": 2171
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "nan_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "axis_declared": {
+          "ok": true,
+          "detail": "PRUNE"
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "non_prune_clearance_ge_3px": {
+          "ok": true,
+          "detail": {
+            "axis": "PRUNE",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": true
+          }
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "49fff49b03c47d7ac3822df185f1efd55b0b30855133360689754ce85167a61a",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 35483,
+            "added": 2171,
+            "removed": 2171,
+            "pct_of_parent_changed": 5.77
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b-zeros.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b-zeros.tif",
+      "sha256": "e0b9d59b765a198aa5327bb99bddf09fec52e2806410a403b63ccce2d204824e",
+      "n_dots": 37654,
+      "colour": "zeros",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "parent_diff": {
+        "common": 35483,
+        "added": 2171,
+        "removed": 2171
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "zeros_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "axis_declared": {
+          "ok": true,
+          "detail": "PRUNE"
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "non_prune_clearance_ge_3px": {
+          "ok": true,
+          "detail": {
+            "axis": "PRUNE",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": true
+          }
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "e0b9d59b765a198aa5327bb99bddf09fec52e2806410a403b63ccce2d204824e",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 35483,
+            "added": 2171,
+            "removed": 2171,
+            "pct_of_parent_changed": 5.77
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b-zeros.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b-zeros.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182.tif",
+      "sha256": "07bd8182ec4d542aa127601febb2eb37b1458885bce1941593bf846b85f4bb2a",
+      "n_dots": 37654,
+      "colour": "nan",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": "NaN"
+      },
+      "parent_diff": {
+        "common": 33829,
+        "added": 3825,
+        "removed": 3825
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "nan_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "axis_declared": {
+          "ok": true,
+          "detail": "PRUNE"
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "non_prune_clearance_ge_3px": {
+          "ok": true,
+          "detail": {
+            "axis": "PRUNE",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": true
+          }
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "07bd8182ec4d542aa127601febb2eb37b1458885bce1941593bf846b85f4bb2a",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 33829,
+            "added": 3825,
+            "removed": 3825,
+            "pct_of_parent_changed": 10.16
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182-zeros.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    },
+    {
+      "artifact": "releases/h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182-zeros.tif",
+      "sha256": "fb7ee110c9ac96a32e53f7d9558bade00d6244f4b5622e35eab83264646e3766",
+      "n_dots": 37654,
+      "colour": "zeros",
+      "meta": {
+        "driver": "GTiff",
+        "count": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null
+      },
+      "parent_diff": {
+        "common": 33829,
+        "added": 3825,
+        "removed": 3825
+      },
+      "checks": {
+        "geotiff": {
+          "ok": true,
+          "detail": "GTiff"
+        },
+        "single_band": {
+          "ok": true,
+          "detail": 1
+        },
+        "float32": {
+          "ok": true,
+          "detail": "float32"
+        },
+        "crs": {
+          "ok": true,
+          "detail": "EPSG:32611"
+        },
+        "shape": {
+          "ok": true,
+          "detail": [
+            3730,
+            3292
+          ]
+        },
+        "transform": {
+          "ok": true,
+          "detail": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ]
+        },
+        "finite_inside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "values_in_0_1_inside": {
+          "ok": true,
+          "detail": [
+            0.0,
+            1.0
+          ]
+        },
+        "zeros_outside_footprint": {
+          "ok": true,
+          "detail": 0
+        },
+        "axis_declared": {
+          "ok": true,
+          "detail": "PRUNE"
+        },
+        "zero_mass_on_catalogue": {
+          "ok": true,
+          "detail": 0
+        },
+        "non_prune_clearance_ge_3px": {
+          "ok": true,
+          "detail": {
+            "axis": "PRUNE",
+            "positive_pixels_below_3px": 0,
+            "PRUNE_exception": true
+          }
+        },
+        "dot_values_are_binary": {
+          "ok": true,
+          "detail": 2
+        },
+        "sha256_not_previously_submitted": {
+          "ok": true,
+          "detail": {
+            "sha256": "fb7ee110c9ac96a32e53f7d9558bade00d6244f4b5622e35eab83264646e3766",
+            "owners": [
+              "h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182"
+            ]
+          }
+        },
+        "parent_diff_recorded": {
+          "ok": true,
+          "detail": {
+            "common": 33829,
+            "added": 3825,
+            "removed": 3825,
+            "pct_of_parent_changed": 10.16
+          }
+        },
+        "twin_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182.tif"
+        },
+        "twin_agrees_inside_footprint": {
+          "ok": true,
+          "detail": null
+        },
+        "zip_present": {
+          "ok": true,
+          "detail": "h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182-zeros.zip"
+        },
+        "zip_single_tiff": {
+          "ok": true,
+          "detail": [
+            "h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182-zeros.tif"
+          ]
+        },
+        "zip_sha_matches_raster": {
+          "ok": true,
+          "detail": null
+        },
+        "reread_identical": {
+          "ok": true,
+          "detail": null
+        }
+      },
+      "gates_pass": true,
+      "report_only_not_gated": [
+        "catalogue hide-and-recover PROXY",
+        "leakage canary",
+        "SGMC control"
+      ]
+    }
+  ]
+}
