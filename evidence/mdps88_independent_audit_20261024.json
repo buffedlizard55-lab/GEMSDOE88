@@ -1,0 +1,106 @@
+{
+ "evidence_class": "INDEPENDENT-AUDIT (second implementation, on-disk bytes)",
+ "file": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+ "sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
+ "checks": {
+  "sha256_matches_card": true,
+  "single_band_float32": true,
+  "grid_matches_sample": true,
+  "nodata_is_none": true,
+  "all_finite": true,
+  "range_0_1": true,
+  "values_are_binary_01": true,
+  "dot_count": 29742,
+  "dot_count_matches_card": true,
+  "zero_dots_on_catalogue": true,
+  "zero_dots_outside_footprint": true,
+  "min_distance_to_catalogue_px": 2.23606797749979,
+  "b2_collar_respected": true,
+  "min_nn_spacing_px": 3.0,
+  "median_nn_spacing_px": 3.1622776601683795,
+  "spacing_at_least_2.83_minus_eps": true,
+  "zip_one_member": true,
+  "zip_member_name_is_tif_name": true,
+  "zip_member_bytes_identical": true,
+  "zip_sha_matches_card": true,
+  "literal_forward_overlap_3px_vs_lineage": {
+   "H33_R0": 0.30993208257682736,
+   "SOLO_D28": 0.3147064756909421,
+   "D28": 0.31860668415035975,
+   "H19_5": 0.3547172348866922
+  },
+  "not_a_lineage_copy": true,
+  "exact_pixel_overlap_frac_vs_H33": 0.018559612668952997,
+  "pooled_arithmetic_recomputed": {
+   "base283_far": {
+    "recomputed": 0.06912669850159733,
+    "stored": 0.06912669850159732,
+    "n": 10791,
+    "ok": true
+   },
+   "base283_all": {
+    "recomputed": 0.1085414150442897,
+    "stored": 0.10854141504428969,
+    "n": 22893,
+    "ok": true
+   },
+   "mdps_mix_far": {
+    "recomputed": 0.07272295955361245,
+    "stored": 0.07272295955361242,
+    "n": 10791,
+    "ok": true
+   },
+   "mdps_mix_all": {
+    "recomputed": 0.06672815072543177,
+    "stored": 0.06672815072543178,
+    "n": 22893,
+    "ok": true
+   },
+   "mdps_far_far": {
+    "recomputed": 0.07558329425674197,
+    "stored": 0.07558329425674196,
+    "n": 10791,
+    "ok": true
+   },
+   "mdps_far_all": {
+    "recomputed": 0.06746331919593133,
+    "stored": 0.06746331919593138,
+    "n": 22893,
+    "ok": true
+   },
+   "r0_fixed_far": {
+    "recomputed": 0.0031838925582264575,
+    "stored": 0.003183892558226459,
+    "n": 10791,
+    "ok": true
+   },
+   "r0_fixed_all": {
+    "recomputed": 0.0038851762665228543,
+    "stored": 0.0038851762665228526,
+    "n": 22893,
+    "ok": true
+   }
+  },
+  "pooled_arithmetic_all_ok": true,
+  "metric_exact_vs_bruteforce_max_abs_err": 2.220446049250313e-16,
+  "metric_self_consistent": true,
+  "note_len_le_140": true,
+  "name_len_le_140": true,
+  "filename_matches_verdict": true
+ },
+ "failures": [],
+ "scientific_verdict": "negative",
+ "ok_to_submit": false,
+ "literal_protocol": {
+  "witness": "data/registry/dense_17gemdoe.tif",
+  "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+  "final_overlap_3px": 1.0,
+  "duplicate": true,
+  "registry_complete": false,
+  "scope": "One sufficient rejection witness; not a new full-registry certification",
+  "surface_rho": null,
+  "surface_rho_reason": "No new surface: stop at universal feasibility blocker"
+ },
+ "ok_to_download": true,
+ "audit_passed": true
+}

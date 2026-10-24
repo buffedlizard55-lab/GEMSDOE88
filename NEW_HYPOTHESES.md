@@ -1,5 +1,7 @@
 # Ranked Un-Tried Geological Hypotheses & QTS-88 Validation Dossier (2026-10-24)
 
+> **Quarantine note on PR #68 (`MAG-PSG`):** The earlier PR #68 `MAG-PSG` TIFF (`gems88-hyp-psg-submission.tif`) was generated from seeded random stripes (no pseudogravity transform), failed the footprint audit, and was removed from Pages ([post-merge quarantine audit](evidence/postmerge_psg_quarantine_20261024.json)). DO NOT SUBMIT it. See also [registry/preregistration_phase88.json](registry/preregistration_phase88.json) and [research/phase88-20261024.md](research/phase88-20261024.md). Below is the verified 5-hypothesis ranking and real-data `QTS-88` validation dossier (`registry/preregistration_qts88.json`, `registry/qts88_run_card.json`).
+
 ## 0. Automated Gate Banner for Current Session Deliverable (`QTS-88`)
 
 | Gate Question | Machine Verdict | Verified Details |
@@ -44,3 +46,8 @@ We validated `QTS-88` (`src/gems88/qts88.py`, `scripts/run_qts88_experiment.py`)
    - **Like-for-like uniqueness across all 223 accessible registry rasters** (`unique_like_for_like = true`, worst 3-px overlap `0.5373 <= 0.70`, worst `|Spearman rho| = 0.5049 <= 0.90`, `0` like-for-like blockers), and
    - **The owner-reported fleet distance-to-catalogue fingerprint screen** (`share_le2 = 0.0000 == 0`, `share_gt25 = 0.4025 >= 0.35`, `median_d_cat = 18.0 px`).
 3. **Why We Do Not Spend a Weekly Submission Slot (`verdict: "negative"`):** Under our fail-closed weekly slot policy, zero-catalogue `QTS-88` (`0.098210` / `0.094851`) does not surpass the stored catalogue-adjacent `H88-ADHR` holdout point estimate (`0.187888`), and under the literal all-registry rule (`vendor/gems57/uniqueness.py`), the space-filling `17GEMSDOE:dense_17gemdoe.tif` witness (`5,167,373 / 5,167,373` positive footprint pixels) forces `forward_overlap = 1.0000 > 0.70` for every non-empty raster. The artifact is therefore published with `DO-NOT-SUBMIT` in its filename as a verified research deliverable.
+
+---
+
+## 3. Limitations & Blockers (Corrected After Reconciliation)
+Owner GitHub mirrors provide SHA-pinned inputs via `scripts/restore_inputs.py`; a competition-account download is still required to authenticate those bytes. The external datasets above require separate official-source AOI, license/shareability and time-series checks before they are viable. No MAG-PSG physical transform or legitimate holdout was implemented in the archived PR. Do not generate a competition file from random stripes.

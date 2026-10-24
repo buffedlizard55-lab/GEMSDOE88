@@ -1,0 +1,123 @@
+{
+  "schema": "gems88.phase88.run-card.v1",
+  "hypothesis": "a buried basement displacement may deflect magnetic boundaries away from gravity density interfaces while leaving no trace in a surface fault catalogue",
+  "mechanism": "locally standardized, Gaussian-smoothed gravity/magnetic gradient directional disagreement, weighted by adjacent offset and gradient strength; orientation-agnostic cross-gradient determinant plus normalized dot product",
+  "named_non_fault_process": "unfaulted lithologic intrusive contacts, magnetic remanence, flight-line seam or gravity interpolation discontinuity",
+  "lane": "PHASE-88",
+  "source_pins": {
+    "sample": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "catalogue": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "features": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "surface_input_stats": {
+    "rtp": {
+      "valid": 5164312,
+      "invalid_inside": 3061,
+      "clip01": -460.4590252685547,
+      "median": -137.2845916748047,
+      "clip99": 394.5721917724609
+    },
+    "gravity": {
+      "valid": 5164312,
+      "invalid_inside": 3061,
+      "clip01": -32.79015983581543,
+      "median": -7.277862071990967,
+      "clip99": 12.871771755218505
+    }
+  },
+  "leakage_canary": {
+    "gradient_misalignment": {
+      "auc": 0.49317097636934193,
+      "symmetric_auc": 0.5068290236306581
+    },
+    "rtp_gradient_strength": {
+      "auc": 0.5510007383986306,
+      "symmetric_auc": 0.5510007383986306
+    },
+    "gravity_gradient_strength": {
+      "auc": 0.5349667314092811,
+      "symmetric_auc": 0.5349667314092811
+    },
+    "phase_surface": {
+      "auc": 0.5275287131513884,
+      "symmetric_auc": 0.5275287131513884
+    }
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.05306174540296061,
+    "ci95": [
+      0.04606433072520727,
+      0.06023288744301309
+    ],
+    "withheld_positive_pixels": 22893,
+    "tpw": 1748.6994520129567,
+    "fpw": 71458.97738796029,
+    "fnw": 21144.300547987037
+  },
+  "holdout_evaluator": "gems57-pooled-hide-v2",
+  "holdout_bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 158,
+    "draws": 1000,
+    "seed": 881025,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "incumbent_holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.18788764184958875,
+    "ci95": [
+      0.17169764852656258,
+      0.20326012211176936
+    ],
+    "withheld_positive_pixels": 22893,
+    "tpw": 6241.143086000586,
+    "fpw": 68273.96686338239,
+    "fnw": 16651.856913999403
+  },
+  "comparable_to_incumbent_same_split": true,
+  "paired_improvement_ci95": null,
+  "correlation_overlap_vs_registry": {
+    "preplacement_max_abs_rho": 0.17825352678841797,
+    "final_max_abs_rho": 0.030074306598873026,
+    "final_overlap_3px": 1.0,
+    "worst_registry_raster": "dense_17gemdoe.tif",
+    "registry_rasters_checked": 223,
+    "literal_duplicate": true,
+    "full_rows": "evidence/phase88_final_uniqueness.json"
+  },
+  "raster_sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b",
+  "validator_output": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "zip_validation_ok": true,
+  "download": "docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+  "submission_name": "GEMSDOE88-PHASE-D7D02AB4",
+  "submission_note": "RTP/gravity cross-gradient disagreement; 37654 dots; HOLDOUT-DTI 0.0531; UNSCORED; DO NOT SUBMIT",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "organizer_confirmed_score": null,
+  "weekly_slots_used": 0,
+  "experiments_run": 1,
+  "stop_reason": "DUPLICATE under literal 3-px overlap: stop.",
+  "elapsed_seconds": 162.5
+}

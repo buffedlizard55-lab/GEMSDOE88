@@ -23,28 +23,32 @@ class Links(HTMLParser):
 
 def main(root=ROOT):
     import hashlib as _hl
-    # Keep the merged historical MRR record negative, but make the public feed
-    # follow the actual latest experiment (KTH-88), not that older run card.
+    # Current MDPS display must not resurrect the superseded chance-corrected PASS.
+    literal = json.loads((root / 'docs/data/literal_protocol_audit.json').read_text())
+    mdps = json.loads((root / 'registry/mdps88_run_card.json').read_text())
+    assert literal['raster_sha256'] == mdps['raster_sha256']
+    assert literal['preplacement_feasibility']['all_nonempty_in_footprint_candidates_blocked']
+    assert literal['correlation_overlap_vs_registry']['duplicate'] and not literal['ok_to_submit']
+    assert mdps['correlation_overlap_vs_registry']['duplicate']
+    assert 'FAIL — DUPLICATE' in (root / 'docs/index.html').read_text()
+    # Historical MRR and KTH remain negative; latest PHASE-88 controls the site.
     historical = json.loads((root / 'registry/run_card.json').read_text())
     assert historical['verdict'] == 'negative' and historical['ok_to_submit'] is False
-    assert len(historical['submission_note']) <= 140
-    kth = json.loads((root / 'registry/kth88_run_card.json').read_text())
-    validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
+    phase = json.loads((root / 'registry/phase88_run_card.json').read_text())
+    validation = json.loads((root / 'docs/data/phase88_validation.json').read_text())
     current = json.loads((root / 'docs/data/current_release.json').read_text())
-    assert current['file'] == kth['download']
-    assert current['file_sha256'] == kth['raster_sha256'] == validation['tif_sha256']
+    assert current['file'] == phase['download']
+    assert current['file_sha256'] == phase['raster_sha256'] == validation['tif_sha256']
     assert current['zip_sha256'] == validation['zip_sha256']
-    assert current['research_download_ok'] is True
-    assert current['ok_to_submit'] is False and current['duplicate'] is True
-    assert current['holdout_evaluator'] == kth['holdout_dti']['evaluator_version']
-    assert current['withheld_positive_pixels'] == kth['holdout_dti']['withheld_positive_pixels']
-    assert current['holdout_dti'] == kth['holdout_dti']['dti']
-    assert current['holdout_ci95'] == kth['holdout_dti']['ci95']
-    assert current['literal_registry_overlap_3px'] == kth['correlation_overlap_vs_registry']['final_overlap_3px']
-    canonical_tif = root / kth['download']
-    canonical_zip = canonical_tif.with_suffix('.zip')
+    assert current['research_download_ok'] and not current['ok_to_submit'] and current['duplicate']
+    assert current['holdout_evaluator'] == phase['holdout_dti']['evaluator_version']
+    assert current['withheld_positive_pixels'] == phase['holdout_dti']['withheld_positive_pixels']
+    assert current['holdout_dti'] == phase['holdout_dti']['dti']
+    assert current['holdout_ci95'] == phase['holdout_dti']['ci95']
+    assert current['literal_registry_overlap_3px'] == phase['correlation_overlap_vs_registry']['final_overlap_3px']
+    canonical_tif = root / phase['download']; canonical_zip = canonical_tif.with_suffix('.zip')
     assert canonical_tif.is_file() and canonical_zip.is_file()
-    assert _hl.sha256(canonical_tif.read_bytes()).hexdigest() == kth['raster_sha256']
+    assert _hl.sha256(canonical_tif.read_bytes()).hexdigest() == phase['raster_sha256']
     assert _hl.sha256(canonical_zip.read_bytes()).hexdigest() == current['zip_sha256']
     # Rasters whose own machine gate record clears them for submission (and which must
     # therefore NOT be renamed to DO-NOT-SUBMIT). Collected from every gate record.
@@ -110,6 +114,10 @@ def main(root=ROOT):
                 continue
             path = (page.parent / unquote(u.path)).resolve()
             assert path.is_relative_to(root), f'Escaping link: {link}'
+            # Pages uploads only docs/: a repo-relative link outside docs/
+            # exists locally but 404s on the deployed website.
+            if page.is_relative_to(root / 'docs'):
+                assert path.is_relative_to(root / 'docs'), f'Link outside Pages artifact: {page.name}: {link}'
             assert path.is_file(), f'Broken link: {page.name}: {link}'
             if path.suffix.lower() in ('.tif', '.tiff', '.zip'):
                 assert path.is_relative_to(root / 'docs/downloads'), link
@@ -118,20 +126,18 @@ def main(root=ROOT):
                 # claim otherwise, so it is cleared by its gate record instead (IR-88-76).
                 if 'DO-NOT-SUBMIT' not in path.name:
                     assert path.name in cleared_names, f'Unmarked research download: {link}'
-    # Bind the canonical current feed and visible guidance to latest KTH-88 bytes.
+    # Old KTH links remain archival, but the *first* panel must show PHASE-88.
     current = json.loads((root / 'docs/data/current_release.json').read_text())
-    assert current['file'] == kth['download']
-    assert current['file_sha256'] == kth['raster_sha256']
-    assert current['zip_sha256'] == kth_validation['zip_sha256']
+    assert current['file'] == phase['download']
+    assert current['file_sha256'] == phase['raster_sha256']
+    assert current['zip_sha256'] == validation['zip_sha256']
     assert current['ok_to_submit'] is False and current['duplicate'] is True
     for page in (root / 'docs/index.html', root / 'docs/executive-summary.html'):
-        text = (root / page).read_text()
-        assert kth_tif.name in text, f'Current artifact not identified on {page.name}'
+        text = page.read_text()
+        assert phase['download'].split('/')[-1] in text, f'Current artifact not identified on {page.name}'
         upper = text.upper()
-        assert 'DO NOT SUBMIT' in upper and (
-            'DOWNLOAD: YES' in upper or 'DOWNLOAD FOR RESEARCH: YES' in upper
-        ), page
-    print('PASS: current run card, current release hashes, site links, and explicit negative decision agree')
+        assert 'DO NOT SUBMIT' in upper and ('DOWNLOAD: YES' in upper or 'DOWNLOAD FOR RESEARCH: YES' in upper), page
+    print('PASS: current PHASE-88 run card, current release hashes, site links, and explicit negative decision agree')
 
 
 if __name__ == '__main__':

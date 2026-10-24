@@ -26,14 +26,14 @@
   const banner = document.querySelector('[data-card-status]');
   if (banner) {
     try {
-      const response = await fetch('data/kth88_validation.json', { cache: 'no-store' });
+      const response = await fetch('data/mdps88_validation.json', { cache: 'no-store' });
       if (!response.ok) throw new Error('latest run validation unavailable');
       const data = await response.json();
       // Fail closed. A locally valid research artifact must never be presented
       // as slot-cleared or organizer-accepted, even if the old status.json is green.
       banner.textContent = data.ok_to_download === true && data.ok_to_submit === false &&
-          data.local_format_audit?.ok === true && data.tif_and_single_member_zip_validated === true
-        ? 'KTH-88 · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT · binding registry duplicate'
+          data.audit_passed === true
+        ? 'MDPS-88 · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT · literal duplicate and holdout gates failed (automated decision)'
         : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
     } catch (_) {
       banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';

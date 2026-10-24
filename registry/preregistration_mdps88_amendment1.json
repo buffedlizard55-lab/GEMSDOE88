@@ -1,0 +1,22 @@
+{
+  "schema": "gems88.preregistration.amendment.v1",
+  "amends": "registry/preregistration_mdps88.json",
+  "experiment": "E2 (replaces the E2 slot earmarked for near-cap 0%; deviation disclosed here BEFORE E2 runs; the near-cap question is still answered by the mdps_far vs mdps_mix contrast inside E2)",
+  "e1_result_that_motivates_this": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator": "gems57-pooled-hide-v2",
+    "far_n": 10791,
+    "base283_far": 0.06913,
+    "mdps_far_far": 0.06564,
+    "mdps_mix_far": 0.06379,
+    "paired_mdps_mix_minus_base283_far": {"delta": -0.00533, "ci95": [-0.01659, 0.00528]},
+    "overall_n": 22893,
+    "base283_overall": 0.10854,
+    "mdps_mix_overall": 0.05409,
+    "confound_measured": "E1 share-scaled k_far made the allocator stop early: mdps arms emitted 4.0-7.4k dots/region vs base283 9.0-17.7k, while mdps_far far-TP per 1000 dots was 1.2-3.1x base283 in every seed-20 fold (efficiency win, budget loss). Arms therefore differed by budget, not only by the preregistered method - the same confound class the HALO-88 session fixed with a common k_est."
+  },
+  "e2_single_change": "Budget-matched allocation: per fold, every fitted arm gets the SAME maximum dot budget B_q = base283 E1 emitted count in that fold region and the SAME allocator k_truth (base k_est). mdps_far: budget B_q at d_vis>8, surface as returned by predict_calibrated (no k_far share-scaling). mdps_mix: far allocation budget ceil(0.8*B_q) at d_vis>8; near allocation (base head, 2<d_vis<=8, >=99th percentile of near p) budget floor(0.2*B_q); near dots within 2.83 px of far dots dropped. Same fits (same seeds), same spacing 2.83, same folds, same evaluator, same gates.",
+  "reuse": "base283 / r0_fixed / prov_fixed terms imported byte-identical from E1 checkpoints (.cache/mdps88/*.npz) so pairing is exact; deterministic refits only regenerate the candidate surfaces.",
+  "gates": "unchanged from registry/preregistration_mdps88.json (far paired CI>0 vs base283 AND far > 0.11478 stored ADHR far (unpaired) AND overall >= base283, canary, uniqueness, format)",
+  "experiment_count_after_e2": "2 of max 3 (E3 reserved for final fit + packaging of the winning config or the least-bad config labelled negative)"
+}
