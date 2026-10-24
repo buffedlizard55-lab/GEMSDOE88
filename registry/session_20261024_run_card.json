@@ -1,0 +1,231 @@
+{
+  "schema": "gems88.run-card.v3",
+  "session": "2026-10-24 audit of PROVCREST promote verdict (IR-88-59)",
+  "hypothesis": "De-novo dots on composite Hessian crests of provided Bands 19 (slope-break), 3 (TMI gradient), 18 (gravity gradient) and 15 (basement step) recover geothermal faults missing from the USGS/INGENIOUS catalogue, because the transforms respond to fault scarps/contacts/basement steps in topography and potential fields whether or not a mapper traced the fault.",
+  "mechanism": "Percentile-ranked crest composite (0.45/0.20/0.20/0.15) -> 1-D directional NMS crest pool -> greedy selection of exactly 37,654 dots at >=3.5 px mutual spacing and >3.0 px from the catalogue (visible-only inside holdout folds), binary {0,1}, zeros outside footprint.",
+  "named_non_fault_process": "Unfaulted coalescing alluvial-fan bajada toe inflections, incised fluvial terrace risers, Tertiary volcanic flow margins and pluton-roof contacts producing slope-break/gradient crests without brittle fault permeability.",
+  "experiments": [
+    {
+      "id": "EXP1",
+      "name": "null-control audit + bit-for-bit reproduction",
+      "script": "scripts/audit_provcrest_nullcontrol.py",
+      "result_file": "registry/provcrest_nullcontrol_audit.json",
+      "verdict": "promote verdict SURVIVES (candidate beats both no-information nulls, paired CI > 0, ALL and FAR)"
+    },
+    {
+      "id": "EXP2",
+      "name": "single-factor spacing 3.0/3.5/4.5 px",
+      "script": "scripts/exp_provcrest_spacing.py",
+      "result_file": "registry/provcrest_spacing_experiment.json",
+      "verdict": "NEGATIVE: shipped 3.5 px is the local optimum; no change"
+    },
+    {
+      "id": "EXP3",
+      "name": "single-factor dot count 20k..65k",
+      "script": "scripts/exp_provcrest_spacing.py count",
+      "result_file": "registry/provcrest_count_experiment.json",
+      "verdict": "HOLD: holdout rises with N but live lineage thinned; N kept at 37,654; N ladder queued for a selector"
+    }
+  ],
+  "experiments_run": 3,
+  "experiment_budget_max": 3,
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_px": 3.0,
+    "seeds": [
+      20,
+      30
+    ],
+    "views": {
+      "ALL": {
+        "withheld_positive_pixels": 22663,
+        "scores": {
+          "provcrest_rank": {
+            "dti": 0.076277,
+            "ci95": [
+              0.067653,
+              0.084607
+            ]
+          },
+          "null_random": {
+            "dti": 0.047876,
+            "ci95": [
+              0.044093,
+              0.051372
+            ]
+          },
+          "null_lattice": {
+            "dti": 0.048408,
+            "ci95": [
+              0.044269,
+              0.052441
+            ]
+          }
+        },
+        "paired_delta_candidate_minus_null": {
+          "null_random": {
+            "delta": 0.028401,
+            "ci95": [
+              0.0202,
+              0.036505
+            ]
+          },
+          "null_lattice": {
+            "delta": 0.027869,
+            "ci95": [
+              0.020254,
+              0.03489
+            ]
+          }
+        }
+      },
+      "FAR_gt_10px_from_visible_faults": {
+        "withheld_positive_pixels": 10277,
+        "scores": {
+          "provcrest_rank": {
+            "dti": 0.055756,
+            "ci95": [
+              0.047242,
+              0.063384
+            ]
+          },
+          "null_random": {
+            "dti": 0.033458,
+            "ci95": [
+              0.029404,
+              0.037206
+            ]
+          },
+          "null_lattice": {
+            "dti": 0.032734,
+            "ci95": [
+              0.028649,
+              0.036822
+            ]
+          }
+        },
+        "paired_delta_candidate_minus_null": {
+          "null_random": {
+            "delta": 0.022298,
+            "ci95": [
+              0.014244,
+              0.029966
+            ]
+          },
+          "null_lattice": {
+            "delta": 0.023022,
+            "ci95": [
+              0.015276,
+              0.030764
+            ]
+          }
+        }
+      }
+    },
+    "spacing": {
+      "S3.0": {
+        "dti": 0.073214,
+        "ci95": [
+          0.063956,
+          0.082902
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "S3.5": {
+        "dti": 0.076277,
+        "ci95": [
+          0.06778,
+          0.084941
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "S4.5": {
+        "dti": 0.074367,
+        "ci95": [
+          0.066635,
+          0.081932
+        ],
+        "withheld_positive_pixels": 22663
+      }
+    },
+    "count": {
+      "N20000": {
+        "dti": 0.048439,
+        "ci95": [
+          0.041691,
+          0.055729
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "N28000": {
+        "dti": 0.064084,
+        "ci95": [
+          0.055915,
+          0.072535
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "N37654": {
+        "dti": 0.076277,
+        "ci95": [
+          0.06778,
+          0.084941
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "N50000": {
+        "dti": 0.08533,
+        "ci95": [
+          0.075929,
+          0.094545
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "N65000": {
+        "dti": 0.090291,
+        "ci95": [
+          0.080058,
+          0.0997
+        ],
+        "withheld_positive_pixels": 22663
+      }
+    }
+  },
+  "lineage_geometry": {
+    "evidence_class": "CLAIM (user-reported live scores)",
+    "spearman_median_dcat_vs_claimed": {
+      "rho": 0.891,
+      "p": 0.0,
+      "caveat": "descriptive, n=13, lineage members are not independent"
+    },
+    "file": "evidence/lineage_live_vs_geometry.json"
+  },
+  "correlation_overlap_vs_registry": {
+    "rasters_checked": 30,
+    "worst_forward_overlap_dot_fields": 0.4076,
+    "worst_file": "family_60gemsdoe/calib_h161_01855.tif",
+    "max_abs_spearman": 0.0302,
+    "literal_reading_note": "continuous 17GEMSDOE prior overlaps every non-empty raster at 1.0; reported, not exempted"
+  },
+  "raster_sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
+  "validator_output": {
+    "gate": "scripts/submission_gate.py",
+    "verdict": "OK_TO_SUBMIT",
+    "checks_total": 29,
+    "checks_failed": 0,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match_sample": true,
+    "report": "docs/data/submission_gate.json"
+  },
+  "submission_name": "GEMSDOE88-PROVCREST-RANK-04559A2C",
+  "submission_file": "gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+  "submission_note": "PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs null 0.048; UNSCORED",
+  "submission_note_chars": 113,
+  "organizer_confirmed_score": null,
+  "weekly_slots_used_by_agent": 0,
+  "verdict": "promote"
+}

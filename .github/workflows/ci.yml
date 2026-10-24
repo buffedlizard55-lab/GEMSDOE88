@@ -20,10 +20,15 @@ jobs:
         run: python scripts/restore_inputs.py --validation
       - name: Run full unified test suite (all 10 test modules)
         run: pytest -v
-      - name: Independently reopen published TIFF and verify fail-closed literal gate
+      - name: Fail-closed submission gate (PROMOTED file must be OK_TO_SUBMIT; exit 0)
         run: |
+          python scripts/submission_gate.py --require-submit
+          python scripts/render_site.py
           python scripts/check_site.py
           python scripts/readiness.py
+          git diff --exit-code docs/status.json docs/data/submission_gate.json index.html docs/index.html docs/executive-summary.html README.md
+      - name: Archived ADHR file must stay blocked (literal 17GEMSDOE rule, exit 2)
+        run: |
           python scripts/validate_release.py
           set +e
           python scripts/validate_release.py --require-submit

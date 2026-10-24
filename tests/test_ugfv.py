@@ -134,9 +134,13 @@ def test_run_card_four_way_parity_and_audit_invariants():
     assert dots["H33"]["forward_dot_overlap_3px"] < 0.70
 
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
-    assert status_doc["raster_sha256"] == card["raster_sha256"]
-    assert status_doc["ok_to_submit"] is False
-    assert status_doc["ok_to_download_for_research"] is True
+    # docs/status.json is now the unified submission gate for the PROMOTED file (IR-88-59);
+    # the archived ADHR verdict lives under archive_research_artifact.
+    archive = status_doc["archive_research_artifact"]
+    assert archive["raster_sha256"] == card["raster_sha256"]
+    assert archive["ok_to_submit"] is False
+    assert archive["ok_to_download_for_research"] is True
+    assert status_doc["raster_sha256"] != card["raster_sha256"]
 
     tif_path = ROOT / "docs" / card["downloadable_file"]
     zip_path = tif_path.with_suffix(".zip")

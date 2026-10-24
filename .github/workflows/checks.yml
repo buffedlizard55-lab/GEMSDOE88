@@ -17,4 +17,5 @@ jobs:
       - run: python scripts/check_site.py
       - run: python scripts/readiness.py
       - run: python scripts/validate_release.py
+      - run: python scripts/submission_gate.py --require-submit
       - run: git diff --exit-code docs/status.json docs/run_card.json registry/template_pin.json

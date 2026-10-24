@@ -121,8 +121,32 @@ def current_status(root=ROOT):
     }
 
 
+def unified_status(root=ROOT):
+    """Authoritative site/CI status: the single submission gate for the promoted file.
+
+    The archived ADHR research artifact keeps its own (blocked) verdict under
+    ``archive_research_artifact`` so the two can never be confused.
+    """
+    from submission_gate import run_gate
+
+    gate = run_gate(root)
+    return {
+        'verdict': gate['verdict'],
+        'ok_to_download': gate['ok_to_download'],
+        'ok_to_submit': gate['ok_to_submit'],
+        'approved_for_weekly_slot': False,
+        'raster_sha256': gate['candidate']['sha256'],
+        'file': gate['candidate']['file'],
+        'submission_name': gate['candidate']['submission_name'],
+        'note': gate['candidate']['note'],
+        'failures': gate['failures'],
+        'gate_report': 'data/submission_gate.json',
+        'archive_research_artifact': current_status(root),
+    }
+
+
 if __name__ == '__main__':
     verify_template()
-    report = current_status()
+    report = unified_status()
     (ROOT / 'docs/status.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))

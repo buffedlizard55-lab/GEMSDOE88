@@ -1,11 +1,23 @@
 {
-  "evidence_schema_complete": true,
+  "verdict": "OK_TO_SUBMIT",
+  "ok_to_download": true,
+  "ok_to_submit": true,
   "approved_for_weekly_slot": false,
-  "status": "BLOCKED",
-  "problems": [
-    "Literal registry overlap with hash-pinned full-footprint witness: research TIFF is not eligible for submission"
-  ],
-  "ok_to_download_for_research": true,
-  "ok_to_submit": false,
-  "raster_sha256": "f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd"
+  "raster_sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
+  "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+  "submission_name": "GEMSDOE88-PROVCREST-RANK-04559A2C",
+  "note": "PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs null 0.048; UNSCORED",
+  "failures": [],
+  "gate_report": "data/submission_gate.json",
+  "archive_research_artifact": {
+    "evidence_schema_complete": true,
+    "approved_for_weekly_slot": false,
+    "status": "BLOCKED",
+    "problems": [
+      "Literal registry overlap with hash-pinned full-footprint witness: research TIFF is not eligible for submission"
+    ],
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false,
+    "raster_sha256": "f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd"
+  }
 }

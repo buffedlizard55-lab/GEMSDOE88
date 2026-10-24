@@ -1,0 +1,123 @@
+{
+  "schema": "gems88.nullcontrol-audit.v1",
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "shipped_file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+  "shipped_sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
+  "reproduced_bit_for_bit_from_restored_inputs": true,
+  "far_threshold_px": 10.0,
+  "dots_per_fold_by_arm": {
+    "provcrest_rank": [
+      37654,
+      37654
+    ],
+    "null_random": [
+      37654,
+      37654
+    ],
+    "null_lattice": [
+      37759,
+      37768
+    ]
+  },
+  "canaries_max_symmetric_auc": 0.57543,
+  "views": {
+    "ALL": {
+      "withheld_positive_pixels": 22663,
+      "scores": {
+        "provcrest_rank": {
+          "dti": 0.076277,
+          "ci95": [
+            0.067653,
+            0.084607
+          ]
+        },
+        "null_random": {
+          "dti": 0.047876,
+          "ci95": [
+            0.044093,
+            0.051372
+          ]
+        },
+        "null_lattice": {
+          "dti": 0.048408,
+          "ci95": [
+            0.044269,
+            0.052441
+          ]
+        }
+      },
+      "paired_differences_vs_provcrest_rank": {
+        "null_random": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.028401143190788854,
+          "ci95": [
+            0.020200085291215558,
+            0.03650492550599394
+          ],
+          "withheld_positive_pixels": 22663
+        },
+        "null_lattice": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.027869484279640727,
+          "ci95": [
+            0.020254492477841717,
+            0.03489009601455628
+          ],
+          "withheld_positive_pixels": 22663
+        }
+      }
+    },
+    "FAR": {
+      "withheld_positive_pixels": 10277,
+      "scores": {
+        "provcrest_rank": {
+          "dti": 0.055756,
+          "ci95": [
+            0.047242,
+            0.063384
+          ]
+        },
+        "null_random": {
+          "dti": 0.033458,
+          "ci95": [
+            0.029404,
+            0.037206
+          ]
+        },
+        "null_lattice": {
+          "dti": 0.032734,
+          "ci95": [
+            0.028649,
+            0.036822
+          ]
+        }
+      },
+      "paired_differences_vs_provcrest_rank": {
+        "null_random": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.02229849851493218,
+          "ci95": [
+            0.0142438815191094,
+            0.029965994076574017
+          ],
+          "withheld_positive_pixels": 10277
+        },
+        "null_lattice": {
+          "evidence_class": "HOLDOUT-DTI",
+          "evaluator_version": "gems57-pooled-hide-v2",
+          "delta": 0.02302198774747321,
+          "ci95": [
+            0.015276189811113873,
+            0.03076357666829248
+          ],
+          "withheld_positive_pixels": 10277
+        }
+      }
+    }
+  },
+  "elapsed_seconds": 97.2
+}
