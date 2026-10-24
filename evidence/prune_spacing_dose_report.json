@@ -619,7 +619,12 @@
   },
   "hardened_validator": {
     "out": "registry/prune_spacing_dose_validation.json",
-    "returncode": 0
+    "returncode": 0,
+    "files": [
+      "p3space45",
+      "p3space35rand"
+    ],
+    "note": "re-run after the duplicate reconciliation; the withdrawn arm's files were deleted"
   },
   "reference_arms_not_rebuilt": {
     "p3space35": 0.101042,
@@ -631,5 +636,13 @@
   "predictions_are": "MODEL/PROXY, frozen in registry/prune_spacing_dose_preregistration.json",
   "live_change_under_0.01": "no evidence (public chunks only)",
   "slots_used": 0,
-  "submitted": false
+  "submitted": false,
+  "reconciliation": {
+    "merged_main_pr": 51,
+    "merged_main_ir": "IR-88-54",
+    "withdrawn_arm": "p3space28",
+    "withdrawn_id": "h33-h33-2-b2-PRUNEp3space28-20261024-91d221ad",
+    "note": "The concurrent PR #51 independently built (R0, PRUNE, p3space28) and merged a BYTE-IDENTICAL raster (sha256 91d221ad5539... / zeros 47b49e84a21d..., blind SGMC 0.099446 in both runs). Per the IR-88-53 precedent this branch withdrew its own row, receipt, mechanism card and raster for that arm and keeps the merged 20261023-91d221ad row, so the ledger holds no repeated (parent, axis, value) pair and no duplicate hash. Surviving new pairs: p3space45, p3space35rand. The evidence below for p3space28 is retained as the independent replicate, not as a separate arm.",
+    "ir": "IR-88-55"
+  }
 }

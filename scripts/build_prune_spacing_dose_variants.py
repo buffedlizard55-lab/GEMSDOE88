@@ -18,7 +18,10 @@ same 2,171 donors, same count 37,654, same H19-5/H19-4/H16-1 refill pool, same
 exact-marginal expected-DTI ranking on the same label-free four-line field) and
 change **only the spacing lock** plus one **ordering control**:
 
-``p3space28``      lock 2.8 px — dose down (sub-kernel: neighbours share credit)
+``p3space28``      lock 2.8 px — dose down (sub-kernel: neighbours share credit). **WITHDRAWN at merge:**
+                   the concurrent PR #51 independently emitted byte-identical bytes for this
+                   ``(parent, axis, value)`` pair, so the merged row is kept and this script's
+                   arm is retained only as the replicate (IR-88-55, cf. IR-88-53).
 ``p3space45``      lock 4.5 px — dose up (fully independent 3 px kernel support)
 ``p3space35rand``  lock 3.5 px, seeded **random** refill order — the ranking
                    control that separates "geometry pays" from "the four-line
@@ -60,6 +63,8 @@ DATE = "20261024"
 N_DOTS = 37_654
 NO_EVIDENCE_BAND = 0.01
 SEED = 20261024
+# Values whose (parent, axis, value) pair or bytes were claimed by a concurrently merged session.
+WITHDRAWN_VALUES = {"p3space28"}
 MANIFEST = ROOT / "registry" / "data_manifest.json"
 LEDGER = ROOT / "ledger" / "submissions.csv"
 CARDS = ROOT / "ledger" / "mechanism_cards.json"
@@ -380,7 +385,13 @@ def main() -> int:
     pairs = {(r.get("parent"), r.get("axis"), r.get("value")) for r in rows}
     for spec in SPECS:
         if (PARENT_ID, AXIS, spec["value"]) in pairs:
-            raise SystemExit(f"STOP: (parent, axis, value) already in the ledger: {spec['value']}")
+            why = (
+                "WITHDRAWN at merge (IR-88-55): a concurrent session merged byte-identical "
+                "bytes for this pair; the merged row is canonical"
+                if spec["value"] in WITHDRAWN_VALUES
+                else "already in the ledger"
+            )
+            raise SystemExit(f"STOP: (parent, axis, value) {spec['value']}: {why}")
         if any(RELEASES.glob(f"{PARENT_ID}-{AXIS}{spec['value']}-{DATE}-*")):
             raise SystemExit(f"STOP: artifacts already exist for {spec['value']}")
 

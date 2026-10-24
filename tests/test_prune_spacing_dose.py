@@ -83,7 +83,9 @@ def test_preregistration_freezes_the_three_predictions_before_any_proxy():
 def test_ledger_rows_are_new_unique_and_byte_consistent_with_the_report():
     rows = _rows()
     report = json.loads(REPORT.read_text(encoding="utf-8"))
-    for spec in bpd.SPECS:
+    surviving = [spec for spec in bpd.SPECS if spec["value"] not in bpd.WITHDRAWN_VALUES]
+    assert {spec["value"] for spec in surviving} == {"p3space45", "p3space35rand"}
+    for spec in surviving:
         value = spec["value"]
         matches = [row for row in rows if row["parent"] == bpd.PARENT_ID
                    and row["axis"] == "PRUNE" and row["value"] == value]
@@ -98,6 +100,12 @@ def test_ledger_rows_are_new_unique_and_byte_consistent_with_the_report():
         assert row["receipt_score"] == "" and row["receipt_date"] == ""
         assert row["predicted_change"] == f"MODEL:{spec['prediction']:+.3f}"
 
+    # the withdrawn arm keeps exactly one row, owned by the concurrently merged session
+    withdrawn = [row for row in rows if row["value"] == "p3space28" and row["axis"] == "PRUNE"]
+    assert len(withdrawn) == 1
+    assert withdrawn[0]["id"] == "h33-h33-2-b2-PRUNEp3space28-20261023-91d221ad"
+    assert report["reconciliation"]["withdrawn_arm"] == "p3space28"
+
     pairs = [(row["parent"], row["axis"], row["value"]) for row in rows]
     assert len(pairs) == len(set(pairs)), "repeated (parent, axis, value) pair in the ledger"
     hashes = [row["sha256"] for row in rows] + [row["sha256_zeros"] for row in rows]
@@ -107,6 +115,8 @@ def test_ledger_rows_are_new_unique_and_byte_consistent_with_the_report():
 def test_gate_clean_geometry_is_recorded_for_every_arm():
     report = json.loads(REPORT.read_text(encoding="utf-8"))
     for value, rec in report["variants"].items():
+        if value in bpd.WITHDRAWN_VALUES:
+            continue  # replicate retained in the report, files withdrawn at merge
         assert rec["gates"]["zero_catalogue_mass"] is True
         assert rec["gates"]["reread_from_disk_verified"] is True
         assert rec["parent_diff"]["min_dist_catalogue_px"] >= 3.0
@@ -119,7 +129,10 @@ def test_mechanism_cards_exist_with_the_brief_fields():
     cards = json.loads(CARDS.read_text(encoding="utf-8"))
     report = json.loads(REPORT.read_text(encoding="utf-8"))
     required = {"hypothesis", "mechanism", "non_fault_mimic", "predicted_sign_size", "falsifier"}
-    for rec in report["variants"].values():
+    for value, rec in report["variants"].items():
+        if value in bpd.WITHDRAWN_VALUES:
+            assert rec["id"] not in cards  # card withdrawn with the duplicate row
+            continue
         card = cards[rec["id"]]
         assert required <= set(card)
         assert card["axis"] == "PRUNE"
