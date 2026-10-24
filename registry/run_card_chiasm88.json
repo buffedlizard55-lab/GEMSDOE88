@@ -1,0 +1,239 @@
+{
+  "schema": "gems88.run-card.v3",
+  "generated_utc": "2026-10-24T18:14:04Z",
+  "lane": "CHIASM-88",
+  "lane_title": "Chi across-strike sign-reversal + slope-break + basin gate",
+  "artifact": "docs/downloads/gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.tif",
+  "zip_artifact": "docs/downloads/gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.zip",
+  "downloadable_file": "downloads/gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.tif",
+  "submission_name": "GEMSDOE88-CHIASM-CEE87B1C",
+  "submission_note": "CHIASM chi-slope-basin 37654 dots; HOLDOUT-DTI 0.0671; UNSCORED; DO NOT SUBMIT",
+  "emitted_dots": 37654,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "independent_organizer_receipt": false,
+  "weekly_slots_used": 0,
+  "hypothesis": {
+    "id": "CHIASM-88",
+    "statement": "Buried intrabasin scarps offset drainages and reorganize upstream catchments, yielding a signed chi step across strike that persists where surface scarp is eroded; chi contrast is hydrologic, independent of potential-field layers.",
+    "layers": "dem10_chi_100m_u8 chan_n (chi step_max) + det_elev_slope Hessian ridge + depth_to_base_surf basin gate + det_elev",
+    "physical_signature": "Local chi opposite-side contrast at 300m (max over 4 dirs) detrended vs 1500m, co-located with slope-break ridge and basin-cover gate, directional NMS crest pool, spaced emission",
+    "off_catalogue_rationale": "Intrabasin faults behead catchments and shift chi even where USGS catalogue is incomplete under alluvium; slope-break confirms scarp, depth gate excludes range-front bedrock.",
+    "non_fault_mimic": "Lithologic knickzone or volcanic flow margin producing chi step without slope-break; pluvial shoreline bench at constant elevation",
+    "difference_from_repo": "PROVCREST uses magnitude Hessians; ADHR uses scalar chi; none uses signed opposite-flank chi reversal conditioned on slope-break and basin gate"
+  },
+  "mechanism": "chi_u8 chan_n smoothed sigma2 -> opposite-side 300m contrast (4 dirs, both flanks in footprint) \u00d7 percentile-ranked det_elev_slope Hessian ridge (sigma1.5) \u00d7 basin depth gate (0.3+0.7*rank(depth_to_base_surf)); percentile-rank surface; directional NMS 3x3 max; greedy spaced emission 3.5px, >3px from catalogue, border 6px; binary float32 on exact sample grid",
+  "named_non_fault_process": "Lithologic knickzone producing chi step without coincident slope-break; Lake Lahontan shoreline bench (constant elevation, not transverse)",
+  "data_provenance": "hash-pinned owner mirror training_features.tif 4371c82e..., dem10_chi_100m_u8.tif e8830ba6..., grid bridge 2176d08e.../7ba308cc..., no new external download",
+  "inputs": {
+    "data/bridge/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "data/bridge/existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "data/training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "data/external/dem10_chi_100m_u8.tif": "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a"
+  },
+  "surface_parameters": {
+    "chi_median": 1.0,
+    "chi_step_max": 34.0,
+    "slope_ridge_sigma": 1.5,
+    "depth_gate": "0.3+0.7*rank(depth_to_base_surf)",
+    "distance_probe_px": 3,
+    "chi_local_sigma_px": 2
+  },
+  "leakage_canary": {
+    "schema": "gems88.chiasm-canaries.v1",
+    "threshold": 0.9,
+    "features_tested": 4,
+    "max_symmetric_auc": 0.56502,
+    "passed": true,
+    "features": [
+      {
+        "feature": "chi_step",
+        "auc": 0.50395,
+        "symmetric_auc": 0.50395,
+        "pass": true
+      },
+      {
+        "feature": "slope_break_ridge",
+        "auc": 0.56502,
+        "symmetric_auc": 0.56502,
+        "pass": true
+      },
+      {
+        "feature": "depth_rank",
+        "auc": 0.52866,
+        "symmetric_auc": 0.52866,
+        "pass": true
+      },
+      {
+        "feature": "chiasm_surface",
+        "auc": 0.55454,
+        "symmetric_auc": 0.55454,
+        "pass": true
+      }
+    ]
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "candidate": 0.067059,
+    "ci95": [
+      0.05909377680612432,
+      0.07483327415666285
+    ],
+    "incumbent_recomputed": 0.18788764184958875,
+    "incumbent_ci95": [
+      0.17169764852656258,
+      0.20326012211176936
+    ],
+    "paired_delta_vs_incumbent": -0.12082864184958876,
+    "paired_delta_ci95": null,
+    "beat_current_holdout_best": false,
+    "folds": 8,
+    "seeds": [
+      20,
+      21
+    ],
+    "block_side_px": 200,
+    "bootstrap_draws": 1000
+  },
+  "organizer_confirmed": {
+    "score": null,
+    "receipt": null,
+    "weekly_slots_used": 0
+  },
+  "correlation_overlap_vs_registry": {
+    "inventory": "registry/inventory.json + siblings",
+    "rasters_checked": 223,
+    "surface_preplacement_max_abs_spearman": 0.23301,
+    "surface_limit": 0.9,
+    "final_max_abs_spearman": 0.02498411542517481,
+    "final_max_abs_spearman_file": "dense_17gemdoe.tif",
+    "final_max_forward_overlap_3px_all_rasters": 1.0,
+    "final_max_forward_overlap_3px_all_rasters_file": "dense_17gemdoe.tif",
+    "final_max_forward_overlap_3px_sparse_rasters": 0.5828862803420619,
+    "final_max_forward_overlap_3px_sparse_rasters_file": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "sparse_rasters_checked": 221,
+    "dense_rasters_checked": 2,
+    "dense_max_abs_spearman": 0.02498411542517481,
+    "dense_max_abs_spearman_file": "dense_17gemdoe.tif",
+    "overlap_limit": 0.7,
+    "rho_limit": 0.9,
+    "literal_binding_decision": {
+      "binding_rule": "literal-all-rasters",
+      "worst_forward_overlap": 1.0,
+      "worst_forward_overlap_file": "dense_17gemdoe.tif",
+      "worst_abs_spearman": 0.02498411542517481,
+      "overlap_limit": 0.7,
+      "rho_limit": 0.9,
+      "duplicate": true,
+      "stop_required": true,
+      "verdict": "negative",
+      "note": "Literal any-raster gate includes dense_17gemdoe (1.0) and GEMSDOE87 BMTD (0.877 support) => every nonempty candidate has overlap 1.0/0.90 with dense; like-for-like (dense via rho, sparse via overlap) passes: max rho 0.025 <0.90, sparse overlap 0.583 <0.70."
+    },
+    "like_for_like_decision": {
+      "dense_via_rho": 0.02498411542517481,
+      "dense_rho_limit": 0.9,
+      "dense_pass": true,
+      "sparse_via_overlap": 0.5828862803420619,
+      "sparse_overlap_limit": 0.7,
+      "sparse_pass": true,
+      "like_for_like_unique": true,
+      "note": "Like-for-like (repo's published g-3 rule) separates dense continuous surfaces (tested by rank rho) from sparse dotfields (tested by 3px overlap). Under that reading, CHIASM-88 is byte-, pixel- and geometrically distinct."
+    }
+  },
+  "raster_sha256": "5f463e8849e0c239af83e921f1cfc50089731a6851323b9bc32e6dfdc63e5a83",
+  "zip_sha256": "d02857461ebba82eab58f214c4a7f3b8656eefeae5de3d7abc35ebb95f412383",
+  "validator_output": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "5f463e8849e0c239af83e921f1cfc50089731a6851323b9bc32e6dfdc63e5a83",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "format_audit": {
+    "schema_version": 1,
+    "validator": "gems88-format-audit-v1",
+    "artifact": "gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.tif",
+    "sha256": "5f463e8849e0c239af83e921f1cfc50089731a6851323b9bc32e6dfdc63e5a83",
+    "checks": {
+      "geotiff": true,
+      "single_band": true,
+      "real_numeric_dtype": true,
+      "template_single_band": true,
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "no_nodata_sentinel": true,
+      "all_finite": true,
+      "values_in_0_1": true,
+      "all_pixels_unmasked": true
+    },
+    "minimum": 0.0,
+    "maximum": 1.0,
+    "format_valid": true,
+    "submission_ready": false,
+    "note": "Format only. Holdout, leakage, registry and selector approval are separate.",
+    "footprint_audit": {
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "single_band": true,
+      "geotiff": true,
+      "real_numeric_dtype": true,
+      "no_nan_inside": true,
+      "range_0_1": true,
+      "footprint_nonempty": true,
+      "no_mass_outside": true,
+      "footprint_not_masked": true,
+      "strict_audit": true,
+      "ok": true,
+      "raster_sha256": "5f463e8849e0c239af83e921f1cfc50089731a6851323b9bc32e6dfdc63e5a83",
+      "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+    }
+  },
+  "submission": {
+    "file": "docs/downloads/gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.zip",
+    "name": "GEMSDOE88-CHIASM-CEE87B1C",
+    "note": "CHIASM chi-slope-basin 37654 dots; HOLDOUT-DTI 0.0671; UNSCORED; DO NOT SUBMIT",
+    "note_chars": 78,
+    "positive_pixels": 37654,
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "status_label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT"
+  },
+  "verdict": "negative",
+  "stop_reason": "HOLDOUT-DTI 0.067 < incumbent 0.187 and literal dense overlap 1.0; like-for-like passes but holdout blocks promotion per preregistration. No slot spent.",
+  "budget": {
+    "candidate_experiments_run": 1,
+    "candidate_experiment_cap": 3,
+    "experiments_run": 1,
+    "wall_seconds": 55.0,
+    "wall_cap_seconds": 7200,
+    "weekly_slots_used": 0,
+    "organizer_confirmed_score": null
+  },
+  "limitations": [
+    "Chi u8 chan_n is quantized index (0-34), not calibrated chi; step is index contrast, not geomorphic chi slope.",
+    "Owner-mirrored inputs not independently authenticated to organizer download.",
+    "Hide-and-recover catalogue labels are not undisclosed new fault labels.",
+    "Registry excludes private/unlinked submissions.",
+    "No portal authorization or receipt."
+  ],
+  "experiment_count": 1,
+  "preregistration": "registry/preregistration_chiasm88.json",
+  "research_dossier": "docs/research/hypotheses-20261024-chi-admittance.md"
+}

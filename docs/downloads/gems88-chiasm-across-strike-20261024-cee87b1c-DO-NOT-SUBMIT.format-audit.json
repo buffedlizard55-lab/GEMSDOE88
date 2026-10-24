@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "validator": "gems88-format-audit-v1",
+  "artifact": "gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.tif",
+  "sha256": "5f463e8849e0c239af83e921f1cfc50089731a6851323b9bc32e6dfdc63e5a83",
+  "checks": {
+    "geotiff": true,
+    "single_band": true,
+    "real_numeric_dtype": true,
+    "template_single_band": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "no_nodata_sentinel": true,
+    "all_finite": true,
+    "values_in_0_1": true,
+    "all_pixels_unmasked": true
+  },
+  "minimum": 0.0,
+  "maximum": 1.0,
+  "format_valid": true,
+  "submission_ready": false,
+  "note": "Format only. Holdout, leakage, registry and selector approval are separate.",
+  "footprint_audit": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "5f463e8849e0c239af83e921f1cfc50089731a6851323b9bc32e6dfdc63e5a83",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "date_utc": "2026-10-24",
+  "frozen_before_new_experiment": true,
+  "lane": "CHIASM-88",
+  "lane_title": "Chi across-strike sign-reversal + slope-break + basin gate",
+  "hypothesis": "Buried intrabasin scarps offset drainages and reorganize upstream catchments, yielding a signed chi step across strike even where surface scarp is eroded; chi contrast is hydrologic, independent of potential-field or radiometric layers.",
+  "mechanism": "chi_u8 step_max (sigma 2px, opposite-side 300m contrast, max over 4 dirs) \u00d7 percentile-ranked slope-break Hessian ridge (sigma 1.5, band19) \u00d7 basin depth gate (0.3+0.7*rank(depth_to_base_surf)); directional NMS crest pool; greedy spaced emission 3.5px, >3px from catalogue, border 6px; 37654 dots; binary float32 on exact sample grid.",
+  "named_non_fault_process": "Lithologic knickzone or volcanic flow margin producing chi step without coincident slope-break; pluvial shoreline bench at constant elevation.",
+  "data": {
+    "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "external_chi_sha256": "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a",
+    "bands": {
+      "12": "det_elev",
+      "15": "depth_to_base_surf",
+      "19": "det_elev_slope"
+    },
+    "external": "data/external/dem10_chi_100m_u8.tif (4-band u8 chan_n/knick_n/raised_n/valid_n) restored by scripts/restore_inputs.py, hash-verified"
+  },
+  "method": {
+    "chi_cleaning": "median-impute outside footprint, smooth sigma 2px, no catalogue use",
+    "chi_step": "max_{dirs}(|chi(+3px)-chi(-3px)|) over (3,0),(0,3),(2,2),(2,-2), both flanks in footprint",
+    "slope_break": "Hessian ridge max-eigenvalue magnitude of det_elev_slope, sigma 1.5",
+    "depth_gate": "percentile-rank(depth_to_base_surf) -> 0.3+0.7*rank",
+    "surface": "rank(chi_step) * (0.25+0.75*rank(slope_ridge)) * depth_gate; re-rank to uniform",
+    "crest_pool": "directional_crest_1d via 3x3 max-filter, allowed = distance_to_footprint_edge>6",
+    "dot_count": 37654,
+    "spacing_px": 3.5,
+    "catalogue_exclusion_px": 3.0,
+    "border_exclusion_px": 6.0,
+    "emission": "greedy descending surface, stable tie-break, grid-hash spacing, exactly 37654 if pool sufficient else fallback to surface-ranked eligible",
+    "output": "binary float32 on exact mirrored sample grid; all finite, zeros outside, nodata None"
+  },
+  "evaluation": {
+    "split": "vendor/gems57/holdout.py::buffered_component_draw",
+    "seeds": [
+      20,
+      21
+    ],
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "visible_only_catalogue_features": true,
+    "masked_known_pixel_exact": true,
+    "metric": "vendor/gems57/evaluate_holdout.py pooled_summary alpha 0.2 beta 0.8 radius 300m triangular",
+    "block_side_px": 200,
+    "bootstrap_draws": 1000,
+    "canary_auc_symmetric_block_above": 0.9,
+    "incumbent_holdout_dti": 0.18788764184958875,
+    "incumbent_ci95": [
+      0.17169764852656258,
+      0.20326012211176936
+    ],
+    "incumbent_withheld_positives": 22893,
+    "incumbent_source": "registry/holdout_result.json",
+    "promotion_rule": "Beats current best on identical folds with paired positive CI AND passes uniqueness (like-for-like discriminating, literal dense disclosed) AND format gates; otherwise negative, DO NOT SUBMIT, no slot spent."
+  },
+  "uniqueness": {
+    "surface_rank_max": 0.9,
+    "final_dot_overlap_3px_max": 0.7,
+    "dense_prior_literal_policy": "FAIL-CLOSED: 17GEMSDOE positive everywhere => every nonempty candidate has literal forward overlap 1.0; reported separately, not silently exempted; discriminating sparse overlap is informative but literal gate is binding.",
+    "source": "registry/inventory.json + sibling_inventory.json + already-published docs/downloads TIFFs; not private/organizer-complete"
+  },
+  "budget": {
+    "experiments_max": 3,
+    "hours_max": 2,
+    "this_run_planned_experiments": 1
+  },
+  "official_sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+  ],
+  "limitations": [
+    "chi_u8 is quantized index not calibrated chi; step is index contrast",
+    "owner-mirrored inputs not authenticated to organizer",
+    "catalogue hide-and-recover not new labels",
+    "registry not private-complete",
+    "no receipt"
+  ]
+}

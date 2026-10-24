@@ -1,278 +1,239 @@
 {
-  "schema": "gems.run_card.v1",
-  "run_id": "GEMSDOE88-H88-GHMD-20261022",
-  "branch": "arena/512df5fe-gemsdoe88",
-  "generated_utc": "2026-10-22T22:15:00Z",
-  "lane": "H88-GHMD",
-  "lane_title": "Geothermal Hydro-Mechanical De-Biased Fault Discovery & Exact Dual-Head Expected-DTI Allocation",
-  "verdict": "promote",
-  "evidence_status": {
-    "score_label": "HOLDOUT-DTI",
-    "organizer_confirmed_live_score": null,
-    "incumbent_organizer_confirmed_live_score": 0.2778,
-    "incumbent_artifact": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
-    "site_reported_high": 0.3195,
-    "competition_leaderboard_high": 0.4413
+  "schema": "gems88.run-card.v3",
+  "generated_utc": "2026-10-24T18:14:04Z",
+  "lane": "CHIASM-88",
+  "lane_title": "Chi across-strike sign-reversal + slope-break + basin gate",
+  "artifact": "docs/downloads/gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.tif",
+  "zip_artifact": "docs/downloads/gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.zip",
+  "downloadable_file": "downloads/gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.tif",
+  "submission_name": "GEMSDOE88-CHIASM-CEE87B1C",
+  "submission_note": "CHIASM chi-slope-basin 37654 dots; HOLDOUT-DTI 0.0671; UNSCORED; DO NOT SUBMIT",
+  "emitted_dots": 37654,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "independent_organizer_receipt": false,
+  "weekly_slots_used": 0,
+  "hypothesis": {
+    "id": "CHIASM-88",
+    "statement": "Buried intrabasin scarps offset drainages and reorganize upstream catchments, yielding a signed chi step across strike that persists where surface scarp is eroded; chi contrast is hydrologic, independent of potential-field layers.",
+    "layers": "dem10_chi_100m_u8 chan_n (chi step_max) + det_elev_slope Hessian ridge + depth_to_base_surf basin gate + det_elev",
+    "physical_signature": "Local chi opposite-side contrast at 300m (max over 4 dirs) detrended vs 1500m, co-located with slope-break ridge and basin-cover gate, directional NMS crest pool, spaced emission",
+    "off_catalogue_rationale": "Intrabasin faults behead catchments and shift chi even where USGS catalogue is incomplete under alluvium; slope-break confirms scarp, depth gate excludes range-front bedrock.",
+    "non_fault_mimic": "Lithologic knickzone or volcanic flow margin producing chi step without slope-break; pluvial shoreline bench at constant elevation",
+    "difference_from_repo": "PROVCREST uses magnitude Hessians; ADHR uses scalar chi; none uses signed opposite-flank chi reversal conditioned on slope-break and basin gate"
   },
-  "evaluator": {
-    "module": "vendor/gems57/evaluate_holdout.py",
-    "module_sha256": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
-    "version": "gems57-pooled-hide-v2",
-    "alpha": 0.2,
-    "beta": 0.8,
-    "kernel_radius_m": 300.0,
-    "seed20_withheld_positives_K": 11321,
-    "seed30_withheld_positives_K": 11342,
-    "bootstrap_block_m": 20000,
-    "bootstrap_draws": 2000
+  "mechanism": "chi_u8 chan_n smoothed sigma2 -> opposite-side 300m contrast (4 dirs, both flanks in footprint) \u00d7 percentile-ranked det_elev_slope Hessian ridge (sigma1.5) \u00d7 basin depth gate (0.3+0.7*rank(depth_to_base_surf)); percentile-rank surface; directional NMS 3x3 max; greedy spaced emission 3.5px, >3px from catalogue, border 6px; binary float32 on exact sample grid",
+  "named_non_fault_process": "Lithologic knickzone producing chi step without coincident slope-break; Lake Lahontan shoreline bench (constant elevation, not transverse)",
+  "data_provenance": "hash-pinned owner mirror training_features.tif 4371c82e..., dem10_chi_100m_u8.tif e8830ba6..., grid bridge 2176d08e.../7ba308cc..., no new external download",
+  "inputs": {
+    "data/bridge/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "data/bridge/existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "data/training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "data/external/dem10_chi_100m_u8.tif": "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a"
   },
-  "holdout_progression": {
-    "B0_random_37654_seed20": 0.046779,
-    "B1_fold_fair_H33_2_B2_seed20": 0.09233,
-    "B1_fold_fair_H33_2_B2_seed30": 0.094507,
-    "EXP_88_1_zero_catalogue_multiphysics_seed20": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator": "gems57-pooled-hide-v2",
-      "pooled_holdout_dti": 0.107879,
-      "mean_fold_dti": 0.10809,
-      "ci95_low": 0.091083,
-      "ci95_high": 0.125287,
-      "bootstrap_std": 0.008927,
-      "domain_debiased_holdout_dti": 0.093584,
-      "tp_weighted": 1707.47,
-      "fp_weighted": 32146.908,
-      "fn_weighted": 9613.53,
-      "active_mass_S": 37639.0,
-      "withheld_positives_K": 11321,
-      "per_quadrant_dti": {
-        "NW": 0.112452,
-        "NE": 0.096236,
-        "SW": 0.08387,
-        "SE": 0.139804
-      },
-      "radial_profile_vs_visible": {
-        "n_dots": 37639,
-        "pct_le_2px": 0.0,
-        "pct_2_to_6px": 25.38,
-        "pct_6_to_15px": 24.68,
-        "pct_15_to_35px": 26.26,
-        "pct_gt_35px": 23.69
-      }
-    },
-    "EXP_88_1_zero_catalogue_multiphysics_seed30": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator": "gems57-pooled-hide-v2",
-      "pooled_holdout_dti": 0.124886,
-      "mean_fold_dti": 0.130049,
-      "ci95_low": 0.104246,
-      "ci95_high": 0.145948,
-      "bootstrap_std": 0.010622,
-      "domain_debiased_holdout_dti": 0.126892,
-      "tp_weighted": 2001.414,
-      "fp_weighted": 32760.233,
-      "fn_weighted": 9340.586,
-      "active_mass_S": 37644.0,
-      "withheld_positives_K": 11342,
-      "per_quadrant_dti": {
-        "NW": 0.143802,
-        "NE": 0.171613,
-        "SW": 0.078563,
-        "SE": 0.12622
-      },
-      "radial_profile_vs_visible": {
-        "n_dots": 37644,
-        "pct_le_2px": 0.0,
-        "pct_2_to_6px": 25.77,
-        "pct_6_to_15px": 25.0,
-        "pct_15_to_35px": 27.46,
-        "pct_gt_35px": 21.78
-      }
-    },
-    "EXP_88_2_geodesic_relay_nms_seed20": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator": "gems57-pooled-hide-v2",
-      "pooled_holdout_dti": 0.189405,
-      "mean_fold_dti": 0.190849,
-      "ci95_low": 0.168704,
-      "ci95_high": 0.208221,
-      "bootstrap_std": 0.010145,
-      "domain_debiased_holdout_dti": 0.117175,
-      "tp_weighted": 3061.639,
-      "fp_weighted": 32477.042,
-      "fn_weighted": 8259.361,
-      "active_mass_S": 37632.0,
-      "withheld_positives_K": 11321,
-      "per_quadrant_dti": {
-        "NW": 0.2151,
-        "NE": 0.174774,
-        "SW": 0.186014,
-        "SE": 0.187507
-      },
-      "radial_profile_vs_visible": {
-        "n_dots": 37632,
-        "pct_le_2px": 0.0,
-        "pct_2_to_6px": 44.95,
-        "pct_6_to_15px": 43.56,
-        "pct_15_to_35px": 10.75,
-        "pct_gt_35px": 0.73
-      }
-    },
-    "EXP_88_2_geodesic_relay_nms_seed30": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator": "gems57-pooled-hide-v2",
-      "pooled_holdout_dti": 0.216466,
-      "mean_fold_dti": 0.224568,
-      "ci95_low": 0.194321,
-      "ci95_high": 0.239333,
-      "bootstrap_std": 0.011446,
-      "domain_debiased_holdout_dti": 0.15481,
-      "tp_weighted": 3550.383,
-      "fp_weighted": 33089.371,
-      "fn_weighted": 7791.617,
-      "active_mass_S": 37637.0,
-      "withheld_positives_K": 11342,
-      "per_quadrant_dti": {
-        "NW": 0.252768,
-        "NE": 0.22148,
-        "SW": 0.172783,
-        "SE": 0.25124
-      },
-      "radial_profile_vs_visible": {
-        "n_dots": 37637,
-        "pct_le_2px": 0.0,
-        "pct_2_to_6px": 43.29,
-        "pct_6_to_15px": 42.48,
-        "pct_15_to_35px": 12.35,
-        "pct_gt_35px": 1.88
-      }
-    },
-    "EXP_88_3_exact_expected_dti_celf_swap_seed20": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator": "gems57-pooled-hide-v2",
-      "pooled_holdout_dti": 0.190683,
-      "mean_fold_dti": 0.19159,
-      "ci95_low": 0.171046,
-      "ci95_high": 0.21006,
-      "bootstrap_std": 0.009811,
-      "domain_debiased_holdout_dti": 0.125436,
-      "tp_weighted": 3141.37,
-      "fp_weighted": 33946.082,
-      "fn_weighted": 8179.63,
-      "active_mass_S": 37629.0,
-      "withheld_positives_K": 11321,
-      "per_quadrant_dti": {
-        "NW": 0.213148,
-        "NE": 0.174814,
-        "SW": 0.17875,
-        "SE": 0.199647
-      },
-      "radial_profile_vs_visible": {
-        "n_dots": 37629,
-        "pct_le_2px": 0.0,
-        "pct_2_to_6px": 39.11,
-        "pct_6_to_15px": 46.81,
-        "pct_15_to_35px": 13.4,
-        "pct_gt_35px": 0.69
-      }
-    },
-    "EXP_88_3_exact_expected_dti_celf_swap_seed30": {
-      "evidence_class": "HOLDOUT-DTI",
-      "evaluator": "gems57-pooled-hide-v2",
-      "pooled_holdout_dti": 0.217298,
-      "mean_fold_dti": 0.224307,
-      "ci95_low": 0.19526,
-      "ci95_high": 0.238276,
-      "bootstrap_std": 0.011014,
-      "domain_debiased_holdout_dti": 0.158483,
-      "tp_weighted": 3617.67,
-      "fp_weighted": 34256.626,
-      "fn_weighted": 7724.33,
-      "active_mass_S": 37628.0,
-      "withheld_positives_K": 11342,
-      "per_quadrant_dti": {
-        "NW": 0.249231,
-        "NE": 0.216563,
-        "SW": 0.17726,
-        "SE": 0.254176
-      },
-      "radial_profile_vs_visible": {
-        "n_dots": 37628,
-        "pct_le_2px": 0.0,
-        "pct_2_to_6px": 39.64,
-        "pct_6_to_15px": 44.33,
-        "pct_15_to_35px": 14.34,
-        "pct_gt_35px": 1.7
-      }
-    }
+  "surface_parameters": {
+    "chi_median": 1.0,
+    "chi_step_max": 34.0,
+    "slope_ridge_sigma": 1.5,
+    "depth_gate": "0.3+0.7*rank(depth_to_base_surf)",
+    "distance_probe_px": 3,
+    "chi_local_sigma_px": 2
   },
   "leakage_canary": {
+    "schema": "gems88.chiasm-canaries.v1",
     "threshold": 0.9,
-    "physics_features_tested": 83,
-    "geodesic_features_tested": 16,
-    "max_symmetric_auc_physics_seed20": 0.65856,
-    "max_symmetric_auc_geodesic_seed20": 0.76354,
-    "max_symmetric_auc_physics_seed30": 0.64745,
-    "max_symmetric_auc_geodesic_seed30": 0.76508,
-    "flagged_features": 0,
-    "passed": true
+    "features_tested": 4,
+    "max_symmetric_auc": 0.56502,
+    "passed": true,
+    "features": [
+      {
+        "feature": "chi_step",
+        "auc": 0.50395,
+        "symmetric_auc": 0.50395,
+        "pass": true
+      },
+      {
+        "feature": "slope_break_ridge",
+        "auc": 0.56502,
+        "symmetric_auc": 0.56502,
+        "pass": true
+      },
+      {
+        "feature": "depth_rank",
+        "auc": 0.52866,
+        "symmetric_auc": 0.52866,
+        "pass": true
+      },
+      {
+        "feature": "chiasm_surface",
+        "auc": 0.55454,
+        "symmetric_auc": 0.55454,
+        "pass": true
+      }
+    ]
   },
-  "uniqueness": {
-    "repos_scanned": 92,
-    "rasters_checked": 1167,
-    "discriminating_checked": 1086,
-    "space_filling_checked": 81,
-    "scan_errors": 0,
-    "pre_placement_worst_abs_spearman": 0.551361,
-    "pre_placement_worst_overlap": 0.653264,
-    "post_placement_worst_signed_spearman": 0.069189,
-    "post_placement_worst_spearman_submission": "g79-opc-anisopaircorr-45204dots-20261022T200143Z-6e266467-zeros-DO-NOT-SUBMIT.tif",
-    "post_placement_worst_discriminating_3px_overlap": 0.677989,
-    "post_placement_worst_overlap_submission": "gems57-twohost-relay-bend-surface-20261010T201504Z-47ccc38b6bec.tif",
-    "post_placement_worst_jaccard": 0.039663,
-    "unique": true,
-    "stop_required": false
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "candidate": 0.067059,
+    "ci95": [
+      0.05909377680612432,
+      0.07483327415666285
+    ],
+    "incumbent_recomputed": 0.18788764184958875,
+    "incumbent_ci95": [
+      0.17169764852656258,
+      0.20326012211176936
+    ],
+    "paired_delta_vs_incumbent": -0.12082864184958876,
+    "paired_delta_ci95": null,
+    "beat_current_holdout_best": false,
+    "folds": 8,
+    "seeds": [
+      20,
+      21
+    ],
+    "block_side_px": 200,
+    "bootstrap_draws": 1000
   },
-  "submission": {
-    "file": "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
-    "repo_copy": "submissions/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
-    "zip_file": "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.zip",
-    "sha256": "81e580f13b45e1e6aa554eaf5e8c54d1e0064769ba8e7193b6e7f53e3842308a",
-    "zip_sha256": "9327bdfddeb9cbb76482fc0fb137592112093fb3b29f96e010d487f5b6dcbc37",
-    "bytes": 147469,
-    "submission_name": "GEMSDOE88-H88-GHMD-318A37E6",
-    "submission_note": "GEMSDOE88 H88-GHMD | 37,654 dots, d>200m, dual-head physics+geodesic CELF+swap; S20 HOLDOUT-DTI 0.1907; UNSCORED",
-    "submission_note_chars": 112,
-    "positive_pixels": 37654,
-    "on_catalogue_positive_pixels": 0,
-    "within_200m_catalogue_pixels": 0,
-    "nan_pixels_anywhere": 0,
-    "radial_profile": {
-      "n_dots": 37654,
-      "pct_le_2px": 0.0,
-      "pct_2_to_6px": 37.14,
-      "pct_6_to_15px": 26.01,
-      "pct_15_to_35px": 12.26,
-      "pct_gt_35px": 24.59
+  "organizer_confirmed": {
+    "score": null,
+    "receipt": null,
+    "weekly_slots_used": 0
+  },
+  "correlation_overlap_vs_registry": {
+    "inventory": "registry/inventory.json + siblings",
+    "rasters_checked": 223,
+    "surface_preplacement_max_abs_spearman": 0.23301,
+    "surface_limit": 0.9,
+    "final_max_abs_spearman": 0.02498411542517481,
+    "final_max_abs_spearman_file": "dense_17gemdoe.tif",
+    "final_max_forward_overlap_3px_all_rasters": 1.0,
+    "final_max_forward_overlap_3px_all_rasters_file": "dense_17gemdoe.tif",
+    "final_max_forward_overlap_3px_sparse_rasters": 0.5828862803420619,
+    "final_max_forward_overlap_3px_sparse_rasters_file": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "sparse_rasters_checked": 221,
+    "dense_rasters_checked": 2,
+    "dense_max_abs_spearman": 0.02498411542517481,
+    "dense_max_abs_spearman_file": "dense_17gemdoe.tif",
+    "overlap_limit": 0.7,
+    "rho_limit": 0.9,
+    "literal_binding_decision": {
+      "binding_rule": "literal-all-rasters",
+      "worst_forward_overlap": 1.0,
+      "worst_forward_overlap_file": "dense_17gemdoe.tif",
+      "worst_abs_spearman": 0.02498411542517481,
+      "overlap_limit": 0.7,
+      "rho_limit": 0.9,
+      "duplicate": true,
+      "stop_required": true,
+      "verdict": "negative",
+      "note": "Literal any-raster gate includes dense_17gemdoe (1.0) and GEMSDOE87 BMTD (0.877 support) => every nonempty candidate has overlap 1.0/0.90 with dense; like-for-like (dense via rho, sparse via overlap) passes: max rho 0.025 <0.90, sparse overlap 0.583 <0.70."
     },
-    "all_15_validation_gates_passed": true,
-    "validation_checks": {
-      "single_band": true,
-      "dtype_float32": true,
-      "dimensions_3730x3292": true,
-      "crs_epsg_32611": true,
-      "transform_matches_sample_submission": true,
-      "no_nan_anywhere": true,
-      "no_inf_anywhere": true,
-      "no_sentinel_values": true,
-      "range_0_1_guaranteed": true,
-      "min_ge_0": true,
-      "max_le_1": true,
-      "in_footprint_all_finite": true,
-      "in_footprint_range_0_1": true,
-      "outside_footprint_zero": true,
-      "zero_dots_on_mapped_catalogue": true
+    "like_for_like_decision": {
+      "dense_via_rho": 0.02498411542517481,
+      "dense_rho_limit": 0.9,
+      "dense_pass": true,
+      "sparse_via_overlap": 0.5828862803420619,
+      "sparse_overlap_limit": 0.7,
+      "sparse_pass": true,
+      "like_for_like_unique": true,
+      "note": "Like-for-like (repo's published g-3 rule) separates dense continuous surfaces (tested by rank rho) from sparse dotfields (tested by 3px overlap). Under that reading, CHIASM-88 is byte-, pixel- and geometrically distinct."
     }
   },
-  "experiments_run": 3,
-  "experiment_budget_max": 3
+  "raster_sha256": "5f463e8849e0c239af83e921f1cfc50089731a6851323b9bc32e6dfdc63e5a83",
+  "zip_sha256": "d02857461ebba82eab58f214c4a7f3b8656eefeae5de3d7abc35ebb95f412383",
+  "validator_output": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "5f463e8849e0c239af83e921f1cfc50089731a6851323b9bc32e6dfdc63e5a83",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "format_audit": {
+    "schema_version": 1,
+    "validator": "gems88-format-audit-v1",
+    "artifact": "gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.tif",
+    "sha256": "5f463e8849e0c239af83e921f1cfc50089731a6851323b9bc32e6dfdc63e5a83",
+    "checks": {
+      "geotiff": true,
+      "single_band": true,
+      "real_numeric_dtype": true,
+      "template_single_band": true,
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "no_nodata_sentinel": true,
+      "all_finite": true,
+      "values_in_0_1": true,
+      "all_pixels_unmasked": true
+    },
+    "minimum": 0.0,
+    "maximum": 1.0,
+    "format_valid": true,
+    "submission_ready": false,
+    "note": "Format only. Holdout, leakage, registry and selector approval are separate.",
+    "footprint_audit": {
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "single_band": true,
+      "geotiff": true,
+      "real_numeric_dtype": true,
+      "no_nan_inside": true,
+      "range_0_1": true,
+      "footprint_nonempty": true,
+      "no_mass_outside": true,
+      "footprint_not_masked": true,
+      "strict_audit": true,
+      "ok": true,
+      "raster_sha256": "5f463e8849e0c239af83e921f1cfc50089731a6851323b9bc32e6dfdc63e5a83",
+      "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+    }
+  },
+  "submission": {
+    "file": "docs/downloads/gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-chiasm-across-strike-20261024-cee87b1c-DO-NOT-SUBMIT.zip",
+    "name": "GEMSDOE88-CHIASM-CEE87B1C",
+    "note": "CHIASM chi-slope-basin 37654 dots; HOLDOUT-DTI 0.0671; UNSCORED; DO NOT SUBMIT",
+    "note_chars": 78,
+    "positive_pixels": 37654,
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "status_label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT"
+  },
+  "verdict": "negative",
+  "stop_reason": "HOLDOUT-DTI 0.067 < incumbent 0.187 and literal dense overlap 1.0; like-for-like passes but holdout blocks promotion per preregistration. No slot spent.",
+  "budget": {
+    "candidate_experiments_run": 1,
+    "candidate_experiment_cap": 3,
+    "experiments_run": 1,
+    "wall_seconds": 55.0,
+    "wall_cap_seconds": 7200,
+    "weekly_slots_used": 0,
+    "organizer_confirmed_score": null
+  },
+  "limitations": [
+    "Chi u8 chan_n is quantized index (0-34), not calibrated chi; step is index contrast, not geomorphic chi slope.",
+    "Owner-mirrored inputs not independently authenticated to organizer download.",
+    "Hide-and-recover catalogue labels are not undisclosed new fault labels.",
+    "Registry excludes private/unlinked submissions.",
+    "No portal authorization or receipt."
+  ],
+  "experiment_count": 1,
+  "preregistration": "registry/preregistration_chiasm88.json",
+  "research_dossier": "docs/research/hypotheses-20261024-chi-admittance.md"
 }

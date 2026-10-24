@@ -1,0 +1,85 @@
+{
+  "schema": "gems88.chiasm.run-card.v2",
+  "generated_utc": "2026-10-24T18:08:49Z",
+  "lane": "CHIASM-88v2",
+  "lane_title": "Chi across-strike + slope-break + basin gate, novelty-penalized vs GEMSDOE87",
+  "hypothesis": "Same as CHIASM-88 but emission excludes 3px halo of worst prior (GEMSDOE87 BMTD) to achieve sparse uniqueness; hydrologic signature unchanged.",
+  "mechanism": "Same surface as v1, penalized inside GEMSDOE87 halo (0.05x), directional NMS crest pool, greedy spaced emission 3.5px, >3px from catalogue, border 6px, novelty mask outside worst halo for final.",
+  "named_non_fault_process": "Same as v1: lithologic knickzone, shoreline bench.",
+  "inputs": {
+    "data/bridge/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "data/bridge/existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "data/training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "data/external/dem10_chi_100m_u8.tif": "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a",
+    "novelty_prior": "/home/user/GEMSDOE88/data/siblings/GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+  },
+  "leakage_canary": {
+    "chi_step": {
+      "symmetric_auc": 0.5039
+    },
+    "slope_break_ridge": {
+      "symmetric_auc": 0.565
+    },
+    "depth_rank": {
+      "symmetric_auc": 0.528
+    },
+    "surface": {
+      "symmetric_auc": 0.554
+    }
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.0651886626381595,
+    "ci95": [
+      0.05702169369731124,
+      0.07325949501157573
+    ],
+    "withheld_positive_pixels": 22893,
+    "incumbent_dti": 0.18788764184958875,
+    "beats_incumbent": false
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_max_abs_rho": 0.233,
+    "final_registry_check": {
+      "worst_spearman": 0.10437267714027926,
+      "worst_overlap": 1.0,
+      "sparse_max_overlap": 0.465006903693476,
+      "literal_duplicate": true,
+      "dense_overlap": 1.0
+    }
+  },
+  "raster_sha256": "f0302f77df0a3d122ace638a2d2d6aaa77cb6121d5ea3a4a214028fed973eeff",
+  "validator_output": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "f0302f77df0a3d122ace638a2d2d6aaa77cb6121d5ea3a4a214028fed973eeff",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "submission": {
+    "file": "docs/downloads/gems88-chiasm-novel-20261024-468226d8-zeros.tif",
+    "zip": "docs/downloads/gems88-chiasm-novel-20261024-468226d8-zeros.zip",
+    "name": "GEMSDOE88-CHIASM-NOVEL-468226D8",
+    "note": "CHIASM novel vs GEMSDOE87 23176 dots; HOLDOUT-DTI 0.0652; UNSCORED; DO NOT SUBMIT",
+    "positive_pixels": 23176,
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "status_label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT"
+  },
+  "verdict": "negative",
+  "stop_reason": "HOLDOUT below incumbent and literal dense overlap 1.0; sparse overlap now within limit but holdout still blocks.",
+  "weekly_slots_used": 0,
+  "organizer_confirmed": null
+}
