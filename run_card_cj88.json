@@ -1,0 +1,378 @@
+{
+ "hypothesis": "Crest junctions/endpoints/stepovers of B19/3/18/15 composite crest host uncatalogued geothermal faults (Faulds&Hinz favourable settings)",
+ "mechanism": "skeletonize crest mask; rank crest px by crest*(0.35+exp(-d_junction/6)+0.7exp(-d_endpoint/6)); greedy >=3.5px, >3px catalogue collar, 37654 binary dots",
+ "named_non_fault_process": "unfaulted bajada/terrace/volcanic-flow crest junctions",
+ "holdout": {
+  "label": "HOLDOUT-DTI",
+  "evaluator": "gems57-pooled-hide-v2 alpha0.2 beta0.8 300m triangular",
+  "cj88": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "dti": 0.11761148654907258,
+   "ci95": [
+    0.10651166073531163,
+    0.12826824266272172
+   ],
+   "withheld_positive_pixels": 22663,
+   "tpw": 3878.745566154086,
+   "fpw": 70365.79982933782,
+   "fnw": 18784.25443384591
+  },
+  "null_rand": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "dti": 0.059328324952335816,
+   "ci95": [
+    0.05287859443095502,
+    0.06494643905343472
+   ],
+   "withheld_positive_pixels": 22663,
+   "tpw": 1941.508088389848,
+   "fpw": 71030.53573466171,
+   "fnw": 20721.491911610152
+  },
+  "paired_vs_null": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "delta": 0.058283161596736764,
+   "ci95": [
+    0.04834876076466957,
+    0.06802755517251752
+   ],
+   "withheld_positive_pixels": 22663
+  },
+  "canaries": {
+   "prov_slope_break_hess_b19": 0.57511,
+   "prov_tmi_hg_hess_b03": 0.50446,
+   "prov_grav_hg_hess_b18": 0.51087,
+   "prov_basement_step_hess_b15": 0.50576,
+   "prov_composite_crest": 0.57543,
+   "cj88_surface": 0.55788
+  },
+  "beats_null_ci": true
+ },
+ "uniqueness": {
+  "worst_sparse_overlap3": [
+   0.29675466085940405,
+   "docs/downloads/gems88-cj88-crestjunction-37654dots-20261024-b83a384ae1-zeros-DO-NOT-SUBMIT.tif"
+  ],
+  "worst_sparse_rho": [
+   0.22061808047360545,
+   "docs/downloads/gems88-cj88-crestjunction-37654dots-20261024-b83a384ae1-zeros-DO-NOT-SUBMIT.tif"
+  ],
+  "sparse_ok": true,
+  "rows": [
+   {
+    "file": "data/registry/dense_17gemdoe.tif",
+    "overlap3": 1.0,
+    "rho": -0.00053,
+    "pos_frac": 1.0
+   },
+   {
+    "file": "data/registry/family_60gemsdoe/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+    "overlap3": 0.17464,
+    "rho": 0.00213,
+    "pos_frac": 0.0078
+   },
+   {
+    "file": "data/registry/family_60gemsdoe/calib_d15_02477.tif",
+    "overlap3": 0.18535,
+    "rho": 0.00158,
+    "pos_frac": 0.0116
+   },
+   {
+    "file": "data/registry/family_60gemsdoe/calib_h161_01855.tif",
+    "overlap3": 0.2115,
+    "rho": 0.00201,
+    "pos_frac": 0.024
+   },
+   {
+    "file": "data/registry/family_60gemsdoe/calib_h194_01894.tif",
+    "overlap3": 0.20667,
+    "rho": 0.00223,
+    "pos_frac": 0.024
+   },
+   {
+    "file": "data/registry/family_60gemsdoe/calib_h195_01922.tif",
+    "overlap3": 0.19793,
+    "rho": 0.00176,
+    "pos_frac": 0.0234
+   },
+   {
+    "file": "data/registry/family_60gemsdoe/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+    "overlap3": 0.1765,
+    "rho": 0.00133,
+    "pos_frac": 0.0085
+   },
+   {
+    "file": "data/registry/family_60gemsdoe/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+    "overlap3": 0.17146,
+    "rho": 0.00269,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "data/registry/gems19_h19_5.tif",
+    "overlap3": 0.19793,
+    "rho": 0.00176,
+    "pos_frac": 0.0234
+   },
+   {
+    "file": "data/registry/gems25_d28.tif",
+    "overlap3": 0.1765,
+    "rho": 0.00133,
+    "pos_frac": 0.0085
+   },
+   {
+    "file": "data/registry/gems28_h27_4.tif",
+    "overlap3": 0.17464,
+    "rho": 0.00213,
+    "pos_frac": 0.0078
+   },
+   {
+    "file": "data/registry/gems36_anderson_pinn.tif",
+    "overlap3": 0.17454,
+    "rho": 0.00268,
+    "pos_frac": 0.0075
+   },
+   {
+    "file": "data/registry/gems49_gate_ortho.tif",
+    "overlap3": 0.15783,
+    "rho": 0.00565,
+    "pos_frac": 0.0077
+   },
+   {
+    "file": "data/registry/gems57_h57r2.tif",
+    "overlap3": 0.03782,
+    "rho": -0.00214,
+    "pos_frac": 0.0077
+   },
+   {
+    "file": "data/registry/gems60_h68_piedmont.tif",
+    "overlap3": 0.12081,
+    "rho": -0.00079,
+    "pos_frac": 0.0077
+   },
+   {
+    "file": "data/registry/gems70_p5_dualsubmod.tif",
+    "overlap3": 0.13937,
+    "rho": 0.00593,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "data/registry/gems70_p5_multiphysics.tif",
+    "overlap3": 0.13608,
+    "rho": 0.00066,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "data/registry/gems78_h78_gfv.tif",
+    "overlap3": 0.16352,
+    "rho": 0.00275,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "data/registry/gems80_adpt_kkt.tif",
+    "overlap3": 0.13988,
+    "rho": 0.00035,
+    "pos_frac": 0.0071
+   },
+   {
+    "file": "data/registry/gems80_h80_dpvc.tif",
+    "overlap3": 0.10405,
+    "rho": 0.00359,
+    "pos_frac": 0.0081
+   },
+   {
+    "file": "data/registry/gems81_contasb.tif",
+    "overlap3": 0.10676,
+    "rho": -0.00127,
+    "pos_frac": 0.0085
+   },
+   {
+    "file": "data/registry/gems82_csam_dink.tif",
+    "overlap3": 0.18928,
+    "rho": 0.00209,
+    "pos_frac": 0.008
+   },
+   {
+    "file": "data/registry/gems83_h83_gvcd.tif",
+    "overlap3": 0.17273,
+    "rho": 0.00189,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "data/registry/gems85_h85a_foldproper.tif",
+    "overlap3": 0.07771,
+    "rho": 0.00052,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "data/registry/h33_education.tif",
+    "overlap3": 0.17146,
+    "rho": 0.00269,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "docs/downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.11013,
+    "rho": 0.00212,
+    "pos_frac": 0.0069
+   },
+   {
+    "file": "docs/downloads/gems88-cj88-crestjunction-37654dots-20261024-b83a384ae1-zeros-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.29675,
+    "rho": 0.22062,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "docs/downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.18112,
+    "rho": 0.00149,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "docs/downloads/gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.1901,
+    "rho": 0.00211,
+    "pos_frac": 0.009
+   },
+   {
+    "file": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.12732,
+    "rho": 0.00071,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.18543,
+    "rho": 0.0013,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.15273,
+    "rho": 0.00162,
+    "pos_frac": 0.0074
+   },
+   {
+    "file": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.11951,
+    "rho": 0.00145,
+    "pos_frac": 0.0058
+   },
+   {
+    "file": "docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.06228,
+    "rho": -0.00049,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.11406,
+    "rho": 0.00212,
+    "pos_frac": 0.007
+   },
+   {
+    "file": "docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.11962,
+    "rho": 0.00112,
+    "pos_frac": 0.0064
+   },
+   {
+    "file": "docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.18508,
+    "rho": 0.00237,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.11874,
+    "rho": 0.00122,
+    "pos_frac": 0.0075
+   },
+   {
+    "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.0,
+    "rho": -0.00734,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "docs/downloads/gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.15048,
+    "rho": 0.0009,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "docs/downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.20909,
+    "rho": 0.00189,
+    "pos_frac": 0.0104
+   },
+   {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.11808,
+    "rho": 3e-05,
+    "pos_frac": 0.0048
+   },
+   {
+    "file": "docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.20643,
+    "rho": 0.00456,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.09051,
+    "rho": 0.00013,
+    "pos_frac": 0.0044
+   },
+   {
+    "file": "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.1846,
+    "rho": -0.00025,
+    "pos_frac": 0.0073
+   },
+   {
+    "file": "docs/downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros-DO-NOT-SUBMIT.tif",
+    "overlap3": 0.12009,
+    "rho": -0.00069,
+    "pos_frac": 0.0099
+   }
+  ],
+  "worst_sparse_overlap3_nonself": [
+   0.2115,
+   "data/registry/family_60gemsdoe/calib_h161_01855.tif"
+  ],
+  "worst_sparse_rho_nonself": [
+   -0.00734,
+   "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif"
+  ]
+ },
+ "fingerprint": {
+  "n": 37654,
+  "share_gt25": 0.4900940139161842,
+  "share_le3": 0.0,
+  "median_dcat": 24.331050121192877,
+  "nn_min": 3.605551275463989,
+  "nn_median": 5.0990195135927845
+ },
+ "validator": {
+  "values_0_1_binary": true,
+  "crs_shape_transform_match": true,
+  "no_nan_inside_footprint": true,
+  "zeros_outside": true
+ },
+ "raster_sha256": "3bbe4117a01e74338017db9515313a9269420de66713746b0a613549812eccec",
+ "zip_sha256": "18d83c26de53197dd7c9d897a9e09a5f8a3a40326778eadac2dbf0a56c58aa31",
+ "submission_name": "gems88-cj88-crestjunction-37654dots-20261024-611844330c-zeros-DO-NOT-SUBMIT",
+ "note": "CJ88 crest junction/termination 37654d >=3.5px; HOLDOUT-DTI 0.1176 CI[0.107,0.128] vs null; UNSCORED",
+ "note_len": 100,
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "verdict": "negative",
+ "slots_spent": 0,
+ "blocking_reasons": [
+  "HOLDOUT-DTI 0.1176 [0.1065,0.1283] (22,663 withheld, gems57-pooled-hide-v2) beats null_rand 0.0593 (paired +0.0583 [0.0483,0.0680]) but is BELOW incumbent holdout bar H88-ADHR 0.1896 / TDKL 0.1962 \u2014 do not spend slot",
+  "Literal dense 17GEMSDOE witness overlap 1.0 (vacuous, informational per gate-v3)"
+ ]
+}
