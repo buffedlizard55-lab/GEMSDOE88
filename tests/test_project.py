@@ -34,6 +34,10 @@ def test_real_card_stays_blocked():
     # dense-raster representation-class exemption is allowed.
     assert result["problems"] and any(p.split(":")[0] in {"HOLDOUT", "FINGERPRINT", "UNIQUENESS", "FORMAT", "LEAKAGE"} for p in result["problems"])
     assert result["policy"] == "binding-literal-all-registry-v1"
+    current = json.loads((ROOT / "docs/data/current_release.json").read_text())
+    card = json.loads((ROOT / "registry/fabric_dislocation_run_card.json").read_text())
+    assert result["raster_sha256"] == current["file_sha256"] == card["raster_sha256"]
+    assert current["ok_to_submit"] is False and current["duplicate"] is True
 
 
 def eligible_record(tmp_path):

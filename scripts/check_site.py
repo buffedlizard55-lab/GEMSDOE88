@@ -68,7 +68,24 @@ def main(root=ROOT):
                 # claim otherwise, so it is cleared by its gate record instead (IR-88-76).
                 if 'DO-NOT-SUBMIT' not in path.name:
                     assert path.name in cleared_names, f'Unmarked research download: {link}'
-    print('PASS: site links, explicit negative decision, clearly marked research downloads')
+    # The landing page and submission guide must reflect the CURRENT release,
+    # not a stale parallel-session run card. Bind the visible safety label to
+    # the exact canonical TIFF/ZIP hashes validated by validate_current.py.
+    current = json.loads((root / 'docs/data/current_release.json').read_text())
+    card = json.loads((root / 'registry/fabric_dislocation_run_card.json').read_text())
+    web_card = json.loads((root / 'docs/data/fabric_dislocation_run_card.json').read_text())
+    assert card == web_card and card['verdict'] == 'negative' and card['ok_to_submit'] is False
+    assert current['file'] == card['file'] and current['file_sha256'] == card['raster_sha256']
+    assert current['zip_sha256'] == card['zip_sha256']
+    assert current['ok_to_submit'] is False and current['duplicate'] is True
+    for page in (root / 'docs/index.html', root / 'docs/executive-summary.html'):
+        text = page.read_text()
+        assert Path(card['file']).name in text, f'Current artifact not identified on {page.name}'
+        upper = text.upper()
+        assert 'DO NOT SUBMIT' in upper and (
+            'DOWNLOAD: YES' in upper or 'DOWNLOAD FOR RESEARCH: YES' in upper
+        ), page
+    print('PASS: current run card, current release hashes, site links, and explicit negative decision agree')
 
 
 if __name__ == '__main__':

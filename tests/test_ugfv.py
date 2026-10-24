@@ -129,10 +129,12 @@ def test_run_card_four_way_parity_and_audit_invariants():
     assert reg["literal_binding_decision"]["duplicate"] is True
     assert reg["universal_witness"]["universal_overlap_blocker"] is True
 
-    # docs/status.json describes the canonical MRR research release and binds
-    # directly to the same four-way run card verified above.
+    # The current status feed follows the later canonical current-release
+    # validator, while the four-way MRR card remains immutable history.
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
-    assert status_doc["raster_sha256"] == card["raster_sha256"]
+    current_doc = json.loads((ROOT / "docs/data/current_release.json").read_text())
+    assert status_doc["raster_sha256"] == current_doc["file_sha256"]
+    assert status_doc["raster_sha256"] != card["raster_sha256"]
     assert status_doc["ok_to_submit"] is False
     assert status_doc["ok_to_download_for_research"] is True
 

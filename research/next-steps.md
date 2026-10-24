@@ -1,3 +1,9 @@
+## Current handoff — repo review on `arena/60f59d16-gemsdoe88` (2026-10-24)
+
+**Read this section before the older handoff items below.** The current canonical release is the already-generated MAG-FABRIC-DISLOCATION research TIFF (`docs/downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif`), not the historical LBCAL/MRR artifacts. Its current automated verdict is **OK TO DOWNLOAD FOR RESEARCH; NOT OK TO SUBMIT**. It failed the literal final-dot overlap test (1.0 against the all-positive 17GEMSDOE witness) and its `HOLDOUT-DTI` point estimate is below the stored best. The source run is complete; reuse its card and do not rebuild or repeat the same lane.
+
+The earlier LBCAL collar-pruning follow-up remains an archived suggestion, but it is a different method lane from the currently frozen MAG-FABRIC-DISLOCATION assignment. The user prompt provides no explicit lane paragraph; do not silently switch. First obtain a protocol/registry-rule decision and an explicit new lane assignment. No slot was spent. Official public leaderboard checked 2026-10-24 shows 0.4413 at the top; H33's 0.2778 is a user-reported historical comparison, not current high score or an organizer receipt. The full rationale, ranked future hypotheses, official source availability checks, and sandbox limitations are in [`session-20261024-repo-review.md`](session-20261024-repo-review.md).
+
 ## 2026-10-24 (LBCAL session): next steps
 
 1. **Selector decision on the slot gate.** Hide-and-recover HOLDOUT-DTI ranks R0/H33 (user-reported 0.2778) at 0.004, so it has no leaderboard validity in this regime. The receipt-CV gate (ρ 0.941, RMSE 0.031) is the alternative.

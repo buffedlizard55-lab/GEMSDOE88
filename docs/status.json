@@ -3,11 +3,11 @@
   "approved_for_weekly_slot": false,
   "status": "BLOCKED",
   "problems": [
-    "HOLDOUT: candidate DTI is below the paired recomputed incumbent",
-    "UNIQUENESS: literal registry overlap with full-footprint witness is 1.0 > 0.70"
+    "HOLDOUT: candidate point estimate is below the stored incumbent",
+    "UNIQUENESS: literal registry overlap exceeds 0.70"
   ],
   "ok_to_download_for_research": true,
   "ok_to_submit": false,
-  "raster_sha256": "b9cb36519c2ee91c08f587d3c9c006623d8e2505ece0416fdf263b50e42deb7e",
+  "raster_sha256": "1bbb20e60ce5633a979e2bea8e1216105325b78c4ca93ca4380ea3f533e774ae",
   "policy": "binding-literal-all-registry-v1"
 }
