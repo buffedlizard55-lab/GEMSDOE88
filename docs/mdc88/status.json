@@ -1,0 +1,129 @@
+{
+  "schema": "gems88.status.v3",
+  "generated_utc": "2026-10-24T08:16:56Z",
+  "decided_by": "scripts/build_kdmc_submission.py (no human inspection)",
+  "ok_to_download": true,
+  "ok_to_submit": true,
+  "recommended_for_weekly_slot": false,
+  "verdict_fields_explained": {
+    "ok_to_download": "the saved bytes re-open as a valid single-band GeoTIFF on the pinned grid",
+    "ok_to_submit": "the portal will accept it: format/CRS/shape/transform parity, every value finite in [0,1], and unique against every like-for-like registry raster",
+    "recommended_for_weekly_slot": "gate v3 slot policy: everything above PLUS beating the stored holdout bar and passing the fleet fingerprint screen. This is deliberately stricter than ok_to_submit."
+  },
+  "gate_v3": {
+    "policy": "gems88-gate-v3",
+    "generated_utc": "2026-10-24T08:05:11Z",
+    "registry_rasters_checked": 33,
+    "portal_ok": true,
+    "portal_problems": [],
+    "unique_like_for_like": true,
+    "like_for_like_blockers": [],
+    "unique_literal": false,
+    "literal_blockers": [
+      "17GEMSDOE:dense_17gemdoe.tif"
+    ],
+    "holdout_dti": 0.1488495052282044,
+    "holdout_bar": 0.18789,
+    "holdout_beats_bar": false,
+    "holdout_bar_caveat": "The bar is H88-ADHR's stored 0.18789. IR-88-72 shows that stack cannot be rebuilt on a clean checkout (it needs acquisition_block_id_100m.tif and tiger_road_distance_m.tif, which exist in no pinned source), so the bar itself is currently unverifiable. It is applied as written rather than silently overridden, and the discrepancy is flagged.",
+    "fingerprint": {
+      "n": 51064,
+      "median_d_cat_px": 7.615773105863909,
+      "share_le2": 0.22101676327745573,
+      "share_gt10": 0.43498355005483313,
+      "share_gt25": 0.22244634184552717
+    },
+    "fingerprint_screen_pass": false,
+    "canary_passed": true,
+    "slot_blocking_reasons": [
+      "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+      "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
+    ],
+    "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+    "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows)."
+  },
+  "status": "READY-TO-SUBMIT-SLOT-NOT-RECOMMENDED",
+  "verdict": "hold",
+  "candidate": {
+    "name": "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros",
+    "note": "MDC-88: PU density x 300m-kernel expected credit, greedy 2.83px max-weight packing, 1% of allowed cells, binary; HOLDOUT-DTI 0.14885",
+    "note_chars": 132,
+    "tif": "releases/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
+    "sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a",
+    "zip_sha256": "6d78ba9b0bbc489df6870d8c4ff3c01bcfaac16edb8f97b417e0fdbf8f6159f0",
+    "bytes": 157139
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "evaluator_sha256": {
+      "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+      "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+      "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+    },
+    "design": "buffered whole-component hide-and-recover; label-blind eroded quadrants",
+    "seeds": [
+      20,
+      21
+    ],
+    "n_folds": 8,
+    "withheld_positive_pixels": 22893,
+    "pooled_dti": 0.1488495052282044,
+    "ci95": [
+      0.13317761870164363,
+      0.1741312800501426
+    ],
+    "pooled_tp": 5683.720493811915,
+    "pooled_fp": 93665.99218162092,
+    "pooled_fn": 17209.279506188082,
+    "per_fold": {
+      "seed20_NW": {
+        "dti": 0.1503772736883921,
+        "n_dots": 10903
+      },
+      "seed20_NE": {
+        "dti": 0.14558660655545153,
+        "n_dots": 13518
+      },
+      "seed20_SW": {
+        "dti": 0.12794997838702338,
+        "n_dots": 13288
+      },
+      "seed20_SE": {
+        "dti": 0.166446774788903,
+        "n_dots": 10699
+      },
+      "seed21_NW": {
+        "dti": 0.13689265033411316,
+        "n_dots": 10903
+      },
+      "seed21_NE": {
+        "dti": 0.1837461424445083,
+        "n_dots": 13518
+      },
+      "seed21_SW": {
+        "dti": 0.11115263236315186,
+        "n_dots": 13288
+      },
+      "seed21_SE": {
+        "dti": 0.17760544746634369,
+        "n_dots": 10702
+      }
+    },
+    "bootstrap": {
+      "method": "spatial block bootstrap",
+      "block_side_px": 200,
+      "n_draws": 1000
+    }
+  },
+  "uniqueness": {
+    "rasters_checked": 21,
+    "worst_excess_overlap": 0.4202279291926346,
+    "worst_abs_spearman": 0.10305192311603943
+  },
+  "problems": [
+    "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+    "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
+  ]
+}

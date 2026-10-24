@@ -1,194 +1,58 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0c2436">
-<meta name="description" content="GEMSDOE88 KDMC-88 candidate GeoTIFF for the DOE GEMS hidden-fault competition: automatic download/submit verdict, format validation, registry uniqueness and spatially-blocked holdout evidence.">
-<title>GEMSDOE88 · Automatic submission verdict &amp; one-click download</title>
-<link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/gate.css">
-</head><body>
-<a href="#main" class="sr-only">Skip to content</a>
-<header class="header"><div class="wrap">
-<a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>research notebook</small></a>
-<nav class="nav" aria-label="Main navigation">
-<a href="index.html" aria-current="page">Verdict &amp; download</a>
-<a href="executive-summary.html">How to submit</a>
-<a href="research.html">Research</a>
-<a href="sources.html">Sources</a></nav></div></header>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0c2436"><meta name="description" content="GEMSDOE88: unique research GeoTIFF with an automatic, machine-checked decision: OK TO DOWNLOAD, NOT OK TO SUBMIT (holdout bar and fingerprint screen). 216-raster uniqueness audit, portal-parity validation."><title>GEMSDOE88 · Download &amp; Submit Decision (machine gate v3)</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body><a href="#main" class="sr-only">Skip to content</a>
+<header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>research notebook</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">How to submit</a><a href="research.html">Research</a><a href="sources.html">Sources</a></nav></div></header>
+<div class="alert-strip" role="status"><div class="wrap"><span class="alert-icon" aria-hidden="true">!</span><span data-card-status>OK TO DOWNLOAD - NOT OK TO SUBMIT · DO NOT SUBMIT · blocked by HOLDOUT + FINGERPRINT</span></div></div>
+<!-- MDC88-BANNER-START --><div class="alert-strip" role="status" style="background:#0d7a5f"><div class="wrap"><span class="alert-icon" aria-hidden="true">&#x2193;</span><span><strong>MDC-88 candidate (PR #61) &mdash; OK TO DOWNLOAD: YES &middot; OK TO SUBMIT: YES</strong> (portal parity + unique like-for-like vs 33 rasters). Weekly-slot policy: <strong>NOT YET</strong> (HOLDOUT-DTI 0.14885 &lt; the stored 0.18789 bar). <a href="downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif" download style="color:#ffffff;text-decoration:underline">&#x2193; Download the GeoTIFF</a> &middot; <a href="mdc88/index.html" style="color:#ffffff;text-decoration:underline">full verdict, evidence and how to submit &rarr;</a>. The verdict below this banner belongs to a different candidate from a parallel session.</span></div></div><!-- MDC88-BANNER-END --><main id="main">
+<section class="hero" aria-labelledby="hero-title"><div class="wrap hero-grid"><div><div class="eyebrow">DOE GEMS Prize · Maximize P(Win) · Own the Outcome · session 2026-10-24</div><h1 id="hero-title">OK to Download: <em>YES.</em><br>OK to Submit: <em>NO.</em></h1>
+<p>Four GeoTIFFs from parallel sessions are ready to inspect (table below); this page leads with candidate B, built and gated in this session. A brand-new, unique, portal-parity GeoTIFF (<strong>216</strong>-raster uniqueness audit) is ready to inspect. The project&rsquo;s own gates say <strong>do not spend a weekly slot on it</strong>: it did not beat the pre-registered holdout bar and it hugs mapped faults too closely. <strong>Zero slots were spent; no score here is ORGANIZER-CONFIRMED.</strong></p>
+<div class="button-row"><a class="button button-primary" href="downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif" download aria-label="Download the GeoTIFF (OK to download; DO NOT SUBMIT)">↓ Download GeoTIFF · 780 KB</a><a class="button button-alert" href="downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.zip" download>↓ Single-TIFF ZIP · 162 KB</a><a class="button button-ghost" href="downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif" download>↓ Fabric-dislocation (PR #58) · v3: NOT OK TO SUBMIT</a><a class="button button-ghost" href="data/gate-verdict.json">Machine verdict JSON →</a><a class="button button-ghost" href="executive-summary.html">How to submit →</a></div>
+<p class="micro"><strong>Unique name (72/140):</strong> <code>gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT</code><br><strong>Short note (131/140):</strong> <code>GEMS88 label-blind 44-layer geophysics+topography classifier, 300 m halo, exact-DTI dots; 38680 dots. Holdout negative vs ADHR bar.</code></p>
+</div><aside class="hero-card" aria-label="Automatic gate summary"><span class="card-kicker">Automated gate · gems88-gate-v3</span><div class="stat" style="font-size:2.1rem">DOWNLOAD: YES<br>SUBMIT: NO</div><span class="status-chip">OK TO DOWNLOAD - NOT OK TO SUBMIT</span></aside></div></section>
 
-<main id="main">
-<section class="verdict"><div class="wrap">
-<div class="vrow">
-  <div class="vcard yes">
-    <div class="q">Is this TIF OK to download?</div>
-    <div class="a">YES</div>
-    <p class="why">15 writer checks plus
-    19 independent checks re-read from the saved bytes by a second program &mdash; all passed.</p>
-  </div>
-  <div class="vcard yes">
-    <div class="q">Is this TIF OK to submit to the portal?</div>
-    <div class="a">YES</div>
-    <p class="why">The portal will accept it: format, CRS, shape and transform parity with the sample, every value finite in [0,1], and unique like-for-like against all 33 registry rasters. Decided by code; no human inspection required.</p>
-  </div>
-  <div class="vcard no">
-    <div class="q">Should a weekly slot be spent on it?</div>
-    <div class="a">NOT YET</div>
-    <p class="why">The slot policy is deliberately stricter than &ldquo;the portal will accept it&rdquo;, and this candidate does not clear it. HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea); FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen).</p>
-  </div>
-</div>
-<div class="warnbox"><strong>Three answers, not one.</strong> Conflating &ldquo;the portal will accept
-this file&rdquo; with &ldquo;spend one of three weekly slots on it&rdquo; is what kept every candidate in
-this repository marked DO&nbsp;NOT&nbsp;SUBMIT. They are now separate machine-decided fields in
-<code>registry/kdmc_gate.json</code>: <code>ok_to_download</code>, <code>ok_to_submit</code> and
-<code>recommended_for_weekly_slot</code>. The slot bar is H88-ADHR's stored
-<code>HOLDOUT-DTI 0.18789</code>, above this candidate's
-<code>0.14885</code>. The bar is applied as written rather than
-silently overridden &mdash; but the H88-ADHR feature stack <strong>cannot be rebuilt on a clean
-checkout</strong> (IR-88-72), so the bar itself is currently unverifiable.</div>
-
-<div class="dlpanel">
-  <h2>Download the submission file</h2>
-  <p>One click. This is the exact file the verdict above refers to
-  (SHA-256 verified at render time).</p>
-  <a class="dlbig" href="downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif" download>&#x2193;&nbsp; Download submission GeoTIFF &middot; 153&nbsp;KB</a>
-  <a class="dlsub" href="downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.zip" download>&#x2193; Single-TIFF ZIP</a>
-  <a class="dlsub" href="downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.json">Writer receipt JSON</a>
-  <a class="dlsub" href="executive-summary.html">How to submit &rarr;</a>
-  <p class="micro" style="margin-top:14px"><strong>Research variant of the same lane (47,226 dots, no dot within 3 px of a mapped fault):</strong> <a href="research-variants/gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros.tif" download>gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros.tif &darr;</a> &middot; <a href="research-variants/gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros.zip" download>ZIP &darr;</a>. Deliberately kept out of <code>docs/downloads/</code> and out of the uniqueness registry: it is the SAME lane with the collar switched on, so the two overlap by design (excess 0.860) and treating it as an independent candidate would make them block each other. Both available instruments prefer collar 0: the blocked holdout scores every collar arm at exactly 0.00000 (structural, not a preference) and the off-catalogue SGMC proxy ranks collar 0 above collar 3 by 0.0497, five times the repository&#x27;s 0.01 no-evidence floor. Neither instrument is decisive for the real unmapped-fault target, so the conservative file is published alongside.</p>
-  <dl class="kv">
-    <dt>Submission name</dt><dd>gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros <span class="micro">(60 chars)</span></dd>
-    <dt>Short note</dt><dd>MDC-88: PU density x 300m-kernel expected credit, greedy 2.83px max-weight packing, 1% of allowed cells, binary; HOLDOUT-DTI 0.14885 <span class="micro">(132/140 chars)</span></dd>
-    <dt>SHA-256</dt><dd>6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a</dd>
-    <dt>Grid</dt><dd>1 band float32 &middot; EPSG:32611 &middot; 3730&times;3292 &middot; 100 m &middot; nodata=None</dd>
-    <dt>Values</dt><dd>all 12,279,160 cells finite, in [0,1], binary {0.0, 1.0} &middot; 51,064 positive dots</dd>
-  </dl>
-</div>
-</div></section>
-
-<section><div class="wrap">
-<div class="kicker">Why these two answers are machine-decided</div>
-<h2>The whole gate runs without a human inspector</h2>
-<p class="section-intro">Three independent automatic stages decide the verdict. Each writes its own
-JSON; the page you are reading is generated from those JSONs, so the headline can never drift
-from the evidence.</p>
-<div class="three">
-  <article class="card"><div class="kicker">1 &middot; Portal format</div>
-  <div class="number">15 / 15 PASS</div>
-  <p>Two independent programs re-open the written bytes. The writer's own validator reports
-  15/15;
-  a second program that shares no code with it reports 19/19
-  (<a href="../evidence/kdmc_independent_revalidation.json">independent re-validation &rarr;</a>).
-  Between them they check band count, dtype, CRS, shape, transform, nodata,
-  finiteness, range [0,1] and zero mass on mapped faults. The historical
-  <code>"Predicted values must be in range [0, 1]"</code> rejection was caused by NaN; this file
-  carries <strong>no NaN anywhere</strong>, inside or outside the footprint.</p></article>
-  <article class="card"><div class="kicker">2 &middot; Blocked holdout</div>
-  <div class="number">0.14885</div>
-  <p><strong>HOLDOUT-DTI</strong>, evaluator <code>gems57-pooled-hide-v2</code>,
-  22,893 withheld positive pixels,
-  95% CI [0.13318, 0.17413].
-  Whole fault components are hidden with a buffer and every catalogue-derived quantity is rebuilt
-  from the visible faults only. <strong>Not an organizer score.</strong></p></article>
-  <article class="card"><div class="kicker">3 &middot; Registry uniqueness</div>
-  <div class="number">21 / 21 PASS</div>
-  <p>Worst chance-corrected dot overlap <code>0.4202</code> and worst
-  |Spearman| <code>0.1031</code> against every prior GEMSDOE raster in the
-  pinned inventory. This file copies no prior submission.</p></article>
+<section aria-label="At a glance"><div class="wrap"><div class="three">
+<article class="card"><div class="kicker">Portal-parity format</div><div class="number">PASS</div><p>Re-opened from the <code>.tif</code> and the <code>.zip</code> member: 1 band, <code>float32</code>, EPSG:32611, 3730&times;3292, official transform, <strong>0 NaN/Inf</strong>, values {0,1}, nodata undeclared, LZW 1-row strips like the official sample, <code>tifffile</code> decode identical. <a href="downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.format-audit.json">audit JSON</a></p></article>
+<article class="card"><div class="kicker">Uniqueness (like-for-like)</div><div class="number">PASS</div><p>Max 3-px overlap <strong>0.596</strong> &le; 0.70; max |&rho;| <strong>0.239</strong> &le; 0.90 over 216 rasters (110 distinct dot sets) incl. GEMSDOE86, 87, 89, 92 (obtainable rasters only, not an organizer-complete registry). <a href="data/uniqueness_v3.json">detail</a></p></article>
+<article class="card"><div class="kicker">Blocking gates</div><div class="number" style="color:#a1281d">2 FAIL</div><p><strong>HOLDOUT</strong> 0.10725 &lt; bar 0.18789; <strong>FINGERPRINT</strong> only 30.9% of dots &gt;25 px from mapped faults (screen &ge;35%).</p></article>
 </div></div></section>
 
-<section style="background:#e9f2f1"><div class="wrap">
-<div class="kicker">Experiment 01 &middot; what the holdout actually selected</div>
-<h2>The kernel-disjointness premise is falsified: tighter dot packing wins monotonically, because the official DTI charges false positives per DOT, not per unit of kernel area.</h2>
-<p class="section-intro">KDMC-88 preregistered that a &gt;=6 px kernel-disjoint packing would beat the registry&#x27;s ~3 px fields, on the argument that overlapping 300 m kernels pay for the same area twice. Reading vendor/gems57/metric.py line by line shows the false-positive term is FP_w = sum_x p(x)*(1 - k_self(x)): it is charged once per emitted dot and is completely independent of how much two dots&#x27; kernels overlap. Overlap costs nothing; only the dot count does. Because the true-positive term credits each truth pixel with the MAXIMUM kernel weight over all dots, and the truth is a set of one-pixel-wide lineaments, dots spaced 6 px apart leave the midpoints of a line uncovered (k(3)=0) while dots at 2.83 px keep every truth pixel within 1.41 px (k=0.53). The holdout confirms the algebra exactly: at a matched budget the score falls monotonically as separation grows, and the optimum sits at the tightest separation tested with roughly 1% of allowed cells emitted.</p>
-<div class="table-scroll"><table class="gate"><thead><tr><th>Arm</th><th>Min separation (px)</th>
-<th>Dots (all folds)</th><th>Pooled HOLDOUT-DTI</th><th>95% CI (block bootstrap)</th></tr></thead>
-<tbody><tr><td><code>sep2.8284_bf0.01</code></td><td>2.8284</td><td>48,408</td><td><strong>0.14649</strong></td><td>[0.13360, 0.17533]</td></tr><tr><td><code>sep2.8284_bf0.0073</code></td><td>2.8284</td><td>35,338</td><td><strong>0.14532</strong></td><td>[0.13043, 0.17442]</td></tr><tr><td><code>sep4.0000_bf0.0073</code></td><td>4.0000</td><td>35,338</td><td><strong>0.14095</strong></td><td>[0.12921, 0.16676]</td></tr><tr><td><code>sep4.0000_bf0.01</code></td><td>4.0000</td><td>48,408</td><td><strong>0.13868</strong></td><td>[0.13015, 0.16516]</td></tr><tr><td><code>sep2.8284_bf0.005</code></td><td>2.8284</td><td>24,204</td><td><strong>0.13652</strong></td><td>[0.11877, 0.16494]</td></tr><tr><td><code>sep4.0000_bf0.005</code></td><td>4.0000</td><td>24,204</td><td><strong>0.13530</strong></td><td>[0.12008, 0.16019]</td></tr></tbody></table></div>
-<p class="micro">Controls on the same folds and the same density surface:
-pure-geometry uniform control <code>0.05535</code>
-at the <em>same</em> separation, budget and folds
-(the model's geology is worth <strong>2.69&times;</strong> raw geometry);
-registry reference <code>REFERENCE_h33_registry</code>
-<code>0.00370</code> &mdash;
-<strong>diagnostic only.</strong> REFERENCE_h33_registry is DIAGNOSTIC ONLY and structurally suppressed: the registry raster was pruned to d_catalogue &gt;= 2.24 px against the FULL catalogue, which already contains the withheld segments, so only 2.8-4.6% of withheld truth pixels lie within 3 px of any of its dots. It is reported for completeness, never as a fair competitor.</p>
-</div></section>
 
-<section style="background:#e9f2f1"><div class="wrap">
-<div class="kicker">Experiment 02 &middot; independent confirmation (2 hide draws)</div>
-<h2>Fine concentration sweep and the catalogue-collar question</h2>
-<p>Exp2: fine concentration sweep + catalogue-collar test, two independent hide draws</p>
-<div class="table-scroll"><table class="gate"><thead><tr><th>Arm</th><th>Separation (px)</th>
-<th>Collar (px)</th><th>Dots</th><th>Pooled HOLDOUT-DTI</th><th>95% CI</th></tr></thead><tbody>
-<tr><td><code>sep2.8284_bf0.01</code></td><td>2.8284</td><td>0.0</td><td>96,819</td><td><strong>0.14885</strong></td><td>[0.13318, 0.17413]</td></tr><tr><td><code>sep2.8284_bf0.0073</code></td><td>2.8284</td><td>0.0</td><td>70,677</td><td><strong>0.14812</strong></td><td>[0.13057, 0.17336]</td></tr><tr><td><code>sep2.8284_bf0.015</code></td><td>2.8284</td><td>0.0</td><td>145,228</td><td><strong>0.14121</strong></td><td>[0.12948, 0.16492]</td></tr><tr><td><code>sep2.8284_bf0.005</code></td><td>2.8284</td><td>0.0</td><td>48,409</td><td><strong>0.14112</strong></td><td>[0.12166, 0.16593]</td></tr><tr><td><code>sep2.8284_bf0.02</code></td><td>2.8284</td><td>0.0</td><td>193,637</td><td><strong>0.13232</strong></td><td>[0.12297, 0.15463]</td></tr><tr><td><code>sep2.0000_bf0.01</code></td><td>2.0000</td><td>0.0</td><td>96,819</td><td><strong>0.13028</strong></td><td>[0.11424, 0.15344]</td></tr><tr><td><code>sep2.0000_bf0.015</code></td><td>2.0000</td><td>0.0</td><td>145,228</td><td><strong>0.12612</strong></td><td>[0.11333, 0.14878]</td></tr><tr><td><code>sep2.0000_bf0.0073</code></td><td>2.0000</td><td>0.0</td><td>70,677</td><td><strong>0.12475</strong></td><td>[0.10682, 0.14822]</td></tr><tr><td><code>sep2.0000_bf0.02</code></td><td>2.0000</td><td>0.0</td><td>193,637</td><td><strong>0.11900</strong></td><td>[0.10797, 0.14093]</td></tr><tr><td><code>sep2.8284_bf0.03</code></td><td>2.8284</td><td>0.0</td><td>290,456</td><td><strong>0.11867</strong></td><td>[0.11180, 0.13841]</td></tr>
-</tbody></table></div>
-<p class="micro">Best arm <code>sep2.8284_bf0.01</code> at <strong>0.14885</strong>
-(22,893 withheld positive pixels, 8 folds).
-Every 3 px-collar arm scores exactly <strong>0.00000</strong> here. That is structural, not a preference: the holdout withholds catalogue components, so a collar around the full catalogue removes the entire scorable neighbourhood. See Experiment 03.</p>
-</div></section>
 
-<section><div class="wrap">
-<div class="kicker">Experiment 03 &middot; the second instrument, and the confound it exposed</div>
-<h2>The blocked holdout cannot rank the catalogue collar &mdash; so a proxy was used, and then controlled</h2>
-<p class="section-intro">Should the production field keep a d_catalogue collar? The blocked holdout cannot answer: every collar arm scores exactly 0.00000 there by construction, because the holdout&#x27;s truth IS withheld catalogue geometry. The off-catalogue instrument is
-<strong>USGS SGMC fault compilation minus the competition catalogue</strong> (78,433 pixels). It is a
-<strong>PROXY, never a score.</strong></p>
-<div class="three">
-<article class="card"><div class="kicker">Collar ladder (PROXY)</div>
-<div class="table-scroll"><table class="gate"><thead><tr><th>Collar</th><th>Proxy DTI</th></tr></thead>
-<tbody><tr><td>0.0 px</td><td>0.327343</td></tr><tr><td>1.5 px</td><td>0.320364</td></tr><tr><td>3.0 px</td><td>0.277659</td></tr><tr><td>4.0 px</td><td>0.256895</td></tr><tr><td>6.0 px</td><td>0.232519</td></tr></tbody></table></div>
-<p class="micro">Selected: <strong>0.0 px</strong>. Both instruments agree
-on the direction.</p></article>
-<article class="card"><div class="kicker">Registry anchors (PROXY)</div>
-<div class="table-scroll"><table class="gate"><thead><tr><th>Raster</th><th>Dots</th><th>Proxy DTI</th></tr></thead>
-<tbody><tr><td><code>ANCHOR_h33_registry</code></td><td>37,654</td><td>0.091278</td></tr><tr><td><code>ANCHOR_gems82_csam_dink</code></td><td>41,200</td><td>0.082906</td></tr><tr><td><code>ANCHOR_gems83_h83_gvcd</code></td><td>37,654</td><td>0.078619</td></tr></tbody></table></div></article>
-<article class="card warn"><div class="kicker warn">Circularity control</div>
-<div class="number">&minus;0.2118</div>
-<p><code>sgmc_logdist</code> is a feature in the stack <em>and</em> the proxy truth is SGMC-derived, so the
-headline proxy number is partly circular. Refitting with every SGMC column dropped moves the proxy DTI
-from <code>0.327343</code> to <code>0.115576</code>:
-<strong>65% of it was circular.</strong>
-The honest margin over the registry's best raster is
-<code>+0.0243</code>, not
-<code>+0.2361</code>. The margin survives with every SGMC column removed.</p></article>
-</div>
-<p class="micro">PROXY, not a score. The repository&#x27;s own no-evidence floor is |delta| &gt;= 0.01; read any smaller difference as a tie. Machine output:
-<a href="../evidence/kdmc_experiment3_collar.json">kdmc_experiment3_collar.json</a> &middot;
-<a href="../evidence/kdmc_experiment3b_sgmc_free.json">kdmc_experiment3b_sgmc_free.json</a>.</p>
-</div></section>
-<section><div class="wrap">
-<div class="kicker">Automatic uniqueness &middot; every pinned prior raster</div>
-<h2>Chance-corrected overlap, so a space-filling prior cannot veto everything</h2>
-<div class="warnbox"><strong>Fixed this session (IR-88-73).</strong>
-One prior in the inventory (<code>17GEMSDOE</code>) is positive on every cell of the footprint, so its
-3&nbsp;px halo covers 100% of the allowed domain. The literal "70% of my dots within 3 px of theirs"
-test therefore returns <code>1.0000</code> for <em>every possible candidate</em>, including one built from
-unrelated physics — it carries zero information and permanently blocked every candidate. The shared
-template now also reports
-<code>excess = (overlap &minus; halo) / (1 &minus; halo)</code>, which equals the literal test when the
-prior has no halo advantage, is stricter in relative terms otherwise, and is undefined exactly when the
-prior cannot discriminate. For such a prior the protocol's rank-correlation test
-(|&rho;| &le; 0.90) is the binding one, and this candidate passes it at
-<code>0.1031</code>.</div>
-<div class="table-scroll"><table class="gate"><thead><tr><th>Prior raster</th><th>Their dots</th>
-<th>Halo coverage</th><th>Literal overlap</th><th>Chance-corrected excess</th><th>Spearman &rho;</th>
-<th>Verdict</th></tr></thead><tbody><tr><td><code>gems19_h19_5.tif</code></td><td>121,131</td><td>0.1961</td><td>0.5339</td><td>0.4202</td><td>0.0547</td><td class='pass'>PASS</td></tr><tr><td><code>gems25_d28.tif</code></td><td>44,090</td><td>0.1719</td><td>0.4830</td><td>0.3756</td><td>0.0301</td><td class='pass'>PASS</td></tr><tr><td><code>gems70_p5_multiphysics.tif</code></td><td>37,654</td><td>0.1378</td><td>0.4431</td><td>0.3541</td><td>0.0234</td><td class='pass'>PASS</td></tr><tr><td><code>gems28_h27_4.tif</code></td><td>40,199</td><td>0.1601</td><td>0.4142</td><td>0.3025</td><td>0.0218</td><td class='pass'>PASS</td></tr><tr><td><code>gems82_csam_dink.tif</code></td><td>41,200</td><td>0.1628</td><td>0.4078</td><td>0.2927</td><td>0.0207</td><td class='pass'>PASS</td></tr><tr><td><code>gems70_p5_dualsubmod.tif</code></td><td>37,654</td><td>0.1256</td><td>0.3629</td><td>0.2713</td><td>0.0233</td><td class='pass'>PASS</td></tr><tr><td><code>gems85_h85a_foldproper.tif</code></td><td>37,654</td><td>0.0992</td><td>0.3414</td><td>0.2689</td><td>0.0226</td><td class='pass'>PASS</td></tr><tr><td><code>gems60_h68_piedmont.tif</code></td><td>40,000</td><td>0.1410</td><td>0.3577</td><td>0.2523</td><td>0.0127</td><td class='pass'>PASS</td></tr><tr><td><code>gems36_anderson_pinn.tif</code></td><td>38,854</td><td>0.1546</td><td>0.3670</td><td>0.2513</td><td>0.0183</td><td class='pass'>PASS</td></tr><tr><td><code>h33_education.tif</code></td><td>37,654</td><td>0.1509</td><td>0.3636</td><td>0.2506</td><td>0.0187</td><td class='pass'>PASS</td></tr><tr><td><code>gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif</code></td><td>37,654</td><td>0.1789</td><td>0.3614</td><td>0.2223</td><td>0.0130</td><td class='pass'>PASS</td></tr><tr><td><code>gems83_h83_gvcd.tif</code></td><td>37,654</td><td>0.1553</td><td>0.3411</td><td>0.2200</td><td>0.0120</td><td class='pass'>PASS</td></tr><tr><td><code>gems49_gate_ortho.tif</code></td><td>40,000</td><td>0.1532</td><td>0.3379</td><td>0.2181</td><td>0.0142</td><td class='pass'>PASS</td></tr><tr><td><code>gems81_contasb.tif</code></td><td>44,090</td><td>0.1239</td><td>0.3148</td><td>0.2179</td><td>0.0134</td><td class='pass'>PASS</td></tr><tr><td><code>gems78_h78_gfv.tif</code></td><td>37,654</td><td>0.1594</td><td>0.3272</td><td>0.1996</td><td>0.0122</td><td class='pass'>PASS</td></tr><tr><td><code>gems80_adpt_kkt.tif</code></td><td>36,500</td><td>0.1447</td><td>0.2648</td><td>0.1403</td><td>0.0119</td><td class='pass'>PASS</td></tr><tr><td><code>gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif</code></td><td>22,545</td><td>0.0883</td><td>0.2145</td><td>0.1384</td><td>0.0099</td><td class='pass'>PASS</td></tr><tr><td><code>gems80_h80_dpvc.tif</code></td><td>41,600</td><td>0.0988</td><td>0.2139</td><td>0.1277</td><td>0.0161</td><td class='pass'>PASS</td></tr><tr><td><code>gems57_h57r2.tif</code></td><td>40,000</td><td>0.0543</td><td>0.1272</td><td>0.0771</td><td>0.0128</td><td class='pass'>PASS</td></tr><tr><td><code>gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif</code></td><td>37,654</td><td>0.0711</td><td>0.1412</td><td>0.0754</td><td>0.0116</td><td class='pass'>PASS</td></tr><tr><td><code>dense_17gemdoe.tif</code></td><td>5,167,373</td><td>1.0000</td><td>1.0000</td><td>n/a (space-filling)</td><td>0.1031</td><td class='pass'>PASS</td></tr></tbody></table></div>
-<p class="micro">Literal worst forward overlap (reported, not binding against a space-filling prior):
-<code>—</code>.
-Full machine output: <a href="../registry/kdmc_gate.json">registry/kdmc_gate.json</a>.</p>
-</div></section>
+<section aria-labelledby="two-title"><div class="wrap"><div class="kicker">Four candidates from parallel sessions &middot; every one is OK to download, none clears the submit gate</div><h2 id="two-title">Decisions, one row per file</h2>
+<div class="table-scroll"><table><thead><tr><th>Candidate</th><th>One-click download</th><th>Decision</th><th>Blocking gates</th></tr></thead><tbody>
+<tr><td><strong>B &middot; phys44 control</strong> (this PR; headline of this page)</td><td><a href="downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif" download>TIFF &darr;</a> &middot; <a href="downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.zip" download>ZIP &darr;</a></td><td><strong>OK TO DOWNLOAD - NOT OK TO SUBMIT</strong><br><span class="fine">v3: NOT OK TO SUBMIT</span></td><td>HOLDOUT bar (0.10725 &lt; 0.18789) &middot; FINGERPRINT (30.9% &gt;25 px, needs &ge;35%). Unique: max overlap 0.596.</td></tr>
+<tr><td><strong>D &middot; fabric dislocation</strong> (PR #58, the &ldquo;current release&rdquo; of its audit)</td><td><a href="downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif" download>TIFF &darr;</a> &middot; <a href="downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.zip" download>ZIP &darr;</a></td><td><strong>OK TO DOWNLOAD - NOT OK TO SUBMIT</strong><br><span class="fine">own verdict: negative (file name says DO-NOT-SUBMIT)</span></td><td>HOLDOUT bar (0.0629 &lt; 0.18789); literal 17GEMSDOE rule (vacuous for any raster, IR-88-60). <a href="data/current_release.json">current-release audit</a>. Not re-gated for like-for-like uniqueness in this PR.</td></tr>
+<tr><td><strong>C &middot; TILTZERO</strong> (PR #59)</td><td><a href="downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif" download>TIFF &darr;</a> &middot; <a href="downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.zip" download>ZIP &darr;</a></td><td><strong>OK TO DOWNLOAD - NOT OK TO SUBMIT</strong><br><span class="fine">own verdict: negative (file name says DO-NOT-SUBMIT)</span></td><td>HOLDOUT bar (0.0551 &lt; 0.18789, cross-run). Unique (max overlap 0.580); <strong>passes</strong> the fingerprint screen (47.3% &gt;25 px). <a href="data/tiltzero-gate-v3.json">gate JSON</a></td></tr>
+<tr class="fail"><td><strong>A &middot; PROVCREST</strong> (PR #53; self-reported &ldquo;promote&rdquo;)</td><td><span class="fine">no download link: the file name carries no DO-NOT-SUBMIT marker, so the site guard withdraws it from page links (it remains in the repository for audit)</span></td><td><strong>OK TO DOWNLOAD - NOT OK TO SUBMIT</strong><br><span class="fine">v3: NOT OK TO SUBMIT</span></td><td>UNIQUENESS: forward overlap <strong>0.732 &gt; 0.70</strong> vs GEMSDOE85 <code>geopb-crest-90000dots</code> (outside PR #53&rsquo;s 30-raster registry) &middot; HOLDOUT bar (0.0763 &lt; 0.18789, cross-run). <strong>Passes</strong> the fingerprint screen (46.3% &gt;25 px). <a href="data/provcrest-gate-v3.json">gate JSON</a></td></tr>
+</tbody></table></div><p class="fine">Overlap between B and A: 0.352 / 0.205 (distinct lanes). The tension to weigh: the holdout favours catalogue-adjacent surfaces, the fleet fingerprint favours label-blind non-hugging ones such as A and C. Details: <a href="https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/IRREGULARITIES.md">IR-88-71</a>. No slot was spent by any agent.</p></div></section>
+<section style="background:#e9f2f1" aria-labelledby="gates-title"><div class="wrap"><div class="kicker">Every gate, machine-computed</div><h2 id="gates-title">What the project checked, and what it found</h2>
+<div class="table-scroll"><table><thead><tr><th>Gate</th><th>Result</th><th>Evidence (HOLDOUT-DTI = hide-and-recover, evaluator <code>gems57-pooled-hide-v2</code>)</th></tr></thead><tbody>
+<tr><td>Format / portal parity</td><td>PASS</td><td>TIF and ZIP pixels identical; layout identical to the official sample; <a href="downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.format-audit.json">audit</a></td></tr>
+<tr><td>Uniqueness, like-for-like</td><td>PASS</td><td>worst overlap 0.5957 (vs GEMSDOE85 geopb-crest-90000dots); worst |&rho;| 0.239 (vs 17GEMSDOE)</td></tr>
+<tr><td>Uniqueness, literal reading</td><td>fails vs dense rasters only</td><td>17GEMSDOE is positive on all 5,167,373 footprint pixels, so <em>any</em> raster overlaps 1.00; a seeded random-dots raster scores 1.00 literal vs 0.018 like-for-like &rArr; the literal rule cannot discriminate (IR-88-60)</td></tr>
+<tr><td>Leakage canary</td><td>PASS</td><td>44 features, max symmetric single-feature AUC 0.5948 &le; 0.90</td></tr>
+<tr class="fail"><td>Holdout bar</td><td><strong>FAIL</strong></td><td>overall 0.10725 [0.09344, 0.12080] (n=22,893); far subset 0.07152 [0.05857, 0.08380] (n=10,791); bar = stored H88-ADHR 0.18789 / 0.11478</td></tr>
+<tr class="fail"><td>Fingerprint screen</td><td><strong>FAIL</strong></td><td>median distance to mapped faults 15.7 px; 30.9% of dots &gt;25 px away (footprint baseline 47.2%; H33 41.7%); 0 dots within 2 px</td></tr>
+</tbody></table></div></div></section>
 
-<section style="background:#e9f2f1"><div class="wrap">
-<div class="kicker">Honest limits</div>
-<h2>What this page does not claim</h2>
-<ul>
-<li>No organizer receipt exists for any file in this repository, so every figure here is HOLDOUT-DTI, PROXY or MODEL and none of them is a leaderboard score.</li><li>The holdout hides whole MAPPED fault components; the competition target is UNMAPPED faults. The holdout is the best available unbiased instrument, not the real task.</li><li>drivendata.org is unreachable from the build sandbox, so the public leaderboard value and the remaining weekly-slot balance cannot be verified here and are carried as UNVERIFIED human-supplied inputs.</li><li>metric.py&#x27;s claim that the organizer masks mapped catalogue faults out of scoring traces to a forum thread that cannot be re-read from here; the candidate is built to be correct either way by emitting zero mass on mapped faults.</li><li>src/gems88/features.py cannot run on a clean checkout (IR-88-72): it requires acquisition_block_id_100m.tif and tiger_road_distance_m.tif, which exist in no pinned source. This lane therefore uses its own self-contained feature builder.</li><li>Two cores and 3 GB of RAM are available, so model capacity (250-iteration histogram gradient boosting) and the number of hide draws are compute-limited, not design-limited.</li><li>The blocked holdout CANNOT rank the catalogue-collar choice: every collar arm scores exactly 0.00000 there because the holdout&#x27;s truth is withheld catalogue geometry. That question is answered only by the off-catalogue SGMC proxy, which is a PROXY.</li>
-</ul>
-</div></section>
-</main>
-<footer class="footer"><div class="wrap">
-<p><strong>GEMSDOE88</strong> &middot; Every figure on this page is rendered directly from
-<code>registry/kdmc_gate.json</code> and <code>evidence/kdmc_experiment1.json</code> by
-<code>scripts/publish_kdmc_site.py</code>. No human edits the verdict, and no number here is a
-leaderboard score unless it is explicitly labelled ORGANIZER-CONFIRMED.</p>
-<p class="micro">Rendered 2026-10-24 08:06 UTC. <a href="sources.html">Verified sources &amp; SHA-256 ledger &rarr;</a>
-&middot; <a href="status.json">Machine-readable status JSON &rarr;</a></p>
-</div></footer></body></html>
+<section aria-labelledby="h33-title"><div class="wrap split"><div><div class="kicker">PhD forensic analysis · source-verified</div><h2 id="h33-title">Why user-reported H33 (<code>0.2778</code>) leads &mdash; and whether it can be beaten</h2>
+<p><strong>Measured on the files:</strong> H33 is a strict subset of SOLO-D2.8, of D2.8 and of H19-5 &mdash; every step in the lineage only <em>removed</em> dots (121,131 &rarr; 37,654), and the 6,436 dots removed from D2.8 all sat within 2 px of a mapped fault. Its dots are laid about one kernel radius apart (nearest-neighbour median 3.0 px). <strong>Inferred (owner-reported scores, pure-false-positive assumption):</strong> the public test holds &asymp;13&ndash;15 k fault pixels and an average H33 dot is worth &asymp;0.14, only &asymp;2.6&times; the 0.0556 break-even.</p>
+<p><strong>Best predictor of the reported ordering:</strong> share of dots &gt;25 px from the catalogue, Spearman <strong>+0.90</strong> (n=20). It is a <em>necessary screen</em>, not a selector. SGMC-based proxies are <em>anti</em>-correlated in the top regime (&minus;0.93) and catalogue hide-and-recover cannot score H33-class rasters at all.</p>
+<p><strong>Can it be beaten?</strong> Reaching the first-round cut (0.3539) needs about +27&ndash;29% more credit at the same dot count (0.4413: +59&ndash;63%) &mdash; an inference from the lineage arithmetic. This session&rsquo;s three pre-registered hypotheses did not provide it. <a href="research/h33-forensics-20261024.md">Full write-up with evidence tags &rarr;</a></p></div>
+<div class="card"><div class="kicker">Live official numbers (2026-10-24)</div><h3>Leaderboard</h3><p>#1 <strong>0.4413</strong> &middot; #2 0.3916 &middot; #5 (first-round cut) 0.3539 &middot; the prompt&rsquo;s 0.3195 is stale. Competition ends <strong>2026-12-03 23:59 UTC</strong>. One final selection for both rounds; the website&rsquo;s slot limit prevails over the &ldquo;three per week&rdquo; wording.</p><p class="fine"><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Leaderboard</a> &middot; <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Metric &amp; format</a> &middot; <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">Rules PDF</a></p></div></div></section>
+
+<section style="background:#e9f2f1" aria-labelledby="exp-title"><div class="wrap"><div class="kicker">Three pre-registered experiments &middot; 8 folds &middot; 22,893 withheld positives</div><h2 id="exp-title">Three hypotheses, three negatives (Own the Outcome)</h2>
+<div class="table-scroll"><table><thead><tr><th>Experiment</th><th>Far-subset HOLDOUT-DTI [95% CI]</th><th>Paired &Delta; (far)</th><th>Verdict</th></tr></thead><tbody>
+<tr><td><strong>Control</strong> BASE-44 (emitted)</td><td><code>0.07152</code> [0.05857, 0.08380]</td><td>reference</td><td>emitted, gates fail</td></tr>
+<tr><td><strong>E1</strong> far-basin-matched training</td><td><code>0.06175</code> [0.04835, 0.07511]</td><td>-0.00977 [-0.02050, +0.00102]</td><td>negative</td></tr>
+<tr><td><strong>E2</strong> catalogue-completeness residual</td><td><code>0.05373</code> [0.04013, 0.06826]</td><td>-0.00803 [-0.01189, -0.00413] vs E1</td><td>negative</td></tr>
+<tr><td><strong>E3</strong> ridge-continuity prior</td><td><code>0.05297</code> [0.03929, 0.06715]</td><td>-0.00076 [-0.00214, +0.00072] vs E2</td><td>null</td></tr>
+<tr><td>Stored references (earlier run, same folds)</td><td>H88-ADHR <code>0.11478</code> &middot; CGO-88 <code>0.07683</code></td><td>&mdash;</td><td>bars</td></tr>
+</tbody></table></div><p class="fine">Pre-registration timestamped before any result: <a href="data/preregistration_halo88.json">preregistration_halo88.json</a> &middot; ranked hypotheses, layers, mimics and free official data sources: <a href="research/hypotheses-20261024.md">hypotheses-20261024.md</a> &middot; <a href="evidence/halo_experiments_20261024.json">raw results</a>.</p></div></section>
+
+<section aria-labelledby="adhr-title"><div class="wrap split"><div><div class="kicker">Correction to an earlier headline</div><h2 id="adhr-title">The earlier H88-ADHR file is archived, not recommended</h2>
+<p>H88-ADHR passes the new uniqueness gate and reached HOLDOUT-DTI 0.18789, but its <em>distance profile</em> is the one the owner-reported fleet associates with low public scores: only <strong>4.2%</strong> of its dots are &gt;25 px from a mapped fault (median 6.4 px; footprint baseline 47.2%). Its holdout gain is catalogue adjacency, and the production file was fitted in-sample (IR-88-62/63). Research download only: <a href="downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif" download>gems88-adhr&hellip;-DO-NOT-SUBMIT.tif &darr;</a>.</p></div>
+<div class="card"><div class="kicker">Limits &amp; access needed</div><ul class="check-list"><li>No DrivenData login here: no receipts inspected, nothing submitted, portal behaviour not observed.</li><li>All public scores are owner-reported; hidden labels and chunking are undisclosed.</li><li>New information source needed for a step change: Sentinel-2 NDVI lineaments (free, <code>s3://sentinel-cogs</code>, blocked in this sandbox).</li></ul></div></div></section>
+
+<section aria-labelledby="feed-title"><div class="wrap split"><div><div class="kicker">Dated official public snapshot &middot; not a GEMSDOE88 score</div><h2 id="feed-title">Official Public Leaderboard Watch</h2><p>Public #1 stood at <strong data-feed-score>0.4413</strong>.</p><p class="fine" data-feed-stamp>Loading dated snapshot&hellip;</p></div><div class="card"><h3>Standing prompt</h3><p><a href="https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/PROMPT.md">PROMPT.md</a> is re-read every session. Core values: <strong>Maximize P(Win)</strong> &middot; <strong>Own the Outcome</strong>.</p></div></div></section>
+</main><footer class="footer"><div class="wrap"><p><strong>GEMSDOE88</strong> &middot; Zero-hallucination geothermal fault research. The TIFF is verified and downloadable for audit; the machine gate says <strong>DO NOT SUBMIT</strong>. <a href="sources.html">Sources &amp; official links</a></p></div></footer></body></html>

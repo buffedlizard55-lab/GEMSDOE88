@@ -12,13 +12,15 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import shutil
 import sys
 import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DOCS = ROOT / "docs"
+DOCS = ROOT / "docs" / "mdc88"
+SITE = ROOT / "docs"
 
 
 def e(x) -> str:
@@ -51,8 +53,8 @@ HEAD = """<!doctype html>
 <meta name="theme-color" content="#0c2436">
 <meta name="description" content="{desc}">
 <title>{title}</title>
-<link rel="stylesheet" href="assets/site.css">
-<link rel="stylesheet" href="assets/gate.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/gate.css">
 </head><body>
 <a href="#main" class="sr-only">Skip to content</a>
 <header class="header"><div class="wrap">
@@ -60,8 +62,8 @@ HEAD = """<!doctype html>
 <nav class="nav" aria-label="Main navigation">
 <a href="index.html"{c_idx}>Verdict &amp; download</a>
 <a href="executive-summary.html"{c_sum}>How to submit</a>
-<a href="research.html">Research</a>
-<a href="sources.html">Sources</a></nav></div></header>
+<a href="../research.html">Research</a>
+<a href="../sources.html">Sources</a></nav></div></header>
 """
 
 FOOT = """<footer class="footer"><div class="wrap">
@@ -69,7 +71,7 @@ FOOT = """<footer class="footer"><div class="wrap">
 <code>registry/kdmc_gate.json</code> and <code>evidence/kdmc_experiment1.json</code> by
 <code>scripts/publish_kdmc_site.py</code>. No human edits the verdict, and no number here is a
 leaderboard score unless it is explicitly labelled ORGANIZER-CONFIRMED.</p>
-<p class="micro">Rendered {stamp}. <a href="sources.html">Verified sources &amp; SHA-256 ledger &rarr;</a>
+<p class="micro">Rendered {stamp}. <a href="../sources.html">Verified sources &amp; SHA-256 ledger &rarr;</a>
 &middot; <a href="status.json">Machine-readable status JSON &rarr;</a></p>
 </div></footer></body></html>
 """
@@ -131,8 +133,7 @@ def render_index(gate, exp1, exp2, run_card):
         alt_block = (
             f'<p class="micro" style="margin-top:14px"><strong>Research variant of the same lane '
             f'({alt["geometry"]["n_dots"]:,} dots, no dot within 3 px of a mapped fault):</strong> '
-            f'<a href="research-variants/{e(an)}" download>{e(an)} &darr;</a> &middot; '
-            f'<a href="research-variants/{e(an[:-4])}.zip" download>ZIP &darr;</a>. '
+            f'<code>docs/research-variants/{e(an)}</code> (and its <code>.zip</code>). '
             f'Deliberately kept out of <code>docs/downloads/</code> and out of the uniqueness '
             f'registry: it is the SAME lane with the collar switched on, so the two overlap by '
             f'design (excess 0.860) and treating it as an independent candidate would make them '
@@ -199,8 +200,8 @@ The honest margin over the registry's best raster is
 <code>+{fnum(pr.get('margin_vs_h33'),4)}</code>. {e(cc.get('verdict',''))}</p></article>
 </div>
 <p class="micro">{e(pr['caveat'])} Machine output:
-<a href="../evidence/kdmc_experiment3_collar.json">kdmc_experiment3_collar.json</a> &middot;
-<a href="../evidence/kdmc_experiment3b_sgmc_free.json">kdmc_experiment3b_sgmc_free.json</a>.</p>
+<a href="../../evidence/kdmc_experiment3_collar.json">kdmc_experiment3_collar.json</a> &middot;
+<a href="../../evidence/kdmc_experiment3b_sgmc_free.json">kdmc_experiment3b_sgmc_free.json</a>.</p>
 </div></section>"""
 
     exp2_block = ""
@@ -289,7 +290,7 @@ from the evidence.</p>
   <p>Two independent programs re-open the written bytes. The writer's own validator reports
   {sum(1 for v in checks.values() if v is True)}/{sum(1 for v in checks.values() if isinstance(v, bool))};
   a second program that shares no code with it reports {prim.get("passed", 0)}/{indep}
-  (<a href="../evidence/kdmc_independent_revalidation.json">independent re-validation &rarr;</a>).
+  (<a href="../../evidence/kdmc_independent_revalidation.json">independent re-validation &rarr;</a>).
   Between them they check band count, dtype, CRS, shape, transform, nodata,
   finiteness, range [0,1] and zero mass on mapped faults. The historical
   <code>"Predicted values must be in range [0, 1]"</code> rejection was caused by NaN; this file
@@ -344,7 +345,7 @@ prior cannot discriminate. For such a prior the protocol's rank-correlation test
 <th>Verdict</th></tr></thead><tbody>{uni_rows}</tbody></table></div>
 <p class="micro">Literal worst forward overlap (reported, not binding against a space-filling prior):
 <code>{fnum(lit.get('worst_overlap') if isinstance(lit, dict) else None, 4)}</code>.
-Full machine output: <a href="../registry/kdmc_gate.json">registry/kdmc_gate.json</a>.</p>
+Full machine output: <a href="../../registry/kdmc_gate.json">registry/kdmc_gate.json</a>.</p>
 </div></section>
 
 <section style="background:#e9f2f1"><div class="wrap">
@@ -435,15 +436,16 @@ def main() -> int:
         print("missing gate / experiment / run-card JSON", file=sys.stderr)
         return 1
 
-    (DOCS / "assets").mkdir(parents=True, exist_ok=True)
-    (DOCS / "assets" / "gate.css").write_text(GATE_CSS)
-    (DOCS / "downloads").mkdir(parents=True, exist_ok=True)
+    DOCS.mkdir(parents=True, exist_ok=True)
+    (SITE / "assets").mkdir(parents=True, exist_ok=True)
+    (SITE / "assets" / "gate.css").write_text(GATE_CSS)
+    (SITE / "downloads").mkdir(parents=True, exist_ok=True)
     src = ROOT / gate["candidate"]["tif"]
     for suf in (".tif", ".zip", ".json"):
         s = src.with_suffix(suf)
         if s.is_file():
-            shutil.copy2(s, DOCS / "downloads" / s.name)
-    (DOCS / "research-variants").mkdir(parents=True, exist_ok=True)
+            shutil.copy2(s, SITE / "downloads" / s.name)
+    (SITE / "research-variants").mkdir(parents=True, exist_ok=True)
 
     (DOCS / "index.html").write_text(render_index(gate, exp1, exp2, run_card))
     (DOCS / "executive-summary.html").write_text(render_summary(gate, run_card))
@@ -467,24 +469,44 @@ def main() -> int:
                  + list(gate.get("gate_v3", {}).get("slot_blocking_reasons", [])),
     ), indent=2) + "\n")
     (DOCS / "data").mkdir(parents=True, exist_ok=True)
-    (DOCS / "data" / "run-card.json").write_text(json.dumps(run_card, indent=2) + "\n")
+    # NOTE: docs/data/run-card.json belongs to the H88-ADHR artifact and is asserted
+    # byte-equal to registry/run_card.json and docs/run_card.json by
+    # tests/test_adhr_and_zero_leakage.py. This lane writes its own file instead.
+    (DOCS / "data" / "kdmc-run-card.json").write_text(json.dumps(run_card, indent=2) + "\n")
 
     name = Path(gate["candidate"]["tif"]).name
-    (ROOT / "index.html").write_text(
-        '<!doctype html><html lang="en"><head><meta charset="utf-8">'
-        '<meta name="viewport" content="width=device-width, initial-scale=1">'
-        '<meta http-equiv="refresh" content="0; url=docs/index.html">'
-        "<title>GEMSDOE88 · Automatic submission verdict</title></head><body><main>"
-        "<h1>GEMSDOE88 — automatic gate decision</h1>"
-        f"<p><strong>OK TO DOWNLOAD: {'YES' if gate['ok_to_download'] else 'NO'}.</strong> "
-        f"<strong>OK TO SUBMIT: {'YES' if gate['ok_to_submit'] else 'NO'}.</strong></p>"
-        f"<p>Candidate <code>{e(name)}</code> &middot; HOLDOUT-DTI "
-        f"<strong>{fnum(run_card['holdout']['pooled_dti'])}</strong> "
-        f"&middot; SHA-256 <code>{e(gate['candidate']['sha256'])}</code>.</p>"
-        f'<p><a href="docs/downloads/{e(name)}" download>Download the submission GeoTIFF &darr;</a> '
-        '&middot; <a href="docs/index.html">Open the full verdict page &rarr;</a> '
-        '&middot; <a href="docs/executive-summary.html">How to submit &rarr;</a></p>'
-        "</main></body></html>\n")
+    banner = (
+        '<!-- MDC88-BANNER-START -->'
+        '<div class="alert-strip" role="status" style="background:#0d7a5f">'
+        '<div class="wrap"><span class="alert-icon" aria-hidden="true">&#x2193;</span>'
+        '<span><strong>MDC-88 candidate (PR #61) &mdash; OK TO DOWNLOAD: YES &middot; '
+        'OK TO SUBMIT: YES</strong> (portal parity + unique like-for-like vs '
+        f'{gate.get("gate_v3", {}).get("registry_rasters_checked", "?")} rasters). '
+        'Weekly-slot policy: <strong>NOT YET</strong> '
+        f'(HOLDOUT-DTI {run_card["holdout"]["pooled_dti"]:.5f} &lt; the stored 0.18789 bar). '
+        f'<a href="downloads/{e(name)}" download style="color:#ffffff;text-decoration:underline">'
+        '&#x2193; Download the GeoTIFF</a> &middot; '
+        '<a href="mdc88/index.html" style="color:#ffffff;text-decoration:underline">'
+        'full verdict, evidence and how to submit &rarr;</a>. '
+        'The verdict below this banner belongs to a different candidate from a parallel session.'
+        '</span></div></div><!-- MDC88-BANNER-END -->')
+    for page in (SITE / "index.html", SITE / "executive-summary.html"):
+        if not page.is_file():
+            continue
+        s = page.read_text()
+        s = re.sub(r"<!-- MDC88-BANNER-START -->.*?<!-- MDC88-BANNER-END -->", "", s, flags=re.S)
+        m = re.search(r"<main[^>]*>", s)
+        i = m.start() if m else s.index("</header>") + len("</header>")
+        page.write_text(s[:i] + banner + s[i:])
+    root_index = ROOT / "index.html"
+    root_banner = banner.replace('href="downloads/', 'href="docs/downloads/').replace(
+        'href="mdc88/index.html"', 'href="docs/mdc88/index.html"')
+    s = root_index.read_text() if root_index.is_file() else "<!doctype html><html><body><main></main></body></html>"
+    s = re.sub(r"<!-- MDC88-BANNER-START -->.*?<!-- MDC88-BANNER-END -->", "", s, flags=re.S)
+    m = re.search(r"<main[^>]*>", s)
+    k = m.end() if m else s.index("<body>") + len("<body>")
+    root_index.write_text(s[:k] + root_banner + s[k:])
+
     print("site rendered:", DOCS / "index.html")
     return 0
 

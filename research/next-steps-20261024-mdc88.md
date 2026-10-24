@@ -44,3 +44,28 @@
 * **The leakage canary bounds single-feature leakage only.** It cannot exclude a leak that exists
   only in a feature *interaction*; the mitigation here is structural — zero catalogue-derived
   features — rather than statistical.
+
+## Reconciliation with gate v3 (added after merging `origin/main`)
+
+`main` merged a slot policy (`src/gems88/gate.py`, `gems88-gate-v3`) while this branch was in
+review. The MDC-88 candidate is now judged by that shared module rather than by a second private
+policy, and the verdict is split into **three** machine fields instead of one:
+
+| field | value | meaning |
+|---|---|---|
+| `ok_to_download` | **true** | the saved bytes re-open as a valid single-band GeoTIFF on the pinned grid (writer 15/15 + an independent 19/19 re-read + gate v3's portal-parity validator) |
+| `ok_to_submit` | **true** | the portal will accept it **and** it is unique like-for-like against all 33 registry rasters |
+| `recommended_for_weekly_slot` | **false** | gate v3's stricter slot policy: `HOLDOUT-DTI 0.14885` is under the stored `0.18789` H88-ADHR bar, and the fleet fingerprint screen fails at `share_gt25 = 0.222 < 0.35` |
+
+Conflating the last two is what kept every candidate in this repository marked DO NOT SUBMIT.
+
+Two consequences for the next session:
+
+1. **The slot bar itself is unverifiable.** `0.18789` is H88-ADHR's stored number, and IR-88-72 shows
+   that stack cannot be rebuilt on a clean checkout. It is applied as written rather than silently
+   relaxed, but it should be re-derived from a reproducible lane as soon as one exists. H-QTS on top
+   of MDC-88 is the cheapest route to that.
+2. **The fingerprint screen is the second thing to design for, not against.** `share_le2 == 0` is
+   free (set `--collar-px 2`); `share_gt25 >= 0.35` is the real constraint and the primary reaches
+   only `0.222`. That is a statement about where the density model puts its mass, so it is a model
+   problem — again H-QTS, whose whole premise is buried structure far from mapped traces.

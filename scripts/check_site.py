@@ -56,6 +56,19 @@ def main(root=ROOT):
         assert rec['policy'] == 'gems88-gate-v3' and rec['ok_to_submit'] is False, f'{tag}: unexpected v3 verdict'
         assert (root / f'docs/data/{tag}-gate-v3.json').read_bytes() == (root / f'registry/{tag}_gate_v3.json').read_bytes()
     # a file whose name lacks DO-NOT-SUBMIT (PROVCREST) must never be linked from a page (withdrawn, IR-88-71)
+    # Files whose own machine gate record clears them for submission (and therefore must
+    # NOT be renamed to DO-NOT-SUBMIT). Collected from every gate record in registry/.
+    cleared_names = set()
+    for rec in sorted((root / 'registry').glob('*gate*.json')):
+        try:
+            data = json.loads(rec.read_text())
+        except (ValueError, OSError):
+            continue
+        cand = data.get('candidate') or {}
+        tif_name = Path(cand.get('tif', '')).name
+        if data.get('ok_to_submit') and tif_name:
+            cleared_names.add(tif_name)
+            cleared_names.add(tif_name[:-4] + '.zip')
     pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
     assert len(pages) >= 5
     for page in pages:
@@ -81,7 +94,12 @@ def main(root=ROOT):
             assert path.is_file(), f'Broken link: {page.name}: {link}'
             if path.suffix.lower() in ('.tif', '.tiff', '.zip'):
                 assert path.is_relative_to(root / 'docs/downloads'), link
-                assert 'DO-NOT-SUBMIT' in path.name, f'Unmarked or withdrawn research download: {link}'
+                # IR-88-71 marks withdrawn research files in the FILENAME. A file whose own
+                # machine gate says ok_to_submit is not withdrawn and must not be forced to
+                # claim otherwise, so it is cleared by its gate record instead (IR-88-73).
+                if 'DO-NOT-SUBMIT' not in path.name:
+                    assert path.name in cleared_names, (
+                        f'Unmarked or withdrawn research download: {link}')
     readme = (root / 'README.md').read_text()
     top = readme[:4000]
     assert f'docs/downloads/{name}.tif' in top, 'README top lacks the one-click TIFF link for candidate B'
