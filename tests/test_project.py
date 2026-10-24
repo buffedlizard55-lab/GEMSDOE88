@@ -32,15 +32,16 @@ def test_real_card_stays_blocked():
     assert not result["approved_for_weekly_slot"]
     assert not result["ok_to_submit"]
     assert result["ok_to_download_for_research"]
-    # The current feed must follow latest H88-MVRD, not a historical PHASE/MRR run.
+    # The current feed must follow latest H88-TDKL, not historical MVRD/PHASE/MRR runs.
     assert result["problems"] and any(p.split(":")[0] in {"HOLDOUT", "UNIQUENESS", "FINGERPRINT", "FORMAT"} for p in result["problems"])
     assert "binding-literal-all-registry-v1" in result["policy"]
     current = json.loads((ROOT / "docs/data/current_release.json").read_text())
-    card = json.loads((ROOT / "registry/mvrd_run_card.json").read_text())
+    card = json.loads((ROOT / "registry/tdkl88_run_card.json").read_text())
     assert result["raster_sha256"] == current["file_sha256"] == card["raster_sha256"]
-    assert current["file"] == card["artifact"]
+    assert current["file"] == card["raster"]["file"]
     assert current["ok_to_submit"] is False and current["duplicate"] is True
-    assert current["distance_fingerprint_ok"] is False
+    assert current["holdout_evidence_class"] == "HOLDOUT-DTI"
+    assert current["holdout_withheld_positive_pixels"] == 22_893
 
 
 def eligible_record(tmp_path):

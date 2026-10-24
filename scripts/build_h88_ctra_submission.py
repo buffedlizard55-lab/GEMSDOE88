@@ -62,7 +62,7 @@ MIN_SEP_PX = 3.0  # >= 300m kernel radius
 COLLAR_PX = 3  # 2px not enough, 3px ensures share_le2=0
 
 LANE = "H88-CTRA"
-NAME = f"gems88-ctra-conductivity-curvature-20261024-zeros"
+NAME = f"gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT"
 NOTE = "H88-CTRA cond gouge+curv trough+grav step 36k dots HOLDOUT Pending; zeros [0,1] portal-valid"
 
 def log(*a):

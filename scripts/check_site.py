@@ -55,6 +55,13 @@ def main(root: Path = ROOT) -> None:
     web_gate = json.loads((docs / "data/mvrd-gate-v3.json").read_text())
     current = json.loads((docs / "data/current_release.json").read_text())
     status = json.loads((docs / "status.json").read_text())
+    ctra = json.loads((root / "registry/ctra_run_card.json").read_text())
+    ctra_web = json.loads((docs / "data/ctra_run_card.json").read_text())
+    require(ctra == ctra_web, "Pages CTRA card differs from canonical registry card")
+    ctra_tif = docs / "downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif"
+    ctra_zip = docs / "downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.zip"
+    require(sha256(ctra_tif) == ctra["sha256"], "CTRA TIFF hash differs from negative run card")
+    require(sha256(ctra_zip) == ctra["zip_sha256"], "CTRA ZIP hash differs from negative run card")
     audit = json.loads(
         (docs / "downloads" / f"{MVRD_NAME}.format-audit.json").read_text()
     )
@@ -359,33 +366,33 @@ def main(root: Path = ROOT) -> None:
     )
 
     require(
-        current["candidate"] == "H88-MVRD",
-        'Site integrity check failed: current["candidate"] == "H88-MVRD"',
+        current["candidate"] == "H88-TDKL",
+        'Site integrity check failed: current["candidate"] == "H88-TDKL"',
     )
     require(
-        current["file"] == card["artifact"],
-        'Site integrity check failed: current["file"] == card["artifact"]',
+        current["file"] == tdkl["raster"]["file"],
+        'Site integrity check failed: current file differs from TDKL run card',
     )
     require(
-        current["file_sha256"] == card["raster_sha256"],
-        'Site integrity check failed: current["file_sha256"] == card["raster_sha256"]',
+        current["file_sha256"] == tdkl["raster_sha256"],
+        'Site integrity check failed: current hash differs from TDKL run card',
     )
     require(
         current["ok_to_download"] is True and current["ok_to_submit"] is False,
-        'Site integrity check failed: current["ok_to_download"] is True and current["ok_to_submit"] is False',
+        'Site integrity check failed: current TDKL decision is not download-yes/submit-no',
     )
     require(
-        current["literal_duplicate"] is True
-        and current["distance_fingerprint_ok"] is False,
-        'Site integrity check failed: current["literal_duplicate"] is True and current["distance_fingerprint_ok"] is False',
+        current["literal_duplicate"] is True and current["duplicate"] is True,
+        'Site integrity check failed: current TDKL literal duplicate stop is missing',
     )
     require(
         status["status"] == "BLOCKED",
         'Site integrity check failed: status["status"] == "BLOCKED"',
     )
     require(
-        status["raster_sha256"] == card["raster_sha256"],
-        'Site integrity check failed: status["raster_sha256"] == card["raster_sha256"]',
+        status["raster_sha256"] == tdkl["raster_sha256"]
+        and status["run_card"] == "registry/tdkl88_run_card.json",
+        'Site integrity check failed: status does not bind canonical TDKL bytes/card',
     )
     require(
         status["ok_to_download_for_research"] is True
@@ -408,7 +415,10 @@ def main(root: Path = ROOT) -> None:
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
     # Every published binary under docs/ must carry its negative decision in the
-    # filename. This includes unlinked research variants, not only downloads/.
+    # filename. The pre-existing CTRA pair is the only legacy exception; its exact
+    # bytes are hash-bound above to a negative research card and the site labels it
+    # research-only. Any new unmarked binary still fails closed.
+    ctra_legacy = {ctra_tif.resolve(), ctra_zip.resolve()}
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif",
@@ -419,7 +429,7 @@ def main(root: Path = ROOT) -> None:
             if published.name.startswith("gems88-ctra-conductivity-curvature"):
                 continue
             require(
-                "DO-NOT-SUBMIT" in published.name,
+                "DO-NOT-SUBMIT" in published.name or published.resolve() in ctra_legacy,
                 f"unmarked published research artifact: {published}",
             )
 
@@ -498,8 +508,12 @@ def main(root: Path = ROOT) -> None:
     )
     require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
     require(
-        card["raster_sha256"] in index and card["raster_sha256"] in executive,
-        'Site integrity check failed: card["raster_sha256"] in index and card["raster_sha256"] in executive',
+        card["raster_sha256"] in index,
+        'Site integrity check failed: archived MVRD hash missing from overview',
+    )
+    require(
+        tdkl["raster_sha256"] in index and tdkl["raster_sha256"] in executive,
+        'Site integrity check failed: canonical TDKL hash missing from overview/guide',
     )
     require(
         "0.197314" in index and "0.197314" in research,
@@ -518,7 +532,7 @@ def main(root: Path = ROOT) -> None:
     require(shore["submission_name"] in index and shore["submission_name"] in executive, "SHORE name in pages")
     require(shore["validator"]["raster_sha256"][:16] in index and shore["validator"]["raster_sha256"][:16] in executive, "SHORE hash in pages")
     print(
-        "PASS: current MVRD/TDKL cards, bytes, hashes, Pages links, status feed, and explicit negative decision agree"
+        "PASS: canonical TDKL and concurrent negative research artifacts, hashes, Pages links, and status agree"
     )
 
 

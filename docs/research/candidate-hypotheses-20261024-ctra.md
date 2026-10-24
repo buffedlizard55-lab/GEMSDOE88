@@ -1,8 +1,8 @@
 # H88-CTRA: Conductivity-Terrain Rupture Anisotropy — Ranked Hypotheses and Validation (2026-10-24)
 
-**Lane:** `H88-CTRA` (single method, zeros encoding, no private metric fork)  
-**Preregistration ID:** `PREREG-20261024-CTRA`  
-**Artifact:** [`gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif) ([ZIP](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.zip)) · [JSON Run Card](../../registry/ctra_run_card.json)  
+**Lane:** `H88-CTRA` (single method, zeros encoding, no private metric fork)
+**Preregistration ID:** `PREREG-20261024-CTRA`
+**Artifact:** [`gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif) ([ZIP](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.zip)) · [JSON Run Card](../../registry/ctra_run_card.json)
 **Status:** `DOWNLOAD FOR RESEARCH: YES` · `SUBMIT: NO — RESEARCH ONLY` (format-valid, uniqueness like-for-like PASS, holdout pending/negative on 4-fold quick instrument; see §5)
 
 ---
@@ -31,7 +31,7 @@
 | h27-4 | 0.2708 | 40k | 17.7 | 3.0 | 0.39 |
 | **h33 (R0)** | **0.2778** | **37,654** | **19.7** | **3.0** | **0.42** |
 
-1. **Kernel de-redundancy:** 121k → 44k with NN 1.0 → 3.0 px lifts CLAIM 0.192 → 0.260 at constant distance (the 300 m triangular kernel double-charges FP inside one radius; spacing ≥3 px makes dots kernel-disjoint).  
+1. **Kernel de-redundancy:** 121k → 44k with NN 1.0 → 3.0 px lifts CLAIM 0.192 → 0.260 at constant distance (the 300 m triangular kernel double-charges FP inside one radius; spacing ≥3 px makes dots kernel-disjoint).
 2. **Moving mass off catalogue:** 0.260 → 0.278 coincides with ≤3 px share falling 19.5% → 5.8% and catalogues-hugging controls 0.004–0.111.
 
 Spearman(median d_cat, CLAIM) = 0.891 (n=13, descriptive only; lineage members share tuning history, so part of the score is information about the public labels that no local holdout can reproduce—R0 scores 0.004 on hide-and-recover *by construction* [IR-88-20]).
@@ -40,8 +40,8 @@ Spearman(median d_cat, CLAIM) = 0.891 (n=13, descriptive only; lineage members s
 
 **Not demonstrable locally; no file in this repo is cleared to try.** `H88-CTRA` reproduces the two geometric optima (spacing 3.0 px, median 23.4 px, 47% >25 px) and is format-valid and like-for-like unique (worst 0.304 ≤0.70), but:
 
-* Its 4-fold quick `HOLDOUT-DTI` is **0.0** on the `all` buffered instrument (vs null 0.042), i.e. **negative** against the bar (`gems57-pooled-hide-v2` would need 8 folds for canonical comparison, but the quick screen is already below null).  
-* Even a strong holdout (TDKL achieves `HOLDOUT-DTI 0.1962` vs bar 0.1896, +0.0058, 8/8 folds won) would still require a portal receipt to prove live superiority—holdout and live labels disagree on the optimum N (holdout monotone, live thinned).  
+* Its 4-fold quick `HOLDOUT-DTI` is **0.0** on the `all` buffered instrument (vs null 0.042), i.e. **negative** against the bar (`gems57-pooled-hide-v2` would need 8 folds for canonical comparison, but the quick screen is already below null).
+* Even a strong holdout (TDKL achieves `HOLDOUT-DTI 0.1962` vs bar 0.1896, +0.0058, 8/8 folds won) would still require a portal receipt to prove live superiority—holdout and live labels disagree on the optimum N (holdout monotone, live thinned).
 * Beating 0.2778 would still sit below rank 50 (#50 = 0.2818); 15 teams sit 0.326–0.333 and the private leaderboard may differ.
 
 **Honest answer:** We have reproduced the *geometry* of the best public lineage and verified it is buildable without catalogue features, but we have not demonstrated a live gain over 0.2778; only a DrivenData receipt can settle it.
@@ -139,8 +139,8 @@ All `HOLDOUT-DTI` numbers are labeled with evaluator version and withheld-positi
 
 ## 6. What remains to beat 0.2778 / 0.4413 and when to spend a slot
 
-1. **Improve holdout before any slot.** The next experiment should re-train a fold-fair `HGB` on CTRA's 4 conductivity-curvature channels (and the already-proven `phys44` stack) and re-score with `gems57-pooled-hide-v2` (8 folds, `seeds 20+21`). Promotion requires beating `H88-ADHR`/`TDKL` with **paired 95% CI >0** on both `overall` and `far >10 px`, and preferably lifting `blind >25 px` (CTRA's design region).  
-2. **Keep the next lane stratified.** CTRA's `share_gt25 = 0.475` is sound for blind basins but may under-cover relay zones; the two-stratum `14.5k / 10.5k` split proven by TDKL should be retained.  
+1. **Improve holdout before any slot.** The next experiment should re-train a fold-fair `HGB` on CTRA's 4 conductivity-curvature channels (and the already-proven `phys44` stack) and re-score with `gems57-pooled-hide-v2` (8 folds, `seeds 20+21`). Promotion requires beating `H88-ADHR`/`TDKL` with **paired 95% CI >0** on both `overall` and `far >10 px`, and preferably lifting `blind >25 px` (CTRA's design region).
+2. **Keep the next lane stratified.** CTRA's `share_gt25 = 0.475` is sound for blind basins but may under-cover relay zones; the two-stratum `14.5k / 10.5k` split proven by TDKL should be retained.
 3. **Budget discipline.** At most one more holdout-verified lane per week; the selector slot remains **human-only** (NLR rules §§3.4–3.5, ≤3/week).
 
 ---

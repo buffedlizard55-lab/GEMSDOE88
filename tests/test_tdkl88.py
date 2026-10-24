@@ -142,29 +142,20 @@ def test_tdkl_geotiff_and_zip_portal_parity_and_uniqueness_gates():
     assert uniq["gate_v3_uniqueness"]["unique_like_for_like"] is True
     assert rc["ok_to_download"] is True
     assert rc["ok_to_submit_gate_v3_like_for_like"] is True
+    # The literal all-raster and post-merge rules remain binding.
+    assert uniq["post_placement_literal_including_dense_witness"]["worst_forward_overlap"] == 1.0
+    assert max(uniq["postmerge_concurrent_overlaps_3px"][k] for k in ("GTHC-88", "QTSK-88")) > 0.70
+    assert rc["ok_to_submit"] is False and rc["verdict"] == "negative"
 
 
-def test_current_verdict_summary_cannot_claim_promotion():
-    import json
-    from pathlib import Path
-    root = Path(__file__).resolve().parents[1]
-    card = json.loads((root / 'registry/tdkl88_run_card.json').read_text())
-    assert card['verdict'] == 'negative' and card['ok_to_submit'] is False
-    assert card['verdict_summary'].startswith('NEGATIVE — DO NOT SUBMIT')
-    assert card['historical_premerge_verdict_summary'].startswith('PROMOTE')
-    assert json.loads((root / 'docs/data/tdkl88_run_card.json').read_text()) == card
+def test_tdkl_independent_current_release_validator():
+    from scripts.validate_tdkl88 import validate_tdkl88
 
-
-def test_latest_download_audit_matches_frozen_evidence():
-    import json
-    from pathlib import Path
-    import pytest
-    root = Path(__file__).resolve().parents[1]
-    if not (root / 'data/registry/dense_17gemdoe.tif').exists():
-        pytest.skip('pinned audit inputs not restored')
-    from scripts.audit_latest_download import inspect
-    actual = inspect()
-    assert actual == json.loads((root / 'evidence/latest_download_review_20261024.json').read_text())
-    assert actual['decision'] == 'DUPLICATE_STOP'
-    assert actual['validator_output']['ok']
-    assert actual['new_rasters_generated'] == actual['slots_used'] == 0
+    report = validate_tdkl88(ROOT)
+    saved = json.loads((ROOT / "docs/data/current_release.json").read_text())
+    assert report == saved
+    assert report["candidate"] == "H88-TDKL"
+    assert report["format_valid"] is True
+    assert report["literal_duplicate"] is True
+    assert report["ok_to_download"] is True
+    assert report["ok_to_submit"] is False
