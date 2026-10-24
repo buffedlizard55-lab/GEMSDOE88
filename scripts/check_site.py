@@ -25,6 +25,16 @@ def main(root=ROOT):
     card = json.loads((root / 'registry/run_card.json').read_text())
     assert card['verdict'] == 'negative' and card['ok_to_submit'] is False
     assert len(card['submission_note']) <= 140
+    # 2026-10-24 PROVCREST promoted candidate (IR-88-57): the ONLY non-DO-NOT-SUBMIT
+    # download allowed, and only while its run card still says promote + ok_to_submit
+    # and the on-disk TIFF hash matches the card. Fail closed otherwise.
+    prov = json.loads((root / 'registry' / 'provcrest_run_card.json').read_text())
+    assert prov['verdict'] == 'promote' and prov['submission']['ok_to_submit'] is True
+    assert len(prov['submission']['submission_note']) <= 140
+    import hashlib as _hl
+    prov_tif = root / prov['submission']['file']
+    assert prov_tif.is_file() and _hl.sha256(prov_tif.read_bytes()).hexdigest() == prov['submission']['sha256']
+    allowed_promoted = {prov_tif.resolve(), (root / prov['submission']['zip_file']).resolve()}
     pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
     assert len(pages) >= 5
     for page in pages:
@@ -42,7 +52,7 @@ def main(root=ROOT):
             assert path.is_file(), f'Broken link: {page.name}: {link}'
             if path.suffix.lower() in ('.tif', '.tiff', '.zip'):
                 assert path.is_relative_to(root / 'docs/downloads'), link
-                assert 'DO-NOT-SUBMIT' in path.name, f'Unmarked research download: {link}'
+                assert 'DO-NOT-SUBMIT' in path.name or path.resolve() in allowed_promoted, f'Unmarked research download: {link}'
     print('PASS: site links, explicit negative decision, clearly marked research downloads')
 
 

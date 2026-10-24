@@ -1,5 +1,8 @@
 # GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
 
+> ## ✅ 2026-10-24 PROVCREST — OK TO DOWNLOAD AND SUBMIT (automated inspection passed; IR-88-57)
+> **New unique de-novo submission (not a copy of any prior raster):** [`docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif`](docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif) (SHA-256 `13b4155c…`, 37,654 binary dots, all values in [0,1], 0 NaN). **Submission name:** `GEMSDOE88-PROVCREST-RANK-04559A2C` · **Note (112/140):** `PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED`. HOLDOUT-DTI **0.076277** [0.067653, 0.084607] (22,663 withheld) vs R0 **0.004006**; uniqueness worst sparse overlap **0.4076 ≤ 0.70**, |ρ| **0.0302 ≤ 0.90**; canary max AUC **0.57543**. Verdict **promote** in `registry/provcrest_run_card.json`. Agent spent **0** slots; ORGANIZER-CONFIRMED score: none. The block below is the prior PRUNE-lane state and is retained as history.
+
 <!-- CURRENT STATE START -->
 ## CURRENT STATE (`2026-10-24` · Agent Brief v2 · reconciled `64`-row ledger across all 7 brief axes · PRs #51/#52 (`IR-88-54/55`) + **`AXIS=PRUNE` single-factor deconfounding triad (`lt3space35`, `p3space35fp`, `p3space35prov` — this PR, `IR-88-56`)**)
 

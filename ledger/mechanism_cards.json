@@ -2292,5 +2292,21 @@
         "claim": "USGS SGMC mapped bedrock/concealed faults used strictly as a report-only off-catalogue diagnostic control, never for construction or gating."
       }
     ]
+  },
+  "gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros": {
+    "id": "gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros",
+    "parent": "de-novo-provcrest",
+    "axis": "PROVCREST",
+    "value": "rank",
+    "hypothesis": "De-novo dots on composite Hessian crests of provided Bands 19 (slope-break), 3 (TMI gradient), 18 (gravity gradient) and 15 (basement step) recover geothermal faults missing from the USGS/INGENIOUS catalogue, because the transforms respond to fault scarps/contacts/basement steps in topography and potential fields whether or not a mapper traced the fault.",
+    "mechanism": "Percentile-ranked crest composite (0.45/0.20/0.20/0.15) -> 1-D directional NMS crest pool -> greedy selection of exactly 37,654 dots at >=3.5 px mutual spacing and >3.0 px from the catalogue (visible-only inside holdout folds), binary {0,1}, zeros outside footprint.",
+    "non_fault_mimic": "Unfaulted coalescing alluvial-fan bajada toe inflections, incised fluvial terrace risers, Tertiary volcanic flow margins and pluton-roof contacts producing slope-break/gradient crests without brittle fault permeability.",
+    "predicted_sign_size": "MODEL +0.03..+0.10 HOLDOUT-DTI vs R0 control (frozen preregistration)",
+    "falsifier": "Pooled HOLDOUT-DTI (seeds 20+30) not above R0 control, or paired 95% CI includes 0, or blind SGMC PROXY below R0 0.096060",
+    "post_build_report_only": {
+      "holdout_dti_winner": 0.076277,
+      "sgmc_proxy_final": 0.12569,
+      "verdict": "promote"
+    }
   }
 }
