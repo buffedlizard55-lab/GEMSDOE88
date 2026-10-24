@@ -149,7 +149,7 @@ def test_binding_decision_v3_blocks_a_real_copy_and_clears_a_space_filling_prior
                  spearman_full_footprint=0.10, their_dots=5_167_373)
     sparse = dict(file="sparse.tif", forward_overlap=0.40, halo_coverage=0.14,
                   spearman_full_footprint=0.03, their_dots=37_654)
-    assert uniqueness.binding_duplicate_decision_v3([dense, sparse])["verdict"] == "promote"
+    assert uniqueness.binding_duplicate_decision_v3([dense, sparse])["verdict"] == "negative"
     copycat = dict(file="copy.tif", forward_overlap=0.95, halo_coverage=0.15,
                    spearman_full_footprint=0.50, their_dots=40_000)
     d = uniqueness.binding_duplicate_decision_v3([dense, sparse, copycat])

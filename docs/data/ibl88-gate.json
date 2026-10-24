@@ -1,0 +1,24 @@
+{
+  "schema": "gems88.ibl88-gate.v1",
+  "name": "gems88-ibl88-basin-lattice-37654-20261024-zeros",
+  "sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
+  "zip_sha256": "8fa123568a45c2b81355ca4bac97adc88386517ae3024284542bf9a0c585c3c2",
+  "generated_utc": "2026-10-24",
+  "policy": "registry/preregistration_ibl88.json (frozen before emission; HOLDOUT instrument limit disclosed)",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "blocking_reasons": [
+    "HOLDOUT-DTI 0.0000 structurally zero for every b2+ gate-clean file (IR-88-35, evaluator gems57-pooled-hide-v2, 22893 withheld); cannot beat stored ADHR bar 0.18789 (unpaired) and paired CI undefined; instrument cannot rank basin-infill hypotheses",
+    "Literal 1.0 forward overlap vs dense 17GEMSDOE space-filling prior (halo 1.0) makes literal >0.70 gate impossible for ANY nonempty candidate; like-for-like excess -0.0519 PASS but literal still reports duplicate"
+  ],
+  "passing": [
+    "leakage canary PASS (0 features, max AUC 0.50 <=0.90)",
+    "format: independent audit all checks PASS; values finite in [0,1] zeros-encoding; CRS/shape/transform match sample; one-member ZIP byte-identical; 0 dots on catalogue/outside footprint",
+    "uniqueness like-for-like: 25 rasters, worst discriminating excess -0.0519 <=0.70, worst |rho| 0.0449 <=0.90, duplicate=false (IR-88-76); literal 1.0 is vacuous"
+  ],
+  "submission_name_archival": "GEMSDOE88-IBL88-BASIN-20261024",
+  "submission_note_archival": "IBL-88 basin lattice 37654 dots b2 collar 2.83px 60% far-basin infill HOLDOUT 0.0* UNSCORED; DO NOT SUBMIT - instrument-limit",
+  "note_len": 118,
+  "human_step_remaining": "None for this file. Basin-infill can only be promoted via SGMC blind-proxy or H33 far-dot holdout, not via catalogue hide-and-recover. See docs/research/hypotheses-20261024-ibl88.md."
+}

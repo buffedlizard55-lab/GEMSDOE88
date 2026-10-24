@@ -141,15 +141,14 @@
   "space_filling_priors": [
    "data/registry/dense_17gemdoe.tif"
   ],
-  "duplicate": false,
+  "duplicate": true,
   "surface_preplacement_worst_abs_spearman": 0.10556715616150086,
   "surface_preplacement_duplicate_by_rho": false,
   "lane_cap_repairs": [],
   "scope_limit": "restored registry rasters (18 pinned + family) + tracked docs/downloads + releases tifs on disk this session; sibling rasters not restored are NOT covered",
   "rows_file": "evidence/mdps88_uniqueness_20261024.json",
-  "literal_duplicate_under_prompt": true,
-  "literal_binding_overlap_threshold": 0.7,
-  "literal_binding_failure_reason": "1.0 of final dots are within 3 px of dense_17gemdoe.tif, which is positive across the full footprint; the lane instruction has no dense-prior exemption."
+  "historical_chance_corrected_duplicate": false,
+  "policy_correction": "IR-88-86: literal overlap 1.0 blocks; chance correction is diagnostic only. Historical metrics were not rerun."
  },
  "raster": {
   "file": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
@@ -238,17 +237,18 @@
   "far_paired_ci_gt_0_vs_base283": false,
   "far_gt_stored_adhr_0.11478_unpaired": false,
   "overall_ge_base283": false,
-  "uniqueness_v3_pass": true,
+  "uniqueness_v3_pass": false,
   "surface_preplacement_pass": true,
   "format_all_checks_passed": true,
   "zip_one_member_bytes_match": true,
-  "strict_literal_uniqueness_pass": false
+  "literal_uniqueness_pass": false,
+  "historical_chance_corrected_uniqueness_pass": true
  },
  "ok_to_download": true,
  "ok_to_submit": false,
  "approved_for_weekly_slot": false,
  "verdict": "negative",
- "verdict_reason": "negative: paired HOLDOUT-DTI improvement is inconclusive and below the stored holdout reference; the literal lane uniqueness rule also fails because 100% of final dots are within 3 px of the positive-everywhere dense_17gemdoe registry raster. Research download only.",
+ "verdict_reason": "Literal registry duplicate AND failed holdout improvement; DO NOT SUBMIT (IR-88-86)",
  "organizer_confirmed_score": null,
  "slots_used_by_this_session": 0,
  "seconds": 122.1

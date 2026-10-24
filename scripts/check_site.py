@@ -24,6 +24,15 @@ class Links(HTMLParser):
 
 def main(root=ROOT):
     import hashlib as _hl
+    # The literal-protocol correction is binding; chance-corrected uniqueness is diagnostic only.
+    literal = json.loads((root / 'docs/data/literal_protocol_audit.json').read_text())
+    mdps = json.loads((root / 'registry/mdps88_run_card.json').read_text())
+    assert literal['raster_sha256'] == mdps['raster_sha256']
+    assert literal['preplacement_feasibility']['all_nonempty_in_footprint_candidates_blocked']
+    assert literal['correlation_overlap_vs_registry']['duplicate'] is True
+    assert literal['ok_to_submit'] is False
+    assert mdps['correlation_overlap_vs_registry']['duplicate'] is True
+    assert 'FAIL — DUPLICATE' in (root / 'docs/index.html').read_text()
     # MRR, KTH, and PHASE are archived historical records; latest MDPS-88 is checked below.
     historical = json.loads((root / 'registry/run_card.json').read_text())
     assert historical['verdict'] == 'negative' and historical['ok_to_submit'] is False
@@ -136,9 +145,10 @@ def main(root=ROOT):
     assert mdps['correlation_overlap_vs_registry']['surface_preplacement_worst_abs_spearman'] <= .90
     assert mdps['correlation_overlap_vs_registry']['worst_excess_overlap_3px'] <= .70
     assert mdps['correlation_overlap_vs_registry']['worst_literal_forward_overlap_3px'] == 1.0
-    assert mdps['correlation_overlap_vs_registry']['literal_duplicate_under_prompt'] is True
-    assert mdps['gates']['strict_literal_uniqueness_pass'] is False
-    assert any('literal lane rule fails' in reason for reason in mdps_gate['blocking_reasons'])
+    assert mdps['correlation_overlap_vs_registry']['duplicate'] is True
+    assert mdps['correlation_overlap_vs_registry']['historical_chance_corrected_duplicate'] is False
+    assert mdps['gates']['literal_uniqueness_pass'] is False
+    assert any('Literal 3px overlap 1.0' in reason for reason in mdps_gate['blocking_reasons'])
     # Keep PHASE-88's own frozen current-release record intact, but never call it
     # the latest experiment. Its historical status does not authorize a slot.
     current = json.loads((root / 'docs/data/current_release.json').read_text())

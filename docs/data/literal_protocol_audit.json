@@ -1,0 +1,276 @@
+{
+  "schema": "gems88.literal-protocol-audit.v1",
+  "date_utc": "2026-10-24",
+  "hypothesis": "Existing MDPS-88 uniqueness claim fails the binding literal rule",
+  "mechanism": "Hash-pinned footprint coverage proof plus shared exact dot-overlap measurement",
+  "named_non_fault_process": "Lake Lahontan shoreline benches (existing MDPS geological confounder)",
+  "new_experiments": 0,
+  "new_raster_generated": false,
+  "slots_used": 0,
+  "preplacement_feasibility": {
+    "footprint_pixels": 5167373,
+    "directly_covered_pixels": 5167373,
+    "all_nonempty_in_footprint_candidates_blocked": true,
+    "reason": "Every allowed dot already lies on positive registry support"
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "experiment_file": "evidence/mdps88_experiment2_20261024.json",
+    "candidate_arm": "mdps_mix",
+    "far": {
+      "dti": 0.07272295955361242,
+      "ci95": [
+        0.05911330711505152,
+        0.08628315696691566
+      ],
+      "withheld_positive_pixels": 10791,
+      "paired_vs_base283": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.003596261052015104,
+        "ci95": [
+          -0.006021409065574782,
+          0.012787871207464562
+        ],
+        "withheld_positive_pixels": 10791
+      }
+    },
+    "overall": {
+      "dti": 0.06672815072543178,
+      "ci95": [
+        0.05511224682791515,
+        0.0784201650660985
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "base283_control": {
+      "far": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.06912669850159732,
+        "ci95": [
+          0.05690798341756635,
+          0.08133355282210904
+        ],
+        "withheld_positive_pixels": 10791,
+        "tpw": 2082.063440994085,
+        "fpw": 105351.57004398816,
+        "fnw": 8708.936559005915
+      },
+      "overall": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.10854141504428969,
+        "ci95": [
+          0.09488329658805682,
+          0.12105242175842111
+        ],
+        "withheld_positive_pixels": 22893,
+        "tpw": 4349.335593325747,
+        "fpw": 104432.39996240786,
+        "fnw": 18543.664406674234
+      }
+    },
+    "r0_fixed_shipped_h33": {
+      "far": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.003183892558226459,
+        "ci95": [
+          0.0025798121852117157,
+          0.003818812831395116
+        ],
+        "withheld_positive_pixels": 10791,
+        "tpw": 72.5118543574701,
+        "fpw": 70636.44872987432,
+        "fnw": 10718.48814564253
+      },
+      "overall": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0038851762665228526,
+        "ci95": [
+          0.0033163452898184367,
+          0.004477890943922922
+        ],
+        "withheld_positive_pixels": 22893,
+        "tpw": 126.10656936923311,
+        "fpw": 70593.84715207116,
+        "fnw": 22766.893430630775
+      },
+      "note": "fold-UNFAIR fixed raster; USER-REPORTED live claim 0.2778 (no organizer receipt in repo)"
+    },
+    "mdps_far_alternative_arm": {
+      "far": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.07558329425674196,
+        "ci95": [
+          0.06137300902827721,
+          0.08884979075842096
+        ],
+        "withheld_positive_pixels": 10791,
+        "tpw": 2277.7795770118537,
+        "fpw": 105238.31444447085,
+        "fnw": 8513.220422988139
+      },
+      "paired_vs_base283": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.006456595755144637,
+        "ci95": [
+          -0.0032203579999186102,
+          0.01572495782168565
+        ],
+        "withheld_positive_pixels": 10791
+      }
+    },
+    "stored_reference_unpaired": {
+      "name": "ADHR far (same folds, stored)",
+      "dti": 0.11478
+    }
+  },
+  "holdout_provenance": "Historical evidence, not retrained in this audit",
+  "correlation_overlap_vs_registry": {
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "final_overlap_3px": 1.0,
+    "duplicate": true,
+    "registry_complete": false,
+    "scope": "One sufficient rejection witness; not a new full-registry certification",
+    "surface_rho": null,
+    "surface_rho_reason": "No new surface: stop at universal feasibility blocker"
+  },
+  "raster_sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
+  "artifact": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+  "validator_output": {
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "policy": "gems88-gate-v3",
+    "bytes": 122537,
+    "sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
+    "problems": [],
+    "member_name": "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "tiff_header": {
+      "byte_order": "II",
+      "is_classic_tiff": true,
+      "is_bigtiff": false
+    },
+    "layout": {
+      "compress": "deflate",
+      "tiled": true,
+      "block_shapes": [
+        [
+          256,
+          256
+        ]
+      ],
+      "predictor": null,
+      "interleave": "band"
+    },
+    "checks": {
+      "one_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_sample": true,
+      "transform_matches_sample": true,
+      "bounds_match_sample": true,
+      "resolution_100m": true,
+      "nodata_undeclared": true,
+      "all_finite": true,
+      "masked_read_no_masked_cells": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "portal_range_check_nan_strict": true,
+      "portal_range_check_nanmin_nanmax": true,
+      "footprint_cells_finite": true,
+      "outside_footprint_zero": true,
+      "has_dots": true,
+      "no_internal_mask_band": true
+    },
+    "array_sha256": "e9a2d1d1c94db645a0d5da15f760cbf4ddb973be60e057228a5fe1ae43ee937c",
+    "n_dots": 29742,
+    "min": 0.0,
+    "max": 1.0,
+    "n_unique_values": 2,
+    "layout_parity_with_sample": false,
+    "second_decoder": {
+      "name": "tifffile",
+      "equal": true
+    },
+    "ok": true
+  },
+  "zip_validator_output": {
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "policy": "gems88-gate-v3",
+    "bytes": 85603,
+    "sha256": "cd64e498a62175e833edbd9079e95bf8e0d296b89de63c03b6154d5a92d10606",
+    "problems": [],
+    "zip_members": [
+      "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif"
+    ],
+    "zip_testzip": null,
+    "zip_member_compress_type": 8,
+    "member_name": "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "tiff_header": {
+      "byte_order": "II",
+      "is_classic_tiff": true,
+      "is_bigtiff": false
+    },
+    "layout": {
+      "compress": "deflate",
+      "tiled": true,
+      "block_shapes": [
+        [
+          256,
+          256
+        ]
+      ],
+      "predictor": null,
+      "interleave": "band"
+    },
+    "checks": {
+      "one_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_sample": true,
+      "transform_matches_sample": true,
+      "bounds_match_sample": true,
+      "resolution_100m": true,
+      "nodata_undeclared": true,
+      "all_finite": true,
+      "masked_read_no_masked_cells": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "portal_range_check_nan_strict": true,
+      "portal_range_check_nanmin_nanmax": true,
+      "footprint_cells_finite": true,
+      "outside_footprint_zero": true,
+      "has_dots": true,
+      "no_internal_mask_band": true
+    },
+    "array_sha256": "e9a2d1d1c94db645a0d5da15f760cbf4ddb973be60e057228a5fe1ae43ee937c",
+    "n_dots": 29742,
+    "min": 0.0,
+    "max": 1.0,
+    "n_unique_values": 2,
+    "layout_parity_with_sample": false,
+    "second_decoder": {
+      "name": "tifffile",
+      "equal": true
+    },
+    "ok": true
+  },
+  "submission_name": "GEMSDOE88-MDPS88-MIX-20261024",
+  "note": "Existing MDPS-88 audit: literal registry duplicate; format check only; DO NOT SUBMIT.",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "stop_required": true,
+  "organizer_confirmed_score": null,
+  "limitations": [
+    "No new holdout or feature-canary run",
+    "No current portal receipt or weekly-cap verification",
+    "No unique submission can satisfy the current all-raster rule while this witness remains registered"
+  ]
+}
