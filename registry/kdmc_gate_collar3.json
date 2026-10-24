@@ -404,8 +404,8 @@
         "fails_literal": false
       },
       {
-        "file": "/home/user/GEMSDOE88/docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
-        "submission": "gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+        "file": "/home/user/GEMSDOE88/docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
+        "submission": "gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
         "repo": "GEMSDOE88-GHMD",
         "their_dots": 37654,
         "halo_coverage": 0.1788744493575362,
@@ -430,12 +430,12 @@
     "portal_problems": [],
     "unique_like_for_like": false,
     "like_for_like_blockers": [
-      "GEMSDOE88-MDC88:gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif"
+      "GEMSDOE88-MDC88:gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros-DO-NOT-SUBMIT.tif"
     ],
     "unique_literal": false,
     "literal_blockers": [
       "17GEMSDOE:dense_17gemdoe.tif",
-      "GEMSDOE88-MDC88:gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif"
+      "GEMSDOE88-MDC88:gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros-DO-NOT-SUBMIT.tif"
     ],
     "holdout_dti": 0.1488495052282044,
     "holdout_bar": 0.18789,
@@ -451,7 +451,7 @@
     "fingerprint_screen_pass": false,
     "canary_passed": true,
     "slot_blocking_reasons": [
-      "UNIQUENESS: blocked (like-for-like) by GEMSDOE88-MDC88:gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
+      "UNIQUENESS: blocked (like-for-like) by GEMSDOE88-MDC88:gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros-DO-NOT-SUBMIT.tif",
       "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
       "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
     ],

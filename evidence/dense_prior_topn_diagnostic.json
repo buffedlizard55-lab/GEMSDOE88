@@ -1,0 +1,157 @@
+{
+  "schema": "gems88.dense-prior-topn-diagnostic.v1",
+  "status": "DIAGNOSTIC ONLY - does not change the shared gate and grants no submission",
+  "radius_px": 3.0,
+  "overlap_limit": 0.7,
+  "literal_rule": {
+    "witness": "dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_positive_cells": 5167373,
+    "literal_forward_overlap_all_candidates": 1.0,
+    "note": "literal gate: every positive cell is a dot -> 1.0 for any candidate"
+  },
+  "topN_like_for_like": [
+    {
+      "candidate": "gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd",
+      "candidate_dots": 35894,
+      "witness_topN_threshold_value": 0.847428023815155,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.073689,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.435922,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "1bbb20e60ce5633a979e2bea8e1216105325b78c4ca93ca4380ea3f533e774ae",
+      "candidate_dots": 37654,
+      "witness_topN_threshold_value": 0.8438428044319153,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.014925,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.118766,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
+      "candidate_dots": 37654,
+      "witness_topN_threshold_value": 0.8438428044319153,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.018829,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.138339,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "0a44af1ed8090cf1be88e42b832e0cc4b3bd2263a01b13b45f873e0eb528991a",
+      "candidate_dots": 38278,
+      "witness_topN_threshold_value": 0.8424776196479797,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.033466,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.199488,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
+      "candidate_dots": 29742,
+      "witness_topN_threshold_value": 0.8607991933822632,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.032513,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.365745,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b",
+      "candidate_dots": 37654,
+      "witness_topN_threshold_value": 0.8438428044319153,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.121156,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.525787,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "b9cb36519c2ee91c08f587d3c9c006623d8e2505ece0416fdf263b50e42deb7e",
+      "candidate_dots": 36033,
+      "witness_topN_threshold_value": 0.8471375107765198,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.073016,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.428246,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b",
+      "candidate_dots": 37654,
+      "witness_topN_threshold_value": 0.8438428044319153,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.008153,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.065518,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "974b5d4b2009849c977ddb4210eb17d2fb93f8765011580931028d4fc707bada",
+      "candidate_dots": 38680,
+      "witness_topN_threshold_value": 0.8416562676429749,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.03591,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.156437,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
+      "candidate_dots": 37654,
+      "witness_topN_threshold_value": 0.8438428044319153,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.016253,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.1526,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "5487d7937c92dce12a87185b0b3ba7c800b78e655ecafd47fbdb41404d29f011",
+      "candidate_dots": 37654,
+      "witness_topN_threshold_value": 0.8438428044319153,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.009269,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.07051,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00",
+      "candidate_dots": 22545,
+      "witness_topN_threshold_value": 0.877438485622406,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.056199,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.478465,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "81e580f13b45e1e6aa554eaf5e8c54d1e0064769ba8e7193b6e7f53e3842308a",
+      "candidate_dots": 37654,
+      "witness_topN_threshold_value": 0.8438428044319153,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.032427,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.278988,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a",
+      "candidate_dots": 51064,
+      "witness_topN_threshold_value": 0.8171064257621765,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.130052,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.57003,
+      "passes_0_70_like_for_like": true
+    }
+  ],
+  "count_passing_topN": 14,
+  "count_candidates": 14
+}

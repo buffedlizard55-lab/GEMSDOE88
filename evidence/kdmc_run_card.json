@@ -496,7 +496,7 @@
       "duplicate": false
     },
     "ok_to_download": true,
-    "ok_to_submit": true
+    "ok_to_submit": false
   },
   "alternate_artifact": {
     "role": "conservative variant for the weekly-slot selector: identical model, allocator and budget, but no dot within 3 px of a mapped catalogue fault",
@@ -523,5 +523,6 @@
       "model_total_density_mass": 1265851.25
     },
     "why_not_primary": "Both available instruments prefer collar 0: the blocked holdout scores every collar arm at exactly 0.00000 (structural, not a preference) and the off-catalogue SGMC proxy ranks collar 0 above collar 3 by 0.0497, five times the repository's 0.01 no-evidence floor. Neither instrument is decisive for the real unmapped-fault target, so the conservative file is published alongside."
-  }
+  },
+  "ok_to_submit_correction_2026_10_24": "2026-10-24 correction: was true under the chance-corrected like-for-like rule, which excludes the dense 17GEMSDOE prior. The binding user rule is literal (any registry raster, forward 3-px overlap <= 0.70); 17GEMSDOE overlap = 1.0. Holdout also fails the bar (0.14885 < 0.18789). Set to false; no slot authorized."
 }
