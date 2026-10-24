@@ -1478,5 +1478,74 @@
     "non_fault_mimic": "The ribbon itself: intra-support de-jittering cannot fix a genuinely mislocated ribbon (a drifted aeromagnetic lineament with no surface fault); pluvial-shoreline breaklines that run along H19-5 ribbons attract the same field within support.",
     "predicted_sign_size": "Preregistered MODEL +0.002 live delta vs R1 (scenario range [-0.005,+0.010]); discounted from the R0 family's ridge2px +0.003 because R1's refills were already placed at on-support field maxima.",
     "falsifier": "SGMC(ridge2px) >= SGMC(scarp2px) reverses the R0 ordering and says the gain is intra-support de-jittering, so future snaps must stay support-locked; live receipts <= R1 - 0.01 for both ridge2px and scarp2px close SNAP on R1 (three families then agree: IR-88-31/32, f35, this one)."
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCphys-c10-20261023-ced3de17": {
+    "axis": "CONCENTRATION",
+    "value": "phys-c10",
+    "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "hypothesis": "GeoDAWN Area 2 was flown at 400 m line spacing / 150-200 m drape, so the provided-band geophysical crests (edge_scarp_pot) locate the fault fabric only to ~1 kernel radius. Moving 10% of R1's dots from the coldest to the hottest 1 km prior blocks re-allocates fixed mass onto the crests the blind off-catalogue SGMC control already favours, and should raise live DTI.",
+    "mechanism": "Within the 3 px triangular kernel a dot keeps credit 1 - d/3. Mass welded to a surviving host in a high edge_scarp_pot block sits closer to the geophysical offset that the blind control rewards; the move consumes no extra mass (count fixed at 37,654) and every receiver stays >3 px from the mapped catalogue.",
+    "non_fault_mimic": "edge_scarp_pot maxima also follow welded-tuff caprock breaks, Lake Lahontan shorelines and 400 m aeromagnetic flight-line corrugation; concentrating on them can cluster dots onto a non-fault gradient with no new-fault truth.",
+    "confounder": "Concentration raises block-density CV away from the reported 0.51-0.59 sweet spot and away from the repeated 'spacing/uniformity is the lever' result. The label-free w-field MODEL rewards densification while blind SGMC has preferred spacing in every session; the two instruments are expected to disagree, so no arm is promoted on an instrument and a live |delta| < 0.01 is no evidence.",
+    "predicted_sign_size": "Near-zero, sign-uncertain (preregistered point |delta| <= 0.002, range spans zero). A >= +0.01 live gain on the actually-submitted R1 anchors the concentration direction; <= -0.01 closes it and confirms the uniformity lever.",
+    "falsifier": "A live receipt <= R1 - 0.01 while both 1 km doses are also negative falsifies crest-concentration on the gate-clean parent; a win of the 5 km arm over the 1 km arm at matched 20% arbitrates the spatial scale of the prior.",
+    "preregistration": "registry/preregistration_concentration_r1.json",
+    "provided_bands_only": true,
+    "external_lidar_used": false,
+    "preregistered_prediction": "MODEL:+0.001",
+    "revised_prediction_MODEL": "MODEL:-0.001",
+    "post_build_instruments": {
+      "blind_sgmc_PROXY": 0.094649,
+      "blind_sgmc_delta_vs_r1_PROXY": -0.001434,
+      "w_weighted_dti_delta_vs_r1_MODEL": -0.020779,
+      "both_instruments_negative": true,
+      "verdict": "CONVERGENT FALSIFICATION: both the label-free w-DTI MODEL and the blind off-catalogue SGMC PROXY read negative on the gate-clean parent; the preregistered near-zero-positive scenario is revised negative. Concentration of mass onto geophysical crests loses to the spaced parent at matched count -- the uniformity lever is confirmed, and the sign/size of the loss is dose-monotone."
+    }
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCphys-c20-20261023-bde32688": {
+    "axis": "CONCENTRATION",
+    "value": "phys-c20",
+    "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "hypothesis": "GeoDAWN Area 2 was flown at 400 m line spacing / 150-200 m drape, so the provided-band geophysical crests (edge_scarp_pot) locate the fault fabric only to ~1 kernel radius. Moving 20% of R1's dots from the coldest to the hottest 1 km prior blocks re-allocates fixed mass onto the crests the blind off-catalogue SGMC control already favours, and should raise live DTI.",
+    "mechanism": "Within the 3 px triangular kernel a dot keeps credit 1 - d/3. Mass welded to a surviving host in a high edge_scarp_pot block sits closer to the geophysical offset that the blind control rewards; the move consumes no extra mass (count fixed at 37,654) and every receiver stays >3 px from the mapped catalogue.",
+    "non_fault_mimic": "edge_scarp_pot maxima also follow welded-tuff caprock breaks, Lake Lahontan shorelines and 400 m aeromagnetic flight-line corrugation; concentrating on them can cluster dots onto a non-fault gradient with no new-fault truth.",
+    "confounder": "Concentration raises block-density CV away from the reported 0.51-0.59 sweet spot and away from the repeated 'spacing/uniformity is the lever' result. The label-free w-field MODEL rewards densification while blind SGMC has preferred spacing in every session; the two instruments are expected to disagree, so no arm is promoted on an instrument and a live |delta| < 0.01 is no evidence.",
+    "predicted_sign_size": "Near-zero, sign-uncertain (preregistered point |delta| <= 0.002, range spans zero). A >= +0.01 live gain on the actually-submitted R1 anchors the concentration direction; <= -0.01 closes it and confirms the uniformity lever.",
+    "falsifier": "A live receipt <= R1 - 0.01 while both 1 km doses are also negative falsifies crest-concentration on the gate-clean parent; a win of the 5 km arm over the 1 km arm at matched 20% arbitrates the spatial scale of the prior.",
+    "preregistration": "registry/preregistration_concentration_r1.json",
+    "provided_bands_only": true,
+    "external_lidar_used": false,
+    "preregistered_prediction": "MODEL:+0.002",
+    "revised_prediction_MODEL": "MODEL:-0.006",
+    "post_build_instruments": {
+      "blind_sgmc_PROXY": 0.089955,
+      "blind_sgmc_delta_vs_r1_PROXY": -0.006128,
+      "w_weighted_dti_delta_vs_r1_MODEL": -0.0428,
+      "both_instruments_negative": true,
+      "verdict": "CONVERGENT FALSIFICATION: both the label-free w-DTI MODEL and the blind off-catalogue SGMC PROXY read negative on the gate-clean parent; the preregistered near-zero-positive scenario is revised negative. Concentration of mass onto geophysical crests loses to the spaced parent at matched count -- the uniformity lever is confirmed, and the sign/size of the loss is dose-monotone."
+    }
+  },
+  "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCphys-c20-b5km-20261023-4f6fdb20": {
+    "axis": "CONCENTRATION",
+    "value": "phys-c20-b5km",
+    "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "hypothesis": "GeoDAWN Area 2 was flown at 400 m line spacing / 150-200 m drape, so the provided-band geophysical crests (edge_scarp_pot) locate the fault fabric only to ~1 kernel radius. Moving 20% of R1's dots from the coldest to the hottest 5 km prior blocks re-allocates fixed mass onto the crests the blind off-catalogue SGMC control already favours, and should raise live DTI.",
+    "mechanism": "Within the 3 px triangular kernel a dot keeps credit 1 - d/3. Mass welded to a surviving host in a high edge_scarp_pot block sits closer to the geophysical offset that the blind control rewards; the move consumes no extra mass (count fixed at 37,654) and every receiver stays >3 px from the mapped catalogue.",
+    "non_fault_mimic": "edge_scarp_pot maxima also follow welded-tuff caprock breaks, Lake Lahontan shorelines and 400 m aeromagnetic flight-line corrugation; concentrating on them can cluster dots onto a non-fault gradient with no new-fault truth.",
+    "confounder": "Concentration raises block-density CV away from the reported 0.51-0.59 sweet spot and away from the repeated 'spacing/uniformity is the lever' result. The label-free w-field MODEL rewards densification while blind SGMC has preferred spacing in every session; the two instruments are expected to disagree, so no arm is promoted on an instrument and a live |delta| < 0.01 is no evidence.",
+    "predicted_sign_size": "Near-zero, sign-uncertain (preregistered point |delta| <= 0.002, range spans zero). A >= +0.01 live gain on the actually-submitted R1 anchors the concentration direction; <= -0.01 closes it and confirms the uniformity lever.",
+    "falsifier": "A live receipt <= R1 - 0.01 while both 1 km doses are also negative falsifies crest-concentration on the gate-clean parent; a win of the 5 km arm over the 1 km arm at matched 20% arbitrates the spatial scale of the prior.",
+    "preregistration": "registry/preregistration_concentration_r1.json",
+    "provided_bands_only": true,
+    "external_lidar_used": false,
+    "preregistered_prediction": "MODEL:+0.001",
+    "revised_prediction_MODEL": "MODEL:-0.010",
+    "post_build_instruments": {
+      "blind_sgmc_PROXY": 0.085682,
+      "blind_sgmc_delta_vs_r1_PROXY": -0.010401,
+      "w_weighted_dti_delta_vs_r1_MODEL": -0.04712,
+      "both_instruments_negative": true,
+      "verdict": "CONVERGENT FALSIFICATION: both the label-free w-DTI MODEL and the blind off-catalogue SGMC PROXY read negative on the gate-clean parent; the preregistered near-zero-positive scenario is revised negative. Concentration of mass onto geophysical crests loses to the spaced parent at matched count -- the uniformity lever is confirmed, and the sign/size of the loss is dose-monotone."
+    }
   }
 }

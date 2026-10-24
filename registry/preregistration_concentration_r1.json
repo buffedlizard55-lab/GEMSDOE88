@@ -1,0 +1,33 @@
+{
+  "schema": "gems88.preregistration.concentration-on-r1.v1",
+  "registered_utc": "2026-10-23T00:00:00Z",
+  "registered_before_any_proxy": true,
+  "session_axis": "CONCENTRATION",
+  "parent_id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "parent_n_dots": 37654,
+  "parent_min_catalogue_distance_px": 3.1623,
+  "lineage_root": "h33-h33-2-b2",
+  "why_this_parent_not_r0": "Brief v2 §4.4 requires >=3 px clearance for every non-PRUNE axis. R0 (h33-h33-2-b2) carries 1,611 dots strictly <3 px from the catalogue (IR-88-47 corrected count), so a single-axis CONCENTRATION edit of R0 that inherits those dots fails the hardened validate_variant.py 'non_prune_clearance_ge_3px' gate. R1 = PRUNEp3px is R0's gate-clean direct child (all 37,654 dots >3 px, rebuilt and SHA-asserted from R0 before any edit). Every relocation below keeps 100% of dots >3 px. Logged in IRREGULARITIES.md as IR-88-51.",
+  "why_this_axis": "The four R0 CONCENTRATION arms carry the highest label-free MODEL gains in the inventory (+0.006..+0.020) but every one is HOLD solely because it inherited R0's 2 px collar. Rebuilding the axis on the gate-clean parent converts the highest-predicted-gain but unsubmittable family into submit-eligible files. The swap from a circular self-density prior to a label-free provided-band geophysical prior makes the bet mechanism-backed rather than self-referential.",
+  "prior_definition": "Label-free geophysical fault-favorability prior = per-1 km (10 px) or 5 km (50 px) block mean of edge_scarp_pot (build_snap_variants.build_snap_edge_fields_and_canaries: 0.42*det_elev_slope_b19 + 0.23*det_elev_Hessian_b12 + 0.20*iso_grav_anom_hg_b18 + 0.15*tmi_hg_b03, each percentile-ranked), lightly smoothed sigma=1.5 blocks. Provided competition bands only; zero external LiDAR; all channels pass the <0.90 leakage canary before use. edge_scarp_pot is the exact field whose spacing-locked SNAP beat parent on the blind off-catalogue SGMC control (IR-88-50), so 'highest-prior' means 'the geophysical crests the blind control already favours'.",
+  "operation": "Move a fixed fraction of R1's dots from the LOWEST-prior blocks (most-isolated donors first, one dot left behind per donor block where the pool allows) to 8-neighbour receiver sites welded to surviving host dots in the HIGHEST-prior blocks (<=2 receivers per host). Count fixed at 37,654; receivers strictly inside footprint, off the catalogue and at d_cat>3.0 px. Deterministic: every ordering terminates in (row,col); no RNG.",
+  "confounder": "Moving mass toward high-prior crests raises local clustering (block-density CV moves UP, away from the reported 0.51-0.59 sweet spot of the best files, and away from the 'spacing/uniformity is the lever' finding). The label-free w-field MODEL rewards densification while the blind off-catalogue SGMC control has preferred spaced placement in every prior session; the two instruments are expected to disagree. |live delta| < 0.01 is no evidence (public chunks only).",
+  "arms": [
+    {"value": "phys-c10", "fraction": 0.10, "block_px": 10, "block_km": 1},
+    {"value": "phys-c20", "fraction": 0.20, "block_px": 10, "block_km": 1},
+    {"value": "phys-c20-b5km", "fraction": 0.20, "block_px": 50, "block_km": 5}
+  ],
+  "preregistered_predictions": {
+    "phys-c10": {"predicted_change": "MODEL:+0.001", "range": "[-0.010,+0.012]"},
+    "phys-c20": {"predicted_change": "MODEL:+0.002", "range": "[-0.012,+0.016]"},
+    "phys-c20-b5km": {"predicted_change": "MODEL:+0.001", "range": "[-0.012,+0.014]"}
+  },
+  "prediction_rationale": "Modest, sign-uncertain MODEL point estimates. The w-field DTI projection is positive for densification (the earlier R0 arms read +0.011/+0.020) but the blind SGMC control and the CV sweet-spot argue the opposite; the ranges span zero and the point estimates are deliberately near the no-evidence floor so no arm can be promoted on an instrument. Only a portal receipt adjudicates.",
+  "decision_rules": {
+    "gate": "MUST-pass format/clearance gates only. Report-only (never gates): hide-and-recover PROXY (n withheld positives, 95% CI), leakage canary, blind SGMC control, w-DTI MODEL.",
+    "build_time_park_rule": "If SGMC(arm) <= SGMC(R1) at build time, park that arm HOLD before any slot; a non-negative blind margin plus a clean gate makes it slot-eligible but not slot-recommended without a live receipt.",
+    "live_arbitration": "A receipt delta >= +0.01 vs the actually-submitted R1 anchors the concentration direction; <= -0.01 closes it and confirms the uniformity lever; |delta| < 0.01 is no evidence and the dose ladder is read only by pair."
+  },
+  "dedupe": "Exact SHA-256 and exact (parent, axis, value). No rank-correlation or dot-overlap uniqueness threshold is applied.",
+  "evidence_discipline": "predicted_change is MODEL; SGMC and hide-and-recover are PROXY; nothing here is a RECEIPT. R0 0.2778 remains CLAIM."
+}

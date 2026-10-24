@@ -1,6 +1,53 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; integrated queue — supersedes the slot order of every section below; all their prerequisites stand)
+## Current session — 2026-10-23 `AXIS=CONCENTRATION` on gate-clean `R1` (agent-chosen; all three arms HOLD — do NOT spend a slot)
+
+**Result: CONVERGENT FALSIFICATION.** Parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
+(re-derived from R0 and SHA-asserted `6f7ae705…`/`dc6f090d…`; R0 rebuilt byte-exactly, 15/15 pins)
+was edited on ONE axis: move 10% / 20% (1 km blocks) / 20% (5 km blocks) of its dots from the
+LOWEST to the HIGHEST label-free provided-band geophysical-prior (`edge_scarp_pot`, bands 19/12/18/3,
+zero external LiDAR) km-scale blocks. This converts the inventory's highest-MODEL-gain but
+collar-blocked R0 family into gate-clean form (parent choice logged as IR-88-51). Preregistered
+before any proxy: `registry/preregistration_concentration_r1.json`. **All three arms are `HOLD` and are
+NOT slot candidates** — both instruments read negative on the gate-clean parent:
+
+| Arm | blind off-catalogue `SGMC` `PROXY` (R1 `0.096083`) | `w`-DTI `MODEL` Δ vs R1 | block-density CV_occ before→after | prereg → **revised** `MODEL` |
+|---|---|---|---|---|
+| `CONCphys-c10` | `0.094649` (−0.00143) | `−0.021` | `0.627→0.831` | `+0.001` → **`−0.001`** |
+| `CONCphys-c20` | `0.089955` (−0.00613) | `−0.043` | `0.627→1.016` | `+0.002` → **`−0.006`** |
+| `CONCphys-c20-b5km` | `0.085682` (−0.01040) | `−0.047` | `0.718→1.186` | `+0.001` → **`−0.010`** |
+
+Revision rule (declared in `evidence/concentration_r1_axis_report.json`): revised point = blind
+off-catalogue SGMC margin vs R1 rounded to 0.001, applied because both instruments share a sign; each
+revised point stays inside its preregistered range. **The `<=140`-char form notes below deliberately keep
+the PREREGISTERED value** (baked at build time, before instruments); `ledger/submissions.csv` carries the
+REVISED `predicted_change`. Holdout `PROXY` is structurally `0.000000` (IR-88-20). R0 `0.2778` is CLAIM.
+All six rasters re-read from disk and pass the hardened `validate_variant.py`
+(`registry/concentration_r1_variant_validation.json`, 6/6 PASS); **100% of dots `>3 px`** on every arm.
+
+### `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCphys-c10-20261023-ced3de17` (HOLD)
+- **Primary (`NaN` outside):** `releases/…-CONCphys-c10-20261023-ced3de17.tif` — SHA-256 `ced3de176870d3fa97b8a48584d8f91dc2170c59b5fc447a038a3a75fbb978c4`
+- **Fallback (`0.0` outside):** `releases/…-CONCphys-c10-20261023-ced3de17-zeros.tif` — SHA-256 `15f544e9f0e05aa792e67a93d1758635d35c2ce58f74e647362db7f489292d08`
+- **Form note (89/140):** `R1(6f7ae705); CONC phys-prior low->high 10% (3765) 1km blocks, N=37654; pred +0.001 MODEL`
+- **Change:** `N=37,654`, `10.00%` moved, `min d_cat=3.1623 px`, count fixed. **Revised `MODEL −0.001`**, range `[-0.010,+0.012]`.
+
+### `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCphys-c20-20261023-bde32688` (HOLD)
+- **Primary (`NaN` outside):** `releases/…-CONCphys-c20-20261023-bde32688.tif` — SHA-256 `bde326884c08c8a9b5d2a59b5b021db76dc9a7a062cecccf610826de08ec3d4c`
+- **Fallback (`0.0` outside):** `releases/…-CONCphys-c20-20261023-bde32688-zeros.tif` — SHA-256 `29a745f647223768443167763314a5ee43f8858984790ab470e584d1a45e5339`
+- **Form note (89/140):** `R1(6f7ae705); CONC phys-prior low->high 20% (7531) 1km blocks, N=37654; pred +0.002 MODEL`
+- **Change:** `N=37,654`, `20.00%` moved, `min d_cat=3.1623 px`, count fixed. **Revised `MODEL −0.006`**, range `[-0.012,+0.016]`.
+
+### `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCphys-c20-b5km-20261023-4f6fdb20` (HOLD)
+- **Primary (`NaN` outside):** `releases/…-CONCphys-c20-b5km-20261023-4f6fdb20.tif` — SHA-256 `4f6fdb20588cfda156d84909724e793f140925c91e0e58531beecbf03174bdd7`
+- **Fallback (`0.0` outside):** `releases/…-CONCphys-c20-b5km-20261023-4f6fdb20-zeros.tif` — SHA-256 `607b580070379cbcb2f714bb6a5bf8513e49f36c17b62c989551e6af4ad51865`
+- **Form note (89/140):** `R1(6f7ae705); CONC phys-prior low->high 20% (7531) 5km blocks, N=37654; pred +0.001 MODEL`
+- **Change:** `N=37,654`, `20.00%` moved, `min d_cat=3.1623 px`, count fixed. **Revised `MODEL −0.010`**, range `[-0.012,+0.014]`.
+
+**Human action:** none of these should be uploaded — they are the falsification record. The queue in the
+section below is unchanged. A live receipt could reopen the direction, but on present evidence concentrate
+is retired and its inverse (UNIFORMIZE, proposed in `SLOT_PLAN.md`) is the next single-axis session.
+
+## Prior session / integrated queue — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; supersedes the slot order of every section below; all their prerequisites stand)
 
 **Three new candidates, one per preregistered arm; no slot was used and no submission was made.** Parent
 `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from the pinned lineage and SHA-asserted

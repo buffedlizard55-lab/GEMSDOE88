@@ -1,0 +1,240 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCphys-c10-20261023-ced3de17",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+  "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+  "axis": "CONC",
+  "value": "phys-c10",
+  "seed": 20261023,
+  "git_sha": "539dc3a31dcf5e26a257e9f447a5955b779c118e",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCphys-c10-20261023-ced3de17.tif",
+  "sha256": "ced3de176870d3fa97b8a48584d8f91dc2170c59b5fc447a038a3a75fbb978c4",
+  "bytes_nan": 348201,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCphys-c10-20261023-ced3de17.zip",
+  "zip_nan_sha256": "61ffde23bbece9b791cda20c71a374d38d69672a3003267e186a8037c66a1ee4",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCphys-c10-20261023-ced3de17-zeros.tif",
+  "sha256_zeros": "15f544e9f0e05aa792e67a93d1758635d35c2ce58f74e647362db7f489292d08",
+  "bytes_zeros": 211961,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-CONCphys-c10-20261023-ced3de17-zeros.zip",
+  "zip_zeros_sha256": "16e6526344f0adbaa5bb52965942a237de1ca88d127442dbcd5b1450943dfdb7",
+  "form_note": "R1(6f7ae705); CONC phys-prior low->high 10% (3765) 1km blocks, N=37654; pred +0.001 MODEL",
+  "form_note_chars": 89,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 3765,
+    "n_removed": 3765,
+    "pct_changed_moved": 10.0,
+    "pct_changed_sym_diff": 20.0,
+    "pct_changed_basis": "moved",
+    "min_dist_catalogue_px": 3.1623,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 0,
+    "dots_le_4px": 2735
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "parent_rebuild_verified": {
+    "r0_zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "r0_nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "r1_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+    "r1_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+    "r1_min_catalogue_distance_px": 3.1623
+  },
+  "concentration_axis": {
+    "block_px": 10,
+    "block_km": 1.0,
+    "moved_fraction": 0.1,
+    "n_moved": 3765,
+    "prior": "edge_scarp_pot block mean (bands 19/12/18/3, provided only, sigma=1.5 blocks)",
+    "cv_occupied_blocks_before": 0.6273,
+    "cv_occupied_blocks_after": 0.8312,
+    "cv_all_eligible_blocks_before": 1.9121,
+    "cv_all_eligible_blocks_after": 2.1474,
+    "mass_share_top1pct_before": 0.0082,
+    "mass_share_top1pct_after": 0.0255,
+    "smoothed_density_cv_5blocks_before": 0.491,
+    "smoothed_density_cv_5blocks_after": 0.6423,
+    "occupied_blocks_before": 15469,
+    "occupied_blocks_after": 15575,
+    "blocks_emptied": 0,
+    "blocks_gained": 106,
+    "added_distance_to_host_px_max": 1.4142,
+    "removed_block_prior_mean": 0.4606,
+    "added_block_prior_mean": 0.7634
+  },
+  "w_weighted_dti_MODEL": {
+    "evidence_label": "MODEL",
+    "field": "label-free corroboration field w (build_prune_variants.py, blind AUC 0.47)",
+    "dti_parent_r1": 0.281537,
+    "dti_arm": 0.260758,
+    "delta_vs_r1": -0.020779,
+    "caveat": "w rewards densification and is a mechanical diagnostic only; the ledger prediction stays the preregistered scenario MODEL, not this value."
+  },
+  "preregistration": "registry/preregistration_concentration_r1.json",
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "w_field_channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    },
+    "edge_field_channels": {
+      "tmi_hg_b03": 0.52022,
+      "tmi_crest_b03": 0.50573,
+      "grav_hg_b18": 0.51671,
+      "grav_crest_b18": 0.51035,
+      "det_elev_slope_b19": 0.54949,
+      "det_elev_break_b12": 0.52669,
+      "composite_edge_pot": 0.50076,
+      "composite_edge_scarp_pot": 0.53422
+    }
+  },
+  "mechanism_card": {
+    "axis": "CONCENTRATION",
+    "value": "phys-c10",
+    "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "hypothesis": "GeoDAWN Area 2 was flown at 400 m line spacing / 150-200 m drape, so the provided-band geophysical crests (edge_scarp_pot) locate the fault fabric only to ~1 kernel radius. Moving 10% of R1's dots from the coldest to the hottest 1 km prior blocks re-allocates fixed mass onto the crests the blind off-catalogue SGMC control already favours, and should raise live DTI.",
+    "mechanism": "Within the 3 px triangular kernel a dot keeps credit 1 - d/3. Mass welded to a surviving host in a high edge_scarp_pot block sits closer to the geophysical offset that the blind control rewards; the move consumes no extra mass (count fixed at 37,654) and every receiver stays >3 px from the mapped catalogue.",
+    "non_fault_mimic": "edge_scarp_pot maxima also follow welded-tuff caprock breaks, Lake Lahontan shorelines and 400 m aeromagnetic flight-line corrugation; concentrating on them can cluster dots onto a non-fault gradient with no new-fault truth.",
+    "confounder": "Concentration raises block-density CV away from the reported 0.51-0.59 sweet spot and away from the repeated 'spacing/uniformity is the lever' result. The label-free w-field MODEL rewards densification while blind SGMC has preferred spacing in every session; the two instruments are expected to disagree, so no arm is promoted on an instrument and a live |delta| < 0.01 is no evidence.",
+    "predicted_sign_size": "Near-zero, sign-uncertain (preregistered point |delta| <= 0.002, range spans zero). A >= +0.01 live gain on the actually-submitted R1 anchors the concentration direction; <= -0.01 closes it and confirms the uniformity lever.",
+    "falsifier": "A live receipt <= R1 - 0.01 while both 1 km doses are also negative falsifies crest-concentration on the gate-clean parent; a win of the 5 km arm over the 1 km arm at matched 20% arbitrates the spatial scale of the prior.",
+    "preregistration": "registry/preregistration_concentration_r1.json",
+    "provided_bands_only": true,
+    "external_lidar_used": false,
+    "preregistered_prediction": "MODEL:+0.001",
+    "revised_prediction_MODEL": "MODEL:-0.001",
+    "post_build_instruments": {
+      "blind_sgmc_PROXY": 0.094649,
+      "blind_sgmc_delta_vs_r1_PROXY": -0.001434,
+      "w_weighted_dti_delta_vs_r1_MODEL": -0.020779,
+      "both_instruments_negative": true,
+      "verdict": "CONVERGENT FALSIFICATION: both the label-free w-DTI MODEL and the blind off-catalogue SGMC PROXY read negative on the gate-clean parent; the preregistered near-zero-positive scenario is revised negative. Concentration of mass onto geophysical crests loses to the spaced parent at matched count -- the uniformity lever is confirmed, and the sign/size of the loss is dose-monotone."
+    }
+  },
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.094649,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5512.66,
+      "fp": 34890.96
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.8161,
+      "cv_12km_120px_interior": 0.7443
+    }
+  },
+  "parent_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.096083,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5603.04,
+      "fp": 35157.75
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6405,
+      "cv_12km_120px_interior": 0.57
+    }
+  },
+  "r0_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  },
+  "preregistered_prediction": {
+    "label": "MODEL",
+    "value": "MODEL:+0.001",
+    "range": "[-0.010,+0.012]"
+  },
+  "revised_prediction": {
+    "label": "MODEL",
+    "value": "MODEL:-0.001",
+    "preregistered_range_kept": "[-0.010,+0.012]",
+    "rule": "revised point = blind off-catalogue SGMC margin vs parent R1, rounded to 0.001",
+    "both_instruments_negative": true
+  }
+}
