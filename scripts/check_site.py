@@ -45,8 +45,11 @@ def main(root: Path = ROOT) -> None:
     ibl = json.loads((root / "registry/ibl88_run_card.json").read_text())
     ibl_web = json.loads((docs / "data/ibl88_run_card.json").read_text())
 
-    assert literal["preplacement_feasibility"]["all_nonempty_in_footprint_candidates_blocked"] is True
-    assert literal["correlation_overlap_vs_registry"]["duplicate"] is True
+    assert literal["decision"] == "DUPLICATE_STOP"
+    assert literal["saturation_certificate"]["universal_overlap_blocker"] is True
+    assert literal["saturation_certificate"]["uncovered_allowed_pixels"] == 0
+    assert literal["correlation_overlap_vs_registry"]["literal_duplicate"] is True
+    assert literal["correlation_overlap_vs_registry"]["final_literal_overlap_3px_remeasured"] == 1.0
     assert literal["ok_to_submit"] is False
     assert ibl == ibl_web, "Pages IBL card differs from canonical registry card"
     assert ibl["verdict"] == "negative" and ibl["ok_to_download"] is True and ibl["ok_to_submit"] is False
