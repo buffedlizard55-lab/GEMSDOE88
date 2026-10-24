@@ -65,7 +65,22 @@ def main(root=ROOT):
     assert len(lb['raster']['note']) <= 140 and lb['format_ok'] is True and lb['ok_to_download'] is True
     assert lb['ok_to_submit'] is True or 'DO-NOT-SUBMIT' in lb_tif.name, 'held LBCAL file must be named DO-NOT-SUBMIT'
     assert json.loads((root / 'docs' / 'data' / 'lbcal_run_card.json').read_text())['raster']['sha256'] == lb['raster']['sha256']
-    # Latest experiment must be present on both landing/guide pages and stay
+    # Latest SAR-CSD 3-experiment suite: verify hash bindings, DO-NOT-SUBMIT naming, and banner visibility.
+    sarcsd = json.loads((root / 'registry/sarcsd88_run_card.json').read_text())
+    sarcsd_gv = json.loads((root / 'registry/sarcsd88_gate_v3.json').read_text())
+    sarcsd_tif = root / sarcsd['download']
+    sarcsd_zip = root / sarcsd['zip_download']
+    assert sarcsd['verdict'] == 'negative' and sarcsd['gate_v3_ok_to_submit'] is False and sarcsd_gv['ok_to_submit'] is False
+    assert sarcsd_tif.is_file() and sarcsd_tif.name.endswith('DO-NOT-SUBMIT.tif')
+    assert sarcsd_zip.is_file() and sarcsd_zip.name.endswith('DO-NOT-SUBMIT.zip')
+    assert _hl.sha256(sarcsd_tif.read_bytes()).hexdigest() == sarcsd['raster_sha256'] == sarcsd_gv['sha256']
+    assert _hl.sha256(sarcsd_zip.read_bytes()).hexdigest() == sarcsd['zip_sha256'] == sarcsd_gv['zip_sha256']
+    assert len(sarcsd['submission_note']) <= 140 and len(sarcsd['submission_name']) <= 140
+    assert json.loads((root / 'docs/data/sarcsd88_run_card.json').read_text())['raster_sha256'] == sarcsd['raster_sha256']
+    for page in ('index.html', 'executive-summary.html'):
+        body = (root / 'docs' / page).read_text()
+        assert sarcsd_tif.name in body and 'DO NOT SUBMIT' in body, page
+    # Earlier KTH-88 experiment must also remain present on both landing/guide pages and stay
     # blocked even if a historical gate record elsewhere says "promote".
     kth = json.loads((root / 'registry/kth88_run_card.json').read_text())
     kth_tif = root / kth['download']
