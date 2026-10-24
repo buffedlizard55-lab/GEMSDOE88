@@ -1,6 +1,38 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; integrated queue — supersedes the slot order of every section below; all their prerequisites stand)
+## Current session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (the queued MASS-on-R1 build; integrated queue below still applies; no slot used, no submission made)
+
+**Three new candidates from one named parent.** Parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from
+the recorded exact-marginal recipe and **both recorded hashes asserted before any edit** (`6f7ae705…` NaN / `dc6f090d…` zeros);
+`R0` rebuilt byte-exactly first (`c55bafc4…` / `baeae321…`, 15/15 pins). Dose is the brief's `10% = 3,765` dots; ranking is
+the parent's own exact iterative marginal expected-DTI under the canary-clean label-free field `w` (15 channels, max
+symmetric AUC `0.5693`), identical to `R1`'s refill and the R0 MASS session. Predictions were frozen in
+`registry/mass_r1_preregistration.json` before any proxy. **100% of dots in every arm are `>3 px` from the catalogue**
+(min `3.1623 px`), zero catalogue mass — gate-clean with no waiver; hardened `validate_variant.py` 6/6 PASS
+(`registry/mass_r1_variant_validation.json`). Blind off-catalogue SGMC `PROXY` (report-only, never a gate; parent `R1 0.096083`):
+`r10minus 0.08868` (`−0.0074`), `r10plus 0.09874` (`+0.0027`), `r10swap 0.09249` (`−0.0036`); in-sample `w`-model `MODEL`
+`−0.0080 / +0.0085 / +0.0013` vs R1 (preregistered `−0.007 / +0.005 / +0.001`). `99.8%` of added dots land within one
+`300 m` kernel radius of a parent dot — the saturation the preregistration predicted. Hide-and-recover holdout is structurally
+`0.000000` for any `>3 px` arm (IR-88-20). All three deltas are below the `0.01` no-evidence floor; **the plus arm is the only
+gate-eligible MASS candidate and is a conditional bracket, not a queue lead** (see `SLOT_PLAN.md`). `R0 0.2778` remains CLAIM.
+
+| Arm | Exact submission name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | <=140-char form note | Format receipt |
+|---|---|---|---|
+| minus (`N=33,889`) | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a` (primary `e56b0e5a…`; zeros `e01dd362…`) | `R1 PRUNEp3px 6f7ae705; MASS -3765 lowest exact-marginal dots (37654->33889); pred -0.008 MODEL` (94) | `releases/…-e56b0e5a.json` + `registry/mass_r1_variant_validation.json` (hardened PASS) |
+| **plus (`N=41,419`; only slot-worthy arm)** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df` (primary `b2d704df…`; zeros `fa18a850…`) | `R1 PRUNEp3px 6f7ae705; MASS +3765 next-ranked un-emitted dots d_cat>3px (37654->41419); pred +0.009 MODEL` (105) | `releases/…-b2d704df.json` + `registry/mass_r1_variant_validation.json` (hardened PASS) |
+| swap (`N=37,654`) | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f` (primary `20dc829f…`; zeros `93f52691…`) | `R1 PRUNEp3px 6f7ae705; MASS swap 3765 lowest for 3765 next-ranked, fixed 37654; pred +0.001 MODEL` (97) | `releases/…-20dc829f.json` + `registry/mass_r1_variant_validation.json` (hardened PASS) |
+
+**Before any upload (unchanged prerequisites):** human confirms rolling-week balance, total slots, deadline and current
+`TOP_PUBLIC` on the competition pages (blank in the current brief; repo `0.4413` is stale); privately rebuilds
+(`python3 scripts/build_mass_r1_variants.py` — deterministic, SHA-pinned; rasters are gitignored, NOT in Git) or restores
+each file, matches the recorded SHA-256 above, and re-runs `python3 scripts/validate_variant.py releases/<id>.tif
+releases/<id>-zeros.tif` on the actual bytes. Human uploads **only one twin per slot**, then pastes the portal receipt into
+`receipt_score`/`receipt_date`. A live `|Δ| < 0.01` vs R1 is no evidence. Mechanism cards for a structural geologist:
+`ledger/mechanism_cards.json` (keys prefixed with the R1 id).
+
+---
+
+## Prior session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; integrated queue — supersedes the slot order of every section below; all their prerequisites stand)
 
 **Three new candidates, one per preregistered arm; no slot was used and no submission was made.** Parent
 `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from the pinned lineage and SHA-asserted

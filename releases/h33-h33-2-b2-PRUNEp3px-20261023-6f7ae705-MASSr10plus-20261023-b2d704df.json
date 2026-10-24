@@ -1,0 +1,195 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df",
+  "parent": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+  "parent_sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+  "parent_sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+  "axis": "MASS",
+  "value": "r10plus",
+  "seed": 20261023,
+  "git_sha": "539dc3a31dcf5e26a257e9f447a5955b779c118e",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df.tif",
+  "sha256": "b2d704df672735bbe7f6d7cca307db0a5a3695ac92f3e7a61b74c935b81fdd93",
+  "bytes_nan": 366285,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df.zip",
+  "zip_nan_sha256": "be30fbf6bec380753a83f9de1dc7b674abec2c2fbbf0e68ae664a227c838954d",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df-zeros.tif",
+  "sha256_zeros": "fa18a85047665ffbf1e4e3a578ed2b96c7093d4523c5b239d59c4bd3bf369d30",
+  "bytes_zeros": 230573,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df-zeros.zip",
+  "zip_zeros_sha256": "f969d0d781680494d78b42d35e5313619e6e05d496888a2bc73f4405732ce37c",
+  "form_note": "R1 PRUNEp3px 6f7ae705; MASS +3765 next-ranked un-emitted dots d_cat>3px (37654->41419); pred +0.009 MODEL",
+  "form_note_chars": 105,
+  "n_dots": 41419,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 3765,
+    "n_removed": 0,
+    "pct_changed_moved": 10.0,
+    "pct_changed_sym_diff": 10.0,
+    "pct_changed_basis": "max",
+    "min_dist_catalogue_px": 3.1623,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 0,
+    "dots_le_4px": 3228
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "preregistered_prediction": "+0.005",
+  "preregistered_range": "[-0.005, +0.016]",
+  "w_model": {
+    "dti": 0.290086,
+    "delta_vs_r1": 0.008549,
+    "T": 17359.808,
+    "S": 41419.0,
+    "M": 8061.828,
+    "denom": 59843.629
+  },
+  "w_model_caveat": "IN-SAMPLE and optimistic: the same field w both ranks and scores the arm, and w is a ~0.68-AUC proxy for catalogue faults but 0.4724 blind AUC for SGMC-credited dots (IR-88-38). PROXY, never a score.",
+  "r1_w_model": {
+    "dti": 0.281537,
+    "T": 16639.053,
+    "S": 37654.0,
+    "M": 7290.809
+  },
+  "r1_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.096083,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5603.04,
+      "fp": 35157.75
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6405,
+      "cv_12km_120px_interior": 0.57
+    }
+  },
+  "r0_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  },
+  "report_only_diagnostics": {
+    "n_dots": 41419,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.098745,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5832.83,
+      "fp": 38702.65
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6455,
+      "cv_12km_120px_interior": 0.5751
+    }
+  },
+  "sgmc_delta_vs_r1": 0.002662,
+  "saturation_diagnostic_added_dots": {
+    "n_added": 3765,
+    "mean_px": 1.944,
+    "median_px": 2.0,
+    "p90_px": 2.236,
+    "frac_within_3px_of_a_parent_dot": 0.9981,
+    "frac_within_kernel_radius_3px": 0.9981
+  },
+  "removed_dots": {
+    "n": 0,
+    "mean_d_cat_px": null,
+    "mean_w": null
+  },
+  "added_dots": {
+    "n": 3765,
+    "min_d_cat_px": 3.162,
+    "mean_d_cat_px": 27.871,
+    "mean_w": 0.204786
+  },
+  "parent_dots_mean_w": 0.193626,
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    }
+  }
+}

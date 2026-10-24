@@ -230,7 +230,12 @@ def test_dose_and_compliance_are_exact() -> None:
 def test_ledger_rows_are_unique_and_complete() -> None:
     path = ROOT / "ledger" / "submissions.csv"
     rows = list(csv.DictReader(path.open(newline="")))
-    mass = [r for r in rows if r["axis"] == AXIS and r["value"] in VALUES]
+    # Scoped to the R0-parent MASS family; the gate-clean R1-parent family has its
+    # own ledger test in tests/test_mass_r1_axis.py.
+    mass = [
+        r for r in rows
+        if r["parent"] == "h33-h33-2-b2" and r["axis"] == AXIS and r["value"] in VALUES
+    ]
     assert len(mass) == 3, [r["id"] for r in mass]
     shas = [r["sha256"] for r in rows if r["sha256"]] + [r["sha256_zeros"] for r in rows if r["sha256_zeros"]]
     assert len(shas) == len(set(shas)), "duplicate SHA-256 in ledger"
@@ -249,7 +254,8 @@ def test_ledger_rows_are_unique_and_complete() -> None:
 
 def test_mechanism_cards_cover_every_arm_for_a_geologist() -> None:
     cards = json.loads((ROOT / "ledger" / "mechanism_cards.json").read_text())
-    mine = {k: v for k, v in cards.items() if f"-{AXIS}r" in k}
+    # R0-parent cards only; the R1-parent MASSr* cards are asserted in test_mass_r1_axis.py.
+    mine = {k: v for k, v in cards.items() if k.startswith("h33-h33-2-b2-MASSr")}
     assert len(mine) == 3
     for card in mine.values():
         for field in (
