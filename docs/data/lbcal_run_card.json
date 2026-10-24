@@ -3,7 +3,7 @@
  "generated_utc": "2026-10-24T08:21:28Z",
  "lane": "LBCAL \u2014 leaderboard-receipt calibrated emission (single method)",
  "hypothesis": "The ~100 user-reported public-LB receipts of sibling rasters are measurements of the hidden truth; a physical-feature density q fitted to them (no coordinates) localises new faults better than catalogue-trained proxies, and greedy expected-DTI emission under q beats hand-tuned pruning.",
- "mechanism": "DTI is a ratio of sums linear in the truth indicator, so E[TP]=sum q*c_i exactly; q=exp(beta.phi) over 25 physical bands (catalogue-distance bands, H19-5 ridge-distance bands, LiDAR scarp, 10 m topo, chi, gravity/magnetic gradients) is fitted by least squares to receipts; emission = lazy-greedy max of expected DTI with <=66% of dots inside the union of sibling 3-px halos.",
+ "mechanism": "DTI is a ratio of sums linear in the truth indicator, so E[TP]=sum q*c_i exactly; q=exp(beta.phi) over 25 physical bands (catalogue-distance bands, H19-5 ridge-distance bands, LiDAR scarp, 10 m topo, chi, gravity/magnetic gradients) is fitted by least squares to receipts; emission = lazy-greedy max of expected DTI, then a per-raster lane-cap repair so that no single sibling/receipt raster's 3-px halo holds more than 66% of the dots (space-filling rasters with halo coverage >= 0.70 reported separately).",
  "named_non_fault_process": "Bedrock-alluvium contacts and fluvial/terrace risers adjacent to topographic ridges (same slope/aspect-coherence signature as a range-front scarp, no brittle offset).",
  "receipt_model": {
   "evidence_class": "MODEL-FIT to USER-REPORTED LB receipts (not HOLDOUT-DTI, not ORGANIZER-CONFIRMED)",
