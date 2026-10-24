@@ -1,0 +1,161 @@
+#!/usr/bin/env python3
+"""Fail-closed independent disk-byte audit of the CURRENT research GeoTIFF.
+
+Checks the sample grid, full float32 range, single-TIFF ZIP, canonical run
+card, 29 local prior rasters and the literal all-positive witness. A scientific
+or uniqueness failure keeps `ok_to_submit` false; formatting alone never
+approves a weekly slot. Run `--require-submit` to demand a green gate (exit 2
+for the present negative result). No organizer upload/login is attempted.
+"""
+from __future__ import annotations
+import hashlib
+import json
+import sys
+import zipfile
+from pathlib import Path
+
+import numpy as np
+import rasterio
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / 'vendor'))
+from gems57 import gates, grid, uniqueness, validate  # noqa: E402
+from scripts.validate_artifact import validate_artifact  # noqa: E402
+
+
+def sha(path):
+    with Path(path).open('rb') as stream:
+        return hashlib.file_digest(stream, 'sha256').hexdigest()
+
+
+def release_report(root=ROOT):
+    root = Path(root)
+    card = json.loads((root / 'registry/fabric_dislocation_run_card.json').read_text())
+    web = json.loads((root / 'docs/data/fabric_dislocation_run_card.json').read_text())
+    evidence = json.loads((root / 'evidence/fabric_dislocation_uniqueness.json').read_text())
+    if card != web or card['verdict'] != 'negative' or card['ok_to_submit'] is not False:
+        raise ValueError('published science/status card is not the canonical negative result')
+    if card['file'] != f"docs/downloads/{Path(card['file']).name}" or 'DO-NOT-SUBMIT' not in card['file']:
+        raise ValueError('unmarked or escaping research raster')
+    sample = root / 'data/bridge/sample_submission.tif'
+    catalog = root / 'data/bridge/existing_faults.tif'
+    if sha(sample) != grid.SHA256_SAMPLE_SUBMISSION or sha(catalog) != grid.SHA256_EXISTING_FAULTS:
+        raise ValueError('owner-mirrored sample/labels have changed or were not restored')
+    gd = grid.load_grid(root / 'data/bridge')
+    tif = root / card['file']
+    archive = root / card['zip_file']
+    receipt = json.loads(tif.with_suffix('.json').read_text())
+    if sha(tif) != card['raster_sha256'] or sha(archive) != card['zip_sha256']:
+        raise ValueError('research TIFF/ZIP SHA256 does not match frozen run card')
+    if (receipt['sha256'] != card['raster_sha256'] or
+        receipt['zip_sha256'] != card['zip_sha256'] or
+        receipt['submission_name'] != card['submission_name'] or
+        receipt['note'] != card['submission_note'] or
+        len(card['submission_note']) > 140 or not card['submission_note']):
+        raise ValueError('writer receipt or short note differs from research run card')
+    with zipfile.ZipFile(archive) as z:
+        if z.namelist() != [tif.name] or z.read(tif.name) != tif.read_bytes():
+            raise ValueError('ZIP must contain exactly the byte-identical research TIFF')
+    result = gates.format_report(tif, sample, footprint=gd.footprint)
+    local = validate.validate(tif, gd.footprint, gd.catalogue)
+    independent = validate_artifact(tif, sample)
+    if not (result['ok'] and local['all_checks_passed'] and independent['ok']):
+        raise ValueError('disk TIFF failed shared writer/independent format checks')
+    with rasterio.open(tif) as src:
+        raster = src.read(1)
+    if not np.isfinite(raster).all() or (raster[~gd.footprint] != 0).any():
+        raise ValueError('TIFF contains nonfinite or nonzero outside the footprint')
+    if card['validator_output']['raster_sha256'] != sha(tif):
+        raise ValueError('validator not bound to the actual TIFF bytes')
+    if not all(card['validator_output'][k] for k in ('format_valid','no_nan_inside',
+              'values_in_0_1','crs_match','shape_match','transform_match','zero_outside')):
+        raise ValueError('frozen machine format preflight was not green')
+    holdout = card['holdout']['candidate']
+    if (holdout['evaluator_version'] != 'gems57-pooled-hide-v2' or
+        holdout['withheld_positive_pixels'] != 22893 or
+        not isinstance(holdout['dti'], (int, float)) or
+        not np.isfinite(holdout['dti']) or
+        not 0 <= holdout['dti'] <= 1):
+        raise ValueError('HOLDOUT-DTI report not finite [0,1] on expected split')
+    prior = card['holdout']['incumbent_prior_best']
+    if (not 0 <= holdout['ci95'][0] <= holdout['dti'] <= holdout['ci95'][1] <= 1 or
+        not holdout['dti'] < prior['dti'] or
+        not holdout['ci95'][1] < prior['ci95'][0] or
+        card['feature_canaries']['max_symmetric_auc'] > .9):
+        raise ValueError('candidate science/card is not a negative below the incumbent')
+    old = json.loads((root / 'registry/holdout_result.json').read_text())['scores']['candidate']
+    if prior != old:
+        raise ValueError('incumbent holdout best not reproduced from repository result')
+    before = evidence['preplacement_surface']
+    if (len(before) != card['correlation_overlap_vs_registry']['registry_rasters_checked'] or
+        any('rho_full_footprint' not in r or (r['rho_full_footprint'] is not None and abs(r['rho_full_footprint']) > .9) for r in before)):
+        raise ValueError('preplacement surface was unverified/duplicate')
+    # Read and rehash *all* frozen final-prior files; remeasure full-footprint
+    # Spearman and forward dot overlap using the shared literal comparator.
+    stored = evidence['final_dots']
+    rows = stored['rows']
+    if len(rows) != len(before) or stored['candidate_file_sha256'] != sha(tif):
+        raise ValueError('final prior comparison is incomplete or candidate changed')
+    index = dict(complete_accessible_scan=True, errors=[], rasters=[])
+    for r in rows:
+        file = Path(r['file'])
+        if not file.is_absolute():
+            file = root / file
+        if not file.is_relative_to(root) or sha(file) != r['sha256']:
+            raise ValueError('registry file moved outside repository or SHA256 changed')
+        index['rasters'].append(dict(repo_first=r['repo'], sources=[r['submission']],
+                                     cache_file=str(file), sha256=r['sha256']))
+    with rasterio.open(sample) as ds:
+        expected = (ds.shape, ds.crs, ds.transform)
+    measured = uniqueness.compare_to_registry(tif, index, gd.footprint, include_reverse=False,
+                                               expected_grid=expected)
+    if (not measured['complete_accessible_scan'] or
+        measured['registry_rasters_checked'] != len(rows) or
+        measured['duplicate_count'] < 1 or
+        measured['worst_dot_overlap'] != 1.0):
+        raise ValueError('new raster unexpectedly cleared the literal registry gate')
+    with rasterio.open(root / 'data/registry/dense_17gemdoe.tif') as src:
+        witness = src.read(1)
+    dense = uniqueness.saturation_certificate(root / 'data/registry/dense_17gemdoe.tif',
+                   gd.footprint, gd.catalogue, expected_grid=expected)
+    overlap = uniqueness.dot_overlap(raster, witness, 3)
+    if (not dense['universal_overlap_blocker'] or overlap != 1.0 or
+        overlap != card['correlation_overlap_vs_registry']['final_worst_overlap_3px']):
+        raise ValueError('all-positive witness assertion no longer matches TIFF')
+    for observed, recorded in zip(measured['rows'], rows):
+        rho, saved = observed.get('spearman_full_footprint'), recorded.get('spearman_full_footprint')
+        same_rho = (rho is None and saved is None) or (
+            rho is not None and saved is not None and np.isclose(rho, saved, rtol=0, atol=1e-10))
+        if (observed.get('sha256') != recorded.get('sha256') or
+            not same_rho or
+            not np.isclose(observed.get('my_dots_within_3px_of_theirs', -1),
+                           recorded.get('my_dots_within_3px_of_theirs', -2), rtol=0, atol=1e-12)):
+            raise ValueError('registry comparison changed; archived experiment is not reproducible')
+    return dict(schema='gems88.current-release.v1', file=card['file'],
+                file_sha256=sha(tif), zip_sha256=sha(archive),
+                format_valid=True, no_nan_inside=True, all_values_in_0_1=True,
+                crs_shape_transform_match=True, zip_one_exact_tif=True,
+                positive_pixels=int((raster > 0).sum()),
+                canary_max_auc=card['feature_canaries']['max_symmetric_auc'],
+                holdout_dti=holdout['dti'], holdout_ci95=holdout['ci95'],
+                incumbent_best_dti=prior['dti'],
+                literal_registry_overlap_3px=overlap,
+                registry_rasters_checked=measured['registry_rasters_checked'],
+                duplicate=True, research_download_ok=True, ok_to_submit=False,
+                approved_for_weekly_slot=False, verdict='negative',
+                reason='Literal dense registry overlap = 1.0 > 0.70; HOLDOUT-DTI below frozen best. DO NOT SUBMIT.',
+                provenance='owner-mirrored sample/labels; independent organizer authentication unavailable')
+
+
+def main():
+    report = release_report()
+    print(json.dumps(report, indent=2))
+    if '--require-submit' in sys.argv:
+        print('AUTOMATIC SUBMISSION GATE: FAIL. NO UPLOAD PERMITTED.', file=sys.stderr)
+        return 2
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

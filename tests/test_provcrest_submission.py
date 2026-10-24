@@ -20,12 +20,17 @@ def _card():
     return json.loads(CARD.read_text())
 
 
-def test_provcrest_run_card_promote_and_labels():
+def test_provcrest_historical_promote_claim_is_superseded():
+    # Immutable historical card recorded a sparse-only promotion. The literal
+    # all-positive raster gate was not applied: this is NOT current clearance.
     rc = _card()
-    assert rc["verdict"] == "promote"
+    assert rc["verdict"] == "promote"  # archived, not an approval to upload
     assert rc["submission"]["ok_to_download"] is True
-    assert rc["submission"]["ok_to_submit"] is True
+    assert rc["submission"]["ok_to_submit"] is True  # old mistaken sparse-only gate
     assert rc["submission"]["organizer_confirmed_score"] is None
+    status = json.loads((ROOT / "docs/status.json").read_text())
+    assert status["ok_to_submit"] is False and status["approved_for_weekly_slot"] is False
+    assert status["raster_sha256"] != rc["submission"]["sha256"]
     assert rc["experiments_run"] <= rc["experiment_budget_max"] == 3
     h = rc["holdout"]
     assert h["evidence_class"] == "HOLDOUT-DTI"

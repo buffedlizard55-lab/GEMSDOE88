@@ -22,25 +22,28 @@ class Links(HTMLParser):
 
 
 def main(root=ROOT):
-    card = json.loads((root / 'registry/run_card.json').read_text())
-    assert card['verdict'] == 'negative' and card['ok_to_submit'] is False
-    assert len(card['submission_note']) <= 140
-    # 2026-10-24 PROVCREST promoted candidate (IR-88-58): the ONLY non-DO-NOT-SUBMIT
-    # download allowed, and only while its run card still says promote + ok_to_submit
-    # and the on-disk TIFF hash matches the card. Fail closed otherwise.
-    prov = json.loads((root / 'registry' / 'provcrest_run_card.json').read_text())
-    assert prov['verdict'] == 'promote' and prov['submission']['ok_to_submit'] is True
-    assert len(prov['submission']['submission_note']) <= 140
-    import hashlib as _hl
-    prov_tif = root / prov['submission']['file']
-    assert prov_tif.is_file() and _hl.sha256(prov_tif.read_bytes()).hexdigest() == prov['submission']['sha256']
-    allowed_promoted = {prov_tif.resolve(), (root / prov['submission']['zip_file']).resolve()}
+    # A historical PROVCREST experiment once called itself 'promote', but its
+    # literal full-footprint witness fails. It may not be linked as an upload.
+    current = json.loads((root / 'registry/fabric_dislocation_run_card.json').read_text())
+    status = json.loads((root / 'docs/status.json').read_text())
+    audit = json.loads((root / 'docs/data/current_release.json').read_text())
+    assert current['verdict'] == 'negative' and current['ok_to_submit'] is False
+    assert status['status'] == 'BLOCKED' and status['ok_to_submit'] is False
+    assert audit['duplicate'] is True and audit['ok_to_submit'] is False
+    assert status['raster_sha256'] == audit['file_sha256'] == current['raster_sha256']
+    assert status['current_file'] == audit['file'] == current['file']
+    assert (root / 'docs/data/fabric_dislocation_run_card.json').read_bytes() == (root / 'registry/fabric_dislocation_run_card.json').read_bytes()
+    assert (root / 'docs/data/fabric_dislocation_uniqueness.json').read_bytes() == (root / 'evidence/fabric_dislocation_uniqueness.json').read_bytes()
+    assert (root / 'docs/research/candidates-20261024-fabric-dislocation.md').read_bytes() == (root / 'research/candidates-20261024-fabric-dislocation.md').read_bytes()
+    assert (root / 'docs/assets/site.js').is_file() and (root / 'docs/status.json').is_file()
+    assert len(current['submission_note']) <= 140
     pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
     assert len(pages) >= 5
     for page in pages:
         text = page.read_text()
         if page.name in ('index.html', 'executive-summary.html'):
             assert 'DO NOT SUBMIT' in text, f'Missing safety banner: {page}'
+            assert 'OK TO DOWNLOAD AND SUBMIT' not in text, f'Unsafe stale approval: {page}'
         parser = Links()
         parser.feed(text)
         for link in parser.links:
@@ -49,10 +52,12 @@ def main(root=ROOT):
                 continue
             path = (page.parent / unquote(u.path)).resolve()
             assert path.is_relative_to(root), f'Escaping link: {link}'
+            if page.is_relative_to(root / 'docs'):
+                assert path.is_relative_to(root / 'docs'), f'Link outside published Pages tree: {link}'
             assert path.is_file(), f'Broken link: {page.name}: {link}'
             if path.suffix.lower() in ('.tif', '.tiff', '.zip'):
                 assert path.is_relative_to(root / 'docs/downloads'), link
-                assert 'DO-NOT-SUBMIT' in path.name or path.resolve() in allowed_promoted, f'Unmarked research download: {link}'
+                assert 'DO-NOT-SUBMIT' in path.name, f'Unmarked or withdrawn research download: {link}'
     print('PASS: site links, explicit negative decision, clearly marked research downloads')
 
 
