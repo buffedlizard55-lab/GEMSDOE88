@@ -37,6 +37,15 @@ def main(root=ROOT):
         if data.get('ok_to_submit') and tif_name:
             cleared_names.add(tif_name)
             cleared_names.add(tif_name[:-4] + '.zip')
+    # 2026-10-24 LBCAL candidate (IR-88-78): hash must match its run card; while the run card says
+    # ok_to_submit false the file name must carry DO-NOT-SUBMIT. Fail closed otherwise.
+    import hashlib as _hl
+    lb = json.loads((root / 'registry' / 'lbcal_run_card.json').read_text())
+    lb_tif = root / lb['raster']['file']
+    assert lb_tif.is_file() and _hl.sha256(lb_tif.read_bytes()).hexdigest() == lb['raster']['sha256']
+    assert len(lb['raster']['note']) <= 140 and lb['format_ok'] is True and lb['ok_to_download'] is True
+    assert lb['ok_to_submit'] is True or 'DO-NOT-SUBMIT' in lb_tif.name, 'held LBCAL file must be named DO-NOT-SUBMIT'
+    assert json.loads((root / 'docs' / 'data' / 'lbcal_run_card.json').read_text())['raster']['sha256'] == lb['raster']['sha256']
     pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
     assert len(pages) >= 5
     for page in pages:

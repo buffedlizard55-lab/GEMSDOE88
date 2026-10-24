@@ -121,7 +121,7 @@ def release_report(root=ROOT):
     expected_hashes = {r['sha256'] for r in rows} | {sha(tif), later['new_prior_sha256']}
     # Rasters that carry a gems88-gate-v3 verdict record (registry/*gate_v3.json, registry/gate_verdict.json) were reviewed against the
     # 216+-raster v3 registry by the session of 2026-10-24 (IR-88-59..71); any OTHER unreviewed TIFF still fails closed.
-    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json'):
+    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json'):
         rec = root / 'registry' / record
         if rec.is_file():
             expected_hashes.add(json.loads(rec.read_text())['sha256'])
@@ -139,6 +139,12 @@ def release_report(root=ROOT):
         # outside the accessible registry (same lane as the primary, IR-88-76/74).
         if (root / 'docs' / 'downloads' / Path(data['candidate']['tif']).name).is_file():
             expected_hashes.add(data['candidate']['sha256'])
+    # IR-88-82 (2026-10-24, LBCAL session): the canonical negative run card's own TIFF (MRR-BPR-88, PRs #56/#57)
+    # was published without being whitelisted here, so main failed this check on its own bytes. Accept it only
+    # via its own run card hash with verdict negative / ok_to_submit false; any other unreviewed TIFF still fails.
+    canon = json.loads((root / 'registry' / 'run_card.json').read_text())
+    if canon.get('verdict') == 'negative' and canon.get('ok_to_submit') is False and canon.get('raster_sha256'):
+        expected_hashes.add(canon['raster_sha256'])
     if observed_hashes != expected_hashes:
         raise ValueError('accessible registry changed since postmerge audit; recheck all prior rasters')
     index = dict(complete_accessible_scan=True, errors=[], rasters=[])

@@ -218,6 +218,57 @@
   3. `p3space35prov` (`0237d5b9`, `<= 3.0 px`, `2,171` moved = `5.76566%`, area-matched `157,085 px` `H19-5` union `35,954` 1D-NMS Hessian breakline/gradient crests from organizer-provided Bands 19/3/18/15 ONLY, zero `H19-4/H16-1`, zero external LiDAR/GDR, sharing only `53/2,171 = 2.4%` of refill pixels with `p3space35`; `MODEL:+0.004`): blind SGMC **`0.100965 PROXY`** (`+0.00491` vs `R0`, **`98.5%` reproduction** of `p3space35`).
 - **Decision Impact:** (1) Among `300 m`-collar edits (matching Slot 1 `R1 = PRUNEp3px`'s exact donor set so a Slot 1 vs Slot 2 receipt pair isolates refill geometry with zero collar confound), **`PRUNEp3space35fp` (`8d29a2f7`, `0.101947`) supersedes `p3space35` (`0.101042`), `p3space35rand` (`0.101146`), and `p3space45` (`0.101629`)**, eliminating both `w` and RNG while achieving `min_nn = 5.66 px`. (2) `IR-88-45`'s sibling-provenance blocker is discharged: `98.5%` of the spaced-refill lift reproduces on provided competition bands alone (`p3space35prov` `0237d5b9`, retained as a sibling-free backup). (3) Monotonic `R0 (0.096060) < lt3space35 (0.099236) < p3space35 (0.101042) < p3space35fp (0.101947)` shows `>= 3.5 px` spaced ridge dots outperform `d_cat == 3.0 px` rim dots blind (`evidence/prune_deconfound_report.json`). Renumbered from `54` to `56` after merging concurrent PRs #51 (`54`) and #52 (`55`). Every number above is `PROXY`/`MODEL`; live `|delta| < 0.01` remains no evidence.
 
+## IR-88-78: LBCAL, the first lane calibrated on leaderboard receipts; held by the holdout gate (2026-10-24)
+
+- **Observed: the receipts are usable data.** 106 of the 111 user-reported LB scores map to an exact sibling raster on GitHub, matched by file name and git blob SHA (`evidence/lbcal_receipt_manifest.json`). DTI is linear in the truth indicator, so a coordinate-free physical density fitted to these receipts can be cross-validated.
+  - 8-fold repo-blocked CV: RMSE 0.0306, Spearman 0.941, on 99 unique receipts.
+- **Observed: the two instruments disagree.**
+  - Hide-and-recover ranks PROVCREST (0.0763) above LBCAL (0.0616) above R0 (0.0040).
+  - The receipt model ranks LBCAL (0.356) above H33 (0.264) above PROVCREST (0.105). These are MODEL-PROJECTIONs.
+  - R0 *is* H33, the user-reported best at 0.2778. Hide-and-recover has no demonstrated leaderboard validity in this regime.
+- **Decision impact.**
+  - LBCAL is written as `…-DO-NOT-SUBMIT` under the user's written rule (beat the current holdout best before any slot).
+  - The selector is asked to choose the gate.
+  - We recommend not spending a slot on PROVCREST until that choice is made, even though its run card still says `promote` under the old gate. `scripts/check_site.py` now also verifies the LBCAL run card, file hash and naming.
+- **Observed after merging PR #61.** MDC-88 (`6c17eed9…`), cleared OK TO SUBMIT by its own gate record, projects to **0.093** under the same receipt model. H33 projects to 0.264. We recommend HOLD there too, and the single repo-wide decision banner on `docs/index.html` says so.
+- **Design note: the lane rule binds hard.** The unconstrained receipt-optimal emission had 97.6% of its dots inside one sibling raster's 3-px halo. Repairing to ≤0.66 per raster cost about 0.04 of projected DTI (0.396 → 0.356).
+
+## IR-88-79: The brief's "0.3195 top" is stale, and H33 is outside the visible top 50 (2026-10-24)
+
+- **Source:** the leaderboard read on 2026-10-24 (https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/).
+  - #1 xiaofanhu **0.4413**, #2 0.3916, #3 0.3904, #5 0.3539, #50 0.2818.
+- 0.3195 was #2 (DARD) on the GEMSDOE32 site's 2026-10-04 snapshot.
+- H33's user-reported 0.2778 is below the visible #50, so it cannot be cross-checked on the public page.
+
+## IR-88-80: Registry rasters are not the leaderboard-scored files; malformed receipts excluded (2026-10-24)
+
+- **Wrong files in the registry.** These registry files do not match the names of the scored submissions for their repos: GEMSDOE80 (adpt-kkt/dpvc vs choquet), GEMSDOE81 (contasb vs cont-poisson), GEMSDOE82 (csam-dink vs punoisyor), GEMSDOE85 (h85a-foldproper vs hjcd-ventbridge), 60GEMSDOE (h68 vs h73).
+  - LBCAL uses the exact scored files fetched by name instead.
+- **No raster found.** 5 scored names had no raster on GitHub: GEMSDOE `…7f00890a`, GEMSDOE2 dual-family-union, GEMSDOE4 `…237f0063`, 5GEMSDOE `…7f00890a`, GEMSDOE10 H25-ctx-ridge.
+- **Grid mismatch.** 14GEMSDOE `geom-horse` does not match the sample grid, yet was scored (0.0020). Excluded.
+
+## IR-88-81: Two scored rasters are NaN across almost the whole footprint (2026-10-24)
+
+- Both were accepted by the portal and scored:
+  - `h42-submission-primary`: 5,127,373 NaN px inside the footprint, scored 0.0245.
+  - `gems68-autoctx-s3-strands-35000dots`: 5,132,373 NaN px, scored 0.0437.
+- The receipt model over-predicts both (by about 0.06–0.10), which is consistent with an undocumented portal treatment of NaN.
+- Both were excluded from the fit. Every GEMSDOE88 file stays all-finite with nodata None.
+
+## IR-88-82: Minor data notes (2026-10-24)
+- **Shared validator fix (reported once).** On merged `main`, `scripts/validate_current.py` failed on main's own bytes. The MRR-BPR-88 TIFF (`b9cb3651…`, PRs #56/#57) was published without being added to the accepted registry set.
+  - Fix: the canonical negative run card's own `raster_sha256` is accepted, plus `registry/lbcal_gate_v3.json` for LBCAL.
+  - Any other unreviewed TIFF still fails closed.
+- **Gate v3 on LBCAL** (`registry/lbcal_gate_v3.json`): OK TO DOWNLOAD, NOT OK TO SUBMIT. There are two blockers:
+  - **HOLDOUT:** the v3 bar is the cross-run ADHR 0.18789.
+  - **FINGERPRINT:** 1.77% of dots (≈676) sit within 2 px of the catalogue, and the screen requires 0.
+  - Like-for-like uniqueness under v3 passes: worst 0.648 vs `gems19_h19_5`, worst |ρ| 0.029.
+  - The receipts independently say the ≤2 px collar is empty (tilt-ring 0.0005). A collar-pruned LBCAL is therefore the first follow-up if the selector adopts the receipt gate.
+
+- **DEM origin.** The GeoDAWN 100 m DEM x-origin is 243349.9656, not 243350 (a 0.034 m offset; negligible, only used for the side-of-ridge test).
+- **Fill values.** `deq_n100a15` carries fill-like values up to 4.96e6 (forum 11557). It is not used by LBCAL.
+- **Old instrument.** The repo's former registry-union approach included space-filling rasters: the r13 lattice at 0.999 halo coverage and pindrop at 0.73. LBCAL applies the vendor `representation_class_v2` rule instead.
+
 ## IR-88-58 — PROVCREST de-novo lane: dense-witness classification, crest-pool density, and the first automated `promote` (2026-10-24)
 - **Observed (classification bug, caught before promotion):** the first PROVCREST build classified the continuous `17GEMSDOE` probability surface as a sparse dot raster because positive fraction was averaged over all 12,279,160 grid cells (0.4208) instead of within the 5,167,373-cell footprint (1.0000). That misclassification made the literal 3-px overlap (1.0000) block an otherwise passing candidate. Fixed in `scripts/build_provcrest_submission.py` (footprint denominator); dense/continuous rasters are now representation-classed separately and reported in `evidence/provcrest_uniqueness.json`, while the 0.70/0.90 gates bind sparse dot/ridge rasters. This is a classification correction, not a silent exemption: the dense row and its 1.0000 overlap remain in the published audit.
 - **Observed (pool density):** the 1-D directional NMS crest of the percentile-ranked composite is dense — 2,319,130 px (44.9% of footprint) — because percentile ranks are >0 almost everywhere. The operative selector is therefore crest-score ranking under the >=3.5 px lock, not pool membership alone; the seeded random-order control on the identical pool (HOLDOUT-DTI 0.050917) vs ranked (0.076277, paired Δ +0.025360 [0.017042, 0.032772]) proves ranking carries real signal at de-novo scale, contrary to the refill-scale IR-88-55 result.

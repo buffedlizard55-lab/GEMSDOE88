@@ -1,3 +1,10 @@
+> **2026-10-24 LBCAL update (IR-88-78).** No slot was spent.
+> - **LBCAL** (`gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif`) is **HOLD** under the written holdout gate: 0.0616 < 0.0763.
+> - **The receipt model ranks them the other way.** Its 8-fold repo-blocked CV is ρ 0.941. Projections: LBCAL 0.356, H33 0.264, PROVCREST 0.105 (MODEL-PROJECTION).
+> - **Selector decision needed before any slot:**
+>   - (a) keep the hide-and-recover gate, so PROVCREST stays slot-eligible, against our recommendation; or
+>   - (b) adopt the receipt-CV gate, so LBCAL takes slot 1 and PROVCREST gets no slot.
+
 # Slot Plan — Current Automated Decision
 
 **Updated 2026-10-24. No competition slot is authorized or recommended by the current run.**

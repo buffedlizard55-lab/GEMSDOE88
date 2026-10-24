@@ -1,0 +1,968 @@
+[
+ {
+  "file": "data/registry/dense_17gemdoe.tif",
+  "dot_overlap_3px": 1.0,
+  "spearman_full_footprint": 0.0034,
+  "positive_fraction_in_footprint": 1.0,
+  "representation_class": "space_filling"
+ },
+ {
+  "file": "data/registry/family_60gemsdoe/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+  "dot_overlap_3px": 0.6306,
+  "spearman_full_footprint": 0.0224,
+  "positive_fraction_in_footprint": 0.0078,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/family_60gemsdoe/calib_d15_02477.tif",
+  "dot_overlap_3px": 0.6481,
+  "spearman_full_footprint": 0.0198,
+  "positive_fraction_in_footprint": 0.0116,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/family_60gemsdoe/calib_h161_01855.tif",
+  "dot_overlap_3px": 0.6266,
+  "spearman_full_footprint": 0.0288,
+  "positive_fraction_in_footprint": 0.024,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/family_60gemsdoe/calib_h194_01894.tif",
+  "dot_overlap_3px": 0.6395,
+  "spearman_full_footprint": 0.025,
+  "positive_fraction_in_footprint": 0.024,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/family_60gemsdoe/calib_h195_01922.tif",
+  "dot_overlap_3px": 0.6485,
+  "spearman_full_footprint": 0.0195,
+  "positive_fraction_in_footprint": 0.0234,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/family_60gemsdoe/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+  "dot_overlap_3px": 0.6402,
+  "spearman_full_footprint": 0.0208,
+  "positive_fraction_in_footprint": 0.0085,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/family_60gemsdoe/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+  "dot_overlap_3px": 0.6195,
+  "spearman_full_footprint": 0.0233,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems19_h19_5.tif",
+  "dot_overlap_3px": 0.6485,
+  "spearman_full_footprint": 0.0195,
+  "positive_fraction_in_footprint": 0.0234,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems25_d28.tif",
+  "dot_overlap_3px": 0.6402,
+  "spearman_full_footprint": 0.0208,
+  "positive_fraction_in_footprint": 0.0085,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems28_h27_4.tif",
+  "dot_overlap_3px": 0.6306,
+  "spearman_full_footprint": 0.0224,
+  "positive_fraction_in_footprint": 0.0078,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems36_anderson_pinn.tif",
+  "dot_overlap_3px": 0.6198,
+  "spearman_full_footprint": 0.0227,
+  "positive_fraction_in_footprint": 0.0075,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems49_gate_ortho.tif",
+  "dot_overlap_3px": 0.3427,
+  "spearman_full_footprint": 0.013,
+  "positive_fraction_in_footprint": 0.0077,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems57_h57r2.tif",
+  "dot_overlap_3px": 0.0279,
+  "spearman_full_footprint": -0.0031,
+  "positive_fraction_in_footprint": 0.0077,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems60_h68_piedmont.tif",
+  "dot_overlap_3px": 0.1326,
+  "spearman_full_footprint": -0.0017,
+  "positive_fraction_in_footprint": 0.0077,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems70_p5_dualsubmod.tif",
+  "dot_overlap_3px": 0.3207,
+  "spearman_full_footprint": 0.0213,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems70_p5_multiphysics.tif",
+  "dot_overlap_3px": 0.2701,
+  "spearman_full_footprint": 0.0091,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems78_h78_gfv.tif",
+  "dot_overlap_3px": 0.2135,
+  "spearman_full_footprint": 0.0045,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems80_adpt_kkt.tif",
+  "dot_overlap_3px": 0.2081,
+  "spearman_full_footprint": 0.009,
+  "positive_fraction_in_footprint": 0.0071,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems80_h80_dpvc.tif",
+  "dot_overlap_3px": 0.1519,
+  "spearman_full_footprint": 0.0082,
+  "positive_fraction_in_footprint": 0.0081,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems81_contasb.tif",
+  "dot_overlap_3px": 0.1291,
+  "spearman_full_footprint": 0.0,
+  "positive_fraction_in_footprint": 0.0085,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems82_csam_dink.tif",
+  "dot_overlap_3px": 0.3168,
+  "spearman_full_footprint": 0.0149,
+  "positive_fraction_in_footprint": 0.008,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems83_h83_gvcd.tif",
+  "dot_overlap_3px": 0.18,
+  "spearman_full_footprint": 0.0029,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/gems85_h85a_foldproper.tif",
+  "dot_overlap_3px": 0.1334,
+  "spearman_full_footprint": 0.0083,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/registry/h33_education.tif",
+  "dot_overlap_3px": 0.6195,
+  "spearman_full_footprint": 0.0233,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "docs/downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif",
+  "dot_overlap_3px": 0.1647,
+  "spearman_full_footprint": 0.0073,
+  "positive_fraction_in_footprint": 0.0069,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+  "dot_overlap_3px": 0.0996,
+  "spearman_full_footprint": 0.0032,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+  "dot_overlap_3px": 0.3023,
+  "spearman_full_footprint": 0.0075,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+  "dot_overlap_3px": 0.1052,
+  "spearman_full_footprint": 0.0028,
+  "positive_fraction_in_footprint": 0.0044,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+  "dot_overlap_3px": 0.1986,
+  "spearman_full_footprint": 0.001,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "submissions/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+  "dot_overlap_3px": 0.3023,
+  "spearman_full_footprint": 0.0075,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "submissions/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+  "dot_overlap_3px": 0.1986,
+  "spearman_full_footprint": 0.001,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/001__6GEMSDOE__gems6_hgb88-topk03_33cec71ff0.tif",
+  "dot_overlap_3px": 0.1154,
+  "spearman_full_footprint": 0.0069,
+  "positive_fraction_in_footprint": 0.03,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/002__GEMSDOE3__pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+  "dot_overlap_3px": 0.7873,
+  "spearman_full_footprint": 0.0034,
+  "positive_fraction_in_footprint": 0.03,
+  "representation_class": "space_filling"
+ },
+ {
+  "file": "data/lbcal/003__GEMSDOE3__pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+  "dot_overlap_3px": 0.7382,
+  "spearman_full_footprint": -0.0001,
+  "positive_fraction_in_footprint": 0.03,
+  "representation_class": "space_filling"
+ },
+ {
+  "file": "data/lbcal/004__GEMSDOE3__pindrop-v4-ridge-20260925T152422Z-4e03fc9705.tif",
+  "dot_overlap_3px": 0.3654,
+  "spearman_full_footprint": 0.0215,
+  "positive_fraction_in_footprint": 0.03,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/008__7GEMSDOE__gems7-lidarscarp-ridge-top2pct-36c3a3f341c8.tif",
+  "dot_overlap_3px": 0.338,
+  "spearman_full_footprint": 0.0261,
+  "positive_fraction_in_footprint": 0.0149,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/009__8GEMSDOE__8GEMSDOE_Hedge-v2_submission.tif",
+  "dot_overlap_3px": 0.4267,
+  "spearman_full_footprint": 0.0154,
+  "positive_fraction_in_footprint": 0.044,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/010__GEMSDOE9__gemsdoe9-PLACEHOLDER-2314b599.tif",
+  "dot_overlap_3px": 0.0552,
+  "spearman_full_footprint": -0.0023,
+  "positive_fraction_in_footprint": 0.0286,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/011__11GEMSDOE__gems-structural-area06-v1.tif",
+  "dot_overlap_3px": 0.1889,
+  "spearman_full_footprint": 0.0077,
+  "positive_fraction_in_footprint": 0.0665,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/012__12GEMSDOE__12GEMSDOE_r7-nms3-dem10-scarp_0c9199f14e62.tif",
+  "dot_overlap_3px": 0.4688,
+  "spearman_full_footprint": 0.0069,
+  "positive_fraction_in_footprint": 0.02,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/013__15GEMSDOE__gems-tso1-20260929T005627Z-conj_alteration_mag.tif",
+  "dot_overlap_3px": 0.4964,
+  "spearman_full_footprint": 0.0009,
+  "positive_fraction_in_footprint": 0.0194,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/014__14GEMSDOE__GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f.tif",
+  "dot_overlap_3px": 0.0557,
+  "spearman_full_footprint": 0.0048,
+  "positive_fraction_in_footprint": 0.0225,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/015__17GEMSDOE__17GEMSDOE_F-ensemble-2pct_20260930T050626Z.tif",
+  "dot_overlap_3px": 0.0792,
+  "spearman_full_footprint": 0.007,
+  "positive_fraction_in_footprint": 0.02,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/016__18GEMSDOE__18GEMSDOE_H19-C_20260930T212401Z_c11e495e.tif",
+  "dot_overlap_3px": 0.4598,
+  "spearman_full_footprint": 0.018,
+  "positive_fraction_in_footprint": 0.0994,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/017__19GEMSDOE__gems19-h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan.tif",
+  "dot_overlap_3px": 0.6395,
+  "spearman_full_footprint": 0.025,
+  "positive_fraction_in_footprint": 0.024,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/018__19GEMSDOE__gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+  "dot_overlap_3px": 0.6485,
+  "spearman_full_footprint": 0.0195,
+  "positive_fraction_in_footprint": 0.0234,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/019__GEMSDOE10__gems10-h16-continuation-20260927T065521077735Z-3431b83c7c.tif",
+  "dot_overlap_3px": 0.2404,
+  "spearman_full_footprint": 0.0163,
+  "positive_fraction_in_footprint": 0.06,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/020__GEMSDOE10__gems10-h20-dem10-scarp-thin-20260927T155223039488Z-ffc91a1686.tif",
+  "dot_overlap_3px": 0.2908,
+  "spearman_full_footprint": 0.0128,
+  "positive_fraction_in_footprint": 0.0298,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/022__GEMSDOE10__gems10-h28-dotted-ridge-20260928T020256236880Z-6452ae1d00.tif",
+  "dot_overlap_3px": 0.3947,
+  "spearman_full_footprint": 0.0103,
+  "positive_fraction_in_footprint": 0.0134,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/023__13GEMSDOE__13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+  "dot_overlap_3px": 0.999,
+  "spearman_full_footprint": -0.0002,
+  "positive_fraction_in_footprint": 0.04,
+  "representation_class": "space_filling"
+ },
+ {
+  "file": "data/lbcal/024__16GEMSDOE__gems16-h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan.tif",
+  "dot_overlap_3px": 0.6266,
+  "spearman_full_footprint": 0.0288,
+  "positive_fraction_in_footprint": 0.024,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/025__16GEMSDOE__gems16-h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan.tif",
+  "dot_overlap_3px": 0.4319,
+  "spearman_full_footprint": 0.019,
+  "positive_fraction_in_footprint": 0.0236,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/026__16GEMSDOE__gems16-h18-4-usgs-geologic-map-faults-gap-20260930-aef8f42c-nan.tif",
+  "dot_overlap_3px": 0.1231,
+  "spearman_full_footprint": 0.0052,
+  "positive_fraction_in_footprint": 0.0112,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/027__GEMSDOE21__gems21-h19-4-reference-20260930-691e4dfa.tif",
+  "dot_overlap_3px": 0.6395,
+  "spearman_full_footprint": 0.025,
+  "positive_fraction_in_footprint": 0.024,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/028__20GEMSDOE__gems20-h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan.tif",
+  "dot_overlap_3px": 0.6257,
+  "spearman_full_footprint": 0.0283,
+  "positive_fraction_in_footprint": 0.024,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/029__20GEMSDOE__gems20-h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan.tif",
+  "dot_overlap_3px": 0.6098,
+  "spearman_full_footprint": 0.0286,
+  "positive_fraction_in_footprint": 0.0235,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/030__GEMSDOE22__gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif",
+  "dot_overlap_3px": 0.6526,
+  "spearman_full_footprint": 0.0336,
+  "positive_fraction_in_footprint": 0.065,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/031__GEMSDOE22__gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif",
+  "dot_overlap_3px": 0.656,
+  "spearman_full_footprint": 0.0276,
+  "positive_fraction_in_footprint": 0.1,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/032__GEMSDOE23__gemsdoe23-h30-arrangement-matched-habitat-20261002-0d4e02e8-nan.tif",
+  "dot_overlap_3px": 0.5357,
+  "spearman_full_footprint": 0.0019,
+  "positive_fraction_in_footprint": 0.0177,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/033__GEMSDOE24__gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+  "dot_overlap_3px": 0.6481,
+  "spearman_full_footprint": 0.0198,
+  "positive_fraction_in_footprint": 0.0116,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/034__GEMSDOE25__gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+  "dot_overlap_3px": 0.6402,
+  "spearman_full_footprint": 0.0208,
+  "positive_fraction_in_footprint": 0.0085,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/035__GEMSDOE26__gems26-dilcond-oof-v1-20261003-47629f496133-nan.tif",
+  "dot_overlap_3px": 0.3281,
+  "spearman_full_footprint": 0.0162,
+  "positive_fraction_in_footprint": 0.0116,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/036__GEMSDOE27__gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+  "dot_overlap_3px": 0.6482,
+  "spearman_full_footprint": 0.0194,
+  "positive_fraction_in_footprint": 0.0119,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/037__GEMSDOE30__gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+  "dot_overlap_3px": 0.6402,
+  "spearman_full_footprint": 0.0208,
+  "positive_fraction_in_footprint": 0.0085,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/038__GEMSDOE31__gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+  "dot_overlap_3px": 0.6306,
+  "spearman_full_footprint": 0.0224,
+  "positive_fraction_in_footprint": 0.0078,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/039__GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+  "dot_overlap_3px": 0.6344,
+  "spearman_full_footprint": 0.0226,
+  "positive_fraction_in_footprint": 0.0081,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/040__GEMSDOE34__h34-scatter-q50-arr-matched-20261004T223317Z.tif",
+  "dot_overlap_3px": 0.2514,
+  "spearman_full_footprint": 0.0067,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/041__GEMSDOE35__gemsdoe35-h35-06-aaa86efb25-20261004T225420098147Z-candidate.tif",
+  "dot_overlap_3px": 0.0271,
+  "spearman_full_footprint": 0.0044,
+  "positive_fraction_in_footprint": 0.0076,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/042__GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+  "dot_overlap_3px": 0.6198,
+  "spearman_full_footprint": 0.0227,
+  "positive_fraction_in_footprint": 0.0075,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/043__GEMSDOE37__gemsdoe37-h6-physics-dotted-80k-20261005T055000Z-0bef9211631c.tif",
+  "dot_overlap_3px": 0.3613,
+  "spearman_full_footprint": 0.0058,
+  "positive_fraction_in_footprint": 0.0155,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/044__GEMSDOE38__gems38-D-step-3p0-07pct-tipProt-20261005-ecfbf59e2b48-zero.tif",
+  "dot_overlap_3px": 0.2084,
+  "spearman_full_footprint": 0.0084,
+  "positive_fraction_in_footprint": 0.007,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/045__GEMSDOE42__gems42-xscale-worm-persistence-20261006T000541Z-nan.tif",
+  "dot_overlap_3px": 0.2133,
+  "spearman_full_footprint": 0.0008,
+  "positive_fraction_in_footprint": 0.0116,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/046__GEMSDOE43__gems43-sup01-hgb21-sep40-n40000-20261006-bc2e4e9a8d6f-nan.tif",
+  "dot_overlap_3px": 0.1759,
+  "spearman_full_footprint": 0.0005,
+  "positive_fraction_in_footprint": 0.0077,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/047__GEMSDOE45__gems45-h51-km-faultzone-20261006-zeros.tif",
+  "dot_overlap_3px": 0.088,
+  "spearman_full_footprint": -0.0004,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/048__GEMSDOE49__gems49-gate_ortho_w0.25-40k-20261006T213721Z-nan.tif",
+  "dot_overlap_3px": 0.3427,
+  "spearman_full_footprint": 0.013,
+  "positive_fraction_in_footprint": 0.0077,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/049__GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+  "dot_overlap_3px": 0.6195,
+  "spearman_full_footprint": 0.0233,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/050__GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+  "dot_overlap_3px": 0.6306,
+  "spearman_full_footprint": 0.0224,
+  "positive_fraction_in_footprint": 0.0078,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/051__GEMSDOE28__gems28-h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan.tif",
+  "dot_overlap_3px": 0.6365,
+  "spearman_full_footprint": 0.0214,
+  "positive_fraction_in_footprint": 0.0082,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/052__GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+  "dot_overlap_3px": 0.6252,
+  "spearman_full_footprint": 0.0222,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/053__GEMSDOE28__gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+  "dot_overlap_3px": 0.6254,
+  "spearman_full_footprint": 0.0221,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/054__GEMSDOE29__gems29-refd28-repro-20261003-1cc7dc534d51-nan.tif",
+  "dot_overlap_3px": 0.6402,
+  "spearman_full_footprint": 0.0208,
+  "positive_fraction_in_footprint": 0.0085,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/055__GEMSDOE29__gemsdoe29-repo-c0-habitat-emission-20261003-a4d439b07426-nan.tif",
+  "dot_overlap_3px": 0.0601,
+  "spearman_full_footprint": -0.0038,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/056__GEMSDOE29__gemsdoe29-sgmc-off-catalogue-44k-20261003-c8dcd780e3fd-nan.tif",
+  "dot_overlap_3px": 0.1604,
+  "spearman_full_footprint": 0.0026,
+  "positive_fraction_in_footprint": 0.0085,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/057__GEMSDOE29__gems29-wormrank-d28-20261003-59dcaf6dd11d-zeros.tif",
+  "dot_overlap_3px": 0.6389,
+  "spearman_full_footprint": 0.0217,
+  "positive_fraction_in_footprint": 0.008,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/058__GEMSDOE29__gemsdoe29-wormsurv-filter-20261003-921f10960d6e-zeros.tif",
+  "dot_overlap_3px": 0.1714,
+  "spearman_full_footprint": 0.005,
+  "positive_fraction_in_footprint": 0.0075,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/059__GEMSDOE29__gemsdoe29-xfit-c0-habitat-20261003-ca879db0089a-zeros.tif",
+  "dot_overlap_3px": 0.1511,
+  "spearman_full_footprint": 0.006,
+  "positive_fraction_in_footprint": 0.0065,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/060__GEMSDOE29__gemsdoe29-xfit-h41-union-qfaults-20261003-9edb34b99e3a-zeros.tif",
+  "dot_overlap_3px": 0.1442,
+  "spearman_full_footprint": 0.0046,
+  "positive_fraction_in_footprint": 0.0065,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/061__GEMSDOE46__gems46-r11f-scarp-radiometric-fusion-00e049b51218-zeros.tif",
+  "dot_overlap_3px": 0.4145,
+  "spearman_full_footprint": 0.0077,
+  "positive_fraction_in_footprint": 0.0085,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/062__GEMSDOE46__gems46-r12-scarp-rad-concordance-23e807e2de9f-zeros.tif",
+  "dot_overlap_3px": 0.2966,
+  "spearman_full_footprint": 0.003,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/063__GEMSDOE39__gemsdoe39-h40-e-disc-h40e-30k-zeros.tif",
+  "dot_overlap_3px": 0.1314,
+  "spearman_full_footprint": 0.0025,
+  "positive_fraction_in_footprint": 0.0058,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/064__GEMSDOE40__gemsdoe40-h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1.tif",
+  "dot_overlap_3px": 0.1565,
+  "spearman_full_footprint": 0.0002,
+  "positive_fraction_in_footprint": 0.0077,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/065__GEMSDOE40__gemsdoe40-h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1-hard.tif",
+  "dot_overlap_3px": 0.1565,
+  "spearman_full_footprint": 0.0002,
+  "positive_fraction_in_footprint": 0.0077,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/066__GEMSDOE40__gemsdoe40-h45-eulerdepthreadcluster-20261006-f28e5cff6826-zeros.tif",
+  "dot_overlap_3px": 0.305,
+  "spearman_full_footprint": 0.0043,
+  "positive_fraction_in_footprint": 0.0083,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/067__GEMSDOE41__gems41-h42-submission-primary.tif",
+  "dot_overlap_3px": 0.3225,
+  "spearman_full_footprint": 0.0019,
+  "positive_fraction_in_footprint": 0.0077,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/068__GEMSDOE44__GEMS44_h46-twostageAB_20261006T160000Z_b0cfe956-zeros.tif",
+  "dot_overlap_3px": 0.2146,
+  "spearman_full_footprint": 0.0051,
+  "positive_fraction_in_footprint": 0.0081,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/069__GEMSDOE47__gems47-h60-lidarscarp-s2p0-20261007-nanoutside.tif",
+  "dot_overlap_3px": 0.1642,
+  "spearman_full_footprint": 0.001,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/070__GEMSDOE48__gemsdoe48-h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8.tif",
+  "dot_overlap_3px": 0.5828,
+  "spearman_full_footprint": 0.0327,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/071__GEMSDOE50__gemsdoe50-h59-sharpened-scarp-scatter-90k-20261007T171954Z-allfinite.tif",
+  "dot_overlap_3px": 0.3853,
+  "spearman_full_footprint": 0.0034,
+  "positive_fraction_in_footprint": 0.0174,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/072__GEMSDOE51__gemsdoe51-h53-twostage-20261008T040951Z-9a0b32c871.tif",
+  "dot_overlap_3px": 0.1884,
+  "spearman_full_footprint": 0.0082,
+  "positive_fraction_in_footprint": 0.0085,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/073__GEMSDOE52__h97b-candidate.tif",
+  "dot_overlap_3px": 0.2191,
+  "spearman_full_footprint": 0.009,
+  "positive_fraction_in_footprint": 0.0049,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/074__GEMSDOE53__gems53-h8-tiprelay-ridgeconcord-pr2-n80000-20261009-49bec522-zeros.tif",
+  "dot_overlap_3px": 0.1509,
+  "spearman_full_footprint": -0.002,
+  "positive_fraction_in_footprint": 0.0155,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/075__GEMSDOE54__gems54-h54c-manifest-edge-20261009T025732Z-73454bc5-zeros.tif",
+  "dot_overlap_3px": 0.077,
+  "spearman_full_footprint": 0.0016,
+  "positive_fraction_in_footprint": 0.0037,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/076__55GEMSDOE__gems55-tensor_full-n16000-sep3-20261009T211747Z-nan.tif",
+  "dot_overlap_3px": 0.0957,
+  "spearman_full_footprint": 0.0001,
+  "positive_fraction_in_footprint": 0.0031,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/077__56GEMSDOE__h56-final-dotted-ridge-d2p8-20261009T190421Z.tif",
+  "dot_overlap_3px": 0.2641,
+  "spearman_full_footprint": 0.0028,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/078__57GEMSDOE__gems57-h57r-joint-strata-38000-20261010T214547Z-00cf5b2066f1-zeros.tif",
+  "dot_overlap_3px": 0.1098,
+  "spearman_full_footprint": -0.0008,
+  "positive_fraction_in_footprint": 0.0074,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/079__58GEMSDOE__gems58-ml-binary-ridge-20261012T000000Z.tif",
+  "dot_overlap_3px": 0.0588,
+  "spearman_full_footprint": 0.0131,
+  "positive_fraction_in_footprint": 0.0088,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/080__59GEMSDOE__gems59-h59j-coherence-consensus-dotted-20261011T043000Z.tif",
+  "dot_overlap_3px": 0.1561,
+  "spearman_full_footprint": 0.005,
+  "positive_fraction_in_footprint": 0.006,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/081__60GEMSDOE__gems60-h73-chi-coherent-corridor-12000-20261011T195818Z-zeros.tif",
+  "dot_overlap_3px": 0.0625,
+  "spearman_full_footprint": -0.0017,
+  "positive_fraction_in_footprint": 0.0023,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/082__61GEMSDOE__gems61-h61a-basement-step-20000dots-20261011T012029Z-eb2ae4bb024b-zeros.tif",
+  "dot_overlap_3px": 0.0111,
+  "spearman_full_footprint": 0.0032,
+  "positive_fraction_in_footprint": 0.0049,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/083__61GEMSDOE__gems61-h61o-vardepth-none-40000dots-20261011T160711Z-28d4fac611ea-zeros-zeros.tif",
+  "dot_overlap_3px": 0.1803,
+  "spearman_full_footprint": 0.0194,
+  "positive_fraction_in_footprint": 0.0077,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/084__62GEMSDOE__gems62-datum-lahontan-strain-gauge-defensible-440dots-zeros.tif",
+  "dot_overlap_3px": 0.0018,
+  "spearman_full_footprint": -0.0003,
+  "positive_fraction_in_footprint": 0.0001,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/085__GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros.tif",
+  "dot_overlap_3px": 0.5989,
+  "spearman_full_footprint": 0.0125,
+  "positive_fraction_in_footprint": 0.0106,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/086__GEMSDOE64__gems64-h64-lidar-scarp-cv-20261011T220000Z.tif",
+  "dot_overlap_3px": 0.2018,
+  "spearman_full_footprint": 0.0015,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/087__GEMSDOE65__gems65-sar-em-propensity-half-20261011T223500Z-5e4660cd-zeros.tif",
+  "dot_overlap_3px": 0.0805,
+  "spearman_full_footprint": -0.0009,
+  "positive_fraction_in_footprint": 0.0077,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/088__GEMSDOE66__gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros.tif",
+  "dot_overlap_3px": 0.2657,
+  "spearman_full_footprint": 0.0102,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/089__GEMSDOE67__gems67-h67a-orientip-lane-29447dots-20261012T021226Z-allfinite.tif",
+  "dot_overlap_3px": 0.0891,
+  "spearman_full_footprint": 0.0127,
+  "positive_fraction_in_footprint": 0.0057,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/090__GEMSDOE67__gemsdoe67-ovtr-ml-cover-tau3p0-20261012-nan.tif",
+  "dot_overlap_3px": 0.6131,
+  "spearman_full_footprint": 0.0048,
+  "positive_fraction_in_footprint": 0.0324,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/091__GEMSDOE68__gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-zeros.tif",
+  "dot_overlap_3px": 0.3225,
+  "spearman_full_footprint": 0.0136,
+  "positive_fraction_in_footprint": 0.0068,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/092__GEMSDOE69__h69-joint-relayramp-pullapart-38669-20261020T201504Z-f29b6df5-nan.tif",
+  "dot_overlap_3px": 0.0079,
+  "spearman_full_footprint": -0.0011,
+  "positive_fraction_in_footprint": 0.0075,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/093__GEMSDOE70__gems70-p5-dual-submod300-oof38k-20261020.tif",
+  "dot_overlap_3px": 0.3207,
+  "spearman_full_footprint": 0.0213,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/094__GEMSDOE71__gems71-hydro-conduit-38800-20261020T120000Z-zeros.tif",
+  "dot_overlap_3px": 0.2182,
+  "spearman_full_footprint": 0.0049,
+  "positive_fraction_in_footprint": 0.0075,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/095__GEMSDOE72__gemsdoe72-h72-1-sgmc-offcatalogue-20261020T195456Z-6e6525e5-zeros.tif",
+  "dot_overlap_3px": 0.1296,
+  "spearman_full_footprint": 0.0036,
+  "positive_fraction_in_footprint": 0.0054,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/096__GEMSDOE73__gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
+  "dot_overlap_3px": 0.3491,
+  "spearman_full_footprint": 0.0247,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/097__GEMSDOE74__gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros.tif",
+  "dot_overlap_3px": 0.1852,
+  "spearman_full_footprint": -0.0034,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/098__GEMSDOE75__gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+  "dot_overlap_3px": 0.3091,
+  "spearman_full_footprint": 0.009,
+  "positive_fraction_in_footprint": 0.0071,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/099__GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+  "dot_overlap_3px": 0.2459,
+  "spearman_full_footprint": 0.0163,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/100__GEMSDOE76__gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros.tif",
+  "dot_overlap_3px": 0.3325,
+  "spearman_full_footprint": 0.0196,
+  "positive_fraction_in_footprint": 0.0076,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/101__GEMSDOE77__gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros.tif",
+  "dot_overlap_3px": 0.5134,
+  "spearman_full_footprint": -0.0006,
+  "positive_fraction_in_footprint": 0.0389,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/102__GEMSDOE78__gems78-h78sigx-fuse-b5-44090dots-20261022T021932Z-zeros.tif",
+  "dot_overlap_3px": 0.2931,
+  "spearman_full_footprint": 0.0116,
+  "positive_fraction_in_footprint": 0.0085,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/103__GEMSDOE79__gems79-tilt-ring-100000dots-20261022T212135Z-50a5d7498c71-zeros.tif",
+  "dot_overlap_3px": 0.0431,
+  "spearman_full_footprint": -0.0079,
+  "positive_fraction_in_footprint": 0.0194,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/104__GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+  "dot_overlap_3px": 0.2277,
+  "spearman_full_footprint": 0.0117,
+  "positive_fraction_in_footprint": 0.01,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/105__GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+  "dot_overlap_3px": 0.0754,
+  "spearman_full_footprint": -0.0024,
+  "positive_fraction_in_footprint": 0.0085,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/106__GEMSDOE82__gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif",
+  "dot_overlap_3px": 0.294,
+  "spearman_full_footprint": 0.0162,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/107__GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+  "dot_overlap_3px": 0.18,
+  "spearman_full_footprint": 0.0029,
+  "positive_fraction_in_footprint": 0.0073,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/108__GEMSDOE84__gems84-h84-kthm-tworegime-58000px-20261022T235900Z-zeros.tif",
+  "dot_overlap_3px": 0.1453,
+  "spearman_full_footprint": -0.0014,
+  "positive_fraction_in_footprint": 0.0112,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/109__GEMSDOE85__gemsdoe85-hjcd-ventbridge-submod-zeros.tif",
+  "dot_overlap_3px": 0.1405,
+  "spearman_full_footprint": 0.0063,
+  "positive_fraction_in_footprint": 0.0041,
+  "representation_class": "sparse_dot_or_ridge"
+ },
+ {
+  "file": "data/lbcal/110__GEMSDOE87__h87-h87-cmgep-20261022T060000Z-8f394f43.tif",
+  "dot_overlap_3px": 0.1426,
+  "spearman_full_footprint": 0.0037,
+  "positive_fraction_in_footprint": 0.0068,
+  "representation_class": "sparse_dot_or_ridge"
+ }
+]
