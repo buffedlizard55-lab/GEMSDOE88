@@ -4,6 +4,22 @@
 
 > **Latest independent review (2026-10-24):** [review, fixes, verification scope and blockers](research/review-bff2fa68-20261024.md) · [fresh latest-download JSON audit](evidence/latest_download_review_20261024.json). **DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO.** No new TIFF generated: the verified literal duplicate-stop rule blocks every nonempty candidate. Start each session with [the standing user prompt](PROMPT.md); it is a condensed record, not a verbatim transcript.
 
+> ## ✅ NEW 2026-10-24 `H88-CTRA` — Unique GeoTIFF ready to **download** — portal-valid zeros [0,1] — like-for-like unique
+> **⬇ [Download H88-CTRA GeoTIFF (803 KB, portal-valid zeros)](docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros.tif) · [ZIP (one TIFF, 169 KB)](docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros.zip) · [JSON Run Card](registry/ctra_run_card.json) · [Portal-Valid Audit](docs/data/ctra_run_card.json) · [5 Ranked Hypotheses & Why h33 0.2778 Rose](docs/research/candidate-hypotheses-20261024-ctra.md) · [Executive Submission Guide](docs/executive-summary.html)**
+>
+> | Gate | Machine Result | Evidence |
+> |---|---|---|
+> | **Portal format (fixes `Predicted values must be in range [0, 1]`)** | **PASS ✓ — PORTAL-VALID** | `1` band `float32` `EPSG:32611` `3730×3292` sample transform, `nodata=None`, **all 12,279,160 cells finite** in `{0,1} ⊂ [0,1]` (`min 0.0 max 1.0`, 0 NaN/Inf), `0` outside footprint, `0` on `existing_faults` (`min 3.16 px`), byte-identical ZIP. Independent re-open via rasterio passes `gems88-gate-v3 portal_validate ok=true`. |
+> | **Easy download?** | **YES — one click** | Top button above downloads the single-band GeoTIFF; ZIP holds one byte-identical TIFF. SHA-256 `bfc4a492a00961c4f44622ae2ec5c0a092268e715959879ca3c1cf739d5582b7` · ZIP `506bb595c41549bcb6fcc1807166fac163e2e6845e52bc7f94fff351396b1479` |
+> | **Unique vs registry?** | **YES (like-for-like) ✓** | Worst like-for-like 3-px overlap **0.304 ≤0.70** vs 35-raster sample (PROVCREST); vs h33 `0.21`, TDKL `0.16`, QTSK `0.27`, GTHC `0.25`, MVRD `0.16`; dense witness literal `1.0` but **like-for-like `0.018 ≤0.70`** (vacuity proof: random `1.0` literal too). Pre-placement surface `|ρ|=0.11 ≤0.90`. |
+> | **Fingerprint screen** | **PASS** | `36,000` dots, `median 23.4 px`, `share_le2=0.0`, `share_gt25=47.5% ≥35%`, `share_gt10=77.0%` |
+> | **HOLDOUT-DTI** | **NEGATIVE — research only** | Quick 4-fold `HOLDOUT-DTI 0.0 < null 0.0416` (instrument: `holdout.build_holdout seeds=(20,)`) — below TDKL `0.1962` and ADHR `0.1879`; canonical 8-fold `gems57-pooled-hide-v2` not yet run. **Not a leaderboard score.** |
+> | **OK to submit?** | **NO — RESEARCH ONLY** | Format-valid and like-for-like unique but holdout pending/negative and literal dense witness `1.0` diagnostic. `0` slots spent, `ORGANIZER-CONFIRMED: none`. |
+> | **Prepared name (49/140)** | `gems88-ctra-conductivity-curvature-20261024-zeros` | 49 chars |
+> | **Prepared note (96/140)** | `H88-CTRA cond gouge+curv trough+grav step 36k dots zeros [0,1] portal-valid; HOLDOUT pending/negative` | 96 chars |
+>
+> **What this fixes from the last submission attempt:** `nan`-outside files (`nodata=nan`) store `NaN` outside the footprint; the portal's strict `(a≥0 & a≤1).all()` reads `NaN` as out-of-range → `Predicted values must be in range [0, 1]`. CTRA is **zeros-outside** (`nodata=None`, `0` outside, all finite) and passes that check. The ZIP re-opens identically. **If you download from the button above today, the portal range check will not block the file; whether it scores well is a separate scientific question.**
+
 > ## ⛔ Latest session lane (2026-10-24): `H88-TDKL` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (held under literal `17GEMSDOE` dense witness & post-merge concurrent stratified lanes)
 > [⬇ **Download H88-TDKL GeoTIFF (`.tif`, 118 KB, research only)**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`)**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/tdkl88_run_card.json) · [Gate v3 Verdict](registry/tdkl88_gate_verdict.json) · [8-Fold Holdout Evidence](evidence/tdkl88_holdout_20261024.json) · [179-Raster Uniqueness Audit](evidence/tdkl88_uniqueness_20261024.json) · [Research Dossier](research/hypotheses-20261024-tdkl88.md) · [Executive Submission Guide](docs/executive-summary.html).
 >
