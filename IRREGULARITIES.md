@@ -522,3 +522,15 @@ Second concurrent reconciliation: PR #79 independently repaired shared v3 to enf
 
 
 
+
+## IR-88-107 — `run_tdkl88_experiment.py` derives scarp fields from B14 (`tmi`), not B12 (`det_elev`) (2026-10-24)
+- **Observed:** `scripts/run_tdkl88_experiment.py:147` reads `src.read(14)` into `det_elev`; band 14 tag is `tmi`, band 12 is `det_elev`. Every other lane script (gthc88, qtsk88, mvrd88, run_experiment) reads B12. TDKL's holdout is internally self-consistent, but its `scarp_fields` are magnetic, not topographic, and cross-run comparisons against TDKL bars are not strictly like-for-like.
+- **Decision Impact:** H88-VESS reads B12 explicitly and discloses the caveat wherever the stored TDKL bar (0.196237) is quoted. Shared TDKL script not forked here; fix belongs to its owner lane.
+
+## IR-88-108 — `run_tdkl88_experiment.py` picks sense CSV by filesystem glob order (2026-10-24)
+- **Observed:** `seg_csv = next((ROOT / "data/external").glob("*.csv"))` can select `gdr_wellspring_in_footprint.csv` or `gdr_volcanic_vents_in_footprint.csv` instead of `trace_segments_utm11.csv` depending on filesystem ordering.
+- **Decision Impact:** H88-VESS uses `data/external/trace_segments_utm11.csv` by name. Same shared-script fix note as IR-88-107.
+
+## IR-88-109 — H88-VESS beats both holdout bars (0.200941, paired Δ vs ADHR +0.006065 [+0.001619, +0.010692]) but its emitted dots duplicate H88-TDKL at 3 px (0.84548 > 0.70) (2026-10-24)
+- **Observed:** 12 Frangi vesselness channels pooled with physics+TDKL (Exp3) achieve HOLDOUT-DTI 0.200941 [0.183602, 0.217576] (n=22,893, `gems57-pooled-hide-v2`), far 0.131922, blind 0.090449, canary 68/68 ≤ 0.90, fingerprint pass, surface |ρ| = 0.413621 ≤ 0.90. Production emission (same PoE base + two-stratum allocator as TDKL) nevertheless lands 84.548% of its 25,000 dots within 3 px of H88-TDKL dots (exact-pixel share only 20.22%; vs H33 3.40%), plus 0.7695 vs GTHC-88, 0.7639 vs QTSK-88, and literal 1.0 vs the 17GEMSDOE dense witness.
+- **Decision Impact:** Per Protocol Rule 1 the artifact (`docs/downloads/gems88-vess88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif`, SHA-256 `dfc15d5424643e93ba8f8d68eb15976f26fb4f15ca624d28ea687c0a3dc506b6`) is logged as a lane duplicate, frozen without retuning, published `ok_to_download=true, ok_to_submit=false, verdict="negative"`; 0 weekly slots spent.

@@ -1,0 +1,42 @@
+[1/6] Loading grid, physics/TDKL/VESS memmaps...
+[2/6] Leakage canary (68 features)...
+      PASS max symmetric AUC = 0.59299 (tdkl_lidar_cross_scarp (seed=20))
+[3/6] 8-fold holdout: controls + 3 preregistered experiments...
+      [seed=20 NW] inc=0.168904 | Exp1=0.074403 | Exp2=0.182210 | Exp3 VESS=0.177752 (far=0.123464, blind=0.086004)
+      [seed=20 NE] inc=0.209450 | Exp1=0.091214 | Exp2=0.193890 | Exp3 VESS=0.202474 (far=0.150656, blind=0.043855)
+      [seed=20 SW] inc=0.198068 | Exp1=0.105523 | Exp2=0.202933 | Exp3 VESS=0.203861 (far=0.091512, blind=0.019277)
+      [seed=20 SE] inc=0.196811 | Exp1=0.120522 | Exp2=0.218014 | Exp3 VESS=0.210907 (far=0.127321, blind=0.059899)
+      [seed=21 NW] inc=0.212690 | Exp1=0.081394 | Exp2=0.219957 | Exp3 VESS=0.214443 (far=0.138723, blind=0.080729)
+      [seed=21 NE] inc=0.182162 | Exp1=0.113159 | Exp2=0.185548 | Exp3 VESS=0.193599 (far=0.157061, blind=0.132216)
+      [seed=21 SW] inc=0.182076 | Exp1=0.077562 | Exp2=0.178362 | Exp3 VESS=0.182733 (far=0.096689, blind=0.061008)
+      [seed=21 SE] inc=0.207964 | Exp1=0.143367 | Exp2=0.217610 | Exp3 VESS=0.220603 (far=0.185987, blind=0.177216)
+      POOLED HOLDOUT-DTI h88_vess = 0.200941 CI [0.1836021021633753, 0.21757627454945402] n=22893
+[4/6] Production fit + emission (two-stratum share_gt25>=0.35)...
+      Emitted 25000 dots share_gt25=0.4200
+[5/6] Pre-placement surface uniqueness (vendor registry audit)...
+      max |rho| surface = 0.413621 (limit 0.90)
+[6/6] Writing run card + gate verdict + uniqueness evidence...
+{
+  "candidate": "h88_vess",
+  "holdout_dti": 0.20094068503297935,
+  "ci95": [
+    0.1836021021633753,
+    0.21757627454945402
+  ],
+  "paired_delta_vs_adhr": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.006064871675109884,
+    "ci95": [
+      0.0016190465568456062,
+      0.010692230066896836
+    ],
+    "withheld_positive_pixels": 22893
+  },
+  "dots": 25000,
+  "file": "/home/user/GEMSDOE88/docs/downloads/gems88-vess88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+  "sha256": "dfc15d5424643e93ba8f8d68eb15976f26fb4f15ca624d28ea687c0a3dc506b6",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}

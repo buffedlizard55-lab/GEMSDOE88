@@ -1,0 +1,59 @@
+{
+  "policy": "gems88-gate-v3",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "blocking_reasons": [
+    "UNIQUENESS: blocked (like-for-like) by GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif, GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif, GEMSDOE88:gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "UNIQUENESS (literal rule): forward 3px overlap vs dense/full-footprint registry raster(s): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif, GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif, GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif"
+  ],
+  "informational": [
+    "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif, GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif, GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif"
+  ],
+  "note_len": 102,
+  "name_len": 29,
+  "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows).",
+  "fingerprint": {
+    "n": 25000,
+    "median_d_cat_px": 10.29563045501709,
+    "share_le2": 0.0,
+    "share_gt10": 0.50556,
+    "share_gt25": 0.42
+  },
+  "fingerprint_screen_passed": true,
+  "uniqueness_summary": {
+    "worst_like_for_like_overlap": {
+      "label": "GEMSDOE88:gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "value": 0.84548
+    },
+    "worst_abs_rho": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 0.4136210316133154
+    },
+    "unique_like_for_like": false,
+    "unique_literal": false,
+    "registry_rasters": 231
+  },
+  "paired_delta_vs_adhr_incumbent": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.006064871675109884,
+    "ci95": [
+      0.0016190465568456062,
+      0.010692230066896836
+    ],
+    "withheld_positive_pixels": 22893
+  },
+  "holdout_beats_tdkl_stored_bar": true,
+  "name": "gems88-vess88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT",
+  "file": "docs/downloads/gems88-vess88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-vess88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "dfc15d5424643e93ba8f8d68eb15976f26fb4f15ca624d28ea687c0a3dc506b6",
+  "zip_sha256": "dab27331a669ec53fb6b6efa14fcceb8dd09054199adc10981d7a1030f57b3ec",
+  "candidate": {
+    "tif": "docs/downloads/gems88-vess88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-vess88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "tif_sha256": "dfc15d5424643e93ba8f8d68eb15976f26fb4f15ca624d28ea687c0a3dc506b6",
+    "zip_sha256": "dab27331a669ec53fb6b6efa14fcceb8dd09054199adc10981d7a1030f57b3ec"
+  }
+}
