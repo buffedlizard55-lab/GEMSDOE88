@@ -1,111 +1,127 @@
 #!/usr/bin/env python3
-"""AXIS=MASS on the gate-clean parent R1 (``PRUNEp3px``) — the R1 mass bracket.
+"""AXIS = MASS on the gate-clean parent R1 (``PRUNEp3px``) — three dose-matched arms.
 
-Session choice (Brief v2 §5: "Do not prompt me over choosing an Axis for the
-session, pick your own session"): **AXIS = MASS, parent = R1**.
+Session choice (Brief v2 §5: "Do not prompt me over choosing an Axis for the session,
+pick your own session"): **AXIS = MASS**, parent **R1**.
 
-Why this session, and why this parent:
+Why this (parent, axis) pair is not a repeat
+--------------------------------------------
+The 47-row ledger already contains two MASS families, both on R0: ``m10minus/m10plus/
+m20minus`` (ranked by an ad-hoc ``0.6*clip(d_cat/50)+0.4*uniform`` score that the PR17
+audit showed was a catalogue-collar artefact) and ``r10minus/r10plus/r10swap`` (ranked by
+the parent's own exact marginal DTI). No MASS arm exists on a gate-clean parent, so
+``(R1, MASS, *)`` is entirely unbuilt. R0 cannot host a non-PRUNE arm at all: it keeps
+2,171 dots at ``2 < d_cat <= 3 px`` (IR-88-33/36/43/47).
 
-* The R0 MASS family (``r10minus/r10plus/r10swap``) is the only axis build whose
-  positive arm (``r10plus``) beat its parent on any instrument, but every R0
-  child is parked at HOLD: R0 carries 1,611 dots strictly inside the literal
-  3 px non-PRUNE collar (IR-88-43/47), so no non-PRUNE edit of R0 can be
-  gate-clean. R1 = ``h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`` is the named
-  gate-clean parent (min ``d_cat`` 3.1623 px, IR-88-33) and has NEVER had its
-  mass curve measured.
-* ``SLOT_PLAN.md`` names exactly this build for wk3-4: "(R1, MASS, r10plus) —
-  the gate-clean form of MASS's only positive arm — as a separate single-axis
-  session".
-* The R1 analogue is not a re-run: R1's own 2,171 refills consumed the highest
-  marginal candidates of the same ranking, so the next-ranked pool is strictly
-  deeper. The R0 result therefore does not transfer by construction; it is a
-  question.
+The question this family answers
+--------------------------------
+R0's measured mass curve (blind SGMC: 10% drop ``-0.0080``, 10% add ``+0.0029``) is
+confounded: R0's lowest-marginal tail contains collar dots that sit in the damage zone of
+mapped faults and are therefore credit-rich once catalogue pixels are masked. R1 replaced
+those dots with the 2,171 highest-marginal un-emitted candidates. If the mass optimum moves
+with the parent, mass stays live; if the ordering and magnitudes reproduce, the mass curve
+is a property of the H19-5 + 2.8 px-thinning recipe and MASS is closed for the remaining
+slots.
 
-Three arms at the brief's 10% dose (3,765 dots), one axis, one parent:
+Arms (dose fixed at 10% = 3,765 dots, as Brief §5 mandates) — ALL preregistered in
+``registry/preregistration_mass_r1.json`` before anything was computed:
 
-  * ``r10minus`` — drop the 3,765 lowest-ranked R1 dots        -> 33,889 dots
-  * ``r10plus``  — add the 3,765 next-ranked un-emitted dots   -> 41,419 dots
-  * ``r10swap``  — drop the 3,765 lowest + add the 3,765 next  -> 37,654 dots
-                   (count-matched; isolates ranking from mass)
+    value        operation                                    N
+    r1m10minus   drop the 3,765 lowest exact-marginal dots    33,889
+    r1m10plus    add the 3,765 next-ranked un-emitted dots    41,419
+    r1m10swap    drop 3,765 lowest + add 3,765 next-ranked    37,654 (count fixed)
 
-Ranking = the parent's own recorded recipe, re-run on the parent: exact
-iterative marginal expected-DTI contribution under the pinned label-free
-physical field ``w`` (``scripts/build_prune_variants.py::select_exact_marginal_dti_add``
-/ ``_drop`` over ``vendor/gems57/metric.py``, alpha 0.2, beta 0.8, R = 3 px).
+Every arm keeps ``d_cat > 3 px`` on every emitted dot (candidates are restricted to that
+pool, and the writer asserts ``min_catalogue_px = 3.0``), so all three files are
+slot-eligible with no gate waiver.
 
-Predictions were preregistered in ``registry/preregistration_mass_r1.json``
-BEFORE this script ran. No DrivenData / Dropbox / leaderboard contact; nothing
-is submitted. The human owns every upload.
+Determinism / provenance: 15 SHA-256 manifest pins re-verified, R0 rebuilt byte-exactly,
+R1 re-derived and both published twins SHA-asserted in-run, fixed seed, git SHA logged,
+every raster re-read from disk and independently re-validated. Idempotent reruns replace
+ONLY this family's rows, files and cards. No competition page is contacted and nothing is
+submitted; the human owns every upload.
 """
+
 from __future__ import annotations
 
 import csv
+import io
 import json
-import time
 from pathlib import Path
 import sys
+import time
 
 import numpy as np
-import rasterio
 from scipy.spatial import cKDTree
 
 ROOT = Path(__file__).resolve().parents[1]
-for p in (str(ROOT), str(ROOT / "scripts"), str(ROOT / "vendor")):
-    if p not in sys.path:
-        sys.path.insert(0, p)
+for _p in (str(ROOT), str(ROOT / "scripts"), str(ROOT / "vendor")):
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 
 import build_prune_variants as bpv  # noqa: E402
 import build_snap_r1_variants as bsv  # noqa: E402
-from gems57 import evaluate_holdout, grid as grid_mod, holdout as holdout_mod, metric  # noqa: E402
 
+AXIS = "MASS"
+FRACTION = 0.10
+SEED = 20261023
+FIXED_DATE = "20261023"
+OWN_VALUES = ("r1m10minus", "r1m10plus", "r1m10swap")
+PARENT_ID = bsv.R1_ID
+PARENT_SHA_NAN = bsv.R1_SHA_NAN
+PARENT_SHA_ZEROS = bsv.R1_SHA_ZEROS
+MIN_CATALOGUE_PX = 3.0
 RELEASES = ROOT / "releases"
 LEDGER = ROOT / "ledger" / "submissions.csv"
-CARDS_PATH = ROOT / "ledger" / "mechanism_cards.json"
+CARDS = ROOT / "ledger" / "mechanism_cards.json"
 PREREG = ROOT / "registry" / "preregistration_mass_r1.json"
 REPORT = ROOT / "evidence" / "mass_r1_axis_report.json"
 
-AXIS = "MASS"
-VALUES = ("r10minus", "r10plus", "r10swap")
-R1_ID = bsv.R1_ID
-R1_SHA_NAN = bsv.R1_SHA_NAN
-R1_SHA_ZEROS = bsv.R1_SHA_ZEROS
-FRACTION = 0.10
-N_PARENT = 37_654
-N_DOSE = int(round(FRACTION * N_PARENT))  # 3,765
-
 RANKING_BASIS = (
-    "exact iterative marginal expected-DTI under the pinned label-free physical field w, "
-    "re-run on R1 (the parent's own recorded ranking recipe: R1 was built by the same greedy)"
+    "exact iterative marginal expected-DTI under the pinned label-free physical field w "
+    "(parent's own ranking, rebuilt: R1 stores no per-dot score)"
 )
 
-# Mechanism cards written for a structural geologist (Brief §5).
-CARDS = {
-    "r10minus": {
-        "hypothesis": "R1 still carries dead mass at its bottom decile. R1 = R0's >3 px matrix plus 2,171 exact-marginal refills, so its 3,765 lowest-ranked dots are the dots the parent's OWN ranking ranked last: late refills and R0 dots that the corroboration field never liked. Deleting them raises DTI because every emitted dot is charged one unit of mass S in the denominator 0.2(T + S - M) + 0.8|G| whether or not it lands on a fault, while their kernel credit T is by construction the smallest in the file.",
-        "mechanism": "Under the 300 m triangular kernel a dot pays only if its credit exceeds 0.2*DTI (about 0.056 at DTI 0.28). A dot whose nearest neighbour already covers its strand contributes S and almost no unique T. Because R1's refills were chosen by the same exact-marginal greedy that now ranks them, the bottom decile is measured, not assumed, to be the least productive 10% of the file; the greedy drop removes them in the order that costs the least T per unit of S removed.",
-        "non_fault_mimic": "The ranking field w is built from potential-field and topographic derivatives. A genuine but blind, low-offset, or basin-masked fault has a weak magnetic/gravity signature, and GeoDAWN Area 2 was flown at 400 m line spacing (150-200 m above terrain, https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7), so its crest can sit a kernel radius off the trace. Pruning low-w dots therefore preferentially deletes blind faults - the population most likely to be in the new-fault label set - so a live loss is the expected outcome if w is a poor fault detector rather than a good one.",
-        "predicted_sign_size": "Preregistered MODEL -0.004 live delta vs R1 (range -0.014 to +0.006), anchored on the R0 family's blind SGMC loss of -0.0081 for the identical edit, discounted because R1's bottom decile is ranked rather than geometric.",
-        "falsifier": "A live gain of >= +0.01 falsifies dead mass at the bottom decile and says R0/R1 are still over-emitted, which would make continued mass reduction the cheapest lever on the gate-clean parent. A live loss of <= -0.01 retires the drop direction permanently on both parents. |delta| < 0.01 is no evidence.",
-    },
-    "r10plus": {
-        "hypothesis": "The gate-clean parent is under-emitted. R0's marginal-decile test was the only MASS arm to beat its parent on the blind off-catalogue control (+0.0029 SGMC PROXY; +0.0107 w-field MODEL), and that gain was measured on a parent whose candidates were still unconstrained by a collar refill. R1 removed 1,611 dots at 2 < d_cat <= 3 px and re-spent them on the same H19-5 support elsewhere; if the collar purge left strand length unsampled, adding the next-ranked 3,765 dots recovers it.",
-        "mechanism": "A truth pixel is credited by the BEST dot within 300 m, C_A(g) = max_x k(||g-x||), so the marginal dot pays only on strand length nobody covers. The added dots are the exact-marginal argmax at every step, i.e. they are placed where dT per unit dS is largest, subject to the strict >3 px collar. The measurement this arm delivers is the mean dT per added dot, which is a direct, label-free readout of how saturated R1 is.",
-        "non_fault_mimic": "H19-5 is a multi-line ridge detector, so the un-emitted pool contains second-order structure (antithetic splays, relay ramps, step-faults the 2.8 px Poisson disk suppressed) alongside flight-line levelling artefacts, drainage incision, and lithologic contacts. The arm conflates 'add coverage' with 'add ridge artefacts', and 400 m flight-line spacing means the placement error is of order the kernel radius, so extra dots may land 100-200 m off a true trace.",
-        "predicted_sign_size": "Preregistered MODEL +0.004 live delta vs R1 (range -0.008 to +0.016), deliberately below the R0 family's in-sample +0.0107 because R1 already consumed the 2,171 highest-marginal candidates of the same ranking.",
-        "falsifier": "A live change below +0.01 (Brief's no-evidence floor) leaves mass increase unproven and, combined with the R0 result, retires MASS as a lever on both parents; the remaining slots then go to SNAP/spacing confirmation of R1. A gain >= +0.01 makes 41,419 dots the final-file candidate and licenses the 45,185-dot (r20plus) dose as the next single-axis build.",
-    },
-    "r10swap": {
-        "hypothesis": "What is left on the table in R1 is ranking quality, not count. At a frozen 37,654 dots, replacing the 3,765 dots with the smallest exact marginal credit by the 3,765 best un-emitted candidates must move DTI through T alone, because S is unchanged by construction.",
-        "mechanism": "S is frozen, so DTI changes only through T and M: the arm is the superposition of r10minus's denominator saving and r10plus's numerator gain. It isolates whether the parent's dot placement - BFS-anchored Poisson-disk thinning plus a greedy refill - is measurably worse than a pure w-ranked selection at the same dot budget.",
-        "non_fault_mimic": "The swap is a pure ranking play and inherits every bias of w: TMI/gravity gradients favour basement-step and lithologic-contact lineaments, and the GDR-1391 geothermometry term is concentrated near known geothermal systems. If the new-fault labels are dominated by Quaternary scarps with little potential-field expression, the swap trades real scarps for geophysically loud but geologically dead lineaments - a live loss even where the w-model predicts a gain.",
-        "predicted_sign_size": "Preregistered MODEL +0.002 live delta vs R1 (range -0.008 to +0.012): the midpoint of the other two arms, and the arm that would be preferred at equal score because it spends no extra denominator mass.",
-        "falsifier": "A live change below +0.01 falsifies w-ranked reselection as a lever and says the parent's geometric placement is already as good as the corroboration field can rank - which redirects the remaining slots to SPACING/TRACKB rather than to any field-driven reselection.",
-    },
+# Form notes (<=140 chars each; {sha8} is filled by the writer).
+NOTES = {
+    "r1m10minus": "R1(PRUNEp3px); MASS -3765 lowest exact-marginal dots 37654->33889; pred {pred} MODEL",
+    "r1m10plus": "R1(PRUNEp3px); MASS +3765 next-ranked un-emitted dots d_cat>3px ->41419; pred {pred} MODEL",
+    "r1m10swap": "R1(PRUNEp3px); MASS swap 3765 lowest for 3765 next-ranked, count fixed 37654; pred {pred} MODEL",
+}
+
+# Ledger descriptions (one line each, factual, no score language).
+DESCRIPTIONS = {
+    "r1m10minus": (
+        "Gate-clean MASS drop: removes the 3,765 lowest exact-marginal-DTI dots from R1; "
+        "tests whether R0's measured drop loss was a collar artefact."
+    ),
+    "r1m10plus": (
+        "Gate-clean MASS add: spends the identical 3,765-dot dose on the next-ranked un-emitted "
+        "H19-5 candidates after R1's own 2,171-dot refill; direct saturation test."
+    ),
+    "r1m10swap": (
+        "Gate-clean MASS swap at fixed count: isolates ranking quality from mass with the collar "
+        "confound removed."
+    ),
 }
 
 
-def _prereg() -> dict:
-    return json.loads(PREREG.read_text(encoding="utf-8"))
+
+def _recommendation(value: str, sgmc_delta: float, w_delta: float) -> str:
+    """Post-build decision text. A PROXY delta is never a score and never a promotion."""
+    if sgmc_delta >= 0.01:
+        verdict = ("blind off-catalogue SGMC delta >= +0.01 PROXY: the only evidence class that "
+                   "could queue it; still requires a live receipt")
+    elif sgmc_delta > 0.0:
+        verdict = (f"blind off-catalogue SGMC delta {sgmc_delta:+.5f} PROXY is positive but far below "
+                   "the 0.01 no-evidence floor")
+    else:
+        verdict = (f"blind off-catalogue SGMC delta {sgmc_delta:+.5f} PROXY is negative")
+    return (
+        f"NOT QUEUED ({verdict}). Built and gate-clean as a controlled test of whether the mass "
+        f"optimum moves with the parent; in-sample w-model delta {w_delta:+.5f} MODEL (optimistic, "
+        "w both ranks and scores). Published for the mass-curve closure, not for a slot."
+    )
 
 
 def _nearest_parent_distance(parent_mask: np.ndarray, added_mask: np.ndarray) -> dict:
@@ -113,8 +129,7 @@ def _nearest_parent_distance(parent_mask: np.ndarray, added_mask: np.ndarray) ->
     ay, ax = np.nonzero(added_mask)
     if len(ay) == 0:
         return {"n_added": 0}
-    tree = cKDTree(np.column_stack([py, px]))
-    d, _ = tree.query(np.column_stack([ay, ax]))
+    d, _ = cKDTree(np.column_stack([py, px])).query(np.column_stack([ay, ax]))
     return {
         "n_added": int(len(ay)),
         "mean_px": round(float(d.mean()), 3),
@@ -124,259 +139,159 @@ def _nearest_parent_distance(parent_mask: np.ndarray, added_mask: np.ndarray) ->
     }
 
 
-def evaluate_report_only_vs_reference(
-    arms: dict[str, np.ndarray],
-    foot: np.ndarray,
-    catalogue: np.ndarray,
-    sgmc_path: Path,
-    reference: str,
-) -> dict:
-    """Same instruments as build_prune_variants.evaluate_report_only_instruments.
-
-    The upstream helper hard-codes R0 as the paired-bootstrap reference; this session's
-    parent is R1, so the paired deltas and CIs are re-derived against ``reference``.
-    Report-only: none of these numbers can fail a gate (Brief §6).
-    """
-    gd = grid_mod.load_grid(ROOT / "data" / "bridge")
-    folds20, _ = holdout_mod.buffered_component_draw(gd, seed=20)
-    folds30, _ = holdout_mod.buffered_component_draw(gd, seed=30)
-
-    terms_by_arm: dict[str, np.ndarray] = {}
-    for name, mask in arms.items():
-        pred = mask.astype(np.float32)
-        total = None
-        for f in [*folds20, *folds30]:
-            _, t = evaluate_holdout.evaluate(pred, f, foot)
-            total = t if total is None else (total + t)
-        terms_by_arm[name] = total
-
-    primary_key = next(k for k in arms if k != reference)
-    pooled = evaluate_holdout.pooled_summary(
-        terms_by_arm, draws=1000, seed=520810, candidate=primary_key
-    )
-
-    sgmc_raw = rasterio.open(sgmc_path).read(1) > 0
-    sgmc_off = sgmc_raw & foot & ~catalogue
-    from scipy.ndimage import binary_dilation
-
-    sgmc_off = sgmc_off & ~binary_dilation(catalogue, iterations=3)
-
-    active = np.any(np.stack([a.sum(axis=1) > 0 for a in terms_by_arm.values()]), axis=0)
-    nb = int(active.sum())
-    rng = np.random.default_rng(520810)
-    picks = rng.integers(0, nb, size=(1000, nb))
-    ref_boot = evaluate_holdout.from_terms(terms_by_arm[reference][active][picks].sum(axis=1))
-
-    out = {}
-    for name, mask in arms.items():
-        s_hold = pooled["scores"][name]
-        a_boot = evaluate_holdout.from_terms(terms_by_arm[name][active][picks].sum(axis=1))
-        diff = a_boot - ref_boot
-        sgmc_res = metric.dti_binary(mask, sgmc_off, valid=foot, known=catalogue)
-        out[name] = {
-            "n_dots": int(mask.sum()),
-            "holdout_proxy": {
-                "evidence_label": "PROXY",
-                "evaluator_version": evaluate_holdout.VERSION,
-                "dti": round(float(s_hold["dti"]), 6),
-                "ci95": [round(float(x), 6) for x in s_hold["ci95"]],
-                "withheld_positives": int(s_hold["withheld_positive_pixels"]),
-                "paired_delta_vs_reference": round(
-                    float(s_hold["dti"] - pooled["scores"][reference]["dti"]), 6
-                ),
-                "paired_delta_vs_reference_ci95": [
-                    round(float(x), 6) for x in np.quantile(diff, [0.025, 0.975])
-                ],
-                "reference": reference,
-            },
-            "sgmc_control": {
-                "evidence_label": "PROXY",
-                "dti": round(float(sgmc_res["dti"]), 6),
-                "n_sgmc_off_catalogue_px": int(sgmc_off.sum()),
-                "tp": round(float(sgmc_res["tp"]), 2),
-                "fp": round(float(sgmc_res["fp"]), 2),
-            },
-            "block_density_cv": {
-                "cv_10km_100px_interior": round(bpv.compute_block_cv(mask, foot, 100), 4),
-                "cv_12km_120px_interior": round(bpv.compute_block_cv(mask, foot, 120), 4),
-            },
-        }
-    return out
+def _portable_delta(diag: dict, parent_diag: dict) -> dict:
+    """Paired holdout / SGMC / CV deltas expressed against THIS parent (R1)."""
+    return {
+        "holdout_proxy_dti": diag["holdout_proxy"]["dti"],
+        "holdout_proxy_delta_vs_parent": round(
+            diag["holdout_proxy"]["dti"] - parent_diag["holdout_proxy"]["dti"], 6
+        ),
+        "holdout_withheld_positives": diag["holdout_proxy"]["withheld_positives"],
+        "sgmc_off_catalogue_dti": diag["sgmc_control"]["dti"],
+        "sgmc_delta_vs_parent": round(
+            diag["sgmc_control"]["dti"] - parent_diag["sgmc_control"]["dti"], 6
+        ),
+        "cv_12km": diag["block_density_cv"]["cv_12km_120px_interior"],
+        "cv_12km_parent": parent_diag["block_density_cv"]["cv_12km_120px_interior"],
+    }
 
 
 def main() -> int:
     t0 = time.time()
-    pre = _prereg()
-    print("[1/7] Verifying SHA-256 manifest pins and rebuilding R0 byte-exactly ...")
+    pre = json.loads(PREREG.read_text(encoding="utf-8"))
+    assert pre["frozen_before_build"] is True
+    arms_pre = pre["arms"]
+    assert set(arms_pre) == set(OWN_VALUES), "prereg arms do not match OWN_VALUES"
+    n_dose = int(pre["fixed_dose"]["n_dots"])
+    assert n_dose == int(round(FRACTION * 37_654))
+
+    print("[1/7] Verifying the 15 SHA-256 manifest pins ...")
     verified = bpv.verify_manifest()
+    print(f"      {len(verified)}/{len(verified)} pins verified (sha256 + byte length).")
+
+    print("[2/7] Rebuilding parent R0 from the lineage recipe (byte-exact) ...")
     lin = bpv.rebuild_r0_from_lineage(verified)
     foot, catalogue, d_cat = lin["foot"], lin["catalogue"], lin["d_cat"]
     h19_5, r0 = lin["h19_5"], lin["r0"]
-    assert int(r0.sum()) == N_PARENT
+    assert int(r0.sum()) == 37_654
     assert lin["rebuilt_zeros_sha256"] == bpv.PARENT_SHA_ZEROS
     assert lin["rebuilt_nan_sha256"] == bpv.PARENT_SHA_NAN
-    print(f"      {len(verified)}/15 pins OK | R0 exact: {int(r0.sum()):,} dots")
+    print(f"      R0 OK: {int(r0.sum()):,} dots | zeros={lin['rebuilt_zeros_sha256'][:12]}... "
+          f"| nan={lin['rebuilt_nan_sha256'][:12]}...")
 
-    print("[2/7] Rebuilding the label-free field w and running the leakage canaries ...")
+    print("[3/7] Rebuilding the label-free corroboration field w + leakage canaries ...")
     w_field, canaries = bpv.build_physical_field_and_canaries(verified, foot, catalogue, h19_5)
     max_auc = max(canaries.values())
-    print(f"      canaries: {len(canaries)} channels, max symmetric AUC = {max_auc:.4f}")
     if max_auc > 0.90:
         raise RuntimeError(f"Leakage canary tripped: symmetric AUC {max_auc:.4f} > 0.90")
+    print(f"      canaries PASS ({len(canaries)} channels, max symmetric AUC {max_auc:.4f})")
 
-    print("[3/7] Reconstructing the parent R1 = PRUNEp3px and asserting both published SHA-256 ...")
+    print("[4/7] Re-deriving parent R1 = PRUNEp3px and asserting both published twins ...")
     r1 = bsv.reconstruct_r1(lin, w_field, verified)
-    assert int(r1.sum()) == N_PARENT
-    d_r1 = d_cat[r1]
-    assert float(d_r1.min()) > 3.0, f"R1 collar violated: {d_r1.min()}"
-    print(f"      R1 OK: {int(r1.sum()):,} dots, min d_cat = {d_r1.min():.4f} px")
-
-    # (parent, axis, value) uniqueness: the only legal dedupe rule in Brief §6.
-    if LEDGER.is_file():
-        with LEDGER.open(newline="", encoding="utf-8") as f:
-            prior = [
-                r for r in csv.DictReader(f)
-                if r.get("axis") == AXIS and r.get("parent") == R1_ID and r.get("value") in VALUES
-            ]
-        if prior:
-            print(f"      note: replacing {len(prior)} prior (R1, MASS, *) row(s) this run")
+    n_parent = int(r1.sum())
+    assert n_parent == 37_654
+    if float(d_cat[r1].min()) <= MIN_CATALOGUE_PX + 1e-9:
+        raise RuntimeError(f"R1 is not gate-clean: min d_cat {d_cat[r1].min():.4f} px")
 
     base_terms = bpv.weighted_expected_dti(r1, w_field)
-    print(
-        f"      R1 w-model: DTI={base_terms['dti']:.6f} T={base_terms['T']:.1f} "
-        f"S={base_terms['S']:.0f} M={base_terms['M']:.1f}"
-    )
+    r0_terms = bpv.weighted_expected_dti(r0, w_field)
+    print(f"      R1 w-model: DTI={base_terms['dti']:.6f} T={base_terms['T']:.1f} "
+          f"S={base_terms['S']:.0f} M={base_terms['M']:.1f} "
+          f"(R0 {r0_terms['dti']:.6f})")
 
-    print(f"[4/7] Allocating 3 AXIS=MASS arms at the fixed 10% dose ({N_DOSE:,} dots) ...")
-    # Never-emitted support, and MASS is not PRUNE: every added dot must be strictly >3 px out.
-    cand_pool = h19_5 & ~r1 & (d_cat > 3.0)
+    print(f"[5/7] Allocating 3 AXIS=MASS arms at the fixed 10% dose ({n_dose:,} dots) ...")
+    # Candidate pool: parent detector support that is un-emitted AND outside the 3 px collar.
+    cand_pool = h19_5 & ~r1 & (d_cat > MIN_CATALOGUE_PX)
     print(f"      candidate pool (H19-5 & ~R1 & d_cat>3px): {int(cand_pool.sum()):,} px")
-    if int(cand_pool.sum()) < N_DOSE:
-        raise RuntimeError("candidate pool smaller than the dose")
 
     t = time.time()
-    m_minus = bpv.select_exact_marginal_dti_drop(base_mask=r1, drop_pool_mask=r1, w=w_field, n_drop=N_DOSE)
-    print(f"      r10minus greedy drop done in {time.time() - t:.0f}s -> {int(m_minus.sum()):,} dots")
+    m_minus = bpv.select_exact_marginal_dti_drop(
+        base_mask=r1, drop_pool_mask=r1, w=w_field, n_drop=n_dose
+    )
+    print(f"      r1m10minus greedy drop: {time.time() - t:.0f}s -> {int(m_minus.sum()):,} dots")
 
     t = time.time()
-    m_plus = bpv.select_exact_marginal_dti_add(base_mask=r1, cand_mask=cand_pool, w=w_field, n_add=N_DOSE)
-    print(f"      r10plus greedy add done in {time.time() - t:.0f}s -> {int(m_plus.sum()):,} dots")
+    m_plus = bpv.select_exact_marginal_dti_add(
+        base_mask=r1, cand_mask=cand_pool, w=w_field, n_add=n_dose
+    )
+    print(f"      r1m10plus greedy add:  {time.time() - t:.0f}s -> {int(m_plus.sum()):,} dots")
 
     t = time.time()
-    m_swap = bpv.select_exact_marginal_dti_add(base_mask=m_minus, cand_mask=cand_pool, w=w_field, n_add=N_DOSE)
-    print(f"      r10swap greedy add done in {time.time() - t:.0f}s -> {int(m_swap.sum()):,} dots")
+    m_swap = bpv.select_exact_marginal_dti_add(
+        base_mask=m_minus, cand_mask=cand_pool, w=w_field, n_add=n_dose
+    )
+    print(f"      r1m10swap greedy add:  {time.time() - t:.0f}s -> {int(m_swap.sum()):,} dots")
 
-    # Arithmetic and gate preconditions, asserted before anything is written.
-    assert int(m_minus.sum()) == N_PARENT - N_DOSE == 33_889
-    assert int(m_plus.sum()) == N_PARENT + N_DOSE == 41_419
-    assert int(m_swap.sum()) == N_PARENT
-    assert not (r1 & ~m_minus & m_swap).any(), "swap must not re-add a dropped parent dot"
-    assert not (m_plus & ~r1 & ~h19_5).any(), "added dots must be H19-5 support"
-    assert not (m_plus & ~r1 & (d_cat <= 3.0)).any(), "added dot inside the 3 px collar"
-    for name, m in (("r10minus", m_minus), ("r10plus", m_plus), ("r10swap", m_swap)):
-        assert float(d_cat[m].min()) > 3.0, (name, float(d_cat[m].min()))
-        assert int((m & catalogue).sum()) == 0, name
+    assert int(m_minus.sum()) == n_parent - n_dose == 33_889
+    assert int(m_plus.sum()) == n_parent + n_dose == 41_419
+    assert int(m_swap.sum()) == n_parent == 37_654
+    assert not (m_swap & ~m_minus & r1).any(), "swap must not re-add dropped parent dots"
+    for name, mask in (("r1m10minus", m_minus), ("r1m10plus", m_plus), ("r1m10swap", m_swap)):
+        dmin = float(d_cat[mask].min())
+        if dmin <= MIN_CATALOGUE_PX + 1e-9:
+            raise RuntimeError(f"{name}: dot at {dmin:.4f} px from catalogue breaches the 3 px rule")
+        if int((mask & catalogue).sum()) != 0:
+            raise RuntimeError(f"{name}: mass on catalogue pixels")
 
     w_model = {}
-    for name, mask in (("r10minus", m_minus), ("r10plus", m_plus), ("r10swap", m_swap)):
+    for name, mask in (("r1m10minus", m_minus), ("r1m10plus", m_plus), ("r1m10swap", m_swap)):
         tm = bpv.weighted_expected_dti(mask, w_field)
         w_model[name] = {
             "dti": round(tm["dti"], 6),
-            "delta_vs_r1": round(tm["dti"] - base_terms["dti"], 6),
+            "delta_vs_parent_r1": round(tm["dti"] - base_terms["dti"], 6),
             "T": round(tm["T"], 3),
             "S": float(tm["S"]),
             "M": round(tm["M"], 3),
             "denom": round(tm["denom"], 3),
-            "mean_dT_per_changed_dot": (
-                round((tm["T"] - base_terms["T"]) / N_DOSE, 5) if name == "r10plus" else None
-            ),
+            "note": "IN-SAMPLE and optimistic: w both ranks and scores this arm (PROXY field).",
         }
-        print(f"      w-model {name}: DTI={tm['dti']:.6f} (delta {w_model[name]['delta_vs_r1']:+.6f})")
+        print(f"      w-model {name}: DTI={tm['dti']:.6f} "
+              f"(delta vs R1 {tm['dti'] - base_terms['dti']:+.6f})")
 
-    # REPORT-ONLY control (no release, no ledger row): does the exact-marginal RANKING
-    # beat an equal-sized random draw from the same pool? An ADD arm mechanically raises
-    # T and S together, so a positive arm is only evidence for the ranking if it beats
-    # random receivers of the same size. Seeded, deterministic, never gated.
-    rng = np.random.default_rng(bpv.SEED)
-    pool_y, pool_x = np.nonzero(cand_pool)
-    pick = rng.choice(pool_y.size, size=N_DOSE, replace=False)
-    m_rand = r1.copy()
-    m_rand[pool_y[pick], pool_x[pick]] = True
-    assert int(m_rand.sum()) == N_PARENT + N_DOSE
-    assert float(d_cat[m_rand].min()) > 3.0
-
-    print("[4b/7] Random-donor control on the same pool (report-only) ...")
-    rand_terms = bpv.weighted_expected_dti(m_rand, w_field)
-    rand_report = evaluate_report_only_vs_reference(
-        arms={R1_ID: r1, "random_add": m_rand},
-        foot=foot,
-        catalogue=catalogue,
-        sgmc_path=verified["sgmc_faults_control"],
-        reference=R1_ID,
-    )
-    random_control = {
-        "role": "REPORT-ONLY control: same pool, same count, random receivers (seed %d)" % bpv.SEED,
-        "n_added": int(N_DOSE),
-        "w_model_delta_vs_r1": round(rand_terms["dti"] - base_terms["dti"], 6),
-        "sgmc_off_catalogue_dti": rand_report["random_add"]["sgmc_control"]["dti"],
-        "r1_sgmc_off_catalogue_dti": rand_report[R1_ID]["sgmc_control"]["dti"],
-        "sgmc_delta_vs_r1": round(
-            rand_report["random_add"]["sgmc_control"]["dti"]
-            - rand_report[R1_ID]["sgmc_control"]["dti"],
-            6,
-        ),
-        "block_density_cv_12km": rand_report["random_add"]["block_density_cv"]["cv_12km_120px_interior"],
-    }
-    print(
-        f"      random add: w-model {random_control['w_model_delta_vs_r1']:+.6f} | "
-        f"SGMC {random_control['sgmc_off_catalogue_dti']:.6f} "
-        f"(delta vs R1 {random_control['sgmc_delta_vs_r1']:+.6f})"
-    )
-
-    print("[5/7] Writing GeoTIFFs, re-reading from disk and enforcing the MUST gates ...")
+    print("[6/7] Writing GeoTIFFs (NaN + zeros twins), re-reading from disk, gates ...")
     existing_rows: list[dict[str, str]] = []
+    raw_kept_lines: list[str] = []
+    fieldnames: list[str] = []
+    header_line = ""
     existing_shas: set[str] = {
-        bpv.PARENT_SHA_ZEROS, bpv.PARENT_SHA_NAN, R1_SHA_NAN, R1_SHA_ZEROS
+        bpv.PARENT_SHA_ZEROS, bpv.PARENT_SHA_NAN, PARENT_SHA_NAN, PARENT_SHA_ZEROS
     }
     if LEDGER.is_file():
-        with LEDGER.open("r", newline="", encoding="utf-8") as f:
-            for row in csv.DictReader(f):
+        with LEDGER.open("r", newline="", encoding="utf-8") as fh:
+            reader = csv.DictReader(fh)
+            fieldnames = list(reader.fieldnames or [])
+            for row in reader:
                 if (
                     row.get("axis") == AXIS
-                    and row.get("parent") == R1_ID
-                    and row.get("value") in VALUES
+                    and row.get("parent") == PARENT_ID
+                    and row.get("value") in OWN_VALUES
                 ):
-                    continue  # idempotent re-run replaces only this session's arms
+                    continue  # idempotent re-run replaces only this family
                 existing_rows.append(row)
-                if row.get("sha256"):
-                    existing_shas.add(row["sha256"])
-                if row.get("sha256_zeros"):
-                    existing_shas.add(row["sha256_zeros"])
+                for k in ("sha256", "sha256_zeros"):
+                    if row.get(k):
+                        existing_shas.add(row[k])
+        raw_lines = LEDGER.read_text(encoding="utf-8").splitlines()
+        header_line = raw_lines[0] if raw_lines else ""
+        for line in raw_lines[1:]:
+            parsed = next(csv.reader([line])) if line.strip() else []
+            if (
+                len(parsed) > 3
+                and parsed[2] == AXIS
+                and parsed[1] == PARENT_ID
+                and parsed[3] in OWN_VALUES
+            ):
+                continue
+            raw_kept_lines.append(line)
+    for value in OWN_VALUES:
+        for stale in RELEASES.glob(f"{PARENT_ID}-{AXIS}{value}-*"):
+            stale.unlink()
 
-    for old_p in RELEASES.glob(f"{R1_ID}-MASS*"):
-        old_p.unlink()
-
-    arms = {
-        "r10minus": (
-            m_minus,
-            "h33-2-b2 PRUNEp3px R1; MASS -3765 lowest exact-marginal dots, 100% >3px; pred {pred} MODEL",
-        ),
-        "r10plus": (
-            m_plus,
-            "h33-2-b2 PRUNEp3px R1; MASS +3765 next-ranked H19-5 dots >3px, 41419; pred {pred} MODEL",
-        ),
-        "r10swap": (
-            m_swap,
-            "h33-2-b2 PRUNEp3px R1; MASS swap 3765 lowest for 3765 next-ranked, count 37654; pred {pred} MODEL",
-        ),
-    }
-
+    masks = {"r1m10minus": m_minus, "r1m10plus": m_plus, "r1m10swap": m_swap}
     built: dict[str, dict] = {}
-    for value, (mask, note_tmpl) in arms.items():
-        # Form note carries the PREREGISTERED prediction, not the in-sample w-model number.
-        pred = pre["arms"][[a["value"] for a in pre["arms"]].index(value)]["predicted_change"].split(":")[-1]
+    for value in OWN_VALUES:
         rec = bpv.write_and_verify_variant(
-            mask=mask,
+            mask=masks[value],
             foot=foot,
             catalogue=catalogue,
             sample_path=verified["sample_submission"],
@@ -384,236 +299,211 @@ def main() -> int:
             parent_mask=r1,
             axis=AXIS,
             value=value,
-            note_template=note_tmpl.format(pred=pred, sha8="{sha8}"),
+            note_template=NOTES[value].format(pred=arms_pre[value]["preregistered_prediction"],
+                                              sha8="{sha8}"),
             existing_shas=existing_shas,
-            parent_id=R1_ID,
-            parent_sha_zeros=R1_SHA_ZEROS,
-            parent_sha_nan=R1_SHA_NAN,
-            min_catalogue_px=3.0,
+            parent_id=PARENT_ID,
+            parent_sha_zeros=PARENT_SHA_ZEROS,
+            parent_sha_nan=PARENT_SHA_NAN,
+            date=FIXED_DATE,
+            min_catalogue_px=MIN_CATALOGUE_PX,
             pct_basis="max",
         )
         existing_shas.add(rec["sha256"])
         existing_shas.add(rec["sha256_zeros"])
+        rec["parent_rebuild_verified"] = {
+            "sha256_nan": PARENT_SHA_NAN, "sha256_zeros": PARENT_SHA_ZEROS,
+            "source": "reconstructed in-run by build_snap_r1_variants.reconstruct_r1 "
+                      "and asserted against the published ledger twins",
+        }
+        rec["leakage_canaries"] = {
+            "passed": True, "max_symmetric_auc": max_auc, "channels": canaries,
+        }
+        rec["w_model"] = w_model[value]
+        rec["preregistered_prediction"] = arms_pre[value]["preregistered_prediction"]
+        rec["preregistered_range"] = arms_pre[value]["preregistered_range"]
+        added, removed = masks[value] & ~r1, r1 & ~masks[value]
+        rec["saturation_diagnostic_added_dots"] = _nearest_parent_distance(r1, added)
+        rec["added_dots"] = {
+            "n": int(added.sum()),
+            "min_d_cat_px": round(float(d_cat[added].min()), 3) if added.any() else None,
+            "mean_d_cat_px": round(float(d_cat[added].mean()), 3) if added.any() else None,
+            "mean_w": round(float(w_field[added].mean()), 6) if added.any() else None,
+        }
+        rec["removed_dots"] = {
+            "n": int(removed.sum()),
+            "mean_d_cat_px": round(float(d_cat[removed].mean()), 3) if removed.any() else None,
+            "mean_w": round(float(w_field[removed].mean()), 6) if removed.any() else None,
+            "mean_nn_spacing_px": (
+                round(float(cKDTree(np.column_stack(np.nonzero(r1 & ~removed)))
+                            .query(np.column_stack(np.nonzero(removed)))[0].mean()), 3)
+                if removed.any() else None
+            ),
+        }
+        rec["parent_dots_mean_w"] = round(float(w_field[r1].mean()), 6)
+        (RELEASES / f"{rec['id']}.json").write_text(json.dumps(rec, indent=2) + "\n")
         built[value] = rec
         pd = rec["parent_diff"]
-        print(
-            f"      {rec['id']} | dots={rec['n_dots']:,} | changed={pd['pct_changed_moved']:.2f}% "
-            f"(sym={pd['pct_changed_sym_diff']:.2f}%) | min_dcat={pd['min_dist_catalogue_px']:.4f}px"
-        )
+        print(f"      {rec['id']}\n        dots={rec['n_dots']:,} | added={pd['n_added']:,} "
+              f"removed={pd['n_removed']:,} | changed={pd['pct_changed_moved']:.2f}% (max basis) "
+              f"| min d_cat={pd['min_dist_catalogue_px']:.4f} px")
 
-    print("[6/7] REPORT-ONLY instruments (holdout PROXY, SGMC control, block CV) ...")
-    eval_arms: dict[str, np.ndarray] = {bpv.PARENT_ID: r0, R1_ID: r1}
-    for value, (mask, _) in arms.items():
-        eval_arms[built[value]["id"]] = mask
-    eval_report = evaluate_report_only_vs_reference(
-        arms=eval_arms,
-        foot=foot,
-        catalogue=catalogue,
+    print("[7/7] REPORT-ONLY instruments (catalogue holdout PROXY, SGMC control, block CV) ...")
+    eval_arms = {bpv.PARENT_ID: r0, PARENT_ID: r1}
+    for value in OWN_VALUES:
+        eval_arms[built[value]["id"]] = masks[value]
+    eval_report = bpv.evaluate_report_only_instruments(
+        arms=eval_arms, foot=foot, catalogue=catalogue,
         sgmc_path=verified["sgmc_faults_control"],
-        reference=R1_ID,
     )
+    parent_diag = eval_report[PARENT_ID]
+    r0_diag = eval_report[bpv.PARENT_ID]
 
-    print("[7/7] Writing ledger rows, mechanism cards and the axis report ...")
-    cards = json.loads(CARDS_PATH.read_text()) if CARDS_PATH.is_file() else {}
-    cards = {k: v for k, v in cards.items() if not k.startswith(f"{R1_ID}-MASS")}
-
+    cards = json.loads(CARDS.read_text()) if CARDS.is_file() else {}
+    cards = {
+        k: v for k, v in cards.items()
+        if not any(k.startswith(f"{PARENT_ID}-{AXIS}{val}-") for val in OWN_VALUES)
+    }
     new_rows = []
-    for value, (mask, _) in arms.items():
+    for value in OWN_VALUES:
         rec = built[value]
         diag = eval_report[rec["id"]]
-        r1d = eval_report[R1_ID]
-        pre_arm = next(a for a in pre["arms"] if a["value"] == value)
-        added = mask & ~r1
-        removed = r1 & ~mask
-        rec.update(
-            {
-                "preregistered_prediction": pre_arm["predicted_change"],
-                "preregistered_range": pre_arm["predicted_range"],
-                "w_model": w_model[value],
-                "w_model_caveat": (
-                    "IN-SAMPLE and optimistic: the same field w both ranks and scores the arm, "
-                    "and w is a ~0.68-AUC proxy for fault presence (PROXY, never a score)."
-                ),
-                "r1_w_model": {
-                    "dti": round(base_terms["dti"], 6),
-                    "T": round(base_terms["T"], 3),
-                    "S": float(base_terms["S"]),
-                    "M": round(base_terms["M"], 3),
-                },
-                "r1_reference_diagnostics": r1d,
-                "report_only_diagnostics": diag,
-                "added_dot_saturation": _nearest_parent_distance(r1, added),
-                "added_dots": {
-                    "n": int(added.sum()),
-                    "min_d_cat_px": round(float(d_cat[added].min()), 3) if added.any() else None,
-                    "mean_d_cat_px": round(float(d_cat[added].mean()), 3) if added.any() else None,
-                    "mean_w": round(float(w_field[added].mean()), 6) if added.any() else None,
-                },
-                "removed_dots": {
-                    "n": int(removed.sum()),
-                    "mean_d_cat_px": round(float(d_cat[removed].mean()), 3) if removed.any() else None,
-                    "mean_w": round(float(w_field[removed].mean()), 6) if removed.any() else None,
-                },
-                "parent_dots_mean_w": round(float(w_field[r1].mean()), 6),
-                "leakage_canaries": {
-                    "passed": True,
-                    "max_symmetric_auc": max_auc,
-                    "channels": canaries,
-                },
-            }
-        )
+        port = _portable_delta(diag, parent_diag)
+        rec["report_only_diagnostics"] = diag
+        rec["parent_reference_diagnostics"] = parent_diag
+        rec["r0_reference_diagnostics"] = r0_diag
+        rec["portable_report_only_vs_parent"] = port
         (RELEASES / f"{rec['id']}.json").write_text(json.dumps(rec, indent=2) + "\n")
-        cards[rec["id"]] = {
-            "parent": R1_ID,
+
+        card = {
+            "parent": PARENT_ID,
             "axis": AXIS,
             "value": value,
-            "preregistered_prediction": pre_arm["predicted_change"],
-            "preregistered_range": pre_arm["predicted_range"],
-            **CARDS[value],
-            "post_build_w_model_delta": f"{w_model[value]['delta_vs_r1']:+.6f}",
+            "preregistered_prediction": arms_pre[value]["preregistered_prediction"],
+            "preregistered_range": arms_pre[value]["preregistered_range"],
+            "hypothesis": arms_pre[value]["mechanism"],
+            "mechanism": arms_pre[value]["operation"] + ". " + arms_pre[value]["mechanism"],
+            "non_fault_mimic": arms_pre[value]["non_fault_mimic"],
+            "predicted_sign_size": arms_pre[value]["predicted_sign_size"],
+            "falsifier": arms_pre[value]["falsifier"],
+            "post_build_w_model_delta": f"{w_model[value]['delta_vs_parent_r1']:+.6f}",
             "post_build_report_only": {
-                "holdout_proxy_delta_vs_R1": diag["holdout_proxy"]["paired_delta_vs_reference"],
-                "holdout_proxy_ci95": diag["holdout_proxy"]["paired_delta_vs_reference_ci95"],
-                "sgmc_off_catalogue_dti": diag["sgmc_control"]["dti"],
-                "r1_sgmc_off_catalogue_dti": r1d["sgmc_control"]["dti"],
-                "cv_12km": diag["block_density_cv"]["cv_12km_120px_interior"],
-                "r1_cv_12km": r1d["block_density_cv"]["cv_12km_120px_interior"],
-                "random_donor_sgmc_delta_vs_r1": random_control["sgmc_delta_vs_r1"],
+                "holdout_proxy_delta_vs_parent": port["holdout_proxy_delta_vs_parent"],
+                "sgmc_off_catalogue_dti": port["sgmc_off_catalogue_dti"],
+                "sgmc_delta_vs_parent": port["sgmc_delta_vs_parent"],
+                "cv_12km": port["cv_12km"],
+                "cv_12km_parent": port["cv_12km_parent"],
             },
+            "evidence_discipline": (
+                "Every number above is PROXY or MODEL. The blind SGMC control orders arms; it is "
+                "not a score. A live |delta| < 0.01 is no evidence (Brief §5)."
+            ),
         }
-        hp = diag["holdout_proxy"]
-        new_rows.append(
-            {
-                "id": rec["id"],
-                "parent": R1_ID,
-                "axis": AXIS,
-                "value": value,
-                "n_dots": str(rec["n_dots"]),
-                "pct_changed": f"{rec['parent_diff']['pct_changed_moved']:.2f}",
-                "sha256": rec["sha256"],
-                "sha256_zeros": rec["sha256_zeros"],
-                "status": "BUILT",
-                "predicted_change": f"MODEL:{w_model[value]['delta_vs_r1']:+.3f}",
-                "predicted_range": pre_arm["predicted_range"],
-                "ranking_basis": RANKING_BASIS,
-                "receipt_score": "",
-                "receipt_date": "",
-                "description": (
-                    pre_arm["operation"]
-                    + f" from R1 (gate-clean parent, min d_cat 3.1623 px). "
-                    + f"preregistered MODEL {pre_arm['predicted_change'].split(':')[-1]} (not a w-model fit); "
-                    + f"post-build w-model delta "
-                    + f"{w_model[value]['delta_vs_r1']:+.4f} (in-sample, optimistic); holdout PROXY "
-                    + f"{hp['dti']:.5f} (delta vs R1 {hp['paired_delta_vs_reference']:+.5f}, "
-                    + f"n={hp['withheld_positives']}); SGMC off-cat {diag['sgmc_control']['dti']:.5f} "
-                    + f"vs R1 {r1d['sgmc_control']['dti']:.5f}; CV12km "
-                    + f"{diag['block_density_cv']['cv_12km_120px_interior']:.4f} vs R1 "
-                    + f"{r1d['block_density_cv']['cv_12km_120px_interior']:.4f}; "
-                    + f"symmetric difference {rec['parent_diff']['pct_changed_sym_diff']:.2f}% of parent dots; "
-                    + (
-                        f"ranking premium over same-pool random receivers "
-                        f"{diag['sgmc_control']['dti'] - random_control['sgmc_off_catalogue_dti']:+.5f} SGMC; "
-                        if added.any()
-                        else ""
-                    )
-                    + f"min d_cat {rec['parent_diff']['min_dist_catalogue_px']:.4f} px "
-                    + f"({rec['parent_diff']['dots_le_3px']:,} dots <=3 px)."
-                ),
-                "recommendation": RECOMMENDATION[value],
-            }
-        )
+        cards[rec["id"]] = card
 
-    fieldnames = [
-        "id", "parent", "axis", "value", "n_dots", "pct_changed", "sha256", "sha256_zeros",
-        "status", "predicted_change", "predicted_range", "ranking_basis", "receipt_score",
-        "receipt_date", "description", "recommendation",
-    ]
-    with LEDGER.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator="\n")
-        writer.writeheader()
-        for r in [*existing_rows, *new_rows]:
-            writer.writerow({k: r.get(k, "") for k in fieldnames})
-    CARDS_PATH.write_text(json.dumps(cards, indent=2) + "\n")
+        pred = arms_pre[value]["preregistered_prediction"]
+        pd = rec["parent_diff"]
+        new_rows.append({
+            "id": rec["id"],
+            "parent": PARENT_ID,
+            "axis": AXIS,
+            "value": value,
+            "n_dots": str(rec["n_dots"]),
+            "pct_changed": f"{pd['pct_changed_moved']:.2f}",
+            "sha256": rec["sha256"],
+            "sha256_zeros": rec["sha256_zeros"],
+            "status": "BUILT",
+            "predicted_change": f"MODEL:{pred}",
+            "predicted_range": arms_pre[value]["preregistered_range"],
+            "ranking_basis": RANKING_BASIS,
+            "receipt_score": "",
+            "receipt_date": "",
+            "description": (
+                f"{DESCRIPTIONS[value]} Preregistered {pred} MODEL; post-build w-model delta "
+                f"{w_model[value]['delta_vs_parent_r1']:+.4f} vs R1 (in-sample, optimistic); "
+                f"holdout PROXY {diag['holdout_proxy']['dti']:.6f} "
+                f"(delta vs R1 {port['holdout_proxy_delta_vs_parent']:+.6f}, "
+                f"n={port['holdout_withheld_positives']}); SGMC off-cat {port['sgmc_off_catalogue_dti']:.6f} "
+                f"vs R1 {parent_diag['sgmc_control']['dti']:.6f} "
+                f"(delta {port['sgmc_delta_vs_parent']:+.6f}); CV12km {port['cv_12km']:.4f} vs R1 "
+                f"{port['cv_12km_parent']:.4f}; min d_cat {pd['min_dist_catalogue_px']:.4f} px "
+                f"({pd['dots_le_3px']:,} dots <=3 px)."
+            ),
+            "recommendation": _recommendation(
+                value, port["sgmc_delta_vs_parent"], w_model[value]["delta_vs_parent_r1"]
+            ),
+        })
+
+    # ---- ledger write (kept rows byte-verbatim; only this family's rows re-serialised) ----
+    buf = io.StringIO()
+    writer = csv.DictWriter(buf, fieldnames=fieldnames, lineterminator="\n")
+    for row in new_rows:
+        writer.writerow({k: row.get(k, "") for k in fieldnames})
+    body = buf.getvalue().rstrip("\n")
+    with LEDGER.open("w", newline="", encoding="utf-8") as fh:
+        fh.write(header_line + "\n")
+        for line in raw_kept_lines:
+            fh.write(line + "\n")
+        fh.write(body + "\n")
+    CARDS.write_text(json.dumps(cards, indent=2) + "\n")
 
     summary = {
         "schema": "gems88.mass-r1-axis-report.v1",
         "session_date": "2026-10-23",
         "axis": AXIS,
-        "axis_note": pre["axis_selection"],
+        "preregistration": "registry/preregistration_mass_r1.json",
         "parent": {
-            "id": R1_ID,
-            "n_dots": N_PARENT,
-            "zeros_sha256": R1_SHA_ZEROS,
-            "nan_sha256": R1_SHA_NAN,
-            "min_d_cat_px": round(float(d_r1.min()), 4),
-            "reconstructed_and_sha_asserted": True,
+            "id": PARENT_ID,
+            "n_dots": n_parent,
+            "sha256_nan": PARENT_SHA_NAN,
+            "sha256_zeros": PARENT_SHA_ZEROS,
+            "min_d_cat_px": round(float(d_cat[r1].min()), 4),
             "w_model": {
                 "dti": round(base_terms["dti"], 6),
                 "T": round(base_terms["T"], 3),
                 "S": float(base_terms["S"]),
                 "M": round(base_terms["M"], 3),
-                "W": round(base_terms["W"], 3),
             },
         },
         "r0_reference": {
             "id": bpv.PARENT_ID,
+            "rebuilt_zeros_sha256": lin["rebuilt_zeros_sha256"],
+            "rebuilt_nan_sha256": lin["rebuilt_nan_sha256"],
             "n_dots": int(r0.sum()),
-            "zeros_sha256": lin["rebuilt_zeros_sha256"],
-            "nan_sha256": lin["rebuilt_nan_sha256"],
-            "dots_strictly_below_3px": int((r0 & (d_cat < 3.0)).sum()),
+            "w_model_dti": round(r0_terms["dti"], 6),
         },
         "verified_inputs": len(verified),
         "leakage_canaries": {"passed": True, "max_symmetric_auc": max_auc, "channels": canaries},
         "ranking_definition": pre["ranking_definition"],
-        "dose": {"fraction": FRACTION, "n_dots": N_DOSE},
+        "dose": {"fraction": FRACTION, "n_dots": n_dose},
         "candidate_pool_px": int(cand_pool.sum()),
-        "preregistered_predictions": {a["value"]: a["predicted_change"] for a in pre["arms"]},
-        "w_model_deltas_vs_r1": w_model,
-        "random_donor_control": random_control,
+        "preregistered_predictions": {k: v["preregistered_prediction"] for k, v in arms_pre.items()},
+        "w_model_deltas": w_model,
         "report_only": eval_report,
-        "variants": [{k: v for k, v in built[name].items() if k != "leakage_canaries"} for name in arms],
+        "portable_report_only_vs_parent": {
+            v: _portable_delta(eval_report[built[v]["id"]], parent_diag) for v in OWN_VALUES
+        },
+        "variants": [{k: v for k, v in built[name].items()} for name in OWN_VALUES],
         "elapsed_seconds": round(time.time() - t0, 2),
         "git_sha": bpv.git_sha(),
+        "external_data": "none; 15 pinned manifest inputs only",
     }
     REPORT.write_text(json.dumps(summary, indent=2) + "\n")
 
-    print("\n=== SUMMARY OF BUILT AXIS=MASS (parent R1) VARIANTS ===")
-    for value in arms:
+    print("\n=== SUMMARY: AXIS=MASS on R1 (all report-only values are PROXY/MODEL, never scores) ===")
+    print(f"  parent R1  N={n_parent:,}  SGMC={parent_diag['sgmc_control']['dti']:.6f}  "
+          f"CV12km={parent_diag['block_density_cv']['cv_12km_120px_interior']:.4f}")
+    for value in OWN_VALUES:
         rec = built[value]
-        diag = eval_report[rec["id"]]
-        r1d = eval_report[R1_ID]
-        hp, sg, cv = diag["holdout_proxy"], diag["sgmc_control"], diag["block_density_cv"]
-        print(
-            f"  {rec['id']} | dots={rec['n_dots']:,} | changed={rec['parent_diff']['pct_changed_moved']:.2f}% "
-            f"| min_dcat={rec['parent_diff']['min_dist_catalogue_px']:.4f}px\n"
-            f"      pred {pre_arm_pred(pre, value)} | w-model {w_model[value]['delta_vs_r1']:+.4f} | "
-            f"holdout PROXY {hp['dti']:.6f} (dvs R1 {hp['paired_delta_vs_reference']:+.6f}) | "
-            f"SGMC {sg['dti']:.6f} vs R1 {r1d['sgmc_control']['dti']:.6f} (+{sg['dti'] - r1d['sgmc_control']['dti']:+.6f}) | "
-            f"CV12km {cv['cv_12km_120px_interior']:.4f} vs {r1d['block_density_cv']['cv_12km_120px_interior']:.4f}"
-        )
-    print(f"\nreport: {REPORT.relative_to(ROOT)}  |  elapsed {time.time() - t0:.0f}s")
+        port = summary["portable_report_only_vs_parent"][value]
+        print(f"  {rec['id']}\n    N={rec['n_dots']:,} changed={rec['parent_diff']['pct_changed_moved']:.2f}% "
+              f"min_dcat={rec['parent_diff']['min_dist_catalogue_px']:.4f}px | "
+              f"SGMC={port['sgmc_off_catalogue_dti']:.6f} (Δ{port['sgmc_delta_vs_parent']:+.6f}) | "
+              f"holdout Δ{port['holdout_proxy_delta_vs_parent']:+.6f} | "
+              f"CV12km={port['cv_12km']:.4f} | w-model Δ{w_model[value]['delta_vs_parent_r1']:+.6f}")
+    print(f"\n  ledger rows added: {len(new_rows)} (total now "
+          f"{len(raw_kept_lines) + len(new_rows)}); report: evidence/mass_r1_axis_report.json")
     return 0
-
-
-def pre_arm_pred(pre: dict, value: str) -> str:
-    return next(a for a in pre["arms"] if a["value"] == value)["predicted_change"]
-
-
-RECOMMENDATION = {
-    "r10minus": (
-        "HOLD as a lead, keep as the dose control: if it gains >= +0.01 live, R1 is over-emitted and the "
-        "drop direction (not the add direction) is the final-file lever. Gate-clean (100% of dots >3 px)."
-    ),
-    "r10plus": (
-        "SLOT CANDIDATE (2nd priority behind the R1 anchor): the gate-clean form of MASS's only "
-        "instrument-positive arm. A live gain >= +0.01 makes 41,419 dots the final-file count; "
-        "|delta| < 0.01 is no evidence and retires MASS on both parents."
-    ),
-    "r10swap": (
-        "SLOT CANDIDATE (3rd priority): count-matched, so it isolates ranking quality from mass and spends "
-        "no extra denominator mass. Preferred over r10plus at equal score."
-    ),
-}
 
 
 if __name__ == "__main__":

@@ -1,18 +1,31 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Concurrent session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (`registry/preregistration_mass_r1.json`; IR-88-52; no slot used, nothing submitted)
+## Current session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (this PR, IR-88-52; **no slot candidate** — the queue below is unchanged)
 
-**Three new gate-clean candidates.** Parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from the pinned lineage and SHA-asserted (`6f7ae705…`/`dc6f090d…`) before editing, after `R0` rebuilt byte-exactly (15/15 pins). Brief §5's literal R0 form is unsatisfiable for non-PRUNE axes (R0 keeps 1,611 sub-`3 px` dots, IR-88-43/47), so the same single-axis edit ran on `R1`. Every arm: 10% dose (3,765 dots), rank = the parent's own recorded recipe, **100% of dots `>3 px`**, deterministic (`SEED=20261023`), `validate_variant.py` 6/6 twin PASS (`registry/mass_r1_validation.json`), files re-read from disk.
+**Three new gate-clean candidates, all built from parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
+(re-derived and SHA-asserted `6f7ae705…`/`dc6f090d…` in-run after `R0` rebuilt byte-exactly, 15/15 pins
+verified). No slot was used and no submission was made.** Preregistered before any computation in
+`registry/preregistration_mass_r1.json`; the question was whether R0's mass curve survives removal of the
+`3 px` collar confound. It does: `−0.0074 / +0.0027 / −0.0036` on R1 versus `−0.0081 / +0.0029 / −0.0040`
+on R0 (max difference `0.00066`), so **MASS is closed on both parents** and none of these three files is
+queued for a slot. Blind off-catalogue SGMC `PROXY` (report-only, never a gate): parent `R1 0.096083`,
+`r1m10minus 0.088680`, `r1m10plus 0.098745`, `r1m10swap 0.092489`. Holdout proxy is structurally `0.000000`
+(`n = 22,663` withheld positives, IR-88-20/35). Every dot in all three files is `> 3 px` from the catalogue
+(`min d_cat 3.1623 px`, `0` dots `<= 3 px`); format gates PASS on the disk bytes
+(`registry/mass_r1_variant_validation.json`, 6/6 PASS, hardened `validate_variant.py`).
 
-| Arm | Exact file (primary; fallback `<name>-zeros.tif`) | Form note (as emitted) | Blind `SGMC` `PROXY` vs `R1 0.096083` |
-|---|---|---|---|
-| `r10plus` (`N=41,419`) | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df` | `h33-2-b2 PRUNEp3px R1; MASS +3765 next-ranked H19-5 dots >3px, 41419; pred +0.004 MODEL` (87 chars) | `0.098745` (`+0.00266`; random donors alone give `+0.00125`) |
-| `r10minus` (`N=33,889`) | `…-MASSr10minus-20261023-e56b0e5a` | `h33-2-b2 PRUNEp3px R1; MASS -3765 lowest exact-marginal dots, 100% >3px; pred -0.004 MODEL` (90 chars) | `0.088680` (`−0.00740`) |
-| `r10swap` (`N=37,654`) | `…-MASSr10swap-20261023-20dc829f` | `h33-2-b2 PRUNEp3px R1; MASS swap 3765 lowest for 3765 next-ranked, count 37654; pred +0.002 MODEL` (97 chars) | `0.092489` (`−0.00359`) |
+| # | Exact name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | ≤140-char form note | SHA-256 primary / zeros | Status |
+|
+**Report-only controls added in a second session (IR-88-53, no file released or submitted):** a same-pool, same-count random add scores `0.097335` (`+0.00125` vs `R1`), the 3,765 *worst* pool cells score `0.096862` (`+0.00078`), the 3,765 *best* single-step cells `0.097854` (`+0.00177`), against the greedy arm's `0.098745` (`+0.00266`). Half of the arm's margin is the count itself; the entire ranking span is `0.00099` SGMC. Read `r1m10plus` as "more admissible dots", not "better dots" (`evidence/mass_r1_random_donor_control.json`).
 
-**Recorded hashes:** `r10plus` primary `b2d704df6727…`, zeros `fa18a8504766…`; `r10minus` primary `e56b0e5a5c37…`, zeros `e01dd362911e…`; `r10swap` primary `20dc829f271a…`, zeros `93f526913384…` (full values in each `releases/<id>.json`). Rebuild rather than trust: `python3 scripts/build_mass_r1_variants.py` regenerates them deterministically; `releases/*.tif` are gitignored and are NOT in the repository. Then re-run `python3 scripts/validate_variant.py releases/<id>.tif releases/<id>-zeros.tif` on the actual bytes.
+---|---|---|---|---|
+| — | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df` | `R1(PRUNEp3px); MASS +3765 next-ranked un-emitted dots d_cat>3px ->41419; pred -0.011 MODEL` | `b2d704df6727…81fdd93` / `fa18a8504766…bf369d30` | built + validated, **not queued** (`+0.0027` `< 0.01` floor) |
+| — | `…-MASSr1m10swap-20261023-20dc829f` | `R1(PRUNEp3px); MASS swap 3765 lowest for 3765 next-ranked, count fixed 37654; pred +0.006 MODEL` | `20dc829f271a…1586d880` / `93f526913384…bc398325` | built + validated, **not queued** (`−0.0036`) |
+| — | `…-MASSr1m10minus-20261023-e56b0e5a` | `R1(PRUNEp3px); MASS -3765 lowest exact-marginal dots 37654->33889; pred +0.002 MODEL` | `e56b0e5a5c37…6adf7682` / `e01dd362911e…73f3c162` | built + validated, **not queued** (`−0.0074`) |
 
-**Queue position:** `r10plus` is **not** ahead of the `p3space35`/`scarp1px` pair — its `+0.00266` is half a count effect, and IR-88-51 (concurrent session) shows the `SGMC` control cannot distinguish a crest move from a trough move. It is the ready slot-3 option if slot 2 loses, or if the human prefers a mass-then-geometry pairing over the spaced-refill arm.
+Rebuild (deterministic, fixed seed): `python3 scripts/build_mass_r1_variants.py`; the rasters are gitignored,
+so a fresh clone must regenerate them before any upload. Do **not** spend a slot on these files: their
+preregistered falsifiers fired and the only positive arm sits at a quarter of the evidence floor.
 
 ---
 

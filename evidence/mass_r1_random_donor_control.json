@@ -1,0 +1,77 @@
+{
+  "schema": "gems88.mass-r1-controls.v1",
+  "role": "REPORT-ONLY controls for the merged (R1, MASS, r1m10*) family (PR #46). Never a gate; no raster is released, ledgered or submitted.",
+  "created_utc": "2026-10-24T00:05:42Z",
+  "git_sha": "20289b213d9cb08eedf474a902dcb1bd249a8023",
+  "seed": 20261023,
+  "dose": {
+    "fraction": 0.1,
+    "n_dots": 3765
+  },
+  "parent": {
+    "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "n_dots": 37654,
+    "sgmc_off_catalogue_dti": 0.096083,
+    "w_model_dti": 0.281537
+  },
+  "candidate_pool_px": 59310,
+  "controls": {
+    "static_top": {
+      "evidence_label": "PROXY",
+      "n_dots": 41419,
+      "n_added": 3765,
+      "sgmc_off_catalogue_dti": 0.097854,
+      "sgmc_delta_vs_r1": 0.00177,
+      "w_model_delta_vs_r1": 0.006705,
+      "mean_static_dT_per_added_dot": 0.199649,
+      "cv_12km": 0.5788
+    },
+    "random": {
+      "evidence_label": "PROXY",
+      "n_dots": 41419,
+      "n_added": 3765,
+      "sgmc_off_catalogue_dti": 0.097335,
+      "sgmc_delta_vs_r1": 0.001252,
+      "w_model_delta_vs_r1": 0.003694,
+      "mean_static_dT_per_added_dot": 0.111704,
+      "cv_12km": 0.5741
+    },
+    "static_bottom": {
+      "evidence_label": "PROXY",
+      "n_dots": 41419,
+      "n_added": 3765,
+      "sgmc_off_catalogue_dti": 0.096862,
+      "sgmc_delta_vs_r1": 0.000779,
+      "w_model_delta_vs_r1": 0.000272,
+      "mean_static_dT_per_added_dot": 0.056639,
+      "cv_12km": 0.5737
+    }
+  },
+  "merged_family_arms": {
+    "r1m10minus": 0.08868,
+    "r1m10plus": 0.098745,
+    "r1m10swap": 0.092489
+  },
+  "leakage_canaries": {
+    "passed": true,
+    "max_symmetric_auc": 0.56925,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    }
+  },
+  "reading": "Compare sgmc_delta_vs_r1 across static_bottom < random < static_top. The random control is the pure count effect of adding 3,765 admissible dots; static_top minus random is the information in the ranking. The greedy arm's own value is quoted from evidence/mass_r1_axis_report.json, not recomputed here."
+}

@@ -230,11 +230,7 @@ def test_dose_and_compliance_are_exact() -> None:
 def test_ledger_rows_are_unique_and_complete() -> None:
     path = ROOT / "ledger" / "submissions.csv"
     rows = list(csv.DictReader(path.open(newline="")))
-    # scoped to this family's parent: the R1 MASS bracket reuses the same value names
-    mass = [
-        r for r in rows
-        if r["axis"] == AXIS and r["parent"] == bpv.PARENT_ID and r["value"] in VALUES
-    ]
+    mass = [r for r in rows if r["axis"] == AXIS and r["value"] in VALUES]
     assert len(mass) == 3, [r["id"] for r in mass]
     shas = [r["sha256"] for r in rows if r["sha256"]] + [r["sha256_zeros"] for r in rows if r["sha256_zeros"]]
     assert len(shas) == len(set(shas)), "duplicate SHA-256 in ledger"
@@ -253,9 +249,12 @@ def test_ledger_rows_are_unique_and_complete() -> None:
 
 def test_mechanism_cards_cover_every_arm_for_a_geologist() -> None:
     cards = json.loads((ROOT / "ledger" / "mechanism_cards.json").read_text())
+    # Scope to THIS family (parent R0, values r10*). The later gate-clean MASS-on-R1
+    # family (`-MASSr1m10*`) shares the "-MASSr" prefix and must not break this test.
     mine = {
-        k: v for k, v in cards.items()
-        if f"-{AXIS}r" in k and v.get("parent") == bpv.PARENT_ID
+        k: v
+        for k, v in cards.items()
+        if k.startswith("h33-h33-2-b2-MASSr10") and v.get("parent") == "h33-h33-2-b2"
     }
     assert len(mine) == 3
     for card in mine.values():
