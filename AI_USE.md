@@ -3,6 +3,13 @@
 - **Competing Entity (1 human competitor):** `buffedlizard55-lab` (sole submitter, slot owner, and blind-final selector).
 - **AI System Used:** Arena.ai Agent Mode across the recorded Arena branches, including this PR branch `arena/b981518a-gemsdoe88` and the human-assigned CONCENTRATION branch `arena/2918f370-gemsdoe88`. Include this disclosure in the final competition narrative per Official Rules §3.6 (https://www.drivendata.org/competitions/306/competition-doe-gems/).
 
+## Session 2026-10-24 — unique candidate, gate v3, three pre-registered experiments (branch `arena/f566c0e1-gemsdoe88`)
+
+- **Disclosure location:** the NLR rules require the AI-use statement in the submission *narrative* (rules §3.2, "Indication of use of generative AI"); earlier headings of this file cite §3.6.
+- **Human decided:** the standing prompt (`PROMPT.md`): unique TIFF, no human inspection, three passes, PR and merge. The human is the sole submitter and selector; **no slot was picked or spent**.
+- **AI decided:** the hypotheses, pre-registration, experiments E1-E3, the v3 gate policy (like-for-like reading of a vacuous rule, fingerprint screen), the out-of-fold production fix, and all documentation. All numbers are from files on disk; scores from the owner's prior sites are labelled owner-reported; nothing is `ORGANIZER-CONFIRMED`.
+- **Limits of AI work:** hidden labels are unobservable; the portal could not be reached; the original prompt text was not available verbatim (IR-88-68).
+
 ## Session 2026-10-23 — `AXIS = SNAP` fixpoint ladder + sign-flip control on `R1` (branch `arena/5581a1c4-gemsdoe88`)
 
 - **Human decided (standing instruction):** "Do not prompt me over choosing an Axis for the session, pick your own session." The human remains the sole submitter, owns the upload decision, `TOP_PUBLIC`, the quota, and the receipt fields. The human supplied no axis, no target number and no quota confirmation for this session.
@@ -206,7 +213,7 @@
 - **AI did NOT:** submit anything, contact `drivendata.org`/`dropbox.com`, spend a slot, fill any receipt field, edit a prediction after seeing a proxy, build a proposed-only axis, or mint a collar value already in the ledger (preflight rejects repeated `(parent, axis, value)` pairs and ledger hashes).
 - **Determinism:** a second, independent process rebuilt all three masks from the pinned inputs and matched the released TIFFs bit-for-bit; R0 rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`); canary maximum `0.56925` matches the prior PRUNE sweep exactly.
 - **Human must decide/supply:** current `TOP_PUBLIC` + date, rolling-week/total slot balance, the `2026-12-03` deadline confirmation, data-use authorization for the mirrored inputs, whether `R1 = PRUNEp3px` remains the slot-1 anchor, any upload (one twin per slot), verbatim `receipt_score`/`receipt_date`, and the single blind final file. Every number this session is `PROXY`/`MODEL` except the R0 `CLAIM` `0.2778`.
-## Session `2026-10-24d` — `H88-MRR-BPR` Blockwise Magnetic Residual (branch `arena/f83ee255-gemsdoe88`, IR-88-59–61)
+## Session `2026-10-24d` — `H88-MRR-BPR` Blockwise Magnetic Residual (branch `arena/f83ee255-gemsdoe88`, IR-88-72–74)
 
 - **Human required:** an end-to-end review, a genuinely new competition-format TIFF, ranked untried geology before implementation, blocked whole-component validation, leakage and literal registry gates, an unambiguous download/submit decision, a <=140-character note, a synchronized machine run card and GitHub Pages guide, three verification passes, zero automatic portal slots, and a merged PR.
 - **AI preregistered before execution:** five magnetic-residual hypotheses in `research/candidate-hypotheses-20261024-mrr.md`; selected only Rank 1 `MRR-BPR-88`; froze bands 1/2/9/14/15, 100x100-pixel local ridge regression, four derived channels, MODEL expectation `+0.006 [-0.012,+0.024]`, canary/holdout/promotion/uniqueness thresholds, and one-experiment scope in `registry/preregistration_mrr88.json`.

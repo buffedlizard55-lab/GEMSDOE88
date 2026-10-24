@@ -129,6 +129,8 @@ def test_preregistration_ledger_cards_receipts_and_validator_consistency() -> No
         assert pair not in seen_pairs, f"Duplicate ledger (parent, axis, value): {pair}"
         seen_pairs.add(pair)
         for col in ("sha256", "sha256_zeros"):
+            if not r[col] or (col == "sha256_zeros" and r[col] == r["sha256"]):
+                continue  # single-file de-novo rows have no distinct NaN twin
             assert r[col] not in seen_shas, f"Duplicate SHA-256 in ledger: {r[col]}"
             seen_shas.add(r[col])
 

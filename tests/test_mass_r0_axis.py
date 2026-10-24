@@ -232,7 +232,7 @@ def test_ledger_rows_are_unique_and_complete() -> None:
     rows = list(csv.DictReader(path.open(newline="")))
     mass = [r for r in rows if r["axis"] == AXIS and r["value"] in VALUES]
     assert len(mass) == 3, [r["id"] for r in mass]
-    shas = [r["sha256"] for r in rows if r["sha256"]] + [r["sha256_zeros"] for r in rows if r["sha256_zeros"]]
+    shas = [r["sha256"] for r in rows if r["sha256"]] + [r["sha256_zeros"] for r in rows if r["sha256_zeros"] and r["sha256_zeros"] != r["sha256"]]  # single-file de-novo rows: sha256_zeros == sha256 (no distinct NaN twin), count once
     assert len(shas) == len(set(shas)), "duplicate SHA-256 in ledger"
     for r in mass:
         assert r["status"] == "BUILT"

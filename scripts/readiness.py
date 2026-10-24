@@ -110,6 +110,7 @@ def current_status(root=ROOT):
         'ok_to_download_for_research': bool(report['ok_to_download']),
         'ok_to_submit': False,  # selector has never approved a weekly slot
         'raster_sha256': report['output_sha256'],
+        'policy': 'binding-literal-all-registry-v1',
     }
 
 
