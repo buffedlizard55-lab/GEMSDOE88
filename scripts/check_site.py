@@ -97,6 +97,24 @@ def main(root: Path = ROOT) -> None:
     assert sha256(qtsk_tif) == qtsk["raster"]["sha256"]
     assert sha256(qtsk_zip) == qtsk["raster"]["zip_sha256"]
 
+    shore = json.loads((root / "registry/shore_hinge_run_card.json").read_text())
+    shore_web = json.loads((docs / "data/shore_hinge_run_card.json").read_text())
+    assert shore == shore_web, "Pages SHORE-HINGE card differs from canonical registry card"
+    assert shore["verdict"] == "negative" and shore["ok_to_download"] is True and shore["ok_to_submit"] is False
+    assert 0 < len(shore["submission_name"]) <= 140 and 0 < len(shore["submission_note"]) <= 140
+    shore_tif = root / shore["artifact"]
+    shore_zip = root / shore["zip_artifact"]
+    assert shore_tif.is_file() and shore_zip.is_file()
+    assert sha256(shore_tif) == shore["validator"]["raster_sha256"] == shore["submission"]["sha256"]
+    assert sha256(shore_zip) == shore["validator"]["zip_sha256"] == shore["submission"]["zip_sha256"]
+    with zipfile.ZipFile(shore_zip) as archive:
+        assert archive.namelist() == [shore_tif.name]
+        assert archive.read(shore_tif.name) == shore_tif.read_bytes()
+    assert shore["holdout_dti"]["evaluator_version"] == "gems57-pooled-hide-v2"
+    assert shore["holdout_dti"]["withheld_positive_pixels"] == 22_893
+    assert shore["uniqueness"]["unique_like_for_like"] is True
+    assert shore["validator"]["fingerprint_pass"] is True
+
     assert card == web_card, "Pages MVRD card differs from canonical registry card"
     assert gate == web_gate, "Pages MVRD gate differs from canonical registry gate"
     assert card["submission_name"] == MVRD_NAME and card["verdict"] == "negative"
@@ -169,6 +187,9 @@ def main(root: Path = ROOT) -> None:
     assert qtsk_tif.name in index and qtsk_tif.name in executive
     assert qtsk["submission_name"] in index and qtsk["submission_name"] in executive
     assert qtsk["raster"]["sha256"][:16] in index and qtsk["raster"]["sha256"][:16] in executive
+    assert shore_tif.name in index and shore_tif.name in executive
+    assert shore["submission_name"] in index and shore["submission_name"] in executive
+    assert shore["validator"]["raster_sha256"][:16] in index and shore["validator"]["raster_sha256"][:16] in executive
     assert "literal_protocol_audit.json" in index and "literal_protocol_audit.json" in executive
     assert "DOWNLOAD FOR RESEARCH: YES" in index
     assert "SUBMIT: NO" in index

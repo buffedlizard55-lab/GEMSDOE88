@@ -1,5 +1,18 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> ## ⛔ Latest session lane (2026-10-24): `H88-SHORE-HINGE` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (binding literal `17GEMSDOE` dense witness & holdout structural-zero)
+> [⬇ **Download H88-SHORE-HINGE GeoTIFF (`.tif`, 777 KB, research only)**](docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`)**](docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/shore_hinge_run_card.json) · [5 Ranked Hypotheses](research/candidate-hypotheses-20261024-shore-even.md) · [PhD Forensic Answer](research/h33-shore-phd-answer-20261024.md) · [Executive Submission Guide](docs/executive-summary.html).
+>
+> | Gate / Field | Machine Result | Binding Evidence |
+> | :--- | :--- | :--- |
+> | **OK to download for research?** | **YES (`OK TO DOWNLOAD`)** | `1` band `float32`, `EPSG:32611`, `3730×3292`, exact `sample_submission.tif` geotransform `(100,0,243350,0,-100,4508550)`, `0` NaN/Inf, all 12,279,160 values in `[0.0,1.0]` (`{0,1}` binary), `nodata=None`, `37,654` positive pixels (`0` outside footprint, `0` on `existing_faults.tif`, min `d_cat=3.162 px`), LZW 1-row-strip parity, byte-identical single-member ZIP; independent rasterio + PIL/tifffile re-read. |
+> | **Holdout / Fingerprint / Uniqueness** | **FINGERPRINT PASS · LIKE-FOR-LIKE UNIQUE · HOLDOUT STRUCTURAL-ZERO** | Fingerprint `share_gt25=44.3% ≥35%`, `share_le2=0.0%`, median `21.4 px`; like-for-like `max 3-px overlap 0.4028 ≤0.70` vs `gems19_h19_5`, `max |ρ| 0.0318 ≤0.90` (19 validation rasters); HOLDOUT-DTI `0.0000 [0.0,0.0]` (`gems57-pooled-hide-v2`, 22,893 withheld) — structural zero for any catalogue-avoiding raster (truth on masked catalogue, IR-88-20/35) vs R0 `0.0039`; literal dense witness `1.0000 >0.70` (vacuous). |
+> | **OK to submit to competition?** | **NO — `DO NOT SUBMIT` (`ok_to_submit = false`)** | Binding literal rule (`17GEMSDOE` overlap `1.0000 >0.70`) + holdout not beating bar by construction; verdict `negative`. `0` weekly slots spent. |
+> | **Prepared Submission Name (`30/140` chars)** | `GEMSDOE88-SHORE-HINGE-42DC0AFA` | Byte-unique; not a copy/subset of any prior (`max overlap 0.4028`). |
+> | **Prepared Submission Note (`97/140` chars)** | `SHORE-HINGE piedmont hinge+shoreline filter 37654 dots; HOLDOUT-DTI 0.0000 vs R0 0.0039; UNSCORED` | `≤140` chars; labels HOLDOUT-DTI + UNSCORED. |
+> | **SHA-256 (`.tif` / `.zip`)** | `fc886e5152c56f21e459413333d280dc38668306545bfa6605170290bbfd6ec2` | ZIP: `fbbfa151c4c3fbfe4e3da4e67222bda449f8c0318b61efb8c7b052171b521745` |
+> | **Live Portal Status** | **`UNSCORED` (`0` weekly slots spent by agents)** | No `ORGANIZER-CONFIRMED` score exists for `H88-SHORE-HINGE`; `H33 0.2778` remains `[OWNER]`, leaderboard top `0.4413` snapshot 2026-10-24. |
+>
 > ## ⛔ Latest session lane (2026-10-24): `H88-TDKL` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (held under literal `17GEMSDOE` dense witness & post-merge concurrent stratified lanes)
 > [⬇ **Download H88-TDKL GeoTIFF (`.tif`, 118 KB, research only)**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`)**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/tdkl88_run_card.json) · [Gate v3 Verdict](registry/tdkl88_gate_verdict.json) · [8-Fold Holdout Evidence](evidence/tdkl88_holdout_20261024.json) · [179-Raster Uniqueness Audit](evidence/tdkl88_uniqueness_20261024.json) · [Research Dossier](research/hypotheses-20261024-tdkl88.md) · [Executive Submission Guide](docs/executive-summary.html).
 >
