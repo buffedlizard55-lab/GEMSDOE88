@@ -98,18 +98,27 @@ def verify_template(root=ROOT):
 
 def current_status(root=ROOT):
     """Represent the actual research artifact. A format PASS is not slot approval."""
-    from validate_release import release_report
+    # Derive the site's current status from the same canonical artifact and
+    # fail-closed gate used by validate_current.py. `validate_release.py` is a
+    # historical MRR-BPR audit and must not silently become the live feed.
+    from validate_current import release_report
 
     report = release_report(root)
-    problems = list(report.get('stop_reasons') or []) if not report['ok_to_submit'] else []
+    problems = []
+    if report['holdout_dti'] < report['incumbent_best_dti']:
+        problems.append('HOLDOUT: candidate point estimate is below the stored incumbent')
+    if report['duplicate'] or report['literal_registry_overlap_3px'] > 0.70:
+        problems.append('UNIQUENESS: literal registry overlap exceeds 0.70')
+    if not report['format_valid']:
+        problems.append('FORMAT: saved-byte validation failed')
     return {
-        'evidence_schema_complete': bool(report['format_ok']),
+        'evidence_schema_complete': bool(report['format_valid']),
         'approved_for_weekly_slot': False,
         'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
         'problems': problems,
-        'ok_to_download_for_research': bool(report['ok_to_download']),
+        'ok_to_download_for_research': bool(report['research_download_ok']),
         'ok_to_submit': False,  # selector has never approved a weekly slot
-        'raster_sha256': report['output_sha256'],
+        'raster_sha256': report['file_sha256'],
         'policy': 'binding-literal-all-registry-v1',
     }
 

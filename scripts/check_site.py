@@ -1,7 +1,7 @@
 """Audit local site links and forbid unlabeled research TIFF/ZIP downloads.
 
-This is a site guard, not the scientific/format gate; validate_release.py is
-canonical for the current research artifact. A blocked experiment may still
+This is a site guard, not the scientific/format gate; validate_kth88.py audits
+the current research artifact, while legacy validators remain historical. A blocked experiment may still
 publish a clearly marked research-only file for independent audit.
 """
 from html.parser import HTMLParser
@@ -83,7 +83,20 @@ def main(root=ROOT):
                 # claim otherwise, so it is cleared by its gate record instead (IR-88-76).
                 if 'DO-NOT-SUBMIT' not in path.name:
                     assert path.name in cleared_names, f'Unmarked research download: {link}'
-    print('PASS: site links, explicit negative decision, clearly marked research downloads')
+    # Bind the canonical current feed and visible guidance to latest KTH-88 bytes.
+    current = json.loads((root / 'docs/data/current_release.json').read_text())
+    assert current['file'] == kth['download']
+    assert current['file_sha256'] == kth['raster_sha256']
+    assert current['zip_sha256'] == kth_validation['zip_sha256']
+    assert current['ok_to_submit'] is False and current['duplicate'] is True
+    for page in (root / 'docs/index.html', root / 'docs/executive-summary.html'):
+        text = (root / page).read_text()
+        assert kth_tif.name in text, f'Current artifact not identified on {page.name}'
+        upper = text.upper()
+        assert 'DO NOT SUBMIT' in upper and (
+            'DOWNLOAD: YES' in upper or 'DOWNLOAD FOR RESEARCH: YES' in upper
+        ), page
+    print('PASS: current run card, current release hashes, site links, and explicit negative decision agree')
 
 
 if __name__ == '__main__':

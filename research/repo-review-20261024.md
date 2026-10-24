@@ -1,125 +1,69 @@
 # GEMSDOE88 repository review — 2026-10-24
 
-## Executive decision
+## Decision
 
-**Current action: HOLD; do not spend a competition slot.** The repository contains several novel, byte-unique research GeoTIFFs and the site clearly labels download vs. submission status. It does **not** currently contain the ignored competition inputs needed to independently reproduce a candidate, run the shared holdout, or certify a new release from this checkout. No fresh candidate raster or score was generated in this review.
+**KTH-88 is the latest candidate. Download for research: YES. Submit: NO.** Its HOLDOUT-DTI is 0.052656 (95% CI 0.045911–0.059151; 22,893 withheld positives), well below the same-split incumbent 0.187888, and its final dots violate the literal uniqueness limit: overlap 0.89882 with a GEMSDOE87 raster and 1.000 with the dense 17GEMSDOE witness (limit 0.70). The feature-alone canary max symmetric AUC is 0.5097. The format-only audit passes; this does not override scientific/uniqueness failures or authorize a slot. **Keep the negative verdict. Do not spend a slot.** No organizer receipt exists.
 
-The most recent top-level decision is the LBCAL hold (README and `docs/index.html`): its reported `HOLDOUT-DTI` is below the best comparable holdout run and the gate records `ok_to_submit: false`. The root `run_card.json` and the main hero on the website describe the earlier MRR-BPR negative run. These are dated historical artifacts, not contradictory evidence that a slot is cleared. Treat each candidate's run card and gate receipt as authoritative for that candidate; do not use a model projection or an old `ok_to_submit` field as a portfolio authorization.
+The K/Th inputs are uncalibrated u8 indices, not measured elemental abundance. The grid/input provenance is owner-mirrored and not independently authenticated to the private organizer download. This review performed no new experiment, raster generation, submission selection, or portal upload. Existing experiment count: one in the KTH lane; no additional experiment was attempted.
 
 ## Review passes
 
-### Pass 1 — implementation and site inspection
+### Pass 1 — prompt, implementation, evidence, and website
 
-- Read `PROMPT.md`, `README.md`, `SLOT_PLAN.md`, `research/next-steps.md`, the dated MDC-88 handoff, current LBCAL/MRR run cards, gate reports, holdout reports, and the download/submission pages.
-- `python scripts/check_site.py`: **PASS** (links, explicit negative decision, and research-download labeling).
-- The main site and executive summary have one-click GeoTIFF/ZIP links, short submission name/note fields, an automated download-vs-submit decision, and upload instructions. Existing artifacts remain clearly `DO NOT SUBMIT` where required.
-- The request's “single method paragraph below” is not supplied. The repository already records this ambiguity. MRR-BPR-88 is a completed negative lane, not permission to continue retuning it.
+- Re-read `PROMPT.md` and reviewed the latest KTH run card, preregistration, independent TIFF/ZIP audit, registry evidence, readiness/current validators, workflow gates, README, research overview, and submission guide.
+- Confirmed that the landing page and executive guide identify KTH-88 as current, show research-download and submit decisions separately, provide TIFF/ZIP links and archival name/note, and label the candidate **DO NOT SUBMIT**.
+- Corrected current-feed drift inherited from the concurrent `main` update: `docs/data/current_release.json`, `docs/status.json`, readiness, and `validate_current.py` now bind to KTH-88, not the older fabric-dislocation TIFF. Updated the site research dossier, source references, and submission guide to keep older candidates historical.
+- `scripts/check_site.py`: **PASS** after reconciliation. Local links resolve; the KTH artifact, negative run card, current release hashes, and visible safety decision agree.
 
-### Pass 2 — tests, data, and edge cases
+### Pass 2 — full tests and byte-level validators
 
-A temporary ignored `.venv` was created for test tooling; no environment files or bulk data are tracked.
+- Restored the SHA-pinned validation inputs using the existing validation-only restoration path; no new feature input or candidate was created.
+- Full suite: **290 passed, 23 skipped**. Rasterio emitted 47 pending-deprecation warnings; no test failed.
+- `scripts/validate_kth88.py`: **PASS for research download / format only**. It independently reopens the saved TIFF and ZIP, confirms the ZIP has exactly one byte-identical TIFF, checks the sample grid and local format, and verifies saved hashes. Its `--require-submit` mode correctly exits 2.
+- `scripts/validate_current.py`: reports KTH-88 and its current file/ZIP hashes; `--require-submit` correctly exits 2. `scripts/readiness.py` reports `BLOCKED`, not slot approval. `scripts/validate_release.py` remains a historical MRR gate and its `--require-submit` also exits 2; it is not the latest-candidate authority.
+- Final site/current consistency check passed. `docs/status.json` and `docs/data/current_release.json` now carry the KTH hash `5c7f1cb7…c259fd7bf`.
 
-- `python -m pytest -q`: **275 passed, 30 skipped, 6 failed**. The six failures all require absent local competition inputs (`data/bridge/sample_submission.tif`, `data/bridge/existing_faults.tif`, or `.cache/data/*`). They fail at missing-file opens, before a new scientific experiment can run; they are not evidence that those six behaviors pass.
-- `python scripts/audit_session_start.py`: **BLOCKED** at the same absent pinned `sample_submission.tif`.
-- `python scripts/validate_current.py`: **BLOCKED** because `data/bridge/sample_submission.tif` is absent.
-- `data/` is absent in this checkout. The competition/download data are intentionally gitignored. `registry/data_manifest.json` also flags public sibling-repository mirrors as `FLAGGED_DATA_USE_UNCHECKED`; do not treat their availability as a license or silently restore competition material from them.
-- This means the supplied previous-session expectation that “everything needed is already restored and cached” is false for this checkout. It needs an authorized, hash-verified input restoration before the next holdout experiment.
+### Pass 3 — requirements, leakage, uniqueness, and claims
 
-### Pass 3 — requirement and integrity review
+- KTH's pre-placement maximum absolute Spearman correlation is 0.07473 across 222 reachable rasters, below the 0.90 screen. Final dot overlap fails the binding 0.70 rule; the observed 0.89882 overlap with a GEMSDOE87 raster independently suffices to stop, and the dense witness overlap is 1.0. Do not waive this as a file-byte distinction.
+- All three individual feature canaries are below symmetric AUC 0.90. Keep the exact `HOLDOUT-DTI` label, evaluator version, withheld-positive count, and CI attached to any performance mention. The incumbent comparison has no paired improvement CI. Do not call it a leaderboard score or projection.
+- H33's 0.2778 remains **USER-REPORTED**, not organizer-confirmed. Raster lineage is compatible with thinning near-catalogue dots while retaining broader coverage, a plausible metric mechanism but not proof of score causation. The public leaderboard snapshot checked 2026-10-24 had a listed top public score 0.4413; it is not a private receipt for H33 or this repository.
+- Official source pages document competition metric/format, rules, and public source descriptions. Private labels, authenticated organizer template/data, a KTH organizer receipt, exact AOI availability for supplemental data, and all relevant reuse permissions were not established here. The source inventory discloses these limits.
+- The requested “single method paragraph below” is not specified in the supplied prompt. No new lane was silently selected. The next experiment remains blocked until an explicit method-lane instruction and authorized/hash-pinned inputs are supplied; the three-experiment/two-hour cap, visible-fault-only holdout features, exact mask, buffered component holdout, and before/after uniqueness checks remain binding.
 
-- No score here is newly computed. Existing performance numbers remain labeled `HOLDOUT-DTI`, `MODEL-PROJECTION`, `USER-REPORTED`, or `ORGANIZER-CONFIRMED` according to their evidence files. The reviewed repo contains no organizer-confirmed receipt.
-- Fresh saved-byte spot check of the latest LBCAL research artifact: SHA-256 `0a44af1ed8090cf1be88e42b832e0cc4b3bd2263a01b13b45f873e0eb528991a`; one-band float32, EPSG:32611, shape 3730×3292, transform `(243350,100,0,4508550,0,-100)`, nodata unset, all finite, values exactly `{0,1}`, and 38,278 positive pixels. The one-member ZIP contains byte-identical TIFF data and independently reopens to an identical array. This validates the saved bytes and recorded grid metadata, **not** parity against a newly authenticated organizer template (the sample file is absent); the LBCAL gate also records a layout-parity difference. It remains a research-only file and is **not** authorized to submit.
-- Existing candidate rasters are research artifacts, not an authorization to submit. A TIFF that parses and fits the recorded grid is not automatically scientifically competitive or eligible for a weekly slot.
-- LBCAL's saved card reports `HOLDOUT-DTI 0.061566` [0.051910, 0.072787], `gems57-pooled-hide-v2`, seeds 20+30, 22,663 withheld positives; its same-seed comparator PROVCREST is 0.076277. Those values are from the archived run card, not recomputed in this review. The separate 0.18789 threshold in gate v3 is from a different split and is not a paired comparison.
-- The LBCAL uniqueness receipts report a like-for-like maximum of 0.6485 and Spearman maximum 0.0288 after classifying dense rasters separately. That differs from the user's literal any-raster rule: the documented positive-everywhere 17GEMSDOE witness gives every nonempty raster 100% forward overlap. Thus LBCAL does **not** pass the literal rule. The gate-v3 representation-class result cannot override the written lane protocol without an explicit protocol amendment.
-- A universal forward-overlap witness is documented in the registry. Any policy that changes its treatment must be an explicit protocol change, not a per-candidate exception. The user's stated literal rule therefore remains a stop condition wherever it is the selected gate.
-- Current competition data access/authentication and redistribution permissions are not available here. The official portal must be the source of organizer bytes for a final template-parity check.
+## Current artifact and run-card facts
 
-## Candidate hypotheses for the next experiment (ranked; not run)
+- File: `docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif`
+- SHA-256: `5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf`
+- Positive dots: 37,654; one float32 band; format check is a local-format result only.
+- Submission name (archival only): `GEMSDOE88-KTH-BACDC27B`
+- Note (105/140; archival only): `K/Th antisymmetric radiometric step + RTP trough, 37654 dots; HOLDOUT-DTI 0.0527; UNSCORED; DO NOT SUBMIT`
+- Run card: `registry/kth88_run_card.json`; validation: `docs/data/kth88_validation.json`; registry evidence: `evidence/kth88_registry.json`; scientific dossier: `research/kth88-20261024.md`.
+- Slot use: 0. `ORGANIZER-CONFIRMED`: none. Verdict: negative / stop.
 
-These are research proposals drawn from the existing `research/candidate-hypotheses-20261024-mdc88.md` and prior handoffs, not newly measured results. The gain/cost ordering is qualitative; the earlier file's numeric expectations are **MODEL** estimates, not HOLDOUT-DTI and not leaderboard scores. The next candidate experiment must be preregistered in one lane and measured against the same blocked folds before any slot is considered.
+## Ranked future geological hypotheses — proposals only, not run
 
-| Rank | Hypothesis and inputs | Signature / why it could find off-catalogue faults | Named non-fault mimic | Difference from implemented methods | Cost / viability |
-|---:|---|---|---|---|---|
-| 1 | **H-QTS: cover-thickness/topography discordance.** Competition bands `depth_to_base_surf` (B15), `det_elev` (B12), `det_elev_slope` (B19), `iso_grav_anom` (B13) and gravity horizontal gradient (B18). | At σ=1, 3, 6 px, score basement-gradient strength times directional disagreement with surface-elevation gradient. Targets buried basement steps whose surface remains subdued, rather than a mapped surface break. | Alluvial-fan toe/onlap or bedrock-pediment contact; test radial fan geometry vs. a long linear feature. | Previous stacks include basement gradients and dip-offset gravity; they do not test the explicit orientation-disagreement term. | Low if the competition stack is lawfully present and hash-verified. **Top next test**, but blocked now by absent inputs. |
-| 2 | **H-RTR: scale-matched radiometric residual ridge.** USGS GeoDAWN K/Th/U/TC and derived Th/K, U/K, U/Th, plus conductivity (B17). | Remove broad lithologic field, then ridge-filter a K-depletion / Th-residual contrast; a hydrothermal alteration halo could persist where surface morphology is muted and the fault is uncatalogued. | K-poor playa crust or young basalt flow; use depression morphology and magnetic amplitude as controls. | Existing lanes use raw/ratio radiometry; explicit scale-matched residual ridge is distinct. | Low–medium; requires verified radiometric rasters, which are absent here. Free official source documented in manifest: USGS GeoDAWN DOI <https://doi.org/10.5066/P93LGLVQ>. Obtainability and terms still need confirmation before use. |
-| 3 | **H-SSA: cross-depth strike agreement.** RTP (B2), magnetic horizontal gradient (B3), gravity horizontal gradient (B18), and detrended elevation (B12). | Structure-tensor azimuths at matched scales; circular concentration tests whether a narrow lineament persists from topography through magnetic and gravity fields, potentially identifying covered structures without relying on amplitude. | Bedding/stratigraphic strike or coherent intrusive contact. | Existing fabric tests use paired magnetic orientations or single-modality edges; this tests orientation agreement across modalities. | Medium; input-only if provided bands are restored. |
-| 4 | **H-CAL: elevation-conditioned conductivity residual.** Conductivity surface (B17), detrended elevation (B12), and DEM-derived local elevation; optionally official DOE GDR #1391 temperatures as an independent check. | Local regression removes the elevation trend from conductivity to separate a possible upflow/conduit anomaly from basin brine. | Conductive clay-rich Lahontan lake beds / shoreline facies. | Earlier work uses conductivity directly or point-temperature indicators; the conditional residual is distinct. | Medium; temperature data are external and must be confirmed available/authorized. DOE GDR record <https://gdr.openei.org/submissions/1391> is the stated source, not a verified download in this session. |
-| 5 | **H-TRI: catalogue relay-ramp graph.** Visible-only fault segments, segment endpoints, strike, and spacing. | Build per-fold relay-pair/stepover graph and score predicted linking corridors, where untraced connector faults may occur between mapped strands. | Artificial map-sheet joins or digitization gaps. | Existing methods use component distance, local strike, and generic detached-component features, not a graph of paired relay geometries. | High; catalogue-derived and therefore must be rebuilt per fold from visible faults only, with leakage canaries. No new external data is intrinsically required, but the input catalogue is missing here. |
+The ordering is qualitative potential/cost, not a score, model projection, or authorization. First resolve the unspecified method paragraph and select only one lane. Verify source availability and terms before use.
 
-**Selection:** H-QTS is the economical next scientific test, but it is **not executable in this checkout** until the competition grid, labels/catalogue, and feature stack are restored through an authorized path and hash-checked. No external-data hypothesis is called viable merely because a URL is listed. The 1 m 3DEP LiDAR alternative in prior notes is not promoted here: the required area-specific tiles and source terms were not verified or obtained.
+| Rank | Hypothesis / physical signal | Named non-fault mimic | Cost / gate before work |
+|---:|---|---|---|
+| 1 | Seasonal hydro-vegetation lineaments from Sentinel-2 L2A NDVI/NDMI/NDWI persistence and oriented continuity | Irrigation, riparian corridors, canals, roads, playa moisture | High; exact AOI coverage and shareability not verified |
+| 2 | Persistent multi-season thermal corridors using Landsat Collection 2 surface-temperature anomalies | Solar aspect, emissivity, irrigation, wildfire, cloud/shadow, urban heat | High; exact AOI retrieval and reuse conditions unverified |
+| 3 | Cross-catchment drainage deflection from DEM channel-azimuth shifts, signed offsets, and aligned knickpoints | Caprock, lithologic contact, fan avulsion, shoreline, roads | Medium-high; confirm exact 3DEP tiles; use a statistic distinct from existing generic terrain features |
+| 4 | Cross-depth strike agreement between RTP, magnetic/gravity gradients, and detrended elevation structure tensors | Bedding/stratigraphic strike or coherent intrusive contact | Medium; use authenticated provided inputs and ensure distinction from prior fabric methods |
+| 5 | InSAR deformation discontinuities using Sentinel-1 ascending/descending displacement gradients and coherence breaks | Groundwater/mining subsidence, reinjection, decorrelation, atmospheric delay | Very high; time-series density, account access, and terms unverified |
 
-## Why H33's reported 0.2778 cannot be treated as confirmed
+Every proposal needs a preregistration, a named mimic, per-feature leakage canaries, buffered whole-fault hide-and-recover using visible-fault-only catalogue features, exact masking, and a same-protocol HOLDOUT-DTI with 95% CI before any submission decision. No candidate is selected here.
 
-The repo's forensic note supports a plausible mechanism: H33 is reported to be a thinned descendant of the H19-5/D2.8 family, with many near-catalogue dots removed and off-catalogue coverage retained. Given the metric's false-positive penalty, reducing low-value near-catalogue predictions while preserving useful coverage could improve DTI. This is a mechanism consistent with the pixel lineage and the owner-reported value, not proof of causation or an independently confirmed competition score. The repo has no organizer receipt for H33. The leaderboard score of any new candidate cannot be inferred from the catalogue hide-and-recover holdout alone.
+## Verified source links and limits
 
-## Next actions / blockers
+- [DrivenData competition description and data page](https://www.drivendata.org/competitions/306/competition-doe-gems/)
+- [Official metric and submission format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
+- [Public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) — snapshot checked 2026-10-24 only
+- [NLR official competition rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
+- [DrivenData reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
+- [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
+- [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) · [USGS Landsat Collection 2 Surface Temperature](https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature)
+- [AWS Sentinel-2 L2A COG registry](https://registry.opendata.aws/sentinel-2-l2a-cogs/) · [Alaska Satellite Facility](https://asf.alaska.edu/)
 
-1. Preserve the current `DO NOT SUBMIT` decisions; spend zero weekly slots.
-2. Resolve lawful input availability. Prefer an authenticated competition-data download or a source with explicit redistribution/use authorization; validate all hashes against the pinned manifest. Do not assume the sibling GitHub mirrors are permitted—the manifest explicitly flags uncertainty.
-3. Re-run `scripts/audit_session_start.py` and the complete tests after the pinned bridge inputs and required external files are available. Fix any genuine code defects uncovered; missing-input failures should be made explicit in the developer workflow, not hidden by marking tests passed.
-4. Start a fresh, preregistered H-QTS lane only if inputs are restored. Reuse the shared evaluator/writer and cached stack. Test each feature alone for leakage; apply surface-correlation and final-dot overlap checks before emission; require paired positive holdout evidence to beat the incumbent.
-5. Update the site, README, run card, and ledger from that single candidate gate result. A separate portfolio selector and organizer upload/receipt remain outside automatic local validation.
-
-## Source links
-
-These are official project/agency or competition endpoints already listed by the project. They are provided for review; this session did not authenticate to the competition portal or independently fetch restricted files.
-
-- DrivenData GEMS competition: <https://www.drivendata.org/competitions/306/competition-doe-gems/>
-- DrivenData problem description and submission format: <https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/>
-- DrivenData leaderboard: <https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/>
-- NLR official rules PDF: <https://docs.nlr.gov/docs/fy26osti/96647.pdf>
-- DOE GDR / INGENIOUS submission 1391: <https://gdr.openei.org/submissions/1391>
-- USGS GeoDAWN survey data record: <https://doi.org/10.5066/P93LGLVQ>
-- Organizer reference solution: <https://github.com/drivendataorg/gems-prize-reference-solution>
-- USGS 3DEP elevation products: <https://www.usgs.gov/3d-elevation-program>
-
-## Review-only run card
-
-This card describes the **latest LBCAL candidate already in the repository** and records a fresh saved-byte check. It is not a new experiment; holdout and uniqueness figures are archived evidence, not recomputed here. HOLDOUT-DTI is not an organizer leaderboard score.
-
-```json
-{
-  "schema": "gems88.repo-review.v1",
-  "reviewed_utc": "2026-10-24",
-  "review_type": "archived-candidate audit; no new experiment",
-  "hypothesis": "Receipt-calibrated physical-feature density q localizes uncatalogued faults better than catalogue-only proxies.",
-  "mechanism": "Fit q from 25 physical features using user-reported sibling leaderboard receipts, then greedily emit points under a per-sibling 3-px-halo cap.",
-  "named_non_fault_process": "K-poor playa crust or young basalt flow mimicking radiometric alteration; candidate also risks learned sibling-raster geometry.",
-  "experiment_run": false,
-  "holdout_dti": {
-    "evidence_class": "HOLDOUT-DTI",
-    "evaluator_version": "gems57-pooled-hide-v2",
-    "seeds": [20, 30],
-    "withheld_positive_pixels": 22663,
-    "dti": 0.061566,
-    "ci95": [0.051910, 0.072787],
-    "same_seed_best_comparator": "PROVCREST",
-    "comparator_dti": 0.076277,
-    "source": "registry/lbcal_run_card.json; archived, not recomputed in this review"
-  },
-  "correlation_overlap_vs_registry": {
-    "saved_receipt_sparse_max_abs_spearman": 0.0336,
-    "saved_receipt_sparse_max_forward_overlap_3px": 0.656,
-    "strict_literal_overlap_with_positive_everywhere_17GEMSDOE": 1.0,
-    "preplacement_surface_correlation": "not reported in the LBCAL card",
-    "policy_note": "Like-for-like receipt classes exclude space-filling rasters; that is not a pass under the literal all-raster rule."
-  },
-  "raster_sha256": "0a44af1ed8090cf1be88e42b832e0cc4b3bd2263a01b13b45f873e0eb528991a",
-  "validator_output": {
-    "independent_saved_byte_check": "PASS: one-band float32; EPSG:32611; shape 3730x3292; transform (243350,100,0,4508550,0,-100); nodata unset; all finite; min 0; max 1; 38278 positive pixels",
-    "zip_check": "PASS: exactly one TIFF; member bytes match saved TIFF; independent reopen decodes identically",
-    "fresh_official_sample_comparison": "NOT RUN: data/bridge/sample_submission.tif absent",
-    "portal_layout_parity": "saved gate says false",
-    "no_nan_inside_footprint": true,
-    "values_in_0_1": true,
-    "crs_shape_transform_match_recorded_grid": true
-  },
-  "submission_name": "GEMSDOE88-LBCAL-0AEB6EED",
-  "submission_note": "LBCAL receipt-calibrated q, 38278 dots, <=66% in sibling halos; HOLDOUT 0.0616; model-proj only, UNSCORED",
-  "verdict": "negative",
-  "verdict_reason": "Below the same-seed holdout comparator; literal all-raster uniqueness fails; portal layout parity is not confirmed.",
-  "weekly_slots_used": 0,
-  "organizer_confirmed_score": null
-}
-```
+The public descriptions were checked in the review context; this does not establish exact scene/tile availability, permission to redistribute, or authenticated private competition access. No external supplemental layer was used to build KTH-88.

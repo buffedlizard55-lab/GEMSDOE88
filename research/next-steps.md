@@ -1,3 +1,11 @@
+## Current handoff — repo review on `arena/60f59d16-gemsdoe88` (2026-10-24)
+
+**Read this section before the archived handoffs below.** The latest candidate is KTH-88 (`docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif`, SHA-256 `5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf`). It is **OK TO DOWNLOAD FOR RESEARCH; DO NOT SUBMIT**. HOLDOUT-DTI is 0.052656 (95% CI [0.045911, 0.059151], 22,893 positives, `gems57-pooled-hide-v2`) versus the same-split incumbent 0.187888; its final overlap is 0.89882 with a GEMSDOE87 raster and 1.0 with the dense witness. Stop: both holdout and literal uniqueness fail. Format validation is not submission clearance. No slot was spent and no organizer receipt exists.
+
+No experiment was run in this review. KTH-88 is already the one completed experiment in its lane. The requested “single method paragraph below” remains unspecified; do not silently select another lane, rebuild a raster, or use a slot. Require an explicit lane and authorized/hash-pinned inputs before future work. H33's 0.2778 is user-reported, not organizer-confirmed; the dated leaderboard snapshot is documented as a public snapshot only. Current readiness, file hashes, ranked future hypotheses, and review passes are in [`repo-review-20261024.md`](repo-review-20261024.md).
+
+## Archived historical handoffs — not current decisions
+
 ## 2026-10-24 (LBCAL session): next steps
 
 1. **Selector decision on the slot gate.** Hide-and-recover HOLDOUT-DTI ranks R0/H33 (user-reported 0.2778) at 0.004, so it has no leaderboard validity in this regime. The receipt-CV gate (ρ 0.941, RMSE 0.031) is the alternative.
