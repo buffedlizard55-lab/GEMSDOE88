@@ -2,7 +2,7 @@
 """Restore (and optionally build the inventory of) GeoTIFFs published by the sibling GEMSDOE sites.
 
 Why: the original uniqueness registry (scripts/restore_inputs.py) lacked GEMSDOE86, 87, 89-92
-(irregularity IR-88-57).  The prompt requires the candidate to be unlike EVERY listed site, so
+(irregularity IR-88-59).  The prompt requires the candidate to be unlike EVERY listed site, so
 those rasters are now part of the registry.
 
 * ``--build``   clone each site at its current default-branch head (shallow, plain git, no REST

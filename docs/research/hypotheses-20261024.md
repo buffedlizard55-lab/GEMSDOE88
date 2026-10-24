@@ -117,7 +117,7 @@ The instrument cannot see the H33-class advantage (section 4 of `research/h33-fo
 
 1. **N1 - matched-domain FBMT:** allocate only where the model was trained (d > 8 px).  Cheapest fix of the one design flaw found.
 2. **N2 - out-of-fold surfaces everywhere.**  Production attempt 1 (fit on the full catalogue, predict the same pixels) put only 6.4 % of dots more
-   than 25 px from the catalogue versus 41 % out-of-fold - an *in-sample memorisation* artefact (IR-88-61).  Any raster built that way, **including
+   than 25 px from the catalogue versus 41 % out-of-fold - an *in-sample memorisation* artefact (IR-88-63).  Any raster built that way, **including
    the earlier ADHR production file (4.2 %)**, does not have the profile its holdout number describes.
 3. **N3 - ADHR-class surface + far-basin objective:** the only surface family that scored above the control on the holdout, re-emitted out-of-fold.
 4. **N4 - NDVI-SL** (H4), the one genuinely new information source; needs data access.

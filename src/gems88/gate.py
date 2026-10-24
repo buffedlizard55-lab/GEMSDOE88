@@ -314,7 +314,7 @@ def fingerprint(dots, d_cat) -> dict:
 
 
 def fingerprint_screen(fp: dict) -> bool:
-    """Necessary screen: no dot within 2 px of the catalogue and >= 35% of dots > 25 px away (IR-88-60)."""
+    """Necessary screen: no dot within 2 px of the catalogue and >= 35% of dots > 25 px away (IR-88-62)."""
     return bool(fp["share_le2"] == 0.0 and fp["share_gt25"] >= FP_SCREEN_MIN_GT25)
 
 

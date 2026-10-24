@@ -4,7 +4,7 @@ Sources (all SHA-pinned by restore scripts; none is organizer-authenticated):
   * ``registry/inventory.json``      21 rasters of the original registry
   * ``data/registry/**``              restored lineage / calibration rasters
   * ``data/fleet/*.tif``              25 scored rasters mirrored by GEMSDOE86
-  * ``data/siblings/*.tif``           GEMSDOE86, 87, 89, 90, 91, 92 (IR-88-57: previously missing)
+  * ``data/siblings/*.tif``           GEMSDOE86, 87, 89, 90, 91, 92 (IR-88-59: previously missing)
   * ``docs/downloads/*.tif``          this repository's own earlier candidates (site GEMSDOE88)
 """
 from __future__ import annotations

@@ -5,7 +5,7 @@ so that every sibling site shares one metric/evaluator.  The prompt says: *fix a
 This session had no write access to the template repository, so the defect is **reported here with a ready patch**; the project layer (`src/gems88/gate.py`)
 implements the same behaviour without touching the vendored bytes.
 
-## Defect (IR-88-58)
+## Defect (IR-88-60)
 `gems57.uniqueness` applies the lane rule literally (`dot_overlap(mine, prior > 0, 3) <= 0.70`).  A *dense* registry raster (positive on the whole footprint, e.g.
 `17GEMSDOE_E-proba-multiscale`, 5,167,373 of 5,167,373 pixels) makes the overlap 1.0 for **every** raster, so the gate cannot discriminate and the module's own docstring
 records that "dense priors are not exempt".  A seeded random-dots raster scores 1.00 (measured: `registry/uniqueness_v3.json -> vacuity_witness`).
@@ -34,4 +34,4 @@ Report both numbers; block on `like_for_like`; keep `|rho| <= 0.90` unchanged.  
 
 ## Second observation for the template owner
 `gems57.submission_writer` writes tiled DEFLATE files; the official sample is LZW with 1-row strips.  `gems88.portal_writer.write_portal_tif` mirrors the sample layout
-(IR-88-65).  The portal error "Predicted values must be in range [0, 1]" has an unproven cause; layout parity removes one suspect.
+(IR-88-67).  The portal error "Predicted values must be in range [0, 1]" has an unproven cause; layout parity removes one suspect.

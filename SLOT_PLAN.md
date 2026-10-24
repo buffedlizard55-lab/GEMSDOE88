@@ -1,8 +1,8 @@
 # Slot Plan (One Entity — 3 Scored / Rolling Week, 1 Blind Final)
 
-> **2026-10-24 notice (gate v3, IR-88-58/59/60).** No weekly slot is allocated by this session and none was spent. The headline research file
+> **2026-10-24 notice (gate v3, IR-88-60/61/62).** No weekly slot is allocated by this session and none was spent. The headline research file
 > [`gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif) is **OK TO DOWNLOAD - NOT OK TO SUBMIT** (holdout bar and fingerprint screen failed).
-> The `64`-row R0-perturbation queue below is **not a set of unique candidates**: all rows descend from R0 = H33 and measured sibling perturbations overlap R0 by > 70% in 62/66 (GEMSDOE89), 30/34 (87), 18/22 (92) cases (duplicates under the lane rule, IR-88-59),
+> The `64`-row R0-perturbation queue below is **not a set of unique candidates**: all rows descend from R0 = H33 and measured sibling perturbations overlap R0 by > 70% in 62/66 (GEMSDOE89), 30/34 (87), 18/22 (92) cases (duplicates under the lane rule, IR-88-61),
 > and the rolling slots are the human's to use; keep them only as *calibration experiments* of the collar/spacing mechanism. The website's displayed slot limit prevails over
 > "three per week" ([staff](https://community.drivendata.org/t/submission-amount-question/11553)). Only one submission may be selected for both rounds before 2026-12-03 23:59 UTC.
 > If a slot is spent this week, the evidence in `research/h33-forensics-20261024.md` favours H33-lane rasters over anything new in this repository.

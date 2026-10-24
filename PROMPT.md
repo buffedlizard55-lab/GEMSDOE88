@@ -2,7 +2,7 @@
 
 > **Read this file at the start of every session.**  It is linked from the top of `README.md`.
 >
-> **Honesty note (IR-88-66).**  The owner's original prompt text is longer than what any one
+> **Honesty note (IR-88-68).**  The owner's original prompt text is longer than what any one
 > session can see.  This file preserves the **acceptance criteria and constraints exactly as they
 > were carried into the 2026-10-24 session brief**; wording is condensed, nothing was added or
 > softened.  It is *not* a byte-exact copy.  If byte-exact preservation matters, paste the

@@ -30,7 +30,7 @@ def test_real_card_stays_blocked():
     assert not result["approved_for_weekly_slot"]
     assert not result["ok_to_submit"]
     assert result["ok_to_download_for_research"]
-    # v3 gate: the blockers are the pre-registered holdout bar and/or the fingerprint screen (IR-88-58/60)
+    # v3 gate: the blockers are the pre-registered holdout bar and/or the fingerprint screen (IR-88-60/62)
     assert result["problems"] and any(p.split(":")[0] in {"HOLDOUT", "FINGERPRINT", "UNIQUENESS", "FORMAT", "LEAKAGE"} for p in result["problems"])
     assert result["policy"] == "gems88-gate-v3"
 

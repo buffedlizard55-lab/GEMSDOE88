@@ -54,7 +54,7 @@ def main():
     d_cat = ndi.distance_transform_edt(~cat)
 
     print("[1/6] OUT-OF-FOLD production surface (the procedure the holdout validated) ...", flush=True)
-    # IR-88-61: fitting on the full catalogue and predicting the same pixels is IN-SAMPLE; the surface then
+    # IR-88-63: fitting on the full catalogue and predicting the same pixels is IN-SAMPLE; the surface then
     # memorises known faults (attempt 1: 6.4% of dots >25 px from the catalogue vs 41% out-of-fold).
     quad = holdout.quadrant_ids(fp)
     p = np.zeros(fp.shape, np.float32)

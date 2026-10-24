@@ -8,7 +8,7 @@
 - **Disclosure location:** the NLR rules require the AI-use statement in the submission *narrative* (rules §3.2, "Indication of use of generative AI"); earlier headings of this file cite §3.6.
 - **Human decided:** the standing prompt (`PROMPT.md`): unique TIFF, no human inspection, three passes, PR and merge. The human is the sole submitter and selector; **no slot was picked or spent**.
 - **AI decided:** the hypotheses, pre-registration, experiments E1-E3, the v3 gate policy (like-for-like reading of a vacuous rule, fingerprint screen), the out-of-fold production fix, and all documentation. All numbers are from files on disk; scores from the owner's prior sites are labelled owner-reported; nothing is `ORGANIZER-CONFIRMED`.
-- **Limits of AI work:** hidden labels are unobservable; the portal could not be reached; the original prompt text was not available verbatim (IR-88-66).
+- **Limits of AI work:** hidden labels are unobservable; the portal could not be reached; the original prompt text was not available verbatim (IR-88-68).
 
 ## Session 2026-10-23 — `AXIS = SNAP` fixpoint ladder + sign-flip control on `R1` (branch `arena/5581a1c4-gemsdoe88`)
 
