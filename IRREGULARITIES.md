@@ -522,3 +522,8 @@ Second concurrent reconciliation: PR #79 independently repaired shared v3 to enf
 
 
 
+
+## IR-88-CJ88 (2026-10-24, this session)
+- CJ88 Exp1 overlap 0.7224 vs PROVCREST >0.70: logged as duplicate lane, stopped; Exp2 excluded PROVCREST 3px neighbourhood and re-validated (see docs/research/cj88-20261024.md).
+- CJ88 Exp2 HOLDOUT-DTI 0.1176 beats null but below incumbent bar 0.1896: published DO-NOT-SUBMIT, 0 slots. No ORGANIZER-CONFIRMED score exists for any GEMSDOE88 file.
+- Brief inconsistency flagged: 0.2778 / 0.3195 / 0.4413 all called "highest"; leaderboard observed #1=0.4413, #50=0.2818.

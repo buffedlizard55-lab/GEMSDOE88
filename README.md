@@ -1,5 +1,9 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> **Release-integrity review (2026-10-24):** [three-pass findings, verified sources and next steps](docs/research/review-20261024-release-integrity.md). **DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO.** No fresh TIFF or model experiment: the literal dense-registry stop was reproduced. Production site checks now remain active under `python -O`; a stale TDKL “PROMOTE” summary was corrected without changing historical measurements. Read this README and [the stored operating prompt](PROMPT.md) at the start of each session.
+
+> **Latest independent review (2026-10-24):** [review, fixes, verification scope and blockers](research/review-bff2fa68-20261024.md) · [fresh latest-download JSON audit](evidence/latest_download_review_20261024.json). **DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO.** No new TIFF generated: the verified literal duplicate-stop rule blocks every nonempty candidate. Start each session with [the standing user prompt](PROMPT.md); it is a condensed record, not a verbatim transcript.
+
 > ## ✅ NEW 2026-10-24 `H88-CTRA` — Unique GeoTIFF ready to **download** — portal-valid zeros [0,1] — like-for-like unique
 > **⬇ [Download H88-CTRA GeoTIFF (803 KB, portal-valid zeros)](docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros.tif) · [ZIP (one TIFF, 169 KB)](docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros.zip) · [JSON Run Card](registry/ctra_run_card.json) · [Portal-Valid Audit](docs/data/ctra_run_card.json) · [5 Ranked Hypotheses & Why h33 0.2778 Rose](docs/research/candidate-hypotheses-20261024-ctra.md) · [Executive Submission Guide](docs/executive-summary.html)**
 >
