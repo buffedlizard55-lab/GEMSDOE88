@@ -1,0 +1,233 @@
+{
+  "schema": "gems88.candidate-matrix.v1",
+  "generated_by": "scripts/build_candidate_matrix.py",
+  "organizer_confirmed_scores": 0,
+  "weekly_slots_used": 0,
+  "rows": [
+    {
+      "label": "PHASE-88 (current release)",
+      "record": "registry/phase88_run_card.json",
+      "holdout_dti": 0.05306174540296061,
+      "ci95": [
+        0.04606433072520727,
+        0.06023288744301309
+      ],
+      "withheld_positive_px": 22893,
+      "note": "RTP/gravity cross-gradient",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "tif": "docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b",
+      "zip": "docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.zip",
+      "dots": 37654,
+      "literal_overlap_vs_17GEMSDOE": 1.0,
+      "topN_like_for_like_overlap": 0.008153,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
+    },
+    {
+      "label": "MRR-BPR-88",
+      "record": "registry/run_card_mrr88.json",
+      "holdout_dti": 0.18525582109578861,
+      "ci95": [
+        0.1715190223372919,
+        0.19996477117347985
+      ],
+      "withheld_positive_px": 22893,
+      "note": "block residual; paired vs incumbent (CI < 0)",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "paired_delta": -0.004378034745084858,
+      "paired_delta_ci95": [
+        -0.007902211641196701,
+        -0.000623090528560107
+      ],
+      "tif": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "b9cb36519c2ee91c08f587d3c9c006623d8e2505ece0416fdf263b50e42deb7e",
+      "zip": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.zip",
+      "dots": 36033,
+      "literal_overlap_vs_17GEMSDOE": 1.0,
+      "topN_like_for_like_overlap": 0.073016,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
+    },
+    {
+      "label": "MDC-88 (label corrected 2026-10-24)",
+      "record": "registry/kdmc_gate.json",
+      "holdout_dti": 0.1488495052282044,
+      "ci95": [
+        0.13317761870164363,
+        0.1741312800501426
+      ],
+      "withheld_positive_px": 22893,
+      "note": "pu concentration; was ok_to_submit=true, now false",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "tif": "docs/downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a",
+      "zip": "docs/downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros-DO-NOT-SUBMIT.zip",
+      "dots": 51064,
+      "literal_overlap_vs_17GEMSDOE": 1.0,
+      "topN_like_for_like_overlap": 0.130052,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
+    },
+    {
+      "label": "MDPS-88 (far regime)",
+      "record": "registry/mdps88_run_card.json",
+      "holdout_dti": 0.07272295955361242,
+      "ci95": [
+        0.05911330711505152,
+        0.08628315696691566
+      ],
+      "withheld_positive_px": 10791,
+      "note": "paired vs fold-fair control crosses 0",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "paired_delta": 0.003596261052015104,
+      "paired_delta_ci95": [
+        -0.006021409065574782,
+        0.012787871207464562
+      ],
+      "tif": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
+      "zip": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+      "dots": 29742,
+      "literal_overlap_vs_17GEMSDOE": 1.0,
+      "topN_like_for_like_overlap": 0.032513,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
+    },
+    {
+      "label": "KTH-88",
+      "record": "registry/kth88_run_card.json",
+      "holdout_dti": 0.05265580824432912,
+      "ci95": [
+        0.045911112529722096,
+        0.059150702260526954
+      ],
+      "withheld_positive_px": 22893,
+      "note": "K/Th antisymmetric step",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "tif": "docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
+      "zip": "docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip",
+      "dots": 37654,
+      "literal_overlap_vs_17GEMSDOE": 1.0,
+      "topN_like_for_like_overlap": 0.018829,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
+    },
+    {
+      "label": "TILTZERO",
+      "record": "registry/tiltzero_run_card.json",
+      "holdout_dti": 0.055083,
+      "ci95": [
+        0.046419,
+        0.063081
+      ],
+      "withheld_positive_px": 22663,
+      "note": "seeds 20+30 (cross-run)",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "tif": "docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "5487d7937c92dce12a87185b0b3ba7c800b78e655ecafd47fbdb41404d29f011",
+      "zip": "docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.zip",
+      "dots": 37654,
+      "literal_overlap_vs_17GEMSDOE": 1.0,
+      "topN_like_for_like_overlap": 0.009269,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
+    },
+    {
+      "label": "LBCAL",
+      "record": "registry/lbcal_gate_v3.json",
+      "holdout_dti": 0.061566,
+      "ci95": [
+        0.05191,
+        0.072787
+      ],
+      "withheld_positive_px": 22663,
+      "note": "seeds 20+30 (cross-run)",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "tif": "docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "0a44af1ed8090cf1be88e42b832e0cc4b3bd2263a01b13b45f873e0eb528991a",
+      "zip": "docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.zip",
+      "dots": 38278,
+      "literal_overlap_vs_17GEMSDOE": 1.0,
+      "topN_like_for_like_overlap": 0.033466,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
+    },
+    {
+      "label": "PROVCREST",
+      "record": "registry/provcrest_run_card.json",
+      "holdout_dti": 0.076277,
+      "ci95": [
+        0.067653,
+        0.084607
+      ],
+      "withheld_positive_px": 22663,
+      "note": "seeds 20+30; literal gate fails",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "tif": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
+      "zip": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.zip",
+      "dots": 37654,
+      "literal_overlap_vs_17GEMSDOE": 1.0,
+      "topN_like_for_like_overlap": 0.016253,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
+    },
+    {
+      "label": "IBL-88 (basin lattice, merged from main)",
+      "record": "registry/ibl88_run_card.json",
+      "holdout_dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positive_px": 22893,
+      "note": "HOLDOUT 0.0 is structural per record (b2+ gate-clean); literal 1.0",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "tif": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
+      "zip": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip",
+      "dots": 37654,
+      "literal_overlap_vs_17GEMSDOE": null,
+      "topN_like_for_like_overlap": null,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
+    },
+    {
+      "label": "H88-ADHR incumbent (stored bar, not a row file here)",
+      "record": "registry/phase88_run_card.json",
+      "holdout_dti": 0.18788764184958875,
+      "ci95": [
+        0.17169764852656258,
+        0.20326012211176936
+      ],
+      "withheld_positive_px": 22893,
+      "note": "bar used by every gate; itself unverifiable from clean checkout (IR-88-75)",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "ok_to_download_research": false,
+      "ok_to_submit": false,
+      "reason_not_submit": "reference bar only"
+    }
+  ],
+  "diagnostic": "evidence/dense_prior_topn_diagnostic.json"
+}

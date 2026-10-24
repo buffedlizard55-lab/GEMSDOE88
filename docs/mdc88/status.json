@@ -3,7 +3,7 @@
   "generated_utc": "2026-10-24T08:23:27Z",
   "decided_by": "scripts/build_kdmc_submission.py (no human inspection)",
   "ok_to_download": true,
-  "ok_to_submit": true,
+  "ok_to_submit": false,
   "recommended_for_weekly_slot": false,
   "verdict_fields_explained": {
     "ok_to_download": "the saved bytes re-open as a valid single-band GeoTIFF on the pinned grid",
@@ -45,12 +45,12 @@
   "status": "READY-TO-SUBMIT-SLOT-NOT-RECOMMENDED",
   "verdict": "hold",
   "candidate": {
-    "name": "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros",
+    "name": "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros-DO-NOT-SUBMIT",
     "note": "MDC-88: PU density x 300m-kernel expected credit, greedy 2.83px max-weight packing, 1% of allowed cells, binary; HOLDOUT-DTI 0.14885",
     "note_chars": 132,
-    "tif": "releases/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
+    "tif": "releases/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros-DO-NOT-SUBMIT.tif",
     "sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a",
-    "zip_sha256": "6d78ba9b0bbc489df6870d8c4ff3c01bcfaac16edb8f97b417e0fdbf8f6159f0",
+    "zip_sha256": "6a7b4ffd08831029844c075c91829e0b45acd65a397a7571f8e3d43b75f64ef6",
     "bytes": 157139
   },
   "holdout": {
@@ -125,5 +125,6 @@
   "problems": [
     "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
     "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
-  ]
+  ],
+  "ok_to_submit_correction_2026_10_24": "2026-10-24 correction: was true under the chance-corrected like-for-like rule, which excludes the dense 17GEMSDOE prior. The binding user rule is literal (any registry raster, forward 3-px overlap <= 0.70); 17GEMSDOE overlap = 1.0. Holdout also fails the bar (0.14885 < 0.18789). Set to false; no slot authorized."
 }

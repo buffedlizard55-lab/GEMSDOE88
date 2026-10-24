@@ -111,6 +111,12 @@ def main(root: Path = ROOT) -> None:
             target = page.parent / unquote(url.path)
             assert target.is_file(), f"broken local link: {page.name}: {ref}"
 
+    # Every published binary under docs/ must carry its negative decision in the
+    # filename. This includes unlinked research variants, not only downloads/.
+    for published in sorted(docs.rglob("*")):
+        if published.is_file() and published.suffix.lower() in {".tif", ".tiff", ".zip"}:
+            assert "DO-NOT-SUBMIT" in published.name, f"unmarked published research artifact: {published}"
+
     index = pages[0].read_text()
     executive = pages[1].read_text()
     research = pages[2].read_text()

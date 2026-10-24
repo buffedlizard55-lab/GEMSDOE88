@@ -46,6 +46,7 @@ def test_mdps88_holdout_numbers_are_labelled_and_in_range():
 def test_mdps88_site_decision_strings():
     for page in ("docs/index.html", "docs/executive-summary.html"):
         text = (ROOT / page).read_text()
-        assert Path(CARD["raster"]["file"]).name in text
+        # H88-MVRD is the current integrated research release; MDPS remains an archive.
+        assert Path(json.loads((ROOT / "registry/mvrd_run_card.json").read_text())["artifact"]).name in text
         assert "DO NOT SUBMIT" in text and "DOWNLOAD FOR RESEARCH: YES" in text
         assert "hyp-psg" not in text  # withdrawn mock must never be offered again (IR-88-83)

@@ -460,3 +460,11 @@ Merge verification found incoming IBL changes overwrote six legacy run-card alia
 Second concurrent reconciliation: PR #79 independently repaired shared v3 to enforce literal overlap and added a direct-coverage proof test. Those shared-template fixes, pins, MDPS card corrections, source snapshots and tests are retained. This branch retains its stronger byte/ZIP-bound saturation audit and readiness stale-status fix; the direct coverage helper is retained for the incoming tests. No additional submission is generated.
 
 **Subsequent integration note (IR-88-87):** the MDPS/PHASE live-feed identity statements above describe PR #80 at the time it was authored. H88-MVRD was integrated afterward and is now the canonical `current_release.json` / `docs/status.json` research record. The MDPS literal audit remains an immutable, candidate-specific universal-blocker proof; the MVRD validator independently remeasures the same literal overlap 1.0 and remains blocked. No negative verdict was weakened.
+
+## IR-88-93 — Unmarked MDC-88 collar variant was published under docs/research-variants/ (2026-10-24)
+
+- **Finding (automated site audit, merge pass 3):** `docs/research-variants/gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros.{tif,zip}` were published without `DO-NOT-SUBMIT`, and the variant record had no `ok_to_submit` field. The guard covered only `docs/downloads/`.
+- **Gate record:** `registry/kdmc_gate_collar3.json` has `ok_to_submit: false`, verdict `hold`. Under the literal rule the same lane fails for the same reason as MDC-88 (see IR-88-86 and the MDC-88 correction).
+- **Action:** `git mv` to `-DO-NOT-SUBMIT` names; ZIP rebuilt with the new member name (SHA-256 `5a3a64d3…`); TIFF bytes unchanged (SHA-256 `b6772cb0…`); explicit `ok_to_submit: false` added to the variant record; name references under `docs/` updated.
+- **Guard:** `scripts/check_site.py` now fails on any unmarked TIF/ZIP anywhere under `docs/`.
+- **Still open:** `releases/` and `evidence/` keep the original unmarked names by design, because they are the historical record. `releases/` still tracks the 12 H33 MASS files (IR-88-92). Renaming them would require rewriting historical references, so it is a separate, reviewed step.
