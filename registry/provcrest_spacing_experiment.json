@@ -1,0 +1,55 @@
+{
+  "schema": "gems88.spacing-experiment.v1",
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "reference_arm": "S3.5 (shipped)",
+  "scores": {
+    "S3.0": {
+      "dti": 0.073214,
+      "ci95": [
+        0.063956,
+        0.082902
+      ],
+      "withheld_positive_pixels": 22663
+    },
+    "S3.5": {
+      "dti": 0.076277,
+      "ci95": [
+        0.06778,
+        0.084941
+      ],
+      "withheld_positive_pixels": 22663
+    },
+    "S4.5": {
+      "dti": 0.074367,
+      "ci95": [
+        0.066635,
+        0.081932
+      ],
+      "withheld_positive_pixels": 22663
+    }
+  },
+  "paired_differences_vs_S3.5": {
+    "S3.0": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0030635094133509566,
+      "ci95": [
+        0.000820693156678019,
+        0.005190827718496134
+      ],
+      "withheld_positive_pixels": 22663
+    },
+    "S4.5": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0019097191892381155,
+      "ci95": [
+        -0.0010774157331652685,
+        0.004844685721375879
+      ],
+      "withheld_positive_pixels": 22663
+    }
+  },
+  "elapsed_seconds": 60.5
+}

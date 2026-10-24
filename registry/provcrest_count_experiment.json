@@ -1,0 +1,91 @@
+{
+  "schema": "gems88.spacing-experiment.v1",
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "reference_arm": "N37654 (shipped)",
+  "scores": {
+    "N20000": {
+      "dti": 0.048439,
+      "ci95": [
+        0.041691,
+        0.055729
+      ],
+      "withheld_positive_pixels": 22663
+    },
+    "N28000": {
+      "dti": 0.064084,
+      "ci95": [
+        0.055915,
+        0.072535
+      ],
+      "withheld_positive_pixels": 22663
+    },
+    "N37654": {
+      "dti": 0.076277,
+      "ci95": [
+        0.06778,
+        0.084941
+      ],
+      "withheld_positive_pixels": 22663
+    },
+    "N50000": {
+      "dti": 0.08533,
+      "ci95": [
+        0.075929,
+        0.094545
+      ],
+      "withheld_positive_pixels": 22663
+    },
+    "N65000": {
+      "dti": 0.090291,
+      "ci95": [
+        0.080058,
+        0.0997
+      ],
+      "withheld_positive_pixels": 22663
+    }
+  },
+  "paired_differences_vs_reference": {
+    "N20000": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.027838034063160384,
+      "ci95": [
+        0.02348623946013916,
+        0.031882750412996534
+      ],
+      "withheld_positive_pixels": 22663
+    },
+    "N28000": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.012192971657476015,
+      "ci95": [
+        0.009609056328088212,
+        0.014999998535336241
+      ],
+      "withheld_positive_pixels": 22663
+    },
+    "N50000": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.009052630462394129,
+      "ci95": [
+        -0.01175790976610553,
+        -0.006552228633599488
+      ],
+      "withheld_positive_pixels": 22663
+    },
+    "N65000": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.014014183255766255,
+      "ci95": [
+        -0.01843525026233875,
+        -0.009684056178462816
+      ],
+      "withheld_positive_pixels": 22663
+    }
+  },
+  "elapsed_seconds": 85.3
+}
