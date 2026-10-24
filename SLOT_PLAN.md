@@ -1,4 +1,12 @@
-# Latest addendum (2026-10-24): H88-TDKL — DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness (`0` slots spent)
+# Latest addendum (2026-10-24): WBHR-88 — DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT (`0` slots spent)
+
+- **Candidate:** `docs/downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.tif` (`SHA-256: f5cdd16177a87560ab8e71d9e80d3d2c095bdeb398665d920826279207c26e49`, `27,564` binary dots) and single-TIFF `.zip` (`SHA-256: 850e2673026db013e2a60f5255664dc055cdea6e2b6733778d649b38cc26272d`).
+- **Submission Name (`49` chars):** `gems88-wbhr88-wallace-bajada-redox-20261024-zeros` · **Note (`109` chars `<= 140`):** `WBHR-88 LOQO 60ch zero-cat LiDAR/bajada/U-Th-redox/chi + 2.83px Dinkelbach (holdout DTI 0.1064, 27564 dots)`
+- **Gates:** Format/range `[0, 1]` PASS (`0` NaN, `EPSG:32611`, `3730×3292`); `83/83` leakage canaries PASS (`<= 0.7715`); pure zero-catalogue `E1 (wbhr_phys60)` **`HOLDOUT-DTI = 0.106374`** beats `phys44_control = 0.100318` (`+0.006056 [0.000922, 0.011500] > 0`); like-for-like uniqueness PASS across all `238`+ concurrent rasters (`worst 3-px = 0.6983 <= 0.70`, `|ρ| = 0.2813 <= 0.90`); **HELD (`ok_to_submit = false`, `verdict = "negative"`)** under `H88-ADHR` bar (`0.106374 < 0.189634`), `share_gt25 = 0.3317 < 0.35`, and literal `17GEMSDOE` witness (`1.0000 > 0.70`). Verify via `.venv/bin/python scripts/validate_wbhr88.py` (`--require-submit` exits `2`).
+
+---
+
+# Concurrent addendum (2026-10-24): H88-TDKL — DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness (`0` slots spent)
 
 - **Candidate:** `docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf`) and single-TIFF `.zip` (`SHA-256: af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5`).
 - **Submission Name (`29` chars):** `GEMSDOE88-TDKL88-POE-20261024`

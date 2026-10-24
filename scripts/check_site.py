@@ -62,6 +62,23 @@ def main(root: Path = ROOT) -> None:
     ctra_zip = docs / "downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.zip"
     require(sha256(ctra_tif) == ctra["sha256"], "CTRA TIFF hash differs from negative run card")
     require(sha256(ctra_zip) == ctra["zip_sha256"], "CTRA ZIP hash differs from negative run card")
+    wbhr = json.loads((root / "registry/wbhr88_run_card.json").read_text())
+    wbhr_web = json.loads((docs / "data/wbhr88_run_card.json").read_text())
+    require(wbhr == wbhr_web, "Pages WBHR-88 card differs from canonical registry card")
+    wbhr_gate = json.loads((root / "registry/wbhr88_gate_v3.json").read_text())
+    wbhr_gate_web = json.loads((docs / "data/wbhr88-gate.json").read_text())
+    require(wbhr_gate == wbhr_gate_web, "Pages WBHR-88 gate differs from canonical registry gate")
+    wbhr_tif = docs / "downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.tif"
+    wbhr_zip = docs / "downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.zip"
+    require(sha256(wbhr_tif) == wbhr["raster_sha256"], "WBHR-88 TIFF hash differs from negative run card")
+    require(sha256(wbhr_zip) == wbhr["zip_sha256"], "WBHR-88 ZIP hash differs from negative run card")
+    require(
+        wbhr["ok_to_download"] is True
+        and wbhr["ok_to_submit"] is False
+        and wbhr["verdict"] == "negative"
+        and len(wbhr["submission_note"]) <= 140,
+        "WBHR-88 run card status invariant violated",
+    )
     audit = json.loads(
         (docs / "downloads" / f"{MVRD_NAME}.format-audit.json").read_text()
     )
@@ -531,6 +548,9 @@ def main(root: Path = ROOT) -> None:
     require(shore_tif.name in index and shore_tif.name in executive, "SHORE tif in pages")
     require(shore["submission_name"] in index and shore["submission_name"] in executive, "SHORE name in pages")
     require(shore["validator"]["raster_sha256"][:16] in index and shore["validator"]["raster_sha256"][:16] in executive, "SHORE hash in pages")
+    require(wbhr_tif.name in index and wbhr_tif.name in executive, "WBHR-88 tif in pages")
+    require(wbhr["submission_name"] in index and wbhr["submission_name"] in executive, "WBHR-88 name in pages")
+    require(wbhr["raster_sha256"][:16] in index and wbhr["raster_sha256"][:16] in executive, "WBHR-88 hash in pages")
     print(
         "PASS: canonical TDKL and concurrent negative research artifacts, hashes, Pages links, and status agree"
     )

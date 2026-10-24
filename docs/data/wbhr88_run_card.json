@@ -1,0 +1,244 @@
+{
+  "schema": "gems88.run_card.v2",
+  "lane": "WBHR-88",
+  "branch": "arena/fbb49955-gemsdoe88",
+  "generated_utc": "2026-10-24T20:15:00Z",
+  "hypothesis": "Unlocking 11 previously unread official USGS 3DEP 1m LiDAR (downface/upface/cross/ex_mean), 10m seamless DEM bajada (slope_max, steep_frac, slope_std, relief_local, aspect_coherence), fluvial chi/ksn (step_min, log10_area), GeoDAWN gamma-ray Uranium-redox (U, U/Th, U/K), 150m upward-continued magnetic depth-slice (TMI - TMI_up150), and survey-drape DEM bands inside a strictly Leave-One-Quadrant-Out diverse-depth HGB ensemble with 2.83 px two-regime Dinkelbach allocation improves off-catalogue fault discovery while eliminating 2.05 px flank false-positive clutter.",
+  "mechanism": "16 label-blind WBHR physical transforms + 44 shared physics channels (60 zero-catalogue channels), cross-fitted strictly Leave-One-Quadrant-Out across 4 spatial quadrants in a diverse-depth HistGBR dual-expectation ensemble and decoded via 2.83 px Dinkelbach fractional-programming outside the 200 m mapped-fault collar (d_cat > 2 px). Both ADHR-coupled arms (E2 wbhr_hybrid 0.190291, E3 wbhr_balanced 0.163036) were stopped from emission under Protocol Rule 1 due to >0.70 3-px dot overlap in the saturated 2<d<=25px structural collar across the 238-raster registry; pure zero-catalogue E1 (wbhr_phys60, 0.106374, +0.006056 [0.000922, 0.011500] vs phys44_control) clears all 238 rasters.",
+  "named_non_fault_mimic": "Incised ephemeral desert arroyos with symmetric opposing banks (downface ~= upface, high cross_max), Pleistocene Lake Lahontan wave-cut paleoshoreline benches (~1330 m / ~1555 m), and stratiform uraniferous Miocene rhyolitic ash-flow tuffs.",
+  "holdout_dti": {
+    "evidence_label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "selected_arm": "wbhr_phys60",
+    "dti": 0.10637384194954325,
+    "ci95": [
+      0.09239913010032581,
+      0.11897628724968053
+    ],
+    "tpw": 4316.532946374478,
+    "fpw": 107005.94126195386,
+    "fnw": 18576.467053625503,
+    "regime_near_le10px_dti": 0.12559827204512206,
+    "regime_blind_gt10px_dti": 0.08608473929547177,
+    "regime_far_gt25px_dti": 0.058430936749550966,
+    "incumbent_adhr_stored_dti": 0.18788764184958875,
+    "incumbent_adhr_recomputed_dti": 0.18963385584087347,
+    "paired_delta_vs_recomputed_adhr": -0.08326001389133023,
+    "paired_ci95_vs_recomputed_adhr": [
+      -0.09783521204049024,
+      -0.07003066151250346
+    ],
+    "e1_wbhr_phys60_dti": 0.10637384194954325,
+    "phys44_control_dti": 0.10031796086090514,
+    "paired_delta_e1_vs_phys44": 0.00605588108863811,
+    "paired_ci95_e1_vs_phys44": [
+      0.0009222131872220457,
+      0.01150001874959535
+    ],
+    "e2_wbhr_hybrid_dti": 0.19029130520767462,
+    "paired_delta_e2_vs_adhr": 0.0006574493668011494,
+    "paired_ci95_e2_vs_adhr": [
+      -0.004270084142946674,
+      0.005312900232577361
+    ],
+    "e3_wbhr_balanced_dti": 0.1630359836568083,
+    "paired_delta_e3_vs_adhr": -0.026597872184065174,
+    "paired_ci95_e3_vs_adhr": [
+      -0.03361358704339652,
+      -0.01986525871718238
+    ]
+  },
+  "organizer_confirmed_score": null,
+  "leakage_canary": {
+    "passed": true,
+    "threshold_symmetric_auc": 0.9,
+    "features_tested": 83,
+    "max_wbhr16_symmetric_auc": 0.605117,
+    "max_wbhr16_feature": "wbhr_bajada_subcell_spike",
+    "max_all83_symmetric_auc": 0.771496,
+    "max_all83_feature": "d2"
+  },
+  "correlation_overlap_vs_registry": {
+    "registry_rasters_checked": 238,
+    "distinct_dot_sets_checked": 127,
+    "preplacement_worst_abs_spearman": 0.281299,
+    "preplacement_worst_label": "data/registry/dense_17gemdoe.tif",
+    "final_worst_abs_spearman": 0.28129869865324536,
+    "final_worst_abs_spearman_label": "data/registry/dense_17gemdoe.tif",
+    "like_for_like_worst_overlap_3px": 0.6982658540124801,
+    "like_for_like_worst_label": "docs/downloads/gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+    "unique_like_for_like": true,
+    "literal_all_positive_witness_overlap_3px": 1.0,
+    "literal_blockers": [
+      "data/registry/dense_17gemdoe.tif",
+      "data/siblings/GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+    ],
+    "unique_literal": false
+  },
+  "fingerprint": {
+    "n": 27564,
+    "median_d_cat_px": 16.1245154965971,
+    "share_le2": 0.0,
+    "share_gt10": 0.6643447975620375,
+    "share_gt25": 0.3317007691191409
+  },
+  "fingerprint_screen_passed": false,
+  "artifact": "docs/downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.tif",
+  "zip_artifact": "docs/downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.zip",
+  "raster_sha256": "f5cdd16177a87560ab8e71d9e80d3d2c095bdeb398665d920826279207c26e49",
+  "zip_sha256": "850e2673026db013e2a60f5255664dc055cdea6e2b6733778d649b38cc26272d",
+  "validator_output": {
+    "ok": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "crs_shape_transform_match_sample": true,
+    "outside_footprint_zero": true,
+    "mapped_fault_pixels_zero": true,
+    "second_decoder_agrees": true,
+    "zip_valid": true,
+    "positive_dots": 27564,
+    "submission_writer_receipt": {
+      "file": "gems88-wbhr88-20261024-DO-NOT-SUBMIT.tif",
+      "sha256": "f5cdd16177a87560ab8e71d9e80d3d2c095bdeb398665d920826279207c26e49",
+      "bytes": 115865,
+      "submission_name": "gems88-wbhr88-wallace-bajada-redox-20261024-zeros",
+      "note": "WBHR-88 LOQO 60ch zero-cat LiDAR/bajada/U-Th-redox/chi + 2.83px Dinkelbach (holdout DTI 0.1064, 27564 dots)",
+      "note_chars": 107,
+      "validator": {
+        "file": "/home/user/GEMSDOE88/docs/downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.tif",
+        "bytes": 115865,
+        "sha256": "f5cdd16177a87560ab8e71d9e80d3d2c095bdeb398665d920826279207c26e49",
+        "meta": {
+          "crs": "EPSG:32611",
+          "shape": [
+            3730,
+            3292
+          ],
+          "dtype": "float32",
+          "count": 1,
+          "nodata": null,
+          "transform": [
+            100.0,
+            0.0,
+            243350.0,
+            0.0,
+            -100.0,
+            4508550.0
+          ],
+          "profile_compress": "deflate"
+        },
+        "band_description": [
+          null
+        ],
+        "n_finite": 12279160,
+        "n_nan": 0,
+        "n_infinite": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.002244778908789158,
+        "emitted_positive_pixels": 27564,
+        "checks": {
+          "single_band": true,
+          "dtype_float32": true,
+          "dimensions_3730x3292": true,
+          "crs_epsg_32611": true,
+          "transform_matches_sample_submission": true,
+          "no_nan_anywhere": true,
+          "no_inf_anywhere": true,
+          "no_sentinel_values": true,
+          "range_0_1_guaranteed": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "in_footprint_all_finite": true,
+          "in_footprint_range_0_1": true,
+          "outside_footprint_zero": true,
+          "zero_dots_on_mapped_catalogue": true
+        },
+        "all_checks_passed": true,
+        "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+        "on_catalogue_positive_pixels": 0,
+        "in_footprint_positive_pixels": 27564,
+        "footprint_fraction": 0.005334238499910883
+      },
+      "template_report": {
+        "path": "/home/user/GEMSDOE88/docs/downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.tif",
+        "bytes": 115865,
+        "sha256": "f5cdd16177a87560ab8e71d9e80d3d2c095bdeb398665d920826279207c26e49",
+        "bands": 1,
+        "dtype": "float32",
+        "crs": "EPSG:32611",
+        "width": 3292,
+        "height": 3730,
+        "bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "ref_bounds": [
+          243350.0,
+          4135550.0,
+          572550.0,
+          4508550.0
+        ],
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "nodata": null,
+        "blocksize": [
+          256,
+          256
+        ],
+        "fixture_grid": false,
+        "has_validity_mask": false,
+        "nan_pixels": 0,
+        "infinity_pixels": 0,
+        "n_nan": 0,
+        "min": 0.0,
+        "max": 1.0,
+        "mean": 0.002244778908789158,
+        "n_nonzero": 27564,
+        "mass": 27564.0,
+        "mass_outside_footprint": 0,
+        "problems": [],
+        "ok": true,
+        "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+      },
+      "zip_file": "gems88-wbhr88-20261024-DO-NOT-SUBMIT.zip",
+      "zip_sha256": "850e2673026db013e2a60f5255664dc055cdea6e2b6733778d649b38cc26272d",
+      "approved_for_weekly_slot": false,
+      "promoted": false,
+      "submission_slots_used": 0,
+      "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+      "metadata": {
+        "lane": "WBHR-88",
+        "mode": "phys60",
+        "ok_to_submit_gems88_gate_v3": false
+      }
+    }
+  },
+  "submission_name": "gems88-wbhr88-wallace-bajada-redox-20261024-zeros",
+  "submission_note": "WBHR-88 LOQO 60ch zero-cat LiDAR/bajada/U-Th-redox/chi + 2.83px Dinkelbach (holdout DTI 0.1064, 27564 dots)",
+  "submission_note_length": 107,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "gems88_gate_v3_label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "experiments_used": 3,
+  "budget_max_experiments": 3,
+  "elapsed_seconds": 163.19
+}
