@@ -1,5 +1,13 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> ## Latest literal-protocol review — 2026-10-24: **DUPLICATE → STOP**
+> **Download existing MDPS-88 TIFF for research: YES. Submit: NO.** [Download research TIFF](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [byte-bound negative JSON run card](docs/data/literal_protocol_audit.json) · [review, ranked hypotheses and source limits](docs/research/protocol-review-20261024.md) · [executive guide](docs/executive-summary.html).
+>
+> Recomputed literal overlap with the pinned dense 17GEMSDOE registry raster is **100%**, exceeding the requested **70%** limit. It covers every allowed cell: a new nonempty candidate cannot pass this rule. Historical v3 chance-corrected uniqueness is a **different policy**, not permission to exempt a prior. **No new TIFF, experiment, or competition slot in this audit**; negative results are deliverables. The older “unique” descriptions below are archival and do not clear the literal gate.
+>
+> Start every session by reading this block and [PROMPT.md](PROMPT.md), then run `python scripts/audit_literal_protocol.py --require-submit` (expected exit 2). Preserve **Maximize P(Win)** and **Own the Outcome** by refusing an unsupported promotion rather than changing a filename or fabricating a score. The full operating prompt already retained in this README/PROMPT remains the starting brief; this update records the current request's binding interpretation, not a claimed verbatim new transcript.
+
+
 > ## ⛔ Latest experiment (merged after PHASE-88): MDPS-88 — unique TIF; OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
 > [⬇ Download the MDPS-88 GeoTIFF (research only)](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [one-file ZIP](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON run card](registry/mdps88_run_card.json) · [independent audit](docs/data/mdps88_validation.json) · [executive submission guide](docs/executive-summary.html).
 > **Name (archival):** `GEMSDOE88-MDPS88-MIX-20261024` · **Note (106/140):** `MDPS-88 matched-domain physics mix, 29742 dots; HOLDOUT far 0.0727 overall 0.0667; UNSCORED; DO NOT SUBMIT` · **SHA-256:** `bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd`.

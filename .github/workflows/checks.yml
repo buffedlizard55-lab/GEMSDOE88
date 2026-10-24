@@ -14,6 +14,15 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python scripts/restore_inputs.py --validation
+      - name: Enforce requested literal duplicate-stop policy
+        run: |
+          python scripts/audit_literal_protocol.py
+          set +e
+          python scripts/audit_literal_protocol.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+          git diff --exit-code docs/data/literal_protocol_audit.json evidence/literal_protocol_audit_20261024.json
       - run: python -m pytest -q
       - run: python scripts/check_site.py
       - name: Independently validate KTH-88 TIFF and ZIP; reject competition slot
