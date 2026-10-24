@@ -1,4 +1,12 @@
-## Current handoff — repo review aligned with KTH-88 mainline (2026-10-24)
+## Current handoff — MRR-COH-88, 2026-10-24
+
+Read `README.md`, `PROMPT.md`, `registry/mrrcoh88_run_card.json`, and `research/mrrcoh88-result-20261024.md` before new work. MRR-COH-88 is **DOWNLOAD FOR RESEARCH: YES; DO NOT SUBMIT**: HOLDOUT-DTI 0.077001 [0.069129, 0.084866] (`gems57-pooled-hide-v2`, 22,893 withheld positives) is below the same-split incumbent 0.187888. Its new 43,173-dot TIFF is format-valid and unique under the disclosed representation-aware 225-path registry policy (pre-placement max |ρ| 0.1836; final dot-field overlap 0.4587; max excess overlap 0.1302). One experiment was run; stop in this lane. No slot or organizer receipt exists. The post-merge refresh removed the withdrawn PSG mock and added MDPS-88/PHASE-88 without changing the metrics. Any future lane needs a new preregistration and a separate selector decision.
+
+## Archived handoff — PHASE-88, 2026-10-24
+
+PHASE-88 remains OK to download for research and **DO NOT SUBMIT**: HOLDOUT-DTI 0.053062 [0.046064,0.060233] (22,893 withheld positives) is below the same-split incumbent, and its dots overlap GEMSDOE87 90.90% / dense 17GEMSDOE 100% within 3 px. Its run card and dossier remain at `registry/phase88_run_card.json` and `research/phase88-20261024.md`.
+
+## Archived handoff — repo review aligned with KTH-88 mainline (2026-10-24)
 
 **Read this section before the archived handoffs below.** The latest candidate is KTH-88 (`docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif`, SHA-256 `5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf`). It is **OK TO DOWNLOAD FOR RESEARCH; DO NOT SUBMIT**. HOLDOUT-DTI is 0.052656 (95% CI [0.045911, 0.059151], 22,893 positives, `gems57-pooled-hide-v2`) versus the same-split incumbent 0.187888; its final overlap is 0.89882 with a GEMSDOE87 raster and 1.0 with the dense witness. Stop: both holdout and literal uniqueness fail. Format validation is not submission clearance. No slot was spent and no organizer receipt exists.
 

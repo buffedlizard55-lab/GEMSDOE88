@@ -18,7 +18,7 @@ MRR-COH-88 is a genuinely new magnetic residual-ribbon coherence candidate. The 
 | HOLDOUT-DTI | `0.07700055`, 95% CI `[0.06912859, 0.08486633]` | **fail** vs `0.18788764` |
 | Withheld positives / evaluator | `22,893` / `gems57-pooled-hide-v2` | complete |
 | Final dot-field overlap within 3 px | `0.45873578` | pass (`≤ 0.70`) |
-| Final max excess overlap | `0.13015695` across 224 rasters | pass |
+| Final max excess overlap | `0.13015695` across 225 rasters | pass |
 | Saved TIFF and one-TIFF ZIP | independent disk reopen passes | pass |
 | Weekly slots / organizer receipt | `0` / none | not submitted |
 
@@ -42,6 +42,10 @@ Archival identifier: `GEMSDOE88-MRRCOH-5FE6CDD8982F`<br>
 Archival note (74/140): `MRR coherence OOF, 43173 dots; HOLDOUT-DTI 0.0770; UNSCORED; DO NOT SUBMIT`
 
 Those strings identify a negative research file. They are **not** permission to upload it.
+
+### Concurrent negatives retained during integration
+
+`main` advanced while MRR-COH-88 was running. The merge preserves **MDPS-88** (`bd64000f…`, unique under its policy but holdout-negative) and **PHASE-88** (`28e6e912…`, holdout-negative and literal-overlap duplicate) with their original run cards, TIFFs, ZIPs, and audits. Both are archived **DO-NOT-SUBMIT** research results; neither displaces the later MRR-COH-88 current release. The refreshed MRR-COH audit removed the withdrawn synthetic PSG mock from its registry and added both concurrent real artifacts, increasing the current scan from 224 to 225 paths without changing any worst-case metric or the uniqueness verdict.
 
 ## Evidence classes
 
@@ -126,7 +130,7 @@ The completed experiment runner is [`scripts/run_mrrcoh88_experiment.py`](script
 - `evidence/mrrcoh88_canaries.json` — eight feature-alone leakage tests
 - `evidence/mrrcoh88_holdout.json` — fold and pooled HOLDOUT-DTI evidence
 - `evidence/mrrcoh88_surface_uniqueness.json` — pre-placement surface stop
-- `evidence/mrrcoh88_final_uniqueness.json` — 224-raster final comparison rows
+- `evidence/mrrcoh88_final_uniqueness.json` — 225-raster final comparison rows
 - `scripts/validate_current.py` — independent current TIFF/ZIP/evidence validator
 - `scripts/readiness.py` — fail-closed selector/readiness status generator
 - `scripts/check_site.py` — site link and visible-decision consistency audit

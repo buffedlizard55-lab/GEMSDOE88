@@ -1734,14 +1734,6 @@
     {
       "repo_first": "GEMSDOE88",
       "sources": [
-        "gems88-hyp-psg-submission.tif"
-      ],
-      "cache_file": "docs/downloads/gems88-hyp-psg-submission.tif",
-      "sha256": "43b3e936cc4adfe3a93e3a7a95c443a7260f1f3a8c2c778ec4d5fbb1f1131d4e"
-    },
-    {
-      "repo_first": "GEMSDOE88",
-      "sources": [
         "gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif"
       ],
       "cache_file": "docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
@@ -1758,10 +1750,26 @@
     {
       "repo_first": "GEMSDOE88",
       "sources": [
+        "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif"
+      ],
+      "cache_file": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd"
+    },
+    {
+      "repo_first": "GEMSDOE88",
+      "sources": [
         "gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif"
       ],
       "cache_file": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
       "sha256": "b9cb36519c2ee91c08f587d3c9c006623d8e2505ece0416fdf263b50e42deb7e"
+    },
+    {
+      "repo_first": "GEMSDOE88",
+      "sources": [
+        "gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif"
+      ],
+      "cache_file": "docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+      "sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b"
     },
     {
       "repo_first": "GEMSDOE88",

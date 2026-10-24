@@ -1,3 +1,21 @@
+# Current decision (2026-10-24): MRR-COH-88 — DO NOT SUBMIT, no slot
+
+MRR-COH-88 (`gems88-mrrcoh-persistent-demag-oof-20261024-43173dots-5fe6cdd8982f-DO-NOT-SUBMIT.tif`, SHA-256 `98d8ecc5…0e24`) is genuinely new, format-valid, and unique under the disclosed representation-aware 225-path registry policy. It is nevertheless **negative**: HOLDOUT-DTI `0.077001 [0.069129,0.084866]` is below the same-split stored best `0.187888 [0.171698,0.203260]` (`gems57-pooled-hide-v2`, 22,893 withheld positives). **No slot is recommended or authorized.** MDPS-88 and PHASE-88 below remain archived same-day negatives.
+
+# Previous addendum (2026-10-24): MDPS-88 — DO NOT SUBMIT, no slot
+
+MDPS-88 (`gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif`, sha256 `bd64000f…35cd`) is unique and format-valid but **negative** under its frozen gates: HOLDOUT-DTI far paired Δ `+0.0036 [−0.0060,+0.0128]` vs fold-fair control (crosses 0), far `0.0727` < stored ADHR far `0.11478`, overall below control (evaluator `gems57-pooled-hide-v2`; 22,893 withheld, 10,791 far). Budget: E1 + disclosed budget-matched E2 only; E3 packaging. **0 slots spent or recommended** (same for PHASE-88 below). Selector note (IR-88-85): identical folds score shipped H33 at 0.0039 and any >3 px full-catalogue-collar raster at exactly 0 — pre-register the evidence-combination rule before the next lane.
+
+---
+
+# Current decision (2026-10-24): PHASE-88 — DO NOT SUBMIT
+
+PHASE-88 is a new research TIFF ([download](docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif)); the automated format check passes, but the score/uniqueness gates fail. HOLDOUT-DTI 0.053062 (95% CI [0.046064,0.060233], gems57-pooled-hide-v2, 22,893 withheld positives) versus incumbent 0.187888 on the same split, without paired improvement CI. Final forward 3-px overlap 0.9090 vs GEMSDOE87 and 1.0 vs the dense 17GEMSDOE witness (limit 0.70). No slot spent, no organizer receipt. Literal overlap cannot be passed by ANY nonempty raster while the positive-everywhere prior is included. A separate portfolio selector/protocol decision is required before any future submission; do not treat historical proposals below as current authorization. [Full dossier](research/phase88-20261024.md).
+
+---
+
+## Archived slot plans below (NOT authorization)
+
 > **2026-10-24 LBCAL update (IR-88-78).** No slot was spent.
 > - **LBCAL** (`gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif`) is **HOLD** under the written holdout gate: 0.0616 < 0.0763.
 > - **The receipt model ranks them the other way.** Its 8-fold repo-blocked CV is ρ 0.941. Projections: LBCAL 0.356, H33 0.264, PROVCREST 0.105 (MODEL-PROJECTION).

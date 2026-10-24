@@ -1,3 +1,5 @@
+> **ARCHIVED UNTESTED BRAINSTORM (PR #68).** These are speculative ideas, not verified improvements. The PR #68 `MAG-PSG` TIFF was generated from seeded random stripes (no pseudogravity transform), failed the current footprint audit, and was removed from Pages. Its original source remains in Git history; [post-merge audit](evidence/postmerge_psg_quarantine_20261024.json). DO NOT SUBMIT it. PHASE-88 is archived at [registry/preregistration_phase88.json](registry/preregistration_phase88.json) and [research/phase88-20261024.md](research/phase88-20261024.md). The current MRR-COH-88 preregistration and negative result are [registry/preregistration_mrrcoh88.json](registry/preregistration_mrrcoh88.json) and [research/mrrcoh88-result-20261024.md](research/mrrcoh88-result-20261024.md). License/AOI availability for the external hypotheses below has NOT been confirmed; do not treat them as viable without that check.
+
 # New Geological Hypotheses for GEMSDOE Competition
 
 ## Hypothesis 1: Magnetic Pseudogravity (PSG) phase symmetry (MAG-PSG)
@@ -40,6 +42,5 @@
 - **Expected DTI Improvement:** Medium.
 - **Implementation Cost:** High. Requires sourcing and processing TIR scenes.
 
-## Limitations & Blockers
-**Current Limitation:** We are unable to download the core competition data directly from DrivenData (`training_features.tif`, `labels.tif`, `sample_submission.tif`) due to the requirement for authentication (❌ No DrivenData auth). Furthermore, the provided Dropbox links are blocked by the environment's firewall (only specific outbound connections are allowed, e.g., GitHub, PyPI, npm). 
-**Required Access:** We need a machine with unrestricted internet access or valid DrivenData credentials injected as environment variables (or pre-downloaded data in the `data/` directory) to run the full training pipeline using `scripts/prepare_data.py`.
+## Limitations & blockers (corrected after reconciliation)
+Owner GitHub mirrors provide SHA-pinned inputs via `scripts/restore_inputs.py`; a competition-account download is still required to authenticate those bytes. The external datasets above require separate official-source AOI, license/shareability and time-series checks before they are viable. No MAG-PSG physical transform or legitimate holdout was implemented in the archived PR. Do not generate a competition file from random stripes.

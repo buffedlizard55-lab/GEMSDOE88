@@ -27,8 +27,8 @@
     "evidence_class": "REGISTRY-MEASUREMENT",
     "binding_rule": "chance-corrected-excess-overlap + rank-correlation (IR-88-76)",
     "rationale": "A prior whose 3 px halo already covers the entire allowed domain returns forward overlap 1.0 for every possible candidate, so the literal dot test is constant and carries no information about lane drift; the protocol's rank-correlation test is the one defined for such a surface. For every prior that can discriminate, the same 0.70 limit is applied to the chance-corrected excess, which equals the literal overlap when the prior has no halo advantage and is stricter in relative terms otherwise.",
-    "rasters_checked": 224,
-    "discriminating_priors": 223,
+    "rasters_checked": 225,
+    "discriminating_priors": 224,
     "space_filling_priors": 1,
     "space_filling_files": [
       "/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif"
@@ -3070,20 +3070,6 @@
         "fails_literal": false
       },
       {
-        "file": "/home/user/GEMSDOE88/docs/downloads/gems88-hyp-psg-submission.tif",
-        "submission": "gems88-hyp-psg-submission.tif",
-        "repo": "GEMSDOE88",
-        "their_dots": 15706,
-        "halo_coverage": 0.006721984265505896,
-        "forward_overlap": 0.0044240613346304405,
-        "excess_overlap": -0.0023134740671535174,
-        "spearman": -0.0013993122004149652,
-        "discriminating": true,
-        "fails_excess": false,
-        "fails_rho": false,
-        "fails_literal": false
-      },
-      {
         "file": "/home/user/GEMSDOE88/docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
         "submission": "gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
         "repo": "GEMSDOE88",
@@ -3112,6 +3098,20 @@
         "fails_literal": false
       },
       {
+        "file": "/home/user/GEMSDOE88/docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+        "submission": "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+        "repo": "GEMSDOE88",
+        "their_dots": 29742,
+        "halo_coverage": 0.10645738172955581,
+        "forward_overlap": 0.11136589998378617,
+        "excess_overlap": 0.005493323042309239,
+        "spearman": 0.0006887953870986588,
+        "discriminating": true,
+        "fails_excess": false,
+        "fails_rho": false,
+        "fails_literal": false
+      },
+      {
         "file": "/home/user/GEMSDOE88/docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
         "submission": "gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
         "repo": "GEMSDOE88",
@@ -3120,6 +3120,20 @@
         "forward_overlap": 0.09274314965371876,
         "excess_overlap": -0.018274671827488712,
         "spearman": -0.00012910026141639238,
+        "discriminating": true,
+        "fails_excess": false,
+        "fails_rho": false,
+        "fails_literal": false
+      },
+      {
+        "file": "/home/user/GEMSDOE88/docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+        "submission": "gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+        "repo": "GEMSDOE88",
+        "their_dots": 37654,
+        "halo_coverage": 0.1683170539459799,
+        "forward_overlap": 0.18493039631251013,
+        "excess_overlap": 0.019975571755262544,
+        "spearman": -6.489989253447562e-05,
         "discriminating": true,
         "fails_excess": false,
         "fails_rho": false,
@@ -3185,7 +3199,7 @@
   },
   "literal_dot_field_gate": {
     "support_fraction_max": 0.2,
-    "rasters_checked": 222,
+    "rasters_checked": 223,
     "overlap_limit": 0.7,
     "worst_forward_overlap": 0.45873578393903597,
     "worst_file": "/home/user/GEMSDOE88/data/fleet/GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
@@ -3193,10 +3207,44 @@
   },
   "byte_or_decoded_duplicate": false,
   "unique": true,
+  "postmerge_registry_refresh": {
+    "reviewed_utc": "2026-10-24T19:10:00Z",
+    "old_rasters": 224,
+    "new_rasters": 225,
+    "removed": [
+      {
+        "repo_first": "GEMSDOE88",
+        "sources": [
+          "gems88-hyp-psg-submission.tif"
+        ],
+        "cache_file": "docs/downloads/gems88-hyp-psg-submission.tif",
+        "sha256": "43b3e936cc4adfe3a93e3a7a95c443a7260f1f3a8c2c778ec4d5fbb1f1131d4e"
+      }
+    ],
+    "added": [
+      {
+        "repo_first": "GEMSDOE88",
+        "sources": [
+          "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif"
+        ],
+        "cache_file": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+        "sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd"
+      },
+      {
+        "repo_first": "GEMSDOE88",
+        "sources": [
+          "gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif"
+        ],
+        "cache_file": "docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+        "sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b"
+      }
+    ],
+    "experiment_rerun": false
+  },
   "two_phase_summary": {
     "evidence_class": "REGISTRY-MEASUREMENT",
-    "rasters_checked": 224,
-    "rasters_expected": 224,
+    "rasters_checked": 225,
+    "rasters_expected": 225,
     "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
     "footprint_cells": 5167373,
     "dense_support_fraction": 0.2,
@@ -3216,7 +3264,7 @@
       "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
     },
     "like_for_like_reading": {
-      "dot_field_rasters": 222,
+      "dot_field_rasters": 223,
       "continuous_surface_rasters": 2,
       "worst_forward_overlap_dot_fields": 0.45873578393903597,
       "worst_forward_overlap_dot_field_submission": "GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
@@ -7568,26 +7616,6 @@
     },
     {
       "repo": "GEMSDOE88",
-      "submission": "gems88-hyp-psg-submission.tif",
-      "file": "/home/user/GEMSDOE88/docs/downloads/gems88-hyp-psg-submission.tif",
-      "sha256": "43b3e936cc4adfe3a93e3a7a95c443a7260f1f3a8c2c778ec4d5fbb1f1131d4e",
-      "decoded_sha256": "075a05ae0cdb832a93983e1dde1c5221b1b29a77bd8015d7456f35aedcccc77c",
-      "their_dots": 15706,
-      "my_dots_within_3px_of_theirs": 0.0044240613346304405,
-      "forward_overlap": 0.0044240613346304405,
-      "halo_coverage": 0.006721984265505896,
-      "their_dots_within_3px_of_mine": 0.09200305615688271,
-      "spearman_full_footprint": -0.0013993122004149652,
-      "jaccard_dot_sets": 0.0016160860097985846,
-      "identical_bytes": false,
-      "identical_decoded_predictions": false,
-      "duplicate_by_rho": false,
-      "duplicate_by_overlap": false,
-      "duplicate_by_jaccard": false,
-      "representation": "dot_field"
-    },
-    {
-      "repo": "GEMSDOE88",
       "submission": "gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
       "file": "/home/user/GEMSDOE88/docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
       "sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
@@ -7628,6 +7656,26 @@
     },
     {
       "repo": "GEMSDOE88",
+      "submission": "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "file": "/home/user/GEMSDOE88/docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
+      "decoded_sha256": "e9a2d1d1c94db645a0d5da15f760cbf4ddb973be60e057228a5fe1ae43ee937c",
+      "their_dots": 29742,
+      "my_dots_within_3px_of_theirs": 0.11136589998378617,
+      "forward_overlap": 0.11136589998378617,
+      "halo_coverage": 0.10645738172955581,
+      "their_dots_within_3px_of_mine": 0.1435680182906328,
+      "spearman_full_footprint": 0.0006887953870986588,
+      "jaccard_dot_sets": 0.003758156438424052,
+      "identical_bytes": false,
+      "identical_decoded_predictions": false,
+      "duplicate_by_rho": false,
+      "duplicate_by_overlap": false,
+      "duplicate_by_jaccard": false,
+      "representation": "dot_field"
+    },
+    {
+      "repo": "GEMSDOE88",
       "submission": "gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
       "file": "/home/user/GEMSDOE88/docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
       "sha256": "b9cb36519c2ee91c08f587d3c9c006623d8e2505ece0416fdf263b50e42deb7e",
@@ -7639,6 +7687,26 @@
       "their_dots_within_3px_of_mine": 0.12835456387200622,
       "spearman_full_footprint": -0.00012910026141639238,
       "jaccard_dot_sets": 0.003751108858192878,
+      "identical_bytes": false,
+      "identical_decoded_predictions": false,
+      "duplicate_by_rho": false,
+      "duplicate_by_overlap": false,
+      "duplicate_by_jaccard": false,
+      "representation": "dot_field"
+    },
+    {
+      "repo": "GEMSDOE88",
+      "submission": "gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+      "file": "/home/user/GEMSDOE88/docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+      "sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b",
+      "decoded_sha256": "ed45dd7d2815df5408bd5ee45ed72185a421de2560c1b97101ee6f6a6427d37e",
+      "their_dots": 37654,
+      "my_dots_within_3px_of_theirs": 0.18493039631251013,
+      "forward_overlap": 0.18493039631251013,
+      "halo_coverage": 0.1683170539459799,
+      "their_dots_within_3px_of_mine": 0.15435279120412174,
+      "spearman_full_footprint": -6.489989253447562e-05,
+      "jaccard_dot_sets": 0.0038750543377010496,
       "identical_bytes": false,
       "identical_decoded_predictions": false,
       "duplicate_by_rho": false,

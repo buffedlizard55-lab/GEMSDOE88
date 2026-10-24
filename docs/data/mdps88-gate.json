@@ -1,0 +1,24 @@
+{
+ "schema": "gems88.mdps88-gate.v1",
+ "name": "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT",
+ "sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
+ "zip_sha256": "cd64e498a62175e833edbd9079e95bf8e0d296b89de63c03b6154d5a92d10606",
+ "generated_utc": "2026-10-24",
+ "policy": "registry/preregistration_mdps88.json (frozen before experiments)",
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+ "blocking_reasons": [
+  "HOLDOUT far paired 95% CI crosses zero vs fold-fair control (HOLDOUT-DTI delta +0.0036 [-0.0060,+0.0128], gems57-pooled-hide-v2, 10791 far withheld positives)",
+  "HOLDOUT far 0.0727 below stored same-fold ADHR far 0.11478 (unpaired reference) and overall 0.0667 below control 0.1085 (22893 withheld positives)"
+ ],
+ "passing": [
+  "leakage canary max symmetric AUC 0.5948 <= 0.90 (44 features)",
+  "uniqueness v3: 44 rasters, worst excess 3px overlap 0.226, worst |Spearman| 0.106, duplicate=false",
+  "format: independent audit all checks pass; values finite in [0,1]; CRS/shape/transform match sample; one-member ZIP byte-identical"
+ ],
+ "submission_name_archival": "GEMSDOE88-MDPS88-MIX-20261024",
+ "submission_note_archival": "MDPS-88 matched-domain physics mix, 29742 dots; HOLDOUT far 0.0727 overall 0.0667; UNSCORED; DO NOT SUBMIT",
+ "note_len": 106,
+ "human_step_remaining": "None for this file. Selecting and uploading any future gate-passing file remains a human selector decision within the portal weekly limit."
+}

@@ -36,7 +36,7 @@
     "paired_difference_reason": "Stored incumbent block terms are absent. A point-estimate win would require recomputation before promotion."
   },
   "correlation_overlap_vs_registry": {
-    "registry_rasters_checked": 224,
+    "registry_rasters_checked": 225,
     "preplacement_max_abs_spearman": 0.18358174289995974,
     "final_max_abs_spearman": 0.016958593614022313,
     "final_max_literal_forward_overlap_all": 1.0,
@@ -272,5 +272,39 @@
     "Owner-mirrored competition bytes are hash-pinned but not organizer-authenticated in this environment.",
     "The public registry cannot include private, unlinked, or inaccessible submissions.",
     "No DrivenData portal upload or organizer acceptance receipt was created."
-  ]
+  ],
+  "postmerge_registry_refresh": {
+    "reviewed_utc": "2026-10-24T19:10:00Z",
+    "old_rasters": 224,
+    "new_rasters": 225,
+    "removed": [
+      {
+        "repo_first": "GEMSDOE88",
+        "sources": [
+          "gems88-hyp-psg-submission.tif"
+        ],
+        "cache_file": "docs/downloads/gems88-hyp-psg-submission.tif",
+        "sha256": "43b3e936cc4adfe3a93e3a7a95c443a7260f1f3a8c2c778ec4d5fbb1f1131d4e"
+      }
+    ],
+    "added": [
+      {
+        "repo_first": "GEMSDOE88",
+        "sources": [
+          "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif"
+        ],
+        "cache_file": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+        "sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd"
+      },
+      {
+        "repo_first": "GEMSDOE88",
+        "sources": [
+          "gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif"
+        ],
+        "cache_file": "docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+        "sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b"
+      }
+    ],
+    "experiment_rerun": false
+  }
 }

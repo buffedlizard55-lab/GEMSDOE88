@@ -52,11 +52,11 @@ No post-result tuning or second MRR-COH experiment was run.
 - Format: one float32 band, finite everywhere, range `[0,1]`, no nodata sentinel, exact pinned CRS/shape/transform, zero outside footprint
 - ZIP: exactly one member whose bytes equal the standalone TIFF
 
-The runner used the shared writer. `scripts/validate_current.py` independently reopens both saved files, validates sample-grid parity, rehashes all 224 registry paths, and recomputes every final saved-byte registry comparison. No visual inspection or human input is a validation dependency.
+The runner used the shared writer. `scripts/validate_current.py` independently reopens both saved files, validates sample-grid parity, rehashes all 225 registry paths, and recomputes every final saved-byte registry comparison. No visual inspection or human input is a validation dependency.
 
 ## Two-phase uniqueness result
 
-The expanded accessible index contains 224 SHA-pinned path entries from restored registry, fleet, sibling, and local published outputs. Private, unlinked, inaccessible, and later-created rasters remain outside scope.
+The expanded accessible index contains 225 SHA-pinned path entries from restored registry, fleet, sibling, and local published outputs. Private, unlinked, inaccessible, and later-created rasters remain outside scope.
 
 | Gate | Limit | Result |
 |---|---:|---:|
@@ -65,6 +65,8 @@ The expanded accessible index contains 224 SHA-pinned path entries from restored
 | Final literal forward overlap among dot fields, within 3 px | `0.70` | `0.45873578` |
 | Final max chance-corrected excess overlap | `0.70` | `0.13015695` |
 | Identical file or decoded prediction | none | none |
+
+A post-merge refresh removed the withdrawn synthetic PSG mock and added the concurrent MDPS-88 and PHASE-88 TIFFs, changing the accessible scan from 224 to 225 paths. The pre-placement maximum, final maxima, and uniqueness verdict were unchanged; no model fitting or experiment was rerun.
 
 The all-representation literal maximum is `1.0`. This is retained in evidence because a positive-everywhere continuous prior covers every possible candidate dot. It is constant and cannot diagnose copied dot placement. Under the shared representation-aware policy, literal overlap binds for dot fields, chance-corrected excess overlap binds for discriminating dense support, and rank correlation binds for every raster. The current artifact is unique under that disclosed policy.
 
@@ -101,6 +103,6 @@ Canonical machine result: [`registry/mrrcoh88_run_card.json`](../registry/mrrcoh
 
 ## Three-pass review record
 
-1. **Implement/verify:** complete — preregistration, features, leakage canaries, eight-fold holdout, strict-quadrant production, TIFF/ZIP writer, format audit, and 224-raster uniqueness audit.
-2. **Review/fix:** complete — replaced stale KTH/MAG-PSG public status, made the current validator MRR-COH-aware, aligned the public ranking to the frozen preregistration, separated selector approval from scientific promotion, and added independent 224-row remeasurement.
-3. **Requirement recheck/fix:** complete — restored-input and sibling pins passed; `298` tests passed (`22` data-conditional skips); current TIFF/ZIP plus all 224 final registry comparisons were independently recomputed; site/readiness checks passed; both current and historical `--require-submit` gates exited `2` as expected.
+1. **Implement/verify:** complete — preregistration, features, leakage canaries, eight-fold holdout, strict-quadrant production, TIFF/ZIP writer, format audit, and 225-raster uniqueness audit.
+2. **Review/fix:** complete — replaced stale KTH/MAG-PSG public status, made the current validator MRR-COH-aware, aligned the public ranking to the frozen preregistration, separated selector approval from scientific promotion, and added independent 225-row remeasurement.
+3. **Requirement recheck/fix:** complete after merging concurrent `main` — restored-input and sibling pins passed; `305` tests passed (`22` data-conditional skips); the registry was refreshed from 224 to 225 paths and all final comparisons were independently recomputed; site/readiness checks passed; MRR-COH, MDPS-88, PHASE-88, and archived release gates remained fail-closed.
