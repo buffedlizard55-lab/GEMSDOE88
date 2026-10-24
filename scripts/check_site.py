@@ -27,8 +27,8 @@ def main(root=ROOT):
     literal = json.loads((root / 'docs/data/literal_protocol_audit.json').read_text())
     mdps = json.loads((root / 'registry/mdps88_run_card.json').read_text())
     assert literal['raster_sha256'] == mdps['raster_sha256']
-    assert literal['preplacement_feasibility']['all_nonempty_in_footprint_candidates_blocked']
-    assert literal['correlation_overlap_vs_registry']['duplicate'] and not literal['ok_to_submit']
+    assert literal['saturation_certificate']['universal_overlap_blocker']
+    assert literal['correlation_overlap_vs_registry']['literal_duplicate'] and not literal['ok_to_submit']
     assert mdps['correlation_overlap_vs_registry']['duplicate']
     assert 'FAIL — DUPLICATE' in (root / 'docs/index.html').read_text()
     # Historical MRR and KTH remain negative; latest PHASE-88 controls the site.

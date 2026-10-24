@@ -1,16 +1,3 @@
-# Latest protocol audit — 2026-10-24
-
-**DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO. No new TIFF was generated in this audit.**
-[Download the existing research TIFF](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [automatic run card](docs/data/literal_protocol_audit.json) · [review and next steps](docs/research/protocol-review-20261024.md).
-
-Read [PROMPT.md](PROMPT.md) and this notice at every session start. The standing prompt is condensed, not a verbatim archive. Your current literal rule supersedes earlier chance-corrected exceptions: **every** registry raster binds. The pinned dense witness directly covers every footprint pixel, so any nonempty in-footprint candidate has full overlap and fails. Generation must stop rather than invent a “unique submission.” No new experiment or competition slot was used.
-
-**IR-88-86 correction:** MDPS-88's prior uniqueness PASS was incorrect under the requested rule. The shared template v3 gate now uses literal overlap for all callers; chance correction remains diagnostic only. Existing historical outputs are not new scores or authorizations. Automatically reproduce with `python scripts/restore_inputs.py --validation`, then `python scripts/audit_literal_protocol.py` and `python scripts/validate_mdps88.py --require-submit` (expected exit 2).
-
-**Concurrent merge:** IBL-88 arrived during this review. Its [research TIFF](docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif) and [historical card](registry/ibl88_run_card.json) are preserved; DO NOT SUBMIT. The universal literal blocker also applies to that candidate. This audit independently revalidated MDPS, not IBL scientific performance.
-
----
-
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
 > ## 🟢 START HERE — decision at a glance (2026-10-24, automated gates, no human inspection)
@@ -24,9 +11,9 @@ Read [PROMPT.md](PROMPT.md) and this notice at every session start. The standing
 > | **What must a human decide?** | (1) Whether a dense prior counts as "dots" under the uniqueness rule (fix the definition explicitly, once). (2) Whether to keep the 0.187888 holdout bar. Neither change authorizes a slot. A slot needs a file that beats the bar with a paired CI above zero. |
 > | **Correction this session** | `MDC-88` had `ok_to_submit: true` in its machine records under a like-for-like rule that excludes the dense prior. That contradicts the literal rule and it fails the holdout bar. Now `false` everywhere, and the file is renamed with `-DO-NOT-SUBMIT`. See IR-88-86. |
 >
-> **Verify (no manual step):** `python scripts/restore_inputs.py --validation && .venv/bin/python scripts/validate_phase88.py && .venv/bin/python scripts/diagnose_dense_prior_topn.py && .venv/bin/python scripts/build_candidate_matrix.py && .venv/bin/python scripts/check_site.py`. Official rules and metric: [metric & format (DrivenData)](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) · [reference solution](https://github.com/drivendataorg/gems-prize-reference-solution).
+> **Verify (no manual step):** `python scripts/restore_inputs.py --validation && .venv/bin/python scripts/audit_literal_protocol.py --require-submit` (expected exit 2) `&& .venv/bin/python scripts/validate_phase88.py && .venv/bin/python scripts/diagnose_dense_prior_topn.py && .venv/bin/python scripts/build_candidate_matrix.py && .venv/bin/python scripts/check_site.py`. Official rules and metric: [metric & format (DrivenData)](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) · [reference solution](https://github.com/drivendataorg/gems-prize-reference-solution).
 
-> ## ⛔ Audited experiment (parallel IBL merge retained): MDPS-88 — format-valid, literal-duplicate TIF; OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
+> ## ⛔ Audited experiment (archived): MDPS-88 — literal-duplicate TIF; OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
 > [⬇ Download the MDPS-88 GeoTIFF (research only)](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [one-file ZIP](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON run card](registry/mdps88_run_card.json) · [independent audit](docs/data/mdps88_validation.json) · [executive submission guide](docs/executive-summary.html).
 > **Name (archival):** `GEMSDOE88-MDPS88-MIX-20261024` · **Note (106/140):** `MDPS-88 matched-domain physics mix, 29742 dots; HOLDOUT far 0.0727 overall 0.0667; UNSCORED; DO NOT SUBMIT` · **SHA-256:** `bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd`.
 > 29,742 de-novo dots (not a copy/subset of any prior: exact-pixel overlap vs H33 1.9%; worst chance-corrected 3 px excess 0.226, |ρ| 0.106 over 44 priors; literal 1.0 only vs the space-filling witness). All-finite `[0,1]` zeros encoding; independent byte audit PASS (`scripts/validate_mdps88.py`, `--require-submit` exits 2). **Blocked by frozen scientific gates:** HOLDOUT-DTI far `0.0727 [0.0591,0.0863]`, paired Δ vs fold-fair control `+0.0036 [−0.0060,+0.0128]` (crosses 0); overall `0.0667` vs `0.1085`; below stored ADHR far `0.11478`. Canary 0.5948 PASS. SGMC PROXY 0.0667 vs H33 0.0940. Dossier: [`docs/research/hypotheses-20261024-mdps88.md`](docs/research/hypotheses-20261024-mdps88.md) (ranked hypotheses + reproduced 0.2778 lineage forensics). Findings IR-88-83/84/85. **0 slots; no ORGANIZER-CONFIRMED score.** PHASE-88 below remains the canonical `current_release.json` record; both are DO NOT SUBMIT.

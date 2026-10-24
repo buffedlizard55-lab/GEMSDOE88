@@ -3,11 +3,13 @@
   "approved_for_weekly_slot": false,
   "status": "BLOCKED",
   "problems": [
-    "HOLDOUT: candidate point estimate is below the stored incumbent",
-    "UNIQUENESS: literal registry overlap exceeds 0.70"
+    "UNIQUENESS: literal registry overlap exceeds 0.70; DUPLICATE_STOP",
+    "HOLDOUT: inherited MDPS-88 paired improvement and incumbent gates failed"
   ],
   "ok_to_download_for_research": true,
   "ok_to_submit": false,
-  "raster_sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b",
-  "policy": "binding-literal-all-registry-v1"
+  "raster_sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
+  "policy": "binding-literal-all-registry-v1",
+  "run_card": "docs/data/literal_protocol_audit.json",
+  "historical_release_record": "docs/data/current_release.json"
 }
