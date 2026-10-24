@@ -129,13 +129,11 @@ def test_run_card_four_way_parity_and_audit_invariants():
     assert reg["literal_binding_decision"]["duplicate"] is True
     assert reg["universal_witness"]["universal_overlap_blocker"] is True
 
-    # The current status feed follows the latest candidate's canonical gate
-    # record (MDPS-88 since 2026-10-24; KTH-era current_release.json is kept
-    # as that candidate's historical release record), while the four-way MRR
-    # card remains immutable history.
+    # The live status producer follows its explicit MDPS audit;
+    # current_release.json is retained as an archived PHASE record.
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
-    current_doc = json.loads((ROOT / "docs/data/mdps88-gate.json").read_text())
-    assert status_doc["raster_sha256"] == current_doc["sha256"]
+    current_doc = json.loads((ROOT / "docs/data/literal_protocol_audit.json").read_text())
+    assert status_doc["raster_sha256"] == current_doc["raster_sha256"]
     assert status_doc["raster_sha256"] != card["raster_sha256"]
     assert status_doc["ok_to_submit"] is False
     assert status_doc["ok_to_download_for_research"] is True

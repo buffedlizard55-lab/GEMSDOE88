@@ -37,6 +37,19 @@ def pinned(root, relative, digest):
     return path
 
 
+def coverage_proof(footprint, witness):
+    if footprint.shape != witness.shape or not footprint.any():
+        raise ValueError('Empty or mismatched footprint')
+    support = np.isfinite(witness) & (witness > 0)
+    # Direct coverage is a stronger sufficient condition than 3px halo coverage.
+    covered = int(np.count_nonzero(support & footprint))
+    total = int(footprint.sum())
+    return {'footprint_pixels': total, 'directly_covered_pixels': covered,
+            'all_nonempty_in_footprint_candidates_blocked': covered == total,
+            'reason': 'Every allowed dot already lies on positive registry support' if covered == total
+                      else 'This sufficient proof is inconclusive; run full registry tests'}
+
+
 def inspect(root=ROOT):
     root = Path(root)
     card = json.loads((root / "registry/mdps88_run_card.json").read_text())
