@@ -1,5 +1,7 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> **Release-integrity review (2026-10-24):** [three-pass findings, verified sources and next steps](docs/research/review-20261024-release-integrity.md). **DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO.** No fresh TIFF or model experiment: the literal dense-registry stop was reproduced. Production site checks now remain active under `python -O`; a stale TDKL “PROMOTE” summary was corrected without changing historical measurements. Read this README and [the stored operating prompt](PROMPT.md) at the start of each session.
+
 > **Latest independent review (2026-10-24):** [review, fixes, verification scope and blockers](research/review-bff2fa68-20261024.md) · [fresh latest-download JSON audit](evidence/latest_download_review_20261024.json). **DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO.** No new TIFF generated: the verified literal duplicate-stop rule blocks every nonempty candidate. Start each session with [the standing user prompt](PROMPT.md); it is a condensed record, not a verbatim transcript.
 
 > ## ⛔ Latest session lane (2026-10-24): `H88-TDKL` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (held under literal `17GEMSDOE` dense witness & post-merge concurrent stratified lanes)

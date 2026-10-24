@@ -1,0 +1,64 @@
+"""Production release checks must not disappear under Python -O."""
+
+import ast
+import json
+from pathlib import Path
+import subprocess
+import sys
+
+import pytest
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+@pytest.mark.parametrize("optimized", [False, True])
+@pytest.mark.parametrize("corruption", ["status", "download"])
+def test_guard_rejects_corruption_under_both_interpreters(
+    tmp_path, optimized, corruption
+):
+    # Share immutable large artifacts; isolate only the file being corrupted.
+    (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    for source in (ROOT / "docs").iterdir():
+        if source.name == "status.json":
+            status = json.loads(source.read_text())
+            if corruption == "status":
+                status["ok_to_submit"] = True
+            (docs / source.name).write_text(json.dumps(status))
+        elif source.name == "downloads" and corruption == "download":
+            downloads = docs / source.name
+            downloads.mkdir()
+            for artifact in source.iterdir():
+                (downloads / artifact.name).symlink_to(artifact)
+            (downloads / "unmarked-research.tif").write_bytes(b"not a TIFF")
+        else:
+            (docs / source.name).symlink_to(source, target_is_directory=source.is_dir())
+    command = [sys.executable] + (["-O"] if optimized else [])
+    command += [
+        "-c",
+        "from pathlib import Path; from scripts.check_site import main; "
+        "main(Path(__import__('sys').argv[1]))",
+        str(tmp_path),
+    ]
+    result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True)
+    assert result.returncode != 0
+    assert "PASS:" not in result.stdout
+    assert "ValueError" in result.stderr
+    if corruption == "download":
+        assert "unmarked published research artifact" in result.stderr
+
+
+def test_no_disableable_assertions_remain_in_production_site_guard():
+    tree = ast.parse((ROOT / "scripts/check_site.py").read_text())
+    assert not any(isinstance(node, ast.Assert) for node in ast.walk(tree))
+
+
+@pytest.mark.parametrize("optimized", [False, True])
+def test_real_site_passes_under_both_interpreters(optimized):
+    command = [sys.executable] + (["-O"] if optimized else [])
+    result = subprocess.run(
+        command + ["scripts/check_site.py"], cwd=ROOT, text=True, capture_output=True
+    )
+    assert result.returncode == 0, result.stderr
+    assert "PASS:" in result.stdout
