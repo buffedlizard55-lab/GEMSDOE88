@@ -17,9 +17,9 @@ def _gate():
 
 def test_rendering_is_idempotent_and_committed(tmp_path):
     import render_site
-    before = {p: (ROOT / p).read_text() for p in ("index.html", "docs/index.html", "docs/executive-summary.html", "README.md")}
+    before = {p: (ROOT / p).read_text() for p in ("index.html", "docs/index.html", "docs/executive-summary.html", "docs/research.html", "docs/sources.html", "README.md")}
     try:
-        render_site.render_root(); render_site.render_index(); render_site.render_exec(); render_site.render_readme()
+        render_site.render_root(); render_site.render_index(); render_site.render_exec(); render_site.render_strips(); render_site.render_readme()
         after = {p: (ROOT / p).read_text() for p in before}
     finally:
         for p, t in before.items():

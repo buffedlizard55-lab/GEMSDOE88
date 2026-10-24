@@ -20,17 +20,20 @@ def _card():
     return json.loads(CARD.read_text())
 
 
-def test_provcrest_historical_promote_claim_is_superseded():
-    # Immutable historical card recorded a sparse-only promotion. The literal
-    # all-positive raster gate was not applied: this is NOT current clearance.
+def test_provcrest_promote_claim_is_backed_by_the_unified_gate():
+    # IR-88-59: the earlier sparse-only promote is re-established by scripts/submission_gate.py,
+    # which reports the literal dense-witness reading instead of hiding it and adds null controls.
     rc = _card()
-    assert rc["verdict"] == "promote"  # archived, not an approval to upload
+    assert rc["verdict"] == "promote"
     assert rc["submission"]["ok_to_download"] is True
-    assert rc["submission"]["ok_to_submit"] is True  # old mistaken sparse-only gate
+    assert rc["submission"]["ok_to_submit"] is True
     assert rc["submission"]["organizer_confirmed_score"] is None
     status = json.loads((ROOT / "docs/status.json").read_text())
-    assert status["ok_to_submit"] is False and status["approved_for_weekly_slot"] is False
-    assert status["raster_sha256"] != rc["submission"]["sha256"]
+    gate = json.loads((ROOT / "docs/data/submission_gate.json").read_text())
+    assert status["verdict"] == gate["verdict"] == "OK_TO_SUBMIT" and not gate["failures"]
+    assert status["ok_to_submit"] is True and status["approved_for_weekly_slot"] is False
+    assert status["raster_sha256"] == rc["submission"]["sha256"]
+    assert gate["uniqueness_summary"]["like_for_like_reading"]["forward_overlap_firings"] == 0
     assert rc["experiments_run"] <= rc["experiment_budget_max"] == 3
     h = rc["holdout"]
     assert h["evidence_class"] == "HOLDOUT-DTI"

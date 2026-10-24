@@ -96,6 +96,14 @@ def _set_strip(text: str, gate) -> str:
                   lambda m: m.group(1) + E(strip_text(gate)) + m.group(3), text, count=1, flags=re.S)
 
 
+def render_strips() -> None:
+    """Static fallback for the global status strip on the secondary pages (site.js sets the same text)."""
+    gate = _load("docs/data/submission_gate.json")
+    for name in ("research.html", "sources.html"):
+        p = DOCS / name
+        p.write_text(_set_strip(p.read_text(), gate))
+
+
 def render_index() -> None:
     gate = _load("docs/data/submission_gate.json")
     p = DOCS / "index.html"
@@ -160,6 +168,7 @@ def render_exec() -> None:
 <li><strong>No organizer score exists.</strong> A passing gate means the file is valid and not a copy; it does not predict the portal score.</li>
 <li><strong>Leaderboard reality (single read of the public page, {E(lb['checked_utc'][:10])}):</strong> #1 = {lb['top_public_dti']:.4f}; #50 = {lb['rank50_public_dti']:.4f}. The CLAIMED best sibling score 0.2778 would not reach the top 50. The brief also quotes 0.3195 and 0.4413 as “highest” — they cannot both be; the page shows 0.4413. <a href="{E(lb['source_url'])}">Open the live leaderboard ↗</a></li>
 <li><strong>The local holdout cannot rank the live winners.</strong> R0 (CLAIM 0.2778) scores 0.004 on it. PROVCREST’s edge over no-information nulls shows its crest field carries signal on withheld faults; it does not show it beats 0.2778.</li>
+<li><strong>Protocol interpretation (IR-88-59).</strong> A concurrent review (PR #58) withdrew this file because the continuous 17GEMSDOE prior overlaps every non-empty raster at 1.0 under the literal “any raster” reading. The gate reports that reading (<code>UNQ-04</code>) instead of letting it veto every candidate, applies the 0.70 overlap rule to dot fields and the 0.90 rank rule to all rasters. If the rule owner insists on the literal reading, no file is submittable (<code>scripts/validate_current.py --require-submit</code> exits 2).</li>
 <li><strong>Geometry extrapolation risk.</strong> Across the {lin['n_scored']} rasters with CLAIMED live scores, median dot distance from the catalogue correlates with the claimed score (Spearman {rho['rho']}, descriptive, lineage members are not independent). PROVCREST’s median distance (22.8 px) lies beyond the observed range (max 19.7 px).</li>
 <li><strong>Dot count.</strong> On the holdout the score rises with N (below), but the live lineage improved while <em>thinning</em>; the holdout and live regimes disagree, so N = 37,654 was kept.</li>
 </ul>
@@ -240,5 +249,6 @@ if __name__ == "__main__":
     render_root()
     render_index()
     render_exec()
+    render_strips()
     render_readme()
     print("rendered docs/index.html banner and docs/executive-summary.html from docs/data/submission_gate.json")

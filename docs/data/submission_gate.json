@@ -163,7 +163,7 @@
       "description": "registry scan complete: >= 20 restored registry rasters, none unreadable (a smaller inventory fails closed)",
       "pass": true,
       "value": {
-        "rasters_checked": 32,
+        "rasters_checked": 33,
         "errors": []
       }
     },
@@ -180,7 +180,7 @@
       "value": {
         "worst": 0.4076,
         "file": "family_60gemsdoe/calib_h161_01855.tif",
-        "dot_field_rasters": 31
+        "dot_field_rasters": 32
       }
     },
     {
@@ -452,6 +452,13 @@
       "jaccard_dot_sets": 0.00672
     },
     {
+      "submission": "docs/downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif",
+      "their_dots": 37654,
+      "my_dots_within_3px_of_theirs": 0.2116,
+      "spearman_full_footprint": 0.0038,
+      "jaccard_dot_sets": 0.00557
+    },
+    {
       "submission": "docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
       "their_dots": 37654,
       "my_dots_within_3px_of_theirs": 0.0877,
@@ -496,7 +503,7 @@
   ],
   "uniqueness_summary": {
     "evidence_class": "REGISTRY-MEASUREMENT",
-    "rasters_checked": 32,
+    "rasters_checked": 33,
     "rasters_expected": null,
     "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
     "footprint_cells": 5167373,
@@ -517,7 +524,7 @@
       "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
     },
     "like_for_like_reading": {
-      "dot_field_rasters": 31,
+      "dot_field_rasters": 32,
       "continuous_surface_rasters": 1,
       "worst_forward_overlap_dot_fields": 0.4076,
       "worst_forward_overlap_dot_field_submission": "family_60gemsdoe/calib_h161_01855.tif",

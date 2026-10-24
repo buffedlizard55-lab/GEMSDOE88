@@ -94,7 +94,7 @@ vs those lanes is **unmeasured** and must be measured (≤ 0.70 forward overlap,
 | 3 | Scale-persistence of crests (σ = 1…4 px) | Bands 19/3/18/15 | Real fault expression persists across smoothing scales; 400 m flight-line leveling seams and noise do not. | partially overlaps `xscale-worm-persistence` (GEMSDOE42, CLAIM 0.0581) — lane risk | Low |
 | 4 | Relief-conditioned K/Th alteration (RDC-88, already queued) | Bands 5–8, 12, 19 | K/Th enrichment on piedmont fault zones without modern springs. Mimic: felsic tuff contacts. | unrun in this repo | Medium |
 
-**Parallel-session data point (merged from PR #59, not mine):** TILTZERO-CONCORD (tilt zero-crossing prior) scored HOLDOUT-DTI 0.055083 [0.046419, 0.063081] on the same 22,663 withheld pixels — below PROVCREST (0.076277), verdict negative, DO-NOT-SUBMIT file. It is now one of the 32 rasters the gate checks uniqueness against. Its 0.055 is also only modestly above the 0.048 null, which supports reading holdout DTI differences < ~0.01 with caution.
+**Parallel-session data point (merged from PR #59, not mine):** TILTZERO-CONCORD (tilt zero-crossing prior) scored HOLDOUT-DTI 0.055083 [0.046419, 0.063081] on the same 22,663 withheld pixels — below PROVCREST (0.076277), verdict negative, DO-NOT-SUBMIT file. It is now one of the 33 rasters the gate checks uniqueness against. Its 0.055 is also only modestly above the 0.048 null, which supports reading holdout DTI differences < ~0.01 with caution.
 
 Every candidate must first beat **both** null controls (paired CI > 0, ALL and FAR) and the canary (≤ 0.90) before a slot is considered.
 If a candidate needed new external data, the named free official sources are USGS GeoDAWN (CC0,

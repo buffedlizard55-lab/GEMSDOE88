@@ -60,7 +60,7 @@ def main(root=ROOT):
             assert path.is_file(), f'Broken link: {page.name}: {link}'
             if path.suffix.lower() in ('.tif', '.tiff', '.zip'):
                 assert path.is_relative_to(root / 'docs/downloads'), link
-                assert 'DO-NOT-SUBMIT' in path.name, f'Unmarked or withdrawn research download: {link}'
+                assert path in allowed_promoted or 'DO-NOT-SUBMIT' in path.name, f'Unmarked or withdrawn research download: {link}'
     print('PASS: site links, explicit negative decision, clearly marked research downloads')
 
 

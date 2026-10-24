@@ -13,6 +13,11 @@
 > ## ⛔ 2026-10-24 TILTZERO — NEW UNIQUE TIF, NEGATIVE, DO NOT SUBMIT (this session)
 > **New unique de-novo TIF (not a copy):** `docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif` (SHA-256 `5487d793…`, 37,654 binary dots, [0,1], 0 NaN, format-valid). HOLDOUT-DTI **0.055083** [0.046419,0.063081] (22,663 withheld, gems57-pooled-hide-v2) beats R0 0.004006 but **fails** the preregistered bar of beating shipped PROVCREST 0.076277; SGMC PROXY 0.0710 < R0 0.0961. Uniqueness worst sparse |ρ| 0.0168, overlap 0.3724; canary max 0.53056. Verdict **negative** in `registry/tiltzero_run_card.json` — download for audit only, **do not submit**. The OK-TO-SUBMIT file remains PROVCREST below. Agent spent **0** slots; ORGANIZER-CONFIRMED score: none. Why h33 scored a user-reported 0.2778 and the 5 ranked hypotheses for this session: `research/candidate-hypotheses-20261024-tiltzero.md`.
 
+> ## ⛔ 2026-10-24 FABDIS (PR #58) — research file, NEGATIVE, DO NOT SUBMIT
+> `docs/downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif` (HOLDOUT-DTI 0.062936, below the PROVCREST file's 0.076277 on different seeds) is download-for-audit only.
+>
+> **Decision reconciliation (IR-88-59):** PR #58 withdrew the PROVCREST "OK to submit" because the continuous 17GEMSDOE prior overlaps *every* non-empty raster at 1.0, so the literal "any registry raster" reading makes **no** candidate submittable. This repo now reports that reading in the gate (`UNQ-04`, shown above and in `docs/data/submission_gate.json`) rather than letting it veto everything, and applies the 0.70 rule to dot fields (worst 0.4076) plus a rank-correlation rule to every raster (max |ρ| 0.0302). PROVCREST additionally had to beat two no-information null controls. That is an interpretation of the user's rule, stated openly: if the protocol owner insists on the literal reading, run `python scripts/validate_current.py --require-submit` (exit 2) instead and treat no file as submittable.
+
 ---
 
 ## Start of every session — project operating prompt (user's active requirements)
