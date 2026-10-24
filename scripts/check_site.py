@@ -25,7 +25,7 @@ def main(root=ROOT):
     card = json.loads((root / 'registry/run_card.json').read_text())
     assert card['verdict'] == 'negative' and card['ok_to_submit'] is False
     assert len(card['submission_note']) <= 140
-    # 2026-10-24 PROVCREST promoted candidate (IR-88-57): the ONLY non-DO-NOT-SUBMIT
+    # 2026-10-24 PROVCREST promoted candidate (IR-88-58): the ONLY non-DO-NOT-SUBMIT
     # download allowed, and only while its run card still says promote + ok_to_submit
     # and the on-disk TIFF hash matches the card. Fail closed otherwise.
     prov = json.loads((root / 'registry' / 'provcrest_run_card.json').read_text())
