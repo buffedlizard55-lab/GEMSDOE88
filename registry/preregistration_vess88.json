@@ -1,0 +1,33 @@
+{
+  "preregistration_id": "PREREG-20261024-VESS88",
+  "lane": "H88-VESS",
+  "date_utc": "2026-10-24",
+  "hypothesis": "Buried basement faults missing from the USGS/INGENIOUS catalogue are continuous curvilinear edges in gravity, magnetic and basement-depth gradient-magnitude fields; Frangi/Sato vesselness (eigenvalue-ratio line-likeness with structureness gating, bright-ridge sign, two scales, cross-field min/geometric-mean) isolates those lines from equant lithologic blobs, and pooling 12 such zero-catalogue channels with the 44 physics + 12 TDKL channels (log-odds Product-of-Experts) recovers blind-basin faults that per-pixel gradient learners miss.",
+  "mechanism": "training_features.tif B13/B2/B15/B12 -> per-field gradient magnitude -> scale-normalised Hessian vesselness sigma=1.5,3.5 px (12 channels, src/gems88/vess.py) -> dual-expectation HGB specialists (phys44, phys+extra, full+vis22, full+extra+vis22) -> log-odds PoE (35% base + 65% extra) -> completeness fusion -> two-stratum Dinkelbach allocation (d_cat>2px, share_gt25>=0.35 target)",
+  "named_non_fault_mimic": "Unfaulted lithologic contacts and dike swarms (line-like in a single potential field), Tertiary basalt flow margins (magnetic line without gravity/basement step), equant plutons/volcanic centres (suppressed by Rb->1)",
+  "layers_verified_on_disk": {
+    "training_features.tif": {"band_2": "rtp", "band_12": "det_elev", "band_13": "iso_grav_anom", "band_15": "depth_to_base_surf"}
+  },
+  "evaluator": "gems57-pooled-hide-v2 (vendor/gems57/evaluate_holdout.py, unmodified)",
+  "holdout": {"seeds": [20, 21], "n_folds": 8, "alpha": 0.2, "beta": 0.8, "kernel_m": 300, "buffer_px": 3, "boundary_px": 12},
+  "bars": {
+    "h88_adhr_stored_holdout_dti": 0.189634,
+    "h88_tdkl_stored_holdout_dti": 0.196237,
+    "note": "Both HOLDOUT-DTI, gems57-pooled-hide-v2, n=22893 withheld positives. Beating 0.2778 (user-reported CLAIM for H33) cannot be shown on this instrument."
+  },
+  "gates": {
+    "canary_max_symmetric_auc": 0.90,
+    "surface_spearman_max_abs": 0.90,
+    "forward_overlap_3px_max": 0.70,
+    "fingerprint": {"share_le2": 0.0, "share_gt25_min": 0.35},
+    "format": "single band float32, EPSG:32611, 3730x3292, sample transform, all finite, values in [0,1], 0 outside footprint, 0 on catalogue, nodata=None"
+  },
+  "experiments_budget": 3,
+  "experiments": [
+    "Exp1 extra-physics PoE (phys44+TDKL12+VESS12, zero visible-structure head)",
+    "Exp2 single combined model (phys+extra+visible-structure, fused)",
+    "Exp3 H88-VESS PoE specialist ensemble (candidate arm)"
+  ],
+  "weekly_slots_to_spend": 0,
+  "verdict_rule": "promote only if Exp3 paired HOLDOUT-DTI delta vs recomputed ADHR incumbent >0 with 95% CI excluding 0 AND point estimate > 0.196237 AND all format/canary/uniqueness/fingerprint gates pass; literal dense-witness overlap is disclosed and, under the literal reading, forces DO NOT SUBMIT"
+}
