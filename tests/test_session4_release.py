@@ -180,3 +180,38 @@ def test_release_validator_detects_changed_bytes_and_removed_blocker(tmp_path):
     (root2 / "docs/data/run-card-20261024.json").write_text(text)
     with pytest.raises(ValueError):
         release_report_v3(root2)
+
+
+def test_provcrest_v3_record_binds_to_bytes_and_blocks():
+    from validate_release import provcrest_report_v3
+    rep = provcrest_report_v3(ROOT)
+    assert rep["ok_to_download"] is True and rep["ok_to_submit"] is False
+    assert any(r.startswith("UNIQUENESS") for r in rep["blocking_reasons"])
+    assert rep["worst_like_for_like_overlap"] > 0.70 and rep["fingerprint_screen_pass"] is True
+    assert rep["pr53_own_verdict"] == "promote"  # PR #53's own record is left untouched
+    assert (ROOT / "docs/data/provcrest-gate-v3.json").read_text() == (ROOT / "registry/provcrest_gate_v3.json").read_text()
+
+
+def test_provcrest_uniqueness_blocker_reproduces_from_rasters_when_present():
+    fleet = list((ROOT / "data/fleet").glob("GEMSDOE85__gems85-geopb-crest-90000dots*.tif"))
+    if not fleet or not (ROOT / "data/bridge/sample_submission.tif").exists():
+        pytest.skip("restore data via restore_inputs.py + restore_siblings.py to recompute")
+    from gems57 import grid as grid_mod
+    rec = json.loads((ROOT / "registry/provcrest_gate_v3.json").read_text())
+    fp = grid_mod.load_grid(ROOT / "data/bridge").footprint
+    prov = gate.read_values(ROOT / rec["file"], fp) > 0
+    other = gate.read_values(fleet[0], fp) > 0
+    assert other.sum() == 90000
+    assert abs(gate.forward_overlap(prov, other) - rec["uniqueness"]["worst_like_for_like_overlap"]["value"]) < 1e-9
+    assert gate.forward_overlap(prov, other) > 0.70
+
+
+def test_both_candidates_are_distinct_lanes_when_present():
+    if not (ROOT / "data/bridge/sample_submission.tif").exists():
+        pytest.skip("restore data to recompute")
+    from gems57 import grid as grid_mod
+    rec = json.loads((ROOT / "registry/provcrest_gate_v3.json").read_text())
+    fp = grid_mod.load_grid(ROOT / "data/bridge").footprint
+    a = gate.read_values(ROOT / rec["file"], fp) > 0
+    b = gate.read_values(TIF, fp) > 0
+    assert gate.forward_overlap(a, b) <= 0.70 and gate.forward_overlap(b, a) <= 0.70

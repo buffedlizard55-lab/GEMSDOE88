@@ -98,11 +98,12 @@ def verify_template(root=ROOT):
 
 def current_status(root=ROOT):
     """Represent the CURRENT headline candidate (gems88-gate-v3).  A format PASS is not slot approval."""
-    from validate_release import release_report, release_report_v3
+    from validate_release import provcrest_report_v3, release_report, release_report_v3
 
     v3 = release_report_v3(root)
     legacy = release_report(root)  # archived H88-ADHR record; must keep verifying
-    problems = list(v3['blocking_reasons'])
+    prov = provcrest_report_v3(root)  # PR #53 candidate re-assessed under the same gate
+    problems = list(v3['blocking_reasons'])  # headline candidate B; PROVCREST blockers are listed under other_candidates
     return {
         'evidence_schema_complete': bool(v3['portal_parity_reopen_ok']),
         'approved_for_weekly_slot': False,
@@ -115,6 +116,8 @@ def current_status(root=ROOT):
         'policy': v3['policy'],
         'candidate_name': v3['name'],
         'raster_sha256': v3['raster_sha256'],
+        'other_candidates': {'provcrest_pr53': {'name': prov['name'], 'sha256': prov['sha256'], 'label': prov['label'], 'ok_to_submit': bool(prov['ok_to_submit']),
+                                                'blocking_reasons': prov['blocking_reasons'], 'pr53_own_verdict': prov['pr53_own_verdict']}},
         'archived_h88_adhr': {'raster_sha256': legacy['output_sha256'], 'literal_duplicate': bool(legacy['literal_duplicate']),
                               'note': 'previous headline; see evidence/existing_candidates_gate_20261024.json'},
     }

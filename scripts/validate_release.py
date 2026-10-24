@@ -281,6 +281,51 @@ def release_report_v3(root=ROOT, full=False):
                 worst_like_for_like_overlap=worst, worst_abs_rho=worst_rho)
 
 
+def provcrest_report_v3(root=ROOT):
+    """Verify the v3 re-assessment record of the PR #53 PROVCREST file against its bytes (no data/ needed)."""
+    sys.path.insert(0, str(root / "src"))
+    from gems88 import gate  # noqa: E402
+
+    card = json.loads((root / "registry" / "provcrest_run_card.json").read_text())
+    rec = json.loads((root / "registry" / "provcrest_gate_v3.json").read_text())
+    site = json.loads((root / "docs" / "data" / "provcrest-gate-v3.json").read_text())
+    errs = []
+    if rec != site:
+        errs.append("site copy of the PROVCREST v3 record differs")
+    tif = root / card["submission"]["file"]
+    zp = root / card["submission"]["zip_file"]
+    if digest(tif) != card["submission"]["sha256"] or digest(tif) != rec["sha256"]:
+        errs.append("PROVCREST TIFF bytes differ from its run card / v3 record")
+    if digest(zp) != rec["zip_sha256"]:
+        errs.append("PROVCREST ZIP bytes differ from the v3 record")
+    with rasterio.open(tif) as ds:
+        a = ds.read(1)
+        e = gate.EXPECTED
+        ok = (ds.count == 1 and ds.dtypes[0] == "float32" and ds.crs.to_epsg() == e["epsg"] and ds.shape == e["shape"]
+              and tuple(ds.transform)[:6] == e["transform"] and bool(np.isfinite(a).all()) and float(a.min()) >= 0 and float(a.max()) <= 1)
+    if not ok:
+        errs.append("PROVCREST value/grid re-open failed")
+    if int((a > 0).sum()) != rec["fingerprint"]["n"]:
+        errs.append("PROVCREST dot count differs from the v3 record")
+    fp_ok = gate.fingerprint_screen(rec["fingerprint"])
+    if fp_ok != rec["fingerprint_screen_pass"]:
+        errs.append("fingerprint screen flag inconsistent with its numbers")
+    h = rec["holdout_cross_run"]
+    if h["beats_bar"] != bool(h["dti"] > h["bar"]):
+        errs.append("holdout comparison inconsistent")
+    expected_ok = bool(ok and rec["uniqueness"]["unique_like_for_like"] and card["leakage_canary"]["passed"] and h["beats_bar"] and fp_ok)
+    if expected_ok != rec["ok_to_submit"]:
+        errs.append("PROVCREST v3 verdict not reproducible from its components")
+    worst = rec["uniqueness"]["worst_like_for_like_overlap"]["value"]
+    if rec["uniqueness"]["unique_like_for_like"] != (worst <= 0.70 and not rec["uniqueness"]["like_for_like_blockers"]):
+        errs.append("PROVCREST uniqueness flag inconsistent with its blockers")
+    if errs:
+        raise ValueError("; ".join(errs))
+    return dict(name=rec["name"], sha256=rec["sha256"], ok_to_download=rec["ok_to_download"], ok_to_submit=rec["ok_to_submit"], label=rec["label"],
+                blocking_reasons=rec["blocking_reasons"], worst_like_for_like_overlap=worst, fingerprint_screen_pass=fp_ok,
+                pr53_own_verdict=rec["pr53_own_gate"]["verdict"])
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--require-submit", action="store_true")
@@ -288,9 +333,11 @@ def main():
     args = parser.parse_args()
     legacy = release_report()
     current = release_report_v3(full=args.full)
-    print(json.dumps(dict(current_headline_candidate_v3=current, archived_h88_adhr_literal_gate=legacy), indent=2))
-    if args.require_submit and not current["ok_to_submit"]:
-        print("AUTOMATIC SUBMISSION GATE: FAIL (" + "; ".join(current["blocking_reasons"]) + "). No upload permitted.", file=sys.stderr)
+    prov = provcrest_report_v3()
+    print(json.dumps(dict(candidate_b_v3=current, candidate_a_provcrest_v3_reassessment=prov, archived_h88_adhr_literal_gate=legacy), indent=2))
+    if args.require_submit and not (current["ok_to_submit"] and prov["ok_to_submit"]):
+        why = current["blocking_reasons"] + prov["blocking_reasons"]
+        print("AUTOMATIC SUBMISSION GATE: FAIL (" + "; ".join(why) + "). No upload permitted.", file=sys.stderr)
         return 2
     return 0
 

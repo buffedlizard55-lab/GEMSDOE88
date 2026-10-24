@@ -1,0 +1,173 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp2.828px-20261024-b1ddf491",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis": "PRUNE",
+  "value": "p2.828px",
+  "seed": 20261023,
+  "git_sha": "256f86281403d7dedf7aa04d7ad8da0c0f077ae7",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp2.828px-20261024-b1ddf491.tif",
+  "sha256": "b1ddf4915867ebba3f937a493f71eb4be9098b54709ff8f34e552bd359bccb59",
+  "bytes_nan": 354912,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp2.828px-20261024-b1ddf491.zip",
+  "zip_nan_sha256": "817603c7f813dac209376f61f445bcbbd5de4f05294071307c50df041c90bbf2",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp2.828px-20261024-b1ddf491-zeros.tif",
+  "sha256_zeros": "ef5f72e3e109166c0ab649a823b0a67e1c5414c26d7005179d0dd7d30abeba1a",
+  "bytes_zeros": 218618,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp2.828px-20261024-b1ddf491-zeros.zip",
+  "zip_zeros_sha256": "bcaa0d987e10593badd009f8c1742fa37e965cd09492529cd08bb334058b8ea3",
+  "form_note": "R0 h33-h33-2-b2; PRUNE <= 2.828px (283m), fixed N=37,654, exact DTI refill; pred +0.004 MODEL",
+  "form_note_chars": 93,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 1611,
+    "n_removed": 1611,
+    "pct_changed_moved": 4.28,
+    "pct_changed_sym_diff": 8.56,
+    "pct_changed_basis": "moved",
+    "min_dist_catalogue_px": 3.0,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 962,
+    "dots_le_4px": 3359
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "evidence_class": "BUILT candidate; MODEL projection only; no receipt",
+  "manifest": {
+    "path": "registry/data_manifest.json",
+    "sha256": "b8a74af55e8c634e36745efd37191bb3d29bd8bccf9070c1de43f0ef30650598",
+    "verified_input_count": 15,
+    "all_manifest_inputs_verified": true
+  },
+  "threshold_px": 2.8284271247461903,
+  "threshold_m": 282.842712474619,
+  "removed_parent_dots": 1611,
+  "added_dots": 1611,
+  "refill_candidate_pool_size": 62556,
+  "pct_changed_exact": 4.278429914484517,
+  "pct_changed_symmetric_difference": 8.556859828969033,
+  "ranking_basis": "Exact iterative marginal expected-DTI gain via vendor/gems57/metric.py and scripts/build_prune_variants.py::select_exact_marginal_dti_add; candidate pool is the original H19-5 binary support outside the threshold; fixed label-free physical field across all variants; no isolated-pixel shortcut or random tie score",
+  "four_line_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic, and hydrothermal lines; all single-channel canaries must be <= 0.90 before the field is used",
+  "build_script_sha256": "09bc3f2cf7a866694b76f2bdfd9dfe158db6b508d0045fe9a335eaeac7f6ef6e",
+  "origin_main_sha_checked_before_build": "256f86281403d7dedf7aa04d7ad8da0c0f077ae7",
+  "nearest_neighbour_stats": {
+    "R0": {
+      "min_px": 2.8284271247461903,
+      "mean_px": 3.7350977393055036,
+      "p05_px": 2.8284271247461903,
+      "p95_px": 7.211102550927978
+    },
+    "candidate": {
+      "min_px": 1.0,
+      "mean_px": 3.6383782331932495,
+      "p05_px": 2.23606797749979,
+      "p95_px": 7.0710678118654755
+    },
+    "interpretation": "REPORT ONLY; exact-marginal refill has no extra spacing constraint"
+  },
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.095977,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5596.99,
+      "fp": 35170.46
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6351,
+      "cv_12km_120px_interior": 0.5648
+    }
+  },
+  "r0_reference_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.004006,
+      "ci95": [
+        0.003424,
+        0.00469
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": 0.0,
+      "paired_delta_vs_r0_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.09606,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5602.26,
+      "fp": 35187.58
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6292,
+      "cv_12km_120px_interior": 0.559
+    }
+  },
+  "leakage_canaries": {
+    "passed": true,
+    "max_single_feature_symmetric_auc": 0.56925,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925
+    },
+    "report_only": true
+  },
+  "model_prediction": {
+    "evidence_class": "MODEL",
+    "delta_vs_r0": 0.004,
+    "range": [
+      -0.002,
+      0.01
+    ],
+    "basis": "Linear interpolation R0 to PRUNEp3px: 0.005 * 1,611 / 2,171 = +0.0037, rounded +0.004.",
+    "no_evidence_if_abs_live_delta_below": 0.01
+  },
+  "not_submitted": true
+}

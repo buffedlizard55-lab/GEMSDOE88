@@ -8,8 +8,8 @@
   "radius_px": 3.0,
   "dense_fraction": 0.05
  },
- "registry_rasters": 215,
- "distinct_dot_sets": 110,
+ "registry_rasters": 216,
+ "distinct_dot_sets": 111,
  "missing": 0,
  "worst_like_for_like_overlap": {
   "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
@@ -2829,6 +2829,20 @@
    "blocks_like_for_like": false,
    "duplicate_of": null,
    "error": null
+  },
+  {
+   "label": "GEMSDOE88:gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+   "dense": false,
+   "registry_dots": 37654,
+   "literal_overlap_3px": 0.3517063081695967,
+   "like_for_like_overlap_3px": 0.3517063081695967,
+   "rho_final": 0.00897910997520256,
+   "rho_preplacement": 0.00897910997520256,
+   "blocks_literal": false,
+   "blocks_like_for_like": false,
+   "duplicate_of": null,
+   "error": null
   }
- ]
+ ],
+ "refreshed_after_merge_of": "PR #53 (PROVCREST) and other main changes; registry now includes docs/downloads of all sessions"
 }

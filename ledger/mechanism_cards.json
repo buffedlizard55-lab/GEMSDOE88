@@ -2292,5 +2292,186 @@
         "claim": "USGS SGMC mapped bedrock/concealed faults used strictly as a report-only off-catalogue diagnostic control, never for construction or gating."
       }
     ]
+  },
+  "h33-h33-2-b2-PRUNEp2.236px-20261024-93b15124": {
+    "axis": "PRUNE",
+    "value": "p2.236px",
+    "threshold_px": 2.23606797749979,
+    "threshold_m": 223.60679774997897,
+    "hypothesis": "The 941 R0 dots on the innermost catalogue fringe (224 m, one to two pixel centres beyond R0's 200 m collar) are dominated by catalogue-parallel potential-field side-lobes rather than unmapped fault tips; purging only this fringe and refilling on independent H19-5 ridges recovers a small positive share of the full 300 m purge's benefit while disturbing under 2.5% of dots.",
+    "mechanism": "Known USGS/INGENIOUS pixels are masked pixel-exactly but adjacent pixels are scored normally, and the organizer allows new-fault truth (including new geometry of existing systems) within 300 m of a known trace. At constant N=37,654 this arm removes 941 R0 dots through 224 m and refills the same count on the original H19-5 ridge support strictly outside the collar. Each addition is the exact iterative expected-DTI marginal maximum on one fixed label-free four-line physical field (surface scarp, potential-field edge, strain/seismic, hydrothermal). The 300 m triangular kernel and the ~400 m GeoDAWN line spacing make the 200-300 m annulus the positional-uncertainty band: this bracket measures whether catalogue-flank dots there behave as side-lobe false positives or as real near-trace splays.",
+    "non_fault_mimic": "Long-wavelength magnetic/gravity edge-response side-lobes and lithologic contacts parallel to mapped faults, pediment and alluvial-fan margins, wave-cut shoreline breaks, and anthropogenic LiDAR scarps (roads, landslides) can all place ridge pixels within one kernel radius of a catalogue trace without any new fault slip. Conversely, a true antithetic splay, relay ramp or tip of the known system can lie inside the removed collar; the organizer explicitly allows new-fault truth within 300 m of known traces, so every removed dot is a real credit-risk.",
+    "predicted_sign_size": "MODEL predicted live delta +0.002 vs R0, plausible range [-0.004,+0.008]. Linear interpolation R0(0 removed -> 0.000) to PRUNEp3px (2,171 removed -> MODEL +0.005): 0.005 * 941 / 2,171 = +0.0022, rounded +0.002. It is a projection, not a receipt or PROXY. Treat |live delta| < 0.01 as no evidence on public chunks.",
+    "falsifier": "A same-entity live receipt >= +0.01 vs R0 supports the side-lobe-purge reading at this collar; a receipt <= -0.01 falsifies it and shows net fault truth was removed. A |delta| < 0.01 is inconclusive. The three arms form a nested dose sequence (2.236 -> 2.828 -> 3.0 px = existing R1, then 5.0 px): a non-monotone interior sequence falsifies the uniform-annulus-toxicity model, and a 5 px arm that does not deepen the p3.7 -> p4.3 descent falsifies the over-collaring extrapolation.",
+    "fixed_count": 37654,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 941,
+      "n_removed": 941,
+      "pct_changed_moved": 2.5,
+      "pct_changed_sym_diff": 5.0,
+      "pct_changed_basis": "moved",
+      "min_dist_catalogue_px": 2.8284,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 1957,
+      "dots_le_4px": 3801
+    },
+    "ranking_basis": "Exact iterative marginal expected-DTI gain via vendor/gems57/metric.py and scripts/build_prune_variants.py::select_exact_marginal_dti_add; candidate pool is the original H19-5 binary support outside the threshold; fixed label-free physical field across all variants; no isolated-pixel shortcut or random tie score",
+    "four_line_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic, and hydrothermal lines; all single-channel canaries must be <= 0.90 before the field is used",
+    "nearest_neighbour_stats": {
+      "min_px": 1.0,
+      "mean_px": 3.7015185601421057,
+      "p05_px": 2.8284271247461903,
+      "p95_px": 7.211102550927978
+    },
+    "spacing_confounded_not_optimized": true,
+    "report_only_not_gates": [
+      "hide-and-recover catalogue PROXY",
+      "single-feature leakage canary",
+      "blind SGMC control"
+    ],
+    "references": [
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "The organizer describes pixel-exact masking of known USGS/INGENIOUS pixels; pixels adjacent to known traces are scored normally."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New-fault truth includes newly mapped geometry of existing systems and may occur within 300 m of known traces; the key collar-loss confounder."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 was flown at 400 m line spacing, 150-200 m above terrain; lineament positions are uncertain by about the 300 m kernel radius."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp2.236px-20261024-93b15124",
+    "form_note": "R0 h33-h33-2-b2; PRUNE <= 2.236px (224m), fixed N=37,654, exact DTI refill; pred +0.002 MODEL"
+  },
+  "h33-h33-2-b2-PRUNEp2.828px-20261024-b1ddf491": {
+    "axis": "PRUNE",
+    "value": "p2.828px",
+    "threshold_px": 2.8284271247461903,
+    "threshold_m": 282.842712474619,
+    "hypothesis": "Purging both sub-kernel-radius fringes (1,611 dots, 224-283 m) but retaining the 560 dots that sit at exactly one kernel radius (300 m) captures most of R1's annulus treatment; if annulus toxicity is uniform with distance, this arm should sit close to R1's MODEL +0.005 at a smaller edit, whereas toxicity concentrated on the 300 m ring would leave it close to R0.",
+    "mechanism": "Known USGS/INGENIOUS pixels are masked pixel-exactly but adjacent pixels are scored normally, and the organizer allows new-fault truth (including new geometry of existing systems) within 300 m of a known trace. At constant N=37,654 this arm removes 1,611 R0 dots through 283 m and refills the same count on the original H19-5 ridge support strictly outside the collar. Each addition is the exact iterative expected-DTI marginal maximum on one fixed label-free four-line physical field (surface scarp, potential-field edge, strain/seismic, hydrothermal). The 300 m triangular kernel and the ~400 m GeoDAWN line spacing make the 200-300 m annulus the positional-uncertainty band: this bracket measures whether catalogue-flank dots there behave as side-lobe false positives or as real near-trace splays.",
+    "non_fault_mimic": "Long-wavelength magnetic/gravity edge-response side-lobes and lithologic contacts parallel to mapped faults, pediment and alluvial-fan margins, wave-cut shoreline breaks, and anthropogenic LiDAR scarps (roads, landslides) can all place ridge pixels within one kernel radius of a catalogue trace without any new fault slip. Conversely, a true antithetic splay, relay ramp or tip of the known system can lie inside the removed collar; the organizer explicitly allows new-fault truth within 300 m of known traces, so every removed dot is a real credit-risk.",
+    "predicted_sign_size": "MODEL predicted live delta +0.004 vs R0, plausible range [-0.002,+0.010]. Linear interpolation R0 to PRUNEp3px: 0.005 * 1,611 / 2,171 = +0.0037, rounded +0.004. It is a projection, not a receipt or PROXY. Treat |live delta| < 0.01 as no evidence on public chunks.",
+    "falsifier": "A same-entity live receipt >= +0.01 vs R0 supports the side-lobe-purge reading at this collar; a receipt <= -0.01 falsifies it and shows net fault truth was removed. A |delta| < 0.01 is inconclusive. The three arms form a nested dose sequence (2.236 -> 2.828 -> 3.0 px = existing R1, then 5.0 px): a non-monotone interior sequence falsifies the uniform-annulus-toxicity model, and a 5 px arm that does not deepen the p3.7 -> p4.3 descent falsifies the over-collaring extrapolation.",
+    "fixed_count": 37654,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 1611,
+      "n_removed": 1611,
+      "pct_changed_moved": 4.28,
+      "pct_changed_sym_diff": 8.56,
+      "pct_changed_basis": "moved",
+      "min_dist_catalogue_px": 3.0,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 962,
+      "dots_le_4px": 3359
+    },
+    "ranking_basis": "Exact iterative marginal expected-DTI gain via vendor/gems57/metric.py and scripts/build_prune_variants.py::select_exact_marginal_dti_add; candidate pool is the original H19-5 binary support outside the threshold; fixed label-free physical field across all variants; no isolated-pixel shortcut or random tie score",
+    "four_line_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic, and hydrothermal lines; all single-channel canaries must be <= 0.90 before the field is used",
+    "nearest_neighbour_stats": {
+      "min_px": 1.0,
+      "mean_px": 3.6383782331932495,
+      "p05_px": 2.23606797749979,
+      "p95_px": 7.0710678118654755
+    },
+    "spacing_confounded_not_optimized": true,
+    "report_only_not_gates": [
+      "hide-and-recover catalogue PROXY",
+      "single-feature leakage canary",
+      "blind SGMC control"
+    ],
+    "references": [
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "The organizer describes pixel-exact masking of known USGS/INGENIOUS pixels; pixels adjacent to known traces are scored normally."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New-fault truth includes newly mapped geometry of existing systems and may occur within 300 m of known traces; the key collar-loss confounder."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 was flown at 400 m line spacing, 150-200 m above terrain; lineament positions are uncertain by about the 300 m kernel radius."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp2.828px-20261024-b1ddf491",
+    "form_note": "R0 h33-h33-2-b2; PRUNE <= 2.828px (283m), fixed N=37,654, exact DTI refill; pred +0.004 MODEL"
+  },
+  "h33-h33-2-b2-PRUNEp5px-20261024-2a5469c0": {
+    "axis": "PRUNE",
+    "value": "p5px",
+    "threshold_px": 5.0,
+    "threshold_m": 500.0,
+    "hypothesis": "A 500 m collar (1.67 kernel radii; beyond the 400 m GeoDAWN flight-line spacing) removes genuine relay/step-over splays and antithetic strands of the known systems -- the 'new geometry of existing systems' the organizer includes in new-fault truth -- faster than exact-marginal refill can replace them, so the live DTI loss deepens the measured p3.7 -> p4.3 descent.",
+    "mechanism": "At 500 m the collar extends to 1.67 kernel radii, beyond the 400 m GeoDAWN line spacing. The same fixed-count recipe removes 5,637 R0 dots and refills on H19-5 ridges outside the collar; the mechanism question is whether over-collaring deletes genuine relay/step-over strands faster than the exact marginal solver can replace their credit.",
+    "non_fault_mimic": "Long-wavelength magnetic/gravity edge-response side-lobes and lithologic contacts parallel to mapped faults, pediment and alluvial-fan margins, wave-cut shoreline breaks, and anthropogenic LiDAR scarps (roads, landslides) can all place ridge pixels within one kernel radius of a catalogue trace without any new fault slip. Conversely, a true antithetic splay, relay ramp or tip of the known system can lie inside the removed collar; the organizer explicitly allows new-fault truth within 300 m of known traces, so every removed dot is a real credit-risk.",
+    "predicted_sign_size": "MODEL predicted live delta -0.020 vs R0, plausible range [-0.040,+0.002]. Linear extrapolation of the descending limb through p4px (3,825 removed, -0.009) and p4.3px (4,488 removed, -0.013): slope -6.03e-6 per dot; at 5,637 removed -> -0.0199, rounded -0.020. Extrapolation outside the measured bracket; range widened accordingly. It is a projection, not a receipt or PROXY. Treat |live delta| < 0.01 as no evidence on public chunks.",
+    "falsifier": "A same-entity live receipt >= +0.01 vs R0 supports the side-lobe-purge reading at this collar; a receipt <= -0.01 falsifies it and shows net fault truth was removed. A |delta| < 0.01 is inconclusive. The three arms form a nested dose sequence (2.236 -> 2.828 -> 3.0 px = existing R1, then 5.0 px): a non-monotone interior sequence falsifies the uniform-annulus-toxicity model, and a 5 px arm that does not deepen the p3.7 -> p4.3 descent falsifies the over-collaring extrapolation.",
+    "fixed_count": 37654,
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 5637,
+      "n_removed": 5637,
+      "pct_changed_moved": 14.97,
+      "pct_changed_sym_diff": 29.94,
+      "pct_changed_basis": "moved",
+      "min_dist_catalogue_px": 5.099,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 0
+    },
+    "ranking_basis": "Exact iterative marginal expected-DTI gain via vendor/gems57/metric.py and scripts/build_prune_variants.py::select_exact_marginal_dti_add; candidate pool is the original H19-5 binary support outside the threshold; fixed label-free physical field across all variants; no isolated-pixel shortcut or random tie score",
+    "four_line_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic, and hydrothermal lines; all single-channel canaries must be <= 0.90 before the field is used",
+    "nearest_neighbour_stats": {
+      "min_px": 1.0,
+      "mean_px": 3.250709025459953,
+      "p05_px": 1.4142135623730951,
+      "p95_px": 6.4031242374328485
+    },
+    "spacing_confounded_not_optimized": true,
+    "report_only_not_gates": [
+      "hide-and-recover catalogue PROXY",
+      "single-feature leakage canary",
+      "blind SGMC control"
+    ],
+    "references": [
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "The organizer describes pixel-exact masking of known USGS/INGENIOUS pixels; pixels adjacent to known traces are scored normally."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New-fault truth includes newly mapped geometry of existing systems and may occur within 300 m of known traces; the key collar-loss confounder."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 was flown at 400 m line spacing, 150-200 m above terrain; lineament positions are uncertain by about the 300 m kernel radius."
+      }
+    ],
+    "submission_name": "h33-h33-2-b2-PRUNEp5px-20261024-2a5469c0",
+    "form_note": "R0 h33-h33-2-b2; PRUNE <= 5px (500m), fixed N=37,654, exact DTI refill; pred -0.020 MODEL"
+  },
+  "gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros": {
+    "id": "gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros",
+    "parent": "de-novo-provcrest",
+    "axis": "PROVCREST",
+    "value": "rank",
+    "hypothesis": "De-novo dots on composite Hessian crests of provided Bands 19 (slope-break), 3 (TMI gradient), 18 (gravity gradient) and 15 (basement step) recover geothermal faults missing from the USGS/INGENIOUS catalogue, because the transforms respond to fault scarps/contacts/basement steps in topography and potential fields whether or not a mapper traced the fault.",
+    "mechanism": "Percentile-ranked crest composite (0.45/0.20/0.20/0.15) -> 1-D directional NMS crest pool -> greedy selection of exactly 37,654 dots at >=3.5 px mutual spacing and >3.0 px from the catalogue (visible-only inside holdout folds), binary {0,1}, zeros outside footprint.",
+    "non_fault_mimic": "Unfaulted coalescing alluvial-fan bajada toe inflections, incised fluvial terrace risers, Tertiary volcanic flow margins and pluton-roof contacts producing slope-break/gradient crests without brittle fault permeability.",
+    "predicted_sign_size": "MODEL +0.03..+0.10 HOLDOUT-DTI vs R0 control (frozen preregistration)",
+    "falsifier": "Pooled HOLDOUT-DTI (seeds 20+30) not above R0 control, or paired 95% CI includes 0, or blind SGMC PROXY below R0 0.096060",
+    "post_build_report_only": {
+      "holdout_dti_winner": 0.076277,
+      "sgmc_proxy_final": 0.12569,
+      "verdict": "promote"
+    }
   }
 }

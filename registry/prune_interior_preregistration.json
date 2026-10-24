@@ -1,0 +1,100 @@
+{
+  "schema": "gems88.prune-interior-annulus-preregistration.v1",
+  "created_utc": "2026-10-24T05:29:42Z",
+  "parent": {
+    "id": "h33-h33-2-b2",
+    "n_dots": 37654,
+    "zeros_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "nan_sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "evidence_class": "REBUILT parent; historical 0.2778 remains CLAIM"
+  },
+  "axis": "PRUNE",
+  "axis_selection": "The agent selected its own axis per the brief. The PRUNE 2-3 px annulus is the only unsampled interior of the collar curve (R0 is the 2 px point; PRUNEp3px jumps to 3 px), and PRUNE is the section 4.4 exception under which sub-3 px collars are gate-legal. Every other brief axis already has multiple R0/R1 arms.",
+  "annulus_geometry": {
+    "distinct_pixel_centre_distances_px": [
+      2.2360679,
+      2.8284271,
+      3.0
+    ],
+    "r0_dots_per_band": {
+      "2.2361": 941,
+      "2.8284": 670,
+      "3.0": 560
+    },
+    "r0_dots_in_annulus_2_to_3": 2171,
+    "kernel_radius_px": 3.0
+  },
+  "manifest_sha256": "b8a74af55e8c634e36745efd37191bb3d29bd8bccf9070c1de43f0ef30650598",
+  "git_sha": "256f86281403d7dedf7aa04d7ad8da0c0f077ae7",
+  "origin_main_sha_checked_before_build": "256f86281403d7dedf7aa04d7ad8da0c0f077ae7",
+  "prior_model_anchors": {
+    "p3px": {
+      "predicted_change": "MODEL:+0.005",
+      "predicted_range": "[+0.001,+0.011]",
+      "evidence_class": "MODEL (prior registry projection, not a live score)"
+    },
+    "p4px": {
+      "predicted_change": "MODEL:-0.009",
+      "predicted_range": "[-0.018,+0.002]",
+      "evidence_class": "MODEL (prior registry projection, not a live score)"
+    },
+    "p4.3px": {
+      "predicted_change": "MODEL:-0.013",
+      "predicted_range": "[-0.030,+0.006]",
+      "evidence_class": "MODEL (prior registry projection, not a live score)"
+    }
+  },
+  "predicted_no_evidence_band": 0.01,
+  "predictions_are": "MODEL, not scores; any live absolute delta < 0.01 is no evidence",
+  "treatment": "For each value, remove every R0 dot at d_catalogue <= threshold_px; hold N=37,654; add the same number from the original H19-5 support at d_catalogue > threshold_px using exact greedy expected-DTI marginal gain. All other settings and the fixed physical-field ranking recipe are unchanged.",
+  "refill_ranking_basis": "Exact iterative marginal expected-DTI gain via vendor/gems57/metric.py and scripts/build_prune_variants.py::select_exact_marginal_dti_add; candidate pool is the original H19-5 binary support outside the threshold; fixed label-free physical field across all variants; no isolated-pixel shortcut or random tie score",
+  "physical_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic, and hydrothermal lines; all single-channel canaries must be <= 0.90 before the field is used",
+  "variants": [
+    {
+      "value": "p2.236px",
+      "threshold_px": 2.23606797749979,
+      "threshold_m": 223.60679774997897,
+      "band": "inner annulus fringe only (d_cat = sqrt(5) px)",
+      "predicted_change": "MODEL:+0.002",
+      "predicted_range": [
+        -0.004,
+        0.008
+      ],
+      "prediction_basis": "Linear interpolation R0(0 removed -> 0.000) to PRUNEp3px (2,171 removed -> MODEL +0.005): 0.005 * 941 / 2,171 = +0.0022, rounded +0.002.",
+      "hypothesis": "The 941 R0 dots on the innermost catalogue fringe (224 m, one to two pixel centres beyond R0's 200 m collar) are dominated by catalogue-parallel potential-field side-lobes rather than unmapped fault tips; purging only this fringe and refilling on independent H19-5 ridges recovers a small positive share of the full 300 m purge's benefit while disturbing under 2.5% of dots."
+    },
+    {
+      "value": "p2.828px",
+      "threshold_px": 2.8284271247461903,
+      "threshold_m": 282.842712474619,
+      "band": "inner + outer annulus fringe (d_cat <= sqrt(8) px); leaves the 3.0 px ring",
+      "predicted_change": "MODEL:+0.004",
+      "predicted_range": [
+        -0.002,
+        0.01
+      ],
+      "prediction_basis": "Linear interpolation R0 to PRUNEp3px: 0.005 * 1,611 / 2,171 = +0.0037, rounded +0.004.",
+      "hypothesis": "Purging both sub-kernel-radius fringes (1,611 dots, 224-283 m) but retaining the 560 dots that sit at exactly one kernel radius (300 m) captures most of R1's annulus treatment; if annulus toxicity is uniform with distance, this arm should sit close to R1's MODEL +0.005 at a smaller edit, whereas toxicity concentrated on the 300 m ring would leave it close to R0."
+    },
+    {
+      "value": "p5px",
+      "threshold_px": 5.0,
+      "threshold_m": 500.0,
+      "band": "upper collar bracket beyond the measured p4.3px (430 m) point",
+      "predicted_change": "MODEL:-0.020",
+      "predicted_range": [
+        -0.04,
+        0.002
+      ],
+      "prediction_basis": "Linear extrapolation of the descending limb through p4px (3,825 removed, -0.009) and p4.3px (4,488 removed, -0.013): slope -6.03e-6 per dot; at 5,637 removed -> -0.0199, rounded -0.020. Extrapolation outside the measured bracket; range widened accordingly.",
+      "hypothesis": "A 500 m collar (1.67 kernel radii; beyond the 400 m GeoDAWN flight-line spacing) removes genuine relay/step-over splays and antithetic strands of the known systems -- the 'new geometry of existing systems' the organizer includes in new-fault truth -- faster than exact-marginal refill can replace them, so the live DTI loss deepens the measured p3.7 -> p4.3 descent."
+    }
+  ],
+  "report_only_not_gates": [
+    "catalogue hide-and-recover PROXY with withheld-positive count and 95% CI",
+    "single-feature leakage canary",
+    "blind SGMC control",
+    "10 km and 12 km dot-density CV"
+  ],
+  "no_submission": true
+}

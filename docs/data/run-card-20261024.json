@@ -168,8 +168,8 @@
  },
  "overlap_vs_registry": {
   "policy": "gems88-gate-v3",
-  "registry_rasters": 215,
-  "distinct_dot_sets": 110,
+  "registry_rasters": 216,
+  "distinct_dot_sets": 111,
   "worst_like_for_like_overlap": {
    "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
    "value": 0.5956825232678387

@@ -3,6 +3,24 @@
 
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+# Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
+
+## 2026-10-24 · PROVCREST de-novo candidate (PR #53 self-report: "OK TO DOWNLOAD AND SUBMIT"; **gate v3 re-assessment: OK TO DOWNLOAD - NOT OK TO SUBMIT**, IR-88-71)
+
+> **v3 note:** the same bytes, judged against the 216-raster v3 registry, overlap GEMSDOE85 `geopb-crest-90000dots` at 0.732 (> 0.70, a sparse raster, so the rule applies literally) and do not beat the holdout bar (cross-run). They pass the fingerprint screen. See [`provcrest-gate-v3.json`](data/provcrest-gate-v3.json). The text below is PR #53's own report, kept for audit.
+
+**Upload this one file:** `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif`
+(SHA-256 `13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f`; single-TIFF ZIP beside it has the same TIFF inside.)
+
+- **Submission name:** `GEMSDOE88-PROVCREST-RANK-04559A2C`
+- **Note (112/140 chars):** `PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED`
+- **Automated validation (no human inspection):** single-band float32, EPSG:32611, 3730×3292, transform = sample, all 12,279,160 cells finite in {0.0,1.0} ⊂ [0,1] (no NaN → no “[0, 1]” portal error), 0 dots on catalogue, min catalogue distance 3.1623 px, 37,654 dots.
+- **Science gate:** HOLDOUT-DTI (gems57-pooled-hide-v2, seeds 20+30, 22,663 withheld) **0.076277** [0.067653, 0.084607] vs R0 **0.004006** (paired Δ +0.072271 [0.063852, 0.080393]); randorder control 0.050917; SGMC PROXY 0.12569 vs R0 0.096060 (proxy, not a score). Canary max AUC 0.57543 ≤ 0.90. Uniqueness (30 rasters): worst sparse |ρ| 0.0302 ≤ 0.90, worst sparse 3-px overlap 0.4076 ≤ 0.70.
+- **Slots:** agent used **0**; ORGANIZER-CONFIRMED score: **none**. The human's only action is the DrivenData upload itself (confirm weekly quota/deadline on the portal first). After upload, paste the verbatim receipt into `ledger/submissions.csv`.
+- Machine receipts: `registry/provcrest_run_card.json`, `evidence/provcrest_uniqueness.json`, writer receipt `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.json`. Archived ADHR/MGC/GHMD files below/in downloads remain **DO NOT SUBMIT**.
+
+---
+
 ## 2026-10-24 · `AXIS=PRUNE` single-factor deconfounding triad (`IR-88-56`) — **`PRUNEp3space35fp` (`8d29a2f7`) leads all `300 m`-collar arms (`0.101947` blind `PROXY`, zero `w`, zero RNG)**
 
 Parent `R0 = h33-h33-2-b2` rebuilt byte-exactly (`15/15` pins, zeros `c55bafc4…`, NaN `baeae321…`). Predictions frozen before any proxy (`registry/preregistration_prune_deconfound.json`). All three arms hold `N = 37,654` fixed, `0` mass on `existing_faults.tif`, `0` positive pixels `< 3.0 px`, and pass hardened `validate_variant.py` `6/6` (`registry/prune_deconfound_validation.json`). Upload primary `<id>.tif` (`NaN` outside footprint) first; upload `<id>-zeros.tif` (`0.0` outside) **only if** the portal rejects `NaN`. Live `|delta| < 0.01` is **no evidence**.
@@ -68,6 +86,32 @@ Three new gate-clean spaced-refill PRUNE arms were built from rebuilt byte-exact
 | `h33-h33-2-b2-PRUNEp4space28-20261023-475fce4d` | `475fce4d7d0525d0c39a20df27e947e23b2c4f346b76fb9ef69f0fc1733f7ea0` (zeros `dfd45a8e…`) | 6/6 PASS, `HOLD` | `0.100907 (+0.00485)` |
 
 No slot was used, no receipt exists. Queue remains `R1 p3px → p3.5space35/p4space35 → p4space28` per `SLOT_PLAN.md`.
+
+## 2026-10-24 · `AXIS=PRUNE` interior-annulus bracket on `R0` (IR-88-58) — **no upload recommended**
+
+**Three new candidates were built from byte-exact `R0`; all three are `HOLD` and the slot queue is unchanged.**
+The collar curve had no points between `R0` (2 px) and `R1` (3 px). The `2,171` R0 dots in that annulus occupy
+exactly three pixel-centre distance bands (`941` at `sqrt5 = 2.236 px`, `670` at `sqrt8 = 2.828 px`, `560` at
+`3.0 px`), so the two interior thresholds are exhaustive, plus one new upper point at `5 px (500 m)`. Predictions
+were frozen before any proxy (`registry/prune_interior_preregistration.json`: `MODEL +0.002 / +0.004 / -0.020`).
+Measured after build (REPORT ONLY, never scores): blind off-catalogue SGMC `PROXY` `0.096219 / 0.095977 / 0.089464`
+vs parent `R0 0.096060` — the annulus is proxy-neutral (both interior deltas inside the `~0.0003` instrument noise
+yardstick) and `p5px` deepens the monotone outer-collar descent. Every delta is below the `0.01` no-evidence floor.
+Rasters stay gitignored; rebuild with `python3 scripts/build_prune_interior_variants.py`; an independent from-scratch
+rerun reproduces all three masks bit-for-bit; hardened validator 6/6 PASS on the disk bytes
+(`registry/prune_interior_validation.json`). No slot was used and no submission was made.
+
+| Candidate (gitignored; primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | ≤140-char form note | SHA-256 primary / zeros | Format receipt |
+|---|---|---|---|
+| `h33-h33-2-b2-PRUNEp2.236px-20261024-93b15124` | `R0 h33-h33-2-b2; PRUNE <= 2.236px (224m), fixed N=37,654, exact DTI refill; pred +0.002 MODEL` (93/140) | `93b15124fd0a…ceee c` / `cf5e17905e54…24c33` | PASS, `HOLD`, `PROXY +0.00016` |
+| `h33-h33-2-b2-PRUNEp2.828px-20261024-b1ddf491` | `R0 h33-h33-2-b2; PRUNE <= 2.828px (283m), fixed N=37,654, exact DTI refill; pred +0.004 MODEL` (93/140) | `b1ddf4915867…ccb59` / `ef5f72e3e109…eba1a` | PASS, `HOLD`, `PROXY -0.00008` |
+| `h33-h33-2-b2-PRUNEp5px-20261024-2a5469c0` | `R0 h33-h33-2-b2; PRUNE <= 5px (500m), fixed N=37,654, exact DTI refill; pred -0.020 MODEL` (89/140) | `2a5469c0c48a…28883` / `79185b90d948…4291e` | PASS, `HOLD`, `PROXY -0.00660` |
+
+All three: `N = 37,654`, one-for-one fixed-count relocation (removed = added: `941 / 1,611 / 5,637`), zero positive
+mass on catalogue pixels; `PRUNE` is the Brief §4.4 exception, so `p2.236px` legally retains `1,177` dots below
+`3 px` (min `d_cat 2.8284 px`); the other two have `0` dots below `3 px` (min `3.0000` / `5.0990 px`). Do **not**
+upload any of these three: none is queued. If the future `R1` anchor receipt is inconclusive, `p2.236px` is the
+preregistered paired read (proposal `LIVE_COLLAR_PAIR` in `SLOT_PLAN.md`), not an automatic slot.
 
 ## 2026-10-23 · `AXIS=CONCENTRATION` on gate-clean `R1` (IR-88-52) — **no upload recommended**
 

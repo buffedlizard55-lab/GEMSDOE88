@@ -13,6 +13,19 @@
   "policy": "gems88-gate-v3",
   "candidate_name": "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT",
   "raster_sha256": "974b5d4b2009849c977ddb4210eb17d2fb93f8765011580931028d4fc707bada",
+  "other_candidates": {
+    "provcrest_pr53": {
+      "name": "GEMSDOE88-PROVCREST-RANK-04559A2C",
+      "sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
+      "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+      "ok_to_submit": false,
+      "blocking_reasons": [
+        "UNIQUENESS: blocked (like-for-like) by fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif, sibling:GEMSDOE86__data__scored_fleet__GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+        "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)"
+      ],
+      "pr53_own_verdict": "promote"
+    }
+  },
   "archived_h88_adhr": {
     "raster_sha256": "f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd",
     "literal_duplicate": true,

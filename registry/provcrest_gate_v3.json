@@ -1,0 +1,92 @@
+{
+ "name": "GEMSDOE88-PROVCREST-RANK-04559A2C",
+ "note": "PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED",
+ "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+ "sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
+ "zip_sha256": "726731fff47ff79d928c1c382606d1bc3a818ca5841131cff6d422f5f122167c",
+ "generated_utc": "2026-10-24T07:38:27Z",
+ "source": "PR #53 (PROVCREST), re-assessed by gate v3; its own run card still says verdict=promote under a 30-raster registry",
+ "policy": "gems88-gate-v3",
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+ "blocking_reasons": [
+  "UNIQUENESS: blocked (like-for-like) by fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif, sibling:GEMSDOE86__data__scored_fleet__GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+  "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)"
+ ],
+ "informational": [
+  "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): 17GEMSDOE:dense_17gemdoe.tif, fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif, sibling:GEMSDOE86__data__scored_fleet__GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+ ],
+ "note_len": 112,
+ "name_len": 33,
+ "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows).",
+ "pr53_own_gate": {
+  "verdict": "promote",
+  "registry_rasters_checked": 30,
+  "worst_sparse_dot_overlap_3px": 0.4076
+ },
+ "holdout_cross_run": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "seeds": [
+   20,
+   30
+  ],
+  "withheld_positives": 22663,
+  "dti": 0.076277,
+  "ci95": [
+   0.067653,
+   0.084607
+  ],
+  "bar": 0.18789,
+  "beats_bar": false,
+  "caveat": "bar comes from seeds 20+21 (22,893 withheld); PR #53 used seeds 20+30 (22,663 withheld): a cross-run comparison"
+ },
+ "fingerprint": {
+  "n": 37654,
+  "median_d_cat_px": 22.825424421026653,
+  "share_le2": 0.0,
+  "share_gt10": 0.7791735273808892,
+  "share_gt25": 0.4626334519572954
+ },
+ "fingerprint_screen_pass": true,
+ "portal_values_and_grid_ok": true,
+ "portal_layout_parity_with_sample": false,
+ "portal_layout": {
+  "compress": "deflate",
+  "tiled": true,
+  "block_shapes": [
+   [
+    256,
+    256
+   ]
+  ],
+  "predictor": null,
+  "interleave": "band"
+ },
+ "uniqueness": {
+  "registry_rasters": 216,
+  "distinct_dot_sets": 111,
+  "unique_like_for_like": false,
+  "worst_like_for_like_overlap": {
+   "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+   "value": 0.7318744356509269
+  },
+  "worst_abs_rho": {
+   "label": "GEMSDOE49:gems49_gate_ortho.tif",
+   "value": 0.03018160405279666
+  },
+  "like_for_like_blockers": [
+   {
+    "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "overlap": 0.7318744356509269,
+    "registry_dots": 90000
+   },
+   {
+    "label": "sibling:GEMSDOE86__data__scored_fleet__GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "overlap": 0.7318744356509269,
+    "registry_dots": 90000
+   }
+  ]
+ }
+}
