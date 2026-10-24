@@ -7,7 +7,8 @@
 > - **Uniqueness:** surface max |Spearman ρ| = 0.468709; final sparse-raster max 3-px overlap = 0.684178; however the literal all-raster overlap is 1.0 against a positive-everywhere 17GEMSDOE witness. Binding rule fails; no exemption is applied.
 > - **Format audit:** single-band float32; values [0,1]; no NaN/Inf; expected competition grid; 36,033 binary dots; TIFF SHA-256 `b9cb36519c2ee91c08f587d3c9c006623d8e2505ece0416fdf263b50e42deb7e`. Format validity does not imply submission eligibility.
 > - **Slots/receipts:** 0 slots spent; no ORGANIZER-CONFIRMED score exists. H33's 0.2778 remains an owner-reported value in local forensic evidence, not a receipt verified in this checkout.
-> - **Current limitation:** raw inputs under `data/` are absent from this checkout; reproducible validation/research requires restoring the hash-pinned inputs. Do not create or promote a replacement raster without the required holdout and uniqueness reruns.
+> - **Current limitation:** raw inputs under `data/` are absent from this local checkout. The PR's GitHub Actions restored hash-pinned validation inputs and passed, but the manifest flags owner-mirror redistribution terms as unchecked and those bytes are not organizer-authenticated. Do not create or promote a replacement raster without authorized inputs and required holdout/uniqueness reruns.
+> - **Review:** [`research/repo-review-20261024.md`](research/repo-review-20261024.md) documents three-pass findings, ranked untested hypotheses, source links, and remaining blockers.
 >
 > The sections below preserve historical session evidence. This block and [`registry/run_card.json`](registry/run_card.json) define the current decision.
 
