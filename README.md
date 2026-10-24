@@ -16,6 +16,9 @@
 The candidate was generated from a new blockwise magnetic vertical-to-regional residual transform, not copied from a prior submission. The frozen ranking is in [`research/candidate-hypotheses-20261024-mrr.md`](research/candidate-hypotheses-20261024-mrr.md); the complete machine record is [`registry/run_card.json`](registry/run_card.json). Historical PRUNE/H88 material below remains research history and is superseded wherever it conflicts with this block.
 <!-- CURRENT STATE END -->
 
+**Concurrent-main reconciliation:** PR #55 added a de-novo `PROVCREST` raster with positive local HOLDOUT-DTI versus its R0 control, but its original `promote` decision representation-classed the positive-everywhere 17GEMSDOE surface out of the 3-pixel overlap gate. That contradicts the binding user rule to stop against *any* registry raster. Its preserved card is therefore corrected to `negative` / `ok_to_submit: false`. It also scored `0.076277` on a different control/split, not above the paired H88 incumbent `0.189634`; it does not rescue MRR or authorize a slot.
+
+
 > ## AUTOMATED GATE DECISION — MRR-BPR-88
 >
 > **DOWNLOAD: YES. SUBMIT: NO.** The new TIFF is format-valid and directly downloadable, but its paired `HOLDOUT-DTI` is lower than the recomputed incumbent and the literal 17GEMSDOE witness overlap is `1.0`. The filename itself says `DO-NOT-SUBMIT`; no weekly slot was spent.

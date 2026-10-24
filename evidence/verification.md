@@ -27,7 +27,7 @@ Commands executed after the review fixes:
 2. `.venv/bin/python scripts/validate_release.py --require-submit` -> expected exit `2`; fail-closed message `AUTOMATIC SUBMISSION GATE: FAIL. No upload permitted.`
 3. `.venv/bin/python scripts/check_site.py` -> PASS for local links, explicit negative decision, and `DO-NOT-SUBMIT` research downloads.
 4. `.venv/bin/python scripts/readiness.py` -> `BLOCKED`; both the negative paired HOLDOUT-DTI and literal registry witness are listed.
-5. `.venv/bin/python -m pytest -q` -> **227 passed, 22 skipped, 0 failed**. Skips are data-conditional legacy tests; all restored-input current release tests ran.
+5. `.venv/bin/python -m pytest -q` -> **238 passed, 22 skipped, 0 failed**. Skips are data-conditional legacy tests; all restored-input current release tests ran.
 
 ## Pinned output digests
 
@@ -46,3 +46,7 @@ Commands executed after the review fixes:
 - Final sparse-dot maximum 3-pixel forward overlap `0.684178 <= 0.70`; H33 overlap `0.402187`.
 - Literal all-raster maximum overlap `1.000000 > 0.70` against positive-everywhere 17GEMSDOE.
 - Final machine status: **OK TO DOWNLOAD FOR RESEARCH — DO NOT SUBMIT**.
+
+## Concurrent-main reconciliation
+
+Before merge, `main` advanced with PR #55 (PROVCREST) and an interior-PRUNE experiment. Their data, code, and historical evidence were preserved. PROVCREST's representation-class `promote` decision conflicted with the binding literal any-raster rule because its own audit records 17GEMSDOE overlap `1.0`. Its builder, run-card mirrors, site guard, and tests were corrected to `negative` / `ok_to_submit=false`; sparse-only diagnostics remain visible. The post-merge suite passes: **238 passed, 22 skipped, 0 failed**.

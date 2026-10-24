@@ -1,0 +1,209 @@
+{
+  "schema": "gems88.run-card.v3",
+  "generated_utc": "2026-10-24T06:33:20Z",
+  "hypothesis": "De-novo dots on composite Hessian crests of provided Bands 19 (slope-break), 3 (TMI gradient), 18 (gravity gradient) and 15 (basement step) recover geothermal faults missing from the USGS/INGENIOUS catalogue, because the transforms respond to fault scarps/contacts/basement steps in topography and potential fields whether or not a mapper traced the fault.",
+  "mechanism": "Percentile-ranked crest composite (0.45/0.20/0.20/0.15) -> 1-D directional NMS crest pool -> greedy selection of exactly 37,654 dots at >=3.5 px mutual spacing and >3.0 px from the catalogue (visible-only inside holdout folds), binary {0,1}, zeros outside footprint.",
+  "named_non_fault_process": "Unfaulted coalescing alluvial-fan bajada toe inflections, incised fluvial terrace risers, Tertiary volcanic flow margins and pluton-roof contacts producing slope-break/gradient crests without brittle fault permeability.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_kernel_radius_px": 3.0,
+    "seeds": [
+      20,
+      30
+    ],
+    "withheld_positive_pixels": 22663,
+    "winner_arm": "provcrest_rank",
+    "winner_dti": 0.076277,
+    "winner_ci95": [
+      0.067653,
+      0.084607
+    ],
+    "arms": {
+      "provcrest_rank": {
+        "dti": 0.076277,
+        "ci95": [
+          0.067653,
+          0.084607
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "provcrest_randorder": {
+        "dti": 0.050917,
+        "ci95": [
+          0.045624,
+          0.055839
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "r0_control": {
+        "dti": 0.004006,
+        "ci95": [
+          0.003406,
+          0.004668
+        ],
+        "withheld_positive_pixels": 22663
+      }
+    },
+    "paired_differences_vs_candidate_rank": {
+      "provcrest_randorder": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.025359797996603248,
+        "ci95": [
+          0.01704170998108726,
+          0.03277183101945617
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "r0_control": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.0722710583383456,
+        "ci95": [
+          0.06385246882928546,
+          0.08039377596912535
+        ],
+        "withheld_positive_pixels": 22663
+      }
+    },
+    "protocol": "buffered whole-component hide-and-recover; catalogue-derived collar from visible faults only; visible faults masked pixel-exactly; pooled DTI"
+  },
+  "sgmc_proxy": {
+    "evidence_class": "PROXY (not a score)",
+    "final": 0.12569,
+    "r0_control": 0.09606,
+    "n_off_catalogue_px": 62703
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "channels": {
+      "prov_slope_break_hess_b19": 0.57511,
+      "prov_tmi_hg_hess_b03": 0.50446,
+      "prov_grav_hg_hess_b18": 0.51087,
+      "prov_basement_step_hess_b15": 0.50576,
+      "prov_composite_crest": 0.57543
+    },
+    "max_symmetric_auc": 0.57543,
+    "passed": true
+  },
+  "uniqueness": {
+    "rasters_checked": 30,
+    "errors": [],
+    "worst_sparse_spearman": {
+      "rho": 0.0302,
+      "file": "data/registry/gems49_gate_ortho.tif"
+    },
+    "worst_sparse_dot_overlap_3px": {
+      "overlap": 0.4076,
+      "file": "data/registry/family_60gemsdoe/calib_h161_01855.tif"
+    },
+    "sparse_gate_pass": true,
+    "dense_witness_note": "Continuous/dense rasters are reported by representation class for diagnosis, but the binding literal any-raster rule grants no exemption. The positive-everywhere 17GEMSDOE surface forces overlap 1.0 and a negative verdict for every nonempty candidate.",
+    "rows_file": "evidence/provcrest_uniqueness.json",
+    "literal_all_raster_gate_pass": false,
+    "literal_worst_dot_overlap_3px": 1.0,
+    "literal_worst_abs_spearman": 0.0302
+  },
+  "validator": {
+    "vendor_validate": {
+      "file": "/home/user/GEMSDOE88/docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+      "bytes": 149569,
+      "sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "format_report_ok": true,
+    "no_nan_anywhere": true,
+    "values_in_0_1": true,
+    "values_binary": [
+      0.0,
+      1.0
+    ],
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform_matches_sample": true,
+    "n_dots": 37654,
+    "min_catalogue_distance_px": 3.1623,
+    "nn_stats": {
+      "min_px": 3.6056,
+      "median_px": 4.1231,
+      "frac_ge_6px": 0.2107
+    },
+    "raster_sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
+    "zip_sha256": "726731fff47ff79d928c1c382606d1bc3a818ca5841131cff6d422f5f122167c"
+  },
+  "submission": {
+    "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+    "zip_file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.zip",
+    "repo_copy": "submissions/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+    "sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
+    "zip_sha256": "726731fff47ff79d928c1c382606d1bc3a818ca5841131cff6d422f5f122167c",
+    "submission_name": "GEMSDOE88-PROVCREST-RANK-04559A2C",
+    "submission_note": "PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED",
+    "submission_note_chars": 112,
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "organizer_confirmed_score": null,
+    "weekly_slots_used_by_agent": 0
+  },
+  "experiments_run": 2,
+  "experiment_budget_max": 3,
+  "elapsed_seconds": 100.7,
+  "verdict": "negative",
+  "stop_reason": "Binding literal any-raster gate: positive-everywhere 17GEMSDOE forward overlap is 1.0 > 0.70. No representation-class exemption is authorized."
+}

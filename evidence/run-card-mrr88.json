@@ -1,7 +1,6 @@
 {
   "schema": "gems88.run-card.v3",
   "generated_utc": "2026-10-24T07:19:05Z",
-  "git_sha": "86a78a83affd8235490ff00db46c8b616463dd1c",
   "lane": "H88-MRR-BPR",
   "artifact": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
   "zip_artifact": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.zip",
@@ -344,5 +343,6 @@
         }
       }
     }
-  }
+  },
+  "base_git_sha_at_generation": "86a78a83affd8235490ff00db46c8b616463dd1c"
 }

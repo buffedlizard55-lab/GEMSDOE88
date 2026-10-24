@@ -402,7 +402,7 @@ def main() -> int:
     run_card = {
         "schema": "gems88.run-card.v3",
         "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "git_sha": git_value("rev-parse", "HEAD"),
+        "base_git_sha_at_generation": git_value("rev-parse", "HEAD"),
         "lane": "H88-MRR-BPR",
         "artifact": f"docs/downloads/{tif_path.name}",
         "zip_artifact": f"docs/downloads/{tif_path.with_suffix('.zip').name}",
