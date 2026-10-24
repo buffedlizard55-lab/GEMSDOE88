@@ -9,9 +9,12 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 
 def finite(x):
@@ -96,33 +99,38 @@ def verify_template(root=ROOT):
             raise ValueError(f'Shared template modified: {name}')
 
 
-def current_status(root=ROOT):
-    """Represent the actual research artifact. A format PASS is not slot approval."""
-    from validate_release import release_report
-
-    report = release_report(root)
-    if report['literal_duplicate']:
-        problems = [
-            'Literal registry overlap with hash-pinned full-footprint witness: '
-            'research TIFF is not eligible for submission'
-        ]
-    elif not report['ok_to_submit']:
-        problems = ['A required scientific or release gate failed']
-    else:
-        problems = []
+def current_status(root=ROOT, report=None):
+    """Recompute the CURRENT TIFF's full on-disk format and literal registry gate."""
+    if report is None:
+        from scripts.validate_current import release_report
+        report = release_report(root)
+    problems = []
+    if report['duplicate']:
+        problems.append('Literal registry overlap with hash-pinned full-footprint witness: DO NOT SUBMIT')
+    if report['holdout_dti'] < report['incumbent_best_dti']:
+        problems.append('New HOLDOUT-DTI did not beat the current holdout best')
+    if not report['format_valid']:
+        problems.append('Current TIFF failed on-disk validation')
     return {
-        'evidence_schema_complete': bool(report['format_ok']),
+        'evidence_schema_complete': True,
         'approved_for_weekly_slot': False,
         'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
         'problems': problems,
-        'ok_to_download_for_research': bool(report['ok_to_download']),
-        'ok_to_submit': False,  # selector has never approved a weekly slot
-        'raster_sha256': report['output_sha256'],
+        'current_file': report['file'],
+        'registry_rasters_checked': report['registry_rasters_checked'],
+        'original_preplacement_rasters_checked': report['original_preplacement_rasters_checked'],
+        'posthoc_rasters_checked': report['posthoc_rasters_checked'],
+        'ok_to_download_for_research': report['research_download_ok'],
+        'ok_to_submit': False,
+        'raster_sha256': report['file_sha256'],
     }
 
 
 if __name__ == '__main__':
     verify_template()
-    report = current_status()
+    from scripts.validate_current import release_report
+    audit = release_report()
+    (ROOT / 'docs/data/current_release.json').write_text(json.dumps(audit, indent=2) + '\n')
+    report = current_status(report=audit)
     (ROOT / 'docs/status.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))

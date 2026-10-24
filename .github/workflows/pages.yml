@@ -27,7 +27,12 @@ jobs:
       - run: python -m pip install -r requirements.txt
       - run: python scripts/restore_inputs.py --validation
       - run: pytest -q
-      - run: python scripts/validate_release.py
+      - name: Refuse to deploy a contradictory or corrupted research release
+        run: |
+          python scripts/check_site.py
+          python scripts/readiness.py
+          python scripts/validate_current.py
+          git diff --exit-code docs/status.json docs/data/current_release.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

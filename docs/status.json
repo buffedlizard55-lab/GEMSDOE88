@@ -3,9 +3,14 @@
   "approved_for_weekly_slot": false,
   "status": "BLOCKED",
   "problems": [
-    "Literal registry overlap with hash-pinned full-footprint witness: research TIFF is not eligible for submission"
+    "Literal registry overlap with hash-pinned full-footprint witness: DO NOT SUBMIT",
+    "New HOLDOUT-DTI did not beat the current holdout best"
   ],
+  "current_file": "docs/downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif",
+  "registry_rasters_checked": 30,
+  "original_preplacement_rasters_checked": 29,
+  "posthoc_rasters_checked": 1,
   "ok_to_download_for_research": true,
   "ok_to_submit": false,
-  "raster_sha256": "f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd"
+  "raster_sha256": "1bbb20e60ce5633a979e2bea8e1216105325b78c4ca93ca4380ea3f533e774ae"
 }
