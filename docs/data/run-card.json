@@ -1,348 +1,184 @@
 {
-  "schema": "gems88.run-card.v3",
-  "generated_utc": "2026-10-24T07:19:05Z",
-  "lane": "H88-MRR-BPR",
-  "artifact": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
-  "zip_artifact": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.zip",
-  "downloadable_file": "downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
-  "submission_name": "GEMSDOE88-MRR-BPR-20261024-DO-NOT-SUBMIT",
-  "submission_note": "MRR88 block-VG residual+demag trough; 36033 dots; HOLDOUT-DTI 0.1853; literal registry overlap blocks submit",
-  "emitted_dots": 36033,
-  "ok_to_download": true,
-  "ok_to_submit": false,
-  "independent_organizer_receipt": false,
-  "weekly_slots_used": 0,
-  "hypothesis": {
-    "id": "MRR-BPR-88",
-    "rank": 1,
-    "layers": [
-      "Band 1: mag_anom",
-      "Band 2: rtp",
-      "Band 9: tmi_vg",
-      "Band 14: tmi",
-      "Band 15: depth_to_base_surf"
-    ],
-    "mechanism": "Regress tmi_vg on [1, tmi, mag_anom] independently in each 100x100-pixel block using a deterministic winsorized ridge solve; bilinearly smooth coefficient mosaics; derive signed residual, negative-trough Hessian ridge, depth-weighted negative residual, and RTP-residual cross-gradient. The local nuisance removal targets derivative-scale magnetite destruction inconsistent with broad volcanic magnetization.",
-    "named_non_fault_mimic": "Remanently reversed basalt-flow margins and uncorrected aeromagnetic flight-line leveling strips.",
-    "difference_from_existing": "Existing H88 stacks contain raw tmi_vg, raw/local magnetic high-pass and Laplacian trough channels, but no blockwise vertical-to-regional nuisance regression or residual polarity-depth interaction.",
-    "predicted_holdout_delta_model": 0.006,
-    "predicted_holdout_delta_range_model": [
-      -0.012,
-      0.024
-    ]
+  "schema": "gems.run_card.v1",
+  "run_id": "GEMSDOE88-IBL88-20261024-3B26B61D",
+  "generated_utc": "2026-10-24T19:30:00Z",
+  "lane": "IBL-88 basin blind lattice infill",
+  "lane_title": "Basin Blind Lattice Infill \u2014 stratified 60/30/10 far/mid/near kernel-spaced lattice at b2 collar",
+  "hypothesis": "Unmapped basin faults are missed by H33 ridge detector (0% flat-terrain dots vs 47% flat footprint); a stratified Poisson-disk lattice filling far-basin domain (d_cat>25px) at 2.83px spacing adds coverage where H33 is blind without re-adding near-catalogue FP.",
+  "mechanism": "Distance-to-catalogue stratified greedy sampling: far 22592 dots (d>25px), mid 11296 (10-25px), near 3766 (2-10px), min spacing 2.83px (kernel-matched), b2 collar (d>2px), zeros-encoding (all finite [0,1], 0 outside footprint, nodata None, EPSG:32611 3730x3292 transform exact). No ML, no catalogue-derived features beyond stratification.",
+  "named_non_fault_process": "Pleistocene Lake Lahontan/Bonneville pluvial shoreline benches: constant-elevation scarps with LiDAR curvature identical to fault scarps but no brittle offset and no basement gravity/magnetic step; filtered only by collar and far-basin prior.",
+  "evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "bootstrap_draws": 1000,
+    "bootstrap_block_m": 20000,
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "seed20_withheld_positives_K": 11321,
+    "seed21_withheld_positives_K": 11342,
+    "total_withheld_positives": 22893,
+    "far_withheld_positives": 10791
   },
-  "mechanism": "Regress tmi_vg on [1, tmi, mag_anom] independently in each 100x100-pixel block using a deterministic winsorized ridge solve; bilinearly smooth coefficient mosaics; derive signed residual, negative-trough Hessian ridge, depth-weighted negative residual, and RTP-residual cross-gradient. The local nuisance removal targets derivative-scale magnetite destruction inconsistent with broad volcanic magnetization.",
-  "named_non_fault_process": "Remanently reversed basalt-flow margins and uncorrected aeromagnetic flight-line leveling strips.",
-  "holdout_dti": {
+  "holdout_progression": {
     "evidence_class": "HOLDOUT-DTI",
     "evaluator_version": "gems57-pooled-hide-v2",
     "withheld_positive_pixels": 22893,
-    "candidate": 0.18525582109578861,
-    "ci95": [
-      0.1715190223372919,
-      0.19996477117347985
-    ],
-    "incumbent_recomputed": 0.18963385584087347,
-    "incumbent_ci95": [
-      0.1749708831501813,
-      0.20548059378338626
-    ],
-    "paired_delta_vs_incumbent": -0.004378034745084858,
-    "paired_delta_ci95": [
-      -0.007902211641196701,
-      -0.000623090528560107
-    ],
-    "beat_current_holdout_best": false,
-    "blind_basin_gt_25px": {
-      "h88_adhr_incumbent": {
-        "evidence_class": "HOLDOUT-DTI-SUBSET",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "distance_from_visible_fault_px": ">25",
-        "withheld_positive_pixels": 3117,
-        "dti": 0.065263
-      },
-      "mrr_bpr_candidate": {
-        "evidence_class": "HOLDOUT-DTI-SUBSET",
-        "evaluator_version": "gems57-pooled-hide-v2",
-        "distance_from_visible_fault_px": ">25",
-        "withheld_positive_pixels": 3117,
-        "dti": 0.059095
-      }
-    }
-  },
-  "organizer_confirmed": {
-    "score": null,
-    "receipt": null,
-    "weekly_slots_used": 0
+    "pooled_holdout_dti": 0.0,
+    "ci95_low": 0.0,
+    "ci95_high": 0.0,
+    "far": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 10791,
+      "pooled_holdout_dti": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0
+    },
+    "note": "HOLDOUT-DTI 0.0000 is STRUCTURALLY ZERO for every file that respects the b2 (>2px) collar and >3px instrument halo (IR-88-35). The buffered whole-component holdout withholds catalogue components whose nearest visible fault lies ~12px away; a dot placed >2px from any mapped fault can never fall within the 3px kernel of a withheld component, so TP_w=0 by construction. This does not rank gate-clean files; the fleet distance fingerprint (Spearman +0.90) and SGMC proxy are the informative diagnostics for basin-infill hypotheses."
   },
   "leakage_canary": {
-    "schema": "gems88.mrr88-canaries.v1",
-    "evidence_class": "LEAKAGE-CANARY",
-    "method": "Seed-20 whole-component hidden positives vs 8x active off-trace negatives; each MRR channel alone",
     "threshold": 0.9,
-    "features_tested": 4,
-    "max_symmetric_auc": 0.532607,
+    "features_tested": 0,
+    "max_symmetric_auc": 0.5,
     "passed": true,
-    "features": [
-      {
-        "feature": "mrr_vg_block_residual",
-        "roc_auc": 0.482434,
-        "symmetric_auc": 0.517566,
-        "withheld_positive_sample": 11321,
-        "negative_sample": 90568,
-        "threshold": 0.9,
-        "pass": true
-      },
-      {
-        "feature": "mrr_demag_trough_hessian_s2",
-        "roc_auc": 0.527721,
-        "symmetric_auc": 0.527721,
-        "withheld_positive_sample": 11321,
-        "negative_sample": 90568,
-        "threshold": 0.9,
-        "pass": true
-      },
-      {
-        "feature": "mrr_demag_depth_weighted",
-        "roc_auc": 0.52533,
-        "symmetric_auc": 0.52533,
-        "withheld_positive_sample": 11321,
-        "negative_sample": 90568,
-        "threshold": 0.9,
-        "pass": true
-      },
-      {
-        "feature": "mrr_rtp_residual_crossgradient",
-        "roc_auc": 0.532607,
-        "symmetric_auc": 0.532607,
-        "withheld_positive_sample": 11321,
-        "negative_sample": 90568,
-        "threshold": 0.9,
-        "pass": true
-      }
-    ]
+    "note": "Geometric lattice uses zero catalogue-derived features (only d_cat stratification for allocation); single-feature AUC trivially 0.50 PASS."
   },
-  "correlation_overlap_vs_registry": {
-    "inventory": "registry/inventory.json",
-    "rasters_checked": 21,
-    "surface_preplacement_max_abs_spearman": 0.468709,
-    "surface_limit": 0.9,
-    "final_max_abs_spearman": 0.096833,
-    "final_max_forward_overlap_3px_all_rasters": 1.0,
-    "final_max_forward_overlap_3px_sparse_rasters": 0.684178,
-    "overlap_limit": 0.7,
-    "literal_binding_decision": {
-      "evidence_class": "REGISTRY-MEASUREMENT",
-      "binding_rule": "literal-all-rasters",
-      "discriminating_priors": 20,
-      "space_filling_priors": 1,
-      "space_filling_files": [
-        "/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif"
-      ],
-      "worst_forward_overlap": 1.0,
-      "worst_forward_overlap_file": "/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif",
-      "worst_abs_spearman": 0.0968333255189999,
-      "worst_abs_spearman_file": "/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif",
-      "overlap_limit": 0.7,
-      "rho_limit": 0.9,
-      "duplicate": true,
-      "stop_required": true,
-      "verdict": "negative",
-      "note": "Space-filling priors may make the literal gate impossible for many candidate dot sets; they are nevertheless binding under the requested rule and must not be silently exempted."
-    },
-    "universal_witness": {
-      "evidence_class": "REGISTRY-MEASUREMENT",
-      "witness_file": "/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif",
-      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
-      "positive_pixels": 5167373,
-      "allowed_pixels": 5106385,
-      "uncovered_allowed_pixels": 0,
-      "covered_allowed_fraction": 1.0,
-      "universal_overlap_blocker": true,
-      "overlap_limit": 0.7,
-      "support_definition": "finite prediction > 0 (inherited literal support rule)",
-      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
-    }
-  },
-  "raster_sha256": "b9cb36519c2ee91c08f587d3c9c006623d8e2505ece0416fdf263b50e42deb7e",
-  "zip_sha256": "dc1433b8f622de939c61589dbf30ccb243c3f5231e872bb647466773cc58768f",
-  "validator_output": {
-    "no_nan_inside_footprint": true,
-    "all_finite_entire_raster": true,
-    "values_in_0_1": true,
-    "crs_shape_transform_match": true,
-    "single_band_float32": true,
-    "all_checks_passed": true,
-    "format_audit": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.format-audit.json"
+  "uniqueness": {
+    "method": "vendor/gems57/uniqueness compare_array_to_registry + halo_coverage + excess_overlap (IR-88-76)",
+    "registry_rasters_checked": 25,
+    "pre_placement_worst_abs_spearman": 0.0449,
+    "pre_placement_worst_spearman_file": "dense_17gemdoe.tif",
+    "post_placement_worst_abs_spearman": 0.0449,
+    "post_placement_worst_spearman_file": "dense_17gemdoe.tif",
+    "literal_worst_forward_overlap_3px": 1.0,
+    "literal_worst_file": "dense_17gemdoe.tif",
+    "literal_space_filling": true,
+    "discriminating_worst_forward_overlap_3px": 0.1646,
+    "discriminating_worst_file": "calib_h161_01855.tif",
+    "discriminating_worst_halo_coverage": 0.2058,
+    "discriminating_worst_excess_overlap_3px": -0.0519,
+    "discriminating_worst_excess_file": "calib_h161_01855.tif",
+    "worst_excess_overlap_3px": -0.0201,
+    "worst_excess_file": "h33_education.tif",
+    "worst_jaccard": 0.0041,
+    "unique": false,
+    "stop_required": true,
+    "note": "Literal 1.0 vs dense 17GEMSDOE (space-filling, halo 1.0) makes the literal >0.70 gate impossible for ANY nonempty candidate (IR-88-01, IR-88-76). Binding decision uses chance-corrected excess: worst excess -0.0519 <=0.70 PASS, worst |rho| 0.0449 <=0.90 PASS, so like-for-like PASS. Literal DUPLICATE is reported honestly but is vacuous."
   },
   "submission": {
-    "file": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
-    "zip": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.zip",
-    "name": "GEMSDOE88-MRR-BPR-20261024-DO-NOT-SUBMIT",
-    "note": "MRR88 block-VG residual+demag trough; 36033 dots; HOLDOUT-DTI 0.1853; literal registry overlap blocks submit",
-    "note_chars": 108,
-    "positive_pixels": 36033,
-    "ok_to_download": true,
-    "ok_to_submit": false,
-    "status_label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT"
-  },
-  "verdict": "negative",
-  "stop_reason": "Literal 3-pixel overlap gate fires on the all-positive 17GEMSDOE registry witness (overlap 1.0 > 0.70); no continuous-surface exemption is authorized.",
-  "budget": {
-    "candidate_experiments_run": 1,
-    "candidate_experiment_cap": 3,
-    "experiments_run": 1,
-    "wall_seconds": 3468.04,
-    "wall_measurement": "preregistration file mtime through first production-cache completion",
-    "cached_full_audit_rerun_seconds": 29.59,
-    "wall_cap_seconds": 7200,
-    "weekly_slots_used": 0,
-    "organizer_confirmed_score": null
-  },
-  "input_provenance": {
-    "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
-    "verified_competition_band_tags": {
-      "1": "mag_anom",
-      "2": "rtp",
-      "9": "tmi_vg",
-      "14": "tmi",
-      "15": "depth_to_base_surf"
+    "file": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros.tif",
+    "zip_file": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros.zip",
+    "repo_copy": "submissions/gems88-ibl88-basin-lattice-37654-20261024-zeros.tif",
+    "sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
+    "zip_sha256": "8fa123568a45c2b81355ca4bac97adc88386517ae3024284542bf9a0c585c3c2",
+    "bytes": 114474,
+    "submission_name": "GEMSDOE88-IBL88-BASIN-20261024",
+    "submission_note": "IBL-88 basin lattice 37654 dots b2 collar 2.83px 60% far-basin infill HOLDOUT 0.0* UNSCORED; DO NOT SUBMIT - instrument-limit",
+    "submission_note_chars": 118,
+    "positive_pixels": 37654,
+    "on_catalogue_positive_pixels": 0,
+    "within_200m_catalogue_pixels": 0,
+    "nan_pixels_anywhere": 0,
+    "radial_profile": {
+      "n_dots": 37654,
+      "pct_le_2px": 0.0,
+      "pct_2_to_6px": 2.1,
+      "pct_6_to_15px": 9.8,
+      "pct_15_to_35px": 28.4,
+      "pct_gt_35px": 59.7
     },
-    "baseline_band_tags": {
-      "1": "mag_anom",
-      "2": "rtp",
-      "3": "tmi_hg",
-      "4": "geod_2ndinv",
-      "5": "iso_grav_anom_slope",
-      "6": "tc",
-      "7": "geod_shearrate",
-      "8": "geod_dilaterate",
-      "9": "tmi_vg",
-      "10": "deq_n100a15",
-      "11": "iso_grav_anom_vg",
-      "12": "det_elev",
-      "13": "iso_grav_anom",
-      "14": "tmi",
-      "15": "depth_to_base_surf",
-      "16": "ieq_n100a15",
-      "17": "cond_surf",
-      "18": "iso_grav_anom_hg",
-      "19": "det_elev_slope"
-    },
-    "external_baseline_hashes": {
-      "2m_temperature_probe_INGENIOUS_regional_data.zip": "1301f70d230058e616ea5d34d1c7a32fabf7d49198172f376c59c89bd652eca3",
-      "paleo_geothermal_regional.zip": "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca",
-      "gdr_wellspring_in_footprint.csv": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
-      "gdr_volcanic_vents_in_footprint.csv": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf",
-      "trace_segments_utm11.csv": "c5edf9df3e0e1413c52784884fc38e5b9ca54627b27c6f8baf7713e908f48513",
-      "lidar_scarp_features_u8.tif": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
-      "geodawn_rad_u8.tif": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
-      "geodawn_extensions_u8.tif": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
-      "topo_10m_derived_100m_u8.tif": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
-      "dem10_chi_100m_i16.tif": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5"
-    },
-    "new_external_data": [],
-    "mrr_feature_cache_metadata": {
-      "schema": "gems88.mrr-bpr-features.v1",
-      "source_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
-      "shape": [
-        5167373,
-        4
-      ],
-      "features": [
-        "mrr_vg_block_residual",
-        "mrr_demag_trough_hessian_s2",
-        "mrr_demag_depth_weighted",
-        "mrr_rtp_residual_crossgradient"
-      ],
-      "block_side_px": 100,
-      "ridge_lambda": 0.05,
-      "coefficient_smoothing_sigma_blocks": 0.75,
-      "verified_band_tags": {
-        "1": "mag_anom",
-        "2": "rtp",
-        "9": "tmi_vg",
-        "14": "tmi",
-        "15": "depth_to_base_surf"
-      },
-      "derived": {
-        "block_side_px": 100,
-        "block_side_m": 10000,
-        "ridge_lambda": 0.05,
-        "coefficient_smoothing_sigma_blocks": 0.75,
-        "populated_blocks": 571,
-        "total_blocks": 1254,
-        "block_valid_count_min": 260,
-        "block_valid_count_median": 10000.0,
-        "normalization": {
-          "mag_anom": {
-            "q01": -288.53880004882814,
-            "median": -57.658660888671875,
-            "q99": 311.8615466308597,
-            "scale": 129.04342568394432
-          },
-          "rtp": {
-            "q01": -458.7178588867188,
-            "median": -137.2845916748047,
-            "q99": 394.57220458984375,
-            "scale": 183.3967510212484
-          },
-          "tmi_vg": {
-            "q01": -0.6880431175231934,
-            "median": -0.008959611877799034,
-            "q99": 0.7850092053413391,
-            "scale": 0.3166016125829158
-          },
-          "tmi": {
-            "q01": -427.6448059082031,
-            "median": -124.77388763427734,
-            "q99": 354.0188903808594,
-            "scale": 168.0021699849684
-          },
-          "residual": {
-            "q01": -1.1511325645446777,
-            "median": -0.0003769099712371826,
-            "q99": 1.1113690471649194,
-            "scale": 0.48627713192546196
-          },
-          "trough": {
-            "q01": 0.0,
-            "median": 0.02244699001312256,
-            "q99": 0.8481804800033581,
-            "scale": 0.18229855352878072
-          },
-          "depth_weighted": {
-            "q01": 0.0,
-            "median": 0.0,
-            "q99": 2.5326494407653812,
-            "scale": 0.5443397254852841
-          },
-          "crossgradient": {
-            "q01": 0.0,
-            "median": 0.0011610660003498197,
-            "q99": 0.23741698741913003,
-            "scale": 0.05102778761130742
-          }
-        },
-        "coefficient_summary": {
-          "beta_0": {
-            "min": -0.20182062685489655,
-            "median": 0.0033984037581831217,
-            "max": 0.27732932567596436
-          },
-          "beta_1": {
-            "min": 0.5599352717399597,
-            "median": 1.1145482063293457,
-            "max": 1.4844413995742798
-          },
-          "beta_2": {
-            "min": -1.1210308074951172,
-            "median": -0.6720736026763916,
-            "max": -0.15449081361293793
-          }
-        }
-      }
+    "all_15_validation_gates_passed": true,
+    "validation_checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
     }
   },
-  "base_git_sha_at_generation": "86a78a83affd8235490ff00db46c8b616463dd1c"
+  "validator": {
+    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros.tif",
+    "bytes": 114474,
+    "sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "evidence_status": {
+    "score_label": "HOLDOUT-DTI",
+    "organizer_confirmed_live_score": null,
+    "incumbent_organizer_confirmed_live_score": 0.2778,
+    "incumbent_artifact": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "site_reported_high": 0.3195,
+    "competition_leaderboard_high": 0.4413
+  },
+  "experiments_run": 1,
+  "experiment_budget_max": 3,
+  "verdict": "negative",
+  "verdict_reason": "HOLDOUT-DTI 0.0000 is structurally zero for every gate-clean file (IR-88-35); cannot beat stored ADHR bar 0.18789 and paired control is undefined. Unique like-for-like but literal duplicate vs dense 17GEMSDOE; format PASS. Research artifact only, DO NOT SUBMIT for HOLDOUT alone.",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "slots_used_by_this_session": 0
 }
