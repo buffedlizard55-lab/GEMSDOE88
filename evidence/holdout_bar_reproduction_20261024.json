@@ -1,0 +1,172 @@
+{
+ "schema": "gems88.holdout-bar-reproduction.v1",
+ "evidence_class": "HOLDOUT-DTI",
+ "evaluator_version": "gems57-pooled-hide-v2",
+ "withheld_positive_pixels": 22893,
+ "status": "REPRODUCED",
+ "what": "Recomputed the stored H88-ADHR holdout bar from pinned inputs with the unmodified shared evaluator (scripts/run_experiment.py --recompute-holdout, run in a scratch copy so published registry files were not overwritten).",
+ "pooled_recomputed": {
+  "raw_control": 0.03134,
+  "mgc_88": 0.03612,
+  "cgo_88": 0.09042,
+  "h88_adhr": 0.18789,
+  "h88_adhr_ci95": [
+   0.17169764852656258,
+   0.20326012211176936
+  ]
+ },
+ "pooled_stored": {
+  "raw_control": 0.03133526257647569,
+  "mgc_88": 0.036117357024668846,
+  "cgo_88": 0.09041953637900234,
+  "h88_adhr": 0.18788764184958875,
+  "h88_adhr_ci95": [
+   0.17169764852656258,
+   0.20326012211176936
+  ]
+ },
+ "max_abs_per_fold_diff_vs_stored": 4.999999999999796e-05,
+ "folds": [
+  {
+   "seed": 20,
+   "fold": "NW",
+   "recomputed": {
+    "raw_control": 0.0302,
+    "mgc_88": 0.0403,
+    "cgo_88": 0.0598,
+    "h88_adhr": 0.1693
+   },
+   "stored": {
+    "raw_control": 0.030164,
+    "mgc_88": 0.040267,
+    "cgo_88": 0.059829,
+    "h88_adhr": 0.169301
+   }
+  },
+  {
+   "seed": 20,
+   "fold": "NE",
+   "recomputed": {
+    "raw_control": 0.0351,
+    "mgc_88": 0.0249,
+    "cgo_88": 0.0762,
+    "h88_adhr": 0.1905
+   },
+   "stored": {
+    "raw_control": 0.035117,
+    "mgc_88": 0.024896,
+    "cgo_88": 0.07616,
+    "h88_adhr": 0.190497
+   }
+  },
+  {
+   "seed": 20,
+   "fold": "SW",
+   "recomputed": {
+    "raw_control": 0.0265,
+    "mgc_88": 0.0257,
+    "cgo_88": 0.0929,
+    "h88_adhr": 0.1995
+   },
+   "stored": {
+    "raw_control": 0.026506,
+    "mgc_88": 0.02575,
+    "cgo_88": 0.092853,
+    "h88_adhr": 0.199465
+   }
+  },
+  {
+   "seed": 20,
+   "fold": "SE",
+   "recomputed": {
+    "raw_control": 0.0279,
+    "mgc_88": 0.0291,
+    "cgo_88": 0.107,
+    "h88_adhr": 0.1846
+   },
+   "stored": {
+    "raw_control": 0.027937,
+    "mgc_88": 0.029137,
+    "cgo_88": 0.106951,
+    "h88_adhr": 0.184631
+   }
+  },
+  {
+   "seed": 21,
+   "fold": "NW",
+   "recomputed": {
+    "raw_control": 0.0237,
+    "mgc_88": 0.0392,
+    "cgo_88": 0.0684,
+    "h88_adhr": 0.2012
+   },
+   "stored": {
+    "raw_control": 0.023737,
+    "mgc_88": 0.039204,
+    "cgo_88": 0.06845,
+    "h88_adhr": 0.201168
+   }
+  },
+  {
+   "seed": 21,
+   "fold": "NE",
+   "recomputed": {
+    "raw_control": 0.0335,
+    "mgc_88": 0.0372,
+    "cgo_88": 0.1048,
+    "h88_adhr": 0.1796
+   },
+   "stored": {
+    "raw_control": 0.033494,
+    "mgc_88": 0.037154,
+    "cgo_88": 0.104761,
+    "h88_adhr": 0.179573
+   }
+  },
+  {
+   "seed": 21,
+   "fold": "SW",
+   "recomputed": {
+    "raw_control": 0.0294,
+    "mgc_88": 0.0355,
+    "cgo_88": 0.0707,
+    "h88_adhr": 0.1733
+   },
+   "stored": {
+    "raw_control": 0.029389,
+    "mgc_88": 0.035507,
+    "cgo_88": 0.070742,
+    "h88_adhr": 0.173309
+   }
+  },
+  {
+   "seed": 21,
+   "fold": "SE",
+   "recomputed": {
+    "raw_control": 0.0433,
+    "mgc_88": 0.0572,
+    "cgo_88": 0.1234,
+    "h88_adhr": 0.2028
+   },
+   "stored": {
+    "raw_control": 0.043329,
+    "mgc_88": 0.057241,
+    "cgo_88": 0.123439,
+    "h88_adhr": 0.202822
+   }
+  }
+ ],
+ "inputs_sha256": {
+  "data/training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "data/bridge/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+  "data/bridge/existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+ },
+ "implementation_sha256": {
+  "evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+  "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
+  "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+  "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
+ },
+ "canary": "Recomputed run: PASS, max symmetric AUC 0.7716 <= 0.90 (67 ADHR + 7 MGC features)",
+ "not_claimed": "ORGANIZER-CONFIRMED: none. This reproduces a holdout number only; it does not validate any submission file."
+}
