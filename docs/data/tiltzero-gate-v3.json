@@ -1,0 +1,80 @@
+{
+ "name": "GEMSDOE88-TILTZERO-RANK-A2150EEB",
+ "note": "TILTZERO-rank de novo B9/3+B11/18 tilt0 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0551 vs R0 0.0040; UNSCORED",
+ "file": "docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+ "sha256": "5487d7937c92dce12a87185b0b3ba7c800b78e655ecafd47fbdb41404d29f011",
+ "zip_sha256": "2f39a484598382c93e90b46bc7f572b691af8bfb10c5ec88512c649d96257cd3",
+ "generated_utc": "2026-10-24T07:46:11Z",
+ "source": "parallel-session candidate 'tiltzero', re-assessed by gate v3; its own run card says verdict=negative (registry of 32 rasters)",
+ "policy": "gems88-gate-v3",
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+ "blocking_reasons": [
+  "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)"
+ ],
+ "informational": [
+  "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+ ],
+ "note_len": 111,
+ "name_len": 32,
+ "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows).",
+ "own_gate": {
+  "verdict": "negative",
+  "registry_rasters_checked": 32,
+  "worst_sparse_dot_overlap_3px": 0.3724
+ },
+ "holdout_cross_run": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "seeds": [
+   20,
+   30
+  ],
+  "withheld_positives": 22663,
+  "dti": 0.055083,
+  "ci95": [
+   0.046419,
+   0.063081
+  ],
+  "bar": 0.18789,
+  "beats_bar": false,
+  "caveat": "bar comes from seeds 20+21 (22,893 withheld); PR #53 used seeds 20+30 (22,663 withheld): a cross-run comparison"
+ },
+ "fingerprint": {
+  "n": 37654,
+  "median_d_cat_px": 23.259406699226016,
+  "share_le2": 0.0,
+  "share_gt10": 0.7746852923992139,
+  "share_gt25": 0.47288468688585544
+ },
+ "fingerprint_screen_pass": true,
+ "portal_values_and_grid_ok": true,
+ "portal_layout_parity_with_sample": false,
+ "portal_layout": {
+  "compress": "deflate",
+  "tiled": true,
+  "block_shapes": [
+   [
+    256,
+    256
+   ]
+  ],
+  "predictor": null,
+  "interleave": "band"
+ },
+ "uniqueness": {
+  "registry_rasters": 217,
+  "distinct_dot_sets": 112,
+  "unique_like_for_like": true,
+  "worst_like_for_like_overlap": {
+   "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+   "value": 0.5801774047909917
+  },
+  "worst_abs_rho": {
+   "label": "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+   "value": 0.031184181285834365
+  },
+  "like_for_like_blockers": []
+ }
+}

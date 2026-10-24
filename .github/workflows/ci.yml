@@ -30,4 +30,10 @@ jobs:
           code=$?
           set -e
           test "$code" -eq 2
+          python scripts/validate_release.py
+          set +e
+          python scripts/validate_release.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
           git diff --exit-code docs/status.json docs/data/current_release.json

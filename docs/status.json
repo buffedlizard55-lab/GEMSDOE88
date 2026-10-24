@@ -4,7 +4,9 @@
   "status": "BLOCKED",
   "problems": [
     "Literal registry overlap with hash-pinned full-footprint witness: DO NOT SUBMIT",
-    "New HOLDOUT-DTI did not beat the current holdout best"
+    "New HOLDOUT-DTI did not beat the current holdout best",
+    "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+    "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
   ],
   "current_file": "docs/downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif",
   "registry_rasters_checked": 30,
@@ -12,5 +14,40 @@
   "posthoc_rasters_checked": 1,
   "ok_to_download_for_research": true,
   "ok_to_submit": false,
-  "raster_sha256": "1bbb20e60ce5633a979e2bea8e1216105325b78c4ca93ca4380ea3f533e774ae"
+  "raster_sha256": "1bbb20e60ce5633a979e2bea8e1216105325b78c4ca93ca4380ea3f533e774ae",
+  "policy": "gems88-gate-v3",
+  "gate_v3": {
+    "candidate_b": {
+      "name": "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT",
+      "sha256": "974b5d4b2009849c977ddb4210eb17d2fb93f8765011580931028d4fc707bada",
+      "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+      "ok_to_submit": false,
+      "blocking_reasons": [
+        "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+        "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
+      ],
+      "unique_like_for_like": true
+    },
+    "provcrest_pr53": {
+      "name": "GEMSDOE88-PROVCREST-RANK-04559A2C",
+      "sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
+      "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+      "ok_to_submit": false,
+      "blocking_reasons": [
+        "UNIQUENESS: blocked (like-for-like) by fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif, sibling:GEMSDOE86__data__scored_fleet__GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+        "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)"
+      ],
+      "own_verdict": "promote"
+    },
+    "tiltzero_pr59": {
+      "name": "GEMSDOE88-TILTZERO-RANK-A2150EEB",
+      "sha256": "5487d7937c92dce12a87185b0b3ba7c800b78e655ecafd47fbdb41404d29f011",
+      "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+      "ok_to_submit": false,
+      "blocking_reasons": [
+        "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)"
+      ],
+      "own_verdict": "negative"
+    }
+  }
 }

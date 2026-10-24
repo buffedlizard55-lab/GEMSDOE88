@@ -25,4 +25,12 @@ jobs:
           code=$?
           set -e
           test "$code" -eq 2
+      - name: Gate v3 recheck of every candidate (fail-closed; expected exit 2 while no file clears all gates)
+        run: |
+          python scripts/validate_release.py
+          set +e
+          python scripts/validate_release.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
       - run: git diff --exit-code docs/status.json docs/data/current_release.json registry/template_pin.json

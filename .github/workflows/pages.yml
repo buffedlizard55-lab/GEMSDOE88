@@ -32,6 +32,7 @@ jobs:
           python scripts/check_site.py
           python scripts/readiness.py
           python scripts/validate_current.py
+          python scripts/validate_release.py
           git diff --exit-code docs/status.json docs/data/current_release.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
