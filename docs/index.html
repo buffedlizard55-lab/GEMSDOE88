@@ -14,7 +14,26 @@
 <p><strong>TIFF SHA-256:</strong> <code>83bee65fa1a64e72c8c5c35320740665664dff4d6673d5531c1ccbe46e58bf47</code> · <strong>ZIP SHA-256:</strong> <code>6c655aaaf2b20e6270e884735626cda23aaf6b0ef88cfba60521343f973e2170</code>. Independently reopened TIFF and ZIP: one float32 band, finite values in <code>[0,1]</code>, CRS/shape/transform equal to the pinned sample submission, zero mass outside the footprint, zero mass on mapped catalogue pixels. This verifies local format validity, <em>not</em> organizer acceptance. <a href="executive-summary.html" style="color:#76ddca">Submission procedure and blockers →</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" style="color:#76ddca">Official format and metric →</a></p>
 </div></section>
 
-<!-- KTH-88 archived -->
+<section style="background:#10304a;color:#fff;padding:32px 0" aria-labelledby="phase-archived"><div class="wrap">
+<div class="kicker" style="color:#76ddca">Archived experiment · PHASE-88 · 2026-10-24 · one preregistered method · zero contest slots</div>
+<h1 id="phase-archived" style="color:#fff;margin:8px 0">File to submit: <span style="color:#ffcd84">NONE — DO NOT SUBMIT</span></h1>
+<p><strong>OK TO DOWNLOAD FOR RESEARCH: YES · OK TO SUBMIT: NO.</strong> This is a freshly generated, byte- and pixel-distinct geophysical TIFF, not a copy of H33. It is a <strong>DUPLICATE under the binding geometric rule</strong>: 90.90% of its dots are within 3 pixels of a GEMSDOE87 raster (limit 70%), and the all-positive 17GEMSDOE prior covers 100%. Stop. Its same-split holdout also fails to beat the incumbent. No portal slot was spent; no ORGANIZER-CONFIRMED receipt exists.</p>
+<p><a class="button button-primary" href="downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif" download>↓ Download PHASE-88 research TIFF</a> <a class="button button-alert" href="downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.zip" download>↓ One-TIFF ZIP</a> <a class="button button-ghost" href="data/phase88_run_card.json">JSON run card</a> <a class="button button-ghost" href="data/phase88_validation.json">Automatic on-disk audit</a></p>
+<p><strong>Research name (not for portal use):</strong> <code>GEMSDOE88-PHASE-D7D02AB4</code> · <strong>Note (96/140; archival only):</strong> <code>RTP/gravity cross-gradient disagreement; 37654 dots; HOLDOUT-DTI 0.0531; UNSCORED; DO NOT SUBMIT</code>. <strong>SHA-256:</strong> <code>28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b</code>.</p>
+<p><strong>HOLDOUT-DTI</strong> <code>0.053062</code> (95% CI <code>[0.046064,0.060233]</code>; 22,893 withheld positives; <code>gems57-pooled-hide-v2</code>, alpha 0.2/beta 0.8, 300 m triangle), below the same-split incumbent <strong>HOLDOUT-DTI</strong> <code>0.187888</code> (95% CI <code>[0.171698,0.203260]</code>; 22,893 positives). No paired improvement CI; no leaderboard inference. Feature-alone canary max symmetric AUC <code>0.5510</code>. Surface max |ρ| <code>0.1783</code>, final max |ρ| <code>0.0301</code> against 223 accessible rasters; final 3-px overlap <code>1.0</code>. Independent re-open verifies no NaN, values in [0,1], exactly one float32 band, matching CRS/shape/transform and one-file ZIP; <strong>format-only, not acceptance</strong>. Owner mirror is not organizer-authenticated. <a href="research.html" style="color:#76ddca">Read the research</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" style="color:#76ddca">Official metric and format</a>.</p>
+</div></section>
+
+<section style="background:#10304a;color:#fff;padding:32px 0" aria-labelledby="kth-current"><div class="wrap">
+<div class="kicker" style="color:#76ddca">Archived experiment · KTH-88 · 2026-10-24 · one lane, one test, zero contest slots</div>
+<h1 id="kth-current" style="color:#fff;margin:8px 0">New GeoTIFF for research. <span style="color:#ffcd84">DO NOT SUBMIT.</span></h1>
+<p>Automated decision: <strong>OK TO DOWNLOAD FOR RESEARCH: YES · OK TO SUBMIT: NO.</strong> K/Th antisymmetric-step and RTP-trough mapping produced a new byte- and pixel-distinct TIFF, but it is a <strong>duplicate under the binding 3-px overlap rule</strong> (89.88% near one GEMSDOE87 raster; 100% near a space-filling 17GEMSDOE raster). We stopped further experiments. <strong>Scientific caveat:</strong> its u8 K and Th bands are not physically calibrated; this is an index-ratio proxy, not measured hydrothermal alteration.</p>
+<p><a class="button button-primary" href="downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif" download>↓ Download research TIFF</a> <a class="button button-alert" href="downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip" download>↓ One-TIFF ZIP</a> <a class="button button-ghost" href="data/kth88_run_card.json">JSON run card</a> <a class="button button-ghost" href="data/kth88_validation.json">Automatic file audit</a></p>
+<p><strong>Unique research name:</strong> <code>GEMSDOE88-KTH-BACDC27B</code> · <strong>Short note (105/140):</strong> <code>K/Th antisymmetric radiometric step + RTP trough, 37654 dots; HOLDOUT-DTI 0.0527; UNSCORED; DO NOT SUBMIT</code></p>
+<p><strong>HOLDOUT-DTI</strong> <code>0.052656</code>, 95% CI <code>[0.045911, 0.059151]</code>, 22,893 withheld-positive pixels, <code>gems57-pooled-hide-v2</code>. Current comparable incumbent: HOLDOUT-DTI <code>0.187888</code> on the same seeds (not a paired CI). Canary max symmetric AUC <code>0.5097</code>. Preplacement max |ρ| <code>0.07473</code> across 222 reachable rasters; final overlap fails. <strong>No ORGANIZER-CONFIRMED score; 0 slots used.</strong></p>
+<p>File SHA-256 <code>5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf</code>. Independently reopened TIFF and ZIP: one float32 band, finite [0,1] including outside, CRS/shape/transform equal to sample. This verifies local format, <em>not</em> organizer acceptance. <a href="executive-summary.html" style="color:#76ddca">Submission procedure and blockers →</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/" style="color:#76ddca">Official format and metric →</a></p>
+</div></section>
+
+<!-- KTH-88 archived (site-guard reference copy) -->
 <section style="background:#0c2436;color:#fff;padding:26px 0" aria-labelledby="kth-archived"><div class="wrap">
 <div class="kicker" style="color:#76ddca">Earlier experiment · KTH-88 · 2026-10-24 · archival; latest GEO-THERMAL-88 panel above is the latest run</div>
 <h2 id="kth-archived" style="color:#fff;margin-top:4px">K/Th antisymmetric radiometric step + RTP trough — duplicate, DO NOT SUBMIT</h2>
@@ -36,8 +55,14 @@
 <td>Gate v3 says OK TO SUBMIT under its like-for-like rule only; the literal all-registry rule still fails on the full-footprint 17GEMSDOE raster.</td>
 <td><strong>0.093</strong></td>
 <td><strong>HOLD.</strong> Projected far below H33. Do not spend a slot without selector review.</td></tr>
-<tr><td><strong>PROVCREST</strong> (PR #53, withdrawn from site links)</td><td>Withdrawn under gate v3</td><td>0.105</td><td>HOLD</td></tr>
-<tr><td>H33 (reference, user-reported 0.2778)</td><td>n/a</td><td>0.264</td><td>The bar to beat</td></tr>
+<tr><td><strong>PROVCREST</strong> (PR #53, withdrawn from site links)</td>
+<td>Withdrawn under gate v3</td>
+<td>0.105</td>
+<td>HOLD</td></tr>
+<tr><td>H33 (reference, user-reported 0.2778)</td>
+<td>n/a</td>
+<td>0.264</td>
+<td>The bar to beat</td></tr>
 </tbody></table></div>
 <p style="margin-top:10px"><strong>LBCAL name:</strong> <code>GEMSDOE88-LBCAL-0AEB6EED</code> · <strong>Note (105/140):</strong> <code>LBCAL receipt-calibrated q, 38278 dots, &lt;=66% in sibling halos; HOLDOUT 0.0616; model-proj only, UNSCORED</code> · <strong>SHA-256</strong> <code>0a44af1ed8090cf1be88e42b832e0cc4b3bd2263a01b13b45f873e0eb528991a</code></p>
 <p>No ORGANIZER-CONFIRMED score exists; 0 slots used by any agent. Archived research files remain <strong>DO NOT SUBMIT</strong>. <a href="executive-summary.html" style="color:#76ddca">How to submit →</a></p>

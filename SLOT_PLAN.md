@@ -1,3 +1,11 @@
+# Current decision (2026-10-24): PHASE-88 — DO NOT SUBMIT
+
+PHASE-88 is a new research TIFF ([download](docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif)); the automated format check passes, but the score/uniqueness gates fail. HOLDOUT-DTI 0.053062 (95% CI [0.046064,0.060233], gems57-pooled-hide-v2, 22,893 withheld positives) versus incumbent 0.187888 on the same split, without paired improvement CI. Final forward 3-px overlap 0.9090 vs GEMSDOE87 and 1.0 vs the dense 17GEMSDOE witness (limit 0.70). No slot spent, no organizer receipt. Literal overlap cannot be passed by ANY nonempty raster while the positive-everywhere prior is included. A separate portfolio selector/protocol decision is required before any future submission; do not treat historical proposals below as current authorization. [Full dossier](research/phase88-20261024.md).
+
+---
+
+## Archived slot plans below (NOT authorization)
+
 > **2026-10-24 LBCAL update (IR-88-78).** No slot was spent.
 > - **LBCAL** (`gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif`) is **HOLD** under the written holdout gate: 0.0616 < 0.0763.
 > - **The receipt model ranks them the other way.** Its 8-fold repo-blocked CV is ρ 0.941. Projections: LBCAL 0.356, H33 0.264, PROVCREST 0.105 (MODEL-PROJECTION).
