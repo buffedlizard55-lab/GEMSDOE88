@@ -1,0 +1,170 @@
+{
+  "schema": "gems88.run-card.v5",
+  "generated_utc": "2026-10-24",
+  "lane": "GEO-THERMAL-88",
+  "hypothesis": "Measured hot geothermal well/spring water temperature (DOE GDR INGENIOUS, CC BY 4.0) kernel-density gated to USGS 3DEP lidar young-scarp amplitude and thin sedimentary cover, emitted as sparse dots ~one kernel radius apart, all outside the mapped catalogue. Direct hydrothermal indicator targeting blind geothermal systems with no mapped Quaternary fault trace.",
+  "mechanism": "Temp-weighted Gaussian kernels at hot well/spring pixels (sigma ~1.5 px), gated to lidar scarp ex_max above the 70th percentile and up-weighted where depth-to-basement is shallow; greedy farthest-point dots at min 3 px spacing; catalogue masked pixel-exactly; never a ranking layer.",
+  "named_non_fault_process": "Sinter/travertine spring mounds and relict Pleistocene Lake Lahontan shoreline scarps -- thermal/scarpy-looking but not active geothermal faults.",
+  "data_provenance": "hash-pinned free official sources (DOE GDR 1391 CC BY 4.0; USGS 3DEP public domain; GeoDAWN DOI 10.5066/P93LGLVQ)",
+  "feature_canaries": {
+    "threshold_symmetric_auc": 0.9,
+    "per_channel": {
+      "geothermal_thermal_density": {
+        "auc": 0.4987529875903384,
+        "symmetric_auc": 0.5012470124096615
+      },
+      "geothermal_scarp_gated": {
+        "auc": 0.575223815376569,
+        "symmetric_auc": 0.575223815376569
+      },
+      "geothermal_cover_favor": {
+        "auc": 0.5,
+        "symmetric_auc": 0.5
+      },
+      "geothermal_combined_surface": {
+        "auc": 0.5003759143210347,
+        "symmetric_auc": 0.5003759143210347
+      }
+    },
+    "max_symmetric_auc": 0.575223815376569
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.006513449192378717,
+      "ci95": [
+        0.002751285100870817,
+        0.011372709507693647
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 167.8993982426826,
+      "fpw": 37146.80354797739,
+      "fnw": 22725.10060175732
+    },
+    "incumbent_prior_best": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.18788764184958875,
+      "ci95": [
+        0.17169764852656258,
+        0.20326012211176936
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6241.143086000586,
+      "fpw": 68273.96686338239,
+      "fnw": 16651.856913999403
+    },
+    "withheld_positive_pixels": 22893,
+    "folds": [
+      {
+        "seed": 20,
+        "fold": "NW",
+        "withheld_positive_pixels": 1923,
+        "emitted": 3651
+      },
+      {
+        "seed": 20,
+        "fold": "NE",
+        "withheld_positive_pixels": 2367,
+        "emitted": 756
+      },
+      {
+        "seed": 20,
+        "fold": "SW",
+        "withheld_positive_pixels": 3781,
+        "emitted": 9950
+      },
+      {
+        "seed": 20,
+        "fold": "SE",
+        "withheld_positive_pixels": 3250,
+        "emitted": 4484
+      },
+      {
+        "seed": 21,
+        "fold": "NW",
+        "withheld_positive_pixels": 1918,
+        "emitted": 3691
+      },
+      {
+        "seed": 21,
+        "fold": "NE",
+        "withheld_positive_pixels": 2361,
+        "emitted": 715
+      },
+      {
+        "seed": 21,
+        "fold": "SW",
+        "withheld_positive_pixels": 3813,
+        "emitted": 9886
+      },
+      {
+        "seed": 21,
+        "fold": "SE",
+        "withheld_positive_pixels": 3480,
+        "emitted": 4498
+      }
+    ],
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 142,
+      "draws": 1000,
+      "seed": 881024,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "comparable_split": "same frozen whole-component buffered folds seeds 20/21",
+    "beats_prior_point_estimate": false,
+    "paired_improvement_ci95": null,
+    "note": "HOLDOUT-DTI is not ORGANIZER-CONFIRMED; no live score is claimed."
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_max_abs_rho": 0.021648391058168986,
+    "final_worst_abs_rho": 0.022457480044885333,
+    "final_worst_overlap_3px": 1.0,
+    "final_worst_overlap_raster": "17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "registry_rasters_checked": 36,
+    "registry_scope": "pinned owner-mirrored inventory plus all locally published research TIFFs; private/unlinked submissions not observed",
+    "raw_duplicate_count": 1,
+    "universal_dense_witness": true,
+    "full_rows": "evidence/gems88-geothermal-hotspring-scarp-20261024-b3303bb5-DO-NOT-SUBMIT_uniqueness.json",
+    "raw_gate_pass": false
+  },
+  "validator_output": {
+    "format_valid": true,
+    "no_nan_inside": true,
+    "values_in_0_1": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "zero_outside": true,
+    "raster_sha256": "83bee65fa1a64e72c8c5c35320740665664dff4d6673d5531c1ccbe46e58bf47",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "emitted_positive_pixels": 20366,
+    "min_distance_to_catalogue_px": 1.0
+  },
+  "raster_sha256": "83bee65fa1a64e72c8c5c35320740665664dff4d6673d5531c1ccbe46e58bf47",
+  "zip_sha256": "6c655aaaf2b20e6270e884735626cda23aaf6b0ef88cfba60521343f973e2170",
+  "submission_name": "GEMSDOE88-GEO-B3303BB5",
+  "submission_note": "GEO-THERMAL-88 hot well/spring temp x young-scarp corridor; 20366 dots; HOLDOUT-DTI 0.0065; UNSCORED; DO NOT SUBMIT",
+  "file": "docs/downloads/gems88-geothermal-hotspring-scarp-20261024-b3303bb5-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-geothermal-hotspring-scarp-20261024-b3303bb5-DO-NOT-SUBMIT.zip",
+  "research_download_ok": true,
+  "ok_to_submit": false,
+  "organizer_confirmed_score": null,
+  "weekly_slots_used_by_agent": 0,
+  "experiments_run": 1,
+  "experiment_budget_max": 3,
+  "elapsed_seconds": 62.5,
+  "verdict": "negative",
+  "stop_reason": "DUPLICATE under literal >70% forward 3px registry gate; stop.",
+  "limitations": [
+    "Hide-and-recover catalogue labels are not the undisclosed new-fault labels; holdout is a leakage/exclusion screen, not a leaderboard predictor.",
+    "GDR well/spring data is owner-mirrored; organizer authentication of this derivative is unverified.",
+    "Registry excludes private/unlinked competition submissions; the dense 17GEMSDOE witness blocks every nonempty raster under the literal rule.",
+    "No portal authorization or submission receipt; 0 weekly slots used."
+  ]
+}
