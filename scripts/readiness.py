@@ -109,6 +109,8 @@ def current_status(root=ROOT):
         problems.append('HOLDOUT: candidate point estimate is below the stored incumbent')
     if report['duplicate'] or report['literal_registry_overlap_3px'] > 0.70:
         problems.append('UNIQUENESS: literal registry overlap exceeds 0.70')
+    if not report.get('distance_fingerprint_ok', False):
+        problems.append('FINGERPRINT: too few final dots are >25 px from the mapped catalogue')
     if not report['format_valid']:
         problems.append('FORMAT: saved-byte validation failed')
     return {
@@ -119,7 +121,8 @@ def current_status(root=ROOT):
         'ok_to_download_for_research': bool(report['research_download_ok']),
         'ok_to_submit': False,  # selector has never approved a weekly slot
         'raster_sha256': report['file_sha256'],
-        'policy': 'binding-literal-all-registry-v1',
+        'policy': 'binding-literal-all-registry-v1 + gems88-gate-v3 fingerprint',
+        'run_card': 'registry/mvrd_run_card.json',
     }
 
 
