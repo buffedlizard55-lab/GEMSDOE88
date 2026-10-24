@@ -40,11 +40,32 @@ def main() -> int:
         c = [a for a in exp["arms"] if pred(a)]
         return max(c, key=lambda a: a["pooled_dti"]) if c else None
 
-    uni = find(exp1, lambda a: a["arm"].startswith("CONTROL_uniform"))
+    # The control MUST be matched to the selected arm on experiment, separation and
+    # budget, otherwise the "geology vs geometry" multiple compares different folds
+    # and different dot counts. Fall back only if no matched control exists.
+    def matched_uniform(exp):
+        if exp is None:
+            return None
+        exact = [a for a in exp["arms"]
+                 if a["arm"].startswith("CONTROL_uniform")
+                 and a.get("budget_fraction") == best.get("budget_fraction")
+                 and a.get("separation_px") is not None
+                 and abs(a["separation_px"] - (best["separation_px"] or 0)) < 1e-6]
+        return exact[0] if exact else None
+
+    uni = matched_uniform(src) or matched_uniform(exp1) or find(
+        src or exp1, lambda a: a["arm"].startswith("CONTROL_uniform"))
+    uni_matched = bool(matched_uniform(src) or matched_uniform(exp1))
     ref = find(exp1, lambda a: a["arm"].startswith("REFERENCE"))
-    collar = find(exp2, lambda a: a.get("collar_px")) if exp2 else None
-    nocollar = find(exp2, lambda a: not a.get("collar_px")
-                    and not a["arm"].startswith(("CONTROL", "REFERENCE"))) if exp2 else None
+    # Collar: compare like with like (same separation, same budget), not best-vs-best.
+    def same_cfg(a, collar):
+        return (a.get("budget_fraction") == best.get("budget_fraction")
+                and a.get("separation_px") is not None
+                and abs(a["separation_px"] - (best["separation_px"] or 0)) < 1e-6
+                and bool(a.get("collar_px")) == collar
+                and not a["arm"].startswith(("CONTROL", "REFERENCE")))
+    collar = find(exp2, lambda a: same_cfg(a, True)) if exp2 else None
+    nocollar = find(exp2, lambda a: same_cfg(a, False)) if exp2 else None
 
     # separation ladder at the matched 0.0073 budget (the registry's own density)
     ladder = sorted(
@@ -111,12 +132,23 @@ def main() -> int:
             geology_multiple=(best["pooled_dti"] / uni["pooled_dti"]) if uni and uni["pooled_dti"] else None,
             registry_reference_arm=ref["arm"] if ref else None,
             registry_reference_dti=ref["pooled_dti"] if ref else None,
-            registry_reference_caveat=exp1.get("reference_note", ""),
+            uniform_control_is_matched=uni_matched,
+            uniform_control_match_note=("same experiment, same 2.83 px separation, same 1% budget, "
+                                        "same folds; the ONLY difference is that the control's "
+                                        "density is uniform instead of fitted"),
+            registry_reference_caveat=(exp1.get("reference_note")
+                                       or (exp2 or {}).get("reference_note", "")),
             collar_best_arm=collar["arm"] if collar else None,
             collar_best_dti=collar["pooled_dti"] if collar else None,
             no_collar_best_dti=nocollar["pooled_dti"] if nocollar else None,
             collar_cost=((nocollar["pooled_dti"] - collar["pooled_dti"])
-                         if (collar and nocollar) else None)),
+                         if (collar and nocollar) else None),
+            collar_comparison_is_void=True,
+            collar_void_reason=("Every collar arm scores exactly 0.00000 on this holdout because "
+                                "its truth IS withheld catalogue geometry, so a 3 px collar around "
+                                "the full catalogue excludes the entire scorable neighbourhood. The "
+                                "collar question is answered only by the off-catalogue SGMC proxy "
+                                "(Experiment 3), and that answer is a PROXY.")),
         leakage_canary=dict(
             limit=0.90, n_tested=exp1["canary_summary"]["n_tested"],
             worst_feature=exp1["canary_summary"]["worst_feature"],

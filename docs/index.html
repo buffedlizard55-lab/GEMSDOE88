@@ -22,8 +22,8 @@
   <div class="vcard yes">
     <div class="q">Is this TIF OK to download?</div>
     <div class="a">YES</div>
-    <p class="why">15
-    automatic format checks passed on a fresh byte re-read of the saved file.</p>
+    <p class="why">15 writer checks plus
+    19 independent checks re-read from the saved bytes by a second program &mdash; all passed.</p>
   </div>
   <div class="vcard yes">
     <div class="q">Is this TIF OK to submit to the portal?</div>
@@ -60,7 +60,11 @@ from the evidence.</p>
 <div class="three">
   <article class="card"><div class="kicker">1 &middot; Portal format</div>
   <div class="number">15 / 15 PASS</div>
-  <p>Re-opens the written bytes and checks band count, dtype, CRS, shape, transform, nodata,
+  <p>Two independent programs re-open the written bytes. The writer's own validator reports
+  15/15;
+  a second program that shares no code with it reports 19/19
+  (<a href="../evidence/kdmc_independent_revalidation.json">independent re-validation &rarr;</a>).
+  Between them they check band count, dtype, CRS, shape, transform, nodata,
   finiteness, range [0,1] and zero mass on mapped faults. The historical
   <code>"Predicted values must be in range [0, 1]"</code> rejection was caused by NaN; this file
   carries <strong>no NaN anywhere</strong>, inside or outside the footprint.</p></article>
@@ -86,11 +90,12 @@ from the evidence.</p>
 <th>Dots (all folds)</th><th>Pooled HOLDOUT-DTI</th><th>95% CI (block bootstrap)</th></tr></thead>
 <tbody><tr><td><code>sep2.8284_bf0.01</code></td><td>2.8284</td><td>48,408</td><td><strong>0.14649</strong></td><td>[0.13360, 0.17533]</td></tr><tr><td><code>sep2.8284_bf0.0073</code></td><td>2.8284</td><td>35,338</td><td><strong>0.14532</strong></td><td>[0.13043, 0.17442]</td></tr><tr><td><code>sep4.0000_bf0.0073</code></td><td>4.0000</td><td>35,338</td><td><strong>0.14095</strong></td><td>[0.12921, 0.16676]</td></tr><tr><td><code>sep4.0000_bf0.01</code></td><td>4.0000</td><td>48,408</td><td><strong>0.13868</strong></td><td>[0.13015, 0.16516]</td></tr><tr><td><code>sep2.8284_bf0.005</code></td><td>2.8284</td><td>24,204</td><td><strong>0.13652</strong></td><td>[0.11877, 0.16494]</td></tr><tr><td><code>sep4.0000_bf0.005</code></td><td>4.0000</td><td>24,204</td><td><strong>0.13530</strong></td><td>[0.12008, 0.16019]</td></tr></tbody></table></div>
 <p class="micro">Controls on the same folds and the same density surface:
-pure-geometry uniform control <code>0.07047</code>
-(the model's geology is worth <strong>2.11&times;</strong> raw geometry);
+pure-geometry uniform control <code>0.05535</code>
+at the <em>same</em> separation, budget and folds
+(the model's geology is worth <strong>2.69&times;</strong> raw geometry);
 registry reference <code>REFERENCE_h33_registry</code>
 <code>0.00370</code> &mdash;
-<strong>diagnostic only.</strong> </p>
+<strong>diagnostic only.</strong> REFERENCE_h33_registry is DIAGNOSTIC ONLY and structurally suppressed: the registry raster was pruned to d_catalogue &gt;= 2.24 px against the FULL catalogue, which already contains the withheld segments, so only 2.8-4.6% of withheld truth pixels lie within 3 px of any of its dots. It is reported for completeness, never as a fair competitor.</p>
 </div></section>
 
 <section style="background:#e9f2f1"><div class="wrap">
@@ -103,7 +108,7 @@ registry reference <code>REFERENCE_h33_registry</code>
 </tbody></table></div>
 <p class="micro">Best arm <code>sep2.8284_bf0.01</code> at <strong>0.14885</strong>
 (22,893 withheld positive pixels, 8 folds).
-Best arm that also keeps a 3 px collar around mapped faults: <code>sep1.0000_bf0.005_collar3</code> at <strong>0.00000</strong>.</p>
+Every 3 px-collar arm scores exactly <strong>0.00000</strong> here. That is structural, not a preference: the holdout withholds catalogue components, so a collar around the full catalogue removes the entire scorable neighbourhood. See Experiment 03.</p>
 </div></section>
 
 <section><div class="wrap">
@@ -170,6 +175,6 @@ Full machine output: <a href="../registry/kdmc_gate.json">registry/kdmc_gate.jso
 <code>registry/kdmc_gate.json</code> and <code>evidence/kdmc_experiment1.json</code> by
 <code>scripts/publish_kdmc_site.py</code>. No human edits the verdict, and no number here is a
 leaderboard score unless it is explicitly labelled ORGANIZER-CONFIRMED.</p>
-<p class="micro">Rendered 2026-10-24 07:53 UTC. <a href="sources.html">Verified sources &amp; SHA-256 ledger &rarr;</a>
+<p class="micro">Rendered 2026-10-24 08:00 UTC. <a href="sources.html">Verified sources &amp; SHA-256 ledger &rarr;</a>
 &middot; <a href="status.json">Machine-readable status JSON &rarr;</a></p>
 </div></footer></body></html>

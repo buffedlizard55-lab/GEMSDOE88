@@ -1,0 +1,12 @@
+{
+  "note": "The two shipped files are deliberate variants of ONE lane, not independent submissions; this cross-check is disclosed, not a protocol duplicate test (which concerns OTHER sessions' lanes).",
+  "primary_dots": 51064,
+  "collar3_dots": 47226,
+  "forward_overlap_primary_vs_collar3": 0.8784270719097603,
+  "reverse_overlap": 0.9458984457713971,
+  "halo_coverage_collar3": 0.13353245449863982,
+  "halo_coverage_primary": 0.13463572302599405,
+  "excess_overlap": 0.8596913078609373,
+  "jaccard": 0.4457600941384129,
+  "identical_support": false
+}

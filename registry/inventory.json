@@ -179,7 +179,8 @@
     "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif"
    ],
    "cache_file": "docs/downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
-   "sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a"
+   "sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a",
+   "note": "Registered for FUTURE sessions' uniqueness checks. The two MDC-88 files are deliberate variants of ONE lane (collar on / collar off) and overlap each other by design (excess overlap 0.860, evidence/kdmc_variant_crosscheck.json); comparing them against each other is not a protocol duplicate test. Neither was in the inventory when its own gate ran, so no self-comparison occurred."
   },
   {
    "repo_first": "GEMSDOE88-MDC88-COLLAR3",
@@ -187,7 +188,8 @@
     "gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros.tif"
    ],
    "cache_file": "docs/downloads/gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros.tif",
-   "sha256": "b6772cb0659bc380f05e8ee67a8f030087414f4f47d8bf7eff78c4980f52e608"
+   "sha256": "b6772cb0659bc380f05e8ee67a8f030087414f4f47d8bf7eff78c4980f52e608",
+   "note": "Registered for FUTURE sessions' uniqueness checks. The two MDC-88 files are deliberate variants of ONE lane (collar on / collar off) and overlap each other by design (excess overlap 0.860, evidence/kdmc_variant_crosscheck.json); comparing them against each other is not a protocol duplicate test. Neither was in the inventory when its own gate ran, so no self-comparison occurred."
   }
  ]
 }

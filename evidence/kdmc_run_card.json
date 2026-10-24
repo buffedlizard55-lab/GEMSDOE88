@@ -1,6 +1,6 @@
 {
   "schema": "gems88.run_card.v1",
-  "generated_utc": "2026-10-24T07:52:56Z",
+  "generated_utc": "2026-10-24T07:59:30Z",
   "lane": "MDC-88 (Marginal-Density Concentration), formerly proposed as KDMC-88",
   "hypothesis_as_preregistered": "KDMC-88: under alpha=0.2/beta=0.8 DTI with a 300 m triangular kernel the optimal binary field is a kernel-disjoint packing extended to every cell clearing the exact marginal bar, not a fixed ~37.6k-dot field at ~3 px spacing.",
   "hypothesis_outcome": "FALSIFIED",
@@ -309,16 +309,20 @@
     }
   ],
   "controls": {
-    "uniform_geometry_arm": "CONTROL_uniform_sep6_bf0.02",
-    "uniform_geometry_dti": 0.07047018351784118,
-    "geology_multiple": 2.112233824260152,
+    "uniform_geometry_arm": "CONTROL_uniform_sep2.8284_bf0.01",
+    "uniform_geometry_dti": 0.055347445527717885,
+    "geology_multiple": 2.6893654044731092,
     "registry_reference_arm": "REFERENCE_h33_registry",
     "registry_reference_dti": 0.003698680598708719,
-    "registry_reference_caveat": "",
-    "collar_best_arm": "sep1.0000_bf0.005_collar3",
+    "uniform_control_is_matched": true,
+    "uniform_control_match_note": "same experiment, same 2.83 px separation, same 1% budget, same folds; the ONLY difference is that the control's density is uniform instead of fitted",
+    "registry_reference_caveat": "REFERENCE_h33_registry is DIAGNOSTIC ONLY and structurally suppressed: the registry raster was pruned to d_catalogue >= 2.24 px against the FULL catalogue, which already contains the withheld segments, so only 2.8-4.6% of withheld truth pixels lie within 3 px of any of its dots. It is reported for completeness, never as a fair competitor.",
+    "collar_best_arm": "sep2.8284_bf0.01_collar3",
     "collar_best_dti": 0.0,
     "no_collar_best_dti": 0.1488495052282044,
-    "collar_cost": 0.1488495052282044
+    "collar_cost": 0.1488495052282044,
+    "collar_comparison_is_void": true,
+    "collar_void_reason": "Every collar arm scores exactly 0.00000 on this holdout because its truth IS withheld catalogue geometry, so a 3 px collar around the full catalogue excludes the entire scorable neighbourhood. The collar question is answered only by the off-catalogue SGMC proxy (Experiment 3), and that answer is a PROXY."
   },
   "leakage_canary": {
     "limit": 0.9,
@@ -387,7 +391,7 @@
     "caveat": "PROXY, not a score. The repository's own no-evidence floor is |delta| >= 0.01; read any smaller difference as a tie."
   },
   "ledger": {
-    "rows": 64,
+    "rows": 66,
     "receipts": 0,
     "note": "0 ORGANIZER-CONFIRMED receipts: no number in this repository is a score."
   },

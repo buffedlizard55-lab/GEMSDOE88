@@ -1,6 +1,6 @@
 {
   "schema": "gems88.status.v3",
-  "generated_utc": "2026-10-24T07:53:25Z",
+  "generated_utc": "2026-10-24T08:00:05Z",
   "decided_by": "scripts/build_kdmc_submission.py (no human inspection)",
   "ok_to_download": true,
   "ok_to_submit": true,

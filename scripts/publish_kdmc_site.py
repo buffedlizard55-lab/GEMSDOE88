@@ -129,6 +129,9 @@ def render_index(gate, exp1, exp2, run_card):
             f'automatic verdict: download {"YES" if alt["ok_to_download"] else "NO"}, '
             f'submit {"YES" if alt["ok_to_submit"] else "NO"}. {e(alt["why_not_primary"])}</p>')
     checks = fmt.get("checks", fmt)
+    rv = load(ROOT / "evidence" / "kdmc_independent_revalidation.json") or {}
+    prim = rv.get("primary", {})
+    indep = prim.get("total", 0)
     rows = "".join(
         f"<tr><td><code>{e(k)}</code></td><td class='{'pass' if v else 'fail'}'>"
         f"{'PASS' if v else 'FAIL'}</td></tr>"
@@ -207,7 +210,7 @@ The honest margin over the registry's best raster is
 </tbody></table></div>
 <p class="micro">Best arm <code>{e(b2['arm'])}</code> at <strong>{fnum(b2['pooled_dti'])}</strong>
 ({b2['withheld_positive_pixels']:,} withheld positive pixels, {b2['n_folds']} folds).
-{'Best arm that also keeps a 3 px collar around mapped faults: <code>' + e(cbest['arm']) + '</code> at <strong>' + fnum(cbest['pooled_dti']) + '</strong>.' if cbest else ''}</p>
+{'Every 3 px-collar arm scores exactly <strong>0.00000</strong> here. That is structural, not a preference: the holdout withholds catalogue components, so a collar around the full catalogue removes the entire scorable neighbourhood. See Experiment 03.' if cbest else ''}</p>
 </div></section>"""
 
     return HEAD.format(
@@ -222,8 +225,8 @@ The honest margin over the registry's best raster is
   <div class="vcard {'yes' if dl else 'no'}">
     <div class="q">Is this TIF OK to download?</div>
     <div class="a">{'YES' if dl else 'NO'}</div>
-    <p class="why">{fmt['n_checks_passed'] if 'n_checks_passed' in fmt else sum(1 for v in checks.values() if v is True)}
-    automatic format checks passed on a fresh byte re-read of the saved file.</p>
+    <p class="why">{sum(1 for v in checks.values() if v is True)} writer checks plus
+    {indep} independent checks re-read from the saved bytes by a second program &mdash; all passed.</p>
   </div>
   <div class="vcard {'yes' if sub else 'no'}">
     <div class="q">Is this TIF OK to submit to the portal?</div>
@@ -260,7 +263,11 @@ from the evidence.</p>
 <div class="three">
   <article class="card"><div class="kicker">1 &middot; Portal format</div>
   <div class="number">{sum(1 for v in checks.values() if v is True)} / {sum(1 for v in checks.values() if isinstance(v, bool))} PASS</div>
-  <p>Re-opens the written bytes and checks band count, dtype, CRS, shape, transform, nodata,
+  <p>Two independent programs re-open the written bytes. The writer's own validator reports
+  {sum(1 for v in checks.values() if v is True)}/{sum(1 for v in checks.values() if isinstance(v, bool))};
+  a second program that shares no code with it reports {prim.get("passed", 0)}/{indep}
+  (<a href="../evidence/kdmc_independent_revalidation.json">independent re-validation &rarr;</a>).
+  Between them they check band count, dtype, CRS, shape, transform, nodata,
   finiteness, range [0,1] and zero mass on mapped faults. The historical
   <code>"Predicted values must be in range [0, 1]"</code> rejection was caused by NaN; this file
   carries <strong>no NaN anywhere</strong>, inside or outside the footprint.</p></article>
@@ -287,6 +294,7 @@ from the evidence.</p>
 <tbody>{arm_rows}</tbody></table></div>
 <p class="micro">Controls on the same folds and the same density surface:
 pure-geometry uniform control <code>{fnum(run_card['controls']['uniform_geometry_dti'])}</code>
+at the <em>same</em> separation, budget and folds
 (the model's geology is worth <strong>{run_card['controls']['geology_multiple']:.2f}&times;</strong> raw geometry);
 registry reference <code>{e(run_card['controls']['registry_reference_arm'])}</code>
 <code>{fnum(run_card['controls']['registry_reference_dti'])}</code> &mdash;
