@@ -1,0 +1,54 @@
+{
+  "schema": "gems88.ctra.run_card.v1",
+  "lane": "H88-CTRA",
+  "hypothesis": "H88-CTRA: Blind basin/piedmont faults under alluvium produce conductive clay-gouge linear lows co-located with subtle topographic curvature troughs and buried basement gravity steps, invisible to surface-scarp mappers but detectable via cond_surf gradient + curv_prof trough + iso_grav_vg trough + depth_to_base gradient co-occurrence. Shore/mimic: playa evaporite circular conductive rims penalized via aspect-coherence.",
+  "mechanism": "cond_surf grad(1px pct) 0.35 + curv_prof 0.25 + grav_vg Hessian trough 0.20 + depth grad 0.20 - mimic(relief*(1-coh)) 0.15 -> surface clipped [0,1] -> Poisson disk 3.0px on d_cat>3px, seed 88, 36000 dots",
+  "named_non_fault_mimic": "Playa evaporite collars and un-faulted alluvial-fan toe onlap (circular conductive rims without linear curvature trough)",
+  "difference_from_existing": "No prior lane uses cond_surf gradient + curvature trough co-occurrence as primary; TDKL=knickpoint, MVRD=monocline+redox, QTSK=cover-thickness decoupling, KTH=K/Th ratio",
+  "n_dots": 36000,
+  "min_sep_px": 3.0,
+  "collar_px": 3,
+  "footprint_pixels": 5167373,
+  "catalogue_pixels": 60988,
+  "allowed_pixels": 4722579,
+  "share_le2": 0.0,
+  "min_d_cat_px": 3.1622776601683795,
+  "validator": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "dtype": "float32",
+    "nodata": null,
+    "all_finite": true,
+    "range_0_1": true,
+    "positive_pixels": 36000,
+    "outside_footprint_zero": true,
+    "zero_dots_on_catalogue": true
+  },
+  "file": "/home/user/GEMSDOE88/docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros.tif",
+  "zip_file": "/home/user/GEMSDOE88/docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros.zip",
+  "sha256": "bfc4a492a00961c4f44622ae2ec5c0a092268e715959879ca3c1cf739d5582b7",
+  "zip_sha256": "506bb595c41549bcb6fcc1807166fac163e2e6845e52bc7f94fff351396b1479",
+  "submission_name": "gems88-ctra-conductivity-curvature-20261024-zeros",
+  "submission_note": "H88-CTRA cond gouge+curv trough+grav step 36k dots HOLDOUT Pending; zeros [0,1] portal-valid",
+  "submission_note_length": 92,
+  "name_length": 49,
+  "format_ok": true,
+  "quick_uniqueness_sample": {
+    "max_abs_rho_sample_200k": 0.1119,
+    "max_forward_3px_sample_20": 1.0,
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7
+  },
+  "portal_error_fix": "zeros encoding: nodata=None, all cells finite, values in [0,1], 0 outside footprint (no NaN)"
+}
