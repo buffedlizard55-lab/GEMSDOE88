@@ -1,0 +1,240 @@
+{
+  "id": "h33-h33-2-b2-PRUNEp3space35prov-20261024-0237d5b9",
+  "parent": "h33-h33-2-b2",
+  "parent_sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+  "parent_sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+  "axis": "PRUNE",
+  "value": "p3space35prov",
+  "seed": 20261023,
+  "git_sha": "256f86281403d7dedf7aa04d7ad8da0c0f077ae7",
+  "file_nan": "releases/h33-h33-2-b2-PRUNEp3space35prov-20261024-0237d5b9.tif",
+  "sha256": "0237d5b991f4b2bd64ad1a5b9580b25add1b748a18ec3e6ffbe102670d894c3d",
+  "bytes_nan": 355504,
+  "zip_nan": "releases/h33-h33-2-b2-PRUNEp3space35prov-20261024-0237d5b9.zip",
+  "zip_nan_sha256": "bac78ea08103ddcc1903930f7a8a7b773017c9c769218fe5282ac30c7ad3bba7",
+  "file_zeros": "releases/h33-h33-2-b2-PRUNEp3space35prov-20261024-0237d5b9-zeros.tif",
+  "sha256_zeros": "5c1e756400f412969cb28031d9b65aa032495f46a3f4750be2bf655c3e504d7b",
+  "bytes_zeros": 219085,
+  "zip_zeros": "releases/h33-h33-2-b2-PRUNEp3space35prov-20261024-0237d5b9-zeros.zip",
+  "zip_zeros_sha256": "380cdef8ddb44515d516b07a09566953a6112ab2411b962dba24e6cdea8c9773",
+  "form_note": "h33-2-b2; PRUNE <=3px (-2171) +2171 >=3.5px provided-band B19/3/18/15 crest refill, N=37654; pred +0.004 MODEL",
+  "form_note_chars": 110,
+  "n_dots": 37654,
+  "parent_diff": {
+    "n_parent": 37654,
+    "n_added": 2171,
+    "n_removed": 2171,
+    "pct_changed_moved": 5.77,
+    "pct_changed_sym_diff": 11.53,
+    "pct_changed_basis": "moved",
+    "min_dist_catalogue_px": 3.1623,
+    "dots_le_1px": 0,
+    "dots_le_2px": 0,
+    "dots_le_3px": 0,
+    "dots_le_4px": 1865
+  },
+  "gates": {
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "dtype_float32": true,
+    "band_count_1": true,
+    "values_in_0_1": true,
+    "no_nan_inside_footprint": true,
+    "nan_outside_footprint": true,
+    "zeros_fallback_valid": true,
+    "zero_catalogue_mass": true,
+    "reread_from_disk_verified": true
+  },
+  "evidence_class": "BUILT candidate; preregistered MODEL prediction; proxies REPORT ONLY; no receipt",
+  "preregistration": "registry/preregistration_prune_deconfound.json",
+  "single_factor_vs_p3space35": "area-matched 157,085-px support built from H19-5 union 35,954 1D-NMS structural breakline/gradient Hessian crests of organizer-provided training_features.tif Bands 19/3/18/15 ONLY (zero H19-4/H16-1 leaderboard-tuned sibling rasters, zero external LiDAR, zero GDR wells), ranked by exact-marginal DTI on the same provided-band crest field",
+  "manifest": {
+    "path": "registry/data_manifest.json",
+    "sha256": "b8a74af55e8c634e36745efd37191bb3d29bd8bccf9070c1de43f0ef30650598",
+    "verified_input_count": 15,
+    "all_manifest_inputs_verified": true
+  },
+  "arm_statistics": {
+    "collar_rule": "d_catalogue <= 3.0",
+    "collar_px": 3.0,
+    "strict_inequality": false,
+    "preserved_exact_3px_parent_dots": 0,
+    "n_removed": 2171,
+    "n_added": 2171,
+    "n_dots": 37654,
+    "refill_pool_cells": 92436,
+    "spacing": {
+      "requested": 2171,
+      "filled": 2171,
+      "spacing_px": 3.5,
+      "spacing_pool_cells": 18775,
+      "min_filled_marginal_dti": 0.13897480112998284,
+      "max_filled_marginal_dti": 0.15379778260809526
+    },
+    "provided_support": {
+      "provided_bands_used": [
+        "Band 3: tmi_hg",
+        "Band 15: depth_to_base_surf",
+        "Band 18: iso_grav_anom_hg",
+        "Band 19: det_elev_slope"
+      ],
+      "external_rasters_used": [],
+      "sibling_supports_used": [
+        "anc_h19_5 (parent support only; zero H19-4, zero H16-1)"
+      ],
+      "h19_5_pixels": 121131,
+      "directional_crest_pool_outside_h19_5": 2380771,
+      "selected_extra_crest_pixels": 35954,
+      "total_union_pixels": 157085,
+      "min_selected_crest_score": 0.861413,
+      "mean_crest_on_h19_5": 0.706544,
+      "mean_crest_on_footprint": 0.644336
+    },
+    "nn_summary": {
+      "all_min_nn_px": 2.8284,
+      "all_median_nn_px": 3.1623,
+      "all_mean_nn_px": 3.8885,
+      "refill_min_nn_px": 3.6056,
+      "refill_median_nn_px": 5.3852,
+      "refill_mean_nn_px": 6.6863,
+      "refill_frac_nn_ge_6px_non_overlapping_kernels": 0.4523
+    },
+    "overlap_with_p3space35_dots": 35536,
+    "refill_overlap_with_p3space35_refills": 53,
+    "expected_dti_fourline_w": 0.272336,
+    "expected_dti_delta_vs_r0": -0.013725,
+    "expected_dti_delta_vs_p3space35": -0.00256
+  },
+  "ranking_basis": "Exact iterative marginal expected-DTI gain at >=3.5px spacing lock on area-matched 157,085-px H19-5 union 35,954 1D-NMS structural crests of provided Bands 19/3/18/15 (zero H19-4/H16-1, zero external LiDAR/GDR)",
+  "leakage_canaries": {
+    "passed": true,
+    "max_single_feature_symmetric_auc": 0.57543,
+    "channels": {
+      "lidar_scarp_step": 0.56796,
+      "lidar_scarp_asym": 0.56197,
+      "det_elev_hessian_b12": 0.52918,
+      "det_elev_slope_b19": 0.54949,
+      "grav_hg_b18": 0.51671,
+      "tmi_hg_b03": 0.52022,
+      "basement_grad_b15": 0.54422,
+      "rtp_hessian_b02": 0.50269,
+      "geod_strain_b04": 0.56083,
+      "seismic_ieq_b16": 0.54653,
+      "mag_tilt_curv_b06": 0.5434,
+      "mt_cond_grad_b17": 0.50178,
+      "k_th_alteration": 0.51259,
+      "gdr_geotherm_idw": 0.51395,
+      "composite_p_phys": 0.56925,
+      "prov_slope_break_hess_b19": 0.57511,
+      "prov_tmi_hg_hess_b03": 0.50446,
+      "prov_grav_hg_hess_b18": 0.51087,
+      "prov_basement_step_hess_b15": 0.50576,
+      "prov_composite_crest": 0.57543
+    },
+    "report_only": true
+  },
+  "report_only_diagnostics": {
+    "n_dots": 37654,
+    "holdout_proxy": {
+      "evidence_label": "PROXY",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positives": 22663,
+      "paired_delta_vs_r0": -0.004006,
+      "paired_delta_vs_r0_ci95": [
+        -0.00469,
+        -0.003424
+      ]
+    },
+    "sgmc_control": {
+      "evidence_label": "PROXY",
+      "dti": 0.100965,
+      "n_sgmc_off_catalogue_px": 62703,
+      "tp": 5893.27,
+      "fp": 35142.68
+    },
+    "block_density_cv": {
+      "cv_10km_100px_interior": 0.6474,
+      "cv_12km_120px_interior": 0.5803
+    }
+  },
+  "reference_diagnostics": {
+    "R0": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.004006,
+        "ci95": [
+          0.003424,
+          0.00469
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": 0.0,
+        "paired_delta_vs_r0_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.09606,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5602.26,
+        "fp": 35187.58
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6292,
+        "cv_12km_120px_interior": 0.559
+      }
+    },
+    "p3space35_pivot": {
+      "n_dots": 37654,
+      "holdout_proxy": {
+        "evidence_label": "PROXY",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "withheld_positives": 22663,
+        "paired_delta_vs_r0": -0.004006,
+        "paired_delta_vs_r0_ci95": [
+          -0.00469,
+          -0.003424
+        ]
+      },
+      "sgmc_control": {
+        "evidence_label": "PROXY",
+        "dti": 0.101042,
+        "n_sgmc_off_catalogue_px": 62703,
+        "tp": 5897.69,
+        "fp": 35133.54
+      },
+      "block_density_cv": {
+        "cv_10km_100px_interior": 0.6378,
+        "cv_12km_120px_interior": 0.5712
+      }
+    },
+    "sgmc_delta_vs_r0_PROXY": 0.004905,
+    "sgmc_delta_vs_p3space35_PROXY": -7.7e-05
+  },
+  "model_prediction": {
+    "evidence_class": "MODEL",
+    "predicted_change": "MODEL:+0.004",
+    "range": [
+      -0.006,
+      0.014
+    ],
+    "frozen_before_proxies": true,
+    "no_evidence_if_abs_live_delta_below": 0.01
+  },
+  "build_script_sha256": "c1907914178857603b560f790e616305437d99a4a9a8c8adf7aacd01f3216ae1",
+  "not_submitted": true
+}
