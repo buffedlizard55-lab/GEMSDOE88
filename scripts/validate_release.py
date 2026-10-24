@@ -30,7 +30,8 @@ def digest(path: Path) -> str:
     return h.hexdigest()
 
 
-def release_report(root=ROOT):
+def mrr88_report(root=ROOT):
+    """Retained audit for the archived MRR-88 artifact; not the current feed."""
     root = Path(root)
     card_paths = (
         root / "registry/run_card.json",
@@ -395,6 +396,39 @@ def provcrest_report_v3(root=ROOT, tag="provcrest"):
     return dict(name=rec["name"], sha256=rec["sha256"], ok_to_download=rec["ok_to_download"], ok_to_submit=rec["ok_to_submit"], label=rec["label"],
                 blocking_reasons=rec["blocking_reasons"], worst_like_for_like_overlap=worst, fingerprint_screen_pass=fp_ok,
                 own_verdict=(rec.get("own_gate") or rec["pr53_own_gate"])["verdict"], pr53_own_verdict=(rec.get("own_gate") or rec["pr53_own_gate"])["verdict"])
+
+def release_report(root=ROOT):
+    """Fail-closed independent audit of the current IBL-88 research artifact.
+
+    Legacy MRR-88 recomputation remains available as ``mrr88_report``. Current
+    status uses the strict literal 3-px test, never the chance-corrected waiver.
+    """
+    sys.path.insert(0, str(Path(root).resolve()))
+    from scripts.validate_ibl88 import audit  # noqa: E402
+
+    result = audit(Path(root))
+    checks = result['checks']
+    return {
+        'candidate': 'IBL-88',
+        'evidence_class': result['evidence_class'],
+        'format_ok': all(checks[k] for k in (
+            'tif_sha256_matches_run_card', 'zip_sha256_matches_run_card',
+            'single_band_float32', 'crs_shape_transform_match', 'nodata_none',
+            'all_finite', 'values_in_0_1', 'positive_count_matches_card',
+            'zero_positive_outside_footprint', 'zero_positive_on_catalogue',
+            'zip_single_tif', 'zip_member_byte_identical')),
+        'values_0_1': checks['values_in_0_1'],
+        'inside_no_nan': checks['all_finite'],
+        'literal_duplicate': result['strict_duplicate'],
+        'registry_forward_overlap_3px': checks['literal_forward_overlap_3px'],
+        'raster_sha256': result['sha256'],
+        'zip_sha256': checks['zip_sha256'],
+        'ok_to_download': result['ok_to_download'],
+        'ok_to_submit': result['ok_to_submit'],
+        'verdict': result['verdict'],
+        'failures': result['failures'],
+    }
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)

@@ -1,7 +1,7 @@
 """Fail-closed legacy schema gate and latest research-candidate status.
 
 `assess` remains for synthetic eligibility fixtures. The live status feed follows
-MDPS-88, the newest research candidate, and cross-checks its run card, strict
+IBL-88, the newest research candidate, and cross-checks its run card, strict
 literal-overlap gate, independent TIFF/ZIP audit, and local holdout evidence.
 The separate ``current_release.json`` may retain an older canonical artifact;
 this script never chooses or spends a weekly submission slot.
@@ -99,41 +99,48 @@ def verify_template(root=ROOT):
 
 def current_status(root=ROOT):
     """Represent the newest candidate; a format PASS is not slot approval."""
-    card = json.loads((root / 'registry/mdps88_run_card.json').read_text())
-    gate = json.loads((root / 'docs/data/mdps88-gate.json').read_text())
-    audit = json.loads((root / 'docs/data/mdps88_validation.json').read_text())
-    rel = card['raster']['file']
+    card = json.loads((root / 'registry/ibl88_run_card.json').read_text())
+    gate = json.loads((root / 'docs/data/ibl88-gate.json').read_text())
+    audit = json.loads((root / 'docs/data/ibl88-validation.json').read_text())
+    rel = card['submission']['file']
     artifact = (root / rel).resolve()
     if not artifact.is_relative_to((root / 'docs/downloads').resolve()):
         raise ValueError('latest research artifact escapes docs/downloads')
     digest = hashlib.sha256(artifact.read_bytes()).hexdigest()
-    if not (artifact.is_file() and digest == card['raster_sha256'] == gate['sha256'] == audit['sha256']):
+    if not (artifact.is_file() and digest == card['submission']['sha256'] == gate['sha256'] == audit['sha256']):
         raise ValueError('latest research artifact hash differs across card, gate, or audit')
-    literal = card['correlation_overlap_vs_registry']['literal_binding_decision']
+    literal = card['uniqueness']['literal_binding_decision']
     if not (literal['duplicate'] is True and literal['stop_required'] is True
             and literal['forward_overlap_3px'] > literal['limit']
-            and audit['checks']['literal_forward_overlap_3px_vs_dense_witness'] > literal['limit']):
+            and audit['checks']['literal_forward_overlap_3px'] > literal['limit']
+            and audit['strict_duplicate'] is True):
         raise ValueError('latest candidate strict literal-overlap decision is inconsistent')
     if audit.get('audit_passed') is not True or gate.get('ok_to_download') is not True:
         raise ValueError('latest candidate saved-byte research audit did not pass')
 
-    holdout = card['holdout']
+    holdout = card['holdout_progression']
     problems = []
-    if not holdout['far']['paired_vs_base283']['ci95'][0] > 0:
-        problems.append('HOLDOUT: far paired 95% CI does not clear zero versus fold-fair control')
+    if holdout['pooled_holdout_dti'] == 0 and holdout['far']['pooled_holdout_dti'] == 0:
+        problems.append('HOLDOUT-DTI: structurally zero for this b2+ basin-infill lane; cannot rank it or establish an improvement')
+    else:
+        problems.append('HOLDOUT-DTI: recorded zero-score instrument ceiling differs from the run card')
     if literal['duplicate']:
         problems.append(f"UNIQUENESS: literal 3-px overlap {literal['forward_overlap_3px']:.4f} exceeds {literal['limit']:.2f}; DUPLICATE, stop")
-    # The project feed remains fail-closed even if the research download itself is valid.
+    # Research download permission and submission eligibility are separate fields.
     return {
         'evidence_schema_complete': True,
         'approved_for_weekly_slot': False,
-        'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
+        'status': 'BLOCKED',
         'problems': problems,
         'ok_to_download_for_research': True,
         'ok_to_submit': False,
         'raster_sha256': digest,
-        'policy': 'literal-all-registry-v1; chance-corrected diagnostics do not waive overlap',
-        'run_card': 'registry/mdps88_run_card.json',
+        'candidate': 'IBL-88',
+        'policy': 'literal-all-registry-3px-v1; chance-corrected diagnostics do not waive overlap',
+        'run_card': 'registry/ibl88_run_card.json',
+        'holdout_evidence': {'class': 'HOLDOUT-DTI', 'evaluator': holdout['evaluator_version'],
+                             'withheld_positives': holdout['withheld_positive_pixels'],
+                             'ci95': [holdout['ci95_low'], holdout['ci95_high']]},
         'supersedes_status_of': 'PHASE-88 remains the separate docs/data/current_release.json record',
     }
 

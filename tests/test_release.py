@@ -16,16 +16,15 @@ def test_published_card_and_tif_fail_closed():
             "restore registry witness via scripts/restore_inputs.py --validation"
         )
     report = release_report()
+    assert report["candidate"] == "IBL-88"
     assert report["format_ok"]
     assert report["values_0_1"] and report["inside_no_nan"]
     assert report["literal_duplicate"] and report["registry_forward_overlap_3px"] == 1
     assert report["ok_to_download"] and not report["ok_to_submit"]
     card = json.loads((ROOT / "docs/data/run-card.json").read_text())
-    assert (
-        card["submission_note"]
-        == json.loads((ROOT / "registry/run_card.json").read_text())["submission_note"]
-    )
-    assert len(card["submission_note"]) <= 140 and card["verdict"] == "negative"
+    mirror = json.loads((ROOT / "registry/run_card.json").read_text())
+    assert card["submission"]["submission_note"] == mirror["submission"]["submission_note"]
+    assert len(card["submission"]["submission_note"]) <= 140 and card["verdict"] == "negative"
 
 
 def test_brief_and_site_are_not_missing():

@@ -1,0 +1,33 @@
+{
+  "schema": "gems88.ibl88-gate.v1",
+  "name": "gems88-ibl88-basin-lattice-37654-20261024-zeros",
+  "sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
+  "zip_sha256": "8fa123568a45c2b81355ca4bac97adc88386517ae3024284542bf9a0c585c3c2",
+  "generated_utc": "2026-10-24",
+  "policy": "literal-all-registry-3px-v1; chance-corrected diagnostics do not waive the literal rule",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD FOR RESEARCH - DUPLICATE / DO NOT SUBMIT",
+  "blocking_reasons": [
+    "HOLDOUT-DTI 0.0000 structurally zero for every b2+ gate-clean file (IR-88-35, evaluator gems57-pooled-hide-v2, 22893 withheld); cannot beat stored ADHR bar 0.18789 (unpaired) and paired CI undefined; instrument cannot rank basin-infill hypotheses",
+    "STRICT UNIQUENESS: literal forward overlap is 1.0 vs dense_17gemdoe.tif (>0.70); DUPLICATE, stop; no v3 exemption"
+  ],
+  "passing": [
+    "leakage canary PASS (0 features, max AUC 0.50 <=0.90)",
+    "format: independent audit all checks PASS; values finite in [0,1] zeros-encoding; CRS/shape/transform match sample; one-member ZIP byte-identical; 0 dots on catalogue/outside footprint"
+  ],
+  "submission_name_archival": "GEMSDOE88-IBL88-BASIN-20261024",
+  "submission_note_archival": "IBL-88 basin lattice; literal 3px DUPLICATE; HOLDOUT-DTI 0.0000; research only; DO NOT SUBMIT",
+  "note_len": 93,
+  "human_step_remaining": "None for this candidate: literal 3-px overlap makes it a duplicate under the binding rule, irrespective of scientific diagnostics. No selector or score may waive this gate.",
+  "diagnostic_only": [
+    "Supplemental v3 like-for-like excess overlap -0.0519 and max |Spearman rho| 0.0449 are diagnostics only; neither waives the binding literal duplicate."
+  ],
+  "literal_binding_decision": {
+    "duplicate": true,
+    "stop_required": true,
+    "forward_overlap_3px": 1.0,
+    "limit": 0.7,
+    "binding_file": "dense_17gemdoe.tif"
+  }
+}

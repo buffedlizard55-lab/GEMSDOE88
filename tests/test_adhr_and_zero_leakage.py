@@ -124,10 +124,12 @@ def test_zero_test_quadrant_truth_leakage_bit_identical_under_scrambling(tmp_pat
     np.testing.assert_array_equal(surf_a, surf_b)
 
 
-def test_h88_adhr_candidate_artifact_zip_and_19_raster_receipts():
-    rc = json.loads((ROOT / "registry/run_card.json").read_text())
-    assert rc == json.loads((ROOT / "docs/run_card.json").read_text())
-    assert rc == json.loads((ROOT / "docs/data/run-card.json").read_text())
+def test_archived_mrr_candidate_artifact_zip_and_19_raster_receipts():
+    # This evidence is retained for the MRR archive; current IBL-88 status has
+    # its own canonical card and strict literal audit.
+    rc = json.loads((ROOT / "registry/run_card_mrr88.json").read_text())
+    for mirror in ("docs/run_card_mrr88.json", "docs/data/run-card-mrr88.json", "evidence/run-card-mrr88.json"):
+        assert rc == json.loads((ROOT / mirror).read_text())
 
     tif = ROOT / rc["artifact"]
     zpath = ROOT / rc["zip_artifact"]

@@ -50,13 +50,14 @@ def test_mdps88_holdout_numbers_are_labelled_and_in_range():
     assert abs(u["worst_abs_spearman"]) <= 0.90
 
 
-def test_mdps88_site_decision_strings():
+def test_mdps88_archive_and_current_site_decision_strings():
     script = (ROOT / "docs/assets/site.js").read_text()
-    assert "DUPLICATE" in script and "literal-overlap gates failed" in script
+    assert "IBL-88" in script and "strict_duplicate" in script
+    assert "checks?.literal_forward_overlap_3px > 0.70" in script
     for page in ("docs/index.html", "docs/executive-summary.html"):
         text = (ROOT / page).read_text()
-        assert Path(CARD["raster"]["file"]).name in text
-        assert "DO NOT SUBMIT" in text and "DOWNLOAD FOR RESEARCH: YES" in text
+        assert Path(CARD["raster"]["file"]).name in text  # MDPS remains archived
+        assert "DO NOT SUBMIT" in text
         assert "hyp-psg" not in text  # withdrawn mock must never be offered again (IR-88-83)
         assert "DUPLICATE" in text and "literal" in text.lower()
         assert "New unique GeoTIFF" not in text and "newest unique GeoTIFF" not in text.lower()

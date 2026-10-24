@@ -3,13 +3,23 @@
   "approved_for_weekly_slot": false,
   "status": "BLOCKED",
   "problems": [
-    "HOLDOUT: far paired 95% CI does not clear zero versus fold-fair control",
+    "HOLDOUT-DTI: structurally zero for this b2+ basin-infill lane; cannot rank it or establish an improvement",
     "UNIQUENESS: literal 3-px overlap 1.0000 exceeds 0.70; DUPLICATE, stop"
   ],
   "ok_to_download_for_research": true,
   "ok_to_submit": false,
-  "raster_sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
-  "policy": "literal-all-registry-v1; chance-corrected diagnostics do not waive overlap",
-  "run_card": "registry/mdps88_run_card.json",
+  "raster_sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
+  "candidate": "IBL-88",
+  "policy": "literal-all-registry-3px-v1; chance-corrected diagnostics do not waive overlap",
+  "run_card": "registry/ibl88_run_card.json",
+  "holdout_evidence": {
+    "class": "HOLDOUT-DTI",
+    "evaluator": "gems57-pooled-hide-v2",
+    "withheld_positives": 22893,
+    "ci95": [
+      0.0,
+      0.0
+    ]
+  },
   "supersedes_status_of": "PHASE-88 remains the separate docs/data/current_release.json record"
 }

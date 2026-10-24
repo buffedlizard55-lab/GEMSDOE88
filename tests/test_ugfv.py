@@ -87,62 +87,52 @@ def test_dinkelbach_knapsack_halo_constraints_enforced():
     assert int(emitted[halo].sum()) <= int(hc_caps[0])
 
 
-def test_run_card_four_way_parity_and_audit_invariants():
-    """The canonical card now describes the current MRR negative deliverable."""
+def test_run_card_copies_and_current_ibl88_status_are_consistent():
+    """Current status follows IBL-88; PHASE-88 stays a separate archive record."""
     paths = [
+        ROOT / "run_card.json",
         ROOT / "registry/run_card.json",
         ROOT / "docs/data/run-card.json",
+        ROOT / "docs/data/run_card.json",
         ROOT / "docs/run_card.json",
         ROOT / "evidence/run-card.json",
     ]
     texts = [p.read_text() for p in paths]
-    assert len(set(texts)) == 1, "All 4 run-card JSON copies must be byte-identical"
-
+    assert len(set(texts)) == 1, "Canonical run-card copies must be byte-identical"
     card = json.loads(texts[0])
-    assert card["lane"] == "H88-MRR-BPR"
+    assert card["lane"] == "IBL-88 basin blind lattice infill"
     assert card["verdict"] == "negative"
-    assert card["ok_to_download"] is True
-    assert card["ok_to_submit"] is False
-    assert card["weekly_slots_used"] == 0
-    assert card["organizer_confirmed"]["score"] is None
-    assert len(card["submission_note"]) <= 140
+    assert card["ok_to_download"] is True and card["ok_to_submit"] is False
+    assert card["approved_for_weekly_slot"] is False and card["slots_used_by_this_session"] == 0
+    assert card["evidence_status"]["organizer_confirmed_live_score"] is None
+    assert len(card["submission"]["submission_note"]) <= 140
 
-    holdout = card["holdout_dti"]
+    holdout = card["holdout_progression"]
     assert holdout["evidence_class"] == "HOLDOUT-DTI"
     assert holdout["evaluator_version"] == "gems57-pooled-hide-v2"
     assert holdout["withheld_positive_pixels"] == 22_893
-    assert holdout["candidate"] < holdout["incumbent_recomputed"]
-    assert holdout["paired_delta_vs_incumbent"] < 0
-    assert holdout["paired_delta_ci95"][1] < 0
+    assert holdout["pooled_holdout_dti"] == 0.0
+    assert holdout["far"]["withheld_positive_pixels"] == 10_791
+    assert holdout["far"]["pooled_holdout_dti"] == 0.0
 
-    canaries = card["leakage_canary"]
-    assert canaries["passed"] is True
-    assert canaries["features_tested"] == 4
-    assert canaries["max_symmetric_auc"] <= 0.90
-    assert all(row["pass"] for row in canaries["features"])
+    literal = card["uniqueness"]["literal_binding_decision"]
+    assert literal["duplicate"] is True and literal["stop_required"] is True
+    assert literal["forward_overlap_3px"] == 1.0 and literal["limit"] == 0.70
+    assert card["uniqueness"]["pre_placement_worst_abs_spearman"] == 0.0449
 
-    reg = card["correlation_overlap_vs_registry"]
-    assert reg["rasters_checked"] == 21
-    assert reg["surface_preplacement_max_abs_spearman"] <= reg["surface_limit"]
-    assert reg["final_max_forward_overlap_3px_sparse_rasters"] <= reg["overlap_limit"]
-    assert reg["final_max_forward_overlap_3px_all_rasters"] == 1.0
-    assert reg["literal_binding_decision"]["duplicate"] is True
-    assert reg["universal_witness"]["universal_overlap_blocker"] is True
-
-    # The current status feed follows the latest candidate's canonical gate
-    # record (MDPS-88 since 2026-10-24; KTH-era current_release.json is kept
-    # as that candidate's historical release record), while the four-way MRR
-    # card remains immutable history.
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
-    current_doc = json.loads((ROOT / "docs/data/mdps88-gate.json").read_text())
-    assert status_doc["raster_sha256"] == current_doc["sha256"]
-    assert status_doc["raster_sha256"] != card["raster_sha256"]
-    assert status_doc["ok_to_submit"] is False
-    assert status_doc["ok_to_download_for_research"] is True
+    current_doc = json.loads((ROOT / "docs/data/ibl88-gate.json").read_text())
+    assert status_doc["candidate"] == "IBL-88"
+    assert status_doc["raster_sha256"] == current_doc["sha256"] == card["submission"]["sha256"]
+    assert status_doc["ok_to_submit"] is False and status_doc["ok_to_download_for_research"] is True
 
-    tif_path = ROOT / card["artifact"]
-    zip_path = ROOT / card["zip_artifact"]
-    receipt_path = tif_path.with_suffix(".json")
-    assert tif_path.is_file() and zip_path.is_file() and receipt_path.is_file()
-    assert _sha256(tif_path) == card["raster_sha256"]
-    assert _sha256(zip_path) == card["zip_sha256"]
+    audit = json.loads((ROOT / "docs/data/ibl88-validation.json").read_text())
+    assert audit["audit_passed"] and audit["strict_duplicate"] and not audit["ok_to_submit"]
+    assert audit["checks"]["literal_forward_overlap_3px"] == 1.0
+
+    # The PHASE-88 current_release record is deliberately independent of the
+    # latest research-candidate status feed.
+    current_release = json.loads((ROOT / "docs/data/current_release.json").read_text())
+    phase = json.loads((ROOT / "registry/phase88_run_card.json").read_text())
+    assert current_release["file"] == phase["download"]
+    assert current_release["file_sha256"] == phase["raster_sha256"]

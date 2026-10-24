@@ -26,14 +26,15 @@
   const banner = document.querySelector('[data-card-status]');
   if (banner) {
     try {
-      const response = await fetch('data/mdps88_validation.json', { cache: 'no-store' });
+      const response = await fetch('data/ibl88-validation.json', { cache: 'no-store' });
       if (!response.ok) throw new Error('latest run validation unavailable');
       const data = await response.json();
-      // Fail closed. A locally valid research artifact must never be presented
-      // as slot-cleared or organizer-accepted, even if the old status.json is green.
+      // Fail closed: bytes may be downloaded for research, but the literal
+      // registry duplicate is binding and never a submission authorization.
       banner.textContent = data.ok_to_download === true && data.ok_to_submit === false &&
-          data.audit_passed === true
-        ? 'MDPS-88 · DOWNLOAD FOR RESEARCH: YES · DUPLICATE · DO NOT SUBMIT · holdout and literal-overlap gates failed (automated decision)'
+          data.audit_passed === true && data.strict_duplicate === true &&
+          data.checks?.literal_forward_overlap_3px > 0.70
+        ? 'IBL-88 · DOWNLOAD FOR RESEARCH: YES · LITERAL DUPLICATE · STOP · DO NOT SUBMIT'
         : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
     } catch (_) {
       banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';

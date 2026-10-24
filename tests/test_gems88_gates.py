@@ -51,11 +51,13 @@ def test_02_run_card_schema_and_strict_score_labels():
     for rc_path in [ROOT / "run_card.json", ROOT / "docs" / "data" / "run_card.json", ROOT / "evidence" / "run_card.json"]:
         assert rc_path.exists()
         rc = json.loads(rc_path.read_text())
-        assert rc["verdict"] == "promote"
+        assert rc["verdict"] == "negative"
         assert rc["evidence_status"]["score_label"] == "HOLDOUT-DTI"
         assert rc["evidence_status"]["organizer_confirmed_live_score"] is None
-        assert rc["evidence_status"]["incumbent_organizer_confirmed_live_score"] == 0.2778
+        assert rc["evidence_status"]["incumbent_organizer_confirmed_live_score"] is None
+        assert rc["evidence_status"]["incumbent_user_reported_score"]["score"] == 0.2778
         assert rc["experiments_run"] <= rc["experiment_budget_max"] == 3
+        assert rc["ok_to_download"] is True and rc["ok_to_submit"] is False
 
 
 def test_03_geotiff_crs_shape_dtype_and_affine_transform():
@@ -124,7 +126,9 @@ def test_08_submission_name_and_140_char_note_gate():
     note = rc["submission"]["submission_note"]
     assert 20 <= len(note) <= 140
     assert rc["submission"]["submission_note_chars"] == len(note)
-    assert rc["submission"]["submission_name"] == "GEMSDOE88-H88-GHMD-318A37E6"
+    assert rc["submission"]["submission_name"] == "GEMSDOE88-IBL88-BASIN-20261024"
+    assert rc["submission"]["archival_name_only"] is True
+    assert "DUPLICATE" in note and "DO NOT SUBMIT" in note
 
 
 def test_09_leakage_canary_zero_flags_across_all_99_channels():
@@ -138,24 +142,18 @@ def test_09_leakage_canary_zero_flags_across_all_99_channels():
         assert canary[k]["max_symmetric_auc"] <= 0.90
 
 
-def test_10_monotonic_holdout_progression_both_seeds():
+def test_10_holdout_progression_is_explicitly_structural_zero_for_ibl88():
     rc = json.loads((ROOT / "run_card.json").read_text())
     hp = rc["holdout_progression"]
-    s20 = [
-        hp["B0_random_37654_seed20"],
-        hp["B1_fold_fair_H33_2_B2_seed20"],
-        hp["EXP_88_1_zero_catalogue_multiphysics_seed20"]["pooled_holdout_dti"],
-        hp["EXP_88_2_geodesic_relay_nms_seed20"]["pooled_holdout_dti"],
-        hp["EXP_88_3_exact_expected_dti_celf_swap_seed20"]["pooled_holdout_dti"],
-    ]
-    assert s20 == sorted(s20) and len(set(s20)) == 5
-    s30 = [
-        hp["B1_fold_fair_H33_2_B2_seed30"],
-        hp["EXP_88_1_zero_catalogue_multiphysics_seed30"]["pooled_holdout_dti"],
-        hp["EXP_88_2_geodesic_relay_nms_seed30"]["pooled_holdout_dti"],
-        hp["EXP_88_3_exact_expected_dti_celf_swap_seed30"]["pooled_holdout_dti"],
-    ]
-    assert s30 == sorted(s30) and len(set(s30)) == 4
+    assert hp["evidence_class"] == "HOLDOUT-DTI"
+    assert hp["evaluator_version"] == "gems57-pooled-hide-v2"
+    assert hp["withheld_positive_pixels"] == 22_893
+    assert hp["pooled_holdout_dti"] == 0.0
+    assert [hp["ci95_low"], hp["ci95_high"]] == [0.0, 0.0]
+    assert hp["far"]["withheld_positive_pixels"] == 10_791
+    assert hp["far"]["pooled_holdout_dti"] == 0.0
+    assert [hp["far"]["ci95_low"], hp["far"]["ci95_high"]] == [0.0, 0.0]
+    assert "cannot rank this lane" in hp["note"]
 
 
 def test_11_paired_20km_cluster_bootstrap_significance():

@@ -38,21 +38,32 @@ def main(root=ROOT):
     assert current['holdout_dti'] == phase['holdout_dti']['dti']
     assert current['holdout_ci95'] == phase['holdout_dti']['ci95']
     assert current['literal_registry_overlap_3px'] == phase['correlation_overlap_vs_registry']['final_overlap_3px']
-    # MDPS-88 is the newest research artifact, but its strict literal uniqueness
-    # gate fails against the all-positive registry witness. Keep its display fail-closed.
+    # Latest IBL-88 and archived MDPS-88 both fail the binding literal gate.
+    ibl = json.loads((root / 'registry/ibl88_run_card.json').read_text())
+    ibl_validation = json.loads((root / 'docs/data/ibl88-validation.json').read_text())
+    literal = ibl['uniqueness']['literal_binding_decision']
+    assert literal['duplicate'] is True and literal['stop_required'] is True
+    assert literal['forward_overlap_3px'] == 1.0 and literal['forward_overlap_3px'] > .70
+    assert ibl_validation['audit_passed'] and ibl_validation['strict_duplicate']
+    assert ibl_validation['checks']['literal_forward_overlap_3px'] == 1.0
+    assert ibl['ok_to_download'] and not ibl['ok_to_submit']
     mdps = json.loads((root / 'registry/mdps88_run_card.json').read_text())
     assert mdps['correlation_overlap_vs_registry']['literal_binding_decision']['duplicate'] is True
     assert mdps['correlation_overlap_vs_registry']['literal_binding_decision']['stop_required'] is True
     assert mdps['correlation_overlap_vs_registry']['literal_binding_decision']['forward_overlap_3px'] > 0.70
     assert mdps['gates']['uniqueness_literal_pass'] is False and not mdps['ok_to_submit']
     status = json.loads((root / 'docs/status.json').read_text())
-    assert status['raster_sha256'] == mdps['raster_sha256']
+    assert status['raster_sha256'] == ibl['submission']['sha256']
+    assert status['candidate'] == 'IBL-88'
     assert status['ok_to_download_for_research'] is True and status['ok_to_submit'] is False
     assert any('DUPLICATE' in reason for reason in status['problems'])
     for page_name in ('index.html', 'executive-summary.html'):
         page_body = (root / 'docs' / page_name).read_text()
         assert 'DUPLICATE' in page_body and 'literal' in page_body.lower(), page_name
         assert 'New unique GeoTIFF' not in page_body, page_name
+    site_js = (root / 'docs/assets/site.js').read_text()
+    assert "data/ibl88-validation.json" in site_js and 'strict_duplicate' in site_js
+    assert 'checks?.literal_forward_overlap_3px > 0.70' in site_js
     canonical_tif = root / phase['download']; canonical_zip = canonical_tif.with_suffix('.zip')
     assert canonical_tif.is_file() and canonical_zip.is_file()
     assert _hl.sha256(canonical_tif.read_bytes()).hexdigest() == phase['raster_sha256']
@@ -128,7 +139,7 @@ def main(root=ROOT):
         assert phase['download'].split('/')[-1] in text, f'Current artifact not identified on {page.name}'
         upper = text.upper()
         assert 'DO NOT SUBMIT' in upper and ('DOWNLOAD: YES' in upper or 'DOWNLOAD FOR RESEARCH: YES' in upper), page
-    print('PASS: PHASE-88 release hashes/site links and MDPS-88 literal-duplicate safety display agree; both are explicitly negative')
+    print('PASS: PHASE-88 archive hashes/site links, IBL-88 current status, and MDPS-88 archive agree; literal duplicates are blocked')
 
 
 if __name__ == '__main__':

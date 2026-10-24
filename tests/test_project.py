@@ -32,12 +32,14 @@ def test_real_card_stays_blocked():
     assert not result["approved_for_weekly_slot"]
     assert not result["ok_to_submit"]
     assert result["ok_to_download_for_research"]
-    # The current status feed follows latest MDPS-88; current_release.json is
-    # a separate PHASE-88 archival/canonical-release record.
-    assert result["problems"] and any(p.split(":")[0] in {"HOLDOUT", "UNIQUENESS", "FORMAT"} for p in result["problems"])
-    assert result["policy"].startswith("literal-all-registry-v1")
-    mdps = json.loads((ROOT / "registry/mdps88_run_card.json").read_text())
-    assert result["raster_sha256"] == mdps["raster_sha256"]
+    # The current status feed follows IBL-88; current_release.json remains
+    # the separate PHASE-88 archival/canonical-release record.
+    assert result["candidate"] == "IBL-88"
+    assert result["problems"] and any(p.startswith("UNIQUENESS:") for p in result["problems"])
+    assert result["policy"].startswith("literal-all-registry-3px-v1")
+    ibl = json.loads((ROOT / "registry/ibl88_run_card.json").read_text())
+    assert result["raster_sha256"] == ibl["submission"]["sha256"]
+    assert result["holdout_evidence"]["class"] == "HOLDOUT-DTI"
     assert any("DUPLICATE" in p for p in result["problems"])
     current = json.loads((ROOT / "docs/data/current_release.json").read_text())
     phase = json.loads((ROOT / "registry/phase88_run_card.json").read_text())
