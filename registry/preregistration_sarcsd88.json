@@ -1,0 +1,89 @@
+{
+  "schema": "gems88.preregistration.sarcsd88.v1",
+  "date_utc": "2026-10-24T18:10:00Z",
+  "branch": "arena/46dc6f1d-gemsdoe88",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "lane": {
+    "id": "H88-SAR-CSD",
+    "title": "Selected-At-Random Completeness-Decontaminated Crustal-Scarp-Drainage & Coulomb-Relay Submodular Discovery",
+    "method_paragraph": "Model unmapped geothermal-indicative faults via the exact Selected-At-Random missingness decomposition q_new(x) = (1 - c_hat(x)) * P_SAR_phys(F=1 | X_Delta(x)) + c_hat(x) * P_relay(F_new=1 | X_Delta(x), X_vis(x)), where X_Delta comprises strictly translation-invariant local geophysical, geomorphic, drainage-knickpoint, and hydrothermal differential operators (reusing cached 44-layer physics.py stack plus 20 new multi-scale scarp-asymmetry, bajada-flexure, chi-knickpoint, Blakely up-dip gravity-crest, Salem magnetic tilt-contact, and detrended GeoDAWN uranium-redox channels, excluding sgmc_logdist and raw regional DC potential fields from the far-field head), c_hat(x) = exp(-(d_vis(x)/18.0)^2) is the fold-visible quadrangle mapping-completeness propensity, P_SAR_phys is cross-fit out-of-fold with inverse-completeness weighting, and discrete {0,1} dots are emitted via exact Dinkelbach fractional programming (vendor/gems57/emit.py::dinkelbach_allocate) at kernel-efficient spacing s = 2.65 px outside the 200 m (2 px) zero-credit catalogue collar.",
+    "named_non_fault_mimic": "Wave-cut Pleistocene pluvial Lake Lahontan (~1,330 m) and Lake Bonneville (~1,555 m) shoreline scarps, coalescing alluvial-fan channel incision risers, evaporite playa clay-pan margins (cond_surf), and GeoDAWN airborne magnetic flight-line leveling seams."
+  },
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H88-SAR-CSD",
+      "experiment_slot": "Exp 03 (Primary)",
+      "status": "preregistered_to_run",
+      "external_data_obtainable": true
+    },
+    {
+      "rank": 2,
+      "id": "H88-CSD-JOINT",
+      "experiment_slot": "Exp 02 (Ablation)",
+      "status": "preregistered_to_run",
+      "external_data_obtainable": true
+    },
+    {
+      "rank": 3,
+      "id": "H88-SAR-PHYS",
+      "experiment_slot": "Exp 01 (Zero-Catalogue SAR Differential Control)",
+      "status": "preregistered_to_run",
+      "external_data_obtainable": true
+    },
+    {
+      "rank": 4,
+      "id": "H88-BGP-3D",
+      "experiment_slot": "Reserve (unrun within <=3 experiment cap)",
+      "status": "reserve",
+      "external_data_obtainable": true
+    },
+    {
+      "rank": 5,
+      "id": "H88-INSAR-COH",
+      "experiment_slot": "Blocked in sandbox (NASA ASF DAAC ARIA Sentinel-1 outside outbound allowlist)",
+      "status": "blocked_external_network",
+      "official_free_source": "https://asf.alaska.edu/data-sets/derived-data-sets/sentinel-1-interferograms/",
+      "external_data_obtainable": false
+    }
+  ],
+  "csd20_features": [
+    "csd_lidar_ex_step_coh",
+    "csd_lidar_curv_asym",
+    "csd_lidar_face_dom",
+    "csd_lidar_piedmont_scarp",
+    "csd_topo10_bajada_flex",
+    "csd_topo10_scarp_sharpness",
+    "csd_topo10_ridge_200m",
+    "csd_topo10_ridge_400m",
+    "csd_chi_knick_rate",
+    "csd_chi_raised_frac",
+    "csd_chi_knick_ksn_couple",
+    "csd_tmi_up150_hg",
+    "csd_mag_vert_wavelength",
+    "csd_grav_hg_ridge",
+    "csd_updip_blakely_crest",
+    "csd_tilt_zero_grad",
+    "csd_rad_u_diseq",
+    "csd_cond_clay_halo",
+    "csd_transtension_align",
+    "csd_mimic_playa_seam"
+  ],
+  "budget_caps": {
+    "max_experiments": 3,
+    "max_wall_seconds": 7200
+  },
+  "acceptance_gates": {
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seeds": [20, 21],
+    "withheld_positive_pixels": 22893,
+    "stored_adhr_bar": 0.18788764184958875,
+    "require_paired_ci95_gt_0_vs_recomputed_adhr": true,
+    "canary_max_symmetric_auc": 0.90,
+    "preplacement_max_abs_rho": 0.90,
+    "final_max_abs_rho": 0.90,
+    "final_max_like_for_like_overlap_3px": 0.70,
+    "fingerprint_max_share_le2": 0.0,
+    "fingerprint_min_share_gt25": 0.35
+  }
+}

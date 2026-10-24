@@ -93,6 +93,40 @@ def main(root: Path = ROOT) -> None:
         'Site integrity check failed: sha256(tdkl_zip) == tdkl["raster"]["zip_sha256"]',
     )
 
+    sarcsd = json.loads((root / "registry/sarcsd88_run_card.json").read_text())
+    sarcsd_web = json.loads((docs / "data/sarcsd88_run_card.json").read_text())
+    sarcsd_gv = json.loads((root / "registry/sarcsd88_gate_v3.json").read_text())
+    sarcsd_gv_web = json.loads((docs / "data/sarcsd88_gate_v3.json").read_text())
+    require(
+        sarcsd == sarcsd_web,
+        "Pages SAR-CSD card differs from canonical registry card",
+    )
+    require(
+        sarcsd_gv == sarcsd_gv_web,
+        "Pages SAR-CSD gate differs from canonical registry gate",
+    )
+    require(
+        sarcsd["verdict"] == "negative"
+        and sarcsd["gate_v3_ok_to_download"] is True
+        and sarcsd["gate_v3_ok_to_submit"] is False,
+        "SAR-CSD run card must enforce negative DO-NOT-SUBMIT verdict",
+    )
+    require(
+        0 < len(sarcsd["submission_name"]) <= 140
+        and 0 < len(sarcsd["submission_note"]) <= 140,
+        "SAR-CSD submission name/note must satisfy <=140 character portal cap",
+    )
+    sarcsd_tif = root / sarcsd["download"]
+    sarcsd_zip = root / sarcsd["zip_download"]
+    require(
+        sha256(sarcsd_tif) == sarcsd["raster_sha256"] == sarcsd_gv["sha256"],
+        "SAR-CSD TIFF SHA-256 mismatch across file, card, and gate",
+    )
+    require(
+        sha256(sarcsd_zip) == sarcsd["zip_sha256"] == sarcsd_gv["zip_sha256"],
+        "SAR-CSD ZIP SHA-256 mismatch across file, card, and gate",
+    )
+
     require(
         literal["decision"] == "DUPLICATE_STOP",
         'Site integrity check failed: literal["decision"] == "DUPLICATE_STOP"',
@@ -389,6 +423,18 @@ def main(root: Path = ROOT) -> None:
     require(
         tdkl["raster_sha256"][:16] in index and tdkl["raster_sha256"][:16] in executive,
         'Site integrity check failed: tdkl["raster_sha256"][:16] in index and tdkl["raster_sha256"][:16] in executive',
+    )
+    require(
+        sarcsd_tif.name in index and sarcsd_tif.name in executive,
+        "Site integrity check failed: sarcsd_tif.name in index and sarcsd_tif.name in executive",
+    )
+    require(
+        sarcsd["submission_name"] in index and sarcsd["submission_name"] in executive,
+        'Site integrity check failed: sarcsd["submission_name"] in index and sarcsd["submission_name"] in executive',
+    )
+    require(
+        sarcsd["raster_sha256"][:16] in index and sarcsd["raster_sha256"][:16] in executive,
+        'Site integrity check failed: sarcsd["raster_sha256"][:16] in index and sarcsd["raster_sha256"][:16] in executive',
     )
     require(
         ibl_tif.name in index and ibl_tif.name in executive,
