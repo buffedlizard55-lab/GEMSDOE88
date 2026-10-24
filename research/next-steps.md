@@ -2,6 +2,8 @@
 
 Read `README.md`, `PROMPT.md`, `registry/mvrd_run_card.json`, `evidence/mvrd88_holdout.json`, and `research/candidate-hypotheses-20261024.md` first. H88-MVRD is the strongest stored overall hide-and-recover result: **HOLDOUT-DTI 0.197314 [0.181121,0.213008]**, `gems57-pooled-hide-v2`, 22,893 withheld positives, paired Δ vs ADHR `+0.009426 [0.001962,0.016994]`. It is still **DOWNLOAD FOR RESEARCH — DO NOT SUBMIT**: literal overlap is 1.0 against the continuous full-footprint 17GEMSDOE witness and the production distance fingerprint has only 2.87% of dots >25 px from the catalogue (35% gate). The far holdout diagnostics also trail ADHR. Zero slots used; no organizer receipt.
 
+**Concurrent QTS-88 result:** preserve `registry/qts88_run_card.json` and its research TIFF. QTS-88 improves over its raw-19 control by paired `+0.006340 [0.001574,0.011511]` but remains below ADHR and fails literal uniqueness. It is not the current release and must not be submitted. Its far-basin/fingerprint behavior is relevant to the separately preregistered next lane, but do not fuse or retune it inside the completed MVRD lane.
+
 **Next separately preregistered scientific frontier:** combine the 62-channel pure-physics MPSC surface with far-basin (`d_cat >25 px`) strand/polyline allocation, without using another experiment from the completed MVRD lane. The objective is to improve far HOLDOUT-DTI while preserving format and sparse-registry uniqueness. The dense-witness interpretation must be clarified by the selector; never silently claim a literal pass. The deferred USGS point-gravity/Bouguer source cannot be fetched under this sandbox's host allowlist.
 
 ## Archived handoffs

@@ -44,6 +44,9 @@ def main(root: Path = ROOT) -> None:
     literal = json.loads((docs / "data/literal_protocol_audit.json").read_text())
     ibl = json.loads((root / "registry/ibl88_run_card.json").read_text())
     ibl_web = json.loads((docs / "data/ibl88_run_card.json").read_text())
+    qts = json.loads((root / "registry/qts88_run_card.json").read_text())
+    qts_web = json.loads((docs / "data/qts88_run_card.json").read_text())
+    qts_gate = json.loads((root / "registry/qts88_gate.json").read_text())
 
     assert literal["decision"] == "DUPLICATE_STOP"
     assert literal["saturation_certificate"]["universal_overlap_blocker"] is True
@@ -59,6 +62,13 @@ def main(root: Path = ROOT) -> None:
     ibl_zip = root / ibl["submission"]["zip_file"]
     assert sha256(ibl_tif) == ibl["submission"]["sha256"]
     assert sha256(ibl_zip) == ibl["submission"]["zip_sha256"]
+    assert qts == qts_web, "Pages QTS card differs from canonical registry card"
+    assert qts_gate == json.loads((docs / "data/qts88_validation.json").read_text())
+    assert qts["verdict"] == "negative" and qts["ok_to_download"] is True and qts["ok_to_submit"] is False
+    qts_tif = root / qts["file"]
+    qts_zip = root / qts["zip_file"]
+    assert sha256(qts_tif) == qts["raster_sha256"]
+    assert sha256(qts_zip) == qts["zip_sha256"]
 
     assert card == web_card, "Pages MVRD card differs from canonical registry card"
     assert gate == web_gate, "Pages MVRD gate differs from canonical registry gate"
@@ -122,6 +132,8 @@ def main(root: Path = ROOT) -> None:
     research = pages[2].read_text()
     assert MVRD_NAME in index and MVRD_NAME in executive
     assert ibl_tif.name in index and ibl_tif.name in executive
+    assert qts_tif.name in index and qts_tif.name in executive
+    assert qts["submission_name"] in index and qts["submission_name"] in executive
     assert "literal_protocol_audit.json" in index and "literal_protocol_audit.json" in executive
     assert "DOWNLOAD FOR RESEARCH: YES" in index
     assert "SUBMIT: NO" in index
