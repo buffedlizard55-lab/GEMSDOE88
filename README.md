@@ -6,14 +6,15 @@ official sources: [NLR rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) 
 [reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
 
 <!-- SESSION STATE START -->
-## ⬇ DOWNLOAD + SUBMIT DECISIONS - two candidates, one gate (`gems88-gate-v3`, 2026-10-24, zero human input)
+## ⬇ DOWNLOAD + SUBMIT DECISIONS - three candidates, one gate (`gems88-gate-v3`, 2026-10-24, zero human input)
 
 | Candidate | One-click download | Decision | Blocking gates (machine-computed) |
 |---|---|---|---|
 | **B - phys44 control** (this PR) | [**⬇ TIFF**](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif) · [ZIP](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.zip) | **`OK TO DOWNLOAD - NOT OK TO SUBMIT`** | HOLDOUT bar (0.10725 < 0.18789) · FINGERPRINT (30.9% of dots >25 px from mapped faults, needs ≥35%). Unique: max overlap 0.596. |
 | **A - PROVCREST** (parallel PR #53, de novo) | [**⬇ TIFF**](docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif) · [ZIP](docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.zip) | **`OK TO DOWNLOAD - NOT OK TO SUBMIT`** *(v3 re-assessment; PR #53 self-reported "promote")* | UNIQUENESS (forward overlap **0.732 > 0.70** vs GEMSDOE85 `geopb-crest-90000dots`, outside PR #53's 30-raster registry) · HOLDOUT bar (0.0763 < 0.18789, cross-run). **Passes** the fingerprint screen (46.3% >25 px). |
+| **C - TILTZERO** (parallel PR #59, de novo, own verdict negative) | [**⬇ TIFF**](docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif) · [ZIP](docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.zip) | **`OK TO DOWNLOAD - NOT OK TO SUBMIT`** *(file name already says DO-NOT-SUBMIT)* | HOLDOUT bar (0.0551 < 0.18789; also below PROVCREST 0.0763, cross-run). Unique (max overlap 0.580); **passes** the fingerprint screen (47.3% >25 px). |
 
-**No raster in this repository clears every gate.** Details: candidate B below; candidate A in [`registry/provcrest_gate_v3.json`](registry/provcrest_gate_v3.json) and [IR-88-71](IRREGULARITIES.md). Neither is ORGANIZER-CONFIRMED; **0 weekly slots were spent by any agent.**
+**No raster in this repository clears every gate** (A: uniqueness + holdout; B: holdout + fingerprint; C: holdout). Details: candidate B below; candidate A in [`registry/provcrest_gate_v3.json`](registry/provcrest_gate_v3.json) and [IR-88-71](IRREGULARITIES.md), candidate C in [`registry/tiltzero_gate_v3.json`](registry/tiltzero_gate_v3.json). Neither is ORGANIZER-CONFIRMED; **0 weekly slots were spent by any agent.**
 
 ---
 

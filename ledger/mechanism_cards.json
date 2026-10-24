@@ -2473,5 +2473,21 @@
       "sgmc_proxy_final": 0.12569,
       "verdict": "promote"
     }
+  },
+  "gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT": {
+    "id": "gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT",
+    "parent": "de-novo-tiltzero",
+    "axis": "TILTZERO",
+    "value": "rank",
+    "hypothesis": "De-novo dots on coincident magnetic (B9/B3) and gravity (B11/B18) tilt-angle zero-crossings weighted by analytic-signal amplitude recover geothermal faults missing from the USGS/INGENIOUS catalogue, because a tilt zero-crossing overlies a potential-field source edge (faulted basement contact/step) whether or not a mapper traced it, and dual-field coincidence suppresses single-field lithologic edges.",
+    "mechanism": "Geometric mean of percentile ranks of magnetic analytic signal, magnetic tilt-closeness exp(-(atan2(B9,B3)/0.15)^2), gravity analytic signal, gravity tilt-closeness -> 1-D directional NMS pool -> exactly 37,654 binary dots >=3.5 px spacing, >3.0 px from catalogue (visible-only in folds), zeros outside footprint.",
+    "non_fault_mimic": "Unfaulted lithologic contacts (Tertiary volcanic flow margins, pluton margins, tilted sedimentary hogback contacts) and reversed-remanence volcanic edges producing coincident magnetic+gravity tilt zero-crossings without brittle fault permeability.",
+    "predicted_sign_size": "MODEL +0.03..+0.10 HOLDOUT-DTI vs R0 control (frozen preregistration)",
+    "falsifier": "Pooled HOLDOUT-DTI <= R0, paired CI includes 0, <= PROVCREST 0.076277, canary >0.90, or uniqueness/validator failure -> verdict negative, DO-NOT-SUBMIT",
+    "post_build_report_only": {
+      "holdout_dti_winner": 0.055083,
+      "sgmc_proxy_final": 0.070997,
+      "verdict": "negative"
+    }
   }
 }

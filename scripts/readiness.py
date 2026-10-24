@@ -103,6 +103,7 @@ def current_status(root=ROOT):
     v3 = release_report_v3(root)
     legacy = release_report(root)  # archived H88-ADHR record; must keep verifying
     prov = provcrest_report_v3(root)  # PR #53 candidate re-assessed under the same gate
+    tilt = provcrest_report_v3(root, tag='tiltzero')  # PR #59 candidate re-assessed under the same gate
     problems = list(v3['blocking_reasons'])  # headline candidate B; PROVCREST blockers are listed under other_candidates
     return {
         'evidence_schema_complete': bool(v3['portal_parity_reopen_ok']),
@@ -117,7 +118,9 @@ def current_status(root=ROOT):
         'candidate_name': v3['name'],
         'raster_sha256': v3['raster_sha256'],
         'other_candidates': {'provcrest_pr53': {'name': prov['name'], 'sha256': prov['sha256'], 'label': prov['label'], 'ok_to_submit': bool(prov['ok_to_submit']),
-                                                'blocking_reasons': prov['blocking_reasons'], 'pr53_own_verdict': prov['pr53_own_verdict']}},
+                                                'blocking_reasons': prov['blocking_reasons'], 'pr53_own_verdict': prov['pr53_own_verdict']},
+                             'tiltzero_pr59': {'name': tilt['name'], 'sha256': tilt['sha256'], 'label': tilt['label'], 'ok_to_submit': bool(tilt['ok_to_submit']),
+                                               'blocking_reasons': tilt['blocking_reasons'], 'own_verdict': tilt['own_verdict']}},
         'archived_h88_adhr': {'raster_sha256': legacy['output_sha256'], 'literal_duplicate': bool(legacy['literal_duplicate']),
                               'note': 'previous headline; see evidence/existing_candidates_gate_20261024.json'},
     }

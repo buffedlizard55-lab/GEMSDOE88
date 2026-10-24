@@ -1,0 +1,205 @@
+{
+  "schema": "gems88.run-card.v3",
+  "generated_utc": "2026-10-24T07:25:24Z",
+  "hypothesis": "De-novo dots on coincident magnetic (B9/B3) and gravity (B11/B18) tilt-angle zero-crossings weighted by analytic-signal amplitude recover geothermal faults missing from the USGS/INGENIOUS catalogue, because a tilt zero-crossing overlies a potential-field source edge (faulted basement contact/step) whether or not a mapper traced it, and dual-field coincidence suppresses single-field lithologic edges.",
+  "mechanism": "Geometric mean of percentile ranks of magnetic analytic signal, magnetic tilt-closeness exp(-(atan2(B9,B3)/0.15)^2), gravity analytic signal, gravity tilt-closeness -> 1-D directional NMS pool -> exactly 37,654 binary dots >=3.5 px spacing, >3.0 px from catalogue (visible-only in folds), zeros outside footprint.",
+  "named_non_fault_process": "Unfaulted lithologic contacts (Tertiary volcanic flow margins, pluton margins, tilted sedimentary hogback contacts) and reversed-remanence volcanic edges producing coincident magnetic+gravity tilt zero-crossings without brittle fault permeability.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_kernel_radius_px": 3.0,
+    "seeds": [
+      20,
+      30
+    ],
+    "withheld_positive_pixels": 22663,
+    "winner_arm": "tiltzero_rank",
+    "winner_dti": 0.055083,
+    "winner_ci95": [
+      0.046419,
+      0.063081
+    ],
+    "arms": {
+      "tiltzero_rank": {
+        "dti": 0.055083,
+        "ci95": [
+          0.046419,
+          0.063081
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "tiltzero_randorder": {
+        "dti": 0.049519,
+        "ci95": [
+          0.044241,
+          0.054606
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "r0_control": {
+        "dti": 0.004006,
+        "ci95": [
+          0.003406,
+          0.004668
+        ],
+        "withheld_positive_pixels": 22663
+      }
+    },
+    "paired_differences_vs_candidate_rank": {
+      "tiltzero_randorder": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.005564397534063639,
+        "ci95": [
+          -0.003375240442718421,
+          0.013563093095385632
+        ],
+        "withheld_positive_pixels": 22663
+      },
+      "r0_control": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.05107681286963171,
+        "ci95": [
+          0.04217924808399279,
+          0.05893407579119029
+        ],
+        "withheld_positive_pixels": 22663
+      }
+    },
+    "protocol": "buffered whole-component hide-and-recover; catalogue-derived collar from visible faults only; visible faults masked pixel-exactly; pooled DTI"
+  },
+  "sgmc_proxy": {
+    "evidence_class": "PROXY (not a score)",
+    "final": 0.070997,
+    "r0_control": 0.09606,
+    "n_off_catalogue_px": 62703
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "channels": {
+      "tiltzero_mag_analytic_signal": 0.52022,
+      "tiltzero_mag_tilt_closeness": 0.50238,
+      "tiltzero_grav_analytic_signal": 0.53854,
+      "tiltzero_grav_tilt_closeness": 0.50596,
+      "tiltzero_composite": 0.53056
+    },
+    "max_symmetric_auc": 0.53854,
+    "passed": true
+  },
+  "uniqueness": {
+    "rasters_checked": 32,
+    "errors": [],
+    "worst_sparse_spearman": {
+      "rho": 0.0168,
+      "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif"
+    },
+    "worst_sparse_dot_overlap_3px": {
+      "overlap": 0.3724,
+      "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif"
+    },
+    "sparse_gate_pass": true,
+    "dense_witness_note": "Continuous/dense rasters (positive on >50% of footprint, e.g. 17GEMSDOE proba) are representation-classed separately: any non-empty dot raster trivially overlaps them, so the 0.70 dot-overlap gate is applied to sparse dot/ridge rasters; dense rows are reported in evidence/tiltzero_uniqueness.json, not exempted silently.",
+    "rows_file": "evidence/tiltzero_uniqueness.json"
+  },
+  "validator": {
+    "vendor_validate": {
+      "file": "/home/user/GEMSDOE88/docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+      "bytes": 146021,
+      "sha256": "5487d7937c92dce12a87185b0b3ba7c800b78e655ecafd47fbdb41404d29f011",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "format_report_ok": true,
+    "no_nan_anywhere": true,
+    "values_in_0_1": true,
+    "values_binary": [
+      0.0,
+      1.0
+    ],
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform_matches_sample": true,
+    "n_dots": 37654,
+    "min_catalogue_distance_px": 3.1623,
+    "nn_stats": {
+      "min_px": 3.6056,
+      "median_px": 4.0,
+      "frac_ge_6px": 0.0494
+    },
+    "raster_sha256": "5487d7937c92dce12a87185b0b3ba7c800b78e655ecafd47fbdb41404d29f011",
+    "zip_sha256": "2f39a484598382c93e90b46bc7f572b691af8bfb10c5ec88512c649d96257cd3"
+  },
+  "submission": {
+    "file": "docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+    "zip_file": "docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.zip",
+    "repo_copy": "submissions/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "5487d7937c92dce12a87185b0b3ba7c800b78e655ecafd47fbdb41404d29f011",
+    "zip_sha256": "2f39a484598382c93e90b46bc7f572b691af8bfb10c5ec88512c649d96257cd3",
+    "submission_name": "GEMSDOE88-TILTZERO-RANK-A2150EEB",
+    "submission_note": "TILTZERO-rank de novo B9/3+B11/18 tilt0 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0551 vs R0 0.0040; UNSCORED",
+    "submission_note_chars": 111,
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "organizer_confirmed_score": null,
+    "weekly_slots_used_by_agent": 0
+  },
+  "experiments_run": 2,
+  "experiment_budget_max": 3,
+  "elapsed_seconds": 107.9,
+  "verdict": "negative"
+}

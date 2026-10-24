@@ -215,3 +215,12 @@ def test_both_candidates_are_distinct_lanes_when_present():
     a = gate.read_values(ROOT / rec["file"], fp) > 0
     b = gate.read_values(TIF, fp) > 0
     assert gate.forward_overlap(a, b) <= 0.70 and gate.forward_overlap(b, a) <= 0.70
+
+
+def test_tiltzero_v3_record_binds_to_bytes():
+    from validate_release import provcrest_report_v3
+    rep = provcrest_report_v3(ROOT, tag="tiltzero")
+    assert rep["ok_to_download"] is True and rep["ok_to_submit"] is False
+    assert any(r.startswith("HOLDOUT") for r in rep["blocking_reasons"])
+    assert rep["own_verdict"] == "negative"
+    assert (ROOT / "docs/data/tiltzero-gate-v3.json").read_text() == (ROOT / "registry/tiltzero_gate_v3.json").read_text()

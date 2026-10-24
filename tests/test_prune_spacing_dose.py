@@ -108,7 +108,7 @@ def test_ledger_rows_are_new_unique_and_byte_consistent_with_the_report():
 
     pairs = [(row["parent"], row["axis"], row["value"]) for row in rows]
     assert len(pairs) == len(set(pairs)), "repeated (parent, axis, value) pair in the ledger"
-    hashes = [row["sha256"] for row in rows] + [row["sha256_zeros"] for row in rows]
+    hashes = [row["sha256"] for row in rows] + [row["sha256_zeros"] for row in rows if row["sha256_zeros"] and row["sha256_zeros"] != row["sha256"]]  # single-file de-novo rows have no distinct twin
     assert len(hashes) == len(set(hashes)), "duplicate artifact hash in the ledger"
 
 
