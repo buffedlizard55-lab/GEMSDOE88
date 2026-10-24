@@ -1,0 +1,28 @@
+{
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT",
+  "tif_sha256": "32483a32d782349adec89e25915d630d4770ec60553bfb2e8afee7243ec38b57",
+  "zip_sha256": "ee83f6b51dadff44ef2ed1f66727b4d723e9df232fa1928f75157825aee9f366",
+  "tif_and_single_member_zip_validated": true,
+  "local_format_audit": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "32483a32d782349adec89e25915d630d4770ec60553bfb2e8afee7243ec38b57",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "reason": "GTHC-88 unstratified SCRD arm beats H88-ADHR on 8-fold holdout (0.1910 vs 0.1879/0.1896) and stratified arm clears like-for-like 223-raster uniqueness (max 0.6011 <= 0.70) and fingerprint screen (share_gt25 = 0.3671 >= 0.35,HOLDOUT-DTI 0.1707 vs MDC-88 0.1489), but remains held (DO NOT SUBMIT) under binding literal all-registry overlap (1.0000 > 0.70 vs dense 17GEMSDOE witness) and because stratified holdout (0.1707) is below unstratified ADHR (0.1879).",
+  "organizer_accepted": null
+}

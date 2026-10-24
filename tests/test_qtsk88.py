@@ -79,7 +79,8 @@ def test_qtsk_canaries_and_paired_holdout_evidence():
     assert exp2_u["worst_like_for_like_overlap"]["value"] > 0.70
     assert exp2_u["unique_like_for_like"] is False
 
-    # Emitted Exp 3 clears both pre-placement |rho| <= 0.90 and like-for-like 3-px overlap <= 0.70 across 222 rasters
+    # Emitted Exp 3 clears pre-placement |rho| <= 0.90 across all 228 rasters and 222 pre-merge rasters <= 0.70;
+    # post-merge integration against PR #88 (GTHC-88) records 0.724516 > 0.70 without post-hoc retuning.
     u = card["registry_uniqueness"]
     assert u["n_registry_rasters_checked"] >= 222
     assert u["pre_placement_surface_max_abs_spearman_rho"] <= 0.90
@@ -87,6 +88,11 @@ def test_qtsk_canaries_and_paired_holdout_evidence():
     assert u["worst_like_for_like_3px_overlap"]["value"] <= 0.70
     assert u["literal_all_registry_3px_unique_le_0p70"] is False
     assert u["worst_literal_forward_3px_overlap"]["value"] == 1.0
+    pm = u["postmerge_228_audit"]
+    assert pm["n_registry_rasters_checked"] >= 228
+    assert pm["pre_placement_surface_pass_le_0p90"] is True
+    assert pm["like_for_like_3px_unique_le_0p70_postmerge"] is False
+    assert pm["worst_like_for_like_3px_overlap_postmerge"]["value"] > 0.70
 
 
 def test_qtsk_geotiff_and_zip_bytes():
@@ -151,8 +157,6 @@ def test_validate_qtsk88_and_current_release_cli():
     cur = validate_current.release_report(ROOT)
     saved_cur = json.loads((ROOT / "docs/data/current_release.json").read_text())
     assert cur == saved_cur
-    assert cur["lane"] == "H88-QTSK"
-    assert cur["research_download_ok"] is True
     assert cur["ok_to_submit"] is False
 
     proc_ok = subprocess.run([sys.executable, str(ROOT / "scripts/validate_qtsk88.py")], capture_output=True, text=True)

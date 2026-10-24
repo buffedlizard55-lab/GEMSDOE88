@@ -1,0 +1,29 @@
+{
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "tif_sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b",
+  "zip_sha256": "301e176d2cddf7f28c3d83f0b2d383bce0ba8c193df32ab6382dbd356acaca25",
+  "tif_and_single_member_zip_validated": true,
+  "local_format_audit": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "literal_witness_remeasured_overlap_3px": 1.0,
+  "full_registry_scope": "frozen SHA-verified scan at generation; see evidence/phase88_final_uniqueness.json",
+  "reason": "DUPLICATE under literal 3-px overlap: stop.",
+  "organizer_accepted": null
+}

@@ -242,7 +242,28 @@
         "label": "17GEMSDOE:dense_17gemdoe.tif",
         "value": 1.0
       },
-      "literal_blocker_explanation": "17GEMSDOE_E-proba-multiscale is strictly positive (>0) on all 5,167,373 footprint pixels, forcing literal forward 3-px dot overlap = 1.0000 for every nonempty raster unless a human selector explicitly applies like-for-like sparse comparison."
+      "literal_blocker_explanation": "17GEMSDOE_E-proba-multiscale is strictly positive (>0) on all 5,167,373 footprint pixels, forcing literal forward 3-px dot overlap = 1.0000 for every nonempty raster unless a human selector explicitly applies like-for-like sparse comparison.",
+      "postmerge_228_audit": {
+        "postmerge_main_commit": "bfb8b62",
+        "n_registry_rasters_checked": 228,
+        "n_distinct_dot_sets": 123,
+        "pre_placement_surface_max_abs_spearman_rho": 0.283106,
+        "pre_placement_surface_pass_le_0p90": true,
+        "concurrent_main_surface_rhos": {
+          "GTHC-88": 0.136666,
+          "MVRD": 0.114228,
+          "QTS-88": 0.08324,
+          "MDPS-88": 0.047108,
+          "PHASE-88": 0.026897,
+          "IBL-88": -0.011806
+        },
+        "like_for_like_3px_unique_le_0p70_postmerge": false,
+        "worst_like_for_like_3px_overlap_postmerge": {
+          "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+          "value": 0.7245155542356523
+        },
+        "note": "Emitted Exp 3 cleared all 222 pre-merge rasters (worst 0.564426 <= 0.70); post-merge integration against PR #88 (GTHC-88, a concurrent stratified dual-head 46,457-dot raster) yields 0.724516 > 0.70 3-px forward overlap, independently confirming verdict=negative / DO-NOT-SUBMIT without post-hoc retuning."
+      }
     },
     "distance_fingerprint": {
       "n": 53876,
@@ -991,5 +1012,26 @@
         ]
       }
     }
+  },
+  "postmerge_228_audit": {
+    "postmerge_main_commit": "bfb8b62",
+    "n_registry_rasters_checked": 228,
+    "n_distinct_dot_sets": 123,
+    "pre_placement_surface_max_abs_spearman_rho": 0.283106,
+    "pre_placement_surface_pass_le_0p90": true,
+    "concurrent_main_surface_rhos": {
+      "GTHC-88": 0.136666,
+      "MVRD": 0.114228,
+      "QTS-88": 0.08324,
+      "MDPS-88": 0.047108,
+      "PHASE-88": 0.026897,
+      "IBL-88": -0.011806
+    },
+    "like_for_like_3px_unique_le_0p70_postmerge": false,
+    "worst_like_for_like_3px_overlap_postmerge": {
+      "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+      "value": 0.7245155542356523
+    },
+    "note": "Emitted Exp 3 cleared all 222 pre-merge rasters (worst 0.564426 <= 0.70); post-merge integration against PR #88 (GTHC-88, a concurrent stratified dual-head 46,457-dot raster) yields 0.724516 > 0.70 3-px forward overlap, independently confirming verdict=negative / DO-NOT-SUBMIT without post-hoc retuning."
   }
 }

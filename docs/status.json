@@ -3,11 +3,12 @@
   "approved_for_weekly_slot": false,
   "status": "BLOCKED",
   "problems": [
-    "HOLDOUT: candidate point estimate is below the stored incumbent",
-    "UNIQUENESS: literal registry overlap exceeds 0.70"
+    "UNIQUENESS: literal registry overlap exceeds 0.70",
+    "FINGERPRINT: too few final dots are >25 px from the mapped catalogue"
   ],
   "ok_to_download_for_research": true,
   "ok_to_submit": false,
-  "raster_sha256": "798e3c54ae318c24ceef01134b94f5d61d18839c59347b01bda0f82af66400c2",
-  "policy": "binding-literal-all-registry-v1"
+  "raster_sha256": "871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6",
+  "policy": "binding-literal-all-registry-v1 + gems88-gate-v3 fingerprint",
+  "run_card": "registry/mvrd_run_card.json"
 }

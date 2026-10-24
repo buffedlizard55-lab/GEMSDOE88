@@ -1,139 +1,22 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Verified official GEMS competition rules, USGS ScienceBase releases, DOE GDR / INGENIOUS compilations, and data irregularities.">
-<title>Sources &amp; Provenance · GEMSDOE88</title>
-<link rel="stylesheet" href="assets/site.css">
-</head>
-<body>
-<a href="#main" class="sr-only">Skip to content</a>
-<header class="header">
-  <div class="wrap">
-    <a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="index.html">Overview</a>
-      <a href="executive-summary.html">Submission guide</a>
-      <a href="research.html">Research</a>
-      <a href="sources.html" aria-current="page">Sources</a>
-    </nav>
-  </div>
-</header>
-
-<div class="alert-strip">
-  <div class="wrap">
-    <span class="alert-icon">!</span>
-    <strong>DO NOT SUBMIT: official source verification backs `OK TO DOWNLOAD: YES` for research audit, while the submission gate remains `OK TO SUBMIT: NO`.</strong>
-  </div>
-</div>
-
-<main id="main">
-  <section class="subhero">
-    <div class="wrap">
-      <p class="crumb"><a href="index.html">Overview</a> / Sources</p>
-      <div class="eyebrow">Line-by-Line Verified Official Sources · Checked `2026-10-24`</div>
-      <h1>Official Competition, USGS &amp; DOE Provenance</h1>
-      <p>Every primary URL, DOI, license, and grid specification below was fetched or SHA-verified directly on <code>2026-10-24</code>. Irregularities and data traps are logged in <a href="../IRREGULARITIES.md"><code>IRREGULARITIES.md</code></a>.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="kicker">Competition-Primary References</div>
-      <h2>DrivenData &amp; DOE / NLR Official Rules</h2>
-      <div class="table-scroll">
-        <table class="sources">
-          <thead>
-            <tr><th>Official Source</th><th>Verified Facts &amp; Constraints (`2026-10-24`)</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData Problem Description &amp; Metric</a></td>
-              <td>Distance-Weighted Tversky Index ($\alpha=0.2$, $\beta=0.8$, $R=300\text{ m}$ triangular support $k(d)=\max(1-d/R,0)$), known training faults masked out; single-band <code>float32</code> GeoTIFF strictly in <code>[0, 1]</code> on <code>EPSG:32611</code> <code>100 m</code> grid; deadline <code>2026-12-03 23:59 UTC</code>; two-round evaluation ($50k Initial + $250k Final) on a single selected GeoTIFF.</td>
-            </tr>
-            <tr>
-              <td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Live Public Leaderboard</a></td>
-              <td>Verified <code>2026-10-24</code>: <code>#1 xiaofanhu = 0.4413</code>, <code>#2 cfld__ = 0.3916</code>, <code>#3 Batik Shirt Brothers = 0.3904</code>, <code>#4 BrandenKMurray = 0.3724</code>, <code>#5 No Fault of Our Own = 0.3539</code> (snapshot archived in <a href="data/leaderboard.json"><code>docs/data/leaderboard.json</code></a>).</td>
-            </tr>
-            <tr>
-              <td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR Official Rules PDF (`FY26 OSTI 96647`)</a></td>
-              <td>September 2026 America COMPETES Act (15 U.S.C. &sect; 3719) rules: $300,000 cash pool, U.S.-based eligibility, open/shareable external data requirements, and strict single-account/team limits.</td>
-            </tr>
-            <tr>
-              <td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">DrivenData Reference Solution</a></td>
-              <td>Official baseline notebook &amp; grid convention reference.</td>
-            </tr>
-            <tr>
-              <td><a href="https://epsg.io/32611">EPSG:32611 (WGS 84 / UTM Zone 11N)</a></td>
-              <td>Verified against mirrored <code>sample_submission.tif</code>: shape <code>(3730, 3292)</code>, transform <code>[100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]</code>, <code>5,167,373</code> active footprint pixels.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section style="background:#e9f2f1">
-    <div class="wrap">
-      <div class="kicker">USGS &amp; DOE Geothermal Data Releases</div>
-      <h2>Verified Public Scientific Layers Used in `H88-QTSK`</h2>
-      <div class="table-scroll">
-        <table class="sources">
-          <thead>
-            <tr><th>Official Source &amp; DOI</th><th>License &amp; Provenance Note</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN Airborne Magnetic &amp; Radiometric Surveys (`doi:10.5066/P93LGLVQ`)</a></td>
-              <td>Glen &amp; Earney (2024), U.S. Public Domain / CC0 1.0. Covers Winnemucca, Fallon, Hawthorne, and Tonopah blocks; documents Area 1 (200 m lines, 100–150 m drape) vs Area 2 (400 m lines, 150–200 m drape, &le;22&deg; climb terrain-clearance mimic).</td>
-            </tr>
-            <tr>
-              <td><a href="https://gdr.openei.org/submissions/1391">DOE GDR Submission 1391 — INGENIOUS Regional Compilation (`doi:10.15121/1881483`)</a></td>
-              <td>Ayling et al. (2022), Great Basin Center for Geothermal Energy (UNR), CC-BY-4.0 (DOE Award DE-EE0009254). Links public USGS ScienceBase releases for Quaternary sediment thickness, fault slip/dilation tendency (<code>doi:10.5066/P9YL58W6</code>), detrended elevation (<code>doi:10.5066/P9MQRCBY</code>), gravity/magnetics (<code>doi:10.5066/P9Z6SA1Z</code>), MT conductance (<code>doi:10.5066/P9TWT2LU</code>), and convective-filtered heat flow (<code>doi:10.5066/P9BZPVUC</code>).</td>
-            </tr>
-            <tr>
-              <td><a href="https://gbcge.org/current-projects/ingenious/">GBCGE — INGENIOUS Project</a></td>
-              <td>Official UNR project overview and Play Fairway / hidden-system geological framework.</td>
-            </tr>
-            <tr>
-              <td><a href="https://www.usgs.gov/3d-elevation-program">USGS 3D Elevation Program (3DEP)</a></td>
-              <td>U.S. Public Domain (free and unrestricted). Provides the 10 m Seamless DEM used for `dem10_100m_i16.tif` and fluvial stream-power `dem10_chi_100m_i16.tif` plus spatial 3DEP lidar availability polygons (`lidar_coverage_100m_u8.tif`).</td>
-            </tr>
-            <tr>
-              <td><a href="https://www.usgs.gov/programs/earthquake-hazards/faults">USGS Quaternary Fault &amp; Fold Database</a></td>
-              <td>U.S. Public Domain reference for mapped Quaternary fault traces and completeness biases outside 3DEP lidar footprints.</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="notice">
-        <strong>Flagged Irregularities &amp; Verification Scope</strong>
-        <p>Line-by-line inspection caught critical data traps logged in <a href="../IRREGULARITIES.md"><code>IRREGULARITIES.md</code></a>: (1) <code>dem10_chi_100m_i16.tif</code> stores <code>-32768</code> int16 sentinels on non-channel pixels (`IR-88-83`, sanitized before computing $\chi$ gradients); (2) <code>geodawn_rad_u8.tif</code> is uncalibrated `uint8` (`IR-88-84`); (3) <code>H88-ADHR</code>'s <code>|d| &le; 6 px</code> flank exclusion overlapped the <code>3 px</code> DTI kernel (`IR-88-85`, fixed in `H88-QTSK` via de-jittered <code>|d| &le; 2 px</code> exclusion); and (4) <code>sample_submission.tif</code> is <code>3730 &times; 3292</code> (`5,167,373` active pixels), not <code>2999 &times; 2871</code>.</p>
-      </div>
-      <p class="source-note">
-        Machine records:
-        <a href="data/qtsk88_run_card.json">H88-QTSK web run card</a> ·
-        <a href="../registry/qtsk88_run_card.json">canonical H88-QTSK run card</a> ·
-        <a href="data/current_release.json">current release gate</a> ·
-        <a href="../registry/data_manifest.json">SHA-256 data manifest</a> ·
-        <a href="../research/candidate-hypotheses-20261024-qtsk.md">preregistered hypotheses</a> ·
-        <a href="../research/h33-forensics-20261024.md">H33 forensics</a> ·
-        <a href="executive-summary.html">submission guide</a>.
-      </p>
-    </div>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="wrap">
-    <p>GEMSDOE88 · Line-by-line verified sources · <a href="index.html">Back to overview →</a> · <a href="executive-summary.html">Submission guide</a></p>
-  </div>
-</footer>
-</body>
-</html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c2436"><meta name="description" content="Official sources, hash-pinned owner mirrors, and verification limits for GEMSDOE88 H88-MVRD."><title>Sources &amp; provenance · GEMSDOE88</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><a href="#main" class="sr-only">Skip to content</a><header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html" aria-current="page">Sources</a></nav></div></header><div class="alert-strip"><div class="wrap"><span class="alert-icon">!</span><strong>Source verification does not override the verdict: DO NOT SUBMIT.</strong></div></div>
+<main id="main"><section class="subhero"><div class="wrap"><p class="crumb"><a href="index.html">Overview</a> / Sources</p><div class="eyebrow">Official references · local hash receipts · explicit limits</div><h1>Sources and provenance</h1><p>The experiment uses competition inputs and official-source derivatives restored from SHA-pinned owner GitHub mirrors. Network policy allowed GitHub and package registries, not direct live retrieval from DrivenData, USGS, DOE GDR, or NLR. The links below are manual review targets; live availability was not reasserted from this sandbox.</p></div></section>
+<section><div class="wrap"><div class="kicker">Competition definition</div><h2>Organizer and rules</h2><ul>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem description and submission format</a></li>
+<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData competition data page</a> — authenticated access required</li>
+<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution on GitHub</a></li>
+<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR official rules PDF</a></li>
+<li><a href="https://epsg.io/32611">EPSG:32611 reference</a></li>
+</ul><p>The project restores <code>sample_submission.tif</code>, <code>existing_faults.tif</code>, and the 19-band feature stack from pinned owner repositories and verifies their SHA-256 values. An independently authenticated byte comparison to a logged-in organizer download remains outstanding.</p></div></section>
+<section style="background:#e9f2f1"><div class="wrap"><div class="kicker">H88-MVRD inputs</div><h2>Official/free source families</h2><div class="table-scroll"><table><thead><tr><th>Source</th><th>Layers / role</th><th>Local verification</th></tr></thead><tbody>
+<tr><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN airborne magnetic and radiometric surveys</a></td><td>TMI-upward continuation and K/Th/U-derived redox indices</td><td>Owner-mirrored derivatives restored by hash; source is official, but derivative pixels were not independently re-downloaded here</td></tr>
+<tr><td><a href="https://www.usgs.gov/3d-elevation-program">USGS 3D Elevation Program</a></td><td>1 m LiDAR scarp polarity/strike; 10 m slope, relief, aspect coherence; χ/ksn/area derivatives</td><td>Output rasters and manifests hash-pinned; manifests list official tile URLs and source hashes</td></tr>
+<tr><td><a href="https://gdr.openei.org/submissions/1391">DOE Geothermal Data Repository submission 1391</a></td><td>Temperature probes, springs, wells and paleo-geothermal context already used by the shared 44-channel stack</td><td>Restored owner-mirror files hash-verified</td></tr>
+<tr><td><a href="https://mrdata.usgs.gov/sgmc/">USGS State Geologic Map Compilation</a></td><td>Off-catalogue diagnostic only; not a candidate score</td><td>Derived aligned raster hash-verified</td></tr>
+<tr><td><a href="https://gbcge.org/current-projects/ingenious/">Great Basin Center for Geothermal Energy / INGENIOUS</a></td><td>Regional geothermal and blind-system scientific context</td><td>Manual-review source; not live-fetched in this sandbox</td></tr>
+</tbody></table></div></div></section>
+<section><div class="wrap"><div class="kicker">Pinned local files</div><h2>Reproducibility receipts</h2><ul><li><code>data/training_features.tif</code> — SHA-256 <code>4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5</code>; 19 band names checked at runtime.</li><li><code>data/bridge/sample_submission.tif</code> — SHA-256 <code>2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc</code>.</li><li><code>data/bridge/existing_faults.tif</code> — SHA-256 <code>7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093</code>.</li><li><a href="data/mvrd_run_card.json">MVRD run card</a>, <a href="data/mvrd-gate-v3.json">gate v3 record</a>, and <a href="downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.format-audit.json">saved-byte format audit</a>; <a href="data/qtsk88_run_card.json">H88-QTSK run card</a>, <a href="research/candidate-hypotheses-20261024-qtsk.md">H88-QTSK 5-hypothesis dossier</a>, and <a href="data/leaderboard.json">2026-10-24 leaderboard snapshot</a>; <a href="data/gthc88_run_card.json">GTHC-88 run card</a>, <a href="data/gthc88_validation.json">GTHC-88 validation</a>, and <a href="research/candidate-hypotheses-20261024-gthc88.md">GTHC-88 4-hypothesis dossier</a>.</li><li><a href="research/candidate-hypotheses-20261024.md">Pre-implementation candidate ranking and method record</a>.</li></ul></div></section>
+<section style="background:#e9f2f1"><div class="wrap"><div class="kicker">Shared code</div><h2>No private metric fork</h2><ul><li><code>vendor/gems57/holdout.py</code>: buffered whole-component split.</li><li><code>vendor/gems57/evaluate_holdout.py</code>: pooled DTI and paired physical-block bootstrap.</li><li><code>vendor/gems57/submission_writer.py</code>: all-finite [0,1] TIFF and one-member ZIP writer.</li><li><code>vendor/gems57/uniqueness.py</code>: pre-placement correlation and final overlap measurements.</li></ul></div></section>
+<section><div class="wrap"><div class="notice"><strong>Not independently verified here</strong><p>No DrivenData login or submission-page receipt was available. H33's 0.2778, the prompt's 0.3195/0.4413 maxima, weekly quota, portal acceptance, and leaderboard outcome for H88-MVRD are not organizer-confirmed by this repository. The candidate used zero slots.</p></div></div></section>
+</main><footer class="footer"><div class="wrap"><p>GEMSDOE88 · Hash-pinned locally, explicit about authentication limits.</p><a href="index.html">Back to overview →</a></div></footer></body></html>

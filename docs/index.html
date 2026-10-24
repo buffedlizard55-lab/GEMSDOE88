@@ -1,230 +1,44 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="GEMSDOE88 DOE Geothermal Fault Discovery (GEMS) automated validation gate, H88-QTSK GeoTIFF download, holdout evaluation, and PhD-level H33 &amp; leaderboard benchmark analysis.">
-<title>GEMSDOE88 · H88-QTSK Gate · OK TO DOWNLOAD · DO NOT SUBMIT</title>
-<link rel="stylesheet" href="assets/site.css">
-</head>
-<body>
-<a href="#main" class="sr-only">Skip to content</a>
-<header class="header">
-  <div class="wrap">
-    <a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="index.html" aria-current="page">Overview</a>
-      <a href="executive-summary.html">Submission guide</a>
-      <a href="research.html">Research</a>
-      <a href="sources.html">Sources</a>
-    </nav>
-  </div>
-</header>
-
-<div class="alert-strip" role="status" aria-live="polite">
-  <div class="wrap">
-    <span class="alert-icon">!</span>
-    <strong>AUTOMATED GATE VERDICT — DOWNLOAD FOR RESEARCH: YES · OK TO SUBMIT: NO — DO NOT SUBMIT AUTOMATICALLY</strong>
-    <span>(<code>gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif</code> · SHA-256 <code>798e3c54ae318c24…</code> · 0 weekly slots spent)</span>
-  </div>
-</div>
-
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c2436"><meta name="description" content="GEMSDOE88 H88-MVRD: a unique research GeoTIFF with automated download YES, submit NO decision."><title>GEMSDOE88 · H88-MVRD automated decision</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<body><a href="#main" class="sr-only">Skip to content</a>
+<header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Sources</a></nav></div></header>
+<div class="alert-strip" role="status"><div class="wrap"><span class="alert-icon" aria-hidden="true">!</span><span data-card-status><strong>H88-MVRD · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT</strong></span></div></div>
 <main id="main">
-  <section class="hero">
-    <div class="wrap split">
-      <div>
-        <div class="eyebrow">DOE GEMS Fault Discovery · Session 2026-10-24 · Lane H88-QTSK</div>
-        <h1>Downloadable &amp; format-clean.<br><em>Held by automated slot gate.</em></h1>
-        <p><strong>Immediate decision banner:</strong></p>
-        <ul>
-          <li><strong>OK TO DOWNLOAD FOR RESEARCH: YES</strong> — 100% portal-parity verified (<code>float32</code> strictly in <code>[0, 1]</code>, <code>0</code> NaN in footprint or outside, <code>EPSG:32611</code>, <code>3730 &times; 3292</code>, LZW 1-row-strip parity with <code>sample_submission.tif</code>, single-TIFF ZIP byte-identical).</li>
-          <li><strong>OK TO SUBMIT: NO — DO NOT SUBMIT</strong> without explicit human selector override (<code>verdict: negative</code> under <code>binding-literal-all-registry-v1</code> &amp; Protocol Rule 6).</li>
-        </ul>
-        <p>
-          <a class="btn" href="downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif" download>Download H88-QTSK .tif (808 KB · DO NOT SUBMIT)</a>
-          <a class="btn secondary" href="downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.zip" download>Download single-TIFF .zip (223 KB · DO NOT SUBMIT)</a>
-        </p>
-        <p style="margin-top:0.8rem">
-          <a href="executive-summary.html">Executive summary &amp; gate checklist →</a> ·
-          <a href="data/current_release.json">Machine gate JSON →</a> ·
-          <a href="data/qtsk88_run_card.json">H88-QTSK JSON run card →</a>
-        </p>
-      </div>
-
-      <div class="file-box" id="gate-card">
-        <div class="title">
-          <h2 style="margin:0;font-size:1.15rem">Automated Validation Gate (`validate_qtsk88.py`)</h2>
-          <span class="chip">DO NOT SUBMIT</span>
-        </div>
-        <dl>
-          <dt>Artifact &amp; SHA-256</dt>
-          <dd><code>gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif</code><br><code>798e3c54ae318c24ceef01134b94f5d61d18839c59347b01bda0f82af66400c2</code></dd>
-          <dt>Portal Name &amp; Note (&le;140 chars)</dt>
-          <dd><code>gems88-qtsk-coverstep-knickwave-20261024-v1</code><br><code>GEMSDOE88 EXP3_QTSK_STRAT: QTS cover-step + 10m chi knickwave + LiDAR polarity + OOF Dinkelbach</code> (95 chars)</dd>
-          <dt>Portal Format &amp; `[0, 1]` Range Gate</dt>
-          <dd><strong>PASS</strong> — min <code>0.0</code>, max <code>1.0</code>, <code>53,876</code> dots, <code>0</code> NaN inside footprint, <code>EPSG:32611</code>, <code>3730&times;3292</code>, LZW sample parity</dd>
-          <dt>Leakage Canary (`AUC &le; 0.90`)</dt>
-          <dd><strong>PASS (58 / 58)</strong> — QTSK14 max <code>0.578147</code> (<code>qts_hessian_ridge_s2</code>); PHYS44 max <code>0.574997</code></dd>
-          <dt>222-Raster Uniqueness (Like-for-Like)</dt>
-          <dd><strong>PASS</strong> — pre-placement surface max |&rho;| <code>0.283106 &le; 0.90</code>; max 3-px dot overlap <code>0.564426 &le; 0.70</code> (vs <code>GEMSDOE85</code>)</dd>
-          <dt>Blind-Basin Fingerprint Screen</dt>
-          <dd><strong>PASS</strong> — <code>share_le2 = 0.00%</code>, <code>share_gt25 = 46.40% &ge; 35.0%</code>, median <code>d_cat = 16.76 px</code></dd>
-          <dt>Paired `HOLDOUT-DTI` (`n = 22,893`)</dt>
-          <dd><strong>Exp 2 (`QTSK-DUAL`): `0.192759` `[0.175472, 0.208319]`</strong> (new repo high vs <code>0.189634</code> ADHR; blocked on <code>0.7995 &gt; 0.70</code> overlap vs MRR)<br><strong>Exp 3 (`QTSK-STRAT`, emitted): `0.151511` `[0.136125, 0.166066]`</strong> (highest `&ge;35%`-blind GEMSDOE88 candidate; below near-ribbon ADHR)</dd>
-          <dt>Literal Dense Witness (`17GEMSDOE`)</dt>
-          <dd><strong>BLOCK (`1.0000 &gt; 0.70`)</strong> — <code>17GEMSDOE</code> has <code>5,167,373</code> positive footprint cells; requires human selector override</dd>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <section id="experiments">
-    <div class="wrap">
-      <div class="kicker">Preregistered 3-Experiment Results · `gems57-pooled-hide-v2` (`n = 22,893` withheld positive pixels)</div>
-      <h2>H88-QTSK · Cover-Thickness Decoupling &amp; Fluvial &chi;-Knickpoint Wavefronts</h2>
-      <p>Every score below is a measured <strong><code>HOLDOUT-DTI</code></strong> on identical 8 buffered whole-component folds (seeds 20 &amp; 21, 3 px hide buffer, 12 px quadrant buffer, 20 km spatial block bootstrap <code>B = 400</code>). Zero live submission receipts exist in this repo (no number is claimed as <code>ORGANIZER-CONFIRMED</code> for GEMSDOE88).</p>
-      <div class="table-scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>Arm</th>
-              <th>Overall `HOLDOUT-DTI` (`95% CI`)</th>
-              <th>Paired &Delta; vs `H88-ADHR` (`95% CI`)</th>
-              <th>Blind `&gt;25 px` `HOLDOUT-DTI` (`n=3,117`)</th>
-              <th>Prod `share_gt25`</th>
-              <th>222-Raster Like-for-Like Unique?</th>
-              <th>Disposition</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>Control: H88-ADHR</code> (recomputed incumbent)</td>
-              <td><code>0.189634</code> <code>[0.173869, 0.204226]</code></td>
-              <td><code>+0.000000</code> (baseline; stored <code>0.187888</code>)</td>
-              <td><code>0.065263</code></td>
-              <td><code>4.23%</code> (FAIL)</td>
-              <td>PASS (<code>0.6796</code>)</td>
-              <td>Historical near-ribbon incumbent</td>
-            </tr>
-            <tr>
-              <td><code>Exp 1: H88-QTSK-PHYS</code> (58-col zero-catalogue)</td>
-              <td><code>0.110745</code> <code>[0.096966, 0.123784]</code></td>
-              <td><code>-0.078888</code> <code>[-0.091360, -0.063908]</code></td>
-              <td><code>0.065638</code> (<code>+0.000375</code>)</td>
-              <td>Pure physics ablation</td>
-              <td>Diagnostic arm</td>
-              <td>Beats <code>CGO-88 (0.09042)</code> &amp; <code>PHYS44 (0.10725)</code></td>
-            </tr>
-            <tr>
-              <td><strong><code>Exp 2: H88-QTSK-DUAL</code></strong> (81-col de-jittered OOF)</td>
-              <td><strong><code>0.192759</code> <code>[0.175472, 0.208319]</code></strong></td>
-              <td><strong><code>+0.003125</code></strong> <code>[-0.004267, +0.010898]</code></td>
-              <td><strong><code>0.079137</code> (<code>+21.3%</code>)</strong></td>
-              <td><code>8.03%</code> (FAIL)</td>
-              <td><strong>FAIL (<code>0.7995 &gt; 0.70</code> vs MRR)</strong></td>
-              <td>New repo holdout high; stopped by Rule 1 duplicate gate</td>
-            </tr>
-            <tr>
-              <td><strong><code>Exp 3: H88-QTSK-STRAT</code></strong> (emitted artifact)</td>
-              <td><strong><code>0.151511</code> <code>[0.136125, 0.166066]</code></strong></td>
-              <td><code>-0.038123</code> <code>[-0.047875, -0.027997]</code></td>
-              <td><code>0.064322</code></td>
-              <td><strong><code>46.40%</code> (PASS)</strong></td>
-              <td><strong>PASS (<code>0.5644 &le; 0.70</code>; |&rho;| <code>0.2831</code>)</strong></td>
-              <td><strong>Emitted `.tif`/`.zip` — OK to download · DO NOT SUBMIT</strong></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section style="background:#e9f2f1" id="phd-answers">
-    <div class="wrap split">
-      <div>
-        <div class="kicker">PhD-Level Benchmark Question 1</div>
-        <h2>Why did `GEMSDOE32` (`H33`: user-reported `0.2778`) score highest among `GEMSDOE16..40`?</h2>
-        <p>Under the official Distance-Weighted Tversky metric ($\alpha = 0.2$ on FP, $\beta = 0.8$ on FN, $300\text{ m}$ triangular kernel $k(d)=\max(1-d/3,0)$), a submission emitting $n$ binary pixels capturing kernel-weighted true-positive mass $T$ scores $\text{DTI} = \frac{T}{0.8|G| + 0.2(T + n - M)}$, where $M$ is mass landing on masked known faults.</p>
-        <p>Byte-level forensics across sibling rasters prove <code>H33</code> (<code>37,654</code> binary dots) is a strict collar-pruned subset of <code>H19-5</code> (<code>121,131</code> dots &rarr; <code>D2.8</code> <code>44,090</code> &rarr; <code>SOLO-D2.8</code> <code>40,199</code> &rarr; <code>H33</code> <code>37,654</code>):</p>
-        <ul>
-          <li><strong>Zero-credit collar elimination:</strong> Removing <code>83,477</code> near-catalogue flank pixels (<code>d_cat &le; 2.0 px</code>, where hidden test faults rarely duplicate already-mapped polylines) cut the $0.2(n-M)$ false-positive denominator by <code>~69%</code> with near-zero loss in $T$.</li>
-          <li><strong>Blind-basin mass survival:</strong> <code>H33</code> places <strong><code>41.7%</code></strong> of its dots at <code>d_cat &gt; 25 px</code> (<code>&gt;2.5 km</code> into unmapped basins/piedmonts); across 20 owner-reported scores, <code>share_gt25</code> correlates at <strong>Spearman $\rho = +0.90$</strong> with public DTI.</li>
-        </ul>
-      </div>
-      <div>
-        <div class="kicker">PhD-Level Benchmark Question 2 · Live Snapshot `2026-10-24`</div>
-        <h2>Can we beat `0.2778` and the live public leaderboard high (`0.4413`)?</h2>
-        <p>Live DrivenData leaderboard verification on <code>2026-10-24</code> shows <strong><code>#1 xiaofanhu = 0.4413</code></strong>, <code>#2 cfld__ = 0.3916</code>, <code>#3 Batik Shirt Brothers = 0.3904</code>, <code>#4 BrandenKMurray = 0.3724</code>, and <strong>Round-1 $10k cutoff <code>#5 No Fault of Our Own = 0.3539</code></strong> (ranks 6–20 sit at <code>0.3273–0.3418</code>; the older <code>0.3195</code> prompt figure is stale).</p>
-        <ul>
-          <li><strong>Beating `0.2778` is structurally realistic</strong> via multi-physics + 3DEP geomorphic blind-structure localization combined with exact Dinkelbach `{0, 1}` kernel-lattice spacing (`H88-QTSK` Exp 3 raised blind-compatible `HOLDOUT-DTI` to <code>0.151511</code> with <code>46.4%</code> dots <code>&gt;25 px</code> and <code>0.5644</code> max overlap across 222 rasters), <em>but</em> requires human selector authorization and an organizer receipt to confirm on hidden test labels.</li>
-          <li><strong>Beating `0.4413` cannot be credibly claimed from current `100 m` public features alone:</strong> reaching $\text{DTI} &gt; 0.44$ with $\beta = 0.8$ mathematically requires recovering $&gt;40\%$ of unmapped expert fault pixels within $300\text{ m}$ at precision $&gt;0.38$, likely requiring full-resolution 1 m 3DEP bare-earth CNN/U-Net scarp segmentation plus external InSAR/hypocentral data beyond this sandbox's outbound allowlist.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="archive">
-    <div class="wrap">
-      <div class="kicker">Audited Research Archive · All Marked `DO NOT SUBMIT`</div>
-      <h2>Current &amp; Historical GEMSDOE88 Artifacts</h2>
-      <div class="table-scroll">
-        <table>
-          <thead>
-            <tr>
-              <th>Lane</th>
-              <th>File</th>
-              <th>`HOLDOUT-DTI`</th>
-              <th>222-Raster Like-for-Like</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong><code>H88-QTSK</code> (current)</strong></td>
-              <td><a href="downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif" download><code>gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif</code></a></td>
-              <td><code>0.151511</code> (Exp 3) / <code>0.192759</code> (Exp 2)</td>
-              <td>PASS (<code>0.5644 &le; 0.70</code>)</td>
-              <td>OK to download · <strong>DO NOT SUBMIT</strong></td>
-            </tr>
-            <tr>
-              <td><code>MDC-88</code></td>
-              <td><a href="downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif" download><code>gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif</code></a></td>
-              <td><code>0.148854</code></td>
-              <td>PASS (<code>0.5566 &le; 0.70</code>)</td>
-              <td>Selector-gated · see <a href="executive-summary.html">guide</a></td>
-            </tr>
-            <tr>
-              <td><code>KTH-88</code></td>
-              <td><a href="downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif" download><code>gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif</code></a></td>
-              <td><code>0.052656</code></td>
-              <td>FAIL (<code>0.8988 &gt; 0.70</code>)</td>
-              <td>Archived negative · <strong>DO NOT SUBMIT</strong></td>
-            </tr>
-            <tr>
-              <td><code>MRR-BPR-88</code></td>
-              <td><a href="downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif" download><code>gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif</code></a></td>
-              <td><code>0.188688</code></td>
-              <td>Near-ribbon (<code>share_gt25 = 4.0%</code>)</td>
-              <td>Archived negative · <strong>DO NOT SUBMIT</strong></td>
-            </tr>
-            <tr>
-              <td><code>MGC-88</code></td>
-              <td><a href="downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif" download><code>gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif</code></a></td>
-              <td><code>0.031200</code></td>
-              <td>PASS (<code>0.4717</code>)</td>
-              <td>Archived negative · <strong>DO NOT SUBMIT</strong></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="wrap">
-    <p>GEMSDOE88 · Verified automated gates · Zero hallucinated projections · <a href="executive-summary.html">Executive summary</a> · <a href="research.html">Research</a> · <a href="sources.html">Sources</a></p>
-  </div>
-</footer>
-</body>
-</html>
+<section style="background:#10304a;color:#fff;padding:34px 0" aria-labelledby="current-decision"><div class="wrap">
+<div class="kicker" style="color:#76ddca">Current integrated experiment · H88-MVRD · 2026-10-24 · machine decision</div>
+<h1 id="current-decision" style="color:#fff;margin:8px 0">A new GeoTIFF is ready to download.<br><span style="color:#ffb3ab">It is not approved for submission.</span></h1>
+<p><strong>OK to download for research: YES.</strong> <strong>OK to upload to DrivenData: NO — DO NOT SUBMIT.</strong> The saved TIFF is byte/pixel distinct and passes the sparse-registry screen, but the binding literal rule fires against a full-footprint continuous registry witness; the live-geometry fingerprint screen also fails. Zero weekly slots were used. No human inspection is required to reach this decision.</p>
+<p><a class="button button-primary" href="downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif" download>⬇ Download TIFF (research only)</a> <a class="button button-ghost" href="downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.zip" download>ZIP (one TIFF)</a> <a class="button button-ghost" href="data/mvrd_run_card.json">Run card</a> <a class="button button-ghost" href="downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.format-audit.json">Format audit</a></p>
+<div class="file-box" style="background:#fff;color:#152e40"><div class="title"><h3 style="margin:0">Exact identity</h3><span class="chip">DO NOT SUBMIT</span></div>
+<p><strong>Name (61/140):</strong><br><code>gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT</code></p>
+<p><strong>Note (107/140):</strong><br><code>MVRD88 85ch monoclinal+redox+strand Dinkelbach 33167d (HOLDOUT-DTI 0.1973); fingerprint+17GEMSDOE hold slot</code></p>
+<p><strong>TIFF SHA-256:</strong> <code>871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6</code><br><strong>ZIP SHA-256:</strong> <code>4470e339d9d8b9b8eb32f6b976fe32e17bd176e45b0d0ee91da258caab544dca</code></p></div>
+</div></section>
+<section><div class="wrap"><div class="kicker">Automatic gates</div><h2>Why the file is held</h2><div class="table-scroll"><table><thead><tr><th>Gate</th><th>Result</th><th>Audited evidence</th></tr></thead><tbody>
+<tr><td>Written-byte portal format</td><td><strong>PASS</strong></td><td>One float32 band; EPSG:32611; 3730×3292; exact sample transform; 12,279,160 finite cells; values {0,1}; no nodata; zero outside footprint; one byte-identical TIFF in ZIP.</td></tr>
+<tr><td>Feature-alone leakage canaries</td><td><strong>PASS</strong></td><td>92/92 at or below 0.90; maximum symmetric AUC 0.771627.</td></tr>
+<tr><td>Blocked holdout improvement</td><td><strong>PASS, local instrument only</strong></td><td><strong>HOLDOUT-DTI</strong> 0.197314, 95% CI [0.181121, 0.213008], 22,893 withheld positives, <code>gems57-pooled-hide-v2</code>; paired Δ vs ADHR +0.009426 [0.001962, 0.016994]. Not a leaderboard projection.</td></tr>
+<tr><td>Sparse/discriminating registry screen</td><td><strong>PASS</strong></td><td>222 accessible rasters / 117 distinct dot sets; worst like-for-like 3 px overlap 0.672777 ≤ 0.70; worst |Spearman ρ| 0.381600 ≤ 0.90.</td></tr>
+<tr><td>Literal any-raster overlap</td><td><strong>FAIL</strong></td><td>Forward 3 px overlap 1.000000 against the full-footprint continuous 17GEMSDOE witness. Under the user's literal rule this is a duplicate and the lane stops.</td></tr>
+<tr><td>Live-geometry distance fingerprint</td><td><strong>FAIL</strong></td><td>Only 2.87% of dots are more than 25 px from the catalogue; automated screen requires at least 35%.</td></tr>
+</tbody></table></div>
+<p><strong>Machine verdict: negative.</strong> Format validity does not authorize a competition slot. There is no ORGANIZER-CONFIRMED score for this raster.</p></div></section>
+<section style="background:#f5faf9"><div class="wrap"><div class="kicker">Latest session lane · H88-QTSK · 2026-10-24 · 3 experiments · 0 slots</div><h2>H88-QTSK: Cover-Thickness Decoupling &amp; 10 m Fluvial &chi;-Knickpoint Wavefronts — DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT</h2>
+<p><a class="button button-primary" href="downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif" download>⬇ Download H88-QTSK TIFF (research only · DO NOT SUBMIT)</a> <a class="button button-ghost" href="downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.zip" download>ZIP (one TIFF)</a> <a class="button button-ghost" href="data/qtsk88_run_card.json">H88-QTSK run card</a> <a class="button button-ghost" href="research/candidate-hypotheses-20261024-qtsk.md">5 ranked hypotheses</a></p>
+<p><strong>Prepared portal name (43/140):</strong> <code>gems88-qtsk-coverstep-knickwave-20261024-v1</code> · <strong>Note (95/140):</strong> <code>GEMSDOE88 EXP3_QTSK_STRAT: QTS cover-step + 10m chi knickwave + LiDAR polarity + OOF Dinkelbach</code> · <strong>TIFF SHA-256:</strong> <code>798e3c54ae318c24ceef01134b94f5d61d18839c59347b01bda0f82af66400c2</code> (<code>53,876</code> binary <code>{0,1}</code> dots, <code>float32</code> in <code>[0,1]</code>, <code>0</code> NaN, <code>EPSG:32611</code>, <code>3730&times;3292</code>, LZW sample parity).</p>
+<ul>
+<li><strong>58/58 single-feature leakage canaries PASS:</strong> QTSK14 max symmetric AUC <code>0.578147 &le; 0.90</code>.</li>
+<li><strong>Paired 8-fold <code>HOLDOUT-DTI</code> (<code>gems57-pooled-hide-v2</code>, <code>n = 22,893</code>):</strong> Exp 1 zero-catalogue 58-ch physics <code>0.110745</code> <code>[0.096966, 0.123784]</code>; <strong>Exp 2 de-jittered dual-head <code>0.192759</code> <code>[0.175472, 0.208319]</code></strong> (beats paired ADHR <code>0.189634</code> and lifts blind <code>&gt;25 px</code> DTI by <code>+21.3%</code> to <code>0.079137</code>, stopped by <code>0.7995 &gt; 0.70</code> near-ribbon overlap vs MRR); <strong>Exp 3 emitted stratified 53,876-dot arm <code>0.151511</code> <code>[0.136125, 0.166066]</code></strong> (<code>share_gt25 = 46.40% &ge; 35%</code>, <code>share_le2 = 0.00%</code>).</li>
+<li><strong>Registry uniqueness (pre-merge 222 vs post-merge 228):</strong> Pre-placement surface max |&rho;| <code>0.283106 &le; 0.90</code> across all 228 rasters; cleared all 222 pre-merge rasters like-for-like (worst 3-px overlap <code>0.564426 &le; 0.70</code>), while post-merge integration against concurrent <code>GTHC-88</code> yields <code>0.724516 &gt; 0.70</code> alongside literal <code>1.0000</code> vs <code>17GEMSDOE</code> &rarr; <strong>DO NOT SUBMIT</strong>.</li>
+</ul></div></section>
+<section style="background:#e9f2f1"><div class="wrap"><div class="kicker">Scientific answer</div><h2>Why the user-reported H33 0.2778 likely rose</h2><p>The restored lineage supports a narrow conclusion: H33 is a 37,654-dot subset of H19-5/D2.8. Kernel-matched thinning removed clustered predictions, then a two-pixel catalogue collar removed 6,436 near-catalogue dots without adding new geography. Under a 300 m triangular kernel and a 0.2 false-positive weight, that can improve the precision–coverage trade-off. The <strong>0.2778 remains USER-REPORTED</strong>; no portal receipt in this repository makes it ORGANIZER-CONFIRMED.</p>
+<p>H88-MVRD is the first stored candidate to beat the prior overall holdout bar with a positive paired interval, but it performs worse than ADHR on the far-from-visible subset and fails the live-geometry fingerprint. Therefore we cannot honestly infer that it will exceed 0.2778, 0.3195, or 0.4413 on the leaderboard. The two conflicting leaderboard maxima in the prompt are not treated as candidate scores.</p>
+<p><a href="research/candidate-hypotheses-20261024.md">Five ranked hypotheses and full MVRD method →</a> · <a href="research/hypotheses-20261024-mdps88.md">H33 lineage forensics →</a> · <a href="executive-summary.html">Exact submission procedure and stop rule →</a></p></div></section>
+<section><div class="wrap"><div class="kicker">Protocol integration</div><h2>Literal protocol audit: DUPLICATE — STOP</h2><p>There is <strong>no dense-prior exemption</strong>. The merged shared v3 gate no longer lets chance correction exempt a dense raster. The hash-pinned 17GEMSDOE witness is positive on every footprint cell, so every nonempty candidate has forward 3 px overlap 1.0. <a href="data/literal_protocol_audit.json">Automated universal-blocker proof →</a> · <a href="research/protocol-review-20261024.md">Protocol review →</a>. This independently confirms MVRD's DO-NOT-SUBMIT decision.</p></div></section>
+<section><div class="wrap"><div class="kicker">Archive</div><h2>Earlier downloadable negative results</h2><p><strong>IBL-88:</strong> fixed catalogue-collared basin lattice; HOLDOUT-DTI 0.0000 for saved bytes and literal dense-witness duplicate. <a href="downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif" download>Research TIFF</a> · <a href="data/ibl88_run_card.json">run card</a> — DO NOT SUBMIT.</p>
+<p><strong>GTHC-88 · GEMSDOE88-GTHC-SCRD-STRAT-E3C0D9E0:</strong> 50-ch hydrothermal-alteration + scarp-curvature dual-head (SCRD); unstratified HOLDOUT-DTI 0.190971 [0.176110, 0.207531] (beats ADHR 0.187888 / 0.189634); emitted stratified 46,457-dot arm HOLDOUT-DTI 0.170718 [0.155970, 0.186645] (+14.69% vs MDC-88 0.148850), share_gt25 = 0.3671 ≥ 0.35, like-for-like 223-raster overlap 0.6011 ≤ 0.70 (PASS), literal 17GEMSDOE overlap 1.0000 &gt; 0.70. <a href="downloads/gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif" download>Research TIFF</a> · <a href="downloads/gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.zip" download>ZIP</a> · <a href="data/gthc88_run_card.json">run card</a> · <a href="data/gthc88_validation.json">validation</a> · <a href="research/candidate-hypotheses-20261024-gthc88.md">4 candidate hypotheses</a> — DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT.</p>
+<p><strong>QTS-88 · GEMSDOE88-QTS88-B5D178B3:</strong> cover-thickness/slope decoupling; HOLDOUT-DTI 0.098210, below ADHR 0.187888; literal duplicate. <a href="downloads/gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif" download>Research TIFF</a> · <a href="data/qts88_run_card.json">run card</a> — DO NOT SUBMIT.</p>
+<p><strong>MDPS-88:</strong> HOLDOUT-DTI far 0.0727 [0.0591, 0.0863], 10,791 far withheld positives; paired interval crosses zero. <a href="downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif" download>Research TIFF</a> — DO NOT SUBMIT.</p>
+<p><strong>PHASE-88:</strong> HOLDOUT-DTI 0.0531 [0.0461, 0.0602], 22,893 withheld positives; literal duplicate. <a href="downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif" download>Research TIFF</a> — DO NOT SUBMIT.</p>
+<p><strong>KTH-88:</strong> HOLDOUT-DTI 0.0527 [0.0459, 0.0592], 22,893 withheld positives; literal duplicate. <a href="downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif" download>Research TIFF</a> — DO NOT SUBMIT.</p></div></section>
+</main><footer class="footer"><div class="wrap"><p>GEMSDOE88 · Maximize P(Win) · Own the Outcome</p><a href="executive-summary.html">Executive submission guide →</a></div></footer></body></html>
