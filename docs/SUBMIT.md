@@ -1,5 +1,17 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+## 2026-10-24 · `AXIS=PRUNE` spaced-v2 on `R0` (IR-88-54) — **no upload recommended; all below 0.01 floor, but strongest locally available gate-clean diagnostics**
+
+Three new gate-clean spaced-refill PRUNE arms were built from rebuilt byte-exact `R0` (15/15 pins verified), all `N=37,654`, `min d_cat >3px`, `0` catalogue mass, union H19-5/H19-4/H16-1 support, exact-marginal ranking, spacing lock `>=2.8/3.5px`, hardened validator 6/6 PASS on disk bytes (`registry/prune_v2_validation.json`). Blind SGMC `PROXY` vs R0 `0.096060`: `p3space28 0.099446 (+0.00339)`, `p3.5space35 0.101339 (+0.00528)`, `p4space28 0.100907 (+0.00485)`. `p3.5space35` is the largest *locally available* gate-clean margin and the second-best in the ledger (only `p4space35 0.102454` is higher, but it needs reconstruction). All are `HOLD` diagnostics — none reaches the `0.01` no-evidence floor — do **not** upload unless the human explicitly wants the spacing ladder receipt. Preregistered `MODEL +0.005/+0.004/+0.001` in `registry/prune_v2_preregistration.json` before any proxy; field `MODEL` `−0.009/−0.015/−0.021` (diagnostic, `w` AUC `0.47`). Releases `releases/h33-h33-2-b2-PRUNEp3space28-20261023-91d221ad.tif` etc. and `releases/*-zeros.tif` twins are gitignored; only hashes/receipts tracked.
+
+| Candidate (gitignored; rebuild with `python3 scripts/build_prune_v2_variants.py`) | SHA-256 primary | Gate | Blind SGMC `PROXY` |
+|---|---|---|---|
+| `h33-h33-2-b2-PRUNEp3space28-20261023-91d221ad` | `91d221ad5539ee36638f3c68e02710a7235eb1bf07572da551fb27c506185ba2` (zeros `47b49e84…`) | 6/6 PASS, `HOLD` | `0.099446 (+0.00339)` |
+| `h33-h33-2-b2-PRUNEp3.5space35-20261023-44be814e` | `44be814e1345bc4e5e8a5718ca308c4fcf185b197e4116d600d56b8b025efa9a` (zeros `00cdcf27…`) | 6/6 PASS, `HOLD` | `0.101339 (+0.00528)` |
+| `h33-h33-2-b2-PRUNEp4space28-20261023-475fce4d` | `475fce4d7d0525d0c39a20df27e947e23b2c4f346b76fb9ef69f0fc1733f7ea0` (zeros `dfd45a8e…`) | 6/6 PASS, `HOLD` | `0.100907 (+0.00485)` |
+
+No slot was used, no receipt exists. Queue remains `R1 p3px → p3.5space35/p4space35 → p4space28` per `SLOT_PLAN.md`.
+
 ## 2026-10-23 · `AXIS=CONCENTRATION` on gate-clean `R1` (IR-88-52) — **no upload recommended**
 
 **Three new candidates were built, gate-clean, and all three are `HOLD`; the slot order in the SNAP sections below is unchanged.**
