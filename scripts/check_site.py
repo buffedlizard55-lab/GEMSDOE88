@@ -111,9 +111,10 @@ def main(root=ROOT):
                 if 'DO-NOT-SUBMIT' not in path.name:
                     assert path.name in cleared_names, f'Unmarked research download: {link}'
     # IR-88-86/88: every downloadable TIF/ZIP (linked or not) must be marked unless its own gate clears it.
-    for f in sorted((root / 'docs' / 'downloads').glob('*')):
-        if f.suffix.lower() in ('.tif', '.tiff', '.zip'):
-            assert 'DO-NOT-SUBMIT' in f.name or f.name in cleared_names, f'Unmarked download on disk: {f.name}'
+    # Guard every published TIF/ZIP under docs/ (not only docs/downloads/), so variants cannot be published unmarked.
+    for f in sorted((root / 'docs').rglob('*')):
+        if f.is_file() and f.suffix.lower() in ('.tif', '.tiff', '.zip'):
+            assert 'DO-NOT-SUBMIT' in f.name or f.name in cleared_names, f'Unmarked published file under docs/: {f.relative_to(root)}'
     # IR-88-88: the canonical PHASE-88 panel must precede the archived MDPS-88 text on the landing page.
     landing = (root / 'docs' / 'index.html').read_text()
     assert landing.find(phase['download'].split('/')[-1]) < landing.find('MDPS-88'), 'PHASE-88 must lead the landing page'

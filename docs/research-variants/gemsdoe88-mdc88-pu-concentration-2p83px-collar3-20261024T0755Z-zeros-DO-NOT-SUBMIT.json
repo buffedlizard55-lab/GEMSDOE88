@@ -1,8 +1,8 @@
 {
-  "file": "gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros.tif",
+  "file": "gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "b6772cb0659bc380f05e8ee67a8f030087414f4f47d8bf7eff78c4980f52e608",
   "bytes": 151784,
-  "submission_name": "gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros",
+  "submission_name": "gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros-DO-NOT-SUBMIT",
   "note": "MDC-88 conservative variant: same PU density and 2.83px packing, but no dot within 3px of a mapped fault; off-catalogue SGMC PROXY 0.2777",
   "note_chars": 137,
   "validator": {
@@ -110,8 +110,8 @@
     "ok": true,
     "validation_class": "local on-disk template/range check; not organizer upload acceptance"
   },
-  "zip_file": "gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros.zip",
-  "zip_sha256": "77857122b214596348fe9a3a0bae4bf1852de48b68c7e2e2ad465eb57ac444a3",
+  "zip_file": "gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "5a3a64d31c28f5f7d49d46899ce7c578229877261f44e97d57a0001f02dd4c79",
   "approved_for_weekly_slot": false,
   "promoted": false,
   "submission_slots_used": 0,
@@ -139,5 +139,7 @@
     },
     "feature_version": "kdmc88-zero-catalogue-v1",
     "n_features": 104
-  }
+  },
+  "ok_to_submit": false,
+  "submission_status_note_20261024": "Renamed with -DO-NOT-SUBMIT: unmarked research variant was published under docs/. Gate record registry/kdmc_gate_collar3.json has ok_to_submit false (verdict hold)."
 }
