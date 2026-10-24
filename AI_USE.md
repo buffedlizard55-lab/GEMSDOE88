@@ -213,6 +213,10 @@
 - **AI did NOT:** submit anything, contact `drivendata.org`/`dropbox.com`, spend a slot, fill any receipt field, edit a prediction after seeing a proxy, build a proposed-only axis, or mint a collar value already in the ledger (preflight rejects repeated `(parent, axis, value)` pairs and ledger hashes).
 - **Determinism:** a second, independent process rebuilt all three masks from the pinned inputs and matched the released TIFFs bit-for-bit; R0 rebuilt byte-exactly (zeros `c55bafc4…`, NaN `baeae321…`); canary maximum `0.56925` matches the prior PRUNE sweep exactly.
 - **Human must decide/supply:** current `TOP_PUBLIC` + date, rolling-week/total slot balance, the `2026-12-03` deadline confirmation, data-use authorization for the mirrored inputs, whether `R1 = PRUNEp3px` remains the slot-1 anchor, any upload (one twin per slot), verbatim `receipt_score`/`receipt_date`, and the single blind final file. Every number this session is `PROXY`/`MODEL` except the R0 `CLAIM` `0.2778`.
+
+## 2026-10-24 session (IR-88-75)
+AI agent work: null-control audit of the PROVCREST promote, spacing and count sweeps (3 experiments), lineage-geometry analysis, one manual leaderboard read, hypotheses and handoff notes, and a merge with concurrent PRs #56/#58/#59 in which the agent's own single-gate fork was removed in favour of the v3 gate. No weekly submission slot was spent and no score was claimed without a receipt.
+
 ## Session `2026-10-24d` — `H88-MRR-BPR` Blockwise Magnetic Residual (branch `arena/f83ee255-gemsdoe88`, IR-88-72–74)
 
 - **Human required:** an end-to-end review, a genuinely new competition-format TIFF, ranked untried geology before implementation, blocked whole-component validation, leakage and literal registry gates, an unambiguous download/submit decision, a <=140-character note, a synchronized machine run card and GitHub Pages guide, three verification passes, zero automatic portal slots, and a merged PR.

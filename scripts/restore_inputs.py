@@ -297,6 +297,15 @@ EXTERNAL_GROUP = [
       "data/external/dem10_chi_100m_i16.tif",
       "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5"
     ],
+    # IR-88-75: src/gems88/features.py opens dem10_chi_100m_u8.tif, which the
+    # manifest above never restored. The hash is the one recorded for that file
+    # inside data/external/dem10_chi_100m.manifest.json, so the restore is
+    # self-verifying against the producing workflow's own receipt.
+    [
+      "data/external/dem10_chi_100m_u8.tif",
+      "data/external/dem10_chi_100m_u8.tif",
+      "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a"
+    ],
     [
       "data/external/dem10_chi_100m.manifest.json",
       "data/external/dem10_chi_100m.manifest.json",

@@ -125,9 +125,23 @@ def release_report(root=ROOT):
         rec = root / 'registry' / record
         if rec.is_file():
             expected_hashes.add(json.loads(rec.read_text())['sha256'])
-    # IR-88-79 (2026-10-24, LBCAL session): the canonical negative run card's own TIFF (MRR-BPR-88, merged in
-    # PR #56/#57) was published without being added here, so main failed this check on its own bytes. Accept it
-    # only via its own run card hash with verdict negative / ok_to_submit false; any other unreviewed TIFF still fails.
+    # MDC-88 (PR #61, IR-88-75/73/74) stores its gate-v3 verdict nested under 'gate_v3'
+    # with the file hash in 'candidate'. Same review standard, different record shape.
+    for record in ('kdmc_gate.json', 'kdmc_gate_collar3.json'):
+        rec = root / 'registry' / record
+        if not rec.is_file():
+            continue
+        data = json.loads(rec.read_text())
+        if data.get('gate_v3', {}).get('policy') != 'gems88-gate-v3':
+            continue
+        # Only whitelist a hash that is actually published in a scanned directory; the
+        # collar-3 research variant lives in docs/research-variants/ and is intentionally
+        # outside the accessible registry (same lane as the primary, IR-88-76/74).
+        if (root / 'docs' / 'downloads' / Path(data['candidate']['tif']).name).is_file():
+            expected_hashes.add(data['candidate']['sha256'])
+    # IR-88-82 (2026-10-24, LBCAL session): the canonical negative run card's own TIFF (MRR-BPR-88, PRs #56/#57)
+    # was published without being whitelisted here, so main failed this check on its own bytes. Accept it only
+    # via its own run card hash with verdict negative / ok_to_submit false; any other unreviewed TIFF still fails.
     canon = json.loads((root / 'registry' / 'run_card.json').read_text())
     if canon.get('verdict') == 'negative' and canon.get('ok_to_submit') is False and canon.get('raster_sha256'):
         expected_hashes.add(canon['raster_sha256'])

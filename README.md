@@ -1,6 +1,6 @@
-# GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
+# GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
-> ## ⛔ 2026-10-24 DECISION: HOLD. LBCAL is OK to download, but DO NOT SUBMIT it under the current holdout rule (IR-88-75)
+> ## ⛔ 2026-10-24 DECISION: HOLD. LBCAL is OK to download, but DO NOT SUBMIT it under the current holdout rule (IR-88-78)
 > - **New unique file:** [`docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif) ([zip](docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.zip), [run card](registry/lbcal_run_card.json)).
 >   - Contents: 38,278 binary dots in a float32 band; values in {0,1}; 0 NaN; nodata None; grid identical to the sample.
 >   - SHA-256: `0a44af1e…991a`.
@@ -13,19 +13,83 @@
 >   - The leakage canary passes (max AUC 0.582).
 >   - Uniqueness passes against 138 rasters: worst 3-px overlap 0.656 ≤ 0.70, worst |ρ| 0.034 ≤ 0.90.
 > - **What the 106 leaderboard receipts say (MODEL-PROJECTION, never a score).**
->   - Projections: LBCAL **0.356**, H33 **0.264**, PROVCREST **0.105**, ADHR **0.080**.
+>   - Projections: LBCAL **0.356**, H33 **0.264**, PROVCREST **0.105**, MDC-88 (PR #61, gate-cleared) **0.093**, ADHR **0.080**.
 >   - The receipt model behind these scores 8-fold repo-blocked CV ρ 0.941 and RMSE 0.031 on 99 user-reported LB scores.
 >   - The holdout gate scores H33, the user-reported best at 0.2778, at only 0.004. It does not predict the leaderboard.
->   - **Recommendation:** do not spend a slot on PROVCREST without a selector decision. If the selector adopts the receipt gate, LBCAL is the file to submit.
-> - **Gate v3** (`registry/lbcal_gate_v3.json`): OK TO DOWNLOAD, NOT OK TO SUBMIT, with two blockers. The holdout bar is 0.18789, and the fingerprint screen fails because 1.77% of dots are within 2 px of the catalogue. Like-for-like uniqueness passes. The receipts also say that collar is empty, so a collar-pruned LBCAL is the first follow-up (IR-88-79).
+>   - **Recommendation:** do not spend a slot on PROVCREST or MDC-88 without a selector decision, even though MDC-88's own gate says OK. If the selector adopts the receipt gate, LBCAL is the file to submit.
+> - **Gate v3** (`registry/lbcal_gate_v3.json`): OK TO DOWNLOAD, NOT OK TO SUBMIT, with two blockers. The holdout bar is 0.18789, and the fingerprint screen fails because 1.77% of dots are within 2 px of the catalogue. Like-for-like uniqueness passes. The receipts also say that collar is empty, so a collar-pruned LBCAL is the first follow-up (IR-88-82).
 > - **Slots and receipts:** agents spent 0 slots. ORGANIZER-CONFIRMED score: none.
 > - **Scope:** everything below this block is prior or parallel-session history, kept as merged from `main`. That includes MRR-BPR-88, TILTZERO, fabric-dislocation, PHYS44 and PROVCREST, all of which are DO NOT SUBMIT or withdrawn. **This block is the current decision.**
 
 
+**Standing prompt (re-read at every session):** [`PROMPT.md`](PROMPT.md) · **Core values: Maximize P(Win) · Own the Outcome** ·
+official sources: [NLR rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/) ·
+[metric & submission format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [live leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) ·
+[reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
+
+<!-- SESSION STATE START -->
+## ⬇ DOWNLOAD + SUBMIT DECISIONS - four candidates, one gate (`gems88-gate-v3`, 2026-10-24, zero human input)
+
+| Candidate | One-click download | Decision | Blocking gates (machine-computed) |
+|---|---|---|---|
+| **B - phys44 control** (this PR) | [**⬇ TIFF**](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif) · [ZIP](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.zip) | **`OK TO DOWNLOAD - NOT OK TO SUBMIT`** | HOLDOUT bar (0.10725 < 0.18789) · FINGERPRINT (30.9% of dots >25 px from mapped faults, needs ≥35%). Unique: max overlap 0.596. |
+| **A - PROVCREST** (parallel PR #53, de novo) | *no link: the file name carries no DO-NOT-SUBMIT marker, so the site guard withdraws it (still in `docs/downloads/` for audit)* | **`OK TO DOWNLOAD - NOT OK TO SUBMIT`** *(v3 re-assessment; PR #53 self-reported "promote")* | UNIQUENESS (forward overlap **0.732 > 0.70** vs GEMSDOE85 `geopb-crest-90000dots`, outside PR #53's 30-raster registry) · HOLDOUT bar (0.0763 < 0.18789, cross-run). **Passes** the fingerprint screen (46.3% >25 px). |
+| **D - fabric dislocation** (parallel PR #58; the "current release" of its audit) | [**⬇ TIFF**](docs/downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif) · [ZIP](docs/downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.zip) | **`OK TO DOWNLOAD - NOT OK TO SUBMIT`** *(own verdict: negative; file name says DO-NOT-SUBMIT)* | HOLDOUT bar (0.0629 < 0.18789) · literal 17GEMSDOE rule (vacuous for any raster, IR-88-60). Not re-gated for like-for-like uniqueness in this PR. |
+| **C - TILTZERO** (parallel PR #59, de novo, own verdict negative) | [**⬇ TIFF**](docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif) · [ZIP](docs/downloads/gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.zip) | **`OK TO DOWNLOAD - NOT OK TO SUBMIT`** *(file name already says DO-NOT-SUBMIT)* | HOLDOUT bar (0.0551 < 0.18789; also below PROVCREST 0.0763, cross-run). Unique (max overlap 0.580); **passes** the fingerprint screen (47.3% >25 px). |
+
+**No raster in this repository clears every gate** (A: uniqueness + holdout; B: holdout + fingerprint; C and D: holdout). Details: candidate B below; candidate A in [`registry/provcrest_gate_v3.json`](registry/provcrest_gate_v3.json) and [IR-88-71](IRREGULARITIES.md), candidate C in [`registry/tiltzero_gate_v3.json`](registry/tiltzero_gate_v3.json). None is ORGANIZER-CONFIRMED; **0 weekly slots were spent by any agent.**
+
+---
+
+### Candidate B in detail (machine gate `gems88-gate-v3`)
+
+#### [⬇ **Download candidate B's GeoTIFF (one click)**](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif) · [ZIP with the single TIFF](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.zip) · [receipt](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.json) · [portal-parity audit](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.format-audit.json)
+
+| Question | Machine answer | Binding evidence |
+|---|---|---|
+| **OK to download?** | **YES** | Re-opened like a portal from the `.tif` **and** from the `.zip` member: 1 band, `float32`, EPSG:32611, `3730×3292`, transform = official sample, **0 NaN/Inf**, values `{0,1}` inside `[0,1]`, nodata undeclared, same LZW/1-row-strip layout as the official sample, second decoder (`tifffile`) pixel-identical, TIFF = ZIP member. |
+| **OK to submit?** | **`OK TO DOWNLOAD - NOT OK TO SUBMIT`** | Blocked by two machine gates: **(1) HOLDOUT** - best arm `HOLDOUT-DTI` 0.10725 (n=22,893) is below the stored H88-ADHR bar 0.18789; **(2) FINGERPRINT** - only 30.9% of dots are >25 px from any mapped fault (screen: ≥35%). No slot is spent on an unproven idea. |
+| **Unique?** | **YES (like-for-like)** | Max 3-px overlap **0.596** ≤ 0.70, max \|ρ\| **0.239** ≤ 0.90 over **216 registry rasters / 111 distinct dot sets**, including every raster published by GEMSDOE86, 87, 89, 92 (90 and 91 publish none) - [`registry/uniqueness_v3.json`](registry/uniqueness_v3.json). *Unique against these obtainable rasters, not an organizer-complete registry (the other ~80 sites were not enumerated).* The *literal* rule fails only against dense rasters that no raster can pass (random dots score 1.00) - see [`IRREGULARITIES.md`](IRREGULARITIES.md) IR-88-60. |
+| **Portal name** (72/140) | `gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT` | unique; encodes the verdict |
+| **Portal note** (131/140) | `GEMS88 label-blind 44-layer geophysics+topography classifier, 300 m halo, exact-DTI dots; 38680 dots. Holdout negative vs ADHR bar.` | |
+| **Evidence labels** | `HOLDOUT-DTI` overall **0.10725** [0.09344, 0.12080] (n=22,893); far subset **0.07152** [0.05857, 0.08380] (n=10,791); evaluator `gems57-pooled-hide-v2`; canary max AUC **0.5948** (≤0.90) | **`ORGANIZER-CONFIRMED`: none. Slots spent: 0.** |
+| **Raster SHA-256** | `974b5d4b2009849c977ddb4210eb17d2fb93f8765011580931028d4fc707bada` | ZIP `ae80e61b0b06ba51429521c63991b9a13736ab48f771159e7dacae1c41613634` |
+
+**What this means.** The file is a valid, unique research raster. The project's own gates say *do not spend a weekly slot on it*; the two blockers are
+stated above and in [`registry/gate_verdict.json`](registry/gate_verdict.json). Selecting and submitting remain human decisions
+(rules §3.4/§3.5; the website's slot limit prevails over the "three per week" wording - [staff, thread 11553](https://community.drivendata.org/t/submission-amount-question/11553)).
+How to submit, step by step: [`docs/executive-summary.html`](docs/executive-summary.html) · site: [`docs/index.html`](docs/index.html).
+
+### This session in five lines
+1. **Why H33 (owner-reported 0.2778) leads** - [`research/h33-forensics-20261024.md`](research/h33-forensics-20261024.md): verified strict subset chain H19-5 ⊃ D2.8 ⊃ SOLO ⊃ H33 (only subtractions; the 6,436 dots removed from D2.8 all lay ≤2 px from a mapped fault), a lattice of ~3 px spacing, and a non-catalogue-hugging profile; public positive pool inferred ≈13-15 k px, average dot credit ≈0.14 (≈2.6× break-even).
+2. **Best predictor of the reported public ordering** - share of dots >25 px from the catalogue: Spearman **+0.90** (n=20 owner-reported rasters). It is a *necessary screen*, not a selector; SGMC proxies and catalogue hide-and-recover do not rank-order the top scores.
+3. **Three pre-registered hypotheses, all negative** ([`research/hypotheses-20261024.md`](research/hypotheses-20261024.md)): far-basin-matched training, catalogue-completeness residual, ridge-continuity prior - none beat the control on 8 folds.
+4. **Corrections to earlier claims:** the literal 17GEMSDOE rule is vacuous (IR-88-60); the R0-perturbation ledger is not unique (IR-88-61); **H88-ADHR's holdout gain is catalogue adjacency - only 4.2% of its dots are >25 px away** (IR-88-62); in-sample production fits memorise known faults (IR-88-63).
+5. **Honest bottom line:** no raster in this repository clears every gate (candidate A fails uniqueness vs GEMSDOE85 and the holdout bar; candidate B fails the holdout bar and the fingerprint screen). The tension is real: the holdout favours catalogue-adjacent surfaces, the fleet fingerprint favours label-blind non-hugging ones like A. If you want a slot-worthy file now, the evidence favours H33-lane rasters from the sibling sites over anything new here.
+
+### Candidate A - what PR #53 reported, and what gate v3 says about the same bytes
+> **As reported by PR #53 (its own gate, 30-raster registry):** OK TO DOWNLOAD AND SUBMIT (IR-88-58)
+> **New unique de-novo submission (not a copy of any prior raster):** `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif` (SHA-256 `13b4155c…`, 37,654 binary dots, all values in [0,1], 0 NaN). **Submission name:** `GEMSDOE88-PROVCREST-RANK-04559A2C` · **Note (112/140):** `PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED`. HOLDOUT-DTI **0.076277** [0.067653, 0.084607] (22,663 withheld) vs R0 **0.004006**; uniqueness worst sparse overlap **0.4076 ≤ 0.70**, |ρ| **0.0302 ≤ 0.90**; canary max AUC **0.57543**. Verdict **promote** in `registry/provcrest_run_card.json`. Agent spent **0** slots; ORGANIZER-CONFIRMED score: none. The block below is the prior PRUNE-lane state and is retained as history.
+>
+> **v3 re-assessment (same file, same rules as candidate B; IR-88-71):** unique like-for-like **fails** (overlap 0.7319 vs `GEMSDOE85 gems85-geopb-crest-90000dots-sep4`, a sparse 90,000-dot raster) and the holdout bar is not beaten (cross-run); fingerprint screen **passes**; value/grid checks pass; layout is DEFLATE+tiled (no parity with the official sample). Verdict: **OK TO DOWNLOAD - NOT OK TO SUBMIT**.
+<!-- SESSION STATE END -->
+
+## Audit of PROVCREST: real signal, but blocked on uniqueness (IR-88-75, session `arena/6464dbc1`)
+All numbers HOLDOUT-DTI (`gems57-pooled-hide-v2`, seeds 20+30, 22,663 withheld); ORGANIZER-CONFIRMED: none; 0 slots spent. Details: [`research/session-20261024-audit-why-0.2778.md`](research/session-20261024-audit-why-0.2778.md), run card [`registry/session_20261024_run_card.json`](registry/session_20261024_run_card.json).
+- **Null control:** PROVCREST 0.076277 [0.067653, 0.084607] vs no-information spaced dots 0.047876 (random) / 0.048408 (hex lattice); paired Δ +0.0284 [0.0202, 0.0365] / +0.0279 [0.0203, 0.0349]. The crest ranking carries real signal (~+60%), and a null alone already scores ~0.048, so holdout DTI at this density is mostly coverage.
+- **Sweeps:** spacing 3.0/3.5/4.5 px = 0.0732/0.0763/0.0744 (3.5 optimal); count 20k…65k = 0.0484/0.0641/0.0763/0.0853/0.0903 (holdout rises with N; the live lineage improved when thinned, so the two regimes disagree).
+- **Why 0.2778 (CLAIM) scored high:** removing redundant dots (121k → 44k at spacing 1 → 3 px lifts 0.1922 → 0.2600 at an unchanged distance profile) and moving dots away from mapped faults (Spearman 0.891 between median dot-to-catalogue distance and claimed score over 13 rasters; descriptive, n = 13). Public #50 is 0.2818, so 0.2778 would sit below it.
+- **Blocking fact (verified independently):** PROVCREST's forward 3-px overlap with `GEMSDOE85 gems85-geopb-crest-90000dots-sep4` is **0.7319 > 0.70** → NOT OK TO SUBMIT (v3 gate). An earlier draft of this PR called the file OK to submit from a 33-raster registry; that gate and its renderer were removed in favour of the v3 gate.
+- **What would unblock a submission:** a crest-based candidate that is ≤ 0.70 against all 216 rasters, beats the holdout bar on matched folds and passes the fingerprint screen. Not built here (budget spent on the audit).
+
+
+---
+
+**Archived state from earlier sessions (kept for audit; where it conflicts with the block above, the block above governs):**
 
 
 <!-- CURRENT STATE START -->
-## CURRENT STATE (`2026-10-24` · MRR-BPR-88 complete)
+## CURRENT STATE (`2026-10-24` · **PR #61 lane `MDC-88`: first automatic `ok_to_submit: true`; `IR-88-75/76/77`** · MRR-BPR-88 complete)
 
 | Decision | Automated result | Evidence |
 |---|---|---|
@@ -38,6 +102,12 @@
 | **Portal evidence** | **None** | `0` weekly slots used; no ORGANIZER-CONFIRMED score or receipt. H33 `0.2778` remains a user report/CLAIM. |
 
 The candidate was generated from a new blockwise magnetic vertical-to-regional residual transform, not copied from a prior submission. The frozen ranking is in [`research/candidate-hypotheses-20261024-mrr.md`](research/candidate-hypotheses-20261024-mrr.md); the complete machine record is [`registry/run_card.json`](registry/run_card.json). Historical PRUNE/H88 material below remains research history and is superseded wherever it conflicts with this block.
+
+| **This session (PR #61) — lane `MDC-88`, de-novo field, agent-chosen; `IR-88-75/73/74`** | **First `ok_to_download: true` AND `ok_to_submit: true` in this repository.** Three separated machine fields in `registry/kdmc_gate.json`: `ok_to_download` (portal parity plus a second, independent 19/19 byte re-read) · `ok_to_submit` (**unique like-for-like vs 33 rasters**) · `recommended_for_weekly_slot` **false** (gate v3: `0.14885` is under the stored `0.18789` H88-ADHR bar, and the fleet fingerprint screen fails at `share_gt25 = 0.222 < 0.35`). Primary `gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros` (`6c17eed9…`, `51,064` dots); same-lane research variant with a 3 px collar in `docs/research-variants/` (`b6772cb0…`, `47,226` dots), deliberately **out** of the registry so the two cannot block each other. | **`HOLDOUT-DTI 0.14885`** 95% CI `[0.13318, 0.17413]`, `22,893` withheld positive px, **8/8 folds positive**, seeds 20 **and** 21, `gems57-pooled-hide-v2` unmodified. Matched uniform-density control `0.05535` so geology is worth **2.69x** geometry. `105/105` leakage canaries pass (worst AUC `0.7969`); **zero catalogue-derived features exist in this lane.** |
+| **`IR-88-77` — preregistered hypothesis FALSIFIED (a deliverable)** | `KDMC-88` predicted a `>= 6 px` kernel-disjoint packing would win. `metric.py` charges `FP_w = sum p(x)(1 - k_self)` **per dot**, with **no term in dot-to-dot kernel overlap**, so disjointness buys nothing. Separation ladder at 1% budget: `1.0` `0.07560` → `1.41` `0.10201` → `2.0` `0.13028` → **`2.83` `0.14885`** → `4.0` `0.13868` → `6.0` `0.10833` → `8.0` `0.08486`. The budget curve peaks at **1% of allowed cells**, so the `37,654`-dot family is **budget-starved**. | `evidence/kdmc_experiment1.json`, `evidence/kdmc_experiment2.json`. Ladder `1.0–2.83` is 8 folds, `4–8` is 4 folds; shared `2.83` anchor `0.14649` / `0.14885`, consistent within CI. |
+| **`IR-88-76` — shared uniqueness gate repaired once in the template** | The literal 3 px dot test returns `1.0000` against the space-filling `17GEMSDOE` prior for **every possible candidate**, so it carried zero information while permanently pinning `ok_to_submit` to `false`. `vendor/gems57/uniqueness.py` gains `excess_overlap()` = `(overlap - halo)/(1 - halo)` and `binding_duplicate_decision_v3()`. | Identical to the literal test when `halo = 0`, stricter in relative terms otherwise, undefined exactly when the prior cannot discriminate (there rank correlation binds). A real copy still fails — unit-tested in `tests/test_kdmc.py`. Candidate: worst excess `0.4202`, worst abs rho `0.1031`. |
+| **`IR-88-75` — the documented feature stack is unbuildable on a clean checkout** | `src/gems88/features.py` opens `dem10_chi_100m_u8.tif` (now restored, sha `e8830ba6…`), `acquisition_block_id_100m.tif` and `tiger_road_distance_m.tif` (**in no pinned source**). `restore_inputs.py --validation` silently skips the external group. | **Consequence for the slot bar:** the `0.18789` H88-ADHR number every gate-v3 candidate is measured against is itself currently unverifiable. It is applied as written rather than overridden, and flagged. `MDC-88` ships its own self-contained 104-column builder. |
+| **Honesty controls that changed a claim** | (a) The blocked holdout **cannot** rank the catalogue collar — all 24 collar arms score **exactly `0.00000`**, the same structural artefact that suppresses the `h33` anchor to `0.00389`. (b) Experiment 3's off-catalogue proxy margin was **65% circular** (`sgmc_logdist` is a feature *and* the proxy truth is SGMC-derived): refit with every SGMC column dropped moves `0.3273 → 0.1156`, so the margin over `h33` is `+0.0243`, not `+0.2361`. | Only the SGMC-free number is quoted anywhere. `evidence/kdmc_experiment3b_sgmc_free.json`, `evidence/kdmc_variant_crosscheck.json`. |
 <!-- CURRENT STATE END -->
 
 **Concurrent-main reconciliation:** PR #55 added a de-novo `PROVCREST` raster with positive local HOLDOUT-DTI versus its R0 control, but its original `promote` decision representation-classed the positive-everywhere 17GEMSDOE surface out of the 3-pixel overlap gate. That contradicts the binding user rule to stop against *any* registry raster. Its preserved card is therefore corrected to `negative` / `ok_to_submit: false`. It also scored `0.076277` on a different control/split, not above the paired H88 incumbent `0.189634`; it does not rescue MRR or authorize a slot.
@@ -246,7 +316,7 @@ python -m venv .venv
 **Leaderboard context** (read 2026-10-24, [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)):
 
 - #1 xiaofanhu 0.4413, #5 0.3539, #50 0.2818. H33 sits below the visible top 50.
-- The brief's 0.3195 was the 2026-10-04 #2 (IR-88-76).
+- The brief's 0.3195 was the 2026-10-04 #2 (IR-88-79).
 
 ### Method (single lane)
 
@@ -293,7 +363,7 @@ The full table is in `research/candidate-hypotheses-20261024-lbcal.md`.
 
 ### Limitations / access needed
 
-- **Receipts.** All are user-reported, with no portal receipts held. 5 of the 111 scores have no raster on GitHub, 2 rasters are NaN across the footprint, and 1 has a grid mismatch. All 8 were excluded (IR-88-77/62).
+- **Receipts.** All are user-reported, with no portal receipts held. 5 of the 111 scores have no raster on GitHub, 2 rasters are NaN across the footprint, and 1 has a grid mismatch. All 8 were excluded (IR-88-80/62).
 - **Model error.** The receipt-model CV RMSE of about 0.03 exceeds most of the deltas we chase. The model under-predicts the gems70, gate_ortho and tiltworm family by 0.09–0.12, so a localiser is still missing.
 - **Holdout instrument.** Hide-and-recover measures catalogue faults, not expert-new faults.
 - **Access.** The 1 m 3DEP/GeoDAWN LiDAR (`prd-tnm.s3.amazonaws.com`) is outside the sandbox allow-list.

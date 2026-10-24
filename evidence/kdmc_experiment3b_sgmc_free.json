@@ -1,0 +1,21 @@
+{
+  "experiment": "kdmc-88-exp3b-sgmc-free-confound-control",
+  "generated_utc": "2026-10-24T07:51:37Z",
+  "question": "How much of the Experiment 3 proxy margin is circular, i.e. produced by the SGMC-derived feature column rather than by independent geophysics?",
+  "dropped_columns": [
+    "sgmc_logdist"
+  ],
+  "n_features_used": 103,
+  "configuration": {
+    "separation_px": 2.8284271247461903,
+    "density": 0.01,
+    "n_dots": 51064
+  },
+  "sgmc_free_proxy_dti": 0.115575856182758,
+  "full_model_proxy_dti": 0.3273425776458838,
+  "circularity": 0.2117667214631258,
+  "registry_anchor_h33": 0.09127839557978852,
+  "margin_vs_h33_sgmc_free": 0.024297460602969473,
+  "verdict": "The margin survives with every SGMC column removed.",
+  "caveat": "PROXY, not a score. Repository no-evidence floor is |delta| >= 0.01."
+}

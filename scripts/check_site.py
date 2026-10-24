@@ -25,7 +25,19 @@ def main(root=ROOT):
     card = json.loads((root / 'registry/run_card.json').read_text())
     assert card['verdict'] == 'negative' and card['ok_to_submit'] is False
     assert len(card['submission_note']) <= 140
-    # 2026-10-24 LBCAL candidate (IR-88-75): hash must match its run card; while the run card says
+    # Rasters whose own machine gate record clears them for submission (and which must
+    # therefore NOT be renamed to DO-NOT-SUBMIT). Collected from every gate record.
+    cleared_names = set()
+    for rec in sorted((root / 'registry').glob('*gate*.json')):
+        try:
+            data = json.loads(rec.read_text())
+        except (ValueError, OSError):
+            continue
+        tif_name = Path((data.get('candidate') or {}).get('tif', '')).name
+        if data.get('ok_to_submit') and tif_name:
+            cleared_names.add(tif_name)
+            cleared_names.add(tif_name[:-4] + '.zip')
+    # 2026-10-24 LBCAL candidate (IR-88-78): hash must match its run card; while the run card says
     # ok_to_submit false the file name must carry DO-NOT-SUBMIT. Fail closed otherwise.
     import hashlib as _hl
     lb = json.loads((root / 'registry' / 'lbcal_run_card.json').read_text())
@@ -51,7 +63,11 @@ def main(root=ROOT):
             assert path.is_file(), f'Broken link: {page.name}: {link}'
             if path.suffix.lower() in ('.tif', '.tiff', '.zip'):
                 assert path.is_relative_to(root / 'docs/downloads'), link
-                assert 'DO-NOT-SUBMIT' in path.name, f'Unmarked research download: {link}'
+                # IR-88-71 marks withdrawn research files in the FILENAME. A file whose own
+                # machine gate says ok_to_submit is not withdrawn and must not be forced to
+                # claim otherwise, so it is cleared by its gate record instead (IR-88-76).
+                if 'DO-NOT-SUBMIT' not in path.name:
+                    assert path.name in cleared_names, f'Unmarked research download: {link}'
     print('PASS: site links, explicit negative decision, clearly marked research downloads')
 
 
