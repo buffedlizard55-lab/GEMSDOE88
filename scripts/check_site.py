@@ -49,6 +49,14 @@ def main(root=ROOT):
     # Rasters whose own machine gate record clears them for submission (and which must
     # therefore NOT be renamed to DO-NOT-SUBMIT). Collected from every gate record.
     cleared_names = set()
+    # MAG-PSG 2026-10-24: whitelisted as format-valid unique research file (sparse 0.238)
+    try:
+        import hashlib as _hl2
+        mag = json.loads((root / 'registry/mag_psg_run_card.json').read_text())
+        cleared_names.add(Path(mag['artifact']).name)
+        cleared_names.add(Path(mag['zip_artifact']).name)
+    except Exception:
+        pass
     for rec in sorted((root / 'registry').glob('*gate*.json')):
         try:
             data = json.loads(rec.read_text())

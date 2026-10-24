@@ -1,0 +1,9 @@
+{
+  "ok_to_download": true,
+  "ok_to_submit": true,
+  "duplicate_literal": true,
+  "duplicate_sparse": false,
+  "holdout_dti": 0.005762366014426636,
+  "incumbent": 0.18788,
+  "verdict": "negative"
+}

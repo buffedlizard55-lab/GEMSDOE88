@@ -1,0 +1,233 @@
+{
+  "schema": "gems88.run-card.v3",
+  "generated_utc": "2026-10-24T18:20:52Z",
+  "lane": "MAG-PSG",
+  "lane_title": "Magnetic Pseudogravity Tilt Phase Symmetry for Deep Basement Fault Discovery",
+  "artifact": "docs/downloads/gems88-mag-psg-20261024-d5d8e799-zeros.tif",
+  "zip_artifact": "docs/downloads/gems88-mag-psg-20261024-d5d8e799-zeros.zip",
+  "downloadable_file": "docs/downloads/gems88-mag-psg-20261024-d5d8e799-zeros.tif",
+  "submission_name": "GEMSDOE88-MAG-PSG-FB987C5C",
+  "submission_note": "MAG-PSG pseudogravity tilt zero + trough, 37654 dots, 2.8px; HOLDOUT-DTI 0.0058; UNSCORED",
+  "emitted_dots": 37654,
+  "ok_to_download": true,
+  "ok_to_submit": true,
+  "independent_organizer_receipt": false,
+  "weekly_slots_used": 0,
+  "hypothesis": {
+    "id": "MAG-PSG",
+    "rank": 1,
+    "layers": [
+      "Band 02: rtp - Reduced to pole magnetic data",
+      "Band 13: iso_grav_anom - Isostatic gravity anomaly",
+      "Band 15: depth_to_base_surf - Depth to basement",
+      "Band 04: geod_2ndinv - Geodetic second invariant",
+      "Band 18: iso_grav_anom_hg - Isostatic gravity horizontal gradient"
+    ],
+    "mechanism": "Pseudogravity transform (F/psg = F(rtp)/|k|) emphasizes deep monopole basement sources; tilt angle atan(VDR/THDR) zero-contours mark deep contacts; combined with RTP demagnetization troughs (hydrothermal alteration) and THDR ridges, stratified by depth_to_base to separate shallow volcanic noise from deep controls.",
+    "named_non_fault_mimic": "Shallow Miocene volcanic caldera margins and reversed-polarity basalt flows that produce high-frequency RTP anomalies without basement offset, and GeoDAWN flight-line leveling seams.",
+    "difference_from_existing": "No prior sibling uses pseudogravity frequency-domain integration (1/|k|) + tilt phase symmetry on RTP; previous MRR used spatial block regression, CGO used raw gravity/mag gradients without spectral deep-pass filtering, and KTH used K/Th radiometric ratios.",
+    "predicted_holdout_delta_model": 0.02,
+    "predicted_holdout_delta_range_model": [
+      -0.01,
+      0.05
+    ]
+  },
+  "mechanism": "Pseudogravity integration suppresses shallow volcanic short-wavelength magnetic noise; tilt zero + THDR ridge marks deep basement density/susceptibility step back-projected to surface trace; RTP trough confirms alteration demagnetization along fault-hosted fluid pathway.",
+  "named_non_fault_process": "Remanently magnetized Tertiary volcanic tuff rings and flight-line leveling artifacts mimicking linear magnetic lows.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "candidate": 0.005762366014426636,
+    "ci95": [
+      0.004687471299318146,
+      0.007042798177055399
+    ],
+    "incumbent_adhr": 0.18788,
+    "paired_improvement": -0.18211763398557335,
+    "note": "Holdout is known-catalogue proxy, never ORGANIZER-CONFIRMED leaderboard score."
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "max_symmetric_auc": 0.5189520364808762,
+    "per_feature": {
+      "trough": {
+        "auc": 0.48093555648794273,
+        "sym_auc": 0.5190644435120573,
+        "pass": true
+      },
+      "tilt_zero": {
+        "auc": 0.5282136463209964,
+        "sym_auc": 0.5282136463209964,
+        "pass": true
+      },
+      "thdr_psg": {
+        "auc": 0.5301478478049643,
+        "sym_auc": 0.5301478478049643,
+        "pass": true
+      },
+      "gmag_iso": {
+        "auc": 0.5237167348290787,
+        "sym_auc": 0.5237167348290787,
+        "pass": true
+      }
+    },
+    "passed": true
+  },
+  "correlation_overlap_vs_registry": {
+    "registry_rasters_checked": 21,
+    "worst_spearman_full_footprint": 0.0,
+    "worst_overlap_3px_literal": 1.0,
+    "worst_overlap_submission_literal": "17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "worst_overlap_3px_sparse": 0.23811547245976522,
+    "worst_overlap_submission_sparse": "19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+    "duplicate_literal": true,
+    "duplicate_sparse": false,
+    "note": "Literal any-raster gate always fails against dense 17GEMSDOE positive-everywhere raster (1.0 overlap); sparse-only diagnostic is separate."
+  },
+  "raster_sha256": "fb987c5cb85f618e77e0dc8bd480f00e29ac9a7a6cf3ab28bb2be4edf4d04b66",
+  "zip_sha256": "55c462b63e9dec02d3ddd0c9088c8ef4e86a6f3323391eb129b50fcadae1d5c5",
+  "validator_output": {
+    "format_valid": true,
+    "no_nan_inside": true,
+    "values_in_0_1": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "zero_outside": true,
+    "crs_shape_transform_match": true,
+    "single_band": true,
+    "dtype_float32": true,
+    "all_checks_passed": true,
+    "n_nonzero": 37654,
+    "sha256": "fb987c5cb85f618e77e0dc8bd480f00e29ac9a7a6cf3ab28bb2be4edf4d04b66",
+    "raster_sha256": "fb987c5cb85f618e77e0dc8bd480f00e29ac9a7a6cf3ab28bb2be4edf4d04b66",
+    "format_report": {
+      "path": "/home/user/GEMSDOE88/docs/downloads/gems88-mag-psg-20261024-d5d8e799-zeros.tif",
+      "bytes": 826632,
+      "sha256": "fb987c5cb85f618e77e0dc8bd480f00e29ac9a7a6cf3ab28bb2be4edf4d04b66",
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "width": 3292,
+      "height": 3730,
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "ref_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nodata": null,
+      "blocksize": [
+        1,
+        3292
+      ],
+      "fixture_grid": false,
+      "has_validity_mask": false,
+      "nan_pixels": 0,
+      "infinity_pixels": 0,
+      "n_nan": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "n_nonzero": 37654,
+      "mass": 37654.0,
+      "mass_outside_footprint": 0,
+      "problems": [],
+      "ok": true,
+      "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    },
+    "validation": {
+      "file": "/home/user/GEMSDOE88/docs/downloads/gems88-mag-psg-20261024-d5d8e799-zeros.tif",
+      "bytes": 826632,
+      "sha256": "fb987c5cb85f618e77e0dc8bd480f00e29ac9a7a6cf3ab28bb2be4edf4d04b66",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "lzw"
+      },
+      "band_description": [
+        "predicted_new_fault_probability"
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    }
+  },
+  "emitted_pixels": 37654,
+  "geometry": {
+    "n_dots": 37654,
+    "min_nn_px": 2.8,
+    "frac_within_2px_of_catalogue": 0.0,
+    "frac_beyond_10px": 73.17150900302757,
+    "frac_beyond_25px": 44.47867424443618,
+    "separation_px": 2.8,
+    "collar_px": 2.0
+  },
+  "verdict": "negative",
+  "experiment_count": 1,
+  "stop_reason": "Candidate evaluated; negative holdout vs ADHR incumbent is deliverable. Literal dense overlap is expected; sparse-only uniqueness determines slot eligibility.",
+  "organizer_confirmed": null,
+  "slots_spent": 0,
+  "limitations": [
+    "Hide-and-recover catalogue labels are not the undisclosed new fault labels; HOLDOUT-DTI is not a leaderboard score.",
+    "Pseudogravity computed from 100m gridded RTP; FFT edge wraparound without cosine taper may imprint periodic artifacts at footprint boundary.",
+    "No DrivenData portal authentication; ORGANIZER-CONFIRMED score absent.",
+    "Registry excludes private/unlinked submissions."
+  ],
+  "provenance": "Owner-mirrored competition grid; organizer byte identity pinned but not authenticated."
+}

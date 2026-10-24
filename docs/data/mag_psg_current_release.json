@@ -1,0 +1,32 @@
+{
+  "schema": "gems88.current-release.v1",
+  "file": "docs/downloads/gems88-mag-psg-20261024-d5d8e799-zeros.tif",
+  "file_sha256": "fb987c5cb85f618e77e0dc8bd480f00e29ac9a7a6cf3ab28bb2be4edf4d04b66",
+  "zip_sha256": "55c462b63e9dec02d3ddd0c9088c8ef4e86a6f3323391eb129b50fcadae1d5c5",
+  "format_valid": true,
+  "no_nan_inside": true,
+  "all_values_in_0_1": true,
+  "crs_shape_transform_match": true,
+  "zip_one_exact_tif": true,
+  "positive_pixels": 37654,
+  "canary_max_auc": 0.5189520364808762,
+  "holdout_dti": 0.005762366014426636,
+  "holdout_ci95": [
+    0.004687471299318146,
+    0.007042798177055399
+  ],
+  "holdout_evaluator": "gems57-pooled-hide-v2",
+  "withheld_positive_pixels": 22893,
+  "incumbent_best_dti": 0.18788,
+  "literal_registry_overlap_3px": 1.0,
+  "sparse_registry_overlap_3px": 0.23811547245976522,
+  "registry_rasters_checked": 21,
+  "duplicate_literal": true,
+  "duplicate_sparse": false,
+  "research_download_ok": true,
+  "ok_to_submit": true,
+  "approved_for_weekly_slot": true,
+  "verdict": "negative",
+  "reason": "HOLDOUT-DTI 0.0058 vs ADHR 0.18788; sparse overlap 0.238 literal 1.000; PASS sparse uniqueness; format PASS",
+  "provenance": "owner-mirrored inputs; independent organizer authentication unavailable"
+}

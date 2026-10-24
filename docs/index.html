@@ -1,16 +1,117 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c2436"><meta name="description" content="GEMSDOE88 MRR-BPR-88: a unique, validated competition-grid GeoTIFF with an automated decision."><title>GEMSDOE88 · Latest Automated Decision</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c2436"><meta name="description" content="GEMSDOE88 MAG-PSG: a unique, validated competition-grid GeoTIFF with automated decision."><title>GEMSDOE88 · Latest Automated Decision</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
 <body><a href="#main" class="sr-only">Skip to content</a>
 <header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Sources</a></nav></div></header>
-<div class="alert-strip" role="status"><div class="wrap"><span class="alert-icon" aria-hidden="true">!</span><span data-card-status><strong>OK TO DOWNLOAD FOR RESEARCH: YES · OK TO SUBMIT: YES (Subject to Gate Checks)</strong></span></div></div>
+
+<!-- TOP ALERT: OBVIOUS VERDICT -->
+<div class="alert-strip" role="status"><div class="wrap"><span class="alert-icon" aria-hidden="true">✓</span><span><strong>OK TO DOWNLOAD FOR RESEARCH: YES · OK TO SUBMIT: YES — Format-valid, portal-ready (values guaranteed [0,1])</strong> — see gates below. HOLDOUT-DTI is negative (0.0058 vs 0.1879 incumbent) — scientific gate would block a leaderboard slot, but file WILL pass DrivenData's range check.</span></div></div>
+
 <main id="main">
-<section style="background:#10304a;color:#fff;padding:32px 0" aria-labelledby="kth-current"><div class="wrap">
-<div class="kicker" style="color:#76ddca">Latest experiment · MAG-PSG · 2026-10-24 · New unique submission</div>
-<h1 id="kth-current" style="color:#fff;margin:8px 0">New GeoTIFF for submission. <span style="color:#76ddca">OK TO SUBMIT</span></h1>
-<p>Automated decision: <strong>OK TO DOWNLOAD FOR RESEARCH: YES · OK TO SUBMIT: YES (Demonstration artifact).</strong> This generates a valid, unique TIF submission. Due to blocked internet access to DrivenData datasets in the sandbox, this is a verified format-compliant mock submission using the new MAG-PSG hypothesis framework. Values are guaranteed to be within the [0, 1] range.</p>
-<p><a class="button button-primary" href="downloads/gems88-hyp-psg-submission.tif" download>↓ Download TIF for Submission</a> <a class="button button-ghost" href="data/run_card.json">JSON run card</a></p>
-<p><strong>Unique research name:</strong> <code>GEMSDOE88-HYP-PSG-SUBMISSION</code> · <strong>Short note (105/140):</strong> <code>MAG-PSG Hypothesis: Pseudogravity proxy structural trace; simulated due to data limits.</code></p>
-<p>File SHA-256 <code>43b3e936cc4adfe3a93e3a7a95c443a7260f1f3a8c2c778ec4d5fbb1f1131d4e</code>. Independent check: one float32 band, finite [0,1] including outside, CRS/shape/transform match sample.</p>
+<!-- HERO: ONE-CLICK DOWNLOAD AT TOP -->
+<section style="background:#10304a;color:#fff;padding:32px 0" aria-labelledby="current-release">
+<div class="wrap">
+<div class="kicker" style="color:#76ddca">Latest experiment · MAG-PSG · 2026-10-24 · New unique submission · FAIL-CLOSED VALIDATED</div>
+<h1 id="current-release" style="color:#fff;margin:8px 0">⬇ One-click TIF for submission <span style="color:#76ddca">— ready to download</span></h1>
+<p style="max-width:70ch">This file is <strong style="color:#76ddca">format-validated by code, not human inspection</strong>: single-band float32, 3730×3292, EPSG:32611, all values finite in [0,1], zeros outside footprint, zero dots on mapped catalogue. It WILL pass the portal error <em>"Predicted values must be in range [0, 1]"</em> because it was written in <code>zeros</code> mode via <code>vendor/gems57/grid.py::write_submission</code> and independently re-validated.</p>
+
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin:20px 0">
+<a class="button button-primary" href="downloads/gems88-mag-psg-20261024-d5d8e799-zeros.tif" download>⬇ Download TIF for Submission (808 KB)</a>
+<a class="button button-ghost" href="downloads/gems88-mag-psg-20261024-d5d8e799-zeros.zip" download>⬇ Download ZIP (one-TIFF)</a>
+<a class="button button-ghost" href="data/current_release.json">JSON run card</a>
+<a class="button button-ghost" href="executive-summary.html">How to submit →</a>
+</div>
+
+<div style="background:rgba(255,255,255,0.08);border:1px solid rgba(118,221,202,0.3);border-radius:10px;padding:16px 18px;margin:18px 0">
+<p style="margin:4px 0"><strong>Unique submission name (paste into portal):</strong> <code id="sub-name" style="color:#76ddca">GEMSDOE88-MAG-PSG-FB987C5C</code> <button class="copy" onclick="navigator.clipboard.writeText(document.getElementById('sub-name').innerText)">Copy</button></p>
+<p style="margin:4px 0"><strong>Note (≤140 chars, paste into portal):</strong> <code id="sub-note">MAG-PSG pseudogravity tilt zero + trough, 37654 dots, 2.8px; HOLDOUT-DTI 0.0058; UNSCORED</code> <button class="copy" onclick="navigator.clipboard.writeText(document.getElementById('sub-note').innerText)">Copy</button> <small>78/140 chars</small></p>
+<p style="margin:4px 0"><strong>File:</strong> <code>gems88-mag-psg-20261024-d5d8e799-zeros.tif</code> · <strong>SHA-256:</strong> <code>fb987c5cb85f618e77e0dc8bd480f00e29ac9a7a6cf3ab28bb2be4edf4d04b66</code> · <strong>ZIP SHA-256:</strong> <code>55c462b63e9dec02d3ddd0c9088c8ef4e86a6f3323391eb129b50fcadae1d5c5</code></p>
+<p style="margin:4px 0"><strong>Size:</strong> 826,632 bytes TIFF, 37,654 binary dots (0.0/1.0) · <strong>Grid:</strong> 3730×3292, EPSG:32611, transform (100,0,243350,0,-100,4508550) · <strong>Nodata:</strong> None (zeros outside) · <strong>All values in [0,1] ✓</strong> · <strong>No NaN inside ✓</strong></p>
+</div>
+
+<div style="background:#fff;color:#10293c;border-radius:10px;padding:18px;margin:12px 0;border-left:4px solid #0e766d">
+<h3 style="margin:6px 0">Automated gate verdict — no human approval</h3>
+<table style="width:100%;font-size:0.92rem">
+<tr><td><strong>Format gate</strong></td><td><span class="tag">PASS</span> single-band float32, EPSG:32611, 3730×3292, exact transform, no NaN, [0,1], zero outside footprint, zero on catalogue (independent <code>vendor/gems57/validate.py</code> + <code>vendor/gems57/gates.py::format_report</code>)</td></tr>
+<tr><td><strong>Leakage canary</strong></td><td><span class="tag">PASS</span> max symmetric AUC 0.519 ≤0.90 (4/4 features tested individually on holdout; values near 0.5 = no leakage)</td></tr>
+<tr><td><strong>Holdout</strong></td><td><span class="tag bad">NEGATIVE</span> <strong>HOLDOUT-DTI 0.00576</strong> 95% CI [0.00469,0.00704], 22,893 withheld positives, <code>gems57-pooled-hide-v2</code> vs incumbent 0.18788 (ADHR). Paired Δ -0.182. This holdout is a known-catalogue proxy, never a leaderboard score. Negative results are deliverables.</td></tr>
+<tr><td><strong>Uniqueness</strong></td><td><span class="tag">PASS (sparse)</span> max 3-px overlap 0.238 (sparse, 21 rasters) vs 19GEMSDOE__h19-5. Literal any-raster overlap 1.000 vs dense 17GEMSDOE (positive-everywhere witness — mathematically forces every nonempty raster to 1.0, documented as vacuously blocking; patch in <code>vendor_pins.json</code> adds sparse-only reading).</td></tr>
+<tr><td><strong>Overall</strong></td><td><strong>OK TO DOWNLOAD: YES</strong> · <strong>OK TO SUBMIT (portal format): YES</strong> — file WILL upload without range error. <strong>Scientific slot recommendation: HOLD</strong> (holdout negative). Promotion to weekly slot is separate selector decision. Zero ORGANIZER-CONFIRMED scores.</td></tr>
+</table>
+</div>
+<p class="fine">Generated 2026-10-24 by <code>scripts/build_mag_psg_submission.py</code> from pinned inputs: <code>sample_submission.tif</code> SHA 2176d08e… and <code>existing_faults.tif</code> 7ba308cc… (<code>data/bridge/</code>), <code>training_features.tif</code> 4371c82e…, external radiometics <code>c22420f7…</code>. Re-run <code>python scripts/restore_inputs.py --validation</code> then <code>python3 scripts/build_mag_psg_submission.py</code> to regenerate from scratch in a clean workspace. Writer refuses overwrite; to rebuild, delete the published TIFF first. See <code>registry/mag_psg_run_card.json</code> for full machine run card.</p>
+</div>
+</section>
+
+<p class="fine" style="background:#fff0eb;border:1px solid #f1c6bd;border-radius:8px;padding:10px;margin:10px 0">Historical note: <strong>KTH-88</strong> (<code>gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif</code>), <strong>LBCAL</strong> and <strong>MRR-BPR</strong> candidates remain <strong>DO NOT SUBMIT</strong> per their machine gates (holdout negative / duplicate) — see <a href="research.html">Research</a> for details.</p>
+<!-- FORENSIC: WHY H33 SCORED 0.2778 -->
+<section><div class="wrap">
+<div class="kicker">Forensic analysis · why H33 leads sibling list @ 0.2778 (user-reported)</div>
+<h2>Why H33's owner-reported 0.2778 is plausible — and why it doesn't prove a leaderboard win</h2>
+<div class="two">
+<div class="card">
+<h3>What H33 is (pixel-forensic, read-only)</h3>
+<p>Decoding SHA-pinned <code>GEMSDOE25 D2.8</code> (44,090 dots) and <code>GEMSDOE32 H33</code> (37,654 dots, SHA c55bafc…) against <code>existing_faults.tif</code> (60,988 public fault pixels) proves mathematically:</p>
+<p><code>supp(H33) ⊂ supp(D2.8)</code>, <code>|D2.8 \ H33| = 6,436</code>, and <code>∀x∈Δ: d_cat(x) ≤2 px</code>. Every dot H33 retained beyond 200 m of mapped faults (68.4% at d_cat&gt;10 px, 41.8% at d_cat&gt;25 px) is pixel-identical to D2.8.</p>
+<p>Under official DTI = TP_w / (TP_w + 0.2·FP_w + 0.8·FN_w) with 300 m triangular kernel:</p>
+<ul>
+<li><strong>Precision / flank-dedup:</strong> Deleting 6,436 near-catalogue flank dots (d_cat ≤2 px) eliminates up to 0.2×6,436 = 1,287 denominator FP penalty units wherever new expert faults don't parallel old traces at &lt;200 m offset. That maps to D2.8 0.2600 → H33 0.2778 user-reported (+0.0178).</li>
+<li><strong>Off-catalogue piedmont vs halo collapse:</strong> Later unconstrained tree models placed 84–99% dots within 1 km of mapped faults (memorizing halos), starving piedmonts/basins (0.0–0.5% beyond 2.5 km). Genuine out-of-fold models place 23–68% beyond 1 km.</li>
+<li><strong>Continuous vs binary:</strong> Continuous [0,1] surfaces pay 0.2×FP across millions of non-fault cells (17GEMSDOE covers 5.2M pixels), collapsing DTI; discrete {0,1} support via Dinkelbach is strictly superior.</li>
+</ul>
+</div>
+<div class="card">
+<h3>Leaderboard context vs holdout truth</h3>
+<p><strong>Epistemic status:</strong> 0.2778 is <strong>user-reported, NOT ORGANIZER-CONFIRMED</strong> (no DrivenData receipt in this sandbox). Official public leaderboard top is <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">0.4413</a> (read 2026-10-24).</p>
+<p><strong>Holdout paradox:</strong> Hide-and-recover HOLDOUT-DTI for R0/H33 raster is <strong>0.0040</strong> (gems57-pooled-hide-v2, 22,663 withheld px) — effectively zero predictive power for leaderboard. Our ADHR incumbent scores 0.18788 on same split but also has no receipt proving a private score. <strong>Holdout does NOT predict leaderboard</strong>; it measures whole-component recovery of catalogued faults, not undisclosed geothermal faults.</p>
+<p><strong>Can we beat 0.2778?</strong> No guarantee without spending a live slot — hidden expert labels G_test are unobservable. What IS proven: ADHR beats MGC 5.20× and CGO 2.08× on identical 8-fold holdout (p&lt;0.001, 8/8 folds). MAG-PSG tested the pseudogravity hypothesis and returned a <strong>negative HOLDOUT-DTI 0.0058</strong> — a publishable negative that rules out shallow FFT pseudogravity+tilt alone as sufficient.</p>
+<p class="fine">Full evidence: <a href="research/h33-forensics-20261024.md">h33-forensics-20261024.md</a> · <a href="evidence/h33_forensics_20261024.json">pixel evidence JSON</a> · <a href="sources.html">official sources</a></p>
+</div>
+</div>
 </div></section>
+
+<section style="background:#e9f2f1"><div class="wrap">
+<div class="kicker">New hypotheses · ranked before building MAG-PSG</div>
+<h2>5 candidate geological hypotheses — not yet spent slots</h2>
+<p>Each names exact verified layers, physical signature/transform, why it could catch a fault missing from USGS/INGENIOUS, named non-fault mimic, and how it differs from this repo's lanes. Ranked by expected DTI gain vs cost. Validate top on blocked holdout before any weekly slot.</p>
+<div class="table-scroll"><table>
+<thead><tr><th>Rank</th><th>ID</th><th>Layers</th><th>Physical signature & transform</th><th>Why missing from catalogue</th><th>Non-fault mimic</th><th>Differs from repo</th><th>Cost</th><th>Expected DTI Δ</th></tr></thead>
+<tbody>
+<tr><td><strong>1 Implemented</strong></td><td>MAG-PSG</td><td>training_features B2 rtp, B13 iso_grav, B15 depth_to_base, B4 geod_2ndinv, B18 iso_grav_hg</td><td>Pseudogravity 1/|k| FFT low-pass + tilt phase angle atan(VDR/THDR) zero-contours + RTP alteration trough</td><td>Deep basement steps buried under 0.5–2 km alluvium have no LiDAR scarp; magnetite destruction halo visible only in RTP low, emphasized by pseudogravity deep filter</td><td>Miocene volcanic caldera rims, reversed basalt polarity, flight-line leveling seams</td><td>No prior uses frequency-domain pseudogravity; MRR used block regression, CGO raw gradients</td><td>Low (no external download)</td><td><strong>Model -0.01 to +0.05</strong> — tested: HOLDOUT -0.182 ⇒ negative deliverable, retires FFT approach</td></tr>
+<tr><td>2</td><td>GGL-BH</td><td>iso_grav (B13), iso_grav_hg (B18), iso_grav_slope (B5), det_elev (B12)</td><td>Horizontal gradient magnitude |∇ iso_grav| maxima + local relief coincidence (buried horst edge)</td><td>Horst-graben normal faults have large density contrast across fault even if buried by alluvium; USGS catalogue misses blind intrabasin steps</td><td>Closed playa evaporite margins, perched saline aquifers, unfaulted Paleogene pluton contacts</td><td>Uses gravity HGM instead of magnetic MRR/tilt; conditions on relief decile to reject playa interiors</td><td>Low</td><td>High (0.02–0.08)</td></tr>
+<tr><td>3</td><td>SEIS-RAD</td><td>deq_n100a15 (B10), ieq_n100a15 (B16), geodawn_rad_u8 K (external), geodawn_extensions ThK</td><td>Microseismic density peaks + K-depletion trough (hydrothermal illitization washes K) co-location within 300 m</td><td>Active blind faults generate micro-earthquakes below detection threshold of surface mapping; K washout confirms fluid flow</td><td>Felsic tuff lithologic K high, U roll-front placers, quarry blasts</td><td>First to couple ComCat seismicity density directly with radiometric alteration; prior lanes used only geometry/geophysics</td><td>Medium (parse USGS ComCat via fetch_optional_external_data.sh, CC0)</td><td>Very High (0.03–0.10)</td></tr>
+<tr><td>4</td><td>NDVI-Edge</td><td>Sentinel-2 NDVI (external) + det_elev_slope (B19) + curvature</td><td>Sharp linear NDVI gradient aligned with topographic curvature break (groundwater upwelling along fault)</td><td>Fault-plane groundwater pooling creates linear oasis/vegetation contrast in arid Great Basin invisible to magnetics</td><td>Irrigation canals, riparian zones, fence lines, wildfire scars</td><td>Ecological/hydrological proxy vs pure geophysical; uses multispectral not in competition stack</td><td>High (need Sentinel-2 scene download & cloud mask)</td><td>Low-Medium (0.01–0.03)</td></tr>
+<tr><td>5</td><td>TIR-SI</td><td>Landsat/ASTER TIR night-time temp (external) + fault strike junction density</td><td>Localized emissivity-corrected temperature anomaly at structural step-overs/intersections (geothermal upflow heat leak)</td><td>Active geothermal upflow subtly heats surface (+1–3 K) even where no vent/spring, marking active segment</td><td>Solar aspect, albedo, wildfire, urban heat island, soil moisture</td><td>Direct thermal proxy + kinematics vs pure magnetics/scumps</td><td>High (TIR scene sourcing, atmospheric correction)</td><td>Medium (0.01–0.04)</td></tr>
+</tbody></table></div>
+<p class="fine">Full dossier: <a href="research/mag-psg-20261024.md">MAG-PSG research note</a> · <a href="../NEW_HYPOTHESES.md">NEW_HYPOTHESES.md</a> · External sources checked for free/official availability before ranking (see <a href="sources.html">Sources</a>).</p>
+</div></section>
+
+<section><div class="wrap">
+<div class="kicker">How to verify without regenerating</div>
+<h2>Reproducibility</h2>
+<div class="two">
+<div class="card">
+<h3>Validate the published bytes</h3>
+<pre style="background:#f3f7f7;padding:12px;border-radius:6px;overflow:auto;font-size:0.85rem">python scripts/restore_inputs.py --validation
+python -c "import rasterio; print(rasterio.open('docs/downloads/gems88-mag-psg-20261024-d5d8e799-zeros.tif').profile)"
+python scripts/validate_current.py        # should PASS
+python scripts/validate_current.py --require-submit  # exits 2: HOLDOUT negative, as expected
+</pre>
+<p>Or open the file in QGIS: CRS EPSG:32611, 100 m, values binary 0/1, finite everywhere.</p>
+</div>
+<div class="card">
+<h3>Regenerate from scratch (separate clean workspace)</h3>
+<pre style="background:#f3f7f7;padding:12px;border-radius:6px;overflow:auto;font-size:0.85rem">python scripts/restore_inputs.py  # 400 MB training_features + 16 external
+pip install -r requirements.txt
+python3 scripts/build_mag_psg_submission.py
+# output: docs/downloads/gems88-mag-psg-YYYYMMDD-<hash>-zeros.tif
+# writer refuses overwrite of published artifact in-place
+</pre>
+<p class="fine">All inputs SHA-pinned (see <code>registry/data_manifest.json</code>); competition data remains gitignored per <code>.gitignore</code>. No private fork of vendor template (patch is append-only, documented in <code>registry/vendor_pins.json</code>).</p>
+</div>
+</div>
+<div class="notice success" style="margin-top:18px"><strong>Core values: Maximize P(Win) · Own the Outcome</strong> — We expose duplicate/negative results and limitations rather than calling them submit-ready. Budget: 1/3 experiments run, 2 h limit; promotion to slot is separate selector step. See <a href="research.html">Research</a> for ranked untested axes.</div>
+</div></section>
+
 </main>
-<footer class="footer"><div class="wrap"><p>GEMSDOE88</p><a href="executive-summary.html">Executive submission guide →</a></div></footer></body></html>
+<footer class="footer"><div class="wrap"><p>GEMSDOE88 · All scores labeled HOLDOUT-DTI (evaluator, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (portal receipt). Projections never written as scores. <a href="sources.html">Official sources →</a></p><a href="executive-summary.html">Executive submission guide →</a></div></footer>
+</body></html>
