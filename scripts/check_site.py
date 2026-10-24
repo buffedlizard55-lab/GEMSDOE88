@@ -27,8 +27,8 @@ def main(root=ROOT):
     literal = json.loads((root / 'docs/data/literal_protocol_audit.json').read_text())
     mdps = json.loads((root / 'registry/mdps88_run_card.json').read_text())
     assert literal['raster_sha256'] == mdps['raster_sha256']
-    assert literal['preplacement_feasibility']['all_nonempty_in_footprint_candidates_blocked']
-    assert literal['correlation_overlap_vs_registry']['duplicate'] and not literal['ok_to_submit']
+    assert literal['saturation_certificate']['universal_overlap_blocker']
+    assert literal['correlation_overlap_vs_registry']['literal_duplicate'] and not literal['ok_to_submit']
     assert mdps['correlation_overlap_vs_registry']['duplicate']
     assert 'FAIL — DUPLICATE' in (root / 'docs/index.html').read_text()
     # Historical MRR and KTH remain negative; latest PHASE-88 controls the site.
@@ -126,6 +126,14 @@ def main(root=ROOT):
                 # claim otherwise, so it is cleared by its gate record instead (IR-88-76).
                 if 'DO-NOT-SUBMIT' not in path.name:
                     assert path.name in cleared_names, f'Unmarked research download: {link}'
+    # IR-88-86/88: every downloadable TIF/ZIP (linked or not) must be marked unless its own gate clears it.
+    # Guard every published TIF/ZIP under docs/ (not only docs/downloads/), so variants cannot be published unmarked.
+    for f in sorted((root / 'docs').rglob('*')):
+        if f.is_file() and f.suffix.lower() in ('.tif', '.tiff', '.zip'):
+            assert 'DO-NOT-SUBMIT' in f.name or f.name in cleared_names, f'Unmarked published file under docs/: {f.relative_to(root)}'
+    # IR-88-88: the canonical PHASE-88 panel must precede the archived MDPS-88 text on the landing page.
+    landing = (root / 'docs' / 'index.html').read_text()
+    assert landing.find(phase['download'].split('/')[-1]) < landing.find('MDPS-88'), 'PHASE-88 must lead the landing page'
     # Old KTH links remain archival, but the *first* panel must show PHASE-88.
     current = json.loads((root / 'docs/data/current_release.json').read_text())
     assert current['file'] == phase['download']

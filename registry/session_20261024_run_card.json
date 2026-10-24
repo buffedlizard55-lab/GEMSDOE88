@@ -218,7 +218,7 @@
     "format_checks": "values in [0,1], no NaN, CRS/shape/transform match the sample (v3 portal-parity PASS except layout parity with the sample: DEFLATE+tiled)"
   },
   "submission_name": "GEMSDOE88-PROVCREST-RANK-04559A2C",
-  "submission_file": "gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+  "submission_file": "gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif",
   "submission_note": "PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED",
   "submission_note_chars": 112,
   "organizer_confirmed_score": null,

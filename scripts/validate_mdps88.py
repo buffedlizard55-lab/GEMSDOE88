@@ -154,7 +154,7 @@ def main() -> int:
                checks=checks, failures=failures,
                scientific_verdict="negative", ok_to_submit=False,
                literal_protocol=literal["correlation_overlap_vs_registry"],
-               ok_to_download=not failures and literal["ok_to_download"],
+               ok_to_download=not failures and bool(literal.get("ok_to_download_for_research", literal.get("ok_to_download"))),
                audit_passed=not failures)
     (ROOT / "evidence/mdps88_independent_audit_20261024.json").write_text(json.dumps(out, indent=1, default=float))
     (ROOT / "docs/data/mdps88_validation.json").write_text(json.dumps(out, indent=1, default=float))

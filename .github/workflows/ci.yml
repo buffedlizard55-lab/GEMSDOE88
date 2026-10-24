@@ -18,6 +18,15 @@ jobs:
       - run: python -m pip install -r requirements.txt
       - name: Restore SHA-pinned mirrored grid, catalogue and registry witnesses
         run: python scripts/restore_inputs.py --validation
+      - name: Enforce requested literal duplicate-stop policy
+        run: |
+          python scripts/audit_literal_protocol.py
+          set +e
+          python scripts/audit_literal_protocol.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+          git diff --exit-code docs/data/literal_protocol_audit.json evidence/literal_protocol_audit_20261024.json
       - name: Run full unified test suite
         run: pytest -v
       - name: Audit site, exact disk bytes and negative current release

@@ -1,18 +1,9 @@
 {
   "schema": "gems88.literal-protocol-audit.v1",
   "date_utc": "2026-10-24",
-  "hypothesis": "Existing MDPS-88 uniqueness claim fails the binding literal rule",
-  "mechanism": "Hash-pinned footprint coverage proof plus shared exact dot-overlap measurement",
-  "named_non_fault_process": "Lake Lahontan shoreline benches (existing MDPS geological confounder)",
-  "new_experiments": 0,
-  "new_raster_generated": false,
-  "slots_used": 0,
-  "preplacement_feasibility": {
-    "footprint_pixels": 5167373,
-    "directly_covered_pixels": 5167373,
-    "all_nonempty_in_footprint_candidates_blocked": true,
-    "reason": "Every allowed dot already lies on positive registry support"
-  },
+  "hypothesis": "Unmapped basin faults are missed by range-front-trained rankers (covariate shift); a physics ranker trained only on isolated mapped strands vs far-basin background, allocated in matched distance regimes (far d>8 px + capped physics-snapped near tranche 2-8 px), kernel-matched 2.83 px spacing and b2 collar, recovers far withheld faults better than all-positive training and adds low-relief support the H19-5 lineage lacks.",
+  "mechanism": "44 label-blind physics columns (GeoDAWN magnetics/gravity/radiometrics, 1 m LiDAR scarps, 10 m topo/chi, strain, seismicity, GDR geothermal points) -> per-fold HGB PU rankers (isolated-component positives vs far background) -> Dinkelbach expected-DTI allocation; final: full-catalogue fit, 37,654-class live budget, lane-capped vs registry priors.",
+  "named_non_fault_process": "Pleistocene pluvial (Lake Lahontan) shoreline benches and fluvial terrace risers: constant-elevation scarps with the same LiDAR dipole/curvature signature as young fault scarps but no brittle offset.",
   "holdout": {
     "evidence_class": "HOLDOUT-DTI",
     "evaluator_version": "gems57-pooled-hide-v2",
@@ -131,146 +122,59 @@
       "dti": 0.11478
     }
   },
-  "holdout_provenance": "Historical evidence, not retrained in this audit",
+  "holdout_provenance": "Historical run card; not retrained in this audit. Pooled arithmetic checked separately by validate_mdps88.py.",
   "correlation_overlap_vs_registry": {
-    "witness": "data/registry/dense_17gemdoe.tif",
+    "final_literal_overlap_3px_remeasured": 1.0,
+    "literal_duplicate": true,
+    "scope": "One hash-pinned counterexample suffices to reject; NOT a complete registry uniqueness scan.",
+    "preplacement": "Universal coverage certificate blocks every nonempty dot placement before training; no new surface created.",
+    "historical_surface_abs_spearman": 0.10556715616150086,
+    "historical_surface_rho_not_recomputed": true
+  },
+  "saturation_certificate": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
     "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
-    "final_overlap_3px": 1.0,
-    "duplicate": true,
-    "registry_complete": false,
-    "scope": "One sufficient rejection witness; not a new full-registry certification",
-    "surface_rho": null,
-    "surface_rho_reason": "No new surface: stop at universal feasibility blocker"
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.7,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
   },
+  "witness_source": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+  "raster": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
   "raster_sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
-  "artifact": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
   "validator_output": {
-    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
-    "policy": "gems88-gate-v3",
-    "bytes": 122537,
-    "sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
-    "problems": [],
-    "member_name": "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
-    "tiff_header": {
-      "byte_order": "II",
-      "is_classic_tiff": true,
-      "is_bigtiff": false
-    },
-    "layout": {
-      "compress": "deflate",
-      "tiled": true,
-      "block_shapes": [
-        [
-          256,
-          256
-        ]
-      ],
-      "predictor": null,
-      "interleave": "band"
-    },
-    "checks": {
-      "one_band": true,
-      "dtype_float32": true,
-      "crs_epsg_32611": true,
-      "shape_matches_sample": true,
-      "transform_matches_sample": true,
-      "bounds_match_sample": true,
-      "resolution_100m": true,
-      "nodata_undeclared": true,
-      "all_finite": true,
-      "masked_read_no_masked_cells": true,
-      "min_ge_0": true,
-      "max_le_1": true,
-      "portal_range_check_nan_strict": true,
-      "portal_range_check_nanmin_nanmax": true,
-      "footprint_cells_finite": true,
-      "outside_footprint_zero": true,
-      "has_dots": true,
-      "no_internal_mask_band": true
-    },
-    "array_sha256": "e9a2d1d1c94db645a0d5da15f760cbf4ddb973be60e057228a5fe1ae43ee937c",
-    "n_dots": 29742,
-    "min": 0.0,
-    "max": 1.0,
-    "n_unique_values": 2,
-    "layout_parity_with_sample": false,
-    "second_decoder": {
-      "name": "tifffile",
-      "equal": true
-    },
-    "ok": true
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
   },
-  "zip_validator_output": {
-    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip",
-    "policy": "gems88-gate-v3",
-    "bytes": 85603,
-    "sha256": "cd64e498a62175e833edbd9079e95bf8e0d296b89de63c03b6154d5a92d10606",
-    "problems": [],
-    "zip_members": [
-      "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif"
-    ],
-    "zip_testzip": null,
-    "zip_member_compress_type": 8,
-    "member_name": "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
-    "tiff_header": {
-      "byte_order": "II",
-      "is_classic_tiff": true,
-      "is_bigtiff": false
-    },
-    "layout": {
-      "compress": "deflate",
-      "tiled": true,
-      "block_shapes": [
-        [
-          256,
-          256
-        ]
-      ],
-      "predictor": null,
-      "interleave": "band"
-    },
-    "checks": {
-      "one_band": true,
-      "dtype_float32": true,
-      "crs_epsg_32611": true,
-      "shape_matches_sample": true,
-      "transform_matches_sample": true,
-      "bounds_match_sample": true,
-      "resolution_100m": true,
-      "nodata_undeclared": true,
-      "all_finite": true,
-      "masked_read_no_masked_cells": true,
-      "min_ge_0": true,
-      "max_le_1": true,
-      "portal_range_check_nan_strict": true,
-      "portal_range_check_nanmin_nanmax": true,
-      "footprint_cells_finite": true,
-      "outside_footprint_zero": true,
-      "has_dots": true,
-      "no_internal_mask_band": true
-    },
-    "array_sha256": "e9a2d1d1c94db645a0d5da15f760cbf4ddb973be60e057228a5fe1ae43ee937c",
-    "n_dots": 29742,
-    "min": 0.0,
-    "max": 1.0,
-    "n_unique_values": 2,
-    "layout_parity_with_sample": false,
-    "second_decoder": {
-      "name": "tifffile",
-      "equal": true
-    },
-    "ok": true
-  },
+  "zip_one_byte_identical_tif": true,
   "submission_name": "GEMSDOE88-MDPS88-MIX-20261024",
-  "note": "Existing MDPS-88 audit: literal registry duplicate; format check only; DO NOT SUBMIT.",
-  "ok_to_download": true,
+  "submission_note": "MDPS-88 matched-domain physics mix, 29742 dots; HOLDOUT far 0.0727 overall 0.0667; UNSCORED; DO NOT SUBMIT",
+  "new_rasters_generated": 0,
+  "experiments_run": 0,
+  "slots_used": 0,
+  "organizer_confirmed_score": null,
+  "ok_to_download_for_research": true,
   "ok_to_submit": false,
   "verdict": "negative",
-  "stop_required": true,
-  "organizer_confirmed_score": null,
-  "limitations": [
-    "No new holdout or feature-canary run",
-    "No current portal receipt or weekly-cap verification",
-    "No unique submission can satisfy the current all-raster rule while this witness remains registered"
-  ]
+  "decision": "DUPLICATE_STOP",
+  "reason": "Literal 3px overlap exceeds 70%; no dense-prior exemption authorized. Existing holdout gates also fail."
 }
