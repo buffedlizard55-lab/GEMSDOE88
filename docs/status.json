@@ -3,13 +3,12 @@
   "approved_for_weekly_slot": false,
   "status": "BLOCKED",
   "problems": [
-    "UNIQUENESS: literal registry overlap exceeds 0.70; DUPLICATE_STOP",
-    "HOLDOUT: inherited MDPS-88 paired improvement and incumbent gates failed"
+    "UNIQUENESS: literal registry overlap exceeds 0.70",
+    "FINGERPRINT: too few final dots are >25 px from the mapped catalogue"
   ],
   "ok_to_download_for_research": true,
   "ok_to_submit": false,
-  "raster_sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
-  "policy": "binding-literal-all-registry-v1",
-  "run_card": "docs/data/literal_protocol_audit.json",
-  "historical_release_record": "docs/data/current_release.json"
+  "raster_sha256": "871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6",
+  "policy": "binding-literal-all-registry-v1 + gems88-gate-v3 fingerprint",
+  "run_card": "registry/mvrd_run_card.json"
 }

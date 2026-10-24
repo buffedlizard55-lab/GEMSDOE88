@@ -30,7 +30,7 @@ def digest(path: Path) -> str:
     return h.hexdigest()
 
 
-def release_report(root=ROOT):
+def mrr_release_report(root=ROOT):
     root = Path(root)
     card_paths = (
         root / "registry/run_card.json",
@@ -395,6 +395,134 @@ def provcrest_report_v3(root=ROOT, tag="provcrest"):
     return dict(name=rec["name"], sha256=rec["sha256"], ok_to_download=rec["ok_to_download"], ok_to_submit=rec["ok_to_submit"], label=rec["label"],
                 blocking_reasons=rec["blocking_reasons"], worst_like_for_like_overlap=worst, fingerprint_screen_pass=fp_ok,
                 own_verdict=(rec.get("own_gate") or rec["pr53_own_gate"])["verdict"], pr53_own_verdict=(rec.get("own_gate") or rec["pr53_own_gate"])["verdict"])
+
+
+def mvrd_report_v3(root=ROOT):
+    """Verify and return the canonical H88-MVRD machine decision."""
+    root = Path(root)
+    card_path = root / "registry/mvrd_run_card.json"
+    gate_path = root / "registry/mvrd_gate_v3.json"
+    card = json.loads(card_path.read_text())
+    gate_record = json.loads(gate_path.read_text())
+    raster = root / card["artifact"]
+    if not raster.is_file():
+        raise FileNotFoundError(f"canonical MVRD artifact is missing: {raster}")
+    raster_sha = digest(raster)
+    if raster_sha != card["raster_sha256"] or raster_sha != gate_record["sha256"]:
+        raise ValueError("canonical MVRD artifact SHA-256 does not match card/gate")
+    if card.get("verdict") != "negative" or card.get("ok_to_submit") is not False:
+        raise ValueError("canonical MVRD run card must remain fail-closed")
+    if gate_record.get("own_gate", {}).get("verdict") != "negative" or gate_record.get("ok_to_submit") is not False:
+        raise ValueError("canonical MVRD gate must remain fail-closed")
+    return {
+        "artifact": card["artifact"],
+        "raster_sha256": raster_sha,
+        "holdout_ok": bool(gate_record["holdout_cross_run"]["beats_bar"]),
+        "beats_holdout_bar": bool(gate_record["holdout_cross_run"]["beats_bar"]),
+        "canaries_ok": bool(card["leakage_canary"]["all_pass"]),
+        "sparse_registry_ok": bool(gate_record["uniqueness"]["unique_like_for_like"]),
+        "unique_like_for_like": bool(gate_record["uniqueness"]["unique_like_for_like"]),
+        "literal_registry_ok": card["correlation_overlap_vs_registry"]["literal_all_positive_witness_overlap_3px"] <= 0.70,
+        "distance_fingerprint_ok": bool(gate_record["fingerprint_screen_pass"]),
+        "format_ok": bool(gate_record["portal_values_and_grid_ok"] and gate_record["portal_layout_parity_with_sample"]),
+        "ok_to_download": bool(card["ok_to_download"]),
+        "ok_to_submit": bool(card["ok_to_submit"]),
+        "verdict": card["verdict"],
+    }
+
+
+def release_report(root=ROOT):
+    """Reopen current MVRD bytes and independently derive the fail-closed verdict."""
+    root = Path(root)
+    mvrd = mvrd_report_v3(root)
+    card = json.loads((root / "registry/mvrd_run_card.json").read_text())
+    tif = root / card["artifact"]
+    zip_path = root / card["zip_artifact"]
+    sample = root / "data/bridge/sample_submission.tif"
+    mapped = root / "data/bridge/existing_faults.tif"
+    witness = root / "data/registry/dense_17gemdoe.tif"
+    missing = [str(path) for path in (sample, mapped, witness) if not path.is_file()]
+    if missing:
+        raise FileNotFoundError("required current-release audit input is missing: " + ", ".join(missing))
+
+    gd = grid.load_grid(root / "data/bridge")
+    if digest(sample) != grid.SHA256_SAMPLE_SUBMISSION or digest(mapped) != grid.SHA256_EXISTING_FAULTS:
+        raise ValueError("owner-mirror grid/label hash differs from pinned file")
+    with rasterio.open(sample) as ref, rasterio.open(tif) as ds:
+        ref_grid = (ref.shape, ref.crs, ref.transform)
+        raster = ds.read(1)
+        sample_match = bool(ds.count == 1 and ds.dtypes[0] == "float32" and (ds.shape, ds.crs, ds.transform) == ref_grid)
+        nodata_none = ds.nodata is None
+    inside_no_nan = bool(np.isfinite(raster[gd.footprint]).all())
+    outside_no_nan = bool(np.isfinite(raster[~gd.footprint]).all())
+    values_0_1 = bool(np.isfinite(raster).all() and float(raster.min()) >= 0 and float(raster.max()) <= 1)
+    no_positive_outside = not bool(((raster > 0) & ~gd.footprint).any())
+    local = validate.validate(tif, gd.footprint, gd.catalogue)
+    portal = gates.format_report(tif, sample, footprint=gd.footprint)
+
+    with rasterio.open(witness) as ds:
+        prior = ds.read(1)
+    prior_dots = (np.isfinite(prior) & (prior > 0)) & gd.footprint
+    measured_overlap = uniqueness.dot_overlap(raster, prior_dots, 3)
+    literal_duplicate = bool(measured_overlap > 0.70)
+
+    zip_ok = False
+    with zipfile.ZipFile(zip_path) as archive:
+        zip_ok = archive.namelist() == [tif.name] and archive.read(tif.name) == tif.read_bytes()
+    format_ok = bool(
+        sample_match and nodata_none and inside_no_nan and outside_no_nan and values_0_1
+        and no_positive_outside and local["all_checks_passed"] and portal["ok"] and zip_ok
+        and mvrd["format_ok"]
+    )
+    ok_to_submit = bool(
+        format_ok and mvrd["holdout_ok"] and mvrd["canaries_ok"]
+        and mvrd["sparse_registry_ok"] and not literal_duplicate
+        and mvrd["distance_fingerprint_ok"] and card.get("ok_to_submit") is True
+    )
+    return {
+        "candidate": "H88-MVRD",
+        "file": card["artifact"],
+        "file_sha256": mvrd["raster_sha256"],
+        "zip_file": card["zip_artifact"],
+        "zip_sha256": digest(zip_path),
+        "name": card["submission_name"],
+        "note": card["submission_note"],
+        "note_length": card["submission_note_length"],
+        "format_ok": format_ok,
+        "format_valid": format_ok,
+        "inside_no_nan": inside_no_nan,
+        "outside_no_nan": outside_no_nan,
+        "all_finite_entire_raster": bool(inside_no_nan and outside_no_nan),
+        "values_0_1": values_0_1,
+        "crs_shape_transform_match": sample_match,
+        "positive_pixels": int(((raster > 0) & gd.footprint).sum()),
+        "zip_one_matching_tif": zip_ok,
+        "holdout_evaluator": card["holdout_dti"]["evaluator_version"],
+        "holdout_withheld_positive_pixels": card["holdout_dti"]["withheld_positive_pixels"],
+        "holdout_candidate_dti": card["holdout_dti"]["candidate"],
+        "holdout_candidate_ci95": card["holdout_dti"]["ci95"],
+        "paired_delta_vs_incumbent": card["holdout_dti"]["paired_delta_vs_h88_adhr"]["delta"],
+        "paired_delta_ci95": card["holdout_dti"]["paired_delta_vs_h88_adhr"]["ci95"],
+        "holdout_dti": card["holdout_dti"]["candidate"],
+        "incumbent_best_dti": card["holdout_dti"]["h88_adhr_incumbent"]["dti"],
+        "registry_forward_overlap_3px": measured_overlap,
+        "literal_registry_overlap_3px": measured_overlap,
+        "literal_duplicate": literal_duplicate,
+        "duplicate": literal_duplicate,
+        "sparse_registry_ok": mvrd["sparse_registry_ok"],
+        "distance_fingerprint_ok": mvrd["distance_fingerprint_ok"],
+        "ok_to_download": bool(card["ok_to_download"] and format_ok),
+        "research_download_ok": bool(card["ok_to_download"] and format_ok),
+        "ok_to_submit": ok_to_submit,
+        "verdict": "negative" if not ok_to_submit else "selector-required",
+        "status": "OK TO DOWNLOAD FOR RESEARCH — DO NOT SUBMIT" if not ok_to_submit else "SELECTOR REQUIRED",
+        "stop_reasons": [
+            "UNIQUENESS: literal registry overlap with full-footprint witness is 1.0 > 0.70",
+            "FINGERPRINT: only 2.87% of final dots are >25 catalogue pixels away; requires 35%",
+        ],
+        "organizer_confirmed_score": None,
+        "weekly_slots_used": 0,
+    }
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)

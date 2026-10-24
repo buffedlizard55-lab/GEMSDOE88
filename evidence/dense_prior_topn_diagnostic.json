@@ -32,26 +32,6 @@
       "passes_0_70_like_for_like": true
     },
     {
-      "candidate": "gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
-      "candidate_sha256": "32483a32d782349adec89e25915d630d4770ec60553bfb2e8afee7243ec38b57",
-      "candidate_dots": 46457,
-      "witness_topN_threshold_value": 0.8257405757904053,
-      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
-      "forward_3px_overlap_vs_witness_topN": 0.05829,
-      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.379405,
-      "passes_0_70_like_for_like": true
-    },
-    {
-      "candidate": "gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
-      "candidate_sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
-      "candidate_dots": 37654,
-      "witness_topN_threshold_value": 0.8438428044319153,
-      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
-      "forward_3px_overlap_vs_witness_topN": 0.000744,
-      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.003134,
-      "passes_0_70_like_for_like": true
-    },
-    {
       "candidate": "gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
       "candidate_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
       "candidate_dots": 37654,
@@ -132,16 +112,6 @@
       "passes_0_70_like_for_like": true
     },
     {
-      "candidate": "gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif",
-      "candidate_sha256": "4cafa7758c3a5dfd54ac0ee9a801774efdb4193c85dd1467d659bea2aec82337",
-      "candidate_dots": 37654,
-      "witness_topN_threshold_value": 0.8438428044319153,
-      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
-      "forward_3px_overlap_vs_witness_topN": 0.03657,
-      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.231715,
-      "passes_0_70_like_for_like": true
-    },
-    {
       "candidate": "gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
       "candidate_sha256": "5487d7937c92dce12a87185b0b3ba7c800b78e655ecafd47fbdb41404d29f011",
       "candidate_dots": 37654,
@@ -182,6 +152,6 @@
       "passes_0_70_like_for_like": true
     }
   ],
-  "count_passing_topN": 17,
-  "count_candidates": 17
+  "count_passing_topN": 14,
+  "count_candidates": 14
 }

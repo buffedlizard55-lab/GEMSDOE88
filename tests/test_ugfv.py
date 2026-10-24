@@ -129,10 +129,10 @@ def test_run_card_four_way_parity_and_audit_invariants():
     assert reg["literal_binding_decision"]["duplicate"] is True
     assert reg["universal_witness"]["universal_overlap_blocker"] is True
 
-    # The live status producer follows its explicit MDPS audit;
-    # current_release.json is retained as an archived PHASE record.
+    # The current status feed follows latest integrated H88-MVRD, while the
+    # four-way MRR card remains immutable history.
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
-    current_doc = json.loads((ROOT / "docs/data/literal_protocol_audit.json").read_text())
+    current_doc = json.loads((ROOT / "registry/mvrd_run_card.json").read_text())
     assert status_doc["raster_sha256"] == current_doc["raster_sha256"]
     assert status_doc["raster_sha256"] != card["raster_sha256"]
     assert status_doc["ok_to_submit"] is False

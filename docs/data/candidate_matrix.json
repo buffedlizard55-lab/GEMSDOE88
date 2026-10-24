@@ -27,28 +27,6 @@
       "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
     },
     {
-      "label": "GTHC-88 (50-ch hydrothermal + SCRD strat)",
-      "record": "registry/gthc88_run_card.json",
-      "holdout_dti": 0.17071753929687927,
-      "ci95": [
-        0.15596995821627244,
-        0.18664475743809522
-      ],
-      "withheld_positive_px": 22893,
-      "note": "unstrat SCRD 0.1910 [0.1761, 0.2075] > ADHR; strat 0.1707 passes like-for-like 0.601 <= 0.70",
-      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
-      "organizer_confirmed": null,
-      "tif": "docs/downloads/gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
-      "tif_sha256": "32483a32d782349adec89e25915d630d4770ec60553bfb2e8afee7243ec38b57",
-      "zip": "docs/downloads/gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.zip",
-      "dots": 46457,
-      "literal_overlap_vs_17GEMSDOE": 1.0,
-      "topN_like_for_like_overlap": 0.05829,
-      "ok_to_download_research": true,
-      "ok_to_submit": false,
-      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
-    },
-    {
       "label": "MRR-BPR-88",
       "record": "registry/run_card_mrr88.json",
       "holdout_dti": 0.18525582109578861,
@@ -228,8 +206,8 @@
       "tif_sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
       "zip": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip",
       "dots": 37654,
-      "literal_overlap_vs_17GEMSDOE": 1.0,
-      "topN_like_for_like_overlap": 0.000744,
+      "literal_overlap_vs_17GEMSDOE": null,
+      "topN_like_for_like_overlap": null,
       "ok_to_download_research": true,
       "ok_to_submit": false,
       "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"

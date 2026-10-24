@@ -122,7 +122,7 @@ def fabric_release_report(root=ROOT):
     expected_hashes = {r['sha256'] for r in rows} | {sha(tif), later['new_prior_sha256']}
     # Rasters that carry a gems88-gate-v3 verdict record (registry/*gate_v3.json, registry/gate_verdict.json) were reviewed against the
     # 216+-raster v3 registry by the session of 2026-10-24 (IR-88-59..71); any OTHER unreviewed TIFF still fails closed.
-    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json', 'gthc88_gate_v3.json'):
+    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json', 'mvrd_gate_v3.json', 'gthc88_gate_v3.json'):
         rec = root / 'registry' / record
         if rec.is_file():
             expected_hashes.add(json.loads(rec.read_text())['sha256'])
@@ -169,25 +169,6 @@ def fabric_release_report(root=ROOT):
             or comparisons['final_dots']['worst_dot_overlap'] <= .70):
             raise ValueError('new KTH research TIFF has no verified negative audit')
         expected_hashes.add(sha(p))
-    gthc_path = root / 'registry/gthc88_run_card.json'
-    if gthc_path.is_file():
-        gthc = json.loads(gthc_path.read_text())
-        gp = (root / gthc['download']).resolve()
-        gaudit = json.loads((root / 'docs/data/gthc88_validation.json').read_text())
-        gcomp = json.loads((root / 'evidence/gthc88_registry.json').read_text())
-        if (not gp.is_relative_to((root / 'docs/downloads').resolve())
-            or gthc.get('verdict') != 'negative' or gthc.get('ok_to_submit') is not False
-            or 'DO-NOT-SUBMIT' not in gp.name
-            or sha(gp) != gthc.get('raster_sha256')
-            or gaudit.get('tif_sha256') != sha(gp)
-            or gaudit.get('ok_to_submit') is not False
-            or not gaudit.get('tif_and_single_member_zip_validated')
-            or gaudit.get('local_format_audit', {}).get('ok') is not True
-            or gcomp['final_dots']['candidate_file_sha256'] != sha(gp)
-            or gcomp['final_dots']['registry_rasters_checked'] < 200
-            or gcomp['final_dots']['worst_dot_overlap'] <= .70):
-            raise ValueError('new GTHC research TIFF has no verified negative audit')
-        expected_hashes.add(sha(gp))
     if observed_hashes != expected_hashes:
         raise ValueError('accessible registry changed since postmerge audit; recheck all prior rasters')
     index = dict(complete_accessible_scan=True, errors=[], rasters=[])
@@ -250,7 +231,7 @@ def fabric_release_report(root=ROOT):
 
 
 
-def release_report(root=ROOT):
+def phase_release_report(root=ROOT):
     """Reopen the current PHASE-88 TIFF/ZIP and independently remeasure witness."""
     from scripts.validate_phase88 import inspect
     root = Path(root)
@@ -282,6 +263,13 @@ def release_report(root=ROOT):
                 reason=card['stop_reason'],
                 provenance='hash-pinned owner mirror; not independently authenticated organizer sample')
 
+
+
+def release_report(root=ROOT):
+    """Return the canonical current H88-MVRD report."""
+    from validate_release import release_report as mvrd_release_report
+
+    return mvrd_release_report(root)
 
 def main():
     report = release_report()

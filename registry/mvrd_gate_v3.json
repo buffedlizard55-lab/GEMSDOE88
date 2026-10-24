@@ -1,0 +1,86 @@
+{
+  "name": "gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT",
+  "note": "MVRD88 85ch monoclinal+redox+strand Dinkelbach 33167d (HOLDOUT-DTI 0.1973); fingerprint+17GEMSDOE hold slot",
+  "file": "docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif",
+  "sha256": "871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6",
+  "zip_sha256": "4470e339d9d8b9b8eb32f6b976fe32e17bd176e45b0d0ee91da258caab544dca",
+  "generated_utc": "2026-10-24T09:30:09Z",
+  "source": "2026-10-24 H88-MVRD whole-component discovery candidate (first candidate to beat H88-ADHR 0.18789 on 8-fold holdout), assessed by gate v3 across all 222 accessible rasters",
+  "policy": "gems88-gate-v3",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "blocking_reasons": [
+    "UNIQUENESS: literal 3px forward overlap = 1.0000 > 0.70 against the full-footprint continuous 17GEMSDOE witness",
+    "FINGERPRINT: share_gt25 = 0.028703 < 0.35 (catalogue-hugging production profile)"
+  ],
+  "informational": [
+    "gems88-gate-v3 classifies space-filling rasters as non-discriminating, but the user's stricter literal all-raster rule remains binding here; 17GEMSDOE forward overlap is 1.0000."
+  ],
+  "note_len": 107,
+  "name_len": 61,
+  "human_step_remaining": "None for this file: the autonomous decision is DO NOT SUBMIT. A future gate-passing file still requires a separate human selector and portal action.",
+  "own_gate": {
+    "verdict": "negative",
+    "registry_rasters_checked": 222,
+    "worst_sparse_dot_overlap_3px": 0.6727771580185123
+  },
+  "holdout_cross_run": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seeds": [
+      20,
+      21
+    ],
+    "withheld_positives": 22893,
+    "dti": 0.1973138593236377,
+    "ci95": [
+      0.18112122147312235,
+      0.21300840516209602
+    ],
+    "paired_delta_vs_adhr": 0.009426217474048953,
+    "paired_delta_ci95": [
+      0.001961609327303062,
+      0.016993791623975997
+    ],
+    "bar": 0.18789,
+    "beats_bar": true,
+    "caveat": "identical seeds 20+21 and identical 22,893 withheld positive pixels as H88-ADHR bar (exact paired evaluation)"
+  },
+  "fingerprint": {
+    "n": 33167,
+    "median_d_cat_px": 6.324555320336759,
+    "share_le2": 0.0,
+    "share_gt10": 0.23836946362348116,
+    "share_gt25": 0.028703229113275244
+  },
+  "fingerprint_screen_pass": false,
+  "portal_values_and_grid_ok": true,
+  "portal_layout_parity_with_sample": true,
+  "portal_layout": {
+    "compress": "lzw",
+    "tiled": false,
+    "block_shapes": [
+      [
+        1,
+        3292
+      ]
+    ],
+    "predictor": null,
+    "interleave": "band"
+  },
+  "uniqueness": {
+    "registry_rasters": 222,
+    "distinct_dot_sets": 117,
+    "unique_like_for_like": true,
+    "worst_like_for_like_overlap": {
+      "label": "GEMSDOE88-GHMD:gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+      "value": 0.6727771580185123
+    },
+    "worst_abs_rho": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 0.38159985658982787
+    },
+    "like_for_like_blockers": []
+  }
+}
