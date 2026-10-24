@@ -1,3 +1,14 @@
+> **CURRENT PREREGISTERED & VERIFIED HYPOTHESIS LEDGER (`PREREG-20261024-TDKL88`, 2026-10-24):** See [research/hypotheses-20261024-tdkl88.md](research/hypotheses-20261024-tdkl88.md), [registry/preregistration_tdkl88.json](registry/preregistration_tdkl88.json), and [registry/tdkl88_run_card.json](registry/tdkl88_run_card.json).
+> - **Selected & Executed Primary Hypothesis (`H88-TDKL`):** *Transverse-Drainage Knickpoint-Lineament, Multi-Scale Scarp Polarity & Log-Odds PoE Completeness Fusion* across `dem10_chi_100m_u8.tif`, `dem10_chi_100m_i16.tif`, `lidar_scarp_features_u8.tif`, `topo_10m_derived_100m_u8.tif`, `geodawn_extensions_u8.tif`, `geodawn_rad_u8.tif`, and `training_features.tif`.
+> - **Verified 8-Fold `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `seeds 20+21`, `n=22,893` overall, `n=10,791` far `> 10 px`, `n=3,117` blind `> 25 px`):**
+>   - **Overall `HOLDOUT-DTI`:** **`0.196237`** (`95% CI [0.179686, 0.211729]`), beating incumbent `H88-ADHR` (`0.190436`, stored bar `0.189634`) by **`+0.005801`** (`95% CI [+0.001174, +0.010109]`, **8/8 folds won**).
+>   - **Far `> 10 px` `HOLDOUT-DTI`:** **`0.124175`** (`95% CI [0.104960, 0.143581]`), beating incumbent `H88-ADHR` (`0.117203`, stored bar `0.114780`) by **`+0.006972`** (`95% CI [+0.000646, +0.013038]`).
+>   - **Blind-Basin `> 25 px` `HOLDOUT-DTI`:** **`0.076881`** (`95% CI [0.046785, 0.111574]`), beating incumbent `H88-ADHR` (`0.071214`, stored bar `0.065263`) by **`+0.005668`** (`+0.011618` vs stored bar).
+> - **Ranked Reserve Hypotheses (Preregistered in `PREREG-20261024-TDKL88`):**
+>   2. `H88-STRAT-TRUNC` — *Geologic-Map Contact Truncation Density & Quaternary Juxtaposition Torque* (`geology_500k_100m_u8.tif`).
+>   3. `H88-SENTINEL-HYDRO` — *Sentinel-2 Iron-Oxide / Clay Argillic Alteration Corridor Anisotropy* (`sentinel2_indices_100m_u8.tif`).
+>   4. `H88-INSAR-HINGE` — *COMET LiCSAR Vertical-East Strain-Rate Curvature & Subsidence Hinge* (`insar_comet_u8.tif`).
+
 > **ARCHIVED UNTESTED BRAINSTORM (PR #68).** These are speculative ideas, not verified improvements. The PR #68 `MAG-PSG` TIFF was generated from seeded random stripes (no pseudogravity transform), failed the current footprint audit, and was removed from Pages. Its original source remains in Git history; [post-merge audit](evidence/postmerge_psg_quarantine_20261024.json). DO NOT SUBMIT it. The current PHASE-88 preregistration and negative result are in [registry/preregistration_phase88.json](registry/preregistration_phase88.json) and [research/phase88-20261024.md](research/phase88-20261024.md). License/AOI availability for the external hypotheses below has NOT been confirmed; do not treat them as viable without that check.
 
 # New Geological Hypotheses for GEMSDOE Competition

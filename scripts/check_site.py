@@ -54,6 +54,20 @@ def main(root=ROOT):
         if data.get('ok_to_submit') and tif_name:
             cleared_names.add(tif_name)
             cleared_names.add(tif_name[:-4] + '.zip')
+    # Current H88-TDKL run card and gate v3 verification
+    tdkl_rc = json.loads((root / 'registry/tdkl88_run_card.json').read_text())
+    tdkl_gv = json.loads((root / 'registry/tdkl88_gate_verdict.json').read_text())
+    tdkl_tif = root / tdkl_rc['raster']['file']
+    tdkl_zip = root / tdkl_rc['raster']['zip_file']
+    assert tdkl_tif.is_file() and tdkl_zip.is_file()
+    assert _hl.sha256(tdkl_tif.read_bytes()).hexdigest() == tdkl_rc['raster_sha256'] == tdkl_gv['candidate']['tif_sha256']
+    assert _hl.sha256(tdkl_zip.read_bytes()).hexdigest() == tdkl_rc['raster']['zip_sha256'] == tdkl_gv['candidate']['zip_sha256']
+    assert len(tdkl_rc['submission_note']) <= 140
+    assert tdkl_gv['ok_to_download'] is True and tdkl_gv['ok_to_submit'] is True
+    for page in ('index.html', 'executive-summary.html'):
+        body = (root / 'docs' / page).read_text()
+        assert tdkl_tif.name in body and tdkl_rc['submission_name'] in body, page
+
     # Archived LBCAL candidate: retain its independent file-integrity and safety checks.
     lb = json.loads((root / 'registry' / 'lbcal_run_card.json').read_text())
     lb_tif = root / lb['raster']['file']

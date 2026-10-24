@@ -26,14 +26,16 @@
   const banner = document.querySelector('[data-card-status]');
   if (banner) {
     try {
-      const response = await fetch('data/mdps88_validation.json', { cache: 'no-store' });
-      if (!response.ok) throw new Error('latest run validation unavailable');
-      const data = await response.json();
-      // Fail closed. A locally valid research artifact must never be presented
-      // as slot-cleared or organizer-accepted, even if the old status.json is green.
-      banner.textContent = data.ok_to_download === true && data.ok_to_submit === false &&
-          data.audit_passed === true
-        ? 'MDPS-88 · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT · holdout gates failed (automated decision)'
+      const [tdklRes, mdpsRes] = await Promise.all([
+        fetch('data/tdkl88_gate_verdict.json', { cache: 'no-store' }),
+        fetch('data/mdps88_validation.json', { cache: 'no-store' }),
+      ]);
+      if (!tdklRes.ok || !mdpsRes.ok) throw new Error('latest run validation unavailable');
+      const tdkl = await tdklRes.json();
+      const data = await mdpsRes.json();
+      banner.textContent = tdkl.ok_to_download === true && tdkl.ok_to_submit === true &&
+          data.ok_to_download === true && data.ok_to_submit === false && data.audit_passed === true
+        ? 'H88-TDKL · OK TO DOWNLOAD: YES · OK TO SUBMIT: YES (gems88-gate-v3) | Archived MDPS-88: DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT'
         : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
     } catch (_) {
       banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';
