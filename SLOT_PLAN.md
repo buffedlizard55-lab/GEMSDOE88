@@ -1,3 +1,7 @@
+> **2026-10-24 GTHC-88 update (`IR-88-GTHC-01..03`).** Zero competition slots spent.
+> - **GTHC-88 (`gthc88_dual_scrd`, unstratified):** **HOLDOUT-DTI `0.190971`** (`[0.176110, 0.207531]`, `gems57-pooled-hide-v2`, `n=22,893`) — **new all-time repo holdout record**, beating stored `H88-ADHR` (`0.187888`) and recomputed `H88-ADHR` (`0.189634`), but overlaps prior local `GEMSDOE88` relay rasters (`ADHR`/`MRR-BPR`) by `0.8664 > 0.70`.
+> - **GTHC-88 (`gthc88_strat_fp`, emitted as `gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif`):** **HOLDOUT-DTI `0.170718`** (`[0.155970, 0.186645]`, `n=22,893`) — beats `MDC-88` (`0.14885`) by `+0.021868` (`+14.69%`), clears **like-for-like uniqueness across all 223 registry rasters** (`max overlap = 0.6011 <= 0.70`, `max |ρ| = 0.3526 <= 0.90`), and passes the fleet fingerprint screen (`share_le2 = 0.0`, `share_gt25 = 0.3671 >= 0.35`), but remains **DO NOT SUBMIT** under the binding literal all-registry rule (`1.0000 > 0.70` vs `17GEMSDOE`) and because stratified holdout (`0.170718`) is below unstratified `H88-ADHR` (`0.187888`).
+
 > **2026-10-24 LBCAL update (IR-88-78).** No slot was spent.
 > - **LBCAL** (`gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif`) is **HOLD** under the written holdout gate: 0.0616 < 0.0763.
 > - **The receipt model ranks them the other way.** Its 8-fold repo-blocked CV is ρ 0.941. Projections: LBCAL 0.356, H33 0.264, PROVCREST 0.105 (MODEL-PROJECTION).
@@ -11,6 +15,7 @@
 
 | Candidate | Evidence | Scientific gate | Registry gate | Slot decision |
 |---|---|---|---|---|
+| `GEMSDOE88-GTHC-SCRD-STRAT-E3C0D9E0` (`gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif`) | Unstratified `gthc88_dual_scrd` **HOLDOUT-DTI `0.190971`**, 95% CI `[0.176110, 0.207531]` (beats `H88-ADHR` `0.187888`/`0.189634`); emitted stratified `gthc88_strat_fp` **HOLDOUT-DTI `0.170718`**, 95% CI `[0.155970, 0.186645]`, `n=22,893`, `gems57-pooled-hide-v2` (beats `MDC-88` `0.14885` by `+0.021868`) | **PASS (unstratified) / HOLD (stratified)** — stratified `0.170718 < 0.187888` when enforcing `share_gt25 >= 0.35` | **PASS like-for-like (`0.6011 <= 0.70` across 223 rasters) / FAIL under binding literal rule** (`1.0000 > 0.70` vs `17GEMSDOE`) | **DO NOT SUBMIT; 0 slots used** |
 | `GEMSDOE88-MRR-BPR-20261024-DO-NOT-SUBMIT` | Candidate **HOLDOUT-DTI `0.185256`**, 95% CI `[0.171519,0.199965]`, `n=22,893`, evaluator `gems57-pooled-hide-v2`; paired incumbent `0.189634`; paired delta `-0.004378`, 95% CI `[-0.007902,-0.000623]` | **FAIL** — confidently below paired incumbent | **FAIL under binding literal rule** — 17GEMSDOE forward overlap `1.0000 > 0.70`; sparse-only diagnostic max `0.684178` passes | **DO NOT SUBMIT; 0 slots used** |
 
 ## Why no conditional MRR slot exists

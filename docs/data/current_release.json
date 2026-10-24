@@ -1,30 +1,38 @@
 {
   "schema": "gems88.current-release.v1",
-  "file": "docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
-  "file_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
-  "zip_sha256": "e21c8aac70fdcca59fedd5e4b9ee2d8148dc34b12ea6b158698eb7ff5f9e75ca",
+  "file": "docs/downloads/gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+  "file_sha256": "32483a32d782349adec89e25915d630d4770ec60553bfb2e8afee7243ec38b57",
+  "zip_sha256": "ee83f6b51dadff44ef2ed1f66727b4d723e9df232fa1928f75157825aee9f366",
   "format_valid": true,
   "no_nan_inside": true,
   "all_values_in_0_1": true,
   "crs_shape_transform_match": true,
   "zip_one_exact_tif": true,
-  "positive_pixels": 37654,
-  "canary_max_auc": 0.5096994974324838,
-  "holdout_dti": 0.05265580824432912,
+  "positive_pixels": 46457,
+  "canary_max_auc": 0.652287,
+  "holdout_dti": 0.17071753929687927,
   "holdout_ci95": [
-    0.045911112529722096,
-    0.059150702260526954
+    0.15596995821627244,
+    0.18664475743809522
+  ],
+  "unstratified_scrd_holdout_dti": 0.1909706295059748,
+  "unstratified_scrd_holdout_ci95": [
+    0.17610999977911587,
+    0.20753094315924664
   ],
   "holdout_evaluator": "gems57-pooled-hide-v2",
   "withheld_positive_pixels": 22893,
   "incumbent_best_dti": 0.18788764184958875,
   "literal_registry_overlap_3px": 1.0,
-  "registry_rasters_checked": 222,
+  "like_for_like_unique": true,
+  "like_for_like_worst_overlap_3px": 0.6011150095787502,
+  "fingerprint_screen_passed": true,
+  "registry_rasters_checked": 223,
   "duplicate": true,
   "research_download_ok": true,
   "ok_to_submit": false,
   "approved_for_weekly_slot": false,
   "verdict": "negative",
-  "reason": "Duplicate by literal >70% forward 3px registry overlap (including an independent GEMSDOE87 prior); stop.",
+  "reason": "GTHC-88 unstratified SCRD arm beats H88-ADHR on 8-fold holdout (0.1910 vs 0.1879/0.1896) and stratified arm clears like-for-like 223-raster uniqueness (max 0.6011 <= 0.70) and fingerprint screen (share_gt25 = 0.3671 >= 0.35,HOLDOUT-DTI 0.1707 vs MDC-88 0.1489), but remains held (DO NOT SUBMIT) under binding literal all-registry overlap (1.0000 > 0.70 vs dense 17GEMSDOE witness) and because stratified holdout (0.1707) is below unstratified ADHR (0.1879).",
   "provenance": "owner-mirrored inputs; independent organizer authentication unavailable"
 }

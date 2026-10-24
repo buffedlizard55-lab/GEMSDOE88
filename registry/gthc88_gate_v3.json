@@ -1,0 +1,39 @@
+{
+  "policy": "gems88-gate-v3",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "blocking_reasons": [
+    "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)"
+  ],
+  "informational": [
+    "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+  ],
+  "note_len": 133,
+  "name_len": 34,
+  "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows).",
+  "name": "gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT",
+  "sha256": "32483a32d782349adec89e25915d630d4770ec60553bfb2e8afee7243ec38b57",
+  "zip_sha256": "ee83f6b51dadff44ef2ed1f66727b4d723e9df232fa1928f75157825aee9f366",
+  "generated_utc": "2026-10-24T20:00:00Z",
+  "fingerprint": {
+    "n": 46457,
+    "median_d_cat_px": 10.630146026611328,
+    "share_le2": 0.0,
+    "share_gt10": 0.5117205157457434,
+    "share_gt25": 0.3670921497298577
+  },
+  "fingerprint_screen_passed": true,
+  "like_for_like_unique": true,
+  "worst_like_for_like_overlap_3px": {
+    "label": "GEMSDOE88:gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
+    "value": 0.6011150095787502
+  },
+  "worst_abs_rho": {
+    "label": "17GEMSDOE:dense_17gemdoe.tif",
+    "value": 0.3526324517042682
+  },
+  "unstratified_scrd_holdout_dti": 0.1909706295059748,
+  "unstratified_scrd_beats_incumbent": true,
+  "stratified_fp_holdout_dti": 0.17071753929687927
+}

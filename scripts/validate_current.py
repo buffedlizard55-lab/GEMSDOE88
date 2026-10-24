@@ -122,7 +122,7 @@ def fabric_release_report(root=ROOT):
     expected_hashes = {r['sha256'] for r in rows} | {sha(tif), later['new_prior_sha256']}
     # Rasters that carry a gems88-gate-v3 verdict record (registry/*gate_v3.json, registry/gate_verdict.json) were reviewed against the
     # 216+-raster v3 registry by the session of 2026-10-24 (IR-88-59..71); any OTHER unreviewed TIFF still fails closed.
-    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json'):
+    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json', 'gthc88_gate_v3.json'):
         rec = root / 'registry' / record
         if rec.is_file():
             expected_hashes.add(json.loads(rec.read_text())['sha256'])
@@ -169,6 +169,25 @@ def fabric_release_report(root=ROOT):
             or comparisons['final_dots']['worst_dot_overlap'] <= .70):
             raise ValueError('new KTH research TIFF has no verified negative audit')
         expected_hashes.add(sha(p))
+    gthc_path = root / 'registry/gthc88_run_card.json'
+    if gthc_path.is_file():
+        gthc = json.loads(gthc_path.read_text())
+        pg = (root / gthc['download']).resolve()
+        audit_g = json.loads((root / 'docs/data/gthc88_validation.json').read_text())
+        comp_g = json.loads((root / 'evidence/gthc88_registry.json').read_text())
+        if (not pg.is_relative_to((root / 'docs/downloads').resolve())
+            or gthc.get('verdict') != 'negative' or gthc.get('ok_to_submit') is not False
+            or 'DO-NOT-SUBMIT' not in pg.name
+            or sha(pg) != gthc.get('raster_sha256')
+            or audit_g.get('tif_sha256') != sha(pg)
+            or audit_g.get('ok_to_submit') is not False
+            or not audit_g.get('tif_and_single_member_zip_validated')
+            or audit_g.get('local_format_audit', {}).get('ok') is not True
+            or comp_g['final_dots']['candidate_file_sha256'] != sha(pg)
+            or comp_g['final_dots']['registry_rasters_checked'] < 200
+            or comp_g['final_dots']['worst_dot_overlap'] <= .70):
+            raise ValueError('new GTHC research TIFF has no verified negative audit')
+        expected_hashes.add(sha(pg))
     if observed_hashes != expected_hashes:
         raise ValueError('accessible registry changed since postmerge audit; recheck all prior rasters')
     index = dict(complete_accessible_scan=True, errors=[], rasters=[])
@@ -231,8 +250,8 @@ def fabric_release_report(root=ROOT):
 
 
 
-def release_report(root=ROOT):
-    """Return the current KTH-88 release summary, not the archived fabric run."""
+def kth_release_report(root=ROOT):
+    """Return the archived KTH-88 release summary."""
     root = Path(root)
     card = json.loads((root / 'registry/kth88_run_card.json').read_text())
     validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
@@ -264,6 +283,54 @@ def release_report(root=ROOT):
                 withheld_positive_pixels=holdout['withheld_positive_pixels'],
                 incumbent_best_dti=prior['dti'],
                 literal_registry_overlap_3px=comparison['final_overlap_3px'],
+                registry_rasters_checked=comparison['registry_rasters_checked'],
+                duplicate=bool(comparison['literal_duplicate']),
+                research_download_ok=bool(validation.get('ok_to_download')),
+                ok_to_submit=False, approved_for_weekly_slot=False, verdict='negative',
+                reason=card['stop_reason'],
+                provenance='owner-mirrored inputs; independent organizer authentication unavailable')
+
+
+def release_report(root=ROOT):
+    """Return the current GTHC-88 release summary (and verify KTH-88 archive)."""
+    root = Path(root)
+    kth_release_report(root)
+    card = json.loads((root / 'registry/gthc88_run_card.json').read_text())
+    validation = json.loads((root / 'docs/data/gthc88_validation.json').read_text())
+    tif = root / card['download']
+    archive = tif.with_suffix('.zip')
+    if (card != json.loads((root / 'docs/data/gthc88_run_card.json').read_text()) or
+        card['verdict'] != 'negative' or card['ok_to_submit'] is not False or
+        not tif.is_file() or not archive.is_file()):
+        raise ValueError('GTHC-88 current run card or research artifact is missing/inconsistent')
+    tif_hash, zip_hash = sha(tif), sha(archive)
+    if (tif_hash != card['raster_sha256'] or validation.get('tif_sha256') != tif_hash or
+        validation.get('zip_sha256') != zip_hash or validation.get('ok_to_submit') is not False):
+        raise ValueError('GTHC-88 current-release hashes or negative gate do not agree')
+    holdout = card['holdout_dti']
+    unstrat = card['unstratified_scrd_holdout_dti']
+    prior = card['incumbent_holdout_dti']
+    comparison = card['correlation_overlap_vs_registry']
+    return dict(schema='gems88.current-release.v1', file=card['download'],
+                file_sha256=tif_hash, zip_sha256=zip_hash,
+                format_valid=bool(validation.get('local_format_audit', {}).get('ok')),
+                no_nan_inside=bool(validation.get('local_format_audit', {}).get('no_nan_inside')),
+                all_values_in_0_1=bool(validation.get('local_format_audit', {}).get('range_0_1')),
+                crs_shape_transform_match=all(validation.get('local_format_audit', {}).get(k) for k in
+                                               ('crs_match', 'shape_match', 'transform_match')),
+                zip_one_exact_tif=bool(validation.get('tif_and_single_member_zip_validated')),
+                positive_pixels=46457,
+                canary_max_auc=max(v['symmetric_auc'] for v in card['leakage_canary'].values()),
+                holdout_dti=holdout['dti'], holdout_ci95=holdout['ci95'],
+                unstratified_scrd_holdout_dti=unstrat['dti'],
+                unstratified_scrd_holdout_ci95=unstrat['ci95'],
+                holdout_evaluator=holdout['evaluator_version'],
+                withheld_positive_pixels=holdout['withheld_positive_pixels'],
+                incumbent_best_dti=prior['dti'],
+                literal_registry_overlap_3px=comparison['final_overlap_3px'],
+                like_for_like_unique=comparison['like_for_like_unique'],
+                like_for_like_worst_overlap_3px=comparison['like_for_like_worst_overlap_3px']['value'],
+                fingerprint_screen_passed=comparison['fingerprint_screen_passed'],
                 registry_rasters_checked=comparison['registry_rasters_checked'],
                 duplicate=bool(comparison['literal_duplicate']),
                 research_download_ok=bool(validation.get('ok_to_download')),

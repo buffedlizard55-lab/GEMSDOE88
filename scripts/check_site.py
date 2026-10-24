@@ -23,28 +23,32 @@ class Links(HTMLParser):
 
 def main(root=ROOT):
     import hashlib as _hl
-    # Keep the merged historical MRR record negative, but make the public feed
-    # follow the actual latest experiment (KTH-88), not that older run card.
+    # Keep the merged historical MRR and KTH records negative, and make the public feed
+    # follow the actual latest experiment (GTHC-88).
     historical = json.loads((root / 'registry/run_card.json').read_text())
     assert historical['verdict'] == 'negative' and historical['ok_to_submit'] is False
     assert len(historical['submission_note']) <= 140
     kth = json.loads((root / 'registry/kth88_run_card.json').read_text())
-    validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
+    kth_validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
+    assert kth['verdict'] == 'negative' and kth['ok_to_submit'] is False
+    assert kth_validation['tif_sha256'] == kth['raster_sha256']
+    gthc = json.loads((root / 'registry/gthc88_run_card.json').read_text())
+    validation = json.loads((root / 'docs/data/gthc88_validation.json').read_text())
     current = json.loads((root / 'docs/data/current_release.json').read_text())
-    assert current['file'] == kth['download']
-    assert current['file_sha256'] == kth['raster_sha256'] == validation['tif_sha256']
+    assert current['file'] == gthc['download']
+    assert current['file_sha256'] == gthc['raster_sha256'] == validation['tif_sha256']
     assert current['zip_sha256'] == validation['zip_sha256']
     assert current['research_download_ok'] is True
     assert current['ok_to_submit'] is False and current['duplicate'] is True
-    assert current['holdout_evaluator'] == kth['holdout_dti']['evaluator_version']
-    assert current['withheld_positive_pixels'] == kth['holdout_dti']['withheld_positive_pixels']
-    assert current['holdout_dti'] == kth['holdout_dti']['dti']
-    assert current['holdout_ci95'] == kth['holdout_dti']['ci95']
-    assert current['literal_registry_overlap_3px'] == kth['correlation_overlap_vs_registry']['final_overlap_3px']
-    canonical_tif = root / kth['download']
+    assert current['holdout_evaluator'] == gthc['holdout_dti']['evaluator_version']
+    assert current['withheld_positive_pixels'] == gthc['holdout_dti']['withheld_positive_pixels']
+    assert current['holdout_dti'] == gthc['holdout_dti']['dti']
+    assert current['holdout_ci95'] == gthc['holdout_dti']['ci95']
+    assert current['literal_registry_overlap_3px'] == gthc['correlation_overlap_vs_registry']['final_overlap_3px']
+    canonical_tif = root / gthc['download']
     canonical_zip = canonical_tif.with_suffix('.zip')
     assert canonical_tif.is_file() and canonical_zip.is_file()
-    assert _hl.sha256(canonical_tif.read_bytes()).hexdigest() == kth['raster_sha256']
+    assert _hl.sha256(canonical_tif.read_bytes()).hexdigest() == gthc['raster_sha256']
     assert _hl.sha256(canonical_zip.read_bytes()).hexdigest() == current['zip_sha256']
     # Rasters whose own machine gate record clears them for submission (and which must
     # therefore NOT be renamed to DO-NOT-SUBMIT). Collected from every gate record.
@@ -102,15 +106,22 @@ def main(root=ROOT):
                 # claim otherwise, so it is cleared by its gate record instead (IR-88-76).
                 if 'DO-NOT-SUBMIT' not in path.name:
                     assert path.name in cleared_names, f'Unmarked research download: {link}'
-    # Bind the canonical current feed and visible guidance to latest KTH-88 bytes.
+    # Bind the canonical current feed and visible guidance to latest GTHC-88 bytes (while keeping KTH-88 visible too).
+    gthc_tif = root / gthc['download']
+    assert gthc_tif.is_file() and gthc_tif.name.endswith('DO-NOT-SUBMIT.tif')
+    assert _hl.sha256(gthc_tif.read_bytes()).hexdigest() == gthc['raster_sha256']
+    assert validation['tif_sha256'] == gthc['raster_sha256']
+    assert validation['local_format_audit']['ok'] and not validation['ok_to_submit']
+    assert len(gthc['submission_note']) <= 140
     current = json.loads((root / 'docs/data/current_release.json').read_text())
-    assert current['file'] == kth['download']
-    assert current['file_sha256'] == kth['raster_sha256']
-    assert current['zip_sha256'] == kth_validation['zip_sha256']
+    assert current['file'] == gthc['download']
+    assert current['file_sha256'] == gthc['raster_sha256']
+    assert current['zip_sha256'] == validation['zip_sha256']
     assert current['ok_to_submit'] is False and current['duplicate'] is True
     for page in (root / 'docs/index.html', root / 'docs/executive-summary.html'):
         text = (root / page).read_text()
-        assert kth_tif.name in text, f'Current artifact not identified on {page.name}'
+        assert gthc_tif.name in text, f'Current GTHC-88 artifact not identified on {page.name}'
+        assert kth_tif.name in text, f'Historical KTH-88 artifact not identified on {page.name}'
         upper = text.upper()
         assert 'DO NOT SUBMIT' in upper and (
             'DOWNLOAD: YES' in upper or 'DOWNLOAD FOR RESEARCH: YES' in upper

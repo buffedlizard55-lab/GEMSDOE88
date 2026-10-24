@@ -1,0 +1,58 @@
+{
+  "preregistration_id": "GTHC-88-20261024",
+  "frozen_utc": "2026-10-24T18:30:00Z",
+  "lane": "GTHC-88",
+  "title": "Geothermal Transtensional Hydrothermal-Conduit & Completeness-Regime Decomposition",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "seeds": [20, 21],
+  "buffer_px": 3,
+  "boundary_px": 12,
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_radius_m": 300.0,
+  "withheld_positives_all": 22893,
+  "withheld_positives_far_gt10px": 10791,
+  "comparable_incumbent": {
+    "id": "H88-ADHR",
+    "stored_overall_holdout_dti": 0.18788764184958875,
+    "recomputed_overall_holdout_dti": 0.18963385584087347,
+    "stored_far_gt10px_holdout_dti": 0.114778
+  },
+  "budget": {
+    "max_experiments": 3,
+    "max_hours": 2.0,
+    "planned_experiments": [
+      {
+        "experiment_index": 1,
+        "arm_id": "gthc88_pure_phys50",
+        "description": "50-channel zero-catalogue physical/hydrothermal stack (44 ALL_PHYS_FEATURES + 6 new GTHC_FEATURES) with 3-px halo and exact Dinkelbach allocation"
+      },
+      {
+        "experiment_index": 2,
+        "arm_id": "gthc88_dual_scrd",
+        "description": "Completeness-regime-gated dual-head fusion (73-ch structural+physical head + 50-ch zero-catalogue physical head with distance/cover adaptive gating)"
+      },
+      {
+        "experiment_index": 3,
+        "arm_id": "gthc88_strat_fp",
+        "description": "Fingerprint-compliant stratified relay + blind-basin conduit allocation (d > 3 px collar, share_gt25 >= 0.36)"
+      }
+    ]
+  },
+  "new_features": [
+    "gthc_uranium_redox_argillic_halo",
+    "gthc_upward_mag_basement_admittance",
+    "gthc_fluvial_knick_raised_incision",
+    "gthc_bajada_aspect_monocline",
+    "gthc_lidar_normal_polarity_asymmetry",
+    "gthc_chalcedony_cation_updip_feeder"
+  ],
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan (~1330 m) and Lake Bonneville (~1555 m) wave-cut paleoshoreline terraces and evaporitic playa margins",
+  "gates": {
+    "canary_max_symmetric_auc": 0.90,
+    "max_abs_spearman_rho": 0.90,
+    "max_3px_dot_overlap": 0.70,
+    "fingerprint_share_le2_max": 0.0,
+    "fingerprint_share_gt25_min": 0.35
+  }
+}
