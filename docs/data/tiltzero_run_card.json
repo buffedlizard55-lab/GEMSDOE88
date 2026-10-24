@@ -94,11 +94,11 @@
     "errors": [],
     "worst_sparse_spearman": {
       "rho": 0.0168,
-      "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif"
+      "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif"
     },
     "worst_sparse_dot_overlap_3px": {
       "overlap": 0.3724,
-      "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif"
+      "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif"
     },
     "sparse_gate_pass": true,
     "dense_witness_note": "Continuous/dense rasters (positive on >50% of footprint, e.g. 17GEMSDOE proba) are representation-classed separately: any non-empty dot raster trivially overlaps them, so the 0.70 dot-overlap gate is applied to sparse dot/ridge rasters; dense rows are reported in evidence/tiltzero_uniqueness.json, not exempted silently.",

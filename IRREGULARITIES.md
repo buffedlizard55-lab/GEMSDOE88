@@ -1,3 +1,32 @@
+## IR-88-92 — Unmarked research TIFF/ZIP copies remain tracked in `releases/` (not fixed here)
+- `releases/` tracks 12 unmarked H33 "MASS" variant files (`h33-h33-2-b2-MASS*.tif/.zip`). The site guard covers `docs/downloads/` only, and these files are not linked from the site. Their gate status is not recorded in this session.
+- This session marked the duplicates in `docs/downloads/` and `submissions/` (PROVCREST, H88-GHMD, MDC-88). The `releases/` set is a separate cleanup: rename with `DO-NOT-SUBMIT`, or move to external storage, in a dedicated PR with its own record update.
+- `scripts/run_gems88_pipeline.py` (line ~479) still generates unmarked stems, so the next run would recreate the hazard. Fix the generator before re-running it.
+
+## IR-88-86 — MDC-88 machine records said `ok_to_submit: true` while failing the binding rules (corrected 2026-10-24)
+- **Found:** `registry/kdmc_gate.json`, `docs/mdc88/status.json`, `docs/data/kdmc-run-card.json`, `docs/mdc88/data/kdmc-run-card.json`, `evidence/kdmc_run_card.json`. The `true` was set under a "like-for-like" rule that excludes the dense `17GEMSDOE` prior; the same file's `gate_v3` block lists `unique_literal: false` and `holdout_beats_bar: false`.
+- **Action:** all five set to `false` with a correction note; the file is renamed to `…-DO-NOT-SUBMIT.{tif,zip,json}` (TIFF bytes and SHA-256 `6c17eed9…` unchanged; the ZIP was rebuilt, new SHA `6a7b4ffd…`). Historical `evidence/` paths keep the old name.
+
+## IR-88-87 — Literal dot-overlap rule is degenerate for the dense `17GEMSDOE` prior (diagnostic only; rule NOT changed)
+- `data/registry/dense_17gemdoe.tif` is continuous (`0.00046`–`0.984`), 5,167,373 positive cells. The shared `_dots()` counts every positive cell, so every candidate has overlap `1.0`, which makes the 0.70 gate impossible to pass.
+- Diagnostic (`scripts/diagnose_dense_prior_topn.py`, `evidence/dense_prior_topn_diagnostic.json`): with dots = witness top-N (N = candidate count), 14/14 published TIFFs pass; max overlap `0.130052` (MDC-88). Spearman vs the witness is `0.0064` (`evidence/phase88_final_uniqueness.json`).
+- **Decision needed from the selector.** Not made in code. Holdout still blocks every file.
+
+## IR-88-88 — Site's first panel (executive summary and tests updated too)
+- `docs/executive-summary.html` opened with MDPS-88 and linked its TIFF; now PHASE-88. `tests/test_mdps88.py::test_mdps88_site_decision_strings` pinned the MDPS file name on both pages; it now pins the canonical PHASE-88 name from `registry/phase88_run_card.json`.
+
+## IR-88-88b — Site's first panel showed MDPS-88 while the canonical release record is PHASE-88 (fixed; check tightened)
+- `scripts/check_site.py` only checked that the PHASE-88 file name appeared somewhere on the index page, despite its comment that it must be the *first* panel. The index now leads with PHASE-88 and a generated candidate matrix (`scripts/build_candidate_matrix.py`). `check_site.py` now also asserts (a) every TIF/ZIP on disk in `docs/downloads` is marked or gate-cleared, and (b) PHASE-88 precedes MDPS-88 on the landing page.
+
+## IR-88-89 — Competition leaderboard numbers conflict within the request
+- The request cites both `0.4413` (highest) and `0.3195` (\"highest right now\"). The official public leaderboard page ([drivendata leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)), checked this session, lists **#1 `0.4413`**, #2 `0.3916`, #20 `0.3273`. `0.3195` is not in the first chunk I read, and `0.2778` (H33) appears there only as a user report, not as an organizer receipt.
+
+## IR-88-90 — Open PR backlog holds unmerged results that main does not reflect
+- At the time of this session, about 17 PRs are open (for example #63 "H88-MVRD & MPSC-88: First Holdout Win Over H88-ADHR (0.19731)", #70–#76). Their claims are **not verified here**. They are not on `main`, so the README and site describe `main` only.
+
+## IR-88-91 — Portal error cause is not reproduced here (no portal access)
+- The official page says "data outside the bounds is null or nan" and values must be between 0 and 1 ([metric & format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)). The repo's "NaN outside footprint caused the error" explanation is therefore a hypothesis. The zeros encoding is valid under the stated rules, but it has not been confirmed by a portal receipt.
+
 # IRREGULARITIES — Decision-Changing Items Only
 
 ## IR-88-PHASE-03 — Concurrent PR #68 published a simulated raster as submission-ready; quarantined
@@ -403,7 +432,7 @@ The byte/pixel-distinct K/Th step product fails the literal forward 3-px rule ag
 - **Decision impact:** never trust hero copy over the machine gate: the run-card JSON + `--require-submit` exit code are the only authorized decision surface. Any future session that changes site copy must run `scripts/check_site.py` before merging.
 
 ## IR-88-84 — PROVCREST's stored HOLDOUT-DTI (0.076277) cannot describe the shipped raster: shipped bytes score identically 0 on the seeds-20/21 component holdout (measured 2026-10-24)
-- **Observed (comparator integrity):** `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif` (37,654 dots) has **zero** dots within 3 px of any catalogue pixel (median distance-to-catalogue 22.8 px; 0.0% of catalogue pixels within 3 px of a dot). Since hide-and-recover truth is a subset of catalogue pixels and the kernel radius is 3 px, its TP is identically 0 in every fold: measured HOLDOUT-DTI `0.0` pooled over seeds 20+21 (`evidence/mdps88_experiment1_20261024.json`, arm `prov_fixed`, 22,893 withheld positives). The stored `0.076277` therefore must have been measured on fold-rebuilt variants whose catalogue collar used each fold's *visible* faults only — a different object from the shipped bytes (the ledger's own ranking-basis field records a “>3px catalogue collar” for the shipped file).
+- **Observed (comparator integrity):** `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif` (37,654 dots) has **zero** dots within 3 px of any catalogue pixel (median distance-to-catalogue 22.8 px; 0.0% of catalogue pixels within 3 px of a dot). Since hide-and-recover truth is a subset of catalogue pixels and the kernel radius is 3 px, its TP is identically 0 in every fold: measured HOLDOUT-DTI `0.0` pooled over seeds 20+21 (`evidence/mdps88_experiment1_20261024.json`, arm `prov_fixed`, 22,893 withheld positives). The stored `0.076277` therefore must have been measured on fold-rebuilt variants whose catalogue collar used each fold's *visible* faults only — a different object from the shipped bytes (the ledger's own ranking-basis field records a “>3px catalogue collar” for the shipped file).
 - **Decision impact:** “current holdout best = PROVCREST 0.076277” (used e.g. to HOLD LBCAL in IR-88-78) compares a fold-rebuilt score against shipped-file scores. Keep the distinction explicit: quote fold-rebuilt and fixed-shipped-raster numbers under different labels; never rank a shipped candidate against a fold-rebuilt comparator without saying so.
 
 ## IR-88-85 — Hide-and-recover structurally zeros the live-winning geometry; identical folds rank the live-reported best 28× below a physics control (measured 2026-10-24)
@@ -417,8 +446,26 @@ Independent audit on branch `arena/1fa5e63b-gemsdoe88`: latest advertised MDPS-8
 
 Pass-two correction: `readiness.py` was overwriting advertised MDPS status with archived PHASE-88 status. It now reopens MDPS via the literal audit, keeps PHASE `current_release.json` explicitly historical, and writes BLOCKED / download=false on missing or corrupted evidence instead of retaining a stale status. A regression test covers this error path.
 
+Main advanced with concurrent IBL-88 while PR #79 was being checked. Preserved all named
+IBL cards, experiments and TIFF/ZIP artifacts and linked its research download on both
+pages, without its unsupported uniqueness exemption. The merge had overwritten the
+historical schema-specific root/alias cards with a different IBL schema, breaking ten
+existing tests and validator byte parity (some aliases also referenced nonexistent
+pre-rename filenames). Restored those historical aliases from the pre-integration commit;
+IBL remains available under its explicit `ibl88_run_card.json` names. No experimental
+results were discarded or reclassified as an organizer score. Re-ran verification after
+integration, not merely the pre-merge code.
+
 Concurrent merge resolution: PR #78 published IBL-88 during this review. Incoming files/cards are preserved as historical evidence, explicitly linked as an unaudited concurrent archive. This audit's hash and live feed remain MDPS-88; it does not claim fresh validation of IBL. Its nonempty dot set is subject to the same universal literal blocker.
 
 Merge verification found incoming IBL changes overwrote six legacy run-card aliases with an incompatible schema and inconsistent filename suffixes, producing 10 test failures. Restored those legacy aliases to their pre-merge historical records (not promotion authority); all dedicated `ibl88_run_card.json` files, scripts, TIFF/ZIP and dossier remain preserved. Live audit/status is separate and negative. No historical `promote` field authorizes a slot.
 
 Second concurrent reconciliation: PR #79 independently repaired shared v3 to enforce literal overlap and added a direct-coverage proof test. Those shared-template fixes, pins, MDPS card corrections, source snapshots and tests are retained. This branch retains its stronger byte/ZIP-bound saturation audit and readiness stale-status fix; the direct coverage helper is retained for the incoming tests. No additional submission is generated.
+
+## IR-88-93 — Unmarked MDC-88 collar variant was published under docs/research-variants/ (2026-10-24)
+
+- **Finding (automated site audit, merge pass 3):** `docs/research-variants/gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros.{tif,zip}` were published without `DO-NOT-SUBMIT`, and the variant record had no `ok_to_submit` field. The guard covered only `docs/downloads/`.
+- **Gate record:** `registry/kdmc_gate_collar3.json` has `ok_to_submit: false`, verdict `hold`. Under the literal rule the same lane fails for the same reason as MDC-88 (see IR-88-86 and the MDC-88 correction).
+- **Action:** `git mv` to `-DO-NOT-SUBMIT` names; ZIP rebuilt with the new member name (SHA-256 `5a3a64d3…`); TIFF bytes unchanged (SHA-256 `b6772cb0…`); explicit `ok_to_submit: false` added to the variant record; name references under `docs/` updated.
+- **Guard:** `scripts/check_site.py` now fails on any unmarked TIF/ZIP anywhere under `docs/`.
+- **Still open:** `releases/` and `evidence/` keep the original unmarked names by design, because they are the historical record. `releases/` still tracks the 12 H33 MASS files (IR-88-92). Renaming them would require rewriting historical references, so it is a separate, reviewed step.
