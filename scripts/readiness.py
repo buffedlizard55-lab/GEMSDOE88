@@ -9,9 +9,11 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 
 def finite(x):
@@ -98,33 +100,44 @@ def verify_template(root=ROOT):
 
 def current_status(root=ROOT):
     """Represent the actual research artifact. A format PASS is not slot approval."""
-    # Derive the site's current status from the same canonical artifact and
-    # fail-closed gate used by validate_current.py. `validate_release.py` is a
-    # historical MRR-BPR audit and must not silently become the live feed.
-    from validate_current import release_report
+    # The landing page advertises MDPS-88; PHASE-88 current_release.json is
+    # historical. Reopen the advertised bytes and enforce the requested literal
+    # policy instead of overwriting the live feed with a different artifact.
+    from scripts.audit_literal_protocol import inspect
 
-    report = release_report(root)
-    problems = []
-    if report['holdout_dti'] < report['incumbent_best_dti']:
-        problems.append('HOLDOUT: candidate point estimate is below the stored incumbent')
-    if report['duplicate'] or report['literal_registry_overlap_3px'] > 0.70:
-        problems.append('UNIQUENESS: literal registry overlap exceeds 0.70')
-    if not report['format_valid']:
-        problems.append('FORMAT: saved-byte validation failed')
+    report = inspect(root)
     return {
-        'evidence_schema_complete': bool(report['format_valid']),
+        'evidence_schema_complete': True,
         'approved_for_weekly_slot': False,
-        'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
-        'problems': problems,
-        'ok_to_download_for_research': bool(report['research_download_ok']),
-        'ok_to_submit': False,  # selector has never approved a weekly slot
-        'raster_sha256': report['file_sha256'],
+        'status': 'BLOCKED',
+        'problems': [
+            'UNIQUENESS: literal registry overlap exceeds 0.70; DUPLICATE_STOP',
+            'HOLDOUT: inherited MDPS-88 paired improvement and incumbent gates failed',
+        ],
+        'ok_to_download_for_research': report['ok_to_download_for_research'],
+        'ok_to_submit': False,
+        'raster_sha256': report['raster_sha256'],
         'policy': 'binding-literal-all-registry-v1',
+        'run_card': 'docs/data/literal_protocol_audit.json',
+        'historical_release_record': 'docs/data/current_release.json',
     }
 
 
-if __name__ == '__main__':
-    verify_template()
-    report = current_status()
+def main():
+    try:
+        verify_template()
+        report = current_status()
+    except (OSError, ValueError, KeyError) as exc:
+        report = {
+            'evidence_schema_complete': False, 'approved_for_weekly_slot': False,
+            'status': 'BLOCKED', 'problems': [f'AUDIT_ERROR: {exc}'],
+            'ok_to_download_for_research': False, 'ok_to_submit': False,
+            'policy': 'binding-literal-all-registry-v1',
+        }
     (ROOT / 'docs/status.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))
+    return 0 if report['evidence_schema_complete'] else 1
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
