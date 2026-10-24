@@ -51,7 +51,7 @@ The rank ordering below is a research shortlist already documented in `research/
 - `python scripts/validate_mdps88.py`: independent TIFF/ZIP byte audit passed. `--require-submit` exited **2**, as expected for a blocked file.
 - `python scripts/readiness.py`: **BLOCKED**, with both holdout and literal uniqueness blockers; research download is allowed, submission is not.
 - `python scripts/check_site.py`: passed after the changes and now verifies the actual latest artifact rather than stale KTH/PHASE pointers.
-- Full local suite after integrating current `origin/main` and literal-audit changes: **315 passed, 23 skipped, 0 failed**. The skips are input-dependent tests; warnings are Rasterio pending deprecations. This is not proof of organizer acceptance.
+- Full local suite after integrating current `origin/main` and literal-audit changes: **319 passed, 23 skipped, 0 failed** after integrating the latest candidate-matrix and dense-prior audit changes from main. The skips are input-dependent tests; warnings are Rasterio pending deprecations. This is not proof of organizer acceptance.
 
 ## Irregularities / constraints to keep visible
 

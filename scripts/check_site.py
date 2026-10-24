@@ -1,7 +1,6 @@
 """Audit local site links and forbid unlabeled research TIFF/ZIP downloads.
 
-This is a site guard, not the scientific/format gate; validate_kth88.py audits
-the current research artifact, while legacy validators remain historical. A blocked experiment may still
+This is a site guard, not the scientific/format gate; the live MDPS-88 audit and status are checked separately, while PHASE/KTH validators remain historical. A blocked experiment may still
 publish a clearly marked research-only file for independent audit.
 """
 from html.parser import HTMLParser
@@ -31,7 +30,7 @@ def main(root=ROOT):
     assert literal['correlation_overlap_vs_registry']['literal_duplicate'] and not literal['ok_to_submit']
     assert mdps['correlation_overlap_vs_registry']['duplicate']
     assert 'FAIL — DUPLICATE' in (root / 'docs/index.html').read_text()
-    # MRR, KTH, and PHASE are historical; the literal audit binds the live MDPS status.
+    # Historical MRR, KTH and PHASE remain negative; latest MDPS literal audit controls the site.
     historical = json.loads((root / 'registry/run_card.json').read_text())
     assert historical['verdict'] == 'negative' and historical['ok_to_submit'] is False
     phase = json.loads((root / 'registry/phase88_run_card.json').read_text())
@@ -69,7 +68,8 @@ def main(root=ROOT):
     assert len(lb['raster']['note']) <= 140 and lb['format_ok'] is True and lb['ok_to_download'] is True
     assert lb['ok_to_submit'] is True or 'DO-NOT-SUBMIT' in lb_tif.name, 'held LBCAL file must be named DO-NOT-SUBMIT'
     assert json.loads((root / 'docs' / 'data' / 'lbcal_run_card.json').read_text())['raster']['sha256'] == lb['raster']['sha256']
-    # Archived KTH must remain clearly negative even when older gate records say "promote".
+    # Latest experiment must be present on both landing/guide pages and stay
+    # blocked even if a historical gate record elsewhere says "promote".
     kth = json.loads((root / 'registry/kth88_run_card.json').read_text())
     kth_tif = root / kth['download']
     kth_validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
@@ -109,8 +109,13 @@ def main(root=ROOT):
                 # claim otherwise, so it is cleared by its gate record instead (IR-88-76).
                 if 'DO-NOT-SUBMIT' not in path.name:
                     assert path.name in cleared_names, f'Unmarked research download: {link}'
-    # The legacy PHASE current_release pointer stays internally hash-consistent,
-    # but the live status and landing page must follow the latest MDPS audit.
+    # IR-88-86/88: every downloadable TIF/ZIP (linked or not) must be marked unless its own gate clears it.
+    # Guard every published TIF/ZIP under docs/ (not only docs/downloads/), so variants cannot be published unmarked.
+    for f in sorted((root / 'docs').rglob('*')):
+        if f.is_file() and f.suffix.lower() in ('.tif', '.tiff', '.zip'):
+            assert 'DO-NOT-SUBMIT' in f.name or f.name in cleared_names, f'Unmarked published file under docs/: {f.relative_to(root)}'
+    # The legacy current_release pointer remains internally consistent for PHASE-88,
+    # while the live status and landing-page decision must follow the MDPS literal audit.
     current_release = json.loads((root / 'docs/data/current_release.json').read_text())
     assert current_release['file'] == phase['download']
     assert current_release['file_sha256'] == phase['raster_sha256']
@@ -121,7 +126,7 @@ def main(root=ROOT):
     assert status['ok_to_submit'] is False and status['ok_to_download_for_research'] is True
     assert status['policy'] == 'binding-literal-all-registry-v1'
     for page in (root / 'docs/index.html', root / 'docs/executive-summary.html'):
-        text = (root / 'docs' / page).read_text()
+        text = page.read_text()
         assert Path(mdps['raster']['file']).name in text, f'Latest artifact not identified on {page.name}'
         assert 'DO NOT SUBMIT' in text.upper()
     print('PASS: latest MDPS literal audit, live status, archival PHASE hashes, and site links agree')

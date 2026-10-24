@@ -9,7 +9,7 @@
    `gems88.kdmc.build_feature_stack`, re-fit, re-score with `scripts/run_kdmc_experiment.py
    --seeds 20 21 --separations 2.8284271247461903 --budgets 0.0073 0.01 0.015`. Everything needed is
    already restored and cached; this is a one-command experiment once the columns are added.
-2. **Promote or reject** `gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif`
+2. **Promote or reject** `gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros-DO-NOT-SUBMIT.tif`
    through the weekly-slot selector (protocol rule 6 keeps that decision outside the run).
    `registry/kdmc_gate.json` already says `ok_to_submit: true`.
 3. **Paste the first organizer receipt** into `ledger/submissions.csv`. The ledger has 66 rows and
