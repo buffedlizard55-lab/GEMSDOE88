@@ -5,6 +5,33 @@
   "weekly_slots_used": 0,
   "rows": [
     {
+      "label": "H88-SHORE-HINGE (this session; shoreline-filtered piedmont hinge)",
+      "record": "registry/shore_hinge_run_card.json",
+      "holdout_dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positive_px": 22893,
+      "paired_delta": -0.003885,
+      "paired_delta_ci95": [
+        -0.004449,
+        -0.003308
+      ],
+      "note": "hinge 24%; shoreline mask 3% (1330/1555 m); 37654 dots >=3.5px, >3px collar; fingerprint 44.3% >25px PASS; like-for-like 0.4028 PASS; literal 1.0; fixed-file structural-zero holdout (IR-88-107)",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2, fixed-file re-score)",
+      "organizer_confirmed": null,
+      "tif": "docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "fc886e5152c56f21e459413333d280dc38668306545bfa6605170290bbfd6ec2",
+      "zip": "docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.zip",
+      "dots": 37654,
+      "literal_overlap_vs_17GEMSDOE": 1.0,
+      "topN_like_for_like_overlap": 0.40277261379933077,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 and fixed-file HOLDOUT-DTI 0.0000 does not beat bar (structural-zero instrument limit); fingerprint and like-for-like pass"
+    },
+    {
       "label": "H88-QTSK (Exp 3 stratified; Exp 2 dual 0.1928)",
       "record": "registry/qtsk88_run_card.json",
       "holdout_dti": 0.151511,

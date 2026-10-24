@@ -1,0 +1,15 @@
+{
+  "file": "docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.tif",
+  "sha256": "fc886e5152c56f21e459413333d280dc38668306545bfa6605170290bbfd6ec2",
+  "zip_sha256": "fbbfa151c4c3fbfe4e3da4e67222bda449f8c0318b61efb8c7b052171b521745",
+  "submission_name": "GEMSDOE88-SHORE-HINGE-42DC0AFA",
+  "submission_note": "SHORE-HINGE piedmont hinge+shoreline filter 37654 dots; HOLDOUT-DTI 0.0000 vs R0 0.0039; UNSCORED",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "holdout_dti": 0.0,
+  "holdout_ci95": [
+    0.0,
+    0.0
+  ]
+}

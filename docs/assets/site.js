@@ -38,13 +38,13 @@
       const card = await cardResponse.json();
       const tdkl = await tdklResponse.json();
       // Fail closed. The literal audit proves the universal dense-witness stop;
-      // the current feed and MVRD/TDKL cards independently bind the displayed bytes.
+      // the current TDKL feed and archived MVRD card independently bind displayed bytes.
       const consistent = data.ok_to_download_for_research === true && data.ok_to_submit === false &&
           data.decision === 'DUPLICATE_STOP' && data.validator_output?.ok === true &&
-          current.candidate === 'H88-MVRD' && current.ok_to_download === true &&
+          current.candidate === 'H88-TDKL' && current.ok_to_download === true &&
           current.ok_to_submit === false && current.literal_duplicate === true &&
-          current.file_sha256 === card.raster_sha256 && card.ok_to_submit === false &&
-          tdkl.ok_to_download === true && tdkl.ok_to_submit === false;
+          current.file_sha256 === tdkl.raster_sha256 && tdkl.ok_to_submit === false &&
+          card.ok_to_submit === false;
       banner.textContent = consistent
         ? 'H88-TDKL & H88-MVRD · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated decision)'
         : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';

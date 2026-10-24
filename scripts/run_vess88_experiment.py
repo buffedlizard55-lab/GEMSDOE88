@@ -4,7 +4,7 @@
 Lane: 12 zero-catalogue Frangi vesselness channels (src/gems88/vess.py)
 pooled with 44 physics + 12 TDKL channels via the shared log-odds PoE
 machinery.  Evaluator, writer, uniqueness and gate code are the shared
-vendor/gems57 + src/gems88 modules, unmodified.  Corrects IR-88-107/108
+vendor/gems57 + src/gems88 modules, unmodified.  Corrects IR-88-110/108
 for this lane: scarp fields come from B12 (det_elev) and the slip-sense
 CSV is named explicitly (trace_segments_utm11.csv).
 """
@@ -132,10 +132,10 @@ def main() -> None:
     extra_names = list(tdkl.TDKL_FEATURES) + list(vess.VESS_FEATURES)
 
     with rasterio.open(ROOT / "data/training_features.tif") as src:
-        det_elev, _ = edge.clean_band(src.read(12), g.footprint)  # B12 det_elev (IR-88-107 fix)
+        det_elev, _ = edge.clean_band(src.read(12), g.footprint)  # B12 det_elev (IR-88-110 fix)
     scarp_fields = adhr.compute_scarp_fields(det_elev, g.footprint, vess_cache)
     del det_elev
-    sense_src = adhr.build_sense_raster(ROOT / "data/external/trace_segments_utm11.csv", g)  # IR-88-108 fix
+    sense_src = adhr.build_sense_raster(ROOT / "data/external/trace_segments_utm11.csv", g)  # IR-88-111 fix
 
     folds_by_seed = []
     for seed in (20, 21):
@@ -214,7 +214,7 @@ def main() -> None:
                                 "withheld_positive_pixels": 22893, "overall_dti": 0.189634, "far_gt10px_dti": 0.11478, "blind_gt25px_dti": 0.065263},
             "h88_tdkl_stored": {"evidence_class": "HOLDOUT-DTI", "evaluator_version": "gems57-pooled-hide-v2",
                                 "withheld_positive_pixels": 22893, "overall_dti": 0.196237, "far_gt10px_dti": 0.124175, "blind_gt25px_dti": 0.076881,
-                                "note": "TDKL run derived scarp fields from B14 (tmi) not B12 (IR-88-107); stored bar is therefore not strictly like-for-like with this lane's B12 scarp fields."},
+                                "note": "TDKL run derived scarp fields from B14 (tmi) not B12 (IR-88-110); stored bar is therefore not strictly like-for-like with this lane's B12 scarp fields."},
             "r0_claim": {"evidence_class": "USER-REPORTED (no portal receipt in repo)", "submission_id": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
                          "reported_public_dti": 0.2778, "leaderboard_top_public_dti_snapshot_20261024": 0.4413},
         },

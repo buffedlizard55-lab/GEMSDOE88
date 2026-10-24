@@ -32,7 +32,7 @@ No ORGANIZER-CONFIRMED score exists for this or any GEMSDOE88 file.
 Paired Δ Exp3 − ADHR: overall **+0.006065 [+0.001619, +0.010692]**, far
 +0.008441 [+0.002173, +0.015440], blind +0.016327 [+0.001792, +0.031171]
 (all exclude 0; 7/8 folds won). Point estimate exceeds stored TDKL
-0.196237 — cross-run only (TDKL derived scarp fields from B14, IR-88-107;
+0.196237 — cross-run only (TDKL derived scarp fields from B14, IR-88-110;
 this lane uses B12), so it is not a paired claim. Exp1 shows vesselness
 alone adds ≈0 over physics: the gain requires the visible-structure head.
 
@@ -71,5 +71,5 @@ gate portal parity) agree; ZIP has exactly one byte-identical TIFF.
 3. Inputs are owner-mirrored, SHA-pinned, not organizer-authenticated
    (see `registry/data_manifest.json` flag). DrivenData login still
    required to authenticate bytes.
-4. IR-88-107/108 (TDKL B14 scarp input; nondeterministic CSV glob) should
+4. IR-88-110/111 (TDKL B14 scarp input; nondeterministic CSV glob) should
    be fixed in the shared TDKL script by its owner lane, not forked here.

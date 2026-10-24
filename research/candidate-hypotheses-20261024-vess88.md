@@ -61,11 +61,11 @@
 
 ## Irregularities found while reusing the TDKL lane (flagged, not replicated)
 
-- **IR-88-107 (new):** `scripts/run_tdkl88_experiment.py:147` reads
+- **IR-88-110 (new):** `scripts/run_tdkl88_experiment.py:147` reads
   `src.read(14)` (`tmi`) into a variable named `det_elev` and derives
   `scarp_fields` from it; every other lane script reads B12 (`det_elev`).
   TDKL's internal holdout is self-consistent, but its scarp features are
   magnetic, not topographic. This session reads B12 explicitly.
-- **IR-88-108 (new):** the same script picks its sense-of-slip CSV with
+- **IR-88-111 (new):** the same script picks its sense-of-slip CSV with
   `next((ROOT/"data/external").glob("*.csv"))` — filesystem order, not a
   named file. This session uses `trace_segments_utm11.csv` by name.

@@ -596,7 +596,7 @@
       "overall_dti": 0.196237,
       "far_gt10px_dti": 0.124175,
       "blind_gt25px_dti": 0.076881,
-      "note": "TDKL run derived scarp fields from B14 (tmi) not B12 (IR-88-107); stored bar is therefore not strictly like-for-like with this lane's B12 scarp fields."
+      "note": "TDKL run derived scarp fields from B14 (tmi) not B12 (IR-88-110); stored bar is therefore not strictly like-for-like with this lane's B12 scarp fields."
     },
     "r0_claim": {
       "evidence_class": "USER-REPORTED (no portal receipt in repo)",

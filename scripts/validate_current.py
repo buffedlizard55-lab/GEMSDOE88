@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Current-release summary and fail-closed gates.
 
-The current summary follows PHASE-88, the latest run card; its TIFF/ZIP is
-independently reopened by validate_phase88.py. The full historical fabric audit
-remains available as fabric_release_report(). A scientific or uniqueness
-failure keeps `ok_to_submit` false; formatting never approves a weekly slot.
-Run `--require-submit` to demand a green current gate (exit 2 today). No
-organizer upload/login is attempted.
+The canonical current summary follows H88-TDKL, the latest frozen lane, and
+independently reopens its TIFF/ZIP via :mod:`scripts.validate_tdkl88`. Historical
+validators remain available below for audit compatibility. A scientific or
+uniqueness failure keeps ``ok_to_submit`` false; formatting never approves a
+weekly slot. Run ``--require-submit`` to demand a green current gate (exit 2
+today). No organizer upload/login is attempted.
 """
 from __future__ import annotations
 import hashlib
@@ -287,10 +287,10 @@ def phase_release_report(root=ROOT):
 
 
 def release_report(root=ROOT):
-    """Return the canonical current H88-MVRD report."""
-    from validate_release import release_report as mvrd_release_report
+    """Return the canonical current H88-TDKL report."""
+    from scripts.validate_tdkl88 import validate_tdkl88
 
-    return mvrd_release_report(root)
+    return validate_tdkl88(root)
 
 def main():
     report = release_report()
