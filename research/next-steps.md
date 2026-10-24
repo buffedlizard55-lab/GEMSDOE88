@@ -1,4 +1,4 @@
-## Current handoff — repo review on `arena/60f59d16-gemsdoe88` (2026-10-24)
+## Current handoff — repo review aligned with KTH-88 mainline (2026-10-24)
 
 **Read this section before the archived handoffs below.** The latest candidate is KTH-88 (`docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif`, SHA-256 `5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf`). It is **OK TO DOWNLOAD FOR RESEARCH; DO NOT SUBMIT**. HOLDOUT-DTI is 0.052656 (95% CI [0.045911, 0.059151], 22,893 positives, `gems57-pooled-hide-v2`) versus the same-split incumbent 0.187888; its final overlap is 0.89882 with a GEMSDOE87 raster and 1.0 with the dense witness. Stop: both holdout and literal uniqueness fail. Format validation is not submission clearance. No slot was spent and no organizer receipt exists.
 

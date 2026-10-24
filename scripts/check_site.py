@@ -22,9 +22,30 @@ class Links(HTMLParser):
 
 
 def main(root=ROOT):
-    card = json.loads((root / 'registry/run_card.json').read_text())
-    assert card['verdict'] == 'negative' and card['ok_to_submit'] is False
-    assert len(card['submission_note']) <= 140
+    import hashlib as _hl
+    # Keep the merged historical MRR record negative, but make the public feed
+    # follow the actual latest experiment (KTH-88), not that older run card.
+    historical = json.loads((root / 'registry/run_card.json').read_text())
+    assert historical['verdict'] == 'negative' and historical['ok_to_submit'] is False
+    assert len(historical['submission_note']) <= 140
+    kth = json.loads((root / 'registry/kth88_run_card.json').read_text())
+    validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
+    current = json.loads((root / 'docs/data/current_release.json').read_text())
+    assert current['file'] == kth['download']
+    assert current['file_sha256'] == kth['raster_sha256'] == validation['tif_sha256']
+    assert current['zip_sha256'] == validation['zip_sha256']
+    assert current['research_download_ok'] is True
+    assert current['ok_to_submit'] is False and current['duplicate'] is True
+    assert current['holdout_evaluator'] == kth['holdout_dti']['evaluator_version']
+    assert current['withheld_positive_pixels'] == kth['holdout_dti']['withheld_positive_pixels']
+    assert current['holdout_dti'] == kth['holdout_dti']['dti']
+    assert current['holdout_ci95'] == kth['holdout_dti']['ci95']
+    assert current['literal_registry_overlap_3px'] == kth['correlation_overlap_vs_registry']['final_overlap_3px']
+    canonical_tif = root / kth['download']
+    canonical_zip = canonical_tif.with_suffix('.zip')
+    assert canonical_tif.is_file() and canonical_zip.is_file()
+    assert _hl.sha256(canonical_tif.read_bytes()).hexdigest() == kth['raster_sha256']
+    assert _hl.sha256(canonical_zip.read_bytes()).hexdigest() == current['zip_sha256']
     # Rasters whose own machine gate record clears them for submission (and which must
     # therefore NOT be renamed to DO-NOT-SUBMIT). Collected from every gate record.
     cleared_names = set()
@@ -37,9 +58,7 @@ def main(root=ROOT):
         if data.get('ok_to_submit') and tif_name:
             cleared_names.add(tif_name)
             cleared_names.add(tif_name[:-4] + '.zip')
-    # 2026-10-24 LBCAL candidate (IR-88-78): hash must match its run card; while the run card says
-    # ok_to_submit false the file name must carry DO-NOT-SUBMIT. Fail closed otherwise.
-    import hashlib as _hl
+    # Archived LBCAL candidate: retain its independent file-integrity and safety checks.
     lb = json.loads((root / 'registry' / 'lbcal_run_card.json').read_text())
     lb_tif = root / lb['raster']['file']
     assert lb_tif.is_file() and _hl.sha256(lb_tif.read_bytes()).hexdigest() == lb['raster']['sha256']
