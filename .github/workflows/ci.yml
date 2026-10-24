@@ -20,18 +20,19 @@ jobs:
         run: python scripts/restore_inputs.py --validation
       - name: Run full unified test suite
         run: pytest -v
-      - name: Fail-closed submission gate (PROMOTED file must be OK_TO_SUBMIT; exit 0)
+      - name: Audit site, exact disk bytes and negative current release
         run: |
-          python scripts/submission_gate.py --require-submit
-          python scripts/render_site.py
           python scripts/check_site.py
           python scripts/readiness.py
-          git diff --exit-code docs/status.json docs/data/submission_gate.json index.html docs/index.html docs/executive-summary.html docs/research.html docs/sources.html README.md
-      - name: Latest research-only artifact (FABDIS) must stay blocked (validate_current, exit 2)
-        run: |
-          python scripts/validate_release.py
+          python scripts/validate_current.py
           set +e
           python scripts/validate_current.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+          python scripts/validate_release.py
+          set +e
+          python scripts/validate_release.py --require-submit
           code=$?
           set -e
           test "$code" -eq 2

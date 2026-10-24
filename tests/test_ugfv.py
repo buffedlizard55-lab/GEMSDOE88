@@ -136,15 +136,10 @@ def test_run_card_four_way_parity_and_audit_invariants():
     # docs/status.json describes the most recent release, not this historical
     # UGFV/ADHR card. Its hash must bind to the CURRENT on-disk research TIFF.
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
-    # docs/status.json is the unified gate for the PROMOTED file (IR-88-59); the newest
-    # research-only artifact (validate_current.py) is reported separately and stays blocked.
-    status_doc = json.loads((ROOT / "docs/status.json").read_text())
     current = json.loads((ROOT / "registry/fabric_dislocation_run_card.json").read_text())
-    latest = status_doc["latest_research_artifact"]
-    assert latest["raster_sha256"] == current["raster_sha256"]
-    assert latest["ok_to_submit"] is False
-    assert latest["ok_to_download_for_research"] is True
-    assert status_doc["raster_sha256"] != card["raster_sha256"]
+    assert status_doc["raster_sha256"] == current["raster_sha256"]
+    assert status_doc["ok_to_submit"] is False
+    assert status_doc["ok_to_download_for_research"] is True
 
     tif_path = ROOT / "docs" / card["downloadable_file"]
     zip_path = tif_path.with_suffix(".zip")

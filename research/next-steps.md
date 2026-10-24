@@ -1,22 +1,59 @@
-# Next Steps & Handoff Brief (`GEMSDOE88` · updated `2026-10-24`, supersedes the 2026-10-22 ADHR brief)
+# Next Steps & Handoff Brief (`GEMSDOE88` · Updated `2026-10-24`, session `arena/f566c0e1-gemsdoe88`)
 
-Read `README.md` (banner + permanent prompt) and `registry/session_20261024_run_card.json` first. Then run
-`python scripts/submission_gate.py --require-submit` — exit 0 means the promoted file is OK to upload.
+Read `PROMPT.md`, `README.md` (top block) and `registry/run_card_20261024.json` first at the start of any future session.
 
-## 1. Verified state
-- **Upload file (unscored):** `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif`, sha256 `13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f`, name `GEMSDOE88-PROVCREST-RANK-04559A2C`, note (113/140) in `docs/data/submission_gate.json`.
-- Gate: 29 checks pass; worst dot-field 3-px overlap 0.4076; max |ρ| 0.0302; canary max AUC 0.575; bit-for-bit reproduction; beats random and lattice nulls (paired CI > 0, ALL and FAR). HOLDOUT-DTI 0.076277 [0.067653, 0.084607] (22,663 withheld; `gems57-pooled-hide-v2`). ORGANIZER-CONFIRMED: none. Slots used by any agent: 0.
-- The archived ADHR file (`…adhr…DO-NOT-SUBMIT`) stays blocked: the continuous 17GEMSDOE prior overlaps every non-empty raster at 1.0. The earlier "human portfolio-selector decision on IR-88-01" is **superseded**: PROVCREST was built after classifying dense vs sparse rasters (IR-88-58) and the gate reports the literal reading rather than hiding it.
-- Public leaderboard (one manual read, 2026-10-24): #1 0.4413, #50 0.2818. The CLAIMED 0.2778 would be below #50.
+## 0. State after the 2026-10-24 session (supersedes section 2 priorities below)
+- **Headline file:** `docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif` (+ ZIP, receipt, audit). Verdict **OK TO DOWNLOAD - NOT OK TO SUBMIT** (`registry/gate_verdict.json`): unique like-for-like vs 215 rasters, portal-parity format PASS, canary PASS (0.5948), **holdout bar and fingerprint screen FAIL**.
+- **Three pre-registered hypotheses, all negative** (8 folds, 22,893 withheld positives): far-basin-matched training, catalogue-completeness residual, ridge-continuity prior (`research/hypotheses-20261024.md`). 0 slots spent.
+- **What the previous handoff asked, and its status:**
+  1. *Protocol decision on 17GEMSDOE* -> **resolved by machine policy** (`src/gems88/gate.py`, IR-88-60): both readings published, like-for-like decides.
+  2. *Organizer-authenticated byte check of `sample_submission.tif`* -> **still needs a human with a DrivenData login** (compare SHA-256 `2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc` with the data-tab download).
+  3. *Far-basin frontier (`d_cat > 25 px`, MRR-88 + ridge-skeleton continuity)* -> **partly tested**: the continuity prior (E3) is null; MRR-88 untested. The fleet fingerprint (IR-88-62) says catalogue-hugging is the failure mode.
+- **Corrections to carry:** ADHR's holdout gain is catalogue adjacency (4.2% of dots >25 px away); in-sample production fits memorise known faults (IR-88-63); the R0-perturbation ledger is not unique (IR-88-61).
 
-## 2. What to do next (in order)
-1. **Human, outside the repo:** confirm weekly quota/deadline on the portal, upload the single file with the note, paste the verbatim receipt into `ledger/submissions.csv`. This is the only instrument that can say whether geometry-independent crest ranking beats the tuned lineage.
-2. After a receipt exists: choose between the N ladder (holdout says 50k > 37.6k; live lineage says thinning helped — the two disagree) and the **geometry-null probe** (far-from-catalogue spaced random dots) to measure the geometry-only floor.
-3. Hypotheses to test (TILTZERO from PR #59 was tried and is negative, 0.0551 < 0.0763; the rest untried, see `research/session-20261024-audit-why-0.2778.md` §5): crest-junction/termination prior (Faulds & Hinz 2015); dilation-tendency-weighted crests (Morris 1996 / Ferrill 1999); crest scale-persistence; RDC-88 K/Th. First measure overlap with the sibling lanes (GEMSDOE42/67/69 rasters are not in the restored registry).
-4. Cross-check the sample/catalogue mirror against an authenticated DrivenData download (IR-88-02). Reproduce the reference U-Net MC-CV ([reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)) as an external benchmark.
-5. Decide whether automated leaderboard refresh is permitted by DrivenData's terms; until then refresh `docs/data/leaderboard.json` by hand and run `python scripts/render_site.py`.
+## 0.1 Ranked next steps (none run; the 3-experiment budget was spent)
+1. **N1 - matched-domain FBMT:** allocate only where the model was trained (d > 8 px). Cheapest fix of the one design flaw found (IR-88-69).
+2. **N2 - ADHR-class surface, out-of-fold, far-basin objective:** the only family that beat the control on the holdout; re-emit out-of-fold and require the fingerprint screen *and* the holdout bar.
+3. **N3 - receipt loop:** a human pastes real receipts for H33-lane siblings and the new file into `ledger/submissions.csv` (`ORGANIZER-CONFIRMED`), so the fingerprint can be re-fitted on more than 20 owner-reported points.
+4. **N4 - NDVI/phreatophyte lineaments** (Sentinel-2 on AWS Open Data, free, needs outbound access to `s3://sentinel-cogs`).
+5. **N5 - stress-resolved strike gating** (USGS slip/dilation tendency, Siler 2022; computed for already-catalogued faults only).
 
-## 3. Do not
-- Re-run `scripts/build_provcrest_submission.py` main() (raises FileExistsError, appends to ledgers).
-- Treat HOLDOUT-DTI as a leaderboard prediction; fit a score model to the 13 claimed lineage points; claim a score without a receipt.
-- Edit a generated page by hand: change the gate/run card/leaderboard JSON and run `python scripts/render_site.py`.
+## 0.2 Access needed
+DrivenData login (receipts, sample SHA, a real portal test of the new layout), outbound access to `*.amazonaws.com` and `sciencebase.gov` for new layers, and more than 2 CPUs / 4 GB RAM to re-run the 67-feature ADHR pipeline out-of-fold.
+
+---
+# Previous handoff (2026-10-22), kept for audit
+
+
+Read `README.md` and `registry/run_card.json` first at the start of any future session.
+
+## 1. Current Verified State (Do Not Re-Run Blindly)
+- **Primary Candidate Generated & Validated (`Exp 03`, `H88-ADHR`):**
+  - File: `docs/downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif` (`133,192` bytes, `35,894` discrete `{0.0, 1.0}` dots, `SHA-256: f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd`).
+  - Single-TIFF ZIP: `docs/downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.zip` (`SHA-256: 729ca35f4aed1ba3c99cf5f420af89032c27d08308471a239ed8d1d46ad3a7fd`).
+  - Pooled `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `n = 22,893` withheld positive pixels across 8 spatial folds):
+    - `raw_control`: `0.03134` (`95% CI [0.02082, 0.04535]`)
+    - `mgc_88` (`Exp 01`): `0.03612` (`95% CI [0.02641, 0.04830]`)
+    - `cgo_88` (`Exp 02`, 26 competition physics features only): **`0.09042` (`95% CI [0.07950, 0.10132]`, `2.50×` `MGC-88`)**
+    - `h88_adhr` (`Exp 03`, full 67-feature ADHR-88): **`0.18789` (`95% CI [0.17170, 0.20326]`, `5.20×` `MGC-88`, `8 / 8` fold wins)**
+  - Single-feature leakage canaries: **`74 / 74 PASS`** (`max symmetric AUC = 0.771627 ≤ 0.90`).
+  - Uniqueness across all 21 SHA-pinned registry rasters:
+    - **Sparse / dot-field siblings (`20 / 20`):** **PASS** (`0` firings; `max 3-px overlap = 0.6796 ≤ 0.70`, `max |ρ| = 0.0975 ≤ 0.90`).
+    - **Literal all-positive continuous surface (`17GEMSDOE`):** `forward_dot_overlap_3px = 1.0000 > 0.70` (`5,167,373 / 5,167,373` positive footprint pixels) -> **`ok_to_submit: false` (`verdict: "negative"`)**.
+
+## 2. Highest-Priority Actions for Next Session
+1. **Protocol / Human Portfolio-Selector Decision on `IR-88-1` (`17GEMSDOE` Full-Footprint Prior):**
+   - `17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif` mathematically forces `forward_dot_overlap_3px == 1.0000` for every non-empty raster inside the footprint.
+   - If the human portfolio selector explicitly amends the protocol so continuous surfaces (`> 20%` positive footprint) are tested by rank correlation (`ρ = +0.46641` pre-placement, `+0.09750` final — both well below `0.90`) while sparse dot rasters are tested by 3-px overlap (`max = 0.6796 ≤ 0.70`), `H88-ADHR` is already format-validated, hash-pinned, and ready for human review against other weekly candidates. **Never self-authorize or silently exempt this rule.**
+2. **Organizer-Authenticated Byte Check (`IR-88-2`):**
+   - Verify SHA-256 of `sample_submission.tif` from an authenticated DrivenData download against owner mirror `2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc` before uploading any file.
+3. **Scientific Frontier #1 — Far-Basin Blind Volcanic / Alluvial Faults (`d_cat > 25 px`):**
+   - `H88-ADHR` raised off-catalogue `d_cat > 10 px` share to `26.2%` (`9,417` dots) and `> 1 km` withheld `HOLDOUT-DTI` to `0.11478` (`5.44×` `MGC-88`), yet `d_cat > 25 px` remains `4.2%` (`1,520` dots) whereas `H33` places `41.8%` at `d_cat > 25 px`.
+   - Test **Hypothesis 4 (`MRR-88` — Intra-Magnetic Vertical-to-Regional Polarity Asymmetry)** + **connected ridge-skeleton continuity prior** specifically evaluated on a **pure blind-basin whole-fault split (`d_vis > 25 px`)** to raise far-basin recall without sacrificing Dinkelbach precision.
+
+
+---
+# Addendum 2026-10-24 (session `arena/6464dbc1`, IR-88-72)
+- PROVCREST null-control audit, spacing and count sweeps: `registry/provcrest_nullcontrol_audit.json`, `provcrest_spacing_experiment.json`, `provcrest_count_experiment.json`; narrative in `research/session-20261024-audit-why-0.2778.md`. Crest signal is real (+0.028 over nulls) but the file is blocked on uniqueness (0.7319 vs GEMSDOE85 90k-dot crest raster).
+- **Next, in order:** (1) build a PROVCREST variant whose dot placement excludes the 3-px footprint of every registry raster with overlap > 0.65 (a construction fix, then re-run the v3 gate and the null controls); (2) a human pastes real receipts so the lineage geometry (ρ = 0.891, n = 13, CLAIMS) can be re-fitted; (3) the "geometry-null" probe; (4) hypotheses ranked in section 5 of the session note (crest junction/termination prior from Faulds & Hinz 2015 first).
+- Do not re-run `scripts/build_provcrest_submission.py` main() (raises FileExistsError, appends to ledgers); use `scripts/audit_provcrest_nullcontrol.py` for reproduction.

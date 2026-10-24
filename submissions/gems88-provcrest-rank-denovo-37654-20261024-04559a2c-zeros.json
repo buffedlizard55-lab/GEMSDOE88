@@ -3,8 +3,8 @@
   "sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
   "bytes": 149569,
   "submission_name": "GEMSDOE88-PROVCREST-RANK-04559A2C",
-  "note": "PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs null 0.048; UNSCORED",
-  "note_chars": 113,
+  "note": "PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED",
+  "note_chars": 112,
   "validator": {
     "file": "/home/user/GEMSDOE88/docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
     "bytes": 149569,

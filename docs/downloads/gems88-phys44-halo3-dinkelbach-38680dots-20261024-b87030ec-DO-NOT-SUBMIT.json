@@ -1,0 +1,142 @@
+{
+ "name": "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT",
+ "note": "GEMS88 label-blind 44-layer geophysics+topography classifier, 300 m halo, exact-DTI dots; 38680 dots. Holdout negative vs ADHR bar.",
+ "note_len": 131,
+ "generated_utc": "2026-10-24T07:04:15Z",
+ "arm": "base",
+ "n_dots": 38680,
+ "sha256": "974b5d4b2009849c977ddb4210eb17d2fb93f8765011580931028d4fc707bada",
+ "zip_sha256": "ae80e61b0b06ba51429521c63991b9a13736ab48f771159e7dacae1c41613634",
+ "tif": "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif",
+ "zip": "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.zip",
+ "bytes_tif": 798711,
+ "bytes_zip": 165605,
+ "production_fit": {
+  "positives": 60988,
+  "hid_ratio": 0.23419528340918494,
+  "k_est": 14283.283211613292,
+  "halo_px": 3.0,
+  "allocator": "vendor/gems57/emit.dinkelbach_allocate budget=None min_spacing_px=2.05 dinkelbach_iters=6",
+  "features": [
+   "rtp_grad_200m",
+   "rtp_grad_800m",
+   "grav_grad_200m",
+   "grav_grad_800m",
+   "aligned_dip_edge_300m",
+   "aligned_dip_edge_1000m",
+   "dip_grav_step_60deg",
+   "dip_mag_step_60deg",
+   "dip_grav_vg_60deg",
+   "dip_cond_edge_60deg",
+   "cond_surf_raw",
+   "cond_edge_300m",
+   "cond_grav_xgrad",
+   "iso_grav_hg_signed",
+   "iso_grav_vg",
+   "tmi_hg_log",
+   "tmi_vg",
+   "mag_tc",
+   "depth_to_base_log",
+   "piedmont_transition",
+   "det_elev",
+   "det_elev_slope",
+   "det_elev_curv",
+   "geod_strain_2ndinv",
+   "geod_transtension",
+   "seismic_prox",
+   "probe2m_dab_local",
+   "probe2m_dab_reg",
+   "paleo_sinter_prox",
+   "well_temp_anom",
+   "well_geotherm_qtz",
+   "hydro_upslope_feeder",
+   "volcanic_vent_prox",
+   "rad_k_over_th",
+   "mag_demag_trough",
+   "lidar_has_cov",
+   "lidar_scarp_dipole",
+   "lidar_scarp_coh",
+   "topo10_slope_p90",
+   "topo10_curv_prof",
+   "topo10_hs_lineament",
+   "chi_step_max",
+   "ksn_jump_norm",
+   "pluvial_shoreline_pen"
+  ],
+  "repair_log": [
+   {
+    "iteration": 0,
+    "dots": 38680,
+    "unique_like_for_like": true,
+    "blockers": [],
+    "worst": {
+     "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+     "value": 0.5956825232678387
+    },
+    "worst_rho": {
+     "label": "17GEMSDOE:dense_17gemdoe.tif",
+     "value": 0.23900345789401767
+    }
+   }
+  ]
+ },
+ "fingerprint": {
+  "n": 38680,
+  "median_d_cat_px": 15.652475842498529,
+  "share_le2": 0.0,
+  "share_gt10": 0.677559462254395,
+  "share_gt25": 0.3085573940020683
+ },
+ "fingerprint_screen": {
+  "passed": false,
+  "rule": "share_le2==0 and share_gt25>=0.35"
+ },
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "arm": "base",
+  "overall": {
+   "dti": 0.10725287205590223,
+   "ci95": [
+    0.09343809078525349,
+    0.12080380097614199
+   ],
+   "withheld_positives": 22893
+  },
+  "far_subset": {
+   "dti": 0.0715176975936006,
+   "ci95": [
+    0.05856933299976893,
+    0.08379879541859066
+   ],
+   "withheld_positives": 10791
+  },
+  "bar": {
+   "overall": 0.18789,
+   "far": 0.11478,
+   "source": "registry/holdout_result.json (H88-ADHR)"
+  },
+  "beats_bar": false
+ },
+ "canary": {
+  "max_symmetric_auc": 0.5947545155858843,
+  "passed": true
+ },
+ "verdict": {
+  "policy": "gems88-gate-v3",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "blocking_reasons": [
+   "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+   "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
+  ],
+  "informational": [
+   "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+  ],
+  "note_len": 131,
+  "name_len": 72,
+  "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows)."
+ },
+ "seconds": 156.8
+}

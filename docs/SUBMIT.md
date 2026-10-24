@@ -1,16 +1,21 @@
-# Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
+> **2026-10-24 notice:** this long document predates gate v3 and describes the earlier H88-ADHR candidate. The current decision, one-click download and submission steps are in
+> [`executive-summary.html`](executive-summary.html) and `registry/gate_verdict.json` (**OK TO DOWNLOAD - NOT OK TO SUBMIT** for `gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT`). Where this file disagrees, the executive summary governs.
 
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## 2026-10-24 · PROVCREST de-novo candidate — ✅ OK TO DOWNLOAD AND SUBMIT (automated inspection passed, IR-88-58)
+# Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
+
+## 2026-10-24 · PROVCREST de-novo candidate (PR #53 self-report: "OK TO DOWNLOAD AND SUBMIT"; **gate v3 re-assessment: OK TO DOWNLOAD - NOT OK TO SUBMIT**, IR-88-71)
+
+> **v3 note:** the same bytes, judged against the 216-raster v3 registry, overlap GEMSDOE85 `geopb-crest-90000dots` at 0.732 (> 0.70, a sparse raster, so the rule applies literally) and do not beat the holdout bar (cross-run). They pass the fingerprint screen. See [`provcrest-gate-v3.json`](data/provcrest-gate-v3.json). The text below is PR #53's own report, kept for audit.
 
 **Upload this one file:** `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif`
 (SHA-256 `13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f`; single-TIFF ZIP beside it has the same TIFF inside.)
 
 - **Submission name:** `GEMSDOE88-PROVCREST-RANK-04559A2C`
-- **Note (113/140 chars):** `PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs null 0.048; UNSCORED`
+- **Note (112/140 chars):** `PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED`
 - **Automated validation (no human inspection):** single-band float32, EPSG:32611, 3730×3292, transform = sample, all 12,279,160 cells finite in {0.0,1.0} ⊂ [0,1] (no NaN → no “[0, 1]” portal error), 0 dots on catalogue, min catalogue distance 3.1623 px, 37,654 dots.
-- **Science gate (IR-88-59):** HOLDOUT-DTI (gems57-pooled-hide-v2, seeds 20+30, 22,663 withheld) **0.076277** [0.067653, 0.084607]. The earlier comparison to R0 (0.004006) is degenerate (R0 was built with the full catalogue) and is no longer the evidence; the binding controls are same-N/same-spacing no-information fields: random 0.047876 and hex lattice 0.048408 (paired Δ +0.0284 [0.0202, 0.0365] / +0.0279 [0.0203, 0.0349]); far-from-catalogue view (> 10 px, 10,277 withheld) 0.0558 vs 0.0335 / 0.0327. Canary max AUC 0.575. Single machine verdict: `python scripts/submission_gate.py --require-submit` (exit 0).
+- **Science gate:** HOLDOUT-DTI (gems57-pooled-hide-v2, seeds 20+30, 22,663 withheld) **0.076277** [0.067653, 0.084607] vs R0 **0.004006** (paired Δ +0.072271 [0.063852, 0.080393]); randorder control 0.050917; SGMC PROXY 0.12569 vs R0 0.096060 (proxy, not a score). Canary max AUC 0.57543 ≤ 0.90. Uniqueness (30 rasters): worst sparse |ρ| 0.0302 ≤ 0.90, worst sparse 3-px overlap 0.4076 ≤ 0.70.
 - **Slots:** agent used **0**; ORGANIZER-CONFIRMED score: **none**. The human's only action is the DrivenData upload itself (confirm weekly quota/deadline on the portal first). After upload, paste the verbatim receipt into `ledger/submissions.csv`.
 - Machine receipts: `registry/provcrest_run_card.json`, `evidence/provcrest_uniqueness.json`, writer receipt `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.json`. Archived ADHR/MGC/GHMD files below/in downloads remain **DO NOT SUBMIT**.
 
@@ -588,3 +593,75 @@ Per Agent Brief v2 §5, `TRACKB` prepares the `$250k` Phase 2 structural-geologi
 - **Fallback (`0.0` outside):** `releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-TRACKBtracespine10-20261023-a3a183d1-zeros.tif` (`SHA-256: be47ad67baf2f6bb15b91b26ebd9a00ef44e2459867fe2591e74c7ba0436cf66`)
 - **Form note (`88 / 140` chars):** `R1(6f7ae705); TRACKB 10% (3765) speckles->100m spines of >=1km traces; pred -0.003 MODEL`
 - **Change & diagnostics:** `N = 37,654`, `10.00%` moved vs `R1` onto `100 m` spines, `min d_cat = 3.1623 px`; preregistered `MODEL:-0.003` `[-0.012,+0.006]`; blind `SGMC = 0.08700 PROXY` (`-0.00909` vs `R1` — confirms `100 m` spine saturation tax, IR-88-49).
+
+---
+
+## Section recorded by PR #58 (fabric-dislocation current release; kept for audit)
+
+# GEMSDOE88 — current submission decision (2026-10-24)
+
+## DO NOT SUBMIT any GEMSDOE88 file yet
+
+**Current new research artifact (not a copy of H33 or any previous raster):**
+[`gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif`](downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif),
+SHA-256 `1bbb20e60ce5633a979e2bea8e1216105325b78c4ca93ca4380ea3f533e774ae`.
+Research download **YES**; competition upload **NO**. The adjacent `.zip` contains only the same TIFF.
+
+- Shared writer and independent disk audit passed: single-band float32 EPSG:32611,
+  3730×3292, exact mirrored sample transform, no nodata, all 12,279,160 values
+  finite in {0,1}, 0 outside footprint and 0 on visible mapped faults. Thus the
+  file does not contain the kind of out-of-range cells that produced the user's
+  prior portal error; **portal acceptance itself is not proven**.
+- HOLDOUT-DTI (`gems57-pooled-hide-v2`, 22,893 withheld positives, 95% CI):
+  **0.062936 [0.054201, 0.072122]** versus prior best
+  **0.187888 [0.171698, 0.203260]** on the same frozen split. No paired
+  incumbent-bootstrap terms; this experiment is below even the incumbent CI.
+- At the original experiment, 29 then-accessible hash-verified prior rasters
+  were checked: surface max |Spearman ρ| **0.062661** before placement;
+  final max |ρ| **0.008450**. A 30th TILTZERO prior was merged later;
+  its **posthoc** surface |ρ| is **0.028174**, final overlap **0.388883**;
+  across all 30 final max |ρ| is **0.011493**. No claim that the 30th
+  pre-placement check occurred before dot placement. Final dot overlap with all-positive `17GEMSDOE` prior is
+  **1.0000 > 0.70**. The *literal* template rule calls this a duplicate and
+  stops promotion; there is no silent dense-raster exemption. Access to
+  private/unlinked files cannot be certified.
+- Name reserved for research bookkeeping: `GEMSDOE88-FABDIS-621B097B`.
+  Note (97/140 characters; **DO NOT paste into the portal**):
+  `FAB88 RTP fabric dislocation x gravity; 37654 dots; HOLDOUT-DTI 0.0629; no receipt; DO NOT SUBMIT`.
+- ORGANIZER-CONFIRMED score for this file: **none**. Agent used **0** weekly
+  submissions. Public leaderboard 0.4413 (2026-10-24 official snapshot) is
+  somebody else's score, not ours. Prompt-supplied H33 0.2778 has no receipt.
+
+**Machine decisions (no human format/uniqueness inspection needed):**
+[`current_release.json`](data/current_release.json),
+[`fabric_dislocation_run_card.json`](data/fabric_dislocation_run_card.json),
+[`fabric_dislocation_uniqueness.json`](data/fabric_dislocation_uniqueness.json),
+[`postmerge_tiltzero_audit.json`](data/postmerge_tiltzero_audit.json).
+Run `.venv/bin/python scripts/validate_current.py --require-submit`: exit **2**
+correctly rejects the current file. If the grid, zip, SHA, evidence or prior
+rasters change, the ordinary validator exits nonzero instead of approving.
+
+### Procedure ONLY after a different future candidate clears all gates
+
+1. Freeze the proposed method and rerun label-blind feature canaries and the
+   buffered whole-component spatial holdout; require a matched-fold paired
+   95% CI improvement over the prior best. Evaluate surface before placement
+   and final dots against the full accessible registry. The current literal
+   dense-prior blockade must be addressed by an **explicit protocol decision**
+   before changing the template, not by renaming a file.
+2. Verify the sample grid against an authenticated DrivenData download, resolve
+   the owner-mirror redistribution rights, and run the shared writer plus
+   independent all-cell range/CRS/transform/ZIP validation.
+3. Only after separate selector approval and a verified account quota, upload
+   **one approved** single-band GeoTIFF (or a ZIP containing only that TIFF) at
+   [DrivenData submissions](https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/)
+   and paste the *approved file's* ≤140-character note. NLR [official rules
+   §3.2/3.4](https://docs.nlr.gov/docs/fy26osti/96647.pdf) allow at most three
+   feedback submissions per week and one final selection.
+4. Copy the submission-page receipt verbatim into the ledger before writing
+   any **ORGANIZER-CONFIRMED** score. HOLDOUT-DTI, proxies and projections are
+   not organizer scores.
+
+Prior PROVCREST, ADHR and PRUNE "promote/upload-ready" notes elsewhere in the
+historical record are **superseded** by this machine-negative current decision.
+See the [executive summary](executive-summary.html) and [official sources](sources.html).

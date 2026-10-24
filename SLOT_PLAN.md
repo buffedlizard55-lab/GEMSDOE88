@@ -1,5 +1,14 @@
 # Slot Plan (One Entity — 3 Scored / Rolling Week, 1 Blind Final)
 
+> **2026-10-24 notice (gate v3, IR-88-60/61/62).** No weekly slot is allocated by this session and none was spent. The headline research file
+> [`gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif) is **OK TO DOWNLOAD - NOT OK TO SUBMIT** (holdout bar and fingerprint screen failed). The merged PR #53 file (`gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif`) is **also OK TO DOWNLOAD - NOT OK TO SUBMIT under gate v3** (forward overlap 0.732 > 0.70 against GEMSDOE85 `geopb-crest-90000dots`, and the holdout bar; IR-88-71) although it passes the fingerprint screen.
+> The `67`-row R0-perturbation queue below is **not a set of unique candidates**: all rows descend from R0 = H33 and measured sibling perturbations overlap R0 by > 70% in 62/66 (GEMSDOE89), 30/34 (87), 18/22 (92) cases (duplicates under the lane rule, IR-88-61),
+> and the rolling slots are the human's to use; keep them only as *calibration experiments* of the collar/spacing mechanism. The website's displayed slot limit prevails over
+> "three per week" ([staff](https://community.drivendata.org/t/submission-amount-question/11553)). Only one submission may be selected for both rounds before 2026-12-03 23:59 UTC.
+> If a slot is spent this week, the evidence in `research/h33-forensics-20261024.md` favours H33-lane rasters over anything new in this repository.
+
+(Previous plan, kept for audit:)
+
 **State (`2026-10-24`):** `0` live `RECEIPT`s in `ledger/submissions.csv` (`67` unique `(parent, axis, value)` rows across all `7` brief axes, including the interior-annulus bracket of PR #53 (IR-88-57); historical `R0 = h33-h33-2-b2` `0.2778` remains `CLAIM`). Treat any live public change with `|delta| < 0.01` as **no evidence**. Upload primary `.tif` (`NaN` outside footprint) first; upload `-zeros.tif` only if the portal rejects `NaN`.
 
 | Rolling Slot | Candidate ID | Single-Factor Test (`N = 37,654` fixed, `0` px `< 3.0 px`) | Frozen `MODEL` | Blind `SGMC` (`PROXY`) | Gate / Trigger |
@@ -27,5 +36,5 @@ The collar curve had no points between `R0` (2 px) and `R1` (3 px). Pixel-centre
 - **Final submission (`1` total):** Pick the candidate with the highest verified live `RECEIPT` beating `R1` by `>= +0.01`; if all live deltas remain `< 0.01`, pick `PRUNEp3space35fp` (`8d29a2f7`) on parsimony (gate-clean, zero `w`/RNG, `min_nn = 5.66 px`, highest `300 m` blind `SGMC`).
 - **Proposed next single-axis tests (not built here):** (1) `p4space35fp` (`400 m` collar + score-blind farthest-point refill, gated on live receipts); (2) `p3space35provfp` (`100%` provided-band crest pool + farthest-point ranking); (3) `INSTRUMENT_AUDIT` (`1 px` seeded random jitter control beside a receipted arm); (4) `LIVE_COLLAR_PAIR` (IR-88-57): if the Slot 1 `R1` receipt is inconclusive (`|delta|<0.01`), pair it with `p2.236px 93b15124` — blind SGMC cannot separate a partial (`941` purged) from a full (`2,171` purged) collar (`+0.00016` vs `+0.00023`); falsifier: both receipts within `0.01` of each other and of `R0`.
 
-## 2026-10-24 addendum (IR-88-59)
-Prior slot ordering above concerns the PRUNE lineage and is unchanged. The PROVCREST file (`13b4155c…`, gate OK_TO_SUBMIT, UNSCORED) is a **de-novo** candidate, not a PRUNE edit; whether it takes a slot is a human selector decision. Queued probes (none run): (a) N≈50k PROVCREST variant (holdout 0.0853, live regime unknown); (b) far-from-catalogue spaced-random "geometry-null" probe. Neither may take a slot before a receipt for the PROVCREST file exists.
+## 2026-10-24 addendum (IR-88-72)
+Prior slot ordering above concerns the PRUNE lineage and is unchanged. The PROVCREST file (`13b4155c…`, UNSCORED) is **not slot-eligible**: v3 uniqueness fails (0.7319 > 0.70 vs GEMSDOE85 `geopb-crest-90000dots`). Queued probes (none run, none take a slot before a receipt exists): (a) a PROVCREST variant whose dots avoid that raster's 3-px footprint; (b) a far-from-catalogue spaced-random "geometry-null" probe, to measure how much of a live score is geometry alone; (c) N≈50k crest variant (holdout 0.0853, live regime unknown).

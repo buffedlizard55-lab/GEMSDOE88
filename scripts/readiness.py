@@ -100,7 +100,8 @@ def verify_template(root=ROOT):
 
 
 def current_status(root=ROOT, report=None):
-    """Recompute the CURRENT TIFF's full on-disk format and literal registry gate."""
+    """Recompute the CURRENT TIFF's on-disk format and literal registry gate (PR #58 audit) AND the
+    gems88-gate-v3 verdicts of every candidate (session 2026-10-24).  Neither approves a weekly slot."""
     if report is None:
         from scripts.validate_current import release_report
         report = release_report(root)
@@ -111,6 +112,12 @@ def current_status(root=ROOT, report=None):
         problems.append('New HOLDOUT-DTI did not beat the current holdout best')
     if not report['format_valid']:
         problems.append('Current TIFF failed on-disk validation')
+    sys.path.insert(0, str(Path(root) / 'scripts'))
+    from validate_release import provcrest_report_v3, release_report_v3
+    v3 = release_report_v3(root)
+    prov = provcrest_report_v3(root)
+    tilt = provcrest_report_v3(root, tag='tiltzero')
+    problems += v3['blocking_reasons']
     return {
         'evidence_schema_complete': True,
         'approved_for_weekly_slot': False,
@@ -123,30 +130,15 @@ def current_status(root=ROOT, report=None):
         'ok_to_download_for_research': report['research_download_ok'],
         'ok_to_submit': False,
         'raster_sha256': report['file_sha256'],
-    }
-
-
-def unified_status(root=ROOT):
-    """Authoritative site/CI status: the single submission gate for the promoted file.
-
-    The newest research-only artifact (validate_current.py; a DO-NOT-SUBMIT file) keeps its own
-    blocked verdict under ``latest_research_artifact`` so the two can never be confused.
-    """
-    from submission_gate import run_gate
-
-    gate = run_gate(root)
-    return {
-        'verdict': gate['verdict'],
-        'ok_to_download': gate['ok_to_download'],
-        'ok_to_submit': gate['ok_to_submit'],
-        'approved_for_weekly_slot': False,
-        'raster_sha256': gate['candidate']['sha256'],
-        'file': gate['candidate']['file'],
-        'submission_name': gate['candidate']['submission_name'],
-        'note': gate['candidate']['note'],
-        'failures': gate['failures'],
-        'gate_report': 'data/submission_gate.json',
-        'latest_research_artifact': current_status(root),
+        'policy': v3['policy'],
+        'gate_v3': {
+            'candidate_b': {'name': v3['name'], 'sha256': v3['raster_sha256'], 'label': v3['label'], 'ok_to_submit': bool(v3['ok_to_submit']),
+                            'blocking_reasons': v3['blocking_reasons'], 'unique_like_for_like': bool(v3['unique_like_for_like'])},
+            'provcrest_pr53': {'name': prov['name'], 'sha256': prov['sha256'], 'label': prov['label'], 'ok_to_submit': bool(prov['ok_to_submit']),
+                               'blocking_reasons': prov['blocking_reasons'], 'own_verdict': prov['own_verdict']},
+            'tiltzero_pr59': {'name': tilt['name'], 'sha256': tilt['sha256'], 'label': tilt['label'], 'ok_to_submit': bool(tilt['ok_to_submit']),
+                              'blocking_reasons': tilt['blocking_reasons'], 'own_verdict': tilt['own_verdict']},
+        },
     }
 
 
@@ -155,6 +147,6 @@ if __name__ == '__main__':
     from scripts.validate_current import release_report
     audit = release_report()
     (ROOT / 'docs/data/current_release.json').write_text(json.dumps(audit, indent=2) + '\n')
-    report = unified_status()
+    report = current_status(report=audit)
     (ROOT / 'docs/status.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))

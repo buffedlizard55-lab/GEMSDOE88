@@ -1,5 +1,7 @@
 # 2026-10-24 — Why did `h33-h33-2-b2` score 0.2778 (CLAIM), can we beat it, and is the PROVCREST "promote" real?
 
+> **Status after merging `main` (IR-88-72):** an earlier draft of this note called the PROVCREST file "OK to submit" from a 33-raster registry. The merged v3 gate (216 rasters, IR-88-71) finds forward 3-px overlap **0.7319 > 0.70** with `GEMSDOE85 gems85-geopb-crest-90000dots-sep4`, so PROVCREST is **OK TO DOWNLOAD — NOT OK TO SUBMIT**. Sections 3–4 below remain valid as *signal* evidence (it beats no-information nulls); they are not a submission clearance.
+
 Evidence labels: **HOLDOUT-DTI** = local hide-and-recover instrument (`gems57-pooled-hide-v2`);
 **CLAIM** = user-reported live score with no portal receipt in this repo; **OBSERVED-PUBLIC** = read from the
 public leaderboard page; **MODEL** = a prediction, never a score. Nothing below is an ORGANIZER-CONFIRMED score for any
@@ -51,11 +53,7 @@ not recoverable from public information and is not in this repo.
 
 ## 2. Can we beat 0.2778? — honest answer
 
-*Not demonstrable locally.* What can be shown: PROVCREST reproduces both measurable properties (spacing ≥ 3.5 px; median distance 22.8 px,
-46% beyond 25 px) while sharing no dots with the lineage (worst 3-px overlap 0.4076, worst |ρ| 0.0302), and its crest field carries signal on withheld faults
-(Section 3). Risks: its distance profile lies **outside the observed range** (max 19.7 px), so the 0.891 trend cannot be extrapolated, and a
-field-independent crest ranking may simply be worse than a field that was tuned on live feedback. The only instrument that can settle it is a
-portal receipt — a selector decision this repo does not take. Beating 0.2778 would still leave ≥ 50 entries above it.
+*Not demonstrable locally, and no file in this repo is currently cleared to try.* PROVCREST reproduces both measurable properties of the lineage (spacing ≥ 3.5 px; median distance 22.8 px, 46% beyond 25 px) and its crest field carries signal on withheld faults (Section 3), but (i) its forward overlap with the 90,000-dot GEMSDOE85 crest raster is 0.7319 (> 0.70 limit), (ii) its distance profile lies **outside the observed range** (max 19.7 px) so the 0.891 trend cannot be extrapolated, and (iii) a field-independent crest ranking may be worse than a field tuned on live feedback. Beating 0.2778 would still leave ≥ 50 entries above it (#50 = 0.2818). Only a portal receipt can settle (iii).
 
 ## 3. Pass-2 finding: the original "promote" compared against a degenerate control (IR-88-59)
 
@@ -70,15 +68,15 @@ controls that *can* fail (same N, same ≥ 3.5 px spacing, same visible-catalogu
 | paired Δ vs random (95% CI) | +0.028401 [0.020200, 0.036505] | +0.022298 [0.014244, 0.029966] |
 | paired Δ vs lattice (95% CI) | +0.027869 [0.020254, 0.034890] | +0.023022 [0.015276, 0.030764] |
 
-Verdict: **the promote survives** a real control (≈ +60% relative lift over no-information dots at identical geometry), and the shipped TIFF
-reproduces **bit-for-bit** from the SHA-pinned restored inputs (`SCI-03`). The gate (`scripts/submission_gate.py`) now *requires* both.
+Verdict: **the crest signal survives** a real control (≈ +60% relative lift over no-information dots at identical geometry), and the shipped TIFF
+reproduces **bit-for-bit** from the SHA-pinned restored inputs. That supports *repairing PROVCREST's uniqueness*, not submitting it as is.
 The nulls score 0.048 — most of any holdout score is geometry/coverage, which is why a no-information control is mandatory.
 
 ## 4. Experiments (budget 3, all used; none spent a slot)
 
 | # | Single factor | Result (HOLDOUT-DTI) | Decision |
 |---|---|---|---|
-| 1 | null controls + reproduction (above) | promote survives | gate hardened |
+| 1 | null controls + reproduction (above) | signal survives | evidence only; PROVCREST still blocked by uniqueness |
 | 2 | min spacing 3.0 / **3.5** / 4.5 px | 0.073214 / **0.076277** / 0.074367; Δ(3.5−3.0) +0.003064 [0.000821, 0.005191]; Δ(3.5−4.5) +0.001910 [−0.001077, 0.004845] | **negative** — shipped spacing is the local optimum |
 | 3 | N = 20k / 28k / **37,654** / 50k / 65k | 0.048439 / 0.064084 / **0.076277** / 0.085330 / 0.090291 | **hold** — monotone, as the marginal rule predicts at low DTI; but the live lineage improved while *thinning* (1b), so the holdout and live regimes disagree; N is a selector variable, not changed |
 
@@ -94,7 +92,7 @@ vs those lanes is **unmeasured** and must be measured (≤ 0.70 forward overlap,
 | 3 | Scale-persistence of crests (σ = 1…4 px) | Bands 19/3/18/15 | Real fault expression persists across smoothing scales; 400 m flight-line leveling seams and noise do not. | partially overlaps `xscale-worm-persistence` (GEMSDOE42, CLAIM 0.0581) — lane risk | Low |
 | 4 | Relief-conditioned K/Th alteration (RDC-88, already queued) | Bands 5–8, 12, 19 | K/Th enrichment on piedmont fault zones without modern springs. Mimic: felsic tuff contacts. | unrun in this repo | Medium |
 
-**Parallel-session data point (merged from PR #59, not mine):** TILTZERO-CONCORD (tilt zero-crossing prior) scored HOLDOUT-DTI 0.055083 [0.046419, 0.063081] on the same 22,663 withheld pixels — below PROVCREST (0.076277), verdict negative, DO-NOT-SUBMIT file. It is now one of the 33 rasters the gate checks uniqueness against. Its 0.055 is also only modestly above the 0.048 null, which supports reading holdout DTI differences < ~0.01 with caution.
+**Parallel-session data points (from `main`, not mine):** TILTZERO (PR #59, tilt zero-crossing prior) HOLDOUT-DTI 0.055083 [0.046419, 0.063081] on the same 22,663 withheld pixels — below PROVCREST, negative. FABDIS (PR #58) 0.062936 on a different split. Both are only modestly above the 0.048 null, so holdout differences below ≈ 0.01 should be read with caution. PR #56 (v3 gate, 216-raster registry, `research/hypotheses-20261024.md`) tested three further hypotheses, all negative.
 
 Every candidate must first beat **both** null controls (paired CI > 0, ALL and FAR) and the canary (≤ 0.90) before a slot is considered.
 If a candidate needed new external data, the named free official sources are USGS GeoDAWN (CC0,
@@ -112,10 +110,10 @@ DOE GDR #1391 (<https://gdr.openei.org/submissions/1391>) and USGS 3DEP (already
 
 ```
 python scripts/restore_inputs.py                 # SHA-pinned grid + 19-band features + external data
+python scripts/restore_siblings.py               # sibling registry used by the v3 gate
 python scripts/audit_provcrest_nullcontrol.py    # Exp 1 (~100 s)
 python scripts/exp_provcrest_spacing.py          # Exp 2 (~60 s)
 python scripts/exp_provcrest_spacing.py count    # Exp 3 (~90 s)
 python scripts/analyze_lineage.py
-python scripts/submission_gate.py --require-submit   # exit 0 = OK to submit this file
-python scripts/render_site.py                        # regenerate pages from the gate
+python scripts/gate_provcrest.py                 # v3 gate on the PROVCREST file
 ```
