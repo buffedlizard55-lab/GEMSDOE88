@@ -125,13 +125,17 @@ def main(root: Path = ROOT) -> None:
     assert all(audit["shared_validate"]["checks"].values())
     assert audit["shared_gates_format_report"]["ok"] is True
 
-    assert current["candidate"] == "H88-MVRD"
-    assert current["file"] == card["artifact"]
-    assert current["file_sha256"] == card["raster_sha256"]
+    assert current["candidate"] == "H88-TDKL"
+    assert current["file"] == tdkl["raster"]["file"]
+    assert current["file_sha256"] == tdkl["raster_sha256"]
     assert current["ok_to_download"] is True and current["ok_to_submit"] is False
-    assert current["literal_duplicate"] is True and current["distance_fingerprint_ok"] is False
+    assert current["literal_duplicate"] is True and current["duplicate"] is True
+    assert current["holdout_evidence_class"] == "HOLDOUT-DTI"
+    assert current["holdout_evaluator"] == "gems57-pooled-hide-v2"
+    assert current["holdout_withheld_positive_pixels"] == 22_893
     assert status["status"] == "BLOCKED"
-    assert status["raster_sha256"] == card["raster_sha256"]
+    assert status["raster_sha256"] == tdkl["raster_sha256"]
+    assert status["run_card"] == "registry/tdkl88_run_card.json"
     assert status["ok_to_download_for_research"] is True and status["ok_to_submit"] is False
 
     for page in pages:
@@ -172,12 +176,13 @@ def main(root: Path = ROOT) -> None:
     assert "literal_protocol_audit.json" in index and "literal_protocol_audit.json" in executive
     assert "DOWNLOAD FOR RESEARCH: YES" in index
     assert "SUBMIT: NO" in index
-    assert card["raster_sha256"] in index and card["raster_sha256"] in executive
+    assert card["raster_sha256"] in index  # archived MVRD identity remains on the overview
+    assert tdkl["raster_sha256"] in index and tdkl["raster_sha256"] in executive
     assert "0.197314" in index and "0.197314" in research
     assert "0.2778" in index and "0.2778" in research
     assert "hyp-psg" not in index and "hyp-psg" not in executive
 
-    print("PASS: current MVRD/TDKL cards, bytes, hashes, Pages links, status feed, and explicit negative decision agree")
+    print("PASS: current TDKL release, archived MVRD card, bytes, hashes, Pages links, status feed, and negative decision agree")
 
 
 if __name__ == "__main__":

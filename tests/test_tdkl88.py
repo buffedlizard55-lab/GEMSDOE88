@@ -142,3 +142,20 @@ def test_tdkl_geotiff_and_zip_portal_parity_and_uniqueness_gates():
     assert uniq["gate_v3_uniqueness"]["unique_like_for_like"] is True
     assert rc["ok_to_download"] is True
     assert rc["ok_to_submit_gate_v3_like_for_like"] is True
+    # The literal all-raster and post-merge rules remain binding.
+    assert uniq["post_placement_literal_including_dense_witness"]["worst_forward_overlap"] == 1.0
+    assert max(uniq["postmerge_concurrent_overlaps_3px"][k] for k in ("GTHC-88", "QTSK-88")) > 0.70
+    assert rc["ok_to_submit"] is False and rc["verdict"] == "negative"
+
+
+def test_tdkl_independent_current_release_validator():
+    from scripts.validate_tdkl88 import validate_tdkl88
+
+    report = validate_tdkl88(ROOT)
+    saved = json.loads((ROOT / "docs/data/current_release.json").read_text())
+    assert report == saved
+    assert report["candidate"] == "H88-TDKL"
+    assert report["format_valid"] is True
+    assert report["literal_duplicate"] is True
+    assert report["ok_to_download"] is True
+    assert report["ok_to_submit"] is False

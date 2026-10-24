@@ -4,11 +4,11 @@
   "status": "BLOCKED",
   "problems": [
     "UNIQUENESS: literal registry overlap exceeds 0.70",
-    "FINGERPRINT: too few final dots are >25 px from the mapped catalogue"
+    "UNIQUENESS: post-merge concurrent-lane overlap exceeds 0.70"
   ],
   "ok_to_download_for_research": true,
   "ok_to_submit": false,
-  "raster_sha256": "871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6",
-  "policy": "binding-literal-all-registry-v1 + gems88-gate-v3 fingerprint",
-  "run_card": "registry/mvrd_run_card.json"
+  "raster_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+  "policy": "binding-literal-all-registry-v1 + concurrent-lane overlap",
+  "run_card": "registry/tdkl88_run_card.json"
 }

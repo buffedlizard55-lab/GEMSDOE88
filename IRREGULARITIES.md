@@ -522,3 +522,7 @@ Second concurrent reconciliation: PR #79 independently repaired shared v3 to enf
 
 
 
+
+## IR-88-107 — Headline H88-TDKL and machine-current H88-MVRD/PHASE/MDPS feeds disagreed (2026-10-24)
+- **Observed:** The README and Pages hero named H88-TDKL as the latest lane, while `current_release.json`, `status.json`, `validate_current.py`, `readiness.py`, `docs/SUBMIT.md`, and the browser guard still canonized older MVRD, PHASE, or MDPS artifacts. The TDKL run card also retained a pre-rename `GATE-PASS.tif` path and a `PROMOTE` sentence despite `ok_to_submit=false` and `verdict=negative`.
+- **Decision Impact:** Added `scripts/validate_tdkl88.py`, independently remeasured written-byte format and literal overlap, and aligned every current feed on SHA-256 `db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf`. The automatic result remains **DOWNLOAD FOR RESEARCH: YES; DO NOT SUBMIT** because literal overlap is `1.0000 > 0.70` and post-merge concurrent overlaps are `0.762280`/`0.752000`. No new experiment or weekly slot was used. See `research/session-canonical-release-audit-20261024.md`.
