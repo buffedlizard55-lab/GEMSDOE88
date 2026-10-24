@@ -1,22 +1,96 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Official GEMS competition, rules, geological data and research hypothesis sources."><title>Sources · GEMSDOE88</title><link rel="stylesheet" href="assets/site.css"></head><body><a href="#main" class="sr-only">Skip to content</a>
-<header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html" aria-current="page">Sources</a></nav></div></header><div class="alert-strip"><div class="wrap"><span class="alert-icon">!</span><strong>DO NOT SUBMIT: source verification does not override the negative submission gate.</strong></div></div>
-<main id="main"><section class="subhero"><div class="wrap"><p class="crumb"><a href="index.html">Overview</a> / Sources</p><div class="eyebrow">Primary links · verification scope disclosed</div><h1>Official sources and provenance</h1><p>Competition rules and public dataset/source descriptions below were checked directly on 2026-10-24. The current raster used an owner-hosted mirror for the competition sample grid; it was not authenticated from the private DrivenData download page. A source website being reachable does not prove every requested raster or scene is available to this sandbox.</p></div></section>
-<section><div class="wrap"><div class="kicker">Competition-primary sources</div><h2>Official challenge references</h2><div class="table-scroll"><table class="sources"><thead><tr><th>Official source</th><th>Verified information and limits</th></tr></thead><tbody>
-<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem, metric and submission format</a></td><td>The problem is discovery of geological faults indicative of geothermal resources. Page specifies the distance-weighted Tversky metric, 300 m triangular support, α=0.2 / β=0.8, and single-band float32 predictions in [0,1] on the competition grid.</td></tr>
-<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Live public leaderboard</a></td><td>Fetched 2026-10-24; highest listed public score was 0.4413. A leaderboard page is not a private score or receipt for any GEMSDOE88 raster.</td></tr>
-<tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData data page</a></td><td>Official competition inputs; authenticated team login is required. The team account was not authenticated for this review.</td></tr>
-<tr><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR official rules PDF</a></td><td>Primary competition rules. Always use the current document and live submission page for binding limits and eligibility.</td></tr>
-<tr><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">DrivenData reference solution</a></td><td>Official baseline notebook and setup instructions; competition data must be downloaded separately.</td></tr>
-<tr><td><a href="https://epsg.io/32611">EPSG:32611</a></td><td>CRS reference for UTM zone 11N; saved TIFF checks also compare directly to the mirrored competition sample grid.</td></tr>
-</tbody></table></div></div></section>
-<section style="background:#e9f2f1"><div class="wrap"><div class="kicker">Official geological / geophysical context</div><h2>Sources for provided and supplemental layers</h2><div class="table-scroll"><table class="sources"><thead><tr><th>Source</th><th>Use / provenance note</th></tr></thead><tbody>
-<tr><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a></td><td>Official description of the airborne magnetic/radiometric survey for northwestern Great Basin Nevada and California.</td></tr>
-<tr><td><a href="https://gbcge.org/current-projects/ingenious/">Great Basin Center for Geothermal Energy — INGENIOUS</a></td><td>Project context for the geothermal-system dataset; any external file still requires license/shareability review.</td></tr>
-<tr><td><a href="https://www.usgs.gov/3d-elevation-program">USGS 3D Elevation Program (3DEP)</a></td><td>USGS states 3DEP products are free and without use restrictions and provides spatial metadata for lidar availability. Exact AOI coverage is not asserted here.</td></tr>
-<tr><td><a href="https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature">USGS Landsat Collection 2 Surface Temperature</a></td><td>USGS describes global Level-2 surface-temperature products and states no use restrictions for Landsat products. Not used in the current artifact.</td></tr>
-<tr><td><a href="https://registry.opendata.aws/sentinel-2-l2a-cogs/">AWS Open Data Registry — Sentinel-2 L2A COGs</a></td><td>Registry describes public Sentinel-2 COGs, STAC access, free/full/open terms and no-account public S3 listings. Data endpoints are outside this sandbox's network allowlist; AOI coverage and use/share terms need case-specific review. Not used in the current artifact.</td></tr>
-<tr><td><a href="https://asf.alaska.edu/">Alaska Satellite Facility / ASF DAAC</a></td><td>Official remote-sensing data access portal. Sentinel-1 AOI time series, account requirements and permissible challenge sharing were not verified here. Not used in the current artifact.</td></tr>
-<tr><td><a href="https://gdr.openei.org/submissions/1391">DOE Geothermal Data Repository submission 1391</a></td><td>Official linked repository record cited in older work; any specific download and applicable license must be rechecked before reuse.</td></tr>
-</tbody></table></div></div></section>
-<section><div class="wrap"><div class="notice"><strong>Data access limitation</strong><p>Private competition rasters, labels for the hidden holdout, official submission receipts and private leaderboard scores are unavailable here. The 19-band training stack is absent from this checkout. GitHub Pages shows a dated, sourced snapshot and a live link; the site intentionally does not scrape DrivenData automatically.</p></div><p class="source-note">Current artifact: <a href="data/kth88_run_card.json">KTH-88 web run card</a> · <a href="../registry/kth88_run_card.json">canonical run card</a> · measured source pins: <a href="../registry/data_manifest.json">data manifest</a> · <a href="../knowledge/official-sources-20261024.md">official-source notes</a> · <a href="../research/repo-review-20261024.md">dated repository review</a>.</p></div></section></main><footer class="footer"><div class="wrap"><p>GEMSDOE88 · Verify scope, hash-pin inputs, disclose limits.</p><a href="index.html">Back to overview →</a></div></footer></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Official GEMS competition, rules, current public leaderboard, and supplemental data source inventory with access and provenance limits.">
+  <title>Sources · GEMSDOE88</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+<a href="#main" class="sr-only">Skip to content</a>
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Overview</a>
+      <a href="executive-summary.html">Submission guide</a>
+      <a href="research.html">Research</a>
+      <a href="sources.html" aria-current="page">Sources</a>
+    </nav>
+  </div>
+</header>
+<div class="alert-strip" role="status"><div class="wrap"><span class="alert-icon" aria-hidden="true">!</span><span data-card-status><strong>KTH-88 · OK TO DOWNLOAD FOR RESEARCH: YES · OK TO SUBMIT: NO · DO NOT SUBMIT · DUPLICATE · NO SLOT APPROVED</strong></span></div></div>
+<main id="main">
+  <section class="subhero">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html">Overview</a> / Sources</p>
+      <div class="eyebrow">Primary links · provenance and access limits disclosed</div>
+      <h1>Official sources and data provenance</h1>
+      <p>Competition rules, leaderboard observations, and public-source descriptions below are linked to their primary providers. A free public dataset catalogue does not prove exact-area coverage, usable calibration, permitted sharing with the competition, or authenticated access to private competition inputs.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="competition-sources">
+    <div class="wrap">
+      <div class="kicker">Competition-primary sources</div>
+      <h2 id="competition-sources">Challenge, scoring and current public standings</h2>
+      <div class="table-scroll"><table class="sources">
+        <thead><tr><th>Official source</th><th>Verified information and limits</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem, metric and submission format</a></td><td>Defines discovery of geological faults indicative of geothermal resources, distance-weighted Tversky scoring with a 300 m triangular kernel (α=0.2, β=0.8), and the competition prediction format. A local TIFF check is not an organizer acceptance receipt.</td></tr>
+          <tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official public leaderboard</a></td><td>Snapshot checked 2026-10-24 07:19 UTC; top public DW-Tversky was 0.4413. Snapshot may age or standings may change; it is not H33's private/owner receipt or a score for GEMSDOE88. <a href="data/leaderboard.json">Inspect the dated snapshot</a>.</td></tr>
+          <tr><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData team data page</a></td><td>Official source for competition input files, accessed through the team account. The 19-band feature stack and authenticated organizer template are not present/authenticated in this checkout; an owner-hosted mirror is not an organizer download.</td></tr>
+          <tr><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR official rules PDF</a></td><td>Primary competition rules. Use the current document and live portal for binding participant limits, single-final-selection requirements, data-sharing rules and eligibility.</td></tr>
+          <tr><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">DrivenData reference solution</a></td><td>Organizer reference notebook and setup. Competition inputs must still be downloaded from the official team data page.</td></tr>
+          <tr><td><a href="https://epsg.io/32611">EPSG:32611</a></td><td>CRS reference for UTM zone 11N; local TIFF checks also compare directly against the hash-pinned competition sample mirror.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section style="background:#e9f2f1" aria-labelledby="provided-sources">
+    <div class="wrap">
+      <div class="kicker">Geophysical and terrain products</div>
+      <h2 id="provided-sources">Official source records for current and proposed inputs</h2>
+      <div class="table-scroll"><table class="sources">
+        <thead><tr><th>Source</th><th>Availability and relevance</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data release</a></td><td>USGS/DOE airborne magnetic and radiometric grids for parts of Nevada and California; DOI <code>10.5066/P93LGLVQ</code>; the official record marks it CC0 1.0. The release describes two overlapping survey areas, different flight-line spacings/altitudes, and radon/background/leveling processing. This does not authenticate the local u8 mirror's scaling; raw grid, scale/offset, exact AOI coverage and calibration still must be checked.</td></tr>
+          <tr><td><a href="https://www.usgs.gov/3d-elevation-program">USGS 3D Elevation Program (3DEP)</a></td><td>USGS elevation products are free and without use restrictions; the program offers spatial metadata for lidar availability. Exact AOI tile coverage and usable resolution have not been independently fetched for the candidate grid.</td></tr>
+          <tr><td><a href="https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature">USGS Landsat Collection 2 surface temperature</a></td><td>Official global Level-2 surface-temperature archive; USGS states the data are no-cost/open and have no use restrictions. Exact in-footprint repeat-season scenes, QA coverage and derived-data shareability still need review. Cloud buckets may impose requester-pays or compute/storage costs even when source data are open.</td></tr>
+          <tr><td><a href="https://registry.opendata.aws/sentinel-2/">AWS Open Data Registry — Sentinel-2 L2A</a></td><td>Registry describes publicly readable L2A scenes, free/full/open access and anonymous S3 listing; the related COG/STAC archive is another public access route. This source record verifies archive availability, not the exact AOI scene count, cloud-free seasonal series, or competition-specific external-data permission. Access endpoints are outside this sandbox's host allowlist.</td></tr>
+          <tr><td><a href="https://waterdata.usgs.gov/">USGS Water Data for the Nation</a> · <a href="https://www.usgs.gov/tools/national-water-information-system-nwis-mapper">NWIS Mapper</a></td><td>USGS provides public groundwater-site records and groundwater-level services. <a href="https://nwis.waterservices.usgs.gov/docs/groundwater-levels/">The groundwater levels API</a> serves historical manually recorded levels. <strong>Irregularity:</strong> legacy NWISWeb pages are being migrated/decommissioned; prefer the modern Water Data for the Nation service. The density and record length of wells inside the exact competition footprint were not checked.</td></tr>
+          <tr><td><a href="https://www.earthdata.nasa.gov/data/platforms/space-based-platforms/sentinel-1">NASA Earthdata / ASF DAAC Sentinel-1</a></td><td>NASA's ASF archive provides Sentinel-1 scenes and free on-demand RTC/InSAR processing. Earthdata Login and an ASF end-user agreement are required; exact repeat-pass geometry, coherence, processing feasibility and competition sharing terms are not verified here.</td></tr>
+          <tr><td><a href="https://gbcge.org/current-projects/ingenious/">Great Basin Center for Geothermal Energy — INGENIOUS</a></td><td>Regional geothermal project context. Any particular external file still requires a fresh license, provenance and organizer-shareability review before use.</td></tr>
+          <tr><td><a href="https://gdr.openei.org/submissions/1391">DOE Geothermal Data Repository submission 1391</a></td><td>Official linked repository record. Specific files, versions, licenses and sharing terms must be verified before reuse; it does not establish availability of the missing competition stack.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="provenance-limits">
+    <div class="wrap split">
+      <div>
+        <div class="kicker warn">Provenance and access constraints</div>
+        <h2 id="provenance-limits">What was not authenticated</h2>
+        <ul>
+          <li>Private organizer test faults, private leaderboard results, and a receipt for H33's reported 0.2778.</li>
+          <li>The competition feature stack in this checkout; its owner mirror is not present and reuse/redistribution terms are not authenticated.</li>
+          <li>Exact-area Sentinel/Landsat/SAR scenes, quality masks, well coverage, raw GeoDAWN scale metadata, and derived-data sharing permission.</li>
+          <li>Organizer acceptance of any TIFF. Local format-validity must not be described as submit approval.</li>
+        </ul>
+      </div>
+      <aside class="proof">
+        <h3>Source availability is not candidate viability</h3>
+        <p>Public catalogs establish that official data products exist. A viable external-data experiment also needs exact footprint coverage, fit-for-purpose spatial/temporal resolution, reproducible retrieval, calibration, and permission to share derived data with the organizer.</p>
+        <p>Until those checks pass, external-data hypotheses remain proposals, not runnable lanes.</p>
+        <a href="research.html">See ranked hypotheses and blockers →</a>
+      </aside>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="wrap"><p>GEMSDOE88 · Verify source, scope, calibration, permissions and hashes.</p><a href="index.html">Back to overview →</a></div></footer>
+</body>
+</html>

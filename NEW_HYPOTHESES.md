@@ -1,4 +1,6 @@
-# New Geological Hypotheses for GEMSDOE Competition
+# Historical Geological Hypotheses Brainstorm (unvalidated)
+
+> **Superseded and non-executable as written.** These were early qualitative ideas, not tested methods or evidence of DTI gain. In particular, the former MAG-PSG “submission” TIFF was synthetic artificial strokes, not a pseudogravity transform; it has been quarantined under `evidence/simulated/` and must never be treated as a candidate. Use the current five-hypothesis ranking and source/availability review in [`research/repo-review-20261024.md`](research/repo-review-20261024.md). No projection in this file is a score.
 
 ## Hypothesis 1: Magnetic Pseudogravity (PSG) phase symmetry (MAG-PSG)
 - **Specific layer(s) involved:** Aeromagnetic data (TMI or RTP).

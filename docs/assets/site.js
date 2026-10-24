@@ -26,17 +26,27 @@
   const banner = document.querySelector('[data-card-status]');
   if (banner) {
     try {
-      const response = await fetch('data/kth88_validation.json', { cache: 'no-store' });
-      if (!response.ok) throw new Error('latest run validation unavailable');
-      const data = await response.json();
-      // Fail closed. A locally valid research artifact must never be presented
-      // as slot-cleared or organizer-accepted, even if the old status.json is green.
-      banner.textContent = data.ok_to_download === true && data.ok_to_submit === false &&
-          data.local_format_audit?.ok === true && data.tif_and_single_member_zip_validated === true
-        ? 'KTH-88 · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT · binding registry duplicate'
-        : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
+      const [releaseResponse, auditResponse] = await Promise.all([
+        fetch('data/current_release.json', { cache: 'no-store' }),
+        fetch('data/kth88_validation.json', { cache: 'no-store' }),
+      ]);
+      if (!releaseResponse.ok || !auditResponse.ok) throw new Error('current release audit unavailable');
+      const [release, audit] = await Promise.all([releaseResponse.json(), auditResponse.json()]);
+      // Fail closed: both the dated current feed and byte-bound local audit must
+      // agree. Format validity is never organizer acceptance or slot approval.
+      const consistent = release.candidate_id === 'KTH-88' &&
+        release.ok_to_download === true && release.ok_to_submit === false &&
+        release.duplicate === true && release.organizer_confirmed === null &&
+        release.file_sha256 === audit.tif_sha256 &&
+        release.zip_sha256 === audit.zip_sha256 &&
+        audit.ok_to_download === true && audit.ok_to_submit === false &&
+        audit.local_format_audit?.ok === true &&
+        audit.tif_and_single_member_zip_validated === true;
+      banner.textContent = consistent
+        ? 'KTH-88 · OK TO DOWNLOAD FOR RESEARCH: YES · OK TO SUBMIT: NO · DO NOT SUBMIT · DUPLICATE · NO SLOT APPROVED'
+        : 'DO NOT SUBMIT · current release feed and byte audit are inconsistent or unverified';
     } catch (_) {
-      banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';
+      banner.textContent = 'DO NOT SUBMIT · current release status unavailable';
     }
   }
   for (const button of document.querySelectorAll('[data-copy]')) {

@@ -1,14 +1,153 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="GEMS geothermal fault research, current KTH-88 negative result, H33 evidence, and ranked future hypotheses."><title>Research · GEMSDOE88</title><link rel="stylesheet" href="assets/site.css"></head><body><a href="#main" class="sr-only">Skip to content</a>
-<header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html" aria-current="page">Research</a><a href="sources.html">Sources</a></nav></div></header><div class="alert-strip"><div class="wrap"><span class="alert-icon">!</span><strong>Latest candidate KTH-88: RESEARCH DOWNLOAD ONLY · DO NOT SUBMIT</strong></div></div>
-<main id="main"><section class="subhero"><div class="wrap"><p class="crumb"><a href="index.html">Overview</a> / Research</p><div class="eyebrow">Repository review · 2026-10-24 · no slot used</div><h1>Test the mechanism.<br><em>Keep the negative result.</em></h1><p>This review re-evaluates the repository state after the KTH-88 experiment became the latest candidate. It does not start a new experiment, select a submission, or claim an organizer score.</p></div></section>
-<section><div class="wrap split"><div><div class="kicker">Latest tested lane</div><h2>KTH-88 · antisymmetric K/Th step and magnetic trough</h2><p><strong>Hypothesis:</strong> an untraced hydrothermal structure may coincide with a local cross-fault K/Th-index step and shallow RTP demagnetization trough, even where an erosional scarp is absent.</p><p><strong>Named non-fault mimic:</strong> potassic intrusive/lithologic contact, variable soil cover, or radiometric flight-line leveling. The u8 inputs are uncalibrated indices; K/Th here is not measured elemental abundance.</p><p><a href="../research/kth88-20261024.md">Full KTH-88 dossier →</a> · <a href="../registry/kth88_run_card.json">Frozen run card →</a> · <a href="data/kth88_validation.json">Independent TIFF/ZIP audit →</a></p><p>One preregistered lane and one experiment were run. The candidate's final dots overlap 89.8816% within 3 px of a GEMSDOE87 raster and 100% of the dense 17GEMSDOE witness; the binding limit is 70%. The duplicate rule therefore stopped the lane.</p></div><div class="file-box"><div class="title"><h3 style="margin:0">Evidence summary</h3><span class="chip">NEGATIVE</span></div><dl><dt>HOLDOUT-DTI</dt><dd>0.052656; 95% CI [0.045911, 0.059151]; 22,893 withheld positives; <code>gems57-pooled-hide-v2</code></dd><dt>Same-split incumbent</dt><dd>HOLDOUT-DTI 0.187888; no paired improvement interval is available</dd><dt>Feature-alone canaries</dt><dd>Maximum symmetric AUC 0.5097; below the 0.90 leakage warning</dd><dt>Surface screen</dt><dd>Maximum pre-placement |ρ| 0.07473 across 222 rasters</dd><dt>Final uniqueness</dt><dd>3-px overlap 0.89882 with a GEMSDOE87 raster; 1.000 with dense witness; FAIL</dd><dt>Organizer receipt</dt><dd>None; no score is ORGANIZER-CONFIRMED</dd></dl></div></div></section>
-<section style="background:#e9f2f1"><div class="wrap"><div class="kicker">H33 forensic interpretation</div><h2>Why the reported 0.2778 is plausible, not verified</h2><p>Raster-lineage evidence is consistent with H33 being a thinned descendant of the H19-5/D2.8 family, removing many dots close to the mapped catalogue while retaining broader lineament coverage. Reducing low-value near-catalogue predictions could help under the official false-positive penalty. This is a mechanism-level interpretation, not proof that pruning caused the reported score.</p><p>H33's <strong>0.2778 is user-reported, not organizer-confirmed</strong>. The official public leaderboard snapshot checked 2026-10-24 showed a top public score of 0.4413. Hide-and-recover holdout DTI is not a leaderboard projection or a rank predictor. No private receipt was available for this review.</p><p><a href="../research/h33-forensics-20261024.md">H33 forensic note →</a> · <a href="../evidence/h33_forensics_20261024.json">Pixel evidence →</a> · <a href="sources.html">Official source inventory →</a></p></div></section>
-<section><div class="wrap"><div class="kicker">Future ideas · not run or authorized</div><h2>Ranked geological hypotheses</h2><p>These are qualitative proposals, not scores or promises. No new lane should start until the user resolves the unspecified “single method paragraph” and authorizes one method lane. Verify exact AOI availability, lawful use, cached inputs, and leakage controls first.</p><div class="table-scroll"><table><thead><tr><th>Rank</th><th>Hypothesis / signal</th><th>Named non-fault mimic</th><th>Cost and prerequisite</th></tr></thead><tbody>
-<tr><td>1 · high potential / high cost</td><td><strong>Hydro-vegetation lineaments:</strong> seasonal Sentinel-2 L2A NDVI/NDMI/NDWI composites; oriented line persistence and cross-season continuity.</td><td>Irrigation, riparian vegetation, canals, roads, playa moisture.</td><td>Medium-high. Public catalog is documented; AOI scene coverage and shareability are not verified here.</td></tr>
-<tr><td>2 · medium-high potential / high cost</td><td><strong>Persistent thermal corridors:</strong> robust multi-season Landsat Collection 2 surface-temperature anomaly aligned with structural trends.</td><td>Solar aspect, emissivity, irrigation, wildfire, cloud/shadow, urban heat.</td><td>High. USGS product is documented; exact AOI retrieval and competition reuse conditions need verification.</td></tr>
-<tr><td>3 · medium potential / medium-high cost</td><td><strong>Cross-catchment drainage deflection:</strong> DEM-derived channel azimuth shifts, signed offsets, and aligned knickpoints across adjacent basins.</td><td>Caprock, lithologic contact, fan avulsion, shoreline, roads.</td><td>Medium-high. First confirm exact USGS 3DEP tile coverage and data access; generic terrain features already exist, so use a distinct multi-catchment statistic.</td></tr>
-<tr><td>4 · medium-low potential / very high cost</td><td><strong>InSAR deformation discontinuity:</strong> Sentinel-1 ascending/descending time-series displacement gradients plus coherence breaks.</td><td>Groundwater/mining subsidence, reinjection, vegetation decorrelation, atmospheric delay.</td><td>Very high. AOI time-series density, account requirements, and shareable terms remain unchecked.</td></tr>
-<tr><td>5 · medium potential / medium cost</td><td><strong>Cross-depth strike agreement:</strong> compare structure-tensor azimuths across RTP, magnetic/gravity gradients, and detrended elevation at matched scales.</td><td>Bedding/stratigraphic strike or coherent intrusive contact.</td><td>Medium, using competition-provided layers only if authenticated and restored. Must be distinct from earlier single-modality fabric lanes.</td></tr>
-</tbody></table></div><p>Potential/cost ordering is a research-priority judgment, not a model projection. Official-source links and access limitations are recorded on the <a href="sources.html">Sources page</a> and in <a href="../research/repo-review-20261024.md">the dated repository review</a>.</p></div></section>
-<section><div class="wrap"><div class="notice"><strong>Three-pass review outcome: HOLD.</strong><p>Pass 1 reviewed prompt, code, run cards, evidence, and site links; Pass 2 reran the project checks after restoring pinned validation inputs; Pass 3 reconciled current-candidate identity, labels, output hashes, and stop rules. KTH-88 remains research-download-only. No new raster was generated, no slot was spent, and no experiment was launched. See the <a href="../research/repo-review-20261024.md">review log</a>.</p></div></div></section></main><footer class="footer"><div class="wrap"><p>GEMSDOE88 · Negative results are deliverables.</p><a href="index.html">Back to overview →</a></div></footer></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="GEMSDOE88 fault-discovery research review, H33 forensic evidence, and ranked untried hypotheses with data-access limits.">
+  <title>Research · GEMSDOE88</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+<a href="#main" class="sr-only">Skip to content</a>
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Overview</a>
+      <a href="executive-summary.html">Submission guide</a>
+      <a href="research.html" aria-current="page">Research</a>
+      <a href="sources.html">Sources</a>
+    </nav>
+  </div>
+</header>
+<div class="alert-strip" role="status"><div class="wrap"><span class="alert-icon" aria-hidden="true">!</span><span data-card-status><strong>KTH-88 · OK TO DOWNLOAD FOR RESEARCH: YES · OK TO SUBMIT: NO · DO NOT SUBMIT · DUPLICATE · NO SLOT APPROVED</strong></span></div></div>
+<main id="main">
+  <section class="subhero">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html">Overview</a> / Research</p>
+      <div class="eyebrow">Repository review · 2026-10-24 · no new experiment or slot</div>
+      <h1>Test the mechanism.<br><em>Keep the negative result.</em></h1>
+      <p>The latest KTH-88 artifact is a research download only. Its score, uniqueness, and provenance gates are disclosed below. H33's reported score is not organizer-confirmed, and no local experiment here proves an improvement over it or the current public leaderboard.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="kth-title">
+    <div class="wrap split">
+      <div>
+        <div class="kicker warn">Latest tested lane · negative</div>
+        <h2 id="kth-title">KTH-88 · antisymmetric K/Th index step and magnetic trough</h2>
+        <p><strong>Hypothesis:</strong> an untraced hydrothermal structure may coincide with a local cross-fault K/Th-index step and shallow RTP demagnetization trough, even where an erosional scarp is absent.</p>
+        <p><strong>Named non-fault mimics:</strong> potassic intrusive/lithologic contact, variable soil cover, atmospheric radon residual, or radiometric flight-line leveling. The K/Th inputs are uncalibrated u8 indices—not measured elemental abundance.</p>
+        <p>One preregistered experiment was run. Its 3-px final-dot overlap is 0.89882 with a GEMSDOE87 raster and 1.000 with the dense 17GEMSDOE raster; the binding limit is 0.70. The lane stopped. The continuous surface screen passing does not waive the final duplicate.</p>
+        <p><a href="../research/kth88-20261024.md">Full KTH-88 dossier →</a> · <a href="../registry/kth88_run_card.json">Canonical run card →</a> · <a href="data/kth88_validation.json">Independent TIFF/ZIP format audit →</a></p>
+      </div>
+      <div class="file-box">
+        <div class="title"><h3 style="margin:0">Measured holdout summary</h3><span class="chip">DO NOT SUBMIT</span></div>
+        <dl>
+          <dt>HOLDOUT-DTI</dt><dd>0.052656; 95% CI [0.045911, 0.059151]; 22,893 withheld positives; <code>gems57-pooled-hide-v2</code></dd>
+          <dt>Same-split incumbent</dt><dd>HOLDOUT-DTI 0.187888; paired improvement CI unavailable</dd>
+          <dt>Feature canaries</dt><dd>Maximum symmetric AUC 0.5097; below the 0.90 leakage warning</dd>
+          <dt>Pre-placement</dt><dd>Maximum |ρ| 0.07473 across 222 accessible rasters</dd>
+          <dt>Final dots</dt><dd>0.89882 and 1.000 within 3 px; fail</dd>
+          <dt>Organizer receipt</dt><dd>None; no ORGANIZER-CONFIRMED score</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#e9f2f1" aria-labelledby="h33-title">
+    <div class="wrap split">
+      <div>
+        <div class="kicker">H33 forensics · pixel evidence plus owner report</div>
+        <h2 id="h33-title">Why the reported 0.2778 is plausible, not verified</h2>
+        <p>Local SHA-pinned forensics show a strict H19-5 → D2.8 → SOLO-D2.8 → H33 subset chain with no added dots. From D2.8 to H33, 6,436 dots were removed; all were within two pixels of mapped faults. H33 has a 3.0-pixel median nearest-neighbor spacing, close to the official metric's 3-pixel kernel radius.</p>
+        <p>That geometry is consistent with removing low-marginal-credit catalogue-adjacent dots while retaining a broader off-catalogue lineament set. Under the distance-weighted Tversky denominator, such pruning can improve precision. This is an inference under a pure-false-positive assumption, not proof of the hidden labels or score causality.</p>
+        <p><strong>H33 0.2778 is USER-REPORTED.</strong> No organizer receipt was present. The official leaderboard snapshot checked on 2026-10-24 showed a public top score of 0.4413; this is a dated public observation, not an H33 receipt.</p>
+        <p><a href="../research/h33-forensics-20261024.md">Read the detailed H33 forensic note →</a> · <a href="../evidence/h33_forensics_20261024.json">Pixel-level evidence →</a></p>
+      </div>
+      <aside class="proof">
+        <h3>Can local evidence show an improvement?</h3>
+        <p><strong>No.</strong> The current KTH-88 HOLDOUT-DTI is 0.052656, below its same-split incumbent 0.187888. Hide-and-recover DTI is not the public leaderboard, and the holdout contains catalogue faults rather than the organizer's undisclosed new-fault labels.</p>
+        <p>No new candidate was validated. We cannot claim it will beat the USER-REPORTED H33 0.2778 or the official public top 0.4413.</p>
+        <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Open the official live leaderboard ↗</a>
+      </aside>
+    </div>
+  </section>
+
+  <section aria-labelledby="hypotheses-title">
+    <div class="wrap">
+      <div class="kicker">Ranked, genuinely untried hypotheses · proposals only</div>
+      <h2 id="hypotheses-title">Five future fault-discovery avenues</h2>
+      <p class="section-intro">Ranking is a qualitative prior on likely discovery value versus cost, not a DTI score or leaderboard projection. These methods are distinct from implemented potential-field gradients, mapped-fault models, and single-date point cues. The top candidate has <strong>not</strong> passed holdout because exact-area imagery and permission were not verified. No lane was silently selected.</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Rank / hypothesis</th><th>Layers and transform</th><th>Off-catalogue physical rationale</th><th>Named non-fault mimic</th><th>Novelty vs repo</th><th>Cost / official source availability</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>1 · hydro-vegetation persistence</strong><br>Potential: high · cost: high</td>
+              <td>Sentinel-2 L2A red, NIR, SWIR; cloud-masked dry/wet-season NDVI, NDMI and NDWI anomalies; orientation-aware line-integral persistence across dates, then aggregate to the competition grid.</td>
+              <td>Blind permeable structures can focus shallow discharge or phreatophyte growth into narrow, persistent moisture/vegetation corridors without a mapped scarp or potential-field edge.</td>
+              <td>Irrigation, canals, riparian drains, playa salinity/moisture margins, seasonal wetlands and roads.</td>
+              <td>No multiseason optical vegetation/wetness time series or temporal line-persistence feature is present in the identified GEMS88 model stack/method code.</td>
+              <td>AWS Open Data Registry describes public Sentinel-2 L2A data as free/open, with anonymous S3 listing. <strong>Not viable here yet:</strong> exact AOI scenes, cloud-season completeness and challenge-sharing terms were not verified; imagery endpoints are outside the sandbox allowlist.</td>
+            </tr>
+            <tr>
+              <td><strong>2 · persistent thermal corridors</strong><br>Potential: medium-high · cost: high</td>
+              <td>Landsat Collection 2 Level-2 surface temperature, QA-masked multi-year seasonal medians and robust local anomaly; retain only strike-coherent persistent line segments.</td>
+              <td>Repeat-season thermal expression may reveal shallow geothermal discharge or hydrothermal alteration above blind faults that do not produce reliable topographic scarps.</td>
+              <td>Emissivity/albedo boundaries, aspect-driven heating, irrigation, wildfire, urban heat, cloud and shadow artifacts.</td>
+              <td>Existing code has point thermal/geothermal cues, but no multiyear Landsat surface-temperature persistence raster.</td>
+              <td>USGS says Collection 2 Level-2 surface-temperature products are available globally and Landsat data have no use restrictions. Exact local scenes and competition sharing policy still need verification; cloud access can incur processing/storage costs.</td>
+            </tr>
+            <tr>
+              <td><strong>3 · groundwater head compartments</strong><br>Potential: medium · cost: very high</td>
+              <td>USGS Water Data for the Nation groundwater-level time series, well locations/depth and aquifer metadata; remove seasonal/pumping trends, estimate repeatable head offsets and cross-well hydraulic-lag coherence.</td>
+              <td>A blind fault can act as a conduit or barrier, producing persistent hydraulic-head steps or time-lag boundaries not represented by a surface trace.</td>
+              <td>Pumping, irrigation, seasonal recharge, different screened intervals, aquifer contacts and measurement-datum changes.</td>
+              <td>The repository includes point well/spring inventory cues, not groundwater-level time series or a fault-compartment statistic.</td>
+              <td>USGS groundwater records and services are public. The legacy NWIS interfaces are being migrated to Water Data for the Nation. Exact in-footprint well density, record length, units and data-use terms were not audited; do not treat the source catalog as proof of viable coverage.</td>
+            </tr>
+            <tr>
+              <td><strong>4 · calibrated U–K disequilibrium</strong><br>Potential: medium-low · cost: medium</td>
+              <td>Official GeoDAWN raw K, U and Th grids plus scaling/flight metadata; compare regionally detrended U/Th and K/Th discordance on orientation-consistent 300 m ridges.</td>
+              <td>Hydrothermal fluids can redistribute K and U relative to relatively immobile Th along structures beyond mapped faults.</td>
+              <td>Unfaulted granitoid/intrusive contacts, soil cover, radon-background residuals and survey leveling seams.</td>
+              <td>KTH-88 used an antisymmetric K/Th step from uncalibrated u8 indices; calibrated U/Th discordance is untried and distinct, but remains sensor/method-adjacent.</td>
+              <td>USGS GeoDAWN is an official CC0 data release (DOI 10.5066/P93LGLVQ). <strong>Not yet viable:</strong> raw product, scale/offset, exact footprint and authorization were not authenticated; mirrored u8 layers are not adequate.</td>
+            </tr>
+            <tr>
+              <td><strong>5 · persistent InSAR discontinuities</strong><br>Potential: uncertain · cost: very high</td>
+              <td>Sentinel-1 ascending/descending InSAR displacement/coherence time series; remove broad atmospheric/topographic terms and require geometry-consistent narrow gradients.</td>
+              <td>Persistent creep or fluid-pressure deformation could mark a blind fault in low-relief basins where optical/topographic lineaments are weak.</td>
+              <td>Groundwater/mining subsidence, geothermal reinjection, atmospheric delay, vegetation decorrelation and snow/moisture changes.</td>
+              <td>No satellite InSAR time series or ascending/descending displacement-consistency feature is implemented; current strain/seismicity cues are different modalities.</td>
+              <td>NASA ASF distributes Sentinel-1 data and offers free processing, but access requires Earthdata login and an EULA. Exact scene geometry, coherent time series, competition sharing terms and sandbox retrieval are unverified.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="notice" style="margin-top:22px">
+        <strong>Top-candidate holdout: blocked, not passed.</strong>
+        <p>Sentinel-2 is publicly catalogued, but this does not verify a usable cloud-free time series over the exact AOI or permission to share derived data with the competition. The competition feature stack is absent, and the prompt omits the promised single-method paragraph while the frozen MAG-FABRIC lane has already stopped. Therefore no honest feature-alone canary or buffered whole-component HOLDOUT-DTI can be computed for rank 1. No slot was touched.</p>
+      </div>
+      <p class="source-note">The withdrawn MAG-PSG “submission” was synthetic strokes, not a pseudogravity computation, and is excluded. Cross-depth RTP/gravity co-edge, raw gravity gradients, and generic drainage/knickpoint ideas are not presented as new because related transforms already exist in the repository. Detailed rationale, limitations, and source notes are in the <a href="../research/repo-review-20261024.md">dated review dossier</a>.</p>
+    </div>
+  </section>
+
+  <section style="background:#e9f2f1" aria-labelledby="review-title">
+    <div class="wrap">
+      <div class="kicker">Three review passes</div>
+      <h2 id="review-title">Safety correction and verification status</h2>
+      <ol>
+        <li><strong>Pass 1 — evidence and claims:</strong> found the public landing page and executive guide falsely labelled a simulated MAG-PSG raster as submission-ready; confirmed current KTH-88 is negative and the H33 score is unverified.</li>
+        <li><strong>Pass 2 — correction:</strong> removed the mock from the public download tree, quarantined it as a synthetic demo, restored the site to current KTH-88 bytes, and aligned the status banner with the current-release feed.</li>
+        <li><strong>Pass 3 — recheck:</strong> run the site-link guard, current release/format validators, readiness gate, and full test suite; verify the `--require-submit` path stays negative. Results are recorded in the dated review dossier.</li>
+      </ol>
+      <p><a href="../research/repo-review-20261024.md">Read the complete review, exact findings, source inventory and blockers →</a></p>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="wrap"><p>GEMSDOE88 · Maximize P(Win) · Own the Outcome.</p><a href="index.html">Back to overview →</a></div></footer>
+</body>
+</html>

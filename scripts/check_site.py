@@ -34,7 +34,11 @@ def main(root=ROOT):
     assert current['file'] == kth['download']
     assert current['file_sha256'] == kth['raster_sha256'] == validation['tif_sha256']
     assert current['zip_sha256'] == validation['zip_sha256']
-    assert current['research_download_ok'] is True
+    assert current['candidate_id'] == 'KTH-88'
+    assert current['release_date_utc'] == '2026-10-24'
+    assert current['decision_label'] == 'OK TO DOWNLOAD FOR RESEARCH — DO NOT SUBMIT'
+    assert current['evidence_class'] == 'HOLDOUT-DTI' and current['organizer_confirmed'] is None
+    assert current['research_download_ok'] is True and current['ok_to_download'] is True
     assert current['ok_to_submit'] is False and current['duplicate'] is True
     assert current['holdout_evaluator'] == kth['holdout_dti']['evaluator_version']
     assert current['withheld_positive_pixels'] == kth['holdout_dti']['withheld_positive_pixels']
@@ -65,6 +69,63 @@ def main(root=ROOT):
     assert len(lb['raster']['note']) <= 140 and lb['format_ok'] is True and lb['ok_to_download'] is True
     assert lb['ok_to_submit'] is True or 'DO-NOT-SUBMIT' in lb_tif.name, 'held LBCAL file must be named DO-NOT-SUBMIT'
     assert json.loads((root / 'docs' / 'data' / 'lbcal_run_card.json').read_text())['raster']['sha256'] == lb['raster']['sha256']
+    # Quarantine the legacy synthetic artifact outside the published Pages tree.
+    old_public_mock = root / 'docs/downloads/gems88-hyp-psg-submission.tif'
+    mock_file = root / 'evidence/simulated/mag-psg-synthetic-mock-20261024.tif'
+    mock_manifest = json.loads((root / 'evidence/simulated/manifest.json').read_text())
+    demo_generator = (root / 'scripts/build_synthetic_psg_demo.py').read_text()
+    assert not old_public_mock.exists()
+    assert mock_file.is_file() and _hl.sha256(mock_file.read_bytes()).hexdigest() == mock_manifest['sha256']
+    assert mock_manifest['classification'] == 'SIMULATED_NOT_SCIENTIFIC_CANDIDATE'
+    assert mock_manifest['submission_allowed'] is False
+    assert 'evidence/simulated/' in demo_generator and 'DO_NOT_SUBMIT' in demo_generator
+    assert 'submission_writer' not in demo_generator and 'docs/downloads' not in demo_generator
+
+    # MDC-88's old Pages status contradicted its own literal registry measurement.
+    # Keep the old gate/run card as history, but make the strict reassessment the
+    # only current status and remove the old candidate from the public download tree.
+    mdc_status = json.loads((root / 'docs/mdc88/status.json').read_text())
+    mdc_record = json.loads((root / 'registry/kdmc_gate_literal_reassessment.json').read_text())
+    assert mdc_status == mdc_record
+    assert mdc_record['schema'] == 'gems88.literal-gate-reassessment.v1'
+    assert mdc_record['ok_to_download_for_research'] is True
+    assert mdc_record['public_pages_offer_download'] is False
+    assert mdc_record['ok_to_submit'] is False
+    assert mdc_record['organizer_confirmed'] is None
+    assert mdc_record['weekly_slot_selected_or_spent'] is False
+    assert mdc_record['decision']['ok_to_download_for_research'] is True
+    assert mdc_record['decision']['ok_to_submit'] is False
+    literal = mdc_record['binding_uniqueness_rule']
+    assert literal['policy'] == 'literal-all-rasters; no chance-corrected exemption'
+    assert literal['duplicate'] is True and literal['final_dot_overlap_3px'] == 1.0
+    assert literal['final_dot_overlap_3px'] > literal['overlap_threshold']
+    assert literal['complete_current_registry_scan_claimed'] is False
+    assert literal['preplacement_surface_screen_documented'] is False
+    mdc_tif = root / mdc_record['candidate']['raster_archive_path']
+    mdc_zip = root / mdc_record['candidate']['zip_archive_path']
+    mdc_meta = root / mdc_record['candidate']['metadata_archive_path']
+    assert _hl.sha256(mdc_tif.read_bytes()).hexdigest() == mdc_record['candidate']['raster_sha256']
+    assert _hl.sha256(mdc_zip.read_bytes()).hexdigest() == mdc_record['candidate']['zip_sha256']
+    assert mdc_meta.is_file()
+    for suffix in ('.tif', '.zip', '.json'):
+        assert not (root / 'docs/downloads' / (Path(mdc_record['candidate']['name']).name + suffix)).exists()
+    old_mdc_gate = json.loads((root / 'registry/kdmc_gate.json').read_text())
+    assert old_mdc_gate['ok_to_submit'] is True
+    assert old_mdc_gate['uniqueness_literal']['duplicate'] is True
+    assert old_mdc_gate['uniqueness_literal']['stop_required'] is True
+    assert old_mdc_gate['gate_v3']['literal_blockers']
+    for page in (root / 'docs/mdc88/index.html', root / 'docs/mdc88/executive-summary.html'):
+        text = page.read_text()
+        upper = text.upper()
+        assert 'DO NOT SUBMIT' in upper and 'OK TO SUBMIT: NO' in upper
+        assert 'OK TO SUBMIT: YES' not in upper and 'DOWNLOAD SUBMISSION GEOTIFF' not in upper
+        links = Links()
+        links.feed(text)
+        assert not any('gemsdoe88-mdc88-pu-concentration' in link for link in links.links)
+    publisher = (root / 'scripts/publish_kdmc_site.py').read_text().lower()
+    assert 'retired' in publisher and 'refusing to generate' in publisher
+    assert 'shutil.' not in publisher and 'copy2(' not in publisher
+
     # Latest experiment must be present on both landing/guide pages and stay
     # blocked even if a historical gate record elsewhere says "promote".
     kth = json.loads((root / 'registry/kth88_run_card.json').read_text())
@@ -80,14 +141,19 @@ def main(root=ROOT):
     for page in ('index.html', 'executive-summary.html'):
         body = (root / 'docs' / page).read_text()
         assert kth_tif.name in body and 'DO NOT SUBMIT' in body, page
-    pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
-    assert len(pages) >= 5
+    pages = [root / 'index.html', *sorted((root / 'docs').rglob('*.html'))]
+    assert len(pages) >= 7, 'site guard must inspect nested public HTML pages too'
     for page in pages:
         text = page.read_text()
         if page.name in ('index.html', 'executive-summary.html'):
             assert 'DO NOT SUBMIT' in text, f'Missing safety banner: {page}'
+            upper = text.upper()
+            assert 'OK TO SUBMIT: YES' not in upper and 'DOWNLOAD FOR SUBMISSION' not in upper
+            assert 'OK TO SUBMIT: NO' in upper
         parser = Links()
         parser.feed(text)
+        if page.name in ('index.html', 'executive-summary.html'):
+            assert not any('gems88-hyp-psg-submission.tif' in link.lower() for link in parser.links)
         for link in parser.links:
             u = urlsplit(link)
             if u.scheme or u.netloc or not u.path:

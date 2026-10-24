@@ -1,0 +1,10 @@
+{
+  "schema": "gems88.simulated-artifact.v1",
+  "artifact": "evidence/simulated/mag-psg-synthetic-mock-20261024.tif",
+  "sha256": "43b3e936cc4adfe3a93e3a7a95c443a7260f1f3a8c2c778ec4d5fbb1f1131d4e",
+  "classification": "SIMULATED_NOT_SCIENTIFIC_CANDIDATE",
+  "submission_allowed": false,
+  "former_public_path": "docs/downloads/gems88-hyp-psg-submission.tif",
+  "reason": "Artificial synthetic strokes were generated due to unavailable source data; no scientific pseudogravity method or geological validation was performed.",
+  "format_properties_are_not_scientific_approval": true
+}

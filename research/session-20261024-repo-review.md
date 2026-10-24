@@ -1,5 +1,7 @@
 # GEMSDOE88 repository review & continuation note — 2026-10-24
 
+> **Historical snapshot, superseded:** this file recorded the fabric-dislocation state before KTH-88 became the current candidate. Its earlier “current decision” and 0.062936 HOLDOUT-DTI are not the current release. Use [`research/repo-review-20261024.md`](repo-review-20261024.md) for the canonical current decision, latest KTH-88 result, corrected website status and current source/experiment blockers.
+
 ## Scope and result
 
 This review treated `registry/fabric_dislocation_run_card.json` and `docs/data/current_release.json` as the latest candidate record and reopened the existing saved TIFF. No prediction TIFF was rebuilt, no new experimental lane was run, and no competition slot was spent. This is deliberate: the pre-registered `MAG-FABRIC-DISLOCATION` lane has already been executed once; its final dots violate the literal duplicate rule, so the parallel-run protocol says to record the duplicate and stop.

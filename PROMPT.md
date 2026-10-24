@@ -9,6 +9,14 @@
 > The latest session result is linked from the first block of `README.md`. Re-read these
 > operational requirements before changing a method, slot decision, or download link.
 
+## Current repo state and safety correction (2026-10-24)
+
+- Current candidate is KTH-88: research download only; **DO NOT SUBMIT**. Its HOLDOUT-DTI is 0.052656 (95% CI [0.045911, 0.059151], 22,893 withheld positives, `gems57-pooled-hide-v2`); final 3-px overlap fails the literal 0.70 rule. No slot was selected or spent and no organizer receipt exists.
+- The prompt's referenced “single method paragraph below” is absent. Do not invent a lane: the frozen MAG-FABRIC-DISLOCATION lane already stopped on a duplicate, and the competition feature stack is absent from this checkout. The top-ranked hydro-vegetation hypothesis is unvalidated because exact-area scenes, permissions and inputs are not verified.
+- The former `gems88-hyp-psg-submission.tif` was synthetic strokes, not a pseudogravity calculation. It has been removed from the Pages download tree and quarantined under `evidence/simulated/`; never upload or describe it as a scientific candidate.
+- The legacy MDC-88 subsite's green chance-corrected gate is superseded: its own literal field records a 1.0 final-dot overlap with the dense 17GEMSDOE raster. Original bytes are archived at `evidence/archive/mdc88/`; current status is research-archive only / DO NOT SUBMIT in `registry/kdmc_gate_literal_reassessment.json`, and the old site publisher intentionally exits 2 without writing.
+- The dated review dossier `research/repo-review-20261024.md` contains the five untried hypotheses, H33 forensic interpretation, source availability limits and three-pass findings. No local evidence proves a candidate can beat H33's USER-REPORTED 0.2778 or the official public leaderboard.
+
 ## Appendix A - earlier README summaries of this prompt (kept verbatim for audit; superseded by the criteria above)
 
 ### Earlier README section: "Permanent User Prompt: Operational Requirements"

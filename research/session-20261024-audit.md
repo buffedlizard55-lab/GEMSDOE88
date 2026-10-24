@@ -1,5 +1,7 @@
 # GEMSDOE88 independent research/release audit · 2026-10-24 UTC
 
+> **Historical audit, superseded:** this file concerns the earlier fabric-dislocation candidate and its then-current website state. The canonical current release is KTH-88, research download only and DO NOT SUBMIT. For current hashes/status and the corrective review, use [`research/repo-review-20261024.md`](repo-review-20261024.md).
+
 **Verdict: negative; current TIFF is OK to download for research, NOT OK TO SUBMIT.** No competition-account access or submission receipts. One experiment run, within the three-experiment/two-hour stop budget. Source discovery and local validation are not a feedback-slot selection.
 
 ## Pass 1 — scientific/source audit BEFORE implementation

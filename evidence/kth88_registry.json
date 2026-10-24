@@ -1106,7 +1106,7 @@
       "rho_full_footprint": -0.0023658005356812146
     },
     {
-      "path": "docs/downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
+      "path": "evidence/archive/mdc88/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
       "sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a",
       "rho_full_footprint": 0.015656051496803797
     }
@@ -5338,7 +5338,7 @@
       {
         "repo": "GEMSDOE88:gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
         "submission": "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
-        "file": "docs/downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
+        "file": "evidence/archive/mdc88/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
         "sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a",
         "decoded_sha256": "161b0598bf9394b08dce8613ace1fa6e3217cd935072e0254c15b3c6e1fdac9e",
         "their_dots": 51064,

@@ -1,6 +1,6 @@
 # Competition submission guide (current decision: DO NOT SUBMIT)
 
-**Current candidate: KTH-88. Research download: YES. Competition submission: NO.** Its holdout is far below the stored comparable incumbent and the literal registry-overlap rule fails. No weekly slot has been used; no `ORGANIZER-CONFIRMED` score exists.
+**Current candidate: KTH-88. Research download: YES. Competition submission: NO.** Its holdout is far below the stored comparable incumbent and the literal registry-overlap rule fails. No weekly slot has been used; no `ORGANIZER-CONFIRMED` score exists. The former MAG-PSG mock was synthetic and has been removed from the public download directory; it is preserved under [`../evidence/simulated/`](../evidence/simulated/README.md) for audit only and must never be uploaded.
 
 - GeoTIFF: [`gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif`](downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif)
 - Single-TIFF ZIP: [`gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip`](downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip)

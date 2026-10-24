@@ -1,5 +1,10 @@
 {
   "schema": "gems88.current-release.v1",
+  "candidate_id": "KTH-88",
+  "release_date_utc": "2026-10-24",
+  "decision_label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT",
+  "evidence_class": "HOLDOUT-DTI",
+  "organizer_confirmed": null,
   "file": "docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
   "file_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
   "zip_sha256": "e21c8aac70fdcca59fedd5e4b9ee2d8148dc34b12ea6b158698eb7ff5f9e75ca",
@@ -22,6 +27,7 @@
   "registry_rasters_checked": 222,
   "duplicate": true,
   "research_download_ok": true,
+  "ok_to_download": true,
   "ok_to_submit": false,
   "approved_for_weekly_slot": false,
   "verdict": "negative",

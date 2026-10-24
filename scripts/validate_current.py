@@ -116,9 +116,13 @@ def fabric_release_report(root=ROOT):
         later['new_prior_sha256'] in {r['sha256'] for r in rows}):
         raise ValueError('postmerge prior missing, moved or SHA changed')
     # A new published TIFF appeared after the initial 29-raster experiment.
-    # Fail closed if another unreviewed file appears in the accessible registry.
-    observed_hashes = {sha(path) for directory in ('data/registry', 'docs/downloads', 'submissions')
-                       for path in (root / directory).rglob('*.tif')}
+    # Fail closed on any unreviewed TIFF in the data registry, Pages downloads,
+    # submissions, or the explicitly retained audit archive.
+    observed_hashes = {
+        sha(path)
+        for directory in ('data/registry', 'docs/downloads', 'submissions', 'evidence/archive')
+        for path in (root / directory).rglob('*.tif')
+    }
     expected_hashes = {r['sha256'] for r in rows} | {sha(tif), later['new_prior_sha256']}
     # Rasters that carry a gems88-gate-v3 verdict record (registry/*gate_v3.json, registry/gate_verdict.json) were reviewed against the
     # 216+-raster v3 registry by the session of 2026-10-24 (IR-88-59..71); any OTHER unreviewed TIFF still fails closed.
@@ -249,8 +253,18 @@ def release_report(root=ROOT):
     holdout = card['holdout_dti']
     prior = card['incumbent_holdout_dti']
     comparison = card['correlation_overlap_vs_registry']
-    return dict(schema='gems88.current-release.v1', file=card['download'],
-                file_sha256=tif_hash, zip_sha256=zip_hash,
+    # Keep the public current-feed dated without inserting a nondeterministic
+    # build timestamp: the immutable artifact stem carries its release date.
+    release_date = next((part for part in Path(card['download']).stem.split('-')
+                         if len(part) == 8 and part.isdigit()), None)
+    if release_date is None:
+        raise ValueError('current artifact filename must carry an YYYYMMDD release date')
+    release_date = f'{release_date[:4]}-{release_date[4:6]}-{release_date[6:]}'
+    return dict(schema='gems88.current-release.v1', candidate_id='KTH-88',
+                release_date_utc=release_date,
+                decision_label='OK TO DOWNLOAD FOR RESEARCH — DO NOT SUBMIT',
+                evidence_class='HOLDOUT-DTI', organizer_confirmed=None,
+                file=card['download'], file_sha256=tif_hash, zip_sha256=zip_hash,
                 format_valid=bool(validation.get('local_format_audit', {}).get('ok')),
                 no_nan_inside=bool(validation.get('local_format_audit', {}).get('no_nan_inside')),
                 all_values_in_0_1=bool(validation.get('local_format_audit', {}).get('range_0_1')),
@@ -267,6 +281,7 @@ def release_report(root=ROOT):
                 registry_rasters_checked=comparison['registry_rasters_checked'],
                 duplicate=bool(comparison['literal_duplicate']),
                 research_download_ok=bool(validation.get('ok_to_download')),
+                ok_to_download=bool(validation.get('ok_to_download')),
                 ok_to_submit=False, approved_for_weekly_slot=False, verdict='negative',
                 reason=card['stop_reason'],
                 provenance='owner-mirrored inputs; independent organizer authentication unavailable')
