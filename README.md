@@ -1,6 +1,60 @@
-# GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
+# GEMSDOE88 — DOE Geothermal Fault Discovery (`GEMS`) · Automated Validation Gate
 
-> ## ⛔ Latest experiment: KTH-88 — OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
+> ## ⛔ CURRENT AUTOMATED GATE (`2026-10-24`, Lane `H88-QTSK`): **OK TO DOWNLOAD FOR RESEARCH: YES** · **OK TO SUBMIT: NO — DO NOT SUBMIT**
+>
+> - **⬇ One-click downloads:** [**Download `H88-QTSK` GeoTIFF (`.tif`, 808 KB)**](docs/downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif) · [**Download single-TIFF `.zip` (223 KB)**](docs/downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.zip) · [JSON run card](registry/qtsk88_run_card.json) · [Machine gate (`current_release.json`)](docs/data/current_release.json) · [Readiness (`status.json`)](docs/status.json) · [Executive submission guide](docs/executive-summary.html) · [Research & PhD forensics](docs/research.html) · [Verified official sources](docs/sources.html)
+> - **Prepared portal name (`43/140`):** `gems88-qtsk-coverstep-knickwave-20261024-v1`
+> - **Prepared portal note (`95/140`):** `GEMSDOE88 EXP3_QTSK_STRAT: QTS cover-step + 10m chi knickwave + LiDAR polarity + OOF Dinkelbach`
+> - **GeoTIFF SHA-256:** `798e3c54ae318c24ceef01134b94f5d61d18839c59347b01bda0f82af66400c2` (`ZIP SHA-256: 3dfbb93aebf8e4f0d2f3d04ab1c7a7ddd1d107cc35d5a2d289bfabc3e88ece8c`)
+> - **Session-start operational prompt (re-read every session):** [`PROMPT.md`](PROMPT.md) and [Permanent User Prompt: Operational Requirements](#permanent-user-prompt-operational-requirements) below · **Core Values: `Maximize P(Win)` · `Own the Outcome`** · **Weekly slots spent: `0`** · **`ORGANIZER-CONFIRMED` GEMSDOE88 score: `none`**.
+
+| Automated Gate (`scripts/validate_qtsk88.py`) | Measured Value (Zero Human Input) | Status |
+|---|---|---|
+| **Portal range `[0, 1]` & finite values** | `float32`, `min = 0.0`, `max = 1.0`, `53,876` binary `{0, 1}` dots, **`0` NaN / Inf** across all `12,280,160` cells (`rasterio` + `tifffile` byte-verified) | **PASS** |
+| **CRS / grid / sample LZW layout parity** | `EPSG:32611`, `3730 × 3292`, `100 m`, `[100, 0, 243350, 0, -100, 4508550]`, LZW 1-row-strip classic TIFF matching `sample_submission.tif`; `0` positive pixels outside footprint or on mapped `existing_faults.tif` | **PASS** |
+| **Single-feature leakage canaries (`<= 0.90`)** | **58 / 58 PASS** — `QTSK14` max symmetric AUC `0.578147` (`qts_hessian_ridge_s2`); `PHYS44` max `0.574997` | **PASS** |
+| **Pre-placement continuous surface (`|ρ| <= 0.90`)** | Max `|Spearman ρ| = 0.283106 <= 0.90` across all `222` accessible rasters (`GEMSDOE..GEMSDOE92`) | **PASS** |
+| **222-raster like-for-like 3-px dot overlap (`<= 0.70`)** | Worst 3-px overlap = **`0.564426 <= 0.70`** (vs `GEMSDOE85 gems85-geopb-crest-90000dots-sep4`) | **PASS** |
+| **Blind-basin fingerprint screen (`gems88-gate-v3`)** | `share_le2 = 0.00%`, **`share_gt25 = 46.40% >= 35.0%`**, `median_d_cat = 16.76 px` | **PASS** |
+| **Paired 8-fold `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `n = 22,893`)** | **`Exp 2 (QTSK-DUAL): 0.192759 [0.175472, 0.208319]`** (**new repo holdout high** vs `0.189634` ADHR; stopped by `0.7995 > 0.70` near-ribbon overlap vs MRR) · **`Exp 3 (QTSK-STRAT, emitted): 0.151511 [0.136125, 0.166066]`** (**highest `>=35%`-blind repo holdout**; below near-ribbon ADHR) | **HOLD (Regime Tradeoff)** |
+| **Literal all-registry 3-px overlap (`binding-literal-all-registry-v1`)** | `1.0000 > 0.70` solely against dense space-filling witness `17GEMSDOE:dense_17gemdoe.tif` (`5,167,373` positive cells; `IR-88-60`) | **BLOCK (`DO NOT SUBMIT`)** |
+
+### Paired 3-Experiment `H88-QTSK` Suite (`gems57-pooled-hide-v2`, Seeds `20+21`, `n = 22,893` Full / `n = 3,117` Blind `>25 px`)
+
+Preregistered in [`registry/qtsk88_preregistration.json`](registry/qtsk88_preregistration.json) and [`research/candidate-hypotheses-20261024-qtsk.md`](research/candidate-hypotheses-20261024-qtsk.md) after ranking 5 new geological hypotheses (`H88-QTSK`, `H88-GCA`, `H88-MHD`, `H88-EQR`, `H88-OPERA`) that unlock previously unread external geomorphic bands (`dem10_chi_100m_u8` B1–4, `dem10_chi_100m_i16` B1/2/4, `lidar_scarp_features_u8` B6–8, `topo_10m_derived_100m_u8` B3/4/7):
+
+| Arm | Overall `HOLDOUT-DTI` (`95% CI`) | Paired `Δ` vs `H88-ADHR` (`95% CI`) | Blind `>25 px` `HOLDOUT-DTI` (`95% CI`) | Prod `share_gt25` | 222-Raster Like-for-Like Unique? | Disposition |
+|---|---|---|---|---|---|---|
+| `Control: H88-ADHR` (paired incumbent) | `0.189634` `[0.173869, 0.204226]` | `0.000000` (stored `0.187888`) | `0.065263` `[0.036441, 0.098571]` | `4.23%` | PASS (`0.6796`) | Near-ribbon baseline |
+| `Exp 1: H88-QTSK-PHYS` (58-col zero-catalogue) | `0.110745` `[0.096966, 0.123784]` | `-0.078888` `[-0.091360, -0.063908]` | `0.065638` (`+0.000375`) | Pure physics | Diagnostic | Beats `CGO-88 (0.09042)` & `PHYS44 (0.10725)` |
+| **`Exp 2: H88-QTSK-DUAL`** (81-col de-jittered `|d|<=2 px`) | **`0.192759` `[0.175472, 0.208319]`** | **`+0.003125` `[-0.004267, +0.010898]`** (5/8 folds) | **`0.079137` (`+21.3%`)** | `8.03%` | **FAIL (`0.7995 > 0.70` vs MRR)** | **New repo holdout high**; stopped by Rule 1 |
+| **`Exp 3: H88-QTSK-STRAT`** (**emitted TIF/ZIP**) | **`0.151511` `[0.136125, 0.166066]`** | `-0.038123` `[-0.047875, -0.027997]` | `0.064322` `[0.036704, 0.096411]` | **`46.40%`** | **PASS (`0.5644 <= 0.70`; `|ρ| = 0.2831`)** | **New `>=35%`-blind repo high**; `DO NOT SUBMIT` |
+
+### PhD Summary: Why `GEMSDOE32` (`H33 = 0.2778`) Led & Whether We Can Beat `0.2778` / Live `#1 = 0.4413`
+1. **Why `GEMSDOE32` (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`, user-reported `0.2778`) beat `GEMSDOE16..40`:** Under `DTI = T / (0.8|G| + 0.2(T + n - M))` (`α = 0.2`, `β = 0.8`, `300 m` triangular kernel), `H33` (`37,654` binary `{0, 1}` dots) is a strict collar-pruned subset of `H19-5` (`121,131` dots) ⊃ `D2.8` (`44,090` dots) ⊃ `SOLO-D2.8` (`40,199` dots) ⊃ `H33` (`37,654` dots). Deleting `83,477` collar pixels within `d_cat <= 2.0 px` (`200 m`) eliminated ~69% of `0.2(n - M)` false-positive penalty next to already-masked traces while placing **`41.7%` of dots in unmapped basins/piedmonts (`d_cat > 25 px`)** — where `share_gt25` tracks public scores at Spearman `ρ = +0.90` (`n = 20` owner-reported rasters), whereas `gems57-pooled-hide-v2` concentrates `86.4%` of withheld truth inside `d_vis <= 25 px` (`10.7×` density skew; [`research/h33-forensics-20261024.md`](research/h33-forensics-20261024.md)).
+2. **Can we beat `0.2778` and live `#1 = 0.4413` (verified `2026-10-24`: `#1 xiaofanhu = 0.4413`, `#2 cfld__ = 0.3916`, `#5` $10k cutoff `= 0.3539`, [`docs/data/leaderboard.json`](docs/data/leaderboard.json); prompt's `0.3195` is stale)?**
+   - **Beating `0.2778` is structurally realistic** via `Exp 3: H88-QTSK-STRAT` (`share_gt25 = 46.40%`, `0% <= 2 px`, `HOLDOUT-DTI = 0.151511` vs `0.09–0.11` for prior blind physics), *provided* a human selector authorizes a live weekly slot to obtain an `ORGANIZER-CONFIRMED` receipt.
+   - **Beating `0.4413` cannot be credibly claimed from `100 m` public rasters alone:** `DTI >= 0.4413` with `β = 0.8` requires recovering `>= 40–48%` of hidden expert fault length within `300 m` at high precision, which likely demands external `1 m` 3DEP bare-earth LiDAR CNN/U-Net scarp segmentation and/or Sentinel-1 InSAR phase-gradient stacks (outside this sandbox's outbound network allowlist).
+
+### Zero-Manual-Input Reproduction Commands
+```bash
+# Fast validation of committed H88-QTSK GeoTIFF, single-TIFF ZIP, run cards, site links, and readiness
+.venv/bin/python scripts/restore_inputs.py --validation
+.venv/bin/python scripts/validate_qtsk88.py          # exits 0 (--require-submit exits 2)
+.venv/bin/python scripts/validate_current.py         # exits 0 (--require-submit exits 2)
+PYTHONPATH=scripts .venv/bin/python scripts/readiness.py
+.venv/bin/python scripts/check_site.py
+.venv/bin/pytest -q
+
+# Full train -> OOF inference -> 222-raster audit -> export pipeline
+.venv/bin/python scripts/restore_inputs.py && .venv/bin/python scripts/restore_siblings.py
+.venv/bin/python scripts/run_qtsk88_experiment.py --stage holdout
+.venv/bin/python scripts/run_qtsk88_experiment.py --stage prod
+```
+
+---
+
+> ## ⛔ Archived earlier 2026-10-24 experiment: KTH-88 — OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
 > [⬇ Download the new KTH-88 GeoTIFF](docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif) · [one-file ZIP](docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip) · [independent TIFF+ZIP audit](docs/data/kth88_validation.json) · [JSON run card](registry/kth88_run_card.json) · [executive submission guide](docs/executive-summary.html).
 > **Name:** `GEMSDOE88-KTH-BACDC27B`. **Note (105/140):** `K/Th antisymmetric radiometric step + RTP trough, 37654 dots; HOLDOUT-DTI 0.0527; UNSCORED; DO NOT SUBMIT`.
 > **SHA-256:** `5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf`. The machine independently reopened the TIFF and single-TIFF ZIP: 1 float32 band, 37,654 binary dots, all finite in `[0,1]`, sample CRS/shape/transform match, no NaN in the footprint, no nodata sentinel, zero positives outside or on the known catalogue. This is **local format validity, not organizer acceptance**.

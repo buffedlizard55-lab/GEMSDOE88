@@ -169,6 +169,31 @@ def fabric_release_report(root=ROOT):
             or comparisons['final_dots']['worst_dot_overlap'] <= .70):
             raise ValueError('new KTH research TIFF has no verified negative audit')
         expected_hashes.add(sha(p))
+    qtsk_path = root / 'registry/qtsk88_run_card.json'
+    if qtsk_path.is_file():
+        qtsk_c = json.loads(qtsk_path.read_text())
+        qtsk_web = json.loads((root / 'docs/data/qtsk88_run_card.json').read_text())
+        qp = (root / qtsk_c['raster']['tif_path']).resolve()
+        qz = (root / qtsk_c['raster']['zip_path']).resolve()
+        ru = qtsk_c.get('registry_uniqueness', {})
+        vo = qtsk_c.get('validator_output', {})
+        if (qtsk_c != qtsk_web
+            or not qp.is_relative_to((root / 'docs/downloads').resolve())
+            or not qz.is_file()
+            or 'DO-NOT-SUBMIT' not in qp.name
+            or qtsk_c.get('verdict') != 'negative'
+            or qtsk_c.get('ok_to_submit') is not False
+            or qtsk_c.get('approved_for_weekly_slot') is not False
+            or sha(qp) != qtsk_c['raster']['sha256']
+            or sha(qz) != qtsk_c['raster']['zip_sha256']
+            or vo.get('portal_ok') is not True
+            or vo.get('no_nan_inside_footprint') is not True
+            or vo.get('values_in_0_1') is not True
+            or ru.get('n_registry_rasters_checked', 0) < 200
+            or ru.get('like_for_like_3px_unique_le_0p70') is not True
+            or ru.get('worst_literal_forward_3px_overlap', {}).get('value') != 1.0):
+            raise ValueError('new QTSK research TIFF has no verified negative/selector-gated audit')
+        expected_hashes.add(sha(qp))
     if observed_hashes != expected_hashes:
         raise ValueError('accessible registry changed since postmerge audit; recheck all prior rasters')
     index = dict(complete_accessible_scan=True, errors=[], rasters=[])
@@ -231,8 +256,8 @@ def fabric_release_report(root=ROOT):
 
 
 
-def release_report(root=ROOT):
-    """Return the current KTH-88 release summary, not the archived fabric run."""
+def kth_release_report(root=ROOT):
+    """Return the archived KTH-88 release summary."""
     root = Path(root)
     card = json.loads((root / 'registry/kth88_run_card.json').read_text())
     validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
@@ -241,11 +266,11 @@ def release_report(root=ROOT):
     if (card != json.loads((root / 'docs/data/kth88_run_card.json').read_text()) or
         card['verdict'] != 'negative' or card['ok_to_submit'] is not False or
         not tif.is_file() or not archive.is_file()):
-        raise ValueError('KTH-88 current run card or research artifact is missing/inconsistent')
+        raise ValueError('KTH-88 run card or research artifact is missing/inconsistent')
     tif_hash, zip_hash = sha(tif), sha(archive)
     if (tif_hash != card['raster_sha256'] or validation.get('tif_sha256') != tif_hash or
         validation.get('zip_sha256') != zip_hash or validation.get('ok_to_submit') is not False):
-        raise ValueError('KTH-88 current-release hashes or negative gate do not agree')
+        raise ValueError('KTH-88 hashes or negative gate do not agree')
     holdout = card['holdout_dti']
     prior = card['incumbent_holdout_dti']
     comparison = card['correlation_overlap_vs_registry']
@@ -270,6 +295,76 @@ def release_report(root=ROOT):
                 ok_to_submit=False, approved_for_weekly_slot=False, verdict='negative',
                 reason=card['stop_reason'],
                 provenance='owner-mirrored inputs; independent organizer authentication unavailable')
+
+
+def release_report(root=ROOT):
+    """Return the current H88-QTSK release summary, keeping earlier run cards as immutable history."""
+    root = Path(root)
+    card = json.loads((root / 'registry/qtsk88_run_card.json').read_text())
+    web = json.loads((root / 'docs/data/qtsk88_run_card.json').read_text())
+    tif = root / card['raster']['tif_path']
+    archive = root / card['raster']['zip_path']
+    if (card != web or card['verdict'] != 'negative' or card['ok_to_submit'] is not False or
+        not tif.is_file() or not archive.is_file()):
+        raise ValueError('H88-QTSK current run card or research artifact is missing/inconsistent')
+    tif_hash, zip_hash = sha(tif), sha(archive)
+    if tif_hash != card['raster']['sha256'] or zip_hash != card['raster']['zip_sha256']:
+        raise ValueError('H88-QTSK current-release hashes do not match run card')
+    vo = card['validator_output']
+    ru = card['registry_uniqueness']
+    lc = card['leakage_canary']
+    fp = card['distance_fingerprint']
+    return dict(
+        schema='gems88.current-release.v1',
+        lane=card['lane'],
+        emitted_arm=card['emitted_experiment_arm'],
+        file=card['raster']['tif_path'],
+        zip_file=card['raster']['zip_path'],
+        file_sha256=tif_hash,
+        zip_sha256=zip_hash,
+        submission_name=card['submission_name'],
+        submission_note=card['submission_note'],
+        format_valid=bool(vo['portal_ok'] and vo['shared_template_format_ok']),
+        layout_parity_with_sample=bool(vo['layout_parity_with_sample']),
+        no_nan_inside=bool(vo['no_nan_inside_footprint']),
+        all_values_in_0_1=bool(vo['values_in_0_1']),
+        crs_shape_transform_match=bool(
+            vo['crs'] == 'EPSG:32611' and vo['shape'] == [3730, 3292]
+        ),
+        zip_one_exact_tif=bool(vo['zip_ok']),
+        positive_pixels=int(card['raster']['n_positive_dots']),
+        canary_max_auc=float(max(lc['qtsk14_max_symmetric_auc'], lc['phys44_max_symmetric_auc'])),
+        holdout_dti=float(card['holdout_dti']),
+        holdout_ci95=list(card['holdout_dti_ci95']),
+        exp2_dual_holdout_dti=float(card['all_experiments_holdout']['exp2_qtsk_dual']['pooled_dti']),
+        exp2_dual_holdout_ci95=list(card['all_experiments_holdout']['exp2_qtsk_dual']['ci95']),
+        holdout_evaluator=card['evaluator_version'],
+        withheld_positive_pixels=int(card['withheld_positive_pixels']),
+        incumbent_best_dti=float(card['all_experiments_holdout']['control_adhr']['pooled_dti']),
+        incumbent_stored_dti=0.187888,
+        share_le2=float(fp['share_le2']),
+        share_gt25=float(fp['share_gt25']),
+        fingerprint_screen_pass=bool(card['distance_fingerprint_screen_pass']),
+        preplacement_surface_max_abs_rho=float(ru['pre_placement_surface_max_abs_spearman_rho']),
+        like_for_like_unique_222=bool(ru['like_for_like_3px_unique_le_0p70']),
+        worst_like_for_like_3px=float(ru['worst_like_for_like_3px_overlap']['value']),
+        literal_registry_overlap_3px=float(ru['worst_literal_forward_3px_overlap']['value']),
+        registry_rasters_checked=int(ru['n_registry_rasters_checked']),
+        duplicate=not bool(ru['literal_all_registry_3px_unique_le_0p70']),
+        research_download_ok=bool(card['ok_to_download']),
+        ok_to_submit=False,
+        approved_for_weekly_slot=False,
+        verdict='negative',
+        reason=(
+            'PASSES portal format, LZW sample parity, 58/58 leakage canaries (max AUC 0.578), '
+            '222-raster like-for-like uniqueness (max 3px overlap 0.5644 <= 0.70, surface |rho| 0.2831 <= 0.90), '
+            'and blind-basin screen (share_gt25 = 46.4% >= 35%; HOLDOUT-DTI = 0.151511, highest among >=35%-blind GEMSDOE88 lanes). '
+            'HELD / DO NOT SUBMIT automatically: Exp 3 overall HOLDOUT-DTI (0.151511) is below near-ribbon H88-ADHR (0.189634; '
+            'Exp 2 QTSK-DUAL reached 0.192759 new repo high but collided 0.7995 > 0.70 with MRR-BPR-88), and literal 17GEMSDOE dense '
+            'witness overlap is 1.0000 > 0.70 (Protocol Rule 6 reserves live weekly slots to a human selector).'
+        ),
+        provenance='owner-mirrored inputs + official USGS 3DEP / GeoDAWN / DOE GDR #1391; organizer receipt external',
+    )
 
 
 def main():

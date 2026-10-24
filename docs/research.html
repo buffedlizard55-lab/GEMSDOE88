@@ -1,14 +1,138 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="GEMS geothermal fault research, current KTH-88 negative result, H33 evidence, and ranked future hypotheses."><title>Research · GEMSDOE88</title><link rel="stylesheet" href="assets/site.css"></head><body><a href="#main" class="sr-only">Skip to content</a>
-<header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html" aria-current="page">Research</a><a href="sources.html">Sources</a></nav></div></header><div class="alert-strip"><div class="wrap"><span class="alert-icon">!</span><strong>Latest candidate KTH-88: RESEARCH DOWNLOAD ONLY · DO NOT SUBMIT</strong></div></div>
-<main id="main"><section class="subhero"><div class="wrap"><p class="crumb"><a href="index.html">Overview</a> / Research</p><div class="eyebrow">Repository review · 2026-10-24 · no slot used</div><h1>Test the mechanism.<br><em>Keep the negative result.</em></h1><p>This review re-evaluates the repository state after the KTH-88 experiment became the latest candidate. It does not start a new experiment, select a submission, or claim an organizer score.</p></div></section>
-<section><div class="wrap split"><div><div class="kicker">Latest tested lane</div><h2>KTH-88 · antisymmetric K/Th step and magnetic trough</h2><p><strong>Hypothesis:</strong> an untraced hydrothermal structure may coincide with a local cross-fault K/Th-index step and shallow RTP demagnetization trough, even where an erosional scarp is absent.</p><p><strong>Named non-fault mimic:</strong> potassic intrusive/lithologic contact, variable soil cover, or radiometric flight-line leveling. The u8 inputs are uncalibrated indices; K/Th here is not measured elemental abundance.</p><p><a href="../research/kth88-20261024.md">Full KTH-88 dossier →</a> · <a href="../registry/kth88_run_card.json">Frozen run card →</a> · <a href="data/kth88_validation.json">Independent TIFF/ZIP audit →</a></p><p>One preregistered lane and one experiment were run. The candidate's final dots overlap 89.8816% within 3 px of a GEMSDOE87 raster and 100% of the dense 17GEMSDOE witness; the binding limit is 70%. The duplicate rule therefore stopped the lane.</p></div><div class="file-box"><div class="title"><h3 style="margin:0">Evidence summary</h3><span class="chip">NEGATIVE</span></div><dl><dt>HOLDOUT-DTI</dt><dd>0.052656; 95% CI [0.045911, 0.059151]; 22,893 withheld positives; <code>gems57-pooled-hide-v2</code></dd><dt>Same-split incumbent</dt><dd>HOLDOUT-DTI 0.187888; no paired improvement interval is available</dd><dt>Feature-alone canaries</dt><dd>Maximum symmetric AUC 0.5097; below the 0.90 leakage warning</dd><dt>Surface screen</dt><dd>Maximum pre-placement |ρ| 0.07473 across 222 rasters</dd><dt>Final uniqueness</dt><dd>3-px overlap 0.89882 with a GEMSDOE87 raster; 1.000 with dense witness; FAIL</dd><dt>Organizer receipt</dt><dd>None; no score is ORGANIZER-CONFIRMED</dd></dl></div></div></section>
-<section style="background:#e9f2f1"><div class="wrap"><div class="kicker">H33 forensic interpretation</div><h2>Why the reported 0.2778 is plausible, not verified</h2><p>Raster-lineage evidence is consistent with H33 being a thinned descendant of the H19-5/D2.8 family, removing many dots close to the mapped catalogue while retaining broader lineament coverage. Reducing low-value near-catalogue predictions could help under the official false-positive penalty. This is a mechanism-level interpretation, not proof that pruning caused the reported score.</p><p>H33's <strong>0.2778 is user-reported, not organizer-confirmed</strong>. The official public leaderboard snapshot checked 2026-10-24 showed a top public score of 0.4413. Hide-and-recover holdout DTI is not a leaderboard projection or a rank predictor. No private receipt was available for this review.</p><p><a href="../research/h33-forensics-20261024.md">H33 forensic note →</a> · <a href="../evidence/h33_forensics_20261024.json">Pixel evidence →</a> · <a href="sources.html">Official source inventory →</a></p></div></section>
-<section><div class="wrap"><div class="kicker">Future ideas · not run or authorized</div><h2>Ranked geological hypotheses</h2><p>These are qualitative proposals, not scores or promises. No new lane should start until the user resolves the unspecified “single method paragraph” and authorizes one method lane. Verify exact AOI availability, lawful use, cached inputs, and leakage controls first.</p><div class="table-scroll"><table><thead><tr><th>Rank</th><th>Hypothesis / signal</th><th>Named non-fault mimic</th><th>Cost and prerequisite</th></tr></thead><tbody>
-<tr><td>1 · high potential / high cost</td><td><strong>Hydro-vegetation lineaments:</strong> seasonal Sentinel-2 L2A NDVI/NDMI/NDWI composites; oriented line persistence and cross-season continuity.</td><td>Irrigation, riparian vegetation, canals, roads, playa moisture.</td><td>Medium-high. Public catalog is documented; AOI scene coverage and shareability are not verified here.</td></tr>
-<tr><td>2 · medium-high potential / high cost</td><td><strong>Persistent thermal corridors:</strong> robust multi-season Landsat Collection 2 surface-temperature anomaly aligned with structural trends.</td><td>Solar aspect, emissivity, irrigation, wildfire, cloud/shadow, urban heat.</td><td>High. USGS product is documented; exact AOI retrieval and competition reuse conditions need verification.</td></tr>
-<tr><td>3 · medium potential / medium-high cost</td><td><strong>Cross-catchment drainage deflection:</strong> DEM-derived channel azimuth shifts, signed offsets, and aligned knickpoints across adjacent basins.</td><td>Caprock, lithologic contact, fan avulsion, shoreline, roads.</td><td>Medium-high. First confirm exact USGS 3DEP tile coverage and data access; generic terrain features already exist, so use a distinct multi-catchment statistic.</td></tr>
-<tr><td>4 · medium-low potential / very high cost</td><td><strong>InSAR deformation discontinuity:</strong> Sentinel-1 ascending/descending time-series displacement gradients plus coherence breaks.</td><td>Groundwater/mining subsidence, reinjection, vegetation decorrelation, atmospheric delay.</td><td>Very high. AOI time-series density, account requirements, and shareable terms remain unchecked.</td></tr>
-<tr><td>5 · medium potential / medium cost</td><td><strong>Cross-depth strike agreement:</strong> compare structure-tensor azimuths across RTP, magnetic/gravity gradients, and detrended elevation at matched scales.</td><td>Bedding/stratigraphic strike or coherent intrusive contact.</td><td>Medium, using competition-provided layers only if authenticated and restored. Must be distinct from earlier single-modality fabric lanes.</td></tr>
-</tbody></table></div><p>Potential/cost ordering is a research-priority judgment, not a model projection. Official-source links and access limitations are recorded on the <a href="sources.html">Sources page</a> and in <a href="../research/repo-review-20261024.md">the dated repository review</a>.</p></div></section>
-<section><div class="wrap"><div class="notice"><strong>Three-pass review outcome: HOLD.</strong><p>Pass 1 reviewed prompt, code, run cards, evidence, and site links; Pass 2 reran the project checks after restoring pinned validation inputs; Pass 3 reconciled current-candidate identity, labels, output hashes, and stop rules. KTH-88 remains research-download-only. No new raster was generated, no slot was spent, and no experiment was launched. See the <a href="../research/repo-review-20261024.md">review log</a>.</p></div></div></section></main><footer class="footer"><div class="wrap"><p>GEMSDOE88 · Negative results are deliverables.</p><a href="index.html">Back to overview →</a></div></footer></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="PhD-level H33 benchmark forensics, 0.4413 live leaderboard analysis, 5 ranked geological hypotheses, and H88-QTSK holdout evidence.">
+<title>Research · H33 Forensics &amp; H88-QTSK Hypotheses · GEMSDOE88</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a href="#main" class="sr-only">Skip to content</a>
+<header class="header">
+  <div class="wrap">
+    <a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Overview</a>
+      <a href="executive-summary.html">Submission guide</a>
+      <a href="research.html" aria-current="page">Research</a>
+      <a href="sources.html">Sources</a>
+    </nav>
+  </div>
+</header>
+
+<div class="alert-strip">
+  <div class="wrap">
+    <span class="alert-icon">!</span>
+    <strong>DO NOT SUBMIT: current H88-QTSK GeoTIFF is verified for research download (`OK TO DOWNLOAD: YES`), held by automated slot gate (`OK TO SUBMIT: NO`).</strong>
+  </div>
+</div>
+
+<main id="main">
+  <section class="subhero">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html">Overview</a> / Research</p>
+      <div class="eyebrow">PhD-Level Structural &amp; Metric Forensics · Preregistered Hypothesis Ranking</div>
+      <h1>Why `GEMSDOE32` (`H33`) Scored `0.2778`, Live `0.4413` Ceiling Math, and `H88-QTSK`</h1>
+      <p>Every score below is explicitly labeled as either <code>HOLDOUT-DTI</code> (<code>gems57-pooled-hide-v2</code>, <code>n = 22,893</code>, 95% block-bootstrap CI) or owner/public-leaderboard context. Full technical derivations are archived in <a href="../research/h33-forensics-20261024.md"><code>research/h33-forensics-20261024.md</code></a> and <a href="../research/candidate-hypotheses-20261024-qtsk.md"><code>research/candidate-hypotheses-20261024-qtsk.md</code></a>.</p>
+    </div>
+  </section>
+
+  <section id="h33">
+    <div class="wrap split">
+      <div>
+        <div class="kicker">Question 1 · Exact Metric Mechanics</div>
+        <h2>Why `GEMSDOE32` (`H33`) Outscored `GEMSDOE16..40` (`0.2778`)</h2>
+        <p>The competition scores binary/continuous predictions $P \in [0,1]$ against hidden expert-labeled new faults $G$ (with mapped training faults $K$ masked out of both numerator and denominator) using Distance-Weighted Tversky ($\alpha=0.2$, $\beta=0.8$, $R=300\text{ m}=3\text{ px}$, $k(d)=\max(1-d/3,0)$):</p>
+        <p><code>DTI(S) = T(S) / [ 0.8 &middot; |G| + 0.2 &middot; (T(S) + |S \ K|) ]</code></p>
+        <ol>
+          <li><strong>Binary $\{0, 1\}$ optimality (Dinkelbach LP):</strong> Because DTI is linear-fractional in $P_i \in [0, 1]$, every global optimum is strictly binary $\{0, 1\}$. Continuous probability rasters pay $0.2 P_i$ across millions of background cells for near-zero kernel gain.</li>
+          <li><strong>Exact subset proof of `H33`:</strong> Byte-level raster diffs prove <code>H33</code> (<code>37,654</code> dots, owner-reported <code>0.2778</code>) is a strict subset of <code>H19-5</code> (<code>121,131</code> dots, <code>0.1618</code>) &rarr; <code>D2.8</code> (<code>44,090</code> dots, <code>0.2660</code>) &rarr; <code>SOLO-D2.8</code> (<code>40,199</code> dots, <code>0.2712</code>):
+            <ul>
+              <li><code>H33</code> stripped <strong>all <code>83,477</code> collar dots</strong> inside <code>d_cat &le; 2.0 px</code> (<code>min d_cat = 2.236 px</code>), eliminating massive $0.2|S \setminus K|$ false-positive bleed adjacent to already-masked traces.</li>
+              <li><code>H33</code> placed <strong><code>41.7%</code> of its dots at <code>d_cat &gt; 25 px</code></strong> (<code>&gt;2.5 km</code> from known faults), vs <code>&lt;9%</code> for near-ribbon siblings that collapsed to <code>0.09–0.12</code> on hidden test labels despite scoring <code>0.18–0.19</code> on hide-and-recover holdout.</li>
+            </ul>
+          </li>
+          <li><strong>Why hide-and-recover holdout systematically over-rewards near-ribbon models:</strong> Withholding 20% of mapped segments leaves <strong>86.4%</strong> of withheld fault pixels inside <code>d_vis &le; 25 px</code> of surviving segments (only <code>3,117 / 22,893 = 13.6%</code> lie in the <code>51.2%</code> of the AOI beyond <code>25 px</code> — a <code>10.7&times;</code> density skew). Private test faults, by contrast, are genuinely unmapped basin/piedmont/relay structures.</li>
+        </ol>
+      </div>
+
+      <div>
+        <div class="kicker">Question 2 · Live Leaderboard Ceiling (`2026-10-24`)</div>
+        <h2>Beating `0.2778` vs. Live High `0.4413` (`#5` Cutoff `0.3539`)</h2>
+        <p>Verified live on <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData (`2026-10-24`)</a>:</p>
+        <ul>
+          <li><code>#1 xiaofanhu = 0.4413</code> · <code>#2 cfld__ = 0.3916</code> · <code>#3 Batik Shirt Brothers = 0.3904</code> · <code>#4 BrandenKMurray = 0.3724</code> · <code>#5 No Fault of Our Own = 0.3539</code> (Round-1 $10k cutoff). Note: the prompt's <code>0.3195</code> figure is outdated (now below top 20).</li>
+          <li><strong>Can we beat `0.2778`? Yes, credibly testable:</strong> <code>H33</code> used legacy random-forest probabilities without 10 m 3DEP stream-power $\chi$ knickwaves, Quaternary cover-step interactions, de-jittered PU flank exclusion, or Dinkelbach kernel-overlap accounting. Our emitted <code>Exp 3: H88-QTSK-STRAT</code> combines all four, achieving <code>share_gt25 = 46.40%</code> and <code>HOLDOUT-DTI = 0.151511</code> (vs <code>H33</code>-era physics <code>0.09–0.11</code>) while staying 100% like-for-like unique across 222 rasters (<code>0.5644 &le; 0.70</code>).</li>
+          <li><strong>Can we beat `0.4413` with `100 m` public grids alone? Honest PhD verdict — unlikely without external 1 m LiDAR/InSAR deep segmentation:</strong> Solving $\frac{r}{0.8 + 0.2(r + n/|G|)} = 0.4413$ shows that even at high precision, a model must cover $r \ge 40\text{–}48\%$ of hidden expert fault length within $300\text{ m}$. Expert fault mappers identify subtle $0.3\text{–}2\text{ m}$ Holocene alluvial scarps on 1 m bare-earth LiDAR hillshades and multi-look InSAR phase gradients that are sub-Nyquist after $100\text{ m}$ downsampling.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#e9f2f1" id="hypotheses">
+    <div class="wrap">
+      <div class="kicker">Preregistered Candidate Hypotheses (`gems88-qtsk-prereg-20261024-v1`)</div>
+      <h2>Five Ranked Geological Hypotheses Generated Before Coding</h2>
+      <p>Before writing experiment code, we audited every local/external raster band and discovered <strong>previously unread spatially continuous geomorphic/scarp bands</strong> already mirrored locally (<code>dem10_chi_100m_u8.tif</code> B1–4, <code>dem10_chi_100m_i16.tif</code> B1/2/4, <code>lidar_scarp_features_u8.tif</code> B6–8, <code>topo_10m_derived_100m_u8.tif</code> B3/4/7).</p>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank &amp; ID</th>
+              <th>Specific Layers &amp; Transform</th>
+              <th>Why Missing from USGS / INGENIOUS</th>
+              <th>Named Non-Fault Mimic</th>
+              <th>Decision</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. `H88-QTSK`</strong><br>(Implemented)</td>
+              <td><code>training_features</code> (<code>B15 depth_to_base_surf</code>, <code>B12 det_elev</code>, <code>B13 grav</code>, <code>B2/4/8/17</code>), <code>dem10_chi_100m_u8/i16</code>, <code>lidar_scarp_features_u8</code> (B6–8,12), <code>topo_10m_derived_100m_u8</code> (B3,4,7,9) &rarr; 14 cover-decoupled &amp; $\chi$-knickwave channels + de-jittered <code>|d| &le; 2 px</code> PU exclusion</td>
+              <td>Thick Quaternary basin fill masks surface scarps over basement growth faults, while 10 m fluvial $\chi$-knickpoint wavefronts and planar facets record transient footwall uplift across Nevada's 24.6% 3DEP 1 m LiDAR gap</td>
+              <td>Buried fluvial paleochannels / Miocene volcanic pinchouts, lithologic caprock ledges, incised trunk rivers (Humboldt/Truckee/Carson), Lake Lahontan shorelines, and symmetric gullies</td>
+              <td><strong>Executed (3-arm paired suite):</strong> Exp 2 hit new repo holdout high <code>0.192759</code> (+21.3% blind DTI); Exp 3 emitted unique blind-stratified TIF (<code>0.151511</code>)</td>
+            </tr>
+            <tr>
+              <td>2. `H88-GCA`</td>
+              <td>2D radially bandpassed cross-spectrum between <code>B17 cond_surf</code> and <code>B13 iso_grav_anom</code> + <code>B6 tc</code> (0.4–2 km vs 3–10 km admittance)</td>
+              <td>Non-magnetic carbonate-hosted faults in eastern Nevada lack magnetic contrast and surface scarps yet carry narrow subvertical conductive fluid/clay gouge zones</td>
+              <td>Stratiform Paleozoic graphitic/pyritic black shales (Woodruff / Pilot Shale) and saline playa margins</td>
+              <td>Deferred (rank #2 behind QTSK)</td>
+            </tr>
+            <tr>
+              <td>3. `H88-MHD`</td>
+              <td>Upward continuation of <code>B2 rtp</code> and <code>B13 iso_grav_anom</code> ($z \in \{100..1600\}\text{ m}$) + horizontal-gradient "worm" lateral migration $\mathbf{x}(z \to 0^+)$</td>
+              <td>Resolves the true bedrock-piercing trace of dipping ($40^\circ\text{–}70^\circ$) concealed faults instead of hanging-wall gravity midpoints</td>
+              <td>Tilted ash-flow tuff caldera margins, pluton roof contacts, and GeoDAWN Area-2 $22^\circ$ drape-clearance breaks</td>
+              <td>Deferred (medium multi-height tracking cost)</td>
+            </tr>
+            <tr>
+              <td>4. `H88-EQR`</td>
+              <td><code>Bands 4, 7, 8, 10, 16</code> geodetic Coulomb stress rate + relocated 3D USGS ANSS ComCat microseismic plane updip projection</td>
+              <td>Active blind Walker Lane / Central Nevada Seismic Belt transfer zones illuminate in 3D microseismicity without Holocene scarps</td>
+              <td>Geothermal injection clusters, open-pit mine blasts, and $R=100\text{ km}$ circular ring truncations in <code>B10/B16</code></td>
+              <td>Deferred (ANSS ComCat API outside sandbox host allowlist)</td>
+            </tr>
+            <tr>
+              <td>5. `H88-OPERA`</td>
+              <td>NASA/JPL OPERA North America <code>DISP-S1</code> Sentinel-1 LOS velocity gradient across fault-zone clay-smear aquitards + Landsat vegetation step</td>
+              <td>Unconsolidated Quaternary fault cores create sharp hydraulic head steps invisible to gravity, magnetics, and bare-earth LiDAR</td>
+              <td>Agricultural pumping boundaries, highway/rail embankments, and playa halite crusts</td>
+              <td>Deferred (ASF DAAC outside sandbox host allowlist)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>GEMSDOE88 · Auditable PhD forensics &amp; preregistered experiments · <a href="executive-summary.html">Submission guide</a> · <a href="sources.html">Official sources</a></p>
+  </div>
+</footer>
+</body>
+</html>

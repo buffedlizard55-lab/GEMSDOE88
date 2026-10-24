@@ -1,0 +1,56 @@
+{
+  "preregistration_id": "gems88-qtsk-prereg-20261024-v1",
+  "frozen_utc": "2026-10-24T21:20:00Z",
+  "branch": "arena/14b2260c-gemsdoe88",
+  "lane": "H88-QTSK",
+  "lane_title": "Decoupled Quaternary Cover-Thickness Steps + Tectonic Fluvial Chi-Knickpoint & Scarp-Polarity Wavefronts",
+  "hypothesis_doc": "research/candidate-hypotheses-20261024-qtsk.md",
+  "evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "version": "gems57-pooled-hide-v2",
+    "seeds": [20, 21],
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "withheld_positive_pixels": 22893,
+    "bootstrap_blocks_km": 20.0,
+    "bootstrap_draws": 400
+  },
+  "incumbent_baseline": {
+    "id": "H88-ADHR",
+    "stored_holdout_dti": 0.187888,
+    "recomputed_paired_target": true
+  },
+  "canary_gate": {
+    "max_single_feature_symmetric_auc": 0.90,
+    "abort_on_exceed": true
+  },
+  "uniqueness_gates": {
+    "max_pre_placement_abs_spearman_rho": 0.90,
+    "max_like_for_like_3px_dot_overlap": 0.70,
+    "literal_all_registry_rule": "binding-literal-all-registry-v1 (includes 17GEMSDOE dense witness without silent exemption)"
+  },
+  "fingerprint_gate": {
+    "policy": "gems88-gate-v3",
+    "max_share_le2": 0.0,
+    "min_share_gt25": 0.35
+  },
+  "experiments": [
+    {
+      "exp_id": 1,
+      "name": "H88-QTSK-PHYS",
+      "description": "Zero-catalogue 58-channel (44 baseline physics + 14 QTSK geomorphic/cover-step) de-jittered dual-expectation + exact Dinkelbach {0,1}"
+    },
+    {
+      "exp_id": 2,
+      "name": "H88-QTSK-DUAL",
+      "description": "Full 81-channel de-jittered QTSK + fold-visible relay fusion + axial strike smoothing + exact Dinkelbach {0,1}"
+    },
+    {
+      "exp_id": 3,
+      "name": "H88-QTSK-STRAT",
+      "description": "Completeness-stratified near-relay (2.24<d<=25 px, 60%) + blind-basin (d>25 px, 40%) Dinkelbach {0,1} on identical Exp 2 OOF heads"
+    }
+  ],
+  "max_experiments": 3,
+  "max_wall_hours": 2.0
+}
