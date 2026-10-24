@@ -1,5 +1,21 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+# Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
+
+## 2026-10-24 · PROVCREST de-novo candidate — ✅ OK TO DOWNLOAD AND SUBMIT (automated inspection passed, IR-88-58)
+
+**Upload this one file:** `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif`
+(SHA-256 `13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f`; single-TIFF ZIP beside it has the same TIFF inside.)
+
+- **Submission name:** `GEMSDOE88-PROVCREST-RANK-04559A2C`
+- **Note (112/140 chars):** `PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED`
+- **Automated validation (no human inspection):** single-band float32, EPSG:32611, 3730×3292, transform = sample, all 12,279,160 cells finite in {0.0,1.0} ⊂ [0,1] (no NaN → no “[0, 1]” portal error), 0 dots on catalogue, min catalogue distance 3.1623 px, 37,654 dots.
+- **Science gate:** HOLDOUT-DTI (gems57-pooled-hide-v2, seeds 20+30, 22,663 withheld) **0.076277** [0.067653, 0.084607] vs R0 **0.004006** (paired Δ +0.072271 [0.063852, 0.080393]); randorder control 0.050917; SGMC PROXY 0.12569 vs R0 0.096060 (proxy, not a score). Canary max AUC 0.57543 ≤ 0.90. Uniqueness (30 rasters): worst sparse |ρ| 0.0302 ≤ 0.90, worst sparse 3-px overlap 0.4076 ≤ 0.70.
+- **Slots:** agent used **0**; ORGANIZER-CONFIRMED score: **none**. The human's only action is the DrivenData upload itself (confirm weekly quota/deadline on the portal first). After upload, paste the verbatim receipt into `ledger/submissions.csv`.
+- Machine receipts: `registry/provcrest_run_card.json`, `evidence/provcrest_uniqueness.json`, writer receipt `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.json`. Archived ADHR/MGC/GHMD files below/in downloads remain **DO NOT SUBMIT**.
+
+---
+
 ## 2026-10-24 · `AXIS=PRUNE` single-factor deconfounding triad (`IR-88-56`) — **`PRUNEp3space35fp` (`8d29a2f7`) leads all `300 m`-collar arms (`0.101947` blind `PROXY`, zero `w`, zero RNG)**
 
 Parent `R0 = h33-h33-2-b2` rebuilt byte-exactly (`15/15` pins, zeros `c55bafc4…`, NaN `baeae321…`). Predictions frozen before any proxy (`registry/preregistration_prune_deconfound.json`). All three arms hold `N = 37,654` fixed, `0` mass on `existing_faults.tif`, `0` positive pixels `< 3.0 px`, and pass hardened `validate_variant.py` `6/6` (`registry/prune_deconfound_validation.json`). Upload primary `<id>.tif` (`NaN` outside footprint) first; upload `<id>-zeros.tif` (`0.0` outside) **only if** the portal rejects `NaN`. Live `|delta| < 0.01` is **no evidence**.
@@ -66,7 +82,7 @@ Three new gate-clean spaced-refill PRUNE arms were built from rebuilt byte-exact
 
 No slot was used, no receipt exists. Queue remains `R1 p3px → p3.5space35/p4space35 → p4space28` per `SLOT_PLAN.md`.
 
-## 2026-10-24 · `AXIS=PRUNE` interior-annulus bracket on `R0` (IR-88-57) — **no upload recommended**
+## 2026-10-24 · `AXIS=PRUNE` interior-annulus bracket on `R0` (IR-88-58) — **no upload recommended**
 
 **Three new candidates were built from byte-exact `R0`; all three are `HOLD` and the slot queue is unchanged.**
 The collar curve had no points between `R0` (2 px) and `R1` (3 px). The `2,171` R0 dots in that annulus occupy

@@ -1,0 +1,38 @@
+{
+  "schema": "gems88.provfp-preregistration.v1",
+  "frozen_utc": "2026-10-24T06:30:00Z",
+  "frozen_before_any_variant_proxy_or_holdout": true,
+  "session_date": "2026-10-24",
+  "lane_single_method": "PROV-CREST de-novo emission: composite Hessian crest of organizer-provided training_features.tif Bands 19/3/18/15 (weights 0.45/0.20/0.20/0.15 after percentile ranking), 1-D directional NMS crest pool, exactly 37,654 binary dots selected de novo (zero R0/sibling dots by construction) at >=3.5 px mutual spacing and >3.0 px from the catalogue (full catalogue for the shipped file; visible-only catalogue inside each holdout fold). No external data, no sibling supports (no H19-5/H19-4/H16-1), no catalogue-derived ranking field.",
+  "experiments": {
+    "EXP1_provcrest_rank": {
+      "selection": "greedy descending composite-crest score, accept if >=3.5 px from every already accepted dot (deterministic row-major tie-break)",
+      "predicted_holdout_dti_vs_r0_control": "MODEL:+0.03 to +0.10 (crest lines coincide with withheld fault scarps/contacts; R0 control is expected near 0.004 because its dots sit >2 px from all catalogue pixels including withheld truth)",
+      "falsifier": "Pooled HOLDOUT-DTI (seeds 20+30) not above R0 control, or paired 95% CI includes 0, or blind SGMC PROXY below R0 0.096060"
+    },
+    "CONTROL_r0": {
+      "selection": "R0 (h33-h33-2-b2, 37,654 dots) evaluated unchanged on identical folds",
+      "role": "benchmark only, not an experiment and not a candidate"
+    },
+    "EXP2_provcrest_randorder": {
+      "selection": "seeded random order (numpy default_rng 20261024) over the identical crest pool, identical >=3.5 px blocked-greedy acceptance, budget and collar; zero crest-score ranking",
+      "predicted_holdout_dti_vs_rank": "MODEL:-0.01 to +0.02 vs EXP1 (IR-88-55 novelty-radius finding predicts ranking adds little; crest-score ranking is retained only if it beats this control)",
+      "falsifier": "If EXP2 >= EXP1 on pooled HOLDOUT-DTI, score ranking is retired and EXP2 ships; if both <= R0 control, verdict is negative and nothing ships as promotable",
+      "note": "Amended 2026-10-24 before any build/scoring: replaces farthest-point EXP2 (O(n_add x n_pool) exact maximin is not computable for 37,654 picks over the full crest pool within budget); farthest-point remains Rank-2 hypothesis for a future capped-pool test. Random-order is the preregistered ranking falsifier used by IR-88-55 at refill scale."
+    }
+  },
+  "budget": {
+    "experiments_max": 3,
+    "experiments_planned": 2,
+    "hours_max": 2
+  },
+  "gates": {
+    "leakage_canary_symmetric_auc_max": 0.9,
+    "uniqueness_rho_max": 0.9,
+    "uniqueness_dot_overlap_3px_max": 0.7,
+    "validator": "no NaN/Inf anywhere (zeros outside footprint, nodata=None), values subset of {0.0,1.0} in [0,1], EPSG:32611, 3730x3292, transform identical to sample_submission.tif, 0 dots on catalogue, min distance to catalogue >3.0 px",
+    "promotion_rule": "Ship only the holdout-winning arm; verdict promote only if it beats R0 control on pooled HOLDOUT-DTI with paired 95% CI excluding 0 AND passes uniqueness + validator gates. Otherwise verdict negative, file still downloadable but labelled DO NOT SUBMIT."
+  },
+  "non_fault_mimic": "Unfaulted coalescing alluvial-fan bajada toe inflections, incised fluvial terrace risers, Tertiary volcanic flow margins and pluton-roof contacts producing slope-break / gradient crests without brittle fault permeability.",
+  "note_limit_chars": 140
+}
