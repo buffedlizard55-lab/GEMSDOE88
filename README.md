@@ -1,5 +1,25 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> ## ⛔ Latest session lane (2026-10-24): `H88-PHYS-NEAR` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (held under literal `17GEMSDOE` dense witness rule)
+> [⬇ **Download H88-PHYS-NEAR GeoTIFF (`.tif`, ~120 KB, research only)**](docs/downloads/gems88-phys-near-conjunction-20261024-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`)**](docs/downloads/gems88-phys-near-conjunction-20261024-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/run_card.json) · [Gate v1 Verdict](registry/gate_verdict.json) · [Executive Submission Guide](docs/executive-summary.html).
+>
+> | Gate / Field | Machine Result | Binding Evidence |
+> | :--- | :--- | :--- |
+> | **OK to download for research?** | **YES (`OK TO DOWNLOAD`)** | `1` band `float32`, `EPSG:32611`, `3730×3292`, exact `sample_submission.tif` geotransform, `0` NaN/Inf anywhere, all values in `[0.0, 1.0]` (`{0.0, 1.0}` binary), `nodata=None`, `26,955` positive pixels (`0` outside footprint, `0` on mapped catalogue), byte-identical `.tif` inside single-member `.zip`. |
+> | **Single-feature leakage canary** | **PASS** | 4/4 features ≤ 0.90; max symmetric AUC 0.5440 (K/Th anomaly 0.5440, mag trough 0.5137, topo lineament 0.5300, conjunction 0.5114). |
+> | **Blocked holdout (HOLDOUT-DTI)** | **MEASURED — low** | **`HOLDOUT-DTI = 0.002453`** (`gems57-pooled-hide-v2`, seeds 20+21, 31,540 withheld positives). Low DTI reflects intentional off-catalogue targeting: the physics conjunction does not strongly predict known-fault locations. Negative holdout result — deliverable. |
+> | **Registry uniqueness (sparse)** | **PASS** | Max dot 3-px overlap 0.2456 ≤ 0.70; max |Spearman ρ| 0.0128 ≤ 0.90 across all registry rasters. |
+> | **Literal any-raster overlap** | **FAIL — binding stop** | Forward 3-px overlap 1.0000 > 0.70 against full-footprint continuous `17GEMSDOE` witness. No dense-prior exemption exists. |
+> | **OK to submit to competition?** | **NO — `DO NOT SUBMIT` (`ok_to_submit = false`)** | Literal `17GEMSDOE` overlap 1.0 > 0.70 blocks every nonempty candidate under the shared protocol. Zero weekly slots spent. No `ORGANIZER-CONFIRMED` score. |
+> | **Prepared Submission Name (`53/140` chars)** | `GEMSDOE88-PHYS-NEAR-CONJUNCTION-20261024` | Unique; not a copy or subset of any prior GEMSDOE submission. |
+> | **Prepared Submission Note (`128/140` chars)** | `H88-PHYS-NEAR phys-conj 19301prox+7654blind=26955dots; HOLDOUT-DTI 0.0025; UNSCORED` | Strictly `<= 140` characters; labels numbers as `HOLDOUT-DTI` and live status as `UNSCORED`. |
+> | **SHA-256 (`.tif` / `.zip`)** | `b2c9c0ce547fca035ce3520a9bd1eda233b18ec57e6af57222e65d9083eb280d` | ZIP: `536ed2ac869589000793b4c8dadc951fc2470bf39f55acf869c3a5056c9c6418` |
+> | **Live Portal Status** | **`UNSCORED` (`0` weekly slots spent by agents)** | No `ORGANIZER-CONFIRMED` score exists for `H88-PHYS-NEAR`. |
+>
+> **Hypothesis (H88-PHYS-NEAR):** Geothermal fault damage zones and secondary strands show coupled radiometric potassium enrichment + magnetic demagnetization troughs + topographic lineament. A multiplicative three-way conjunction (USGS GeoDAWN rad_K_over_Th × RTP demagnetization trough × DEM curvature contrast) weights dot emission within 3–25 px of catalogue faults (proximal halo, holdout-scorable) plus a true blind-zone component (>26 px from catalogue). Unlike all prior lanes (distance-alone or lattice placement near known faults), this lane uses physics-conjunction weighting as the primary emission filter and explicitly combines near-fault and true-blind-zone allocation in one submission.
+>
+> **Named non-fault mimic:** Pleistocene pluvial shoreline wave-cut benches (Lake Lahontan ~1332 m, Lake Bonneville ~1463/1552 m) create linear topographic features without radiometric or magnetic anomalies; closed-basin playas produce flat lows without K/Th enrichment; alluvial fan apices create radial drainage patterns without fault geometry.
+
 > ## ⛔ Latest session lane (2026-10-24): `H88-TDKL` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (held under literal `17GEMSDOE` dense witness & post-merge concurrent stratified lanes)
 > [⬇ **Download H88-TDKL GeoTIFF (`.tif`, 118 KB, research only)**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`)**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/tdkl88_run_card.json) · [Gate v3 Verdict](registry/tdkl88_gate_verdict.json) · [8-Fold Holdout Evidence](evidence/tdkl88_holdout_20261024.json) · [179-Raster Uniqueness Audit](evidence/tdkl88_uniqueness_20261024.json) · [Research Dossier](research/hypotheses-20261024-tdkl88.md) · [Executive Submission Guide](docs/executive-summary.html).
 >
