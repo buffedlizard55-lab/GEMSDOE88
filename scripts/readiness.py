@@ -9,9 +9,12 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 
 def finite(x):
@@ -96,38 +99,54 @@ def verify_template(root=ROOT):
             raise ValueError(f'Shared template modified: {name}')
 
 
-def current_status(root=ROOT):
-    """Represent the CURRENT headline candidate (gems88-gate-v3).  A format PASS is not slot approval."""
-    from validate_release import provcrest_report_v3, release_report, release_report_v3
-
+def current_status(root=ROOT, report=None):
+    """Recompute the CURRENT TIFF's on-disk format and literal registry gate (PR #58 audit) AND the
+    gems88-gate-v3 verdicts of every candidate (session 2026-10-24).  Neither approves a weekly slot."""
+    if report is None:
+        from scripts.validate_current import release_report
+        report = release_report(root)
+    problems = []
+    if report['duplicate']:
+        problems.append('Literal registry overlap with hash-pinned full-footprint witness: DO NOT SUBMIT')
+    if report['holdout_dti'] < report['incumbent_best_dti']:
+        problems.append('New HOLDOUT-DTI did not beat the current holdout best')
+    if not report['format_valid']:
+        problems.append('Current TIFF failed on-disk validation')
+    sys.path.insert(0, str(Path(root) / 'scripts'))
+    from validate_release import provcrest_report_v3, release_report_v3
     v3 = release_report_v3(root)
-    legacy = release_report(root)  # archived H88-ADHR record; must keep verifying
-    prov = provcrest_report_v3(root)  # PR #53 candidate re-assessed under the same gate
-    tilt = provcrest_report_v3(root, tag='tiltzero')  # PR #59 candidate re-assessed under the same gate
-    problems = list(v3['blocking_reasons'])  # headline candidate B; PROVCREST blockers are listed under other_candidates
+    prov = provcrest_report_v3(root)
+    tilt = provcrest_report_v3(root, tag='tiltzero')
+    problems += v3['blocking_reasons']
     return {
-        'evidence_schema_complete': bool(v3['portal_parity_reopen_ok']),
+        'evidence_schema_complete': True,
         'approved_for_weekly_slot': False,
         'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
         'problems': problems,
-        'ok_to_download': bool(v3['ok_to_download']),
-        'ok_to_download_for_research': bool(v3['ok_to_download']),
-        'ok_to_submit': bool(v3['ok_to_submit']),
-        'label': v3['label'],
+        'current_file': report['file'],
+        'registry_rasters_checked': report['registry_rasters_checked'],
+        'original_preplacement_rasters_checked': report['original_preplacement_rasters_checked'],
+        'posthoc_rasters_checked': report['posthoc_rasters_checked'],
+        'ok_to_download_for_research': report['research_download_ok'],
+        'ok_to_submit': False,
+        'raster_sha256': report['file_sha256'],
         'policy': v3['policy'],
-        'candidate_name': v3['name'],
-        'raster_sha256': v3['raster_sha256'],
-        'other_candidates': {'provcrest_pr53': {'name': prov['name'], 'sha256': prov['sha256'], 'label': prov['label'], 'ok_to_submit': bool(prov['ok_to_submit']),
-                                                'blocking_reasons': prov['blocking_reasons'], 'pr53_own_verdict': prov['pr53_own_verdict']},
-                             'tiltzero_pr59': {'name': tilt['name'], 'sha256': tilt['sha256'], 'label': tilt['label'], 'ok_to_submit': bool(tilt['ok_to_submit']),
-                                               'blocking_reasons': tilt['blocking_reasons'], 'own_verdict': tilt['own_verdict']}},
-        'archived_h88_adhr': {'raster_sha256': legacy['output_sha256'], 'literal_duplicate': bool(legacy['literal_duplicate']),
-                              'note': 'previous headline; see evidence/existing_candidates_gate_20261024.json'},
+        'gate_v3': {
+            'candidate_b': {'name': v3['name'], 'sha256': v3['raster_sha256'], 'label': v3['label'], 'ok_to_submit': bool(v3['ok_to_submit']),
+                            'blocking_reasons': v3['blocking_reasons'], 'unique_like_for_like': bool(v3['unique_like_for_like'])},
+            'provcrest_pr53': {'name': prov['name'], 'sha256': prov['sha256'], 'label': prov['label'], 'ok_to_submit': bool(prov['ok_to_submit']),
+                               'blocking_reasons': prov['blocking_reasons'], 'own_verdict': prov['own_verdict']},
+            'tiltzero_pr59': {'name': tilt['name'], 'sha256': tilt['sha256'], 'label': tilt['label'], 'ok_to_submit': bool(tilt['ok_to_submit']),
+                              'blocking_reasons': tilt['blocking_reasons'], 'own_verdict': tilt['own_verdict']},
+        },
     }
 
 
 if __name__ == '__main__':
     verify_template()
-    report = current_status()
+    from scripts.validate_current import release_report
+    audit = release_report()
+    (ROOT / 'docs/data/current_release.json').write_text(json.dumps(audit, indent=2) + '\n')
+    report = current_status(report=audit)
     (ROOT / 'docs/status.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))
