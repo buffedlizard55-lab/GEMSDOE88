@@ -49,3 +49,26 @@ assert restore_inputs.FEATURE_SHA256
         check=False,
     )
     assert result.returncode == 0, result.stderr
+
+
+def test_restore_group_creates_data_directory_on_fresh_checkout(tmp_path, monkeypatch):
+    """Calling the reusable helper must not depend on main() side effects."""
+    import hashlib
+
+    root = tmp_path / 'fresh'
+    root.mkdir()
+    source = tmp_path / 'source'
+    source.mkdir()
+    (source / 'sample.tif').write_bytes(b'pinned test bytes')
+    expected = hashlib.sha256(b'pinned test bytes').hexdigest()
+    monkeypatch.setattr(restore_inputs, 'ROOT', root)
+    monkeypatch.setattr(restore_inputs, 'DATA', root / 'data')
+    monkeypatch.setattr(restore_inputs, 'sparse_fetch', lambda *args: source)
+    items = [('sample.tif', 'data/bridge/sample.tif', expected)]
+    restore_inputs.restore_group('test', 'unused', 'unused', items)
+    assert (root / 'data/bridge/sample.tif').read_bytes() == b'pinned test bytes'
+    # Existing verified data must work without fetching again.
+    def unexpected_fetch(*args):
+        raise AssertionError('already verified input fetched again')
+    monkeypatch.setattr(restore_inputs, 'sparse_fetch', unexpected_fetch)
+    restore_inputs.restore_group('test', 'unused', 'unused', items)
