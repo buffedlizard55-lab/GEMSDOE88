@@ -21,10 +21,10 @@ from gems88.gate import portal_validate  # noqa: E402
 from validate_artifact import validate_artifact  # noqa: E402
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--require-submit", action="store_true")
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
     card = json.loads((ROOT / "registry/gthc88_run_card.json").read_text())
     pub_card = json.loads((ROOT / "docs/data/gthc88_run_card.json").read_text())
     assert card == pub_card, "registry/gthc88_run_card.json and docs/data/gthc88_run_card.json must match"

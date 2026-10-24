@@ -93,7 +93,7 @@ def test_provcrest_transform_and_catalogue_on_disk():
 
 def test_provcrest_ledger_single_row_no_receipt():
     rc = _card()
-    stem = Path(rc["submission"]["file"]).stem
+    stem = Path(rc["submission"]["file"]).stem.replace("-DO-NOT-SUBMIT", "")  # ledger ids predate the marker rename (IR-88-86)
     rows = list(csv.DictReader((ROOT / "ledger" / "submissions.csv").open()))
     ours = [r for r in rows if r["id"] == stem]
     assert len(ours) == 1

@@ -14,7 +14,18 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python scripts/restore_inputs.py --validation
+      - name: Enforce requested literal duplicate-stop policy
+        run: |
+          python scripts/audit_literal_protocol.py
+          set +e
+          python scripts/audit_literal_protocol.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+          git diff --exit-code docs/data/literal_protocol_audit.json evidence/literal_protocol_audit_20261024.json
       - run: python -m pytest -q
+      - run: python scripts/audit_literal_protocol.py
+      - run: python scripts/validate_mdps88.py
       - run: python scripts/check_site.py
       - name: Independently validate KTH-88 TIFF and ZIP; reject competition slot
         run: |
@@ -34,6 +45,22 @@ jobs:
           python scripts/validate_release.py
           set +e
           python scripts/validate_release.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+      - name: Independently recheck QTS-88 research deliverable and expected negative slot gate
+        run: |
+          python scripts/validate_qts88.py
+          set +e
+          python scripts/validate_qts88.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+      - name: Independently recheck GTHC-88 research deliverable and expected negative slot gate
+        run: |
+          python scripts/validate_gthc88.py
+          set +e
+          python scripts/validate_gthc88.py --require-submit
           code=$?
           set -e
           test "$code" -eq 2

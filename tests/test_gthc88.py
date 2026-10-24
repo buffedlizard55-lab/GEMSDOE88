@@ -171,7 +171,13 @@ def test_gthc88_frozen_run_card_and_release_integrity():
     with zipfile.ZipFile(zipped) as z:
         assert z.namelist() == [tif.name] and z.testzip() is None
 
-    # Alignment with current_release.json, status.json, and gate_v3.json
-    assert current["file_sha256"] == card["raster_sha256"] == status["raster_sha256"] == gate_v3["sha256"]
-    assert validation["tif_sha256"] == card["raster_sha256"]
-    assert current["ok_to_submit"] is False and status["ok_to_submit"] is False
+    # Alignment with validation.json and gate_v3.json
+    assert card["raster_sha256"] == gate_v3["sha256"] == validation["tif_sha256"]
+    assert card["zip_sha256"] == validation["zip_sha256"]
+    assert validation["ok_to_download"] is True and validation["ok_to_submit"] is False
+    assert gate_v3["ok_to_submit"] is False and gate_v3["like_for_like_unique"] is True
+    if (ROOT / "data/bridge/sample_submission.tif").is_file():
+        from scripts.validate_gthc88 import main as validate_gthc88_main
+        assert validate_gthc88_main([]) == 0
+        assert validate_gthc88_main(["--require-submit"]) == 2
+
