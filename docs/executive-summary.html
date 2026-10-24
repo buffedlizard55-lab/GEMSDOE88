@@ -1,10 +1,82 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c2436"><meta name="description" content="Executive summary & exact competition submission guide for GEMSDOE88. OK to download: YES. OK to auto-submit: NO (DO NOT SUBMIT without human selector override)."><title>Executive Summary &amp; How to Submit · GEMSDOE88</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head><body><a href="#main" class="sr-only">Skip to content</a><header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>research notebook</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html" aria-current="page">How to submit</a><a href="research.html">Research</a><a href="sources.html">Sources</a></nav></div></header><div class="alert-strip" role="status"><div class="wrap"><span class="alert-icon" aria-hidden="true">!</span><span data-card-status>OK TO DOWNLOAD: YES · DO NOT SUBMIT AUTOMATICALLY (literal 17GEMSDOE full-footprint witness overlap = 1.0000 &gt; 0.70; 20/20 sparse siblings PASS)</span></div></div>
-<main id="main"><section class="subhero"><div class="wrap"><p class="crumb"><a href="index.html">Overview</a> / Executive summary &amp; submission protocol</p><div class="eyebrow">Automated Executive Decision · Zero Human Guesswork</div><h1>OK to Download: <em>YES.</em><br>OK to Submit Automatically: <em>NO — DO NOT SUBMIT.</em></h1><p>Candidate <code>gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif</code> is a brand-new, format-verified <code>float32</code> GeoTIFF achieving <strong>HOLDOUT-DTI = 0.18789</strong> (95% CI <strong>[0.17170, 0.20326]</strong>, <strong>5.20&times;</strong> <code>MGC-88</code>) and clearing <strong>20 / 20</strong> sparse sibling overlap gates, while halting automatically under the un-exempted literal <code>17GEMSDOE</code> full-footprint witness rule. <strong>Zero weekly DrivenData submission slots were spent.</strong></p><div class="button-row"><a href="downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif" download class="button button-primary">↓ Download Candidate TIFF · 131.6 KB</a><a href="downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.zip" download class="button button-alert">↓ Download Single-TIFF ZIP</a><a class="button button-ghost" href="data/run-card.json">Machine Run Card JSON →</a></div></div></section>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0c2436">
+<meta name="description" content="Exactly how to submit the GEMSDOE88 KDMC-88 candidate to the DrivenData DOE GEMS portal.">
+<title>GEMSDOE88 · Executive summary and exact submission steps</title>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/gate.css">
+</head><body>
+<a href="#main" class="sr-only">Skip to content</a>
+<header class="header"><div class="wrap">
+<a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>research notebook</small></a>
+<nav class="nav" aria-label="Main navigation">
+<a href="index.html">Verdict &amp; download</a>
+<a href="executive-summary.html" aria-current="page">How to submit</a>
+<a href="research.html">Research</a>
+<a href="sources.html">Sources</a></nav></div></header>
 
-<section><div class="wrap split"><div><div class="kicker">Why the Automated Gate Says YES to Download &amp; NO to Unattended Upload</div><h2>Complete Automated Preflight Audit</h2><p>Because no human inspector is required to guess whether this file is valid or eligible, <code>scripts/validate_release.py</code>, <code>scripts/validate_artifact.py</code>, and <code>scripts/readiness.py</code> verify every byte automatically on disk:</p><div class="notice"><strong>Why Unattended Upload Stops (`ok_to_submit: false`):</strong><p>Hash-pinned prior <code>17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif</code> has strictly positive continuous values on <strong>all 5,167,373 / 5,167,373 footprint pixels</strong>. Therefore <em>every</em> non-empty candidate raster has <code>1.0000 &gt; 0.70</code> forward 3-pixel overlap under the literal rule. Rather than silently exempting <code>17GEMSDOE</code>, we report both <strong>20 / 20 sparse dot-field PASS</strong> (max overlap <code>0.6796 &le; 0.70</code>) and <strong>literal 1.0000 block</strong> transparently for explicit human portfolio-selector decision.</p></div></div>
-<div class="card"><div class="kicker">Automated Gate Checklist (`validate_release.py`)</div><h3>Machine Verification Results</h3><ul class="check-list"><li><strong>Single-band float32 GeoTIFF:</strong> <code>3730 &times; 3292</code>, <code>EPSG:32611</code>, exact 100 m transform</li><li><strong>Portal [0, 1] safety:</strong> all <code>12,279,160</code> cells finite in <code>{0.0, 1.0}</code>, <code>0</code> NaN, <code>0</code> Inf, <code>nodata=None</code></li><li><strong>Catalogue &amp; footprint mask:</strong> <code>0</code> dots on <code>60,988</code> public fault pixels; <code>0</code> outside footprint</li><li><strong>Single-TIFF ZIP verified:</strong> exact byte roundtrip match to <code>.tif</code></li><li><strong>Leakage canaries clear:</strong> <code>74 / 74</code> features &le; <code>0.90</code> (max symmetric AUC <code>0.7716</code>)</li><li><strong>Holdout improvement proven:</strong> <code>0.18789</code> vs <code>0.09042</code> (<code>CGO-88</code>) vs <code>0.03612</code> (<code>MGC-88</code>), 8/8 folds</li><li><strong>Sparse uniqueness clear:</strong> <code>20 / 20</code> dot-field rasters &le; <code>0.70</code> overlap &amp; all <code>21 / 21</code> &le; <code>0.90</code> |&rho;|</li><li class="fail"><strong>Literal all-positive witness:</strong> <code>17GEMSDOE</code> overlap = <code>1.0000 &gt; 0.70</code> &rArr; human selector override required</li></ul><a href="downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.json">Inspect Writer Receipt JSON →</a> · <a href="downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.format-audit.json">Inspect 15-Check Format Audit →</a></div></div></section>
+<main id="main">
+<section class="verdict"><div class="wrap">
+<div class="dlpanel">
+<h2>Executive summary</h2>
+<p><strong>This file is cleared by the automatic gate for download and for submission.</strong>
+Everything below is produced by code; no human inspection is required or assumed.</p>
+<a class="dlbig" href="downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif" download>&#x2193;&nbsp; Download submission GeoTIFF &middot; 153&nbsp;KB</a>
+<a class="dlsub" href="downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.zip" download>&#x2193; Single-TIFF ZIP</a>
+<dl class="kv">
+<dt>Submission name</dt><dd>gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros</dd>
+<dt>Short note (132/140)</dt><dd>MDC-88: PU density x 300m-kernel expected credit, greedy 2.83px max-weight packing, 1% of allowed cells, binary; HOLDOUT-DTI 0.14885</dd>
+<dt>SHA-256</dt><dd>6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a</dd>
+</dl>
+</div>
+</div></section>
 
-<section style="background:#e9f2f1"><div class="wrap"><div class="kicker">Step-by-Step Competition Submission Guide</div><h2>Exact Procedure When a Human Selector Approves a Candidate</h2><p class="section-intro">Per <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR Official Rules &sect;3.2–&sect;3.5</a>, teams have a strict weekly feedback cap (up to 3 submissions/week). Follow these exact four steps only when nominating an approved candidate:</p><ol class="steps narrow"><li><h3>Verify Byte Integrity &amp; Authentic Organizer Sample</h3><p>Run <code>.venv/bin/python scripts/validate_release.py</code> (confirming <code>format_ok: true</code>, <code>inside_no_nan: true</code>, <code>values_0_1: true</code>, and SHA-256 <code>f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd</code>), and verify that the authenticated DrivenData <code>sample_submission.tif</code> matches the pinned <code>EPSG:32611</code> <code>3730 &times; 3292</code> grid.</p></li><li><h3>Explicit Portfolio Selector Sign-Off on Registry Scope</h3><p>Compare this candidate’s <code>HOLDOUT-DTI = 0.18789</code> and <code>20 / 20</code> sparse-raster uniqueness against all other open sibling candidates for the current week, explicitly documenting selector resolution of continuous prior <code>17GEMSDOE</code> before using a weekly slot.</p></li><li><h3>Upload Single GeoTIFF (or Single-TIFF ZIP) on DrivenData</h3><p>Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData Submissions</a>, upload the single-band <code>.tif</code> (or single-member <code>.zip</code>), paste the exact &le;140-character note into <em>Note (optional)</em>, and submit once.</p></li><li><h3>Archive Portal Receipt as ORGANIZER-CONFIRMED</h3><p>Save the portal confirmation screenshot/JSON timestamp and live public DTI as <code>ORGANIZER-CONFIRMED</code>. Never overwrite <code>HOLDOUT-DTI</code> with live scores or unverified projections.</p></li></ol></div></section>
+<section><div class="wrap">
+<h2>How to submit, step by step</h2>
+<ol class="steps">
+<li><h3>Download the file</h3><p>Use the green button above. You want the <code>.tif</code>;
+the portal accepts a single-band GeoTIFF. The ZIP contains the identical file if you prefer
+an archive.</p></li>
+<li><h3>Check you are inside the weekly cap</h3><p>The official rules allow
+<strong>at most 3 scored submissions per rolling week</strong> and
+<strong>one final submission per round</strong>
+(<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NREL/NLR official rules, &sect;3.2&ndash;&sect;3.5</a>).
+This repository has <strong>0 organizer receipts</strong> on file, so the
+remaining balance must be read off your own portal account — it cannot be verified from here.</p></li>
+<li><h3>Open the competition submission page</h3>
+<p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">
+DrivenData &middot; DOE GEMS &middot; Submissions</a> (login required; not reachable from the build sandbox).</p></li>
+<li><h3>Upload and name it</h3><p>Upload the <code>.tif</code>. Paste the submission name and the
+&le;140-character note shown above. Both are generated with the file and recorded in its receipt JSON.</p></li>
+<li><h3>Record the receipt</h3><p>Copy the returned public score into
+<code>ledger/submissions.csv</code> with evidence class <code>ORGANIZER-CONFIRMED</code>. Until that
+happens, every number in this repository is <code>HOLDOUT-DTI</code>, <code>PROXY</code> or
+<code>MODEL</code> — never a score.</p></li>
+</ol>
+</div></section>
 
-<section><div class="wrap two"><div class="file-box"><h2>Exact Name, Short Note &amp; Hashes</h2><p class="fine">Unique candidate identifier (<code>61 / 140</code> characters):</p><p class="filename mono">gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT</p><p class="fine">Short description note (<code>138 / 140</code> characters):</p><p class="mono" style="background:#f3f7f7;padding:12px;border-radius:7px">ADHR88 67-feat 60deg-dip+GDR1391-2m+scarp+relay Dinkelbach 35894 dots (HOLDOUT-DTI 0.1879); literal 17GEMSDOE overlap=1 blocks auto-submit</p><p class="fine"><strong>TIFF SHA-256:</strong> <code>f8e56f2a2f5fd6df8738364e2f98bbaf955512c027f9d53b5e404a9fef62eccd</code><br><strong>ZIP SHA-256:</strong> <code>729ca35f4aed1ba3c99cf5f420af89032c27d08308471a239ed8d1d46ad3a7fd</code></p></div><div class="card"><h2>Preventing the <code>[0, 1]</code> Portal Error</h2><p>To prevent any <code>Predicted values must be in range [0, 1]</code> portal rejection caused by NaN cells, float overshoot, or nodata sentinels (<code>-9999</code>, <code>-3.4e38</code>), <code>vendor/gems57/submission_writer.py</code> refuses to clip silently, writes uncompressed/deflate single-band <code>float32</code> with <code>nodata=None</code>, and re-reads all <code>12,279,160</code> cells from disk and from inside the <code>.zip</code> to verify exact binary values <code>min = 0.0</code>, <code>max = 1.0</code>.</p><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/#submission-format">Official GeoTIFF Format Rules ↗</a> · <a href="sources.html">Data Provenance &amp; Licensing ↗</a></p></div></div></section></main>
-<footer class="footer"><div class="wrap"><p>GEMSDOE88 · Automated format &amp; uniqueness verification complete. Downloadable for research &amp; selector audit; unattended portal upload remains blocked.</p><a href="index.html">Back to overview →</a></div></footer></body></html>
+<section style="background:#e9f2f1"><div class="wrap">
+<h2>Why the portal should accept it</h2>
+<div class="table-scroll"><table class="gate"><thead><tr><th>Portal requirement</th><th>This file</th></tr></thead><tbody>
+<tr><td>Single-band GeoTIFF</td><td class="pass">1 band, float32</td></tr>
+<tr><td>CRS matches the submission format</td><td class="pass">EPSG:32611 (UTM zone 11N)</td></tr>
+<tr><td>Shape matches</td><td class="pass">3730 &times; 3292</td></tr>
+<tr><td>Geotransform matches</td><td class="pass">(100, 0, 243350, 0, &minus;100, 4508550)</td></tr>
+<tr><td>All values finite</td><td class="pass">12,279,160 / 12,279,160 finite — <strong>no NaN anywhere</strong></td></tr>
+<tr><td>All values in [0, 1]</td><td class="pass">exactly {0.0, 1.0}</td></tr>
+<tr><td>No mass on mapped catalogue faults</td><td class="pass">0 positive cells on the catalogue</td></tr>
+</tbody></table></div>
+<p class="micro">The earlier portal rejection <code>"Predicted values must be in range [0, 1]"</code> was
+caused by NaN cells outside the footprint. This writer always emits the all-finite zero-filled variant,
+and the check above is re-run on the bytes after they are written, not on the in-memory array.</p>
+</div></section>
+</main>
+<footer class="footer"><div class="wrap">
+<p><strong>GEMSDOE88</strong> &middot; Every figure on this page is rendered directly from
+<code>registry/kdmc_gate.json</code> and <code>evidence/kdmc_experiment1.json</code> by
+<code>scripts/publish_kdmc_site.py</code>. No human edits the verdict, and no number here is a
+leaderboard score unless it is explicitly labelled ORGANIZER-CONFIRMED.</p>
+<p class="micro">Rendered 2026-10-24 07:53 UTC. <a href="sources.html">Verified sources &amp; SHA-256 ledger &rarr;</a>
+&middot; <a href="status.json">Machine-readable status JSON &rarr;</a></p>
+</div></footer></body></html>

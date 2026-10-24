@@ -1,0 +1,115 @@
+{
+  "experiment": "kdmc-88-exp3-collar-on-off-catalogue-proxy",
+  "generated_utc": "2026-10-24T07:45:42Z",
+  "question": "Should the production field keep a d_catalogue collar? The blocked holdout cannot answer: every collar arm scores exactly 0.00000 there by construction, because the holdout's truth IS withheld catalogue geometry.",
+  "instrument": {
+    "name": "off-catalogue SGMC proxy",
+    "scored_by": "gems57.metric.dti_binary",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "radius_px": 3.0,
+    "valid": "footprint",
+    "known": "competition catalogue (masked out)",
+    "file": "data/external/sgmc_faults_100m.tif",
+    "sha256": "26d142c4c93282cd94f6950ab96f22aeff59fbbea523d43d662e76fa1b161b5c",
+    "derivation": "proxy = (sgmc_faults_100m > 0) & ~catalogue & footprint",
+    "sgmc_pixels": 82151,
+    "proxy_pixels": 78433,
+    "evidence_class": "PROXY (public SGMC compilation minus the competition catalogue)",
+    "declared_limit": "never an organizer label and never a score; it is the public fault compilation the competition catalogue omits",
+    "missing_input_note": "derived_sgmc_faults_100m.tif is referenced by gems57.offcatalogue.load_proxy_truth but is absent from the restore manifest; the proxy is rebuilt from the raw SGMC bytes with the identical rule (IR-88-57 family)"
+  },
+  "configuration": {
+    "separation_px": 2.8284271247461903,
+    "density": 0.01,
+    "n_dots": 51064,
+    "density_source": "holdout optimum from kdmc_experiment1/2"
+  },
+  "arms": [
+    {
+      "arm": "MDC88_collar0",
+      "collar_px": 0.0,
+      "n_dots": 51064,
+      "sgmc_proxy_dti": 0.3273425776458838,
+      "evidence_class": "PROXY",
+      "min_d_catalogue_px": 1.0,
+      "frac_dots_within_3px_of_catalogue": 0.286777377408742,
+      "frac_dots_beyond_1km": 0.43498355005483313,
+      "packing_efficiency": 0.7038625744189367
+    },
+    {
+      "arm": "MDC88_collar1.5",
+      "collar_px": 1.5,
+      "n_dots": 51064,
+      "sgmc_proxy_dti": 0.3203643433697074,
+      "evidence_class": "PROXY",
+      "min_d_catalogue_px": 2.0,
+      "frac_dots_within_3px_of_catalogue": 0.22873257089143037,
+      "frac_dots_beyond_1km": 0.4900516998276672,
+      "packing_efficiency": 0.7223664957979635
+    },
+    {
+      "arm": "MDC88_collar3",
+      "collar_px": 3.0,
+      "n_dots": 51064,
+      "sgmc_proxy_dti": 0.2776586335346907,
+      "evidence_class": "PROXY",
+      "min_d_catalogue_px": 3.1622776601683795,
+      "frac_dots_within_3px_of_catalogue": 0.0,
+      "frac_dots_beyond_1km": 0.5881638727870907,
+      "packing_efficiency": 0.7219884605527302
+    },
+    {
+      "arm": "MDC88_collar4",
+      "collar_px": 4.0,
+      "n_dots": 51064,
+      "sgmc_proxy_dti": 0.25689521125545267,
+      "evidence_class": "PROXY",
+      "min_d_catalogue_px": 4.123105625617661,
+      "frac_dots_within_3px_of_catalogue": 0.0,
+      "frac_dots_beyond_1km": 0.6475990913363622,
+      "packing_efficiency": 0.7181358146778267
+    },
+    {
+      "arm": "MDC88_collar6",
+      "collar_px": 6.0,
+      "n_dots": 51064,
+      "sgmc_proxy_dti": 0.23251871691324918,
+      "evidence_class": "PROXY",
+      "min_d_catalogue_px": 6.082762530298219,
+      "frac_dots_within_3px_of_catalogue": 0.0,
+      "frac_dots_beyond_1km": 0.7608099639667868,
+      "packing_efficiency": 0.7099103187525546
+    },
+    {
+      "arm": "ANCHOR_h33_registry",
+      "collar_px": null,
+      "n_dots": 37654,
+      "sgmc_proxy_dti": 0.09127839557978852,
+      "evidence_class": "PROXY"
+    },
+    {
+      "arm": "ANCHOR_gems82_csam_dink",
+      "collar_px": null,
+      "n_dots": 41200,
+      "sgmc_proxy_dti": 0.08290644083648342,
+      "evidence_class": "PROXY"
+    },
+    {
+      "arm": "ANCHOR_gems83_h83_gvcd",
+      "collar_px": null,
+      "n_dots": 37654,
+      "sgmc_proxy_dti": 0.07861880697107812,
+      "evidence_class": "PROXY"
+    }
+  ],
+  "conclusion": {
+    "best_collar_px": 0.0,
+    "best_proxy_dti": 0.3273425776458838,
+    "collar0_proxy_dti": 0.3273425776458838,
+    "delta_best_minus_collar0": 0.0,
+    "registry_anchor_h33": 0.09127839557978852,
+    "margin_vs_h33": 0.2360641820660953,
+    "caveat": "PROXY, not a score. The repository's own no-evidence floor is |delta| >= 0.01; read any smaller difference as a tie."
+  }
+}

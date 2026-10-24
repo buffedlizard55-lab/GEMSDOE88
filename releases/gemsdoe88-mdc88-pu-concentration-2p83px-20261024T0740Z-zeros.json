@@ -1,0 +1,143 @@
+{
+  "file": "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
+  "sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a",
+  "bytes": 157139,
+  "submission_name": "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros",
+  "note": "MDC-88: PU density x 300m-kernel expected credit, greedy 2.83px max-weight packing, 1% of allowed cells, binary; HOLDOUT-DTI 0.14885",
+  "note_chars": 132,
+  "validator": {
+    "file": "/home/user/GEMSDOE88/releases/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
+    "bytes": 157139,
+    "sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.004158590454608202,
+    "emitted_positive_pixels": 51064,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 51064,
+    "footprint_fraction": 0.009882003873147922
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE88/releases/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
+    "bytes": 157139,
+    "sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.004158590454608202,
+    "n_nonzero": 51064,
+    "mass": 51064.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.zip",
+  "zip_sha256": "6d78ba9b0bbc489df6870d8c4ff3c01bcfaac16edb8f97b417e0fdbf8f6159f0",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "KDMC-88",
+    "separation_px": 2.8284271247461903,
+    "density": 0.01,
+    "collar_px": 0.0,
+    "geometry": {
+      "n_dots": 51064,
+      "min_nn_px": 2.8284271247461903,
+      "median_nn_px": 2.8284271247461903,
+      "frac_nn_lt_6px": 0.9890921196929343,
+      "packing_efficiency": 0.7038625744189367,
+      "credit_mass": 337147.02504795697,
+      "halo_fraction_of_footprint": 0.12773434393065877,
+      "min_distance_to_catalogue_px": 1.0,
+      "frac_dots_within_3px_of_catalogue": 0.286777377408742,
+      "frac_dots_beyond_1km_of_catalogue": 0.43498355005483313,
+      "frac_dots_beyond_2p5km_of_catalogue": 0.22244634184552717,
+      "model_expected_tp": 343288.75,
+      "model_expected_credit_per_dot": 6.722715611781294,
+      "model_total_density_mass": 1265851.25
+    },
+    "feature_version": "kdmc88-zero-catalogue-v1",
+    "n_features": 104
+  }
+}

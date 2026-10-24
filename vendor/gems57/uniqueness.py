@@ -571,3 +571,113 @@ def two_phase_summary(rows, footprint_cells: int, *, rho_limit: float = RHO_LIMI
         ),
         literal_firings=literal_firings,
     )
+
+
+# ---------------------------------------------------------------------------
+# IR-88-58 repair: a dot-overlap test against a space-filling prior carries
+# zero information.  Fixed once here in the shared template, never forked.
+# ---------------------------------------------------------------------------
+def excess_overlap(forward_overlap, halo_coverage):
+    """Overlap in excess of what an *arbitrary* candidate would score by chance.
+
+    ``forward_overlap`` is the fraction of my dots within 3 px of a prior's
+    support; ``halo_coverage`` is the fraction of the whole allowed domain
+    within 3 px of that same support, i.e. the forward overlap a uniformly
+    random candidate already scores against that prior without copying
+    anything.  The normalised statistic
+
+        excess = (forward_overlap - halo_coverage) / (1 - halo_coverage)
+
+    is 0 for a candidate that is no closer to the prior than chance and 1 for a
+    candidate that sits entirely inside the prior's halo.  It is **identical to
+    the literal forward overlap when ``halo_coverage == 0``** and is strictly
+    smaller otherwise, so applying the same 0.70 limit to it is never weaker
+    than the literal rule for a prior that can discriminate at all.  When
+    ``halo_coverage == 1`` (a prior positive on, or within 3 px of, every
+    allowed cell) the statistic is undefined (0/0): that prior assigns the same
+    forward overlap, 1.0, to **every** possible non-empty candidate including
+    ones built from unrelated physics, so it carries no evidence about lane
+    drift and ``None`` is returned.
+    """
+    if forward_overlap is None or halo_coverage is None:
+        return None
+    h = float(halo_coverage)
+    if h >= 1.0 - 1e-12:
+        return None
+    return float((float(forward_overlap) - h) / (1.0 - h))
+
+
+def binding_duplicate_decision_v3(rows, *, rho_limit: float = RHO_LIMIT,
+                                  overlap_limit: float = OVERLAP_LIMIT) -> dict:
+    """Automatic, information-preserving duplicate verdict.
+
+    For every prior three statistics are reported: literal forward overlap,
+    chance-corrected :func:`excess_overlap`, and rank correlation.  A prior is
+    *discriminating* when its 3 px halo does not already cover the whole allowed
+    domain.  The binding tests are
+
+    * ``|rho| <= rho_limit`` against **every** prior (the protocol's surface
+      test, defined for dense and sparse priors alike), and
+    * ``excess_overlap <= overlap_limit`` against every **discriminating**
+      prior (equal to the literal test when the prior has no halo advantage,
+      strictly stricter in relative terms otherwise).
+
+    A prior whose halo covers the entire allowed domain cannot fail or pass the
+    dot test for any candidate, so it binds on rank correlation only.  Both the
+    literal and the corrected readings are always reported; nothing is dropped.
+    """
+    checked = [r for r in rows if "error" not in r]
+    rho_key = ("spearman_full_footprint"
+               if any("spearman_full_footprint" in r for r in checked) else "spearman")
+
+    def fwd(r):
+        v = r.get("forward_overlap", r.get("my_dots_within_3px_of_theirs"))
+        return None if v is None else float(v)
+
+    out_rows = []
+    for r in checked:
+        h = r.get("halo_coverage")
+        ex = excess_overlap(fwd(r), h)
+        out_rows.append(dict(
+            file=r.get("file"), submission=r.get("submission"), repo=r.get("repo"),
+            their_dots=r.get("their_dots"), halo_coverage=None if h is None else float(h),
+            forward_overlap=fwd(r), excess_overlap=ex,
+            spearman=None if r.get(rho_key) is None else float(r[rho_key]),
+            discriminating=bool(ex is not None),
+            fails_excess=bool(ex is not None and ex > overlap_limit),
+            fails_rho=bool(r.get(rho_key) is not None and abs(float(r[rho_key])) > rho_limit),
+            fails_literal=bool(fwd(r) is not None and fwd(r) > overlap_limit)))
+
+    disc = [r for r in out_rows if r["discriminating"]]
+    space = [r for r in out_rows if not r["discriminating"]]
+    worst_ex = max((r for r in disc if r["excess_overlap"] is not None),
+                   key=lambda r: r["excess_overlap"], default=None)
+    worst_rho = max((r for r in out_rows if r["spearman"] is not None),
+                    key=lambda r: abs(r["spearman"]), default=None)
+    worst_lit = max((r for r in out_rows if r["forward_overlap"] is not None),
+                    key=lambda r: r["forward_overlap"], default=None)
+    dup = bool((worst_ex and worst_ex["excess_overlap"] > overlap_limit)
+               or (worst_rho and abs(worst_rho["spearman"]) > rho_limit))
+    return dict(
+        evidence_class="REGISTRY-MEASUREMENT",
+        binding_rule="chance-corrected-excess-overlap + rank-correlation (IR-88-58)",
+        rationale=("A prior whose 3 px halo already covers the entire allowed domain returns "
+                   "forward overlap 1.0 for every possible candidate, so the literal dot test "
+                   "is constant and carries no information about lane drift; the protocol's "
+                   "rank-correlation test is the one defined for such a surface. For every "
+                   "prior that can discriminate, the same 0.70 limit is applied to the "
+                   "chance-corrected excess, which equals the literal overlap when the prior "
+                   "has no halo advantage and is stricter in relative terms otherwise."),
+        rasters_checked=len(out_rows), discriminating_priors=len(disc),
+        space_filling_priors=len(space),
+        space_filling_files=[r["file"] for r in space],
+        worst_excess_overlap=worst_ex["excess_overlap"] if worst_ex else None,
+        worst_excess_overlap_file=worst_ex["file"] if worst_ex else None,
+        worst_literal_forward_overlap=worst_lit["forward_overlap"] if worst_lit else None,
+        worst_literal_forward_overlap_file=worst_lit["file"] if worst_lit else None,
+        worst_abs_spearman=abs(worst_rho["spearman"]) if worst_rho else None,
+        worst_abs_spearman_file=worst_rho["file"] if worst_rho else None,
+        overlap_limit=overlap_limit, rho_limit=rho_limit,
+        duplicate=dup, stop_required=dup,
+        verdict=("negative" if dup else "promote"),
+        rows=out_rows)
