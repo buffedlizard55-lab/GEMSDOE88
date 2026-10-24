@@ -97,19 +97,38 @@ def verify_template(root=ROOT):
 
 
 def current_status(root=ROOT):
-    """Represent the actual research artifact. A format PASS is not slot approval."""
-    from validate_release import release_report
-
-    report = release_report(root)
-    problems = list(report.get('stop_reasons') or []) if not report['ok_to_submit'] else []
+    """Represent the latest (KTH-88) research artifact; format PASS is not slot approval."""
+    root = Path(root)
+    card = json.loads((root / 'registry/kth88_run_card.json').read_text())
+    audit = json.loads((root / 'docs/data/kth88_validation.json').read_text())
+    tif = (root / card['download']).resolve()
+    zipped = tif.with_suffix('.zip')
+    safe = tif.is_relative_to((root / 'docs/downloads').resolve())
+    problems = []
+    if not safe or not tif.is_file() or not zipped.is_file():
+        problems.append('KTH-88 research TIFF/ZIP is missing or outside docs/downloads')
+    else:
+        tif_hash = hashlib.sha256(tif.read_bytes()).hexdigest()
+        zip_hash = hashlib.sha256(zipped.read_bytes()).hexdigest()
+        if tif_hash != card.get('raster_sha256') or tif_hash != audit.get('tif_sha256'):
+            problems.append('KTH-88 TIFF hash does not match the run card and saved validation')
+        if zip_hash != audit.get('zip_sha256'):
+            problems.append('KTH-88 ZIP hash does not match the saved validation')
+        if not audit.get('local_format_audit', {}).get('ok') or not audit.get('tif_and_single_member_zip_validated'):
+            problems.append('KTH-88 saved local format/ZIP validation is not green')
+    integrity_ok = not problems
+    problems.extend([
+        f"HOLDOUT-DTI {card['holdout_dti']['dti']:.6f} is below same-split incumbent {card['incumbent_holdout_dti']['dti']:.6f}",
+        f"UNIQUENESS: final 3-pixel registry overlap {card['correlation_overlap_vs_registry']['final_overlap_3px']:.6f} exceeds 0.70",
+    ])
     return {
-        'evidence_schema_complete': bool(report['format_ok']),
+        'evidence_schema_complete': integrity_ok and bool(audit.get('local_format_audit', {}).get('ok')),
         'approved_for_weekly_slot': False,
-        'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
+        'status': 'BLOCKED',
         'problems': problems,
-        'ok_to_download_for_research': bool(report['ok_to_download']),
-        'ok_to_submit': False,  # selector has never approved a weekly slot
-        'raster_sha256': report['output_sha256'],
+        'ok_to_download_for_research': bool(audit.get('ok_to_download')) and integrity_ok,
+        'ok_to_submit': False,
+        'raster_sha256': card.get('raster_sha256'),
         'policy': 'binding-literal-all-registry-v1',
     }
 

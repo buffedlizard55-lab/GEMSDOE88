@@ -145,6 +145,29 @@ def release_report(root=ROOT):
     canon = json.loads((root / 'registry' / 'run_card.json').read_text())
     if canon.get('verdict') == 'negative' and canon.get('ok_to_submit') is False and canon.get('raster_sha256'):
         expected_hashes.add(canon['raster_sha256'])
+    # IR-88-KTH-02: independently audited KTH research file is a negative
+    # deliverable, not an unexplained extra TIFF. Its complete 222-raster
+    # comparison and TIFF/ZIP validator are checked here before whitelisting;
+    # arbitrary additional research TIFFs remain fail-closed.
+    kth_path = root / 'registry/kth88_run_card.json'
+    if kth_path.is_file():
+        kth = json.loads(kth_path.read_text())
+        p = (root / kth['download']).resolve()
+        audit = json.loads((root / 'docs/data/kth88_validation.json').read_text())
+        comparisons = json.loads((root / 'evidence/kth88_registry.json').read_text())
+        if (not p.is_relative_to((root / 'docs/downloads').resolve())
+            or kth.get('verdict') != 'negative' or kth.get('ok_to_submit') is not False
+            or 'DO-NOT-SUBMIT' not in p.name
+            or sha(p) != kth.get('raster_sha256')
+            or audit.get('tif_sha256') != sha(p)
+            or audit.get('ok_to_submit') is not False
+            or not audit.get('tif_and_single_member_zip_validated')
+            or audit.get('local_format_audit', {}).get('ok') is not True
+            or comparisons['final_dots']['candidate_file_sha256'] != sha(p)
+            or comparisons['final_dots']['registry_rasters_checked'] < 200
+            or comparisons['final_dots']['worst_dot_overlap'] <= .70):
+            raise ValueError('new KTH research TIFF has no verified negative audit')
+        expected_hashes.add(sha(p))
     if observed_hashes != expected_hashes:
         raise ValueError('accessible registry changed since postmerge audit; recheck all prior rasters')
     index = dict(complete_accessible_scan=True, errors=[], rasters=[])
@@ -207,11 +230,14 @@ def release_report(root=ROOT):
 
 
 def main():
+    """Validate the latest KTH-88 file, failing closed when ignored inputs are absent."""
+    from validate_kth88 import main as validate_latest
     try:
-        report = release_report()
+        return validate_latest()
     except OSError as exc:
         print(json.dumps({
             'schema': 'gems88.current-release.v1',
+            'candidate': 'KTH-88',
             'status': 'BLOCKED_VALIDATION_UNAVAILABLE',
             'ok_to_download': False,
             'ok_to_submit': False,
@@ -219,11 +245,6 @@ def main():
         }, indent=2))
         print('AUTOMATIC PREFLIGHT: INCOMPLETE. No upload permitted.', file=sys.stderr)
         return 2
-    print(json.dumps(report, indent=2))
-    if '--require-submit' in sys.argv:
-        print('AUTOMATIC SUBMISSION GATE: FAIL. NO UPLOAD PERMITTED.', file=sys.stderr)
-        return 2
-    return 0
 
 
 if __name__ == '__main__':
