@@ -1,7 +1,16 @@
 # AI_USE — Generative-AI Disclosure (NLR Official Rules §3.6)
 
 - **Competing Entity (1 human competitor):** `buffedlizard55-lab` (sole submitter, slot owner, and blind-final selector).
-- **AI System Used:** Arena.ai Agent Mode across the recorded Arena branches, including this PR branch `arena/b981518a-gemsdoe88` and the human-assigned CONCENTRATION branch `arena/2918f370-gemsdoe88`. Include this disclosure in the final competition narrative per Official Rules §3.6 (https://www.drivendata.org/competitions/306/competition-doe-gems/).
+- **AI System Used:** Arena.ai Agent Mode across the recorded Arena branches, including this PR branch `arena/55192f44-gemsdoe88`, `arena/b981518a-gemsdoe88`, and the human-assigned CONCENTRATION branch `arena/2918f370-gemsdoe88`. Include this disclosure in the final competition narrative per Official Rules §3.2 / §3.6 (https://www.drivendata.org/competitions/306/competition-doe-gems/).
+
+## Session 2026-10-24 — Lane `GTHC-88` (branch `arena/55192f44-gemsdoe88`)
+
+- **Human decided:** the standing prompt (`PROMPT.md` / `README.md`): generate a unique GeoTIFF submission, make download/submit status immediately obvious without human intervention, follow the Parallel-Run Protocol (`<= 3` experiments, single-feature leakage canary `<= 0.90`, `|Spearman rho| <= 0.90`, 3-px dot overlap `<= 0.70`, JSON run card), answer why/how `H33` (`0.2778`) leads the listed GEMSDOE sites, rank 3–5 candidate geological hypotheses before implementing, run 3 passes of verification, and open/merge a PR onto `main`. **Zero competition slots were spent.**
+- **AI decided & wrote:**
+  - Reverted PR #68's synthetic `mock_data.py` regression (`IR-88-GTHC-01`) and restored all real SHA-verified inputs via `scripts/restore_inputs.py` and `scripts/restore_siblings.py`.
+  - Pre-registered 4 candidate geological hypotheses (`research/candidate-hypotheses-20261024-gthc88.md`, `registry/preregistration_gthc88.json`) and implemented Rank 1 (`GTHC-88` in `src/gems88/gthc.py`, `scripts/run_gthc88_experiment.py`, `scripts/build_gthc88_release.py`, `scripts/validate_gthc88.py`, `tests/test_gthc88.py`).
+  - Evaluated all 3 preregistered arms on 8-fold buffered whole-component holdout (`gems57-pooled-hide-v2`, `22,893` withheld positive pixels): `gthc88_dual_scrd` (`HOLDOUT-DTI = 0.190971`, new repo best), `gthc88_strat_fp` (`HOLDOUT-DTI = 0.170718`, beats `MDC-88` `0.14885` while clearing 223-raster like-for-like uniqueness `0.6011 <= 0.70` and fleet fingerprint screen `share_gt25 = 0.3671 >= 0.35`), and `gthc88_pure_phys50` (`HOLDOUT-DTI = 0.109430` overall / `0.074350` far, beating 44-ch `0.10725` / `0.06808`).
+  - Emitted `docs/downloads/gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif` (`.zip`, `.json`) and marked it `OK TO DOWNLOAD FOR RESEARCH: YES · OK TO SUBMIT: NO — DO NOT SUBMIT` (`0` slots spent, `ORGANIZER-CONFIRMED: None`).
 
 ## Session 2026-10-24 — unique candidate, gate v3, three pre-registered experiments (branch `arena/f566c0e1-gemsdoe88`)
 

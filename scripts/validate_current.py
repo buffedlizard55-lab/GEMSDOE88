@@ -122,7 +122,7 @@ def fabric_release_report(root=ROOT):
     expected_hashes = {r['sha256'] for r in rows} | {sha(tif), later['new_prior_sha256']}
     # Rasters that carry a gems88-gate-v3 verdict record (registry/*gate_v3.json, registry/gate_verdict.json) were reviewed against the
     # 216+-raster v3 registry by the session of 2026-10-24 (IR-88-59..71); any OTHER unreviewed TIFF still fails closed.
-    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json', 'mvrd_gate_v3.json'):
+    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json', 'mvrd_gate_v3.json', 'gthc88_gate_v3.json'):
         rec = root / 'registry' / record
         if rec.is_file():
             expected_hashes.add(json.loads(rec.read_text())['sha256'])

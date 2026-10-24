@@ -69,6 +69,15 @@ def main(root: Path = ROOT) -> None:
     qts_zip = root / qts["zip_file"]
     assert sha256(qts_tif) == qts["raster_sha256"]
     assert sha256(qts_zip) == qts["zip_sha256"]
+    gthc = json.loads((root / "registry/gthc88_run_card.json").read_text())
+    gthc_web = json.loads((docs / "data/gthc88_run_card.json").read_text())
+    gthc_val = json.loads((docs / "data/gthc88_validation.json").read_text())
+    assert gthc == gthc_web, "Pages GTHC card differs from canonical registry card"
+    assert gthc["verdict"] == "negative" and gthc["ok_to_download"] is True and gthc["ok_to_submit"] is False
+    gthc_tif = root / gthc["download"]
+    gthc_zip = root / gthc["zip_download"]
+    assert sha256(gthc_tif) == gthc["raster_sha256"] == gthc_val["tif_sha256"]
+    assert sha256(gthc_zip) == gthc["zip_sha256"] == gthc_val["zip_sha256"]
 
     assert card == web_card, "Pages MVRD card differs from canonical registry card"
     assert gate == web_gate, "Pages MVRD gate differs from canonical registry gate"
@@ -134,6 +143,8 @@ def main(root: Path = ROOT) -> None:
     assert ibl_tif.name in index and ibl_tif.name in executive
     assert qts_tif.name in index and qts_tif.name in executive
     assert qts["submission_name"] in index and qts["submission_name"] in executive
+    assert gthc_tif.name in index and gthc_tif.name in executive
+    assert gthc["submission_name"] in index and gthc["submission_name"] in executive
     assert "literal_protocol_audit.json" in index and "literal_protocol_audit.json" in executive
     assert "DOWNLOAD FOR RESEARCH: YES" in index
     assert "SUBMIT: NO" in index
