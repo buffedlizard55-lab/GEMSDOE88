@@ -128,7 +128,7 @@ def fabric_release_report(root=ROOT):
             expected_hashes.add(json.loads(rec.read_text())['sha256'])
     # MDC-88 (PR #61, IR-88-75/73/74) stores its gate-v3 verdict nested under 'gate_v3'
     # with the file hash in 'candidate'. Same review standard, different record shape.
-    for record in ('kdmc_gate.json', 'kdmc_gate_collar3.json'):
+    for record in ('kdmc_gate.json', 'kdmc_gate_collar3.json', 'qts88_gate.json'):
         rec = root / 'registry' / record
         if not rec.is_file():
             continue
