@@ -26,15 +26,15 @@
   const banner = document.querySelector('[data-card-status]');
   if (banner) {
     try {
-      const response = await fetch('status.json', { cache: 'no-store' });
-      if (!response.ok) throw new Error('release status unavailable');
+      const response = await fetch('data/kth88_validation.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('latest run validation unavailable');
       const data = await response.json();
-      // Never dynamically turn a default-red banner green on the strength of a
-      // format-only receipt: a selector and an independent organizer sample
-      // must also be verified. This site has NO cleared file right now.
-      banner.textContent = data.status === 'BLOCKED' && data.ok_to_submit === false
-        ? 'DO NOT SUBMIT · ' + (data.problems?.join('; ') || 'automatic gate blocked the current research file')
-        : 'DO NOT SUBMIT · release status is inconsistent or unverified';
+      // Fail closed. A locally valid research artifact must never be presented
+      // as slot-cleared or organizer-accepted, even if the old status.json is green.
+      banner.textContent = data.ok_to_download === true && data.ok_to_submit === false &&
+          data.local_format_audit?.ok === true && data.tif_and_single_member_zip_validated === true
+        ? 'KTH-88 · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT · binding registry duplicate'
+        : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
     } catch (_) {
       banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';
     }

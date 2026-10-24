@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Fail-closed independent disk-byte audit of the CURRENT research GeoTIFF.
+"""Current-release summary and fail-closed gates.
 
-Checks the sample grid, full float32 range, single-TIFF ZIP, canonical run
-card, 29 local prior rasters and the literal all-positive witness. A scientific
-or uniqueness failure keeps `ok_to_submit` false; formatting alone never
-approves a weekly slot. Run `--require-submit` to demand a green gate (exit 2
-for the present negative result). No organizer upload/login is attempted.
+The current summary follows KTH-88, the latest run card; its TIFF/ZIP is
+independently reopened by validate_kth88.py. The full historical fabric audit
+remains available as fabric_release_report(). A scientific or uniqueness
+failure keeps `ok_to_submit` false; formatting never approves a weekly slot.
+Run `--require-submit` to demand a green current gate (exit 2 today). No
+organizer upload/login is attempted.
 """
 from __future__ import annotations
 import hashlib
@@ -29,7 +30,7 @@ def sha(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
-def release_report(root=ROOT):
+def fabric_release_report(root=ROOT):
     root = Path(root)
     card = json.loads((root / 'registry/fabric_dislocation_run_card.json').read_text())
     web = json.loads((root / 'docs/data/fabric_dislocation_run_card.json').read_text())
@@ -145,6 +146,29 @@ def release_report(root=ROOT):
     canon = json.loads((root / 'registry' / 'run_card.json').read_text())
     if canon.get('verdict') == 'negative' and canon.get('ok_to_submit') is False and canon.get('raster_sha256'):
         expected_hashes.add(canon['raster_sha256'])
+    # IR-88-KTH-02: independently audited KTH research file is a negative
+    # deliverable, not an unexplained extra TIFF. Its complete 222-raster
+    # comparison and TIFF/ZIP validator are checked here before whitelisting;
+    # arbitrary additional research TIFFs remain fail-closed.
+    kth_path = root / 'registry/kth88_run_card.json'
+    if kth_path.is_file():
+        kth = json.loads(kth_path.read_text())
+        p = (root / kth['download']).resolve()
+        audit = json.loads((root / 'docs/data/kth88_validation.json').read_text())
+        comparisons = json.loads((root / 'evidence/kth88_registry.json').read_text())
+        if (not p.is_relative_to((root / 'docs/downloads').resolve())
+            or kth.get('verdict') != 'negative' or kth.get('ok_to_submit') is not False
+            or 'DO-NOT-SUBMIT' not in p.name
+            or sha(p) != kth.get('raster_sha256')
+            or audit.get('tif_sha256') != sha(p)
+            or audit.get('ok_to_submit') is not False
+            or not audit.get('tif_and_single_member_zip_validated')
+            or audit.get('local_format_audit', {}).get('ok') is not True
+            or comparisons['final_dots']['candidate_file_sha256'] != sha(p)
+            or comparisons['final_dots']['registry_rasters_checked'] < 200
+            or comparisons['final_dots']['worst_dot_overlap'] <= .70):
+            raise ValueError('new KTH research TIFF has no verified negative audit')
+        expected_hashes.add(sha(p))
     if observed_hashes != expected_hashes:
         raise ValueError('accessible registry changed since postmerge audit; recheck all prior rasters')
     index = dict(complete_accessible_scan=True, errors=[], rasters=[])
@@ -206,8 +230,51 @@ def release_report(root=ROOT):
                 provenance='owner-mirrored sample/labels; independent organizer authentication unavailable')
 
 
+
+def release_report(root=ROOT):
+    """Return the current KTH-88 release summary, not the archived fabric run."""
+    root = Path(root)
+    card = json.loads((root / 'registry/kth88_run_card.json').read_text())
+    validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
+    tif = root / card['download']
+    archive = tif.with_suffix('.zip')
+    if (card != json.loads((root / 'docs/data/kth88_run_card.json').read_text()) or
+        card['verdict'] != 'negative' or card['ok_to_submit'] is not False or
+        not tif.is_file() or not archive.is_file()):
+        raise ValueError('KTH-88 current run card or research artifact is missing/inconsistent')
+    tif_hash, zip_hash = sha(tif), sha(archive)
+    if (tif_hash != card['raster_sha256'] or validation.get('tif_sha256') != tif_hash or
+        validation.get('zip_sha256') != zip_hash or validation.get('ok_to_submit') is not False):
+        raise ValueError('KTH-88 current-release hashes or negative gate do not agree')
+    holdout = card['holdout_dti']
+    prior = card['incumbent_holdout_dti']
+    comparison = card['correlation_overlap_vs_registry']
+    return dict(schema='gems88.current-release.v1', file=card['download'],
+                file_sha256=tif_hash, zip_sha256=zip_hash,
+                format_valid=bool(validation.get('local_format_audit', {}).get('ok')),
+                no_nan_inside=bool(validation.get('local_format_audit', {}).get('no_nan_inside')),
+                all_values_in_0_1=bool(validation.get('local_format_audit', {}).get('range_0_1')),
+                crs_shape_transform_match=all(validation.get('local_format_audit', {}).get(k) for k in
+                                               ('crs_match', 'shape_match', 'transform_match')),
+                zip_one_exact_tif=bool(validation.get('tif_and_single_member_zip_validated')),
+                positive_pixels=37654,
+                canary_max_auc=max(v['symmetric_auc'] for v in card['leakage_canary'].values()),
+                holdout_dti=holdout['dti'], holdout_ci95=holdout['ci95'],
+                holdout_evaluator=holdout['evaluator_version'],
+                withheld_positive_pixels=holdout['withheld_positive_pixels'],
+                incumbent_best_dti=prior['dti'],
+                literal_registry_overlap_3px=comparison['final_overlap_3px'],
+                registry_rasters_checked=comparison['registry_rasters_checked'],
+                duplicate=bool(comparison['literal_duplicate']),
+                research_download_ok=bool(validation.get('ok_to_download')),
+                ok_to_submit=False, approved_for_weekly_slot=False, verdict='negative',
+                reason=card['stop_reason'],
+                provenance='owner-mirrored inputs; independent organizer authentication unavailable')
+
+
 def main():
     report = release_report()
+    (ROOT / 'docs/data/current_release.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))
     if '--require-submit' in sys.argv:
         print('AUTOMATIC SUBMISSION GATE: FAIL. NO UPLOAD PERMITTED.', file=sys.stderr)

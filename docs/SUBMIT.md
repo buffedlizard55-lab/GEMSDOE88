@@ -1,36 +1,39 @@
 # Competition submission guide (current decision: DO NOT SUBMIT)
 
-**Current status:** the fabric-dislocation GeoTIFF is **OK TO DOWNLOAD FOR RESEARCH**, but **NOT OK TO SUBMIT**. It loses to the stored holdout best and fails the strict registry-overlap gate. No weekly slot has been used, and there is no ORGANIZER-CONFIRMED score.
+**Current candidate: KTH-88. Research download: YES. Competition submission: NO.** Its holdout is far below the stored comparable incumbent and the literal registry-overlap rule fails. No weekly slot has been used; no `ORGANIZER-CONFIRMED` score exists.
 
-- TIFF: [`gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif`](downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif)
-- Single-TIFF ZIP: [`gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.zip`](downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.zip)
-- Run card: [`fabric_dislocation_run_card.json`](data/fabric_dislocation_run_card.json)
-- TIFF SHA-256: `1bbb20e60ce5633a979e2bea8e1216105325b78c4ca93ca4380ea3f533e774ae`
-- **HOLDOUT-DTI:** 0.062936, evaluator `gems57-pooled-hide-v2`, 22,893 withheld positives, 95% CI [0.054201, 0.072122].
-- **Uniqueness:** the final dots have 3-pixel overlap 1.0 against the dense 17GEMSDOE witness; the allowed maximum is 0.70. The literal rule cannot be met by any nonempty prediction while that all-positive witness remains in scope.
-- **Format:** independent audit passes: one float32 band, exact sample CRS/shape/transform, all finite, values in [0,1], no NaN inside footprint, no mass outside. This is a format pass only.
+- GeoTIFF: [`gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif`](downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif)
+- Single-TIFF ZIP: [`gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip`](downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip)
+- Run card: [`../registry/kth88_run_card.json`](../registry/kth88_run_card.json)
+- Independent TIFF/ZIP audit: [`data/kth88_validation.json`](data/kth88_validation.json)
+- TIFF SHA-256: `5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf`
+- **HOLDOUT-DTI:** 0.052656, evaluator `gems57-pooled-hide-v2`, 22,893 withheld positive pixels, 95% CI [0.045911, 0.059151]. Same-split incumbent: 0.187888; no paired improvement CI is available.
+- **Uniqueness:** final 3-pixel overlap is 0.89882 with a GEMSDOE87 raster and 1.000 with the dense 17GEMSDOE witness; maximum allowed is 0.70. Do not reinterpret this as unique because the file bytes differ.
+- **Format:** independent TIFF and one-member ZIP checks pass for sample grid, finite float32 values in [0,1], and exact ZIP member bytes. This is local format validity, not organizer acceptance or slot approval.
+- **Name (archival only):** `GEMSDOE88-KTH-BACDC27B`
+- **Note (archival only, 105/140):** `K/Th antisymmetric radiometric step + RTP trough, 37654 dots; HOLDOUT-DTI 0.0527; UNSCORED; DO NOT SUBMIT`
 
-Do not upload this file. The name and note below are archival identifiers, not upload authorization:
+Do not upload KTH-88. The submission identifier and note are retained for audit only, not authorization. The K/Th data are uncalibrated indices, not measured elemental abundance. No organizer receipt exists.
 
-- Name: `GEMSDOE88-FABDIS-621B097B-DO-NOT-SUBMIT`
-- Note: `FAB88 RTP fabric-dislocation research raster; HOLDOUT-DTI 0.062936; 22,893 positives; DO NOT SUBMIT`
+## Procedure for a future, separately authorized candidate
 
-## Procedure for a future approved raster
+Only use a file whose latest run card passes every required scientific, uniqueness, leakage, and format gate, and whose separate portfolio selector authorizes a slot. This repository does not choose a slot or upload on a user's behalf.
 
-Only use a file whose latest machine run card says it passed every required research gate and whose separate selector has chosen to spend a slot. The project does not select or upload submissions.
+1. Restore only authorized, hash-pinned inputs; reread `PROMPT.md` and verify one method lane is explicitly selected.
+2. Run the site, readiness, candidate, and current-release validators. Require the **current candidate's** `--require-submit` check to exit 0 and match its TIFF SHA-256 to its run card.
+3. Separately obtain selector authorization and confirm the live weekly limit.
+4. Sign in to the team account and use the [official DrivenData submissions page](https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/). Upload only the approved single-band TIFF or one-TIFF ZIP, enter its unique name and note (at most 140 characters), and submit only with authorization.
+5. Archive the portal receipt. Label a score `ORGANIZER-CONFIRMED` only when copied from that receipt.
 
-1. Run the repo's site, readiness, and current-file checks. Require the exact validated TIFF SHA-256 to match the run card.
-2. Download the single TIFF, or the ZIP containing exactly that TIFF.
-3. Sign in to the team account and open the [official DrivenData submissions page](https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/).
-4. Select **New submission**, upload the TIFF or one-TIFF ZIP, enter that candidate's unique name and a note of at most 140 characters, then submit only if a separate selector has authorized the slot.
-5. Archive the portal receipt and label the score **ORGANIZER-CONFIRMED** only when copied from that receipt.
-
-The official format requires a single-band float32 prediction raster on the training grid (EPSG:32611, 100 m, matching bounds) with values in [0,1]. See the [official problem/metric/format page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) and [official rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf). The automated local gate does not log in or submit on a user's behalf.
+The official problem page defines the submission grid and [metric/format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/); use the current [official rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) and live portal for binding requirements. Local validation cannot authenticate to the portal.
 
 ## Recheck commands
 
 ```bash
+python scripts/restore_inputs.py --validation
 python scripts/check_site.py
+python scripts/validate_kth88.py
+python scripts/validate_kth88.py --require-submit  # expected exit 2 for current KTH-88
 python scripts/readiness.py
 python scripts/validate_current.py
 python scripts/validate_current.py --require-submit  # expected exit 2 today

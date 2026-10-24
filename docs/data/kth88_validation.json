@@ -1,0 +1,28 @@
+{
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT",
+  "tif_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
+  "zip_sha256": "e21c8aac70fdcca59fedd5e4b9ee2d8148dc34b12ea6b158698eb7ff5f9e75ca",
+  "tif_and_single_member_zip_validated": true,
+  "local_format_audit": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "reason": "Duplicate by literal >70% forward 3px registry overlap (including an independent GEMSDOE87 prior); stop.",
+  "organizer_accepted": null
+}

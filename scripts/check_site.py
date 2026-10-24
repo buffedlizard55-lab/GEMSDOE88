@@ -1,7 +1,7 @@
 """Audit local site links and forbid unlabeled research TIFF/ZIP downloads.
 
-This is a site guard, not the scientific/format gate; validate_release.py is
-canonical for the current research artifact. A blocked experiment may still
+This is a site guard, not the scientific/format gate; validate_kth88.py audits
+the current research artifact, while legacy validators remain historical. A blocked experiment may still
 publish a clearly marked research-only file for independent audit.
 """
 from html.parser import HTMLParser
@@ -46,6 +46,21 @@ def main(root=ROOT):
     assert len(lb['raster']['note']) <= 140 and lb['format_ok'] is True and lb['ok_to_download'] is True
     assert lb['ok_to_submit'] is True or 'DO-NOT-SUBMIT' in lb_tif.name, 'held LBCAL file must be named DO-NOT-SUBMIT'
     assert json.loads((root / 'docs' / 'data' / 'lbcal_run_card.json').read_text())['raster']['sha256'] == lb['raster']['sha256']
+    # Latest experiment must be present on both landing/guide pages and stay
+    # blocked even if a historical gate record elsewhere says "promote".
+    kth = json.loads((root / 'registry/kth88_run_card.json').read_text())
+    kth_tif = root / kth['download']
+    kth_validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
+    assert kth['verdict'] == 'negative' and kth['ok_to_submit'] is False
+    assert kth['correlation_overlap_vs_registry']['final_overlap_3px'] > .70
+    assert kth_tif.is_file() and kth_tif.name.endswith('DO-NOT-SUBMIT.tif')
+    assert _hl.sha256(kth_tif.read_bytes()).hexdigest() == kth['raster_sha256']
+    assert kth_validation['tif_sha256'] == kth['raster_sha256']
+    assert kth_validation['local_format_audit']['ok'] and not kth_validation['ok_to_submit']
+    assert len(kth['submission_note']) <= 140
+    for page in ('index.html', 'executive-summary.html'):
+        body = (root / 'docs' / page).read_text()
+        assert kth_tif.name in body and 'DO NOT SUBMIT' in body, page
     pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
     assert len(pages) >= 5
     for page in pages:
@@ -68,19 +83,15 @@ def main(root=ROOT):
                 # claim otherwise, so it is cleared by its gate record instead (IR-88-76).
                 if 'DO-NOT-SUBMIT' not in path.name:
                     assert path.name in cleared_names, f'Unmarked research download: {link}'
-    # The landing page and submission guide must reflect the CURRENT release,
-    # not a stale parallel-session run card. Bind the visible safety label to
-    # the exact canonical TIFF/ZIP hashes validated by validate_current.py.
+    # Bind the canonical current feed and visible guidance to latest KTH-88 bytes.
     current = json.loads((root / 'docs/data/current_release.json').read_text())
-    card = json.loads((root / 'registry/fabric_dislocation_run_card.json').read_text())
-    web_card = json.loads((root / 'docs/data/fabric_dislocation_run_card.json').read_text())
-    assert card == web_card and card['verdict'] == 'negative' and card['ok_to_submit'] is False
-    assert current['file'] == card['file'] and current['file_sha256'] == card['raster_sha256']
-    assert current['zip_sha256'] == card['zip_sha256']
+    assert current['file'] == kth['download']
+    assert current['file_sha256'] == kth['raster_sha256']
+    assert current['zip_sha256'] == kth_validation['zip_sha256']
     assert current['ok_to_submit'] is False and current['duplicate'] is True
     for page in (root / 'docs/index.html', root / 'docs/executive-summary.html'):
-        text = page.read_text()
-        assert Path(card['file']).name in text, f'Current artifact not identified on {page.name}'
+        text = (root / page).read_text()
+        assert kth_tif.name in text, f'Current artifact not identified on {page.name}'
         upper = text.upper()
         assert 'DO NOT SUBMIT' in upper and (
             'DOWNLOAD: YES' in upper or 'DOWNLOAD FOR RESEARCH: YES' in upper
