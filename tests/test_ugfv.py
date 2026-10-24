@@ -133,6 +133,8 @@ def test_run_card_four_way_parity_and_audit_invariants():
     assert reg["literal_any_raster_gate"]["space_covering_witness_count"] >= 1
     assert dots["H33"]["forward_dot_overlap_3px"] < 0.70
 
+    # docs/status.json describes the most recent release, not this historical
+    # UGFV/ADHR card. Its hash must bind to the CURRENT on-disk research TIFF.
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
     # docs/status.json is now the unified submission gate for the PROMOTED file (IR-88-59);
     # the archived ADHR verdict lives under archive_research_artifact.

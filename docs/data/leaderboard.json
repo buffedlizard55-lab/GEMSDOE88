@@ -1,5 +1,6 @@
 {
-  "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-SNAPSHOT",
+  "schema": "gems88.public-leaderboard-snapshot.v2",
+  "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-SNAPSHOT (not an owner submission receipt)",
   "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
   "checked_utc": "2026-10-24T08:00:00Z",
   "live": false,

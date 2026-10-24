@@ -1,4 +1,4 @@
-// Dated, fail-closed read-only data display. Never auto-approves submission unless every gate clears.
+// Static, fail-closed display: a dated public snapshot is NOT an account receipt.
 (async () => {
   const score = document.querySelector('[data-feed-score]');
   const stamp = document.querySelector('[data-feed-stamp]');
@@ -17,11 +17,12 @@
       const hours = (Date.now() - at.valueOf()) / 3600000;
       stamp.textContent = `Official public leaderboard · checked ${at.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'UTC' })} UTC${hours > 12 ? ' · STALE SNAPSHOT' : ''}`;
     } catch (_) {
-      stamp.textContent = 'Leaderboard snapshot unavailable. Use the official DrivenData page for live standings.';
+      score.textContent = '—';
+      stamp.textContent = 'Leaderboard snapshot unavailable; open the official page for live standings.';
     }
   }
-  const cardStatus = document.querySelector('[data-card-status]');
-  if (cardStatus) {
+  const banner = document.querySelector('[data-card-status]');
+  if (banner) {
     try {
       // Single authoritative gate (scripts/submission_gate.py) -> docs/data/submission_gate.json.
       const response = await fetch('data/submission_gate.json', { cache: 'no-store' });

@@ -1,0 +1,56 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "date_utc": "2026-10-24",
+  "frozen_before_new_experiment": true,
+  "method_lane": "MAG-FABRIC-DISLOCATION: paired opposite-side axial RTP fabric orientation discontinuity, gravity-confirmed; no other candidate method is attempted in this session",
+  "lane_assignment_irregularity": "The request references a single method paragraph below but none is supplied; this explicitly selected first-ranked hypothesis is provisional.",
+  "data": {
+    "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "bands": {"2": "rtp", "13": "iso_grav_anom"},
+    "new_external_data": false
+  },
+  "method": {
+    "clean_band": "src.gems88.edge.clean_band: footprint-finite data, clip 1st..99th percentile, median-impute nodata without using any fault pixels",
+    "magnetic_gradient_sigma_px": 2.0,
+    "tensor_smoothing_sigma_px": 4.0,
+    "tensor": "J = G4(grad(G2(RTP)) outer grad(G2(RTP))); Q = ((Jxx-Jyy), 2Jxy) / (Jxx+Jyy+epsilon)",
+    "side_pairs_dy_dx_px": [[3, 0], [0, 3], [2, 2], [2, -2]],
+    "side_contrast": "max_pairs(0.5 * |Q(x+d)-Q(x-d)| * min(|Q(x+d)|,|Q(x-d)|))",
+    "gravity_gradient_sigma_px": 3.0,
+    "surface": "rank(side_contrast) * (0.35+0.65*rank(|grad(G3(gravity))|)) * (0.25+0.75*rank(|grad(G2(RTP))|)); each rank label-blind 257-quantile interpolation",
+    "crest_pool": "scripts.build_prune_deconfound_variants.directional_crest_1d; reuses selection infrastructure, not previous dots",
+    "dot_count": 37654,
+    "mutual_spacing_px": 3.5,
+    "catalogue_exclusion_px": 3.0,
+    "footprint_border_exclusion_px": 6.0,
+    "emission": "greedy descending surface score, stable raster-index tie-break, max 37,654; no prior output pixels used",
+    "output": "binary float32 on the exact mirrored sample grid; all finite, zeros outside, nodata None"
+  },
+  "evaluation": {
+    "split": "vendor/gems57/holdout.py::buffered_component_draw",
+    "seeds": [20, 21],
+    "buffer_px": 3,
+    "visible_only_catalogue_features": true,
+    "masked_known_pixel_exact": true,
+    "metric": "vendor/gems57/evaluate_holdout.py::evaluate and pooled_summary",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "radius_m": 300,
+    "bootstrap_block_side_px": 200,
+    "bootstrap_draws": 1000,
+    "canary_auc_symmetric_block_above": 0.90,
+    "incumbent_holdout_dti": 0.18788764184958875,
+    "incumbent_holdout_ci95": [0.17169764852656258, 0.20326012211176936],
+    "incumbent_withheld_positives": 22893,
+    "incumbent_source": "registry/holdout_result.json",
+    "promotion_rule": "Beats current best on identical folds with paired positive CI AND every literal uniqueness and on-disk format gate; historical incumbent terms unavailable for a paired test here, so fail closed if otherwise close."
+  },
+  "uniqueness": {
+    "surface_rank_max": 0.90,
+    "final_dot_overlap_3px_max": 0.70,
+    "dense_prior_literal_policy": "FAIL-CLOSED: shared template counts any positive finite pixel as a dot, including all-positive 17GEMSDOE; never silently exempt it. A negative result may retain a clearly marked DO-NOT-SUBMIT research artifact.",
+    "source": "registry/inventory.json plus existing repo publications; cannot guarantee unlinked private submissions"
+  },
+  "budget": {"experiments_max": 3, "hours_max": 2, "this_run_planned_experiments": 1},
+  "non_fault_mimic": "Unfaulted igneous intrusive/volcanic lithologic contact or airborne survey flight-line seam abruptly rotating the magnetic fabric."
+}

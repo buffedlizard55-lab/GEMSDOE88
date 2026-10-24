@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Fail-closed public leaderboard snapshot updater for scheduled Pages deploys.
+"""Fail-closed OFFLINE parser for manually verified official public snapshots.
 
-The site is STATIC; this runs in GitHub Actions every 6h, fetches the public
-organizer leaderboard (not a submission-page receipt), validates table structure,
-and writes a dated JSON snapshot only after it can parse real ranked entries.
-On network/login/markup failure it leaves the old timestamp intact: never fake
-live data. No Git branch is pushed by the deploy workflow.
+No scheduled DrivenData requests or scraping: ``update`` requires HTML supplied
+explicitly by a human reviewer (or a synthetic test fixture). It validates
+ranked rows and atomically writes a dated snapshot compatible with site.js.
+It cannot log in, provide a live score or authenticate a GEMSDOE88 submission.
+On login/markup failure the previous snapshot remains untouched.
 """
 
 from __future__ import annotations
@@ -15,7 +15,6 @@ from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
-from urllib.request import Request, urlopen
 
 URL = "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
 
@@ -112,11 +111,16 @@ def update(path, html=None):
         )
     rows = parse_leaderboard(html)
     snapshot = dict(
-        evidence_class="ORGANIZER-PUBLIC-LEADERBOARD (not a submission-page receipt)",
-        source=URL,
-        retrieved_at_utc=datetime.now(timezone.utc).isoformat(),
-        observed_top10=rows,
-        snapshot_only=True,
+        schema='gems88.public-leaderboard-snapshot.v2',
+        evidence_class='OFFICIAL-PUBLIC-LEADERBOARD-SNAPSHOT (not an owner submission receipt)',
+        source_url=URL,
+        checked_utc=datetime.now(timezone.utc).isoformat(),
+        retrieval='Manually supplied and reviewed offline HTML; not a live account feed',
+        live=False,
+        stale_after_hours=24,
+        top_public_dti=rows[0]['public_dti'],
+        rows=rows,
+        observed_top10=rows,  # compatibility with earlier offline parser tests
         score_not_our_submission=True,
     )
     path = Path(path)
@@ -129,16 +133,17 @@ def update(path, html=None):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--output", type=Path, default=Path("docs/data/leaderboard.json")
-    )
+    parser.add_argument('--output', type=Path, default=Path('docs/data/leaderboard.json'))
+    parser.add_argument('--html-file', type=Path, required=True,
+                        help='locally supplied reviewed HTML, never fetched by this script')
+    parser.add_argument('--source-confirmed', action='store_true',
+                        help='reviewer confirms HTML is the official public leaderboard')
     args = parser.parse_args()
-    snap = update(args.output)
-    print(
-        "Verified official public leaderboard",
-        snap["retrieved_at_utc"],
-        snap["observed_top10"][0],
-    )
+    if not args.source_confirmed:
+        parser.error('offline HTML must be manually source-confirmed before publishing')
+    snap = update(args.output, args.html_file.read_text())
+    print('Recorded dated public snapshot (NOT an account receipt):',
+          snap['checked_utc'], snap['rows'][0])
 
 
 if __name__ == "__main__":
