@@ -34,6 +34,7 @@ def release_report(root=ROOT):
     card = json.loads((root / 'registry/fabric_dislocation_run_card.json').read_text())
     web = json.loads((root / 'docs/data/fabric_dislocation_run_card.json').read_text())
     evidence = json.loads((root / 'evidence/fabric_dislocation_uniqueness.json').read_text())
+    later = json.loads((root / 'evidence/postmerge_tiltzero_audit.json').read_text())
     if card != web or card['verdict'] != 'negative' or card['ok_to_submit'] is not False:
         raise ValueError('published science/status card is not the canonical negative result')
     if card['file'] != f"docs/downloads/{Path(card['file']).name}" or 'DO-NOT-SUBMIT' not in card['file']:
@@ -97,8 +98,32 @@ def release_report(root=ROOT):
     rows = stored['rows']
     if len(rows) != len(before) or stored['candidate_file_sha256'] != sha(tif):
         raise ValueError('final prior comparison is incomplete or candidate changed')
+    if (later['schema'] != 'gems88.posthoc-registry-extension.v1' or
+        later['initial_prior_count'] != len(rows) or
+        later['candidate_sha256'] != sha(tif) or
+        later['remains_blocked'] is not True or
+        later['new_prior'] != later['final_dots_posthoc']['file'] or
+        later['new_prior'] != later['frozen_surface_posthoc']['path'] or
+        later['new_prior_sha256'] != later['final_dots_posthoc']['sha256'] or
+        later['new_prior_sha256'] != later['frozen_surface_posthoc']['sha256'] or
+        not isinstance(later['frozen_surface_posthoc']['rho_full_footprint'], (float, int)) or
+        abs(later['frozen_surface_posthoc']['rho_full_footprint']) > .9):
+        raise ValueError('postmerge prior audit is inconsistent with original frozen experiment')
+    new_prior = (root / later['new_prior']).resolve()
+    if (not new_prior.is_relative_to(root / 'docs/downloads') or
+        sha(new_prior) != later['new_prior_sha256'] or
+        later['new_prior_sha256'] in {r['sha256'] for r in rows}):
+        raise ValueError('postmerge prior missing, moved or SHA changed')
+    # A new published TIFF appeared after the initial 29-raster experiment.
+    # Fail closed if another unreviewed file appears in the accessible registry.
+    observed_hashes = {sha(path) for directory in ('data/registry', 'docs/downloads', 'submissions')
+                       for path in (root / directory).rglob('*.tif')}
+    expected_hashes = {r['sha256'] for r in rows} | {sha(tif), later['new_prior_sha256']}
+    if observed_hashes != expected_hashes:
+        raise ValueError('accessible registry changed since postmerge audit; recheck all prior rasters')
     index = dict(complete_accessible_scan=True, errors=[], rasters=[])
-    for r in rows:
+    checked_rows = [*rows, later['final_dots_posthoc']]
+    for r in checked_rows:
         file = Path(r['file'])
         if not file.is_absolute():
             file = root / file
@@ -111,7 +136,7 @@ def release_report(root=ROOT):
     measured = uniqueness.compare_to_registry(tif, index, gd.footprint, include_reverse=False,
                                                expected_grid=expected)
     if (not measured['complete_accessible_scan'] or
-        measured['registry_rasters_checked'] != len(rows) or
+        measured['registry_rasters_checked'] != len(checked_rows) or
         measured['duplicate_count'] < 1 or
         measured['worst_dot_overlap'] != 1.0):
         raise ValueError('new raster unexpectedly cleared the literal registry gate')
@@ -123,7 +148,7 @@ def release_report(root=ROOT):
     if (not dense['universal_overlap_blocker'] or overlap != 1.0 or
         overlap != card['correlation_overlap_vs_registry']['final_worst_overlap_3px']):
         raise ValueError('all-positive witness assertion no longer matches TIFF')
-    for observed, recorded in zip(measured['rows'], rows):
+    for observed, recorded in zip(measured['rows'], checked_rows):
         rho, saved = observed.get('spearman_full_footprint'), recorded.get('spearman_full_footprint')
         same_rho = (rho is None and saved is None) or (
             rho is not None and saved is not None and np.isclose(rho, saved, rtol=0, atol=1e-10))
@@ -142,6 +167,13 @@ def release_report(root=ROOT):
                 incumbent_best_dti=prior['dti'],
                 literal_registry_overlap_3px=overlap,
                 registry_rasters_checked=measured['registry_rasters_checked'],
+                original_preplacement_rasters_checked=len(rows),
+                posthoc_rasters_checked=1,
+                posthoc_prior_file=later['new_prior'],
+                posthoc_prior_surface_rho=later['frozen_surface_posthoc']['rho_full_footprint'],
+                posthoc_prior_final_overlap=later['final_dots_posthoc']['my_dots_within_3px_of_theirs'],
+                final_worst_abs_rho=max(abs(r['spearman_full_footprint']) for r in measured['rows']
+                                        if r['spearman_full_footprint'] is not None),
                 duplicate=True, research_download_ok=True, ok_to_submit=False,
                 approved_for_weekly_slot=False, verdict='negative',
                 reason='Literal dense registry overlap = 1.0 > 0.70; HOLDOUT-DTI below frozen best. DO NOT SUBMIT.',

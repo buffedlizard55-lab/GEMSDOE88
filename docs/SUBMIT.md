@@ -16,9 +16,12 @@ Research download **YES**; competition upload **NO**. The adjacent `.zip` contai
   **0.062936 [0.054201, 0.072122]** versus prior best
   **0.187888 [0.171698, 0.203260]** on the same frozen split. No paired
   incumbent-bootstrap terms; this experiment is below even the incumbent CI.
-- Uniqueness measured against 29 accessible hash-verified prior rasters:
-  surface max |Spearman ρ| **0.062661** before placement; final max
-  |ρ| **0.008450**. Final dot overlap with all-positive `17GEMSDOE` prior is
+- At the original experiment, 29 then-accessible hash-verified prior rasters
+  were checked: surface max |Spearman ρ| **0.062661** before placement;
+  final max |ρ| **0.008450**. A 30th TILTZERO prior was merged later;
+  its **posthoc** surface |ρ| is **0.028174**, final overlap **0.388883**;
+  across all 30 final max |ρ| is **0.011493**. No claim that the 30th
+  pre-placement check occurred before dot placement. Final dot overlap with all-positive `17GEMSDOE` prior is
   **1.0000 > 0.70**. The *literal* template rule calls this a duplicate and
   stops promotion; there is no silent dense-raster exemption. Access to
   private/unlinked files cannot be certified.
@@ -32,7 +35,8 @@ Research download **YES**; competition upload **NO**. The adjacent `.zip` contai
 **Machine decisions (no human format/uniqueness inspection needed):**
 [`current_release.json`](data/current_release.json),
 [`fabric_dislocation_run_card.json`](data/fabric_dislocation_run_card.json),
-[`fabric_dislocation_uniqueness.json`](data/fabric_dislocation_uniqueness.json).
+[`fabric_dislocation_uniqueness.json`](data/fabric_dislocation_uniqueness.json),
+[`postmerge_tiltzero_audit.json`](data/postmerge_tiltzero_audit.json).
 Run `.venv/bin/python scripts/validate_current.py --require-submit`: exit **2**
 correctly rejects the current file. If the grid, zip, SHA, evidence or prior
 rasters change, the ordinary validator exits nonzero instead of approving.

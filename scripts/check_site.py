@@ -34,6 +34,8 @@ def main(root=ROOT):
     assert status['current_file'] == audit['file'] == current['file']
     assert (root / 'docs/data/fabric_dislocation_run_card.json').read_bytes() == (root / 'registry/fabric_dislocation_run_card.json').read_bytes()
     assert (root / 'docs/data/fabric_dislocation_uniqueness.json').read_bytes() == (root / 'evidence/fabric_dislocation_uniqueness.json').read_bytes()
+    assert (root / 'docs/data/postmerge_tiltzero_audit.json').read_bytes() == (root / 'evidence/postmerge_tiltzero_audit.json').read_bytes()
+    assert audit['registry_rasters_checked'] == status['registry_rasters_checked'] == current['correlation_overlap_vs_registry']['registry_rasters_checked'] + 1
     assert (root / 'docs/research/candidates-20261024-fabric-dislocation.md').read_bytes() == (root / 'research/candidates-20261024-fabric-dislocation.md').read_bytes()
     assert (root / 'docs/assets/site.js').is_file() and (root / 'docs/status.json').is_file()
     assert len(current['submission_note']) <= 140
