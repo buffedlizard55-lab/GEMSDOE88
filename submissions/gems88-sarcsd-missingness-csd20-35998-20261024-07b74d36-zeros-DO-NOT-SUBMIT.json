@@ -1,0 +1,16 @@
+{
+  "schema": "gems88.writer-receipt.v1",
+  "file": "docs/downloads/gems88-sarcsd-missingness-csd20-35998-20261024-07b74d36-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-sarcsd-missingness-csd20-35998-20261024-07b74d36-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "07b74d3644c18245dc944720bfe9c9495103b660b010b3ef25a7dd7aefe4e9f5",
+  "zip_sha256": "d367c2a4810bf91c5661a590b6bb0e7ba1c69e90ddb14fb44595c6e3c9dd993f",
+  "submission_name": "GEMSDOE88-SARCSD-07B74D36-DO-NOT-SUBMIT",
+  "note": "SAR-CSD 87ch 35998d; Exp02 HOLDOUT-DTI 0.1929, Exp03 0.1516; gt25=38.7%; DO NOT SUBMIT",
+  "note_length": 86,
+  "positive_pixels": 35998,
+  "gate_v3_ok_to_download": true,
+  "gate_v3_ok_to_submit": false,
+  "portal_and_uniqueness_valid": true,
+  "literal_17gemsdoe_overlap_3px": 1.0,
+  "weekly_slots_spent": 0
+}

@@ -1,0 +1,133 @@
+{
+  "schema": "gems88.run-card.v3",
+  "generated_utc": "2026-10-24T22:30:39Z",
+  "lane": "H88-SHORE-HINGE",
+  "artifact": "docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.tif",
+  "zip_artifact": "docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.zip",
+  "downloadable_file": "downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.tif",
+  "submission_name": "GEMSDOE88-SHORE-HINGE-42DC0AFA",
+  "submission_note": "SHORE-HINGE piedmont hinge+shoreline filter 37654 dots; HOLDOUT-DTI 0.0000 vs R0 0.0039; UNSCORED",
+  "emitted_dots": 37654,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "independent_organizer_receipt": false,
+  "weekly_slots_used": 0,
+  "hypothesis": {
+    "id": "H88-SHORE-HINGE",
+    "rank": 1,
+    "layers": [
+      "topo_10m_derived slope_p90/relief_local/aspect_coherence/hs_lineament/dem_mean",
+      "lidar_scarp downface/upface/cross_max",
+      "training_features det_elev/depth_to_base"
+    ],
+    "mechanism": "Piedmont hinge detection via slope/relief/coherence gated on 1m LiDAR mono-clinal scarp polarity (|down-up|/(down+up+4)) and cross relief, shoreline mask at 1330m/1555m removes wave-cut false positives, Dinkelbach-like greedy farthest-point allocation",
+    "named_non_fault_mimic": "Pleistocene Lake Lahontan (1330m) and Bonneville (1555m) wave-cut shorelines, playa terrace risers, fluvial terrace risers",
+    "difference_from_existing": "First shoreline-explicit mask; combines 10m hinge coherence with 1m polarity without ML; unlike ADHR 60deg dip projection or MVRD block residual",
+    "predicted_holdout_delta_model": 0.015,
+    "predicted_holdout_delta_range_model": [
+      -0.01,
+      0.04
+    ]
+  },
+  "mechanism": "Hinge = slope 1.5-12deg & relief 5-45m & coherence>0.48; scarp polarity S; score = hinge*(0.6*rank|S|+0.4*rank cross) +0.05*rank lineament; shoreline zeroed; greedy >=3.5px spacing, >3px catalogue collar",
+  "named_non_fault_process": "Lake shorelines and fluvial/playa risers mimicking fault scarps",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "candidate": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "incumbent_recomputed": 0.0038851762665228526,
+    "incumbent_ci95": [
+      0.0033077802781597216,
+      0.004449166129223974
+    ],
+    "paired_delta_vs_incumbent": -0.0038851762665228526,
+    "paired_delta_ci95": [
+      -0.0044491661292239745,
+      -0.0033077802781597216
+    ],
+    "beat_current_holdout_best": false,
+    "blind_basin_gt_25px": {
+      "note": "computed via pooled summary far subset not separated; use fingerprint instead"
+    }
+  },
+  "organizer_confirmed": {
+    "score": null,
+    "receipt": null,
+    "weekly_slots_used": 0
+  },
+  "leakage_canary": {
+    "schema": "gems88.canary.v1",
+    "threshold": 0.9,
+    "features_tested": 3,
+    "max_symmetric_auc": 0.58,
+    "passed": true
+  },
+  "uniqueness": {
+    "registry_rasters": 24,
+    "distinct_dot_sets": 24,
+    "worst_abs_rho": {
+      "label": "gems19_h19_5",
+      "value": 0.03176642029812643
+    },
+    "worst_like_for_like_overlap": {
+      "label": "gems19_h19_5",
+      "value": 0.40277261379933077
+    },
+    "literal_worst_overlap": 1.0,
+    "literal_duplicate": true,
+    "unique_literal": false,
+    "unique_like_for_like": true,
+    "vacuity_witness": {
+      "note": "dense 17GEMSDOE covers 100% footprint, literal 1.0 for any nonempty candidate; like-for-like is discriminating"
+    },
+    "rows_file": "evidence/shore_hinge_uniqueness.json"
+  },
+  "validator": {
+    "portal_ok": true,
+    "no_nan_anywhere": true,
+    "values_in_0_1": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform_matches_sample": true,
+    "n_dots": 37654,
+    "min_catalogue_distance_px": 3.1622776601683795,
+    "nn_stats": {
+      "min_px": 21.400934559032695
+    },
+    "raster_sha256": "fc886e5152c56f21e459413333d280dc38668306545bfa6605170290bbfd6ec2",
+    "zip_sha256": "fbbfa151c4c3fbfe4e3da4e67222bda449f8c0318b61efb8c7b052171b521745",
+    "fingerprint": {
+      "share_le2": 0.0,
+      "share_gt25": 0.44298082541031497,
+      "median_d_cat_px": 21.400934559032695
+    },
+    "fingerprint_pass": true
+  },
+  "submission": {
+    "file": "docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.tif",
+    "zip_file": "docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.zip",
+    "sha256": "fc886e5152c56f21e459413333d280dc38668306545bfa6605170290bbfd6ec2",
+    "zip_sha256": "fbbfa151c4c3fbfe4e3da4e67222bda449f8c0318b61efb8c7b052171b521745",
+    "submission_name": "GEMSDOE88-SHORE-HINGE-42DC0AFA",
+    "submission_note": "SHORE-HINGE piedmont hinge+shoreline filter 37654 dots; HOLDOUT-DTI 0.0000 vs R0 0.0039; UNSCORED",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "verdict": "negative",
+    "blocking_reasons": [
+      "literal dense witness 1.0 >0.70",
+      "HOLDOUT not beat bar"
+    ]
+  },
+  "experiments_run": 1,
+  "experiment_budget_max": 3,
+  "elapsed_seconds": 0.0,
+  "verdict": "negative"
+}

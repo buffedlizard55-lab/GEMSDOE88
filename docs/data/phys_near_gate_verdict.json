@@ -1,0 +1,17 @@
+{
+  "schema": "gems88.gate-v1",
+  "generated_utc": "2026-10-24T22:36:18Z",
+  "experiment_id": "H88-PHYS-NEAR-v1",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "format_passed": true,
+  "canary_passed": true,
+  "canary_max_auc": 0.54404,
+  "holdout_dti": 0.002453,
+  "sparse_uniqueness_passed": true,
+  "max_dot_overlap": 0.245557,
+  "max_abs_rho": 0.012837,
+  "literal_blocked": true,
+  "dense_overlap": 1.0,
+  "verdict": "promote-to-selector-only"
+}

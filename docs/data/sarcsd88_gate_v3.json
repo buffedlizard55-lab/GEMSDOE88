@@ -1,0 +1,92 @@
+{
+  "policy": "gems88-gate-v3",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "blocking_reasons": [
+    "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)"
+  ],
+  "informational": [
+    "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+  ],
+  "note_len": 86,
+  "name_len": 39,
+  "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows).",
+  "sha256": "07b74d3644c18245dc944720bfe9c9495103b660b010b3ef25a7dd7aefe4e9f5",
+  "zip_sha256": "d367c2a4810bf91c5661a590b6bb0e7ba1c69e90ddb14fb44595c6e3c9dd993f",
+  "portal_and_uniqueness_valid": true,
+  "candidate": {
+    "tif": "docs/downloads/gems88-sarcsd-missingness-csd20-35998-20261024-07b74d36-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-sarcsd-missingness-csd20-35998-20261024-07b74d36-zeros-DO-NOT-SUBMIT.zip",
+    "sha256": "07b74d3644c18245dc944720bfe9c9495103b660b010b3ef25a7dd7aefe4e9f5",
+    "zip_sha256": "d367c2a4810bf91c5661a590b6bb0e7ba1c69e90ddb14fb44595c6e3c9dd993f",
+    "dots": 35998
+  },
+  "fingerprint": {
+    "n": 35998,
+    "median_d_cat_px": 16.031219482421875,
+    "share_le2": 0.0,
+    "share_gt10": 0.6037279848880494,
+    "share_gt25": 0.38724373576309795
+  },
+  "fingerprint_screen_pass": true,
+  "holdout_comparison": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "exp01_sar_phys_dti": 0.09328022124489359,
+    "exp02_csd_joint_dti": 0.19293620715995416,
+    "exp02_csd_joint_ci95": [
+      0.17702285725732608,
+      0.2101599170156427
+    ],
+    "exp02_paired_delta_vs_recomputed_adhr": 0.005048565310365405,
+    "exp02_paired_delta_ci95": [
+      -0.002246406500151726,
+      0.01164217173567871
+    ],
+    "exp02_beats_both_bars_with_positive_ci95": false,
+    "exp03_dti": 0.15158927342035422,
+    "exp03_ci95": [
+      0.1372483580277032,
+      0.1663729824539841
+    ],
+    "stored_adhr_bar": 0.18788764184958875,
+    "recomputed_adhr_dti": 0.18788764184958875,
+    "paired_delta_vs_recomputed_adhr": -0.036298368429234534,
+    "paired_delta_ci95": [
+      -0.04622202473918624,
+      -0.02633748812549963
+    ],
+    "beats_both_bars_with_positive_ci95": false
+  },
+  "uniqueness_summary": {
+    "registry_rasters": 264,
+    "distinct_dot_sets": 145,
+    "missing": 0,
+    "unique_like_for_like": true,
+    "unique_literal": false,
+    "worst_like_for_like_overlap": {
+      "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+      "value": 0.5673370742819045
+    },
+    "worst_abs_rho": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 0.3541386726021662
+    },
+    "literal_blockers": [
+      "17GEMSDOE:dense_17gemdoe.tif",
+      "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+    ],
+    "vacuity_witness": {
+      "random_dots": 35998,
+      "seed": 88,
+      "literal_overlap": 1.0,
+      "like_for_like_overlap": 0.017667648202677928,
+      "literal_rule_vacuous": true,
+      "dense_label": "17GEMSDOE:dense_17gemdoe.tif"
+    }
+  },
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null
+}
