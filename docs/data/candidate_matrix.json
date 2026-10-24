@@ -5,7 +5,7 @@
   "weekly_slots_used": 0,
   "rows": [
     {
-      "label": "PHASE-88 (current release)",
+      "label": "PHASE-88 (archived compatibility record)",
       "record": "registry/phase88_run_card.json",
       "holdout_dti": 0.05306174540296061,
       "ci95": [
@@ -76,7 +76,7 @@
       "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
     },
     {
-      "label": "MDPS-88 (far regime)",
+      "label": "MDPS-88 (latest audited experiment; far regime)",
       "record": "registry/mdps88_run_card.json",
       "holdout_dti": 0.07272295955361242,
       "ci95": [

@@ -26,7 +26,7 @@ DIAG = {r["candidate"]: r for r in json.loads((ROOT / "evidence/dense_prior_topn
 
 # (label, tif or None, record, dti, ci, withheld, paired_delta, paired_ci, note)
 ROWS = [
-    ("PHASE-88 (current release)", DL + "gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+    ("PHASE-88 (archived compatibility record)", DL + "gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
      "registry/phase88_run_card.json", 0.05306174540296061, [0.04606433072520727, 0.06023288744301309], 22893, None, None,
      "RTP/gravity cross-gradient"),
     ("MRR-BPR-88", DL + "gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
@@ -35,7 +35,7 @@ ROWS = [
     ("MDC-88 (label corrected 2026-10-24)", DL + "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros-DO-NOT-SUBMIT.tif",
      "registry/kdmc_gate.json", 0.1488495052282044, [0.13317761870164363, 0.1741312800501426], 22893, None, None,
      "pu concentration; was ok_to_submit=true, now false"),
-    ("MDPS-88 (far regime)", DL + "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    ("MDPS-88 (latest audited experiment; far regime)", DL + "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
      "registry/mdps88_run_card.json", 0.07272295955361242, [0.05911330711505152, 0.08628315696691566], 10791,
      0.003596261052015104, [-0.006021409065574782, 0.012787871207464562], "paired vs fold-fair control crosses 0"),
     ("KTH-88", DL + "gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",

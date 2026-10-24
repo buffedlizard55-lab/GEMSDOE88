@@ -1,7 +1,6 @@
 """Audit local site links and forbid unlabeled research TIFF/ZIP downloads.
 
-This is a site guard, not the scientific/format gate; validate_kth88.py audits
-the current research artifact, while legacy validators remain historical. A blocked experiment may still
+This is a site guard, not the scientific/format gate; the live MDPS-88 audit and status are checked separately, while PHASE/KTH validators remain historical. A blocked experiment may still
 publish a clearly marked research-only file for independent audit.
 """
 from html.parser import HTMLParser
@@ -31,7 +30,7 @@ def main(root=ROOT):
     assert literal['correlation_overlap_vs_registry']['literal_duplicate'] and not literal['ok_to_submit']
     assert mdps['correlation_overlap_vs_registry']['duplicate']
     assert 'FAIL — DUPLICATE' in (root / 'docs/index.html').read_text()
-    # Historical MRR and KTH remain negative; latest PHASE-88 controls the site.
+    # Historical MRR, KTH and PHASE remain negative; latest MDPS literal audit controls the site.
     historical = json.loads((root / 'registry/run_card.json').read_text())
     assert historical['verdict'] == 'negative' and historical['ok_to_submit'] is False
     phase = json.loads((root / 'registry/phase88_run_card.json').read_text())
@@ -115,21 +114,22 @@ def main(root=ROOT):
     for f in sorted((root / 'docs').rglob('*')):
         if f.is_file() and f.suffix.lower() in ('.tif', '.tiff', '.zip'):
             assert 'DO-NOT-SUBMIT' in f.name or f.name in cleared_names, f'Unmarked published file under docs/: {f.relative_to(root)}'
-    # IR-88-88: the canonical PHASE-88 panel must precede the archived MDPS-88 text on the landing page.
-    landing = (root / 'docs' / 'index.html').read_text()
-    assert landing.find(phase['download'].split('/')[-1]) < landing.find('MDPS-88'), 'PHASE-88 must lead the landing page'
-    # Old KTH links remain archival, but the *first* panel must show PHASE-88.
-    current = json.loads((root / 'docs/data/current_release.json').read_text())
-    assert current['file'] == phase['download']
-    assert current['file_sha256'] == phase['raster_sha256']
-    assert current['zip_sha256'] == validation['zip_sha256']
-    assert current['ok_to_submit'] is False and current['duplicate'] is True
+    # The legacy current_release pointer remains internally consistent for PHASE-88,
+    # while the live status and landing-page decision must follow the MDPS literal audit.
+    current_release = json.loads((root / 'docs/data/current_release.json').read_text())
+    assert current_release['file'] == phase['download']
+    assert current_release['file_sha256'] == phase['raster_sha256']
+    assert current_release['zip_sha256'] == validation['zip_sha256']
+    assert current_release['ok_to_submit'] is False and current_release['duplicate'] is True
+    status = json.loads((root / 'docs/status.json').read_text())
+    assert status['raster_sha256'] == literal['raster_sha256']
+    assert status['ok_to_submit'] is False and status['ok_to_download_for_research'] is True
+    assert status['policy'] == 'binding-literal-all-registry-v1'
     for page in (root / 'docs/index.html', root / 'docs/executive-summary.html'):
         text = page.read_text()
-        assert phase['download'].split('/')[-1] in text, f'Current artifact not identified on {page.name}'
-        upper = text.upper()
-        assert 'DO NOT SUBMIT' in upper and ('DOWNLOAD: YES' in upper or 'DOWNLOAD FOR RESEARCH: YES' in upper), page
-    print('PASS: current PHASE-88 run card, current release hashes, site links, and explicit negative decision agree')
+        assert Path(mdps['raster']['file']).name in text, f'Latest artifact not identified on {page.name}'
+        assert 'DO NOT SUBMIT' in text.upper()
+    print('PASS: latest MDPS literal audit, live status, archival PHASE hashes, and site links agree')
 
 
 if __name__ == '__main__':

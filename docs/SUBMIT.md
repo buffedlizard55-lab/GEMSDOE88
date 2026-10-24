@@ -7,13 +7,13 @@
 - Run card: [run card](data/mdps88_run_card.json) · Gate record: [`data/mdps88-gate.json`](data/mdps88-gate.json)
 - Independent audit: [`data/mdps88_validation.json`](data/mdps88_validation.json) (`scripts/validate_mdps88.py`; `--require-submit` exits 2)
 - TIFF SHA-256: `bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd`
-- **HOLDOUT-DTI (far, primary):** 0.0727 [0.0591, 0.0863], 10,791 withheld positives; paired vs fold-fair control +0.0036 [−0.0060, +0.0128] (crosses 0). **Overall:** 0.0667 vs control 0.1085 (22,893 withheld). Evaluator `gems57-pooled-hide-v2`.
-- **Uniqueness:** worst excess 3 px overlap 0.226 (limit 0.70), worst surface |Spearman| 0.106 (limit 0.90) over 44 restored/tracked priors; literal 1.0 only vs the space-filling 17GEMSDOE witness (binds on ρ under vendor v3).
+- **HOLDOUT-DTI (`gems57-pooled-hide-v2`, far primary, 10,791 withheld positives):** candidate 0.0727 [95% CI 0.0591, 0.0863]; fold-fair control 0.0691 [95% CI 0.0569, 0.0813]; paired Δ +0.0036 [95% CI −0.0060, +0.0128] (crosses 0). **Overall HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 22,893 withheld positives): candidate 0.0667 [95% CI 0.0551, 0.0784] vs control 0.1085 [95% CI 0.0949, 0.1211].
+- **Uniqueness:** **FAIL under the literal lane rule**: final-dot overlap is 1.0 with the positive-everywhere `17GEMSDOE` witness (limit 0.70; no dense-prior exemption). Separate, non-binding v3 sparse/like-for-like diagnostics are worst excess 3 px overlap 0.226 and worst surface |Spearman| 0.106 over 44 restored/tracked priors.
 - **Format:** all-finite [0,1] float32, sample CRS/shape/transform, one-member ZIP byte-identical. Local validity, not organizer acceptance.
 - **Name (archival only):** `GEMSDOE88-MDPS88-MIX-20261024`
 - **Note (archival only, 106/140):** `MDPS-88 matched-domain physics mix, 29742 dots; HOLDOUT far 0.0727 overall 0.0667; UNSCORED; DO NOT SUBMIT`
 
-Do not upload MDPS-88. The name/note are retained for audit only. The canonical `current_release.json` record (PHASE-88, sha256 `28e6e912…324b`) is likewise **DO NOT SUBMIT** (HOLDOUT-DTI 0.0531; literal overlap 0.9090/1.0 — see `data/phase88_validation.json`).
+Do not upload MDPS-88. The name/note are retained for audit only. The legacy `current_release.json` compatibility record (PHASE-88, sha256 `28e6e912…324b`) is likewise **DO NOT SUBMIT** (HOLDOUT-DTI 0.0531; literal overlap 0.9090/1.0 — see `data/phase88_validation.json`).
 
 ## Why a previous upload attempt returned “Predicted values must be in range [0, 1]”
 
