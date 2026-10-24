@@ -122,13 +122,13 @@ def fabric_release_report(root=ROOT):
     expected_hashes = {r['sha256'] for r in rows} | {sha(tif), later['new_prior_sha256']}
     # Rasters that carry a gems88-gate-v3 verdict record (registry/*gate_v3.json, registry/gate_verdict.json) were reviewed against the
     # 216+-raster v3 registry by the session of 2026-10-24 (IR-88-59..71); any OTHER unreviewed TIFF still fails closed.
-    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json'):
+    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json', 'mvrd_gate_v3.json', 'gthc88_gate_v3.json'):
         rec = root / 'registry' / record
         if rec.is_file():
             expected_hashes.add(json.loads(rec.read_text())['sha256'])
     # MDC-88 (PR #61, IR-88-75/73/74) stores its gate-v3 verdict nested under 'gate_v3'
     # with the file hash in 'candidate'. Same review standard, different record shape.
-    for record in ('kdmc_gate.json', 'kdmc_gate_collar3.json'):
+    for record in ('kdmc_gate.json', 'kdmc_gate_collar3.json', 'qts88_gate.json'):
         rec = root / 'registry' / record
         if not rec.is_file():
             continue
@@ -169,6 +169,23 @@ def fabric_release_report(root=ROOT):
             or comparisons['final_dots']['worst_dot_overlap'] <= .70):
             raise ValueError('new KTH research TIFF has no verified negative audit')
         expected_hashes.add(sha(p))
+    for neg_rec, path_fn, sha_fn in (
+        ('phase88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256']),
+        ('mdps88_run_card.json', lambda d: d['raster']['file'], lambda d: d['raster_sha256']),
+        ('ibl88_run_card.json', lambda d: d['submission']['file'], lambda d: d['submission']['sha256']),
+        ('qtsk88_run_card.json', lambda d: d['raster']['tif_path'], lambda d: d['raster']['sha256']),
+    ):
+        np_card = root / 'registry' / neg_rec
+        if np_card.is_file():
+            nd = json.loads(np_card.read_text())
+            np_tif = (root / path_fn(nd)).resolve()
+            if (not np_tif.is_relative_to((root / 'docs/downloads').resolve())
+                or nd.get('verdict') != 'negative'
+                or nd.get('ok_to_submit') is not False
+                or 'DO-NOT-SUBMIT' not in np_tif.name
+                or sha(np_tif) != sha_fn(nd)):
+                raise ValueError(f'{neg_rec} research TIFF has no verified negative audit')
+            expected_hashes.add(sha(np_tif))
     if observed_hashes != expected_hashes:
         raise ValueError('accessible registry changed since postmerge audit; recheck all prior rasters')
     index = dict(complete_accessible_scan=True, errors=[], rasters=[])
@@ -177,6 +194,10 @@ def fabric_release_report(root=ROOT):
         file = Path(r['file'])
         if not file.is_absolute():
             file = root / file
+        if not file.is_file():
+            alt = file.with_name(file.stem + '-DO-NOT-SUBMIT' + file.suffix)
+            if alt.is_file():
+                file = alt
         if not file.is_relative_to(root) or sha(file) != r['sha256']:
             raise ValueError('registry file moved outside repository or SHA256 changed')
         index['rasters'].append(dict(repo_first=r['repo'], sources=[r['submission']],
@@ -231,7 +252,7 @@ def fabric_release_report(root=ROOT):
 
 
 
-def release_report(root=ROOT):
+def phase_release_report(root=ROOT):
     """Reopen the current PHASE-88 TIFF/ZIP and independently remeasure witness."""
     from scripts.validate_phase88 import inspect
     root = Path(root)
@@ -263,6 +284,13 @@ def release_report(root=ROOT):
                 reason=card['stop_reason'],
                 provenance='hash-pinned owner mirror; not independently authenticated organizer sample')
 
+
+
+def release_report(root=ROOT):
+    """Return the canonical current H88-MVRD report."""
+    from validate_release import release_report as mvrd_release_report
+
+    return mvrd_release_report(root)
 
 def main():
     report = release_report()

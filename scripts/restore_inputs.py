@@ -409,10 +409,17 @@ def main() -> None:
         dst = cache_data / fname
         if src.is_file() and (not dst.is_file() or sha256(dst) != sha256(src)):
             shutil.copy2(src, dst)
-    if not args.validation:
+    if args.validation:
+        print(
+            "SCOPE   validation-tier only (bridge grid + core registry); "
+            "run `python scripts/restore_inputs.py && python scripts/restore_siblings.py` "
+            "for full 19-band training + external + 190-sibling uniqueness stack"
+        )
+    else:
         restore_features()
         label, repo, commit, items = EXTERNAL_GROUP
         restore_group(label, repo, commit, items)
+        print("SCOPE   full-training + external inputs verified")
 
 
 if __name__ == "__main__":

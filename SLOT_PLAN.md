@@ -1,23 +1,28 @@
-# Latest decision (2026-10-24): H88-TDKL — PROMOTE (`OK TO DOWNLOAD` · `OK TO SUBMIT` under `gems88-gate-v3`)
+# Latest addendum (2026-10-24): H88-TDKL — DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness (`0` slots spent)
 
-- **Candidate:** `docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.tif` (`SHA-256: db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf`) and single-TIFF `.zip` (`SHA-256: ac2e636cc3b2318ec4930efa3c22ed6aa2f3b958742b99c588b980084da949ec`).
+- **Candidate:** `docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf`) and single-TIFF `.zip` (`SHA-256: af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5`).
 - **Submission Name (`29` chars):** `GEMSDOE88-TDKL88-POE-20261024`
 - **Submission Note (`110` chars `<= 140`):** `H88-TDKL 79ch knickpoint+LiDAR polarity PoE (25000 dots); HOLDOUT-DTI 0.1962 far 0.1242 blind 0.0769; UNSCORED`
-- **Scientific Gate (`HOLDOUT-DTI`, evaluator `gems57-pooled-hide-v2`, 8 folds across `seeds 20+21`):** **PASS**
+- **Scientific Gate (`HOLDOUT-DTI`, evaluator `gems57-pooled-hide-v2`, 8 folds across `seeds 20+21`):** **PASS (8/8 folds won)**
   - **Overall (`n=22,893`):** **`0.196237`** (`95% CI [0.179686, 0.211729]`), paired $\Delta$ vs `H88-ADHR` incumbent (`0.190436`, stored bar `0.189634`) = **`+0.005801`** (`95% CI [+0.001174, +0.010109]`, **wins 8/8 folds**).
   - **Far `> 10 px` (`n=10,791`):** **`0.124175`** (`95% CI [0.104960, 0.143581]`), paired $\Delta$ vs `H88-ADHR` incumbent (`0.117203`, stored bar `0.114780`) = **`+0.006972`** (`95% CI [+0.000646, +0.013038]`).
   - **Blind-Basin `> 25 px` (`n=3,117`):** **`0.076881`** (`95% CI [0.046785, 0.111574]`), paired $\Delta$ vs `H88-ADHR` incumbent (`0.071214`, stored bar `0.065263`) = **`+0.005668`** (`+0.011618` vs stored bar).
 - **Single-Feature Leakage Canary (`56` zero-catalogue channels):** **PASS** (`0/56 > 0.90`, `max_symmetric_auc = 0.59299`).
-- **Registry Uniqueness Gate (`179` rasters):**
-  - Pre-placement continuous surface max `|Spearman rho| = 0.411902 <= 0.90` (**PASS**).
-  - Post-placement like-for-like 3-px overlap (`gems88-gate-v3`): max `= 0.603160 <= 0.70` (**PASS**); `binding_duplicate_decision_v3` chance-corrected excess overlap max `= 0.470408 <= 0.70` (**PASS**).
-  - Literal all-raster note: `dense_17gemdoe.tif` is positive on 100% of footprint pixels (`vacuity_witness`), so literal un-thresholded 3-px overlap is `1.0` for every nonempty raster (`ok_to_submit_gate_v3_like_for_like = true`, `ok_to_submit_literal_dense_witness = false`).
 - **Fingerprint Screen (`gems88-gate-v3`):** **PASS** (`25,000` dots; `share_le2 = 0.0000`; `share_gt25 = 0.4200 >= 0.35`).
-- **Live Portal Status:** `UNSCORED` (`0` weekly slots spent in this automated session; eligible for Slot 1 under `gems88-gate-v3`).
+- **Registry Uniqueness Gate:**
+  - Pre-placement continuous surface max `|Spearman rho| = 0.411902 <= 0.90` (**PASS**).
+  - Pre-merge 179-raster like-for-like 3-px overlap (`gems88-gate-v3`): max `= 0.603160 <= 0.70` (**PASS**); `binding_duplicate_decision_v3` chance-corrected excess overlap max `= 0.470408 <= 0.70` (**PASS**).
+  - Post-merge & literal witness stop (`IR-88-106`): literal `17GEMSDOE` dense witness is `1.0000 > 0.70`, and post-merge comparison against concurrent stratified lanes `GTHC-88` (`0.7623`) and `QTSK-88` (`0.7520`) exceeds `0.70`. Therefore `ok_to_download = true`, `ok_to_submit = false` (`0` weekly slots spent).
 
 ---
 
-# Latest addendum (2026-10-24): MDPS-88 — DO NOT SUBMIT, no slot
+# Earlier addendum (2026-10-24): H88-QTSK — DO NOT SUBMIT, 0 slots spent
+
+`H88-QTSK` (`docs/downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif`, SHA-256 `798e3c54ae318c24…`, `53,876` binary dots) passes portal format/LZW sample parity, 58/58 leakage canaries (`<= 0.5781`), blind-basin fingerprint (`share_gt25 = 46.40% >= 35%`, `share_le2 = 0.00%`), pre-placement surface `|ρ| = 0.2831 <= 0.90` across all 228 rasters, and 222-raster pre-merge like-for-like uniqueness (`0.5644 <= 0.70`). In paired 8-fold holdout (`gems57-pooled-hide-v2`, `n = 22,893`), `Exp 2 (QTSK-DUAL)` reached `0.192759` (`+21.3%` blind `>25 px` DTI `0.079137`, stopped on `0.7995 > 0.70` vs `MRR`), while emitted `Exp 3 (QTSK-STRAT)` scored `0.151511` (`< ADHR 0.189634`), recorded `0.7245 > 0.70` post-merge 3-px overlap vs concurrent `GTHC-88` (`IR-88-103`), and hit literal `1.0000` vs `17GEMSDOE`. **0 weekly slots spent; human selector required (`validate_qtsk88.py --require-submit` exits 2).**
+
+---
+
+# Earlier addendum (2026-10-24): MDPS-88 — DO NOT SUBMIT, no slot
 
 MDPS-88 (`gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif`, sha256 `bd64000f…35cd`) is unique and format-valid but **negative** under its frozen gates: HOLDOUT-DTI far paired Δ `+0.0036 [−0.0060,+0.0128]` vs fold-fair control (crosses 0), far `0.0727` < stored ADHR far `0.11478`, overall below control (evaluator `gems57-pooled-hide-v2`; 22,893 withheld, 10,791 far). Budget: E1 + disclosed budget-matched E2 only; E3 packaging. **0 slots spent or recommended** (same for PHASE-88 below). Selector note (IR-88-85): identical folds score shipped H33 at 0.0039 and any >3 px full-catalogue-collar raster at exactly 0 — pre-register the evidence-combination rule before the next lane.
 
@@ -44,6 +49,8 @@ PHASE-88 is a new research TIFF ([download](docs/downloads/gems88-phase88-crossg
 
 | Candidate | Evidence | Scientific gate | Registry gate | Slot decision |
 |---|---|---|---|---|
+| `GEMSDOE88-GTHC-SCRD-STRAT-E3C0D9E0` (`docs/downloads/gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif`) | Unstratified `EXP2 (gthc88_dual_scrd)` **HOLDOUT-DTI `0.190971`** (`95% CI [0.176110, 0.207531]`, beats stored `H88-ADHR` `0.187888` and recomputed `0.189634`); emitted stratified `EXP3 (gthc88_strat_fp, 46,457 dots)` **HOLDOUT-DTI `0.170718`** (`95% CI [0.155970, 0.186645]`, `+14.69%` over `MDC-88` `0.148850`), `n=22,893`, evaluator `gems57-pooled-hide-v2` | **PASS unstratified SCRD vs `H88-ADHR` (`0.190971 > 0.187888`) & fleet fingerprint (`share_gt25 = 0.3671 >= 0.35`, `share_le2 = 0.0`) · FAIL stratified arm vs unstratified `H88-ADHR` (`0.170718 < 0.187888`)** | **PASS like-for-like across all 223 registry rasters** (`worst overlap = 0.6011 <= 0.70`, `worst |rho| = 0.3526 <= 0.90`) · **FAIL literal rule** (`17GEMSDOE` forward overlap `1.0000 > 0.70`) | **DO NOT SUBMIT; 0 slots used** |
+| `GEMSDOE88-QTS88-B5D178B3` (`docs/downloads/gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif`) | Candidate **HOLDOUT-DTI `0.098210`** (`EXP2`) / **`0.094851`** (`EXP3`, `37,654` dots), 95% CI `[0.084216, 0.112545]` / `[0.080118, 0.110077]`, `n=22,893`, evaluator `gems57-pooled-hide-v2`; paired 19-band no-QTS control `0.091869`; paired QTS lift **`+0.006340`, 95% CI `[+0.001574, +0.011511] > 0`**; stored `H88-ADHR` bar `0.187888` | **PASS paired ablation (`+0.006340 > 0`) & fleet fingerprint (`share_gt25 = 0.4025 >= 0.35`, `share_le2 = 0.0`) · FAIL stored `H88-ADHR` bar (`0.187888`)** | **PASS like-for-like across all 223 registry rasters** (`worst overlap = 0.5373 <= 0.70`, `worst |rho| = 0.5049 <= 0.90`) · **FAIL literal rule** (`17GEMSDOE` forward overlap `1.0000 > 0.70`) | **DO NOT SUBMIT; 0 slots used** |
 | `GEMSDOE88-MRR-BPR-20261024-DO-NOT-SUBMIT` | Candidate **HOLDOUT-DTI `0.185256`**, 95% CI `[0.171519,0.199965]`, `n=22,893`, evaluator `gems57-pooled-hide-v2`; paired incumbent `0.189634`; paired delta `-0.004378`, 95% CI `[-0.007902,-0.000623]` | **FAIL** — confidently below paired incumbent | **FAIL under binding literal rule** — 17GEMSDOE forward overlap `1.0000 > 0.70`; sparse-only diagnostic max `0.684178` passes | **DO NOT SUBMIT; 0 slots used** |
 
 ## Why no conditional MRR slot exists

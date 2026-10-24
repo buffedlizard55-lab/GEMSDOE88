@@ -40,12 +40,13 @@ def test_mdps88_holdout_numbers_are_labelled_and_in_range():
     assert CARD["holdout"]["far"]["paired_vs_base283"]["ci95"][0] <= 0  # the documented null result
     assert CARD["leakage_canary"]["max_symmetric_auc"] <= 0.90 and CARD["leakage_canary"]["passed"]
     u = CARD["correlation_overlap_vs_registry"]
-    assert u["duplicate"] is False and u["worst_excess_overlap_3px"] <= 0.70 and abs(u["worst_abs_spearman"]) <= 0.90
+    assert u["duplicate"] is True and u["worst_literal_forward_overlap_3px"] > 0.70 and u["worst_excess_overlap_3px"] <= 0.70 and abs(u["worst_abs_spearman"]) <= 0.90
 
 
 def test_mdps88_site_decision_strings():
     for page in ("docs/index.html", "docs/executive-summary.html"):
         text = (ROOT / page).read_text()
-        assert Path(CARD["raster"]["file"]).name in text
+        # H88-MVRD is the current integrated research release; MDPS remains an archive.
+        assert Path(json.loads((ROOT / "registry/mvrd_run_card.json").read_text())["artifact"]).name in text
         assert "DO NOT SUBMIT" in text and "DOWNLOAD FOR RESEARCH: YES" in text
         assert "hyp-psg" not in text  # withdrawn mock must never be offered again (IR-88-83)

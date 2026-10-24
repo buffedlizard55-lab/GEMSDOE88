@@ -1,9 +1,9 @@
 {
  "name": "GEMSDOE88-PROVCREST-RANK-04559A2C",
  "note": "PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED",
- "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+ "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif",
  "sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
- "zip_sha256": "726731fff47ff79d928c1c382606d1bc3a818ca5841131cff6d422f5f122167c",
+ "zip_sha256": "b7aae7182d901fd440e4f3d971d5e436d29e367be0622f7d8be7c4671924cfc9",
  "generated_utc": "2026-10-24T07:38:27Z",
  "source": "PR #53 (PROVCREST), re-assessed by gate v3; its own run card still says verdict=promote under a 30-raster registry",
  "policy": "gems88-gate-v3",

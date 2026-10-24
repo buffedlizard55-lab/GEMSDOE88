@@ -24,7 +24,7 @@
     "dot_field_rasters": 20,
     "continuous_surface_rasters": 1,
     "worst_forward_overlap_dot_fields": 0.6796121914526104,
-    "worst_forward_overlap_dot_field_submission": "gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+    "worst_forward_overlap_dot_field_submission": "gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
     "worst_reverse_overlap": 0.6695054335772899,
     "worst_reverse_overlap_submission": "gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
     "worst_jaccard": 0.04071875587548011,

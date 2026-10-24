@@ -1,9 +1,12 @@
 {
   "policy": "gems88-gate-v3",
   "ok_to_download": true,
-  "ok_to_submit": true,
-  "label": "OK TO DOWNLOAD - OK TO SUBMIT",
-  "blocking_reasons": [],
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "blocking_reasons": [
+    "UNIQUENESS (literal rule): forward 3px overlap = 1.0000 > 0.70 against the full-footprint continuous 17GEMSDOE witness",
+    "UNIQUENESS (post-merge concurrent stratified lanes): forward 3px overlap = 0.762280 vs GTHC-88 and 0.752000 vs QTSK-88 (pre-merge 179-raster like-for-like max was 0.603160 <= 0.70)"
+  ],
   "informational": [
     "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): dense_17gemdoe, GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT"
   ],
@@ -30,15 +33,24 @@
     "unique_like_for_like": true,
     "unique_literal": false
   },
-  "name": "gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS",
-  "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.tif",
-  "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.zip",
+  "name": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT",
+  "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
   "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-  "zip_sha256": "ac2e636cc3b2318ec4930efa3c22ed6aa2f3b958742b99c588b980084da949ec",
+  "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
   "candidate": {
-    "tif": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.tif",
-    "zip": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.zip",
+    "tif": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
     "tif_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-    "zip_sha256": "ac2e636cc3b2318ec4930efa3c22ed6aa2f3b958742b99c588b980084da949ec"
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5"
+  },
+  "ok_to_submit_premerge_like_for_like": true,
+  "postmerge_concurrent_overlaps_3px": {
+    "MVRD": 0.53484,
+    "IBL-88": 0.08596,
+    "QTS-88": 0.3414,
+    "GTHC-88": 0.76228,
+    "QTSK-88": 0.752,
+    "17GEMSDOE_literal_dense_witness": 1.0
   }
 }

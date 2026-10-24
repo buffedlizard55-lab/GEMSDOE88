@@ -54,11 +54,11 @@ All 56 zero-catalogue channels (`44` physics + `12` new `TDKL` channels) were au
 
 ---
 
-## 5. Production Artifact & Dual-Policy Uniqueness Audit (`179` Registry + Sibling Rasters)
+## 5. Production Artifact & Dual-Policy Uniqueness Audit (`179` Pre-Merge / `184` Post-Merge Rasters)
 
-- **Artifact:** `docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.tif` (`.zip` and `submissions/` copy)
+- **Artifact:** `docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif` (`.zip` and `submissions/` copy)
 - **SHA-256 (`.tif`):** `db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf`
-- **SHA-256 (`.zip`):** `ac2e636cc3b2318ec4930efa3c22ed6aa2f3b958742b99c588b980084da949ec`
+- **SHA-256 (`.zip`):** `af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5`
 - **Emitted Dots:** `25,000` (`14,500` in relay/stepover stratum $2 < d_{\text{cat}} \le 25\text{ px}$; `10,500` in blind-basin stratum $d_{\text{cat}} > 25\text{ px}$; `share_le2 = 0.0000`, `share_gt25 = 0.4200 >= 0.35`).
 - **Pre-placement surface rank correlation:** `max |Spearman rho| = 0.411902 <= 0.90` (**PASS**).
 - **Post-placement uniqueness (`gems88-gate-v3` like-for-like & `binding_duplicate_decision_v3` across 179 rasters):**

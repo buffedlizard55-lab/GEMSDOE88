@@ -1,0 +1,139 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "preregistration_id": "GEMSDOE88-QTS88-20261024",
+  "created_utc": "2026-10-24T18:55:00Z",
+  "frozen_before_new_experiment": true,
+  "method_lane": "QTS-88 (Quaternary-Cover Thickness-Slope Decoupling & Basement-Admittance Fault Discovery)",
+  "lineage_from_previous_session": "Directly executes Next Step #1 (H-QTS: |grad_sigma z_base| * (1 - cos angle(grad_sigma z_base, grad_sigma z_surface)) at sigma = 1, 3, 6 px) from research/next-steps-20261024-mdc88.md, combined with dual-regime piedmont/blind-basin kernel-disjoint allocation.",
+  "candidate_hypotheses_ranked": [
+    {
+      "rank": 1,
+      "id": "QTS-88",
+      "title": "Quaternary-Cover Thickness-Slope Decoupling & Basement-Admittance Step",
+      "selected_for_validation": true,
+      "layers_involved": [
+        "training_features.tif Band 15 (depth_to_base_surf: thickness of sedimentary cover z_base)",
+        "training_features.tif Band 12 (det_elev: detrended elevation z_surf)",
+        "training_features.tif Band 19 (det_elev_slope: detrended elevation slope)",
+        "training_features.tif Band 18 (iso_grav_anom_hg: isostatic gravity horizontal gradient)",
+        "training_features.tif Band 11 (iso_grav_anom_vg: isostatic gravity vertical gradient)",
+        "training_features.tif Band 8 (geod_dilaterate: geodetic volumetric dilatation rate)",
+        "training_features.tif Band 7 (geod_shearrate: geodetic angular shear strain rate)",
+        "training_features.tif Band 17 (cond_surf: subsurface electrical conductivity)"
+      ],
+      "physical_signature": "Multi-scale directional disagreement D_sigma = ||grad_sigma z_base|| * (1 - cos angle(grad_sigma z_base, grad_sigma z_surf)) at sigma in {1, 3, 6} px (100 m, 300 m, 600 m), antithetic step ||grad_3 z_base|| * (1 + cos angle), cross-strike vector cross product ||grad_3 z_base|| * |sin angle|, low-slope buried basement step ||grad_3 z_base|| / (1 + det_elev_slope / median(det_elev_slope)), gravity-cover admittance, and transtensional strain-conductivity coupling.",
+      "why_off_catalogue": "USGS/INGENIOUS fault compilations map faults primarily where surface scarps break Quaternary alluvium (high det_elev_slope). Intra-basin horst-bounding faults, step-over relays beneath 10-100 m of post-faulting alluvial/playa fill, and antithetic basin-floor faults lack surface topographic scarps and are systematically omitted from existing_faults.tif, yet produce sharp gradients in sedimentary cover thickness (Band 15) whose orientation decouples from surface slope (Band 12).",
+      "named_non_fault_mimic": "Alluvial-fan toe radial onlap against an unfaulted bedrock pediment or incised paleochannel edge, plus closed-basin playa evaporite collars. Suppressed via explicit planform radial curvature penalty (qts_mimic_fan_curv).",
+      "difference_from_existing_repo": "MDC-88 used scalar gradient magnitudes g1_z_base and g3_z_base without directional vector decoupling against surface slope; H88-ADHR back-projected gradients up a 60-degree dip toward range-front scarps and relied on 22 catalogue-derived visible-fault relay features; PROVCREST weighted surface slope (Band 19) at 45%; TILTZERO, MRR-BPR-88, and KTH-88 used magnetic/gravity/radiometric ratios without cover-thickness directional decoupling.",
+      "expected_dti_improvement": "Statistically significant positive HOLDOUT-DTI lift (+0.005 to +0.006 on 19-band OOF PU) while satisfying the >=35% far-field (d_cat > 25 px) blind-basin fleet fingerprint screen.",
+      "implementation_cost": "Low (uses hash-pinned 19-band training_features.tif already in workspace; <60 s compute)."
+    },
+    {
+      "rank": 2,
+      "id": "CHI-ACROSS-SLOPE-STEP",
+      "title": "Cross-Drainage Chi-Disequilibrium & Normalized Channel Steepness Reversal",
+      "selected_for_validation": false,
+      "layers_involved": [
+        "data/external/dem10_chi_100m_i16.tif (step_max_x1000, step_min_x1000, ksn_max_m0.9, zmean_m)",
+        "data/external/dem10_chi_100m_u8.tif (chan_n, knick_n, raised_n)",
+        "training_features.tif Band 12 (det_elev)"
+      ],
+      "physical_signature": "Opposite-flank signed chi divide-asymmetry step across strike paired with k_sn knickpoint concentration.",
+      "why_off_catalogue": "Eroded or blind range-front step-overs that no longer preserve a sharp surface scarp still perturb drainage divide migration (delta chi) and align knickzones across adjacent catchments.",
+      "named_non_fault_mimic": "Differential lithologic resistance (silicified welded tuff caprock over softer lacustrine beds) or Pleistocene pluvial lake base-level fall knickpoints.",
+      "difference_from_existing_repo": "Prior lanes used raw chi magnitude; this targets signed cross-divide chi reversal paired with k_sn steps.",
+      "expected_dti_improvement": "+0.002 to +0.004 in upland/piedmont bedrock corridors; zero signal in flat playas where chan_n == 0.",
+      "implementation_cost": "Low-Medium (derived 100 m summary rasters are hash-pinned locally; raw 10 m USGS 3DEP tiles are blocked by sandbox firewall)."
+    },
+    {
+      "rank": 3,
+      "id": "SSA-88",
+      "title": "Scale-Selective Multi-Physics Structure-Tensor Azimuth Coherence",
+      "selected_for_validation": false,
+      "layers_involved": [
+        "training_features.tif Band 2 (rtp)",
+        "training_features.tif Band 3 (tmi_hg)",
+        "training_features.tif Band 18 (iso_grav_anom_hg)",
+        "training_features.tif Band 15 (depth_to_base_surf)",
+        "training_features.tif Band 12 (det_elev)"
+      ],
+      "physical_signature": "Circular resultant length kappa(x) = ||(1/4) sum_{m=1..4} (cos 2*theta_m, sin 2*theta_m)|| of dominant structure-tensor orientations across shallow, intermediate, and deep potential fields at 300 m scale.",
+      "why_off_catalogue": "Crustal-scale geothermal feeder faults cut basement, Tertiary volcanics, and Quaternary fill, aligning the strike of gravity, magnetic, and basement-depth gradients even when surface expression is muted.",
+      "named_non_fault_mimic": "Unfaulted tilted fault-block dip slopes or regional granitic batholith contacts where bedding/contact strike is coherent across depth without brittle fault offset.",
+      "difference_from_existing_repo": "fabric_dislocation measured magnetic-only bilateral rotation; SSA-88 measures 4-modality axial strike coherence.",
+      "expected_dti_improvement": "+0.002 to +0.004 on multi-kilometer blind transfer structures.",
+      "implementation_cost": "Medium (12 structure-tensor convolutions across 5.17M pixels)."
+    },
+    {
+      "rank": 4,
+      "id": "CAL-88",
+      "title": "Elevation-Detrended Electrical Conductivity Upflow Residual",
+      "selected_for_validation": false,
+      "layers_involved": [
+        "training_features.tif Band 17 (cond_surf)",
+        "training_features.tif Band 12 (det_elev)",
+        "data/geodawn_dem_a2_100m.tif (absolute elevation)",
+        "data/external/2m_temperature_probe_INGENIOUS_regional_data.zip (DOE GDR #1391)"
+      ],
+      "physical_signature": "Local 5 km windowed regression residual of log(1 + cond_surf) on elevation and pluvial shoreline indicators, isolating high-elevation range-front/piedmont smectite clay-cap alteration from basin-floor evaporite brines.",
+      "why_off_catalogue": "Blind hydrothermal upflow zones alter host rock to electrically conductive smectite/illite along unmapped range-front step-overs above the valley floor.",
+      "named_non_fault_mimic": "Perched lacustrine clay beds or conductive altered ash-flow tuff horizons along range flanks.",
+      "difference_from_existing_repo": "CGO-88 and MDC-88 used raw cond_surf and |grad log(cond_surf)|; CAL-88 explicitly regresses out local elevation to separate upflow conduits from playa brines.",
+      "expected_dti_improvement": "+0.001 to +0.003 around active hydrothermal upflow cells.",
+      "implementation_cost": "Medium (local windowed OLS residual across 5.17M pixels)."
+    },
+    {
+      "rank": 5,
+      "id": "TIR-SI",
+      "title": "Nighttime Thermal-Infrared (Landsat C2 ST / ASTER GED) Emissivity-Corrected Lineament Conjunction",
+      "selected_for_validation": false,
+      "layers_involved": [
+        "External USGS Landsat Collection 2 Level-2 Surface Temperature / NASA ASTER GED",
+        "training_features.tif Band 4 (geod_2ndinv)",
+        "training_features.tif Band 15 (depth_to_base_surf)"
+      ],
+      "physical_signature": "Topographic-lapse-rate and albedo-corrected nighttime skin-temperature residual ridges intersecting high geodetic strain and basement steps.",
+      "why_off_catalogue": "Diffuse convective heat flux and warm groundwater seepage along blind faults elevate nighttime surface temperature by 0.5-2.0 K without discrete surface scarps.",
+      "named_non_fault_mimic": "Dark basalt talus aprons and high-thermal-inertia bedrock outcrops that cool slowly at night.",
+      "difference_from_existing_repo": "Direct satellite radiative skin-temperature boundary layer measurement rather than sparse 2 m probe points.",
+      "expected_dti_improvement": "Untested (blocked by external data access in sandbox).",
+      "implementation_cost": "Blocked in this sandbox: outbound firewall restricts internet access to github.com, pypi.org, and registry.npmjs.org, preventing direct download of USGS EarthExplorer / AWS Landsat Collection 2 scenes."
+    }
+  ],
+  "experiments": {
+    "budget_max_experiments": 3,
+    "budget_max_hours": 2.0,
+    "exp1_qts_crest": {
+      "description": "Unsupervised analytical QTS-88 surface + 1D directional crest extraction + greedy 3.5 px spacing lock at 37,654 dots with >3.0 px off-catalogue collar.",
+      "n_dots": 37654,
+      "min_sep_px": 3.5,
+      "collar_px": 3.0
+    },
+    "exp2_qts_pu_gbdt": {
+      "description": "Out-of-fold (leave-one-quadrant-out) Positive-Unlabeled HistGradientBoostingClassifier on the 29-feature zero-catalogue QTS-88 stack (19 competition bands + 10 QTS-88 transforms), convolved with the 300 m triangular DTI kernel and packed at sep = 2*sqrt(2) = 2.8284 px with >3.0 px off-catalogue collar. Paired against control_raw19_no_qts (exact same model/allocator on the 19 raw bands without QTS-88 features).",
+      "min_sep_px": 2.8284271247461903,
+      "budget_fraction": 0.018,
+      "collar_px": 3.0
+    },
+    "exp3_qts_hybrid_debiased": {
+      "description": "Dual-regime expected-credit fusion (0.75 * norm(E_qts_pu) + 0.25 * surf_qts) allocating 22,500 piedmont dots (3 < d_cat <= 25 px) and 15,154 blind-basin dots (d_cat > 25 px) = 37,654 total dots at >=3.5 px spacing, guaranteeing share_le2 == 0.0 and share_gt25 == 0.40245 >= 0.35.",
+      "n_dots": 37654,
+      "n_near_piedmont": 22500,
+      "n_far_basin": 15154,
+      "min_sep_px": 3.5,
+      "collar_px": 3.0
+    }
+  },
+  "gates": {
+    "single_feature_canary_symmetric_auc_max": 0.90,
+    "preplacement_spearman_abs_rho_max": 0.90,
+    "final_spearman_abs_rho_max": 0.90,
+    "final_forward_overlap_3px_max": 0.70,
+    "fleet_fingerprint_share_le2_Target": 0.0,
+    "fleet_fingerprint_share_gt25_min": 0.35,
+    "holdout_evaluator": "gems57-pooled-hide-v2",
+    "holdout_seeds": [20, 21],
+    "holdout_withheld_positive_pixels": 22893,
+    "holdout_promotion_bar_dti": 0.187888
+  }
+}

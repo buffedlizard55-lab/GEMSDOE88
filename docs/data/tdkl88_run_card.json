@@ -507,7 +507,7 @@
       "rho_limit": 0.9,
       "duplicate": false,
       "stop_required": false,
-      "verdict": "promote"
+      "verdict": "negative"
     },
     "post_placement_literal_including_dense_witness": {
       "evidence_class": "REGISTRY-MEASUREMENT",
@@ -541,14 +541,22 @@
       "unique_like_for_like": true,
       "unique_literal": false
     },
-    "rows_file": "evidence/tdkl88_uniqueness_20261024.json"
+    "rows_file": "evidence/tdkl88_uniqueness_20261024.json",
+    "postmerge_concurrent_overlaps_3px": {
+      "MVRD": 0.53484,
+      "IBL-88": 0.08596,
+      "QTS-88": 0.3414,
+      "GTHC-88": 0.76228,
+      "QTSK-88": 0.752,
+      "17GEMSDOE_literal_dense_witness": 1.0
+    }
   },
   "raster": {
-    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.tif",
-    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.zip",
-    "submissions_copy": "submissions/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.tif",
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "submissions_copy": "submissions/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
     "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-    "zip_sha256": "ac2e636cc3b2318ec4930efa3c22ed6aa2f3b958742b99c588b980084da949ec",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
     "bytes": 118085,
     "emitted_dots": 25000,
     "near_relay_dots_le25px": 14500,
@@ -616,9 +624,12 @@
   "gate_v3": {
     "policy": "gems88-gate-v3",
     "ok_to_download": true,
-    "ok_to_submit": true,
-    "label": "OK TO DOWNLOAD - OK TO SUBMIT",
-    "blocking_reasons": [],
+    "ok_to_submit": false,
+    "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+    "blocking_reasons": [
+      "UNIQUENESS (literal rule): forward 3px overlap = 1.0000 > 0.70 against the full-footprint continuous 17GEMSDOE witness",
+      "UNIQUENESS (post-merge concurrent stratified lanes): forward 3px overlap = 0.762280 vs GTHC-88 and 0.752000 vs QTSK-88 (pre-merge 179-raster like-for-like max was 0.603160 <= 0.70)"
+    ],
     "informational": [
       "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): dense_17gemdoe, GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT"
     ],
@@ -645,16 +656,25 @@
       "unique_like_for_like": true,
       "unique_literal": false
     },
-    "name": "gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS",
-    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.tif",
-    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.zip",
+    "name": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT",
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
     "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-    "zip_sha256": "ac2e636cc3b2318ec4930efa3c22ed6aa2f3b958742b99c588b980084da949ec",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
     "candidate": {
-      "tif": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.tif",
-      "zip": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.zip",
+      "tif": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "zip": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
       "tif_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-      "zip_sha256": "ac2e636cc3b2318ec4930efa3c22ed6aa2f3b958742b99c588b980084da949ec"
+      "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5"
+    },
+    "ok_to_submit_premerge_like_for_like": true,
+    "postmerge_concurrent_overlaps_3px": {
+      "MVRD": 0.53484,
+      "IBL-88": 0.08596,
+      "QTS-88": 0.3414,
+      "GTHC-88": 0.76228,
+      "QTSK-88": 0.752,
+      "17GEMSDOE_literal_dense_witness": 1.0
     }
   },
   "submission_name": "GEMSDOE88-TDKL88-POE-20261024",
@@ -664,7 +684,7 @@
   "ok_to_submit_gate_v3_like_for_like": true,
   "ok_to_submit_literal_dense_witness": false,
   "approved_for_weekly_slot": false,
-  "verdict": "promote",
+  "verdict": "negative",
   "verdict_summary": "PROMOTE (gems88-gate-v3 PASS: HOLDOUT-DTI 0.196237 > 0.189634, far 0.124175 > 0.114780, blind 0.076881 > 0.065263, like-for-like overlap 0.6032 <= 0.70, surface |rho| 0.4119 <= 0.90, share_le2=0.0000, share_gt25=0.4200 >= 0.35; human selector required before spending a weekly slot; note literal dense_17gemdoe.tif witness covers 99.64% of footprint).",
   "validator_output": {
     "file": "/home/user/GEMSDOE88/docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.tif",
@@ -721,5 +741,8 @@
     "on_catalogue_positive_pixels": 0,
     "in_footprint_positive_pixels": 25000,
     "footprint_fraction": 0.004838048269401106
-  }
+  },
+  "ok_to_submit": false,
+  "verdict_premerge_like_for_like": "promote",
+  "verdict_literal_dense_witness": "negative"
 }

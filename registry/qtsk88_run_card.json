@@ -1,0 +1,324 @@
+{
+  "schema": "gems88-qtsk-run-card-v1",
+  "generated_utc": "2026-10-24T20:03:45Z",
+  "branch": "arena/14b2260c-gemsdoe88",
+  "lane": "H88-QTSK",
+  "emitted_experiment_arm": "exp3_qtsk_strat",
+  "emission_selection_reason": "Passed BOTH 223-raster uniqueness (pre-placement |rho| <= 0.90 and 3-px overlap <= 0.70) AND fleet blind-basin screen (share_le2 == 0, share_gt25 >= 0.35).",
+  "hypothesis": "Concealed Basin-and-Range normal faults buried beneath Holocene piedmont/playa cover or hidden inside Nevada's 24.6% 3DEP 1 m LiDAR gap manifest as (1) multi-scale steps in unconsolidated basin-fill thickness (depth_to_base_surf) decoupled from modern surface slope (det_elev) and concordant with negative isostatic gravity gradients, coupled with (2) cross-catchment 10 m DEM fluvial chi-knickpoint and uplifted-footwall channel wavefronts (dem10_chi_100m_u8), 1 m LiDAR scarp facing polarity (downface vs upface), and 10 m planar triangular-facet coherence.",
+  "mechanism": "14 strictly label-blind QTSK physical-geomorphic channels appended to the 44-col geophysical/hydrothermal memmap, trained via de-jittered 4-quadrant out-of-fold dual-expectation HistGradientBoosting (excluding ambiguous 0 < d <= 2.0 px cartographic digitization-jitter flanks from classifier hard negatives while fitting exact 300 m kernel decay in the regressor), axial spin-2 geological strike smoothing, and exact Dinkelbach fractional-programming {0, 1} allocation.",
+  "named_non_fault_mimic": "Buried pre-Quaternary fluvial paleovalleys / Miocene volcanic pinchouts (mitigated by signed half-graben gravity concordance and geodetic transtensional dilation), plus lithologic caprock knickpoints, incised axial trunk rivers (Humboldt/Truckee/Carson), Lake Lahontan 1330 m / 1555 m shorelines, and symmetric two-walled arroyos (mitigated by log10 drainage-area headwater gating and LiDAR downface-upface polarity).",
+  "evidence_label": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "withheld_positive_pixels": 22893,
+  "withheld_positive_pixels_blind_gt25": 3117,
+  "holdout_dti": 0.151511,
+  "holdout_dti_ci95": [
+    0.136125,
+    0.166066
+  ],
+  "paired_delta_vs_adhr": -0.038123,
+  "paired_delta_ci95": [
+    -0.047875,
+    -0.027997
+  ],
+  "blind_basin_gt25_holdout_dti": 0.064322,
+  "blind_basin_gt25_ci95": [
+    0.043897,
+    0.084722
+  ],
+  "blind_basin_gt25_paired_delta_vs_adhr": -0.000941,
+  "blind_basin_gt25_paired_delta_ci95": [
+    -0.027049,
+    0.0206
+  ],
+  "all_experiments_holdout": {
+    "control_adhr": {
+      "pooled_dti": 0.189634,
+      "ci95": [
+        0.173869,
+        0.204226
+      ],
+      "paired_delta_vs_adhr": 0.0,
+      "paired_delta_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "exp1_qtsk_phys": {
+      "pooled_dti": 0.110745,
+      "ci95": [
+        0.096966,
+        0.123784
+      ],
+      "paired_delta_vs_adhr": -0.078888,
+      "paired_delta_ci95": [
+        -0.09136,
+        -0.063908
+      ]
+    },
+    "exp2_qtsk_dual": {
+      "pooled_dti": 0.192759,
+      "ci95": [
+        0.175472,
+        0.208319
+      ],
+      "paired_delta_vs_adhr": 0.003125,
+      "paired_delta_ci95": [
+        -0.004267,
+        0.010898
+      ]
+    },
+    "exp3_qtsk_strat": {
+      "pooled_dti": 0.151511,
+      "ci95": [
+        0.136125,
+        0.166066
+      ],
+      "paired_delta_vs_adhr": -0.038123,
+      "paired_delta_ci95": [
+        -0.047875,
+        -0.027997
+      ]
+    }
+  },
+  "all_experiments_blind_gt25": {
+    "control_adhr": {
+      "pooled_dti": 0.065263,
+      "ci95": [
+        0.036441,
+        0.098571
+      ],
+      "paired_delta_vs_adhr": 0.0,
+      "paired_delta_ci95": [
+        0.0,
+        0.0
+      ]
+    },
+    "exp1_qtsk_phys": {
+      "pooled_dti": 0.065638,
+      "ci95": [
+        0.042608,
+        0.088115
+      ],
+      "paired_delta_vs_adhr": 0.000375,
+      "paired_delta_ci95": [
+        -0.023529,
+        0.020646
+      ]
+    },
+    "exp2_qtsk_dual": {
+      "pooled_dti": 0.079137,
+      "ci95": [
+        0.051362,
+        0.109679
+      ],
+      "paired_delta_vs_adhr": 0.013874,
+      "paired_delta_ci95": [
+        -0.005247,
+        0.035832
+      ]
+    },
+    "exp3_qtsk_strat": {
+      "pooled_dti": 0.064322,
+      "ci95": [
+        0.043897,
+        0.084722
+      ],
+      "paired_delta_vs_adhr": -0.000941,
+      "paired_delta_ci95": [
+        -0.027049,
+        0.0206
+      ]
+    }
+  },
+  "leakage_canary": {
+    "passed": true,
+    "auc_ceiling": 0.9,
+    "qtsk14_max_symmetric_auc": 0.578147,
+    "qtsk14_max_feature": "qts_hessian_ridge_s2",
+    "phys44_max_symmetric_auc": 0.574997,
+    "phys44_max_feature": "topo10_curv_prof",
+    "qtsk14_features": [
+      {
+        "feature": "qts_decoupled_s1",
+        "raw_auc": 0.488466,
+        "symmetric_auc": 0.511534,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "qts_decoupled_s3",
+        "raw_auc": 0.48714,
+        "symmetric_auc": 0.51286,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "qts_decoupled_s6",
+        "raw_auc": 0.49151,
+        "symmetric_auc": 0.50849,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "qts_signed_grav_concord",
+        "raw_auc": 0.541077,
+        "symmetric_auc": 0.541077,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "qts_hessian_ridge_s2",
+        "raw_auc": 0.421853,
+        "symmetric_auc": 0.578147,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "chi_knick_wavefront",
+        "raw_auc": 0.513523,
+        "symmetric_auc": 0.513523,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "chi_raised_footwall_step",
+        "raw_auc": 0.502114,
+        "symmetric_auc": 0.502114,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "chi_bipolar_headwater",
+        "raw_auc": 0.517256,
+        "symmetric_auc": 0.517256,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "lidar_facing_asymmetry",
+        "raw_auc": 0.573955,
+        "symmetric_auc": 0.573955,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "lidar_graben_cross_ridge",
+        "raw_auc": 0.5779,
+        "symmetric_auc": 0.5779,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "topo10_planar_facet",
+        "raw_auc": 0.560967,
+        "symmetric_auc": 0.560967,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "multifield_strike_kappa",
+        "raw_auc": 0.550401,
+        "symmetric_auc": 0.550401,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "cond_elev_upflow_resid",
+        "raw_auc": 0.504536,
+        "symmetric_auc": 0.504536,
+        "pass_le_0p90": true
+      },
+      {
+        "feature": "transtension_bstep_couple",
+        "raw_auc": 0.55223,
+        "symmetric_auc": 0.55223,
+        "pass_le_0p90": true
+      }
+    ]
+  },
+  "registry_uniqueness": {
+    "n_registry_rasters_checked": 222,
+    "pre_placement_surface_max_abs_spearman_rho": 0.283106,
+    "pre_placement_surface_max_target": "17GEMSDOE:dense_17gemdoe.tif",
+    "pre_placement_surface_pass_le_0p90": true,
+    "like_for_like_3px_unique_le_0p70": true,
+    "worst_like_for_like_3px_overlap": {
+      "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+      "value": 0.5644257183161333
+    },
+    "literal_all_registry_3px_unique_le_0p70": false,
+    "worst_literal_forward_3px_overlap": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 1.0
+    },
+    "literal_blocker_explanation": "17GEMSDOE_E-proba-multiscale is strictly positive (>0) on all 5,167,373 footprint pixels, forcing literal forward 3-px dot overlap = 1.0000 for every nonempty raster unless a human selector explicitly applies like-for-like sparse comparison.",
+    "postmerge_228_audit": {
+      "postmerge_main_commit": "bfb8b62",
+      "n_registry_rasters_checked": 228,
+      "n_distinct_dot_sets": 123,
+      "pre_placement_surface_max_abs_spearman_rho": 0.283106,
+      "pre_placement_surface_pass_le_0p90": true,
+      "concurrent_main_surface_rhos": {
+        "GTHC-88": 0.136666,
+        "MVRD": 0.114228,
+        "QTS-88": 0.08324,
+        "MDPS-88": 0.047108,
+        "PHASE-88": 0.026897,
+        "IBL-88": -0.011806
+      },
+      "like_for_like_3px_unique_le_0p70_postmerge": false,
+      "worst_like_for_like_3px_overlap_postmerge": {
+        "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+        "value": 0.7245155542356523
+      },
+      "note": "Emitted Exp 3 cleared all 222 pre-merge rasters (worst 0.564426 <= 0.70); post-merge integration against PR #88 (GTHC-88, a concurrent stratified dual-head 46,457-dot raster) yields 0.724516 > 0.70 3-px forward overlap, independently confirming verdict=negative / DO-NOT-SUBMIT without post-hoc retuning."
+    }
+  },
+  "distance_fingerprint": {
+    "n": 53876,
+    "median_d_cat_px": 16.76305461424021,
+    "share_le2": 0.0,
+    "share_gt10": 0.6012695820031183,
+    "share_gt25": 0.4640099487712525
+  },
+  "distance_fingerprint_screen_pass": true,
+  "raster": {
+    "tif_path": "docs/downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+    "zip_path": "docs/downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.zip",
+    "sha256": "798e3c54ae318c24ceef01134b94f5d61d18839c59347b01bda0f82af66400c2",
+    "zip_sha256": "3dfbb93aebf8e4f0d2f3d04ab1c7a7ddd1d107cc35d5a2d289bfabc3e88ece8c",
+    "tif_bytes": 826765,
+    "zip_bytes": 227514,
+    "n_positive_dots": 53876
+  },
+  "validator_output": {
+    "portal_ok": true,
+    "zip_ok": true,
+    "layout_parity_with_sample": true,
+    "no_nan_inside_footprint": true,
+    "all_cells_finite": true,
+    "values_in_0_1": true,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "compression": "lzw",
+    "second_decoder": {
+      "name": "tifffile",
+      "equal": true
+    },
+    "shared_template_format_ok": true,
+    "shared_submission_writer_sha256": "f92a3bf02060a1bfa7ee8f7e694b7152382aff81df380ddd07af69f2d6cbe7a4",
+    "problems": []
+  },
+  "submission_name": "gems88-qtsk-coverstep-knickwave-20261024-v1",
+  "submission_note": "GEMSDOE88 EXP3_QTSK_STRAT: QTS cover-step + 10m chi knickwave + LiDAR polarity + OOF Dinkelbach",
+  "submission_note_length": 95,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "wall_seconds": 896.82,
+  "peak_rss_mb": 3328.6
+}
