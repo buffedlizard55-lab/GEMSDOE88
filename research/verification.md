@@ -19,7 +19,7 @@
 - No competition slots consumed. No previous prediction copied as a new entry. No projected result labeled as an organizer score.
 - Main UI cannot advertise a ready download: no TIFF exists and status is visibly blocked without relying on JavaScript or human inspection.
 - Feature data, assigned lane, independent incumbent and full registry are absent. Geological validation, uniqueness and score improvement are **not completed**.
-- The full original prompt was not archived verbatim; README contains an explicitly labeled operational condensation.
+- The canonical task and binding operating constraints captured from the current project handoff are preserved in the `Canonical User Prompt and Standing Operating Constraints` section of README.md and are required reading each session. This is not claimed to be a byte-for-byte transcript of earlier chat messages.
 - No new external dataset is claimed obtainable from a host unavailable in this environment.
 - Test suite and whitespace audit run locally; CI repeats the same tests. Dependency warnings are upstream Rasterio/Affine deprecation warnings, not TIFF validation results.
 - Suggestions: inventory the shared cache and registry centrally, issue immutable lane assignments, test whole-segment semantics upstream, authenticate data provenance, and persist signed submission receipts rather than scraping score text.

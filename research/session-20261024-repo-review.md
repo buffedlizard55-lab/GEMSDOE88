@@ -1,4 +1,6 @@
-# GEMSDOE88 repository review & continuation note — 2026-10-24
+# Archived GEMSDOE88 repository review & continuation note — 2026-10-24
+
+> **Historical snapshot only.** This note describes an earlier MAG-FABRIC-DISLOCATION/fabric-dislocation state and its then-current pages. It is superseded by [`repo-review-20261024.md`](repo-review-20261024.md) and the KTH-88 current release. Its previous “site checks passed” and old candidate/page references do not describe the current checkout. Do not use its hydro-vegetation, surface-temperature, cross-drainage, or InSAR list as novel hypotheses; those areas are already discussed elsewhere in this repository.
 
 ## Scope and result
 

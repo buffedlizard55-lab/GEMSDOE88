@@ -1,6 +1,6 @@
 # Competition submission guide (current decision: DO NOT SUBMIT)
 
-**Current candidate: KTH-88. Research download: YES. Competition submission: NO.** Its holdout is far below the stored comparable incumbent and the literal registry-overlap rule fails. No weekly slot has been used; no `ORGANIZER-CONFIRMED` score exists.
+**Current candidate: KTH-88. Research download: YES. Competition submission: NO. File to submit: NONE. DO NOT SUBMIT KTH-88.** Its holdout is far below the stored comparable incumbent and the literal registry-overlap rule fails. No weekly slot has been used; no `ORGANIZER-CONFIRMED` score exists.
 
 - GeoTIFF: [`gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif`](downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif)
 - Single-TIFF ZIP: [`gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip`](downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip)
@@ -9,7 +9,7 @@
 - TIFF SHA-256: `5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf`
 - **HOLDOUT-DTI:** 0.052656, evaluator `gems57-pooled-hide-v2`, 22,893 withheld positive pixels, 95% CI [0.045911, 0.059151]. Same-split incumbent: 0.187888; no paired improvement CI is available.
 - **Uniqueness:** final 3-pixel overlap is 0.89882 with a GEMSDOE87 raster and 1.000 with the dense 17GEMSDOE witness; maximum allowed is 0.70. Do not reinterpret this as unique because the file bytes differ.
-- **Format:** independent TIFF and one-member ZIP checks pass for sample grid, finite float32 values in [0,1], and exact ZIP member bytes. This is local format validity, not organizer acceptance or slot approval.
+- **Format:** the saved independent audit reports matching sample-grid metadata, finite float32 values in [0,1], and exact one-member ZIP bytes. The official sample is absent from this checkout, so this follow-up could not rerun the grid comparison. This is local format evidence, not organizer acceptance or slot approval.
 - **Name (archival only):** `GEMSDOE88-KTH-BACDC27B`
 - **Note (archival only, 105/140):** `K/Th antisymmetric radiometric step + RTP trough, 37654 dots; HOLDOUT-DTI 0.0527; UNSCORED; DO NOT SUBMIT`
 
@@ -30,10 +30,12 @@ The official problem page defines the submission grid and [metric/format](https:
 ## Recheck commands
 
 ```bash
-python scripts/restore_inputs.py --validation
+# Needs the authorized, hash-pinned sample at data/bridge/sample_submission.tif;
+# it is absent in this checkout, so these two KTH-88 checks cannot currently finish.
+python scripts/restore_inputs.py --validation  # only if this mirror is authorized for your use
 python scripts/check_site.py
 python scripts/validate_kth88.py
-python scripts/validate_kth88.py --require-submit  # expected exit 2 for current KTH-88
+python scripts/validate_kth88.py --require-submit  # with inputs restored, the negative gate exits 2
 python scripts/readiness.py
 python scripts/validate_current.py
 python scripts/validate_current.py --require-submit  # expected exit 2 today

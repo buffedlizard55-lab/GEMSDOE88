@@ -33,6 +33,25 @@ def main(root=ROOT):
     current = json.loads((root / 'docs/data/current_release.json').read_text())
     assert current['file'] == kth['download']
     assert current['file_sha256'] == kth['raster_sha256'] == validation['tif_sha256']
+    # The former MAG-PSG TIFF and its mock generator were synthetic, not a
+    # geological prediction. Keep this path removed so it cannot be re-linked
+    # or regenerated as a competition submission.
+    assert not (root / 'docs/downloads/gems88-hyp-psg-submission.tif').exists()
+    assert not (root / 'scripts/build_hypothesis_psg_submission.py').exists()
+    assert not (root / 'mock_data.py').exists()
+    mdc_status = json.loads((root / 'docs/mdc88/status.json').read_text())
+    mdc_reassessment = json.loads((root / 'registry/kdmc_literal_reassessment.json').read_text())
+    assert mdc_status['ok_to_submit'] is False and mdc_status['verdict'] == 'negative'
+    assert mdc_status['current_protocol'] == 'binding-literal-all-registry-v1'
+    assert mdc_status['uniqueness']['literal_forward_overlap_3px'] == 1.0
+    assert mdc_reassessment['ok_to_submit'] is False and mdc_reassessment['verdict'] == 'negative'
+    assert mdc_reassessment['literal_uniqueness']['duplicate'] is True
+    assert mdc_reassessment['historical_gate_record']['stored_ok_to_submit'] is True
+    mdc_tif = root / mdc_status['candidate']['archival_file']
+    mdc_zip = mdc_tif.with_suffix('.zip')
+    assert mdc_tif.is_file() and mdc_zip.is_file()
+    assert _hl.sha256(mdc_tif.read_bytes()).hexdigest() == mdc_reassessment['candidate']['sha256']
+    assert _hl.sha256(mdc_zip.read_bytes()).hexdigest() == mdc_reassessment['candidate']['zip_sha256']
     assert current['zip_sha256'] == validation['zip_sha256']
     assert current['research_download_ok'] is True
     assert current['ok_to_submit'] is False and current['duplicate'] is True
@@ -55,7 +74,10 @@ def main(root=ROOT):
         except (ValueError, OSError):
             continue
         tif_name = Path((data.get('candidate') or {}).get('tif', '')).name
-        if data.get('ok_to_submit') and tif_name:
+        literal = data.get('uniqueness_literal') or {}
+        gate_v3 = data.get('gate_v3') or {}
+        literal_duplicate = literal.get('duplicate') is True or gate_v3.get('unique_literal') is False
+        if data.get('ok_to_submit') and tif_name and not literal_duplicate:
             cleared_names.add(tif_name)
             cleared_names.add(tif_name[:-4] + '.zip')
     # Archived LBCAL candidate: retain its independent file-integrity and safety checks.
@@ -80,10 +102,35 @@ def main(root=ROOT):
     for page in ('index.html', 'executive-summary.html'):
         body = (root / 'docs' / page).read_text()
         assert kth_tif.name in body and 'DO NOT SUBMIT' in body, page
-    pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
+        upper = body.upper()
+        assert 'DOWNLOAD FOR RESEARCH: YES' in upper, page
+        assert 'OK TO SUBMIT: NO' in upper and 'FILE TO SUBMIT: NONE' in upper, page
+        for false_ready_claim in (
+            'OK TO SUBMIT: YES',
+            'DOWNLOAD TIF FOR SUBMISSION',
+            'CLICK TO DOWNLOAD FOR SUBMISSION',
+            'GEMSDOE88-HYP-PSG-SUBMISSION',
+            'GEMS88-HYP-PSG-SUBMISSION.TIF',
+            'FORMAT-COMPLIANT MOCK SUBMISSION',
+        ):
+            assert false_ready_claim not in upper, f'False submit-ready claim on {page}: {false_ready_claim}'
+        page_links = Links()
+        page_links.feed(body)
+        assert f'downloads/{kth_tif.name}' in page_links.links, f'Missing research TIFF link: {page}'
+        assert f'downloads/{canonical_zip.name}' in page_links.links, f'Missing research ZIP link: {page}'
+    # Include nested historical sub-sites too: a stale child page must not
+    # advertise a different submit-ready candidate than the canonical feed.
+    pages = [root / 'index.html', *sorted((root / 'docs').rglob('*.html'))]
     assert len(pages) >= 5
     for page in pages:
         text = page.read_text()
+        if page.is_relative_to(root / 'docs'):
+            upper = text.upper()
+            assert 'OK TO SUBMIT: YES' not in upper, f'False submit-ready claim: {page}'
+            assert 'DOWNLOAD TIF FOR SUBMISSION' not in upper, f'False submission download link: {page}'
+            assert 'CLICK TO DOWNLOAD FOR SUBMISSION' not in upper, f'False submission instruction: {page}'
+            assert 'GEMSDOE88-HYP-PSG-SUBMISSION' not in upper, f'Legacy mock submission claim: {page}'
+            assert 'GEMS88-HYP-PSG-SUBMISSION.TIF' not in upper, f'Legacy mock download link: {page}'
         if page.name in ('index.html', 'executive-summary.html'):
             assert 'DO NOT SUBMIT' in text, f'Missing safety banner: {page}'
         parser = Links()
@@ -109,7 +156,7 @@ def main(root=ROOT):
     assert current['zip_sha256'] == kth_validation['zip_sha256']
     assert current['ok_to_submit'] is False and current['duplicate'] is True
     for page in (root / 'docs/index.html', root / 'docs/executive-summary.html'):
-        text = (root / page).read_text()
+        text = page.read_text()
         assert kth_tif.name in text, f'Current artifact not identified on {page.name}'
         upper = text.upper()
         assert 'DO NOT SUBMIT' in upper and (

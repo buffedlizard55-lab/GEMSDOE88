@@ -1,194 +1,75 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0c2436">
-<meta name="description" content="GEMSDOE88 KDMC-88 candidate GeoTIFF for the DOE GEMS hidden-fault competition: automatic download/submit verdict, format validation, registry uniqueness and spatially-blocked holdout evidence.">
-<title>GEMSDOE88 · Automatic submission verdict &amp; one-click download</title>
-<link rel="stylesheet" href="../assets/site.css">
-<link rel="stylesheet" href="../assets/gate.css">
-</head><body>
-<a href="#main" class="sr-only">Skip to content</a>
-<header class="header"><div class="wrap">
-<a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>research notebook</small></a>
-<nav class="nav" aria-label="Main navigation">
-<a href="index.html" aria-current="page">Verdict &amp; download</a>
-<a href="executive-summary.html">How to submit</a>
-<a href="../research.html">Research</a>
-<a href="../sources.html">Sources</a></nav></div></header>
-
-<main id="main">
-<section class="verdict"><div class="wrap">
-<div class="vrow">
-  <div class="vcard yes">
-    <div class="q">Is this TIF OK to download?</div>
-    <div class="a">YES</div>
-    <p class="why">15 writer checks plus
-    19 independent checks re-read from the saved bytes by a second program &mdash; all passed.</p>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0c2436">
+  <meta name="description" content="Archived MDC-88 research record. Historical candidate is not authorized for submission; KTH-88 is the current negative release.">
+  <title>Archived MDC-88 Research Record · GEMSDOE88</title>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <a href="#main" class="sr-only">Skip to content</a>
+  <header class="header">
+    <div class="wrap">
+      <a class="brand" href="../index.html">GEMSDOE<span style="color:#76ddca">88</span><small>research archive</small></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="../index.html">Current decision</a>
+        <a href="../executive-summary.html">Submission guide</a>
+        <a href="../research.html">Research</a>
+        <a href="../sources.html">Sources</a>
+      </nav>
+    </div>
+  </header>
+  <div class="alert-strip" role="status">
+    <div class="wrap"><span class="alert-icon" aria-hidden="true">!</span><strong>HISTORICAL MDC-88 · DOWNLOAD FOR RESEARCH: YES · OK TO SUBMIT: NO · DO NOT SUBMIT</strong></div>
   </div>
-  <div class="vcard yes">
-    <div class="q">Is this TIF OK to submit to the portal?</div>
-    <div class="a">YES</div>
-    <p class="why">The portal will accept it: format, CRS, shape and transform parity with the sample, every value finite in [0,1], and unique like-for-like against all 34 registry rasters. Decided by code; no human inspection required.</p>
-  </div>
-  <div class="vcard no">
-    <div class="q">Should a weekly slot be spent on it?</div>
-    <div class="a">NOT YET</div>
-    <p class="why">The slot policy is deliberately stricter than &ldquo;the portal will accept it&rdquo;, and this candidate does not clear it. HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea); FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen).</p>
-  </div>
-</div>
-<div class="warnbox"><strong>Three answers, not one.</strong> Conflating &ldquo;the portal will accept
-this file&rdquo; with &ldquo;spend one of three weekly slots on it&rdquo; is what kept every candidate in
-this repository marked DO&nbsp;NOT&nbsp;SUBMIT. They are now separate machine-decided fields in
-<code>registry/kdmc_gate.json</code>: <code>ok_to_download</code>, <code>ok_to_submit</code> and
-<code>recommended_for_weekly_slot</code>. The slot bar is H88-ADHR's stored
-<code>HOLDOUT-DTI 0.18789</code>, above this candidate's
-<code>0.14885</code>. The bar is applied as written rather than
-silently overridden &mdash; but the H88-ADHR feature stack <strong>cannot be rebuilt on a clean
-checkout</strong> (IR-88-75), so the bar itself is currently unverifiable.</div>
 
-<div class="dlpanel">
-  <h2>Download the submission file</h2>
-  <p>One click. This is the exact file the verdict above refers to
-  (SHA-256 verified at render time).</p>
-  <a class="dlbig" href="downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif" download>&#x2193;&nbsp; Download submission GeoTIFF &middot; 153&nbsp;KB</a>
-  <a class="dlsub" href="downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.zip" download>&#x2193; Single-TIFF ZIP</a>
-  <a class="dlsub" href="downloads/gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.json">Writer receipt JSON</a>
-  <a class="dlsub" href="executive-summary.html">How to submit &rarr;</a>
-  <p class="micro" style="margin-top:14px"><strong>Research variant of the same lane (47,226 dots, no dot within 3 px of a mapped fault):</strong> <code>docs/research-variants/gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros.tif</code> (and its <code>.zip</code>). Deliberately kept out of <code>docs/downloads/</code> and out of the uniqueness registry: it is the SAME lane with the collar switched on, so the two overlap by design (excess 0.860) and treating it as an independent candidate would make them block each other. Both available instruments prefer collar 0: the blocked holdout scores every collar arm at exactly 0.00000 (structural, not a preference) and the off-catalogue SGMC proxy ranks collar 0 above collar 3 by 0.0497, five times the repository&#x27;s 0.01 no-evidence floor. Neither instrument is decisive for the real unmapped-fault target, so the conservative file is published alongside.</p>
-  <dl class="kv">
-    <dt>Submission name</dt><dd>gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros <span class="micro">(60 chars)</span></dd>
-    <dt>Short note</dt><dd>MDC-88: PU density x 300m-kernel expected credit, greedy 2.83px max-weight packing, 1% of allowed cells, binary; HOLDOUT-DTI 0.14885 <span class="micro">(132/140 chars)</span></dd>
-    <dt>SHA-256</dt><dd>6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a</dd>
-    <dt>Grid</dt><dd>1 band float32 &middot; EPSG:32611 &middot; 3730&times;3292 &middot; 100 m &middot; nodata=None</dd>
-    <dt>Values</dt><dd>all 12,279,160 cells finite, in [0,1], binary {0.0, 1.0} &middot; 51,064 positive dots</dd>
-  </dl>
-</div>
-</div></section>
+  <main id="main">
+    <section class="subhero">
+      <div class="wrap">
+        <p class="crumb"><a href="../index.html">Current decision</a> / Historical MDC-88 archive</p>
+        <p class="eyebrow">Archived research candidate · not the current release</p>
+        <h1>MDC-88 is not approved.<br><em>DO NOT SUBMIT.</em></h1>
+        <p>The current release is KTH-88, and its top-level decision is also research-download-only. This page preserves the older MDC-88 result for audit; it does not offer a submission TIFF, authorize a slot, or override the current decision.</p>
+      </div>
+    </section>
 
-<section><div class="wrap">
-<div class="kicker">Why these two answers are machine-decided</div>
-<h2>The whole gate runs without a human inspector</h2>
-<p class="section-intro">Three independent automatic stages decide the verdict. Each writes its own
-JSON; the page you are reading is generated from those JSONs, so the headline can never drift
-from the evidence.</p>
-<div class="three">
-  <article class="card"><div class="kicker">1 &middot; Portal format</div>
-  <div class="number">15 / 15 PASS</div>
-  <p>Two independent programs re-open the written bytes. The writer's own validator reports
-  15/15;
-  a second program that shares no code with it reports 19/19
-  (<a href="../../evidence/kdmc_independent_revalidation.json">independent re-validation &rarr;</a>).
-  Between them they check band count, dtype, CRS, shape, transform, nodata,
-  finiteness, range [0,1] and zero mass on mapped faults. The historical
-  <code>"Predicted values must be in range [0, 1]"</code> rejection was caused by NaN; this file
-  carries <strong>no NaN anywhere</strong>, inside or outside the footprint.</p></article>
-  <article class="card"><div class="kicker">2 &middot; Blocked holdout</div>
-  <div class="number">0.14885</div>
-  <p><strong>HOLDOUT-DTI</strong>, evaluator <code>gems57-pooled-hide-v2</code>,
-  22,893 withheld positive pixels,
-  95% CI [0.13318, 0.17413].
-  Whole fault components are hidden with a buffer and every catalogue-derived quantity is rebuilt
-  from the visible faults only. <strong>Not an organizer score.</strong></p></article>
-  <article class="card"><div class="kicker">3 &middot; Registry uniqueness</div>
-  <div class="number">21 / 21 PASS</div>
-  <p>Worst chance-corrected dot overlap <code>0.4202</code> and worst
-  |Spearman| <code>0.1031</code> against every prior GEMSDOE raster in the
-  pinned inventory. This file copies no prior submission.</p></article>
-</div></div></section>
+    <section>
+      <div class="wrap split">
+        <div>
+          <p class="kicker warn">Retrospective binding-rule assessment</p>
+          <h2>The old literal record already shows a duplicate</h2>
+          <p>The stored MDC-88 evidence reports a final literal 3-pixel forward overlap of <strong>1.000</strong> with <code>dense_17gemdoe.tif</code>. The current binding limit is 0.70 and does not exempt a space-filling prior. A pre-placement maximum |ρ| of 0.103052 does not cancel a failed final-dot screen.</p>
+          <p><strong>HOLDOUT-DTI</strong> 0.148850, 95% CI [0.133178, 0.174131], 22,893 withheld positives, evaluator <code>gems57-pooled-hide-v2</code> is the historical run-card result; it was not recomputed in this follow-up. It is neither a leaderboard score nor an organizer-confirmed result.</p>
+          <p>The previous `gems88-gate-v3` record stored a positive `ok_to_submit` field while also recording `unique_literal: false`; that status relied on a chance-corrected/like-for-like exception. The current literal rule supersedes that old eligibility claim. The original gate JSON is retained as history.</p>
+        </div>
+        <aside class="file-box">
+          <div class="title"><h3 style="margin:0">Current status of this archive</h3><span class="chip">DO NOT SUBMIT</span></div>
+          <dl>
+            <dt>Research record</dt><dd>MDC-88 · SHA-256 <code>6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a</code></dd>
+            <dt>Download</dt><dd>Historical artifact bytes remain in the repository for audit; no submission download is offered here</dd>
+            <dt>Submit</dt><dd><strong>No</strong>; literal uniqueness fails</dd>
+            <dt>Competition slots</dt><dd>0 recorded as spent</dd>
+            <dt>Organizer receipt</dt><dd>None</dd>
+          </dl>
+        </aside>
+      </div>
+    </section>
 
-<section style="background:#e9f2f1"><div class="wrap">
-<div class="kicker">Experiment 01 &middot; what the holdout actually selected</div>
-<h2>The kernel-disjointness premise is falsified: tighter dot packing wins monotonically, because the official DTI charges false positives per DOT, not per unit of kernel area.</h2>
-<p class="section-intro">KDMC-88 preregistered that a &gt;=6 px kernel-disjoint packing would beat the registry&#x27;s ~3 px fields, on the argument that overlapping 300 m kernels pay for the same area twice. Reading vendor/gems57/metric.py line by line shows the false-positive term is FP_w = sum_x p(x)*(1 - k_self(x)): it is charged once per emitted dot and is completely independent of how much two dots&#x27; kernels overlap. Overlap costs nothing; only the dot count does. Because the true-positive term credits each truth pixel with the MAXIMUM kernel weight over all dots, and the truth is a set of one-pixel-wide lineaments, dots spaced 6 px apart leave the midpoints of a line uncovered (k(3)=0) while dots at 2.83 px keep every truth pixel within 1.41 px (k=0.53). The holdout confirms the algebra exactly: at a matched budget the score falls monotonically as separation grows, and the optimum sits at the tightest separation tested with roughly 1% of allowed cells emitted.</p>
-<div class="table-scroll"><table class="gate"><thead><tr><th>Arm</th><th>Min separation (px)</th>
-<th>Dots (all folds)</th><th>Pooled HOLDOUT-DTI</th><th>95% CI (block bootstrap)</th></tr></thead>
-<tbody><tr><td><code>sep2.8284_bf0.01</code></td><td>2.8284</td><td>48,408</td><td><strong>0.14649</strong></td><td>[0.13360, 0.17533]</td></tr><tr><td><code>sep2.8284_bf0.0073</code></td><td>2.8284</td><td>35,338</td><td><strong>0.14532</strong></td><td>[0.13043, 0.17442]</td></tr><tr><td><code>sep4.0000_bf0.0073</code></td><td>4.0000</td><td>35,338</td><td><strong>0.14095</strong></td><td>[0.12921, 0.16676]</td></tr><tr><td><code>sep4.0000_bf0.01</code></td><td>4.0000</td><td>48,408</td><td><strong>0.13868</strong></td><td>[0.13015, 0.16516]</td></tr><tr><td><code>sep2.8284_bf0.005</code></td><td>2.8284</td><td>24,204</td><td><strong>0.13652</strong></td><td>[0.11877, 0.16494]</td></tr><tr><td><code>sep4.0000_bf0.005</code></td><td>4.0000</td><td>24,204</td><td><strong>0.13530</strong></td><td>[0.12008, 0.16019]</td></tr></tbody></table></div>
-<p class="micro">Controls on the same folds and the same density surface:
-pure-geometry uniform control <code>0.05535</code>
-at the <em>same</em> separation, budget and folds
-(the model's geology is worth <strong>2.69&times;</strong> raw geometry);
-registry reference <code>REFERENCE_h33_registry</code>
-<code>0.00370</code> &mdash;
-<strong>diagnostic only.</strong> REFERENCE_h33_registry is DIAGNOSTIC ONLY and structurally suppressed: the registry raster was pruned to d_catalogue &gt;= 2.24 px against the FULL catalogue, which already contains the withheld segments, so only 2.8-4.6% of withheld truth pixels lie within 3 px of any of its dots. It is reported for completeness, never as a fair competitor.</p>
-</div></section>
+    <section style="background:#e9f2f1">
+      <div class="wrap">
+        <div class="notice">
+          <strong>Use the canonical current-decision page.</strong>
+          <p>For the current KTH-88 decision and its research-only download, see <a href="../index.html">the GEMSDOE88 overview</a>. For instructions about a future, separately approved candidate, see the <a href="../executive-summary.html">executive submission guide</a>.</p>
+        </div>
+        <p>Machine records: <a href="status.json">archived MDC-88 status</a> · <a href="../../registry/kdmc_literal_reassessment.json">current literal-rule reassessment</a> · <a href="../../registry/kdmc_gate.json">original historical gate JSON</a> · <a href="data/kdmc-run-card.json">original archived run card</a>.</p>
+      </div>
+    </section>
+  </main>
 
-<section style="background:#e9f2f1"><div class="wrap">
-<div class="kicker">Experiment 02 &middot; independent confirmation (2 hide draws)</div>
-<h2>Fine concentration sweep and the catalogue-collar question</h2>
-<p>Exp2: fine concentration sweep + catalogue-collar test, two independent hide draws</p>
-<div class="table-scroll"><table class="gate"><thead><tr><th>Arm</th><th>Separation (px)</th>
-<th>Collar (px)</th><th>Dots</th><th>Pooled HOLDOUT-DTI</th><th>95% CI</th></tr></thead><tbody>
-<tr><td><code>sep2.8284_bf0.01</code></td><td>2.8284</td><td>0.0</td><td>96,819</td><td><strong>0.14885</strong></td><td>[0.13318, 0.17413]</td></tr><tr><td><code>sep2.8284_bf0.0073</code></td><td>2.8284</td><td>0.0</td><td>70,677</td><td><strong>0.14812</strong></td><td>[0.13057, 0.17336]</td></tr><tr><td><code>sep2.8284_bf0.015</code></td><td>2.8284</td><td>0.0</td><td>145,228</td><td><strong>0.14121</strong></td><td>[0.12948, 0.16492]</td></tr><tr><td><code>sep2.8284_bf0.005</code></td><td>2.8284</td><td>0.0</td><td>48,409</td><td><strong>0.14112</strong></td><td>[0.12166, 0.16593]</td></tr><tr><td><code>sep2.8284_bf0.02</code></td><td>2.8284</td><td>0.0</td><td>193,637</td><td><strong>0.13232</strong></td><td>[0.12297, 0.15463]</td></tr><tr><td><code>sep2.0000_bf0.01</code></td><td>2.0000</td><td>0.0</td><td>96,819</td><td><strong>0.13028</strong></td><td>[0.11424, 0.15344]</td></tr><tr><td><code>sep2.0000_bf0.015</code></td><td>2.0000</td><td>0.0</td><td>145,228</td><td><strong>0.12612</strong></td><td>[0.11333, 0.14878]</td></tr><tr><td><code>sep2.0000_bf0.0073</code></td><td>2.0000</td><td>0.0</td><td>70,677</td><td><strong>0.12475</strong></td><td>[0.10682, 0.14822]</td></tr><tr><td><code>sep2.0000_bf0.02</code></td><td>2.0000</td><td>0.0</td><td>193,637</td><td><strong>0.11900</strong></td><td>[0.10797, 0.14093]</td></tr><tr><td><code>sep2.8284_bf0.03</code></td><td>2.8284</td><td>0.0</td><td>290,456</td><td><strong>0.11867</strong></td><td>[0.11180, 0.13841]</td></tr>
-</tbody></table></div>
-<p class="micro">Best arm <code>sep2.8284_bf0.01</code> at <strong>0.14885</strong>
-(22,893 withheld positive pixels, 8 folds).
-Every 3 px-collar arm scores exactly <strong>0.00000</strong> here. That is structural, not a preference: the holdout withholds catalogue components, so a collar around the full catalogue removes the entire scorable neighbourhood. See Experiment 03.</p>
-</div></section>
-
-<section><div class="wrap">
-<div class="kicker">Experiment 03 &middot; the second instrument, and the confound it exposed</div>
-<h2>The blocked holdout cannot rank the catalogue collar &mdash; so a proxy was used, and then controlled</h2>
-<p class="section-intro">Should the production field keep a d_catalogue collar? The blocked holdout cannot answer: every collar arm scores exactly 0.00000 there by construction, because the holdout&#x27;s truth IS withheld catalogue geometry. The off-catalogue instrument is
-<strong>USGS SGMC fault compilation minus the competition catalogue</strong> (78,433 pixels). It is a
-<strong>PROXY, never a score.</strong></p>
-<div class="three">
-<article class="card"><div class="kicker">Collar ladder (PROXY)</div>
-<div class="table-scroll"><table class="gate"><thead><tr><th>Collar</th><th>Proxy DTI</th></tr></thead>
-<tbody><tr><td>0.0 px</td><td>0.327343</td></tr><tr><td>1.5 px</td><td>0.320364</td></tr><tr><td>3.0 px</td><td>0.277659</td></tr><tr><td>4.0 px</td><td>0.256895</td></tr><tr><td>6.0 px</td><td>0.232519</td></tr></tbody></table></div>
-<p class="micro">Selected: <strong>0.0 px</strong>. Both instruments agree
-on the direction.</p></article>
-<article class="card"><div class="kicker">Registry anchors (PROXY)</div>
-<div class="table-scroll"><table class="gate"><thead><tr><th>Raster</th><th>Dots</th><th>Proxy DTI</th></tr></thead>
-<tbody><tr><td><code>ANCHOR_h33_registry</code></td><td>37,654</td><td>0.091278</td></tr><tr><td><code>ANCHOR_gems82_csam_dink</code></td><td>41,200</td><td>0.082906</td></tr><tr><td><code>ANCHOR_gems83_h83_gvcd</code></td><td>37,654</td><td>0.078619</td></tr></tbody></table></div></article>
-<article class="card warn"><div class="kicker warn">Circularity control</div>
-<div class="number">&minus;0.2118</div>
-<p><code>sgmc_logdist</code> is a feature in the stack <em>and</em> the proxy truth is SGMC-derived, so the
-headline proxy number is partly circular. Refitting with every SGMC column dropped moves the proxy DTI
-from <code>0.327343</code> to <code>0.115576</code>:
-<strong>65% of it was circular.</strong>
-The honest margin over the registry's best raster is
-<code>+0.0243</code>, not
-<code>+0.2361</code>. The margin survives with every SGMC column removed.</p></article>
-</div>
-<p class="micro">PROXY, not a score. The repository&#x27;s own no-evidence floor is |delta| &gt;= 0.01; read any smaller difference as a tie. Machine output:
-<a href="../../evidence/kdmc_experiment3_collar.json">kdmc_experiment3_collar.json</a> &middot;
-<a href="../../evidence/kdmc_experiment3b_sgmc_free.json">kdmc_experiment3b_sgmc_free.json</a>.</p>
-</div></section>
-<section><div class="wrap">
-<div class="kicker">Automatic uniqueness &middot; every pinned prior raster</div>
-<h2>Chance-corrected overlap, so a space-filling prior cannot veto everything</h2>
-<div class="warnbox"><strong>Fixed this session (IR-88-76).</strong>
-One prior in the inventory (<code>17GEMSDOE</code>) is positive on every cell of the footprint, so its
-3&nbsp;px halo covers 100% of the allowed domain. The literal "70% of my dots within 3 px of theirs"
-test therefore returns <code>1.0000</code> for <em>every possible candidate</em>, including one built from
-unrelated physics — it carries zero information and permanently blocked every candidate. The shared
-template now also reports
-<code>excess = (overlap &minus; halo) / (1 &minus; halo)</code>, which equals the literal test when the
-prior has no halo advantage, is stricter in relative terms otherwise, and is undefined exactly when the
-prior cannot discriminate. For such a prior the protocol's rank-correlation test
-(|&rho;| &le; 0.90) is the binding one, and this candidate passes it at
-<code>0.1031</code>.</div>
-<div class="table-scroll"><table class="gate"><thead><tr><th>Prior raster</th><th>Their dots</th>
-<th>Halo coverage</th><th>Literal overlap</th><th>Chance-corrected excess</th><th>Spearman &rho;</th>
-<th>Verdict</th></tr></thead><tbody><tr><td><code>gems19_h19_5.tif</code></td><td>121,131</td><td>0.1961</td><td>0.5339</td><td>0.4202</td><td>0.0547</td><td class='pass'>PASS</td></tr><tr><td><code>gems25_d28.tif</code></td><td>44,090</td><td>0.1719</td><td>0.4830</td><td>0.3756</td><td>0.0301</td><td class='pass'>PASS</td></tr><tr><td><code>gems70_p5_multiphysics.tif</code></td><td>37,654</td><td>0.1378</td><td>0.4431</td><td>0.3541</td><td>0.0234</td><td class='pass'>PASS</td></tr><tr><td><code>gems28_h27_4.tif</code></td><td>40,199</td><td>0.1601</td><td>0.4142</td><td>0.3025</td><td>0.0218</td><td class='pass'>PASS</td></tr><tr><td><code>gems82_csam_dink.tif</code></td><td>41,200</td><td>0.1628</td><td>0.4078</td><td>0.2927</td><td>0.0207</td><td class='pass'>PASS</td></tr><tr><td><code>gems70_p5_dualsubmod.tif</code></td><td>37,654</td><td>0.1256</td><td>0.3629</td><td>0.2713</td><td>0.0233</td><td class='pass'>PASS</td></tr><tr><td><code>gems85_h85a_foldproper.tif</code></td><td>37,654</td><td>0.0992</td><td>0.3414</td><td>0.2689</td><td>0.0226</td><td class='pass'>PASS</td></tr><tr><td><code>gems60_h68_piedmont.tif</code></td><td>40,000</td><td>0.1410</td><td>0.3577</td><td>0.2523</td><td>0.0127</td><td class='pass'>PASS</td></tr><tr><td><code>gems36_anderson_pinn.tif</code></td><td>38,854</td><td>0.1546</td><td>0.3670</td><td>0.2513</td><td>0.0183</td><td class='pass'>PASS</td></tr><tr><td><code>h33_education.tif</code></td><td>37,654</td><td>0.1509</td><td>0.3636</td><td>0.2506</td><td>0.0187</td><td class='pass'>PASS</td></tr><tr><td><code>gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif</code></td><td>37,654</td><td>0.1789</td><td>0.3614</td><td>0.2223</td><td>0.0130</td><td class='pass'>PASS</td></tr><tr><td><code>gems83_h83_gvcd.tif</code></td><td>37,654</td><td>0.1553</td><td>0.3411</td><td>0.2200</td><td>0.0120</td><td class='pass'>PASS</td></tr><tr><td><code>gems49_gate_ortho.tif</code></td><td>40,000</td><td>0.1532</td><td>0.3379</td><td>0.2181</td><td>0.0142</td><td class='pass'>PASS</td></tr><tr><td><code>gems81_contasb.tif</code></td><td>44,090</td><td>0.1239</td><td>0.3148</td><td>0.2179</td><td>0.0134</td><td class='pass'>PASS</td></tr><tr><td><code>gems78_h78_gfv.tif</code></td><td>37,654</td><td>0.1594</td><td>0.3272</td><td>0.1996</td><td>0.0122</td><td class='pass'>PASS</td></tr><tr><td><code>gems80_adpt_kkt.tif</code></td><td>36,500</td><td>0.1447</td><td>0.2648</td><td>0.1403</td><td>0.0119</td><td class='pass'>PASS</td></tr><tr><td><code>gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif</code></td><td>22,545</td><td>0.0883</td><td>0.2145</td><td>0.1384</td><td>0.0099</td><td class='pass'>PASS</td></tr><tr><td><code>gems80_h80_dpvc.tif</code></td><td>41,600</td><td>0.0988</td><td>0.2139</td><td>0.1277</td><td>0.0161</td><td class='pass'>PASS</td></tr><tr><td><code>gems57_h57r2.tif</code></td><td>40,000</td><td>0.0543</td><td>0.1272</td><td>0.0771</td><td>0.0128</td><td class='pass'>PASS</td></tr><tr><td><code>gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif</code></td><td>37,654</td><td>0.0711</td><td>0.1412</td><td>0.0754</td><td>0.0116</td><td class='pass'>PASS</td></tr><tr><td><code>dense_17gemdoe.tif</code></td><td>5,167,373</td><td>1.0000</td><td>1.0000</td><td>n/a (space-filling)</td><td>0.1031</td><td class='pass'>PASS</td></tr></tbody></table></div>
-<p class="micro">Literal worst forward overlap (reported, not binding against a space-filling prior):
-<code>—</code>.
-Full machine output: <a href="../../registry/kdmc_gate.json">registry/kdmc_gate.json</a>.</p>
-</div></section>
-
-<section style="background:#e9f2f1"><div class="wrap">
-<div class="kicker">Honest limits</div>
-<h2>What this page does not claim</h2>
-<ul>
-<li>No organizer receipt exists for any file in this repository, so every figure here is HOLDOUT-DTI, PROXY or MODEL and none of them is a leaderboard score.</li><li>The holdout hides whole MAPPED fault components; the competition target is UNMAPPED faults. The holdout is the best available unbiased instrument, not the real task.</li><li>drivendata.org is unreachable from the build sandbox, so the public leaderboard value and the remaining weekly-slot balance cannot be verified here and are carried as UNVERIFIED human-supplied inputs.</li><li>metric.py&#x27;s claim that the organizer masks mapped catalogue faults out of scoring traces to a forum thread that cannot be re-read from here; the candidate is built to be correct either way by emitting zero mass on mapped faults.</li><li>src/gems88/features.py cannot run on a clean checkout (IR-88-75): it requires acquisition_block_id_100m.tif and tiger_road_distance_m.tif, which exist in no pinned source. This lane therefore uses its own self-contained feature builder.</li><li>Two cores and 3 GB of RAM are available, so model capacity (250-iteration histogram gradient boosting) and the number of hide draws are compute-limited, not design-limited.</li><li>The blocked holdout CANNOT rank the catalogue-collar choice: every collar arm scores exactly 0.00000 there because the holdout&#x27;s truth is withheld catalogue geometry. That question is answered only by the off-catalogue SGMC proxy, which is a PROXY.</li>
-</ul>
-</div></section>
-</main>
-<footer class="footer"><div class="wrap">
-<p><strong>GEMSDOE88</strong> &middot; Every figure on this page is rendered directly from
-<code>registry/kdmc_gate.json</code> and <code>evidence/kdmc_experiment1.json</code> by
-<code>scripts/publish_kdmc_site.py</code>. No human edits the verdict, and no number here is a
-leaderboard score unless it is explicitly labelled ORGANIZER-CONFIRMED.</p>
-<p class="micro">Rendered 2026-10-24 08:23 UTC. <a href="../sources.html">Verified sources &amp; SHA-256 ledger &rarr;</a>
-&middot; <a href="status.json">Machine-readable status JSON &rarr;</a></p>
-</div></footer></body></html>
+  <footer class="footer">
+    <div class="wrap"><p>GEMSDOE88 · Historical research only. No submission authorization.</p><a href="../index.html">Back to the current decision →</a></div>
+  </footer>
+</body>
+</html>

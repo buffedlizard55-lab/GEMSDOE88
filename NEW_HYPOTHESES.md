@@ -1,45 +1,25 @@
-# New Geological Hypotheses for GEMSDOE Competition
+# Next-lane geological hypotheses — not run or authorized
 
-## Hypothesis 1: Magnetic Pseudogravity (PSG) phase symmetry (MAG-PSG)
-- **Specific layer(s) involved:** Aeromagnetic data (TMI or RTP).
-- **Physical signature:** Pseudogravity transform followed by tilt-angle derivative. This highlights deep structural boundaries rather than shallow volcanic noise.
-- **Why it catches missing faults:** Reduces short-wavelength volcanic signals that dominate raw RTP or MRR, emphasizing deeper basement structures controlling geothermal flow that are hidden from surface mapping.
-- **Differences from existing:** Previous methods (MRR) used blockwise local residuals (high-pass filter), whereas PSG acts as a low-pass structural filter to find deep controls.
-- **Expected DTI Improvement:** Medium-High.
-- **Implementation Cost:** Low. Uses existing magnetic data layers.
+**Decision:** KTH-88 is stopped. This is a desk-review shortlist only; no experiment, raster, or submission is authorized by it. The items below are **untried-to-run candidates**, not claims of novelty to the repository or scientific literature. Two were already mentioned in earlier research notes; the “new” criterion here means a distinct experiment not yet validated in the current KTH lane. Expected DTI gain is qualitative ranking only—there are no numeric projections or scores.
 
-## Hypothesis 2: Gravity-gradient lineaments over buried horsts (GGL-BH)
-- **Specific layer(s) involved:** Isostatic Residual Gravity (or Bouguer gravity) and DEM.
-- **Physical signature:** Maxima of the horizontal gradient magnitude (HGM) of gravity, combined with local topographic highs.
-- **Why it catches missing faults:** Normal faults forming horst-and-graben structures often have large density contrasts across the fault, visible in gravity even if buried by shallow alluvium where USGS catalog misses them.
-- **Differences from existing:** Uses gravity gradient (HGM) rather than magnetic (MRR) or radiometric (KTH).
-- **Expected DTI Improvement:** High.
-- **Implementation Cost:** Medium. Requires gravity data (often available in USGS databases).
+The three candidates use only the competition-provided feature grid and require no new external dataset. However, `data/` is absent in this checkout, the official competition inputs were not fetched or authenticated in this review, and no exact bytes/permissions can be verified here. They are therefore **not currently viable to run**. The KTH lane's experiment is complete and stopped; starting any candidate requires an explicit new lane assignment and authorized, hash-verified inputs.
 
-## Hypothesis 3: Seismicity cluster alignment with radiometric depletion (SEIS-RAD)
-- **Specific layer(s) involved:** USGS ComCat earthquake hypocenters + Potassium (K) radiometric data.
-- **Physical signature:** Microseismicity density combined with K-depletion zones (hydrothermal alteration washes out K).
-- **Why it catches missing faults:** Small earthquakes directly pinpoint active slip, revealing blind faults, while K-depletion confirms fluid flow along these structures.
-- **Differences from existing:** Integrates external seismicity directly with alteration, rather than only relying on geometry or geophysics.
-- **Expected DTI Improvement:** Very High.
-- **Implementation Cost:** Medium. Requires parsing the external USGS ComCat (script already exists: `scripts/fetch_optional_external_data.sh`).
+## Ranked shortlist
 
-## Hypothesis 4: Soil Moisture/Vegetation Index alignment (NDVI-Edge)
-- **Specific layer(s) involved:** Sentinel-2/Landsat 8 NDVI and DEM curvature.
-- **Physical signature:** Linear, sharp gradients in vegetation health (NDVI) that correlate with topographic curvature or breaks in slope.
-- **Why it catches missing faults:** Groundwater upwelling or pooling along unmapped fault planes creates linear oases or vegetation contrasts in the arid Great Basin.
-- **Differences from existing:** Uses ecological/hydrological proxies (NDVI) rather than geophysical proxies.
-- **Expected DTI Improvement:** Low-Medium.
-- **Implementation Cost:** High. Need to download Sentinel-2 imagery which is heavy.
+| Rank | Hypothesis; qualitative expected gain / cost | Layers and physical signature | Why it could detect off-catalogue faults; named mimic | Difference from repository methods; availability |
+|---:|---|---|---|---|
+| 1 | **H-QTS: basement–surface directional discordance** — *medium–high potential; low–medium compute cost*. Previously described in `research/candidate-hypotheses-20261024-mdc88.md`; not run as a standalone test. | Competition bands 15 (`depth_to_base_surf`), 12 (`det_elev`), optionally 19 (`det_elev_slope`) and 13/18 (isostatic gravity / directional horizontal component). At Gaussian scales σ=1, 3, 6 px, compute `Dσ = |∇z_base| × (1 − cos θ(∇z_base, ∇z_surface))`; retain long, strike-coherent ridges rather than broad level changes. | A blind normal fault can step the basement beneath young fill while leaving a smooth surface, so the basement gradient need not be accompanied by a topographic gradient. **Mimic:** alluvial-fan toe onlap or a buried lithologic contact; these can also step the basement. Require long linear continuity and compare against fan-radial geometry. | Existing methods use basement gradients, surface relief, gravity gradients, and dip-back-projection, but the repository scan found no implemented scale-matched *directional disagreement* transform. Uses competition bands only, not a new sensor. Exact inputs are absent and official access was not verified. |
+| 2 | **RTP–gravity frequency/azimuth admittance** — *medium potential; medium compute cost*. Listed as `RTP-GRAV-ADMITTANCE` in the KTH preregistration; not executed. | Competition band 2 (RTP) and band 13 (isostatic gravity), with their spatial derivatives. Estimate a local, tapered cross-spectral transfer ratio over kilometre-scale windows and multiple wavenumber/azimuth bands; score persistent changes in magnetic-to-gravity admittance and cross-phase across a candidate structural corridor. | A damaged or offset basement may change the relative magnetic-susceptibility and density response even where surface relief is weak. **Mimic:** an unfaulted intrusive contact with a genuine susceptibility/density contrast. | Existing MRR and MGC/CGO methods use residuals, gradient magnitudes, or cross-gradients; no frequency- and azimuth-resolved local admittance estimator was found in the code scan. Uses competition bands only. Requires authenticated inputs and carefully controlled edge/window effects. |
+| 3 | **Physical MAG-PSG phase-congruency ridges** — *low–medium potential; medium–high cost and high physical uncertainty*. The concept appeared in older notes, but its former builder emitted seeded synthetic lines; that artifact was not a valid test of this hypothesis. | Competition magnetic anomaly/RTP bands 1/2 and total magnetic intensity band 14. Apply a documented Fourier-domain pseudogravity transform under explicit geomagnetic-field and magnetization assumptions, then compute multi-scale phase congruency and line-ridge continuity; compare with the untransformed field. Do not invent linework or use synthetic pixels. | A transformed potential-field boundary may make deeper basement contacts associated with buried fault zones more coherent than raw magnetic amplitude. **Mimic:** a remanently magnetized dike, volcanic plug, or survey-leveling seam. | MRR code implements magnetic residual/cross-gradient features, not a physically computed pseudogravity plus phase-congruency transform. The removed `scripts/build_hypothesis_psg_submission.py` was a mock line generator and must not be revived. Competition inputs are absent; required magnetization/field assumptions and transform stability must be justified before an experiment. |
 
-## Hypothesis 5: Thermal-Infrared (TIR) Anomalies with Structural Intersections (TIR-SI)
-- **Specific layer(s) involved:** ASTER or Landsat TIR (if available) + fault strike junctions.
-- **Physical signature:** Localized temperature anomalies (nighttime surface temp) aligned with structural step-overs or intersections.
-- **Why it catches missing faults:** Active geothermal upflow can slightly heat the surface or alter surface emissivity, marking active segments of faults that aren't mapped.
-- **Differences from existing:** Introduces direct thermal proxy combined with structural kinematics, contrasting with pure magnetics.
-- **Expected DTI Improvement:** Medium.
-- **Implementation Cost:** High. Requires sourcing and processing TIR scenes.
+## Exclusions and novelty checks
 
-## Limitations & Blockers
-**Current Limitation:** We are unable to download the core competition data directly from DrivenData (`training_features.tif`, `labels.tif`, `sample_submission.tif`) due to the requirement for authentication (❌ No DrivenData auth). Furthermore, the provided Dropbox links are blocked by the environment's firewall (only specific outbound connections are allowed, e.g., GitHub, PyPI, npm). 
-**Required Access:** We need a machine with unrestricted internet access or valid DrivenData credentials injected as environment variables (or pre-downloaded data in the `data/` directory) to run the full training pipeline using `scripts/prepare_data.py`.
+Do **not** count the following as new: generic chi/knickpoint/channel ideas (H88-H4 transient fluvial chi/ksn features already exist in `src/gems88/features.py`); hydro-vegetation, multi-season surface temperature, cross-drainage, or InSAR/ComCat ideas already discussed in research notes; or standalone U/K disequilibrium, whose U/Th and U/K-derived features already appear in `src/gems88/features.py`. Recheck the code and notes before adopting any other idea. A previous mention is not evidence that a hypothesis was scientifically tested; a synthetic mock is not a test.
+
+## Required validation before any slot
+
+No top candidate was validated in this review. The inputs needed to build features and evaluate spatial holdout are not present, and the current KTH lane is stopped. A future, separately assigned lane must use the pinned/shared `vendor/gems57` tools: whole-component buffered holdout, visible-fault-only catalogue features, pixel-exact visible-fault masking, pooled DTI (α=0.2, β=0.8; 300 m triangular kernel), 95% CI and withheld-positive count; one-feature-at-a-time leakage canaries; surface Spearman correlation before placement; and final 3-pixel overlap against the registry. Stop on `|ρ| > 0.90` or >70% dot overlap with any single registry raster. Record a JSON run card, SHA-256, validator output, note ≤140 characters, and promote/negative verdict. No submission slot is implied.
+
+## Source and access status
+
+The layer names and feature identities above come from repository records and code. The official DrivenData data/metric pages are retained in [`docs/sources.html`](docs/sources.html) as source pointers, but they were **not freshly fetched in this review**. The competition data endpoint is not accessible from this checkout without the authorized team inputs; do not claim that data availability, licensing/terms, or exact AOI coverage were independently verified. No external dataset is proposed as an available input.
