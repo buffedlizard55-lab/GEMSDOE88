@@ -1,24 +1,15 @@
 {
-  "latest_experiment": "GEMSDOE88-MDPS88-20261024-bd64000f",
   "evidence_schema_complete": true,
   "approved_for_weekly_slot": false,
   "status": "BLOCKED",
   "problems": [
-    "HOLDOUT: far candidate does not exceed stored holdout best",
-    "HOLDOUT: paired improvement over the fold-fair control is not established",
-    "UNIQUENESS: literal final-dot overlap exceeds 0.70 or is missing"
+    "UNIQUENESS: literal registry overlap exceeds 0.70; DUPLICATE_STOP",
+    "HOLDOUT: inherited MDPS-88 paired improvement and incumbent gates failed"
   ],
   "ok_to_download_for_research": true,
   "ok_to_submit": false,
   "raster_sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
-  "evidence_class": "HOLDOUT-DTI",
-  "holdout_evaluator": "gems57-pooled-hide-v2",
-  "holdout_far_dti": 0.07272295955361242,
-  "holdout_far_ci95": [
-    0.05911330711505152,
-    0.08628315696691566
-  ],
-  "withheld_far_positive_pixels": 10791,
-  "literal_registry_overlap_3px": 1.0,
-  "policy": "literal-user-lane-rule-v1"
+  "policy": "binding-literal-all-registry-v1",
+  "run_card": "docs/data/literal_protocol_audit.json",
+  "historical_release_record": "docs/data/current_release.json"
 }

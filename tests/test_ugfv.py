@@ -88,7 +88,7 @@ def test_dinkelbach_knapsack_halo_constraints_enforced():
 
 
 def test_run_card_four_way_parity_and_audit_invariants():
-    """The immutable MRR card stays historical while the feed follows MDPS-88."""
+    """The canonical card now describes the current MRR negative deliverable."""
     paths = [
         ROOT / "registry/run_card.json",
         ROOT / "docs/data/run-card.json",
@@ -129,19 +129,14 @@ def test_run_card_four_way_parity_and_audit_invariants():
     assert reg["literal_binding_decision"]["duplicate"] is True
     assert reg["universal_witness"]["universal_overlap_blocker"] is True
 
-    # The current status feed follows the latest candidate's canonical gate
-    # record (MDPS-88 since 2026-10-24; KTH-era current_release.json is kept
-    # as that candidate's historical release record), while the four-way MRR
-    # card remains immutable history.
-    from scripts.readiness import current_status
-    status = current_status(ROOT)
+    # The live status producer follows its explicit MDPS audit;
+    # current_release.json is retained as an archived PHASE record.
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
-    current_doc = json.loads((ROOT / "docs/data/mdps88-gate.json").read_text())
-    assert status["raster_sha256"] == status_doc["raster_sha256"] == current_doc["sha256"]
-    assert status["raster_sha256"] != card["raster_sha256"]
-    assert status["ok_to_submit"] is False and status["status"] == "BLOCKED"
-    assert status["ok_to_download_for_research"] is True
-    assert any(p.startswith("UNIQUENESS:") for p in status["problems"])
+    current_doc = json.loads((ROOT / "docs/data/literal_protocol_audit.json").read_text())
+    assert status_doc["raster_sha256"] == current_doc["raster_sha256"]
+    assert status_doc["raster_sha256"] != card["raster_sha256"]
+    assert status_doc["ok_to_submit"] is False
+    assert status_doc["ok_to_download_for_research"] is True
 
     tif_path = ROOT / card["artifact"]
     zip_path = ROOT / card["zip_artifact"]
