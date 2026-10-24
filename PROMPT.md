@@ -9,6 +9,10 @@
 > The latest session result is linked from the first block of `README.md`. Re-read these
 > operational requirements before changing a method, slot decision, or download link.
 
+## Current binding interpretation (2026-10-24 continuation review)
+
+The literal final-dot rule is not waived by the v3 chance-corrected diagnostic. Current MDPS-88 is pixel-distinct but a **DUPLICATE**: 100% of dots are within 3 px of the full-footprint positive registry witness; threshold 70%. Stop, do not submit, and do not relabel it unique. The witness makes every nonempty in-footprint candidate impossible to clear under the literal test. See [`research/session-review-20261024-strict-gate.md`](research/session-review-20261024-strict-gate.md).
+
 ## Appendix A - earlier README summaries of this prompt (kept verbatim for audit; superseded by the criteria above)
 
 ### Earlier README section: "Permanent User Prompt: Operational Requirements"

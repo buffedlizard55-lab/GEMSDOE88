@@ -114,6 +114,17 @@ def main() -> int:
         lit[label] = float((d[dots] <= 3.0).mean())
     checks["literal_forward_overlap_3px_vs_lineage"] = lit
     checks["not_a_lineage_copy"] = all(v <= 0.70 for v in lit.values())
+    # Binding user-specified rule: no exemptions for space-filling registry rasters.
+    # This is a positive audit finding (duplicate detected), not a format-audit failure.
+    with rasterio.open(ROOT / "data/registry/dense_17gemdoe.tif") as ds:
+        witness_arr = ds.read(1)
+    witness = np.isfinite(witness_arr) & (witness_arr > 0)
+    witness_dist = distance_transform_edt(~witness)
+    literal_overlap = float((witness_dist[dots] <= 3.0).mean())
+    checks["literal_forward_overlap_3px_vs_dense_witness"] = literal_overlap
+    checks["dense_witness_positive_pixels"] = int(witness.sum())
+    checks["literal_duplicate_detected"] = bool(literal_overlap > 0.70)
+    checks["literal_uniqueness_verdict"] = "DUPLICATE — stop; no exemption"
     # exact pixel overlap with H33
     with rasterio.open(ROOT / "data/registry/h33_education.tif") as ds:
         h33 = ds.read(1) > 0
@@ -159,13 +170,14 @@ def main() -> int:
     (ROOT / "docs/data/mdps88_validation.json").write_text(json.dumps(out, indent=1, default=float))
     print(json.dumps({k: checks[k] for k in bool_keys + ["dot_count", "min_nn_spacing_px",
           "min_distance_to_catalogue_px", "literal_forward_overlap_3px_vs_lineage",
+          "literal_forward_overlap_3px_vs_dense_witness", "literal_uniqueness_verdict",
           "exact_pixel_overlap_frac_vs_H33", "pooled_arithmetic_all_ok"]}, indent=1, default=float))
     if failures:
         print("AUDIT FAILURES:", failures)
         return 1
     print("INDEPENDENT AUDIT: PASS")
     if args.require_submit and not card["ok_to_submit"]:
-        print("NOT OK TO SUBMIT (scientific gates failed; see run card)")
+        print("NOT OK TO SUBMIT (holdout gate fails; literal registry overlap is DUPLICATE; see run card)")
         return 2
     return 0
 

@@ -141,12 +141,24 @@
   "space_filling_priors": [
    "data/registry/dense_17gemdoe.tif"
   ],
-  "duplicate": false,
+  "duplicate": true,
   "surface_preplacement_worst_abs_spearman": 0.10556715616150086,
   "surface_preplacement_duplicate_by_rho": false,
   "lane_cap_repairs": [],
   "scope_limit": "restored registry rasters (18 pinned + family) + tracked docs/downloads + releases tifs on disk this session; sibling rasters not restored are NOT covered",
-  "rows_file": "evidence/mdps88_uniqueness_20261024.json"
+  "rows_file": "evidence/mdps88_uniqueness_20261024.json",
+  "literal_binding_decision": {
+   "evidence_class": "REGISTRY-MEASUREMENT",
+   "rule": "literal all-registry forward 3-pixel dot overlap; no exemptions",
+   "binding_file": "data/registry/dense_17gemdoe.tif",
+   "candidate_positive_pixels": 29742,
+   "candidate_pixels_within_3px": 29742,
+   "forward_overlap_3px": 1.0,
+   "limit": 0.7,
+   "duplicate": true,
+   "stop_required": true,
+   "reason": "The registry witness is positive over every allowed footprint cell; all non-empty candidate dot sets therefore have 100% forward overlap. The parallel-run rule is binding and cannot be waived."
+  }
  },
  "raster": {
   "file": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
@@ -235,16 +247,18 @@
   "far_paired_ci_gt_0_vs_base283": false,
   "far_gt_stored_adhr_0.11478_unpaired": false,
   "overall_ge_base283": false,
-  "uniqueness_v3_pass": true,
+  "uniqueness_v3_pass": false,
   "surface_preplacement_pass": true,
   "format_all_checks_passed": true,
-  "zip_one_member_bytes_match": true
+  "zip_one_member_bytes_match": true,
+  "uniqueness_literal_pass": false,
+  "uniqueness_v3_diagnostic_pass": true
  },
  "ok_to_download": true,
  "ok_to_submit": false,
  "approved_for_weekly_slot": false,
  "verdict": "negative",
- "verdict_reason": "one or more frozen gates failed (see gates); do not spend a weekly slot",
+ "verdict_reason": "one or more frozen gates failed (see gates); do not spend a weekly slot Strict protocol re-audit: literal final-dot overlap is 1.0 with dense_17gemdoe.tif (>0.70); record as DUPLICATE and stop. The chance-corrected v3 diagnostic cannot override this user-specified gate.",
  "organizer_confirmed_score": null,
  "slots_used_by_this_session": 0,
  "seconds": 122.1

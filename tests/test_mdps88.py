@@ -40,12 +40,23 @@ def test_mdps88_holdout_numbers_are_labelled_and_in_range():
     assert CARD["holdout"]["far"]["paired_vs_base283"]["ci95"][0] <= 0  # the documented null result
     assert CARD["leakage_canary"]["max_symmetric_auc"] <= 0.90 and CARD["leakage_canary"]["passed"]
     u = CARD["correlation_overlap_vs_registry"]
-    assert u["duplicate"] is False and u["worst_excess_overlap_3px"] <= 0.70 and abs(u["worst_abs_spearman"]) <= 0.90
+    # The literal user-specified rule is binding even though v3's supplementary
+    # chance-corrected diagnostic exempts the space-filling witness.
+    assert u["duplicate"] is True
+    assert u["literal_binding_decision"]["stop_required"] is True
+    assert u["literal_binding_decision"]["forward_overlap_3px"] == 1.0
+    assert CARD["gates"]["uniqueness_literal_pass"] is False
+    assert CARD["gates"]["uniqueness_v3_diagnostic_pass"] is True
+    assert abs(u["worst_abs_spearman"]) <= 0.90
 
 
 def test_mdps88_site_decision_strings():
+    script = (ROOT / "docs/assets/site.js").read_text()
+    assert "DUPLICATE" in script and "literal-overlap gates failed" in script
     for page in ("docs/index.html", "docs/executive-summary.html"):
         text = (ROOT / page).read_text()
         assert Path(CARD["raster"]["file"]).name in text
         assert "DO NOT SUBMIT" in text and "DOWNLOAD FOR RESEARCH: YES" in text
         assert "hyp-psg" not in text  # withdrawn mock must never be offered again (IR-88-83)
+        assert "DUPLICATE" in text and "literal" in text.lower()
+        assert "New unique GeoTIFF" not in text and "newest unique GeoTIFF" not in text.lower()

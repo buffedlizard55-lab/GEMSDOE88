@@ -1,13 +1,13 @@
 {
  "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-SNAPSHOT",
  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
- "checked_utc": "2026-10-24T07:19:00Z",
+ "checked_utc": "2026-10-24T19:22:59Z",
  "live": false,
  "stale_after_hours": 24,
- "note": "Official DrivenData public leaderboard read 2026-10-24 ~07:19 UTC (column: Best public DW-Tversky). Ranks 6-20 form a plateau at 0.327-0.342. Public rank can change at any time, is evaluated on Round 1 public labels, and does not authenticate any owner submission receipt.",
+ "note": "Live official DrivenData public leaderboard inspected 2026-10-24T19:22:59Z UTC; this is a dated snapshot, not a continuous feed. Public DW-Tversky is Round 1 public-set performance, can change, and does not authenticate any owner submission receipt.",
  "top_public_dti": 0.4413,
  "prompt_claimed_top": 0.3195,
- "prompt_claim_status": "STALE: superseded by the dated official public leaderboard snapshot (0.4413)",
+ "prompt_claim_status": "STALE: live official leaderboard page read at checked_utc shows 0.4413",
  "first_round_cut_rank5_dti": 0.3539,
  "rows": [
   {
@@ -26,7 +26,7 @@
    "rank": 3,
    "user": "Batik Shirt Brothers",
    "public_dti": 0.3904,
-   "entries": 48
+   "entries": 49
   },
   {
    "rank": 4,
@@ -60,15 +60,22 @@
   },
   {
    "rank": 9,
+   "user": "DARD",
+   "public_dti": 0.3358,
+   "entries": 26
+  },
+  {
+   "rank": 10,
    "user": "yifanxu",
    "public_dti": 0.333,
    "entries": 9
   },
   {
-   "rank": 10,
-   "user": "newway",
-   "public_dti": 0.3328,
-   "entries": 13
+   "rank": 50,
+   "user": "moongrega",
+   "public_dti": 0.2818,
+   "entries": 29
   }
- ]
+ ],
+ "rank50_public_dti": 0.2818
 }

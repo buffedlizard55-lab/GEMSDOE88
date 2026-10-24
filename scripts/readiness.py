@@ -1,9 +1,10 @@
-"""Fail-closed legacy schema gate and current canonical release status.
+"""Fail-closed legacy schema gate and latest research-candidate status.
 
-`assess` remains for the synthetic eligibility fixtures inherited from main.
-The live CLI status is derived from the independent TIFF/ZIP/witness validator,
-not the pre-experiment card that previously claimed no TIFF existed.
-Does not choose or spend weekly submission slots.
+`assess` remains for synthetic eligibility fixtures. The live status feed follows
+MDPS-88, the newest research candidate, and cross-checks its run card, strict
+literal-overlap gate, independent TIFF/ZIP audit, and local holdout evidence.
+The separate ``current_release.json`` may retain an older canonical artifact;
+this script never chooses or spends a weekly submission slot.
 """
 from __future__ import annotations
 import hashlib
@@ -97,29 +98,43 @@ def verify_template(root=ROOT):
 
 
 def current_status(root=ROOT):
-    """Represent the actual research artifact. A format PASS is not slot approval."""
-    # Derive the site's current status from the same canonical artifact and
-    # fail-closed gate used by validate_current.py. `validate_release.py` is a
-    # historical MRR-BPR audit and must not silently become the live feed.
-    from validate_current import release_report
+    """Represent the newest candidate; a format PASS is not slot approval."""
+    card = json.loads((root / 'registry/mdps88_run_card.json').read_text())
+    gate = json.loads((root / 'docs/data/mdps88-gate.json').read_text())
+    audit = json.loads((root / 'docs/data/mdps88_validation.json').read_text())
+    rel = card['raster']['file']
+    artifact = (root / rel).resolve()
+    if not artifact.is_relative_to((root / 'docs/downloads').resolve()):
+        raise ValueError('latest research artifact escapes docs/downloads')
+    digest = hashlib.sha256(artifact.read_bytes()).hexdigest()
+    if not (artifact.is_file() and digest == card['raster_sha256'] == gate['sha256'] == audit['sha256']):
+        raise ValueError('latest research artifact hash differs across card, gate, or audit')
+    literal = card['correlation_overlap_vs_registry']['literal_binding_decision']
+    if not (literal['duplicate'] is True and literal['stop_required'] is True
+            and literal['forward_overlap_3px'] > literal['limit']
+            and audit['checks']['literal_forward_overlap_3px_vs_dense_witness'] > literal['limit']):
+        raise ValueError('latest candidate strict literal-overlap decision is inconsistent')
+    if audit.get('audit_passed') is not True or gate.get('ok_to_download') is not True:
+        raise ValueError('latest candidate saved-byte research audit did not pass')
 
-    report = release_report(root)
+    holdout = card['holdout']
     problems = []
-    if report['holdout_dti'] < report['incumbent_best_dti']:
-        problems.append('HOLDOUT: candidate point estimate is below the stored incumbent')
-    if report['duplicate'] or report['literal_registry_overlap_3px'] > 0.70:
-        problems.append('UNIQUENESS: literal registry overlap exceeds 0.70')
-    if not report['format_valid']:
-        problems.append('FORMAT: saved-byte validation failed')
+    if not holdout['far']['paired_vs_base283']['ci95'][0] > 0:
+        problems.append('HOLDOUT: far paired 95% CI does not clear zero versus fold-fair control')
+    if literal['duplicate']:
+        problems.append(f"UNIQUENESS: literal 3-px overlap {literal['forward_overlap_3px']:.4f} exceeds {literal['limit']:.2f}; DUPLICATE, stop")
+    # The project feed remains fail-closed even if the research download itself is valid.
     return {
-        'evidence_schema_complete': bool(report['format_valid']),
+        'evidence_schema_complete': True,
         'approved_for_weekly_slot': False,
         'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
         'problems': problems,
-        'ok_to_download_for_research': bool(report['research_download_ok']),
-        'ok_to_submit': False,  # selector has never approved a weekly slot
-        'raster_sha256': report['file_sha256'],
-        'policy': 'binding-literal-all-registry-v1',
+        'ok_to_download_for_research': True,
+        'ok_to_submit': False,
+        'raster_sha256': digest,
+        'policy': 'literal-all-registry-v1; chance-corrected diagnostics do not waive overlap',
+        'run_card': 'registry/mdps88_run_card.json',
+        'supersedes_status_of': 'PHASE-88 remains the separate docs/data/current_release.json record',
     }
 
 

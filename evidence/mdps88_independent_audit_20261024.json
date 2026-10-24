@@ -30,6 +30,10 @@
    "H19_5": 0.3547172348866922
   },
   "not_a_lineage_copy": true,
+  "literal_forward_overlap_3px_vs_dense_witness": 1.0,
+  "dense_witness_positive_pixels": 5167373,
+  "literal_duplicate_detected": true,
+  "literal_uniqueness_verdict": "DUPLICATE \u2014 stop; no exemption",
   "exact_pixel_overlap_frac_vs_H33": 0.018559612668952997,
   "pooled_arithmetic_recomputed": {
    "base283_far": {
