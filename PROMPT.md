@@ -170,3 +170,14 @@ verified 2026-10-24).  The prompt also cites a stale `0.3195`.
 **Important prompt ambiguity:** it mentions “the single method paragraph below” but supplies no actual paragraph. This run disclosed and chose only [MAG-FABRIC-DISLOCATION](registry/preregistration_fabric_dislocation.json), the first-ranked hypothesis; remaining proposals were not attempted. Another ambiguity is mathematically binding: the registered `17GEMSDOE` probability raster has strictly positive support at **every** footprint cell. The shared template defines dots as *finite value > 0*, so every nonempty candidate has **100%** forward overlap with that prior. Do not silently exempt the dense raster just to say “unique.” An explicit change to the **shared** protocol would be needed for a nondegenerate like-for-like definition; until then all candidate dots fail the literal 70% rule. Filename/pixel uniqueness alone does **not** pass this gate.
 
 <!-- ORIGINAL PROMPT (paste here) -->
+
+## Current-session binding clarification (2026-10-24; IR-88-86)
+
+Read the latest README notice before any generation. This session's supplied prompt again
+requires literal overlap against **any** registry raster and supplies no single method
+paragraph. Earlier chance-corrected policy exceptions are not authority to change that
+rule. A universal dense witness means STOP before another experiment. Do not promise a
+unique submission, a higher score or full official-source verification where impossible.
+The current request also requires three review passes and a PR followed by merge; this
+review implements automated audit, source-status disclosure and fail-closed site claims.
+This remains a condensed operational record, not a verbatim copy of the long user prompt.

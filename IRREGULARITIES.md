@@ -409,3 +409,34 @@ The byte/pixel-distinct K/Th step product fails the literal forward 3-px rule ag
 ## IR-88-85 — Hide-and-recover structurally zeros the live-winning geometry; identical folds rank the live-reported best 28× below a physics control (measured 2026-10-24)
 - **Observed (instrument validity):** on identical seeds-20/21 buffered whole-component folds with one evaluator (`gems57-pooled-hide-v2`): fold-fair physics control HOLDOUT-DTI overall `0.1085`; shipped H33 (user-reported live `0.2778`) `0.0039`; shipped PROVCREST `0.0`. Any raster enforcing >3 px distance from the *full* catalogue scores exactly 0 because withheld truth sits on catalogue traces, while the live truth (faults *not* in the catalogue) rewards distance from it (b2 collar paid +0.0070/+0.0108 in the lineage; receipt-fit density rises with distance band). The far subset (>10 px from visible; 10,791 positives) reduces but does not remove this inversion (H33 far `0.0032` vs control far `0.0691`).
 - **Decision impact:** HOLDOUT-DTI from this instrument is a *necessary discipline* (leakage, paired controls) but is not monotone in live merit across geometry classes. MDPS-88 was still judged by its frozen gates and failed them on their own terms (far paired CI crosses zero even after budget-matching; SGMC proxy also trails H33), so this irregularity does **not** rescue it. For the next lane, pre-register (before building) the evidence combination — far-primary holdout vs fold-fair controls of the same geometry class, SGMC off-catalogue proxy, and any receipt model — or every far-geometry candidate will be auto-rejected by construction.
+
+## IR-88-86 — 2026-10-24: literal uniqueness policy regression in shared v3
+
+The current user prompt does not authorize chance correction or dense-prior exemptions.
+MDPS-88 advertised uniqueness PASS although its own stored literal overlap was 1.0.
+Fresh hash-pinned byte audit proves all footprint cells are positive in the dense witness;
+any nonempty candidate is blocked before placement. Corrected shared v3 via an append-only
+compatibility wrapper (historical diagnostics retained), updated pins and regression tests,
+corrected MDPS cards/site, and added automatic proof/format audit to CI and Pages.
+No new geological experiment, raster, or organizer submission was made. Existing TIFF
+is research-only; no verified leaderboard improvement. See
+`docs/research/protocol-review-20261024.md` and `evidence/literal_protocol_audit_20261024.json`.
+
+Final replay also found `docs/status.json` manually described MDPS while its generator
+and canonical `current_release.json` describe PHASE. Regenerated status from its existing
+canonical producer so CI's reproducibility check is meaningful. The latest MDPS panel
+continues to use its explicitly named validation/run-card files; neither record permits
+submission. Historical root `run_card.json` still contains older promote/receipt claims;
+these are not current authorization and were not verified as organizer receipts here.
+
+### IR-88-86 integration pass
+
+Main advanced with concurrent IBL-88 while PR #79 was being checked. Preserved all named
+IBL cards, experiments and TIFF/ZIP artifacts and linked its research download on both
+pages, without its unsupported uniqueness exemption. The merge had overwritten the
+historical schema-specific root/alias cards with a different IBL schema, breaking ten
+existing tests and validator byte parity (some aliases also referenced nonexistent
+pre-rename filenames). Restored those historical aliases from the pre-integration commit;
+IBL remains available under its explicit `ibl88_run_card.json` names. No experimental
+results were discarded or reclassified as an organizer score. Re-ran verification after
+integration, not merely the pre-merge code.
