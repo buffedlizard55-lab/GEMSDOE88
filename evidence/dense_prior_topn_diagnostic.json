@@ -32,6 +32,26 @@
       "passes_0_70_like_for_like": true
     },
     {
+      "candidate": "gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "32483a32d782349adec89e25915d630d4770ec60553bfb2e8afee7243ec38b57",
+      "candidate_dots": 46457,
+      "witness_topN_threshold_value": 0.8257405757904053,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.05829,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.379405,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
+      "candidate_dots": 37654,
+      "witness_topN_threshold_value": 0.8438428044319153,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.000744,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.003134,
+      "passes_0_70_like_for_like": true
+    },
+    {
       "candidate": "gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
       "candidate_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
       "candidate_dots": 37654,
@@ -82,6 +102,16 @@
       "passes_0_70_like_for_like": true
     },
     {
+      "candidate": "gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6",
+      "candidate_dots": 33167,
+      "witness_topN_threshold_value": 0.8533560633659363,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.04405,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.287304,
+      "passes_0_70_like_for_like": true
+    },
+    {
       "candidate": "gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
       "candidate_sha256": "28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b",
       "candidate_dots": 37654,
@@ -109,6 +139,26 @@
       "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
       "forward_3px_overlap_vs_witness_topN": 0.016253,
       "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.1526,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "4cafa7758c3a5dfd54ac0ee9a801774efdb4193c85dd1467d659bea2aec82337",
+      "candidate_dots": 37654,
+      "witness_topN_threshold_value": 0.8438428044319153,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.03657,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.231715,
+      "passes_0_70_like_for_like": true
+    },
+    {
+      "candidate": "gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+      "candidate_sha256": "798e3c54ae318c24ceef01134b94f5d61d18839c59347b01bda0f82af66400c2",
+      "candidate_dots": 53876,
+      "witness_topN_threshold_value": 0.8120981454849243,
+      "literal_forward_3px_overlap_vs_all_positive_witness_cells": 1.0,
+      "forward_3px_overlap_vs_witness_topN": 0.05895,
+      "reverse_3px_overlap_witness_topN_within_3px_of_candidate": 0.423305,
       "passes_0_70_like_for_like": true
     },
     {
@@ -152,6 +202,6 @@
       "passes_0_70_like_for_like": true
     }
   ],
-  "count_passing_topN": 14,
-  "count_candidates": 14
+  "count_passing_topN": 19,
+  "count_candidates": 19
 }

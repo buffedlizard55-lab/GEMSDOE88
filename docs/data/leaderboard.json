@@ -1,10 +1,10 @@
 {
  "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-SNAPSHOT",
  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
- "checked_utc": "2026-10-24T07:19:00Z",
+ "checked_utc": "2026-10-24T21:15:00Z",
  "live": false,
  "stale_after_hours": 24,
- "note": "Official DrivenData public leaderboard read 2026-10-24 ~07:19 UTC (column: Best public DW-Tversky). Ranks 6-20 form a plateau at 0.327-0.342. Public rank can change at any time, is evaluated on Round 1 public labels, and does not authenticate any owner submission receipt.",
+ "note": "Official DrivenData public leaderboard fetched 2026-10-24 ~21:15 UTC (column: Best public DW-Tversky). Rank #1 = 0.4413 (xiaofanhu), Round-1 $10k top-5 cutoff (#5) = 0.3539 (No Fault of Our Own), ranks 6-20 form a plateau at 0.3273-0.3418, and rank #50 = 0.2818. Public rank can change at any time, is evaluated on Round 1 public labels, and does not authenticate any owner submission receipt.",
  "top_public_dti": 0.4413,
  "prompt_claimed_top": 0.3195,
  "prompt_claim_status": "STALE: superseded by the dated official public leaderboard snapshot (0.4413)",

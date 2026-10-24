@@ -5,6 +5,33 @@
   "weekly_slots_used": 0,
   "rows": [
     {
+      "label": "H88-QTSK (Exp 3 stratified; Exp 2 dual 0.1928)",
+      "record": "registry/qtsk88_run_card.json",
+      "holdout_dti": 0.151511,
+      "ci95": [
+        0.136125,
+        0.166066
+      ],
+      "withheld_positive_px": 22893,
+      "paired_delta": -0.038123,
+      "paired_delta_ci95": [
+        -0.047875,
+        -0.027997
+      ],
+      "note": "58ch QTS cover-step + 10m chi knickwave; share_gt25=46.4%; 222 pre-merge PASS (0.5644), post-merge 0.7245 vs GTHC-88 + literal 1.0",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "tif": "docs/downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "798e3c54ae318c24ceef01134b94f5d61d18839c59347b01bda0f82af66400c2",
+      "zip": "docs/downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.zip",
+      "dots": 53876,
+      "literal_overlap_vs_17GEMSDOE": 1.0,
+      "topN_like_for_like_overlap": 0.05895,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70, overall holdout 0.1515 < ADHR 0.1896, and post-merge 0.7245 > 0.70 vs concurrent GTHC-88"
+    },
+    {
       "label": "PHASE-88 (current release)",
       "record": "registry/phase88_run_card.json",
       "holdout_dti": 0.05306174540296061,

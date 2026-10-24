@@ -1,4 +1,10 @@
-# Latest addendum (2026-10-24): MDPS-88 — DO NOT SUBMIT, no slot
+# Latest addendum (2026-10-24): H88-QTSK — DO NOT SUBMIT, 0 slots spent
+
+`H88-QTSK` (`docs/downloads/gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif`, SHA-256 `798e3c54ae318c24…`, `53,876` binary dots) passes portal format/LZW sample parity, 58/58 leakage canaries (`<= 0.5781`), blind-basin fingerprint (`share_gt25 = 46.40% >= 35%`, `share_le2 = 0.00%`), pre-placement surface `|ρ| = 0.2831 <= 0.90` across all 228 rasters, and 222-raster pre-merge like-for-like uniqueness (`0.5644 <= 0.70`). In paired 8-fold holdout (`gems57-pooled-hide-v2`, `n = 22,893`), `Exp 2 (QTSK-DUAL)` reached `0.192759` (`+21.3%` blind `>25 px` DTI `0.079137`, stopped on `0.7995 > 0.70` vs `MRR`), while emitted `Exp 3 (QTSK-STRAT)` scored `0.151511` (`< ADHR 0.189634`), recorded `0.7245 > 0.70` post-merge 3-px overlap vs concurrent `GTHC-88` (`IR-88-103`), and hit literal `1.0000` vs `17GEMSDOE`. **0 weekly slots spent; human selector required (`validate_qtsk88.py --require-submit` exits 2).**
+
+---
+
+# Earlier addendum (2026-10-24): MDPS-88 — DO NOT SUBMIT, no slot
 
 MDPS-88 (`gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif`, sha256 `bd64000f…35cd`) is unique and format-valid but **negative** under its frozen gates: HOLDOUT-DTI far paired Δ `+0.0036 [−0.0060,+0.0128]` vs fold-fair control (crosses 0), far `0.0727` < stored ADHR far `0.11478`, overall below control (evaluator `gems57-pooled-hide-v2`; 22,893 withheld, 10,791 far). Budget: E1 + disclosed budget-matched E2 only; E3 packaging. **0 slots spent or recommended** (same for PHASE-88 below). Selector note (IR-88-85): identical folds score shipped H33 at 0.0039 and any >3 px full-catalogue-collar raster at exactly 0 — pre-register the evidence-combination rule before the next lane.
 

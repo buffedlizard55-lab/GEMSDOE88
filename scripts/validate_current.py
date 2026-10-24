@@ -169,6 +169,23 @@ def fabric_release_report(root=ROOT):
             or comparisons['final_dots']['worst_dot_overlap'] <= .70):
             raise ValueError('new KTH research TIFF has no verified negative audit')
         expected_hashes.add(sha(p))
+    for neg_rec, path_fn, sha_fn in (
+        ('phase88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256']),
+        ('mdps88_run_card.json', lambda d: d['raster']['file'], lambda d: d['raster_sha256']),
+        ('ibl88_run_card.json', lambda d: d['submission']['file'], lambda d: d['submission']['sha256']),
+        ('qtsk88_run_card.json', lambda d: d['raster']['tif_path'], lambda d: d['raster']['sha256']),
+    ):
+        np_card = root / 'registry' / neg_rec
+        if np_card.is_file():
+            nd = json.loads(np_card.read_text())
+            np_tif = (root / path_fn(nd)).resolve()
+            if (not np_tif.is_relative_to((root / 'docs/downloads').resolve())
+                or nd.get('verdict') != 'negative'
+                or nd.get('ok_to_submit') is not False
+                or 'DO-NOT-SUBMIT' not in np_tif.name
+                or sha(np_tif) != sha_fn(nd)):
+                raise ValueError(f'{neg_rec} research TIFF has no verified negative audit')
+            expected_hashes.add(sha(np_tif))
     if observed_hashes != expected_hashes:
         raise ValueError('accessible registry changed since postmerge audit; recheck all prior rasters')
     index = dict(complete_accessible_scan=True, errors=[], rasters=[])
@@ -177,6 +194,10 @@ def fabric_release_report(root=ROOT):
         file = Path(r['file'])
         if not file.is_absolute():
             file = root / file
+        if not file.is_file():
+            alt = file.with_name(file.stem + '-DO-NOT-SUBMIT' + file.suffix)
+            if alt.is_file():
+                file = alt
         if not file.is_relative_to(root) or sha(file) != r['sha256']:
             raise ValueError('registry file moved outside repository or SHA256 changed')
         index['rasters'].append(dict(repo_first=r['repo'], sources=[r['submission']],
