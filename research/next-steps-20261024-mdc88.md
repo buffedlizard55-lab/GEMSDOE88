@@ -12,7 +12,7 @@
    `registry/kdmc_gate.json` already says `ok_to_submit: true`.
 3. **Paste the first organizer receipt** into `ledger/submissions.csv`. The ledger has 66 rows and
    **0** receipts; without one, no number in this repository can be calibrated to the leaderboard.
-4. **Reconstruct the two missing external rasters** (IR-88-72) or delete the code paths that need
+4. **Reconstruct the two missing external rasters** (IR-88-75) or delete the code paths that need
    them: `acquisition_block_id_100m.tif` (from USGS GeoDAWN survey block polygons) and
    `tiger_road_distance_m.tif` (from US Census TIGER/Line roads). Until then
    `src/gems88/features.py` is dead code and every `H88-ADHR` number is unreproducible.
@@ -61,7 +61,7 @@ Conflating the last two is what kept every candidate in this repository marked D
 
 Two consequences for the next session:
 
-1. **The slot bar itself is unverifiable.** `0.18789` is H88-ADHR's stored number, and IR-88-72 shows
+1. **The slot bar itself is unverifiable.** `0.18789` is H88-ADHR's stored number, and IR-88-75 shows
    that stack cannot be rebuilt on a clean checkout. It is applied as written rather than silently
    relaxed, but it should be re-derived from a reproducible lane as soon as one exists. H-QTS on top
    of MDC-88 is the cheapest route to that.
@@ -69,3 +69,12 @@ Two consequences for the next session:
    free (set `--collar-px 2`); `share_gt25 >= 0.35` is the real constraint and the primary reaches
    only `0.222`. That is a statement about where the density model puts its mass, so it is a model
    problem — again H-QTS, whose whole premise is buried structure far from mapped traces.
+
+### Why the MDC-88 raster is NOT added to `registry/inventory.json`
+
+`scripts/validate_release.py` asserts that the inventory's hash set is byte-identical to a frozen
+pre-placement surface audit, so appending to it invalidates that audit
+(`test_project.py::test_real_card_stays_blocked`). It is unnecessary anyway:
+`src/gems88/registry_paths.py::registry_list` globs `docs/downloads/*.tif`, so the published
+candidate is already visible to every future gate-v3 uniqueness check (it was counted among the 33
+rasters in this session's own run). The collar-3 research variant stays out of both, by design.

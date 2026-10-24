@@ -28,7 +28,7 @@ from gems88 import gate, registry_paths                      # noqa: E402
 from gems57 import grid as grid_mod                          # noqa: E402
 
 BAR_OVERALL = 0.18789   # stored H88-ADHR pooled HOLDOUT-DTI (gems57-pooled-hide-v2, n=22,893)
-BAR_NOTE = ("The bar is H88-ADHR's stored 0.18789. IR-88-72 shows that stack cannot be rebuilt on a "
+BAR_NOTE = ("The bar is H88-ADHR's stored 0.18789. IR-88-75 shows that stack cannot be rebuilt on a "
             "clean checkout (it needs acquisition_block_id_100m.tif and tiger_road_distance_m.tif, "
             "which exist in no pinned source), so the bar itself is currently unverifiable. It is "
             "applied as written rather than silently overridden, and the discrepancy is flagged.")

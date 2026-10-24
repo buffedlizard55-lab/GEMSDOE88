@@ -257,7 +257,7 @@ this repository marked DO&nbsp;NOT&nbsp;SUBMIT. They are now separate machine-de
 <code>HOLDOUT-DTI 0.18789</code>, above this candidate's
 <code>{fnum(run_card['holdout']['pooled_dti'])}</code>. The bar is applied as written rather than
 silently overridden &mdash; but the H88-ADHR feature stack <strong>cannot be rebuilt on a clean
-checkout</strong> (IR-88-72), so the bar itself is currently unverifiable.</div>
+checkout</strong> (IR-88-75), so the bar itself is currently unverifiable.</div>
 
 <div class="dlpanel">
   <h2>Download the submission file</h2>
@@ -329,7 +329,7 @@ registry reference <code>{e(run_card['controls']['registry_reference_arm'])}</co
 <section><div class="wrap">
 <div class="kicker">Automatic uniqueness &middot; every pinned prior raster</div>
 <h2>Chance-corrected overlap, so a space-filling prior cannot veto everything</h2>
-<div class="warnbox"><strong>Fixed this session (IR-88-73).</strong>
+<div class="warnbox"><strong>Fixed this session (IR-88-76).</strong>
 One prior in the inventory (<code>17GEMSDOE</code>) is positive on every cell of the footprint, so its
 3&nbsp;px halo covers 100% of the allowed domain. The literal "70% of my dots within 3 px of theirs"
 test therefore returns <code>1.0000</code> for <em>every possible candidate</em>, including one built from

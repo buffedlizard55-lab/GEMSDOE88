@@ -128,7 +128,7 @@ remaining headroom is in the density model, not in the allocator.
    density would score far above `0.14885`. **Hypothesis 1 (H-QTS) is the recommended next
    experiment** because it needs no new data, no new restore entry, and attacks the one population
    the competition explicitly describes (faults with no surface expression).
-3. Do **not** re-open spacing. `IR-88-74` shows the sign is negative on the blocked holdout, and
+3. Do **not** re-open spacing. `IR-88-77` shows the sign is negative on the blocked holdout, and
    `IR-88-44` already closed it on the blind proxy.
 4. Any lane that imposes a `d_catalogue >= 3 px` collar scores exactly `0.00000` on the hide-and-
    recover instrument. Report collar decisions on the off-catalogue proxy **and** disclose the

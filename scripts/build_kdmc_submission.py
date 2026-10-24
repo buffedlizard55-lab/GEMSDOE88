@@ -14,7 +14,7 @@ Pipeline
 5. Fail-closed serialisation through the **unmodified** shared writer
    ``vendor/gems57/submission_writer.py`` (all-finite float32 in [0,1], zeros
    outside the footprint, zero dots on mapped faults) + single-TIFF ZIP.
-6. Registry uniqueness with the chance-corrected gate (IR-88-73) and a machine
+6. Registry uniqueness with the chance-corrected gate (IR-88-76) and a machine
    verdict written to ``registry/kdmc_gate.json`` and ``docs/status.json``.
 """
 from __future__ import annotations

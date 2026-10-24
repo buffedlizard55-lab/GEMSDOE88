@@ -125,7 +125,7 @@ def release_report(root=ROOT):
         rec = root / 'registry' / record
         if rec.is_file():
             expected_hashes.add(json.loads(rec.read_text())['sha256'])
-    # MDC-88 (PR #61, IR-88-72/73/74) stores its gate-v3 verdict nested under 'gate_v3'
+    # MDC-88 (PR #61, IR-88-75/73/74) stores its gate-v3 verdict nested under 'gate_v3'
     # with the file hash in 'candidate'. Same review standard, different record shape.
     for record in ('kdmc_gate.json', 'kdmc_gate_collar3.json'):
         rec = root / 'registry' / record
@@ -136,7 +136,7 @@ def release_report(root=ROOT):
             continue
         # Only whitelist a hash that is actually published in a scanned directory; the
         # collar-3 research variant lives in docs/research-variants/ and is intentionally
-        # outside the accessible registry (same lane as the primary, IR-88-73/74).
+        # outside the accessible registry (same lane as the primary, IR-88-76/74).
         if (root / 'docs' / 'downloads' / Path(data['candidate']['tif']).name).is_file():
             expected_hashes.add(data['candidate']['sha256'])
     if observed_hashes != expected_hashes:

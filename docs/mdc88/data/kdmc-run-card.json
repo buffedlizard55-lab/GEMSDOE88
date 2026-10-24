@@ -1,6 +1,6 @@
 {
   "schema": "gems88.run_card.v1",
-  "generated_utc": "2026-10-24T08:06:39Z",
+  "generated_utc": "2026-10-24T08:23:27Z",
   "lane": "MDC-88 (Marginal-Density Concentration), formerly proposed as KDMC-88",
   "hypothesis_as_preregistered": "KDMC-88: under alpha=0.2/beta=0.8 DTI with a 300 m triangular kernel the optimal binary field is a kernel-disjoint packing extended to every cell clearing the exact marginal bar, not a fixed ~37.6k-dot field at ~3 px spacing.",
   "hypothesis_outcome": "FALSIFIED",
@@ -391,7 +391,7 @@
     "caveat": "PROXY, not a score. The repository's own no-evidence floor is |delta| >= 0.01; read any smaller difference as a tie."
   },
   "ledger": {
-    "rows": 69,
+    "rows": 71,
     "receipts": 0,
     "note": "0 ORGANIZER-CONFIRMED receipts: no number in this repository is a score."
   },
@@ -400,7 +400,7 @@
     "The holdout hides whole MAPPED fault components; the competition target is UNMAPPED faults. The holdout is the best available unbiased instrument, not the real task.",
     "drivendata.org is unreachable from the build sandbox, so the public leaderboard value and the remaining weekly-slot balance cannot be verified here and are carried as UNVERIFIED human-supplied inputs.",
     "metric.py's claim that the organizer masks mapped catalogue faults out of scoring traces to a forum thread that cannot be re-read from here; the candidate is built to be correct either way by emitting zero mass on mapped faults.",
-    "src/gems88/features.py cannot run on a clean checkout (IR-88-72): it requires acquisition_block_id_100m.tif and tiger_road_distance_m.tif, which exist in no pinned source. This lane therefore uses its own self-contained feature builder.",
+    "src/gems88/features.py cannot run on a clean checkout (IR-88-75): it requires acquisition_block_id_100m.tif and tiger_road_distance_m.tif, which exist in no pinned source. This lane therefore uses its own self-contained feature builder.",
     "Two cores and 3 GB of RAM are available, so model capacity (250-iteration histogram gradient boosting) and the number of hide draws are compute-limited, not design-limited.",
     "The blocked holdout CANNOT rank the catalogue-collar choice: every collar arm scores exactly 0.00000 there because the holdout's truth is withheld catalogue geometry. That question is answered only by the off-catalogue SGMC proxy, which is a PROXY."
   ],
@@ -489,7 +489,7 @@
       "model_total_density_mass": 1265851.25
     },
     "uniqueness_chance_corrected": {
-      "binding_rule": "chance-corrected-excess-overlap + rank-correlation (IR-88-73)",
+      "binding_rule": "chance-corrected-excess-overlap + rank-correlation (IR-88-76)",
       "rasters_checked": 21,
       "worst_excess_overlap": 0.4202279291926346,
       "worst_abs_spearman": 0.10305192311603943,

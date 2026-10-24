@@ -1,0 +1,27 @@
+{
+  "schema": "gems88.experiment-ledger-entry.v1",
+  "id": "MRR-BPR-88-20261024",
+  "parent": "H88-ADHR recomputed paired control",
+  "lane": "H88-MRR-BPR",
+  "candidate_experiments_run": 1,
+  "status": "BUILT-NEGATIVE",
+  "predicted_change": "MODEL:+0.006",
+  "predicted_range": [-0.012, 0.024],
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "candidate": 0.18525582109578861,
+    "ci95": [0.1715190223372919, 0.19996477117347985],
+    "incumbent": 0.18963385584087347,
+    "paired_delta": -0.004378034745084858,
+    "paired_delta_ci95": [-0.007902211641196701, -0.000623090528560107]
+  },
+  "artifact": "docs/downloads/gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif",
+  "raster_sha256": "b9cb36519c2ee91c08f587d3c9c006623d8e2505ece0416fdf263b50e42deb7e",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "recommendation": "DO NOT SUBMIT: paired holdout is significantly negative and the literal 17GEMSDOE overlap gate fires."
+}

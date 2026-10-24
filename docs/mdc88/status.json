@@ -1,6 +1,6 @@
 {
   "schema": "gems88.status.v3",
-  "generated_utc": "2026-10-24T08:16:56Z",
+  "generated_utc": "2026-10-24T08:23:27Z",
   "decided_by": "scripts/build_kdmc_submission.py (no human inspection)",
   "ok_to_download": true,
   "ok_to_submit": true,
@@ -12,8 +12,8 @@
   },
   "gate_v3": {
     "policy": "gems88-gate-v3",
-    "generated_utc": "2026-10-24T08:05:11Z",
-    "registry_rasters_checked": 33,
+    "generated_utc": "2026-10-24T08:23:06Z",
+    "registry_rasters_checked": 34,
     "portal_ok": true,
     "portal_problems": [],
     "unique_like_for_like": true,
@@ -25,7 +25,7 @@
     "holdout_dti": 0.1488495052282044,
     "holdout_bar": 0.18789,
     "holdout_beats_bar": false,
-    "holdout_bar_caveat": "The bar is H88-ADHR's stored 0.18789. IR-88-72 shows that stack cannot be rebuilt on a clean checkout (it needs acquisition_block_id_100m.tif and tiger_road_distance_m.tif, which exist in no pinned source), so the bar itself is currently unverifiable. It is applied as written rather than silently overridden, and the discrepancy is flagged.",
+    "holdout_bar_caveat": "The bar is H88-ADHR's stored 0.18789. IR-88-75 shows that stack cannot be rebuilt on a clean checkout (it needs acquisition_block_id_100m.tif and tiger_road_distance_m.tif, which exist in no pinned source), so the bar itself is currently unverifiable. It is applied as written rather than silently overridden, and the discrepancy is flagged.",
     "fingerprint": {
       "n": 51064,
       "median_d_cat_px": 7.615773105863909,
