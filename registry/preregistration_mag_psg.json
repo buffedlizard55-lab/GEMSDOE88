@@ -1,0 +1,81 @@
+{
+  "schema": "gems88.preregistration.v2",
+  "date_utc": "2026-10-24",
+  "frozen_before_new_experiment": true,
+  "lane": "MAG-PSG",
+  "lane_title": "Magnetic Pseudogravity Tilt Phase Symmetry for Deep Basement Fault Discovery",
+  "selected": "MAG-PSG",
+  "ranking": [
+    {
+      "rank": 1,
+      "id": "MAG-PSG",
+      "expected_dti_improvement": "Medium-High predicted; low-pass pseudogravity emphasizes deep vs shallow volcanic noise",
+      "cost": "Low; uses only provided 19-band stack, no external download",
+      "layers": "training_features B02 rtp, B13 iso_grav_anom, B15 depth_to_base_surf, B04 geod_2ndinv, B18 iso_grav_anom_hg",
+      "physical_signature": "Pseudogravity F/psg=F(rtp)/|k| via FFT (1/|k| integrator) + tilt angle atan(VDR/THDR) zero-contours + RTP demagnetization trough and THDR ridge, depth-stratified",
+      "off_catalogue_rationale": "Deep basement steps under 0.5-2 km alluvium have no LiDAR scarp but persist in long-wavelength pseudogravity; shallow volcanic short-λ noise suppressed by 1/|k|",
+      "non_fault_mimic": "Shallow Miocene volcanic caldera rims, reversed basalt polarity flows, and GeoDAWN 400m flight-line leveling seams",
+      "difference_from_repo": "No prior uses frequency-domain pseudogravity; MRR used spatial block regression, CGO raw gradients, KTH K/Th ratios"
+    },
+    {
+      "rank": 2,
+      "id": "GGL-BH",
+      "expected_dti_improvement": "High; basin horsts have density contrast even when buried",
+      "cost": "Low; provided gravity bands only",
+      "layers": "iso_grav (B13), iso_grav_hg (B18), iso_grav_slope (B05), det_elev (B12), depth_to_base (B15)",
+      "physical_signature": "Horizontal gradient magnitude |∇ iso_grav| maxima + local relief coincidence (buried horst edge) with multi-scale Hessian ridge",
+      "off_catalogue_rationale": "Horst-graben density contrast visible in gravity even if buried by alluvium where USGS misses blind intrabasin steps",
+      "non_fault_mimic": "Closed playa evaporite margins, perched saline aquifers, Paleogene pluton contacts",
+      "difference_from_repo": "Uses gravity HGM not magnetic MRR/tilt; conditions on relief decile"
+    },
+    {
+      "rank": 3,
+      "id": "SEIS-RAD",
+      "expected_dti_improvement": "Very High; microquakes pinpoint active slip + K washout confirms fluid",
+      "cost": "Medium; requires USGS ComCat via fetch_optional_external_data.sh (free official FDSN)",
+      "layers": "deq_n100a15 (B10), ieq_n100a15 (B16), geodawn_rad_u8 K (external), geodawn_extensions ThK, topography",
+      "physical_signature": "Microseismic density peaks co-located within 300m of K-depletion trough (illitization)",
+      "off_catalogue_rationale": "Active blind faults generate micro-earthquakes below surface-mapping threshold; K washout marks hydrothermal flow",
+      "non_fault_mimic": "Felsic tuff K-high, U roll-front placers, quarry blasts",
+      "difference_from_repo": "First to couple ComCat seismicity directly with radiometric alteration"
+    },
+    {
+      "rank": 4,
+      "id": "NDVI-Edge",
+      "expected_dti_improvement": "Low-Medium; vegetation contrast subtle",
+      "cost": "High; Sentinel-2 download, cloud mask",
+      "layers": "Sentinel-2 NDVI (external), det_elev_slope (B19), curvature",
+      "physical_signature": "Sharp linear NDVI gradient aligned with topographic curvature break (groundwater upwelling)",
+      "off_catalogue_rationale": "Fault-plane groundwater pooling creates linear oasis in arid Great Basin",
+      "non_fault_mimic": "Irrigation canals, riparian zones, roads, wildfire scars",
+      "difference_from_repo": "Ecological proxy vs pure geophysical"
+    },
+    {
+      "rank": 5,
+      "id": "TIR-SI",
+      "expected_dti_improvement": "Medium; thermal leak at intersections",
+      "cost": "High; Landsat/ASTER TIR atmospheric correction",
+      "layers": "Landsat TIR night LST (external) + strike junction density",
+      "physical_signature": "Localized emissivity-corrected night temperature anomaly at step-overs/intersections",
+      "off_catalogue_rationale": "Geothermal upflow heats surface +1-3K even without vent",
+      "non_fault_mimic": "Solar aspect, albedo, wildfire, urban heat island",
+      "difference_from_repo": "Direct thermal proxy + kinematics vs magnetics only"
+    }
+  ],
+  "experiment_limit": 1,
+  "seeds": [20, 21],
+  "n_dots": 37654,
+  "preplacement_max_abs_spearman": 0.90,
+  "postplacement_max_forward_overlap_3px": 0.70,
+  "canary_max_symmetric_auc": 0.90,
+  "holdout": "vendor/gems57/evaluate_holdout.py; buffered whole-component hide-and-recover with pixel-exact visible masking; pooled alpha .2 beta .8 300m triangle, paired 20km block-bootstrap if incumbent block terms recoverable",
+  "promotion_rule": "Beat same-split incumbent HOLDOUT-DTI with positive paired 95% CI and pass uniqueness (sparse ≤0.70, |ρ|≤0.90); no organizer slot consumed here",
+  "official_science_and_rules": [
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "https://gdr.openei.org/submissions/1391",
+    "https://epsg.io/32611"
+  ],
+  "data_caveat": "All layers verified via SHA-pinned training_features.tif (4371c82e…) and geodawn_rad_u8 (c22420f7…); external Sentinel-2/Landsat not used in this rank-1 run. No private fork of vendor template."
+}
