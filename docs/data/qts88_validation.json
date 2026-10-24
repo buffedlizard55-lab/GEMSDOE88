@@ -1,0 +1,68 @@
+{
+  "schema": "gems88.qts88.gate.v1",
+  "policy": "gems88-gate-v3",
+  "generated_utc": "2026-10-24T19:20:09Z",
+  "candidate": {
+    "name": "GEMSDOE88-QTS88-B5D178B3",
+    "note": "QTS88 cover-thickness x slope decoupling; 37654 dots; HOLDOUT-DTI 0.0982/0.0949; DO NOT SUBMIT",
+    "tif": "docs/downloads/gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.zip",
+    "sha256": "4cafa7758c3a5dfd54ac0ee9a801774efdb4193c85dd1467d659bea2aec82337",
+    "zip_sha256": "cfd24498c8ca3e7e9247ce76b1097f434893aa9210b88401c5f7bed895e1443e",
+    "emitted_positive_pixels": 37654
+  },
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "portal_and_like_for_like_unique_ok": true,
+  "recommended_for_weekly_slot": false,
+  "verdict": "negative",
+  "gate_v3": {
+    "policy": "gems88-gate-v3",
+    "portal_ok": true,
+    "unique_like_for_like": true,
+    "like_for_like_blockers": [],
+    "worst_like_for_like_overlap_3px": {
+      "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+      "value": 0.5373399904392627
+    },
+    "worst_abs_rho": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 0.5049289806675157
+    },
+    "unique_literal": false,
+    "literal_blockers": [
+      "17GEMSDOE:dense_17gemdoe.tif",
+      "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+    ],
+    "fingerprint": {
+      "n": 37654,
+      "median_d_cat_px": 18.0,
+      "share_le2": 0.0,
+      "share_gt10": 0.6806182610081266,
+      "share_gt25": 0.40245392255802837
+    },
+    "fingerprint_screen_pass": true,
+    "canary_passed": true,
+    "max_canary_symmetric_auc": 0.564085,
+    "holdout_dti_exp1_crest": 0.052763876076675785,
+    "holdout_dti_exp2_pu": 0.09820971062427511,
+    "holdout_dti_exp3_hybrid": 0.094850566455273,
+    "holdout_dti_control_raw19": 0.09186948966941819,
+    "paired_qts_lift_over_raw19": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.006340220954856923,
+      "ci95": [
+        0.0015735277790034246,
+        0.011511087957019175
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "holdout_bar": 0.187888,
+    "holdout_beats_bar": false,
+    "slot_blocking_reasons": [
+      "HOLDOUT: zero-catalogue QTS-88 (EXP2 0.09821, EXP3 0.09485) beats 19-band raw control (+0.00634) and CGO-88 (0.09042), but does not beat stored catalogue-adjacent H88-ADHR bar (0.18789)",
+      "LITERAL_WITNESS: space-filling 17GEMSDOE:dense_17gemdoe.tif covers 100% of footprint (literal overlap = 1.0000 > 0.70)"
+    ]
+  }
+}

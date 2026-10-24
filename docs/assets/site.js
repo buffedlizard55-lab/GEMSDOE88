@@ -26,14 +26,27 @@
   const banner = document.querySelector('[data-card-status]');
   if (banner) {
     try {
-      const response = await fetch('data/kth88_validation.json', { cache: 'no-store' });
-      if (!response.ok) throw new Error('latest run validation unavailable');
+      const response = await fetch('data/literal_protocol_audit.json', { cache: 'no-store' });
+      const currentResponse = await fetch('data/current_release.json', { cache: 'no-store' });
+      const cardResponse = await fetch('data/mvrd_run_card.json', { cache: 'no-store' });
+      const tdklResponse = await fetch('data/tdkl88_run_card.json', { cache: 'no-store' });
+      if (!response.ok || !currentResponse.ok || !cardResponse.ok || !tdklResponse.ok) {
+        throw new Error('latest run validation unavailable');
+      }
       const data = await response.json();
-      // Fail closed. A locally valid research artifact must never be presented
-      // as slot-cleared or organizer-accepted, even if the old status.json is green.
-      banner.textContent = data.ok_to_download === true && data.ok_to_submit === false &&
-          data.local_format_audit?.ok === true && data.tif_and_single_member_zip_validated === true
-        ? 'KTH-88 · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT · binding registry duplicate'
+      const current = await currentResponse.json();
+      const card = await cardResponse.json();
+      const tdkl = await tdklResponse.json();
+      // Fail closed. The literal audit proves the universal dense-witness stop;
+      // the current feed and MVRD/TDKL cards independently bind the displayed bytes.
+      const consistent = data.ok_to_download_for_research === true && data.ok_to_submit === false &&
+          data.decision === 'DUPLICATE_STOP' && data.validator_output?.ok === true &&
+          current.candidate === 'H88-MVRD' && current.ok_to_download === true &&
+          current.ok_to_submit === false && current.literal_duplicate === true &&
+          current.file_sha256 === card.raster_sha256 && card.ok_to_submit === false &&
+          tdkl.ok_to_download === true && tdkl.ok_to_submit === false;
+      banner.textContent = consistent
+        ? 'H88-TDKL & H88-MVRD · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated decision)'
         : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
     } catch (_) {
       banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';

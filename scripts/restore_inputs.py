@@ -362,6 +362,9 @@ def restore_group(label: str, repo: str, commit: str, items: list[list[str] | tu
     if not missing:
         print(f"PIN OK  {label} ({len(items)} files)")
         return
+    # Public helpers also call restore_group directly on fresh checkouts.
+    # Do not rely on main() to create the ignored data directory first.
+    DATA.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(dir=DATA) as tmp:
         co = sparse_fetch(repo, commit, [src for src, _, _ in missing], Path(tmp))
         for src, dst, want in missing:
@@ -409,10 +412,17 @@ def main() -> None:
         dst = cache_data / fname
         if src.is_file() and (not dst.is_file() or sha256(dst) != sha256(src)):
             shutil.copy2(src, dst)
-    if not args.validation:
+    if args.validation:
+        print(
+            "SCOPE   validation-tier only (bridge grid + core registry); "
+            "run `python scripts/restore_inputs.py && python scripts/restore_siblings.py` "
+            "for full 19-band training + external + 190-sibling uniqueness stack"
+        )
+    else:
         restore_features()
         label, repo, commit, items = EXTERNAL_GROUP
         restore_group(label, repo, commit, items)
+        print("SCOPE   full-training + external inputs verified")
 
 
 if __name__ == "__main__":

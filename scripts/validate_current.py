@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Current-release summary and fail-closed gates.
 
-The current summary follows KTH-88, the latest run card; its TIFF/ZIP is
-independently reopened by validate_kth88.py. The full historical fabric audit
+The current summary follows PHASE-88, the latest run card; its TIFF/ZIP is
+independently reopened by validate_phase88.py. The full historical fabric audit
 remains available as fabric_release_report(). A scientific or uniqueness
 failure keeps `ok_to_submit` false; formatting never approves a weekly slot.
 Run `--require-submit` to demand a green current gate (exit 2 today). No
@@ -122,13 +122,13 @@ def fabric_release_report(root=ROOT):
     expected_hashes = {r['sha256'] for r in rows} | {sha(tif), later['new_prior_sha256']}
     # Rasters that carry a gems88-gate-v3 verdict record (registry/*gate_v3.json, registry/gate_verdict.json) were reviewed against the
     # 216+-raster v3 registry by the session of 2026-10-24 (IR-88-59..71); any OTHER unreviewed TIFF still fails closed.
-    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json'):
+    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json', 'mvrd_gate_v3.json', 'gthc88_gate_v3.json'):
         rec = root / 'registry' / record
         if rec.is_file():
             expected_hashes.add(json.loads(rec.read_text())['sha256'])
     # MDC-88 (PR #61, IR-88-75/73/74) stores its gate-v3 verdict nested under 'gate_v3'
     # with the file hash in 'candidate'. Same review standard, different record shape.
-    for record in ('kdmc_gate.json', 'kdmc_gate_collar3.json'):
+    for record in ('kdmc_gate.json', 'kdmc_gate_collar3.json', 'qts88_gate.json'):
         rec = root / 'registry' / record
         if not rec.is_file():
             continue
@@ -169,6 +169,23 @@ def fabric_release_report(root=ROOT):
             or comparisons['final_dots']['worst_dot_overlap'] <= .70):
             raise ValueError('new KTH research TIFF has no verified negative audit')
         expected_hashes.add(sha(p))
+    for neg_rec, path_fn, sha_fn in (
+        ('phase88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256']),
+        ('mdps88_run_card.json', lambda d: d['raster']['file'], lambda d: d['raster_sha256']),
+        ('ibl88_run_card.json', lambda d: d['submission']['file'], lambda d: d['submission']['sha256']),
+        ('qtsk88_run_card.json', lambda d: d['raster']['tif_path'], lambda d: d['raster']['sha256']),
+    ):
+        np_card = root / 'registry' / neg_rec
+        if np_card.is_file():
+            nd = json.loads(np_card.read_text())
+            np_tif = (root / path_fn(nd)).resolve()
+            if (not np_tif.is_relative_to((root / 'docs/downloads').resolve())
+                or nd.get('verdict') != 'negative'
+                or nd.get('ok_to_submit') is not False
+                or 'DO-NOT-SUBMIT' not in np_tif.name
+                or sha(np_tif) != sha_fn(nd)):
+                raise ValueError(f'{neg_rec} research TIFF has no verified negative audit')
+            expected_hashes.add(sha(np_tif))
     if observed_hashes != expected_hashes:
         raise ValueError('accessible registry changed since postmerge audit; recheck all prior rasters')
     index = dict(complete_accessible_scan=True, errors=[], rasters=[])
@@ -177,6 +194,10 @@ def fabric_release_report(root=ROOT):
         file = Path(r['file'])
         if not file.is_absolute():
             file = root / file
+        if not file.is_file():
+            alt = file.with_name(file.stem + '-DO-NOT-SUBMIT' + file.suffix)
+            if alt.is_file():
+                file = alt
         if not file.is_relative_to(root) or sha(file) != r['sha256']:
             raise ValueError('registry file moved outside repository or SHA256 changed')
         index['rasters'].append(dict(repo_first=r['repo'], sources=[r['submission']],
@@ -231,46 +252,45 @@ def fabric_release_report(root=ROOT):
 
 
 
-def release_report(root=ROOT):
-    """Return the current KTH-88 release summary, not the archived fabric run."""
+def phase_release_report(root=ROOT):
+    """Reopen the current PHASE-88 TIFF/ZIP and independently remeasure witness."""
+    from scripts.validate_phase88 import inspect
     root = Path(root)
-    card = json.loads((root / 'registry/kth88_run_card.json').read_text())
-    validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
-    tif = root / card['download']
-    archive = tif.with_suffix('.zip')
-    if (card != json.loads((root / 'docs/data/kth88_run_card.json').read_text()) or
-        card['verdict'] != 'negative' or card['ok_to_submit'] is not False or
-        not tif.is_file() or not archive.is_file()):
-        raise ValueError('KTH-88 current run card or research artifact is missing/inconsistent')
-    tif_hash, zip_hash = sha(tif), sha(archive)
-    if (tif_hash != card['raster_sha256'] or validation.get('tif_sha256') != tif_hash or
-        validation.get('zip_sha256') != zip_hash or validation.get('ok_to_submit') is not False):
-        raise ValueError('KTH-88 current-release hashes or negative gate do not agree')
-    holdout = card['holdout_dti']
-    prior = card['incumbent_holdout_dti']
+    card = json.loads((root / 'registry/phase88_run_card.json').read_text())
+    validation = inspect(root)
+    if validation != json.loads((root / 'docs/data/phase88_validation.json').read_text()):
+        raise ValueError('current PHASE-88 public audit differs from independent measurement')
+    h = card['holdout_dti']; inc = card['incumbent_holdout_dti']
     comparison = card['correlation_overlap_vs_registry']
+    tif = root / card['download']
     return dict(schema='gems88.current-release.v1', file=card['download'],
-                file_sha256=tif_hash, zip_sha256=zip_hash,
-                format_valid=bool(validation.get('local_format_audit', {}).get('ok')),
-                no_nan_inside=bool(validation.get('local_format_audit', {}).get('no_nan_inside')),
-                all_values_in_0_1=bool(validation.get('local_format_audit', {}).get('range_0_1')),
-                crs_shape_transform_match=all(validation.get('local_format_audit', {}).get(k) for k in
-                                               ('crs_match', 'shape_match', 'transform_match')),
-                zip_one_exact_tif=bool(validation.get('tif_and_single_member_zip_validated')),
+                file_sha256=sha(tif), zip_sha256=validation['zip_sha256'],
+                format_valid=validation['local_format_audit']['ok'],
+                no_nan_inside=validation['local_format_audit']['no_nan_inside'],
+                all_values_in_0_1=validation['local_format_audit']['range_0_1'],
+                crs_shape_transform_match=all(validation['local_format_audit'][k] for k in
+                    ('crs_match','shape_match','transform_match')),
+                zip_one_exact_tif=validation['tif_and_single_member_zip_validated'],
                 positive_pixels=37654,
                 canary_max_auc=max(v['symmetric_auc'] for v in card['leakage_canary'].values()),
-                holdout_dti=holdout['dti'], holdout_ci95=holdout['ci95'],
-                holdout_evaluator=holdout['evaluator_version'],
-                withheld_positive_pixels=holdout['withheld_positive_pixels'],
-                incumbent_best_dti=prior['dti'],
-                literal_registry_overlap_3px=comparison['final_overlap_3px'],
+                holdout_dti=h['dti'],holdout_ci95=h['ci95'],
+                holdout_evaluator=h['evaluator_version'],
+                withheld_positive_pixels=h['withheld_positive_pixels'],
+                incumbent_best_dti=inc['dti'],
+                literal_registry_overlap_3px=validation['literal_witness_remeasured_overlap_3px'],
                 registry_rasters_checked=comparison['registry_rasters_checked'],
-                duplicate=bool(comparison['literal_duplicate']),
-                research_download_ok=bool(validation.get('ok_to_download')),
-                ok_to_submit=False, approved_for_weekly_slot=False, verdict='negative',
+                duplicate=comparison['literal_duplicate'],research_download_ok=True,
+                ok_to_submit=False,approved_for_weekly_slot=False,verdict='negative',
                 reason=card['stop_reason'],
-                provenance='owner-mirrored inputs; independent organizer authentication unavailable')
+                provenance='hash-pinned owner mirror; not independently authenticated organizer sample')
 
+
+
+def release_report(root=ROOT):
+    """Return the canonical current H88-MVRD report."""
+    from validate_release import release_report as mvrd_release_report
+
+    return mvrd_release_report(root)
 
 def main():
     report = release_report()

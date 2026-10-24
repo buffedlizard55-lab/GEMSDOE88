@@ -1,0 +1,52 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "lane": "MDPS-88 matched-domain physics surface with distance-regime emission (single method)",
+  "written_before_experiments_utc": "2026-10-24",
+  "hypothesis_doc": "docs/research/hypotheses-20261024-mdps88.md",
+  "data": {
+    "restore": "scripts/restore_inputs.py (all SHA-256 pins must pass; abort on mismatch)",
+    "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "sample_submission_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "provenance_flag": "owner-mirrored inputs; independent organizer authentication unavailable; competition rasters stay gitignored in data/"
+  },
+  "features": "src/gems88/physics.py ALL_PHYS_FEATURES (44 label-blind columns: 26 from the 19-band stack + 18 official-source externals). No catalogue-distance or trace-geometry column enters the classifier.",
+  "holdout": {
+    "builder": "vendor/gems57/holdout.py::buffered_component_draw (whole 8-connected components)",
+    "seeds": [20, 21],
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "evaluator": "vendor/gems57/evaluate_holdout.py gems57-pooled-hide-v2 (alpha 0.2, beta 0.8, 300 m triangular kernel)",
+    "visible_masking": "pixel-exact (masked_known)",
+    "primary_endpoint": "far subset: withheld positives >10 px from every visible catalogue pixel, pooled HOLDOUT-DTI",
+    "secondary_endpoint": "overall pooled HOLDOUT-DTI",
+    "bootstrap": "paired 20 km physical-block percentile, 1000 draws, seed 520810 (vendor pooled_summary)",
+    "leakage_canary": "each of the 44 features alone: symmetric ROC AUC (withheld positives vs 8x off-catalogue negatives, d_cat>3) must be <= 0.90 or STOP"
+  },
+  "arms_same_folds": {
+    "base283": "control: all-visible-positive HGB (halo.fit_fold_models mode=base), allowed d_vis>2, Dinkelbach allocator min_spacing 2.83 px",
+    "mdps_far": "isolated-positive far-background HGB (mode=fbmt), allowed d_vis>8 only (matched allocation), same allocator/spacing",
+    "mdps_mix": "candidate: regime-stratified allocation merged into one raster: far head allocated at d_vis>8 with k_far = k_est x (training-quadrant withheld-truth share at d_vis>8); near head (base model) allocated separately at 2<d_vis<=8 restricted to >=99th percentile of near-regime p, budget capped at floor(0.25*n_far) (<=20% of total), k_near analogously share-scaled; near dots within 2.83 px of a far dot dropped; same allocator/spacing in both regimes",
+    "r0_fixed": "fixed shipped H33 raster scored per fold (fold-UNFAIR reference; USER-REPORTED live 0.2778)",
+    "prov_fixed": "fixed shipped PROVCREST raster scored per fold (fold-UNFAIR reference)"
+  },
+  "experiment_budget": {
+    "max_experiments": 3,
+    "max_hours": 2,
+    "E1": "canary + fold loop for base283/mdps_far/mdps_mix + fixed controls",
+    "E2": "only if E1 candidate fails paired far test by a near miss: ONE pre-declared variation (near-cap 0% i.e. mdps_far becomes candidate) using E1 checkpoints, no new features",
+    "E3": "final full-catalogue fit of the winning config + uniqueness lane-cap (vendor halo_constraints, cap 66% per sparse registry prior) + format validation; holdout cost of the cap reported if applied"
+  },
+  "promotion_gates_all_required": [
+    "canary max symmetric AUC <= 0.90",
+    "candidate far HOLDOUT-DTI > base283 far with paired 95% CI lower bound > 0",
+    "candidate far point estimate > 0.11478 (stored ADHR far on identical folds; UNPAIRED reference, labelled as such)",
+    "candidate overall HOLDOUT-DTI >= base283 overall point estimate",
+    "uniqueness vs every restored registry raster + tracked docs/downloads candidates: vendor binding_duplicate_decision_v3 duplicate=false (surface |Spearman| <=0.90; excess 3px overlap <=0.70); literal overlaps also reported",
+    "format: vendor validate all_checks_passed on on-disk bytes (single band float32, EPSG:32611, 3730x3292, pinned transform, no NaN/inf anywhere, values in [0,1], 0 outside footprint, 0 on catalogue) + one-member ZIP roundtrip byte-identical",
+    "submission note <= 140 characters"
+  ],
+  "on_any_gate_failure": "verdict negative; file name carries DO-NOT-SUBMIT; site badge = OK TO DOWNLOAD (research) / NOT OK TO SUBMIT; no weekly slot recommended",
+  "score_labelling": "every number labelled HOLDOUT-DTI (evaluator, withheld n, 95% CI) / ORGANIZER-CONFIRMED (none) / USER-REPORTED CLAIM / MODEL-PROJECTION; a projection is never written as a score",
+  "slots": "this session spends 0 DrivenData slots; final submit click is a human selector decision"
+}

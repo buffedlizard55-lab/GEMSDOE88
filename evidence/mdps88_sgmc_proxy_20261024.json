@@ -1,0 +1,28 @@
+{
+ "evidence_class": "PROXY (SGMC off-catalogue geologic-map control; NOT a score, NOT a gate)",
+ "truth_gap_px": 61664,
+ "truth_all_px": 78433,
+ "chance_share_within3": 0.08388047513064525,
+ "rows": {
+  "MDPS-88 mix (this session)": {
+   "n_dots": 29742,
+   "dti_sgmc_gap": 0.06674246516686816,
+   "cov_gap": 0.060291821130102216,
+   "dti_sgmc_all": 0.05919146271182436,
+   "frac_dots_within3_gap": 0.1093067043238518,
+   "lift_vs_chance": 1.3031245251484898
+  },
+  "H33 R0 (claim 0.2778)": {
+   "n_dots": 37654,
+   "dti_sgmc_gap": 0.09396541728952715,
+   "cov_gap": 0.08756782875013644,
+   "dti_sgmc_all": 0.09127839557978852,
+   "frac_dots_within3_gap": 0.12906995272746588,
+   "lift_vs_chance": 1.5387365477655826
+  }
+ },
+ "stored_H33_reference": {
+  "dti_sgmc_gap": 0.09396541728952715,
+  "source": "docs/evidence/proxy_calibration_20261024.json"
+ }
+}
