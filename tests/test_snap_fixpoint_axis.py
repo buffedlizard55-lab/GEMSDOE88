@@ -102,7 +102,7 @@ def test_ledger_rows_are_unique_and_expected():
     assert len({r["id"] for r in rows}) == 3
     assert len({r["sha256"] for r in rows}) == 3
     assert len({r["sha256_zeros"] for r in rows}) == 3
-    all_shas = [r[k] for r in _ledger_rows() for k in ("sha256", "sha256_zeros") if r[k]]
+    all_shas = [r["sha256"] for r in _ledger_rows() if r["sha256"]] + [r["sha256_zeros"] for r in _ledger_rows() if r["sha256_zeros"] and r["sha256_zeros"] != r["sha256"]]  # single-file de-novo rows: sha256_zeros == sha256 (no distinct NaN twin), count once
     assert len(all_shas) == len(set(all_shas)), "duplicate SHA-256 across the ledger"
     for r in rows:
         assert r["n_dots"] == "37654"

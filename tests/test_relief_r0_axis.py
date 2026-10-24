@@ -206,7 +206,9 @@ def test_relief_variants_receipts_ledger_cards_and_disk_reread():
     shas_z = [r["sha256_zeros"] for r in rows]
     assert len(shas) == len(set(shas)) == len(rows)
     assert len(shas_z) == len(set(shas_z)) == len(rows)
-    assert len(set(shas) & set(shas_z)) == 0
+    # single-file de-novo rows (PROVCREST/TILTZERO) truthfully record sha256_zeros == sha256 (no NaN twin)
+    dual = [r for r in rows if r["sha256_zeros"] and r["sha256_zeros"] != r["sha256"]]
+    assert len(set(r["sha256"] for r in dual) & set(r["sha256_zeros"] for r in dual)) == 0
     keys = [(r["parent"], r["axis"], r["value"]) for r in rows]
     assert len(keys) == len(set(keys)), "repeated (parent, axis, value)"
     relief_rows = {r["id"]: r for r in rows if r["axis"] == "RELIEF" and r["parent"] == "h33-h33-2-b2"}

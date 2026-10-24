@@ -187,7 +187,7 @@ def test_ledger_wide_uniqueness_survives_the_new_family():
     rows = _ledger_rows()
     pairs = [(r["parent"], r["axis"], r["value"]) for r in rows]
     assert len(pairs) == len(set(pairs)), "(parent, axis, value) must be unique"
-    shas = [r[k] for r in rows for k in ("sha256", "sha256_zeros") if r[k]]
+    shas = [r["sha256"] for r in rows if r["sha256"]] + [r["sha256_zeros"] for r in rows if r["sha256_zeros"] and r["sha256_zeros"] != r["sha256"]]  # single-file de-novo rows: sha256_zeros == sha256 (no distinct NaN twin), count once
     assert len(shas) == len(set(shas)), "every primary/fallback hash must be unique"
 
 
