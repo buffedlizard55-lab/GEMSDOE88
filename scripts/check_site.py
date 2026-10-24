@@ -46,6 +46,21 @@ def main(root=ROOT):
     assert len(lb['raster']['note']) <= 140 and lb['format_ok'] is True and lb['ok_to_download'] is True
     assert lb['ok_to_submit'] is True or 'DO-NOT-SUBMIT' in lb_tif.name, 'held LBCAL file must be named DO-NOT-SUBMIT'
     assert json.loads((root / 'docs' / 'data' / 'lbcal_run_card.json').read_text())['raster']['sha256'] == lb['raster']['sha256']
+    # Latest experiment must be present on both landing/guide pages and stay
+    # blocked even if a historical gate record elsewhere says "promote".
+    kth = json.loads((root / 'registry/kth88_run_card.json').read_text())
+    kth_tif = root / kth['download']
+    kth_validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
+    assert kth['verdict'] == 'negative' and kth['ok_to_submit'] is False
+    assert kth['correlation_overlap_vs_registry']['final_overlap_3px'] > .70
+    assert kth_tif.is_file() and kth_tif.name.endswith('DO-NOT-SUBMIT.tif')
+    assert _hl.sha256(kth_tif.read_bytes()).hexdigest() == kth['raster_sha256']
+    assert kth_validation['tif_sha256'] == kth['raster_sha256']
+    assert kth_validation['local_format_audit']['ok'] and not kth_validation['ok_to_submit']
+    assert len(kth['submission_note']) <= 140
+    for page in ('index.html', 'executive-summary.html'):
+        body = (root / 'docs' / page).read_text()
+        assert kth_tif.name in body and 'DO NOT SUBMIT' in body, page
     pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
     assert len(pages) >= 5
     for page in pages:

@@ -1,0 +1,133 @@
+{
+  "schema": "gems88.kth88.run-card.v1",
+  "hypothesis": "surface K mobility at hydrothermal discharge can persist where an erosional fault scarp is absent and USGS fault trace incomplete",
+  "mechanism": "local log(K/Th) cross-fault antisymmetric step minus 2-km background, conditional on shallow magnetic demagnetization trough; directional ridge NMS",
+  "named_non_fault_process": "potassic intrusive-lithologic contact, variable soil cover or radiometric flight-line leveling",
+  "lane": "KTH-ANTISYMMETRIC-STEP",
+  "inputs": {
+    "data/bridge/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "data/bridge/existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "data/training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "data/external/geodawn_rad_u8.tif": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682"
+  },
+  "surface_parameters_and_coverage": {
+    "radiometric_covered_footprint_pixels": 5166085,
+    "rtp_cleaning": {
+      "valid": 5164312,
+      "invalid_inside": 3061,
+      "clip01": -460.4590252685547,
+      "median": -137.2845916748047,
+      "clip99": 394.5721917724609
+    },
+    "distance_probe_px": 3,
+    "local_sigma_px": 2,
+    "background_sigma_px": 18,
+    "rtp_background_sigma_px": 12
+  },
+  "leakage_canary": {
+    "kth_antisymmetric_step": {
+      "auc": 0.5093393566945607,
+      "symmetric_auc": 0.5093393566945607
+    },
+    "rtp_demagnetization_trough": {
+      "auc": 0.5044743364872575,
+      "symmetric_auc": 0.5044743364872575
+    },
+    "kth_magnetic_surface": {
+      "auc": 0.5096994974324838,
+      "symmetric_auc": 0.5096994974324838
+    }
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.05265580824432912,
+    "ci95": [
+      0.045911112529722096,
+      0.059150702260526954
+    ],
+    "withheld_positive_pixels": 22893,
+    "tpw": 1731.1638595618026,
+    "fpw": 71081.72712235979,
+    "fnw": 21161.8361404382
+  },
+  "holdout_evaluator": "gems57-pooled-hide-v2",
+  "holdout_bootstrap": {
+    "method": "paired physical spatial-cluster percentile",
+    "clusters": 158,
+    "draws": 1000,
+    "seed": 881024,
+    "confidence": 0.95,
+    "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+  },
+  "incumbent_holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.18788764184958875,
+    "ci95": [
+      0.17169764852656258,
+      0.20326012211176936
+    ],
+    "withheld_positive_pixels": 22893,
+    "tpw": 6241.143086000586,
+    "fpw": 68273.96686338239,
+    "fnw": 16651.856913999403
+  },
+  "comparable_to_incumbent_same_seed_same_split": true,
+  "paired_incumbent_ci95": null,
+  "correlation_overlap_vs_registry": {
+    "preplacement_max_abs_rho": 0.07472909929119133,
+    "final_max_abs_rho": 0.019341476563859056,
+    "final_overlap_3px": 1.0,
+    "worst_registry_raster": "dense_17gemdoe.tif",
+    "registry_rasters_checked": 222,
+    "literal_duplicate": true,
+    "full_rows": "evidence/kth88_registry.json",
+    "literal_blockers": [
+      {
+        "raster": "dense_17gemdoe.tif",
+        "overlap_3px": 1.0
+      },
+      {
+        "raster": "GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.8988155308864928
+      }
+    ]
+  },
+  "raster_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
+  "validator_output": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "download": "docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif",
+  "submission_name": "GEMSDOE88-KTH-BACDC27B",
+  "submission_note": "K/Th antisymmetric radiometric step + RTP trough, 37654 dots; HOLDOUT-DTI 0.0527; UNSCORED; DO NOT SUBMIT",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "stop_reason": "Duplicate by literal >70% forward 3px registry overlap (including an independent GEMSDOE87 prior); stop.",
+  "organizer_confirmed": null,
+  "slots_spent": 0,
+  "limitations": [
+    "U8 K and Th indices have no physical-unit calibration tags: their ratio is not a measured elemental abundance ratio.",
+    "Public GeoDAWN source is official but this owner-mirrored u8 derivative is not independently authenticated to the organizer download.",
+    "Hide-and-recover catalogue labels are not the undisclosed new fault labels.",
+    "Registry excludes private/unlinked competition submissions.",
+    "No portal authorization or submission receipt."
+  ],
+  "experiment_count": 1
+}

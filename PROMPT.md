@@ -5,8 +5,9 @@
 > **Honesty note (IR-88-68).**  The owner's original prompt text is longer than what any one
 > session can see.  This file preserves the **acceptance criteria and constraints exactly as they
 > were carried into the 2026-10-24 session brief**; wording is condensed, nothing was added or
-> softened.  It is *not* a byte-exact copy.  If byte-exact preservation matters, paste the
-> original below the marker `
+> softened. It is *not* a byte-exact copy of the complete user message; do not label it verbatim.
+> The latest session result is linked from the first block of `README.md`. Re-read these
+> operational requirements before changing a method, slot decision, or download link.
 
 ## Appendix A - earlier README summaries of this prompt (kept verbatim for audit; superseded by the criteria above)
 
