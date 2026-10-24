@@ -2073,6 +2073,76 @@
     "submission_name": "h33-h33-2-b2-PRUNEp4space28-20261023-475fce4d",
     "form_note": "R0 h33-2-b2; PRUNE<=400m +3825 refill >=2.8px spaced, N 37654; pred +0.001 MODEL"
   },
+  "h33-h33-2-b2-PRUNEp3space45-20261024-7a281bde": {
+    "axis": "PRUNE",
+    "value": "p3space45",
+    "parent": "h33-h33-2-b2",
+    "change_vs_parent": "Remove the 2,171 R0 dots at d_catalogue <= 300 m; add back 2,171 dots on the H19-5/H19-4/H16-1 ridge supports outside the collar, each >= 4.5 px from every other dot in the output (observed refill min NN 5.000 px); N held at 37,654. Refill order: Exact iterative marginal expected-DTI gain (vendor/gems57/metric.py) among only those refill cells that keep a >= spacing_px separation from every surviving R0 dot and from every already-chosen refill; candidate pool = union of the H19-5, H19-4 and H16-1 ridge supports outside the collar; one fixed label-free four-line physical field for all arms.",
+    "hypothesis": "At a 4.5 px lock no two refill dots share the triangular R=3 px kernel, so each one is the nearest dot to a distinct strip of ground and pays full line credit instead of the 0.04-0.07 TP/dot a densified refill forfeits; it should therefore beat p3space35 (blind +0.0050) if the effect is monotone in separation.",
+    "mechanism": "DTI = T/(0.2T + 0.2(S-M) + 0.8|G|) with T the triangular-kernel credit to unseen new-fault truth and S-M the mass that is already covered by a stronger neighbour. A refill only pays if it becomes the nearest dot over a strip of ground that no other dot already owns. Two dots closer than the 3 px kernel radius split that strip, so the second one adds S without adding T; a lock wider than the kernel radius (4.5 px = 450 m) guarantees each refill owns its own visible strip. The 4.5 px arm is the clean test of that statement at a fixed donor set, fixed count and fixed pool.",
+    "non_fault_mimic": "Dispersing dots can also simply decorrelate them from a clustered error field: GeoDAWN Area 2 was flown at 400 m line spacing, so flight-line corrugation makes 'regularly spaced' patterns look plausible on non-fault ground; equally, a real fault splay or relay step can be genuinely dense, and a spacing lock would delete it. Alluvial-fan and pediment margins also produce regularly spaced ridge breaks on the H19-5 support.",
+    "predicted_sign_size": "MODEL live delta +0.007 vs R0 (CLAIM 0.2778), range [-0.004,+0.018]; blind SGMC PROXY predicted +0.0085 vs R0 0.096060. Both are projections, not scores; |live delta| < 0.01 on public chunks is no evidence.",
+    "falsifier": "For the dose: if p3space45's blind PROXY is not at least 0.001 above p3space35's 0.101042, separation stops paying at 3.5 px and the final file should not push the lock further. For the ordering control: if p3space35rand falls >= 0.005 below p3space35, the four-line field (not the geometry) is doing the work and the ranked refill must be kept. A live receipt of any arm at <= R0 - 0.01 closes the whole spacing-locked refill family regardless of the proxies.",
+    "ranking_basis": "Exact iterative marginal expected-DTI gain (vendor/gems57/metric.py) among only those refill cells that keep a >= spacing_px separation from every surviving R0 dot and from every already-chosen refill; candidate pool = union of the H19-5, H19-4 and H16-1 ridge supports outside the collar; one fixed label-free four-line physical field for all arms",
+    "four_line_field": "label-free four-line physical field from scripts/build_prune_variants.py: surface scarp, subsurface potential-field, strain/seismic and hydrothermal lines",
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 2171,
+      "n_removed": 2171,
+      "pct_changed_moved": 5.77,
+      "pct_changed_sym_diff": 11.53,
+      "pct_changed_basis": "moved",
+      "min_dist_catalogue_px": 3.1623,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 2060
+    },
+    "fixed_count": 37654,
+    "submission_name": "h33-h33-2-b2-PRUNEp3space45-20261024-7a281bde",
+    "form_note": "R0 h33-2-b2; PRUNE<=300m +2171 refill >=4.5px spaced, N 37654; pred +0.007 MODEL",
+    "report_only_not_gates": [
+      "hide-and-recover catalogue PROXY",
+      "single-feature leakage canary",
+      "blind off-catalogue SGMC control",
+      "10 km and 12 km dot-density CV"
+    ]
+  },
+  "h33-h33-2-b2-PRUNEp3space35rand-20261024-8b3d0a40": {
+    "axis": "PRUNE",
+    "value": "p3space35rand",
+    "parent": "h33-h33-2-b2",
+    "change_vs_parent": "Remove the 2,171 R0 dots at d_catalogue <= 300 m; add back 2,171 dots on the H19-5/H19-4/H16-1 ridge supports outside the collar, each >= 3.5 px from every other dot in the output (observed refill min NN 3.606 px); N held at 37,654. Refill order: No ranking at all: a seeded (20261024) uniformly random order over the same spacing-legal refill pool, with the same blocking rule and the same feasibility lookahead, so the count and the spacing statistics are matched to p3space35 and only the ordering rule differs.",
+    "hypothesis": "The spacing-locked gain is geometric, not field-driven: if the 3.5 px lock already sets the geometry, a random refill order should reproduce most of p3space35's blind margin and the four-line field contributes little (the MASS random-donor control bounded the ranking effect at +-0.0018).",
+    "mechanism": "DTI = T/(0.2T + 0.2(S-M) + 0.8|G|) with T the triangular-kernel credit to unseen new-fault truth and S-M the mass that is already covered by a stronger neighbour. A refill only pays if it becomes the nearest dot over a strip of ground that no other dot already owns. Two dots closer than the 3 px kernel radius split that strip, so the second one adds S without adding T; a lock wider than the kernel radius (4.5 px = 450 m) guarantees each refill owns its own visible strip. The 4.5 px arm is the clean test of that statement at a fixed donor set, fixed count and fixed pool.",
+    "non_fault_mimic": "Dispersing dots can also simply decorrelate them from a clustered error field: GeoDAWN Area 2 was flown at 400 m line spacing, so flight-line corrugation makes 'regularly spaced' patterns look plausible on non-fault ground; equally, a real fault splay or relay step can be genuinely dense, and a spacing lock would delete it. Alluvial-fan and pediment margins also produce regularly spaced ridge breaks on the H19-5 support.",
+    "predicted_sign_size": "MODEL live delta +0.004 vs R0 (CLAIM 0.2778), range [-0.006,+0.014]; blind SGMC PROXY predicted +0.0040 vs R0 0.096060. Both are projections, not scores; |live delta| < 0.01 on public chunks is no evidence.",
+    "falsifier": "For the dose: if p3space45's blind PROXY is not at least 0.001 above p3space35's 0.101042, separation stops paying at 3.5 px and the final file should not push the lock further. For the ordering control: if p3space35rand falls >= 0.005 below p3space35, the four-line field (not the geometry) is doing the work and the ranked refill must be kept. A live receipt of any arm at <= R0 - 0.01 closes the whole spacing-locked refill family regardless of the proxies.",
+    "ranking_basis": "No ranking at all: a seeded (20261024) uniformly random order over the same spacing-legal refill pool, with the same blocking rule and the same feasibility lookahead, so the count and the spacing statistics are matched to p3space35 and only the ordering rule differs",
+    "four_line_field": "not used (control)",
+    "parent_diff": {
+      "n_parent": 37654,
+      "n_added": 2171,
+      "n_removed": 2171,
+      "pct_changed_moved": 5.77,
+      "pct_changed_sym_diff": 11.53,
+      "pct_changed_basis": "moved",
+      "min_dist_catalogue_px": 3.1623,
+      "dots_le_1px": 0,
+      "dots_le_2px": 0,
+      "dots_le_3px": 0,
+      "dots_le_4px": 1932
+    },
+    "fixed_count": 37654,
+    "submission_name": "h33-h33-2-b2-PRUNEp3space35rand-20261024-8b3d0a40",
+    "form_note": "R0 h33-2-b2; PRUNE<=300m +2171 refill >=3.5px randorder, N 37654; pred +0.004 MODEL",
+    "report_only_not_gates": [
+      "hide-and-recover catalogue PROXY",
+      "single-feature leakage canary",
+      "blind off-catalogue SGMC control",
+      "10 km and 12 km dot-density CV"
+    ]
+  },
   "h33-h33-2-b2-PRUNEp2.236px-20261024-93b15124": {
     "axis": "PRUNE",
     "value": "p2.236px",
