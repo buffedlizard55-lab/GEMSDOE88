@@ -1,6 +1,27 @@
 # GEMSDOE88 — DOE GEMS Hidden Geothermal Fault Discovery Research
 
-> ## ✅ 2026-10-24 PROVCREST — OK TO DOWNLOAD AND SUBMIT (automated inspection passed; IR-88-58)
+> ## ⛔ 2026-10-24 DECISION: HOLD. LBCAL is OK to download, but DO NOT SUBMIT it under the current holdout rule (IR-88-59)
+> - **New unique file:** [`docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif) ([zip](docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.zip), [run card](registry/lbcal_run_card.json)).
+>   - Contents: 38,278 binary dots in a float32 band; values in {0,1}; 0 NaN; nodata None; grid identical to the sample.
+>   - SHA-256: `0a44af1e…991a`.
+> - **Name:** `GEMSDOE88-LBCAL-0AEB6EED`
+> - **Note (105/140):** `LBCAL receipt-calibrated q, 38278 dots, <=66% in sibling halos; HOLDOUT 0.0616; model-proj only, UNSCORED`
+> - **Why HOLD.** Your rule is that no slot goes to a file that has not beaten the current holdout best.
+>   - LBCAL scores **HOLDOUT-DTI 0.061566 [0.051910, 0.072787]** (gems57-pooled-hide-v2, seeds 20+30, 22,663 withheld px).
+>   - The current best on the same split is PROVCREST at **0.076277**.
+>   - LBCAL does beat R0, which scores 0.004006 (paired Δ +0.05756, CI [0.04808, 0.06857]).
+>   - The leakage canary passes (max AUC 0.582).
+>   - Uniqueness passes against 138 rasters: worst 3-px overlap 0.656 ≤ 0.70, worst |ρ| 0.034 ≤ 0.90.
+> - **What the 106 leaderboard receipts say (MODEL-PROJECTION, never a score).**
+>   - Projections: LBCAL **0.356**, H33 **0.264**, PROVCREST **0.105**, ADHR **0.080**.
+>   - The receipt model behind these scores 8-fold repo-blocked CV ρ 0.941 and RMSE 0.031 on 99 user-reported LB scores.
+>   - The holdout gate scores H33, the user-reported best at 0.2778, at only 0.004. It does not predict the leaderboard.
+>   - **Recommendation:** do not spend a slot on PROVCREST without a selector decision. If the selector adopts the receipt gate, LBCAL is the file to submit.
+> - **Slots and receipts:** agents spent 0 slots. ORGANIZER-CONFIRMED score: none.
+> - **Scope:** the PROVCREST, ADHR and PRUNE blocks below are prior-session history. They are retained unchanged except for this warning.
+
+
+> ## (HISTORY: superseded by the LBCAL decision above; see IR-88-59) 2026-10-24 PROVCREST: the old gate said OK TO SUBMIT, but the receipt model projects 0.105, so we recommend HOLD
 > **New unique de-novo submission (not a copy of any prior raster):** [`docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif`](docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif) (SHA-256 `13b4155c…`, 37,654 binary dots, all values in [0,1], 0 NaN). **Submission name:** `GEMSDOE88-PROVCREST-RANK-04559A2C` · **Note (112/140):** `PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED`. HOLDOUT-DTI **0.076277** [0.067653, 0.084607] (22,663 withheld) vs R0 **0.004006**; uniqueness worst sparse overlap **0.4076 ≤ 0.70**, |ρ| **0.0302 ≤ 0.90**; canary max AUC **0.57543**. Verdict **promote** in `registry/provcrest_run_card.json`. Agent spent **0** slots; ORGANIZER-CONFIRMED score: none. The block below is the prior PRUNE-lane state and is retained as history.
 
 <!-- CURRENT STATE START -->
@@ -198,3 +219,91 @@ python -m venv .venv
 1. **Literal `17GEMSDOE` Space-Filling Witness (`IR-88-01`):** Any non-empty set of positive pixels inside the valid footprint mathematically overlaps `17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif` at `100.00% > 70%`. We never silently exempt it; instead we expose both `literal_reading` (`duplicate: true`) and `like_for_like_reading` (`20/20` dot fields `PASS`, `duplicate: false`) in `registry/two_phase_uniqueness.json` so a human portfolio selector has complete, unvarnished evidence.
 2. **Owner-Mirrored Reference Grid (`IR-88-02`):** `sample_submission.tif` (`2176d08e…`) and `existing_faults.tif` (`7ba308cc…`) are SHA-pinned owner mirrors; an authorized human with DrivenData access should verify byte identity against the live portal download before spending any weekly slot.
 3. **Far-Basin (`> 2.5 km`) Discovery Frontier:** While `H88-ADHR` places `26.2%` (`9,417` dots) at `d_cat > 1.0 km` and `4.2%` (`1,520` dots) at `d_cat > 2.5 km` (`median d_cat = 6.40 px`), completely unmapped interior basins lacking 1 m LiDAR still carry substantial missed recall toward `0.4413`. Next session should read `research/next-steps.md` first: (a) test intra-magnetic vertical-to-regional polarity residual (`MRR-88`) for blind volcanic-covered grabens (`d_cat > 25 px`), and (b) seek explicit human selector authorization on `IR-88-01` if nominating `H88-ADHR` for one of the `≤ 3` weekly portal slots.
+
+---
+
+## 2026-10-24 LBCAL session: leaderboard-receipt calibration (single lane)
+
+**Evidence labels.** USER-REPORTED LB = a score pasted by the user, with no organizer receipt held. MODEL-FIT / MODEL-PROJECTION = output of the receipt model, never a score. HOLDOUT-DTI = output of `vendor/gems57/evaluate_holdout.py`.
+
+### Why H33 (`h33-h33-2-b2-…-e5eb6e7e-zeros`) got 0.2778, and can we beat it?
+
+**What H33 is.** H33 is `dotted-h19-5-d2-8` (44,090 dots spaced 2.8 px along the H19-5 topographic ridge network) with the 6,436 dots inside the 200 m catalogue collar deleted. That leaves 37,654 dots.
+
+**Why it scores well.** Three mechanisms work together:
+
+1. **Geology.** The H19-5 ridges coincide with the new expert-mapped faults. The receipt model puts about 95% of the public truth density within 3 px (300 m) of those ridges.
+2. **Metric.** Dotting keeps about 78% of line credit at 2.8 px spacing while cutting false-positive mass by 2.75×. The marginal-dot test is ΔTP/ΔFP > 0.2·D/(1−0.2·D), which is about 0.059 at D = 0.28.
+3. **Mask.** Known faults are removed pixel-exactly, and the receipts show the collar is empty of new truth:
+   - `gems79-tilt-ring` (100,000 dots, all within 2 px of the catalogue): **0.0005**.
+   - `gems81-cont-poisson-buf2` (84% of dots at 2–3 px): **0.0041**.
+   - The collar dots were therefore pure false positives, which is why the H19-5 lineage climbed 0.1922 → 0.2477 → 0.2600 → 0.2708 → 0.2778 (all USER-REPORTED).
+
+**Metric algebra on the D2.8 → H33 pair** (assuming the deleted dots carried zero credit), per unit of public fraction:
+
+- TP(H33) ≈ 5.2k and |G| ≈ 13.4k px, so H33 captures about 39% of the weighted truth.
+- These numbers predict 0.187 for the full H19-5 ridge raster. The user-reported score is 0.1922.
+
+**Can we beat it?** Only a portal receipt can prove it. Under the receipt model, LBCAL projects 0.356 against H33's 0.264.
+
+**Leaderboard context** (read 2026-10-24, [leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)):
+
+- #1 xiaofanhu 0.4413, #5 0.3539, #50 0.2818. H33 sits below the visible top 50.
+- The brief's 0.3195 was the 2026-10-04 #2 (IR-88-60).
+
+### Method (single lane)
+
+1. **Fetch the receipts.** `scripts/lbcal_fetch_receipt_rasters.py` matches the 111 user-reported scores in `research/lbcal_user_reported_scores_20261024.tsv` to their exact rasters in the sibling repos, by name and git blob. 106 matched and were SHA-256 hashed; see `evidence/lbcal_receipt_manifest.json`.
+2. **Fit the truth density.** `scripts/lbcal_pixel.py` fits q(y) = exp(β·φ(y)). φ is 25 physical bands and contains no coordinates:
+   - catalogue-distance bands
+   - H19-5 ridge-distance bands
+   - LiDAR scarp ex/step/lapneg/relief/coh
+   - 10 m slope p90, relief, profile curvature, aspect coherence, hillshade lineament
+   - chi ksn
+   - gravity and TMI horizontal gradients
+   - detrended-elevation slope
+   - 3×3 local-max localisers
+
+   The expected DTI of each receipt raster is computed exactly for TP (E[TP] = Σ q·c), and through the line approximation for the FP correction. The fit is least squares with an analytic Jacobian on a seeded 12% sample.
+3. **Model selection (EXP1).** Two models were compared by 8-fold repo-blocked CV:
+   - **px1, sides pooled:** RMSE 0.0306, ρ 0.941.
+   - **px2, uphill/downhill split:** RMSE 0.0299, ρ 0.943. Its uphill coefficient is weakly identified (corr(residual, up−down share) = 0.21), so **px1 was shipped**.
+4. **Emission.** `scripts/build_lbcal_submission.py` + `scripts/lbcal_design.py`:
+   - Lazy-greedy expected-DTI emission under q gives the ideal set: 38,278 dots, projected 0.396, with 97.6% of dots inside one sibling halo.
+   - A lane-cap repair then lowers every sparse registry or receipt raster's share to ≤ 0.66, which is below the 0.70 protocol limit. The 4 space-filling rasters (halo coverage ≥ 0.70, vendor `representation_class_v2`) are reported separately.
+5. **Holdout (EXP2).** q and the emission are rebuilt per seed from the visible-only catalogue and evaluated with the unmodified `evaluate_holdout.py`. R0 is the control.
+
+### Results
+
+| Quantity | LBCAL | PROVCREST | H33 / R0 | Label |
+|---|---|---|---|---|
+| Hide-and-recover, seeds 20+30, K = 22,663 | **0.061566** [0.051910, 0.072787] | 0.076277 [0.067653, 0.084607] | 0.004006 | HOLDOUT-DTI |
+| Receipt model px1 | **0.356** | 0.105 | 0.264 | MODEL-PROJECTION |
+| Public LB | not submitted | not submitted | 0.2778 | USER-REPORTED |
+
+- **Leakage canary:** 25 single features plus composite q; max symmetric AUC 0.58206 (`ridge_le1p5`).
+- **SGMC proxy:** LBCAL 0.085354 vs R0 0.096060. This is a proxy, not a score, and the proxy does not favour LBCAL.
+
+### Candidate hypotheses (ranked)
+
+The full table is in `research/candidate-hypotheses-20261024-lbcal.md`.
+
+1. **LBCAL:** executed.
+2. **Ridge-side shift:** high potential, but not shippable under the 0.70 lane rule.
+3. **Receipt-residual localiser:** needs the 1 m LiDAR, which is unreachable here.
+4. **Regional density:** rejected because it would memorise the public chunks.
+5. **Collar re-test:** folded into #1.
+
+### Limitations / access needed
+
+- **Receipts.** All are user-reported, with no portal receipts held. 5 of the 111 scores have no raster on GitHub, 2 rasters are NaN across the footprint, and 1 has a grid mismatch. All 8 were excluded (IR-88-61/62).
+- **Model error.** The receipt-model CV RMSE of about 0.03 exceeds most of the deltas we chase. The model under-predicts the gems70, gate_ortho and tiltworm family by 0.09–0.12, so a localiser is still missing.
+- **Holdout instrument.** Hide-and-recover measures catalogue faults, not expert-new faults.
+- **Access.** The 1 m 3DEP/GeoDAWN LiDAR (`prd-tnm.s3.amazonaws.com`) is outside the sandbox allow-list.
+
+### Next steps (suggested)
+
+1. **Selector decision.** Keep the hide-and-recover slot gate, or adopt the receipt-CV gate. Under the receipt gate, LBCAL is the slot-1 candidate and PROVCREST should not get a slot.
+2. **Ridge-side test, as one slot if the user waives the 0.70 lane rule for a single experiment.** Shift D2.8 dots 1 px uphill and compare the receipt against D2.8's 0.2600.
+3. **Close the receipt loop.** Every new receipt goes into `research/lbcal_user_reported_scores_20261024.tsv`, followed by a refit. Each receipt is a measurement of the hidden truth.
+4. **Feature work.** Add the 20 m LiDAR derivatives once 1 m DEM access exists, to explain the residual family.

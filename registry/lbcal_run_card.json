@@ -1,0 +1,289 @@
+{
+ "schema": "gems88.run-card.v3",
+ "generated_utc": "2026-10-24T08:21:28Z",
+ "lane": "LBCAL \u2014 leaderboard-receipt calibrated emission (single method)",
+ "hypothesis": "The ~100 user-reported public-LB receipts of sibling rasters are measurements of the hidden truth; a physical-feature density q fitted to them (no coordinates) localises new faults better than catalogue-trained proxies, and greedy expected-DTI emission under q beats hand-tuned pruning.",
+ "mechanism": "DTI is a ratio of sums linear in the truth indicator, so E[TP]=sum q*c_i exactly; q=exp(beta.phi) over 25 physical bands (catalogue-distance bands, H19-5 ridge-distance bands, LiDAR scarp, 10 m topo, chi, gravity/magnetic gradients) is fitted by least squares to receipts; emission = lazy-greedy max of expected DTI with <=66% of dots inside the union of sibling 3-px halos.",
+ "named_non_fault_process": "Bedrock-alluvium contacts and fluvial/terrace risers adjacent to topographic ridges (same slope/aspect-coherence signature as a range-front scarp, no brittle offset).",
+ "receipt_model": {
+  "evidence_class": "MODEL-FIT to USER-REPORTED LB receipts (not HOLDOUT-DTI, not ORGANIZER-CONFIRMED)",
+  "fit_file": "data/lbcal/px_fit_px1cv.json",
+  "n_receipts": 99,
+  "fit_rmse": 0.027402205088934452,
+  "fit_spearman": 0.9555776819244475,
+  "repo_blocked_8fold_rmse": 0.03058365650812303,
+  "repo_blocked_8fold_spearman": 0.9413288971517463,
+  "labels": [
+   "intercept",
+   "dcat_le2",
+   "dcat_2_3",
+   "dcat_3_5",
+   "dcat_5_10",
+   "dcat_10_25",
+   "ridge_on",
+   "ridge_le1p5",
+   "ridge_le3",
+   "lidar_valid",
+   "lid_ex_max",
+   "lid_step_max",
+   "lid_lapneg_max",
+   "lid_relief",
+   "lid_coh100",
+   "topo_slope_p90",
+   "topo_relief_local",
+   "topo_curv_prof",
+   "topo_aspect_coh",
+   "topo_hs_lineament",
+   "chi_ksn_max",
+   "geo_grav_hg",
+   "geo_tmi_hg",
+   "geo_elev_slope",
+   "loc_slope_max3",
+   "loc_step_max3"
+  ],
+  "beta": [
+   -7.594191938319013,
+   -1.097194380263553,
+   -0.6295218511691586,
+   -0.45177564336015336,
+   -0.3604682027692862,
+   0.3797272380323801,
+   0.08473798042820915,
+   3.1126086921105203,
+   -0.10844891921062569,
+   -0.03541200965360521,
+   -0.03274494350379949,
+   -0.1889117882420037,
+   0.22354733926958767,
+   0.34473287701922595,
+   -0.6540716850860788,
+   0.4029729574940206,
+   -0.1396833964838291,
+   0.059786887670197075,
+   0.7374470408759284,
+   -0.2416744878412227,
+   0.03459983316766417,
+   -0.8206821926911452,
+   -0.14733203116406585,
+   0.13558563056882522,
+   -0.28191423589654274,
+   -0.04998865414287498
+  ]
+ },
+ "model_projection": {
+  "evidence_class": "MODEL-PROJECTION (never a score)",
+  "lbcal_final": 0.356,
+  "R0_H33": 0.2644,
+  "emission": {
+   "ideal_dots": 38278,
+   "ideal_model_projected_dti": 0.3962,
+   "dots": 38278,
+   "model_projected_dti": 0.356,
+   "max_share_any_capped_raster": 0.656,
+   "repair_iterations": 2,
+   "share_history": [
+    0.9764,
+    0.656
+   ]
+  }
+ },
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "triangular_kernel_radius_px": 3.0,
+  "seeds": [
+   20,
+   30
+  ],
+  "withheld_positive_pixels": 22663,
+  "lbcal_dti": 0.061566,
+  "lbcal_ci95": [
+   0.05191,
+   0.072787
+  ],
+  "r0_control_dti": 0.004006,
+  "r0_control_ci95": [
+   0.003408,
+   0.004651
+  ],
+  "paired_lbcal_minus_r0": {
+   "evidence_class": "HOLDOUT-DTI",
+   "evaluator_version": "gems57-pooled-hide-v2",
+   "delta": 0.057559373027743346,
+   "ci95": [
+    0.048080095274246684,
+    0.06856968338057537
+   ],
+   "withheld_positive_pixels": 22663
+  },
+  "current_holdout_best_same_seeds": {
+   "name": "PROVCREST (registry/provcrest_run_card.json)",
+   "dti": 0.076277
+  },
+  "beats_current_holdout_best": false,
+  "protocol": "buffered whole-component hide-and-recover; q and emission rebuilt per seed from visible-only catalogue; visible faults masked pixel-exactly; pooled DTI"
+ },
+ "sgmc_proxy": {
+  "evidence_class": "PROXY (not a score)",
+  "final": 0.085354,
+  "r0_control": 0.09606,
+  "n_off_catalogue_px": 62703
+ },
+ "leakage_canary": {
+  "threshold": 0.9,
+  "channels": {
+   "dcat_le2": 0.51499,
+   "dcat_2_3": 0.51028,
+   "dcat_3_5": 0.54119,
+   "dcat_5_10": 0.53857,
+   "dcat_10_25": 0.53952,
+   "ridge_on": 0.51182,
+   "ridge_le1p5": 0.58206,
+   "ridge_le3": 0.53755,
+   "lidar_valid": 0.53056,
+   "lid_ex_max": 0.56951,
+   "lid_step_max": 0.5724,
+   "lid_lapneg_max": 0.57482,
+   "lid_relief": 0.57077,
+   "lid_coh100": 0.52305,
+   "topo_slope_p90": 0.55267,
+   "topo_relief_local": 0.54991,
+   "topo_curv_prof": 0.56658,
+   "topo_aspect_coh": 0.507,
+   "topo_hs_lineament": 0.55859,
+   "chi_ksn_max": 0.50456,
+   "geo_grav_hg": 0.51807,
+   "geo_tmi_hg": 0.5197,
+   "geo_elev_slope": 0.549,
+   "loc_slope_max3": 0.51198,
+   "loc_step_max3": 0.50026,
+   "q_composite": 0.58073
+  },
+  "max_symmetric_auc": 0.58206,
+  "passed": true
+ },
+ "uniqueness": {
+  "rasters_checked": 138,
+  "worst_sparse_spearman": {
+   "rho": 0.0336,
+   "file": "data/lbcal/030__GEMSDOE22__gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif"
+  },
+  "worst_sparse_dot_overlap_3px": {
+   "overlap": 0.656,
+   "file": "data/lbcal/031__GEMSDOE22__gems22-h23-b-dti-optimal-emission-10pct-20261002-86176698-nan.tif"
+  },
+  "gate_pass": true,
+  "space_filling_classed_separately": [
+   {
+    "file": "data/registry/dense_17gemdoe.tif",
+    "halo_coverage": 1.0
+   },
+   {
+    "file": "data/lbcal/002__GEMSDOE3__pindrop-v4-nodes-20260925T152420Z-f347b70daa.tif",
+    "halo_coverage": 0.7346
+   },
+   {
+    "file": "data/lbcal/003__GEMSDOE3__pindrop-v4-discovery-20260925T152423Z-37f9d5b855.tif",
+    "halo_coverage": 0.7345
+   },
+   {
+    "file": "data/lbcal/023__13GEMSDOE__13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+    "halo_coverage": 0.9987
+   }
+  ],
+  "worst_spearman_all_rasters": {
+   "rho": 0.0336,
+   "file": "data/lbcal/030__GEMSDOE22__gems22-h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan.tif"
+  },
+  "rows_file": "evidence/lbcal_uniqueness.json",
+  "design_cap_in_union_of_halos": 0.66
+ },
+ "raster": {
+  "file": "docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif",
+  "zip": "docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "0a44af1ed8090cf1be88e42b832e0cc4b3bd2263a01b13b45f873e0eb528991a",
+  "dots": 38278,
+  "name": "GEMSDOE88-LBCAL-0AEB6EED",
+  "note": "LBCAL receipt-calibrated q, 38278 dots, <=66% in sibling halos; HOLDOUT 0.0616; model-proj only, UNSCORED",
+  "note_chars": 105,
+  "receipt": "docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.json",
+  "zip_sha256": "d14f3b9a3634c8653eaa8402808403a5d5eec8e9a0ff7f1105910e62ca521f2e",
+  "bytes": 143314
+ },
+ "validator": {
+  "vendor_validate": {
+   "file": "/home/user/GEMSDOE88/docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif",
+   "bytes": 143314,
+   "sha256": "0a44af1ed8090cf1be88e42b832e0cc4b3bd2263a01b13b45f873e0eb528991a",
+   "meta": {
+    "crs": "EPSG:32611",
+    "shape": [
+     3730,
+     3292
+    ],
+    "dtype": "float32",
+    "count": 1,
+    "nodata": null,
+    "transform": [
+     100.0,
+     0.0,
+     243350.0,
+     0.0,
+     -100.0,
+     4508550.0
+    ],
+    "profile_compress": "deflate"
+   },
+   "band_description": [
+    null
+   ],
+   "n_finite": 12279160,
+   "n_nan": 0,
+   "n_infinite": 0,
+   "min": 0.0,
+   "max": 1.0,
+   "mean": 0.0031173143070191145,
+   "emitted_positive_pixels": 38278,
+   "checks": {
+    "single_band": true,
+    "dtype_float32": true,
+    "dimensions_3730x3292": true,
+    "crs_epsg_32611": true,
+    "transform_matches_sample_submission": true,
+    "no_nan_anywhere": true,
+    "no_inf_anywhere": true,
+    "no_sentinel_values": true,
+    "range_0_1_guaranteed": true,
+    "min_ge_0": true,
+    "max_le_1": true,
+    "in_footprint_all_finite": true,
+    "in_footprint_range_0_1": true,
+    "outside_footprint_zero": true,
+    "zero_dots_on_mapped_catalogue": true
+   },
+   "all_checks_passed": true,
+   "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+   "on_catalogue_positive_pixels": 0,
+   "in_footprint_positive_pixels": 38278,
+   "footprint_fraction": 0.007407632466245421
+  },
+  "format_report_ok": true,
+  "crs_shape_transform_match": true,
+  "no_nan_anywhere": true,
+  "values_in_0_1": true,
+  "nan_inside_footprint": 0,
+  "nodata_tag": null,
+  "positive_on_catalogue": 0,
+  "positive_outside_footprint": 0
+ },
+ "format_ok": true,
+ "verdict": "NEGATIVE-HOLD",
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "verdict_reason": "format-valid and unique, but the user's rule requires beating the current holdout best before any slot (HOLDOUT-DTI 0.0616 vs best 0.0763; beats R0 CI>0: True; canary ok: True; unique: True)",
+ "experiments_used": 2,
+ "experiment_budget": 3,
+ "runtime_s": 315.1
+}

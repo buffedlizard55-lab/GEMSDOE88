@@ -1,3 +1,10 @@
+## 2026-10-24 (LBCAL session): next steps
+
+1. **Selector decision on the slot gate.** Hide-and-recover HOLDOUT-DTI ranks R0/H33 (user-reported 0.2778) at 0.004, so it has no leaderboard validity in this regime. The receipt-CV gate (ρ 0.941, RMSE 0.031) is the alternative.
+2. **Ridge-side experiment (needs a 0.70 lane-rule waiver for one slot).** Shift the D2.8 dots 1 px toward the uphill neighbour. Compare against D2.8's 0.2600. Expected sign: positive if px2's uphill coefficient is real.
+3. **Feed every new receipt back** into `research/lbcal_user_reported_scores_20261024.tsv`, then refit with `scripts/lbcal_pixel.py --stage fit --cv`.
+4. **Explain the residual family** (gems70, gate_ortho, tiltworm, +0.09–0.12) with new localisers. 20 m LiDAR derivatives need 1 m DEM access, which this sandbox does not have.
+
 # Next Steps & Handoff Brief (`GEMSDOE88` · Updated `2026-10-22`)
 
 Read `README.md` and `registry/run_card.json` first at the start of any future session.

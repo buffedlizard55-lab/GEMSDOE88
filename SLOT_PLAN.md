@@ -1,3 +1,10 @@
+> **2026-10-24 LBCAL update (IR-88-59).** No slot was spent.
+> - **LBCAL** (`gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif`) is **HOLD** under the written holdout gate: 0.0616 < 0.0763.
+> - **The receipt model ranks them the other way.** Its 8-fold repo-blocked CV is ρ 0.941. Projections: LBCAL 0.356, H33 0.264, PROVCREST 0.105 (MODEL-PROJECTION).
+> - **Selector decision needed before any slot:**
+>   - (a) keep the hide-and-recover gate, so PROVCREST stays slot-eligible, against our recommendation; or
+>   - (b) adopt the receipt-CV gate, so LBCAL takes slot 1 and PROVCREST gets no slot.
+
 # Slot Plan (One Entity — 3 Scored / Rolling Week, 1 Blind Final)
 
 **State (`2026-10-24`):** `0` live `RECEIPT`s in `ledger/submissions.csv` (`67` unique `(parent, axis, value)` rows across all `7` brief axes, including the interior-annulus bracket of PR #53 (IR-88-57); historical `R0 = h33-h33-2-b2` `0.2778` remains `CLAIM`). Treat any live public change with `|delta| < 0.01` as **no evidence**. Upload primary `.tif` (`NaN` outside footprint) first; upload `-zeros.tif` only if the portal rejects `NaN`.
