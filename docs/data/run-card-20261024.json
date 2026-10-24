@@ -1,0 +1,279 @@
+{
+ "schema": "gems88.run_card.v3",
+ "session": {
+  "branch": "arena/f566c0e1-gemsdoe88",
+  "date_utc": "2026-10-24",
+  "started_utc": "2026-10-24T06:16Z",
+  "experiments_used": 3,
+  "experiments_budget": 3,
+  "diagnostics_read_only": [
+   "D1 forensics_h33",
+   "D2 proxy_calibration",
+   "D3 fleet_distance_prior"
+  ],
+  "experiment_compute_seconds": 885.7,
+  "slots_spent": 0,
+  "submissions_picked": 0
+ },
+ "hypothesis": {
+  "emitted_arm": "control (BASE-44): label-blind 44-layer geophysics+topography classifier, 3-px halo, exact Dinkelbach DTI allocation, out-of-fold stitched",
+  "tested": {
+   "E1_FBMT": {
+    "hypothesis": "Training on the population the model will be tested on (isolated mapped faults vs far-basin background; neighbourhoods of dense networks unlabeled) transfers better to faults far from the catalogue than all-positive training (BASE-44).",
+    "far": {
+     "dti": 0.061751910998069,
+     "ci95": [
+      0.048354339477473376,
+      0.07510898826375759
+     ],
+     "withheld_positives": 10791
+    },
+    "overall": {
+     "dti": 0.07596163661538664,
+     "ci95": [
+      0.061354602669236924,
+      0.09200578579885409
+     ],
+     "withheld_positives": 22893
+    },
+    "paired_far_vs_base": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": -0.009765786595531602,
+     "ci95": [
+      -0.02049629589644015,
+      0.001019647141111767
+     ],
+     "withheld_positive_pixels": 10791
+    },
+    "paired_overall_vs_base": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": -0.03129123544051558,
+     "ci95": [
+      -0.04535262812916361,
+      -0.0155405373813154
+     ],
+     "withheld_positive_pixels": 22893
+    },
+    "verdict": "negative"
+   },
+   "E2_CCR": {
+    "hypothesis": "Where smoothed geophysical evidence exceeds what the smoothed visible-catalogue density usually accompanies, faults are more likely unmapped; boosting by exp(0.5*clip(z,+-2)) raises far-subset DTI.",
+    "far": {
+     "dti": 0.05372674839352266,
+     "ci95": [
+      0.04012672205713987,
+      0.06826249792095422
+     ],
+     "withheld_positives": 10791
+    },
+    "overall": {
+     "dti": 0.059049037583401694,
+     "ci95": [
+      0.044200788535475315,
+      0.07627470959197011
+     ],
+     "withheld_positives": 22893
+    },
+    "paired_far_vs_fbmt": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": -0.008025162604546346,
+     "ci95": [
+      -0.011886395622923216,
+      -0.00412987926802585
+     ],
+     "withheld_positive_pixels": 10791
+    },
+    "verdict": "negative"
+   },
+   "E3_RCP": {
+    "hypothesis": "Real faults are laterally continuous; down-weighting short disconnected ridge candidates (bbox diagonal < 12 px) raises precision.",
+    "far": {
+     "dti": 0.052969251403999135,
+     "ci95": [
+      0.039292248561008436,
+      0.06715154789160667
+     ],
+     "withheld_positives": 10791
+    },
+    "overall": {
+     "dti": 0.05843695467724818,
+     "ci95": [
+      0.04418160019058842,
+      0.07555843958835831
+     ],
+     "withheld_positives": 22893
+    },
+    "paired_far_vs_ccr": {
+     "evidence_class": "HOLDOUT-DTI",
+     "evaluator_version": "gems57-pooled-hide-v2",
+     "delta": -0.000757496989523522,
+     "ci95": [
+      -0.0021361739477989555,
+      0.0007200075714866119
+     ],
+     "withheld_positive_pixels": 10791
+    },
+    "verdict": "null"
+   }
+  },
+  "preregistration": "registry/preregistration_halo88.json",
+  "ranked_list": "research/hypotheses-20261024.md"
+ },
+ "mechanism": "Gradient-boosted classifier on 44 label-blind columns trained out-of-fold on four spatial quadrants (positives = mapped catalogue), calibrated to the expected hidden-truth mass, dots chosen by the vendored exact Dinkelbach allocator with 300 m kernel and >=2.05 px spacing, no dot within 3 px of any mapped fault.",
+ "named_non_fault_mimics": [
+  "Pleistocene Lake Lahontan / Bonneville shoreline benches",
+  "GeoDAWN E-W flight-line corrugation",
+  "circular volcanic plugs and calderas",
+  "playa margins (cond_surf)"
+ ],
+ "holdout": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "seeds": [
+   20,
+   21
+  ],
+  "emitted_arm_overall": {
+   "dti": 0.10725287205590223,
+   "ci95": [
+    0.09343809078525349,
+    0.12080380097614199
+   ],
+   "withheld_positives": 22893
+  },
+  "emitted_arm_far_subset": {
+   "dti": 0.0715176975936006,
+   "ci95": [
+    0.05856933299976893,
+    0.08379879541859066
+   ],
+   "withheld_positives": 10791
+  },
+  "bar": {
+   "overall": 0.18789,
+   "far": 0.11478,
+   "source": "registry/holdout_result.json (H88-ADHR)"
+  },
+  "beats_bar": false,
+  "note": "far subset = withheld positives >10 px from every visible catalogue pixel; no number here is ORGANIZER-CONFIRMED"
+ },
+ "canary": {
+  "max_symmetric_auc": 0.5947545155858843,
+  "threshold": 0.9,
+  "passed": true,
+  "features_tested": 44
+ },
+ "overlap_vs_registry": {
+  "policy": "gems88-gate-v3",
+  "registry_rasters": 216,
+  "distinct_dot_sets": 111,
+  "worst_like_for_like_overlap": {
+   "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+   "value": 0.5956825232678387
+  },
+  "worst_abs_rho": {
+   "label": "17GEMSDOE:dense_17gemdoe.tif",
+   "value": 0.23900345789401767
+  },
+  "unique_like_for_like": true,
+  "unique_literal": false,
+  "literal_blockers": [
+   "17GEMSDOE:dense_17gemdoe.tif",
+   "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+  ],
+  "vacuity_witness": {
+   "random_dots": 38680,
+   "seed": 88,
+   "literal_overlap": 1.0,
+   "like_for_like_overlap": 0.017761116856256462,
+   "literal_rule_vacuous": true,
+   "dense_label": "17GEMSDOE:dense_17gemdoe.tif"
+  },
+  "detail": "registry/uniqueness_v3.json"
+ },
+ "fingerprint": {
+  "n": 38680,
+  "median_d_cat_px": 15.652475842498529,
+  "share_le2": 0.0,
+  "share_gt10": 0.677559462254395,
+  "share_gt25": 0.3085573940020683
+ },
+ "fingerprint_screen": {
+  "passed": false,
+  "rule": "share_le2==0 and share_gt25>=0.35"
+ },
+ "raster_sha256": "974b5d4b2009849c977ddb4210eb17d2fb93f8765011580931028d4fc707bada",
+ "zip_sha256": "ae80e61b0b06ba51429521c63991b9a13736ab48f771159e7dacae1c41613634",
+ "downloadable_file": "downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif",
+ "downloadable_zip": "downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.zip",
+ "validator_output": {
+  "ok": true,
+  "tif_zip_same_pixels": true,
+  "problems": [],
+  "tif_checks": {
+   "one_band": true,
+   "dtype_float32": true,
+   "crs_epsg_32611": true,
+   "shape_matches_sample": true,
+   "transform_matches_sample": true,
+   "bounds_match_sample": true,
+   "resolution_100m": true,
+   "nodata_undeclared": true,
+   "all_finite": true,
+   "masked_read_no_masked_cells": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "portal_range_check_nan_strict": true,
+   "portal_range_check_nanmin_nanmax": true,
+   "footprint_cells_finite": true,
+   "outside_footprint_zero": true,
+   "has_dots": true,
+   "no_internal_mask_band": true
+  },
+  "layout": {
+   "compress": "lzw",
+   "tiled": false,
+   "block_shapes": [
+    [
+     1,
+     3292
+    ]
+   ],
+   "predictor": null,
+   "interleave": "band"
+  },
+  "layout_parity_with_official_sample": true,
+  "second_decoder": {
+   "name": "tifffile",
+   "equal": true
+  },
+  "detail": "docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.format-audit.json"
+ },
+ "submission_name": "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT",
+ "submission_note": "GEMS88 label-blind 44-layer geophysics+topography classifier, 300 m halo, exact-DTI dots; 38680 dots. Holdout negative vs ADHR bar.",
+ "name_len": 72,
+ "note_len": 131,
+ "gate": {
+  "policy": "gems88-gate-v3",
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "blocking_reasons": [
+   "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+   "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
+  ],
+  "informational": [
+   "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+  ]
+ },
+ "verdict": "negative",
+ "limits": [
+  "No DrivenData login: no receipt inspected, nothing submitted, portal behaviour not observed.",
+  "Hide-and-recover truth is catalogue faults, not the hidden new-fault labels; H33-class rasters are not scorable on it.",
+  "Fingerprint screen is derived from 20 owner-reported scores (shared ancestry) and is necessary, not sufficient.",
+  "Uniqueness is against 215 obtainable rasters (21-raster inventory, 25 scored rasters, sites 86/87/89/92, this repository), not an organizer-complete registry."
+ ]
+}

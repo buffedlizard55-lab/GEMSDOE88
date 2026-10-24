@@ -1,0 +1,122 @@
+{
+ "ok": true,
+ "problems": [],
+ "tif": {
+  "path": "/home/user/GEMSDOE88/docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif",
+  "policy": "gems88-gate-v3",
+  "bytes": 798711,
+  "sha256": "974b5d4b2009849c977ddb4210eb17d2fb93f8765011580931028d4fc707bada",
+  "problems": [],
+  "member_name": "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif",
+  "tiff_header": {
+   "byte_order": "II",
+   "is_classic_tiff": true,
+   "is_bigtiff": false
+  },
+  "layout": {
+   "compress": "lzw",
+   "tiled": false,
+   "block_shapes": [
+    [
+     1,
+     3292
+    ]
+   ],
+   "predictor": null,
+   "interleave": "band"
+  },
+  "checks": {
+   "one_band": true,
+   "dtype_float32": true,
+   "crs_epsg_32611": true,
+   "shape_matches_sample": true,
+   "transform_matches_sample": true,
+   "bounds_match_sample": true,
+   "resolution_100m": true,
+   "nodata_undeclared": true,
+   "all_finite": true,
+   "masked_read_no_masked_cells": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "portal_range_check_nan_strict": true,
+   "portal_range_check_nanmin_nanmax": true,
+   "footprint_cells_finite": true,
+   "outside_footprint_zero": true,
+   "has_dots": true,
+   "no_internal_mask_band": true
+  },
+  "array_sha256": "2096a31e70602d478ed2255bf54e71e5f733bfe409de772167447ffe9c421681",
+  "n_dots": 38680,
+  "min": 0.0,
+  "max": 1.0,
+  "n_unique_values": 2,
+  "layout_parity_with_sample": true,
+  "second_decoder": {
+   "name": "tifffile",
+   "equal": true
+  },
+  "ok": true
+ },
+ "zip": {
+  "path": "/home/user/GEMSDOE88/docs/downloads/gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.zip",
+  "policy": "gems88-gate-v3",
+  "bytes": 165605,
+  "sha256": "ae80e61b0b06ba51429521c63991b9a13736ab48f771159e7dacae1c41613634",
+  "problems": [],
+  "zip_members": [
+   "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif"
+  ],
+  "zip_testzip": null,
+  "zip_member_compress_type": 8,
+  "member_name": "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT.tif",
+  "tiff_header": {
+   "byte_order": "II",
+   "is_classic_tiff": true,
+   "is_bigtiff": false
+  },
+  "layout": {
+   "compress": "lzw",
+   "tiled": false,
+   "block_shapes": [
+    [
+     1,
+     3292
+    ]
+   ],
+   "predictor": null,
+   "interleave": "band"
+  },
+  "checks": {
+   "one_band": true,
+   "dtype_float32": true,
+   "crs_epsg_32611": true,
+   "shape_matches_sample": true,
+   "transform_matches_sample": true,
+   "bounds_match_sample": true,
+   "resolution_100m": true,
+   "nodata_undeclared": true,
+   "all_finite": true,
+   "masked_read_no_masked_cells": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "portal_range_check_nan_strict": true,
+   "portal_range_check_nanmin_nanmax": true,
+   "footprint_cells_finite": true,
+   "outside_footprint_zero": true,
+   "has_dots": true,
+   "no_internal_mask_band": true
+  },
+  "array_sha256": "2096a31e70602d478ed2255bf54e71e5f733bfe409de772167447ffe9c421681",
+  "n_dots": 38680,
+  "min": 0.0,
+  "max": 1.0,
+  "n_unique_values": 2,
+  "layout_parity_with_sample": true,
+  "second_decoder": {
+   "name": "tifffile",
+   "equal": true
+  },
+  "ok": true
+ },
+ "tif_zip_same_pixels": true
+}

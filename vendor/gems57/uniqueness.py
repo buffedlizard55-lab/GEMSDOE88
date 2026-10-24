@@ -574,7 +574,7 @@ def two_phase_summary(rows, footprint_cells: int, *, rho_limit: float = RHO_LIMI
 
 
 # ---------------------------------------------------------------------------
-# IR-88-58 repair: a dot-overlap test against a space-filling prior carries
+# IR-88-73 repair: a dot-overlap test against a space-filling prior carries
 # zero information.  Fixed once here in the shared template, never forked.
 # ---------------------------------------------------------------------------
 def excess_overlap(forward_overlap, halo_coverage):
@@ -660,7 +660,7 @@ def binding_duplicate_decision_v3(rows, *, rho_limit: float = RHO_LIMIT,
                or (worst_rho and abs(worst_rho["spearman"]) > rho_limit))
     return dict(
         evidence_class="REGISTRY-MEASUREMENT",
-        binding_rule="chance-corrected-excess-overlap + rank-correlation (IR-88-58)",
+        binding_rule="chance-corrected-excess-overlap + rank-correlation (IR-88-73)",
         rationale=("A prior whose 3 px halo already covers the entire allowed domain returns "
                    "forward overlap 1.0 for every possible candidate, so the literal dot test "
                    "is constant and carries no information about lane drift; the protocol's "

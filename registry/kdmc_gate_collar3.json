@@ -103,7 +103,7 @@
   },
   "uniqueness_chance_corrected": {
     "evidence_class": "REGISTRY-MEASUREMENT",
-    "binding_rule": "chance-corrected-excess-overlap + rank-correlation (IR-88-58)",
+    "binding_rule": "chance-corrected-excess-overlap + rank-correlation (IR-88-73)",
     "rationale": "A prior whose 3 px halo already covers the entire allowed domain returns forward overlap 1.0 for every possible candidate, so the literal dot test is constant and carries no information about lane drift; the protocol's rank-correlation test is the one defined for such a surface. For every prior that can discriminate, the same 0.70 limit is applied to the chance-corrected excess, which equals the literal overlap when the prior has no halo advantage and is stricter in relative terms otherwise.",
     "rasters_checked": 21,
     "discriminating_priors": 20,
@@ -420,6 +420,48 @@
     ]
   },
   "ok_to_download": true,
-  "ok_to_submit": true,
-  "verdict": "promote"
+  "ok_to_submit": false,
+  "verdict": "hold",
+  "gate_v3": {
+    "policy": "gems88-gate-v3",
+    "generated_utc": "2026-10-24T08:05:33Z",
+    "registry_rasters_checked": 34,
+    "portal_ok": true,
+    "portal_problems": [],
+    "unique_like_for_like": false,
+    "like_for_like_blockers": [
+      "GEMSDOE88-MDC88:gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif"
+    ],
+    "unique_literal": false,
+    "literal_blockers": [
+      "17GEMSDOE:dense_17gemdoe.tif",
+      "GEMSDOE88-MDC88:gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif"
+    ],
+    "holdout_dti": 0.1488495052282044,
+    "holdout_bar": 0.18789,
+    "holdout_beats_bar": false,
+    "holdout_bar_caveat": "The bar is H88-ADHR's stored 0.18789. IR-88-72 shows that stack cannot be rebuilt on a clean checkout (it needs acquisition_block_id_100m.tif and tiger_road_distance_m.tif, which exist in no pinned source), so the bar itself is currently unverifiable. It is applied as written rather than silently overridden, and the discrepancy is flagged.",
+    "fingerprint": {
+      "n": 47226,
+      "median_d_cat_px": 13.038404810405298,
+      "share_le2": 0.0,
+      "share_gt10": 0.5824969296573921,
+      "share_gt25": 0.3014229449879304
+    },
+    "fingerprint_screen_pass": false,
+    "canary_passed": true,
+    "slot_blocking_reasons": [
+      "UNIQUENESS: blocked (like-for-like) by GEMSDOE88-MDC88:gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros.tif",
+      "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+      "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
+    ],
+    "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+    "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows)."
+  },
+  "recommended_for_weekly_slot": false,
+  "verdict_fields_explained": {
+    "ok_to_download": "the saved bytes re-open as a valid single-band GeoTIFF on the pinned grid",
+    "ok_to_submit": "the portal will accept it: format/CRS/shape/transform parity, every value finite in [0,1], and unique against every like-for-like registry raster",
+    "recommended_for_weekly_slot": "gate v3 slot policy: everything above PLUS beating the stored holdout bar and passing the fleet fingerprint screen. This is deliberately stricter than ok_to_submit."
+  }
 }

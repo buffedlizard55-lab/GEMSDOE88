@@ -1,0 +1,1403 @@
+{
+ "schema": "gems88.sibling_inventory.v1",
+ "owner": "buffedlizard55-lab",
+ "sites": {
+  "GEMSDOE86": {
+   "commit": "2538214d579d87d0986ca4050481f0ef39ed72dd",
+   "n_tif": 38,
+   "n_zip": 11,
+   "files": [
+    {
+     "site": "GEMSDOE86",
+     "path": "data/bridge/existing_faults.tif",
+     "kind": "tif",
+     "bytes": 425830,
+     "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/bridge/sample_submission.tif",
+     "kind": "tif",
+     "bytes": 1599597,
+     "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE28__gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+     "kind": "tif",
+     "bytes": 1595850,
+     "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE28__gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+     "kind": "tif",
+     "bytes": 1590848,
+     "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE28__gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+     "kind": "tif",
+     "bytes": 1591212,
+     "sha256": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h32d-submodular-multipysics-46090-20261004T183200Z-4de30601-zeros.tif",
+     "kind": "tif",
+     "bytes": 250577,
+     "sha256": "f81e26d7712d1a4a9d3d5393037b09849400c3976d1ebd40e2760a586f2adc2f"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE32__gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+     "kind": "tif",
+     "bytes": 219065,
+     "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE33__GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+     "kind": "tif",
+     "bytes": 917544,
+     "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE36__gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+     "kind": "tif",
+     "bytes": 318190,
+     "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE49__gems49-gate_ortho_w0.25-40k-20261006T213721Z-nan.tif",
+     "kind": "tif",
+     "bytes": 377092,
+     "sha256": "c58fe0551e120678fff190239146985d0b2f7255255535fb5fb637a05cb40af3"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif",
+     "kind": "tif",
+     "bytes": 384580,
+     "sha256": "886e470530d8b23a4967a7f8d9f55df5fb39441ff7b544490cab457d076731f7"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE66__gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros.tif",
+     "kind": "tif",
+     "bytes": 307902,
+     "sha256": "7c7d30c22c17571e24927c8c2c435725e5c8396bd6724446ecc60663d5972b7e"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE70__gems70-p5-multiphysics-submodular-37654-20261020.tif",
+     "kind": "tif",
+     "bytes": 138252,
+     "sha256": "f19a78d511f9d822b47ad4d9ce56cf2ccfa415e3d1ca49709a342158de6e7a84"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE73__gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros.tif",
+     "kind": "tif",
+     "bytes": 147617,
+     "sha256": "fab28aa25f7f803907c91d0e64cbfe2755f9bc1702163f458bbb1017174a0249"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE75__gems75-trlt-radon-loco-ridge-20261021-zeros.tif",
+     "kind": "tif",
+     "bytes": 144737,
+     "sha256": "e04df46e8a0770b470bf8846ed2aff966fd192e7ff71fbc4d82724b28c0b1b71"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE76__gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros.tif",
+     "kind": "tif",
+     "bytes": 137028,
+     "sha256": "54c978399d0a875ba89aacc465e7efd8644420e6ba1dfa7c0a1390328be2c514"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+     "kind": "tif",
+     "bytes": 140199,
+     "sha256": "d706807d42d1b21f6417483cd7aeb04a410d62accd5a66c6b2a6ab0dc16662af"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE78__gems78-h78-gfv-136b-dink-20261022T070254Z-45cd56e7-zeros.tif",
+     "kind": "tif",
+     "bytes": 147086,
+     "sha256": "0338383df9c36c0a2581ddc584e6aafa5ce364ba52cd9e56749628bc4301dd07"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE78__gems78-h78gsc-oof-submod40k-20261021T033000Z-zeros.tif",
+     "kind": "tif",
+     "bytes": 147599,
+     "sha256": "e2f21d496925fb1bd2f36c5b28a0e2356286eca719132545474456f81bc5a8eb"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE80__gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif",
+     "kind": "tif",
+     "bytes": 141719,
+     "sha256": "f538f414fb11169342bb613a9c9c1eb9e075278c511e694d55c96ba0760851f9"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+     "kind": "tif",
+     "bytes": 162346,
+     "sha256": "a3c14d76d1f58802c8bd3f13378cbeb037ad3618d5fbd9dbf5f5a0dae4a35ede"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE81__gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros.tif",
+     "kind": "tif",
+     "bytes": 155982,
+     "sha256": "9798fe7f4a68c7b8efbb9f3f03945ab800177b993abe671e4d174282e0675508"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE82__gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros.tif",
+     "kind": "tif",
+     "bytes": 137930,
+     "sha256": "120810feffb4688c364f2bb49a3d2624dcbb53fdc294892c68957f65fbaba131"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+     "kind": "tif",
+     "bytes": 144047,
+     "sha256": "79f14dc84cd7760cb44645bc090ed2d33dbcfe789cec844fd83753fcff1082a2"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+     "kind": "tif",
+     "bytes": 438042,
+     "sha256": "ba33ea18936e6324037457e1ff5070d8e879b7b29a25b4ae2c0003bc509a567f"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE85__gems85-h85a-foldproper-hgb-maxcov-37654-20261022T221031Z-bf96e456-zeros.tif",
+     "kind": "tif",
+     "bytes": 191404,
+     "sha256": "ccc8a7a4e53c406de00c5ba40612f5d3df2b0f4afc869dd1b997d5b836a0209b"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "data/scored_fleet/GEMSDOE88__gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+     "kind": "tif",
+     "bytes": 119914,
+     "sha256": "3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+     "kind": "tif",
+     "bytes": 213861,
+     "sha256": "94f1f2b0003b7d97c29804e3b11f32b80901505656319e52f0b2365b0f33c2a3"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.zip",
+     "kind": "zip",
+     "bytes": 180710,
+     "sha256": "0567c16807f43712346fe0035ead8f54e03e8b06a5a51cb4f30343383f84640d",
+     "tif_members": [
+      "gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif",
+     "kind": "tif",
+     "bytes": 195987,
+     "sha256": "0dd4b5390570193d67805291de911eb7638727c91082782c738faf2ad4b83bf9"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.zip",
+     "kind": "zip",
+     "bytes": 163938,
+     "sha256": "880a015b2544c176c403a302a1ac5fe2abef6f46caf46c6d534f98b03e7dda1e",
+     "tif_members": [
+      "gems86-gmc-linepost-offcat-90568d-20261022T224539Z-e6f914e4-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif",
+     "kind": "tif",
+     "bytes": 140584,
+     "sha256": "e382e638d248e9d638182eb5c2e875eee7d819f859d9753c27005e652a0cd425"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.zip",
+     "kind": "zip",
+     "bytes": 104790,
+     "sha256": "a0ebdcf1af01bfa3e760af35c2d84c63d5fb69d4d69f13f151b5cf8692d73427",
+     "tif_members": [
+      "gems86-h86-cthb-submod-37654dots-20261023T014003Z-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif",
+     "kind": "tif",
+     "bytes": 134369,
+     "sha256": "5d135088eb703e6d6f74f28b66b531145b290eac4fb542d6b5d5893ebba2f6d5"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.zip",
+     "kind": "zip",
+     "bytes": 97976,
+     "sha256": "52aa21b130229672afd7d281acf4b0ae8076795def1644664377d6f83d515a42",
+     "tif_members": [
+      "gems86-h86-edge2of5-dotted38000-20261022T225931Z-70513125-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif",
+     "kind": "tif",
+     "bytes": 146282,
+     "sha256": "413e9f7707a1bf80ae9375c6bbc6a8952442487acebaabd2c6d3e8233033e233"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.zip",
+     "kind": "zip",
+     "bytes": 113465,
+     "sha256": "5c14d8f91dc49a5810fe228190c2bdc7ca22fc97faa2f76d44474d02787ebe12",
+     "tif_members": [
+      "gems86-h86-fvmb-triregime-dink300-38400dots-20261022T220000Z-1b3e7107-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif",
+     "kind": "tif",
+     "bytes": 188877,
+     "sha256": "cf4ab3403d28b085018b01221487e58e20fe2697cf17e96be739bd87a91a5962"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.zip",
+     "kind": "zip",
+     "bytes": 157598,
+     "sha256": "08e65b784d5aa38826c00ab9e5c0d48be1d0440f762088e9bef147f2e420a1f7",
+     "tif_members": [
+      "gems86-h86-rmrb-60000dots-20261022T225314Z-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
+     "kind": "tif",
+     "bytes": 136026,
+     "sha256": "d0231888c4567816d706cca360c8fe0cd98fc0b673409edb3ffc5649e3d1bdf3"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.zip",
+     "kind": "zip",
+     "bytes": 99441,
+     "sha256": "b5c38a4a4a8664003b7a4601c926f0093ae791ae292222f7f5d0e8d627d5281e",
+     "tif_members": [
+      "gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
+     "kind": "tif",
+     "bytes": 145410,
+     "sha256": "897ebf7b790efb9b5668934f5929ae766d81d9ec2a4bee3faa7ef2ebaedc1116"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.zip",
+     "kind": "zip",
+     "bytes": 109484,
+     "sha256": "707d1c9c5627d4df31b2de13b9a8c53512e9b24a4e04cdacf8957ef879463641",
+     "tif_members": [
+      "gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif",
+     "kind": "tif",
+     "bytes": 142387,
+     "sha256": "bd2c5a3f8b0969eaf00618ff4e90a3640a9bf3e2638947cffb42b53a769f87e0"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.zip",
+     "kind": "zip",
+     "bytes": 106005,
+     "sha256": "9c93183e84e7e7ab3413762f9b9a25833c157074941f038fdd4edbade2c22260",
+     "tif_members": [
+      "gems86-h86c-kslb-44090dots-20261023T010446Z-83854555-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif",
+     "kind": "tif",
+     "bytes": 133010,
+     "sha256": "9ed632445228aad8d9b14d8db75d24687520a092e7e14ca94c3151f96f7aafdd"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "docs/downloads/gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.zip",
+     "kind": "zip",
+     "bytes": 97068,
+     "sha256": "1f115bd8a7afe0ac65cc85224a988d9f4a5bfc3ec34e8732d07c9e6dee9c1ca9",
+     "tif_members": [
+      "gems86-rmrb-kthu-rtp-37654-20261022-DO-NOT-SUBMIT.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif",
+     "kind": "tif",
+     "bytes": 267158,
+     "sha256": "26cf2d392663b4ad3118534b07de889099e0ea9d48bfa3bcddbf8ca00dd5b342"
+    },
+    {
+     "site": "GEMSDOE86",
+     "path": "submission/gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.zip",
+     "kind": "zip",
+     "bytes": 180749,
+     "sha256": "a65283188fe1ddfed17a748554da9f3cfe7142c7d8279e6b5c33a5ef67a31e22",
+     "tif_members": [
+      "gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif"
+     ]
+    }
+   ],
+   "extras": [
+    {
+     "path": "registry/prior_scores.csv",
+     "dest": "data/fleet/prior_scores.csv",
+     "sha256": "e4ac6f1ca5de11894744ef6ffb03bfdb612e9a3cb99fefd6e749168778347724",
+     "note": "owner-reported public scores (OWNER-REPORTED); used by scripts/calibrate_proxies.py"
+    }
+   ]
+  },
+  "GEMSDOE87": {
+   "commit": "e53f08f4002ffe37f3e0faade6319c9a6cfd157c",
+   "n_tif": 35,
+   "n_zip": 10,
+   "files": [
+    {
+     "site": "GEMSDOE87",
+     "path": "docs/downloads/gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+     "kind": "tif",
+     "bytes": 16724696,
+     "sha256": "10f022d5f38457332f472591ead1196ac369c38f6275c37d21021ead3d56cc2d"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "docs/downloads/gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.zip",
+     "kind": "zip",
+     "bytes": 16697649,
+     "sha256": "189dfff91ccd577ab5ab92821bfff069d43d39f6fe6a0827358a2ae287641343",
+     "tif_members": [
+      "gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "docs/downloads/gems87-stfd-h87b-37654dots-20261023-1d3f50ffd13f-RESEARCH-DO-NOT-SUBMIT.tif",
+     "kind": "tif",
+     "bytes": 130826,
+     "sha256": "1d3f50ffd13f9c7ec0258579717810be3bd4d1fc039b80a0f6e2e4c523ba394f"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "docs/downloads/gems87-stfd-h87b-37654dots-20261023-1d3f50ffd13f-RESEARCH-DO-NOT-SUBMIT.zip",
+     "kind": "zip",
+     "bytes": 93397,
+     "sha256": "15f4e681bac3fc2cef8270e297255f568bce61313245f3b60aecd9c01d8b27a6",
+     "tif_members": [
+      "gems87-stfd-h87b-37654dots-20261023-1d3f50ffd13f-RESEARCH-DO-NOT-SUBMIT.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "downloads/gems87-stfd-h87b-37654dots-20261023-1d3f50ffd13f-RESEARCH-DO-NOT-SUBMIT.tif",
+     "kind": "tif",
+     "bytes": 130826,
+     "sha256": "1d3f50ffd13f9c7ec0258579717810be3bd4d1fc039b80a0f6e2e4c523ba394f"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "downloads/gems87-stfd-h87b-37654dots-20261023-1d3f50ffd13f-RESEARCH-DO-NOT-SUBMIT.zip",
+     "kind": "zip",
+     "bytes": 93397,
+     "sha256": "15f4e681bac3fc2cef8270e297255f568bce61313245f3b60aecd9c01d8b27a6",
+     "tif_members": [
+      "gems87-stfd-h87b-37654dots-20261023-1d3f50ffd13f-RESEARCH-DO-NOT-SUBMIT.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "downloads/h87-h87-cmgep-20261022T060000Z-6e2c741a-zeros.tif",
+     "kind": "tif",
+     "bytes": 131577,
+     "sha256": "f6833b831d91618577f73522f4a269f1f878a982cc38ba2bbb27d942396b2403"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "downloads/h87-h87-cmgep-20261022T060000Z-6e2c741a-zeros.zip",
+     "kind": "zip",
+     "bytes": 95557,
+     "sha256": "07378dc52212a571c4b25ad19bed38da821a6d6f382d729992e69f1cbf55b4ad",
+     "tif_members": [
+      "h87-h87-cmgep-20261022T060000Z-6e2c741a-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "downloads/h87-h87-cmgep-20261022T060000Z-8f394f43.tif",
+     "kind": "tif",
+     "bytes": 1586840,
+     "sha256": "1c28a4c991111dd201281ccdb05e7792344ba00a6a8efedfceab976117cf2c69"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc10-20261023-a9e67bab-zeros.tif",
+     "kind": "tif",
+     "bytes": 146266,
+     "sha256": "c79400032488ed92002f897a078b8143272f35787e843f179073aab686dae6f0"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc10-20261023-a9e67bab-zeros.zip",
+     "kind": "zip",
+     "bytes": 111472,
+     "sha256": "4b6d3ab51733aed7aca5c2690a90a4fcb079be2c41e2514267b0f5009072debc",
+     "tif_members": [
+      "h33-h33-2-b2-CONCc10-20261023-a9e67bab-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc10-20261023-a9e67bab.tif",
+     "kind": "tif",
+     "bytes": 190866,
+     "sha256": "a9e67bab4ab3ddc01027383ba47f8febc6232e0c8bd42ba62cc4e782737c84ec"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc10-20261023-a9e67bab.zip",
+     "kind": "zip",
+     "bytes": 143328,
+     "sha256": "05d99fa7947fb6a74a611f9f8a0f7f65e160bece0b35472c85e444a297c00ead",
+     "tif_members": [
+      "h33-h33-2-b2-CONCc10-20261023-a9e67bab.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc15-20261023-25e403d0-zeros.tif",
+     "kind": "tif",
+     "bytes": 144972,
+     "sha256": "d632f28b50b0fec93392ce2849cb3e8003a40499ca4d7f3ea33f2fa752d81ddc"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc15-20261023-25e403d0-zeros.zip",
+     "kind": "zip",
+     "bytes": 109904,
+     "sha256": "cf571e1899e2c3a7e90770c206a2cdf5bc5ea551de510616d0f6ffd982adf550",
+     "tif_members": [
+      "h33-h33-2-b2-CONCc15-20261023-25e403d0-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc15-20261023-25e403d0.tif",
+     "kind": "tif",
+     "bytes": 189530,
+     "sha256": "25e403d041015ff95789a07187df47b18c7e2d33f4011833612597699324b6d5"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc15-20261023-25e403d0.zip",
+     "kind": "zip",
+     "bytes": 141790,
+     "sha256": "9e365c2c9a8d6649ff6fbf6b8577892f1974822874a809c2c6df04b6b991aed8",
+     "tif_members": [
+      "h33-h33-2-b2-CONCc15-20261023-25e403d0.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc20-20261023-03244051-zeros.tif",
+     "kind": "tif",
+     "bytes": 143800,
+     "sha256": "a9b0a226404ca91f34f91026313a68a0b168728481bf0eb9b8f7b3bb7ad6fb2f"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc20-20261023-03244051-zeros.zip",
+     "kind": "zip",
+     "bytes": 108507,
+     "sha256": "ca3070633eb98e7a027eb275daea13f5d922b4844c1a83630439785007f26bf4",
+     "tif_members": [
+      "h33-h33-2-b2-CONCc20-20261023-03244051-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc20-20261023-03244051.tif",
+     "kind": "tif",
+     "bytes": 188302,
+     "sha256": "03244051b856f952a24919c5e9af050a6d33495c2bbfd853c695ea1dd3330c1f"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-CONCc20-20261023-03244051.zip",
+     "kind": "zip",
+     "bytes": 140010,
+     "sha256": "a8af283cbfc2e664451b4ee0df9a04017961a684652fe891f8d745e6b3a17912",
+     "tif_members": [
+      "h33-h33-2-b2-CONCc20-20261023-03244051.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-PRUNE1-20261023-4679d91c-zeros.tif",
+     "kind": "tif",
+     "bytes": 219324,
+     "sha256": "b3b1e75b82f1ac418902aa3ac4fecbe517ca429b4eac0794cb43e487761b7b2a"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-PRUNE1-20261023-4679d91c.tif",
+     "kind": "tif",
+     "bytes": 355668,
+     "sha256": "4679d91c5426a46ed813d680095175805851d158075304118fa2ff90c8485049"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-PRUNE3-20261023-bc00a06c-zeros.tif",
+     "kind": "tif",
+     "bytes": 218052,
+     "sha256": "482e21662dd99b9b33ca16b4627d6dadb81dc0892323ba85fbecf0332cf01876"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-PRUNE3-20261023-bc00a06c.tif",
+     "kind": "tif",
+     "bytes": 354515,
+     "sha256": "bc00a06c51ddabce568401702b8b8446919665979b17555e859f66e1fed13e82"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-PRUNE4-20261023-f5c53782-zeros.tif",
+     "kind": "tif",
+     "bytes": 217405,
+     "sha256": "16539fac84c71b8c0e8d7769b8bb7be9a74128febc44e870c9c82ac0ad7d48d3"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-PRUNE4-20261023-f5c53782.tif",
+     "kind": "tif",
+     "bytes": 353609,
+     "sha256": "f5c5378214120a58ae3bd04cf74d75fe7722b19bd6a47d0b463e909d964a9895"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-RELIEFb2r15-20261023-982da990-zeros.tif",
+     "kind": "tif",
+     "bytes": 213063,
+     "sha256": "305c03e034e3f3afd95bf44d566c14448a56158e6e795fe4f0338b2d0d5fee3d"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-RELIEFb2r15-20261023-982da990.tif",
+     "kind": "tif",
+     "bytes": 349246,
+     "sha256": "982da990cb9bf7cd30090c94616f324539466bda85211a367ebbf9e3851c2ce3"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-RELIEFr2b10-20261023-ffcd12c0-zeros.tif",
+     "kind": "tif",
+     "bytes": 217402,
+     "sha256": "b15f21187cacae88f71c0d81e4d60aae6480575187f1ace98da712ce5feb2f69"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-RELIEFr2b10-20261023-ffcd12c0.tif",
+     "kind": "tif",
+     "bytes": 353329,
+     "sha256": "ffcd12c04c4b0f2d7de260283ecdcc010cba7a2bb5d9db0ed02e4e5a57468131"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-RELIEFr2p12-20261023-0689ea4c-zeros.tif",
+     "kind": "tif",
+     "bytes": 217129,
+     "sha256": "5ff5f69b2d25ba25dedb216559186c3b4723a2b04b17a71fef7ce833f2667f99"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-RELIEFr2p12-20261023-0689ea4c.tif",
+     "kind": "tif",
+     "bytes": 353724,
+     "sha256": "0689ea4cdf5245cd88c2a0812dae25f0f0ecf723be58852aa7fe076f4d2cd724"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPcomb2-20261023-bf0a7e2b-zeros.tif",
+     "kind": "tif",
+     "bytes": 219310,
+     "sha256": "007f83e0042258362a0f88f688cd55c9b3a0358cb3e46446d3cba43f4a88b38d"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPcomb2-20261023-bf0a7e2b.tif",
+     "kind": "tif",
+     "bytes": 355332,
+     "sha256": "bf0a7e2b906a19526a78cc67e175e36e4716975017bbff5a2e1f9a100820deff"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPgrav-argmax-20261023-7b0a8ac9-zeros.tif",
+     "kind": "tif",
+     "bytes": 219339,
+     "sha256": "4e367cf9003ae750ef0868509f4b857cdf019946f2793c2a468bb09177ee7a59"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPgrav-argmax-20261023-7b0a8ac9.tif",
+     "kind": "tif",
+     "bytes": 355606,
+     "sha256": "7b0a8ac9327fb3a342d7ef75af96e3e8c8844505e7e0aabbb82692af60c5e07b"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPgrav2-20261023-ac2bdb06-zeros.tif",
+     "kind": "tif",
+     "bytes": 219336,
+     "sha256": "31dbcaac0d7f2107cc6ca491ceaba388e948e75411d3d4217de072458e5dbadf"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPgrav2-20261023-ac2bdb06.tif",
+     "kind": "tif",
+     "bytes": 355504,
+     "sha256": "ac2bdb061774b38d0bdfa9e4fb77fb7ad3ae66d671eebe7406e42333c662c348"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPscarp-20261023-8245ad43-zeros.tif",
+     "kind": "tif",
+     "bytes": 219482,
+     "sha256": "8d0d343f87061a5df75f62361fb86311e32c86b367776c93fc773e36ced3a915"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPscarp-20261023-8245ad43.tif",
+     "kind": "tif",
+     "bytes": 355988,
+     "sha256": "8245ad430b6aea10b94d580ee66403d68624cd9451bd2add2ec09310bf1f2250"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPtmi-hg-20261023-95057a8a-zeros.tif",
+     "kind": "tif",
+     "bytes": 219235,
+     "sha256": "2f42ec8e4f4883b151a8fb9f584beb3c483a9bfec0dfb191ea65e693d6e6c8e9"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPtmi-hg-20261023-95057a8a.tif",
+     "kind": "tif",
+     "bytes": 355602,
+     "sha256": "95057a8ae47390891e1692075f0e958089a6518bc1dee33241323a8aae24d4a0"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPtmi2-20261023-b87ddfc5-zeros.tif",
+     "kind": "tif",
+     "bytes": 218999,
+     "sha256": "b7c96cbbef9750e114578e337bb6515024d19f394a9694bb30ba83283c9af12f"
+    },
+    {
+     "site": "GEMSDOE87",
+     "path": "releases/h33-h33-2-b2-SNAPtmi2-20261023-b87ddfc5.tif",
+     "kind": "tif",
+     "bytes": 355066,
+     "sha256": "b87ddfc5ae71e761af01c13bc9f6c2ba2f3dee431e43b9537a884fee2eb36ae8"
+    }
+   ]
+  },
+  "GEMSDOE89": {
+   "commit": "e4d85ffa185a22a215ae1410ac8597c462bd4a70",
+   "n_tif": 66,
+   "n_zip": 0,
+   "files": [
+    {
+     "site": "GEMSDOE89",
+     "path": "docs/downloads/gems89-bstp40-20261024-2e7e8a8f-zeros.tif",
+     "kind": "tif",
+     "bytes": 224399,
+     "sha256": "4b86c16d11f13ff0e65d09e020969fd365b545a504e18ae34f3d7a71479caa33"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "docs/downloads/gems89-bstp40-20261024-2e7e8a8f.tif",
+     "kind": "tif",
+     "bytes": 370996,
+     "sha256": "2e7e8a8f52ccf46de43169891c7c4cf6e697cdd694592df1ef6c7cb8abebf596"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/gems89-bstp40-20261024-2e7e8a8f-zeros.tif",
+     "kind": "tif",
+     "bytes": 224399,
+     "sha256": "4b86c16d11f13ff0e65d09e020969fd365b545a504e18ae34f3d7a71479caa33"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/gems89-bstp40-20261024-2e7e8a8f.tif",
+     "kind": "tif",
+     "bytes": 370996,
+     "sha256": "2e7e8a8f52ccf46de43169891c7c4cf6e697cdd694592df1ef6c7cb8abebf596"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-CONC5kmcat10-20261023-2dc19377-zeros.tif",
+     "kind": "tif",
+     "bytes": 232503,
+     "sha256": "a42e5d1a160c2429b8364d8ea48d9047202a3a049805933dfdde71cb75b73ce9"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-CONC5kmcat10-20261023-2dc19377.tif",
+     "kind": "tif",
+     "bytes": 379222,
+     "sha256": "2dc19377e7592f408bf3d3bc67d49bb86b640deedaf2744de12db68f3cc2db52"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-CONC5kmcat10away-20261023-f7b8aa28-zeros.tif",
+     "kind": "tif",
+     "bytes": 230721,
+     "sha256": "131990f1ffa0906821554956069c659da2faec34c61dcaee856309cabcaf6108"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-CONC5kmcat10away-20261023-f7b8aa28.tif",
+     "kind": "tif",
+     "bytes": 377698,
+     "sha256": "f7b8aa2888bbe320630c03e7dc9e94c445f13c01dc539ad699e5cd791e38f75b"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-CONC5kmcat20-20261023-4d229938-zeros.tif",
+     "kind": "tif",
+     "bytes": 228230,
+     "sha256": "6b53f30555557271046c559f71b5296d3033fd557a7812f21106ac1a681e6f23"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-CONC5kmcat20-20261023-4d229938.tif",
+     "kind": "tif",
+     "bytes": 375033,
+     "sha256": "4d2299386c1bfd8ff601fb018a366e473fb92a45e51e8c2df9d0890361dc3d71"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-MASSm10rand-20261023-7a4c49b6-zeros.tif",
+     "kind": "tif",
+     "bytes": 217796,
+     "sha256": "4cb61fd574b7840729312156f8b5bff5fa0e8d48b3dcb2e06be7ed8dd7dcfa9d"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-MASSm10rand-20261023-7a4c49b6.tif",
+     "kind": "tif",
+     "bytes": 365082,
+     "sha256": "7a4c49b6999421b1b47a12ad7f7c77c1499dad983e87f5620469f36e615a90a0"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-MASSm10uniq-20261023-beed130f-zeros.tif",
+     "kind": "tif",
+     "bytes": 218760,
+     "sha256": "312c7ab47c3a1a02894e3ca29e9b93c9e44a387384e5720d8995f22d45ab501c"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-MASSm10uniq-20261023-beed130f.tif",
+     "kind": "tif",
+     "bytes": 366129,
+     "sha256": "beed130f09a9c7e292c8a0a9171ac7dd2a8f19023cf41c8a5f855ba541122f06"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-MASSm20uniq-20261023-87ec6213-zeros.tif",
+     "kind": "tif",
+     "bytes": 203637,
+     "sha256": "e00a58e58194574b9458a1e1433baa1d9eb97af3c8d68913383824d404b27e45"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-MASSm20uniq-20261023-87ec6213.tif",
+     "kind": "tif",
+     "bytes": 351388,
+     "sha256": "87ec62139e77771157799304fb47ec8322bce0133ba20b048070cb2973f986f8"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-TRACKBt150add-20261024-5a09404f-zeros.tif",
+     "kind": "tif",
+     "bytes": 238222,
+     "sha256": "301a2b1303e604b050ec33819475542f1191bc0a007eb33a9556269e38f67783"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-TRACKBt150add-20261024-5a09404f.tif",
+     "kind": "tif",
+     "bytes": 384459,
+     "sha256": "5a09404fa69f4dd938fdd0926e55c8862754378ed1e35319d293979bed850846"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-TRACKBt150link-20261024-eded7713-zeros.tif",
+     "kind": "tif",
+     "bytes": 231577,
+     "sha256": "07b6ff8def29cb4ac7256c6bd08f3cc38f89ebfbc34a5797dd94badfad072eea"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-TRACKBt150link-20261024-eded7713.tif",
+     "kind": "tif",
+     "bytes": 377327,
+     "sha256": "eded7713caeece97eb18f26c7c16649d0a4d1ee2d1e459875b92c69b431a9559"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-TRACKBt150swap-20261024-8cfcbe4c-zeros.tif",
+     "kind": "tif",
+     "bytes": 232209,
+     "sha256": "8eeabdac2280f89a0da14f2e3b3dfcadc702a896ae6b789a3afcee909e92f992"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-TRACKBt150swap-20261024-8cfcbe4c.tif",
+     "kind": "tif",
+     "bytes": 378411,
+     "sha256": "8cfcbe4cf2b8696df7dda3726757cc0f9d5757b6016019f41ff2832a304d48ca"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-TRACKBtop12-20261024-fb156257-zeros.tif",
+     "kind": "tif",
+     "bytes": 56360,
+     "sha256": "62e512d6b4b2da28a2ff8affa197726cef561e960b559896476c226123c77915"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-TRACKBtop12-20261024-fb156257.tif",
+     "kind": "tif",
+     "bytes": 195632,
+     "sha256": "fb15625714547a192da792b26466085c5ce849854c8af35206450b5c332bc370"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc-12p8km-geod15-20261023-259ea040-zeros.tif",
+     "kind": "tif",
+     "bytes": 232619,
+     "sha256": "d914868666c45707ccfe570eda343ae3b3774845058c7e02c46cf35f0f3820c3"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc-12p8km-geod15-20261023-259ea040.tif",
+     "kind": "tif",
+     "bytes": 378340,
+     "sha256": "259ea040c818a26add94d1a356b0c75b180292bc8c67bcf2cec5776e047f5e45"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc-12p8km-int10-20261023-bcade136-zeros.tif",
+     "kind": "tif",
+     "bytes": 234127,
+     "sha256": "b1cde6898bf225de6ea77c77a2d169b125489f131458b410276624253586cc92"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc-12p8km-int10-20261023-bcade136.tif",
+     "kind": "tif",
+     "bytes": 380424,
+     "sha256": "bcade136bc98295f142eed015f88b2b913ab94dbcafcc5d8400eb1508b143167"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc-12p8km-int20-20261023-357b4ac4-zeros.tif",
+     "kind": "tif",
+     "bytes": 231442,
+     "sha256": "050572eb870694aa5648fc4c3fc51b01d224addaa4b3c397b421369ce3cf3e6e"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc-12p8km-int20-20261023-357b4ac4.tif",
+     "kind": "tif",
+     "bytes": 377071,
+     "sha256": "357b4ac4f3384e3b567c6abd1d9013713f8d037f8dbd62d1af615f4449c0e44f"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc2km-b50-t33-m3765-20261023-da3a4886-zeros.tif",
+     "kind": "tif",
+     "bytes": 231516,
+     "sha256": "a45ab1e7935e5a44b685bd830bdc2e27899e0ca11cc124baabb64684513769ae"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc2km-b50-t33-m3765-20261023-da3a4886.tif",
+     "kind": "tif",
+     "bytes": 378041,
+     "sha256": "da3a488620e9f443056f9716386d63f3bacfecde6d051169a1435d6fb6b2c95d"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc2km-b50-t33-m5648-20261023-51ba9656-zeros.tif",
+     "kind": "tif",
+     "bytes": 230072,
+     "sha256": "139ebb93cf8f072e15640888031fd92d8611087b27f482c45efe46945ad203d5"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc2km-b50-t33-m5648-20261023-51ba9656.tif",
+     "kind": "tif",
+     "bytes": 376193,
+     "sha256": "51ba9656e1126af80bf8d737cf53dea793fbe553b1225e86a9e5b0d16b5b2ee3"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc2km-b50-t33-m7531-20261023-1e857586-zeros.tif",
+     "kind": "tif",
+     "bytes": 228122,
+     "sha256": "0834d27552179a784699adce475f0afe8fd0c1f2902f611da4f79eec23919762"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-conc2km-b50-t33-m7531-20261023-1e857586.tif",
+     "kind": "tif",
+     "bytes": 374073,
+     "sha256": "1e8575866a39b8e7c43fae72e583f1f70c28a1c6a9a8627d4b55461a2936f5b5"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-relief-r10-20261023-366c87ca-zeros.tif",
+     "kind": "tif",
+     "bytes": 234181,
+     "sha256": "e776fc20873321f77cadabf41aa9a661c6d7fe67324c68d2c48e745de904adb2"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-relief-r10-20261023-366c87ca.tif",
+     "kind": "tif",
+     "bytes": 380984,
+     "sha256": "366c87ca620402158cfbbf4911ed8abc8ba2da34f198694c9df7c5ea640ab335"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-relief-r15-20261023-6aa774ce-zeros.tif",
+     "kind": "tif",
+     "bytes": 234507,
+     "sha256": "e3b6c2ecfb65c109c54b813230d60a2e46f34091b1df2df5e342e3943af34681"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-relief-r15-20261023-6aa774ce.tif",
+     "kind": "tif",
+     "bytes": 381280,
+     "sha256": "6aa774ce21fe10b33672fc4401822eddfc60fc010e7371db6058fd9c38cebd00"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-relief-r15s-20261023-5f0ae851-zeros.tif",
+     "kind": "tif",
+     "bytes": 237654,
+     "sha256": "3b2cbfd13dd4d3fa909ba05987e9906bd39cfb084a767d16e5a0bb95e10d5de6"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-relief-r15s-20261023-5f0ae851.tif",
+     "kind": "tif",
+     "bytes": 385018,
+     "sha256": "5f0ae8512e44940bf02e9fecba94af91d9119450abd45d0b6074a7fc40f0a796"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap1p0px-g0p00-20261023-1add5aa6-zeros.tif",
+     "kind": "tif",
+     "bytes": 234720,
+     "sha256": "25e17d968ef49833b1a7c61225c3f7d883886ce0810fdbdd37556b2f33549c3f"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap1p0px-g0p00-20261023-1add5aa6.tif",
+     "kind": "tif",
+     "bytes": 381180,
+     "sha256": "1add5aa60487c529eccef3c3a830d7330f36cec0f407cc3fb3d9ceb6bd1b3ef2"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap1p0px-g0p01-20261024-2916ec2d-zeros.tif",
+     "kind": "tif",
+     "bytes": 233609,
+     "sha256": "0b4fad309e26eb49e0ca2707cd5a58f8f675acfbdfff0f0c6192945dcbe163ea"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap1p0px-g0p01-20261024-2916ec2d.tif",
+     "kind": "tif",
+     "bytes": 380522,
+     "sha256": "2916ec2d31ebc9c25164686a9dec63f781604cad927869e8aec836143c78652c"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap1p0px-g0p02-20261024-384435e6-zeros.tif",
+     "kind": "tif",
+     "bytes": 233470,
+     "sha256": "8592f23b22a29f72bbab714d296b4f14c04276803063d553f2e44d0a41a5511d"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap1p0px-g0p02-20261024-384435e6.tif",
+     "kind": "tif",
+     "bytes": 380341,
+     "sha256": "384435e608fdc6b4a1e8218ef7c3454d6970b4f5149cd3e945082f666761d6ae"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap1p4px-g0p00-20261023-e1474851-zeros.tif",
+     "kind": "tif",
+     "bytes": 234282,
+     "sha256": "3a6e19251013126eedea07e207ce3ad28a6fbfa6e4a93802a5133272605fcee0"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap1p4px-g0p00-20261023-e1474851.tif",
+     "kind": "tif",
+     "bytes": 380676,
+     "sha256": "e14748519b3fb35c7998d8d4da12014c27374cd13455e1a79730e86fd2e07ab9"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap1p4px-g0p01-20261024-afc60a25-zeros.tif",
+     "kind": "tif",
+     "bytes": 233904,
+     "sha256": "0695a30587b9805b76ccc31d3e54312c061cfdc40055f71351b3a56c9a02d17f"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap1p4px-g0p01-20261024-afc60a25.tif",
+     "kind": "tif",
+     "bytes": 380794,
+     "sha256": "afc60a25d0ceb28295139fb0ad403132da32f07b1da845565326f3db39eb5b01"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap2p0px-g0p00-20261023-69db3aae-zeros.tif",
+     "kind": "tif",
+     "bytes": 234378,
+     "sha256": "0fe545f9de5723e2a57ad79bfec3b6470e16a7d4fb5655561a309a677feb21fd"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snap2p0px-g0p00-20261023-69db3aae.tif",
+     "kind": "tif",
+     "bytes": 380871,
+     "sha256": "69db3aae7da2311d43a621d0c4d2ab423a3cd39acfea9cf13f666def10fd5c54"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snapdirfw1p0-20261024-373c8fd6-zeros.tif",
+     "kind": "tif",
+     "bytes": 234347,
+     "sha256": "938aee5bc705ff5e652c0664946bfecfd24f758982c767f5d0996828bffebdb3"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snapdirfw1p0-20261024-373c8fd6.tif",
+     "kind": "tif",
+     "bytes": 381195,
+     "sha256": "373c8fd67ec464210a699f833a5b3c9f516196da25b0c136a8490f7b88e82f32"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snapdirfw2p0-20261024-dc578b2f-zeros.tif",
+     "kind": "tif",
+     "bytes": 234290,
+     "sha256": "91bed5aad415fb95bb5c9f66aff598a4bac960eac3ce35045646b37f350e9265"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snapdirfw2p0-20261024-dc578b2f.tif",
+     "kind": "tif",
+     "bytes": 381062,
+     "sha256": "dc578b2f556dfd94cf29da6327ffa8b323166511a76548bf8e49308b74dbf993"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snapdirhw2p0-20261024-5cccfc1d-zeros.tif",
+     "kind": "tif",
+     "bytes": 234702,
+     "sha256": "fd75dd4be8f193f1a3bae77873388c3db33e442c65e159b8c2eea4b525f25cc3"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-snapdirhw2p0-20261024-5cccfc1d.tif",
+     "kind": "tif",
+     "bytes": 381328,
+     "sha256": "5cccfc1d2174677b46100e5b78db4d011b359b2a65b3d5d7b171ee6feccfaf69"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-spacing-alongstrike-20261023-3b263c7a-zeros.tif",
+     "kind": "tif",
+     "bytes": 234040,
+     "sha256": "d18297a5192f05902b8baadd585de37de0d81fadb3dc9aba626767cfc9494cc6"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-spacing-alongstrike-20261023-3b263c7a.tif",
+     "kind": "tif",
+     "bytes": 380776,
+     "sha256": "3b263c7aa90ee0928d8ad8b2a81e42bc99decc7c881f46204af36b877d8bdbaa"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-spacing-lattice-20261023-454c9098-zeros.tif",
+     "kind": "tif",
+     "bytes": 229280,
+     "sha256": "56c77db28955ebaae090d0878daa7f258d1d0c7bfe30c6f1279f266e17cf6fab"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-spacing-lattice-20261023-454c9098.tif",
+     "kind": "tif",
+     "bytes": 376177,
+     "sha256": "454c909877ddd82b91cfb6b6b2f71710524b1d76d37a0f72d0d33107b0f0431d"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-spacing-poisson-20261023-ff167173-zeros.tif",
+     "kind": "tif",
+     "bytes": 234292,
+     "sha256": "f04da689f1da475c117d2332a84b6c91cb3f2a3febb01818d342678af0652f69"
+    },
+    {
+     "site": "GEMSDOE89",
+     "path": "releases/h33-h33-2-b2-spacing-poisson-20261023-ff167173.tif",
+     "kind": "tif",
+     "bytes": 381085,
+     "sha256": "ff167173aa2b8e45187d123db0193ad8da7e16a6e65c0f466630be9db7cfea34"
+    }
+   ]
+  },
+  "GEMSDOE90": {
+   "commit": "fd1ce548c63620a999efba668c21d67bb3b9e155",
+   "n_tif": 0,
+   "n_zip": 0,
+   "files": []
+  },
+  "GEMSDOE91": {
+   "commit": "b550d9d6672151b1401d436fe94559c2d8f27eea",
+   "n_tif": 0,
+   "n_zip": 0,
+   "files": []
+  },
+  "GEMSDOE92": {
+   "commit": "524df5c1f03b5eb3105a20b2ffee9dfdd042617d",
+   "n_tif": 22,
+   "n_zip": 1,
+   "files": [
+    {
+     "site": "GEMSDOE92",
+     "path": "data/bridge/d28.tif",
+     "kind": "tif",
+     "bytes": 1603424,
+     "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "data/bridge/existing_faults.tif",
+     "kind": "tif",
+     "bytes": 425830,
+     "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "data/bridge/h19_5.tif",
+     "kind": "tif",
+     "bytes": 1712322,
+     "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "data/bridge/h27_4_solo.tif",
+     "kind": "tif",
+     "bytes": 1595850,
+     "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "data/bridge/labels.tif",
+     "kind": "tif",
+     "bytes": 425830,
+     "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "data/bridge/sample_submission.tif",
+     "kind": "tif",
+     "bytes": 1599597,
+     "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "data/parent_R0_nan.tif",
+     "kind": "tif",
+     "bytes": 355443,
+     "sha256": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "data/parent_R0_zeros.tif",
+     "kind": "tif",
+     "bytes": 219065,
+     "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "docs/downloads/h33-h33-2-b2-RELIEFp10piedmont-20261024-3e900c24.tif",
+     "kind": "tif",
+     "bytes": 353292,
+     "sha256": "3e900c24a2c836b54916624c5cf055413ceea5f742870a7faa3ab7228bb177a5"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "docs/downloads/h33-h33-2-b2-TIPGAPfar18f33-20261024T063054Z-0ca8248a-zeros.tif",
+     "kind": "tif",
+     "bytes": 147798,
+     "sha256": "0ca8248acace558f5cf86b153134b8fd5cc2b7d5b343d0a36f000f9fbfe4758f"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "docs/downloads/h33-h33-2-b2-TIPGAPfar18f33-20261024T063054Z-0ca8248a-zeros.zip",
+     "kind": "zip",
+     "bytes": 115508,
+     "sha256": "e8b9a3eb976ff701b8c906c692e84870ebdd638048685c216899dfb15700c021",
+     "tif_members": [
+      "h33-h33-2-b2-TIPGAPfar18f33-20261024T063054Z-0ca8248a-zeros.tif"
+     ]
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-MASS_A10-20261023-e5613a00-zeros.tif",
+     "kind": "tif",
+     "bytes": 151715,
+     "sha256": "e5613a00a14a01c20089e5741c0727142439d5bb0d4f55cfccea9640b757f6e8"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-MASS_A10-20261023-e5613a00.tif",
+     "kind": "tif",
+     "bytes": 196137,
+     "sha256": "da34a17f08793094b4e0dbd22ae5fbc4298387b4424735ba8695673be7fc28fa"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-MASS_D10-20261023-e26a6cb8-zeros.tif",
+     "kind": "tif",
+     "bytes": 137981,
+     "sha256": "e26a6cb8e0c419c9e9be226f6ea26e673224acf786a772fcd0c3600359e4c380"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-MASS_D10-20261023-e26a6cb8.tif",
+     "kind": "tif",
+     "bytes": 182358,
+     "sha256": "fc02de515bc9f7a0ceb9a406ff05f48b8cacd6c078c933024d02ec4d9c4d8bec"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-MASS_SWAP10-20261023-3e776063-zeros.tif",
+     "kind": "tif",
+     "bytes": 145151,
+     "sha256": "3e776063effec215ed35b18f80d9bb6717cf607db2002c96e56d5e7c92f61cb0"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-MASS_SWAP10-20261023-3e776063.tif",
+     "kind": "tif",
+     "bytes": 189574,
+     "sha256": "18126db9ae32b9d600258dae1df99a6be15da4fcf719a1b52356ae1e0b229fb2"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-PRUNE_B3-20261023-3d2403c7-zeros.tif",
+     "kind": "tif",
+     "bytes": 283993,
+     "sha256": "9a883fb1ce5648f2e9738188b66abbb5f2359129df4f60964247ed8243e0e1fe"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-PRUNE_B3-20261023-3d2403c7.tif",
+     "kind": "tif",
+     "bytes": 336749,
+     "sha256": "3d2403c79c8c7c5064e09f6c232a45b1df18e094ce434aeddf12876958ebd455"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-PRUNE_B4-20261023-78e893d7-zeros.tif",
+     "kind": "tif",
+     "bytes": 282993,
+     "sha256": "e643b410e2e822e742e319e7c015772567af4cc5dcfd73e8251993ebb7b8a418"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-PRUNE_B4-20261023-78e893d7.tif",
+     "kind": "tif",
+     "bytes": 335799,
+     "sha256": "78e893d79cb2bfb869d58239a9c92aa6757f9e01042bf474242e7305c00f8635"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-PRUNE_B5-20261023-85cd67ad-zeros.tif",
+     "kind": "tif",
+     "bytes": 281412,
+     "sha256": "de9abde46df6cab55c2404745dfa56c54bf2d9a88307b095a8c6e71f13aa276c"
+    },
+    {
+     "site": "GEMSDOE92",
+     "path": "releases/h33-h33-2-b2-PRUNE_B5-20261023-85cd67ad.tif",
+     "kind": "tif",
+     "bytes": 334006,
+     "sha256": "85cd67adb4721aeeb5783766d58286384073a74a30ad947c74100340939bf012"
+    }
+   ]
+  }
+ },
+ "note": "Owner-hosted mirrors; not organizer-authenticated. Rasters are not committed.",
+ "fleet_copy_rule": "every .tif under GEMSDOE86 data/scored_fleet/ is also copied to data/fleet/<basename> for the calibration scripts"
+}

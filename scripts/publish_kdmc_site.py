@@ -112,6 +112,13 @@ def render_index(gate, exp1, exp2, run_card):
     lit = gate["uniqueness_literal"]
     dl = gate["ok_to_download"]
     sub = gate["ok_to_submit"]
+    g3 = gate.get("gate_v3", {})
+    slot = gate.get("recommended_for_weekly_slot", False)
+    slot_why = ("Clears the gate v3 slot policy in full."
+                if slot else
+                ("The slot policy is deliberately stricter than &ldquo;the portal will accept "
+                 "it&rdquo;, and this candidate does not clear it. "
+                 + e("; ".join(g3.get("slot_blocking_reasons", []))) + "."))
     win = run_card["selected_configuration"]
     tif = f"downloads/{Path(cand['tif']).name}"
     zipf = tif[:-4] + ".zip"
@@ -122,12 +129,14 @@ def render_index(gate, exp1, exp2, run_card):
     if alt:
         an = Path(alt["path"]).name
         alt_block = (
-            f'<p class="micro" style="margin-top:14px"><strong>Conservative alternate '
+            f'<p class="micro" style="margin-top:14px"><strong>Research variant of the same lane '
             f'({alt["geometry"]["n_dots"]:,} dots, no dot within 3 px of a mapped fault):</strong> '
-            f'<a href="downloads/{e(an)}" download>{e(alt["name"])}.tif &darr;</a> &middot; '
-            f'<a href="downloads/{e(an[:-4])}.zip" download>ZIP &darr;</a> &middot; '
-            f'automatic verdict: download {"YES" if alt["ok_to_download"] else "NO"}, '
-            f'submit {"YES" if alt["ok_to_submit"] else "NO"}. {e(alt["why_not_primary"])}</p>')
+            f'<a href="research-variants/{e(an)}" download>{e(an)} &darr;</a> &middot; '
+            f'<a href="research-variants/{e(an[:-4])}.zip" download>ZIP &darr;</a>. '
+            f'Deliberately kept out of <code>docs/downloads/</code> and out of the uniqueness '
+            f'registry: it is the SAME lane with the collar switched on, so the two overlap by '
+            f'design (excess 0.860) and treating it as an independent candidate would make them '
+            f'block each other. {e(alt["why_not_primary"])}</p>')
     checks = fmt.get("checks", fmt)
     rv = load(ROOT / "evidence" / "kdmc_independent_revalidation.json") or {}
     prim = rv.get("primary", {})
@@ -231,9 +240,23 @@ The honest margin over the registry's best raster is
   <div class="vcard {'yes' if sub else 'no'}">
     <div class="q">Is this TIF OK to submit to the portal?</div>
     <div class="a">{'YES' if sub else 'NO'}</div>
-    <p class="why">{'Portal format valid AND unique against all ' + str(v3['rasters_checked']) + ' registry rasters. Decided by code; no human inspection required.' if sub else 'Blocked automatically — see the uniqueness table below.'}</p>
+    <p class="why">{'The portal will accept it: format, CRS, shape and transform parity with the sample, every value finite in [0,1], and unique like-for-like against all ' + str(g3.get('registry_rasters_checked', v3['rasters_checked'])) + ' registry rasters. Decided by code; no human inspection required.' if sub else 'Blocked automatically — see the tables below.'}</p>
+  </div>
+  <div class="vcard {'yes' if slot else 'no'}">
+    <div class="q">Should a weekly slot be spent on it?</div>
+    <div class="a">{'YES' if slot else 'NOT YET'}</div>
+    <p class="why">{slot_why}</p>
   </div>
 </div>
+<div class="warnbox"><strong>Three answers, not one.</strong> Conflating &ldquo;the portal will accept
+this file&rdquo; with &ldquo;spend one of three weekly slots on it&rdquo; is what kept every candidate in
+this repository marked DO&nbsp;NOT&nbsp;SUBMIT. They are now separate machine-decided fields in
+<code>registry/kdmc_gate.json</code>: <code>ok_to_download</code>, <code>ok_to_submit</code> and
+<code>recommended_for_weekly_slot</code>. The slot bar is H88-ADHR's stored
+<code>HOLDOUT-DTI 0.18789</code>, above this candidate's
+<code>{fnum(run_card['holdout']['pooled_dti'])}</code>. The bar is applied as written rather than
+silently overridden &mdash; but the H88-ADHR feature stack <strong>cannot be rebuilt on a clean
+checkout</strong> (IR-88-72), so the bar itself is currently unverifiable.</div>
 
 <div class="dlpanel">
   <h2>Download the submission file</h2>
@@ -305,7 +328,7 @@ registry reference <code>{e(run_card['controls']['registry_reference_arm'])}</co
 <section><div class="wrap">
 <div class="kicker">Automatic uniqueness &middot; every pinned prior raster</div>
 <h2>Chance-corrected overlap, so a space-filling prior cannot veto everything</h2>
-<div class="warnbox"><strong>Fixed this session (IR-88-58).</strong>
+<div class="warnbox"><strong>Fixed this session (IR-88-73).</strong>
 One prior in the inventory (<code>17GEMSDOE</code>) is positive on every cell of the footprint, so its
 3&nbsp;px halo covers 100% of the allowed domain. The literal "70% of my dots within 3 px of theirs"
 test therefore returns <code>1.0000</code> for <em>every possible candidate</em>, including one built from
@@ -348,7 +371,7 @@ def render_summary(gate, run_card):
 <section class="verdict"><div class="wrap">
 <div class="dlpanel">
 <h2>Executive summary</h2>
-<p><strong>{'This file is cleared by the automatic gate for download and for submission.' if sub else 'This file is cleared for download. The automatic gate does NOT clear it for submission.'}</strong>
+<p><strong>{'This file is cleared by the automatic gate for download and for submission. The stricter weekly-slot policy (gate v3) does NOT yet recommend spending one of the three slots on it.' if sub else 'This file is cleared for download. The automatic gate does NOT clear it for submission.'}</strong>
 Everything below is produced by code; no human inspection is required or assumed.</p>
 <a class="dlbig" href="{e(tif)}" download>&#x2193;&nbsp; Download submission GeoTIFF &middot; {cand['bytes'] / 1024:.0f}&nbsp;KB</a>
 <a class="dlsub" href="{e(zipf)}" download>&#x2193; Single-TIFF ZIP</a>
@@ -420,6 +443,7 @@ def main() -> int:
         s = src.with_suffix(suf)
         if s.is_file():
             shutil.copy2(s, DOCS / "downloads" / s.name)
+    (DOCS / "research-variants").mkdir(parents=True, exist_ok=True)
 
     (DOCS / "index.html").write_text(render_index(gate, exp1, exp2, run_card))
     (DOCS / "executive-summary.html").write_text(render_summary(gate, run_card))
@@ -428,13 +452,19 @@ def main() -> int:
         generated_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         decided_by="scripts/build_kdmc_submission.py (no human inspection)",
         ok_to_download=gate["ok_to_download"], ok_to_submit=gate["ok_to_submit"],
-        status="READY" if gate["ok_to_submit"] else "BLOCKED",
+        recommended_for_weekly_slot=gate.get("recommended_for_weekly_slot", False),
+        verdict_fields_explained=gate.get("verdict_fields_explained"),
+        gate_v3=gate.get("gate_v3"),
+        status=("READY-TO-SUBMIT-SLOT-NOT-RECOMMENDED"
+                if gate["ok_to_submit"] and not gate.get("recommended_for_weekly_slot")
+                else ("READY" if gate["ok_to_submit"] else "BLOCKED")),
         verdict=gate["verdict"], candidate=gate["candidate"],
         holdout=run_card["holdout"],
         uniqueness=dict(rasters_checked=gate["uniqueness_chance_corrected"]["rasters_checked"],
                         worst_excess_overlap=gate["uniqueness_chance_corrected"]["worst_excess_overlap"],
                         worst_abs_spearman=gate["uniqueness_chance_corrected"]["worst_abs_spearman"]),
-        problems=[] if gate["ok_to_submit"] else ["automatic gate did not clear submission"],
+        problems=([] if gate["ok_to_submit"] else ["automatic gate did not clear submission"])
+                 + list(gate.get("gate_v3", {}).get("slot_blocking_reasons", [])),
     ), indent=2) + "\n")
     (DOCS / "data").mkdir(parents=True, exist_ok=True)
     (DOCS / "data" / "run-card.json").write_text(json.dumps(run_card, indent=2) + "\n")

@@ -52,7 +52,7 @@ def proxy_truth(grid):
     ``gems57.offcatalogue.load_proxy_truth`` additionally opens
     ``derived_sgmc_faults_100m.tif`` purely to restate IR-57-SGMC-01 in its
     receipt; that file is **not** in the restore manifest (same family as
-    IR-88-57), so the proxy is rebuilt here with the identical derivation rule
+    IR-88-72), so the proxy is rebuilt here with the identical derivation rule
     and the discrepancy note is carried as text instead.
     """
     p = ROOT / "data" / "external" / "sgmc_faults_100m.tif"
@@ -72,7 +72,7 @@ def proxy_truth(grid):
         missing_input_note=("derived_sgmc_faults_100m.tif is referenced by "
                             "gems57.offcatalogue.load_proxy_truth but is absent from the "
                             "restore manifest; the proxy is rebuilt from the raw SGMC bytes "
-                            "with the identical rule (IR-88-57 family)"))
+                            "with the identical rule (IR-88-72 family)"))
 
 
 def main() -> int:

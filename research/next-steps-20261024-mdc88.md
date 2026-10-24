@@ -12,7 +12,7 @@
    `registry/kdmc_gate.json` already says `ok_to_submit: true`.
 3. **Paste the first organizer receipt** into `ledger/submissions.csv`. The ledger has 66 rows and
    **0** receipts; without one, no number in this repository can be calibrated to the leaderboard.
-4. **Reconstruct the two missing external rasters** (IR-88-57) or delete the code paths that need
+4. **Reconstruct the two missing external rasters** (IR-88-72) or delete the code paths that need
    them: `acquisition_block_id_100m.tif` (from USGS GeoDAWN survey block polygons) and
    `tiger_road_distance_m.tif` (from US Census TIGER/Line roads). Until then
    `src/gems88/features.py` is dead code and every `H88-ADHR` number is unreproducible.

@@ -5,6 +5,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -16,5 +17,20 @@ jobs:
       - run: python -m pytest -q
       - run: python scripts/check_site.py
       - run: python scripts/readiness.py
-      - run: python scripts/validate_release.py
-      - run: git diff --exit-code docs/status.json docs/run_card.json registry/template_pin.json
+      - name: Independently recheck the CURRENT release and expected negative slot gate
+        run: |
+          python scripts/validate_current.py
+          set +e
+          python scripts/validate_current.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+      - name: Gate v3 recheck of every candidate (fail-closed; expected exit 2 while no file clears all gates)
+        run: |
+          python scripts/validate_release.py
+          set +e
+          python scripts/validate_release.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+      - run: git diff --exit-code docs/status.json docs/data/current_release.json registry/template_pin.json

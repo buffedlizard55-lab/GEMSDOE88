@@ -1,11 +1,49 @@
 {
   "schema": "gems88.status.v3",
-  "generated_utc": "2026-10-24T08:00:05Z",
+  "generated_utc": "2026-10-24T08:06:47Z",
   "decided_by": "scripts/build_kdmc_submission.py (no human inspection)",
   "ok_to_download": true,
   "ok_to_submit": true,
-  "status": "READY",
-  "verdict": "promote",
+  "recommended_for_weekly_slot": false,
+  "verdict_fields_explained": {
+    "ok_to_download": "the saved bytes re-open as a valid single-band GeoTIFF on the pinned grid",
+    "ok_to_submit": "the portal will accept it: format/CRS/shape/transform parity, every value finite in [0,1], and unique against every like-for-like registry raster",
+    "recommended_for_weekly_slot": "gate v3 slot policy: everything above PLUS beating the stored holdout bar and passing the fleet fingerprint screen. This is deliberately stricter than ok_to_submit."
+  },
+  "gate_v3": {
+    "policy": "gems88-gate-v3",
+    "generated_utc": "2026-10-24T08:05:11Z",
+    "registry_rasters_checked": 33,
+    "portal_ok": true,
+    "portal_problems": [],
+    "unique_like_for_like": true,
+    "like_for_like_blockers": [],
+    "unique_literal": false,
+    "literal_blockers": [
+      "17GEMSDOE:dense_17gemdoe.tif"
+    ],
+    "holdout_dti": 0.1488495052282044,
+    "holdout_bar": 0.18789,
+    "holdout_beats_bar": false,
+    "holdout_bar_caveat": "The bar is H88-ADHR's stored 0.18789. IR-88-72 shows that stack cannot be rebuilt on a clean checkout (it needs acquisition_block_id_100m.tif and tiger_road_distance_m.tif, which exist in no pinned source), so the bar itself is currently unverifiable. It is applied as written rather than silently overridden, and the discrepancy is flagged.",
+    "fingerprint": {
+      "n": 51064,
+      "median_d_cat_px": 7.615773105863909,
+      "share_le2": 0.22101676327745573,
+      "share_gt10": 0.43498355005483313,
+      "share_gt25": 0.22244634184552717
+    },
+    "fingerprint_screen_pass": false,
+    "canary_passed": true,
+    "slot_blocking_reasons": [
+      "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+      "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
+    ],
+    "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+    "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows)."
+  },
+  "status": "READY-TO-SUBMIT-SLOT-NOT-RECOMMENDED",
+  "verdict": "hold",
   "candidate": {
     "name": "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros",
     "note": "MDC-88: PU density x 300m-kernel expected credit, greedy 2.83px max-weight packing, 1% of allowed cells, binary; HOLDOUT-DTI 0.14885",
@@ -84,5 +122,8 @@
     "worst_excess_overlap": 0.4202279291926346,
     "worst_abs_spearman": 0.10305192311603943
   },
-  "problems": []
+  "problems": [
+    "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+    "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
+  ]
 }

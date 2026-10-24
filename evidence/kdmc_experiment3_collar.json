@@ -17,7 +17,7 @@
     "proxy_pixels": 78433,
     "evidence_class": "PROXY (public SGMC compilation minus the competition catalogue)",
     "declared_limit": "never an organizer label and never a score; it is the public fault compilation the competition catalogue omits",
-    "missing_input_note": "derived_sgmc_faults_100m.tif is referenced by gems57.offcatalogue.load_proxy_truth but is absent from the restore manifest; the proxy is rebuilt from the raw SGMC bytes with the identical rule (IR-88-57 family)"
+    "missing_input_note": "derived_sgmc_faults_100m.tif is referenced by gems57.offcatalogue.load_proxy_truth but is absent from the restore manifest; the proxy is rebuilt from the raw SGMC bytes with the identical rule (IR-88-72 family)"
   },
   "configuration": {
     "separation_px": 2.8284271247461903,

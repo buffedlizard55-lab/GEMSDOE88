@@ -1,0 +1,229 @@
+{
+  "candidate": "gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT",
+  "rows": [
+    {
+      "file": "data/registry/dense_17gemdoe.tif",
+      "dot_overlap_3px": 1.0,
+      "spearman_full_footprint": 0.0089,
+      "positive_fraction_in_footprint": 1.0,
+      "representation_class": "continuous_or_dense"
+    },
+    {
+      "file": "data/registry/family_60gemsdoe/GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+      "dot_overlap_3px": 0.2176,
+      "spearman_full_footprint": 0.0023,
+      "positive_fraction_in_footprint": 0.0078,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/family_60gemsdoe/calib_d15_02477.tif",
+      "dot_overlap_3px": 0.2319,
+      "spearman_full_footprint": 0.0019,
+      "positive_fraction_in_footprint": 0.0116,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/family_60gemsdoe/calib_h161_01855.tif",
+      "dot_overlap_3px": 0.273,
+      "spearman_full_footprint": 0.0036,
+      "positive_fraction_in_footprint": 0.024,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/family_60gemsdoe/calib_h194_01894.tif",
+      "dot_overlap_3px": 0.2615,
+      "spearman_full_footprint": 0.0028,
+      "positive_fraction_in_footprint": 0.024,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/family_60gemsdoe/calib_h195_01922.tif",
+      "dot_overlap_3px": 0.253,
+      "spearman_full_footprint": 0.0029,
+      "positive_fraction_in_footprint": 0.0234,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/family_60gemsdoe/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "dot_overlap_3px": 0.2191,
+      "spearman_full_footprint": 0.0015,
+      "positive_fraction_in_footprint": 0.0085,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/family_60gemsdoe/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-nan.tif",
+      "dot_overlap_3px": 0.2148,
+      "spearman_full_footprint": 0.0029,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems19_h19_5.tif",
+      "dot_overlap_3px": 0.253,
+      "spearman_full_footprint": 0.0029,
+      "positive_fraction_in_footprint": 0.0234,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems25_d28.tif",
+      "dot_overlap_3px": 0.2191,
+      "spearman_full_footprint": 0.0015,
+      "positive_fraction_in_footprint": 0.0085,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems28_h27_4.tif",
+      "dot_overlap_3px": 0.2176,
+      "spearman_full_footprint": 0.0023,
+      "positive_fraction_in_footprint": 0.0078,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems36_anderson_pinn.tif",
+      "dot_overlap_3px": 0.2246,
+      "spearman_full_footprint": 0.0037,
+      "positive_fraction_in_footprint": 0.0075,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems49_gate_ortho.tif",
+      "dot_overlap_3px": 0.1768,
+      "spearman_full_footprint": 0.0034,
+      "positive_fraction_in_footprint": 0.0077,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems57_h57r2.tif",
+      "dot_overlap_3px": 0.0453,
+      "spearman_full_footprint": -0.0012,
+      "positive_fraction_in_footprint": 0.0077,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems60_h68_piedmont.tif",
+      "dot_overlap_3px": 0.1448,
+      "spearman_full_footprint": -0.0017,
+      "positive_fraction_in_footprint": 0.0077,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems70_p5_dualsubmod.tif",
+      "dot_overlap_3px": 0.1583,
+      "spearman_full_footprint": 0.0023,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems70_p5_multiphysics.tif",
+      "dot_overlap_3px": 0.1886,
+      "spearman_full_footprint": 0.003,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems78_h78_gfv.tif",
+      "dot_overlap_3px": 0.1961,
+      "spearman_full_footprint": 0.0025,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems80_adpt_kkt.tif",
+      "dot_overlap_3px": 0.1776,
+      "spearman_full_footprint": 0.0012,
+      "positive_fraction_in_footprint": 0.0071,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems80_h80_dpvc.tif",
+      "dot_overlap_3px": 0.15,
+      "spearman_full_footprint": 0.0076,
+      "positive_fraction_in_footprint": 0.0081,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems81_contasb.tif",
+      "dot_overlap_3px": 0.1472,
+      "spearman_full_footprint": 0.0011,
+      "positive_fraction_in_footprint": 0.0085,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems82_csam_dink.tif",
+      "dot_overlap_3px": 0.2328,
+      "spearman_full_footprint": 0.0031,
+      "positive_fraction_in_footprint": 0.008,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems83_h83_gvcd.tif",
+      "dot_overlap_3px": 0.2083,
+      "spearman_full_footprint": 0.0031,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/gems85_h85a_foldproper.tif",
+      "dot_overlap_3px": 0.0893,
+      "spearman_full_footprint": 0.0008,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "data/registry/h33_education.tif",
+      "dot_overlap_3px": 0.2148,
+      "spearman_full_footprint": 0.0029,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "docs/downloads/gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif",
+      "dot_overlap_3px": 0.1586,
+      "spearman_full_footprint": 0.0053,
+      "positive_fraction_in_footprint": 0.0069,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "docs/downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+      "dot_overlap_3px": 0.1104,
+      "spearman_full_footprint": 0.0039,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+      "dot_overlap_3px": 0.3724,
+      "spearman_full_footprint": 0.0168,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "docs/downloads/gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+      "dot_overlap_3px": 0.1152,
+      "spearman_full_footprint": 0.0028,
+      "positive_fraction_in_footprint": 0.0044,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+      "dot_overlap_3px": 0.2075,
+      "spearman_full_footprint": 0.0014,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "submissions/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+      "dot_overlap_3px": 0.3724,
+      "spearman_full_footprint": 0.0168,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    },
+    {
+      "file": "submissions/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+      "dot_overlap_3px": 0.2075,
+      "spearman_full_footprint": 0.0014,
+      "positive_fraction_in_footprint": 0.0073,
+      "representation_class": "sparse_dot_or_ridge"
+    }
+  ]
+}

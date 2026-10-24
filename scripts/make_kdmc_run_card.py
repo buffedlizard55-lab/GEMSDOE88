@@ -189,7 +189,7 @@ def main() -> int:
             "metric.py's claim that the organizer masks mapped catalogue faults out of scoring "
             "traces to a forum thread that cannot be re-read from here; the candidate is built to "
             "be correct either way by emitting zero mass on mapped faults.",
-            "src/gems88/features.py cannot run on a clean checkout (IR-88-57): it requires "
+            "src/gems88/features.py cannot run on a clean checkout (IR-88-72): it requires "
             "acquisition_block_id_100m.tif and tiger_road_distance_m.tif, which exist in no pinned "
             "source. This lane therefore uses its own self-contained feature builder.",
             "Two cores and 3 GB of RAM are available, so model capacity (250-iteration histogram "
