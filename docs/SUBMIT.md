@@ -1,5 +1,31 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+## 2026-10-24 · `AXIS=PRUNE` interior-annulus bracket on `R0` (IR-88-54) — **no upload recommended**
+
+**Three new candidates were built from byte-exact `R0`; all three are `HOLD` and the slot queue is unchanged.**
+The collar curve had no points between `R0` (2 px) and `R1` (3 px). The `2,171` R0 dots in that annulus occupy
+exactly three pixel-centre distance bands (`941` at `sqrt5 = 2.236 px`, `670` at `sqrt8 = 2.828 px`, `560` at
+`3.0 px`), so the two interior thresholds are exhaustive, plus one new upper point at `5 px (500 m)`. Predictions
+were frozen before any proxy (`registry/prune_interior_preregistration.json`: `MODEL +0.002 / +0.004 / -0.020`).
+Measured after build (REPORT ONLY, never scores): blind off-catalogue SGMC `PROXY` `0.096219 / 0.095977 / 0.089464`
+vs parent `R0 0.096060` — the annulus is proxy-neutral (both interior deltas inside the `~0.0003` instrument noise
+yardstick) and `p5px` deepens the monotone outer-collar descent. Every delta is below the `0.01` no-evidence floor.
+Rasters stay gitignored; rebuild with `python3 scripts/build_prune_interior_variants.py`; an independent from-scratch
+rerun reproduces all three masks bit-for-bit; hardened validator 6/6 PASS on the disk bytes
+(`registry/prune_interior_validation.json`). No slot was used and no submission was made.
+
+| Candidate (gitignored; primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | ≤140-char form note | SHA-256 primary / zeros | Format receipt |
+|---|---|---|---|
+| `h33-h33-2-b2-PRUNEp2.236px-20261024-93b15124` | `R0 h33-h33-2-b2; PRUNE <= 2.236px (224m), fixed N=37,654, exact DTI refill; pred +0.002 MODEL` (93/140) | `93b15124fd0a…ceee c` / `cf5e17905e54…24c33` | PASS, `HOLD`, `PROXY +0.00016` |
+| `h33-h33-2-b2-PRUNEp2.828px-20261024-b1ddf491` | `R0 h33-h33-2-b2; PRUNE <= 2.828px (283m), fixed N=37,654, exact DTI refill; pred +0.004 MODEL` (93/140) | `b1ddf4915867…ccb59` / `ef5f72e3e109…eba1a` | PASS, `HOLD`, `PROXY -0.00008` |
+| `h33-h33-2-b2-PRUNEp5px-20261024-2a5469c0` | `R0 h33-h33-2-b2; PRUNE <= 5px (500m), fixed N=37,654, exact DTI refill; pred -0.020 MODEL` (89/140) | `2a5469c0c48a…28883` / `79185b90d948…4291e` | PASS, `HOLD`, `PROXY -0.00660` |
+
+All three: `N = 37,654`, one-for-one fixed-count relocation (removed = added: `941 / 1,611 / 5,637`), zero positive
+mass on catalogue pixels; `PRUNE` is the Brief §4.4 exception, so `p2.236px` legally retains `1,177` dots below
+`3 px` (min `d_cat 2.8284 px`); the other two have `0` dots below `3 px` (min `3.0000` / `5.0990 px`). Do **not**
+upload any of these three: none is queued. If the future `R1` anchor receipt is inconclusive, `p2.236px` is the
+preregistered paired read (proposal `LIVE_COLLAR_PAIR` in `SLOT_PLAN.md`), not an automatic slot.
+
 ## 2026-10-23 · `AXIS=CONCENTRATION` on gate-clean `R1` (IR-88-52) — **no upload recommended**
 
 **Three new candidates were built, gate-clean, and all three are `HOLD`; the slot order in the SNAP sections below is unchanged.**
