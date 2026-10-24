@@ -685,7 +685,7 @@
   "ok_to_submit_literal_dense_witness": false,
   "approved_for_weekly_slot": false,
   "verdict": "negative",
-  "verdict_summary": "PROMOTE (gems88-gate-v3 PASS: HOLDOUT-DTI 0.196237 > 0.189634, far 0.124175 > 0.114780, blind 0.076881 > 0.065263, like-for-like overlap 0.6032 <= 0.70, surface |rho| 0.4119 <= 0.90, share_le2=0.0000, share_gt25=0.4200 >= 0.35; human selector required before spending a weekly slot; note literal dense_17gemdoe.tif witness covers 99.64% of footprint).",
+  "verdict_summary": "NEGATIVE \u2014 DO NOT SUBMIT. Literal dense-witness overlap 1.0 and concurrent GTHC/QTSK overlap exceed 0.70. Historical pre-merge promotion is superseded.",
   "validator_output": {
     "file": "/home/user/GEMSDOE88/docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-GATE-PASS.tif",
     "bytes": 118085,
@@ -744,5 +744,7 @@
   },
   "ok_to_submit": false,
   "verdict_premerge_like_for_like": "promote",
-  "verdict_literal_dense_witness": "negative"
+  "verdict_literal_dense_witness": "negative",
+  "historical_premerge_verdict_summary": "PROMOTE (gems88-gate-v3 PASS: HOLDOUT-DTI 0.196237 > 0.189634, far 0.124175 > 0.114780, blind 0.076881 > 0.065263, like-for-like overlap 0.6032 <= 0.70, surface |rho| 0.4119 <= 0.90, share_le2=0.0000, share_gt25=0.4200 >= 0.35; human selector required before spending a weekly slot; note literal dense_17gemdoe.tif witness covers 99.64% of footprint).",
+  "validator_provenance_note": "validator and validator_output retain the historical pre-rename path; current saved bytes independently audited by scripts/audit_latest_download.py."
 }
