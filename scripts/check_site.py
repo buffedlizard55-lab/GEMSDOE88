@@ -80,6 +80,22 @@ def main(root=ROOT):
     for page in ('index.html', 'executive-summary.html'):
         body = (root / 'docs' / page).read_text()
         assert kth_tif.name in body and 'DO NOT SUBMIT' in body, page
+    qts_card_path = root / 'registry/qts88_run_card.json'
+    if qts_card_path.is_file():
+        qts = json.loads(qts_card_path.read_text())
+        qts_tif = root / qts['file']
+        qts_zip = root / qts['zip_file']
+        qts_gate = json.loads((root / 'registry/qts88_gate.json').read_text())
+        assert qts == json.loads((root / 'docs/data/qts88_run_card.json').read_text())
+        assert qts_gate == json.loads((root / 'docs/data/qts88_validation.json').read_text())
+        assert qts['verdict'] == 'negative' and qts['ok_to_submit'] is False and qts['ok_to_download'] is True
+        assert qts_tif.is_file() and qts_zip.is_file() and 'DO-NOT-SUBMIT' in qts_tif.name
+        assert _hl.sha256(qts_tif.read_bytes()).hexdigest() == qts['raster_sha256']
+        assert _hl.sha256(qts_zip.read_bytes()).hexdigest() == qts['zip_sha256']
+        assert len(qts['submission_name']) <= 140 and len(qts['submission_note']) <= 140
+        for page in ('index.html', 'executive-summary.html'):
+            body = (root / 'docs' / page).read_text()
+            assert qts_tif.name in body and qts['submission_name'] in body, page
     pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
     assert len(pages) >= 5
     for page in pages:

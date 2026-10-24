@@ -1,0 +1,48 @@
+{
+  "schema": "gems88.qts88.uniqueness.v1",
+  "generated_utc": "2026-10-24T19:20:09Z",
+  "candidate_file": "docs/downloads/gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif",
+  "candidate_sha256": "4cafa7758c3a5dfd54ac0ee9a801774efdb4193c85dd1467d659bea2aec82337",
+  "preplacement_max_abs_rho": 0.5049289806675158,
+  "pinned_local_registry_checked": 36,
+  "pinned_local_worst_sparse_overlap_3px": 0.4365007701704998,
+  "pinned_local_worst_sparse_file": "data/registry/family_60gemsdoe/calib_h161_01855.tif",
+  "extended_fleet_registry_checked": 223,
+  "extended_fleet_distinct_dot_sets": 118,
+  "unique_like_for_like": true,
+  "like_for_like_blockers": [],
+  "worst_like_for_like_overlap_3px": {
+    "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "value": 0.5373399904392627
+  },
+  "worst_abs_rho_extended": {
+    "label": "17GEMSDOE:dense_17gemdoe.tif",
+    "value": 0.5049289806675157
+  },
+  "unique_literal": false,
+  "literal_blockers": [
+    "17GEMSDOE:dense_17gemdoe.tif",
+    "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+  ],
+  "dense_witness_universal": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.7,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
+  },
+  "fingerprint": {
+    "n": 37654,
+    "median_d_cat_px": 18.0,
+    "share_le2": 0.0,
+    "share_gt10": 0.6806182610081266,
+    "share_gt25": 0.40245392255802837
+  },
+  "fingerprint_screen_pass": true
+}

@@ -1,6 +1,25 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
-> ## ⛔ Latest experiment: KTH-88 — OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
+> ## ⛔ Latest experiment: QTS-88 — **OK TO DOWNLOAD: YES** · **OK TO SUBMIT: NO — DO NOT SUBMIT** (2026-10-24)
+> [⬇ Download the new QTS-88 GeoTIFF](docs/downloads/gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif) · [one-file ZIP](docs/downloads/gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.zip) · [Gate v3 validation JSON](docs/data/qts88_validation.json) · [JSON run card](registry/qts88_run_card.json) · [5 Ranked Hypotheses & Dossier](NEW_HYPOTHESES.md) · [PhD H33 Forensics & Research Dossier](research/qts88-20261024.md) · [executive submission guide](docs/executive-summary.html).
+> - **Unique Submission Name (24/140):** `GEMSDOE88-QTS88-B5D178B3`
+> - **Submission Note (94/140):** `QTS88 cover-thickness x slope decoupling; 37654 dots; HOLDOUT-DTI 0.0982/0.0949; DO NOT SUBMIT`
+> - **TIFF SHA-256:** `4cafa7758c3a5dfd54ac0ee9a801774efdb4193c85dd1467d659bea2aec82337` · **ZIP SHA-256:** `cfd24498c8ca3e7e9247ce76b1097f434893aa9210b88401c5f7bed895e1443e` (`37,654` binary `{0.0, 1.0}` positive pixels, single-band `float32`, `3730×3292`, `EPSG:32611`, `nodata=None`, zero `NaN`/`Inf`, zero outside footprint, zero on mapped catalogue faults with `min_d_cat = 3.1623 px > 300 m`).
+> - **What `QTS-88` Tested (Next Step #1 from `research/next-steps-20261024-mdc88.md`):** Multi-scale vector directional decoupling $D_\sigma = \|\nabla_\sigma z_{\text{base}}\|\cdot(1 - \cos\angle(\nabla_\sigma z_{\text{base}}, \nabla_\sigma z_{\text{surf}}))$ at $\sigma \in \{1, 3, 6\}\text{ px}$ ($100, 300, 600\text{ m}$) between Band 15 sedimentary cover thickness (`depth_to_base_surf`) and Band 12 detrended surface elevation (`det_elev`), plus antithetic/orthogonal steps, low-slope buried basement steps, gravity admittance (Bands 18/11), transtensional strain-conductivity coupling (Bands 8/7/17), and alluvial-fan radial curvature mimic suppression (`qts_mimic_fan_curv`), after sanitizing the `3,061` boundary pixels inside `sample_submission.tif`'s footprint carrying `-3.4028235e+38` (`IR-88-84`).
+> - **3-Experiment `HOLDOUT-DTI` Results (`gems57-pooled-hide-v2`, `seeds=(20, 21)`, `22,893` withheld positive pixels, 1,000-draw 20 km spatial block bootstrap):**
+>   - `EXP1 (exp1_qts_crest, 37,654 dots)`: **`0.052764`**, 95% CI `[0.040524, 0.065398]`
+>   - `CONTROL (control_raw19_no_qts, 19 competition bands without QTS)`: **`0.091869`**, 95% CI `[0.078982, 0.105285]`
+>   - `EXP2 (exp2_qts_pu_gbdt, 19 competition bands + 10 QTS channels)`: **`0.098210`**, 95% CI `[0.084216, 0.112545]` — **statistically significant paired lift over `control_raw19_no_qts`: $\Delta\text{DTI} = +0.006340$, 95% CI `[+0.001574, +0.011511] > 0`**!
+>   - `EXP3 (exp3_qts_hybrid_debiased, 37,654 dots: 22,500 piedmont + 15,154 blind basin)`: **`0.094851`**, 95% CI `[0.080118, 0.110077]`
+> - **Gate v3 Audit (`registry/qts88_gate.json`):**
+>   - **Portal Format Parity (`ok_to_download`):** **PASS (`true`)**
+>   - **29 Single-Feature Leakage Canaries (`<= 0.90`):** **PASS (`max symmetric AUC = 0.5641 <= 0.90`)**
+>   - **Like-for-Like Uniqueness Across All 223 Accessible Registry Rasters (`unique_like_for_like`):** **PASS (`true`, worst 3-px overlap `0.5373 <= 0.70`, worst `|ρ| = 0.5049 <= 0.90`, `0` like-for-like blockers)**
+>   - **Fleet Distance-to-Catalogue Fingerprint Screen (`fingerprint_screen_pass`):** **PASS (`true`, `share_le2 = 0.0000`, `share_gt25 = 0.4025 >= 0.35`, `median_d_cat = 18.0 px`)**
+>   - **Why `ok_to_submit` Remains `false` (`DO NOT SUBMIT`):** Zero-catalogue `HOLDOUT-DTI` (`0.098210` / `0.094851`) does not exceed the stored catalogue-adjacent `H88-ADHR` bar (`0.187888`), and under the literal all-registry rule the space-filling `17GEMSDOE` witness forces literal overlap `1.0000 > 0.70` (`IR-88-85`). **No ORGANIZER-CONFIRMED score exists; 0 weekly slots spent.**
+> - **Verify without regenerating:** `.venv/bin/python scripts/validate_qts88.py` (exits `0`; `--require-submit` exits `2`).
+
+> ## ⛔ Prior experiment: KTH-88 — OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
 > [⬇ Download the new KTH-88 GeoTIFF](docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif) · [one-file ZIP](docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip) · [independent TIFF+ZIP audit](docs/data/kth88_validation.json) · [JSON run card](registry/kth88_run_card.json) · [executive submission guide](docs/executive-summary.html).
 > **Name:** `GEMSDOE88-KTH-BACDC27B`. **Note (105/140):** `K/Th antisymmetric radiometric step + RTP trough, 37654 dots; HOLDOUT-DTI 0.0527; UNSCORED; DO NOT SUBMIT`.
 > **SHA-256:** `5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf`. The machine independently reopened the TIFF and single-TIFF ZIP: 1 float32 band, 37,654 binary dots, all finite in `[0,1]`, sample CRS/shape/transform match, no NaN in the footprint, no nodata sentinel, zero positives outside or on the known catalogue. This is **local format validity, not organizer acceptance**.
