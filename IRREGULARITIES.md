@@ -1,32 +1,3 @@
-## IR-88-92 — Unmarked research TIFF/ZIP copies remain tracked in `releases/` (not fixed here)
-- `releases/` tracks 12 unmarked H33 "MASS" variant files (`h33-h33-2-b2-MASS*.tif/.zip`). The site guard covers `docs/downloads/` only, and these files are not linked from the site. Their gate status is not recorded in this session.
-- This session marked the duplicates in `docs/downloads/` and `submissions/` (PROVCREST, H88-GHMD, MDC-88). The `releases/` set is a separate cleanup: rename with `DO-NOT-SUBMIT`, or move to external storage, in a dedicated PR with its own record update.
-- `scripts/run_gems88_pipeline.py` (line ~479) still generates unmarked stems, so the next run would recreate the hazard. Fix the generator before re-running it.
-
-## IR-88-86 — MDC-88 machine records said `ok_to_submit: true` while failing the binding rules (corrected 2026-10-24)
-- **Found:** `registry/kdmc_gate.json`, `docs/mdc88/status.json`, `docs/data/kdmc-run-card.json`, `docs/mdc88/data/kdmc-run-card.json`, `evidence/kdmc_run_card.json`. The `true` was set under a "like-for-like" rule that excludes the dense `17GEMSDOE` prior; the same file's `gate_v3` block lists `unique_literal: false` and `holdout_beats_bar: false`.
-- **Action:** all five set to `false` with a correction note; the file is renamed to `…-DO-NOT-SUBMIT.{tif,zip,json}` (TIFF bytes and SHA-256 `6c17eed9…` unchanged; the ZIP was rebuilt, new SHA `6a7b4ffd…`). Historical `evidence/` paths keep the old name.
-
-## IR-88-87 — Literal dot-overlap rule is degenerate for the dense `17GEMSDOE` prior (diagnostic only; rule NOT changed)
-- `data/registry/dense_17gemdoe.tif` is continuous (`0.00046`–`0.984`), 5,167,373 positive cells. The shared `_dots()` counts every positive cell, so every candidate has overlap `1.0`, which makes the 0.70 gate impossible to pass.
-- Diagnostic (`scripts/diagnose_dense_prior_topn.py`, `evidence/dense_prior_topn_diagnostic.json`): with dots = witness top-N (N = candidate count), 14/14 published TIFFs pass; max overlap `0.130052` (MDC-88). Spearman vs the witness is `0.0064` (`evidence/phase88_final_uniqueness.json`).
-- **Decision needed from the selector.** Not made in code. Holdout still blocks every file.
-
-## IR-88-88 — Site's first panel (executive summary and tests updated too)
-- `docs/executive-summary.html` opened with MDPS-88 and linked its TIFF; now PHASE-88. `tests/test_mdps88.py::test_mdps88_site_decision_strings` pinned the MDPS file name on both pages; it now pins the canonical PHASE-88 name from `registry/phase88_run_card.json`.
-
-## IR-88-88b — Site's first panel showed MDPS-88 while the canonical release record is PHASE-88 (fixed; check tightened)
-- `scripts/check_site.py` only checked that the PHASE-88 file name appeared somewhere on the index page, despite its comment that it must be the *first* panel. The index now leads with PHASE-88 and a generated candidate matrix (`scripts/build_candidate_matrix.py`). `check_site.py` now also asserts (a) every TIF/ZIP on disk in `docs/downloads` is marked or gate-cleared, and (b) PHASE-88 precedes MDPS-88 on the landing page.
-
-## IR-88-89 — Competition leaderboard numbers conflict within the request
-- The request cites both `0.4413` (highest) and `0.3195` (\"highest right now\"). The official public leaderboard page ([drivendata leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)), checked this session, lists **#1 `0.4413`**, #2 `0.3916`, #20 `0.3273`. `0.3195` is not in the first chunk I read, and `0.2778` (H33) appears there only as a user report, not as an organizer receipt.
-
-## IR-88-90 — Open PR backlog holds unmerged results that main does not reflect
-- At the time of this session, about 17 PRs are open (for example #63 "H88-MVRD & MPSC-88: First Holdout Win Over H88-ADHR (0.19731)", #70–#76). Their claims are **not verified here**. They are not on `main`, so the README and site describe `main` only.
-
-## IR-88-91 — Portal error cause is not reproduced here (no portal access)
-- The official page says "data outside the bounds is null or nan" and values must be between 0 and 1 ([metric & format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)). The repo's "NaN outside footprint caused the error" explanation is therefore a hypothesis. The zeros encoding is valid under the stated rules, but it has not been confirmed by a portal receipt.
-
 # IRREGULARITIES — Decision-Changing Items Only
 
 ## IR-88-PHASE-03 — Concurrent PR #68 published a simulated raster as submission-ready; quarantined
@@ -432,19 +403,33 @@ The byte/pixel-distinct K/Th step product fails the literal forward 3-px rule ag
 - **Decision impact:** never trust hero copy over the machine gate: the run-card JSON + `--require-submit` exit code are the only authorized decision surface. Any future session that changes site copy must run `scripts/check_site.py` before merging.
 
 ## IR-88-84 — PROVCREST's stored HOLDOUT-DTI (0.076277) cannot describe the shipped raster: shipped bytes score identically 0 on the seeds-20/21 component holdout (measured 2026-10-24)
-- **Observed (comparator integrity):** `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif` (37,654 dots) has **zero** dots within 3 px of any catalogue pixel (median distance-to-catalogue 22.8 px; 0.0% of catalogue pixels within 3 px of a dot). Since hide-and-recover truth is a subset of catalogue pixels and the kernel radius is 3 px, its TP is identically 0 in every fold: measured HOLDOUT-DTI `0.0` pooled over seeds 20+21 (`evidence/mdps88_experiment1_20261024.json`, arm `prov_fixed`, 22,893 withheld positives). The stored `0.076277` therefore must have been measured on fold-rebuilt variants whose catalogue collar used each fold's *visible* faults only — a different object from the shipped bytes (the ledger's own ranking-basis field records a “>3px catalogue collar” for the shipped file).
+- **Observed (comparator integrity):** `docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif` (37,654 dots) has **zero** dots within 3 px of any catalogue pixel (median distance-to-catalogue 22.8 px; 0.0% of catalogue pixels within 3 px of a dot). Since hide-and-recover truth is a subset of catalogue pixels and the kernel radius is 3 px, its TP is identically 0 in every fold: measured HOLDOUT-DTI `0.0` pooled over seeds 20+21 (`evidence/mdps88_experiment1_20261024.json`, arm `prov_fixed`, 22,893 withheld positives). The stored `0.076277` therefore must have been measured on fold-rebuilt variants whose catalogue collar used each fold's *visible* faults only — a different object from the shipped bytes (the ledger's own ranking-basis field records a “>3px catalogue collar” for the shipped file).
 - **Decision impact:** “current holdout best = PROVCREST 0.076277” (used e.g. to HOLD LBCAL in IR-88-78) compares a fold-rebuilt score against shipped-file scores. Keep the distinction explicit: quote fold-rebuilt and fixed-shipped-raster numbers under different labels; never rank a shipped candidate against a fold-rebuilt comparator without saying so.
 
 ## IR-88-85 — Hide-and-recover structurally zeros the live-winning geometry; identical folds rank the live-reported best 28× below a physics control (measured 2026-10-24)
 - **Observed (instrument validity):** on identical seeds-20/21 buffered whole-component folds with one evaluator (`gems57-pooled-hide-v2`): fold-fair physics control HOLDOUT-DTI overall `0.1085`; shipped H33 (user-reported live `0.2778`) `0.0039`; shipped PROVCREST `0.0`. Any raster enforcing >3 px distance from the *full* catalogue scores exactly 0 because withheld truth sits on catalogue traces, while the live truth (faults *not* in the catalogue) rewards distance from it (b2 collar paid +0.0070/+0.0108 in the lineage; receipt-fit density rises with distance band). The far subset (>10 px from visible; 10,791 positives) reduces but does not remove this inversion (H33 far `0.0032` vs control far `0.0691`).
 - **Decision impact:** HOLDOUT-DTI from this instrument is a *necessary discipline* (leakage, paired controls) but is not monotone in live merit across geometry classes. MDPS-88 was still judged by its frozen gates and failed them on their own terms (far paired CI crosses zero even after budget-matching; SGMC proxy also trails H33), so this irregularity does **not** rescue it. For the next lane, pre-register (before building) the evidence combination — far-primary holdout vs fold-fair controls of the same geometry class, SGMC off-catalogue proxy, and any receipt model — or every far-geometry candidate will be auto-rejected by construction.
 
+## IR-88-86 — 2026-10-24: literal uniqueness policy regression in shared v3
 
-## IR-88-LITERAL-20261024 — advertised uniqueness used a different policy
+The current user prompt does not authorize chance correction or dense-prior exemptions.
+MDPS-88 advertised uniqueness PASS although its own stored literal overlap was 1.0.
+Fresh hash-pinned byte audit proves all footprint cells are positive in the dense witness;
+any nonempty candidate is blocked before placement. Corrected shared v3 via an append-only
+compatibility wrapper (historical diagnostics retained), updated pins and regression tests,
+corrected MDPS cards/site, and added automatic proof/format audit to CI and Pages.
+No new geological experiment, raster, or organizer submission was made. Existing TIFF
+is research-only; no verified leaderboard improvement. See
+`docs/research/protocol-review-20261024.md` and `evidence/literal_protocol_audit_20261024.json`.
 
-Independent audit on branch `arena/1fa5e63b-gemsdoe88`: latest advertised MDPS-88 run card says v3 duplicate=false while retaining literal forward overlap=1.0 with the dense 17GEMSDOE witness. The user requires literal 70% and no exemptions. Recomputed shared-template saturation and final overlap certify DUPLICATE_STOP. The landing/guide unqualified “unique” claim was corrected. Historical cards remain unchanged; no new predictions or slots. `docs/data/literal_protocol_audit.json` is an audit of MDPS-88, not a relabelled new submission. `docs/data/current_release.json` still identifies archived PHASE-88; this pre-existing multiple-canonical-release inconsistency is disclosed, not silently repaired across unrelated historical pipelines. Official non-GitHub hosts cannot be reached under the current outbound allowlist. No organizer receipt or current weekly cap verified. Full review: `docs/research/protocol-review-20261024.md`.
+Final replay also found `docs/status.json` manually described MDPS while its generator
+and canonical `current_release.json` describe PHASE. Regenerated status from its existing
+canonical producer so CI's reproducibility check is meaningful. The latest MDPS panel
+continues to use its explicitly named validation/run-card files; neither record permits
+submission. Historical root `run_card.json` still contains older promote/receipt claims;
+these are not current authorization and were not verified as organizer receipts here.
 
-Pass-two correction: `readiness.py` was overwriting advertised MDPS status with archived PHASE-88 status. It now reopens MDPS via the literal audit, keeps PHASE `current_release.json` explicitly historical, and writes BLOCKED / download=false on missing or corrupted evidence instead of retaining a stale status. A regression test covers this error path.
+### IR-88-86 integration pass
 
 Main advanced with concurrent IBL-88 while PR #79 was being checked. Preserved all named
 IBL cards, experiments and TIFF/ZIP artifacts and linked its research download on both
@@ -456,11 +441,25 @@ IBL remains available under its explicit `ibl88_run_card.json` names. No experim
 results were discarded or reclassified as an organizer score. Re-ran verification after
 integration, not merely the pre-merge code.
 
+## IR-88-87 — H88-MVRD improves overall blocked holdout but fails far geometry, literal uniqueness, and production fingerprint (`2026-10-24`)
+- **Observed (scientific improvement):** On the same 8-fold buffered whole-component holdout (`gems57-pooled-hide-v2`, 22,893 withheld positive pixels), H88-MVRD records **HOLDOUT-DTI 0.197314** (95% CI `[0.181121,0.213008]`) versus H88-ADHR 0.187888, with paired Δ `+0.009426 [0.001962,0.016994]`. The 62-channel catalogue-free MPSC arm records 0.113244 `[0.099828,0.127244]`. All 92 feature-alone canaries pass (maximum symmetric AUC 0.771627). This is local HOLDOUT-DTI, not a leaderboard projection or organizer score.
+- **Observed (scope of the win):** MVRD is worse than ADHR in the far diagnostics: at `d_visible >10 px`, 0.104874 vs 0.114778; at `>25 px`, 0.041453 vs 0.064462. The production raster puts only 2.8703% of its dots more than 25 px from the catalogue, below the frozen 35% fingerprint threshold.
+- **Observed (two uniqueness readings):** The final 33,167-dot TIFF passes the discriminating sparse-registry screen over 222 accessible rasters / 117 distinct dot sets (worst forward 3 px overlap 0.672777 ≤0.70; worst |ρ| 0.381600 ≤0.90), but literal forward overlap is 1.0 against `dense_17gemdoe.tif`, whose positive footprint is space-filling. Under the user's literal all-raster rule this is a duplicate and the lane stops; the chance-corrected v3 interpretation does not override that instruction.
+- **Decision impact:** The genuinely new, portal-format-valid raster (SHA-256 `871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6`) is **OK TO DOWNLOAD FOR RESEARCH — NOT OK TO SUBMIT**. No slot was used. It cannot be represented as likely to beat user-reported H33 0.2778 or the prompt's leader values. A future lane must target far-basin recovery and requires a separate preregistration and selector decision.
+
+## IR-88-LITERAL-20261024 — advertised uniqueness used a different policy
+
+Independent audit on branch `arena/1fa5e63b-gemsdoe88`: latest advertised MDPS-88 run card says v3 duplicate=false while retaining literal forward overlap=1.0 with the dense 17GEMSDOE witness. The user requires literal 70% and no exemptions. Recomputed shared-template saturation and final overlap certify DUPLICATE_STOP. The landing/guide unqualified “unique” claim was corrected. Historical cards remain unchanged; no new predictions or slots. `docs/data/literal_protocol_audit.json` is an audit of MDPS-88, not a relabelled new submission. `docs/data/current_release.json` still identifies archived PHASE-88; this pre-existing multiple-canonical-release inconsistency is disclosed, not silently repaired across unrelated historical pipelines. Official non-GitHub hosts cannot be reached under the current outbound allowlist. No organizer receipt or current weekly cap verified. Full review: `docs/research/protocol-review-20261024.md`.
+
+Pass-two correction: `readiness.py` was overwriting advertised MDPS status with archived PHASE-88 status. It now reopens MDPS via the literal audit, keeps PHASE `current_release.json` explicitly historical, and writes BLOCKED / download=false on missing or corrupted evidence instead of retaining a stale status. A regression test covers this error path.
+
 Concurrent merge resolution: PR #78 published IBL-88 during this review. Incoming files/cards are preserved as historical evidence, explicitly linked as an unaudited concurrent archive. This audit's hash and live feed remain MDPS-88; it does not claim fresh validation of IBL. Its nonempty dot set is subject to the same universal literal blocker.
 
 Merge verification found incoming IBL changes overwrote six legacy run-card aliases with an incompatible schema and inconsistent filename suffixes, producing 10 test failures. Restored those legacy aliases to their pre-merge historical records (not promotion authority); all dedicated `ibl88_run_card.json` files, scripts, TIFF/ZIP and dossier remain preserved. Live audit/status is separate and negative. No historical `promote` field authorizes a slot.
 
 Second concurrent reconciliation: PR #79 independently repaired shared v3 to enforce literal overlap and added a direct-coverage proof test. Those shared-template fixes, pins, MDPS card corrections, source snapshots and tests are retained. This branch retains its stronger byte/ZIP-bound saturation audit and readiness stale-status fix; the direct coverage helper is retained for the incoming tests. No additional submission is generated.
+
+**Subsequent integration note (IR-88-87):** the MDPS/PHASE live-feed identity statements above describe PR #80 at the time it was authored. H88-MVRD was integrated afterward and is now the canonical `current_release.json` / `docs/status.json` research record. The MDPS literal audit remains an immutable, candidate-specific universal-blocker proof; the MVRD validator independently remeasures the same literal overlap 1.0 and remains blocked. No negative verdict was weakened.
 
 ## IR-88-93 — Unmarked MDC-88 collar variant was published under docs/research-variants/ (2026-10-24)
 

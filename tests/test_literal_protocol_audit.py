@@ -1,11 +1,12 @@
 import json
 from pathlib import Path
+import sys
 
 import pytest
 
-from scripts.audit_literal_protocol import inspect, pinned
-
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts.audit_literal_protocol import inspect, pinned  # noqa: E402
 
 
 def test_pin_rejects_modified_bytes(tmp_path):

@@ -1,0 +1,43 @@
+{
+  "name": "gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT",
+  "submission_name": "gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT",
+  "note": "MVRD88 85ch monoclinal+redox+strand Dinkelbach 33167d (HOLDOUT-DTI 0.1973); fingerprint+17GEMSDOE hold slot",
+  "sha256": "871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6",
+  "zip_sha256": "4470e339d9d8b9b8eb32f6b976fe32e17bd176e45b0d0ee91da258caab544dca",
+  "file": "docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.zip",
+  "bytes": 788372,
+  "zip_bytes": 157157,
+  "positive_pixels": 33167,
+  "generated_utc": "2026-10-24T09:30:09Z",
+  "fingerprint": {
+    "n": 33167,
+    "median_d_cat_px": 6.324555320336759,
+    "share_le2": 0.0,
+    "share_gt10": 0.23836946362348116,
+    "share_gt25": 0.028703229113275244
+  },
+  "halo_constraint": {
+    "halo_constrained": true,
+    "active_constraint_repos": [
+      "GEMSDOE80::gems80_adpt_kkt.tif",
+      "GEMSDOE83::gems83_h83_gvcd.tif",
+      "GEMSDOE88-GHMD::gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+      "fleet::GEMSDOE78__gems78-h78gsc-oof-submod40k-20261021T033000Z-zeros.tif",
+      "fleet::GEMSDOE80__gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif",
+      "fleet::GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+      "fleet::GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+      "sibling::GEMSDOE86__data__scored_fleet__GEMSDOE78__gems78-h78gsc-oof-submod40k-20261021T033000Z-zeros.tif",
+      "sibling::GEMSDOE86__data__scored_fleet__GEMSDOE80__gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif",
+      "sibling::GEMSDOE86__data__scored_fleet__GEMSDOE80__gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros.tif",
+      "sibling::GEMSDOE86__data__scored_fleet__GEMSDOE83__gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+      "sibling::GEMSDOE86__docs__downloads__gems86-gmc-linepost-90568d-20261022T222859Z-900ceac1-zeros.tif",
+      "sibling::GEMSDOE86__docs__downloads__gems86-h86-wvb-submod300-37654dots-20261023T001614Z-zeros.tif",
+      "sibling::GEMSDOE86__docs__downloads__gems86-h86b-gfco-44090dots-20261022T233826Z-8fb20e6b-zeros.tif",
+      "GEMSDOE88::gems88-adhr-dip-hydrothermal-submod-20261022-v2-DO-NOT-SUBMIT.tif",
+      "GEMSDOE88::gems88-mrr-bpr-blockresid-dinkelbach-20261024-v1-DO-NOT-SUBMIT.tif"
+    ],
+    "n_dots": 33167,
+    "surrogate_dti": 0.2637086341777277
+  }
+}

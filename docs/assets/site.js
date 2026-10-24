@@ -23,21 +23,30 @@
       stamp.textContent = 'Leaderboard snapshot unavailable; open the official page for live standings.';
     }
   }
-  // The literal audit describes the MDPS-88 file only. It writes its own line and never overwrites the current-release banner.
-  const literal = document.querySelector('[data-literal-status]');
-  if (literal) {
+  const banner = document.querySelector('[data-card-status]');
+  if (banner) {
     try {
       const response = await fetch('data/literal_protocol_audit.json', { cache: 'no-store' });
-      if (!response.ok) throw new Error('latest run validation unavailable');
+      const currentResponse = await fetch('data/current_release.json', { cache: 'no-store' });
+      const cardResponse = await fetch('data/mvrd_run_card.json', { cache: 'no-store' });
+      if (!response.ok || !currentResponse.ok || !cardResponse.ok) {
+        throw new Error('latest run validation unavailable');
+      }
       const data = await response.json();
-      // Fail closed. A locally valid research artifact must never be presented
-      // as slot-cleared or organizer-accepted, even if the old status.json is green.
-      literal.textContent = (data.ok_to_download_for_research === true && data.ok_to_submit === false &&
-          data.decision === 'DUPLICATE_STOP' && data.validator_output?.ok === true)
-        ? 'MDPS-88 file (automated literal audit): DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT · literal uniqueness FAILED'
-        : 'Literal audit inconsistent or unverified · DO NOT SUBMIT';
+      const current = await currentResponse.json();
+      const card = await cardResponse.json();
+      // Fail closed. The literal audit proves the universal dense-witness stop;
+      // the current feed and MVRD card independently bind the displayed bytes.
+      const consistent = data.ok_to_download_for_research === true && data.ok_to_submit === false &&
+          data.decision === 'DUPLICATE_STOP' && data.validator_output?.ok === true &&
+          current.candidate === 'H88-MVRD' && current.ok_to_download === true &&
+          current.ok_to_submit === false && current.literal_duplicate === true &&
+          current.file_sha256 === card.raster_sha256 && card.ok_to_submit === false;
+      banner.textContent = consistent
+        ? 'H88-MVRD · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated decision)'
+        : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
     } catch (_) {
-      literal.textContent = 'Literal audit unavailable · DO NOT SUBMIT';
+      banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';
     }
   }
   for (const button of document.querySelectorAll('[data-copy]')) {
