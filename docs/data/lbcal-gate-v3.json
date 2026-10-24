@@ -1,0 +1,81 @@
+{
+ "name": "GEMSDOE88-LBCAL-0AEB6EED",
+ "note": "LBCAL receipt-calibrated q, 38278 dots, <=66% in sibling halos; HOLDOUT 0.0616; model-proj only, UNSCORED",
+ "file": "docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif",
+ "sha256": "0a44af1ed8090cf1be88e42b832e0cc4b3bd2263a01b13b45f873e0eb528991a",
+ "zip_sha256": "d14f3b9a3634c8653eaa8402808403a5d5eec8e9a0ff7f1105910e62ca521f2e",
+ "generated_utc": "2026-10-24T08:34:51Z",
+ "source": "parallel-session candidate 'lbcal', re-assessed by gate v3; its own run card says verdict=NEGATIVE-HOLD (registry of 138 rasters)",
+ "policy": "gems88-gate-v3",
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+ "blocking_reasons": [
+  "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+  "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
+ ],
+ "informational": [
+  "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): 17GEMSDOE:dense_17gemdoe.tif"
+ ],
+ "note_len": 105,
+ "name_len": 24,
+ "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows).",
+ "own_gate": {
+  "verdict": "NEGATIVE-HOLD",
+  "registry_rasters_checked": 138,
+  "worst_sparse_dot_overlap_3px": 0.656
+ },
+ "holdout_cross_run": {
+  "evidence_class": "HOLDOUT-DTI",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "seeds": [
+   20,
+   30
+  ],
+  "withheld_positives": 22663,
+  "dti": 0.061566,
+  "ci95": [
+   0.05191,
+   0.072787
+  ],
+  "bar": 0.18789,
+  "beats_bar": false,
+  "caveat": "bar comes from seeds 20+21 (22,893 withheld); PR #53 used seeds 20+30 (22,663 withheld): a cross-run comparison"
+ },
+ "fingerprint": {
+  "n": 38278,
+  "median_d_cat_px": 24.186773244895647,
+  "share_le2": 0.0176602748314959,
+  "share_gt10": 0.870395527457025,
+  "share_gt25": 0.48369820784784995
+ },
+ "fingerprint_screen_pass": false,
+ "portal_values_and_grid_ok": true,
+ "portal_layout_parity_with_sample": false,
+ "portal_layout": {
+  "compress": "deflate",
+  "tiled": true,
+  "block_shapes": [
+   [
+    256,
+    256
+   ]
+  ],
+  "predictor": null,
+  "interleave": "band"
+ },
+ "uniqueness": {
+  "registry_rasters": 34,
+  "distinct_dot_sets": 30,
+  "unique_like_for_like": true,
+  "worst_like_for_like_overlap": {
+   "label": "19GEMSDOE:gems19_h19_5.tif",
+   "value": 0.6484926067192643
+  },
+  "worst_abs_rho": {
+   "label": "registry:calib_h161_01855.tif",
+   "value": 0.02876214074463998
+  },
+  "like_for_like_blockers": []
+ }
+}

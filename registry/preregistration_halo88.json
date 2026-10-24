@@ -1,0 +1,61 @@
+{
+ "schema": "gems88.preregistration.halo88.v1",
+ "written_utc": "2026-10-24T06:39:45Z",
+ "written_before_results": true,
+ "session_branch": "arena/f566c0e1-gemsdoe88",
+ "evidence_label_rule": "every metric is HOLDOUT-DTI (evaluator gems57-pooled-hide-v2) or ORGANIZER-CONFIRMED; none is ORGANIZER-CONFIRMED in this run",
+ "budget": {
+  "experiments": 3,
+  "hours": 2,
+  "slots_spent": 0,
+  "diagnostics_not_counted": [
+   "D1 forensics_h33 (read-only)",
+   "D2 proxy_calibration (read-only)"
+  ]
+ },
+ "fold_design": "vendor/gems57/holdout.buffered_component_draw seeds 20,21 buffer 3 px boundary 12 px (same as the H88-ADHR run; n withheld positives must equal 22,893)",
+ "primary_endpoint": "pooled far-subset HOLDOUT-DTI (withheld positives >10 px from every visible catalogue pixel); secondary: overall pooled HOLDOUT-DTI",
+ "why_far_subset": "DrivenData staff (thread 11536): a new fault is any fault pixel not already captured by USGS/INGENIOUS; lineage arithmetic (evidence/h33_forensics_20261024.json) shows dots within 2 px of the catalogue only lowered public scores; D2 (evidence/proxy_calibration_20261024.json) shows no catalogue-based or SGMC-based proxy rank-orders the high public scores, so near-catalogue recovery is not trusted as evidence.",
+ "hypotheses": {
+  "E1_FBMT": "Training on the population the model will be tested on (isolated mapped faults vs far-basin background; neighbourhoods of dense networks unlabeled) transfers better to faults far from the catalogue than all-positive training (BASE-44).",
+  "E2_CCR": "Where smoothed geophysical evidence exceeds what the smoothed visible-catalogue density usually accompanies, faults are more likely unmapped; boosting by exp(0.5*clip(z,+-2)) raises far-subset DTI.",
+  "E3_RCP": "Real faults are laterally continuous; down-weighting short disconnected ridge candidates (bbox diagonal < 12 px) raises precision."
+ },
+ "arms": [
+  "base",
+  "fbmt",
+  "fbmt_ccr",
+  "fbmt_ccr_rcp"
+ ],
+ "sensitivity_only_not_selectable": [
+  "fbmt_ccr025",
+  "fbmt_ccr100"
+ ],
+ "fixed_parameters": {
+  "halo_px": 3.0,
+  "far_px": 10,
+  "isolation_radius_px": 5,
+  "background_min_dvis_px": 8,
+  "ccr_gamma": 0.5,
+  "ccr_sigma_px": 15,
+  "ccr_bins": 20,
+  "rcp_top_frac": 0.04,
+  "rcp_l0_px": 12,
+  "rcp_w_min": 0.35,
+  "allocator": "vendor/gems57/emit.dinkelbach_allocate budget=None min_spacing_px=2.05 dinkelbach_iters=6",
+  "features": "44 label-blind columns of gems88.physics.ALL_PHYS_FEATURES"
+ },
+ "decision_rules": {
+  "leakage": "STOP if any single-feature symmetric AUC > 0.90",
+  "E1_keep": "far-subset pooled DTI(fbmt) > far DTI(base) AND paired 95% CI of the difference excludes 0",
+  "E2_keep": "far DTI(fbmt_ccr) > far DTI(fbmt) AND paired 95% CI excludes 0; otherwise report negative and drop CCR",
+  "E3_keep": "far DTI(fbmt_ccr_rcp) > far DTI(kept predecessor) AND paired 95% CI excludes 0; otherwise drop RCP",
+  "promote_verdict": "promote-to-selector-only requires (a) canary pass, (b) a kept arm whose far-subset DTI exceeds the stored H88-ADHR far-subset 0.11478 OR overall DTI exceeds 0.18789 (cross-run comparison on identical folds/evaluator), (c) uniqueness gate pass, (d) portal-format gate pass; otherwise verdict negative-or-hold",
+  "no_slot_policy": "no DrivenData slot is spent by this run; promotion is a separate selector step"
+ },
+ "known_limits": [
+  "hide-and-recover truth is catalogue faults, not the hidden new-fault labels",
+  "H33-class rasters are not scorable on this instrument (IR-88-20/35)",
+  "16/19 early proxies do not rank-order public scores (D2)"
+ ]
+}

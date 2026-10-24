@@ -256,10 +256,19 @@ def main() -> int:
         except Exception as exc:  # registry audit must not silently drop a raster
             rows.append({"file": str(p.relative_to(ROOT)), "error": str(exc)})
     sparse_ok = abs(worst_rho[0]) <= 0.90 and worst_ov[0] <= 0.70
+    valid_rows = [r for r in rows if "error" not in r]
+    literal_worst_overlap = max(float(r["dot_overlap_3px"]) for r in valid_rows)
+    literal_worst_abs_rho = max(
+        abs(float(r["spearman_full_footprint"]))
+        for r in valid_rows if r["spearman_full_footprint"] is not None
+    )
+    literal_ok = literal_worst_overlap <= 0.70 and literal_worst_abs_rho <= 0.90
     errors = [r for r in rows if "error" in r and "shape mismatch" not in r["error"]]
-    print(f"[uniqueness] checked={len(rows)} worst_sparse_rho={worst_rho} worst_sparse_overlap={worst_ov} errors={len(errors)}", flush=True)
+    print(f"[uniqueness] checked={len(rows)} worst_sparse_rho={worst_rho} worst_sparse_overlap={worst_ov} literal_overlap={literal_worst_overlap} errors={len(errors)}", flush=True)
 
-    verdict_promote = bool(promote_science and sparse_ok and not errors)
+    # Binding user rule: every registry raster participates.  Representation
+    # class may be reported diagnostically but cannot authorize an exemption.
+    verdict_promote = bool(promote_science and sparse_ok and literal_ok and not errors)
     short = sha256_bytes(final_mask.tobytes())[:8]
     arm_tag = "rank" if winner == "provcrest_rank" else "rand"
     stem = f"gems88-provcrest-{arm_tag}-denovo-37654-{DATE}-{short}-zeros"
@@ -321,7 +330,10 @@ def main() -> int:
             "worst_sparse_spearman": {"rho": round(float(worst_rho[0]), 4), "file": worst_rho[1]},
             "worst_sparse_dot_overlap_3px": {"overlap": round(float(worst_ov[0]), 4), "file": worst_ov[1]},
             "sparse_gate_pass": bool(sparse_ok),
-            "dense_witness_note": "Continuous/dense rasters (positive on >50% of footprint, e.g. 17GEMSDOE proba) are representation-classed separately: any non-empty dot raster trivially overlaps them, so the 0.70 dot-overlap gate is applied to sparse dot/ridge rasters; dense rows are reported in evidence/provcrest_uniqueness.json, not exempted silently.",
+            "literal_all_raster_gate_pass": bool(literal_ok),
+            "literal_worst_dot_overlap_3px": round(literal_worst_overlap, 4),
+            "literal_worst_abs_spearman": round(literal_worst_abs_rho, 4),
+            "dense_witness_note": "Continuous/dense rasters are reported by representation class for diagnosis, but the binding literal any-raster rule grants no exemption. The positive-everywhere 17GEMSDOE surface forces overlap 1.0 and a negative verdict for every nonempty candidate.",
             "rows_file": "evidence/provcrest_uniqueness.json"
         },
         "validator": {

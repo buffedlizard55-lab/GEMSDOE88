@@ -1,0 +1,164 @@
+{
+  "schema": "gems88.run-card.v4",
+  "generated_utc": "2026-10-24",
+  "hypothesis": "Buried offsets of magnetic basement fabric leave a paired-side axial RTP orientation dislocation corroborated by a separate gravity gradient, even without a mapped fault trace.",
+  "mechanism": "Signed Band-2 RTP gradients -> Gaussian structure tensor -> opposite-side axial rotation at 300/283 m -> rank-modulate by Band-13 gravity gradient -> directional NMS, binary spaced dots; only visible faults provide holdout catalogue exclusion.",
+  "named_non_fault_process": "Unfaulted intrusive/volcanic lithologic contact or airborne magnetic flight-line seam that rotates magnetic fabric without brittle fault displacement.",
+  "method_lane": "MAG-FABRIC-DISLOCATION",
+  "data_provenance": "hash-pinned owner mirror, not independently authenticated organizer download",
+  "feature_canaries": {
+    "threshold_symmetric_auc": 0.9,
+    "per_channel": {
+      "rtp_fabric_dislocation": {
+        "auc": 0.5151411197223279,
+        "symmetric_auc": 0.5151411197223279
+      },
+      "rtp_gradient_energy": {
+        "auc": 0.5510007383986306,
+        "symmetric_auc": 0.5510007383986306
+      },
+      "gravity_gradient_energy": {
+        "auc": 0.5342089715671358,
+        "symmetric_auc": 0.5342089715671358
+      },
+      "fabric_gravity_surface": {
+        "auc": 0.5514494158900722,
+        "symmetric_auc": 0.5514494158900722
+      }
+    },
+    "max_symmetric_auc": 0.5514494158900722
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.062936448449505,
+      "ci95": [
+        0.05420057417016921,
+        0.0721221051587228
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 2069.783989506039,
+      "fpw": 70792.66063654098,
+      "fnw": 20823.216010493965
+    },
+    "incumbent_prior_best": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.18788764184958875,
+      "ci95": [
+        0.17169764852656258,
+        0.20326012211176936
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6241.143086000586,
+      "fpw": 68273.96686338239,
+      "fnw": 16651.856913999403
+    },
+    "withheld_positive_pixels": 22893,
+    "folds": [
+      {
+        "seed": 20,
+        "fold": "NW",
+        "withheld_positive_pixels": 1923,
+        "emitted": 8944
+      },
+      {
+        "seed": 20,
+        "fold": "NE",
+        "withheld_positive_pixels": 2367,
+        "emitted": 6239
+      },
+      {
+        "seed": 20,
+        "fold": "SW",
+        "withheld_positive_pixels": 3781,
+        "emitted": 12443
+      },
+      {
+        "seed": 20,
+        "fold": "SE",
+        "withheld_positive_pixels": 3250,
+        "emitted": 8192
+      },
+      {
+        "seed": 21,
+        "fold": "NW",
+        "withheld_positive_pixels": 1918,
+        "emitted": 8928
+      },
+      {
+        "seed": 21,
+        "fold": "NE",
+        "withheld_positive_pixels": 2361,
+        "emitted": 6247
+      },
+      {
+        "seed": 21,
+        "fold": "SW",
+        "withheld_positive_pixels": 3813,
+        "emitted": 12415
+      },
+      {
+        "seed": 21,
+        "fold": "SE",
+        "withheld_positive_pixels": 3480,
+        "emitted": 8233
+      }
+    ],
+    "bootstrap": {
+      "method": "paired physical spatial-cluster percentile",
+      "clusters": 158,
+      "draws": 1000,
+      "seed": 880824,
+      "confidence": 0.95,
+      "caveat": "Conditional on fitted folds, catalogue labels and fixed budgets; not a leaderboard interval."
+    },
+    "comparable_split": "same frozen whole-component folds seeds 20/21; no paired incumbent terms stored",
+    "beats_prior_point_estimate": false,
+    "paired_improvement_ci95": null,
+    "note": "Neither this HOLDOUT-DTI nor prior best is an ORGANIZER-CONFIRMED result; no live score is claimed."
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_max_abs_rho": 0.06266107561288807,
+    "final_worst_abs_rho": 0.008449945104172345,
+    "final_worst_overlap_3px": 1.0,
+    "final_worst_overlap_raster": "17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "registry_rasters_checked": 29,
+    "registry_scope": "pinned owner-mirrored inventory plus all locally published research TIFFs; private/unlinked submissions not observed",
+    "raw_duplicate_count": 1,
+    "universal_dense_witness": true,
+    "full_rows": "evidence/fabric_dislocation_uniqueness.json",
+    "raw_gate_pass": false
+  },
+  "validator_output": {
+    "format_valid": true,
+    "no_nan_inside": true,
+    "values_in_0_1": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "zero_outside": true,
+    "raster_sha256": "1bbb20e60ce5633a979e2bea8e1216105325b78c4ca93ca4380ea3f533e774ae",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "emitted_positive_pixels": 37654,
+    "min_distance_to_catalogue_px": 3.1622776601683795
+  },
+  "raster_sha256": "1bbb20e60ce5633a979e2bea8e1216105325b78c4ca93ca4380ea3f533e774ae",
+  "zip_sha256": "938c3dbae8475d3973d2f8229902a7ac1e4bdb1f248ed3fe50924cba68a10188",
+  "submission_name": "GEMSDOE88-FABDIS-621B097B",
+  "submission_note": "FAB88 RTP fabric dislocation x gravity; 37654 dots; HOLDOUT-DTI 0.0629; no receipt; DO NOT SUBMIT",
+  "file": "docs/downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.zip",
+  "research_download_ok": true,
+  "ok_to_submit": false,
+  "organizer_confirmed_score": null,
+  "weekly_slots_used_by_agent": 0,
+  "experiments_run": 1,
+  "experiment_budget_max": 3,
+  "elapsed_seconds": 53.7,
+  "verdict": "negative",
+  "stop_reason": "DUPLICATE under literal >70% forward 3px registry gate; stop (dense 17GEMSDOE universal witness). Holdout below existing best."
+}

@@ -123,7 +123,13 @@
    "dti": 0.076277
   },
   "beats_current_holdout_best": false,
-  "protocol": "buffered whole-component hide-and-recover; q and emission rebuilt per seed from visible-only catalogue; visible faults masked pixel-exactly; pooled DTI"
+  "protocol": "buffered whole-component hide-and-recover; q and emission rebuilt per seed from visible-only catalogue; visible faults masked pixel-exactly; pooled DTI",
+  "winner_dti": 0.061566,
+  "winner_ci95": [
+   0.05191,
+   0.072787
+  ],
+  "winner_arm": "lbcal"
  },
  "sgmc_proxy": {
   "evidence_class": "PROXY (not a score)",
@@ -285,5 +291,14 @@
  "verdict_reason": "format-valid and unique, but the user's rule requires beating the current holdout best before any slot (HOLDOUT-DTI 0.0616 vs best 0.0763; beats R0 CI>0: True; canary ok: True; unique: True)",
  "experiments_used": 2,
  "experiment_budget": 3,
- "runtime_s": 315.1
+ "runtime_s": 315.1,
+ "submission": {
+  "file": "docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "0a44af1ed8090cf1be88e42b832e0cc4b3bd2263a01b13b45f873e0eb528991a",
+  "submission_name": "GEMSDOE88-LBCAL-0AEB6EED",
+  "submission_note": "LBCAL receipt-calibrated q, 38278 dots, <=66% in sibling halos; HOLDOUT 0.0616; model-proj only, UNSCORED",
+  "ok_to_submit": false,
+  "compat_note": "mirror of 'raster' for scripts/gate_provcrest.py (gate v3) compatibility"
+ }
 }

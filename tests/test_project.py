@@ -30,7 +30,10 @@ def test_real_card_stays_blocked():
     assert not result["approved_for_weekly_slot"]
     assert not result["ok_to_submit"]
     assert result["ok_to_download_for_research"]
-    assert any("registry overlap" in problem for problem in result["problems"])
+    # The canonical MRR release uses the user's literal any-registry rule: no
+    # dense-raster representation-class exemption is allowed.
+    assert result["problems"] and any(p.split(":")[0] in {"HOLDOUT", "FINGERPRINT", "UNIQUENESS", "FORMAT", "LEAKAGE"} for p in result["problems"])
+    assert result["policy"] == "binding-literal-all-registry-v1"
 
 
 def eligible_record(tmp_path):

@@ -20,11 +20,11 @@ def _card():
     return json.loads(CARD.read_text())
 
 
-def test_provcrest_run_card_promote_and_labels():
+def test_provcrest_run_card_negative_under_literal_gate_and_labels():
     rc = _card()
-    assert rc["verdict"] == "promote"
+    assert rc["verdict"] == "negative"
     assert rc["submission"]["ok_to_download"] is True
-    assert rc["submission"]["ok_to_submit"] is True
+    assert rc["submission"]["ok_to_submit"] is False
     assert rc["submission"]["organizer_confirmed_score"] is None
     assert rc["experiments_run"] <= rc["experiment_budget_max"] == 3
     h = rc["holdout"]
@@ -43,6 +43,8 @@ def test_provcrest_run_card_promote_and_labels():
 def test_provcrest_uniqueness_gates():
     u = _card()["uniqueness"]
     assert u["sparse_gate_pass"] is True
+    assert u["literal_all_raster_gate_pass"] is False
+    assert u["literal_worst_dot_overlap_3px"] == 1.0
     assert u["errors"] == []
     assert abs(u["worst_sparse_spearman"]["rho"]) <= 0.90
     assert u["worst_sparse_dot_overlap_3px"]["overlap"] <= 0.70

@@ -101,15 +101,7 @@ def current_status(root=ROOT):
     from validate_release import release_report
 
     report = release_report(root)
-    if report['literal_duplicate']:
-        problems = [
-            'Literal registry overlap with hash-pinned full-footprint witness: '
-            'research TIFF is not eligible for submission'
-        ]
-    elif not report['ok_to_submit']:
-        problems = ['A required scientific or release gate failed']
-    else:
-        problems = []
+    problems = list(report.get('stop_reasons') or []) if not report['ok_to_submit'] else []
     return {
         'evidence_schema_complete': bool(report['format_ok']),
         'approved_for_weekly_slot': False,
@@ -118,6 +110,7 @@ def current_status(root=ROOT):
         'ok_to_download_for_research': bool(report['ok_to_download']),
         'ok_to_submit': False,  # selector has never approved a weekly slot
         'raster_sha256': report['output_sha256'],
+        'policy': 'binding-literal-all-registry-v1',
     }
 
 

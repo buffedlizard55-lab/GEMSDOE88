@@ -101,8 +101,11 @@
       "file": "data/registry/family_60gemsdoe/calib_h161_01855.tif"
     },
     "sparse_gate_pass": true,
-    "dense_witness_note": "Continuous/dense rasters (positive on >50% of footprint, e.g. 17GEMSDOE proba) are representation-classed separately: any non-empty dot raster trivially overlaps them, so the 0.70 dot-overlap gate is applied to sparse dot/ridge rasters; dense rows are reported in evidence/provcrest_uniqueness.json, not exempted silently.",
-    "rows_file": "evidence/provcrest_uniqueness.json"
+    "dense_witness_note": "Continuous/dense rasters are reported by representation class for diagnosis, but the binding literal any-raster rule grants no exemption. The positive-everywhere 17GEMSDOE surface forces overlap 1.0 and a negative verdict for every nonempty candidate.",
+    "rows_file": "evidence/provcrest_uniqueness.json",
+    "literal_all_raster_gate_pass": false,
+    "literal_worst_dot_overlap_3px": 1.0,
+    "literal_worst_abs_spearman": 0.0302
   },
   "validator": {
     "vendor_validate": {
@@ -194,12 +197,13 @@
     "submission_note": "PROVCREST-rank de novo B19/3/18/15 crest 37654 dots >=3.5px >300m cat; HOLDOUT-DTI 0.0763 vs R0 0.0040; UNSCORED",
     "submission_note_chars": 112,
     "ok_to_download": true,
-    "ok_to_submit": true,
+    "ok_to_submit": false,
     "organizer_confirmed_score": null,
     "weekly_slots_used_by_agent": 0
   },
   "experiments_run": 2,
   "experiment_budget_max": 3,
   "elapsed_seconds": 100.7,
-  "verdict": "promote"
+  "verdict": "negative",
+  "stop_reason": "Binding literal any-raster gate: positive-everywhere 17GEMSDOE forward overlap is 1.0 > 0.70. No representation-class exemption is authorized."
 }
