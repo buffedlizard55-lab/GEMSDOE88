@@ -1,5 +1,7 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> **2026-10-24 session review:** [decision, candidate queue, H33 evidence and limitations](research/session-review-20261024.md). **No new submit-approved TIFF**: the requested parallel-method paragraph is missing, the available candidates fail scientific/registry gates, and no weekly slot was used. Research-only TIFF downloads are linked in the [executive submission guide](docs/executive-summary.html). Do not infer upload approval from a valid GeoTIFF or a changed file hash.
+
 > ## ⛔ Latest experiment (merged after PHASE-88): MDPS-88 — unique TIF; OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
 > [⬇ Download the MDPS-88 GeoTIFF (research only)](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [one-file ZIP](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON run card](registry/mdps88_run_card.json) · [independent audit](docs/data/mdps88_validation.json) · [executive submission guide](docs/executive-summary.html).
 > **Name (archival):** `GEMSDOE88-MDPS88-MIX-20261024` · **Note (106/140):** `MDPS-88 matched-domain physics mix, 29742 dots; HOLDOUT far 0.0727 overall 0.0667; UNSCORED; DO NOT SUBMIT` · **SHA-256:** `bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd`.
