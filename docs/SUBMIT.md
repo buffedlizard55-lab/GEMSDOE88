@@ -1,38 +1,61 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
-## Current session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (the queued MASS-on-R1 build; integrated queue below still applies; no slot used, no submission made)
+## Current session — 2026-10-23 `AXIS=MASS` on gate-clean `R1` (this PR, IR-88-52; **no slot candidate** — the queue below is unchanged)
 
-**Three new candidates from one named parent.** Parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from
-the recorded exact-marginal recipe and **both recorded hashes asserted before any edit** (`6f7ae705…` NaN / `dc6f090d…` zeros);
-`R0` rebuilt byte-exactly first (`c55bafc4…` / `baeae321…`, 15/15 pins). Dose is the brief's `10% = 3,765` dots; ranking is
-the parent's own exact iterative marginal expected-DTI under the canary-clean label-free field `w` (15 channels, max
-symmetric AUC `0.5693`), identical to `R1`'s refill and the R0 MASS session. Predictions were frozen in
-`registry/mass_r1_preregistration.json` before any proxy. **100% of dots in every arm are `>3 px` from the catalogue**
-(min `3.1623 px`), zero catalogue mass — gate-clean with no waiver; hardened `validate_variant.py` 6/6 PASS
-(`registry/mass_r1_variant_validation.json`). Blind off-catalogue SGMC `PROXY` (report-only, never a gate; parent `R1 0.096083`):
-`r10minus 0.08868` (`−0.0074`), `r10plus 0.09874` (`+0.0027`), `r10swap 0.09249` (`−0.0036`); in-sample `w`-model `MODEL`
-`−0.0080 / +0.0085 / +0.0013` vs R1 (preregistered `−0.007 / +0.005 / +0.001`). `99.8%` of added dots land within one
-`300 m` kernel radius of a parent dot — the saturation the preregistration predicted. Hide-and-recover holdout is structurally
-`0.000000` for any `>3 px` arm (IR-88-20). All three deltas are below the `0.01` no-evidence floor; **the plus arm is the only
-gate-eligible MASS candidate and is a conditional bracket, not a queue lead** (see `SLOT_PLAN.md`). `R0 0.2778` remains CLAIM.
+**Three new gate-clean candidates, all built from parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
+(re-derived and SHA-asserted `6f7ae705…`/`dc6f090d…` in-run after `R0` rebuilt byte-exactly, 15/15 pins
+verified). No slot was used and no submission was made.** Preregistered before any computation in
+`registry/preregistration_mass_r1.json`; the question was whether R0's mass curve survives removal of the
+`3 px` collar confound. It does: `−0.0074 / +0.0027 / −0.0036` on R1 versus `−0.0081 / +0.0029 / −0.0040`
+on R0 (max difference `0.00066`), so **MASS is closed on both parents** and none of these three files is
+queued for a slot. Blind off-catalogue SGMC `PROXY` (report-only, never a gate): parent `R1 0.096083`,
+`r1m10minus 0.088680`, `r1m10plus 0.098745`, `r1m10swap 0.092489`. Holdout proxy is structurally `0.000000`
+(`n = 22,663` withheld positives, IR-88-20/35). Every dot in all three files is `> 3 px` from the catalogue
+(`min d_cat 3.1623 px`, `0` dots `<= 3 px`); format gates PASS on the disk bytes
+(`registry/mass_r1_variant_validation.json`, 6/6 PASS, hardened `validate_variant.py`).
 
-| Arm | Exact submission name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | <=140-char form note | Format receipt |
-|---|---|---|---|
-| minus (`N=33,889`) | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a` (primary `e56b0e5a…`; zeros `e01dd362…`) | `R1 PRUNEp3px 6f7ae705; MASS -3765 lowest exact-marginal dots (37654->33889); pred -0.008 MODEL` (94) | `releases/…-e56b0e5a.json` + `registry/mass_r1_variant_validation.json` (hardened PASS) |
-| **plus (`N=41,419`; only slot-worthy arm)** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df` (primary `b2d704df…`; zeros `fa18a850…`) | `R1 PRUNEp3px 6f7ae705; MASS +3765 next-ranked un-emitted dots d_cat>3px (37654->41419); pred +0.009 MODEL` (105) | `releases/…-b2d704df.json` + `registry/mass_r1_variant_validation.json` (hardened PASS) |
-| swap (`N=37,654`) | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f` (primary `20dc829f…`; zeros `93f52691…`) | `R1 PRUNEp3px 6f7ae705; MASS swap 3765 lowest for 3765 next-ranked, fixed 37654; pred +0.001 MODEL` (97) | `releases/…-20dc829f.json` + `registry/mass_r1_variant_validation.json` (hardened PASS) |
+| # | Exact name (primary `releases/<name>.tif`; fallback `<name>-zeros.tif`, identical inside) | ≤140-char form note | SHA-256 primary / zeros | Status |
+|---|---|---|---|---|
+| — | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df` | `R1(PRUNEp3px); MASS +3765 next-ranked un-emitted dots d_cat>3px ->41419; pred -0.011 MODEL` | `b2d704df6727…81fdd93` / `fa18a8504766…bf369d30` | built + validated, **not queued** (`+0.0027` `< 0.01` floor) |
+| — | `…-MASSr1m10swap-20261023-20dc829f` | `R1(PRUNEp3px); MASS swap 3765 lowest for 3765 next-ranked, count fixed 37654; pred +0.006 MODEL` | `20dc829f271a…1586d880` / `93f526913384…bc398325` | built + validated, **not queued** (`−0.0036`) |
+| — | `…-MASSr1m10minus-20261023-e56b0e5a` | `R1(PRUNEp3px); MASS -3765 lowest exact-marginal dots 37654->33889; pred +0.002 MODEL` | `e56b0e5a5c37…6adf7682` / `e01dd362911e…73f3c162` | built + validated, **not queued** (`−0.0074`) |
 
-**Before any upload (unchanged prerequisites):** human confirms rolling-week balance, total slots, deadline and current
-`TOP_PUBLIC` on the competition pages (blank in the current brief; repo `0.4413` is stale); privately rebuilds
-(`python3 scripts/build_mass_r1_variants.py` — deterministic, SHA-pinned; rasters are gitignored, NOT in Git) or restores
-each file, matches the recorded SHA-256 above, and re-runs `python3 scripts/validate_variant.py releases/<id>.tif
-releases/<id>-zeros.tif` on the actual bytes. Human uploads **only one twin per slot**, then pastes the portal receipt into
-`receipt_score`/`receipt_date`. A live `|Δ| < 0.01` vs R1 is no evidence. Mechanism cards for a structural geologist:
-`ledger/mechanism_cards.json` (keys prefixed with the R1 id).
+Rebuild (deterministic, fixed seed): `python3 scripts/build_mass_r1_variants.py`; the rasters are gitignored,
+so a fresh clone must regenerate them before any upload. Do **not** spend a slot on these files: their
+preregistered falsifiers fired and the only positive arm sits at a quarter of the evidence floor.
 
 ---
 
-## Prior session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; integrated queue — supersedes the slot order of every section below; all their prerequisites stand)
+## Current session — 2026-10-23 `AXIS=SNAP` fixpoint ladder + sign-flip control on gate-clean `R1` (IR-88-51; slot order below updated; no slot used, no submission)
+
+**Nothing in this session is a slot candidate.** Parent `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705`
+re-derived and SHA-asserted (`6f7ae705…`/`dc6f090d…`) after `R0` rebuilt byte-exactly (15/15 pins). Three arms
+were frozen in `registry/preregistration_snap_r1_fixpoint.json` before any proxy ran, all at `N=37,654`, 100% of
+dots `>3 px`, placement lock `>=2.8284 px`, provided bands only (zero external LiDAR):
+
+| Arm | Edit | Net displacement | Blind `SGMC` `PROXY` | Disposition |
+|---|---|---|---|---|
+| `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPfp2-20261023-2882d3c4` (zeros `4813855b…`) | 1 px scarp snap applied **twice** | `1.091 px` mean, 74.23% changed | `0.096423` | **HOLD** — worse than one pass |
+| `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPfp3-20261023-9d86769b` (zeros `fb5e72f7…`) | same snap **three** times | `1.315 px`, 75.87% | `0.094999` | **HOLD** — worse than the parent |
+| `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-SNAPanti1-20261023-2f76b21c` (zeros `66064872…`) | same allocator on the **negated** field (weakest response) | `0.724 px`, 72.39% | `0.097260` | **control only** |
+
+Reference points in the same run: `R1 0.096083`, `scarp1px 0.097567`. The sign-flip control is `0.000307` from
+the crest winner — closer to it than the winner is to its parent — so `SGMC` does not separate crest from trough
+motion and may **not** be used to argue for `SNAPscarp1px` (IR-88-51). The dose ladder is negative, so
+`SNAPscarp2px-c003d7d7` is **off the queue**. All six rasters were re-read from disk and re-validated with the
+hardened `validate_variant.py` (`registry/snap_r1_fixpoint_validation.json`, 6/6 PASS); receipts are in
+`releases/<id>.json`; report in `evidence/snap_r1_fixpoint_axis_report.json`. No file needs uploading from this
+session. `R0 0.2778` remains CLAIM.
+
+**Updated integrated queue (slot 1 unchanged; slot 2's fallback is now explicitly unpriced; slot 3 no longer
+contains any SNAP dose arm):** 1. `PRUNEp3px 6f7ae705` (`R1` anchor) · 2. `PRUNEp3space35 49fff49b` only after
+exact byte reconstruction + hardened re-validation, else `SNAPscarp1px 1944aaf5` as an unpriced gate-clean
+mechanism test · 3. conditional `PRUNEp4space35 07bd8182` after a `p3space35` win, else `MASS-on-R1` in a
+separate session, else conserve.
+
+---
+
+## Current session — 2026-10-23 `AXIS=SNAP` scarp transplant on gate-clean `R1` (PR #41; integrated queue — supersedes the slot order of every section below; all their prerequisites stand)
 
 **Three new candidates, one per preregistered arm; no slot was used and no submission was made.** Parent
 `R1 = h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` was re-derived from the pinned lineage and SHA-asserted

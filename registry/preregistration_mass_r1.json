@@ -1,0 +1,100 @@
+{
+  "schema": "gems88.mass-r1-preregistration.v1",
+  "session_date": "2026-10-23",
+  "frozen_before_build": true,
+  "frozen_note": "Written and committed BEFORE any arm mask, proxy instrument, or raster existed. No number in this file is a score; every prediction is a MODEL scenario anchor.",
+  "parent": {
+    "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "short_name": "R1",
+    "n_dots": 37654,
+    "sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+    "sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+    "why_not_r0": "R0 carries 2,171 dots at 2 < d_cat <= 3 px, so ANY non-PRUNE child of R0 breaches Brief v2 4.4 (IR-88-33/36/43/47). R1 is the named gate-clean parent (min d_cat = 3.1623 px) and is itself the PRUNE-axis result this family must be read against."
+  },
+  "axis_assignment": {
+    "axis": "MASS",
+    "chosen_by": "agent (Brief v2 5: 'Do not prompt me over choosing an Axis for the session, pick your own session')",
+    "why_this_axis": "Two MASS families already exist, both on R0: (a) m10minus/m10plus/m20minus ranked by an ad-hoc 0.6*clip(d_cat/50)+0.4*uniform score that the PR17 audit showed was a collar artefact, and (b) r10minus/r10plus/r10swap ranked by the parent's own exact-marginal DTI. Neither answers the question that now governs every future arm: does the mass optimum move once the 3 px collar dots are replaced? SLOT_PLAN.md already schedules 'MASS-on-R1' as the gate-clean form of MASS's only positive arm; this session builds it as a single-axis family so the answer is attributable to mass alone.",
+    "ledger_pairs_checked": [
+      "MASS on R0: m10minus, m10plus, m20minus (ad-hoc ranking), r10minus, r10plus, r10swap (exact-marginal) -- ALL PRE-EXISTING, not rebuilt",
+      "MASS on R1: NONE in the 47-row ledger -> r1m10minus, r1m10plus, r1m10swap are unused (parent, axis, value) pairs",
+      "PRUNE: 3, p1px, p3px, p4px, p3.2px, p3.7px, p4.3px, p3norefill, p3space35, p4space35 (pre-existing)",
+      "CONCENTRATION: b10px-m10, b10px-m20, b50px-m20, 15pct-1km-grad (pre-existing)",
+      "SNAP: w2E1, w2S2, w2E2, pot2px, ridge2px, scarp2px, d1f35, d2f35, g2f35, R1-scarp1px/2px, R1-ridge2px (pre-existing)",
+      "RELIEF: up2t10, up2t15, dn2t15, rng2bas12, rng2pmt12, bas2rng12, basin12, pied12, range12 (pre-existing)",
+      "SPACING: poisson28, lattice4px, strike (pre-existing)",
+      "TRACKB: speckle10minus, traceext10, tracespine10 (pre-existing, Phase 2)"
+    ]
+  },
+  "ranking_definition": {
+    "name": "exact iterative marginal expected-DTI gain under the pinned label-free physical corroboration field w",
+    "why": "R1 is a dot set, not a scored surface: it stores no per-dot evidence score. Brief 5 says to rebuild the parent's own ranking from the recorded recipe; the recorded recipe of every lineage step after GEMSDOE32 (the R1 collar prune and its exact-marginal refill, build_prune_variants.py) ranks dots by exact iterative marginal expected-DTI contribution under the canary-clean physical field w. The identical code path and identical field are used here, so the R1 arms are directly comparable to the R0 r10* family arm-for-arm.",
+    "code": "vendor/gems57/metric.py via scripts/build_prune_variants.py::select_exact_marginal_dti_add / ::select_exact_marginal_dti_drop",
+    "field_w": "build_physical_field_and_canaries (19 pinned official bands + parent detector ridges + GDR-1391 geothermometry), every channel leakage-canaried at symmetric AUC <= 0.90",
+    "instrument_note": "w is a PROXY (~0.68-AUC fault model). It both ranks and scores these arms, so the in-sample w-model delta is optimistic and is reported as a diagnostic only, never as a score."
+  },
+  "fixed_dose": {
+    "fraction": 0.10,
+    "n_dots": 3765,
+    "parent_dots": 37654,
+    "source": "Brief 5 MASS: 'drop the lowest-ranked 10% / add the next-ranked 10%'"
+  },
+  "hypotheses": {
+    "H1_mass_optimum_is_parent_dependent": "R0's measured mass curve (blind SGMC: minus -0.0080, plus +0.0029 vs R0) is confounded by 2,171 collar dots that sit next to mapped faults and are therefore unusually credit-rich. Removing that confound should move the optimum: the drop arm should lose less on R1 than it lost on R0, and the add arm should gain less, because R1's refill already consumed the 2,171 highest-marginal un-emitted candidates.",
+    "H2_mass_optimum_is_absolute": "If the three R1 arms reproduce the R0 ordering and magnitudes (minus < R0 < plus < swap, same signs, within 0.004), then the mass curve is a property of the H19-5 detector-plus-2.8 px-thinning recipe and not of the catalogue collar, and no remaining slot should be spent on mass at any parent."
+  },
+  "arms": {
+    "r1m10minus": {
+      "operation": "drop the 3,765 lowest exact-marginal-DTI dots from the 37,654-dot parent R1",
+      "resulting_dots": 33889,
+      "preregistered_prediction": "+0.002",
+      "preregistered_range": "[-0.008, +0.010]",
+      "mechanism": "A removed dot lowers S (the sum of predictions, which enters the DTI denominator) with certainty and lowers T only by the kernel credit it uniquely carries. Under DTI = T / (0.2T + 0.2(S - M) + 0.8|G|) a dot that is redundant with a stronger neighbour on the same strand is pure denominator. R0's drop arm lost, but 2,171 of R0's lowest tail were collar dots that sit ~100-300 m from mapped USGS traces, i.e. in the damage zone of real faults where true new-fault pixels are most likely. R1 cannot lose those.",
+      "non_fault_mimic": "The field w is built from potential-field and topographic derivatives at 400 m flight-line spacing (GeoDAWN Area 2), so a genuine but deeply buried or sediment-masked fault carries a weak expression and can rank low. If the new-fault label set is dominated by such blind faults, pruning the low-w tail deletes exactly the population being scored and the arm loses despite the algebra being right.",
+      "predicted_sign_size": "MODEL +0.002 vs R1; below the 0.01 no-evidence floor by construction.",
+      "falsifier": "A live change of -0.01 or worse vs R1 would show that the low-w tail is not dead mass even after the collar confound is removed, which forces the mass curve to be read as absolute (H2) and closes MASS for the remaining slots. A gain >= +0.01 would make mass reduction the cheapest lever in the project and would justify a 20% dose on R1 next."
+    },
+    "r1m10plus": {
+      "operation": "add the 3,765 next-ranked un-emitted H19-5 dots at d_cat > 3 px (37,654 -> 41,419); no parent dot is removed",
+      "resulting_dots": 41419,
+      "preregistered_prediction": "-0.011",
+      "preregistered_range": "[-0.021, +0.001]",
+      "mechanism": "R1's construction already spent its refill budget on the 2,171 highest-marginal candidates of exactly this pool (h19_5 & ~R0 & d_cat > 3 px). The next 3,765 candidates are therefore drawn from a strictly lower part of the same marginal-gain curve, while S rises by 3,765 and the 0.8|G| term is unchanged. Addition should pay less on R1 than the +0.0029 blind that r10plus earned on R0, and may pay nothing.",
+      "non_fault_mimic": "Un-emitted H19-5 support includes genuine second-order structure that the 2.8 px disk suppressed: relay ramps, antithetic splays, and range-front step faults. It also includes ridge crests from flight-line levelling, drainage incision, and lithologic contacts. The arm cannot separate the two, so a positive result cannot be attributed to faults without a trace-level check.",
+      "predicted_sign_size": "MODEL -0.011 vs R1; the strongest of the three negative scenario anchors, and the direct test of saturation on a gate-clean parent.",
+      "falsifier": "A live gain >= +0.01 vs R1 falsifies saturation at this parent, proves the pool still holds unused strand length, and makes count the binding lever rather than the corroboration field."
+    },
+    "r1m10swap": {
+      "operation": "count-matched substitution: drop the 3,765 lowest-ranked parent dots and add the 3,765 next-ranked un-emitted dots (d_cat > 3 px); count held at 37,654",
+      "resulting_dots": 37654,
+      "preregistered_prediction": "+0.006",
+      "preregistered_range": "[-0.004, +0.016]",
+      "mechanism": "S is frozen by construction, so this arm moves DTI through T and M alone: it is a pure ranking-quality test with the mass term removed. It superposes the denominator saving of the drop arm and the numerator gain of the add arm. R0's swap earned +0.0029 blind while carrying the collar confound; if that confound was diluting the ranking, the gate-clean version should be at least as good.",
+      "non_fault_mimic": "The swap inherits every bias of w: potential-field gradients favour basement-step and lithologic-contact lineaments and the GDR-1391 geothermometry term concentrates near known geothermal systems, which is a vent prior, not a fault prior. A live loss would mean the parent's geometric 2.8 px selection is a better fault detector than a 0.68-AUC physical field at equal count.",
+      "predicted_sign_size": "MODEL +0.006 vs R1 (best of the three on the w-model, bounded by w's ceiling).",
+      "falsifier": "A live change below +0.01 closes w-ranked reselection as a lever at this parent and redirects the remaining slots to geometry and support rather than to any field-driven reselection."
+    }
+  },
+  "scenario_reading": {
+    "if_swap_positive_and_minus_nonnegative": "The mass curve shifted with the parent -> H1; a 20% swap on R1 becomes the next mass experiment and MASS stays live for one more slot.",
+    "if_ordering_reproduces_r0": "H2; record the mass curve as parent-invariant, close MASS, and spend remaining slots on the geometry/support family.",
+    "no_evidence_rule": "Any live |delta| < 0.01 is treated as no evidence (Brief 5). These arms cannot resolve the hypothesis alone; they bound the mass term for later multi-axis work."
+  },
+  "gates_planned": {
+    "must_pass": [
+      "format identical to sample_submission.tif (CRS EPSG:32611, 3730x3292, float32, 1 band, values in [0,1], finite inside footprint, NaN outside in the primary and 0 outside in the -zeros twin)",
+      "zero mass on catalogue pixels",
+      "min d_cat > 3 px on every emitted dot (MASS is not PRUNE; no waiver is requested)",
+      "sha256 absent from ledger/submissions.csv",
+      "parent-diff statistics recorded (added / removed / common, % changed)",
+      "no (parent, axis, value) repeat: (R1, MASS, r1m10minus|r1m10plus|r1m10swap) are unused",
+      "re-read the written bytes from disk and re-run scripts/validate_variant.py"
+    ],
+    "report_only_never_gates": [
+      "catalogue hide-and-recover PROXY with withheld-positive count and 95% CI (structurally 0.0 for every >3 px raster, IR-88-20/35)",
+      "leakage canary: stop and investigate if any single feature reaches symmetric AUC > 0.90",
+      "SGMC off-catalogue USGS control (PROXY)"
+    ]
+  },
+  "external_data": "None. Only the 15 SHA-256 pins in registry/data_manifest.json are read. No drivendata.org or dropbox.com contact; nothing is submitted by this session."
+}

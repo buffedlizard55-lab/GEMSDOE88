@@ -3,7 +3,7 @@
   "gates_all_pass": true,
   "results": [
     {
-      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a-zeros.tif",
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a-zeros.tif",
       "sha256": "e01dd362911e9c6f1d218456af2dee46a6a6e00b2bc8bae875d1840c73f3c162",
       "n_dots": 33889,
       "colour": "zeros",
@@ -106,7 +106,7 @@
           "detail": {
             "sha256": "e01dd362911e9c6f1d218456af2dee46a6a6e00b2bc8bae875d1840c73f3c162",
             "owners": [
-              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a"
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a"
             ]
           }
         },
@@ -121,7 +121,7 @@
         },
         "twin_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a.tif"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a.tif"
         },
         "twin_agrees_inside_footprint": {
           "ok": true,
@@ -129,12 +129,12 @@
         },
         "zip_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a-zeros.zip"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a-zeros.zip"
         },
         "zip_single_tiff": {
           "ok": true,
           "detail": [
-            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a-zeros.tif"
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a-zeros.tif"
           ]
         },
         "zip_sha_matches_raster": {
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a.tif",
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a.tif",
       "sha256": "e56b0e5a5c37a50613525ca6934186986654e6b5c65241e87dc6788c6adf7682",
       "n_dots": 33889,
       "colour": "nan",
@@ -257,7 +257,7 @@
           "detail": {
             "sha256": "e56b0e5a5c37a50613525ca6934186986654e6b5c65241e87dc6788c6adf7682",
             "owners": [
-              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a"
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a"
             ]
           }
         },
@@ -272,7 +272,7 @@
         },
         "twin_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a-zeros.tif"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a-zeros.tif"
         },
         "twin_agrees_inside_footprint": {
           "ok": true,
@@ -280,12 +280,12 @@
         },
         "zip_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a.zip"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a.zip"
         },
         "zip_single_tiff": {
           "ok": true,
           "detail": [
-            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10minus-20261023-e56b0e5a.tif"
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10minus-20261023-e56b0e5a.tif"
           ]
         },
         "zip_sha_matches_raster": {
@@ -305,7 +305,7 @@
       ]
     },
     {
-      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df-zeros.tif",
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df-zeros.tif",
       "sha256": "fa18a85047665ffbf1e4e3a578ed2b96c7093d4523c5b239d59c4bd3bf369d30",
       "n_dots": 41419,
       "colour": "zeros",
@@ -408,7 +408,7 @@
           "detail": {
             "sha256": "fa18a85047665ffbf1e4e3a578ed2b96c7093d4523c5b239d59c4bd3bf369d30",
             "owners": [
-              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df"
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df"
             ]
           }
         },
@@ -423,7 +423,7 @@
         },
         "twin_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df.tif"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df.tif"
         },
         "twin_agrees_inside_footprint": {
           "ok": true,
@@ -431,12 +431,12 @@
         },
         "zip_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df-zeros.zip"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df-zeros.zip"
         },
         "zip_single_tiff": {
           "ok": true,
           "detail": [
-            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df-zeros.tif"
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df-zeros.tif"
           ]
         },
         "zip_sha_matches_raster": {
@@ -456,7 +456,7 @@
       ]
     },
     {
-      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df.tif",
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df.tif",
       "sha256": "b2d704df672735bbe7f6d7cca307db0a5a3695ac92f3e7a61b74c935b81fdd93",
       "n_dots": 41419,
       "colour": "nan",
@@ -559,7 +559,7 @@
           "detail": {
             "sha256": "b2d704df672735bbe7f6d7cca307db0a5a3695ac92f3e7a61b74c935b81fdd93",
             "owners": [
-              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df"
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df"
             ]
           }
         },
@@ -574,7 +574,7 @@
         },
         "twin_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df-zeros.tif"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df-zeros.tif"
         },
         "twin_agrees_inside_footprint": {
           "ok": true,
@@ -582,12 +582,12 @@
         },
         "zip_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df.zip"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df.zip"
         },
         "zip_single_tiff": {
           "ok": true,
           "detail": [
-            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10plus-20261023-b2d704df.tif"
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10plus-20261023-b2d704df.tif"
           ]
         },
         "zip_sha_matches_raster": {
@@ -607,7 +607,7 @@
       ]
     },
     {
-      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f-zeros.tif",
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f-zeros.tif",
       "sha256": "93f52691338476cd1c5c91fbf552ca2d8f512d4a8dd65e108cab03bbbc398325",
       "n_dots": 37654,
       "colour": "zeros",
@@ -710,7 +710,7 @@
           "detail": {
             "sha256": "93f52691338476cd1c5c91fbf552ca2d8f512d4a8dd65e108cab03bbbc398325",
             "owners": [
-              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f"
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f"
             ]
           }
         },
@@ -725,7 +725,7 @@
         },
         "twin_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f.tif"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f.tif"
         },
         "twin_agrees_inside_footprint": {
           "ok": true,
@@ -733,12 +733,12 @@
         },
         "zip_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f-zeros.zip"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f-zeros.zip"
         },
         "zip_single_tiff": {
           "ok": true,
           "detail": [
-            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f-zeros.tif"
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f-zeros.tif"
           ]
         },
         "zip_sha_matches_raster": {
@@ -758,7 +758,7 @@
       ]
     },
     {
-      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f.tif",
+      "artifact": "releases/h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f.tif",
       "sha256": "20dc829f271a4b0a0124288d8a69a4324862b659ff2bcfd7540f391a1586d880",
       "n_dots": 37654,
       "colour": "nan",
@@ -861,7 +861,7 @@
           "detail": {
             "sha256": "20dc829f271a4b0a0124288d8a69a4324862b659ff2bcfd7540f391a1586d880",
             "owners": [
-              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f"
+              "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f"
             ]
           }
         },
@@ -876,7 +876,7 @@
         },
         "twin_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f-zeros.tif"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f-zeros.tif"
         },
         "twin_agrees_inside_footprint": {
           "ok": true,
@@ -884,12 +884,12 @@
         },
         "zip_present": {
           "ok": true,
-          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f.zip"
+          "detail": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f.zip"
         },
         "zip_single_tiff": {
           "ok": true,
           "detail": [
-            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr10swap-20261023-20dc829f.tif"
+            "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705-MASSr1m10swap-20261023-20dc829f.tif"
           ]
         },
         "zip_sha_matches_raster": {
