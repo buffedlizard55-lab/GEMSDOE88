@@ -16,6 +16,20 @@
 
 ---
 
+## Pre-Use External-Source Availability Gate
+
+This gate was applied before treating a hypothesis as runnable. “Available here” means the exact owner-mirrored derivative is present after `scripts/restore_inputs.py` / `scripts/restore_siblings.py` and matches its pinned SHA-256; it does **not** mean this sandbox independently re-downloaded canonical bytes from the agency host. Direct USGS, DOE, and DrivenData hosts were outside the session allowlist, so the official links remain manual-review links and that authentication limit is carried into the run card and site.
+
+| Source family | Official/free status and manual-review link | Exact use decision |
+|---|---|---|
+| Competition 19-band stack | [DrivenData competition data](https://www.drivendata.org/competitions/306/competition-doe-gems/data/); competition access requires authentication | **Viable from cache:** `data/training_features.tif` was restored from the owner mirror and hash-checked. Independent organizer-byte authentication remains outstanding. |
+| DOE GDR #1391 Great Basin compilation | [DOE GDR submission 1391](https://gdr.openei.org/submissions/1391), DOI `10.15121/1881483`, CC BY 4.0 | **Viable from cache:** the shared restored stack contains the F2mDAB/probe, paleo-sinter, spring and well derivatives with pinned hashes. |
+| USGS GeoDAWN magnetic/radiometric survey | [Official USGS GeoDAWN page](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), USGS/CC0 public data | **Viable from cache:** K/Th/U, ratio and upward-continued TMI derivatives restore with pinned hashes; quantized derivatives are not misrepresented as raw physical units. |
+| USGS 3DEP elevation/LiDAR | [Official USGS 3DEP program](https://www.usgs.gov/3d-elevation-program), public-domain elevation data | **Viable from cache:** 1 m LiDAR scarp and 10 m DEM/χ/ksn derivative rasters plus source manifests are hash-verified. Coverage/nodata routing is explicit. |
+| Complete Bouguer anomaly for H88-BGP | USGS DOI `10.5066/P9X84H7Q`, public domain | **Not viable in this sandbox:** no pinned local mirror and direct agency download blocked; Rank 5 was deferred rather than approximated. |
+
+---
+
 ## Pre-Registered 3-Experiment Evaluation Plan (`<= 3` Experiments, `<= 2` Hours, `0` Live Slots)
 
 All arms are evaluated on **identical** whole-component buffered spatial folds (`vendor/gems57/holdout.py::buffered_component_draw`, Seeds `20` & `21`, `8` spatial quadrant folds, `n = 22,893` withheld positive pixels, `3 px` feature-context buffer, `12 px` fold-boundary erosion, pixel-exact visible fault mask, `1,000` `20 km × 20 km` spatial block-bootstrap draws via unmodified `vendor/gems57/evaluate_holdout.py`):

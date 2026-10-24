@@ -11,14 +11,15 @@
   "ok_to_submit": false,
   "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
   "blocking_reasons": [
-    "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen: share_gt25 < 0.35)"
+    "UNIQUENESS: literal 3px forward overlap = 1.0000 > 0.70 against the full-footprint continuous 17GEMSDOE witness",
+    "FINGERPRINT: share_gt25 = 0.028703 < 0.35 (catalogue-hugging production profile)"
   ],
   "informational": [
-    "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+    "gems88-gate-v3 classifies space-filling rasters as non-discriminating, but the user's stricter literal all-raster rule remains binding here; 17GEMSDOE forward overlap is 1.0000."
   ],
   "note_len": 107,
   "name_len": 61,
-  "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows).",
+  "human_step_remaining": "None for this file: the autonomous decision is DO NOT SUBMIT. A future gate-passing file still requires a separate human selector and portal action.",
   "own_gate": {
     "verdict": "negative",
     "registry_rasters_checked": 222,

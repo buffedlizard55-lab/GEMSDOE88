@@ -480,7 +480,7 @@
   "submission_note": "MVRD88 85ch monoclinal+redox+strand Dinkelbach 33167d (HOLDOUT-DTI 0.1973); fingerprint+17GEMSDOE hold slot",
   "submission_note_length": 107,
   "verdict": "negative",
-  "stop_reason": "Literal un-exempted 3px forward overlap = 1.0000 > 0.70 against full-footprint continuous prior 17GEMSDOE (5,167,373 / 5,167,373 positive pixels in footprint). Passed all 21 sparse/discriminating registry uniqueness checks including prior GEMSDOE88 milestones (max overlap=0.6680 <= 0.70, max |rho|=0.1396 <= 0.90) and achieved HOLDOUT-DTI = 0.19731 (+0.00943 vs H88-ADHR). Human portfolio selector review required before spending a live DrivenData slot.",
+  "stop_reason": "Literal un-exempted 3px forward overlap = 1.0000 > 0.70 against the full-footprint continuous 17GEMSDOE witness, and production share_gt25 = 0.028703 < 0.35. The file passes the 222-raster sparse/discriminating comparison (max overlap 0.672777 <= 0.70; max |rho| 0.381600 <= 0.90) and records HOLDOUT-DTI 0.197314 (+0.009426 vs H88-ADHR), but no manual review can clear this file. DO NOT SUBMIT.",
   "ok_to_download": true,
   "ok_to_submit": false,
   "selector_scientific_recommendation": {
@@ -552,7 +552,8 @@
     "ok_to_download": true,
     "ok_to_submit": false,
     "blocking_reasons": [
-      "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen: share_gt25 < 0.35)"
+      "UNIQUENESS: literal 3px forward overlap = 1.0000 > 0.70 against the full-footprint continuous 17GEMSDOE witness",
+      "FINGERPRINT: share_gt25 = 0.028703 < 0.35 (catalogue-hugging production profile)"
     ],
     "registry_rasters_checked": 222,
     "distinct_dot_sets": 117,
