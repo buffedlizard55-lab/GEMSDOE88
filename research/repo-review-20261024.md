@@ -1,64 +1,67 @@
 # GEMSDOE88 repository review — 2026-10-24
 
-## Executive decision
+## Decision
 
-**Current artifact:** `docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif`.
+**KTH-88 is the latest candidate. Download for research: YES. Submit: NO.** Its HOLDOUT-DTI is 0.052656 (95% CI 0.045911–0.059151; 22,893 withheld positives), well below the same-split incumbent 0.187888, and its final dots violate the literal uniqueness limit: overlap 0.89882 with a GEMSDOE87 raster and 1.000 with the dense 17GEMSDOE witness (limit 0.70). The feature-alone canary max symmetric AUC is 0.5097. The format-only audit passes; this does not override scientific/uniqueness failures or authorize a slot. **Keep the negative verdict. Do not spend a slot.** No organizer receipt exists.
 
-- **OK TO DOWNLOAD FOR RESEARCH: YES. OK TO SUBMIT: NO — DO NOT SUBMIT.** One-click file and single-TIFF ZIP are linked at the top of the website. The TIFF is byte/pixel-distinct, but fails the binding geometric uniqueness criterion: 89.8816% of dots are within 3 pixels of a GEMSDOE87 prior and 100% overlap a positive-everywhere 17GEMSDOE witness.
-- **This review did not generate another TIFF or run another experiment.** KTH-88 is the latest committed candidate; its lane stopped after its first test on the duplicate gate. The current checkout has no local `data/` inputs. Do not create a cosmetic variant or quietly start another experiment in the KTH lane.
-- **ORGANIZER-CONFIRMED score:** none; **weekly slots used: 0**.
+The K/Th inputs are uncalibrated u8 indices, not measured elemental abundance. The grid/input provenance is owner-mirrored and not independently authenticated to the private organizer download. This review performed no new experiment, raster generation, submission selection, or portal upload. Existing experiment count: one in the KTH lane; no additional experiment was attempted.
 
-The canonical experiment and saved audit are [`registry/kth88_run_card.json`](../registry/kth88_run_card.json), [`docs/data/kth88_validation.json`](../docs/data/kth88_validation.json), and [`evidence/kth88_registry.json`](../evidence/kth88_registry.json). The artifact is a valid local research download, not a submission recommendation or evidence of organizer acceptance.
+## Review passes
 
-## KTH-88 results — evidence labels
+### Pass 1 — prompt, implementation, evidence, and website
 
-- **HOLDOUT-DTI** `0.0526558082`, 95% CI `[0.0459111125, 0.0591507023]`, 22,893 withheld positives, evaluator `gems57-pooled-hide-v2`.
-- **HOLDOUT-DTI** same-split incumbent `0.1878876418`, 95% CI `[0.1716976485, 0.2032601221]`, 22,893 withheld positives, same evaluator. No paired incumbent CI was available; do not invent one.
-- Feature-alone leakage canary maximum symmetric AUC: `0.5096995` (threshold 0.90; pass).
-- Pre-placement max `|Spearman rho|` was `0.0747291` across 222 accessible rasters. Final max rho was `0.0193415`. Final 3-pixel overlap was `0.8988155` against a GEMSDOE87 raster and `1.0000` against the all-positive 17GEMSDOE witness. Binding duplicate gate fails.
-- Saved validator evidence: one-band `float32`, 37,654 binary `{0,1}` dots; all values finite and in `[0,1]`; sample-grid CRS/shape/transform match; no nodata sentinel; no mass outside footprint; one-TIFF ZIP matches. TIFF SHA-256 `5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf`; ZIP SHA-256 `e21c8aac70fdcca59fedd5e4b9ee2d8148dc34b12ea6b158698eb7ff5f9e75ca`.
-- **Research name:** `GEMSDOE88-KTH-BACDC27B`. **Note (105/140):** `K/Th antisymmetric radiometric step + RTP trough, 37654 dots; HOLDOUT-DTI 0.0527; UNSCORED; DO NOT SUBMIT`.
+- Re-read `PROMPT.md` and reviewed the latest KTH run card, preregistration, independent TIFF/ZIP audit, registry evidence, readiness/current validators, workflow gates, README, research overview, and submission guide.
+- Confirmed that the landing page and executive guide identify KTH-88 as current, show research-download and submit decisions separately, provide TIFF/ZIP links and archival name/note, and label the candidate **DO NOT SUBMIT**.
+- Corrected current-feed drift inherited from the concurrent `main` update: `docs/data/current_release.json`, `docs/status.json`, readiness, and `validate_current.py` now bind to KTH-88, not the older fabric-dislocation TIFF. Updated the site research dossier, source references, and submission guide to keep older candidates historical.
+- `scripts/check_site.py`: **PASS** after reconciliation. Local links resolve; the KTH artifact, negative run card, current release hashes, and visible safety decision agree.
 
-These are **HOLDOUT-DTI** and local format/registry measurements—not an organizer score. The full run card records `organizer_confirmed: null` and zero slots spent.
+### Pass 2 — full tests and byte-level validators
 
-## H33 and leaderboard interpretation
+- This checkout lacks ignored template/registry inputs, so the local full suite was **277 passed, 36 skipped** (0 failed; 47 Rasterio pending-deprecation warnings). Input-dependent checks skip explicitly in this clean checkout. Local `scripts/validate_current.py` re-hashes KTH's saved TIFF/ZIP and agrees with the saved independent format audit; this is not a fresh grid/portal validation.
+- The already-merged PR #67 mainline workflow restored SHA-pinned validation inputs and reported **290 passed, 23 skipped**, with `scripts/validate_kth88.py` research-format validation, site, readiness, current-release and expected-negative slot checks passing. Those checks validate a research download, not portal acceptance. Fresh CI for this branch's merge reconciliation is still pending.
+- `scripts/readiness.py` reports `BLOCKED`, not slot approval. `scripts/validate_release.py` is a historical MRR gate and is not the latest-candidate authority.
+- Final local site/current consistency check passed. `docs/status.json` and `docs/data/current_release.json` bind to the KTH hash `5c7f1cb7…c259fd7bf`.
 
-H33's `0.2778` in the user-provided GEMSDOE32 record remains **USER-REPORTED**, not receipt-authenticated in this checkout. The local pixel forensics describe a nested thinning lineage: H19-5 → D2.8 → SOLO → H33. H33 removes 6,436 D2.8 dots near mapped faults while preserving off-catalogue support. Because DTI penalizes false-positive mass, this geometry provides a plausible reason for a stronger reported score; it does not establish causality or guarantee a new raster will score better. KTH-88's hide-and-recover result is poor and cannot be represented as a public leaderboard result.
+### Pass 3 — requirements, leakage, uniqueness, and claims
 
-The prompt's `0.3195` “current high” conflicts with the dated official public-leaderboard snapshot stored in `docs/data/leaderboard.json`: it records `0.4413` at `2026-10-24T07:19:00Z`. This snapshot is not live and cannot prove today's standings after its timestamp. The public leader's number is not a score for any GEMSDOE88 raster. No candidate can be claimed to beat H33 or the public leader without an organizer receipt.
+- KTH's pre-placement maximum absolute Spearman correlation is 0.07473 across 222 reachable rasters, below the 0.90 screen. Final dot overlap fails the binding 0.70 rule; the observed 0.89882 overlap with a GEMSDOE87 raster independently suffices to stop, and the dense witness overlap is 1.0. Do not waive this as a file-byte distinction.
+- All three individual feature canaries are below symmetric AUC 0.90. Keep the exact `HOLDOUT-DTI` label, evaluator version, withheld-positive count, and CI attached to any performance mention. The incumbent comparison has no paired improvement CI. Do not call it a leaderboard score or projection.
+- H33's 0.2778 remains **USER-REPORTED**, not organizer-confirmed. Local pixel forensics in [`research/h33-forensics-20261024.md`](h33-forensics-20261024.md) show a strict thinning chain (H19-5 → D2.8 → SOLO → H33): H33 removes 6,436 D2.8 dots, all within 2 pixels of mapped faults, while retaining the off-catalogue support. Under distance-weighted Tversky this could reduce false-positive mass without abandoning broader coverage, a plausible mechanism—not proof that the reported score is correct or that thinning alone caused it. The dated official leaderboard snapshot records top public DTI 0.4413 at 2026-10-24T07:19Z; it is now a historical snapshot, not H33's receipt or this repository's score.
+- Official source pages document competition metric/format, rules, and public source descriptions. Private labels, authenticated organizer template/data, a KTH organizer receipt, exact AOI availability for supplemental data, and all relevant reuse permissions were not established here. The source inventory discloses these limits.
+- The requested “single method paragraph below” is not specified in the supplied prompt. No new lane was silently selected. The next experiment remains blocked until an explicit method-lane instruction and authorized/hash-pinned inputs are supplied; the three-experiment/two-hour cap, visible-fault-only holdout features, exact mask, buffered component holdout, and before/after uniqueness checks remain binding.
 
-## Three untested geological hypotheses from the frozen KTH-88 preregistration
+## Current artifact and run-card facts
 
-The lane's preregistration ranks four hypotheses. Rank 1, KTH-ANTISYMMETRIC-STEP, was tested once and is negative; after the duplicate the lane stopped. The following **three have not been run**. Their costs and expected gains are qualitative from the preregistration; no numeric prediction is presented as a score.
+- File: `docs/downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif`
+- SHA-256: `5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf`
+- Positive dots: 37,654; one float32 band; saved audit checks `[0,1]`, finite values, footprint, sample CRS/shape/transform, and a byte-identical one-TIFF ZIP. This is a local-format result only, not portal acceptance. TIFF SHA-256 is recorded above; ZIP SHA-256: `e21c8aac70fdcca59fedd5e4b9ee2d8148dc34b12ea6b158698eb7ff5f9e75ca`.
+- Pre-placement max `|Spearman ρ|=0.074729` over 222 reachable rasters; final max `|ρ|=0.019341`. 3-pixel overlap is 0.898816 with a GEMSDOE87 prior and 1.000 with dense 17GEMSDOE. These exact overlap tests fail the binding geometric uniqueness rule.
+- Submission name (archival only): `GEMSDOE88-KTH-BACDC27B`
+- Note (105/140; archival only): `K/Th antisymmetric radiometric step + RTP trough, 37654 dots; HOLDOUT-DTI 0.0527; UNSCORED; DO NOT SUBMIT`
+- Run card: `registry/kth88_run_card.json`; validation: `docs/data/kth88_validation.json`; registry evidence: `evidence/kth88_registry.json`; scientific dossier: `research/kth88-20261024.md`.
+- Slot use: 0. `ORGANIZER-CONFIRMED`: none. Verdict: negative / stop.
 
-| Prereg rank | Hypothesis and specific layers | Physical signature and off-catalogue rationale | Named non-fault mimic | How it differs from implemented approaches | Cost / source feasibility |
-|---|---|---|---|---|---|
-| 2 | **CHI-ACROSS-SLOPE-STEP:** official-source 10 m DEM-derived chi/knickpoint and terrain steep-fraction layers. | Across-strike, elevation-normalized chi sign reversal coherent with knickpoint density; a buried scarp could reorganize catchments beyond mapped mountain-front traces. | Lithologic knickzone or base-level change. | Opposite-flank signed chi across drainage rather than a chi-step maximum or curvature-only feature. | Low computational cost, but needs verified DEM tiles/derivatives. Specific free official source: [USGS 3DEP](https://www.usgs.gov/3d-elevation-program). This sandbox cannot reach the source host and no tiles were restored; not currently obtainable here, so not viable until authorized data access and hashes are verified. |
-| 3 | **RTP-GRAV-ADMITTANCE:** supplied RTP (competition band 2) and gravity anomaly (band 13). | Spatially varying magnetic-to-gravity gradient admittance jump, normalized by local lithology, could reveal buried basement damage where faults are not traced. | Unfaulted intrusive contact. | Gradient-admittance ratio across strike, distinct from MRR vertical-gradient residual regression and KTH radiometric contrast. | Medium computation; needs no new sensor, but depends on authorized competition feature data, absent locally and login-gated at the [competition data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/). The public mirror manifest flags reuse/redistribution permission as unchecked. Not runnable until authorized inputs are restored. |
-| 4 | **U-K-DISEQUILIBRIUM:** USGS GeoDAWN-derived K, U, and Th radiometric bands (K/Th, U/Th) and orientation-consistent 300 m ridge support. | Regional-detrended U/Th vs K/Th discordance may reflect fluid migration along fractures absent from the fault catalogue. | Unfaulted granitic pluton or atmospheric radon residual. | Joint K-and-U disequilibrium step, not K/Th antisymmetric step, radon-piedmont, or generic radiometric count. | Low computation, but requires official raw radiometry/scale metadata. GeoDAWN is the named official [USGS data release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) (DOI `10.5066/P93LGLVQ`); the mirrored u8 derivative lacks calibrated elemental units and could not be authenticated to the raw archive here. Do not treat it as viable until source bytes and scale/offset are checked. |
+## Ranked future geological hypotheses — proposals only, not run
 
-**Selection and stop condition:** these are future-lane candidates only. KTH's registered experiment budget is one; it has been used, and its mandatory uniqueness rule failed. No further KTH experiment or slot is authorized in this review. The next action is input/source authorization and an explicit new-lane preregistration, not silent tuning.
+The KTH-88 preregistration ranks four method hypotheses. Rank 1 (KTH-ANTISYMMETRIC-STEP) was run once and failed holdout/uniqueness; the three genuinely untested preregistered alternatives below are ranked 2–4. Expected gain is uncertain and qualitative; none has a score or projection. The KTH lane's one-experiment budget is spent and its duplicate stop is binding, so these are future-lane candidates only—not authorization to continue the lane.
 
-## Source and integrity cautions
+| Prereg rank | Hypothesis / specific layers and physical transform | Why it may detect off-catalogue faults | Named non-fault mimic | Cost and official-source/input feasibility |
+|---:|---|---|---|---|
+| 2 | **CHI-ACROSS-SLOPE-STEP:** official-source 10 m DEM-derived chi/knickpoint and terrain steep-fraction layers; across-strike, elevation-normalized chi sign reversal coherent with knickpoint density. | A buried scarp could reorganize upstream catchments beyond mapped mountain-front traces. This is opposite-flank signed chi, not chi-step maxima or curvature alone. | Lithologic knickzone or base-level change. | Low compute; specific free official source is [USGS 3DEP](https://www.usgs.gov/3d-elevation-program). Exact AOI tiles/derivatives were not obtained or validated from this sandbox; not viable until availability, license, and hashes are checked. |
+| 3 | **RTP-GRAV-ADMITTANCE:** competition RTP band 2 and gravity anomaly band 13; spatially-varying magnetic-to-gravity gradient admittance jump normalized by local lithology. | Buried basement damage may disrupt both fields where surface fault traces are absent. It differs from MRR vertical-gradient residual regression and KTH radiometric contrast. | Unfaulted intrusive contact. | Medium compute; no new sensor, but competition inputs are absent locally and the [data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/) is login-gated. The manifest flags mirror reuse/redistribution terms unchecked; require authorized hash-verified inputs first. |
+| 4 | **U-K-DISEQUILIBRIUM:** official USGS GeoDAWN K, U, and Th radiometric bands; regional-detrended U/Th versus K/Th discordance on orientation-consistent 300 m ridges. | Fluid migration could enrich uranium relative to thorium along fractures missing from the catalogue. It is joint K-and-U disequilibrium, not KTH's antisymmetric K/Th step, radon-piedmont, or generic count intensity. | Unfaulted granitic pluton or atmospheric radon residual. | Low compute; specific free official source is the [USGS GeoDAWN release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and), DOI `10.5066/P93LGLVQ`. Official raw data/scale metadata were not authenticated here; mirrored u8 indices are uncalibrated. Verify raw bytes, scale/offset, and use permission before considering it viable. |
 
-- The actual K/Th band values used by KTH-88 are owner-mirrored u8 indices with no physical unit scale/offset metadata. Their ratio is a proxy, not a calibrated elemental abundance ratio; the hydrothermal interpretation remains a hypothesis.
-- `registry/data_manifest.json` flags owner mirrors of login-walled competition files with reuse terms unchecked. CI's public mirror restoration verifies hashes but does not establish organizer authentication or redistribution rights.
-- The current local checkout omits `data/`; the PR workflow restores validation inputs from the pinned mirror and passed. Full repeatability on a clean, authorized machine still requires restoring the full stack and all registry rasters.
-- The user-provided high-score numbers, archived public leaderboard snapshot, sibling-repo scores, model projections, and holdout DTI are different evidence classes. Only a submission-page receipt can supply **ORGANIZER-CONFIRMED** performance.
+Every future experiment still requires fresh preregistration, feature-alone leakage canaries, buffered whole-component hide-and-recover using visible-fault-only catalogue features and exact masks, shared evaluator with HOLDOUT-DTI+95% CI, pre-placement rank correlation and final 3-pixel overlap. A separate selector decision is required before any slot. No proposal above was implemented in this review.
 
-## Three-pass verification and irregularities
+## Verified source links and limits
 
-1. **Pass 1 — implementation review:** traced the current top-of-site KTH file, name/note, run card, validation JSON, and registry report; reconciled the repository review to the latest mainline KTH experiment. No new TIFF was emitted.
-2. **Pass 2 — tests and edge cases:** local `pytest -q` reports 277 passed, 36 skipped, 0 failed; input-dependent checks skip explicitly when ignored local rasters are absent. The earlier mainline KTH workflow restored hash-pinned validation inputs and passed its pytest, site, KTH validator, readiness, current-release and gate-v3 checks; this branch's additional feed/readiness reconciliation still requires a fresh branch CI run. `python scripts/check_site.py` passes locally. Mirror permissions remain an open data-governance issue despite CI success.
-3. **Pass 3 — final request check:** confirmed download is clearly labeled research-only, submit is explicitly blocked, uniqueness fails under the literal overlap threshold, no score is marked ORGANIZER-CONFIRMED, and zero slots were used. No leaderboard score is claimed for the generated KTH file.
+- [DrivenData competition description and data page](https://www.drivendata.org/competitions/306/competition-doe-gems/)
+- [Official metric and submission format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
+- [Public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) — snapshot checked 2026-10-24 only
+- [NLR official competition rules](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
+- [DrivenData reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
+- [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
+- [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) · [USGS Landsat Collection 2 Surface Temperature](https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature)
+- [AWS Sentinel-2 L2A COG registry](https://registry.opendata.aws/sentinel-2-l2a-cogs/) · [Alaska Satellite Facility](https://asf.alaska.edu/)
 
-### Official links for manual review
-
-- [DrivenData GEMS competition](https://www.drivendata.org/competitions/306/competition-doe-gems/)
-- [Problem description, metric, and submission format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
-- [Competition data page (login may be required)](https://www.drivendata.org/competitions/306/competition-doe-gems/data/)
-- [Official public leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/)
-- [NLR GEMS technical/rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf)
-- [USGS GeoDAWN data release](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
-- [USGS 3DEP](https://www.usgs.gov/3d-elevation-program)
-- [Organizer reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
+These are trusted official source pointers retained for review; no fresh external-page fetch was performed in this restricted run. This does not establish exact scene/tile availability, permission to redistribute, or authenticated private competition access. No external supplemental layer was used to build KTH-88. Treat each external-data proposal as blocked until source availability, exact AOI coverage, and use/redistribution terms are independently confirmed.

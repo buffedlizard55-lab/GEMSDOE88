@@ -3,8 +3,8 @@
   "approved_for_weekly_slot": false,
   "status": "BLOCKED",
   "problems": [
-    "HOLDOUT-DTI 0.052656 is below same-split incumbent 0.187888",
-    "UNIQUENESS: final 3-pixel registry overlap 1.000000 exceeds 0.70"
+    "HOLDOUT: candidate point estimate is below the stored incumbent",
+    "UNIQUENESS: literal registry overlap exceeds 0.70"
   ],
   "ok_to_download_for_research": true,
   "ok_to_submit": false,

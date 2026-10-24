@@ -97,60 +97,34 @@ def verify_template(root=ROOT):
 
 
 def current_status(root=ROOT):
-    """Represent the latest (KTH-88) research artifact; format PASS is not slot approval."""
-    root = Path(root)
-    card = json.loads((root / 'registry/kth88_run_card.json').read_text())
-    audit = json.loads((root / 'docs/data/kth88_validation.json').read_text())
-    tif = (root / card['download']).resolve()
-    zipped = tif.with_suffix('.zip')
-    safe = tif.is_relative_to((root / 'docs/downloads').resolve())
+    """Represent the actual research artifact. A format PASS is not slot approval."""
+    # Derive the site's current status from the same canonical artifact and
+    # fail-closed gate used by validate_current.py. `validate_release.py` is a
+    # historical MRR-BPR audit and must not silently become the live feed.
+    from validate_current import release_report
+
+    report = release_report(root)
     problems = []
-    if not safe or not tif.is_file() or not zipped.is_file():
-        problems.append('KTH-88 research TIFF/ZIP is missing or outside docs/downloads')
-    else:
-        tif_hash = hashlib.sha256(tif.read_bytes()).hexdigest()
-        zip_hash = hashlib.sha256(zipped.read_bytes()).hexdigest()
-        if tif_hash != card.get('raster_sha256') or tif_hash != audit.get('tif_sha256'):
-            problems.append('KTH-88 TIFF hash does not match the run card and saved validation')
-        if zip_hash != audit.get('zip_sha256'):
-            problems.append('KTH-88 ZIP hash does not match the saved validation')
-        if not audit.get('local_format_audit', {}).get('ok') or not audit.get('tif_and_single_member_zip_validated'):
-            problems.append('KTH-88 saved local format/ZIP validation is not green')
-    integrity_ok = not problems
-    problems.extend([
-        f"HOLDOUT-DTI {card['holdout_dti']['dti']:.6f} is below same-split incumbent {card['incumbent_holdout_dti']['dti']:.6f}",
-        f"UNIQUENESS: final 3-pixel registry overlap {card['correlation_overlap_vs_registry']['final_overlap_3px']:.6f} exceeds 0.70",
-    ])
+    if report['holdout_dti'] < report['incumbent_best_dti']:
+        problems.append('HOLDOUT: candidate point estimate is below the stored incumbent')
+    if report['duplicate'] or report['literal_registry_overlap_3px'] > 0.70:
+        problems.append('UNIQUENESS: literal registry overlap exceeds 0.70')
+    if not report['format_valid']:
+        problems.append('FORMAT: saved-byte validation failed')
     return {
-        'evidence_schema_complete': integrity_ok and bool(audit.get('local_format_audit', {}).get('ok')),
+        'evidence_schema_complete': bool(report['format_valid']),
         'approved_for_weekly_slot': False,
-        'status': 'BLOCKED',
+        'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
         'problems': problems,
-        'ok_to_download_for_research': bool(audit.get('ok_to_download')) and integrity_ok,
-        'ok_to_submit': False,
-        'raster_sha256': card.get('raster_sha256'),
+        'ok_to_download_for_research': bool(report['research_download_ok']),
+        'ok_to_submit': False,  # selector has never approved a weekly slot
+        'raster_sha256': report['file_sha256'],
         'policy': 'binding-literal-all-registry-v1',
     }
 
 
 if __name__ == '__main__':
     verify_template()
-    try:
-        report = current_status()
-    except OSError as exc:
-        # A clean checkout deliberately omits ignored competition rasters. Fail
-        # closed with a machine-readable blocker rather than a traceback or a
-        # stale green status. Do not overwrite the published status snapshot.
-        report = {
-            'evidence_schema_complete': False,
-            'approved_for_weekly_slot': False,
-            'status': 'BLOCKED',
-            'problems': [f'LOCAL INPUTS MISSING: {exc}', 'Restore and SHA-verify the pinned competition grid/catalogue before a fresh release audit.'],
-            'ok_to_download_for_research': False,
-            'ok_to_submit': False,
-            'policy': 'binding-literal-all-registry-v1',
-        }
-        print(json.dumps(report, indent=2))
-        raise SystemExit(2)
+    report = current_status()
     (ROOT / 'docs/status.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))

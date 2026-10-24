@@ -129,17 +129,14 @@ def test_run_card_four_way_parity_and_audit_invariants():
     assert reg["literal_binding_decision"]["duplicate"] is True
     assert reg["universal_witness"]["universal_overlap_blocker"] is True
 
-    # The four-way MRR card remains historical; the current status/feed must
-    # follow the later KTH-88 experiment, preserving its negative decision.
+    # The current status feed follows the later canonical current-release
+    # validator, while the four-way MRR card remains immutable history.
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
-    latest = json.loads((ROOT / "registry/kth88_run_card.json").read_text())
-    current = json.loads((ROOT / "docs/data/current_release.json").read_text())
-    assert status_doc["raster_sha256"] == latest["raster_sha256"]
+    current_doc = json.loads((ROOT / "docs/data/current_release.json").read_text())
+    assert status_doc["raster_sha256"] == current_doc["file_sha256"]
+    assert status_doc["raster_sha256"] != card["raster_sha256"]
     assert status_doc["ok_to_submit"] is False
     assert status_doc["ok_to_download_for_research"] is True
-    assert current["candidate"] == "KTH-88"
-    assert current["file_sha256"] == latest["raster_sha256"]
-    assert current["ok_to_submit"] is False
 
     tif_path = ROOT / card["artifact"]
     zip_path = ROOT / card["zip_artifact"]
