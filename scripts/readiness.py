@@ -116,6 +116,22 @@ def current_status(root=ROOT):
 
 if __name__ == '__main__':
     verify_template()
-    report = current_status()
+    try:
+        report = current_status()
+    except OSError as exc:
+        # A clean checkout deliberately omits ignored competition rasters. Fail
+        # closed with a machine-readable blocker rather than a traceback or a
+        # stale green status. Do not overwrite the published status snapshot.
+        report = {
+            'evidence_schema_complete': False,
+            'approved_for_weekly_slot': False,
+            'status': 'BLOCKED',
+            'problems': [f'LOCAL INPUTS MISSING: {exc}', 'Restore and SHA-verify the pinned competition grid/catalogue before a fresh release audit.'],
+            'ok_to_download_for_research': False,
+            'ok_to_submit': False,
+            'policy': 'binding-literal-all-registry-v1',
+        }
+        print(json.dumps(report, indent=2))
+        raise SystemExit(2)
     (ROOT / 'docs/status.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))

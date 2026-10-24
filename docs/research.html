@@ -3,8 +3,8 @@
 <body><a href="#main" class="sr-only">Skip to content</a><header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html" aria-current="page">Research</a><a href="sources.html">Sources</a></nav></div></header><div class="alert-strip"><div class="wrap"><span class="alert-icon">!</span><strong>MRR-BPR-88 verdict: NEGATIVE · valid research TIFF · DO NOT SUBMIT</strong></div></div>
 <main id="main">
 <section style="background:#0c2436;color:#fff" id="lbcal"><div class="wrap">
-<div class="kicker" style="color:#76ddca">2026-10-24 · LBCAL lane · status HOLD (DO NOT SUBMIT under the current holdout gate)</div>
-<h2 style="color:#fff">Leaderboard-receipt calibration (LBCAL)</h2>
+<div class="kicker" style="color:#76ddca">Archived parallel-session research · LBCAL · NOT the current candidate</div>
+<h2 style="color:#fff">Historical leaderboard-receipt calibration (LBCAL)</h2>
 <p><strong>The data:</strong> 106 of the 111 user-reported LB scores have their exact raster on GitHub. DTI is linear in the truth indicator, so E[TP<sub>i</sub>] = Σ q·c<sub>i</sub> exactly.</p>
 <p><strong>The model:</strong> a coordinate-free density over 25 physical bands, q = exp(β·φ), fitted by least squares to the receipts. On 8-fold repo-blocked CV it scores RMSE <strong>0.0306</strong> and ρ <strong>0.941</strong>.</p>
 <p><strong>What it found:</strong></p>
@@ -13,6 +13,7 @@
 <li>The ≤200 m catalogue collar is empty: tilt-ring, 100k dots all within 2 px of the catalogue, scored 0.0005.</li>
 <li>The off-ridge submodular family (gems70, gate_ortho, tiltworm) is under-predicted by 0.09–0.12, so a localiser is still missing.</li>
 </ul>
+<p>This material is preserved for audit and is not a submission recommendation. The current canonical decision is the negative MRR-BPR-88 run card; see the <a href="research/repo-review-20261024.md" style="color:#76ddca">current repository review and untested-hypothesis shortlist</a>.</p>
 <p><strong>Results:</strong></p>
 <ul>
 <li>HOLDOUT-DTI 0.061566 [0.051910, 0.072787] (K = 22,663) vs R0 0.004006. That is below PROVCREST's 0.076277, so the file is held.</li>
@@ -22,7 +23,7 @@
 </div></section>
 <section class="subhero"><div class="wrap"><p class="crumb"><a href="index.html">Overview</a> / Research evidence</p><div class="eyebrow">Frozen before implementation</div><h1>One magnetic-residual hypothesis,<br><em>tested and falsified.</em></h1><p>The full ranked preregistration is preserved in <a href="https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/research/candidate-hypotheses-20261024-mrr.md">research/candidate-hypotheses-20261024-mrr.md</a>. Only Rank 1 was implemented; one candidate experiment completed inside the 3-experiment/2-hour cap.</p></div></section>
 
-<section><div class="wrap"><div class="kicker">Pre-implementation ranking</div><h2>Five distinct untried geological hypotheses</h2><div class="table-scroll"><table><thead><tr><th>Rank</th><th>ID</th><th>Exact layers</th><th>Transform / off-catalogue rationale</th><th>Named mimic</th><th>MODEL Δ / cost</th></tr></thead><tbody>
+<section><div class="wrap"><div class="kicker">Historical MRR-lane preregistration</div><h2>Five ranked MRR hypotheses (one tested, four carried forward)</h2><div class="table-scroll"><table><thead><tr><th>Rank</th><th>ID</th><th>Exact layers</th><th>Transform / off-catalogue rationale</th><th>Named mimic</th><th>MODEL Δ / cost</th></tr></thead><tbody>
 <tr><td>1</td><td><strong>MRR-BPR-88</strong><br>implemented</td><td>B1 mag_anom, B2 rtp, B9 tmi_vg, B14 tmi, B15 depth_to_base</td><td>10 km blockwise <code>tmi_vg~tmi+mag</code> residual; negative Hessian trough; depth weighting; RTP cross-gradient. Targets magnetite-destruction corridors beneath cover.</td><td>Reversed basalt margins; flight-line leveling strips</td><td><code>MODEL +0.006</code> [−0.012,+0.024] · medium</td></tr>
 <tr><td>2</td><td>MRR-CC-88</td><td>B1, B2, B9, B14, B15</td><td>Connected negative-residual ridge continuity and strike persistence for concealed basin structures.</td><td>Long dikes and pipelines</td><td><code>MODEL +0.004</code> · medium/high</td></tr>
 <tr><td>3</td><td>MRR-CB-88</td><td>B1, B2, B9, B14, B15</td><td>Depth-conditioned residual coherence in blind basins; tests whether cover thickness changes magnetic expression.</td><td>Volcanic contacts</td><td><code>MODEL +0.003</code> · medium</td></tr>

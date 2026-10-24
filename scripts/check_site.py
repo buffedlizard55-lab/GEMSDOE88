@@ -22,9 +22,27 @@ class Links(HTMLParser):
 
 
 def main(root=ROOT):
+    import hashlib as _hl
     card = json.loads((root / 'registry/run_card.json').read_text())
     assert card['verdict'] == 'negative' and card['ok_to_submit'] is False
     assert len(card['submission_note']) <= 140
+    # The executive page, home page and public JSON feed must identify the same
+    # current artifact; stale parallel-session banners are a safety defect.
+    current = json.loads((root / 'docs' / 'data' / 'current_release.json').read_text())
+    assert current['file'] == card['artifact']
+    assert current['file_sha256'] == card['raster_sha256']
+    assert current['zip_sha256'] == card['zip_sha256']
+    assert current['ok_to_download_for_research'] is True
+    assert current['ok_to_submit'] is False
+    assert current['holdout_evaluator'] == card['holdout_dti']['evaluator_version']
+    assert current['holdout_withheld_positive_pixels'] == card['holdout_dti']['withheld_positive_pixels']
+    assert current['holdout_dti'] == card['holdout_dti']['candidate']
+    assert current['literal_registry_overlap_3px'] == card['correlation_overlap_vs_registry']['final_max_forward_overlap_3px_all_rasters']
+    canonical_tif = root / card['artifact']
+    canonical_zip = root / card['zip_artifact']
+    assert canonical_tif.is_file() and canonical_zip.is_file()
+    assert _hl.sha256(canonical_tif.read_bytes()).hexdigest() == card['raster_sha256']
+    assert _hl.sha256(canonical_zip.read_bytes()).hexdigest() == card['zip_sha256']
     # Rasters whose own machine gate record clears them for submission (and which must
     # therefore NOT be renamed to DO-NOT-SUBMIT). Collected from every gate record.
     cleared_names = set()
@@ -37,9 +55,7 @@ def main(root=ROOT):
         if data.get('ok_to_submit') and tif_name:
             cleared_names.add(tif_name)
             cleared_names.add(tif_name[:-4] + '.zip')
-    # 2026-10-24 LBCAL candidate (IR-88-78): hash must match its run card; while the run card says
-    # ok_to_submit false the file name must carry DO-NOT-SUBMIT. Fail closed otherwise.
-    import hashlib as _hl
+    # Archived LBCAL candidate: retain its independent file-integrity and safety checks.
     lb = json.loads((root / 'registry' / 'lbcal_run_card.json').read_text())
     lb_tif = root / lb['raster']['file']
     assert lb_tif.is_file() and _hl.sha256(lb_tif.read_bytes()).hexdigest() == lb['raster']['sha256']

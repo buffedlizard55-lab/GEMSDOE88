@@ -192,6 +192,8 @@ def test_snap_report_canaries_and_provided_bands_policy():
 
 def test_emitted_snap_variants_pass_all_must_gates_and_displacement_invariants():
     """Verify all 3 SNAP variants against receipts, ledger, mechanism cards, and on-disk GeoTIFFs."""
+    if not (ROOT / "data/bridge/sample_submission.tif").is_file():
+        pytest.skip("SNAP TIFF/grid integration audit requires ignored bridge inputs; restore inputs first")
     report = json.loads((ROOT / "evidence" / "snap_axis_report.json").read_text())
     assert len(report["variants"]) == 3
 

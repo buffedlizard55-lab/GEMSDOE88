@@ -207,7 +207,18 @@ def release_report(root=ROOT):
 
 
 def main():
-    report = release_report()
+    try:
+        report = release_report()
+    except OSError as exc:
+        print(json.dumps({
+            'schema': 'gems88.current-release.v1',
+            'status': 'BLOCKED_VALIDATION_UNAVAILABLE',
+            'ok_to_download': False,
+            'ok_to_submit': False,
+            'stop_reasons': [f'LOCAL INPUTS MISSING OR UNREADABLE: {exc}'],
+        }, indent=2))
+        print('AUTOMATIC PREFLIGHT: INCOMPLETE. No upload permitted.', file=sys.stderr)
+        return 2
     print(json.dumps(report, indent=2))
     if '--require-submit' in sys.argv:
         print('AUTOMATIC SUBMISSION GATE: FAIL. NO UPLOAD PERMITTED.', file=sys.stderr)

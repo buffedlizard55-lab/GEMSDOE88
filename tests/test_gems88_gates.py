@@ -29,6 +29,7 @@ import stat
 from pathlib import Path
 
 import numpy as np
+import pytest
 import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -58,6 +59,9 @@ def test_02_run_card_schema_and_strict_score_labels():
 
 
 def test_03_geotiff_crs_shape_dtype_and_affine_transform():
+    sample_tif = ROOT / ".cache" / "data" / "sample_submission.tif"
+    if not sample_tif.is_file():
+        pytest.skip("requires ignored cached competition sample TIFF; restore inputs first")
     rc = json.loads((ROOT / "run_card.json").read_text())
     sub_tif = ROOT / rc["submission"]["repo_copy"]
     sample_tif = ROOT / ".cache" / "data" / "sample_submission.tif"
@@ -81,6 +85,9 @@ def test_04_geotiff_strict_range_0_1_and_zero_nan_inf():
 
 
 def test_05_outside_footprint_and_mapped_catalogue_strictly_zero():
+    ef_tif = ROOT / ".cache" / "data" / "existing_faults.tif"
+    if not ef_tif.is_file():
+        pytest.skip("requires ignored cached mapped-fault TIFF; restore inputs first")
     rc = json.loads((ROOT / "run_card.json").read_text())
     sub_tif = ROOT / rc["submission"]["repo_copy"]
     ef_tif = ROOT / ".cache" / "data" / "existing_faults.tif"

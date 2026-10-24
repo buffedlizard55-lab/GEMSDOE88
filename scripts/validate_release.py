@@ -400,7 +400,17 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--require-submit", action="store_true")
     args = parser.parse_args()
-    result = release_report()
+    try:
+        result = release_report()
+    except OSError as exc:
+        print(json.dumps({
+            "status": "BLOCKED_VALIDATION_UNAVAILABLE",
+            "ok_to_download": False,
+            "ok_to_submit": False,
+            "stop_reasons": [f"LOCAL INPUTS MISSING OR UNREADABLE: {exc}"],
+        }, indent=2))
+        print("AUTOMATIC PREFLIGHT: INCOMPLETE. No upload permitted.", file=sys.stderr)
+        return 2
     print(json.dumps(result, indent=2))
     if args.require_submit and not result["ok_to_submit"]:
         print("AUTOMATIC SUBMISSION GATE: FAIL. No upload permitted.", file=sys.stderr)
