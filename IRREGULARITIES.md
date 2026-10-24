@@ -532,3 +532,13 @@ Second concurrent reconciliation: PR #79 independently repaired shared v3 to enf
 
 
 
+
+## IR-88-CJ88 (2026-10-24, this session)
+- CJ88 Exp1 overlap 0.7224 vs PROVCREST >0.70: logged as duplicate lane, stopped; Exp2 excluded PROVCREST 3px neighbourhood and re-validated (see docs/research/cj88-20261024.md).
+- CJ88 Exp2 HOLDOUT-DTI 0.1176 beats null but below incumbent bar 0.1896: published DO-NOT-SUBMIT, 0 slots. No ORGANIZER-CONFIRMED score exists for any GEMSDOE88 file.
+- Brief inconsistency flagged: 0.2778 / 0.3195 / 0.4413 all called "highest"; leaderboard observed #1=0.4413, #50=0.2818.
+
+## IR-88-109 — Post-merge harmonization of concurrent PRs `#94` (`H88-CTRA`) and `#97` (`H88-PHYS-NEAR`) restores canonical `current_release.json` / `run_card.json` mirrors and `-DO-NOT-SUBMIT` naming required by CI (`2026-10-24`, session `arena/46dc6f1d`)
+- **Observed:** Concurrent merges `PR #94` (`b3698b3`) and `PR #97` (`93ea46a`) broke `main` CI (`check_site.py`, `validate_current.py`, `validate_release.py`, `test_ugfv.py`, `test_adhr_and_zero_leakage.py`) by (a) overwriting canonical `docs/data/current_release.json` and `registry/run_card.json` / `docs/run_card.json` / `docs/data/run-card.json` / `evidence/run-card.json` mirrors, (b) publishing `docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros.{tif,zip,json}` without the mandatory `-DO-NOT-SUBMIT` filename token enforced by `scripts/check_site.py`, and (c) stripping `TDKL`/`MVRD`/`QTSK`/`GTHC` page assertions from `docs/executive-summary.html`.
+- **Decision Impact:** Preserved `H88-PHYS-NEAR` run-card/gate receipts cleanly at `registry/phys_near_run_card.json` + `docs/data/phys_near_run_card.json` + `docs/data/phys_near_gate_verdict.json` (unchanged TIFF `SHA-256 b2c9c0ce547fca...`), renamed `H88-CTRA` downloads via `git mv` to `gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.{tif,zip,json}` with unchanged TIFF/ZIP bytes (`SHA-256 bfc4a492a00961...`), restored canonical `current_release.json` and `run_card.json` mirrors, and verified `H88-SAR-CSD` clears all newly merged rasters (`0.2210` vs `CJ88-a`, `0.3101` vs `CJ88-b`, `0.2107` vs `CTRA`, `0.0227` vs `PHYS-NEAR`, all `<= 0.70`).
+

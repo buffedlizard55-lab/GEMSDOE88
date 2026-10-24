@@ -20,6 +20,11 @@
 
 > **Latest independent review (2026-10-24):** [review, fixes, verification scope and blockers](research/review-bff2fa68-20261024.md) · [fresh latest-download JSON audit](evidence/latest_download_review_20261024.json). **DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO.** No new TIFF generated: the verified literal duplicate-stop rule blocks every nonempty candidate. Start each session with [the standing user prompt](PROMPT.md); it is a condensed record, not a verbatim transcript.
 
+> ### Concurrent 2026-10-24 negative research lanes preserved on `main` (all `DO NOT SUBMIT`)
+> - **`H88-PHYS-NEAR` (`26,955` dots, `HOLDOUT-DTI = 0.002453`):** [TIFF (`b2c9c0ce547fca03...`)](docs/downloads/gems88-phys-near-conjunction-20261024-DO-NOT-SUBMIT.tif) · [ZIP](docs/downloads/gems88-phys-near-conjunction-20261024-DO-NOT-SUBMIT.zip) · [Run Card](registry/phys_near_run_card.json) · [Gate](registry/phys_near_gate_verdict.json).
+> - **`H88-CTRA` (`36,000` dots, quick 4-fold `HOLDOUT-DTI = 0.0`):** [TIFF (`bfc4a492a00961c4...`)](docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif) · [ZIP](docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.zip) · [Run Card](registry/ctra_run_card.json) · [Hypotheses](docs/research/candidate-hypotheses-20261024-ctra.md).
+> - **`CJ88` (`37,654` dots, `HOLDOUT-DTI = 0.1176`):** [TIFF (`611844330c...`)](docs/downloads/gems88-cj88-crestjunction-37654dots-20261024-611844330c-zeros-DO-NOT-SUBMIT.tif) · [ZIP](docs/downloads/gems88-cj88-crestjunction-37654dots-20261024-611844330c-zeros-DO-NOT-SUBMIT.zip) · [Run Card](docs/data/cj88_run_card.json) · [Notes](docs/research/cj88-20261024.md).
+
 > ## ⛔ Latest session lane (2026-10-24): `H88-TDKL` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (held under literal `17GEMSDOE` dense witness & post-merge concurrent stratified lanes)
 > [⬇ **Download H88-TDKL GeoTIFF (`.tif`, 118 KB, research only)**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`)**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/tdkl88_run_card.json) · [Gate v3 Verdict](registry/tdkl88_gate_verdict.json) · [8-Fold Holdout Evidence](evidence/tdkl88_holdout_20261024.json) · [179-Raster Uniqueness Audit](evidence/tdkl88_uniqueness_20261024.json) · [Research Dossier](research/hypotheses-20261024-tdkl88.md) · [Executive Submission Guide](docs/executive-summary.html).
 >
@@ -140,7 +145,7 @@ official sources: [NLR rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) 
 | **Raster SHA-256** | `974b5d4b2009849c977ddb4210eb17d2fb93f8765011580931028d4fc707bada` | ZIP `ae80e61b0b06ba51429521c63991b9a13736ab48f771159e7dacae1c41613634` |
 
 **What this means.** The file is a valid, unique research raster. The project's own gates say *do not spend a weekly slot on it*; the two blockers are
-stated above and in [`registry/gate_verdict.json`](registry/gate_verdict.json). Selecting and submitting remain human decisions
+stated above and in [`registry/phys_near_gate_verdict.json`](registry/phys_near_gate_verdict.json). Selecting and submitting remain human decisions
 (rules §3.4/§3.5; the website's slot limit prevails over the "three per week" wording - [staff, thread 11553](https://community.drivendata.org/t/submission-amount-question/11553)).
 How to submit, step by step: [`docs/executive-summary.html`](docs/executive-summary.html) · site: [`docs/index.html`](docs/index.html).
 
