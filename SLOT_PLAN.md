@@ -1,3 +1,8 @@
+> **2026-10-24 MDPS-88 update.** No slot was spent and none is recommended.
+> - **MDPS-88** (`gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif`, sha256 `bd64000f…35cd`) is **negative**: HOLDOUT-DTI far Δ vs fold-fair control `+0.0036 [−0.0060,+0.0128]` (crosses 0), far `0.0727` below stored ADHR far `0.11478`, overall below control. Unique and format-valid, but the holdout gates fail → **0 slots**.
+> - Budget used: 2 of 3 experiments (E1 as preregistered; E2 budget-matched amendment disclosed in `registry/preregistration_mdps88_amendment1.json`); E3 was packaging only.
+> - Selector note: the identical folds score the live-reported best lineage (H33) at HOLDOUT-DTI `0.0039` and any >3 px-collar de-novo raster at exactly `0` (IR-88-85) — future slot policy should pre-register how far-primary holdout, SGMC proxy and receipt evidence are combined *before* the next candidate, rather than re-litigating per session.
+
 > **2026-10-24 LBCAL update (IR-88-78).** No slot was spent.
 > - **LBCAL** (`gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif`) is **HOLD** under the written holdout gate: 0.0616 < 0.0763.
 > - **The receipt model ranks them the other way.** Its 8-fold repo-blocked CV is ρ 0.941. Projections: LBCAL 0.356, H33 0.264, PROVCREST 0.105 (MODEL-PROJECTION).
