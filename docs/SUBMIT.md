@@ -1,5 +1,42 @@
 # Submission Checklist — Human Uploads ONE File per Slot (DrivenData #306)
 
+## 2026-10-24 · `AXIS=PRUNE` spacing-lock dose ladder (IR-88-54) — **no upload recommended from the three new arms; slot 2 is now executable**
+
+Parent `R0 = h33-h33-2-b2` rebuilt byte-exactly (`15/15` pins, zeros `c55bafc4…`, NaN `baeae321…`). Predictions frozen
+before any proxy (`registry/prune_spacing_dose_preregistration.json`). Matched triplet at collar `300 m`, `2,171` donors,
+`N = 37,654`, same refill pool, same seed — only the spacing lock and (in the control) the refill *order* change.
+
+| Candidate (gitignored; rebuild with `python3 scripts/build_prune_spacing_dose_variants.py`) | SHA-256 primary / zeros | ≤140-char form note | Disposition |
+|---|---|---|---|
+| `h33-h33-2-b2-PRUNEp3space28-20261024-91d221ad` | `91d221ad5539…6185ba2` / `47b49e84a21d…5744554` | `R0 h33-2-b2; PRUNE<=300m +2171 refill >=2.8px spaced, N 37654; pred +0.002 MODEL` | hardened gate PASS, **HOLD** (blind `PROXY +0.00339`) |
+| `h33-h33-2-b2-PRUNEp3space45-20261024-7a281bde` | `7a281bde6039…d252d6` / `ccb550497c39…1ccf34` | `R0 h33-2-b2; PRUNE<=300m +2171 refill >=4.5px spaced, N 37654; pred +0.007 MODEL` | hardened gate PASS, **HOLD** (blind `PROXY +0.00557`) |
+| `h33-h33-2-b2-PRUNEp3space35rand-20261024-8b3d0a40` | `8b3d0a40e99b…72104` / `842456a74b07…55cf4` | `R0 h33-2-b2; PRUNE<=300m +2171 refill >=3.5px randorder, N 37654; pred +0.004 MODEL` | hardened gate PASS, **control only** (blind `PROXY +0.00509`, i.e. `0.000104` from the ranked `p3space35`) |
+
+**Format receipt (all six files, re-read from disk after writing):** `GTiff`, one band, `float32`, `EPSG:32611`,
+`3730×3292`, transform identical to `sample_submission.tif`, values in `[0,1]` and finite inside the footprint, `NaN`
+outside (primary) / exact `0` outside (`-zeros` twin), `0` positive mass on the catalogue, `min d_cat >= 3.0 px`,
+one-file `.zip` beside each raster whose SHA-256 equals the raster's, `N = 37,654`, `5.766%` of R0's dots changed.
+Machine receipt: `registry/prune_spacing_dose_validation.json` (hardened `validate_variant.py`, 6/6 PASS).
+
+**Do not upload any of the three new arms.** All three sit inside the `0.01` no-evidence band and answer a mechanism
+question rather than a score question: the dose saturates (`2.8→3.5→4.5 px` = `+0.0034→+0.0050→+0.0056`) and the
+random-order control reproduces the ranked arm to `0.0001`, so the four-line field is worthless for refill placement.
+
+### Slot 2 is now executable — the file was missing and has been reconstructed byte-exactly
+`python3 scripts/rebuild_prune_spaced_artifacts.py` recreates the two ledgered spaced-refill arms that were absent
+from the checkout and verifies the recorded hashes (`evidence/prune_spaced_artifact_rebuild.json`):
+
+| Queue file | SHA-256 primary / zeros | ≤140-char form note |
+|---|---|---|
+| `h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b` (`releases/…49fff49b.tif`, upload-ready) | `49fff49b03c4…67a61a` / `e0b9d59b765a…204824e` | `R0 h33-2-b2; PRUNE<=300m +2171 refill >=3.5px spaced, N 37654; pred +0.007 MODEL` |
+| `h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182` (slot 3 conditional, upload-ready) | `07bd8182ec4d…5f4bb2a` / `fb7ee110c9ac…646e3766` | `R0 h33-2-b2; PRUNE<=400m +3825 refill >=3.5px spaced, N 37654; pred +0.002 MODEL` |
+
+**Before uploading anything, the human must supply:** current `TOP_PUBLIC` + date, the real rolling-week/total slot
+balance, confirmation of the `2026-12-03` deadline, and permission to use/redistribute the owner's public mirrors.
+No slot was used and no receipt exists; `R0 0.2778` remains **CLAIM**.
+
+---
+
 ## 2026-10-23 · `AXIS=CONCENTRATION` on gate-clean `R1` (IR-88-52) — **no upload recommended**
 
 **Three new candidates were built, gate-clean, and all three are `HOLD`; the slot order in the SNAP sections below is unchanged.**

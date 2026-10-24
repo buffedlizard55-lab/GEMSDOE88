@@ -1,0 +1,57 @@
+{
+  "schema": "gems88.prune-spacing-dose-geometry.v1",
+  "note": "REPORT ONLY. Geometry of the 2,171 refill dots per arm, measured from the released rasters.",
+  "arms": {
+    "p3space28": {
+      "n_added": 2171,
+      "dist_to_nearest_surviving_R0_dot_px": {
+        "mean": 5.887,
+        "min": 2.828,
+        "p05": 2.828
+      },
+      "refill_pair_nn_px": {
+        "mean": 17.392,
+        "median": 13.342,
+        "frac_pairs_under_3px": 0.0101
+      },
+      "dist_to_nearest_H19_5_support_px": {
+        "mean": 3.07,
+        "frac_on_H19_5": 0.2091
+      }
+    },
+    "p3space45": {
+      "n_added": 2171,
+      "dist_to_nearest_surviving_R0_dot_px": {
+        "mean": 8.691,
+        "min": 5.0,
+        "p05": 5.0
+      },
+      "refill_pair_nn_px": {
+        "mean": 17.791,
+        "median": 14.0,
+        "frac_pairs_under_3px": 0.0
+      },
+      "dist_to_nearest_H19_5_support_px": {
+        "mean": 6.589,
+        "frac_on_H19_5": 0.0857
+      }
+    },
+    "p3space35rand": {
+      "n_added": 2171,
+      "dist_to_nearest_surviving_R0_dot_px": {
+        "mean": 7.219,
+        "min": 3.606,
+        "p05": 3.606
+      },
+      "refill_pair_nn_px": {
+        "mean": 18.746,
+        "median": 15.297,
+        "frac_pairs_under_3px": 0.0
+      },
+      "dist_to_nearest_H19_5_support_px": {
+        "mean": 5.668,
+        "frac_on_H19_5": 0.0654
+      }
+    }
+  }
+}
