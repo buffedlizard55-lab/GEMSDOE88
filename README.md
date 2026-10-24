@@ -1,11 +1,11 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
-> ## ⛔ Latest experiment: PHASE-88 (2026-10-24) — **DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO**
-> [⬇ Download new PHASE-88 GeoTIFF](docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif) · [one-TIFF ZIP](docs/downloads/gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.zip) · [automatic disk/ZIP validator](docs/data/phase88_validation.json) · [JSON run card](registry/phase88_run_card.json) · [executive submission guide](docs/executive-summary.html).
-> **DO NOT UPLOAD:** literal registry DUPLICATE (90.90% of dots within 3 px of GEMSDOE87, 100% of dense 17GEMSDOE prior; max allowed 70%). HOLDOUT-DTI `0.053062` (95% CI `[0.046064,0.060233]`, 22,893 withheld positives, `gems57-pooled-hide-v2`) is below same-split incumbent HOLDOUT-DTI `0.187888` (95% CI `[0.171698,0.203261]`, same 22,893 positives; no paired improvement CI). Feature-alone canary max symmetric AUC 0.5510. Preplacement max |ρ| 0.1783 / final max |ρ| 0.0301 across 223 accessible rasters. **Zero organizer slots spent; no ORGANIZER-CONFIRMED score.**
-> **Archival name:** `GEMSDOE88-PHASE-D7D02AB4`; **note (96/140):** `RTP/gravity cross-gradient disagreement; 37654 dots; HOLDOUT-DTI 0.0531; UNSCORED; DO NOT SUBMIT`. TIFF SHA-256 `28e6e91218129845aac5b3c7c9e676d148628ccd36a8234dd798242913b9324b`. Independent on-disk check: float32 one-band, no NaN inside (or outside), values in `[0,1]`, exact sample CRS/shape/transform, no nodata tag, one byte-identical TIFF in ZIP. **Format-only validation is not organizer acceptance.**
-> **Verify autonomously:** `python scripts/restore_inputs.py --validation && .venv/bin/python scripts/validate_phase88.py && .venv/bin/python scripts/check_site.py`; `--require-submit` must exit 2. To reproduce the *experiment* first restore full hash-pinned owner inputs with `python scripts/restore_inputs.py && python scripts/restore_siblings.py`, then `.venv/bin/python scripts/run_phase88.py` in a clean checkout (the writer refuses to overwrite the published file). [Three preregistered hypotheses / one tested](registry/preregistration_phase88.json) · [research, official links, constraints](research/phase88-20261024.md). The literal overlap rule makes **every** nonempty candidate a duplicate of the dense witness. We cannot truthfully call this raster unique for submission; an explicit rule change would be needed. The requested “single method paragraph below” was absent; the autonomous PHASE-88 lane choice is disclosed, not taken as authority to weaken any rule. Core values: **Maximize P(Win) · Own the Outcome**.
-
+> ## ⛔ Latest experiment: GEO-THERMAL-88 — OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
+> [⬇ Download the new GEO-THERMAL-88 GeoTIFF](docs/downloads/gems88-geothermal-hotspring-scarp-20261024-b3303bb5-DO-NOT-SUBMIT.tif) · [one-file ZIP](docs/downloads/gems88-geothermal-hotspring-scarp-20261024-b3303bb5-DO-NOT-SUBMIT.zip) · [JSON run card](registry/gems88-run_card.json) · [registry uniqueness audit](evidence/gems88-geothermal-hotspring-scarp-20261024-b3303bb5_uniqueness.json) · [executive submission guide](docs/executive-summary.html).
+> **Name:** `GEMSDOE88-GEO-B3303BB5`. **Note (115/140):** `GEO-THERMAL-88 hot well/spring temp x young-scarp corridor; 20366 dots; HOLDOUT-DTI 0.0065; UNSCORED; DO NOT SUBMIT`.
+> **SHA-256:** `83bee65fa1a64e72c8c5c35320740665664dff4d6673d5531c1ccbe46e58bf47` (ZIP `6c655aaaf2b20e6270e884735626cda23aaf6b0ef88cfba60521343f973e2170`). The machine independently reopened the TIFF and single-TIFF ZIP: 1 float32 band, 20,366 binary dots, all finite in `[0,1]`, sample CRS/shape/transform match, no NaN in the footprint, no nodata sentinel, zero positives outside or on the mapped catalogue. This is **local format validity, not organizer acceptance**.
+> **HOLDOUT-DTI** `0.006513` (95% CI `[0.002751, 0.011372]`, 22,893 withheld positives, `gems57-pooled-hide-v2`) vs incumbent `0.187888` on the same split (not paired). Leakage canary max symmetric AUC `0.5752`. Preplacement max `|Spearman ρ|=0.02165` across 36 registry rasters; final 3-px forward overlap `1.0000` vs the dense 17GEMSDOE witness (limit 0.70). **Literal registry gate blocked: stop.** File is byte/pixel distinct but **NOT clearable under the current literal uniqueness rule**. Measured hydrothermal temperature is a direct geothermal indicator, not a fault proxy — no shipped lane uses it. Do not spend a weekly slot; no organizer-confirmed result exists.
+> **Verify without regenerating:** `python scripts/restore_inputs.py --validation` then `.venv/bin/python scripts/build_geothermal_submission.py` reproduces the TIFF, run card, and uniqueness audit. The fail-closed writer refuses to overwrite published artifacts. Preregistered hypotheses: [`research/hypotheses-geothermal-20261024.md`](research/hypotheses-geothermal-20261024.md).
 > **SESSION START:** Read this README and [PROMPT.md](PROMPT.md) at the start of every future session. The standing prompt is a condensed transcription, not a verbatim archive of the user's long score list; source files and evidence are linked below. The earlier KTH-88 decision below is archived, not the current release.
 
 > ## ⛔ Archived experiment: KTH-88 — OK TO DOWNLOAD FOR RESEARCH; **DO NOT SUBMIT** (2026-10-24)
@@ -15,7 +15,7 @@
 > **HOLDOUT-DTI** `0.052656` (95% CI `[0.045911, 0.059151]`, 22,893 withheld positives, `gems57-pooled-hide-v2`) vs **HOLDOUT-DTI** `0.187888` for the earlier same-split incumbent; no paired improvement CI available. Single-feature canaries ≤0.5097 symmetric AUC. Before placement max `|Spearman ρ|=0.07473` across 222 rasters; after placement 3-px overlap = **0.89882** with one GEMSDOE87 raster and **1.000** with a dense 17GEMSDOE raster (limit 0.70). **Binding duplicate: stop.** File is byte/pixel distinct but **NOT unique under the requested geometric rule**. The K/Th signal is a ratio of uncalibrated u8 indices, not measured elemental abundance (IR-88-KTH-03). Do not spend a weekly slot; no organizer-confirmed result exists.
 > **Verify without regenerating:** `python scripts/restore_inputs.py --validation` (restores hash-pinned comparison grid) then `.venv/bin/python scripts/validate_kth88.py`; `--require-submit` deliberately exits 2. To **regenerate** in a separate clean workspace *before* publishing the TIFF, restore all inputs using `python scripts/restore_inputs.py && python scripts/restore_siblings.py`, install `requirements.txt`, and run `.venv/bin/python scripts/run_kth_step.py`. The fail-closed writer refuses to overwrite the published artifact in this checkout. Preregistered 4-hypothesis ranking and caveats: [`registry/preregistration_kth88.json`](registry/preregistration_kth88.json) · [research dossier](research/kth88-20261024.md). No second experiment was attempted after the duplicate.
 >
-> **Session-start operating prompt: reread [PROMPT.md](PROMPT.md) and the [Permanent User Prompt: Operational Requirements](#permanent-user-prompt-operational-requirements) below every session.** It preserves the binding constraints, source links, research workflow and core values from the request; it is a condensed operational transcription, **not** a verbatim archive of the very long prompt or every user-reported score. This distinction is tracked in IR-88-KTH-01. Maximize P(Win): reject a failing method. Own the Outcome: expose duplicates and limitations rather than calling them submit-ready.
+> **Session-start operating prompt: reread [PROMPT.md](PROMPT.md) and the [Permanent User Prompt: Operational Requirements](#permanent-user-prompt-operational-requirements) below every session.** It preserves the binding constraints, source links, research workflow and core values from the request; it is a condensed operational transcription, **not** a verbatim archive of the very long prompt or every user-reported score. Maximize P(Win): reject a failing method. Own the Outcome: expose duplicates and limitations rather than calling them submit-ready.
 
 > ## ⛔ Earlier 2026-10-24 DECISION: HOLD. LBCAL is OK to download, but DO NOT SUBMIT it under the current holdout rule (IR-88-78)
 > - **New unique file:** [`docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif) ([zip](docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.zip), [run card](registry/lbcal_run_card.json)).
@@ -393,6 +393,44 @@ The full table is in `research/candidate-hypotheses-20261024-lbcal.md`.
 2. **Ridge-side test, as one slot if the user waives the 0.70 lane rule for a single experiment.** Shift D2.8 dots 1 px uphill and compare the receipt against D2.8's 0.2600.
 3. **Close the receipt loop.** Every new receipt goes into `research/lbcal_user_reported_scores_20261024.tsv`, followed by a refit. Each receipt is a measurement of the hidden truth.
 4. **Feature work.** Add the 20 m LiDAR derivatives once 1 m DEM access exists, to explain the residual family.
+
+---
+
+# Standing user prompt (operational requirements, re-read every session)
+
+## Highest urgency
+**"MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION."**
+
+There must be an **easy one-click TIFF download** at the top of the site, the README, and the executive summary. Validation is done by the project itself with **no human intervention**: format, uniqueness, holdout, and leakage-canary gates. Every number must be labelled **HOLDOUT-DTI** (evaluator version, withheld positives, 95% CI) or **ORGANIZER-CONFIRMED** (copied verbatim from a DrivenData submission receipt). A projection is never written as a score.
+
+## Competition (DOE GEMS Prize, DrivenData competition 306)
+- Overview/format: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+- About: https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/
+- Data: https://www.drivendata.org/competitions/306/competition-doe-gems/data/ (requires DrivenData login)
+- Leaderboard: https://www.drivendata.org/competitions/306/competitions/306/competition-doe-gems/leaderboard/ (live top 0.4413; #50 0.2818)
+- Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution
+- NLR Official Rules: https://docs.nlr.gov/docs/fy26osti/96647.pdf (§3.2–§3.5: one final selection for both rounds; website limit prevails over "three per week")
+- Metric: pooled distance-weighted Tversky index, alpha 0.2, beta 0.8, 300 m triangular kernel; known USGS/INGENIOUS pixels masked; https://en.wikipedia.org/wiki/Tversky_index
+- Grid: single-band float32 GeoTIFF, values in [0,1], EPSG:32611, 100 m, 3730×3292, transform of sample_submission.tif; submission page error "Predicted values must be in range [0, 1]" is the known range failure mode.
+
+## Parallel-run protocol
+- **LANE:** stay in one explicitly named method lane per session. Check rank-correlation on the surface before dot placement (|ρ|≤0.90) and final 3-pixel forward dot overlap (≤0.70) against every registry raster. Exceeding either → log DUPLICATE and STOP. No selective exemptions for dense priors (the 17GEMSDOE witness is positive everywhere, so the literal rule blocks every nonempty raster).
+- **REUSE, DON'T REBUILD:** use the shared vendor/gems57/ stack (`evaluate_holdout.py`, `submission_writer.py`, `holdout.py`) with zero private metric forks; fix shared defects upstream once. Hide whole fault components with a buffer; derive catalogue features from visible faults only; mask known faults pixel-exactly; score pooled DTI (α=0.2, β=0.8, 300 m triangular kernel).
+- **LEAKAGE CANARY:** test each feature alone on held-out positives; symmetric AUC > 0.90 means leakage until disproven.
+- **RUN CARD:** one JSON card per experiment — hypothesis, mechanism, named non-fault mimic, holdout DTI + CI, correlation/overlap vs registry, raster SHA-256, validator output (no NaN inside footprint, values [0,1], CRS/shape/transform match), unique name + note ≤140 chars, verdict promote/negative. Negative results are deliverables.
+- **BUDGET:** at most 3 experiments or 2 hours per session. Promotion to a weekly competition slot is a separate selector decision; do not spend a slot on an idea that hasn't beaten the holdout incumbent.
+
+## Before implementing: 3–5 new hypotheses
+Each names: specific layer(s), physical signature/transform, why it catches faults missing from the USGS/INGENIOUS catalogue, the named non-fault mimic, and how it differs from the repo. Ranked by expected DTI gain and implementation cost. Validate the top on the spatially-blocked holdout before touching a submission slot. No externally dependent hypothesis without a verified free official source.
+
+## Site requirements
+- Clean GitHub Pages UI; the GeoTIFF link, file-to-submit decision, unique name, short note, and automated evidence at the very top; obvious whether OK to download / OK to submit.
+- Executive-summary subpage explaining exactly how to submit when a candidate is cleared.
+- Maintain dated, honest current-feed mechanism with official verification links. Recheck after each change in three passes: implement/verify, review/fix, recheck requirements/fix.
+- Never switch to, create, or push to any branch other than `arena/5ce436a0-gemsdoe88`; finalize via PR and merge into `main` without spending a competition slot.
+
+## Core values
+**Maximize P(Win)** — spend scarce submissions only on rigorous, evidence-backed discoveries. **Own the Outcome** — take full responsibility for negative gates, data irregularities, and limitations; publish evidence and limitations rather than reporting a hoped-for result as fact.
 
 ### Concurrent PR #68 reconciliation (2026-10-24) — archive only, no synthetic submission
 
