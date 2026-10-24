@@ -102,7 +102,7 @@
       "rho_full_footprint": 0.00867974746423935
     },
     {
-      "path": "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+      "path": "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
       "sha256": "81e580f13b45e1e6aa554eaf5e8c54d1e0064769ba8e7193b6e7f53e3842308a",
       "rho_full_footprint": 0.0037230127670622036
     },
@@ -142,7 +142,7 @@
       "rho_full_footprint": 0.01308190554996069
     },
     {
-      "path": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+      "path": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif",
       "sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
       "rho_full_footprint": -0.003961719116883113
     }
@@ -554,8 +554,8 @@
       },
       {
         "repo": "GEMSDOE88-GHMD",
-        "submission": "gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
-        "file": "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+        "submission": "gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
+        "file": "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
         "sha256": "81e580f13b45e1e6aa554eaf5e8c54d1e0064769ba8e7193b6e7f53e3842308a",
         "decoded_sha256": "318a37e68e7abbd4b17e3f14152aa66201b14ba7991b06413a390b0f17b403d9",
         "their_dots": 37654,
@@ -706,8 +706,8 @@
       },
       {
         "repo": "GEMSDOE88/local",
-        "submission": "gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
-        "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+        "submission": "gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif",
+        "file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif",
         "sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
         "decoded_sha256": "8e5934165683df6cf3f21b16f47b360df32acfcd7d500faefd8313f69837c58e",
         "their_dots": 37654,

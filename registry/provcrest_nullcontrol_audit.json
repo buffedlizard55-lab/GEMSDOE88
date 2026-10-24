@@ -2,7 +2,7 @@
   "schema": "gems88.nullcontrol-audit.v1",
   "evidence_class": "HOLDOUT-DTI",
   "evaluator_version": "gems57-pooled-hide-v2",
-  "shipped_file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros.tif",
+  "shipped_file": "docs/downloads/gems88-provcrest-rank-denovo-37654-20261024-04559a2c-zeros-DO-NOT-SUBMIT.tif",
   "shipped_sha256": "13b4155c41a8cfe56c5ca9a8079eb3b48d5c3e987cd71beb7ff7c9dc675d1b5f",
   "reproduced_bit_for_bit_from_restored_inputs": true,
   "far_threshold_px": 10.0,

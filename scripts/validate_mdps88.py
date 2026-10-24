@@ -25,7 +25,8 @@ from scipy.ndimage import distance_transform_edt
 from scipy.spatial import cKDTree
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path[:0] = [str(ROOT / "vendor")]
+sys.path[:0] = [str(ROOT / "vendor"), str(ROOT / "scripts")]
+from audit_literal_protocol import inspect as inspect_literal_protocol
 from gems57 import metric  # noqa: E402
 
 
@@ -50,6 +51,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--require-submit", action="store_true")
     args = ap.parse_args()
+    literal = inspect_literal_protocol()  # hash-pinned inputs, byte validation, binding literal rejection
     card = json.loads((ROOT / "registry/mdps88_run_card.json").read_text())
     tif = ROOT / card["raster"]["file"]
     failures: list[str] = []
@@ -106,8 +108,6 @@ def main() -> int:
                        ("D28", "data/registry/gems25_d28.tif"),
                        ("H19_5", "data/registry/gems19_h19_5.tif")]:
         with rasterio.open(ROOT / rel) as ds:
-            t = np.isfinite(ds.read(1)) & (ds.read(1) > 0) if False else None
-        with rasterio.open(ROOT / rel) as ds:
             arr = ds.read(1)
         t = np.isfinite(arr) & (arr > 0)
         d = distance_transform_edt(~t)
@@ -152,8 +152,9 @@ def main() -> int:
     out = dict(evidence_class="INDEPENDENT-AUDIT (second implementation, on-disk bytes)",
                file=str(tif.relative_to(ROOT)), sha256=card["raster_sha256"],
                checks=checks, failures=failures,
-               scientific_verdict=card["verdict"], ok_to_submit=card["ok_to_submit"],
-               ok_to_download=True,
+               scientific_verdict="negative", ok_to_submit=False,
+               literal_protocol=literal["correlation_overlap_vs_registry"],
+               ok_to_download=not failures and bool(literal.get("ok_to_download_for_research", literal.get("ok_to_download"))),
                audit_passed=not failures)
     (ROOT / "evidence/mdps88_independent_audit_20261024.json").write_text(json.dumps(out, indent=1, default=float))
     (ROOT / "docs/data/mdps88_validation.json").write_text(json.dumps(out, indent=1, default=float))
@@ -164,7 +165,7 @@ def main() -> int:
         print("AUDIT FAILURES:", failures)
         return 1
     print("INDEPENDENT AUDIT: PASS")
-    if args.require_submit and not card["ok_to_submit"]:
+    if args.require_submit:
         print("NOT OK TO SUBMIT (scientific gates failed; see run card)")
         return 2
     return 0

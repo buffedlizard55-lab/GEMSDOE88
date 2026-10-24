@@ -91,6 +91,14 @@
  "failures": [],
  "scientific_verdict": "negative",
  "ok_to_submit": false,
+ "literal_protocol": {
+  "final_literal_overlap_3px_remeasured": 1.0,
+  "literal_duplicate": true,
+  "scope": "One hash-pinned counterexample suffices to reject; NOT a complete registry uniqueness scan.",
+  "preplacement": "Universal coverage certificate blocks every nonempty dot placement before training; no new surface created.",
+  "historical_surface_abs_spearman": 0.10556715616150086,
+  "historical_surface_rho_not_recomputed": true
+ },
  "ok_to_download": true,
  "audit_passed": true
 }
