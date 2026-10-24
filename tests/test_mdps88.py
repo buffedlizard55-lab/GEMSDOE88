@@ -40,7 +40,7 @@ def test_mdps88_holdout_numbers_are_labelled_and_in_range():
     assert CARD["holdout"]["far"]["paired_vs_base283"]["ci95"][0] <= 0  # the documented null result
     assert CARD["leakage_canary"]["max_symmetric_auc"] <= 0.90 and CARD["leakage_canary"]["passed"]
     u = CARD["correlation_overlap_vs_registry"]
-    assert u["duplicate"] is False and u["worst_excess_overlap_3px"] <= 0.70 and abs(u["worst_abs_spearman"]) <= 0.90
+    assert u["duplicate"] is True and u["worst_literal_forward_overlap_3px"] > 0.70 and u["worst_excess_overlap_3px"] <= 0.70 and abs(u["worst_abs_spearman"]) <= 0.90
 
 
 def test_mdps88_site_decision_strings():

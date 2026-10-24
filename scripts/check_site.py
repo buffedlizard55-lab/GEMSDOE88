@@ -23,6 +23,14 @@ class Links(HTMLParser):
 
 def main(root=ROOT):
     import hashlib as _hl
+    # Current MDPS display must not resurrect the superseded chance-corrected PASS.
+    literal = json.loads((root / 'docs/data/literal_protocol_audit.json').read_text())
+    mdps = json.loads((root / 'registry/mdps88_run_card.json').read_text())
+    assert literal['raster_sha256'] == mdps['raster_sha256']
+    assert literal['preplacement_feasibility']['all_nonempty_in_footprint_candidates_blocked']
+    assert literal['correlation_overlap_vs_registry']['duplicate'] and not literal['ok_to_submit']
+    assert mdps['correlation_overlap_vs_registry']['duplicate']
+    assert 'FAIL — DUPLICATE' in (root / 'docs/index.html').read_text()
     # Historical MRR and KTH remain negative; latest PHASE-88 controls the site.
     historical = json.loads((root / 'registry/run_card.json').read_text())
     assert historical['verdict'] == 'negative' and historical['ok_to_submit'] is False

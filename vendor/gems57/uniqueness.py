@@ -681,3 +681,33 @@ def binding_duplicate_decision_v3(rows, *, rho_limit: float = RHO_LIMIT,
         duplicate=dup, stop_required=dup,
         verdict=("negative" if dup else "promote"),
         rows=out_rows)
+
+
+# IR-88-86: preserve historical diagnostics, but never substitute them for the
+# user's literal gate. One shared correction for every existing v3 caller.
+_chance_corrected_diagnostics_v3 = binding_duplicate_decision_v3
+
+
+def binding_duplicate_decision_v3(rows, *, rho_limit=RHO_LIMIT,
+                                  overlap_limit=OVERLAP_LIMIT):
+    """Literal gate; chance correction remains diagnostic only.
+
+    Empty, errored, nonfinite or missing measurements fail closed. A valid
+    measured duplicate is distinct from missing evidence, but both require stop.
+    Registry completeness still must be checked by the calling inventory audit.
+    """
+    rows = list(rows)
+    out = _chance_corrected_diagnostics_v3(
+        rows, rho_limit=rho_limit, overlap_limit=overlap_limit)
+    invalid = not rows or any('error' in r for r in rows)
+    for row in out['rows']:
+        rho, overlap = row['spearman'], row['forward_overlap']
+        invalid |= (rho is None or not np.isfinite(rho) or abs(rho) > 1 or
+                    overlap is None or not np.isfinite(overlap) or not 0 <= overlap <= 1)
+    duplicate = any(row['fails_literal'] or row['fails_rho'] for row in out['rows'])
+    out.update(binding_rule='literal-forward-overlap + rank-correlation (IR-88-86)',
+               rationale='Every registered raster binds, including dense priors; chance correction is diagnostic only.',
+               duplicate=duplicate, invalid_measurements=bool(invalid),
+               stop_required=bool(duplicate or invalid),
+               verdict='negative' if duplicate or invalid else 'promote')
+    return out

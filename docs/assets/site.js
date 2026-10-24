@@ -33,7 +33,7 @@
       // as slot-cleared or organizer-accepted, even if the old status.json is green.
       banner.textContent = data.ok_to_download === true && data.ok_to_submit === false &&
           data.audit_passed === true
-        ? 'MDPS-88 · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT · holdout gates failed (automated decision)'
+        ? 'MDPS-88 · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT · literal duplicate and holdout gates failed (automated decision)'
         : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
     } catch (_) {
       banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';

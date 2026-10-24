@@ -191,6 +191,28 @@
       "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
     },
     {
+      "label": "IBL-88 (basin lattice, merged from main)",
+      "record": "registry/ibl88_run_card.json",
+      "holdout_dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "withheld_positive_px": 22893,
+      "note": "HOLDOUT 0.0 is structural per record (b2+ gate-clean); literal 1.0",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "tif": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
+      "zip": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip",
+      "dots": 37654,
+      "literal_overlap_vs_17GEMSDOE": null,
+      "topN_like_for_like_overlap": null,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 AND holdout does not beat 0.18789 bar"
+    },
+    {
       "label": "H88-ADHR incumbent (stored bar, not a row file here)",
       "record": "registry/phase88_run_card.json",
       "holdout_dti": 0.18788764184958875,
