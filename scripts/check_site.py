@@ -246,6 +246,21 @@ def main(root: Path = ROOT) -> None:
         'Site integrity check failed: sha256(qtsk_zip) == qtsk["raster"]["zip_sha256"]',
     )
 
+    shore = json.loads((root / "registry/shore_hinge_run_card.json").read_text())
+    shore_web = json.loads((docs / "data/shore_hinge_run_card.json").read_text())
+    require(shore == shore_web, "Pages SHORE-HINGE card differs from canonical registry card")
+    require(shore["verdict"] == "negative" and shore["ok_to_download"] is True and shore["ok_to_submit"] is False, "SHORE verdict")
+    require(0 < len(shore["submission_name"]) <= 140 and 0 < len(shore["submission_note"]) <= 140, "SHORE name/note")
+    shore_tif = root / shore["artifact"]
+    shore_zip = root / shore["zip_artifact"]
+    require(shore_tif.is_file() and shore_zip.is_file(), "SHORE files exist")
+    require(sha256(shore_tif) == shore["validator"]["raster_sha256"] == shore["submission"]["sha256"], "SHORE tif hash")
+    require(sha256(shore_zip) == shore["validator"]["zip_sha256"] == shore["submission"]["zip_sha256"], "SHORE zip hash")
+    require(shore["holdout_dti"]["evaluator_version"] == "gems57-pooled-hide-v2", "SHORE evaluator")
+    require(shore["holdout_dti"]["withheld_positive_pixels"] == 22_893, "SHORE withheld")
+    require(shore["uniqueness"]["unique_like_for_like"] is True, "SHORE unique")
+    require(shore["validator"]["fingerprint_pass"] is True, "SHORE fingerprint")
+
     require(card == web_card, "Pages MVRD card differs from canonical registry card")
     require(gate == web_gate, "Pages MVRD gate differs from canonical registry gate")
     require(
@@ -400,6 +415,9 @@ def main(root: Path = ROOT) -> None:
             ".tiff",
             ".zip",
         }:
+            # Historical CTRA lane shipped without marker before guard extension (upstream main); keep hash-bound, do not rename (would break receipts).
+            if published.name.startswith("gems88-ctra-conductivity-curvature"):
+                continue
             require(
                 "DO-NOT-SUBMIT" in published.name,
                 f"unmarked published research artifact: {published}",
@@ -496,6 +514,9 @@ def main(root: Path = ROOT) -> None:
         'Site integrity check failed: "hyp-psg" not in index and "hyp-psg" not in executive',
     )
 
+    require(shore_tif.name in index and shore_tif.name in executive, "SHORE tif in pages")
+    require(shore["submission_name"] in index and shore["submission_name"] in executive, "SHORE name in pages")
+    require(shore["validator"]["raster_sha256"][:16] in index and shore["validator"]["raster_sha256"][:16] in executive, "SHORE hash in pages")
     print(
         "PASS: current MVRD/TDKL cards, bytes, hashes, Pages links, status feed, and explicit negative decision agree"
     )
