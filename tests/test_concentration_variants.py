@@ -66,8 +66,9 @@ def test_three_variants_with_distinct_hashes(report, ledger_rows):
     for vid, v in report["variants"].items():
         shas += [v["nan"]["sha256"], v["zeros"]["sha256"]]
     assert len(set(shas)) == 6, "variant hashes must be unique"
-    ledger_shas = [r["sha256"] for r in ledger_rows] + [r["sha256_zeros"] for r in ledger_rows]
-    assert len(set(ledger_shas)) == len(ledger_shas) == 2 * len(ledger_rows) and len(ledger_rows) >= 7
+    # single-file de-novo rows (PROVCREST/TILTZERO: no NaN twin, sha256_zeros in {"", sha256}) contribute one hash
+    ledger_shas = [r["sha256"] for r in ledger_rows] + [r["sha256_zeros"] for r in ledger_rows if r["sha256_zeros"] and r["sha256_zeros"] != r["sha256"]]
+    assert len(set(ledger_shas)) == len(ledger_shas) and len(ledger_rows) >= 7
 
 
 def test_receipts_are_tracked_and_match_the_report(report, projection, ledger_rows):

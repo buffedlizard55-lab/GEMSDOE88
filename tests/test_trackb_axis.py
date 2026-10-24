@@ -290,7 +290,7 @@ def test_ledger_and_mechanism_cards_complete_and_unique() -> None:
         seen_pairs.add(key)
         for col in ("sha256", "sha256_zeros"):
             h = r[col]
-            if h:
+            if h and not (col == "sha256_zeros" and h == r["sha256"]):  # single-file de-novo: no distinct twin
                 assert h not in seen_hashes, f"Duplicate hash in ledger: {h}"
                 seen_hashes.add(h)
 
