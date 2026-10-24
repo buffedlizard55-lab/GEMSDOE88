@@ -2,7 +2,7 @@
 
 **Lane:** `H88-CTRA` (single method, zeros encoding, no private metric fork)  
 **Preregistration ID:** `PREREG-20261024-CTRA`  
-**Artifact:** [`gems88-ctra-conductivity-curvature-20261024-zeros.tif`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros.tif) ([ZIP](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros.zip)) · [JSON Run Card](../../registry/ctra_run_card.json)  
+**Artifact:** [`gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif) ([ZIP](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.zip)) · [JSON Run Card](../../registry/ctra_run_card.json)  
 **Status:** `DOWNLOAD FOR RESEARCH: YES` · `SUBMIT: NO — RESEARCH ONLY` (format-valid, uniqueness like-for-like PASS, holdout pending/negative on 4-fold quick instrument; see §5)
 
 ---
@@ -90,9 +90,9 @@ The order was fixed before `CTRA` was built (see `NEW_HYPOTHESES.md` for the led
 
 | Field | Value |
 |---|---|
-| **File** | [`docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros.tif`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros.tif) |
-| **ZIP** | [`gems88-ctra-conductivity-curvature-20261024-zeros.zip`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros.zip) (single-TIFF, byte-identical) |
-| **JSON** | [`docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros.json`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros.json) |
+| **File** | [`docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif) |
+| **ZIP** | [`gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.zip`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.zip) (single-TIFF, byte-identical) |
+| **JSON** | [`docs/downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.json`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.json) |
 | **SHA-256 (tif)** | `bfc4a492a00961c4f44622ae2ec5c0a092268e715959879ca3c1cf739d5582b7` |
 | **SHA-256 (zip)** | `506bb595c41549bcb6fcc1807166fac163e2e6845e52bc7f94fff351396b1479` |
 | **Tags** | `float32`, `EPSG:32611`, `3730×3292`, `100 m`, `LZW`, `strip 1×3292`, `nodata=None`, classic TIFF |
@@ -101,7 +101,7 @@ The order was fixed before `CTRA` was built (see `NEW_HYPOTHESES.md` for the led
 | **Portal validation** | `gems88-gate-v3 portal_validate`: **`ok: true`**; `all_finite: true`, `portal_range_check_nan_strict: true`, `outside_footprint_zero: true`, no second-decoder mismatch on rasterio re-open |
 | **Fingerprint** | `median_d_cat = 23.41 px`, `share_le2 = 0.0000`, `share_gt10 = 0.7704`, **`share_gt25 = 0.4747 ≥ 0.35`** (**PASS**) |
 | **Why `zeros` and why this fixes `Predicted values must be in range [0,1]`** | `nan`-outside files declare `nodata=nan` and store `NaN` outside the footprint; both the reference solution's `nanmin/nanmax` and some portal validators evaluate `NaN` as out-of-range. This file uses **`zeros` encoding**: every cell finite, outside-footprint `0`, `nodata=None`, `min 0.0 max 1.0`. |
-| **Name (49/140)** | `gems88-ctra-conductivity-curvature-20261024-zeros` |
+| **Name (49/140)** | `gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT` |
 | **Note (96/140)** | `H88-CTRA cond gouge+curv trough+grav step 36k dots zeros [0,1] portal-valid; HOLDOUT pending/negative` |
 | **Live status** | `UNSCORED` (0 weekly slots spent) |
 
