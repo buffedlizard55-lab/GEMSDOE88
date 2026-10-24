@@ -1,6 +1,6 @@
 # 2026-10-24 — Why did `h33-h33-2-b2` score 0.2778 (CLAIM), can we beat it, and is the PROVCREST "promote" real?
 
-> **Status after merging `main` (IR-88-72):** an earlier draft of this note called the PROVCREST file "OK to submit" from a 33-raster registry. The merged v3 gate (216 rasters, IR-88-71) finds forward 3-px overlap **0.7319 > 0.70** with `GEMSDOE85 gems85-geopb-crest-90000dots-sep4`, so PROVCREST is **OK TO DOWNLOAD — NOT OK TO SUBMIT**. Sections 3–4 below remain valid as *signal* evidence (it beats no-information nulls); they are not a submission clearance.
+> **Status after merging `main` (IR-88-75):** an earlier draft of this note called the PROVCREST file "OK to submit" from a 33-raster registry. The merged v3 gate (216 rasters, IR-88-71) finds forward 3-px overlap **0.7319 > 0.70** with `GEMSDOE85 gems85-geopb-crest-90000dots-sep4`, so PROVCREST is **OK TO DOWNLOAD — NOT OK TO SUBMIT**. Sections 3–4 below remain valid as *signal* evidence (it beats no-information nulls); they are not a submission clearance.
 
 Evidence labels: **HOLDOUT-DTI** = local hide-and-recover instrument (`gems57-pooled-hide-v2`);
 **CLAIM** = user-reported live score with no portal receipt in this repo; **OBSERVED-PUBLIC** = read from the

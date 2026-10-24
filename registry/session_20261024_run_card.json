@@ -1,6 +1,6 @@
 {
   "schema": "gems88.run-card.v3",
-  "session": "2026-10-24 audit of PROVCREST (IR-88-72)",
+  "session": "2026-10-24 audit of PROVCREST (IR-88-75)",
   "hypothesis": "De-novo dots on composite Hessian crests of provided Bands 19 (slope-break), 3 (TMI gradient), 18 (gravity gradient) and 15 (basement step) recover geothermal faults missing from the USGS/INGENIOUS catalogue, because the transforms respond to fault scarps/contacts/basement steps in topography and potential fields whether or not a mapper traced the fault.",
   "mechanism": "Percentile-ranked crest composite (0.45/0.20/0.20/0.15) -> 1-D directional NMS crest pool -> greedy selection of exactly 37,654 dots at >=3.5 px mutual spacing and >3.0 px from the catalogue (visible-only inside holdout folds), binary {0,1}, zeros outside footprint.",
   "named_non_fault_process": "Unfaulted coalescing alluvial-fan bajada toe inflections, incised fluvial terrace risers, Tertiary volcanic flow margins and pluton-roof contacts producing slope-break/gradient crests without brittle fault permeability.",
@@ -225,5 +225,5 @@
   "weekly_slots_used_by_agent": 0,
   "verdict": "negative_for_submission",
   "verdict_reason": "Crest signal survives null controls (HOLDOUT-DTI 0.0763 vs null 0.048), but v3 uniqueness fails: forward 3-px overlap 0.7319 > 0.70 vs GEMSDOE85 geopb-crest-90000dots (IR-88-71/72). OK TO DOWNLOAD - NOT OK TO SUBMIT.",
-  "submission_note_recommendation": "none: do not upload. The receipt note ends \"vs R0 0.0040\", a degenerate comparison (IR-88-72)."
+  "submission_note_recommendation": "none: do not upload. The receipt note ends \"vs R0 0.0040\", a degenerate comparison (IR-88-75)."
 }

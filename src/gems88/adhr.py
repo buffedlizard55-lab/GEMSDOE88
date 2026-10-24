@@ -412,16 +412,30 @@ def fit_and_emit_production_adhr(
     sense_src: np.ndarray,
     scarp_fields: dict[str, np.ndarray],
     cache_dir: Path,
+    *,
+    cache_tag: str = "prod_adhr_v2",
+    preplacement_gate=None,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, dict]:
+    """Fit production heads, gate the continuous surface, then allocate dots.
+
+    ``cache_tag`` isolates method-specific production caches.  ``preplacement_gate``
+    is called with the finite continuous probability surface *before* Dinkelbach
+    placement, allowing the shared literal rank-correlation gate to stop a lane
+    without creating final dots.  Existing callers retain the historical defaults.
+    """
+    if not cache_tag or any(ch not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-" for ch in cache_tag):
+        raise ValueError("cache_tag must be a non-empty filesystem-safe token")
     fp = grid.footprint
     ys_fp, xs_fp = np.nonzero(fp)
-    cache_npz = Path(cache_dir) / "prod_adhr_v2.npz"
+    cache_npz = Path(cache_dir) / f"{cache_tag}.npz"
     if cache_npz.is_file():
         z = np.load(cache_npz, allow_pickle=False)
         emitted = np.zeros(grid.shape, dtype=np.float32)
         dyx = z["dots_yx"]
         emitted[dyx[:, 0], dyx[:, 1]] = 1.0
         p_surface = scatter_fp(z["p_fp"], ys_fp, xs_fp, grid.shape)
+        if preplacement_gate is not None:
+            preplacement_gate(p_surface)
         meta = json.loads(str(z["meta_json"]))
         return emitted, p_surface, np.zeros((1, 1), dtype=np.float32), meta
 
@@ -500,6 +514,9 @@ def fit_and_emit_production_adhr(
     m_surface = scatter_fp(m_final, ys_fp[act_idx], xs_fp[act_idx], grid.shape)
     del p_final, m_final
     gc.collect()
+
+    if preplacement_gate is not None:
+        preplacement_gate(p_surface)
 
     alloc = emit.dinkelbach_allocate(
         p_surface,
