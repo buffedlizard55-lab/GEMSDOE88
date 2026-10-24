@@ -88,6 +88,7 @@ def test_dinkelbach_knapsack_halo_constraints_enforced():
 
 
 def test_run_card_four_way_parity_and_audit_invariants():
+    """The canonical card now describes the current MRR negative deliverable."""
     paths = [
         ROOT / "registry/run_card.json",
         ROOT / "docs/data/run-card.json",
@@ -98,51 +99,45 @@ def test_run_card_four_way_parity_and_audit_invariants():
     assert len(set(texts)) == 1, "All 4 run-card JSON copies must be byte-identical"
 
     card = json.loads(texts[0])
+    assert card["lane"] == "H88-MRR-BPR"
     assert card["verdict"] == "negative"
     assert card["ok_to_download"] is True
     assert card["ok_to_submit"] is False
     assert card["weekly_slots_used"] == 0
+    assert card["organizer_confirmed"]["score"] is None
     assert len(card["submission_note"]) <= 140
 
-    ladder = card["experiment_ladder"]
-    assert len(ladder) == 3
-    d0, d1, d2 = [row["holdout_dti"] for row in ladder]
-    assert 0.03 < d0 < d1 < d2
-    assert d2 > 0.17
+    holdout = card["holdout_dti"]
+    assert holdout["evidence_class"] == "HOLDOUT-DTI"
+    assert holdout["evaluator_version"] == "gems57-pooled-hide-v2"
+    assert holdout["withheld_positive_pixels"] == 22_893
+    assert holdout["candidate"] < holdout["incumbent_recomputed"]
+    assert holdout["paired_delta_vs_incumbent"] < 0
+    assert holdout["paired_delta_ci95"][1] < 0
 
-    assert card["canary_max_auc"] <= 0.90
-    canary_receipt = json.loads((ROOT / "registry/leakage_canaries.json").read_text())
-    assert len(canary_receipt["features"]) >= 48
-    feats = canary_receipt["features"]
-    items = feats.values() if isinstance(feats, dict) else feats
-    assert all(not row.get("leakage_flag", False) and row.get("pass", True) for row in items)
+    canaries = card["leakage_canary"]
+    assert canaries["passed"] is True
+    assert canaries["features_tested"] == 4
+    assert canaries["max_symmetric_auc"] <= 0.90
+    assert all(row["pass"] for row in canaries["features"])
 
     reg = card["correlation_overlap_vs_registry"]
-    surf = reg["surface_preplacement"]["summary_all_unique_rasters"]
-    assert surf["checked_unique_rasters"] >= 19
-    assert surf["max_abs_spearman"] <= 0.90
-    assert surf["all_passed_le_090"] is True
+    assert reg["rasters_checked"] == 21
+    assert reg["surface_preplacement_max_abs_spearman"] <= reg["surface_limit"]
+    assert reg["final_max_forward_overlap_3px_sparse_rasters"] <= reg["overlap_limit"]
+    assert reg["final_max_forward_overlap_3px_all_rasters"] == 1.0
+    assert reg["literal_binding_decision"]["duplicate"] is True
+    assert reg["universal_witness"]["universal_overlap_blocker"] is True
 
-    dots = reg["final_dots"]
-    assert dots["discriminating_dot_rasters_summary"]["checked_count"] >= 18
-    assert dots["discriminating_dot_rasters_summary"]["max_forward_dot_overlap_3px"] < 0.70
-    assert dots["discriminating_dot_rasters_summary"]["all_passed_lt_070"] is True
-    assert reg["like_for_like_dot_gate"]["passed"] is True
-    assert reg["like_for_like_dot_gate"]["rasters_checked"] >= 18
-    assert reg["literal_any_raster_gate"]["passed"] is False
-    assert reg["literal_any_raster_gate"]["space_covering_witness_count"] >= 1
-    assert dots["H33"]["forward_dot_overlap_3px"] < 0.70
-
-    # docs/status.json describes the most recent release, not this historical
-    # UGFV/ADHR card. Its hash must bind to the CURRENT on-disk research TIFF.
+    # docs/status.json describes the canonical MRR research release and binds
+    # directly to the same four-way run card verified above.
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
-    current = json.loads((ROOT / "registry/fabric_dislocation_run_card.json").read_text())
-    assert status_doc["raster_sha256"] == current["raster_sha256"]
+    assert status_doc["raster_sha256"] == card["raster_sha256"]
     assert status_doc["ok_to_submit"] is False
     assert status_doc["ok_to_download_for_research"] is True
 
-    tif_path = ROOT / "docs" / card["downloadable_file"]
-    zip_path = tif_path.with_suffix(".zip")
+    tif_path = ROOT / card["artifact"]
+    zip_path = ROOT / card["zip_artifact"]
     receipt_path = tif_path.with_suffix(".json")
     assert tif_path.is_file() and zip_path.is_file() and receipt_path.is_file()
     assert _sha256(tif_path) == card["raster_sha256"]

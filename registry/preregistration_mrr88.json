@@ -1,0 +1,78 @@
+{
+  "schema": "gems88.mrr88-preregistration.v1",
+  "frozen_utc": "2026-10-24T06:30:00Z",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "lane": "H88-MRR-BPR",
+  "lane_title": "Blockwise Magnetic Vertical-to-Regional Polarity Residual for Blind Volcanic-Covered Fault Corridors",
+  "experiment_budget": {
+    "candidate_experiments_planned": 1,
+    "candidate_experiments_max": 3,
+    "wall_clock_max_seconds": 7200
+  },
+  "selected_hypothesis": {
+    "id": "MRR-BPR-88",
+    "rank": 1,
+    "layers": [
+      "Band 1: mag_anom",
+      "Band 2: rtp",
+      "Band 9: tmi_vg",
+      "Band 14: tmi",
+      "Band 15: depth_to_base_surf"
+    ],
+    "mechanism": "Regress tmi_vg on [1, tmi, mag_anom] independently in each 100x100-pixel block using a deterministic winsorized ridge solve; bilinearly smooth coefficient mosaics; derive signed residual, negative-trough Hessian ridge, depth-weighted negative residual, and RTP-residual cross-gradient. The local nuisance removal targets derivative-scale magnetite destruction inconsistent with broad volcanic magnetization.",
+    "named_non_fault_mimic": "Remanently reversed basalt-flow margins and uncorrected aeromagnetic flight-line leveling strips.",
+    "difference_from_existing": "Existing H88 stacks contain raw tmi_vg, raw/local magnetic high-pass and Laplacian trough channels, but no blockwise vertical-to-regional nuisance regression or residual polarity-depth interaction.",
+    "predicted_holdout_delta_model": 0.006,
+    "predicted_holdout_delta_range_model": [-0.012, 0.024]
+  },
+  "feature_contract": {
+    "block_side_px": 100,
+    "block_side_m": 10000,
+    "ridge_lambda": 0.05,
+    "coefficient_smoothing_sigma_blocks": 0.75,
+    "features": [
+      "mrr_vg_block_residual",
+      "mrr_demag_trough_hessian_s2",
+      "mrr_demag_depth_weighted",
+      "mrr_rtp_residual_crossgradient"
+    ],
+    "catalogue_features_used": false,
+    "external_data_used": false
+  },
+  "holdout_contract": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seeds": [20, 21],
+    "whole_components": true,
+    "buffer_px": 3,
+    "pixel_exact_visible_fault_mask": true,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300,
+    "block_bootstrap_m": 20000,
+    "bootstrap_draws": 1000,
+    "incumbent": "H88-ADHR",
+    "incumbent_recorded_holdout_dti": 0.18789,
+    "incumbent_recorded_ci95": [0.1717, 0.20326],
+    "incumbent_recorded_withheld_positive_pixels": 22893,
+    "promotion_rule": "candidate pooled HOLDOUT-DTI must exceed the incumbent on the identical folds; paired CI crossing zero remains inconclusive"
+  },
+  "gates": {
+    "single_feature_symmetric_auc_max": 0.9,
+    "surface_abs_spearman_max": 0.9,
+    "final_dot_forward_overlap_3px_max": 0.7,
+    "literal_all_registry_rasters": true,
+    "format": {
+      "single_band": true,
+      "dtype": "float32",
+      "values_in_range": [0.0, 1.0],
+      "all_finite": true,
+      "crs": "EPSG:32611",
+      "shape": [3730, 3292],
+      "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]
+    }
+  },
+  "expected_irregularity": "The hash-pinned 17GEMSDOE continuous surface is positive on the full footprint, so any nonempty candidate is expected to have literal 3-pixel forward overlap 1.0 and a negative/DO-NOT-SUBMIT verdict. No exemption is authorized.",
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null
+}

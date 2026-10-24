@@ -1,0 +1,47 @@
+{
+  "schema": "gems88.mrr88-canaries.v1",
+  "evidence_class": "LEAKAGE-CANARY",
+  "method": "Seed-20 whole-component hidden positives vs 8x active off-trace negatives; each MRR channel alone",
+  "threshold": 0.9,
+  "features_tested": 4,
+  "max_symmetric_auc": 0.532607,
+  "passed": true,
+  "features": [
+    {
+      "feature": "mrr_vg_block_residual",
+      "roc_auc": 0.482434,
+      "symmetric_auc": 0.517566,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_demag_trough_hessian_s2",
+      "roc_auc": 0.527721,
+      "symmetric_auc": 0.527721,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_demag_depth_weighted",
+      "roc_auc": 0.52533,
+      "symmetric_auc": 0.52533,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_rtp_residual_crossgradient",
+      "roc_auc": 0.532607,
+      "symmetric_auc": 0.532607,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    }
+  ]
+}
