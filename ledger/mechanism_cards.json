@@ -2489,5 +2489,12 @@
       "sgmc_proxy_final": 0.070997,
       "verdict": "negative"
     }
+  },
+  "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT": {
+    "hypothesis": "Matched-domain training (isolated mapped strands vs far-basin background) + distance-regime emission recovers far-from-catalogue withheld faults better than all-positive training and adds low-relief basin support missing from the H19-5 lineage.",
+    "mechanism": "Covariate-shift remedy + DTI-optimal allocation: far head emits only inside its training domain (d>8px); near head capped at 20% (2-8px, p99 physics-snapped splays); 2.83px kernel-matched spacing; b2 collar removes live-proven pure-FP band.",
+    "named_non_fault_mimic": "Pluvial shoreline benches / fluvial terrace risers (LiDAR scarp signature without brittle offset).",
+    "result": "NEGATIVE: budget-matched far paired delta +0.0036 [-0.0060,+0.0128] (mdps_far arm +0.0065 [-0.0032,+0.0157]); overall below control; SGMC proxy below H33. Per-dot far efficiency 1.2-3.1x control (E1) but underpowered/null at matched budget.",
+    "run_card": "registry/mdps88_run_card.json"
   }
 }
