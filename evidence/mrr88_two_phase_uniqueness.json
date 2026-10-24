@@ -1,0 +1,45 @@
+{
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "rasters_checked": 21,
+  "rasters_expected": 21,
+  "scope_note": "Checked against every registry raster whose bytes are present locally (plus any explicitly fetched witnesses). Un-fetched registry entries are a stated scope limitation, never a claim of absence.",
+  "footprint_cells": 5167373,
+  "dense_support_fraction": 0.2,
+  "thresholds": {
+    "rho": 0.9,
+    "forward_overlap": 0.7,
+    "jaccard": 0.5
+  },
+  "literal_reading": {
+    "worst_spearman_full_footprint": 0.0968333255189999,
+    "worst_spearman_submission": "17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "worst_forward_overlap": 1.0,
+    "worst_overlap_submission": "17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "forward_overlap_firings": 1,
+    "rho_firings": 0,
+    "duplicate": true,
+    "note": "Keeps the inherited literal support definition. A continuous-surface prior fires on every nonempty candidate, so a firing here is not evidence of duplication; it is reported for completeness."
+  },
+  "like_for_like_reading": {
+    "dot_field_rasters": 20,
+    "continuous_surface_rasters": 1,
+    "worst_forward_overlap_dot_fields": 0.6841783920295285,
+    "worst_forward_overlap_dot_field_submission": "gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros.tif",
+    "worst_reverse_overlap": 0.6747394100687514,
+    "worst_reverse_overlap_submission": "gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+    "worst_jaccard": 0.041843924042139165,
+    "worst_jaccard_submission": "gems80-h80-dpvc-updip-vent-submod-41600-20261021-zeros.tif",
+    "forward_overlap_firings": 0,
+    "duplicate": false,
+    "note": "Inherited thresholds, applied to dot fields only; rank correlation still applies to every raster including the continuous surfaces."
+  },
+  "literal_firings": [
+    {
+      "submission": "17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+      "repo": "17GEMSDOE",
+      "representation": "continuous_surface",
+      "forward_overlap": 1.0,
+      "their_dots": 5167373
+    }
+  ]
+}

@@ -1,17 +1,24 @@
-# Slot Plan (One Entity — 3 Scored / Rolling Week, 1 Blind Final)
+# Slot Plan — Current Automated Decision
 
-**State (`2026-10-24`):** `0` live `RECEIPT`s in `ledger/submissions.csv` (`64` unique `(parent, axis, value)` rows across all `7` brief axes; historical `R0 = h33-h33-2-b2` `0.2778` remains `CLAIM`). Treat any live public change with `|delta| < 0.01` as **no evidence**. Upload primary `.tif` (`NaN` outside footprint) first; upload `-zeros.tif` only if the portal rejects `NaN`.
+**Updated 2026-10-24. No competition slot is authorized or recommended by the current run.**
 
-| Rolling Slot | Candidate ID | Single-Factor Test (`N = 37,654` fixed, `0` px `< 3.0 px`) | Frozen `MODEL` | Blind `SGMC` (`PROXY`) | Gate / Trigger |
-|---|---|---|---|---|---|
-| **Slot 1 — Calibrate** | `h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705` (`R1`) | Prune `d_cat <= 3.0 px` (`2,171` = `5.77%`), densified `w` refill on `H19-5 ∪ H19-4 ∪ H16-1`; anchors `R1` (parent of `27` ledgered rows) live vs `R0` `CLAIM`. | `+0.008` (`[-0.002, +0.018]`) | `0.096083` (`+0.00002` vs `R0`) | Submit first; establishes first `RECEIPT`. |
-| **Slot 2 — Spaced Refill (`IR-88-55/56`)** | **Matched `300 m` collar:** `h33-h33-2-b2-PRUNEp3space35fp-20261024-8d29a2f7`<br>*(or wider `400 m` collar peak: `h33-h33-2-b2-PRUNEp4space35-20261023-07bd8182`)* | `p3space35fp`: identical `2,171` donors to `R1`, **score-blind farthest-point** `>= 3.5 px` refill (`min_nn = 5.66 px`, `91.9% >= 6 px`, zero `w`, zero RNG — beats `p3space35` `0.101042`, `p3space35rand` `0.101146`, `p3.5space35` `0.101339`, & `p3space45` `0.101629`).<br>`p4space35`: `<= 4.0 px` (`3,825` = `10.16%`) at `>= 3.5 px` (rebuilt byte-exact). | `+0.008` (`p3space35fp`)<br>`+0.010` (`p4space35`) | **`0.101947`** (`+0.00589`)<br>**`0.102454`** (`+0.00639`) | `p3space35fp` isolates refill geometry vs Slot 1 with zero collar confound; submit after Slot 1 receipt. |
-| **Slot 3 — Conditional** | **If `Slot 2 > Slot 1`:** pair the other collar (`p4space35 07bd8182` vs `p3space35fp 8d29a2f7`)<br>**If sibling-free provenance desired:** `h33-h33-2-b2-PRUNEp3space35prov-20261024-0237d5b9`<br>**If `Slot 1 <= R0 - 0.01`:** `h33-h33-2-b2-PRUNElt3space35-20261024-0b522c7f` | `p4space35`: prices `400 m` vs `300 m` collar.<br>`p3space35prov`: `100%` competition Bands 19/3/18/15 crests + `H19-5` (`0` `H19-4/H16-1`, `0` LiDAR/GDR; `98.5%` of `p3space35`).<br>`lt3space35`: strict `< 3.0 px` (`4.28%`), keeping all `560` `d_cat == 3.0 px` (`k=0`) `R0` dots. | `+0.010` (`p4space35`)<br>`+0.004` (`p3space35prov`)<br>`+0.006` (`lt3space35`) | `0.102454` (`+0.00639`)<br>`0.100965` (`+0.00491`)<br>`0.099236` (`+0.00318`) | Spend **only after** Slot 1 & Slot 2 `RECEIPT`s are logged in `ledger/submissions.csv`. |
+| Candidate | Evidence | Scientific gate | Registry gate | Slot decision |
+|---|---|---|---|---|
+| `GEMSDOE88-MRR-BPR-20261024-DO-NOT-SUBMIT` | Candidate **HOLDOUT-DTI `0.185256`**, 95% CI `[0.171519,0.199965]`, `n=22,893`, evaluator `gems57-pooled-hide-v2`; paired incumbent `0.189634`; paired delta `-0.004378`, 95% CI `[-0.007902,-0.000623]` | **FAIL** — confidently below paired incumbent | **FAIL under binding literal rule** — 17GEMSDOE forward overlap `1.0000 > 0.70`; sparse-only diagnostic max `0.684178` passes | **DO NOT SUBMIT; 0 slots used** |
 
-### Complete `PRUNE` Spaced-Refill Summary & Closed Axes (`64` Rows)
-- **`PRUNE` spaced matrix (`18` rows on `R0`):** `R0 (0.096060)` < `R1 p3px (0.096083)` < `lt3space35 (<3 px, 0.099236)` < `p3space28 (0.099446)` < `p4space28 (0.100907)` < `p3space35prov (provided-bands only, 0.100965)` < `p3space35 (0.101042)` < `p3space35rand (random order, 0.101146)` < `p3.5space35 (0.101339)` < `p3space45 (0.101629)` < **`p3space35fp` (`0.101947`)** < **`p4space35` (`0.102454`)**. All three `IR-88-45/47` confounders (`w`-ranking, `H19-4/H16-1` provenance, and `<3 px` vs `<=3 px` boundary) are now empirically resolved (`IR-88-54/55/56`).
-- **Closed / `HOLD` axes (`0` slots):** `MASS` (`9` rows, `R0`/`R1`, `IR-88-52`); `CONCENTRATION` (`7` rows, `IR-88-52` — cold mirror wins); `SNAP` (`15` rows, `IR-88-50/51` — `anti1` matches `scarp1px`); `RELIEF` (`9` rows — all negative); `SPACING` (`3` rows — `+0.00074` max); `TRACKB` (`3` rows, `IR-88-49` — Phase 2 map only).
+## Why no conditional MRR slot exists
 
-### One Blind Final Submission Rule & Proposed Next Axes (Not Built)
-- **Final submission (`1` total):** Pick the candidate with the highest verified live `RECEIPT` beating `R1` by `>= +0.01`; if all live deltas remain `< 0.01`, pick `PRUNEp3space35fp` (`8d29a2f7`) on parsimony (gate-clean, zero `w`/RNG, `min_nn = 5.66 px`, highest `300 m` blind `SGMC`).
-- **Proposed next single-axis tests (not built here):** (1) `p4space35fp` (`400 m` collar + score-blind farthest-point refill, gated on live receipts); (2) `p3space35provfp` (`100%` provided-band crest pool + farthest-point ranking); (3) `INSTRUMENT_AUDIT` (`1 px` seeded random jitter control beside a receipted arm).
+The preregistered promotion rule required candidate HOLDOUT-DTI to exceed the recomputed incumbent, with a paired CI not crossing zero. The observed CI is entirely negative. A valid TIFF and like-for-like sparse-raster uniqueness therefore cannot rescue the method. The all-positive registry witness independently forces the literal gate to fail for this and every nonempty raster; no exemption is authorized.
+
+## Historical candidate plans
+
+Earlier PRUNE, H88-ADHR, GHMD, and UGFV slot suggestions remain research history only. They are not current authorizations, have no ORGANIZER-CONFIRMED receipt in this repository, and are subject to the same binding literal any-raster gate. In particular, PRUNE's high exact overlap with H33 was already recorded as disqualifying under the current user rule. Do not upload an older file merely because MRR-BPR-88 is negative.
+
+## Preconditions for any future weekly slot
+
+1. A newly preregistered, genuinely different method must beat the current paired holdout incumbent on the identical whole-component folds, with a positive paired 95% CI.
+2. Every feature-alone leakage canary must remain at or below symmetric AUC `0.90`.
+3. Surface `|Spearman rho| <= 0.90` before placement and final 3-pixel forward overlap `<= 0.70` against every registry raster under the currently authorized rule.
+4. Independent format validation must pass on the saved TIFF and one-member ZIP, including all-finite values in `[0,1]`.
+5. An authenticated organizer template byte check and a separate explicit human portfolio-selector decision are required.
+6. After a manual upload only, log the receipt as ORGANIZER-CONFIRMED. Never treat MODEL, PROXY, HOLDOUT-DTI, or H33's reported `0.2778` as a portal receipt.
