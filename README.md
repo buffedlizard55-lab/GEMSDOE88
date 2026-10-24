@@ -2,7 +2,7 @@
 
 > ## ⛔ 2026-10-24 DECISION: HOLD. LBCAL is OK to download, but DO NOT SUBMIT it under the current holdout rule (IR-88-78)
 > - **New unique file:** [`docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif) ([zip](docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.zip), [run card](registry/lbcal_run_card.json)).
->   - Contents: 38,278 binary dots in a float32 band; values in {0,1}; 0 NaN; nodata None; grid identical to the sample.
+>   - Contents: 38,278 binary dots in a float32 band; values in {0,1}; 0 NaN; nodata None; recorded grid metadata matches the pinned sample metadata. The sample TIFF is absent from this checkout, so that comparison was not independently repeated here.
 >   - SHA-256: `0a44af1e…991a`.
 > - **Name:** `GEMSDOE88-LBCAL-0AEB6EED`
 > - **Note (105/140):** `LBCAL receipt-calibrated q, 38278 dots, <=66% in sibling halos; HOLDOUT 0.0616; model-proj only, UNSCORED`
@@ -11,13 +11,13 @@
 >   - The current best on the same split is PROVCREST at **0.076277**.
 >   - LBCAL does beat R0, which scores 0.004006 (paired Δ +0.05756, CI [0.04808, 0.06857]).
 >   - The leakage canary passes (max AUC 0.582).
->   - Uniqueness passes against 138 rasters: worst 3-px overlap 0.656 ≤ 0.70, worst |ρ| 0.034 ≤ 0.90.
+>   - **Reported sparse-raster uniqueness:** among 138 scanned rasters, max 3-px overlap is 0.656 and max |ρ| is 0.034. The receipt gate classifies space-filling rasters separately; under the literal all-raster rule, the 17GEMSDOE witness yields 1.0 overlap, so uniqueness does not pass.
 > - **What the 106 leaderboard receipts say (MODEL-PROJECTION, never a score).**
 >   - Projections: LBCAL **0.356**, H33 **0.264**, PROVCREST **0.105**, MDC-88 (PR #61, gate-cleared) **0.093**, ADHR **0.080**.
 >   - The receipt model behind these scores 8-fold repo-blocked CV ρ 0.941 and RMSE 0.031 on 99 user-reported LB scores.
->   - The holdout gate scores H33, the user-reported best at 0.2778, at only 0.004. It does not predict the leaderboard.
->   - **Recommendation:** do not spend a slot on PROVCREST or MDC-88 without a selector decision, even though MDC-88's own gate says OK. If the selector adopts the receipt gate, LBCAL is the file to submit.
-> - **Gate v3** (`registry/lbcal_gate_v3.json`): OK TO DOWNLOAD, NOT OK TO SUBMIT, with two blockers. The holdout bar is 0.18789, and the fingerprint screen fails because 1.77% of dots are within 2 px of the catalogue. Like-for-like uniqueness passes. The receipts also say that collar is empty, so a collar-pruned LBCAL is the first follow-up (IR-88-82).
+>   - `HOLDOUT-DTI` for the R0/H33 raster is **0.004006** (gems57-pooled-hide-v2, seeds 20+30, 22,663 withheld positives); H33's **0.2778** remains USER-REPORTED. This holdout does not predict the leaderboard.
+>   - **Recommendation:** do not spend a slot on PROVCREST, MDC-88, or LBCAL without a fresh selector decision. LBCAL is only a research candidate for receipt-model analysis, not a submit recommendation.
+> - **Gate v3** (`registry/lbcal_gate_v3.json`): OK TO DOWNLOAD, NOT OK TO SUBMIT. LBCAL's recorded `HOLDOUT-DTI` is **0.061566** [0.051910, 0.072787] (`gems57-pooled-hide-v2`, seeds 20+30, 22,663 withheld positives), below same-seed PROVCREST at **0.076277**. The separate 0.18789 bar in gate v3 comes from another split and is not a paired comparison. The fingerprint screen also fails (1.77% of dots lie within 2 px of the catalogue). Its reported like-for-like uniqueness pass classifies space-filling rasters separately; that is **not** a pass under the stricter literal all-registry rule. Against the positive-everywhere 17GEMSDOE raster, every nonempty candidate has 100% forward overlap. A collar-pruned LBCAL remains an untested research proposal, not a submission-ready follow-up (IR-88-82).
 > - **Slots and receipts:** agents spent 0 slots. ORGANIZER-CONFIRMED score: none.
 > - **Scope:** everything below this block is prior or parallel-session history, kept as merged from `main`. That includes MRR-BPR-88, TILTZERO, fabric-dislocation, PHYS44 and PROVCREST, all of which are DO NOT SUBMIT or withdrawn. **This block is the current decision.**
 
@@ -26,6 +26,8 @@
 official sources: [NLR rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [competition page](https://www.drivendata.org/competitions/306/competition-doe-gems/) ·
 [metric & submission format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [live leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) ·
 [reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
+
+> **2026-10-24 repository review:** HOLD / DO NOT SUBMIT. A fresh candidate was **not** generated because the hash-pinned competition inputs are absent from this checkout; independent holdout and format validation cannot be rerun without them. Site-link checks pass, but the complete test suite reports 6 missing-input failures (275 passed, 30 skipped). Read [`research/repo-review-20261024.md`](research/repo-review-20261024.md) before starting work. It ranks H-QTS as the next candidate, but that experiment is not run or slot-eligible until authorized data restoration and same-fold validation.
 
 <!-- SESSION STATE START -->
 ## ⬇ DOWNLOAD + SUBMIT DECISIONS - four candidates, one gate (`gems88-gate-v3`, 2026-10-24, zero human input)
