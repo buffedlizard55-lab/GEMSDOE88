@@ -1,0 +1,82 @@
+{
+  "schema": "gems88.preregistration.concentration-r1.v1",
+  "created_utc": "2026-10-23T00:00:00Z",
+  "written_before_any_proxy": true,
+  "parent": {
+    "id": "h33-h33-2-b2-PRUNEp3px-20261023-6f7ae705",
+    "alias": "R1",
+    "sha256_nan": "6f7ae7052258c509cc83be3851394276e7159324640c98bbcff8e187e1013ec9",
+    "sha256_zeros": "dc6f090dd296fcf66ff6e6b5f63a316a5f5eb4ef9cd2ef77edbc73d96f81d36f",
+    "n_dots": 37654,
+    "min_dist_catalogue_px": 3.1623,
+    "why_this_parent": "Brief section 4.4 forbids positive mass closer than 3 px to the catalogue for every non-PRUNE axis. All four ledgered CONCENTRATION rows are parented on R0, which keeps 1,611 dots strictly inside 3 px, so every one of them is HOLD (IR-88-47 / hardened validate_variant.py) and the axis has never had a spendable arm. R1 is the same 37,654-dot lineage with only the <=3 px collar purged and refilled (IR-88-43), so re-parenting isolates the collar effect. This is the same disclosed re-parenting move the SNAP session made (IR-88-50)."
+  },
+  "axis": "CONCENTRATION",
+  "axis_choice_basis": "Human instructed the agent to pick its own axis. Ledger re-read first (47 rows): MASS 6, PRUNE 10, CONCENTRATION 4, SNAP 12, RELIEF 9, SPACING 3, TRACKB 3. Every axis is built at least once, so the choice is decided by (a) which axis has no spendable arm at all and (b) which has the largest preregistered effect size. CONCENTRATION is the only brief axis whose entire family is HOLD for one correctable reason, and its R0 arms carry the largest MODEL effects in the inventory (+0.011 at 10%, +0.020 at 20%). MASS is measured and exhausted (R0 sits at its mass optimum; its only positive arm fails the collar gate), PRUNE and RELIEF are mined on both parents, SPACING was tested this week at 5.08% and the receiver pool is geometrically saturated (only 12 un-emitted H19-5 pixels sit >=2.8 px from survivors), and SNAP is measured on both parents.",
+  "definition": {
+    "block_px": 10,
+    "block_m": 1000,
+    "block_validity": "only blocks fully inside the footprint are eligible (valid_count == 100)",
+    "prior_bands_1indexed": [3, 5, 18],
+    "prior_construction": "mean of robustly unit-scaled (10th-99th percentile clip) band 3 tmi_hg horizontal gradient |.|, band 5, and band 18 isostatic gravity anomaly horizontal gradient |.|; identical construction to the ledgered R0 arm '15pct-1km-grad' (scripts/generate_concentration_variants.py)",
+    "prior_used_for": "block ordering only; no withheld or test label, no SGMC, no rendered-submission feedback",
+    "high_set": "eligible blocks with block_prior >= the 70th percentile of eligible block priors",
+    "low_set": "eligible blocks with block_prior <= the 30th percentile of eligible block priors",
+    "count": "fixed at 37,654 (mass held constant by construction)",
+    "collar": "every emitted dot > 3 px from any catalogue pixel (hard gate)",
+    "spacing_lock": "every receiver >= 2.8 px from every surviving parent dot and from every other receiver; this is the parent's own invariant and it is what distinguishes this family from the ledgered R0 CONCENTRATION arms, whose receivers were welded 1.04 px to their host dots and therefore only duplicated existing dots instead of covering new ground",
+    "determinism": "no RNG anywhere; every ordering terminates in (row, col)"
+  },
+  "arms": [
+    {
+      "value": "phys10-m10",
+      "move_frac": 0.10,
+      "n_moved": 3765,
+      "destination": "high-prior 1 km blocks (empty high-prior blocks first, then occupied), pixels ordered by local prior descending",
+      "predicted_change": "+0.005",
+      "predicted_range": "[-0.008,+0.018]",
+      "role": "primary dose"
+    },
+    {
+      "value": "phys10-m20",
+      "move_frac": 0.20,
+      "n_moved": 7531,
+      "destination": "identical rule to phys10-m10 at double dose",
+      "predicted_change": "+0.009",
+      "predicted_range": "[-0.012,+0.030]",
+      "role": "dose arbitration; monotone in dose iff the km-scale prior carries information"
+    },
+    {
+      "value": "phys10-m10lo",
+      "move_frac": 0.10,
+      "n_moved": 3765,
+      "destination": "LOWEST-prior 1 km blocks (mirror image), same donor set as phys10-m10, same spacing lock",
+      "predicted_change": "-0.005",
+      "predicted_range": "[-0.018,+0.008]",
+      "role": "mirror control: holds support-widening and displacement magnitude constant while flipping the prior, so (phys10-m10 - phys10-m10lo) is the pure prior effect"
+    }
+  ],
+  "mechanism": {
+    "hypothesis": "At 1 km scale the provided TMI/gravity gradient fields rank where new fault fabric is dense. Because the parent dot set is already near-maximally packed on its own 121,131-px H19-5 support (37,654 dots mutually >= 2.8 px apart), any increase in covered fault length must come from mass leaving that support. Moving 10-20% of the dots from the coldest to the hottest 1 km blocks therefore converts within-strand redundancy into block-scale coverage where the potential-field prior says traces are likely.",
+    "algebra": "DTI = T / (0.2T + 0.2(S-M) + 0.8|G|) with |G| fixed at 37,654 by construction, so the whole bet reduces to whether the relocated mass earns more triangular-kernel credit T than the mass it replaces. A dot placed in an empty block with no truth nearby earns T = 0 and costs 0.2*DTI in the denominator; a dot that lands on an unmapped trace earns 0.5-1.0 and pays roughly 10-18x.",
+    "non_fault_mimic": "Lake Lahontan shoreline benches (~1212/1294/1334 m) and GeoDAWN 400 m flight-line corrugation produce TMI/gravity-gradient edges that are not faults; both are kilometer-scale and would be concentrated by the same rule. Hot springs and Quaternary vent clusters also raise the prior without being fault pixels.",
+    "confounders": "(1) Support widening - mass necessarily leaves H19-5 support, so the treatment mixes 'km-scale prior' with 'off-support placement'. The mirror arm phys10-m10lo holds the widening fixed and flips only the prior, so the pair isolates the prior. (2) The parent-field instrument w is defined on H19-5 support and scores off-support dots near zero credit (IR-88-38, AUC 0.47), so a negative w-DTI is expected by construction and is recorded as a diagnostic, not as evidence. (3) Block prior is a mean over a 1 km block; a single strong edge can lift a block whose actual fault content is small.",
+    "falsifier": "phys10-m20 <= phys10-m10 and |phys10-m10 - phys10-m10lo| < 0.003 on the blind control, or a live receipt with |delta| < 0.01 for all three arms (no evidence at this slot count): if either fires, the km-scale potential-field prior carries no usable order information and CONCENTRATION is closed on both parents."
+  },
+  "decision_rules": {
+    "if_all_live_abs_delta_lt_0p01": "No evidence (brief section 5). Do not build further CONCENTRATION doses; carry the block-prior ordering as a prior for the SUPPORT axis proposal only.",
+    "if_monotone_positive_and_mirror_negative": "The km-scale prior is real; escalate to a block-prior-weighted SUPPORT arm in a separate session, not to a bigger dose here.",
+    "if_mirror_wins": "The prior is anti-correlated with new-fault density; close CONCENTRATION and record the sign for SUPPORT."
+  },
+  "instruments": {
+    "primary": "blind off-catalogue USGS SGMC DTI (PROXY) via bp.evaluate_report_only_instruments; the preregistration orders arms by this instrument because the parent-field w has measured AUC 0.47 on SGMC-credited dots (IR-88-38) and is structurally blind to off-support placement",
+    "secondary_report_only": "w-weighted expected DTI (MODEL), catalogue hide-and-recover (degenerate for >3 px files, IR-88-20), block-density CV ladder, mean nearest-neighbour distance",
+    "never": "no gate is formed from any proxy; brief section 6 gates are format, zero catalogue mass, 3 px collar, unique sha256, parent-diff statistics and disk re-read"
+  },
+  "external_facts_used": [
+    {"claim": "Metric, format and raster spec (supplied by the human brief; page not fetched by the agent)", "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"},
+    {"claim": "Organizer: known USGS/INGENIOUS pixels are masked pixel-exactly; new-fault truth may lie within 300 m of known traces (supplied by the human brief; page not fetched)", "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516"},
+    {"claim": "GeoDAWN Area 2 flown at 400 m line spacing, 150-200 m above terrain, so lineament position is uncertain at about the kernel radius (supplied by the human brief; page not fetched)", "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7"},
+    {"claim": "USGS SGMC source of the off-catalogue blind control (manifest source_url)", "url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d"}
+  ]
+}
