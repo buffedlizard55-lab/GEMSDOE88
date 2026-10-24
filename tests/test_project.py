@@ -32,14 +32,18 @@ def test_real_card_stays_blocked():
     assert not result["approved_for_weekly_slot"]
     assert not result["ok_to_submit"]
     assert result["ok_to_download_for_research"]
-    # The current feed must follow latest KTH-88, not a historical MRR/fabric run.
-    assert result["problems"] and any(p.split(":")[0] in {"HOLDOUT", "UNIQUENESS", "FORMAT"} for p in result["problems"])
-    assert result["policy"] == "binding-literal-all-registry-v1"
+    # The current feed follows MRR-COH-88, not an archived KTH/MRR/fabric run.
+    assert result["problems"] == [
+        "HOLDOUT: candidate point estimate does not exceed the stored incumbent"
+    ]
+    assert result["policy"] == "mrrcoh88-expanded-registry-v1"
     current = json.loads((ROOT / "docs/data/current_release.json").read_text())
-    card = json.loads((ROOT / "registry/kth88_run_card.json").read_text())
-    assert result["raster_sha256"] == current["file_sha256"] == card["raster_sha256"]
-    assert current["file"] == card["download"]
-    assert current["ok_to_submit"] is False and current["duplicate"] is True
+    card = json.loads((ROOT / "registry/mrrcoh88_run_card.json").read_text())
+    assert result["raster_sha256"] == current["raster_sha256"] == card["raster_sha256"]
+    assert current["artifact"] == card["artifact"]
+    assert current["ok_to_submit"] is False
+    assert current["unique"] is True and current["duplicate"] is False
+    assert current["holdout_dti"] < current["incumbent_best_dti"]
 
 
 def eligible_record(tmp_path):

@@ -1,11 +1,14 @@
-"""Audit local site links and forbid unlabeled research TIFF/ZIP downloads.
+#!/usr/bin/env python3
+"""Audit local Pages links and bind visible status to the current run card.
 
-This is a site guard, not the scientific/format gate; validate_kth88.py audits
-the current research artifact, while legacy validators remain historical. A blocked experiment may still
-publish a clearly marked research-only file for independent audit.
+This is a fail-closed presentation check. It does not turn a format-valid file
+into a weekly-slot decision and does not contact DrivenData.
 """
-from html.parser import HTMLParser
+from __future__ import annotations
+
+import hashlib
 import json
+from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
@@ -15,108 +18,94 @@ ROOT = Path(__file__).resolve().parents[1]
 class Links(HTMLParser):
     def __init__(self):
         super().__init__()
-        self.links = []
+        self.links: list[str] = []
 
     def handle_starttag(self, tag, attrs):
-        self.links.extend(value for key, value in attrs if key in ('href', 'src') and value)
+        self.links.extend(value for key, value in attrs if key in ("href", "src") and value)
+
+
+def digest(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def main(root=ROOT):
-    import hashlib as _hl
-    # Keep the merged historical MRR record negative, but make the public feed
-    # follow the actual latest experiment (KTH-88), not that older run card.
-    historical = json.loads((root / 'registry/run_card.json').read_text())
-    assert historical['verdict'] == 'negative' and historical['ok_to_submit'] is False
-    assert len(historical['submission_note']) <= 140
-    kth = json.loads((root / 'registry/kth88_run_card.json').read_text())
-    validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
-    current = json.loads((root / 'docs/data/current_release.json').read_text())
-    assert current['file'] == kth['download']
-    assert current['file_sha256'] == kth['raster_sha256'] == validation['tif_sha256']
-    assert current['zip_sha256'] == validation['zip_sha256']
-    assert current['research_download_ok'] is True
-    assert current['ok_to_submit'] is False and current['duplicate'] is True
-    assert current['holdout_evaluator'] == kth['holdout_dti']['evaluator_version']
-    assert current['withheld_positive_pixels'] == kth['holdout_dti']['withheld_positive_pixels']
-    assert current['holdout_dti'] == kth['holdout_dti']['dti']
-    assert current['holdout_ci95'] == kth['holdout_dti']['ci95']
-    assert current['literal_registry_overlap_3px'] == kth['correlation_overlap_vs_registry']['final_overlap_3px']
-    canonical_tif = root / kth['download']
-    canonical_zip = canonical_tif.with_suffix('.zip')
-    assert canonical_tif.is_file() and canonical_zip.is_file()
-    assert _hl.sha256(canonical_tif.read_bytes()).hexdigest() == kth['raster_sha256']
-    assert _hl.sha256(canonical_zip.read_bytes()).hexdigest() == current['zip_sha256']
-    # Rasters whose own machine gate record clears them for submission (and which must
-    # therefore NOT be renamed to DO-NOT-SUBMIT). Collected from every gate record.
+    root = Path(root)
+    card = json.loads((root / "registry/mrrcoh88_run_card.json").read_text())
+    web_card = json.loads((root / "docs/data/mrrcoh88_run_card.json").read_text())
+    current = json.loads((root / "docs/data/current_release.json").read_text())
+    status = json.loads((root / "docs/status.json").read_text())
+    evidence = json.loads((root / "evidence/mrrcoh88_final_uniqueness.json").read_text())
+
+    assert card == web_card
+    assert card["lane"] == "MRR-COH-88" and card["verdict"] == "negative"
+    assert card["ok_to_download"] is True and card["ok_to_submit"] is False
+    assert card["organizer_confirmed"] is None and card["weekly_slots_used"] == 0
+    assert len(card["submission_note"]) <= 140
+    tif = (root / card["artifact"]).resolve()
+    archive = (root / card["zip_artifact"]).resolve()
+    downloads = (root / "docs/downloads").resolve()
+    assert tif.is_relative_to(downloads) and archive.is_relative_to(downloads)
+    assert tif.name.endswith("DO-NOT-SUBMIT.tif")
+    assert tif.is_file() and archive.is_file()
+    assert digest(tif) == card["raster_sha256"] == current["raster_sha256"]
+    assert digest(archive) == card["zip_sha256"] == current["zip_sha256"]
+    assert current["artifact"] == card["artifact"]
+    assert current["candidate_id"] == "MRR-COH-88"
+    assert current["unique"] is True and current["duplicate"] is False
+    assert current["format_valid"] is True and current["research_download_ok"] is True
+    assert current["ok_to_submit"] is False and current["verdict"] == "negative"
+    assert current["holdout_dti"] < current["incumbent_best_dti"]
+    assert evidence["candidate_sha256"] == card["raster_sha256"] and evidence["unique"] is True
+    assert status["status"] == "BLOCKED" and status["ok_to_submit"] is False
+    assert status["raster_sha256"] == card["raster_sha256"]
+
+    # A non-DO-NOT-SUBMIT download may only be linked if one machine gate record
+    # explicitly clears that exact filename. The current negative is never added.
     cleared_names = set()
-    for rec in sorted((root / 'registry').glob('*gate*.json')):
+    for record in sorted((root / "registry").glob("*gate*.json")):
         try:
-            data = json.loads(rec.read_text())
+            data = json.loads(record.read_text())
         except (ValueError, OSError):
             continue
-        tif_name = Path((data.get('candidate') or {}).get('tif', '')).name
-        if data.get('ok_to_submit') and tif_name:
-            cleared_names.add(tif_name)
-            cleared_names.add(tif_name[:-4] + '.zip')
-    # Archived LBCAL candidate: retain its independent file-integrity and safety checks.
-    lb = json.loads((root / 'registry' / 'lbcal_run_card.json').read_text())
-    lb_tif = root / lb['raster']['file']
-    assert lb_tif.is_file() and _hl.sha256(lb_tif.read_bytes()).hexdigest() == lb['raster']['sha256']
-    assert len(lb['raster']['note']) <= 140 and lb['format_ok'] is True and lb['ok_to_download'] is True
-    assert lb['ok_to_submit'] is True or 'DO-NOT-SUBMIT' in lb_tif.name, 'held LBCAL file must be named DO-NOT-SUBMIT'
-    assert json.loads((root / 'docs' / 'data' / 'lbcal_run_card.json').read_text())['raster']['sha256'] == lb['raster']['sha256']
-    # Latest experiment must be present on both landing/guide pages and stay
-    # blocked even if a historical gate record elsewhere says "promote".
-    kth = json.loads((root / 'registry/kth88_run_card.json').read_text())
-    kth_tif = root / kth['download']
-    kth_validation = json.loads((root / 'docs/data/kth88_validation.json').read_text())
-    assert kth['verdict'] == 'negative' and kth['ok_to_submit'] is False
-    assert kth['correlation_overlap_vs_registry']['final_overlap_3px'] > .70
-    assert kth_tif.is_file() and kth_tif.name.endswith('DO-NOT-SUBMIT.tif')
-    assert _hl.sha256(kth_tif.read_bytes()).hexdigest() == kth['raster_sha256']
-    assert kth_validation['tif_sha256'] == kth['raster_sha256']
-    assert kth_validation['local_format_audit']['ok'] and not kth_validation['ok_to_submit']
-    assert len(kth['submission_note']) <= 140
-    for page in ('index.html', 'executive-summary.html'):
-        body = (root / 'docs' / page).read_text()
-        assert kth_tif.name in body and 'DO NOT SUBMIT' in body, page
-    pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
+        candidate = data.get("candidate") or {}
+        name = Path(candidate.get("tif", "")).name
+        if data.get("ok_to_submit") is True and name:
+            cleared_names.update({name, name[:-4] + ".zip"})
+
+    pages = [root / "index.html", *sorted((root / "docs").glob("*.html"))]
     assert len(pages) >= 5
     for page in pages:
-        text = page.read_text()
-        if page.name in ('index.html', 'executive-summary.html'):
-            assert 'DO NOT SUBMIT' in text, f'Missing safety banner: {page}'
+        text = page.read_text(encoding="utf-8")
+        if page.parent == root / "docs":
+            upper = text.upper()
+            assert "DO NOT SUBMIT" in upper, f"missing safety status: {page.name}"
+            assert "OK TO SUBMIT: YES" not in upper, f"contradictory submit clearance: {page.name}"
+            assert "SAFE TO SUBMIT: YES" not in upper, f"contradictory safety claim: {page.name}"
+            assert "EXECUTIVE-SUMMARY.HTML" in upper, f"missing guide nav: {page.name}"
         parser = Links()
         parser.feed(text)
         for link in parser.links:
-            u = urlsplit(link)
-            if u.scheme or u.netloc or not u.path:
+            parsed = urlsplit(link)
+            if parsed.scheme or parsed.netloc or not parsed.path:
                 continue
-            path = (page.parent / unquote(u.path)).resolve()
-            assert path.is_relative_to(root), f'Escaping link: {link}'
-            assert path.is_file(), f'Broken link: {page.name}: {link}'
-            if path.suffix.lower() in ('.tif', '.tiff', '.zip'):
-                assert path.is_relative_to(root / 'docs/downloads'), link
-                # IR-88-71 marks withdrawn research files in the FILENAME. A file whose own
-                # machine gate says ok_to_submit is not withdrawn and must not be forced to
-                # claim otherwise, so it is cleared by its gate record instead (IR-88-76).
-                if 'DO-NOT-SUBMIT' not in path.name:
-                    assert path.name in cleared_names, f'Unmarked research download: {link}'
-    # Bind the canonical current feed and visible guidance to latest KTH-88 bytes.
-    current = json.loads((root / 'docs/data/current_release.json').read_text())
-    assert current['file'] == kth['download']
-    assert current['file_sha256'] == kth['raster_sha256']
-    assert current['zip_sha256'] == kth_validation['zip_sha256']
-    assert current['ok_to_submit'] is False and current['duplicate'] is True
-    for page in (root / 'docs/index.html', root / 'docs/executive-summary.html'):
-        text = (root / page).read_text()
-        assert kth_tif.name in text, f'Current artifact not identified on {page.name}'
+            path = (page.parent / unquote(parsed.path)).resolve()
+            assert path.is_relative_to(root), f"escaping link: {page.name}: {link}"
+            assert path.is_file(), f"broken link: {page.name}: {link}"
+            if path.suffix.lower() in (".tif", ".tiff", ".zip"):
+                assert path.is_relative_to(downloads), link
+                if "DO-NOT-SUBMIT" not in path.name:
+                    assert path.name in cleared_names, f"unmarked research download: {link}"
+
+    for page_name in ("index.html", "executive-summary.html"):
+        text = (root / "docs" / page_name).read_text(encoding="utf-8")
         upper = text.upper()
-        assert 'DO NOT SUBMIT' in upper and (
-            'DOWNLOAD: YES' in upper or 'DOWNLOAD FOR RESEARCH: YES' in upper
-        ), page
-    print('PASS: current run card, current release hashes, site links, and explicit negative decision agree')
+        assert tif.name in text
+        assert "DOWNLOAD FOR RESEARCH: YES" in upper
+        assert "OK TO SUBMIT: NO" in upper or "DO NOT SUBMIT" in upper
+        assert card["submission_name"] in text and card["submission_note"] in text
+        assert "MAG-PSG" not in text and "KTH-88" not in text
+    print("PASS: current MRR-COH bytes, evidence, site links, and negative decision agree")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

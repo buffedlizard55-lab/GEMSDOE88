@@ -133,8 +133,10 @@ def test_run_card_four_way_parity_and_audit_invariants():
     # validator, while the four-way MRR card remains immutable history.
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
     current_doc = json.loads((ROOT / "docs/data/current_release.json").read_text())
-    assert status_doc["raster_sha256"] == current_doc["file_sha256"]
+    assert status_doc["raster_sha256"] == current_doc["raster_sha256"]
     assert status_doc["raster_sha256"] != card["raster_sha256"]
+    assert current_doc["candidate_id"] == "MRR-COH-88"
+    assert current_doc["unique"] is True
     assert status_doc["ok_to_submit"] is False
     assert status_doc["ok_to_download_for_research"] is True
 

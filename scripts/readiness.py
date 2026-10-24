@@ -9,9 +9,12 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 
 def finite(x):
@@ -101,25 +104,26 @@ def current_status(root=ROOT):
     # Derive the site's current status from the same canonical artifact and
     # fail-closed gate used by validate_current.py. `validate_release.py` is a
     # historical MRR-BPR audit and must not silently become the live feed.
-    from validate_current import release_report
+    from scripts.validate_current import release_report
 
     report = release_report(root)
     problems = []
-    if report['holdout_dti'] < report['incumbent_best_dti']:
-        problems.append('HOLDOUT: candidate point estimate is below the stored incumbent')
-    if report['duplicate'] or report['literal_registry_overlap_3px'] > 0.70:
-        problems.append('UNIQUENESS: literal registry overlap exceeds 0.70')
+    if report['holdout_dti'] <= report['incumbent_best_dti']:
+        problems.append('HOLDOUT: candidate point estimate does not exceed the stored incumbent')
+    if (not report['unique'] or report['literal_dot_field_overlap_3px'] > 0.70
+            or report['max_excess_overlap_3px'] > 0.70):
+        problems.append('UNIQUENESS: binding expanded-registry threshold failed')
     if not report['format_valid']:
         problems.append('FORMAT: saved-byte validation failed')
     return {
         'evidence_schema_complete': bool(report['format_valid']),
-        'approved_for_weekly_slot': False,
+        'approved_for_weekly_slot': bool(report['ok_to_submit']),
         'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
         'problems': problems,
         'ok_to_download_for_research': bool(report['research_download_ok']),
-        'ok_to_submit': False,  # selector has never approved a weekly slot
-        'raster_sha256': report['file_sha256'],
-        'policy': 'binding-literal-all-registry-v1',
+        'ok_to_submit': bool(report['ok_to_submit']),
+        'raster_sha256': report['raster_sha256'],
+        'policy': 'mrrcoh88-expanded-registry-v1',
     }
 
 

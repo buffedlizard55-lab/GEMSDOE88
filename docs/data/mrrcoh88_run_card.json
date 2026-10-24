@@ -1,0 +1,276 @@
+{
+  "schema": "gems88.mrrcoh88-run-card.v1",
+  "generated_utc": "2026-10-24T18:37:16Z",
+  "base_git_sha_at_generation": "ba86b2c64a17778d32f4da44608fe18d1bbb4b84",
+  "hypothesis": "a narrow, strike-persistent demagnetized damage corridor can survive beneath volcanic or alluvial cover after its surface scarp is erased and therefore may be absent from the USGS/INGENIOUS trace catalogue",
+  "mechanism": "remove the local 10 km affine tmi_vg relation to broad tmi and mag_anom; measure the negative residual trough, 200-600 m structure-tensor axial coherence and cross-scale persistence; suppress corridors dominated by raw horizontal-gradient amplitude",
+  "named_non_fault_process": "linear Tertiary dikes, reversely magnetized basalt-flow margins, and aeromagnetic flight-line leveling seams",
+  "lane": "MRR-COH-88",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.07700054836678413,
+    "ci95": [
+      0.06912859279856377,
+      0.08486632625722651
+    ],
+    "withheld_positive_pixels": 22893,
+    "tpw": 4112.737082610786,
+    "fpw": 171374.2105381379,
+    "fnw": 18780.262917389213,
+    "stored_same_split_best": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.18788764184958875,
+      "ci95": [
+        0.17169764852656258,
+        0.20326012211176936
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6241.143086000586,
+      "fpw": 68273.96686338239,
+      "fnw": 16651.856913999403
+    },
+    "candidate_exceeds_stored_best": false,
+    "paired_difference": null,
+    "paired_difference_reason": "Stored incumbent block terms are absent. A point-estimate win would require recomputation before promotion."
+  },
+  "correlation_overlap_vs_registry": {
+    "registry_rasters_checked": 224,
+    "preplacement_max_abs_spearman": 0.18358174289995974,
+    "final_max_abs_spearman": 0.016958593614022313,
+    "final_max_literal_forward_overlap_all": 1.0,
+    "final_max_literal_forward_overlap_dot_fields": 0.45873578393903597,
+    "final_max_excess_overlap": 0.130156953612495,
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7,
+    "unique": true,
+    "evidence": "evidence/mrrcoh88_final_uniqueness.json"
+  },
+  "raster_sha256": "98d8ecc539af4d1743b480c9fe1fc9165488076ba61fa82be4ee9fa2ccea0e24",
+  "zip_sha256": "37959f896f95511a66241b0fe0a34c854bed203426be021bcd4624f0b7c02d7e",
+  "validator_output": {
+    "no_nan_inside_footprint": true,
+    "all_finite_entire_raster": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "single_band_float32": true,
+    "zip_contains_exactly_one_matching_tiff": true,
+    "all_checks_passed": true,
+    "format_audit": "docs/downloads/gems88-mrrcoh-persistent-demag-oof-20261024-43173dots-5fe6cdd8982f-DO-NOT-SUBMIT.format-audit.json"
+  },
+  "submission_name": "GEMSDOE88-MRRCOH-5FE6CDD8982F",
+  "submission_note": "MRR coherence OOF, 43173 dots; HOLDOUT-DTI 0.0770; UNSCORED; DO NOT SUBMIT",
+  "submission_note_chars": 74,
+  "artifact": "docs/downloads/gems88-mrrcoh-persistent-demag-oof-20261024-43173dots-5fe6cdd8982f-DO-NOT-SUBMIT.tif",
+  "zip_artifact": "docs/downloads/gems88-mrrcoh-persistent-demag-oof-20261024-43173dots-5fe6cdd8982f-DO-NOT-SUBMIT.zip",
+  "positive_pixels": 43173,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "organizer_confirmed": null,
+  "weekly_slots_used": 0,
+  "verdict": "negative",
+  "blockers": [
+    "HOLDOUT: candidate did not exceed the same-split stored best"
+  ],
+  "experiment_count": 1,
+  "experiment_cap": 3,
+  "wall_seconds": 695.163075272,
+  "wall_cap_seconds": 7200,
+  "input_provenance": {
+    "sample_submission_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "mrr_metadata": {
+      "schema": "gems88.mrr-bpr-features.v1",
+      "source_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "shape": [
+        5167373,
+        4
+      ],
+      "features": [
+        "mrr_vg_block_residual",
+        "mrr_demag_trough_hessian_s2",
+        "mrr_demag_depth_weighted",
+        "mrr_rtp_residual_crossgradient"
+      ],
+      "block_side_px": 100,
+      "ridge_lambda": 0.05,
+      "coefficient_smoothing_sigma_blocks": 0.75,
+      "verified_band_tags": {
+        "1": "mag_anom",
+        "2": "rtp",
+        "9": "tmi_vg",
+        "14": "tmi",
+        "15": "depth_to_base_surf"
+      },
+      "derived": {
+        "block_side_px": 100,
+        "block_side_m": 10000,
+        "ridge_lambda": 0.05,
+        "coefficient_smoothing_sigma_blocks": 0.75,
+        "populated_blocks": 571,
+        "total_blocks": 1254,
+        "block_valid_count_min": 260,
+        "block_valid_count_median": 10000.0,
+        "normalization": {
+          "mag_anom": {
+            "q01": -288.53880004882814,
+            "median": -57.658660888671875,
+            "q99": 311.8615466308597,
+            "scale": 129.04342568394432
+          },
+          "rtp": {
+            "q01": -458.7178588867188,
+            "median": -137.2845916748047,
+            "q99": 394.57220458984375,
+            "scale": 183.3967510212484
+          },
+          "tmi_vg": {
+            "q01": -0.6880431175231934,
+            "median": -0.008959611877799034,
+            "q99": 0.7850092053413391,
+            "scale": 0.3166016125829158
+          },
+          "tmi": {
+            "q01": -427.6448059082031,
+            "median": -124.77388763427734,
+            "q99": 354.0188903808594,
+            "scale": 168.0021699849684
+          },
+          "residual": {
+            "q01": -1.1511325645446777,
+            "median": -0.0003769099712371826,
+            "q99": 1.1113690471649194,
+            "scale": 0.48627713192546196
+          },
+          "trough": {
+            "q01": 0.0,
+            "median": 0.02244699001312256,
+            "q99": 0.8481804800033581,
+            "scale": 0.18229855352878072
+          },
+          "depth_weighted": {
+            "q01": 0.0,
+            "median": 0.0,
+            "q99": 2.5326494407653812,
+            "scale": 0.5443397254852841
+          },
+          "crossgradient": {
+            "q01": 0.0,
+            "median": 0.0011610660003498197,
+            "q99": 0.23741698741913003,
+            "scale": 0.05102778761130742
+          }
+        },
+        "coefficient_summary": {
+          "beta_0": {
+            "min": -0.20182062685489655,
+            "median": 0.0033984037581831217,
+            "max": 0.27732932567596436
+          },
+          "beta_1": {
+            "min": 0.5599352717399597,
+            "median": 1.1145482063293457,
+            "max": 1.4844413995742798
+          },
+          "beta_2": {
+            "min": -1.1210308074951172,
+            "median": -0.6720736026763916,
+            "max": -0.15449081361293793
+          }
+        }
+      }
+    },
+    "mrr_coherence_metadata": {
+      "schema": "gems88.mrr-coh-features.v1",
+      "source_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "shape": [
+        5167373,
+        4
+      ],
+      "features": [
+        "mrr_residual_axial_coherence_600m",
+        "mrr_residual_axial_persistence_200_600m",
+        "mrr_coherent_demag_trough",
+        "mrr_persistent_corridor_low_hg"
+      ],
+      "base_features": [
+        "mrr_vg_block_residual",
+        "mrr_demag_trough_hessian_s2",
+        "mrr_demag_depth_weighted",
+        "mrr_rtp_residual_crossgradient"
+      ],
+      "parameters": {
+        "fine_source_sigma_px": 2.0,
+        "fine_tensor_sigma_px": 6.0,
+        "coarse_source_sigma_px": 6.0,
+        "coarse_tensor_sigma_px": 12.0
+      },
+      "verified_band_tags": {
+        "3": "tmi_hg"
+      },
+      "tmi_hg_cleaning": {
+        "valid": 5164312,
+        "invalid_inside": 3061,
+        "clip01": 0.6557216715812683,
+        "median": 13.15152359008789,
+        "clip99": 188.49368499755846
+      },
+      "derived": {
+        "fine_source_sigma_px": 2.0,
+        "fine_tensor_sigma_px": 6.0,
+        "coarse_source_sigma_px": 6.0,
+        "coarse_tensor_sigma_px": 12.0,
+        "pixel_size_m": 100,
+        "tmi_hg_log_p95": 4.552001476287842,
+        "feature_summaries": {
+          "mrr_residual_axial_coherence_600m": {
+            "min": 0.00012280161899980158,
+            "median": 0.41348588466644287,
+            "p95": 0.7809868454933167,
+            "max": 0.9898964166641235
+          },
+          "mrr_residual_axial_persistence_200_600m": {
+            "min": 0.0,
+            "median": 0.28101569414138794,
+            "p95": 0.7124238014221191,
+            "max": 0.9668412804603577
+          },
+          "mrr_coherent_demag_trough": {
+            "min": 0.0,
+            "median": 0.0,
+            "p95": 0.9342729449272156,
+            "max": 5.77664041519165
+          },
+          "mrr_persistent_corridor_low_hg": {
+            "min": 0.0,
+            "median": 0.0,
+            "p95": 0.3212050497531891,
+            "max": 6.284520149230957
+          }
+        }
+      },
+      "cache_sha256": "a15b7f2d24128586bfa4d1c68e9c19690194e57d9a54391abdc1abbec6018afa"
+    },
+    "new_external_data": []
+  },
+  "production": {
+    "n_dots": 43173,
+    "k_truth_est": 14456.571038614678,
+    "hidden_visible_ratio": 0.23703959858684787,
+    "surrogate_dti": 0.0735455449925149,
+    "dinkelbach_rounds": 4,
+    "catalogue_clearance_px_strictly_greater_than": 3.0,
+    "min_spacing_px": 2.05,
+    "production_prediction": "strict four-quadrant out-of-fold",
+    "median_d_cat_px": 27.018512725830078,
+    "frac_gt_10px": 0.8289671785606745,
+    "frac_gt_25px": 0.5319528408959303
+  },
+  "limitations": [
+    "Hide-and-recover catalogue labels are a proxy, not undisclosed organizer truth.",
+    "Owner-mirrored competition bytes are hash-pinned but not organizer-authenticated in this environment.",
+    "The public registry cannot include private, unlinked, or inaccessible submissions.",
+    "No DrivenData portal upload or organizer acceptance receipt was created."
+  ]
+}

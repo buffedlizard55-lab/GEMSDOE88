@@ -1,0 +1,150 @@
+{
+  "schema": "gems88.mrrcoh88-preregistration.v1",
+  "frozen_utc": "2026-10-24T12:00:00Z",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "prompt_lane_ambiguity": "The supplied request says the lane is in a method paragraph below, but no method paragraph is present. This autonomous ranking selects exactly one new lane and records the ambiguity rather than inventing a user-specified lane.",
+  "lane": "MRR-COH-88",
+  "lane_title": "Persistent curvilinear coherence of locally detrended magnetic-demagnetization corridors",
+  "ranking": [
+    {
+      "rank": 1,
+      "id": "MRR-COH-88",
+      "selected": true,
+      "expected_dti_improvement": "small-to-medium qualitative potential; MRR-BPR was close to the same-split incumbent and axial persistence may suppress point/circular magnetic mimics",
+      "implementation_cost": "medium: five provided bands, eight label-blind channels, one eight-fold CPU experiment",
+      "layers": [
+        "competition band 1 mag_anom",
+        "competition band 2 rtp",
+        "competition band 3 tmi_hg",
+        "competition band 9 tmi_vg",
+        "competition band 14 tmi",
+        "competition band 15 depth_to_base_surf"
+      ],
+      "physical_signature": "remove the local 10 km affine tmi_vg relation to broad tmi and mag_anom; measure the negative residual trough, 200-600 m structure-tensor axial coherence and cross-scale persistence; suppress corridors dominated by raw horizontal-gradient amplitude",
+      "off_catalogue_rationale": "a narrow, strike-persistent demagnetized damage corridor can survive beneath volcanic or alluvial cover after its surface scarp is erased and therefore may be absent from the USGS/INGENIOUS trace catalogue",
+      "named_non_fault_mimic": "linear Tertiary dikes, reversely magnetized basalt-flow margins, and aeromagnetic flight-line leveling seams",
+      "difference_from_repo": "MRR-BPR implemented local residual amplitude/trough/depth/cross-gradient only; STR-88 and fabric-dislocation used orientation on raw fields. No completed experiment applies multi-scale axial persistence and dike-amplitude suppression to the MRR residual itself. This experiment uses only the eight MRR/MRR-COH channels, not ADHR catalogue-anatomy features.",
+      "external_data": "none"
+    },
+    {
+      "rank": 2,
+      "id": "RTP-GRAV-ADMITTANCE-88",
+      "selected": false,
+      "expected_dti_improvement": "medium but less certain than rank 1 because lithologic contacts dominate potential-field ratios",
+      "implementation_cost": "medium",
+      "layers": ["competition band 2 rtp", "band 13 iso_grav_anom", "band 15 depth_to_base_surf", "band 18 iso_grav_anom_hg"],
+      "physical_signature": "spatial jump in robust local magnetic-to-gravity gradient admittance and phase from 300 m to 1.2 km, conditioned on basin depth",
+      "off_catalogue_rationale": "concealed basement offsets can perturb both fields without a mapped surface trace",
+      "named_non_fault_mimic": "unfaulted intrusive or volcanic-lithologic contact",
+      "difference_from_repo": "existing co-edge features use gradient magnitude/alignment, not a spatially varying cross-scale admittance discontinuity",
+      "external_data": "none"
+    },
+    {
+      "rank": 3,
+      "id": "STRAIN-SEISMIC-AXIAL-RIDGE-88",
+      "selected": false,
+      "expected_dti_improvement": "small qualitative potential",
+      "implementation_cost": "low-to-medium",
+      "layers": ["competition bands 4, 7 and 8 geodetic strain summaries", "bands 10 and 16 earthquake-density summaries"],
+      "physical_signature": "anisotropic seismic-density ridges retained only where their strike is compatible with the local extensional strain tensor",
+      "off_catalogue_rationale": "actively slipping blind faults may organize diffuse microseismicity and strain before producing a preserved scarp",
+      "named_non_fault_mimic": "induced seismicity cluster or a spatial-smoothing boundary in the supplied density fields",
+      "difference_from_repo": "the repo uses raw strain/seismic covariates but has no completed strain-resolved axial seismic-ridge transform",
+      "external_data": "none"
+    },
+    {
+      "rank": 4,
+      "id": "CHI-DIVIDE-ANTISYMMETRY-88",
+      "selected": false,
+      "expected_dti_improvement": "unknown",
+      "implementation_cost": "high because raw drainage/divide reconstruction is required",
+      "layers": ["USGS 3DEP 10 m DEM", "D8 drainage chi and ksn", "drainage-divide geometry"],
+      "physical_signature": "paired cross-divide chi sign reversal and aligned knickpoint trains rather than a one-sided chi maximum",
+      "off_catalogue_rationale": "buried range-front motion can reorganize catchments beyond the mapped scarp",
+      "named_non_fault_mimic": "lithologic knickzone or regional base-level fall",
+      "difference_from_repo": "existing chi features are local maxima/wavefronts and do not pair opposite catchments across a divide",
+      "external_data": "specific free official source: USGS 3DEP, https://www.usgs.gov/3d-elevation-program ; the owner-mirrored derivative is present, but exact raw AOI tile bytes and the divide-construction receipt are not authenticated here, so this is not currently viable"
+    },
+    {
+      "rank": 5,
+      "id": "RADIOMETRIC-ILR-ALTERATION-88",
+      "selected": false,
+      "expected_dti_improvement": "unknown and downgraded after the KTH proxy failure",
+      "implementation_cost": "low compute, blocked data-calibration work",
+      "layers": ["official USGS GeoDAWN calibrated K, U, Th grids"],
+      "physical_signature": "regional-detrended isometric log-ratio curvature and U-Th versus K-Th compositional discordance on strike-persistent ridges",
+      "off_catalogue_rationale": "fluid-rock alteration can persist where geomorphic fault evidence is absent",
+      "named_non_fault_mimic": "unfaulted felsic pluton, soil-moisture contrast, or atmospheric-radon/leveling residual",
+      "difference_from_repo": "uses a calibrated three-part compositional transform rather than separately quantized u8 ratios or raw counts",
+      "external_data": "specific free official source: USGS GeoDAWN DOI 10.5066/P93LGLVQ, https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and ; official raw scale/offset bytes are not obtainable on the current host allow-list, so this is not currently viable"
+    }
+  ],
+  "selected_hypothesis": "MRR-COH-88",
+  "experiment_budget": {
+    "planned": 1,
+    "maximum": 3,
+    "wall_clock_max_seconds": 7200
+  },
+  "feature_contract": {
+    "features": [
+      "mrr_vg_block_residual",
+      "mrr_demag_trough_hessian_s2",
+      "mrr_demag_depth_weighted",
+      "mrr_rtp_residual_crossgradient",
+      "mrr_residual_axial_coherence_600m",
+      "mrr_residual_axial_persistence_200_600m",
+      "mrr_coherent_demag_trough",
+      "mrr_persistent_corridor_low_hg"
+    ],
+    "catalogue_features_used": false,
+    "external_data_used": false,
+    "classifier": "dual expectation HistGradientBoosting, physics-only",
+    "production_inference": "strict four-quadrant OOF predictions: each pixel is predicted by a model trained outside its quadrant"
+  },
+  "holdout_contract": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seeds": [20, 21],
+    "whole_components": true,
+    "feature_context_buffer_px": 3,
+    "pixel_exact_visible_fault_mask": true,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300,
+    "block_bootstrap_m": 20000,
+    "bootstrap_draws": 1000,
+    "promotion_bar": {
+      "id": "H88-ADHR",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.18788764184958875,
+      "ci95": [0.17169764852656258, 0.20326012211176936],
+      "withheld_positive_pixels": 22893
+    },
+    "promotion_rule": "candidate must exceed the same-split stored holdout best and pass all canary, two-phase uniqueness, and format gates; if it exceeds only by point estimate, recompute paired incumbent terms before promotion"
+  },
+  "gates": {
+    "single_feature_symmetric_auc_max": 0.9,
+    "surface_abs_spearman_max": 0.9,
+    "final_dot_excess_overlap_3px_max": 0.7,
+    "final_dot_literal_overlap_reported_for_every_prior": true,
+    "shared_uniqueness_repair": "vendor/gems57/uniqueness.py binding_duplicate_decision_v3; a full-support continuous surface binds on rank correlation because its literal dot-overlap is constant 1 for every possible candidate",
+    "format": {
+      "single_band": true,
+      "dtype": "float32",
+      "values_in_range": [0.0, 1.0],
+      "all_finite": true,
+      "crs": "EPSG:32611",
+      "shape": [3730, 3292],
+      "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]
+    }
+  },
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "official_sources": [
+    "https://github.com/drivendataorg/gems-prize-reference-solution/commit/aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://www.usgs.gov/3d-elevation-program"
+  ]
+}

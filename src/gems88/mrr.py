@@ -221,7 +221,11 @@ def build_or_load_mrr_memmap(
     }
     if dat_path.is_file() and meta_path.is_file():
         old = json.loads(meta_path.read_text(encoding="utf-8"))
-        if all(old.get(k) == v for k, v in contract.items()) and dat_path.stat().st_size == n_valid * len(MRR_FEATURES) * 4:
+        if (
+            all(old.get(k) == v for k, v in contract.items())
+            and dat_path.stat().st_size == n_valid * len(MRR_FEATURES) * 4
+            and old.get("cache_sha256") == sha256_file(dat_path)
+        ):
             return (
                 np.memmap(dat_path, dtype="float32", mode="r", shape=(n_valid, len(MRR_FEATURES))),
                 list(MRR_FEATURES),
@@ -246,7 +250,12 @@ def build_or_load_mrr_memmap(
         mm[:, j] = arr[valid]
     mm.flush()
     del mm
-    payload = {**contract, "verified_band_tags": tags, "derived": derived}
+    payload = {
+        **contract,
+        "verified_band_tags": tags,
+        "derived": derived,
+        "cache_sha256": sha256_file(dat_path),
+    }
     meta_path.write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     return (
         np.memmap(dat_path, dtype="float32", mode="r", shape=(n_valid, len(MRR_FEATURES))),

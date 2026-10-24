@@ -1,40 +1,45 @@
-# Competition submission guide (current decision: DO NOT SUBMIT)
+# Competition submission guide — current decision: **DO NOT SUBMIT**
 
-**Current candidate: KTH-88. Research download: YES. Competition submission: NO.** Its holdout is far below the stored comparable incumbent and the literal registry-overlap rule fails. No weekly slot has been used; no `ORGANIZER-CONFIRMED` score exists.
+> **MRR-COH-88 — DOWNLOAD FOR RESEARCH: YES. OK TO SUBMIT: NO.**
+>
+> The file is genuinely new, format-valid, and unique under the preregistered expanded-registry policy. It is blocked because HOLDOUT-DTI `0.07700055` is below the same-split stored best `0.18788764`. No weekly slot was used and no `ORGANIZER-CONFIRMED` score exists.
 
-- GeoTIFF: [`gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif`](downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.tif)
-- Single-TIFF ZIP: [`gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip`](downloads/gems88-kth-antisym-magtrough-20261024-bacdc27b-DO-NOT-SUBMIT.zip)
-- Run card: [`../registry/kth88_run_card.json`](../registry/kth88_run_card.json)
-- Independent TIFF/ZIP audit: [`data/kth88_validation.json`](data/kth88_validation.json)
-- TIFF SHA-256: `5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf`
-- **HOLDOUT-DTI:** 0.052656, evaluator `gems57-pooled-hide-v2`, 22,893 withheld positive pixels, 95% CI [0.045911, 0.059151]. Same-split incumbent: 0.187888; no paired improvement CI is available.
-- **Uniqueness:** final 3-pixel overlap is 0.89882 with a GEMSDOE87 raster and 1.000 with the dense 17GEMSDOE witness; maximum allowed is 0.70. Do not reinterpret this as unique because the file bytes differ.
-- **Format:** independent TIFF and one-member ZIP checks pass for sample grid, finite float32 values in [0,1], and exact ZIP member bytes. This is local format validity, not organizer acceptance or slot approval.
-- **Name (archival only):** `GEMSDOE88-KTH-BACDC27B`
-- **Note (archival only, 105/140):** `K/Th antisymmetric radiometric step + RTP trough, 37654 dots; HOLDOUT-DTI 0.0527; UNSCORED; DO NOT SUBMIT`
+## Current research artifact
 
-Do not upload KTH-88. The submission identifier and note are retained for audit only, not authorization. The K/Th data are uncalibrated indices, not measured elemental abundance. No organizer receipt exists.
+- GeoTIFF: [`gems88-mrrcoh-persistent-demag-oof-20261024-43173dots-5fe6cdd8982f-DO-NOT-SUBMIT.tif`](downloads/gems88-mrrcoh-persistent-demag-oof-20261024-43173dots-5fe6cdd8982f-DO-NOT-SUBMIT.tif)
+- One-TIFF ZIP: [`gems88-mrrcoh-persistent-demag-oof-20261024-43173dots-5fe6cdd8982f-DO-NOT-SUBMIT.zip`](downloads/gems88-mrrcoh-persistent-demag-oof-20261024-43173dots-5fe6cdd8982f-DO-NOT-SUBMIT.zip)
+- Web run card: [`data/mrrcoh88_run_card.json`](data/mrrcoh88_run_card.json)
+- TIFF SHA-256: `98d8ecc539af4d1743b480c9fe1fc9165488076ba61fa82be4ee9fa2ccea0e24`
+- ZIP SHA-256: `37959f896f95511a66241b0fe0a34c854bed203426be021bcd4624f0b7c02d7e`
+- Positive pixels: `43,173`
+- **HOLDOUT-DTI:** `0.07700055`, 95% CI `[0.06912859, 0.08486633]`, 22,893 withheld positives, evaluator `gems57-pooled-hide-v2`
+- **Same-split stored best:** `0.18788764`, 95% CI `[0.17169765, 0.20326012]`
+- **Uniqueness:** pre-placement max `|Spearman ρ| = 0.18358174`; final max dot-field overlap within 3 px `0.45873578`; final max excess overlap `0.13015695`; 224 registry rasters checked; no identical file or decoded prediction
+- **Format:** finite single-band float32 GeoTIFF in `[0,1]`, pinned sample grid, and ZIP with one byte-identical TIFF; independently reopened from disk
+- **Archival name only:** `GEMSDOE88-MRRCOH-5FE6CDD8982F`
+- **Archival note only (74/140):** `MRR coherence OOF, 43173 dots; HOLDOUT-DTI 0.0770; UNSCORED; DO NOT SUBMIT`
 
-## Procedure for a future, separately authorized candidate
+Do not upload either file. The name and note preserve traceability; they are not authorization.
 
-Only use a file whose latest run card passes every required scientific, uniqueness, leakage, and format gate, and whose separate portfolio selector authorizes a slot. This repository does not choose a slot or upload on a user's behalf.
+## Procedure for a future separately authorized candidate
 
-1. Restore only authorized, hash-pinned inputs; reread `PROMPT.md` and verify one method lane is explicitly selected.
-2. Run the site, readiness, candidate, and current-release validators. Require the **current candidate's** `--require-submit` check to exit 0 and match its TIFF SHA-256 to its run card.
-3. Separately obtain selector authorization and confirm the live weekly limit.
-4. Sign in to the team account and use the [official DrivenData submissions page](https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/). Upload only the approved single-band TIFF or one-TIFF ZIP, enter its unique name and note (at most 140 characters), and submit only with authorization.
-5. Archive the portal receipt. Label a score `ORGANIZER-CONFIRMED` only when copied from that receipt.
+1. Reread `PROMPT.md`; restore and SHA-verify only authorized inputs.
+2. Run the current candidate's scientific, leakage, uniqueness, format, site, and readiness checks.
+3. Require `python scripts/validate_current.py --require-submit` to exit 0 and match the candidate TIFF hash. It intentionally exits 2 for MRR-COH-88.
+4. Obtain a separate portfolio-selector decision and verify the live weekly-slot limit.
+5. Sign in to the team account and open the [official submissions page](https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/).
+6. Upload only the selector-cleared single-TIFF archive. Enter the exact approved name and a note of at most 140 characters.
+7. Wait for organizer processing. Do not describe queued or failed work as submitted or scored.
+8. Save the organizer receipt: submission ID, UTC timestamp, artifact SHA-256, final status, and public/private score if supplied. Label a value `ORGANIZER-CONFIRMED` only from this evidence.
 
-The official problem page defines the submission grid and [metric/format](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/); use the current [official rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) and live portal for binding requirements. Local validation cannot authenticate to the portal.
+The live [problem/metric/format page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) and [official rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) are binding. Local checks cannot establish organizer acceptance.
 
 ## Recheck commands
 
 ```bash
 python scripts/restore_inputs.py --validation
-python scripts/check_site.py
-python scripts/validate_kth88.py
-python scripts/validate_kth88.py --require-submit  # expected exit 2 for current KTH-88
-python scripts/readiness.py
 python scripts/validate_current.py
-python scripts/validate_current.py --require-submit  # expected exit 2 today
+python scripts/readiness.py
+python scripts/check_site.py
+python scripts/validate_current.py --require-submit  # expected exit 2 for MRR-COH-88
 ```

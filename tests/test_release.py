@@ -31,7 +31,8 @@ def test_published_card_and_tif_fail_closed():
 def test_brief_and_site_are_not_missing():
     readme = (ROOT / "README.md").read_text()
     assert "Maximize P(Win)" in readme and "Own the Outcome" in readme
-    assert "MUST GENERATE A UNIQUE TIF SUBMISSION" in readme
+    assert "genuinely new" in readme and "DO NOT SUBMIT" in readme
+    assert (ROOT / "PROMPT.md").is_file() and (ROOT / "AGENTS.md").is_file()
     site = (ROOT / "docs/index.html").read_text()
     assert "DO NOT SUBMIT" in site
     assert "executive-summary.html" in site

@@ -3,11 +3,10 @@
   "approved_for_weekly_slot": false,
   "status": "BLOCKED",
   "problems": [
-    "HOLDOUT: candidate point estimate is below the stored incumbent",
-    "UNIQUENESS: literal registry overlap exceeds 0.70"
+    "HOLDOUT: candidate point estimate does not exceed the stored incumbent"
   ],
   "ok_to_download_for_research": true,
   "ok_to_submit": false,
-  "raster_sha256": "5c7f1cb7a8c37bb4c7f3ba6eef2d42f472a050c6b21436274e4ebc0c259fd7bf",
-  "policy": "binding-literal-all-registry-v1"
+  "raster_sha256": "98d8ecc539af4d1743b480c9fe1fc9165488076ba61fa82be4ee9fa2ccea0e24",
+  "policy": "mrrcoh88-expanded-registry-v1"
 }

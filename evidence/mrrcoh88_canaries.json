@@ -1,0 +1,84 @@
+{
+  "schema": "gems88.mrrcoh88-canaries.v1",
+  "evidence_class": "LEAKAGE-CANARY",
+  "method": "Seed-20 buffered whole-component hidden positives versus 8x active off-trace negatives; each feature alone",
+  "features_tested": 8,
+  "threshold": 0.9,
+  "max_symmetric_auc": 0.5405627152454154,
+  "max_feature": "mrr_residual_axial_coherence_600m",
+  "passed": true,
+  "features": [
+    {
+      "feature": "mrr_vg_block_residual",
+      "roc_auc": 0.4842045231546409,
+      "symmetric_auc": 0.5157954768453591,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_demag_trough_hessian_s2",
+      "roc_auc": 0.5280783119321906,
+      "symmetric_auc": 0.5280783119321906,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_demag_depth_weighted",
+      "roc_auc": 0.5242653240363728,
+      "symmetric_auc": 0.5242653240363728,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_rtp_residual_crossgradient",
+      "roc_auc": 0.5336064560108869,
+      "symmetric_auc": 0.5336064560108869,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_residual_axial_coherence_600m",
+      "roc_auc": 0.45943728475458456,
+      "symmetric_auc": 0.5405627152454154,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_residual_axial_persistence_200_600m",
+      "roc_auc": 0.4662787008549391,
+      "symmetric_auc": 0.5337212991450608,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_coherent_demag_trough",
+      "roc_auc": 0.5236515456075108,
+      "symmetric_auc": 0.5236515456075108,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    },
+    {
+      "feature": "mrr_persistent_corridor_low_hg",
+      "roc_auc": 0.5136961382862586,
+      "symmetric_auc": 0.5136961382862586,
+      "withheld_positive_sample": 11321,
+      "negative_sample": 90568,
+      "threshold": 0.9,
+      "pass": true
+    }
+  ]
+}

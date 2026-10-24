@@ -301,6 +301,8 @@ def predict_cgo_fold(
     train_truth: np.ndarray,
     test_region: np.ndarray,
     seed: int,
+    *,
+    min_visible_distance_px: float = 0.0,
 ) -> tuple[np.ndarray, np.ndarray, dict]:
     if np.any(train_quad_mask & test_region) or np.any(train_truth & test_region):
         raise AssertionError("Leakage check failed: training mask intersects test_region")
@@ -317,6 +319,10 @@ def predict_cgo_fold(
     k_est = max(float((visible & test_region).sum()) * hid_ratio, 50.0)
 
     allowed = fp & test_region & ~visible
+    if min_visible_distance_px < 0:
+        raise ValueError("min_visible_distance_px must be non-negative")
+    if min_visible_distance_px > 0:
+        allowed &= ndi.distance_transform_edt(~visible) > float(min_visible_distance_px)
     act_idx = np.flatnonzero(allowed[ys_fp, xs_fp])
     p_raw, m_raw = _predict_dual_chunked(clfs, regs, [X_cgo_view], act_idx)
 
@@ -543,6 +549,137 @@ def fit_and_emit_production_adhr(
         cache_npz,
         dots_yx=np.column_stack([dy, dx]).astype(np.int32),
         p_fp=p_surface[ys_fp, xs_fp].astype(np.float32),
+        meta_json=np.array(json.dumps(meta)),
+    )
+    return alloc.emitted.astype(np.float32), p_surface, m_surface, meta
+
+
+def fit_and_emit_production_physics_oof(
+    grid,
+    X_phys_mm: np.ndarray,
+    quadrant_ids: np.ndarray,
+    folds_by_seed: list[tuple[int, list[dict]]],
+    cache_dir: Path,
+    *,
+    cache_tag: str,
+    min_catalogue_distance_px: float = 3.0,
+    preplacement_gate=None,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, dict]:
+    """Fit a catalogue-label model without in-sample production predictions.
+
+    Each production pixel is predicted by the model trained on the other three
+    spatial quadrants.  The feature matrix itself must be catalogue blind.  The
+    continuous OOF surface is passed to ``preplacement_gate`` before allocation.
+    """
+    if not cache_tag or any(
+        ch not in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-"
+        for ch in cache_tag
+    ):
+        raise ValueError("cache_tag must be a non-empty filesystem-safe token")
+    if min_catalogue_distance_px < 0:
+        raise ValueError("min_catalogue_distance_px must be non-negative")
+    fp = np.asarray(grid.footprint, bool)
+    quad = np.asarray(quadrant_ids)
+    if quad.shape != fp.shape or sorted(np.unique(quad[fp]).tolist()) != [0, 1, 2, 3]:
+        raise ValueError("quadrant_ids must partition the footprint into 0..3")
+    ys_fp, xs_fp = np.nonzero(fp)
+    if X_phys_mm.shape[0] != len(ys_fp):
+        raise ValueError("feature rows are not footprint aligned")
+
+    cache_dir = Path(cache_dir)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    cache_npz = cache_dir / f"{cache_tag}.npz"
+    if cache_npz.is_file():
+        z = np.load(cache_npz, allow_pickle=False)
+        p_surface = scatter_fp(z["p_fp"], ys_fp, xs_fp, grid.shape)
+        m_surface = scatter_fp(z["m_fp"], ys_fp, xs_fp, grid.shape)
+        if preplacement_gate is not None:
+            preplacement_gate(p_surface)
+        emitted = np.zeros(grid.shape, dtype=np.float32)
+        dyx = z["dots_yx"]
+        emitted[dyx[:, 0], dyx[:, 1]] = 1.0
+        return emitted, p_surface, m_surface, json.loads(str(z["meta_json"]))
+
+    d_fullcat = ndi.distance_transform_edt(~grid.catalogue).astype(np.float32)
+    allowed = fp & (d_fullcat > float(min_catalogue_distance_px))
+    allowed_fp = allowed[ys_fp, xs_fp]
+    act_all = np.flatnonzero(allowed_fp)
+    p_raw_all = np.zeros(len(ys_fp), dtype=np.float32)
+    m_raw_all = np.zeros(len(ys_fp), dtype=np.float32)
+    covered = np.zeros(len(ys_fp), dtype=bool)
+
+    for q in range(4):
+        train_grid = fp & (quad != q)
+        train_fp = train_grid[ys_fp, xs_fp]
+        clfs, regs = _fit_dual_expectation_models(
+            [X_phys_mm],
+            train_fp,
+            grid.catalogue & train_grid,
+            fp,
+            seed=882_400 + q,
+            max_zero_neg=140_000,
+            n_ensemble=1,
+        )
+        q_idx = np.flatnonzero(allowed_fp & (quad[ys_fp, xs_fp] == q))
+        pq, mq = _predict_dual_chunked(clfs, regs, [X_phys_mm], q_idx)
+        p_raw_all[q_idx] = pq
+        m_raw_all[q_idx] = mq
+        covered[q_idx] = True
+        del clfs, regs, pq, mq
+        gc.collect()
+    if not covered[act_all].all():
+        raise AssertionError("OOF production prediction left allowed cells uncovered")
+
+    ratios = []
+    for _seed, folds in folds_by_seed:
+        hidden = np.asarray(folds[0]["hidden_all"], bool)
+        visible = np.asarray(folds[0]["visible"], bool)
+        ratios.append(float(hidden.sum()) / max(float(visible.sum()), 1.0))
+    hid_ratio = float(np.mean(ratios))
+    k_prod = float(grid.catalogue.sum()) * hid_ratio
+    p_raw = p_raw_all[act_all]
+    m_raw = m_raw_all[act_all]
+    scale_p = k_prod / max(float(p_raw.sum(dtype=np.float64)), 1e-6)
+    p_cal = np.clip(p_raw * np.float32(scale_p), 0.0, 1.0).astype(np.float32)
+    m_cal = np.clip(m_raw * np.float32(hid_ratio), p_cal, 1.0).astype(np.float32)
+    p_surface = scatter_fp(p_cal, ys_fp[act_all], xs_fp[act_all], grid.shape)
+    m_surface = scatter_fp(m_cal, ys_fp[act_all], xs_fp[act_all], grid.shape)
+    del p_raw_all, m_raw_all, p_raw, m_raw, p_cal, m_cal
+    gc.collect()
+
+    if not np.isfinite(p_surface).all() or not np.isfinite(m_surface).all():
+        raise AssertionError("non-finite OOF production surface")
+    if preplacement_gate is not None:
+        preplacement_gate(p_surface)
+
+    alloc = emit.dinkelbach_allocate(
+        p_surface,
+        m_surface,
+        allowed,
+        budget=None,
+        k_truth=k_prod,
+        min_spacing_px=2.05,
+        dinkelbach_iters=8,
+    )
+    meta = {
+        "n_dots": int(alloc.n_dots),
+        "k_truth_est": float(k_prod),
+        "hidden_visible_ratio": hid_ratio,
+        "surrogate_dti": float(alloc.surrogate_dti),
+        "dinkelbach_rounds": int(alloc.rounds),
+        "catalogue_clearance_px_strictly_greater_than": float(min_catalogue_distance_px),
+        "min_spacing_px": 2.05,
+        "production_prediction": "strict four-quadrant out-of-fold",
+        "median_d_cat_px": float(np.median(d_fullcat[alloc.emitted])) if alloc.n_dots else 0.0,
+        "frac_gt_10px": float((d_fullcat[alloc.emitted] > 10.0).mean()) if alloc.n_dots else 0.0,
+        "frac_gt_25px": float((d_fullcat[alloc.emitted] > 25.0).mean()) if alloc.n_dots else 0.0,
+    }
+    dy, dx = np.nonzero(alloc.emitted)
+    np.savez_compressed(
+        cache_npz,
+        dots_yx=np.column_stack([dy, dx]).astype(np.int32),
+        p_fp=p_surface[ys_fp, xs_fp].astype(np.float32),
+        m_fp=m_surface[ys_fp, xs_fp].astype(np.float32),
         meta_json=np.array(json.dumps(meta)),
     )
     return alloc.emitted.astype(np.float32), p_surface, m_surface, meta
