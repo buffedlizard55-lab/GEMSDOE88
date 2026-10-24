@@ -396,13 +396,99 @@ def provcrest_report_v3(root=ROOT, tag="provcrest"):
                 blocking_reasons=rec["blocking_reasons"], worst_like_for_like_overlap=worst, fingerprint_screen_pass=fp_ok,
                 own_verdict=(rec.get("own_gate") or rec["pr53_own_gate"])["verdict"], pr53_own_verdict=(rec.get("own_gate") or rec["pr53_own_gate"])["verdict"])
 
+
+def mvrd_report_v3(root=ROOT):
+    """Independent byte-level verification of the 2026-10-24 H88-MVRD candidate against gate v3 & holdout receipts."""
+    sys.path.insert(0, str(root / "src"))
+    from gems88 import gate  # noqa: E402
+
+    card_raw = (root / "registry/mvrd_run_card.json").read_text(encoding="utf-8")
+    if card_raw != (root / "docs/data/mvrd_run_card.json").read_text(encoding="utf-8"):
+        raise ValueError("site copy of mvrd_run_card.json differs from registry/mvrd_run_card.json")
+    if card_raw != (root / "evidence/mvrd_run_card.json").read_text(encoding="utf-8"):
+        raise ValueError("evidence copy of mvrd_run_card.json differs from registry/mvrd_run_card.json")
+    card = json.loads(card_raw)
+    rec = json.loads((root / "registry/mvrd_gate_v3.json").read_text(encoding="utf-8"))
+    site_rec = json.loads((root / "docs/data/mvrd-gate-v3.json").read_text(encoding="utf-8"))
+    if rec != site_rec:
+        raise ValueError("site copy of mvrd-gate-v3.json differs from registry/mvrd_gate_v3.json")
+
+    ho = json.loads((root / "evidence/mvrd88_holdout.json").read_text(encoding="utf-8"))
+    can = json.loads((root / "evidence/mvrd88_canaries.json").read_text(encoding="utf-8"))
+    if not can["passed"] or can["max_symmetric_auc"] > 0.90:
+        raise ValueError("MVRD leakage canary failed")
+    sc = ho["scores"]["h88_mvrd"]
+    pd = ho["paired_differences"]["h88_adhr"]
+    h = rec["holdout_cross_run"]
+    if abs(sc["dti"] - h["dti"]) > 1e-12 or pd["ci95"][0] <= 0.0:
+        raise ValueError("MVRD holdout evidence mismatch or paired CI not positive over H88-ADHR")
+
+    tif = root / card["artifact"]
+    zp = root / card["zip_artifact"]
+    rcpt = json.loads(tif.with_suffix(".json").read_text(encoding="utf-8"))
+    if digest(tif) != card["raster_sha256"] or digest(tif) != rec["sha256"] or digest(tif) != rcpt["sha256"]:
+        raise ValueError("MVRD TIFF SHA-256 mismatch")
+    if digest(zp) != card["zip_sha256"] or digest(zp) != rec["zip_sha256"] or digest(zp) != rcpt["zip_sha256"]:
+        raise ValueError("MVRD ZIP SHA-256 mismatch")
+    with zipfile.ZipFile(zp) as z:
+        if z.namelist() != [tif.name] or z.read(tif.name) != tif.read_bytes():
+            raise ValueError("MVRD ZIP must contain exactly one byte-identical TIFF")
+    if not (0 < len(card["submission_name"]) <= 140 and 0 < len(card["submission_note"]) <= 140):
+        raise ValueError("MVRD name/note length invalid")
+    if "DO-NOT-SUBMIT" not in tif.name or card["verdict"] != "negative" or card["ok_to_submit"] is not False:
+        raise ValueError("MVRD negative candidate must remain DO-NOT-SUBMIT with ok_to_submit=False")
+
+    with rasterio.open(tif) as ds:
+        a = ds.read(1)
+        e = gate.EXPECTED
+        ok = (
+            ds.count == 1
+            and ds.dtypes[0] == "float32"
+            and ds.crs.to_epsg() == e["epsg"]
+            and ds.shape == e["shape"]
+            and tuple(ds.transform)[:6] == e["transform"]
+            and ds.nodata is None
+            and ds.profile["compress"] == "lzw"
+            and not ds.profile["tiled"]
+            and ds.block_shapes[0] == (1, e["shape"][1])
+            and bool(np.isfinite(a).all())
+            and float(a.min()) >= 0.0
+            and float(a.max()) <= 1.0
+        )
+    if not ok or int((a > 0.5).sum()) != rec["fingerprint"]["n"]:
+        raise ValueError("MVRD value/grid/layout or dot-count verification failed")
+
+    fp_ok = gate.fingerprint_screen(rec["fingerprint"])
+    beats = bool(h["dti"] > h["bar"])
+    expected_ok = bool(ok and rec["uniqueness"]["unique_like_for_like"] and can["passed"] and beats and fp_ok)
+    if expected_ok != rec["ok_to_submit"]:
+        raise ValueError("MVRD gate_v3 verdict not reproducible from components")
+    return dict(
+        name=rec["name"],
+        sha256=rec["sha256"],
+        zip_sha256=rec["zip_sha256"],
+        ok_to_download=rec["ok_to_download"],
+        ok_to_submit=rec["ok_to_submit"],
+        beats_holdout_bar=beats,
+        holdout_dti=h["dti"],
+        paired_delta_vs_adhr=pd["delta"],
+        unique_like_for_like=rec["uniqueness"]["unique_like_for_like"],
+        registry_rasters=rec["uniqueness"]["registry_rasters"],
+        worst_like_for_like_overlap=rec["uniqueness"]["worst_like_for_like_overlap"]["value"],
+        fingerprint_screen_pass=fp_ok,
+        blocking_reasons=rec["blocking_reasons"],
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--require-submit", action="store_true")
     args = parser.parse_args()
     result = release_report()
+    mvrd_res = mvrd_report_v3()
+    result["mvrd_20261024"] = mvrd_res
     print(json.dumps(result, indent=2))
-    if args.require_submit and not result["ok_to_submit"]:
+    if args.require_submit and not (result["ok_to_submit"] and mvrd_res["ok_to_submit"]):
         print("AUTOMATIC SUBMISSION GATE: FAIL. No upload permitted.", file=sys.stderr)
         return 2
     return 0

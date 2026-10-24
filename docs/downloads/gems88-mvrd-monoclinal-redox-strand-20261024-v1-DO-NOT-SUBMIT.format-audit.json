@@ -1,0 +1,224 @@
+{
+  "portal_tif": {
+    "path": "docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif",
+    "policy": "gems88-gate-v3",
+    "bytes": 788372,
+    "sha256": "871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6",
+    "problems": [],
+    "member_name": "gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif",
+    "tiff_header": {
+      "byte_order": "II",
+      "is_classic_tiff": true,
+      "is_bigtiff": false
+    },
+    "layout": {
+      "compress": "lzw",
+      "tiled": false,
+      "block_shapes": [
+        [
+          1,
+          3292
+        ]
+      ],
+      "predictor": null,
+      "interleave": "band"
+    },
+    "checks": {
+      "one_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_sample": true,
+      "transform_matches_sample": true,
+      "bounds_match_sample": true,
+      "resolution_100m": true,
+      "nodata_undeclared": true,
+      "all_finite": true,
+      "masked_read_no_masked_cells": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "portal_range_check_nan_strict": true,
+      "portal_range_check_nanmin_nanmax": true,
+      "footprint_cells_finite": true,
+      "outside_footprint_zero": true,
+      "has_dots": true,
+      "no_internal_mask_band": true
+    },
+    "array_sha256": "3433d89e23ce5a1dbab5c83148bdbb78a49acc3a881102296e2af2f00b500533",
+    "n_dots": 33167,
+    "min": 0.0,
+    "max": 1.0,
+    "n_unique_values": 2,
+    "layout_parity_with_sample": true,
+    "second_decoder": {
+      "name": "tifffile",
+      "equal": true
+    },
+    "ok": true
+  },
+  "portal_zip": {
+    "path": "docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.zip",
+    "policy": "gems88-gate-v3",
+    "bytes": 157157,
+    "sha256": "4470e339d9d8b9b8eb32f6b976fe32e17bd176e45b0d0ee91da258caab544dca",
+    "problems": [],
+    "zip_members": [
+      "gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif"
+    ],
+    "zip_testzip": null,
+    "zip_member_compress_type": 8,
+    "member_name": "gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif",
+    "tiff_header": {
+      "byte_order": "II",
+      "is_classic_tiff": true,
+      "is_bigtiff": false
+    },
+    "layout": {
+      "compress": "lzw",
+      "tiled": false,
+      "block_shapes": [
+        [
+          1,
+          3292
+        ]
+      ],
+      "predictor": null,
+      "interleave": "band"
+    },
+    "checks": {
+      "one_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_sample": true,
+      "transform_matches_sample": true,
+      "bounds_match_sample": true,
+      "resolution_100m": true,
+      "nodata_undeclared": true,
+      "all_finite": true,
+      "masked_read_no_masked_cells": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "portal_range_check_nan_strict": true,
+      "portal_range_check_nanmin_nanmax": true,
+      "footprint_cells_finite": true,
+      "outside_footprint_zero": true,
+      "has_dots": true,
+      "no_internal_mask_band": true
+    },
+    "array_sha256": "3433d89e23ce5a1dbab5c83148bdbb78a49acc3a881102296e2af2f00b500533",
+    "n_dots": 33167,
+    "min": 0.0,
+    "max": 1.0,
+    "n_unique_values": 2,
+    "layout_parity_with_sample": true,
+    "second_decoder": {
+      "name": "tifffile",
+      "equal": true
+    },
+    "ok": true
+  },
+  "shared_gates_format_report": {
+    "path": "docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif",
+    "bytes": 788372,
+    "sha256": "871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      1,
+      3292
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0027010806370526552,
+    "n_nonzero": 33167,
+    "mass": 33167.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "shared_validate": {
+    "file": "docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif",
+    "bytes": 788372,
+    "sha256": "871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "lzw"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0027010806370526552,
+    "emitted_positive_pixels": 33167,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 33167,
+    "footprint_fraction": 0.006418541878049059
+  }
+}

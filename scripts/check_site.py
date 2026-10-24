@@ -46,6 +46,12 @@ def main(root=ROOT):
     assert len(lb['raster']['note']) <= 140 and lb['format_ok'] is True and lb['ok_to_download'] is True
     assert lb['ok_to_submit'] is True or 'DO-NOT-SUBMIT' in lb_tif.name, 'held LBCAL file must be named DO-NOT-SUBMIT'
     assert json.loads((root / 'docs' / 'data' / 'lbcal_run_card.json').read_text())['raster']['sha256'] == lb['raster']['sha256']
+    mv = json.loads((root / 'registry' / 'mvrd_run_card.json').read_text())
+    mv_tif = root / mv['artifact']
+    assert mv_tif.is_file() and _hl.sha256(mv_tif.read_bytes()).hexdigest() == mv['raster_sha256']
+    assert len(mv['submission_note']) <= 140 and mv['ok_to_download'] is True
+    assert mv['ok_to_submit'] is True or 'DO-NOT-SUBMIT' in mv_tif.name, 'held MVRD file must be named DO-NOT-SUBMIT'
+    assert json.loads((root / 'docs' / 'data' / 'mvrd_run_card.json').read_text())['raster_sha256'] == mv['raster_sha256']
     pages = [root / 'index.html', *sorted((root / 'docs').glob('*.html'))]
     assert len(pages) >= 5
     for page in pages:

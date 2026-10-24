@@ -1,3 +1,12 @@
+## 2026-10-24 (`H88-MVRD` session, `IR-88-83`): verified milestone & next steps
+
+1. **Current verified `H88-MVRD` state (do not rerun blindly):**
+   - **Artifact:** `docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif` (`788,372` bytes, `33,167` discrete `{0,1}` dots, LZW 1-row-strip sample-layout parity, `SHA-256: 871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6`; single-TIFF `.zip` `4470e339d9d8b9b8eb32f6b976fe32e17bd176e45b0d0ee91da258caab544dca`).
+   - **First whole-component holdout win over `H88-ADHR` (`0.18789`):** `Exp 03` `H88-MVRD = 0.19731` (`95% CI [0.18112, 0.21301]`, paired `Δ = +0.00943`, `95% CI [+0.00196, +0.01699]`, `n = 22,893`, `FP_w −26.4%`, `5.46×` `MGC-88`); `Exp 01` pure-physics `MPSC-88 = 0.11324` (`0` catalogue features, `8/8` folds vs `CGO-88 0.09042`, `> 1 km` `TP_w +36.2%`).
+   - **Gates:** `92/92` canaries PASS (`max AUC 0.771627 <= 0.90`); `222/222` `gems88-gate-v3` like-for-like uniqueness PASS (`worst 3-px overlap = 0.6728 <= 0.70`, `worst |ρ| = 0.3816 <= 0.90`); held automatically (`ok_to_submit: false`, `verdict: "negative"`) by `gems88-gate-v3` distance-fingerprint screen (`share_gt25 = 2.87% < 35%`) and literal `17GEMSDOE` witness (`1.0000 > 0.70`).
+2. **Next scientific frontier — combine `MPSC-88` (62-ch pure physics, `0.11324`) with out-of-fold far-basin (`d_cat > 25 px`) polyline strand allocation:** `MPSC-88` is now the strongest pure-physics surface in `GEMSDOE88` (`0.11324` vs `PHYS44 0.10725` and `CGO-88 0.09042`). Replacing catalogue-conditioned relay density with multi-kilometer minimum-cost polyline tracing on `MPSC-88` + collar-pruned receipt density (`LBCAL`) is the principled path to simultaneously clear `HOLDOUT`, `222`-raster `UNIQUENESS`, AND the `>= 35%` `d_cat > 25 px` `FINGERPRINT` screen.
+3. **Deferred external source (`H88-BGP`):** Ingest USGS ScienceBase Nevada point gravity station density (`doi:10.5066/P9XM0444`) when running in an environment with ScienceBase network access.
+
 ## 2026-10-24 (LBCAL session): next steps
 
 1. **Selector decision on the slot gate.** Hide-and-recover HOLDOUT-DTI ranks R0/H33 (user-reported 0.2778) at 0.004, so it has no leaderboard validity in this regime. The receipt-CV gate (ρ 0.941, RMSE 0.031) is the alternative.

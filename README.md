@@ -1,5 +1,18 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> ## ⛔ 2026-10-24 AUTOMATED GATE DECISION (`H88-MVRD`, `IR-88-83`): OK TO DOWNLOAD: YES · OK TO SUBMIT AUTOMATICALLY: NO — DO NOT SUBMIT
+> - **Brand-new unique GeoTIFF:** [`docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.tif) (`770 KB` LZW sample-layout parity) · [`single-TIFF .zip`](docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.zip) (`153 KB`) · [`mvrd_run_card.json`](registry/mvrd_run_card.json) · [`mvrd_gate_v3.json`](registry/mvrd_gate_v3.json) · [`writer receipt`](docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.json) · [`format audit`](docs/downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.format-audit.json)
+>   - **Grid & values:** `33,167` discrete `{0.0, 1.0}` dots in single-band `float32` (`EPSG:32611`, `3730 × 3292` at `100 m`, `nodata = None`, `0` NaN/Inf/catalogue, LZW 1-row-strip parity with `sample_submission.tif`, `0.0% <= 2 px` of catalogue).
+>   - **TIFF SHA-256:** `871d87f9c0d5149118e22d7d9317c654768850bf011feb667b6a165385288fb6` · **ZIP SHA-256:** `4470e339d9d8b9b8eb32f6b976fe32e17bd176e45b0d0ee91da258caab544dca`
+> - **Unique submission name (`61 / 140`):** `gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT`
+> - **Short note (`107 / 140`):** `MVRD88 85ch monoclinal+redox+strand Dinkelbach 33167d (HOLDOUT-DTI 0.1973); fingerprint+17GEMSDOE hold slot`
+> - **Scientific milestone (`HOLDOUT-DTI`, `gems57-pooled-hide-v2`, Seeds 20+21, `n = 22,893` withheld whole-component positives):**
+>   - **FIRST candidate in `GEMSDOE88` to statistically beat the `0.18789` `H88-ADHR` bar:** **`Exp 03 H88-MVRD = 0.19731` (`95% CI [0.18112, 0.21301]`)** vs `Exp 02 H88-ADHR = 0.18789` (`[0.17299, 0.20375]`), **paired `Δ = +0.00943`, `95% CI [+0.00196, +0.01699]`** (`6/8` folds, `FP_w −26.4%`, **`5.46×` `MGC-88`** `0.03612`).
+>   - **Pure-physics ablation (`Exp 01 MPSC-88`, 62 channels, `0` catalogue features):** **`0.11324` (`95% CI [0.09983, 0.12724]`)**, beating `PHYS44` (`0.10725`) and `CGO-88` (`0.09042`, `8/8` folds, `> 1 km` blind-basin `TP_w +36.2%`).
+>   - **Leakage canaries:** **`92 / 92 PASS`** (`max symmetric AUC = 0.771627 ≤ 0.90`; top pure-physics channel `topo10_bajada_scarp_index = 0.6048`).
+>   - **222-raster `gems88-gate-v3` uniqueness:** **`222 / 222` like-for-like PASS** (`unique_like_for_like = true`, `117` distinct dot sets, `worst 3-px overlap = 0.6728 ≤ 0.70`, `worst |ρ| = 0.3816 ≤ 0.90`).
+> - **Why `OK TO SUBMIT = NO` (`verdict = "negative"`):** Held automatically by **(1)** `gems88-gate-v3` distance-fingerprint screen (`share_gt25 = 2.87% < 35%`, `IR-88-62/83`) and **(2)** literal `17GEMSDOE` space-filling witness (`1.0000 > 0.70`, `IR-88-01/60`). **0 weekly slots spent · `ORGANIZER-CONFIRMED` score: none.** Full hypotheses & receipts: [`research/candidate-hypotheses-20261024.md`](research/candidate-hypotheses-20261024.md) · [`evidence/mvrd88_holdout.json`](evidence/mvrd88_holdout.json).
+
 > ## ⛔ 2026-10-24 DECISION: HOLD. LBCAL is OK to download, but DO NOT SUBMIT it under the current holdout rule (IR-88-78)
 > - **New unique file:** [`docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.tif) ([zip](docs/downloads/gems88-lbcal-receipt-38278-20261024-0aeb6eed-zeros-DO-NOT-SUBMIT.zip), [run card](registry/lbcal_run_card.json)).
 >   - Contents: 38,278 binary dots in a float32 band; values in {0,1}; 0 NaN; nodata None; grid identical to the sample.
