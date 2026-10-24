@@ -47,6 +47,15 @@ def main(root: Path = ROOT) -> None:
     qts = json.loads((root / "registry/qts88_run_card.json").read_text())
     qts_web = json.loads((docs / "data/qts88_run_card.json").read_text())
     qts_gate = json.loads((root / "registry/qts88_gate.json").read_text())
+    tdkl = json.loads((root / "registry/tdkl88_run_card.json").read_text())
+    tdkl_web = json.loads((docs / "data/tdkl88_run_card.json").read_text())
+    assert tdkl == tdkl_web, "Pages TDKL card differs from canonical registry card"
+    assert tdkl["verdict"] == "negative" and tdkl["ok_to_download"] is True and tdkl["ok_to_submit"] is False
+    assert 0 < len(tdkl["submission_name"]) <= 140 and 0 < len(tdkl["submission_note"]) <= 140
+    tdkl_tif = root / tdkl["raster"]["file"]
+    tdkl_zip = root / tdkl["raster"]["zip_file"]
+    assert sha256(tdkl_tif) == tdkl["raster_sha256"]
+    assert sha256(tdkl_zip) == tdkl["raster"]["zip_sha256"]
 
     assert literal["decision"] == "DUPLICATE_STOP"
     assert literal["saturation_certificate"]["universal_overlap_blocker"] is True
@@ -149,6 +158,9 @@ def main(root: Path = ROOT) -> None:
     executive = pages[1].read_text()
     research = pages[2].read_text()
     assert MVRD_NAME in index and MVRD_NAME in executive
+    assert tdkl_tif.name in index and tdkl_tif.name in executive
+    assert tdkl["submission_name"] in index and tdkl["submission_name"] in executive
+    assert tdkl["raster_sha256"][:16] in index and tdkl["raster_sha256"][:16] in executive
     assert ibl_tif.name in index and ibl_tif.name in executive
     assert qts_tif.name in index and qts_tif.name in executive
     assert qts["submission_name"] in index and qts["submission_name"] in executive
@@ -165,7 +177,7 @@ def main(root: Path = ROOT) -> None:
     assert "0.2778" in index and "0.2778" in research
     assert "hyp-psg" not in index and "hyp-psg" not in executive
 
-    print("PASS: current MVRD card, bytes, hashes, Pages links, status feed, and explicit negative decision agree")
+    print("PASS: current MVRD/TDKL cards, bytes, hashes, Pages links, status feed, and explicit negative decision agree")
 
 
 if __name__ == "__main__":

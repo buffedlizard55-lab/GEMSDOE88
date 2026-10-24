@@ -1,0 +1,56 @@
+{
+  "policy": "gems88-gate-v3",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "blocking_reasons": [
+    "UNIQUENESS (literal rule): forward 3px overlap = 1.0000 > 0.70 against the full-footprint continuous 17GEMSDOE witness",
+    "UNIQUENESS (post-merge concurrent stratified lanes): forward 3px overlap = 0.762280 vs GTHC-88 and 0.752000 vs QTSK-88 (pre-merge 179-raster like-for-like max was 0.603160 <= 0.70)"
+  ],
+  "informational": [
+    "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): dense_17gemdoe, GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT"
+  ],
+  "note_len": 110,
+  "name_len": 29,
+  "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows).",
+  "fingerprint": {
+    "n": 25000,
+    "median_d_cat_px": 10.123956680297852,
+    "share_le2": 0.0,
+    "share_gt10": 0.502,
+    "share_gt25": 0.42
+  },
+  "fingerprint_screen_passed": true,
+  "uniqueness_summary": {
+    "worst_like_for_like_overlap": {
+      "label": "GEMSDOE86__data__scored_fleet__GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan",
+      "value": 0.60316
+    },
+    "worst_abs_rho": {
+      "label": "dense_17gemdoe",
+      "value": 0.4119022091113561
+    },
+    "unique_like_for_like": true,
+    "unique_literal": false
+  },
+  "name": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT",
+  "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+  "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+  "candidate": {
+    "tif": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "tif_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5"
+  },
+  "ok_to_submit_premerge_like_for_like": true,
+  "postmerge_concurrent_overlaps_3px": {
+    "MVRD": 0.53484,
+    "IBL-88": 0.08596,
+    "QTS-88": 0.3414,
+    "GTHC-88": 0.76228,
+    "QTSK-88": 0.752,
+    "17GEMSDOE_literal_dense_witness": 1.0
+  }
+}

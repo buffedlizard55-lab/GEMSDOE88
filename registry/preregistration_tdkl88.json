@@ -1,0 +1,95 @@
+{
+  "schema_version": "gems88-preregistration-v2",
+  "preregistration_id": "PREREG-20261024-TDKL88",
+  "timestamp_utc": "2026-10-24T23:00:00Z",
+  "branch": "arena/79d41a4a-gemsdoe88",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "protocol_parameters": {
+    "seeds": [20, 21],
+    "n_folds_total": 8,
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "far_threshold_px": 10.0,
+    "blind_basin_threshold_px": 25.0,
+    "leakage_canary_auc_max": 0.90,
+    "pre_placement_rank_corr_max": 0.90,
+    "post_placement_overlap3_max": 0.70,
+    "max_experiments": 3
+  },
+  "candidate_hypotheses_ranked": [
+    {
+      "rank": 1,
+      "id": "H88-TDKL",
+      "title": "Transverse-Drainage Knickpoint-Lineament, Multi-Scale Scarp Polarity & Distance-Adaptive Bayesian Completeness Fusion",
+      "selected_for_execution": true,
+      "layers_used": [
+        "data/external/dem10_chi_100m_u8.tif (chan_n, knick_n, raised_n, valid_n)",
+        "data/external/dem10_chi_100m_i16.tif (step_max_x1000, step_min_x1000, ksn_max_m0.9, log10_area_m2_x1000)",
+        "data/external/lidar_scarp_features_u8.tif (ex_mean, downface_max, upface_max, cross_max, coh_100m, strike, valid_n)",
+        "data/external/topo_10m_derived_100m_u8.tif (slope_p90, slope_max, steep_frac, slope_std, relief_local, aspect_coherence, dem10_mean_q)",
+        "data/external/geodawn_extensions_u8.tif (ThK, UK, UTh, TMI_up150)",
+        "data/external/geodawn_rad_u8.tif (U, TC)",
+        "data/training_features.tif (tmi_vg, iso_grav, plus 44-channel physics stack)"
+      ],
+      "physical_mechanism": "Quaternary and late Cenozoic normal/transtensional faults crossing range fronts and piedmont fans perturb longitudinal stream profiles (creating knickpoints, elevated area-normalized k_sn, and cross-divide chi asymmetry that align transverse to regional drainage flow) and form asymmetric unidirectional scarp faces (1 m LiDAR downface-vs-upface polarity aligned with basement gravity strike and 10 m DEM sub-pixel planar breaklines) plus shallow brittle demagnetization dipoles relative to 150 m upward-continued magnetics and U/Th/K hydrothermal redox mobility. Combining these 12 label-blind channels with Distance-Adaptive Bayesian Completeness Fusion prevents visible-catalogue distance features from suppressing unmapped piedmont and intra-basin faults.",
+      "named_non_fault_mimic": "Differential lithologic resistance ledges (welded ash-flow tuff caprock steps in incised volcanic canyons), Pleistocene pluvial Lake Lahontan wave-cut shorelines, and U-rich felsic rhyolite domes / placer fan aprons.",
+      "how_it_differs_from_prior_lanes": "No prior lane in GEMSDOE88 or sibling repos extracted interfluve-interpolated stream knickpoint density (knick_n/chan_n), cross-divide chi step asymmetry, transverse-to-drainage knickpoint coherence, 1 m LiDAR unidirectional down/up-face polarity, LiDAR-to-basement gravity strike concordance, 10 m DEM sub-pixel planar breakline sharpness, or upward-continued TMI_up150 depth-attenuation dipole, nor replaced ADHR's static 50/50 completeness mix with a distance-adaptive completeness schedule and far-basin specialist."
+    },
+    {
+      "rank": 2,
+      "id": "H88-STRAT-TRUNC",
+      "title": "Geologic-Map Contact Truncation Density & Quaternary Juxtaposition Torque",
+      "selected_for_execution": false,
+      "layers_used": [
+        "data/external/geology_500k_100m_u8.tif",
+        "data/training_features.tif"
+      ],
+      "physical_mechanism": "Dip-slip faults truncate pre-Quaternary bedrock contacts at high angles and juxtapose Quaternary alluvium against older units along linear range fronts.",
+      "named_non_fault_mimic": "Onlap unconformities and sinuous depositional alluvial fan margins.",
+      "how_it_differs_from_prior_lanes": "Uses 1:500k geologic polygon T-junction density rather than scalar unit class."
+    },
+    {
+      "rank": 3,
+      "id": "H88-SENTINEL-HYDRO",
+      "title": "Sentinel-2 Iron-Oxide / Clay Argillic Alteration Corridor Anisotropy",
+      "selected_for_execution": false,
+      "layers_used": [
+        "data/external/sentinel2_indices_100m_u8.tif",
+        "data/external/geodawn_rad_u8.tif"
+      ],
+      "physical_mechanism": "Epithermal argillic/illite/hematite alteration haloes along conductive fault damage zones create directional clay+ferric iron bands.",
+      "named_non_fault_mimic": "Evaporite playa salt/clay crusts and weathered volcanic talus.",
+      "how_it_differs_from_prior_lanes": "Uses oriented anisotropic filtering of Sentinel-2 clay/ferric ratios."
+    },
+    {
+      "rank": 4,
+      "id": "H88-INSAR-HINGE",
+      "title": "COMET LiCSAR Vertical-East Strain-Rate Curvature & Subsidence Hinge",
+      "selected_for_execution": false,
+      "layers_used": [
+        "data/external/insar_comet_u8.tif",
+        "data/training_features.tif"
+      ],
+      "physical_mechanism": "Differential compaction and creep across buried basin faults create strain-rate inflection hinges in InSAR Up/East velocity.",
+      "named_non_fault_mimic": "Agricultural groundwater pumping cones and geothermal production drawdowns.",
+      "how_it_differs_from_prior_lanes": "Uses second-order horizontal curvature of InSAR velocities rather than raw velocity gradient."
+    }
+  ],
+  "preregistered_experiments": [
+    {
+      "exp_id": "Exp-01",
+      "arm_name": "tdkl_phys_only",
+      "description": "Zero-catalogue 56-channel (44 physics + 12 TDKL) dual-expectation ensemble; tests whether the 12 new TDKL geomorphic/LiDAR/upward-magnetic/redox channels improve pure label-blind fault discovery over CGO-88 (0.09042) and Base283 (0.10854)."
+    },
+    {
+      "exp_id": "Exp-02",
+      "arm_name": "tdkl_static_fusion",
+      "description": "79-channel (44 physics + 12 TDKL + 23 visible structure) bagged specialist ensemble with static global completeness fusion (pi_unmapped=0.50); isolates feature + ensemble gain over h88_adhr_incumbent."
+    },
+    {
+      "exp_id": "Exp-03",
+      "arm_name": "h88_tdkl",
+      "description": "Full H88-TDKL: 79-channel specialist ensemble + far-basin TDKL specialist + Distance-Adaptive Bayesian Completeness Fusion (radial transition from stepover/relay PoE near mapped traces to TDKL+Far specialist in unmapped basins)."
+    }
+  ]
+}
