@@ -1,0 +1,123 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "lane": "WBHR-88",
+  "lane_disclosure": "The user prompt references a 'single method paragraph below' that is absent from the supplied prompt text; WBHR-88 is explicitly declared and frozen here as the single method lane for session branch arena/fbb49955-gemsdoe88 before any feature canary, holdout evaluation, or dot placement.",
+  "frozen_utc": "2026-10-24T19:30:00Z",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "budget": {
+    "max_experiments": 3,
+    "max_wall_seconds": 7200,
+    "weekly_slots_to_spend": 0
+  },
+  "evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_kernel_m": 300.0,
+    "seeds": [20, 21],
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "expected_withheld_positive_pixels": 22893,
+    "spatial_bootstrap_block_side_px": 200,
+    "bootstrap_draws": 1000,
+    "bootstrap_seed": 881024
+  },
+  "ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "WBHR-88",
+      "viable_in_sandbox": true,
+      "selected_for_lane": true,
+      "name": "Wallace-Bajada-Hydrothermal-Redox & Fluvial Knickpoint Two-Regime Discovery",
+      "layers": [
+        "data/training_features.tif (19 core competition bands)",
+        "data/external/lidar_scarp_features_u8.tif (bands B2 ex_mean, B6 downface_max, B7 upface_max, B8 cross_max, B11 strike + shared B1,B3,B4,B5,B9,B10,B12)",
+        "data/external/topo_10m_derived_100m_u8.tif (bands B2 slope_max, B3 steep_frac, B4 slope_std, B5 relief_local, B7 aspect_coherence + shared B1,B6,B8,B9)",
+        "data/external/dem10_chi_100m_i16.tif (bands B2 step_min_x1000, B4 log10_area_m2_x1000 + shared B1,B3,B5)",
+        "data/external/geodawn_rad_u8.tif (bands B3 U, B4 TC + shared B1 K, B2 Th)",
+        "data/external/geodawn_extensions_u8.tif (bands B2 UK, B3 UTh, B4 TMI_up150 + shared B1 ThK)",
+        "data/geodawn_dem_a2_100m.tif (GeoDAWN survey-drape DEM)"
+      ],
+      "new_features_16ch": [
+        "wbhr_lidar_wallace_polarity",
+        "wbhr_lidar_arroyo_reject_step",
+        "wbhr_lidar_strike_worm_700m",
+        "wbhr_lidar_ex_peak_over_mean",
+        "wbhr_bajada_subcell_spike",
+        "wbhr_bajada_aspect_scarp",
+        "wbhr_bajada_collinear_worm_900m",
+        "wbhr_bajada_steep_ribbon",
+        "wbhr_mag_shallow_depthslice",
+        "wbhr_mag_shallow_grad_trough",
+        "wbhr_rad_uth_redox",
+        "wbhr_rad_uk_shallow_alteration",
+        "wbhr_fluvial_trunk_ksn",
+        "wbhr_fluvial_chi_span_area",
+        "wbhr_hypso_piedmont_inflection",
+        "wbhr_multiline_blind_concordance"
+      ],
+      "named_non_fault_mimic": "Incised ephemeral desert arroyos (symmetric opposing banks downface ~= upface), Pleistocene Lake Lahontan wave-cut paleoshoreline benches (~1330 m / ~1555 m), and stratiform uraniferous rhyolitic ash-flow tuffs."
+    },
+    {
+      "rank": 2,
+      "id": "H88-STIP",
+      "viable_in_sandbox": true,
+      "selected_for_lane": false,
+      "name": "Geodetic Principal-Extension Slip & Dilation Tendency on Euler Basement Planes",
+      "named_non_fault_mimic": "Mesozoic granitic pluton margins oriented perpendicular to modern GPS extension without Quaternary brittle reactivation."
+    },
+    {
+      "rank": 3,
+      "id": "H88-MTCAP",
+      "viable_in_sandbox": true,
+      "selected_for_lane": false,
+      "name": "Up-Dip Magnetotelluric Smectite Clay-Cap to Footwall Outflow Dipole",
+      "named_non_fault_mimic": "Saline playa evaporites and lacustrine claypans in flat basin centers."
+    },
+    {
+      "rank": 4,
+      "id": "H88-HYPODD",
+      "viable_in_sandbox": false,
+      "selected_for_lane": false,
+      "official_source": "https://earthquake.usgs.gov/fdsnws/event/1/",
+      "blocker": "Host earthquake.usgs.gov is outside sandbox outbound network allowlist.",
+      "name": "Relocated Microseismicity Planar Swarm Up-Dip Surface Trace Projection",
+      "named_non_fault_mimic": "Geothermal injection/production induced seismicity or open-pit mining blasts."
+    },
+    {
+      "rank": 5,
+      "id": "H88-SWIR",
+      "viable_in_sandbox": false,
+      "selected_for_lane": false,
+      "official_source": "https://lpdaac.usgs.gov/ and https://search.asf.alaska.edu/",
+      "blocker": "Hosts lpdaac.usgs.gov and search.asf.alaska.edu are outside sandbox outbound network allowlist.",
+      "name": "ASTER / EMIT SWIR Argillic-Opaline Alteration & Sentinel-1 InSAR Creep Discontinuities",
+      "named_non_fault_mimic": "Blanket Miocene stratiform volcanic-tuff argillic alteration and agricultural groundwater pumping subsidence."
+    }
+  ],
+  "experiments": [
+    {
+      "id": "E1_wbhr_phys60",
+      "description": "Pure label-blind 60-channel WBHR physics (44 shared + 16 new WBHR channels, zero catalogue-derived features) vs 44-channel PHYS44 control on identical 8 buffered whole-component folds."
+    },
+    {
+      "id": "E2_wbhr_hybrid",
+      "description": "Full WBHR (60 physics + 23 visible-only fault anatomy features) with 2-tree diverse-depth HGB ensemble and 2.65 px Dinkelbach declustering on the exact same allowed mask (fp & test_region & ~visible) vs recomputed H88-ADHR incumbent."
+    },
+    {
+      "id": "E3_wbhr_balanced",
+      "description": "Two-regime precision-calibrated WBHR allocation (2 < d <= 25 px high-precision relay/step-over tranche <= 62.5% of dots + d > 25 px pure wbhr_phys60 blind-basin discovery tranche >= 37.5% of dots, min_spacing_px = 2.83, strict LOQO cross-fitting in both holdout and production, sibling-halo cap <= 0.62) tested simultaneously against H88-ADHR holdout bar, fingerprint_screen (share_le2 == 0, share_gt25 >= 0.35), and 230-raster uniqueness."
+    }
+  ],
+  "gates": {
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "surface_max_abs_spearman": 0.90,
+    "dots_max_overlap_3px": 0.70,
+    "fingerprint_min_share_gt25": 0.35,
+    "fingerprint_max_share_le2": 0.0,
+    "stored_adhr_bar_dti": 0.18788764184958875,
+    "require_paired_95ci_gt_0_vs_recomputed_adhr": true,
+    "production_selection_rule": "Emit E3_wbhr_balanced as primary deliverable if it clears all gems88-gate-v3 gates (beats both stored 0.187888 and paired recomputed H88-ADHR with 95% CI > 0, passes share_gt25 >= 0.35 & share_le2 == 0, passes 230-raster like-for-like uniqueness <= 0.70 & |rho| <= 0.90, passes canary <= 0.90 and portal format); otherwise emit highest-HOLDOUT-DTI WBHR arm marked -DO-NOT-SUBMIT with ok_to_submit=false. Always report literal 17GEMSDOE all-positive witness alongside gems88-gate-v3."
+  }
+}

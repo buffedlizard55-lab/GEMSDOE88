@@ -82,4 +82,13 @@ jobs:
           code=$?
           set -e
           test "$code" -eq 2
+      - name: Independently recheck WBHR-88 research deliverable and expected negative slot gate
+        run: |
+          python scripts/validate_wbhr88.py
+          python -O scripts/validate_wbhr88.py
+          set +e
+          python scripts/validate_wbhr88.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
       - run: git diff --exit-code docs/status.json docs/data/current_release.json registry/template_pin.json

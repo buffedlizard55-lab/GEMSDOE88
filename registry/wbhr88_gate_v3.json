@@ -1,0 +1,251 @@
+{
+  "schema": "gems88.gate_record.v3",
+  "policy": "gems88-gate-v3",
+  "lane": "WBHR-88",
+  "generated_utc": "2026-10-24T20:15:00Z",
+  "elapsed_seconds": 163.19,
+  "candidate": {
+    "name": "gems88-wbhr88-wallace-bajada-redox-20261024-zeros",
+    "note": "WBHR-88 LOQO 60ch zero-cat LiDAR/bajada/U-Th-redox/chi + 2.83px Dinkelbach (holdout DTI 0.1064, 27564 dots)",
+    "mode": "phys60",
+    "arm": "wbhr_phys60",
+    "tif": "docs/downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.zip",
+    "receipt": "docs/downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.json",
+    "tif_sha256": "f5cdd16177a87560ab8e71d9e80d3d2c095bdeb398665d920826279207c26e49",
+    "zip_sha256": "850e2673026db013e2a60f5255664dc055cdea6e2b6733778d649b38cc26272d",
+    "tif_bytes": 115865,
+    "zip_bytes": 76058
+  },
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "gems88_gate_v3_label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "binding_literal_all_registry_v1": {
+    "ok_to_submit_under_unexempted_literal_rule": false,
+    "literal_worst_overlap_3px": 1.0,
+    "literal_blockers": [
+      "data/registry/dense_17gemdoe.tif",
+      "data/siblings/GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+    ],
+    "vacuity_witness": {
+      "random_dots": 27564,
+      "seed": 88,
+      "literal_overlap": 1.0,
+      "like_for_like_overlap": 0.014439123494413002,
+      "literal_rule_vacuous": true,
+      "dense_label": "data/registry/dense_17gemdoe.tif"
+    },
+    "explanation": "17GEMSDOE (data/registry/dense_17gemdoe.tif) has positive values on all 5,167,373 footprint pixels; even a seeded uniform random dot set has literal 3-px overlap 1.0000 against it. Under gems88-gate-v3 (like-for-like top-N comparison for dense continuous surfaces and literal comparison for all sparse dot rasters), worst overlap across all 238 rasters is 0.6983 <= 0.70."
+  },
+  "decision": {
+    "policy": "gems88-gate-v3",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+    "blocking_reasons": [
+      "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+      "FINGERPRINT: share_le2=0.0000 (req 0.0), share_gt25=0.3317 (req >= 0.35)",
+      "LITERAL_WITNESS: 17GEMSDOE dense prior 3-px overlap = 1.0000 > 0.70 (like-for-like worst across 238 rasters = 0.6983 <= 0.70)"
+    ],
+    "informational": [
+      "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): data/registry/dense_17gemdoe.tif, data/siblings/GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+    ],
+    "note_len": 107,
+    "name_len": 49,
+    "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows)."
+  },
+  "portal_validation_tif": {
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.tif",
+    "policy": "gems88-gate-v3",
+    "bytes": 115865,
+    "sha256": "f5cdd16177a87560ab8e71d9e80d3d2c095bdeb398665d920826279207c26e49",
+    "problems": [],
+    "member_name": "gems88-wbhr88-20261024-DO-NOT-SUBMIT.tif",
+    "tiff_header": {
+      "byte_order": "II",
+      "is_classic_tiff": true,
+      "is_bigtiff": false
+    },
+    "layout": {
+      "compress": "deflate",
+      "tiled": true,
+      "block_shapes": [
+        [
+          256,
+          256
+        ]
+      ],
+      "predictor": null,
+      "interleave": "band"
+    },
+    "checks": {
+      "one_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_sample": true,
+      "transform_matches_sample": true,
+      "bounds_match_sample": true,
+      "resolution_100m": true,
+      "nodata_undeclared": true,
+      "all_finite": true,
+      "masked_read_no_masked_cells": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "portal_range_check_nan_strict": true,
+      "portal_range_check_nanmin_nanmax": true,
+      "footprint_cells_finite": true,
+      "outside_footprint_zero": true,
+      "has_dots": true,
+      "no_internal_mask_band": true
+    },
+    "array_sha256": "d6b569072e7b9e5019fb22746787b59cab2e21c90b8eb497673e7c897954fc46",
+    "n_dots": 27564,
+    "min": 0.0,
+    "max": 1.0,
+    "n_unique_values": 2,
+    "layout_parity_with_sample": false,
+    "second_decoder": {
+      "name": "tifffile",
+      "equal": true
+    },
+    "ok": true
+  },
+  "portal_validation_zip": {
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-wbhr88-20261024-DO-NOT-SUBMIT.zip",
+    "policy": "gems88-gate-v3",
+    "bytes": 76058,
+    "sha256": "850e2673026db013e2a60f5255664dc055cdea6e2b6733778d649b38cc26272d",
+    "problems": [],
+    "zip_members": [
+      "gems88-wbhr88-20261024-DO-NOT-SUBMIT.tif"
+    ],
+    "zip_testzip": null,
+    "zip_member_compress_type": 8,
+    "member_name": "gems88-wbhr88-20261024-DO-NOT-SUBMIT.tif",
+    "tiff_header": {
+      "byte_order": "II",
+      "is_classic_tiff": true,
+      "is_bigtiff": false
+    },
+    "layout": {
+      "compress": "deflate",
+      "tiled": true,
+      "block_shapes": [
+        [
+          256,
+          256
+        ]
+      ],
+      "predictor": null,
+      "interleave": "band"
+    },
+    "checks": {
+      "one_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_sample": true,
+      "transform_matches_sample": true,
+      "bounds_match_sample": true,
+      "resolution_100m": true,
+      "nodata_undeclared": true,
+      "all_finite": true,
+      "masked_read_no_masked_cells": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "portal_range_check_nan_strict": true,
+      "portal_range_check_nanmin_nanmax": true,
+      "footprint_cells_finite": true,
+      "outside_footprint_zero": true,
+      "has_dots": true,
+      "no_internal_mask_band": true
+    },
+    "array_sha256": "d6b569072e7b9e5019fb22746787b59cab2e21c90b8eb497673e7c897954fc46",
+    "n_dots": 27564,
+    "min": 0.0,
+    "max": 1.0,
+    "n_unique_values": 2,
+    "layout_parity_with_sample": false,
+    "second_decoder": {
+      "name": "tifffile",
+      "equal": true
+    },
+    "ok": true
+  },
+  "fingerprint": {
+    "n": 27564,
+    "median_d_cat_px": 16.1245154965971,
+    "share_le2": 0.0,
+    "share_gt10": 0.6643447975620375,
+    "share_gt25": 0.3317007691191409
+  },
+  "fingerprint_screen_passed": false,
+  "canary_summary": {
+    "all_clear": true,
+    "features_tested": 83,
+    "worst_wbhr16": {
+      "feature": "wbhr_bajada_subcell_spike",
+      "group": "wbhr16",
+      "auc": 0.605117,
+      "symmetric_auc": 0.605117,
+      "flagged": false
+    },
+    "worst_all83": {
+      "feature": "d2",
+      "group": "visible_struct23",
+      "auc": 0.228504,
+      "symmetric_auc": 0.771496,
+      "flagged": false
+    }
+  },
+  "holdout_summary": {
+    "evidence_label": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "selected_arm": "wbhr_phys60",
+    "dti": 0.10637384194954325,
+    "ci95": [
+      0.09239913010032581,
+      0.11897628724968053
+    ],
+    "stored_adhr_bar_dti": 0.18788764184958875,
+    "recomputed_adhr_bar_dti": 0.18963385584087347,
+    "paired_vs_recomputed_adhr": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.08326001389133023,
+      "ci95": [
+        -0.09783521204049024,
+        -0.07003066151250346
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "e1_wbhr_phys60_dti": 0.10637384194954325,
+    "phys44_control_dti": 0.10031796086090514,
+    "paired_e1_vs_phys44": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.00605588108863811,
+      "ci95": [
+        0.0009222131872220457,
+        0.01150001874959535
+      ],
+      "withheld_positive_pixels": 22893
+    }
+  },
+  "uniqueness_summary": {
+    "registry_rasters_checked": 238,
+    "distinct_dot_sets_checked": 127,
+    "preplacement_max_abs_rho": 0.281299,
+    "worst_like_for_like_overlap_3px": {
+      "label": "docs/downloads/gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+      "value": 0.6982658540124801
+    },
+    "worst_abs_spearman_rho": {
+      "label": "data/registry/dense_17gemdoe.tif",
+      "value": 0.28129869865324536
+    },
+    "unique_like_for_like": true,
+    "unique_literal": false
+  }
+}

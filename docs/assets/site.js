@@ -30,23 +30,26 @@
       const currentResponse = await fetch('data/current_release.json', { cache: 'no-store' });
       const cardResponse = await fetch('data/mvrd_run_card.json', { cache: 'no-store' });
       const tdklResponse = await fetch('data/tdkl88_run_card.json', { cache: 'no-store' });
-      if (!response.ok || !currentResponse.ok || !cardResponse.ok || !tdklResponse.ok) {
+      const wbhrResponse = await fetch('data/wbhr88_run_card.json', { cache: 'no-store' });
+      if (!response.ok || !currentResponse.ok || !cardResponse.ok || !tdklResponse.ok || !wbhrResponse.ok) {
         throw new Error('latest run validation unavailable');
       }
       const data = await response.json();
       const current = await currentResponse.json();
       const card = await cardResponse.json();
       const tdkl = await tdklResponse.json();
+      const wbhr = await wbhrResponse.json();
       // Fail closed. The literal audit proves the universal dense-witness stop;
-      // the current TDKL feed and archived MVRD card independently bind displayed bytes.
+      // the current TDKL feed and WBHR/MVRD cards independently bind displayed bytes.
       const consistent = data.ok_to_download_for_research === true && data.ok_to_submit === false &&
           data.decision === 'DUPLICATE_STOP' && data.validator_output?.ok === true &&
           current.candidate === 'H88-TDKL' && current.ok_to_download === true &&
           current.ok_to_submit === false && current.literal_duplicate === true &&
           current.file_sha256 === tdkl.raster_sha256 && tdkl.ok_to_submit === false &&
-          card.ok_to_submit === false;
+          card.ok_to_submit === false &&
+          wbhr.ok_to_download === true && wbhr.ok_to_submit === false;
       banner.textContent = consistent
-        ? 'H88-TDKL & H88-MVRD · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated decision)'
+        ? 'WBHR-88, H88-TDKL & H88-MVRD · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated decision)'
         : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
     } catch (_) {
       banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';

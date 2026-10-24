@@ -1,0 +1,619 @@
+{
+  "schema": "gems88.wbhr_canary.v1",
+  "lane": "WBHR-88",
+  "seed": 20,
+  "withheld_positive_pixels": 11321,
+  "negative_pixels_total": 4829477,
+  "negative_pixels_sampled_weighted": 400000,
+  "threshold_symmetric_auc": 0.9,
+  "features_tested_total": 83,
+  "wbhr16_tested": 16,
+  "phys44_tested": 44,
+  "visible_struct23_tested": 23,
+  "worst_wbhr16": {
+    "feature": "wbhr_bajada_subcell_spike",
+    "group": "wbhr16",
+    "auc": 0.605117,
+    "symmetric_auc": 0.605117,
+    "flagged": false
+  },
+  "worst_phys60": {
+    "feature": "wbhr_bajada_subcell_spike",
+    "group": "wbhr16",
+    "auc": 0.605117,
+    "symmetric_auc": 0.605117,
+    "flagged": false
+  },
+  "worst_all83": {
+    "feature": "d2",
+    "group": "visible_struct23",
+    "auc": 0.228504,
+    "symmetric_auc": 0.771496,
+    "flagged": false
+  },
+  "flagged_features": [],
+  "all_clear": true,
+  "rows": [
+    {
+      "feature": "rtp_grad_200m",
+      "group": "phys44",
+      "auc": 0.535248,
+      "symmetric_auc": 0.535248,
+      "flagged": false
+    },
+    {
+      "feature": "rtp_grad_800m",
+      "group": "phys44",
+      "auc": 0.537157,
+      "symmetric_auc": 0.537157,
+      "flagged": false
+    },
+    {
+      "feature": "grav_grad_200m",
+      "group": "phys44",
+      "auc": 0.530999,
+      "symmetric_auc": 0.530999,
+      "flagged": false
+    },
+    {
+      "feature": "grav_grad_800m",
+      "group": "phys44",
+      "auc": 0.526859,
+      "symmetric_auc": 0.526859,
+      "flagged": false
+    },
+    {
+      "feature": "aligned_dip_edge_300m",
+      "group": "phys44",
+      "auc": 0.530466,
+      "symmetric_auc": 0.530466,
+      "flagged": false
+    },
+    {
+      "feature": "aligned_dip_edge_1000m",
+      "group": "phys44",
+      "auc": 0.51528,
+      "symmetric_auc": 0.51528,
+      "flagged": false
+    },
+    {
+      "feature": "dip_grav_step_60deg",
+      "group": "phys44",
+      "auc": 0.529384,
+      "symmetric_auc": 0.529384,
+      "flagged": false
+    },
+    {
+      "feature": "dip_mag_step_60deg",
+      "group": "phys44",
+      "auc": 0.529048,
+      "symmetric_auc": 0.529048,
+      "flagged": false
+    },
+    {
+      "feature": "dip_grav_vg_60deg",
+      "group": "phys44",
+      "auc": 0.518125,
+      "symmetric_auc": 0.518125,
+      "flagged": false
+    },
+    {
+      "feature": "dip_cond_edge_60deg",
+      "group": "phys44",
+      "auc": 0.52006,
+      "symmetric_auc": 0.52006,
+      "flagged": false
+    },
+    {
+      "feature": "cond_surf_raw",
+      "group": "phys44",
+      "auc": 0.477812,
+      "symmetric_auc": 0.522188,
+      "flagged": false
+    },
+    {
+      "feature": "cond_edge_300m",
+      "group": "phys44",
+      "auc": 0.519811,
+      "symmetric_auc": 0.519811,
+      "flagged": false
+    },
+    {
+      "feature": "cond_grav_xgrad",
+      "group": "phys44",
+      "auc": 0.518759,
+      "symmetric_auc": 0.518759,
+      "flagged": false
+    },
+    {
+      "feature": "iso_grav_hg_signed",
+      "group": "phys44",
+      "auc": 0.492304,
+      "symmetric_auc": 0.507696,
+      "flagged": false
+    },
+    {
+      "feature": "iso_grav_vg",
+      "group": "phys44",
+      "auc": 0.514354,
+      "symmetric_auc": 0.514354,
+      "flagged": false
+    },
+    {
+      "feature": "tmi_hg_log",
+      "group": "phys44",
+      "auc": 0.52794,
+      "symmetric_auc": 0.52794,
+      "flagged": false
+    },
+    {
+      "feature": "tmi_vg",
+      "group": "phys44",
+      "auc": 0.486381,
+      "symmetric_auc": 0.513619,
+      "flagged": false
+    },
+    {
+      "feature": "mag_tc",
+      "group": "phys44",
+      "auc": 0.471741,
+      "symmetric_auc": 0.528259,
+      "flagged": false
+    },
+    {
+      "feature": "depth_to_base_log",
+      "group": "phys44",
+      "auc": 0.524831,
+      "symmetric_auc": 0.524831,
+      "flagged": false
+    },
+    {
+      "feature": "piedmont_transition",
+      "group": "phys44",
+      "auc": 0.545093,
+      "symmetric_auc": 0.545093,
+      "flagged": false
+    },
+    {
+      "feature": "det_elev",
+      "group": "phys44",
+      "auc": 0.511621,
+      "symmetric_auc": 0.511621,
+      "flagged": false
+    },
+    {
+      "feature": "det_elev_slope",
+      "group": "phys44",
+      "auc": 0.563133,
+      "symmetric_auc": 0.563133,
+      "flagged": false
+    },
+    {
+      "feature": "det_elev_curv",
+      "group": "phys44",
+      "auc": 0.542601,
+      "symmetric_auc": 0.542601,
+      "flagged": false
+    },
+    {
+      "feature": "geod_strain_2ndinv",
+      "group": "phys44",
+      "auc": 0.566554,
+      "symmetric_auc": 0.566554,
+      "flagged": false
+    },
+    {
+      "feature": "geod_transtension",
+      "group": "phys44",
+      "auc": 0.542265,
+      "symmetric_auc": 0.542265,
+      "flagged": false
+    },
+    {
+      "feature": "seismic_prox",
+      "group": "phys44",
+      "auc": 0.462239,
+      "symmetric_auc": 0.537761,
+      "flagged": false
+    },
+    {
+      "feature": "probe2m_dab_local",
+      "group": "phys44",
+      "auc": 0.525126,
+      "symmetric_auc": 0.525126,
+      "flagged": false
+    },
+    {
+      "feature": "probe2m_dab_reg",
+      "group": "phys44",
+      "auc": 0.495378,
+      "symmetric_auc": 0.504622,
+      "flagged": false
+    },
+    {
+      "feature": "paleo_sinter_prox",
+      "group": "phys44",
+      "auc": 0.475976,
+      "symmetric_auc": 0.524024,
+      "flagged": false
+    },
+    {
+      "feature": "well_temp_anom",
+      "group": "phys44",
+      "auc": 0.493982,
+      "symmetric_auc": 0.506018,
+      "flagged": false
+    },
+    {
+      "feature": "well_geotherm_qtz",
+      "group": "phys44",
+      "auc": 0.502783,
+      "symmetric_auc": 0.502783,
+      "flagged": false
+    },
+    {
+      "feature": "hydro_upslope_feeder",
+      "group": "phys44",
+      "auc": 0.527877,
+      "symmetric_auc": 0.527877,
+      "flagged": false
+    },
+    {
+      "feature": "volcanic_vent_prox",
+      "group": "phys44",
+      "auc": 0.489442,
+      "symmetric_auc": 0.510558,
+      "flagged": false
+    },
+    {
+      "feature": "rad_k_over_th",
+      "group": "phys44",
+      "auc": 0.480166,
+      "symmetric_auc": 0.519834,
+      "flagged": false
+    },
+    {
+      "feature": "mag_demag_trough",
+      "group": "phys44",
+      "auc": 0.485877,
+      "symmetric_auc": 0.514123,
+      "flagged": false
+    },
+    {
+      "feature": "lidar_has_cov",
+      "group": "phys44",
+      "auc": 0.531489,
+      "symmetric_auc": 0.531489,
+      "flagged": false
+    },
+    {
+      "feature": "lidar_scarp_dipole",
+      "group": "phys44",
+      "auc": 0.588375,
+      "symmetric_auc": 0.588375,
+      "flagged": false
+    },
+    {
+      "feature": "lidar_scarp_coh",
+      "group": "phys44",
+      "auc": 0.546761,
+      "symmetric_auc": 0.546761,
+      "flagged": false
+    },
+    {
+      "feature": "topo10_slope_p90",
+      "group": "phys44",
+      "auc": 0.568248,
+      "symmetric_auc": 0.568248,
+      "flagged": false
+    },
+    {
+      "feature": "topo10_curv_prof",
+      "group": "phys44",
+      "auc": 0.585175,
+      "symmetric_auc": 0.585175,
+      "flagged": false
+    },
+    {
+      "feature": "topo10_hs_lineament",
+      "group": "phys44",
+      "auc": 0.576114,
+      "symmetric_auc": 0.576114,
+      "flagged": false
+    },
+    {
+      "feature": "chi_step_max",
+      "group": "phys44",
+      "auc": 0.499649,
+      "symmetric_auc": 0.500351,
+      "flagged": false
+    },
+    {
+      "feature": "ksn_jump_norm",
+      "group": "phys44",
+      "auc": 0.504235,
+      "symmetric_auc": 0.504235,
+      "flagged": false
+    },
+    {
+      "feature": "pluvial_shoreline_pen",
+      "group": "phys44",
+      "auc": 0.564637,
+      "symmetric_auc": 0.564637,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_lidar_wallace_polarity",
+      "group": "wbhr16",
+      "auc": 0.573777,
+      "symmetric_auc": 0.573777,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_lidar_arroyo_reject_step",
+      "group": "wbhr16",
+      "auc": 0.547698,
+      "symmetric_auc": 0.547698,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_lidar_strike_worm_700m",
+      "group": "wbhr16",
+      "auc": 0.58784,
+      "symmetric_auc": 0.58784,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_lidar_ex_peak_over_mean",
+      "group": "wbhr16",
+      "auc": 0.535471,
+      "symmetric_auc": 0.535471,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_bajada_subcell_spike",
+      "group": "wbhr16",
+      "auc": 0.605117,
+      "symmetric_auc": 0.605117,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_bajada_aspect_scarp",
+      "group": "wbhr16",
+      "auc": 0.588266,
+      "symmetric_auc": 0.588266,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_bajada_collinear_worm_900m",
+      "group": "wbhr16",
+      "auc": 0.57515,
+      "symmetric_auc": 0.57515,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_bajada_steep_ribbon",
+      "group": "wbhr16",
+      "auc": 0.599437,
+      "symmetric_auc": 0.599437,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_mag_shallow_depthslice",
+      "group": "wbhr16",
+      "auc": 0.505229,
+      "symmetric_auc": 0.505229,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_mag_shallow_grad_trough",
+      "group": "wbhr16",
+      "auc": 0.504366,
+      "symmetric_auc": 0.504366,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_rad_uth_redox",
+      "group": "wbhr16",
+      "auc": 0.501332,
+      "symmetric_auc": 0.501332,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_rad_uk_shallow_alteration",
+      "group": "wbhr16",
+      "auc": 0.487258,
+      "symmetric_auc": 0.512742,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_fluvial_trunk_ksn",
+      "group": "wbhr16",
+      "auc": 0.564197,
+      "symmetric_auc": 0.564197,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_fluvial_chi_span_area",
+      "group": "wbhr16",
+      "auc": 0.522877,
+      "symmetric_auc": 0.522877,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_hypso_piedmont_inflection",
+      "group": "wbhr16",
+      "auc": 0.52815,
+      "symmetric_auc": 0.52815,
+      "flagged": false
+    },
+    {
+      "feature": "wbhr_multiline_blind_concordance",
+      "group": "wbhr16",
+      "auc": 0.552186,
+      "symmetric_auc": 0.552186,
+      "flagged": false
+    },
+    {
+      "feature": "d",
+      "group": "visible_struct23",
+      "auc": 0.245236,
+      "symmetric_auc": 0.754764,
+      "flagged": false
+    },
+    {
+      "feature": "d_perp",
+      "group": "visible_struct23",
+      "auc": 0.238572,
+      "symmetric_auc": 0.761428,
+      "flagged": false
+    },
+    {
+      "feature": "d_par_abs",
+      "group": "visible_struct23",
+      "auc": 0.412799,
+      "symmetric_auc": 0.587201,
+      "flagged": false
+    },
+    {
+      "feature": "side",
+      "group": "visible_struct23",
+      "auc": 0.470231,
+      "symmetric_auc": 0.529769,
+      "flagged": false
+    },
+    {
+      "feature": "log_len",
+      "group": "visible_struct23",
+      "auc": 0.411163,
+      "symmetric_auc": 0.588837,
+      "flagged": false
+    },
+    {
+      "feature": "sin2",
+      "group": "visible_struct23",
+      "auc": 0.489398,
+      "symmetric_auc": 0.510602,
+      "flagged": false
+    },
+    {
+      "feature": "cos2",
+      "group": "visible_struct23",
+      "auc": 0.505756,
+      "symmetric_auc": 0.505756,
+      "flagged": false
+    },
+    {
+      "feature": "coherence",
+      "group": "visible_struct23",
+      "auc": 0.408128,
+      "symmetric_auc": 0.591872,
+      "flagged": false
+    },
+    {
+      "feature": "density",
+      "group": "visible_struct23",
+      "auc": 0.55249,
+      "symmetric_auc": 0.55249,
+      "flagged": false
+    },
+    {
+      "feature": "sin2d",
+      "group": "visible_struct23",
+      "auc": 0.43137,
+      "symmetric_auc": 0.56863,
+      "flagged": false
+    },
+    {
+      "feature": "cos2d",
+      "group": "visible_struct23",
+      "auc": 0.419668,
+      "symmetric_auc": 0.580332,
+      "flagged": false
+    },
+    {
+      "feature": "sense_sgn",
+      "group": "visible_struct23",
+      "auc": 0.488163,
+      "symmetric_auc": 0.511837,
+      "flagged": false
+    },
+    {
+      "feature": "sense_side",
+      "group": "visible_struct23",
+      "auc": 0.492614,
+      "symmetric_auc": 0.507386,
+      "flagged": false
+    },
+    {
+      "feature": "host_bend_turn",
+      "group": "visible_struct23",
+      "auc": 0.524172,
+      "symmetric_auc": 0.524172,
+      "flagged": false
+    },
+    {
+      "feature": "host_bend_asym",
+      "group": "visible_struct23",
+      "auc": 0.5044,
+      "symmetric_auc": 0.5044,
+      "flagged": false
+    },
+    {
+      "feature": "scarp_rel_cos2",
+      "group": "visible_struct23",
+      "auc": 0.582928,
+      "symmetric_auc": 0.582928,
+      "flagged": false
+    },
+    {
+      "feature": "d2",
+      "group": "visible_struct23",
+      "auc": 0.228504,
+      "symmetric_auc": 0.771496,
+      "flagged": false
+    },
+    {
+      "feature": "relay_ratio",
+      "group": "visible_struct23",
+      "auc": 0.410085,
+      "symmetric_auc": 0.589915,
+      "flagged": false
+    },
+    {
+      "feature": "relay_facing",
+      "group": "visible_struct23",
+      "auc": 0.616129,
+      "symmetric_auc": 0.616129,
+      "flagged": false
+    },
+    {
+      "feature": "two_host_strike_cos2",
+      "group": "visible_struct23",
+      "auc": 0.526323,
+      "symmetric_auc": 0.526323,
+      "flagged": false
+    },
+    {
+      "feature": "superposed_log_len2",
+      "group": "visible_struct23",
+      "auc": 0.487231,
+      "symmetric_auc": 0.512769,
+      "flagged": false
+    },
+    {
+      "feature": "sense_transition",
+      "group": "visible_struct23",
+      "auc": 0.52339,
+      "symmetric_auc": 0.52339,
+      "flagged": false
+    },
+    {
+      "feature": "d_over_w_envelope",
+      "group": "visible_struct23",
+      "auc": 0.265546,
+      "symmetric_auc": 0.734454,
+      "flagged": false
+    }
+  ]
+}
