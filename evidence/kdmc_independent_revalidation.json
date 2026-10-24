@@ -1,0 +1,70 @@
+{
+  "primary": {
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "crs_is_EPSG_32611": true,
+      "crs_matches_sample": true,
+      "shape_3730x3292": true,
+      "transform_matches_sample": true,
+      "nodata_is_None": true,
+      "all_finite": true,
+      "no_nan": true,
+      "in_0_1": true,
+      "binary_only": true,
+      "zero_outside_footprint": true,
+      "zero_on_catalogue": true,
+      "positives_inside_footprint": true,
+      "sha256_matches_receipt": true,
+      "zip_single_tif": true,
+      "zip_bytes_identical": true,
+      "name_len_1_140": true,
+      "note_len_1_140": true
+    },
+    "passed": 19,
+    "total": 19,
+    "all_pass": true,
+    "sha256": "6c17eed97c9f3088c202471706aec70ddecceb6334bc14523792372d2e82c58a",
+    "positives": 51064,
+    "unique": [
+      0.0,
+      1.0
+    ],
+    "name": "gemsdoe88-mdc88-pu-concentration-2p83px-20261024T0740Z-zeros",
+    "note_chars": 132
+  },
+  "collar3": {
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "crs_is_EPSG_32611": true,
+      "crs_matches_sample": true,
+      "shape_3730x3292": true,
+      "transform_matches_sample": true,
+      "nodata_is_None": true,
+      "all_finite": true,
+      "no_nan": true,
+      "in_0_1": true,
+      "binary_only": true,
+      "zero_outside_footprint": true,
+      "zero_on_catalogue": true,
+      "positives_inside_footprint": true,
+      "sha256_matches_receipt": true,
+      "zip_single_tif": true,
+      "zip_bytes_identical": true,
+      "name_len_1_140": true,
+      "note_len_1_140": true
+    },
+    "passed": 19,
+    "total": 19,
+    "all_pass": true,
+    "sha256": "b6772cb0659bc380f05e8ee67a8f030087414f4f47d8bf7eff78c4980f52e608",
+    "positives": 47226,
+    "unique": [
+      0.0,
+      1.0
+    ],
+    "name": "gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros",
+    "note_chars": 137
+  }
+}

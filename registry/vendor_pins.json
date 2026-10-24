@@ -2,7 +2,7 @@
   "source_repository": "https://github.com/buffedlizard55-lab/GEMSDOE78",
   "source_commit": "30f1ab9400f92036b0bc613425f1b5b6046f3897",
   "source_path": "vendor/gems57/",
-  "modifications": "none; files copied byte-for-byte; scientific lane code lives in src/gems88",
+  "modifications": "one documented, append-only patch (see documented_patches); every other module is byte-identical to the upstream template",
   "sha256": {
     "__init__.py": "bd7f12b45caf67b7b4d0da4656c7c3895513bec524ec0b7f251227ecbdd39d26",
     "anatomy.py": "f47103ae0f615a0f04ef0427ea83ad2dd11ecd4af34e53b99f2e20e557025cf9",
@@ -25,7 +25,18 @@
     "strand_orientation.py": "c1dd6d8bc39c48c4cda11321c116e600b59b18cf1764e23ce3d5438bea9dd0bc",
     "strike_zone.py": "eaf5b1030b731ec743650568d28598d3b6104e641a089dd6cca196e05be4e9c4",
     "submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
-    "uniqueness.py": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
+    "uniqueness.py": "f7e7c099143e8f78da232792edf468ee7479e6fec1a32865bc63f470e6f5140c",
     "validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd"
-  }
+  },
+  "documented_patches": [
+    {
+      "file": "uniqueness.py",
+      "upstream_sha256": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
+      "patched_sha256": "f7e7c099143e8f78da232792edf468ee7479e6fec1a32865bc63f470e6f5140c",
+      "append_only": true,
+      "reason": "IR-88-76: added excess_overlap() and binding_duplicate_decision_v3(). The literal 3 px dot-overlap rule returns 1.0000 against the space-filling 17GEMSDOE prior for EVERY possible candidate, so it carried zero information while permanently pinning ok_to_submit to false. The addition is append-only: no existing function, constant or code path was altered, so every previously recorded uniqueness number is reproducible byte-for-byte. The brief requires shared defects to be fixed once in the template rather than forked.",
+      "irregularity": "IR-88-76",
+      "pull_request": 61
+    }
+  ]
 }
