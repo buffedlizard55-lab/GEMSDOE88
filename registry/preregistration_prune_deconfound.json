@@ -1,0 +1,83 @@
+{
+  "schema": "gems88.prune-deconfound-preregistration.v1",
+  "frozen_utc": "2026-10-24T05:35:00Z",
+  "frozen_before_any_variant_proxy_or_sgmc": true,
+  "session_date": "2026-10-24",
+  "axis_assignment": {
+    "axis": "PRUNE",
+    "mode": "agent_autonomous_per_brief_v2",
+    "instruction": "Do not prompt me over choosing an Axis for the session, pick your own session.",
+    "rationale": "Across the 56-row ledger, MASS (IR-88-52/53), CONCENTRATION (IR-88-52), and SNAP (IR-88-47/51) are closed as slot axes, RELIEF has 9 negative HOLD arms, SPACING is sub-threshold (+0.00074 max) and lowest-priority, and TRACKB is Phase 2 only. Every active candidate in SLOT_PLAN.md (PRUNEp3px, PRUNEp3space35, PRUNEp4space35) sits on AXIS=PRUNE with parent R0, yet PRUNEp3space35 (49fff49b, +0.0050 SGMC vs R0) carries three unresolved confounders logged in IR-88-45 and IR-88-47: (1) an off-by-one collar inequality (d_cat <= 3.0 px instead of < 3.0 px, deleting 560 R0 dots at exact d_cat == 3.0 px where the 300 m kernel weight k(3.0) == 0.0 and Brief section 4.4 >= 3 px is already satisfied); (2) refill ranking by the four-line field w (blind SGMC AUC 0.4724, IR-88-38) never tested against a score-blind farthest-point control (the IR-88-45 queued falsifier); and (3) widening the refill support with leaderboard-selected sibling rasters H19-4 and H16-1 rather than purely organizer-provided 19-band structural crests."
+  },
+  "parent": {
+    "id": "h33-h33-2-b2",
+    "n_dots": 37654,
+    "sha256_zeros": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "sha256_nan": "baeae3219bba6a19bc8cfe79224e28555c50184b7c1ca65c2a822f54807c77dd",
+    "manifest_verified_inputs": 15,
+    "evidence_class": "REBUILT byte-exactly; historical live 0.2778 remains CLAIM (no portal receipt)"
+  },
+  "control_pivot": {
+    "id": "h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b",
+    "sha256_nan": "49fff49b03c47d7ac3822df185f1efd55b0b30855133360689754ce85167a61a",
+    "sha256_zeros": "e0b9d59b765a198aa5327bb99bddf09fec52e2806410a403b63ccce2d204824e",
+    "role": "Single shared baseline reconstructed byte-for-byte in-run (no duplicate ledger row); each new arm below changes ONLY ONE factor relative to p3space35 while remaining a pure AXIS=PRUNE child of R0 at fixed N=37,654."
+  },
+  "seed": 20261024,
+  "no_evidence_live_band": 0.01,
+  "arms": {
+    "lt3space35": {
+      "value": "lt3space35",
+      "single_factor_vs_p3space35": "collar inequality strictly < 3.0 px (d^2 <= 8, 1,611 dots removed = 4.27843%) instead of <= 3.0 px (d^2 <= 9, 2,171 dots removed = 5.76566%), preserving all 560 R0 parent dots at exact d_cat == 3.0000 px where k(3.0) = 0.0 and under_3px = 0",
+      "collar_rule": "d_catalogue < 3.0 px",
+      "n_removed_expected": 1611,
+      "n_added_expected": 1611,
+      "n_dots": 37654,
+      "spacing_lock_px": 3.5,
+      "refill_pool": "H19-5 union H19-4 union H16-1 (157,085 px) at d_catalogue >= 3.0 px",
+      "ranking_rule": "exact iterative marginal expected-DTI gain on the fixed label-free four-line physical field w (identical to p3space35)",
+      "predicted_change_model": "+0.006",
+      "predicted_range_model": [-0.003, 0.016],
+      "hypothesis": "Under the official R = 300 m (3.0 px) triangular kernel k(d) = max(0, 1 - d/3.0), R0's 560 dots at exact d_cat == 3.0000 px (d^2 = 9) already carry zero kernel overlap with existing_faults.tif and already satisfy Brief section 4.4's literal >= 3 px clearance, sampling real 300 m fault splays and step-over relays around mapped traces. Purging only the 1,611 dots strictly inside 3.0 px (d^2 in {5, 8}) removes the GeoDAWN 400 m flight-line halo while preserving those 560 splay dots and refilling 1,611 >= 3.5 px-spaced ridge dots.",
+      "non_fault_mimic": "Erosional alluvial-fan-head scarplets and 400 m aeromagnetic flight-line leveling ripples paralleling mapped range-front faults at 300 m offset (d_cat == 3.0 px) without brittle fault slip.",
+      "falsifier": "Live receipt <= R0 - 0.01 falsifies net benefit; monotonic ordering R0 < lt3space35 < p3space35 < p4space35 falsifies superiority of R0's 560 d_cat == 3.0 px rim dots over spaced ancestor ridge refills and proves the gain scales with spaced-refill replacement dose."
+    },
+    "p3space35fp": {
+      "value": "p3space35fp",
+      "single_factor_vs_p3space35": "score-blind greedy farthest-point Euclidean distance ranking (deterministic row-major tie-break, zero w-field, zero bands, zero RNG) instead of exact-marginal w-field DTI ranking",
+      "collar_rule": "d_catalogue <= 3.0 px",
+      "n_removed_expected": 2171,
+      "n_added_expected": 2171,
+      "n_dots": 37654,
+      "spacing_lock_px": 3.5,
+      "refill_pool": "H19-5 union H19-4 union H16-1 (157,085 px) at d_catalogue > 3.0 px (identical 6,632 cage-free pool to p3space35)",
+      "ranking_rule": "greedy farthest-point completion: iteratively pick the available pool pixel maximizing min Euclidean distance to all surviving and already-picked dots (row-major tie-break); zero physical bands, zero w-field",
+      "predicted_change_model": "+0.008",
+      "predicted_range_model": [-0.002, 0.018],
+      "hypothesis": "Because the four-line field w weights GDR geothermometry, radiometric K/Th, and raw potential-field gradients that cluster around already-catalogued geothermal districts (blind SGMC AUC 0.4724 < 0.50, IR-88-38; hot-prior blocks 31.8 px from unmapped faults, IR-88-52), w biases p3space35 toward tight 3.5-4.0 px clusters near mapped hubs. Score-blind farthest-point completion places all 2,171 refills at the centers of the largest uncovered gaps (>= 5.66 px min NN, 8.0 px median > 2R = 6.0 px) along un-emitted ridge strands, eliminating kernel redundancy and directly testing IR-88-45's ranking confounder.",
+      "non_fault_mimic": "Distal H19-4/H16-1 ridge segments tracing unfaulted Tertiary volcanic flow margins, pluton-roof contacts, or Pleistocene Lake Lahontan/Bonneville shorelines that attract farthest-point picks solely through geometric isolation.",
+      "falsifier": "If p3space35 beats p3space35fp by >= 0.01 live (or by > 0.002 on the blind off-catalogue SGMC control at identical collar, count, pool, and 3.5 px lock), the anti-w hypothesis is falsified and w carries genuine off-catalogue ranking lift; if p3space35fp >= p3space35, w-ranking is retired on spaced ridge pools."
+    },
+    "p3space35prov": {
+      "value": "p3space35prov",
+      "single_factor_vs_p3space35": "area-matched 157,085-px support built from H19-5 union 35,954 1D-NMS structural breakline/gradient Hessian crests of organizer-provided training_features.tif Bands 19/3/18/15 ONLY (zero H19-4/H16-1 leaderboard-tuned sibling rasters, zero external LiDAR, zero GDR wells), ranked by exact-marginal DTI on the same provided-band crest field",
+      "collar_rule": "d_catalogue <= 3.0 px",
+      "n_removed_expected": 2171,
+      "n_added_expected": 2171,
+      "n_dots": 37654,
+      "spacing_lock_px": 3.5,
+      "refill_pool": "H19-5 (121,131 px) union top 35,954 1D-directional-crest pixels outside H19-5 of provided_crest = 0.45*PR(Hessian(|grad(B19 det_elev_slope)|, 1.5)) + 0.20*PR(Hessian(B03 tmi_hg, 1.5)) + 0.20*PR(Hessian(B18 iso_grav_anom_hg, 1.5)) + 0.15*PR(Hessian(|grad(B15 depth_to_base_surf)|, 1.5)) -> exact 157,085 px total support at d_catalogue > 3.0 px",
+      "ranking_rule": "exact iterative marginal expected-DTI gain at >= 3.5 px lock on calibrated provided-band crest field w_prov = 0.02 + 0.22 * provided_crest (zero external data, zero H19-4/H16-1)",
+      "predicted_change_model": "+0.004",
+      "predicted_range_model": [-0.006, 0.014],
+      "hypothesis": "Piedmont normal-fault scarps form inflection lines of topographic slope (Hessian ridges of |grad(det_elev_slope)|, avoiding constant-slope canyon walls) co-registered with Hessian crests of TMI/isostatic-gravity horizontal gradients and basement-depth steps. Matching the exact 157,085-px support area of p3space35 using only provided competition bands tests IR-88-45: whether p3space35's +0.0050 blind margin required leaderboard-selected H19-4/H16-1 sibling supports or survives on purely organizer-provided structural breaklines.",
+      "non_fault_mimic": "Unfaulted coalescing alluvial-fan bajada toe inflections, incised fluvial terrace risers (|grad(det_elev_slope)|), and shallow Tertiary volcanic dike or paleochannel edges lacking brittle fault permeability.",
+      "falsifier": "Live delta <= -0.01 vs R0, or blind SGMC falling back to <= R1 (0.096083) despite identical >= 3.5 px lock and identical 157,085-px support cardinality, falsifies local 4-band breakline crests as a substitute for multi-scale lineage strands (H19-4/H16-1)."
+    }
+  },
+  "decision_rules": [
+    "No PROXY or MODEL number is a score; all predictions above remain frozen verbatim in the ledger, mechanism cards, and receipts regardless of post-build proxy outcomes.",
+    "Ordering on the report-only blind SGMC control is diagnostic only: if p3space35fp >= p3space35 - 0.0005, w-ranking adds zero blind value and p3space35fp is preferred on parsimony (zero external features in refill ranking); if p3space35prov >= p3space35 - 0.001, leaderboard-tuned ancestor provenance (IR-88-45) is not required for the spaced-refill effect.",
+    "Every live change with |delta| < 0.01 on public chunks is no evidence."
+  ]
+}

@@ -1871,5 +1871,155 @@
       }
     },
     "post_build_report_only": "Preregistered MODEL -0.005 is unchanged and is the prediction. Measured after build (REPORT ONLY, never a gate): blind SGMC 0.096825 PROXY (+0.000742 vs R1 0.096083); w-weighted DTI -0.020505 MODEL. w is defined on H19-5 support and is structurally blind to off-support placement (AUC 0.47, IR-88-38), so its sign is a confounder check, not evidence."
+  },
+  "h33-h33-2-b2-PRUNElt3space35-20261024-0b522c7f": {
+    "id": "h33-h33-2-b2-PRUNElt3space35-20261024-0b522c7f",
+    "parent": "h33-h33-2-b2",
+    "axis": "PRUNE",
+    "value": "lt3space35",
+    "hypothesis": "Under the official R = 300 m (3.0 px) triangular kernel k(d) = max(0, 1 - d/3.0), R0's 560 dots at exact d_cat == 3.0000 px (d^2 = 9) already carry zero kernel overlap with existing_faults.tif and already satisfy Brief section 4.4's literal >= 3 px clearance, sampling real 300 m fault splays and step-over relays around mapped traces. Purging only the 1,611 dots strictly inside 3.0 px (d^2 in {5, 8}) removes the GeoDAWN 400 m flight-line halo while preserving those 560 splay dots and refilling 1,611 >= 3.5 px-spaced ridge dots.",
+    "mechanism": "Single-factor PRUNE contrast against h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b: collar inequality strictly < 3.0 px (d^2 <= 8, 1,611 dots removed = 4.27843%) instead of <= 3.0 px (d^2 <= 9, 2,171 dots removed = 5.76566%), preserving all 560 R0 parent dots at exact d_cat == 3.0000 px where k(3.0) = 0.0 and under_3px = 0. Removes 1611 R0 dots (4.27843%) and adds 1611 dots at >= 3.5 px spacing lock (N fixed at 37654; 0 pixels < 3.0 px from catalogue; min refill NN 3.61 px, median 5.39 px).",
+    "non_fault_mimic": "Erosional alluvial-fan-head scarplets and 400 m aeromagnetic flight-line leveling ripples paralleling mapped range-front faults at 300 m offset (d_cat == 3.0 px) without brittle fault slip.",
+    "predicted_sign_size": "MODEL +0.006 live DTI vs R0 (frozen preregistered range [-0.003, +0.016]; |live delta| < 0.01 on public chunks is no evidence).",
+    "predicted_sign_and_size": "MODEL +0.006 live DTI vs R0 (range [-0.003, +0.016]).",
+    "falsifier": "Live receipt <= R0 - 0.01 falsifies net benefit; monotonic ordering R0 < lt3space35 < p3space35 < p4space35 falsifies superiority of R0's 560 d_cat == 3.0 px rim dots over spaced ancestor ridge refills and proves the gain scales with spaced-refill replacement dose.",
+    "confounder": "Public leaderboard samples only a subset of spatial chunks; SGMC off-catalogue control is bedrock-biased and four-line field w is in-sample on ancestor supports (IR-88-44/45).",
+    "post_build_report_only": {
+      "evidence_label": "PROXY / MODEL (never a score, never a gate)",
+      "sgmc_off_catalogue_dti_PROXY": 0.099236,
+      "sgmc_delta_vs_r0_PROXY": 0.003176,
+      "sgmc_delta_vs_p3space35_PROXY": -0.001806,
+      "holdout_dti_PROXY": 0.0,
+      "holdout_withheld_positives": 22663,
+      "holdout_ci95_PROXY": [
+        0.0,
+        0.0
+      ],
+      "fourline_w_expected_dti_delta_vs_r0_MODEL": -0.007288,
+      "block_cv_10km": 0.6344,
+      "block_cv_12km": 0.5666
+    },
+    "references": [
+      {
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+        "claim": "Official DTI metric uses alpha=0.2, beta=0.8, and triangular kernel R=300 m (3.0 px), where k(3.0)=0.0 (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "Known USGS/INGENIOUS pixels are masked pixel-exactly; adjacent pixels are scored normally against new-fault truth, which can lie within 300 m of known traces (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New fault includes newly mapped geometry (splays, relays, step-overs) of existing fault systems (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 400 m flight-line spacing sets lateral potential-field uncertainty near one kernel radius (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d",
+        "claim": "USGS SGMC mapped bedrock/concealed faults used strictly as a report-only off-catalogue diagnostic control, never for construction or gating."
+      }
+    ]
+  },
+  "h33-h33-2-b2-PRUNEp3space35fp-20261024-8d29a2f7": {
+    "id": "h33-h33-2-b2-PRUNEp3space35fp-20261024-8d29a2f7",
+    "parent": "h33-h33-2-b2",
+    "axis": "PRUNE",
+    "value": "p3space35fp",
+    "hypothesis": "Because the four-line field w weights GDR geothermometry, radiometric K/Th, and raw potential-field gradients that cluster around already-catalogued geothermal districts (blind SGMC AUC 0.4724 < 0.50, IR-88-38; hot-prior blocks 31.8 px from unmapped faults, IR-88-52), w biases p3space35 toward tight 3.5-4.0 px clusters near mapped hubs. Score-blind farthest-point completion places all 2,171 refills at the centers of the largest uncovered gaps (>= 5.66 px min NN, 8.0 px median > 2R = 6.0 px) along un-emitted ridge strands, eliminating kernel redundancy and directly testing IR-88-45's ranking confounder.",
+    "mechanism": "Single-factor PRUNE contrast against h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b: score-blind greedy farthest-point Euclidean distance ranking (deterministic row-major tie-break, zero w-field, zero bands, zero RNG) instead of exact-marginal w-field DTI ranking. Removes 2171 R0 dots (5.76566%) and adds 2171 dots at >= 3.5 px spacing lock (N fixed at 37654; 0 pixels < 3.0 px from catalogue; min refill NN 5.66 px, median 8.00 px).",
+    "non_fault_mimic": "Distal H19-4/H16-1 ridge segments tracing unfaulted Tertiary volcanic flow margins, pluton-roof contacts, or Pleistocene Lake Lahontan/Bonneville shorelines that attract farthest-point picks solely through geometric isolation.",
+    "predicted_sign_size": "MODEL +0.008 live DTI vs R0 (frozen preregistered range [-0.002, +0.018]; |live delta| < 0.01 on public chunks is no evidence).",
+    "predicted_sign_and_size": "MODEL +0.008 live DTI vs R0 (range [-0.002, +0.018]).",
+    "falsifier": "If p3space35 beats p3space35fp by >= 0.01 live (or by > 0.002 on the blind off-catalogue SGMC control at identical collar, count, pool, and 3.5 px lock), the anti-w hypothesis is falsified and w carries genuine off-catalogue ranking lift; if p3space35fp >= p3space35, w-ranking is retired on spaced ridge pools.",
+    "confounder": "Public leaderboard samples only a subset of spatial chunks; SGMC off-catalogue control is bedrock-biased and four-line field w is in-sample on ancestor supports (IR-88-44/45).",
+    "post_build_report_only": {
+      "evidence_label": "PROXY / MODEL (never a score, never a gate)",
+      "sgmc_off_catalogue_dti_PROXY": 0.101947,
+      "sgmc_delta_vs_r0_PROXY": 0.005887,
+      "sgmc_delta_vs_p3space35_PROXY": 0.000905,
+      "holdout_dti_PROXY": 0.0,
+      "holdout_withheld_positives": 22663,
+      "holdout_ci95_PROXY": [
+        0.0,
+        0.0
+      ],
+      "fourline_w_expected_dti_delta_vs_r0_MODEL": -0.013665,
+      "block_cv_10km": 0.6315,
+      "block_cv_12km": 0.5641
+    },
+    "references": [
+      {
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+        "claim": "Official DTI metric uses alpha=0.2, beta=0.8, and triangular kernel R=300 m (3.0 px), where k(3.0)=0.0 (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "Known USGS/INGENIOUS pixels are masked pixel-exactly; adjacent pixels are scored normally against new-fault truth, which can lie within 300 m of known traces (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New fault includes newly mapped geometry (splays, relays, step-overs) of existing fault systems (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 400 m flight-line spacing sets lateral potential-field uncertainty near one kernel radius (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d",
+        "claim": "USGS SGMC mapped bedrock/concealed faults used strictly as a report-only off-catalogue diagnostic control, never for construction or gating."
+      }
+    ]
+  },
+  "h33-h33-2-b2-PRUNEp3space35prov-20261024-0237d5b9": {
+    "id": "h33-h33-2-b2-PRUNEp3space35prov-20261024-0237d5b9",
+    "parent": "h33-h33-2-b2",
+    "axis": "PRUNE",
+    "value": "p3space35prov",
+    "hypothesis": "Piedmont normal-fault scarps form inflection lines of topographic slope (Hessian ridges of |grad(det_elev_slope)|, avoiding constant-slope canyon walls) co-registered with Hessian crests of TMI/isostatic-gravity horizontal gradients and basement-depth steps. Matching the exact 157,085-px support area of p3space35 using only provided competition bands tests IR-88-45: whether p3space35's +0.0050 blind margin required leaderboard-selected H19-4/H16-1 sibling supports or survives on purely organizer-provided structural breaklines.",
+    "mechanism": "Single-factor PRUNE contrast against h33-h33-2-b2-PRUNEp3space35-20261023-49fff49b: area-matched 157,085-px support built from H19-5 union 35,954 1D-NMS structural breakline/gradient Hessian crests of organizer-provided training_features.tif Bands 19/3/18/15 ONLY (zero H19-4/H16-1 leaderboard-tuned sibling rasters, zero external LiDAR, zero GDR wells), ranked by exact-marginal DTI on the same provided-band crest field. Removes 2171 R0 dots (5.76566%) and adds 2171 dots at >= 3.5 px spacing lock (N fixed at 37654; 0 pixels < 3.0 px from catalogue; min refill NN 3.61 px, median 5.39 px).",
+    "non_fault_mimic": "Unfaulted coalescing alluvial-fan bajada toe inflections, incised fluvial terrace risers (|grad(det_elev_slope)|), and shallow Tertiary volcanic dike or paleochannel edges lacking brittle fault permeability.",
+    "predicted_sign_size": "MODEL +0.004 live DTI vs R0 (frozen preregistered range [-0.006, +0.014]; |live delta| < 0.01 on public chunks is no evidence).",
+    "predicted_sign_and_size": "MODEL +0.004 live DTI vs R0 (range [-0.006, +0.014]).",
+    "falsifier": "Live delta <= -0.01 vs R0, or blind SGMC falling back to <= R1 (0.096083) despite identical >= 3.5 px lock and identical 157,085-px support cardinality, falsifies local 4-band breakline crests as a substitute for multi-scale lineage strands (H19-4/H16-1).",
+    "confounder": "Public leaderboard samples only a subset of spatial chunks; SGMC off-catalogue control is bedrock-biased and four-line field w is in-sample on ancestor supports (IR-88-44/45).",
+    "post_build_report_only": {
+      "evidence_label": "PROXY / MODEL (never a score, never a gate)",
+      "sgmc_off_catalogue_dti_PROXY": 0.100965,
+      "sgmc_delta_vs_r0_PROXY": 0.004905,
+      "sgmc_delta_vs_p3space35_PROXY": -7.7e-05,
+      "holdout_dti_PROXY": 0.0,
+      "holdout_withheld_positives": 22663,
+      "holdout_ci95_PROXY": [
+        0.0,
+        0.0
+      ],
+      "fourline_w_expected_dti_delta_vs_r0_MODEL": -0.013725,
+      "block_cv_10km": 0.6474,
+      "block_cv_12km": 0.5803
+    },
+    "references": [
+      {
+        "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+        "claim": "Official DTI metric uses alpha=0.2, beta=0.8, and triangular kernel R=300 m (3.0 px), where k(3.0)=0.0 (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://community.drivendata.org/t/scoring-clarification-are-known-usgs-ingenious-faults-masked-when-scoring-and-are-they-in-the-final-round-label-set/11516",
+        "claim": "Known USGS/INGENIOUS pixels are masked pixel-exactly; adjacent pixels are scored normally against new-fault truth, which can lie within 300 m of known traces (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://community.drivendata.org/t/where-do-you-draw-the-line/11536",
+        "claim": "New fault includes newly mapped geometry (splays, relays, step-overs) of existing fault systems (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://data.usgs.gov/datacatalog/data/USGS:657e1d85d34e23d3533209f7",
+        "claim": "GeoDAWN Area 2 400 m flight-line spacing sets lateral potential-field uncertainty near one kernel radius (supplied by brief; not fetched)."
+      },
+      {
+        "url": "https://www.sciencebase.gov/catalog/item/5888bf4fe4b05ccb964bab9d",
+        "claim": "USGS SGMC mapped bedrock/concealed faults used strictly as a report-only off-catalogue diagnostic control, never for construction or gating."
+      }
+    ]
   }
 }
