@@ -77,7 +77,8 @@ def main():
         verdict="promote-to-selector-only" if gv["ok_to_submit"] else "negative",
         limits=["No DrivenData login: no receipt inspected, nothing submitted, portal behaviour not observed.",
                 "Hide-and-recover truth is catalogue faults, not the hidden new-fault labels; H33-class rasters are not scorable on it.",
-                "Fingerprint screen is derived from 20 owner-reported scores (shared ancestry) and is necessary, not sufficient."])
+                "Fingerprint screen is derived from 20 owner-reported scores (shared ancestry) and is necessary, not sufficient.",
+                "Uniqueness is against 215 obtainable rasters (21-raster inventory, 25 scored rasters, sites 86/87/89/92, this repository), not an organizer-complete registry."])
     text = json.dumps(card, indent=1, default=float) + "\n"
     (ROOT / "registry/run_card_20261024.json").write_text(text)
     (ROOT / "docs/data").mkdir(exist_ok=True)

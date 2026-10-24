@@ -26,6 +26,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 INV = ROOT / "registry" / "sibling_inventory.json"
 OUT = ROOT / "data" / "siblings"
+FLEET = ROOT / "data" / "fleet"
 OWNER = "buffedlizard55-lab"
 SITES = ["GEMSDOE86", "GEMSDOE87", "GEMSDOE89", "GEMSDOE90", "GEMSDOE91", "GEMSDOE92"]
 
@@ -90,6 +91,11 @@ def main():
                 dest, commit = clone(site, td)
                 rows = collect(dest, site)
                 inv["sites"][site] = dict(commit=commit, n_tif=sum(r["kind"] == "tif" for r in rows), n_zip=sum(r["kind"] == "zip" for r in rows), files=rows)
+                if site == "GEMSDOE86":
+                    ps = dest / "registry" / "prior_scores.csv"
+                    inv["sites"][site]["extras"] = [dict(path="registry/prior_scores.csv", dest="data/fleet/prior_scores.csv", sha256=sha(ps),
+                                                         note="owner-reported public scores (OWNER-REPORTED); used by scripts/calibrate_proxies.py")]
+                    inv["fleet_copy_rule"] = "every .tif under GEMSDOE86 data/scored_fleet/ is also copied to data/fleet/<basename> for the calibration scripts"
                 for r in rows:
                     if r["kind"] == "tif":
                         shutil.copy2(dest / r["path"], OUT / flat(site, r["path"]))
@@ -98,19 +104,31 @@ def main():
         return 0
     inv = json.loads(INV.read_text())
     bad = 0
+    FLEET.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as td:
         for site, info in inv["sites"].items():
             tifs = [r for r in info["files"] if r["kind"] == "tif"]
-            if not tifs:
-                continue
+            extras = info.get("extras", [])
             need = [r for r in tifs if not (OUT / flat(site, r["path"])).is_file() or sha(OUT / flat(site, r["path"])) != r["sha256"]]
-            if not need:
+            need_extra = [e for e in extras if not (ROOT / e["dest"]).is_file() or sha(ROOT / e["dest"]) != e["sha256"]]
+            fleet_need = [r for r in tifs if site == "GEMSDOE86" and r["path"].startswith("data/scored_fleet/")
+                          and (not (FLEET / Path(r["path"]).name).is_file() or sha(FLEET / Path(r["path"]).name) != r["sha256"])]
+            if not (need or need_extra or fleet_need):
                 continue
             dest, _ = clone(site, td, info["commit"])
             for r in need:
                 shutil.copy2(dest / r["path"], OUT / flat(site, r["path"]))
                 if sha(OUT / flat(site, r["path"])) != r["sha256"]:
                     print("SHA MISMATCH", site, r["path"]); bad += 1
+            for r in fleet_need:
+                shutil.copy2(dest / r["path"], FLEET / Path(r["path"]).name)
+                if sha(FLEET / Path(r["path"]).name) != r["sha256"]:
+                    print("SHA MISMATCH (fleet)", r["path"]); bad += 1
+            for e in need_extra:
+                (ROOT / e["dest"]).parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(dest / e["path"], ROOT / e["dest"])
+                if sha(ROOT / e["dest"]) != e["sha256"]:
+                    print("SHA MISMATCH (extra)", e["path"]); bad += 1
     print("restore OK" if not bad else f"{bad} mismatches")
     return 1 if bad else 0
 

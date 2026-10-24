@@ -31,6 +31,7 @@ from scipy import ndimage as ndi
 from scipy.stats import rankdata
 
 POLICY_VERSION = "gems88-gate-v3"
+FP_SCREEN_MIN_GT25 = 0.35   # share of dots > 25 px from any mapped fault (derived from 20 owner-reported rasters; necessary, not sufficient)
 OVERLAP_MAX = 0.70
 RHO_MAX = 0.90
 RADIUS_PX = 3.0
@@ -302,6 +303,19 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
         unique_literal=bool(not errors and not any(r["blocks_literal"] for r in ok_rows)),
         unique_like_for_like=bool(not errors and not any(r["blocks_like_for_like"] for r in ok_rows)),
         vacuity_witness=witness, rows=rows)
+
+
+# ----------------------------------------------------------------------------- fingerprint screen
+def fingerprint(dots, d_cat) -> dict:
+    """Distance-to-catalogue profile of a dot set (``d_cat`` = EDT distance in px to the nearest mapped-fault pixel)."""
+    dc = np.asarray(d_cat)[np.asarray(dots, bool)]
+    return dict(n=int(dc.size), median_d_cat_px=float(np.median(dc)), share_le2=float((dc <= 2).mean()),
+                share_gt10=float((dc > 10).mean()), share_gt25=float((dc > 25).mean()))
+
+
+def fingerprint_screen(fp: dict) -> bool:
+    """Necessary screen: no dot within 2 px of the catalogue and >= 35% of dots > 25 px away (IR-88-60)."""
+    return bool(fp["share_le2"] == 0.0 and fp["share_gt25"] >= FP_SCREEN_MIN_GT25)
 
 
 # ----------------------------------------------------------------------------- decision

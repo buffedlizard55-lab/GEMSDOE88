@@ -137,3 +137,46 @@ def test_sibling_inventory_pins_every_site():
     for site, info in inv["sites"].items():
         assert len(info["commit"]) == 40
         assert all(len(r["sha256"]) == 64 for r in info["files"])
+
+
+def _clone_release(tmp_path):
+    import shutil
+    for rel in ("registry/gate_verdict.json", "registry/run_card_20261024.json", "registry/uniqueness_v3.json",
+                "docs/data/run-card-20261024.json", "evidence/halo_experiments_20261024.json", "registry/holdout_result.json",
+                f"docs/downloads/{NAME}.json", f"docs/downloads/{NAME}.tif", f"docs/downloads/{NAME}.zip"):
+        dst = tmp_path / rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / rel, dst)
+    return tmp_path
+
+
+def test_release_validator_detects_a_hand_edited_verdict(tmp_path):
+    from validate_release import release_report_v3
+    root = _clone_release(tmp_path)
+    release_report_v3(root)  # untouched copy verifies
+    gv = json.loads((root / "registry/gate_verdict.json").read_text())
+    gv["ok_to_submit"] = True
+    gv["label"] = "OK TO DOWNLOAD - OK TO SUBMIT"
+    gv["blocking_reasons"] = []
+    (root / "registry/gate_verdict.json").write_text(json.dumps(gv))
+    with pytest.raises(ValueError):
+        release_report_v3(root)
+
+
+def test_release_validator_detects_changed_bytes_and_removed_blocker(tmp_path):
+    from validate_release import release_report_v3
+    root = _clone_release(tmp_path)
+    t = root / "docs/downloads" / f"{NAME}.tif"
+    b = bytearray(t.read_bytes())
+    b[-1] ^= 0xFF
+    t.write_bytes(bytes(b))
+    with pytest.raises(Exception):
+        release_report_v3(root)
+    root2 = _clone_release(tmp_path / "second")
+    card = json.loads((root2 / "registry/run_card_20261024.json").read_text())
+    card["holdout"]["beats_bar"] = True  # lie about the holdout while the verdict still blocks on it
+    text = json.dumps(card)
+    (root2 / "registry/run_card_20261024.json").write_text(text)
+    (root2 / "docs/data/run-card-20261024.json").write_text(text)
+    with pytest.raises(ValueError):
+        release_report_v3(root2)

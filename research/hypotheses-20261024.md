@@ -34,8 +34,8 @@ Every number below is **HOLDOUT-DTI**; none is ORGANIZER-CONFIRMED.
   INGENIOUS 2-m probes / paleo-sinter / wells / vents (CC BY 4.0), USGS GeoDAWN K/Th/up-continued TMI (CC0), USGS 3DEP 1-m LiDAR scarp stack
   (75 % coverage) and 10-m topography/chi-ksn (public domain), pluvial-shoreline penalty.  All free and official; restored SHA-verified by
   `scripts/restore_inputs.py`.
-* **Physical signature / transform.**  Mapped faults that stand alone (no other mapped component within a 5-px window; 9.5 k of 61 k catalogue
-  pixels) are the best available proxy for faults in *unmapped* terrain.  Train a gradient-boosted classifier on those positives against
+* **Physical signature / transform.**  Mapped faults that stand alone (no other mapped component within a 5-px window; 10.1 k = 16.6 % of the 61.0 k catalogue
+  pixels, 489 of 3,199 components) are the best available proxy for faults in *unmapped* terrain.  Train a gradient-boosted classifier on those positives against
   **far-basin background** (pixels > 8 px from every visible catalogue pixel); neighbourhoods of dense fault networks are left unlabeled so that
   strong range-front relief does not define "fault".
 * **Why it could catch faults missing from the catalogue.**  Un-captured faults sit in terrain the catalogue does not describe; a model trained on

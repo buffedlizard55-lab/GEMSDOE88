@@ -154,7 +154,7 @@ def release_report(root=ROOT):
     )
 
 
-def release_report_v3(root=ROOT):
+def release_report_v3(root=ROOT, full=False):
     """Independent re-verification of the CURRENT headline candidate (gems88-gate-v3).
 
     Everything is recomputed from the committed bytes; nothing is trusted from the receipts except
@@ -234,9 +234,48 @@ def release_report_v3(root=ROOT):
         errs.append("uniqueness summary inconsistent with its rows")
     if uq["candidate_dots"] != pv["n_dots"]:
         errs.append("uniqueness candidate dot count differs from the file")
+    # re-derive the holdout comparison from the evidence files (bars come from the archived H88-ADHR result)
+    ho_adhr = json.loads((root / "registry" / "holdout_result.json").read_text())
+    bar_all = round(ho_adhr["scores"]["candidate"]["dti"], 5)
+    bar_far = round(ho_adhr["far_from_visible_gt_10px_diagnostic"]["h88_adhr"]["dti"], 5)
+    cbar = card["holdout"]["bar"]
+    if (round(cbar["overall"], 5), round(cbar["far"], 5)) != (bar_all, bar_far):
+        errs.append("holdout bar in the run card differs from the archived H88-ADHR evidence")
+    far_sc = ho["pooled"]["far__candidate_fbmt"]["scores"][arm]
+    beats = bool(sc["dti"] > cbar["overall"] or far_sc["dti"] > cbar["far"])
+    if beats != card["holdout"]["beats_bar"]:
+        errs.append("run card beats_bar differs from the evidence")
+    # re-derive the verdict from its committed components (catches a hand-edited verdict)
+    fp_ok = gate.fingerprint_screen(rcpt["fingerprint"])
+    expected_ok = bool(portal_ok and uq["unique_like_for_like"] and ho["canary"]["passed"] and beats and fp_ok)
+    if expected_ok != gv["ok_to_submit"]:
+        errs.append(f"verdict not reproducible from components (expected ok_to_submit={expected_ok})")
+    if (not fp_ok) and not any(r.startswith("FINGERPRINT") for r in gv["blocking_reasons"]):
+        errs.append("fingerprint screen failed but is not listed as a blocking reason")
+    if (not beats) and not any(r.startswith("HOLDOUT") for r in gv["blocking_reasons"]):
+        errs.append("holdout bar failed but is not listed as a blocking reason")
+    recomputed = None
+    if full:
+        # recompute fingerprint and the whole uniqueness report from bytes (needs data/: restore_inputs + restore_siblings)
+        from scipy import ndimage as ndi
+        from gems88 import registry_paths
+        gd = grid.load_grid(root / "data" / "bridge")
+        vals = gate.read_values(tif, gd.footprint)
+        dots = (vals > 0) & gd.footprint
+        d_cat = ndi.distance_transform_edt(~gd.catalogue)
+        fpr = gate.fingerprint(dots, d_cat)
+        if any(abs(fpr[k] - rcpt["fingerprint"][k]) > 1e-9 for k in fpr):
+            errs.append("fingerprint recomputation differs from receipt")
+        reg = registry_paths.registry_list(root, exclude=(name,))
+        rep = gate.uniqueness_report(tif, reg, gd.footprint)
+        if (rep["unique_like_for_like"] != uq["unique_like_for_like"] or rep["registry_rasters"] != uq["registry_rasters"]
+                or abs(rep["worst_like_for_like_overlap"]["value"] - uq["worst_like_for_like_overlap"]["value"]) > 1e-9):
+            errs.append("uniqueness recomputation differs from registry/uniqueness_v3.json")
+        recomputed = dict(fingerprint=fpr, registry_rasters=rep["registry_rasters"], unique_like_for_like=rep["unique_like_for_like"],
+                          worst_like_for_like_overlap=rep["worst_like_for_like_overlap"]["value"])
     if errs:
         raise ValueError("; ".join(errs))
-    return dict(policy=gate.POLICY_VERSION, name=name, raster_sha256=sha, zip_sha256=zsha, portal_parity_reopen_ok=portal_ok,
+    return dict(policy=gate.POLICY_VERSION, name=name, recomputed_from_bytes=recomputed, raster_sha256=sha, zip_sha256=zsha, portal_parity_reopen_ok=portal_ok,
                 ok_to_download=gv["ok_to_download"], ok_to_submit=gv["ok_to_submit"], label=gv["label"],
                 blocking_reasons=gv["blocking_reasons"], unique_like_for_like=uq["unique_like_for_like"],
                 worst_like_for_like_overlap=worst, worst_abs_rho=worst_rho)
@@ -245,9 +284,10 @@ def release_report_v3(root=ROOT):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--require-submit", action="store_true")
+    parser.add_argument("--full", action="store_true", help="recompute fingerprint + uniqueness from bytes (needs restored data/)")
     args = parser.parse_args()
     legacy = release_report()
-    current = release_report_v3()
+    current = release_report_v3(full=args.full)
     print(json.dumps(dict(current_headline_candidate_v3=current, archived_h88_adhr_literal_gate=legacy), indent=2))
     if args.require_submit and not current["ok_to_submit"]:
         print("AUTOMATIC SUBMISSION GATE: FAIL (" + "; ".join(current["blocking_reasons"]) + "). No upload permitted.", file=sys.stderr)

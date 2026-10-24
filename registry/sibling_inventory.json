@@ -383,6 +383,14 @@
       "gems86-spt-throwcons-37654dots-20261024T010000Z-2943374c-zeros.tif"
      ]
     }
+   ],
+   "extras": [
+    {
+     "path": "registry/prior_scores.csv",
+     "dest": "data/fleet/prior_scores.csv",
+     "sha256": "e4ac6f1ca5de11894744ef6ffb03bfdb612e9a3cb99fefd6e749168778347724",
+     "note": "owner-reported public scores (OWNER-REPORTED); used by scripts/calibrate_proxies.py"
+    }
    ]
   },
   "GEMSDOE87": {
@@ -1390,5 +1398,6 @@
    ]
   }
  },
- "note": "Owner-hosted mirrors; not organizer-authenticated. Rasters are not committed."
+ "note": "Owner-hosted mirrors; not organizer-authenticated. Rasters are not committed.",
+ "fleet_copy_rule": "every .tif under GEMSDOE86 data/scored_fleet/ is also copied to data/fleet/<basename> for the calibration scripts"
 }

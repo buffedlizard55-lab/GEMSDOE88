@@ -37,9 +37,8 @@ def main():
         rep = gate.uniqueness_report(tif, reg, fp)
         portal = gate.portal_validate(tif, sample, fp)
         out.append(dict(file=tif.name, sha256=gate.sha256_file(tif), dots=int(dots.sum()),
-                        fingerprint=dict(median_d_cat_px=float(np.median(dc)), share_le2=float((dc <= 2).mean()),
-                                         share_gt10=float((dc > 10).mean()), share_gt25=float((dc > 25).mean())),
-                        fingerprint_screen_pass=bool((dc <= 2).mean() == 0 and (dc > 25).mean() >= 0.35),
+                        fingerprint=gate.fingerprint(dots, d_cat),
+                        fingerprint_screen_pass=gate.fingerprint_screen(gate.fingerprint(dots, d_cat)),
                         unique_like_for_like=rep["unique_like_for_like"], unique_literal=rep["unique_literal"],
                         worst_like_for_like_overlap=rep["worst_like_for_like_overlap"], like_for_like_blockers=rep["like_for_like_blockers"],
                         portal_ok_values_and_grid=portal["ok"], portal_layout_parity_with_sample=portal["layout_parity_with_sample"],

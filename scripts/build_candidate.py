@@ -32,15 +32,8 @@ from gems88 import gate, halo, physics, portal_writer, registry_paths  # noqa: E
 
 HID_RATIO = 11_321 / 48_340   # hidden / visible, seed-20 buffered whole-component draw (fold-sum k_est checked in the runner)
 HALO_PX = 3.0
-FP_SCREEN_MIN_GT25 = 0.35     # fingerprint screen (see evidence/proxy_calibration_20261024.json)
 BAR_OVERALL = 0.18789         # stored H88-ADHR pooled HOLDOUT-DTI (gems57-pooled-hide-v2, n=22,893)
 BAR_FAR = 0.11478
-
-
-def fingerprint(dots, d_cat):
-    dc = d_cat[dots]
-    return dict(n=int(dots.sum()), median_d_cat_px=float(np.median(dc)), share_le2=float((dc <= 2).mean()),
-                share_gt10=float((dc > 10).mean()), share_gt25=float((dc > 25).mean()))
 
 
 def main():
@@ -106,8 +99,8 @@ def main():
     n_dots = int(dots.sum())
     sha8_dots = hashlib.sha256(np.packbits(dots).tobytes()).hexdigest()[:8]
     uniq = dict(rep, candidate="(final)")  # identical pixels to the last loop iteration (same writer)
-    fprint = fingerprint(dots, d_cat)
-    fp_pass = bool(fprint["share_le2"] == 0.0 and fprint["share_gt25"] >= FP_SCREEN_MIN_GT25)
+    fprint = gate.fingerprint(dots, d_cat)
+    fp_pass = gate.fingerprint_screen(fprint)
     ho = json.loads((ROOT / args.holdout_json).read_text())
     sc_all = ho["pooled"]["all__candidate_fbmt"]["scores"][args.arm]
     sc_far = ho["pooled"]["far__candidate_fbmt"]["scores"][args.arm]
@@ -165,7 +158,7 @@ def main():
         production_fit=dict(positives=meta["n_pos"], hid_ratio=meta["hid_ratio"], k_est=k_est, halo_px=args.halo,
                             allocator="vendor/gems57/emit.dinkelbach_allocate budget=None min_spacing_px=2.05 dinkelbach_iters=6",
                             features=names, repair_log=repair_log),
-        fingerprint=fprint, fingerprint_screen=dict(passed=fp_pass, rule="share_le2==0 and share_gt25>=%.2f" % FP_SCREEN_MIN_GT25),
+        fingerprint=fprint, fingerprint_screen=dict(passed=fp_pass, rule="share_le2==0 and share_gt25>=%.2f" % gate.FP_SCREEN_MIN_GT25),
         holdout=dict(evidence_class="HOLDOUT-DTI", evaluator_version=ho["evaluator_version"], arm=args.arm,
                      overall=dict(dti=sc_all["dti"], ci95=sc_all["ci95"], withheld_positives=sc_all["withheld_positive_pixels"]),
                      far_subset=dict(dti=sc_far["dti"], ci95=sc_far["ci95"], withheld_positives=sc_far["withheld_positive_pixels"]),
