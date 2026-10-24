@@ -41,6 +41,21 @@ def main(root: Path = ROOT) -> None:
     current = json.loads((docs / "data/current_release.json").read_text())
     status = json.loads((docs / "status.json").read_text())
     audit = json.loads((docs / "downloads" / f"{MVRD_NAME}.format-audit.json").read_text())
+    literal = json.loads((docs / "data/literal_protocol_audit.json").read_text())
+    ibl = json.loads((root / "registry/ibl88_run_card.json").read_text())
+    ibl_web = json.loads((docs / "data/ibl88_run_card.json").read_text())
+
+    assert literal["preplacement_feasibility"]["all_nonempty_in_footprint_candidates_blocked"] is True
+    assert literal["correlation_overlap_vs_registry"]["duplicate"] is True
+    assert literal["ok_to_submit"] is False
+    assert ibl == ibl_web, "Pages IBL card differs from canonical registry card"
+    assert ibl["verdict"] == "negative" and ibl["ok_to_download"] is True and ibl["ok_to_submit"] is False
+    assert ibl["uniqueness"]["literal_worst_forward_overlap_3px"] == 1.0
+    assert ibl["uniqueness"]["unique"] is False and ibl["uniqueness"]["stop_required"] is True
+    ibl_tif = root / ibl["submission"]["file"]
+    ibl_zip = root / ibl["submission"]["zip_file"]
+    assert sha256(ibl_tif) == ibl["submission"]["sha256"]
+    assert sha256(ibl_zip) == ibl["submission"]["zip_sha256"]
 
     assert card == web_card, "Pages MVRD card differs from canonical registry card"
     assert gate == web_gate, "Pages MVRD gate differs from canonical registry gate"
@@ -97,6 +112,8 @@ def main(root: Path = ROOT) -> None:
     executive = pages[1].read_text()
     research = pages[2].read_text()
     assert MVRD_NAME in index and MVRD_NAME in executive
+    assert ibl_tif.name in index and ibl_tif.name in executive
+    assert "literal_protocol_audit.json" in index and "literal_protocol_audit.json" in executive
     assert "DOWNLOAD FOR RESEARCH: YES" in index
     assert "SUBMIT: NO" in index
     assert card["raster_sha256"] in index and card["raster_sha256"] in executive

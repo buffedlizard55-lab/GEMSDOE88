@@ -1,0 +1,17 @@
+{
+  "retrieved_date_utc": "2026-10-24",
+  "source": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+  "method": "GitHub contents API at immutable commit",
+  "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+  "claims_verified": [
+    "Official reference supports CPU-only and GPU environments",
+    "GPU accelerates training but is not universally required"
+  ],
+  "not_verified": [
+    "current leaderboard",
+    "portal receipt",
+    "weekly cap",
+    "rules PDF",
+    "external-source availability or license"
+  ]
+}
