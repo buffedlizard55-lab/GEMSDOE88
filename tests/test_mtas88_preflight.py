@@ -72,14 +72,36 @@ def test_expected_generation_gate_exit_and_committed_report(recomputed_card):
         assert json.loads((ROOT / rel).read_text()) == recomputed_card
 
 
-def test_site_leads_with_current_negative_and_never_falls_back_to_approval():
+def test_site_leads_with_current_sdtl_release_and_preserves_review_queue():
+    release = json.loads((ROOT / "docs/data/current_release.json").read_text())
+    assert release["candidate"] == "H88-SDTL"
+    assert release["ok_to_download"] is True
+    assert release["ok_to_submit"] is True
+    assert release["approved_for_weekly_slot"] is False
+
+    review = json.loads((ROOT / "docs/data/repo_review_20261025.json").read_text())
+    queue = review["hypothesis_queue"]
+    assert [row["id"] for row in queue] == ["H88-FARC", "H88-TCONS", "H88-PRAN", "H88-FLAC"]
+    assert all(row["status"] == "UNTESTED" for row in queue)
+    assert "H88-MTAS" not in {row["id"] for row in queue}
+    assert "H88-SDTL" not in {row["id"] for row in queue}
+    assert review["current_repository_release"]["lane"] == "H88-SDTL"
+    assert review["current_repository_release"]["ok_to_submit_under_current_repository_policy"] is True
+    assert review["current_repository_release"]["approved_for_weekly_slot"] is False
+
     for rel in ("docs/index.html", "docs/executive-summary.html"):
         text = (ROOT / rel).read_text()
-        assert "data/sdtl88_run_card.json" in text
-        assert "data/mtas88_run_card.json" in text or "mtas88" in text
-        assert "DO NOT SUBMIT" in text  # archived lanes remain marked
-        assert "1.0" in text
-        assert "0.70" in text
+        block = text.split("<!-- CANONICAL-DECISION:START -->", 1)[1].split("<!-- CANONICAL-DECISION:END -->", 1)[0]
+        assert "data/sdtl88_run_card.json" in block
+        assert "H88-SDTL" in block
+        assert "DOWNLOAD: YES" in block
+        assert "OK TO DOWNLOAD AND SUBMIT" in block
+        hero = block.split("decision-gates", 1)[0]
+        assert "SUBMIT: YES — OK TO DOWNLOAD AND SUBMIT" in hero
+        assert "SUBMIT: NO" not in hero
+    review_doc = (ROOT / "docs/research/review-20261025-autonomous.md").read_text()
+    assert "IR-88-SDTL-01" in review_doc
+    assert "literal overlap" in review_doc.lower() and "top-*n*" in review_doc
     js = (ROOT / "docs/assets/site.js").read_text()
     assert "fetch('data/sdtl88_run_card.json'" in js
     assert "PRE-FLIGHT AUDIT UNAVAILABLE" in js

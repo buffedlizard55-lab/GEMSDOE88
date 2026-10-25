@@ -1,49 +1,11 @@
 {
-  "schema": "gems88.repo-review-20261025.v1",
+  "schema": "gems88.repo-review-20261025.v2",
   "review_date_utc": "2026-10-25",
   "review_status": "DUPLICATE_STOP",
+  "review_scope": "The DUPLICATE_STOP below applies to the H88-FARC candidate considered by this review under the literal pre-placement proof; it is not the current-release selector.",
   "hypothesis_queue": [
     {
       "rank": 1,
-      "id": "H88-MTAS",
-      "layers": [
-        "rtp_grad_200m",
-        "rtp_grad_800m",
-        "grav_grad_200m",
-        "grav_grad_800m",
-        "depth_to_base_log",
-        "det_elev_slope",
-        "geod_transtension"
-      ],
-      "physical_signature": "A normalized cross-scale gravity-to-magnetic admittance residual: a short-scale gravity edge that persists while the magnetic edge is smoothed or demagnetized, gated by basin cover and low relief.",
-      "missing_fault_rationale": "A buried or cover-obscured basement discontinuity can retain a density edge without producing a mapped surface scarp; it therefore targets a missing fault rather than copying the catalogue geometry.",
-      "non_fault_mimic": "An unfaulted intrusive or volcanic lithologic contact with density contrast but weak magnetic contrast; flight-line leveling seams are a second acquisition confounder.",
-      "difference_from_repo": "No existing lane in this repository combines the two scale differences across gravity and RTP as one residual. MRR is within-magnetic residualization; PHASE is angular discordance; GTHC is upward-continuation/amplitude logic.",
-      "expected_gain": "highest",
-      "implementation_cost": "low-medium",
-      "external_data": "none; uses the restored cached stack",
-      "status": "UNTESTED"
-    },
-    {
-      "rank": 2,
-      "id": "H88-PRAN",
-      "layers": [
-        "rad_k_over_th",
-        "det_elev_slope",
-        "topo10_curv_prof",
-        "depth_to_base_log"
-      ],
-      "physical_signature": "Terrain-bin-matched radiometric K:Th residual with along-strike coherence, rather than a global radiometric high.",
-      "missing_fault_rationale": "Hydrothermal alteration or soil redistribution along a covered structure may persist in shallow radiometry even when a discrete scarp is absent; matching relief reduces the mapped-scarp shortcut.",
-      "non_fault_mimic": "K-rich transported alluvium, parent-rock boundaries, and radiometric soil-moisture effects.",
-      "difference_from_repo": "MVRD uses radiometric evidence with scarp fields; this candidate tests a terrain-matched conditional null and does not use catalogue geometry for its surface.",
-      "expected_gain": "medium",
-      "implementation_cost": "low-medium",
-      "external_data": "none; all named layers are already restored",
-      "status": "UNTESTED"
-    },
-    {
-      "rank": 3,
       "id": "H88-FARC",
       "layers": [
         "chi_step_max",
@@ -52,17 +14,17 @@
         "lidar_scarp_coh",
         "det_elev_slope"
       ],
-      "physical_signature": "Repeated, signed cross-channel drainage offsets normalized within catchment and channel-order strata, with a matched pseudo-crest null.",
-      "missing_fault_rationale": "A blind rupture crossing several independent channels can leave repeated baseline offsets even when all individual scarps are below mapping confidence; replication is the missing-fault criterion.",
-      "non_fault_mimic": "Lithologic knickzones, inherited drainage capture, and regional base-level or climate change.",
-      "difference_from_repo": "QTSK/TDKL rank absolute knickwaves or scarp polarity; FARC requires cross-catchment replication against a channel-matched null, a different statistic.",
-      "expected_gain": "medium",
+      "physical_signature": "Cross-catchment replication of signed channel-profile breaks, normalized within catchment and channel-order strata and tested against a slope-matched pseudo-crest null.",
+      "missing_fault_rationale": "A blind or unmapped rupture can perturb channel profiles and low-relief surfaces across several independent catchments without producing a single catalogue-grade scarp; repeated, strike-compatible breaks are the proposed discriminator.",
+      "non_fault_mimic": "Lithologic knickzones, inherited drainage capture, and regional base-level or climate change can also produce channel-profile breaks.",
+      "difference_from_repo": "QTSK/TDKL score local knickwave magnitude or scarp polarity. FARC requires cross-catchment replication against a channel-order/slope-matched null; no matching implementation or experiment card was found in this repository.",
+      "expected_gain": "medium (qualitative; unmeasured)",
       "implementation_cost": "medium",
-      "external_data": "none; uses cached DEM-derived channels",
+      "external_data": "none proposed; uses existing DEM-derived cached channels. The restored owner mirror is not authenticated against current organizer files.",
       "status": "UNTESTED"
     },
     {
-      "rank": 4,
+      "rank": 2,
       "id": "H88-TCONS",
       "layers": [
         "probe2m_dab_local",
@@ -70,17 +32,35 @@
         "cond_edge_300m",
         "depth_to_base_log"
       ],
-      "physical_signature": "Depth-conditioned temperature-to-conductivity residual: a local thermal anomaly that is not explained by regional conductance or basin depth.",
-      "missing_fault_rationale": "A focused fluid pathway can produce a thermal response offset from a broad conductive basin halo and may mark a blind permeable fault; the residual is designed to target the mismatch.",
-      "non_fault_mimic": "Lake-brine conductivity, groundwater circulation, and unfractured permeable lithology.",
-      "difference_from_repo": "DHTC combines deep heat/MT and basement structure; TCONS is a conditional residual with head-matched negative controls and no direct vent label.",
-      "expected_gain": "medium",
-      "implementation_cost": "medium",
-      "external_data": "none for the cached owner-mirror stack; official GDR license must be rechecked before sharing derivatives",
+      "physical_signature": "A depth-conditioned temperature-to-conductivity residual: retain local thermal anomalies not explained by regional conductance or basin depth, then test spatial coherence along blind structures.",
+      "missing_fault_rationale": "Focused fluid flow could make a thermal/conductivity residual near a buried fault even where the surface scarp is absent; this tests a geothermal-fluid association rather than treating a vent as a fault label.",
+      "non_fault_mimic": "Lake-brine conductivity, groundwater circulation, and unfractured permeable lithology can produce the same thermal/conductive anomaly.",
+      "difference_from_repo": "DHTC combines deep heat/MT and basement structure; TCONS would use head-/depth-matched negative controls to isolate the conditional residual. No exact TCONS method was found in the repository.",
+      "expected_gain": "medium potential, high uncertainty (qualitative; unmeasured)",
+      "implementation_cost": "high",
+      "external_data": "none proposed beyond the cached stack; before sharing derivatives, verify the official DOE GDR INGENIOUS source and license at https://gdr.openei.org/submissions/1391. Current owner-mirror provenance is not independently authenticated.",
       "status": "UNTESTED"
     },
     {
-      "rank": 5,
+      "rank": 3,
+      "id": "H88-PRAN",
+      "layers": [
+        "rad_k_over_th",
+        "det_elev_slope",
+        "topo10_curv_prof",
+        "depth_to_base_log"
+      ],
+      "physical_signature": "A terrain-bin-matched K:Th radiometric residual with along-strike persistence, rather than a global radiometric high.",
+      "missing_fault_rationale": "Hydrothermal alteration or soil redistribution along a covered structure may persist in shallow radiometry even where no discrete scarp was mapped; terrain matching is intended to remove relief-related baseline effects.",
+      "non_fault_mimic": "K-rich transported alluvium, parent-rock boundaries, and soil-moisture effects can produce the same K:Th contrast.",
+      "difference_from_repo": "MVRD uses radiometric evidence with scarp fields; PRAN proposes a terrain-conditioned null and along-strike persistence rather than catalogue-derived placement. No exact PRAN experiment was found in the repository.",
+      "expected_gain": "low-to-medium (qualitative; unmeasured)",
+      "implementation_cost": "low-to-medium",
+      "external_data": "none proposed; uses cached GeoDAWN-derived radiometry and existing terrain layers. The owner-mirror values and redistribution terms still require verification.",
+      "status": "UNTESTED"
+    },
+    {
+      "rank": 4,
       "id": "H88-FLAC",
       "layers": [
         "rtp_grad_200m",
@@ -89,20 +69,70 @@
         "geod_shearrate",
         "geod_dilaterate"
       ],
-      "physical_signature": "Multi-sensor edge persistence after an explicit flight-line-direction artifact veto and local cross-sensor continuity test.",
-      "missing_fault_rationale": "A fault-related edge should persist across independent sensors and not be confined to the documented east-west survey-line direction; this can recover a concealed discontinuity while rejecting a processing seam.",
-      "non_fault_mimic": "Common gridding artifacts, tie-line leveling, and broad lithologic contacts that align with acquisition direction.",
-      "difference_from_repo": "MGC/XGCE reward cross-field edge geometry but do not apply a preregistered flight-direction null; FLAC is a robustness/control transform, not a new data source.",
-      "expected_gain": "low-medium",
+      "physical_signature": "Cross-sensor edge persistence after a predeclared survey-line-direction artifact veto and local continuity test.",
+      "missing_fault_rationale": "A real concealed structure should be supported by independent sensors and should not exist only as an acquisition-direction seam; this is a robustness-oriented detector for faults lacking obvious surface expression.",
+      "non_fault_mimic": "Tie-line leveling, gridding artifacts, and broad lithologic contacts aligned with acquisition direction can mimic the signature.",
+      "difference_from_repo": "MGC/XGCE compare cross-field edge geometry but do not use this explicit flight-direction null; FLAC is a quality-controlled edge persistence test. No exact FLAC experiment was found in the repository.",
+      "expected_gain": "low (qualitative; unmeasured)",
       "implementation_cost": "low",
-      "external_data": "none; GeoDAWN acquisition metadata are official context, not a new raster",
+      "external_data": "none proposed; GeoDAWN acquisition metadata is an official manual-review source, not a new raster. The current run did not re-fetch that source.",
       "status": "UNTESTED"
     }
   ],
   "selected_lane": {
-    "id": "H88-MTAS",
-    "selection_reason": "Highest qualitative gain-to-cost hypothesis using only restored cached layers; no external data required.",
-    "status": "NOT FIT \u2014 pre-placement duplicate proof fires before feature construction"
+    "id": "H88-FARC",
+    "selection_reason": "Highest qualitative discovery-potential / cost trade-off among the four currently unexecuted repo-local hypotheses; ordinal judgment only, not a DTI prediction.",
+    "status": "NOT FIT \u2014 shared pre-placement duplicate proof stops before feature construction"
+  },
+  "historical_experiment_reconciliation": {
+    "executed_lane_excluded_from_untried_queue": {
+      "lane": "H88-MTAS",
+      "status": "EXECUTED_HISTORICAL_NEGATIVE_EXCLUDED_FROM_UNTESTED_QUEUE",
+      "record": "registry/mtas88_experiment_run_card.json",
+      "conflicting_preplacement_records": {
+        "records": [
+          "registry/mtas88_run_card.json",
+          "evidence/mtas88_preflight_20261025.json"
+        ],
+        "recorded_decision": "DUPLICATE_STOP",
+        "recorded_experiment_count": 0,
+        "recorded_new_rasters_generated": 0,
+        "recorded_weekly_slots_used": 0,
+        "status": "CONFLICTS_WITH_SEPARATE_EXECUTION_CARD_AND_HASH_MATCHED_RASTER",
+        "resolution": "Preserve both records. Treat MTAS as executed for untried-queue accounting because a separate experiment card and matching raster/ZIP exist; do not claim the pre-placement record was rewritten or that the chronology is resolved."
+      },
+      "holdout": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positive_pixels": 22893,
+        "dti": 0.049577,
+        "ci95": [
+          0.044659,
+          0.054417
+        ],
+        "split": "buffered-whole-components-loqo-v2",
+        "note": "Historical MTAS result; not a result for the selected FARC proposal and not ORGANIZER-CONFIRMED."
+      },
+      "raster_sha256": "2cb828939e11cf07e12be7917722f73816550ed4e297e2409b8674ac131479cc",
+      "zip_sha256": "10921fdd4a0ed2808c3525ccaee02942f5f396378a9d89a5f0d4465428827aa9",
+      "zip_one_member_byte_identical": true,
+      "verdict": "negative",
+      "ok_to_submit": false
+    },
+    "current_repository_holdout_reference": {
+      "lane": "H88-BPWD",
+      "status": "HISTORICAL_REPOSITORY_HOLDOUT_REFERENCE_NOT_LIVE_SCORE",
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 22893,
+      "dti": 0.2059906799008455,
+      "ci95": [
+        0.18810523423482492,
+        0.22334363824908246
+      ],
+      "candidate_comparison": "NOT_RUN_FOR_FARC; this historical number is not a paired comparison or leaderboard projection."
+    },
+    "note": "The MTAS experiment exists in the repo and is not untested. Conflicting pre-placement and execution records are preserved; its historical holdout does not validate or score FARC."
   },
   "official_sources": [
     {
@@ -154,6 +184,7 @@
       "verified_claim": "EPSG:32611 is WGS 84 / UTM zone 11N with metre units; the page is the CRS reference, not a competition submission receipt."
     }
   ],
+  "source_verification_scope": "Official URLs are provided for review. Non-GitHub official pages were not re-fetched in this replay because their hosts are outside the session allowlist; source statuses above are inherited from the prior dated audit, not fresh retrieval. Restored owner-mirror bytes are hash-pinned locally but not authenticated against current organizer downloads.",
   "h33_forensics": {
     "h33_value": 0.2778,
     "h33_evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI AND NOT ORGANIZER-CONFIRMED",
@@ -204,8 +235,9 @@
     "implication": "Every nonempty candidate in the allowed domain has forward overlap 1.0 > 0.70."
   },
   "current_research_download": {
-    "evidence_class": "LOCAL-FORMAT-AUDIT",
+    "evidence_class": "LOCAL-FORMAT-AUDIT_NOT_ORGANIZER-ACCEPTANCE",
     "candidate": "H88-SDTL",
+    "lane": "H88-SDTL",
     "file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.tif",
     "zip_file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.zip",
     "tif_sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
@@ -229,35 +261,88 @@
       "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
     },
     "zip_one_byte_identical_tif": true,
-    "ok_to_download_for_research": true,
-    "ok_to_submit": false,
-    "status_source": "docs/status.json + docs/data/current_release.json",
-    "warning": "A local format PASS is not organizer acceptance, a uniqueness pass, or a weekly-slot selector decision."
+    "verdict": "promote",
+    "ok_to_download": true,
+    "ok_to_submit_under_current_repository_policy": true,
+    "approved_for_weekly_slot": false,
+    "weekly_slots_used": 0,
+    "organizer_confirmed_score": null,
+    "protocol_correction": "IR-88-SDTL-01 equal-support uniqueness (gems57.uniqueness.binding_duplicate_decision_v5)",
+    "holdout": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 22893,
+      "candidate_dti": 0.0966619672879048,
+      "candidate_ci95": [
+        0.08409701181301676,
+        0.10844321708386172
+      ],
+      "control_dti": 0.08562751970856614,
+      "paired_delta": 0.011034447579338663,
+      "paired_delta_ci95": [
+        0.0022154214272596356,
+        0.020166627934134932
+      ],
+      "folds_won_vs_control": "7/8"
+    },
+    "leakage_canary": {
+      "max_symmetric_auc": 0.598958530398237,
+      "limit": 0.9,
+      "passed": true,
+      "features_tested": 12
+    },
+    "uniqueness": {
+      "binding_rule": "equal-support-forward-overlap + rank-correlation (IR-88-SDTL-01)",
+      "rasters_checked": 68,
+      "surface_worst_abs_spearman": 0.623181763349153,
+      "final_dot_worst_equal_support_overlap": 0.5058268478567685,
+      "dense_witness_equal_support_overlap": 0.06516391789991532,
+      "dense_witness_literal_overlap": 1.0,
+      "dense_witness_file": "registry/dense_17gemdoe.tif"
+    },
+    "status_source": "docs/status.json + docs/data/current_release.json + matching run card and download audit",
+    "warning": "The current repository marks H88-SDTL eligible under IR-88-SDTL-01 equal-support v5. The literal dense-witness dot overlap remains 1.0; v5 instead compares continuous-prior top-n cells. This format audit is not organizer acceptance, a score receipt, or weekly-slot approval."
+  },
+  "current_repository_release": {
+    "lane": "H88-SDTL",
+    "candidate": "H88-SDTL",
+    "file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.tif",
+    "sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
+    "verdict": "promote",
+    "ok_to_download": true,
+    "ok_to_submit_under_current_repository_policy": true,
+    "approved_for_weekly_slot": false,
+    "organizer_confirmed_score": null,
+    "protocol_correction": "IR-88-SDTL-01 equal-support uniqueness (gems57.uniqueness.binding_duplicate_decision_v5)",
+    "note": "Inherited from the later origin/main SDTL-88 merge; it was not generated by this FARC review. See docs/research/review-20261025-autonomous.md for the chronology and literal-vs-v5 policy distinction."
   },
   "holdout": {
-    "evidence_class": "HOLDOUT-DTI",
     "status": "NOT RUN \u2014 pre-placement duplicate stop",
-    "evaluator_version": "gems57-pooled-hide-v2",
+    "candidate_lane": "H88-FARC",
+    "evaluator_version_if_unblocked": "gems57-pooled-hide-v2",
     "withheld_positive_pixels": null,
     "dti": null,
     "ci95": null,
-    "reason": "No feature stack was fitted and no MTAS prediction was emitted. A historical number cannot be relabelled as MTAS evidence."
+    "reason": "No candidate features were constructed or fitted. The archived H88-MTAS result is historical evidence for that completed lane only; it cannot be reused as an H88-FARC score."
   },
   "leakage_canary": {
-    "status": "NOT RUN \u2014 no MTAS feature was constructed",
+    "status": "NOT RUN \u2014 no candidate feature was constructed",
     "threshold_symmetric_auc": 0.9,
     "features_tested": 0
   },
   "new_tif": {
+    "scope": "H88-FARC candidate considered in this review only",
     "generated": false,
     "file": null,
     "sha256": null,
-    "reason": "The binding pre-placement proof rejects every nonempty candidate; making or renaming a TIFF would violate the stop rule and would not make it unique."
+    "reason": "For the H88-FARC lane considered by this review under the literal pre-placement test, the SHA-pinned dense witness covers every allowed cell, so any nonempty candidate would have forward overlap 1.0 > 0.70. This does not describe the separately imported H88-SDTL release, which is evaluated under the later documented v5 rule."
   },
   "submission": {
-    "reserved_name": "GEMSDOE88-MTAS-PREFLIGHT-20261025-NO-FILE",
-    "reserved_note": "MTAS pre-placement duplicate: registry covers all allowed cells; no TIFF built; UNSCORED; DO NOT SUBMIT",
-    "note_characters": 103,
+    "scope": "H88-FARC review candidate only; current H88-SDTL repository release is reported separately",
+    "reserved_name": "GEMSDOE88-FARC-PREFLIGHT-20261025-NO-FILE",
+    "reserved_name_status": "NO_FILE_NOT_FOR_PORTAL",
+    "reserved_note": "FARC pre-placement stop; no candidate TIFF, score or slot; UNSCORED; DO NOT SUBMIT",
+    "note_characters": 82,
     "ok_to_download_new_file": false,
     "ok_to_download_archived_research_file": true,
     "ok_to_submit": false,
@@ -270,17 +355,17 @@
     "no_nan_inside_footprint": null,
     "values_in_0_1": null,
     "crs_shape_transform_match": null,
-    "note": "The archived research file has a separate local-format audit; it is not this session's candidate."
+    "note": "The archived research TIFF has a separate local-format audit; that pass is not a new candidate validation or submission approval."
   },
   "errors": [],
   "verdict": "negative",
   "decision": "DUPLICATE_STOP",
   "limitations": [
-    "The local owner-mirror bytes are SHA-pinned but are not an authenticated logged-in DrivenData download in this sandbox.",
-    "The hidden organizer labels are unavailable; a catalogued holdout is a proxy and cannot prove a leaderboard result.",
-    "The prompt's H33 0.2778 is a user-reported claim without a portal receipt; the public leaderboard snapshot is separate evidence.",
-    "The literal all-registry overlap rule is mathematically unsatisfiable for a nonempty candidate while the full-positive 17GEMSDOE witness remains in scope.",
-    "No external dataset was needed for the selected hypothesis, so no new license-dependent layer was consumed."
+    "The untested FARC hypothesis has no new HOLDOUT-DTI or canary result because the literal pre-placement rule stops this run first.",
+    "The hidden organizer labels are unavailable; catalogued-fault holdout evidence cannot establish the leaderboard score.",
+    "H33 0.2778 remains USER-REPORTED without a submission receipt; the prompt's leaderboard snapshots 0.3195 and 0.4413 conflict and were not freshly verified here.",
+    "The literal all-registry dot-overlap condition is unsatisfiable for a nonempty candidate while the full-support 17GEMSDOE witness remains in scope; the later main SDTL release uses the documented equal-support v5 correction and records both readings.",
+    "The current organizer data page requires account access; the local owner mirrors do not authenticate data identity or rights. No external data were newly downloaded for this review."
   ],
-  "next_action": "Require an explicit, documented resolution of the universal witness/protocol contradiction before constructing another candidate; then rerun the ranked lane through shared buffered holdout and two-phase uniqueness."
+  "next_action": "Do not spend a slot. The current H88-SDTL release is marked eligible under the shared v5 rule but has no organizer receipt or weekly-slot approval; review its recorded gates and protocol correction before any separate selector decision. This review did not fit H88-FARC. Any later experiment must stay within its own preregistered budget, restore/authenticate inputs, run feature-alone canaries and whole-component buffered holdout with the shared evaluator, then check surface and final dots before separate slot selection."
 }

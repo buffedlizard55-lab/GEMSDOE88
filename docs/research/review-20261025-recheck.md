@@ -1,4 +1,6 @@
-# Independent repository recheck — 2026-10-25
+# Historical independent repository recheck — 2026-10-25
+
+> **Superseded queue snapshot:** this first-pass review predates reconciliation of the separate H88-MTAS execution card. Its five-hypothesis discussion is historical, not the current “untried” queue. The corrected v2 report excludes executed MTAS and ranks four repo-local unexecuted proposals (FARC, TCONS, PRAN, FLAC): [current review](review-20261025-autonomous.md) · [machine card](../data/repo_review_20261025.json). The earlier pre-placement stop and later MTAS execution artifacts are both retained.
 
 ## Decision: no new TIFF; do not submit an archived file
 
@@ -31,7 +33,7 @@ Under the repository's DTI implementation, pruning dots that are redundant or sp
 
 ## Hypothesis queue: retain the preregistration, do not claim novelty twice
 
-The repository already ranked five specific candidates before this review. Repeating them as “new hypotheses we have not tried” would be misleading. See [the five-hypothesis machine record](../data/repo_review_20261025.json) and [prior research](review-20261025-autonomous.md).
+The first-pass review carried a five-row candidate queue that included MTAS. A later evidence reconciliation found a separate MTAS execution card, so the old queue cannot be used as the active untried list. See the [corrected four-hypothesis machine record](../data/repo_review_20261025.json) and [current review](review-20261025-autonomous.md). The historical table below is retained only to preserve the earlier ranking.
 
 | Prior rank / candidate | Cached layers and physical signature | Missing-fault mechanism / non-fault mimic | Expected gain / cost (qualitative, not a score) |
 |---|---|---|---|

@@ -39,49 +39,18 @@ class Hypothesis:
         return value
 
 
-# The queue is intentionally separate from historical lanes.  The entries are
-# methods to test, not claims that a feature is predictive.  The exact input
-# names are the names emitted by src/gems88/physics.py or the 19-band manifest.
+# H88-MTAS is deliberately excluded because its separate execution card and
+# hash-matched raster prove it ran, despite a conflicting pre-placement record.
+# H88-SDTL is also excluded: main now contains its preregistration, experiment,
+# HOLDOUT-DTI, and promoted v5 release card. The queue below contains only
+# proposals with no matching experiment/run card in this repository. Exact input
+# names are from src/gems88/physics.py / registry/feature_receipt.json; owner-
+# mirrored values are not thereby authenticated organizer downloads.
+HISTORICALLY_EXECUTED_LANES = frozenset({"H88-MTAS", "H88-SDTL"})
+
 HYPOTHESES: tuple[Hypothesis, ...] = (
     Hypothesis(
         1,
-        "H88-MTAS",
-        (
-            "rtp_grad_200m",
-            "rtp_grad_800m",
-            "grav_grad_200m",
-            "grav_grad_800m",
-            "depth_to_base_log",
-            "det_elev_slope",
-            "geod_transtension",
-        ),
-        "A normalized cross-scale gravity-to-magnetic admittance residual: a short-scale gravity edge that persists while the magnetic edge is smoothed or demagnetized, gated by basin cover and low relief.",
-        "A buried or cover-obscured basement discontinuity can retain a density edge without producing a mapped surface scarp; it therefore targets a missing fault rather than copying the catalogue geometry.",
-        "An unfaulted intrusive or volcanic lithologic contact with density contrast but weak magnetic contrast; flight-line leveling seams are a second acquisition confounder.",
-        "No existing lane in this repository combines the two scale differences across gravity and RTP as one residual. MRR is within-magnetic residualization; PHASE is angular discordance; GTHC is upward-continuation/amplitude logic.",
-        "highest",
-        "low-medium",
-        "none; uses the restored cached stack",
-    ),
-    Hypothesis(
-        2,
-        "H88-PRAN",
-        (
-            "rad_k_over_th",
-            "det_elev_slope",
-            "topo10_curv_prof",
-            "depth_to_base_log",
-        ),
-        "Terrain-bin-matched radiometric K:Th residual with along-strike coherence, rather than a global radiometric high.",
-        "Hydrothermal alteration or soil redistribution along a covered structure may persist in shallow radiometry even when a discrete scarp is absent; matching relief reduces the mapped-scarp shortcut.",
-        "K-rich transported alluvium, parent-rock boundaries, and radiometric soil-moisture effects.",
-        "MVRD uses radiometric evidence with scarp fields; this candidate tests a terrain-matched conditional null and does not use catalogue geometry for its surface.",
-        "medium",
-        "low-medium",
-        "none; all named layers are already restored",
-    ),
-    Hypothesis(
-        3,
         "H88-FARC",
         (
             "chi_step_max",
@@ -90,16 +59,16 @@ HYPOTHESES: tuple[Hypothesis, ...] = (
             "lidar_scarp_coh",
             "det_elev_slope",
         ),
-        "Repeated, signed cross-channel drainage offsets normalized within catchment and channel-order strata, with a matched pseudo-crest null.",
-        "A blind rupture crossing several independent channels can leave repeated baseline offsets even when all individual scarps are below mapping confidence; replication is the missing-fault criterion.",
-        "Lithologic knickzones, inherited drainage capture, and regional base-level or climate change.",
-        "QTSK/TDKL rank absolute knickwaves or scarp polarity; FARC requires cross-catchment replication against a channel-matched null, a different statistic.",
+        "Cross-catchment replication of signed channel-profile breaks, normalized within catchment and channel-order strata and tested against a slope-matched pseudo-crest null.",
+        "A blind or unmapped rupture can perturb channel profiles and low-relief surfaces across several independent catchments without producing a single catalogue-grade scarp; repeated, strike-compatible breaks are the proposed discriminator.",
+        "Lithologic knickzones, inherited drainage capture, and regional base-level or climate change can also produce channel-profile breaks.",
+        "QTSK/TDKL score local knickwave magnitude or scarp polarity. FARC requires cross-catchment replication against a channel-order/slope-matched null; no matching implementation or experiment card was found in this repository.",
+        "medium (qualitative; unmeasured)",
         "medium",
-        "medium",
-        "none; uses cached DEM-derived channels",
+        "none proposed; uses existing DEM-derived cached channels. The restored owner mirror is not authenticated against current organizer files.",
     ),
     Hypothesis(
-        4,
+        2,
         "H88-TCONS",
         (
             "probe2m_dab_local",
@@ -107,16 +76,33 @@ HYPOTHESES: tuple[Hypothesis, ...] = (
             "cond_edge_300m",
             "depth_to_base_log",
         ),
-        "Depth-conditioned temperature-to-conductivity residual: a local thermal anomaly that is not explained by regional conductance or basin depth.",
-        "A focused fluid pathway can produce a thermal response offset from a broad conductive basin halo and may mark a blind permeable fault; the residual is designed to target the mismatch.",
-        "Lake-brine conductivity, groundwater circulation, and unfractured permeable lithology.",
-        "DHTC combines deep heat/MT and basement structure; TCONS is a conditional residual with head-matched negative controls and no direct vent label.",
-        "medium",
-        "medium",
-        "none for the cached owner-mirror stack; official GDR license must be rechecked before sharing derivatives",
+        "A depth-conditioned temperature-to-conductivity residual: retain local thermal anomalies not explained by regional conductance or basin depth, then test spatial coherence along blind structures.",
+        "Focused fluid flow could make a thermal/conductivity residual near a buried fault even where the surface scarp is absent; this tests a geothermal-fluid association rather than treating a vent as a fault label.",
+        "Lake-brine conductivity, groundwater circulation, and unfractured permeable lithology can produce the same thermal/conductive anomaly.",
+        "DHTC combines deep heat/MT and basement structure; TCONS would use head-/depth-matched negative controls to isolate the conditional residual. No exact TCONS method was found in the repository.",
+        "medium potential, high uncertainty (qualitative; unmeasured)",
+        "high",
+        "none proposed beyond the cached stack; before sharing derivatives, verify the official DOE GDR INGENIOUS source and license at https://gdr.openei.org/submissions/1391. Current owner-mirror provenance is not independently authenticated.",
     ),
     Hypothesis(
-        5,
+        3,
+        "H88-PRAN",
+        (
+            "rad_k_over_th",
+            "det_elev_slope",
+            "topo10_curv_prof",
+            "depth_to_base_log",
+        ),
+        "A terrain-bin-matched K:Th radiometric residual with along-strike persistence, rather than a global radiometric high.",
+        "Hydrothermal alteration or soil redistribution along a covered structure may persist in shallow radiometry even where no discrete scarp was mapped; terrain matching is intended to remove relief-related baseline effects.",
+        "K-rich transported alluvium, parent-rock boundaries, and soil-moisture effects can produce the same K:Th contrast.",
+        "MVRD uses radiometric evidence with scarp fields; PRAN proposes a terrain-conditioned null and along-strike persistence rather than catalogue-derived placement. No exact PRAN experiment was found in the repository.",
+        "low-to-medium (qualitative; unmeasured)",
+        "low-to-medium",
+        "none proposed; uses cached GeoDAWN-derived radiometry and existing terrain layers. The owner-mirror values and redistribution terms still require verification.",
+    ),
+    Hypothesis(
+        4,
         "H88-FLAC",
         (
             "rtp_grad_200m",
@@ -125,16 +111,15 @@ HYPOTHESES: tuple[Hypothesis, ...] = (
             "geod_shearrate",
             "geod_dilaterate",
         ),
-        "Multi-sensor edge persistence after an explicit flight-line-direction artifact veto and local cross-sensor continuity test.",
-        "A fault-related edge should persist across independent sensors and not be confined to the documented east-west survey-line direction; this can recover a concealed discontinuity while rejecting a processing seam.",
-        "Common gridding artifacts, tie-line leveling, and broad lithologic contacts that align with acquisition direction.",
-        "MGC/XGCE reward cross-field edge geometry but do not apply a preregistered flight-direction null; FLAC is a robustness/control transform, not a new data source.",
-        "low-medium",
+        "Cross-sensor edge persistence after a predeclared survey-line-direction artifact veto and local continuity test.",
+        "A real concealed structure should be supported by independent sensors and should not exist only as an acquisition-direction seam; this is a robustness-oriented detector for faults lacking obvious surface expression.",
+        "Tie-line leveling, gridding artifacts, and broad lithologic contacts aligned with acquisition direction can mimic the signature.",
+        "MGC/XGCE compare cross-field edge geometry but do not use this explicit flight-direction null; FLAC is a quality-controlled edge persistence test. No exact FLAC experiment was found in the repository.",
+        "low (qualitative; unmeasured)",
         "low",
-        "none; GeoDAWN acquisition metadata are official context, not a new raster",
+        "none proposed; GeoDAWN acquisition metadata is an official manual-review source, not a new raster. The current run did not re-fetch that source.",
     ),
 )
-
 
 OFFICIAL_SOURCES: tuple[dict[str, str], ...] = (
     {
@@ -189,7 +174,7 @@ OFFICIAL_SOURCES: tuple[dict[str, str], ...] = (
 
 
 def hypothesis_queue() -> list[dict[str, Any]]:
-    """Return a JSON-safe copy of the five ranked, untested hypotheses."""
+    """Return a JSON-safe copy of the current, unexecuted candidate queue."""
 
     return [h.as_json() for h in HYPOTHESES]
 
@@ -206,6 +191,9 @@ def validate_hypothesis_queue(queue: list[dict[str, Any]] | None = None) -> None
     ids = [row["id"] for row in rows]
     if len(set(ids)) != len(ids):
         raise ValueError("hypothesis ids must be unique")
+    completed = sorted(set(ids) & HISTORICALLY_EXECUTED_LANES)
+    if completed:
+        raise ValueError(f"executed lanes cannot be advertised as untested: {completed}")
     required = (
         "layers",
         "physical_signature",

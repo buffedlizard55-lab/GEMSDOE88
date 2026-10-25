@@ -62,6 +62,29 @@ def main(root: Path = ROOT) -> None:
     web_gate = json.loads((docs / "data/mvrd-gate-v3.json").read_text())
     current = json.loads((docs / "data/current_release.json").read_text())
     status = json.loads((docs / "status.json").read_text())
+    review = json.loads((docs / "data/repo_review_20261025.json").read_text())
+    review_evidence = json.loads((root / "evidence/repo_review_20261025.json").read_text())
+    mtas_execution = json.loads((root / "registry/mtas88_experiment_run_card.json").read_text())
+    mtas_execution_evidence = json.loads((root / "evidence/mtas88_experiment_20261025.json").read_text())
+    require(review == review_evidence, "current repository-review JSON mirrors disagree")
+    queue = review["hypothesis_queue"]
+    require([row["id"] for row in queue] == ["H88-FARC", "H88-TCONS", "H88-PRAN", "H88-FLAC"]
+            and all(row["status"] == "UNTESTED" for row in queue),
+            "review queue must list exactly the four currently unexecuted hypotheses")
+    require("H88-MTAS" not in {row["id"] for row in queue}
+            and "H88-SDTL" not in {row["id"] for row in queue},
+            "executed MTAS/SDTL lanes must never be labeled untried")
+    require(mtas_execution == mtas_execution_evidence
+            and mtas_execution["lane"] == "H88-MTAS"
+            and mtas_execution["verdict"] == "negative"
+            and mtas_execution["holdout"]["evidence_class"] == "HOLDOUT-DTI",
+            "MTAS execution record must remain separately reconciled")
+    release_context = review["current_repository_release"]
+    require(release_context["lane"] == "H88-SDTL"
+            and release_context["ok_to_submit_under_current_repository_policy"] is True
+            and release_context["approved_for_weekly_slot"] is False
+            and release_context["organizer_confirmed_score"] is None,
+            "review must distinguish the inherited SDTL release from the unrun FARC proposal")
     ctra = json.loads((root / "registry/ctra_run_card.json").read_text())
     ctra_web = json.loads((docs / "data/ctra_run_card.json").read_text())
     require(ctra == ctra_web, "Pages CTRA card differs from canonical registry card")
@@ -951,7 +974,7 @@ def main(root: Path = ROOT) -> None:
     require("fetch('data/sdtl88_run_card.json'" in js and "fetch('data/bpwd88_run_card.json'" in js,
             "site.js must verify the canonical SDTL card and the BPWD record")
     print(
-        "PASS: canonical SDTL decision first, H88-BPWD record, H88-VCAZ, research bytes, archived records, Pages links and verdict-consistent gates agree"
+        "PASS: current SDTL release, four-lane untried queue, MTAS execution reconciliation, H88-BPWD/H88-VCAZ records, research bytes and verdict-consistent gates agree"
     )
 
 
