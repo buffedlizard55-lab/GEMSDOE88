@@ -1,0 +1,94 @@
+{
+  "schema": "gems88.repo-review.v1",
+  "review_date": "2026-10-25",
+  "branch": "arena/4fd0d184-gemsdoe88",
+  "hypothesis": "H88-GEOA scratch idea: combine a magnetic/gravity/depth thermal-structure proxy with a perturbed subset of H33; not accepted as a valid preregistered lane.",
+  "mechanism": "A scratch script computed robust-scaled depth-to-basement, gravity-gradient, RTP/TMI-gradient, strain, conductivity, and elevation transforms, then modified H33-derived dot geography. This was not an approved experiment: it bypassed the mandatory generation guard and did not follow the prescribed visible-only catalogue, full-canary, paired holdout, or complete two-phase uniqueness workflow.",
+  "named_non_fault_process": "Unfaulted lithologic or intrusive contacts, volcanic flow margins, erosional ridges, and basin-margin geomorphology can mimic the magnetic, gravity, depth, or elevation signatures; no validated non-fault veto was completed.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "status": "INVALID_EXPLORATORY_DIAGNOSTIC_NOT_REPORTABLE",
+    "dti": null,
+    "ci95": null,
+    "withheld_positive_pixels": null,
+    "reason": "An unpaired scratch evaluation was run after a preflight stop; it lacks a valid preregistered experiment, complete paired control and required physical-block 95% CI. No value is reported as a score."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "surface_spearman": null,
+    "surface_spearman_reason": "The actual continuous scratch surface was not retained or measured through the shared two-phase gate.",
+    "temporary_final_dot_overlap_3px_vs_dense_17GEMSDOE": 1.0,
+    "temporary_final_dot_overlap_3px_vs_h33": 0.49979411764705883,
+    "temporary_max_overlap_3px_excluding_dense_in_partial_inventory": 0.5751,
+    "partial_inventory_worst_source": "19GEMSDOE",
+    "scope": "Temporary scratch diagnostics only; the dense overlap alone establishes DUPLICATE_STOP. The other comparisons are not a complete current fleet clearance."
+  },
+  "scratch_artifacts_removed": [
+    {
+      "sha256": "2eed047f3159e78a12820cde2d53cabe777621c1aba4af4b7dcda8d8992c02db",
+      "artifact": "scratch TIFF in submissions/ (removed)",
+      "status": "NOT A SUBMISSION"
+    },
+    {
+      "sha256": "7642bc5376ae2579a0d6971402236751243eb3497e8b6043abe18fc706b6e754",
+      "artifact": "scratch TIFF in submissions/ (removed)",
+      "status": "NOT A SUBMISSION"
+    },
+    {
+      "sha256": "7ad5ef8e1987c3a268067fb79cc167bfd2966010138db24a290ba64b2ca6a4ee",
+      "artifact": "scratch TIFF copied to docs/downloads/ and ZIP (both removed)",
+      "status": "NOT A SUBMISSION"
+    },
+    {
+      "sha256": "bd49fd32650071d20b5ced28f8b709d602c683820695fde75d9abd7fa8b87701",
+      "artifact": "scratch TIFF in submissions/ (removed)",
+      "status": "NOT A SUBMISSION"
+    }
+  ],
+  "raster_sha256": null,
+  "raster_status": "No new artifact retained; the hashes above are incident records for deleted scratch outputs.",
+  "validator_output": {
+    "evidence_class": "LOCAL-FORMAT-AUDIT_NOT_ORGANIZER_ACCEPTANCE",
+    "status": "TEMPORARY_SCRATCH_ONLY_THEN_REMOVED",
+    "no_nan_inside": true,
+    "values_in_0_1": true,
+    "single_band": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "note": "One temporary scratch TIFF passed local format checks; it failed the binding uniqueness rule and is not retained, authorized, or submit-ready."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "decision": "DUPLICATE_STOP",
+  "generation_guard": {
+    "command": ".venv/bin/python scripts/preflight_mtas88.py --gate-generation",
+    "exit_code": 2,
+    "result": "DUPLICATE_STOP",
+    "new_rasters_retained": 0,
+    "weekly_slots_used": 0,
+    "organizer_confirmed_score": null
+  },
+  "incident": {
+    "protocol_breach": true,
+    "summary": "Ad hoc scratch-generation code bypassed the shared guard after it should have stopped. Four scratch TIFF variants were created; an additional unpaired diagnostic involved an external validation raster. All scratch outputs were removed, no candidate was published in the site inventory, and no score or clearance is claimed.",
+    "experiment_budget_status": "INVALIDATED_BY_BREACH; STOPPED"
+  },
+  "verification": {
+    "pytest_full": "793 passed, 23 skipped",
+    "targeted_protocol_integrity_tests": "132 passed",
+    "audit_downloads_check": "PASS: 46 existing research packages audited; 0 protocol-eligible",
+    "render_decision_check": "PASS",
+    "check_site_normal": "PASS",
+    "check_site_optimized": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "limitations": [
+    "The user-provided H33 score 0.2778 has no organizer receipt in this repository.",
+    "The current DrivenData leaderboard, account quota, authenticated input identity, and upload receipt were not freshly retrieved.",
+    "The full-coverage 17GEMSDOE witness makes any nonempty prediction fail the literal 70% forward-overlap condition.",
+    "No new unique, protocol-valid TIFF exists; the high-priority unique-submission request remains unmet."
+  ]
+}
