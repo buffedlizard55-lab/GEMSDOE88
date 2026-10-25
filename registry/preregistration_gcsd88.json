@@ -1,0 +1,138 @@
+{
+  "preregistration_id": "PREREG-20261024-GCSD88",
+  "lane": "H88-GCSD",
+  "date_utc": "2026-10-24",
+  "gcsd_12_channels": [
+    "gcsd_qtz_flash_surplus",
+    "gcsd_geotherm_diseq",
+    "gcsd_updip_feeder_couple",
+    "gcsd_cond_elev_resid",
+    "gcsd_cond_demag_concord",
+    "gcsd_seismic_crit_shear",
+    "gcsd_multimodal_spin2_coh",
+    "gcsd_grav_zbase_admittance",
+    "gcsd_tilt_contact_sharpness",
+    "gcsd_bajada_hinge_asymmetry",
+    "gcsd_lidar_multimodal_strike",
+    "gcsd_mimic_playa_volc_pen"
+  ],
+  "hypothesis": "Blind geothermal feeder faults in the Great Basin that lack mapped surface scarps in existing_faults.tif are uniquely fingerprinted by the spatial conjunction of (1) deep-to-surface geothermometer disequilibrium (T_quartz - T_chalcedony, T_cation - T_quartz) and flash/conductive cooling surplus (max(T_quartz, T_cation) - T_discharge) back-projected up-dip to basement steps, (2) elevation- and playa-detrended electrical conductivity clay-cap edges concordant with magnetite-destructive RTP troughs, (3) sentinel-cleaned microseismic density coupled with transtensional shear-dilatation rate, and (4) 4-modality spin-2 axial strike coherence paired with 1 m LiDAR micro-scarp strike concordance. Pooling these 12 zero-catalogue channels (GCSD-12) with the cached 44 physics + 12 TDKL + 12 VESS stack via a Tri-Specialist Log-Odds Product-of-Experts (PoE) architecture improves whole-fault recovery over H88-ADHR (0.190436), H88-TDKL (0.196237), and H88-VESS (0.200941), while a 4-quadrant out-of-fold (OOF) Three-Stratum Axial-Crest Dinkelbach allocator resolves the IR-88-112 near-ribbon 3-px dot overlap against all ~270 registry and concurrent rasters.",
+  "mechanism": "gdr_wellspring_in_footprint.csv (T_qtz, T_chalc, T_cat, T_surf) + 2m_temperature_probe + paleo_geothermal + training_features.tif B2/B3/B4/B6/B7/B8/B9/B10/B11/B12/B13/B15/B16/B17/B18/B19 + lidar_scarp_features_u8.tif B4/B5/B8/B9/B10/B11/B12 -> 12 label-blind GCSD channels (src/gems88/gcsd.py) -> Tri-Specialist dual-expectation HGB ensemble (base 44/67ch + geomorphic-vesselness 68/91ch + hydrothermal-seismic-strike 80/103ch) -> Log-Odds PoE with blind-basin tail preservation -> Bayesian completeness fusion -> 4-quadrant OOF Three-Stratum Axial-Crest Dinkelbach allocation (relay 2<d<=9px, piedmont 9<d<=25px, blind basin d>25px; share_gt25>=0.40, share_le2==0.0)",
+  "named_non_fault_mimic": "Closed-basin evaporite playa brines and lateral shallow groundwater outflow plumes on flat valley floors (high electrical conductivity and distal warm wells displaced down-gradient from the range-front feeder fault), circular volcanic plug edifices, and Pleistocene Lake Lahontan/Bonneville highstand strandlines (1330 m and 1555 m contours). Mitigated via up-dip basement-step back-projection, local elevation/playa detrending of conductivity, 1 m LiDAR-to-crustal strike alignment, and an explicit playa/volcanic/shoreline mimic penalty channel.",
+  "layers_verified_on_disk": {
+    "training_features.tif": {
+      "band_2": "rtp",
+      "band_3": "tmi_hg",
+      "band_4": "geod_2ndinv",
+      "band_6": "tc",
+      "band_7": "geod_shearrate",
+      "band_8": "geod_dilaterate",
+      "band_9": "tmi_vg",
+      "band_10": "deq_n100a15",
+      "band_11": "iso_grav_anom_vg",
+      "band_12": "det_elev",
+      "band_13": "iso_grav_anom",
+      "band_15": "depth_to_base_surf",
+      "band_16": "ieq_n100a15",
+      "band_17": "cond_surf",
+      "band_18": "iso_grav_anom_hg",
+      "band_19": "det_elev_slope"
+    },
+    "data/external/gdr_wellspring_in_footprint.csv": [
+      "temp_c",
+      "geothermquartz_c",
+      "geothermchalc_c",
+      "geothermcat_c"
+    ],
+    "data/external/lidar_scarp_features_u8.tif": {
+      "band_4": "lapneg_max",
+      "band_5": "lappos_max",
+      "band_8": "cross_max",
+      "band_9": "relief",
+      "band_10": "coh100",
+      "band_11": "strike",
+      "band_12": "valid"
+    },
+    "data/geodawn_dem_a2_100m.tif": {
+      "band_1": "dem_100m"
+    }
+  },
+  "candidate_hypotheses_ranked": [
+    {
+      "rank": 1,
+      "id": "H88-GCSD",
+      "title": "Geothermometer-Discordance Upflow, Elevation-Detrended Clay-Cap Conductivity, Critical-Seismic Transtension & Multi-Modal Strike Coherence",
+      "status": "selected_for_validation",
+      "expected_holdout_dti_delta_model": "+0.002 to +0.009 over H88-TDKL (0.196237) and >0.006 over H88-ADHR (0.190436)",
+      "implementation_cost": "Low-Medium (100% SHA-pinned local competition & DOE GDR / USGS 3DEP inputs)"
+    },
+    {
+      "rank": 2,
+      "id": "H88-STRAT-TRUNC",
+      "title": "Geologic-Map Contact Truncation Density & Quaternary Juxtaposition Torque",
+      "status": "reserve_zero_compute",
+      "expected_holdout_dti_delta_model": "+0.001 to +0.004",
+      "implementation_cost": "Low (requires strict de-buffering of SGMC contacts to avoid catalogue overlap)"
+    },
+    {
+      "rank": 3,
+      "id": "H88-BGP-3D",
+      "title": "3D Parker-Oldenburg Iterative Gravity Basement Inversion & Listric Detachment Curvature",
+      "status": "reserve_zero_compute",
+      "expected_holdout_dti_delta_model": "+0.001 to +0.003",
+      "implementation_cost": "Medium (2D FFT edge apodization required across irregular footprint)"
+    },
+    {
+      "rank": 4,
+      "id": "H88-INSAR-COH",
+      "title": "Sentinel-1 InSAR Interseismic LOS Velocity Gradient & Phase-Coherence Loss Step",
+      "status": "blocked_external_data_unobtainable_in_sandbox",
+      "official_source": "https://search.asf.alaska.edu/ and https://comet.nerc.ac.uk/COMET-LiCS-portal/",
+      "expected_holdout_dti_delta_model": "Unknown (external data blocked by sandbox outbound allowlist)",
+      "implementation_cost": "Blocked in sandbox"
+    },
+    {
+      "rank": 5,
+      "id": "H88-ECOSTRESS-TIR",
+      "title": "NASA ECOSTRESS / USGS Landsat C2 Pre-Dawn Thermal-Inertia & Evaporative-Cooling Lineaments",
+      "status": "blocked_external_data_unobtainable_in_sandbox",
+      "official_source": "https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature and https://ecostress.jpl.nasa.gov/",
+      "expected_holdout_dti_delta_model": "Unknown (external data blocked by sandbox outbound allowlist)",
+      "implementation_cost": "Blocked in sandbox"
+    }
+  ],
+  "evaluator": "gems57-pooled-hide-v2 (vendor/gems57/evaluate_holdout.py, unmodified)",
+  "holdout": {
+    "seeds": [20, 21],
+    "n_folds": 8,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_m": 300,
+    "buffer_px": 3,
+    "boundary_px": 12
+  },
+  "bars": {
+    "h88_adhr_recomputed_holdout_dti": 0.190436,
+    "h88_tdkl_stored_holdout_dti": 0.196237,
+    "h88_vess_stored_holdout_dti": 0.200941,
+    "note": "All HOLDOUT-DTI on gems57-pooled-hide-v2, n=22893 withheld positives. Beating H33 0.2778 (user-reported CLAIM) or 0.4413 (public #1 snapshot) cannot be proven on catalogue hide-and-recover."
+  },
+  "gates": {
+    "canary_max_symmetric_auc": 0.90,
+    "surface_spearman_max_abs": 0.90,
+    "forward_overlap_3px_max": 0.70,
+    "fingerprint": {
+      "share_le2": 0.0,
+      "share_gt25_min": 0.35
+    },
+    "format": "single band float32, EPSG:32611, 3730x3292, sample transform, all finite, values in [0,1], 0 outside footprint, 0 on catalogue, nodata=None, LZW 1-row-strip parity"
+  },
+  "experiments_budget": 3,
+  "experiments": [
+    "Exp01_gcsd_phys_only: 80-channel zero-catalogue physical + geomorphic + hydrothermal-seismic PoE specialist (zero visible-fault structure head)",
+    "Exp02_gcsd_single_103: Single 80/103-channel combined model + Bayesian completeness fusion",
+    "Exp03_h88_gcsd_tri_poe: Tri-Specialist Log-Odds PoE Ensemble (base 44/67ch + TDKL-VESS 68/91ch + GCSD 80/103ch) + Bayesian completeness fusion"
+  ],
+  "weekly_slots_to_spend": 0,
+  "verdict_rule": "promote only if Exp03 paired HOLDOUT-DTI delta vs recomputed H88-ADHR incumbent > 0 with 95% CI excluding 0 AND point estimate > 0.200941 AND all format/canary/uniqueness/fingerprint gates pass; literal dense-witness overlap (17GEMSDOE = 1.0000) is always disclosed and under the binding literal rule forces DO-NOT-SUBMIT (ok_to_submit = false, verdict = negative)"
+}

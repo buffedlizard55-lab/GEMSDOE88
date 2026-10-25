@@ -531,8 +531,36 @@ def main(root: Path = ROOT) -> None:
     require(shore_tif.name in index and shore_tif.name in executive, "SHORE tif in pages")
     require(shore["submission_name"] in index and shore["submission_name"] in executive, "SHORE name in pages")
     require(shore["validator"]["raster_sha256"][:16] in index and shore["validator"]["raster_sha256"][:16] in executive, "SHORE hash in pages")
+
+    gcsd_reg = json.loads((root / "registry/gcsd88_run_card.json").read_text())
+    gcsd_web = json.loads((root / "docs/data/gcsd88_run_card.json").read_text())
+    require(gcsd_reg == gcsd_web, "GCSD run card sync")
+    gcsd_tif = root / gcsd_reg["submission"]["file"]
+    gcsd_zip = root / gcsd_reg["submission"]["zip_file"]
+    require(gcsd_tif.is_file() and gcsd_zip.is_file(), "GCSD tif/zip on disk")
+    require(
+        sha256(gcsd_tif) == gcsd_reg["raster_sha256"] and sha256(gcsd_zip) == gcsd_reg["zip_sha256"],
+        "GCSD sha256 match",
+    )
+    require(
+        gcsd_reg["ok_to_download"] is True and gcsd_reg["ok_to_submit"] is False and gcsd_reg["verdict"] == "negative",
+        "GCSD fail-closed status",
+    )
+    readme = (root / "README.md").read_text()
+    require(
+        gcsd_tif.name in readme and gcsd_tif.name in index and gcsd_tif.name in executive and gcsd_tif.name in research,
+        "GCSD tif linked across README and Pages",
+    )
+    require(
+        gcsd_reg["raster_sha256"] in readme and gcsd_reg["raster_sha256"] in index and gcsd_reg["raster_sha256"] in executive,
+        "GCSD hash present across README and Pages",
+    )
+    require(
+        "0.201610" in readme and "0.201610" in index and "0.201610" in executive and "0.201610" in research,
+        "GCSD HOLDOUT-DTI 0.201610 present across README and Pages",
+    )
     print(
-        "PASS: canonical TDKL and concurrent negative research artifacts, hashes, Pages links, and status agree"
+        "PASS: canonical TDKL, H88-GCSD, and concurrent negative research artifacts, hashes, Pages links, and status agree"
     )
 
 

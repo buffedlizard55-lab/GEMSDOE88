@@ -144,10 +144,10 @@ def main() -> None:
     X_tdkl, tdkl_hashes = tdkl.build_or_load_tdkl_memmap(ROOT, g, cache_dir)
 
     with rasterio.open(ROOT / "data/training_features.tif") as src:
-        det_elev, _ = edge.clean_band(src.read(14), g.footprint)
+        det_elev, _ = edge.clean_band(src.read(12), g.footprint)  # B12 det_elev (IR-88-110 fix)
     scarp_fields = adhr.compute_scarp_fields(det_elev, g.footprint, cache_dir)
     del det_elev
-    seg_csv = next((ROOT / "data/external").glob("*.csv"))
+    seg_csv = ROOT / "data/external/trace_segments_utm11.csv"  # explicit CSV path (IR-88-111 fix)
     sense_src = adhr.build_sense_raster(seg_csv, g)
 
     holdout_file = ROOT / "evidence/tdkl88_holdout_20261024.json"

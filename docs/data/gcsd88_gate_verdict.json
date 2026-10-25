@@ -1,0 +1,59 @@
+{
+  "policy": "gems88-gate-v3",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "blocking_reasons": [
+    "UNIQUENESS (literal rule): forward 3px overlap vs dense/full-footprint registry raster(s): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+  ],
+  "informational": [
+    "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+  ],
+  "note_len": 93,
+  "name_len": 29,
+  "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows).",
+  "fingerprint": {
+    "n": 30000,
+    "median_d_cat_px": 22.022714614868164,
+    "share_le2": 0.0,
+    "share_gt10": 0.76,
+    "share_gt25": 0.45
+  },
+  "fingerprint_screen_passed": true,
+  "uniqueness_summary": {
+    "worst_like_for_like_overlap": {
+      "label": "GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+      "value": 0.6116333333333334
+    },
+    "worst_abs_rho": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 0.22454895851922943
+    },
+    "unique_like_for_like": true,
+    "unique_literal": false,
+    "registry_rasters": 238
+  },
+  "paired_delta_vs_adhr_incumbent": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.0067338548247335706,
+    "ci95": [
+      0.001336732678521089,
+      0.011896540638905256
+    ],
+    "withheld_positive_pixels": 22893
+  },
+  "holdout_beats_tdkl_stored_bar": true,
+  "holdout_beats_vess_stored_bar": true,
+  "name": "gems88-gcsd88-poe-30000dots-20261024-zeros-DO-NOT-SUBMIT",
+  "file": "docs/downloads/gems88-gcsd88-poe-30000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-gcsd88-poe-30000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "99be29e97a6af830cbc3f72995e9a2c07d1f7f1542f0fab15947faf3559039f5",
+  "zip_sha256": "9be649a0867c4d9a7b685c35c0d8335be3cbdde1616faec70752b3b966823832",
+  "candidate": {
+    "tif": "docs/downloads/gems88-gcsd88-poe-30000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-gcsd88-poe-30000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "tif_sha256": "99be29e97a6af830cbc3f72995e9a2c07d1f7f1542f0fab15947faf3559039f5",
+    "zip_sha256": "9be649a0867c4d9a7b685c35c0d8335be3cbdde1616faec70752b3b966823832"
+  }
+}
