@@ -55,6 +55,35 @@ def main(argv=None, root: Path = ROOT) -> int:
                           and archive.read(candidate.name) == candidate.read_bytes())
         if not checks['ok'] or not package_ok:
             raise ValueError('CON88 saved-byte format/one-TIFF ZIP check failed')
+
+        gates_reg = root / 'registry/con88_gates.json'
+        gates_web = root / 'docs/data/con88_gates.json'
+        if gates_web.is_file() and gates_reg.read_bytes() != gates_web.read_bytes():
+            raise ValueError('CON88 gates mirror drift between registry/ and docs/data/')
+        gates_obj = json.loads(gates_reg.read_text(encoding='utf-8'))
+        if gates_obj.get('ok_to_submit') is not False or gates_obj.get('verdict') != 'negative':
+            raise ValueError('con88_gates.json must remain negative (ok_to_submit=False)')
+
+        rc_root = json.loads((root / 'run_card_con88.json').read_text(encoding='utf-8'))
+        if rc_root.get('ok_to_submit') is not False or rc_root.get('verdict') != 'negative':
+            raise ValueError('run_card_con88.json must remain negative (ok_to_submit=False)')
+        rc_reg_path = root / 'registry/con88_run_card.json'
+        rc_web_path = root / 'docs/data/con88_run_card.json'
+        if rc_reg_path.is_file() and rc_web_path.is_file():
+            if rc_reg_path.read_bytes() != rc_web_path.read_bytes():
+                raise ValueError('CON88 run_card mirror drift between registry/ and docs/data/')
+            rc_reg = json.loads(rc_reg_path.read_text(encoding='utf-8'))
+            if rc_reg.get('ok_to_submit') is not False or rc_reg.get('verdict') != 'negative':
+                raise ValueError('registry/con88_run_card.json must remain negative (ok_to_submit=False)')
+
+        w_ev = root / 'evidence/con88_clearance_withdrawal_20261025.json'
+        w_web = root / 'docs/data/con88_clearance_withdrawal_20261025.json'
+        if w_ev.is_file() and w_web.is_file():
+            if w_ev.read_bytes() != w_web.read_bytes():
+                raise ValueError('CON88 withdrawal receipt mirror drift between evidence/ and docs/data/')
+            w_obj = json.loads(w_ev.read_text(encoding='utf-8'))
+            if w_obj.get('ok_to_submit') is not False or w_obj.get('verdict') != 'negative':
+                raise ValueError('CON88 withdrawal receipt must remain negative (ok_to_submit=False)')
         result = dict(schema='gems88.con88-research-audit.v1', file=FILE,
                       raster_sha256=SHA256, validator_output=checks,
                       zip_single_matching_tiff=package_ok,

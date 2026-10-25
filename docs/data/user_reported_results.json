@@ -457,12 +457,12 @@
     {
       "site": "GEMSDOE91",
       "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE91/",
-      "reported_entries": 0
+      "reported_entries": 2
     },
     {
       "site": "GEMSDOE92",
       "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE92/",
-      "reported_entries": 0
+      "reported_entries": 1
     }
   ],
   "claims": [
@@ -1732,16 +1732,47 @@
       "request_line_numbers": [
         651
       ]
+    },
+    {
+      "site": "GEMSDOE91",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE91/",
+      "submission_name": "s17-cwpc-e3",
+      "user_reported_value": "0.1367",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        657
+      ]
+    },
+    {
+      "site": "GEMSDOE91",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE91/",
+      "submission_name": "s17-lftg",
+      "user_reported_value": "0.1823",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        659
+      ]
+    },
+    {
+      "site": "GEMSDOE92",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE92/",
+      "submission_name": "listricdip-updip50",
+      "user_reported_value": "0.0255",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        665
+      ]
     }
   ],
   "site_count": 92,
-  "distinct_claim_count": 115,
+  "distinct_claim_count": 118,
   "sites_without_a_reported_result": [
     "GEMSDOE86",
-    "GEMSDOE88",
-    "GEMSDOE91",
-    "GEMSDOE92"
+    "GEMSDOE88"
   ],
   "request_file": "USER_PROMPT_20261025.md",
-  "request_sha256": "67cf8f6368a8b710a6df3bdb1980ba40f435e27830aa192ff1adf8c291c8fc50"
+  "request_sha256": "d4cffa6b22c44b46801594ddc0d493226ec16671ffa10e1abbb86ccefb0f7555"
 }

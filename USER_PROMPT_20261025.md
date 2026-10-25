@@ -654,13 +654,15 @@ gems90-cnc-35000dots-20261024T084324Z:0.0749
 
 https://buffedlizard55-lab.github.io/GEMSDOE91/
 
-:
+s17-cwpc-e3:0.1367
+
+s17-lftg:0.1823
 
 ....
 
 https://buffedlizard55-lab.github.io/GEMSDOE92/
 
-:
+listricdip-updip50:0.0255
 
 ....
 
