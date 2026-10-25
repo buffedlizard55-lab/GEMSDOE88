@@ -7,8 +7,8 @@ if __name__ == "__main__":
     import sys as _guard_sys
     from pathlib import Path as _GuardPath
     _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
-    from scripts.con88_preflight import enforce_con88_preflight
-    enforce_con88_preflight()
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
 
 import json, sys
 from datetime import datetime, timezone

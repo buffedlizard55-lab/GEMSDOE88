@@ -4,7 +4,7 @@
   "review_branch": "arena/693b10af-gemsdoe88",
   "source_snapshot": {
     "files": 154,
-    "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+    "sha256": "08cf8ec84991a065d4235823a2e0ef41eadd3822527d76958844599ec4f20fc1"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -49,6 +49,13 @@
       "status": "HISTORICAL_EVALUATED_NEGATIVE",
       "retired_proposal_alias": "H88-GTD",
       "scope": "Parallel 82dbb5e9 ran after a negative preflight; no exception authorized. Retire the general harmonic-tensor dimensionality proposal rather than advertise it as untried. No experiment in session 693b10af."
+    },
+    {
+      "id": "H88-CON88",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/con88_run_card.json",
+      "run_card_sha256": "0e50c5e4a43ddd60a8f3e5ab3bebf441957e64f56020400b83402235337e9c5b",
+      "reason": "Executed in PR #158 and withdrawn in IR-88-3C391D97-01: literal 3-pixel overlap 1.0 > 0.70 against dense_17gemdoe.tif, fixed-TIF HOLDOUT-DTI 0.0000 [0.0000, 0.0000] and per-fold collar re-emission HOLDOUT-DTI 0.001714 [0.001325, 0.002143] vs same-fold H33 0.006697 and repo holdout best H88-BPWD 0.205991; do not re-propose as an untested candidate."
     }
   ],
   "proposals": [
@@ -193,6 +200,14 @@
       },
       "reason": "Merged H88-CON88 (IR-88-CON88-01 equal-support append-only vendor addition + con88 runner scripts) and PGTD guard enforcement fix; proposals re-reviewed: none implements H88-SPR/EELG/PRAN queue items, CON88 is a consensus-emission lane with its own run card (run_card_con88.json), not a queue proposal.",
       "reviewed_at_utc": "2026-10-25T18:00:00Z"
+    },
+    {
+      "superseded_snapshot": {
+        "files": 154,
+        "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+      },
+      "reason": "Withdrew H88-CON88 upload clearance (IR-88-3C391D97-01), enforced enforce_generation_preflight() on scripts/run_con88_experiment.py and scripts/run_con88_exp3_margin.py, and recorded H88-CON88 in already_evaluated; remaining untested proposals (H88-SPR, H88-AWA, H88-CBC) remain distinct.",
+      "reviewed_at_utc": "2026-10-25T18:30:00Z"
     }
   ]
 }
