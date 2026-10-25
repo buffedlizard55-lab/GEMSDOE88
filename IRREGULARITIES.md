@@ -889,3 +889,13 @@ published hypothesis queue. Recomputed the research package audit, used the actu
 audited count and asserted that fixture replacement happens, and recorded a fresh
 browser receipt for the new current-review card without rewriting historical
 browser measurements. Final counts and gate results are recorded in that card.
+
+Post-integration resolution: `readiness.py` itself regenerated the old review
+pointer during the suite, so it now writes the new active card. Removed two old
+CON88 whitelist assertions rather than preserving the false exception. After
+integrating main through `f67fb31`, one added historical-browser pin test still
+claimed to be current; it now validates the active receipt and every file hash,
+with no ignored UI/queue/status fields. Final local integrated suite: 900 passed,
+23 skipped; 18/18 expected command gates; seven fresh real-browser cases. These
+are software checks, not HOLDOUT-DTI or organizer acceptance. See PR #181 and the
+new negative run card for scope and limitations.

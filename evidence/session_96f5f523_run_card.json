@@ -163,12 +163,12 @@
     "status": "PASS",
     "passes_completed": 3,
     "full_suite": {
-      "passed": 891,
+      "passed": 900,
       "failed": 0,
       "skipped": 23,
       "warnings": 70,
-      "seconds": 203.71,
-      "scope": "constrained Python 3.11 Linux CPU environment; validation tier restored"
+      "seconds": 218.6,
+      "scope": "Constrained Python 3.11 Linux CPU environment; validation tier restored; integrated parallel main through f67fb31fa256e97e0c28eb9fcda5e16055dbf92f"
     },
     "gate_evidence": "evidence/session_96f5f523_gate_check.json",
     "gate_commands": 18,
@@ -186,12 +186,28 @@
       "skipped": 23,
       "reason": "Two tests enforced the obsolete CON88 whitelist; readiness regenerated the old review pointer, restoring a stale browser receipt. Both paths repaired."
     },
-    "remote_scope": "Local verification only; live GitHub CI/deployment/merge status is authoritative."
+    "remote_scope": "Local verification only; live GitHub CI/deployment/merge status is authoritative.",
+    "pre_integration_full_suite": {
+      "passed": 891,
+      "failed": 0,
+      "skipped": 23,
+      "warnings": 70,
+      "seconds": 203.71,
+      "scope": "constrained Python 3.11 Linux CPU environment; validation tier restored"
+    },
+    "completed_at_utc": "2026-10-25T18:52:56.854421+00:00",
+    "integration_review": "Preserved parallel validator/SHA hardening. Replaced one new test that treated an old browser receipt as current with stronger active-receipt checks of every source hash; historical receipts unchanged."
   },
   "unmet_requirements": [
     "New protocol-unique submission TIFF",
     "New feature canaries and same-fold holdout improvement",
     "Organizer acceptance, current leaderboard and account quota verification"
   ],
-  "source_review": "knowledge/session-96f5f523-sources.json"
+  "source_review": "knowledge/session-96f5f523-sources.json",
+  "delivery": {
+    "pull_request_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/pull/181",
+    "head_branch": "arena/96f5f523-gemsdoe88",
+    "base_branch": "main",
+    "note": "Live GitHub state is authoritative for CI/merge/deployment. This file records local verification, not a remote pass or organizer acceptance."
+  }
 }
