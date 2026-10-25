@@ -15,6 +15,8 @@ The literal full-registry witness still blocks every nonempty candidate before f
 
 Parallel proposal record: [session db4a5e4b](research/session-db4a5e4b-hypotheses.md) independently ranked GTD first. Its record is preserved, not represented as an experiment or a second current queue. This review conditionally favors SPR because its available-resolution landform-restoration null is more directly falsifiable; harmonic source-dimensionality inversion is nonunique and more sensitive to continuation/taper choices. That is uncertain scientific judgment, not an empirical improvement claim.
 
+Additional parallel proposal record: [session 838cc402](research/session-838cc402-hypotheses.md) retains its five alternatives and its own claimed source-access scope. Those records are preserved, not silently folded into this four-entry current queue. In particular, external-data access/permissions and ratios of quantized radiometric codes are not newly certified by this review. No duplicate-stop exception or independent experiment is authorized.
+
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>
 

@@ -104,7 +104,7 @@
   },
   "h33_forensics": {
     "schema": "gems88.h33-lineage-audit.v1",
-    "checked_at_utc": "2026-10-25T16:15:58.845138+00:00",
+    "checked_at_utc": "2026-10-25T17:08:56.277602+00:00",
     "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE",
     "inputs": [
       {
@@ -262,12 +262,12 @@
     "pass3": {
       "status": "PASS_WITH_EXPLICIT_UNMET_SCIENTIFIC_REQUIREMENTS",
       "full_tests": {
-        "passed": 845,
+        "passed": 855,
         "failed": 0,
         "skipped": 23,
-        "warnings": 68,
-        "seconds": 169.07,
-        "environment": "fresh constrained Python 3.11/Linux CPU venv after integrating parallel main"
+        "warnings": 64,
+        "seconds": 178.32,
+        "environment": "fresh constrained CPU environment; all code integrated through 696c1140a1bb2dd60ea832146c86b6fde853b6e4"
       },
       "skip_scope": "Historical gitignored/unrestored variant/bridge rasters; not rebuilt to evade the duplicate stop. All 46 published packages were separately reopened.",
       "workflow_and_guard_checks": 47,
@@ -293,12 +293,24 @@
         "additional_review_fixes": "Source fingerprint covers nested model packages and rejects source symlinks escaping the repository; four regression cases passed without refreshing the unchanged source pin."
       },
       "integration_recheck": "PASS",
-      "integration_base": "15b1d00e444285de22700c741ef2babcd364f678",
+      "integration_base": "696c1140a1bb2dd60ea832146c86b6fde853b6e4",
       "preserved_parallel_changes": [
         "Atomic fail-closed preparation receipts and surplus downloader argument rejection.",
         "Exact Rasterio pin retained alongside complete tested CPU constraints.",
-        "Parallel review/incident/run cards and the alternate GTD-first proposal record retained without claiming this session executed them."
-      ]
+        "Parallel review/incident/run cards and the alternate GTD-first proposal record retained without claiming this session executed them.",
+        "Pinned footprint/catalogue SHA checks before H33 audit geometry; parser warning correction; docs/SUBMIT.md correction and 20 submission-archive integrity tests/IBL ZIP naming repair.",
+        "Parallel source snapshots/five-proposal records remain historical; their test now checks their own report and separately validates the active source-bound queue."
+      ],
+      "first_integration_full_tests": {
+        "passed": 845,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 68,
+        "seconds": 169.07,
+        "environment": "fresh constrained Python 3.11/Linux CPU venv after integrating parallel main"
+      },
+      "requirements_unchanged_since_fresh_cpu_install": true,
+      "additional_repository_archive_pairs_audited": 20
     },
     "browser_evidence": "evidence/session_693b10af_browser_check.json",
     "browser_status": "PASS",
@@ -311,7 +323,7 @@
       "reason": "Both failures hard-coded the previous current browser receipt; preserved it as historical and performed a fresh 7-case browser check of the new page bytes."
     },
     "gate_evidence": "evidence/session_693b10af_gate_check.json",
-    "completed_at_utc": "2026-10-25T17:03:18.087778+00:00",
+    "completed_at_utc": "2026-10-25T17:13:11.555207+00:00",
     "remote_scope": "This is local verification evidence, not a claim of remote CI, current organizer access or submission acceptance. PR/check/merge status is authoritative on GitHub."
   },
   "unmet_requirements": [
@@ -336,11 +348,12 @@
     "source_bound_queue_and_legacy_claim_corrections": "PASS",
     "three_software_review_passes": "COMPLETE"
   },
-  "integration_base": "15b1d00e444285de22700c741ef2babcd364f678",
+  "integration_base": "696c1140a1bb2dd60ea832146c86b6fde853b6e4",
   "delivery": {
     "pull_request_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/pull/164",
     "base_branch": "main",
     "head_branch": "arena/693b10af-gemsdoe88",
     "record_scope": "Local verification snapshot. Live GitHub PR/check/merge state is authoritative; this card does not claim a remote CI result or organizer acceptance."
-  }
+  },
+  "h33_forensics_initial_checked_at_utc": "2026-10-25T16:15:58.845138+00:00"
 }
