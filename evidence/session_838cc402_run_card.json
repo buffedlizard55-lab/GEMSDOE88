@@ -122,7 +122,10 @@
       "independent_decoders_agree": true,
       "ok_to_download_for_research": true,
       "ok_to_submit": false
-    }
+    },
+    "pytest_full_suite": "811 passed, 22 skipped (0 failures)",
+    "compile_warnings_scripts_src_tests": 0,
+    "pinned_browser_check_files_exact": "13/13"
   },
   "package_audits": {
     "pages_download_audit_sha256": "b98b0c9952d7f1396114a23da74d3116b3ceeb4feaece85d297c7ff83049065c",
