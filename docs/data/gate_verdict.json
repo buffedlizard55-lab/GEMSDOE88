@@ -1,0 +1,25 @@
+{
+  "schema": "gems88.gate-v1",
+  "generated_utc": "2026-10-25T03:31:41Z",
+  "experiment_id": "H88-SGMC-DIST-CONJ-v2",
+  "name": "GEMSDOE88-SGMC-DIST-CONJ-V2-20261025",
+  "sha256": "d193daf57a0becdbbf48b5b9fdb6fbe59ed1e83a5ce357ad8b5e61a853726f49",
+  "zip_sha256": "986408450f566c4412c6bc743fd8d89742628e768fab96c037f4afa3a324baef",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "format_passed": true,
+  "canary_passed": true,
+  "canary_max_auc": 0.6494,
+  "holdout_dti": 0.056081,
+  "sparse_uniqueness_passed": true,
+  "max_dot_overlap": 0.4393,
+  "max_abs_rho": 0.0351,
+  "literal_blocked": true,
+  "dense_overlap": 1.0,
+  "policy": "gems88-gate-v3",
+  "label": "OK TO DOWNLOAD — DO NOT SUBMIT",
+  "blocking_reasons": [
+    "UNIQUENESS: literal registry overlap with full-footprint witness 17GEMSDOE is 1.0000 > 0.70 — every nonempty candidate fails this gate; no authorized exemption"
+  ],
+  "verdict": "promote-to-selector-only"
+}
