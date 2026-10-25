@@ -8,6 +8,12 @@
 
 ---
 
+# Parallel addendum (2026-10-25): H88-MTAS executed — DO NOT SUBMIT, no slot
+
+MTAS (`gems88-mtas88-admittance-37654dots-20261025-zeros-DO-NOT-SUBMIT.tif`, SHA-256 `2cb82893…479cc`) completed its single preregistered experiment: HOLDOUT-DTI 0.049577 [0.044659, 0.054417] (`gems57-pooled-hide-v2`, n=22,893) < stored bar 0.187888; literal any-raster overlap 1.0 vs dense witnesses; fingerprint screen FAIL (share ≤2 px = 4.83%). Like-for-like unique (0.4232). **Verdict negative; 0 slots used; no slot authorized.** Full record: `research/session-20261025-mtas-execution.md`.
+
+---
+
 # Earlier addendum (2026-10-24): H88-HGVC — FIRST RASTER TO CLEAR ALL 5 DISCRIMINATING GATES · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness (`0` slots spent)
 
 - **Candidate:** `docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef`) and single-TIFF `.zip` (`SHA-256: 5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409`).
