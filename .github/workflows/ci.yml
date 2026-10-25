@@ -89,6 +89,8 @@ jobs:
           if python scripts/validate_gthc88.py --require-submit; then echo 'Negative GTHC-88 unexpectedly cleared'; exit 1; else test "$?" -eq 2; fi
           python scripts/validate_qtsk88.py
           if python scripts/validate_qtsk88.py --require-submit; then echo 'Negative QTSK-88 unexpectedly cleared'; exit 1; else test "$?" -eq 2; fi
+          python scripts/validate_vhgd88.py
+          if python scripts/validate_vhgd88.py --require-submit; then echo 'Negative VHGD-88 unexpectedly cleared'; exit 1; else test "$?" -eq 2; fi
           python scripts/readiness.py
           python scripts/validate_current.py
           set +e

@@ -1,0 +1,135 @@
+{
+  "file": "gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.tif",
+  "sha256": "752dba748b55b855678f6447628d95bdabc43f785d2c72772004b429f9cb21ab",
+  "bytes": 119896,
+  "submission_name": "GEMSDOE88-VHGD88-3STRAT-20261025",
+  "note": "H88-VHGD 107ch dT/dz+diseq+Salem PoE (27821d); HOLDOUT-DTI Exp2 0.1987 Exp3 0.1389 blind 0.0921; UNSCORED",
+  "note_chars": 105,
+  "validator": {
+    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.tif",
+    "bytes": 119896,
+    "sha256": "752dba748b55b855678f6447628d95bdabc43f785d2c72772004b429f9cb21ab",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.002265708753839135,
+    "emitted_positive_pixels": 27821,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 27821,
+    "footprint_fraction": 0.005383973636120327
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.tif",
+    "bytes": 119896,
+    "sha256": "752dba748b55b855678f6447628d95bdabc43f785d2c72772004b429f9cb21ab",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.002265708753839135,
+    "n_nonzero": 27821,
+    "mass": 27821.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "dcba915381b57090cbb30fa5b28bc1fe03388ebeeea292c74b1d77f137191e05",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H88-VHGD",
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "holdout_dti_exp1_zerocat": 0.07827379534861029,
+    "holdout_dti_exp2_poe_unconstr": 0.19866398835317287,
+    "holdout_dti_exp2_far_gt10px": 0.13238279877341919,
+    "holdout_dti_exp2_blind_gt25px": 0.09206074979319862,
+    "holdout_dti_exp3_3stratum": 0.1389381771212047,
+    "holdout_dti_exp3_far_gt10px": 0.09035412396188756,
+    "holdout_dti_exp3_blind_gt25px": 0.055719064206001936,
+    "organizer_confirmed_score": null,
+    "gate_policy": "gems88-gate-v3",
+    "ok_to_download": true,
+    "ok_to_submit": false
+  }
+}

@@ -1,12 +1,12 @@
 {
-  "file": "gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros.tif",
+  "file": "gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "eb86d73d0fa20a7bd17d76a71a51ab527b5ace4594bcbcbdf9ab71898eb33825",
   "bytes": 69585,
   "submission_name": "GEMSDOE88-RELAY-DILATIONAL",
   "note": "Sparse relay-zone + intersection dilational dots off mapped traces; format-valid; UNSCORED; blocked-by-17GEMSDOE-witness",
   "note_chars": 120,
   "validator": {
-    "file": "/home/user/GEMSDOE88/docs/downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros.tif",
+    "file": "/home/user/GEMSDOE88/docs/downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 69585,
     "sha256": "eb86d73d0fa20a7bd17d76a71a51ab527b5ace4594bcbcbdf9ab71898eb33825",
     "meta": {
@@ -62,7 +62,7 @@
     "footprint_fraction": 0.0008307896488215579
   },
   "template_report": {
-    "path": "/home/user/GEMSDOE88/docs/downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros.tif",
+    "path": "/home/user/GEMSDOE88/docs/downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 69585,
     "sha256": "eb86d73d0fa20a7bd17d76a71a51ab527b5ace4594bcbcbdf9ab71898eb33825",
     "bands": 1,
@@ -110,7 +110,7 @@
     "ok": true,
     "validation_class": "local on-disk template/range check; not organizer upload acceptance"
   },
-  "zip_file": "gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros.zip",
+  "zip_file": "gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros-DO-NOT-SUBMIT.zip",
   "zip_sha256": "43f2c800e18c5bc5b9c2d38b5208ca675738de0ff39c16f3d99f972fe8c7682c",
   "approved_for_weekly_slot": false,
   "promoted": false,
