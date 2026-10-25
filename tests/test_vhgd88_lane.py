@@ -14,6 +14,14 @@ sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor")]
 from gems88 import vhgd  # noqa: E402
 
 
+@pytest.mark.skipif(
+    not all((ROOT / path).is_file() for path in (
+        "data/bridge/sample_submission.tif",
+        "data/bridge/existing_faults.tif",
+        "data/registry/dense_17gemdoe.tif",
+    )),
+    reason="restore SHA-pinned validation rasters before running the data-backed validator",
+)
 def test_vhgd88_validator_script_passes():
     required_inputs = (
         ROOT / "data/bridge/sample_submission.tif",
