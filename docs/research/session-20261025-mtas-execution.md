@@ -7,12 +7,12 @@ obtainable *dot-field* registry raster, but its hide-and-recover score is at the
 no-information level and the literal any-raster rule fires against two continuous
 probability surfaces. Zero weekly slots were spent. Negative results are deliverables.
 
-- **New file (one click):** [`docs/downloads/gems88-mtas88-admittance-37654dots-20261025-zeros-DO-NOT-SUBMIT.tif`](../docs/downloads/gems88-mtas88-admittance-37654dots-20261025-zeros-DO-NOT-SUBMIT.tif)
-  · [one-TIFF ZIP](../docs/downloads/gems88-mtas88-admittance-37654dots-20261025-zeros-DO-NOT-SUBMIT.zip)
+- **New file (one click):** [`docs/downloads/gems88-mtas88-admittance-37654dots-20261025-zeros-DO-NOT-SUBMIT.tif`](../downloads/gems88-mtas88-admittance-37654dots-20261025-zeros-DO-NOT-SUBMIT.tif)
+  · [one-TIFF ZIP](../downloads/gems88-mtas88-admittance-37654dots-20261025-zeros-DO-NOT-SUBMIT.zip)
   · SHA-256 `2cb828939e11cf07e12be7917722f73816550ed4e297e2409b8674ac131479cc`
 - **Prepared name (36/140):** `GEMSDOE88-MTAS88-ADMITTANCE-20261025`
 - **Prepared note (91/140):** `MTAS88 grav-mag scale-admittance 37654d; HOLDOUT-DTI 0.0496 n=22893; UNSCORED DO-NOT-SUBMIT`
-- **Machine run card:** [`registry/mtas88_experiment_run_card.json`](../registry/mtas88_experiment_run_card.json)
+- **Machine run card:** [`docs/data/mtas88_experiment_run_card.json`](../data/mtas88_experiment_run_card.json)
   · **Re-validate anytime:** `python scripts/validate_mtas88_experiment.py` (exit 0 research; `--require-submit` exit 2)
 
 ---
