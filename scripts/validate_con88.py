@@ -28,6 +28,22 @@ def topn_support(a, n, foot):
     out.ravel()[idx] = True
     return out
 
+def _load_canary_surface(path: Path) -> np.ndarray:
+    """Fail closed (exit 1, AUDIT_ERROR) instead of traceback on missing cache.
+
+    The consensus/ridge surfaces live in the uncommitted ``.cache/`` tier, so a
+    fresh checkout has no canary inputs. A missing prerequisite is an audit
+    error, never evidence for or against the candidate, and must not overwrite
+    the stored gates file.
+    """
+    if not path.is_file():
+        print(json.dumps({"decision": "AUDIT_ERROR",
+                          "missing_prerequisite": str(path),
+                          "ok_to_submit": False}) + "\n", file=sys.stderr)
+        raise SystemExit(1)
+    return np.load(path)
+
+
 def main():
     cand = sorted((ROOT / "docs/downloads").glob(CAND_GLOB))[-1]
     sample, sds = load(ROOT / "data/bridge/sample_submission.tif")
@@ -118,8 +134,8 @@ def main():
         arms[key] = np.where(np.isfinite(a), a, 0).astype(np.float64)
     terms = {k: None for k in arms}
     canary_pos, canary_neg = [], []
-    consensus = np.load(ROOT / ".cache/con88_consensus.npy")
-    ridge = np.load(ROOT / ".cache/con88_ridge.npy")
+    consensus = _load_canary_surface(ROOT / ".cache/con88_consensus.npy")
+    ridge = _load_canary_surface(ROOT / ".cache/con88_ridge.npy")
     n_withheld = 0
     for fold in spatial.folds(cat, foot, buffer_px=80):
         f = dict(region=fold["region"], truth=fold["truth"], visible=fold["visible"],

@@ -1,0 +1,58 @@
+{
+  "schema": "gems88.session-222254a5.measurements.v1",
+  "session": "arena/222254a5-gemsdoe88",
+  "measured_at_utc": "2026-10-25",
+  "environment": "Python 3.11 venv from requirements.txt (rasterio 1.4.4); inputs restored SHA-pinned via scripts/restore_inputs.py --validation",
+  "note": "All overlap/rho figures below recomputed this session with vendor/gems57/uniqueness.py exact functions (dot_overlap, equal_support_dots, surface_rho), not copied from stored cards.",
+  "con88_format_recomputed": {
+    "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "one_band": true,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform_matches_sample": true,
+    "finite_everywhere": true,
+    "min": 0.0,
+    "max": 1.0,
+    "values_subset_of_0_1": true,
+    "n_dots": 37654,
+    "nonzero_outside_footprint": 0,
+    "nonzero_on_catalogue": 0
+  },
+  "uniqueness_recomputed": {
+    "con88_vs_h33_repo_dot_overlap_3px": 0.4874116959685558,
+    "con88_vs_dense17_literal_overlap_3px": 1.0,
+    "con88_vs_dense17_equal_support_overlap_3px": 0.052584054814893505,
+    "con88_vs_dense17_spearman_full_footprint": 0.04795771736458876,
+    "h33_vs_dense17_literal_overlap_3px": 1.0,
+    "h33_vs_dense17_equal_support_overlap_3px": 0.03659637754289053,
+    "h33_vs_dense17_spearman_full_footprint": 0.05820726105200384,
+    "dense17_positive_pixels": 5167373,
+    "dense17_allowed_coverage_fraction": 1.0,
+    "interpretation": "The literal >0-support rule rejects H33 itself (USER-REPORTED 0.2778 scorer) with overlap 1.0, so the literal dense comparison carries zero discriminating information. Like-for-like (equal-support top-N) CON88 is unique vs both dense17 (0.053) and H33 (0.487), limits 0.70 / |rho| 0.90."
+  },
+  "generation_guard": {
+    "command": ".venv/bin/python scripts/generation_guard.py",
+    "exit_code": 2,
+    "decision": "DUPLICATE_STOP",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "covered_allowed_pixels": "5106385 / 5106385"
+  },
+  "validate_con88_before_fix": "FileNotFoundError traceback on missing .cache/con88_consensus.npy (unhandled, gates file untouched)",
+  "validate_con88_after_fix": "exit 1, stderr AUDIT_ERROR JSON naming the missing prerequisite, ok_to_submit=false, registry/con88_gates.json not overwritten",
+  "site_checks": {
+    "audit_downloads_check": "47 main + 1 variant TIFFs pass local research checks; protocol_eligible_count=0",
+    "render_decision_check": "PASS",
+    "check_site_py_O": "PASS"
+  },
+  "holdout_from_stored_cards_not_rerun": {
+    "con88_per_fold_reemission": {"evidence_class": "HOLDOUT-DTI", "evaluator_version": "gems57-pooled-hide-v2", "dti": 0.001713781485367719, "ci95": [0.00132506022049732, 0.0021425000587548364], "n_withheld": 60988, "source": "run_card_con88.json"},
+    "h33_fixed_tif_same_folds": {"evidence_class": "HOLDOUT-DTI", "evaluator_version": "gems57-pooled-hide-v2", "dti": 0.006697041784474405, "source": "run_card_con88.json"},
+    "repo_trained_record_bpwd": {"evidence_class": "HOLDOUT-DTI", "evaluator_version": "gems57-pooled-hide-v2", "dti": 0.2059906799008455, "ci95": [0.18810523423482492, 0.22334363824908246], "n_withheld": 22893, "source": "registry/bpwd88_run_card.json"}
+  },
+  "organizer_confirmed_scores": null,
+  "user_reported_scores": {"h33_gemsdoe32": 0.2778, "leaderboard_top_stale": 0.4413},
+  "new_tif_generated_this_session": false,
+  "weekly_slots_used": 0
+}
