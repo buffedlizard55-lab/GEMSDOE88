@@ -1,0 +1,293 @@
+{
+  "schema": "gems.run_card.v1",
+  "run_id": "GEMSDOE88-GTD88-20261025-a49e9d38",
+  "generated_utc": "2026-10-25T19:10:59Z",
+  "lane": "H88-GTD",
+  "preregistration_id": "PREREG-20261025-GTD88",
+  "hypothesis": "Potential-Field Gradient-Tensor Source Dimensionality (quasi-2D step-source shape index) with cross-field strike agreement, scale persistence and incumbent-proximity novelty allocation",
+  "mechanism": "For GeoDAWN B02 rtp, B13 iso_grav_anom and B15 depth_to_base_surf, Gaussian-derivative structure tensors J = G*grad(F)grad(F)^T and Hessians at sigma = 2 and 5 px. Closed-form 2x2 eigenvalues give linearity L = (lam1-lam2)/(lam1+lam2) (~1 for an elongated quasi-2D step source such as a buried faulted basement contact, ~0 for equant 3-D bodies), energetic step score S = L * E, cross-field axial strike agreement cos(2*dtheta), sigma5/sigma2 scale persistence (deep fault steps persist; shallow volcanic texture decays), an explicit equant-source mimic channel (1-L)*E, and a cover-gated joint score (strong subsurface step, weak surface slope B19). GTD-14 channels are strictly zero-catalogue (existing_faults.tif / grid.catalogue never read in feature construction) and are appended to the cached PHYS-44 + HGVC-20 + BPWD PSGV-20 stacks inside the identical dual-expectation LightGBM specialists, distance-adaptive tri-specialist Log-Odds PoE and exact Dinkelbach allocator as H88-BPWD, so the paired same-fold contrast isolates the GTD marginal contribution. Production additionally applies a preregistered incumbent-proximity discount w = 0.55 + 0.45*clip(d/3px,0,1) versus shipped BPWD+HGVC+H33 dots (fold-fair analogue in holdout: versus that fold's BPWD-control dots) to keep the emission in its own lane instead of reselecting incumbent crests (the IR-88-127 / IR-88-249E-02 failure mode).",
+  "named_non_fault_mimic": "Laterally persistent unfaulted lithologic contact / stratigraphic pinch-out or dike swarm: elongated and step-like in potential fields without brittle offset; mitigated by requiring coincident B15 basement-depth step + cross-field agreement and by the supervised visible-fault contrast; Equant 3-D pluton roofs and volcanic centers: high gradient energy but L ~ 0; explicitly encoded as gtd_mimic_equant_energy so the learner can discount them; Airborne flight-line striping / micro-levelling corrugation: single-azimuth, single-scale linearity; mitigated by sigma5/sigma2 persistence and multi-field agreement requirements",
+  "experiments_executed": 3,
+  "experiment_budget_max": 3,
+  "elapsed_seconds": 7321.77,
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seeds": [
+      20,
+      21
+    ],
+    "n_folds": 8,
+    "withheld_positive_pixels": 22893,
+    "candidate_exp03_production_procedure": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.19977293180379782,
+      "ci95": [
+        0.18408445117366326,
+        0.21564617338627995
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 7650.078472762701,
+      "fpw": 92247.26634007816,
+      "fnw": 15242.921527237291
+    },
+    "exp01_gtd_zero_cat": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.11907256981140436,
+      "ci95": [
+        0.1053949445242316,
+        0.13344159816580783
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 5146.277118150897,
+      "fpw": 119380.07056603605,
+      "fnw": 17746.722881849095
+    },
+    "exp02_gtd_tri_poe": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.20762429989121625,
+      "ci95": [
+        0.19003841610441383,
+        0.22549957584873834
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6947.370521146379,
+      "fpw": 68786.92562979601,
+      "fnw": 15945.629478853612
+    },
+    "control_phys44_zero_cat": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.1041632406049392,
+      "ci95": [
+        0.09132236031332829,
+        0.11761770146248494
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 4315.018210565626,
+      "fpw": 111240.66836608533,
+      "fnw": 18577.981789434365
+    },
+    "control_h88_adhr": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.19487581335786947,
+      "ci95": [
+        0.1785489282365842,
+        0.2113164246611319
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6464.596856403541,
+      "fpw": 67827.92847932842,
+      "fnw": 16428.40314359645
+    },
+    "control_h88_hgvc": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.2029470713394289,
+      "ci95": [
+        0.18617838951965937,
+        0.21958103601134096
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6827.7917351731185,
+      "fpw": 69816.27785652946,
+      "fnw": 16065.208264826872
+    },
+    "control_h88_bpwd_recomputed": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.2059906799008455,
+      "ci95": [
+        0.1883844668855567,
+        0.2231520598646464
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6829.012039073429,
+      "fpw": 67359.20687861265,
+      "fnw": 16063.987960926566
+    },
+    "bpwd_stored_record": 0.205991,
+    "far_gt10px_candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.1348649867079514,
+      "ci95": [
+        0.11715619184994117,
+        0.15324330784739668
+      ],
+      "withheld_positive_pixels": 10791,
+      "tpw": 2340.8915643463674,
+      "fpw": 41281.59103159757,
+      "fnw": 8450.108435653632
+    },
+    "blind_gt25px_candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.08190234123082522,
+      "ci95": [
+        0.05743552041535111,
+        0.10784179816986482
+      ],
+      "withheld_positive_pixels": 3117,
+      "tpw": 409.87239995192886,
+      "fpw": 12144.147348957698,
+      "fnw": 2707.1276000480702
+    },
+    "paired_delta_exp03_vs_bpwd_overall": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.006217748097047671,
+      "ci95": [
+        -0.011078603815503909,
+        -0.001152752844776613
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "paired_delta_exp03_vs_bpwd_far": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": -0.0019170893686973334,
+      "ci95": [
+        -0.01069852698244808,
+        0.006936549412540916
+      ],
+      "withheld_positive_pixels": 10791
+    },
+    "paired_delta_exp03_vs_bpwd_blind": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.009169733709159883,
+      "ci95": [
+        -0.006600881997744943,
+        0.025585130901829435
+      ],
+      "withheld_positive_pixels": 3117
+    },
+    "paired_delta_exp02_vs_bpwd_overall": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.0016336199903707604,
+      "ci95": [
+        -0.0006873059240177441,
+        0.004007034768711444
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "folds_won_exp03_vs_bpwd": 1,
+    "beats_bpwd_with_positive_ci95": false
+  },
+  "leakage_canary": {
+    "passed": true,
+    "threshold": 0.9,
+    "features_tested": 121,
+    "max_symmetric_auc": 0.769268,
+    "max_feature": "d2 (seed=20)",
+    "max_gtd14_symmetric_auc": 0.558728,
+    "scramble_invariance": true
+  },
+  "uniqueness": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "binding_policy": "vendor/gems57/uniqueness.py::binding_duplicate_decision_v4 (representation-aware, IR-88-249E-01), adopted in PREREG-20261025-GTD88 under the owner's parallel-run protocol",
+    "registry_rasters_checked": 278,
+    "surface_preplacement_max_abs_spearman": 0.215559,
+    "surface_preplacement_worst": "17GEMSDOE:dense_17gemdoe.tif",
+    "v4_duplicate": true,
+    "v4_worst_effective_dot_overlap": 0.705024698571201,
+    "v4_worst_effective_dot_overlap_file": "/home/user/GEMSDOE88/docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+    "v4_worst_abs_spearman": 0.2155585430694911,
+    "v4_worst_abs_spearman_file": "/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif",
+    "v4_continuous_surfaces": 3,
+    "v4_dot_emission_rasters": 275,
+    "gate_worst_like_for_like_overlap": {
+      "label": "GEMSDOE88:gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+      "value": 0.705024698571201
+    },
+    "gate_unique_like_for_like": false,
+    "literal_v3_verbatim": {
+      "verdict": "negative",
+      "worst_literal_forward_overlap": 1.0,
+      "worst_literal_forward_overlap_file": "/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif",
+      "dense_17gemdoe_witness_overlap": 1.0,
+      "note": "Literal >0 overlap vs continuous surfaces positive on 81-100% of footprint cells is ~1.0 for every nonempty raster including random dots; reported verbatim, not hidden. v4 binds the dot test against dot emissions / top-N surface emissions and rho against every raster."
+    },
+    "unique_v4": false
+  },
+  "fingerprint": {
+    "n": 37654,
+    "median_d_cat_px": 20.124610900878906,
+    "share_le2": 0.0,
+    "share_gt10": 0.6841769798693366,
+    "share_gt25": 0.4369788070324534
+  },
+  "fingerprint_screen_pass": true,
+  "production": {
+    "n_dots": 37654,
+    "n_near_dots": 21200,
+    "n_far_dots": 16454,
+    "near_spacing_px": 2.9,
+    "far_spacing_px": 3.12,
+    "collar_min_d_cat_px": 2.8284270763397217,
+    "median_d_cat_px": 20.124610900878906,
+    "share_le2": 0.0,
+    "share_gt10": 0.6841769798693366,
+    "share_gt25": 0.4369788070324534,
+    "k_truth_est": 18296.399999999998,
+    "surrogate_dti_near": 0.13289346816556505,
+    "surrogate_dti_far": 0.10913693159466124,
+    "strictly_out_of_fold_both_heads": true,
+    "incumbent_discount_w_min": 0.55,
+    "incumbent_discount_frac_cells_affected": 0.284699014490365,
+    "incumbent_dots_n": 106895,
+    "incumbent_discount_sources": {
+      "H88-BPWD": {
+        "file": "docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+        "sha256": "b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777",
+        "dots": 37654
+      },
+      "H88-HGVC": {
+        "file": "docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+        "sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
+        "dots": 37654
+      },
+      "H33": {
+        "file": "data/registry/h33_education.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "dots": 37654
+      }
+    }
+  },
+  "validator": {
+    "format_ok_on_saved_bytes": true,
+    "no_nan_inside_footprint": true,
+    "all_finite_entire_raster": true,
+    "values_in_0_1": true,
+    "values_binary_0_1": true,
+    "crs_shape_transform_match_sample": true,
+    "portal_tif_ok": true,
+    "portal_zip_ok": true,
+    "g57_validate_all_checks_passed": true,
+    "note": "Binary {0.0,1.0} float32, nodata=None, zero outside footprint and on catalogue: the portal 'Predicted values must be in range [0, 1]' error (caused by NaN/out-of-range values in earlier files) cannot fire on these bytes. Local validity is not organizer acceptance."
+  },
+  "raster_sha256": "a49e9d389f8bc823d53fc7becac159fd58ca1e9c8415e3d9c626e7d2713f1d45",
+  "zip_sha256": "cc331722352e4a2fe6d61c6ac93f4b46deeb20848cbd417c1102830241ed56d5",
+  "file": "docs/downloads/gems88-gtd88-tensor-dim-37654-20261025-a49e9d38-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-gtd88-tensor-dim-37654-20261025-a49e9d38-zeros-DO-NOT-SUBMIT.zip",
+  "submission_name": "GEMSDOE88-GTD88-A49E9D38",
+  "submission_note": "GTD88 tensor-dim 121ch tri-PoE novel 37654d; HOLDOUT-DTI 0.1998 far 0.1349 blind 0.0819; UNSCORED",
+  "submission_note_length": 97,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "blocking_reasons": [
+    "UNIQUENESS-V4: duplicate=True worst_eff_overlap=0.705024698571201 (/home/user/GEMSDOE88/docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif) worst|rho|=0.2155585430694911 (/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif) invalid=False",
+    "HOLDOUT: exp03 0.199773 vs BPWD-control 0.205991, paired delta -0.006218 CI=[-0.011078603815503909, -0.001152752844776613] (need point>bar and CI>0)"
+  ],
+  "organizer_confirmed_score": null,
+  "weekly_slots_used": 0,
+  "slot_note": "This lane spends no slot. If verdict=promote, the file above is the single download-and-submit candidate; uploading it on the DrivenData portal is the owner's action and only the portal receipt can create an ORGANIZER-CONFIRMED score."
+}

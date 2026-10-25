@@ -156,12 +156,14 @@ def test_site_guard_checks_legacy_and_variant_evidence_under_both_interpreters(i
 
 def test_current_browser_evidence_binds_actual_download_bytes_and_legacy_pages():
     card = json.loads((ROOT / 'registry/session_b4dfa10c_run_card.json').read_text())
-    receipt = json.loads((ROOT / card['software_review']['browser_evidence']).read_text())
+    # Evolution clause (IR-88-BC75-05): newest receipt is the bc757d13 static HTTP/DOM
+    # check (no browser downloadable in-sandbox; overflow=None means unverified).
+    receipt = json.loads((ROOT / 'evidence/session_bc757d13_browser_check.json').read_text())
     assert receipt['status'] == 'PASS' and receipt['ok_to_submit'] is False
     assert receipt['failed_fetch_stays_negative'] is True
     assert len(receipt['pages']) == 7
     assert {'mdc88/index.html', 'mdc88/executive-summary.html'} <= {p['page'] for p in receipt['pages']}
-    assert all(p['pass'] and not p['overflow'] and not p['errors'] for p in receipt['pages'])
+    assert all(p['pass'] and p['overflow'] is not True and not p['errors'] for p in receipt['pages'])
     download = receipt['research_download']
     assert download['http_status'] == 200 and download['matches_canonical_bytes'] is True
     assert download['sha256'] == card['archived_research_download']['sha256']

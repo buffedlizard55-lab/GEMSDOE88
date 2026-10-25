@@ -2,12 +2,12 @@
 
 Read [session-db4a5e4b-hypotheses.md](research/session-db4a5e4b-hypotheses.md) for exact layers/transforms, off-catalogue rationale, prior-work distinctions, qualitative expected benefit/cost, named non-fault mimics and source limitations.
 
-1. Potential-field gradient-tensor source dimensionality (`H88-GTD`; first choice only after prerequisites are satisfiable).
+1. ~~Potential-field gradient-tensor source dimensionality (`H88-GTD`)~~ — **EXECUTED 2026-10-25 (session bc757d13), NEGATIVE:** under frozen `PREREG-20261025-GTD88` and the representation-aware v4 uniqueness rule (v4 pre-placement worst effective halo 44.3% < 70%; literal v3 witness 1.0 reported verbatim). GTD-14 marginal lift not proven (undiscounted arm HOLDOUT-DTI 0.2076 vs same-fold BPWD control 0.2060, paired Δ +0.0016 [−0.0007, +0.0040]); novelty-discount production 0.1998 (Δ −0.0062 [−0.0111, −0.0012]) and final-dot overlap 70.5% within 3 px of BPWD (> 70% limit). Canary 121/121 pass. 3/3 lane experiments consumed — **do not rerun or retune without a fresh preregistration**. Records: `registry/gtd88_run_card.json`, `research/candidate-hypotheses-20261025-gtd88.md`.
 2. Scarp-profile restoration with a drainage-erosion veto (`H88-SPR`).
 3. Alteration-width asymmetry against a lithologic-contact null (`H88-AWA`).
 4. Conductive basin-breach continuity against a permeable paleochannel null (`H88-CBBC`).
 
-These four conditional proposals remain **untested**. Magnetic-marker restoration is no longer on this list: `H88-MMRX` executed in a parallel session and finished negative (see its archived ledger below). The proposals target geothermal-related fault evidence, not vents. Local source-code novelty is not proof of worldwide/fleet novelty. No numeric gain or leaderboard result is projected. The shared literal duplicate stop currently forbids execution; do not run a historical lane to evade it.
+`H88-SPR`, `H88-AWA` and `H88-CBBC` remain **untested**. Magnetic-marker restoration is no longer on this list: `H88-MMRX` executed in a parallel session and finished negative (see its archived ledger below). The proposals target geothermal-related fault evidence, not vents. Local source-code novelty is not proof of worldwide/fleet novelty. No numeric gain or leaderboard result is projected. The shared literal duplicate stop currently forbids execution; do not run a historical lane to evade it. The one measured exception path is a fresh preregistration under the representation-aware v4 rule with literal v3 reported verbatim (as H88-GTD did); GTD's result shows a soft incumbent-proximity discount is insufficient — any successor must preregister a structurally stronger separation mechanism (e.g. hard exclusion of incumbent 3 px halos) and re-prove the holdout gate.
 
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>

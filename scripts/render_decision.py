@@ -82,10 +82,10 @@ def render(root: Path, kind: str) -> str:
 <div class="decision-kicker">Current review · 2026-10-25 · NO FILE APPROVED</div>
 <div class="decision-grid"><div>
 <h1 id="decision-title">{title}</h1>
-<p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule. No old prediction was copied or renamed as a new submission.</p>
-<p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
+<p class="decision-lead"><strong>NO SUBMISSION-CLEARED TIFF: H88-GTD NEGATIVE — DO NOT SUBMIT.</strong> This session generated one genuinely new research TIFF (H88-GTD tensor-dimensionality lane) under a preregistered representation-aware uniqueness rule. It failed two frozen gates, so it is research-download only. No old prediction was copied or renamed.</p>
+<p>The literal registry witness still covers every allowed pixel (overlap lower bound 1.00). Under the representation-aware v4 rule, pre-placement cleared (worst effective halo 44.3% &lt; 70%), but the final GTD dots overlap the BPWD dot-field at 70.5% within 3 px (limit 70%) — duplicate.</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_b4dfa10c_run_card.json">Latest review’s negative run card</a>.</p>
+<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/gtd88_run_card.json">H88-GTD negative run card</a>.</p>
 </div><aside class="decision-download" aria-label="Canonical archived research download">
 <div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
 <h2>Download the audited TIFF</h2>
@@ -101,8 +101,8 @@ def render(root: Path, kind: str) -> str:
 <div class="section-heading"><div><div class="kicker">One decision, separate gates</div><h2>What is—and is not—validated</h2></div><a href="data/mtas88_run_card.json">Pre-placement proof JSON ↗</a></div>
 <div class="gate-grid">
 <article class="gate-card"><span class="tag">LOCAL FORMAT PASS</span><h3>File correctness</h3><p>All {count} published TIFFs were reopened. The canonical TIFF has no NaN or infinity, is within [0, 1], and matches CRS, shape and transform. It contains one full-resolution raster with self-contained georeferencing; its ZIP contains the same TIFF.</p></article>
-<article class="gate-card"><span class="tag bad">UNIQUENESS FAIL</span><h3>Duplicate stop</h3><p>Registry measurement: the 17GEMSDOE witness covers all 5,106,385 allowed cells. The overlap lower bound is 1.00; the limit is 0.70. No sparse-only exemption.</p></article>
-<article class="gate-card"><span class="tag dim">NOT RUN THIS SESSION</span><h3>Scientific performance</h3><p>No new holdout or leakage canary was run after the prerequisite failed. Historical HOLDOUT-DTI is not a new candidate result and is not an organizer score.</p></article>
+<article class="gate-card"><span class="tag bad">UNIQUENESS FAIL</span><h3>Duplicate stop</h3><p>Literal rule: the 17GEMSDOE witness covers all 5,106,385 allowed cells; overlap lower bound 1.00 vs limit 0.70. Representation-aware v4 (preregistered): pre-placement worst effective halo 44.3% over 234 registry rasters, but final GTD dots sit within 3 px of BPWD dots at 70.5% — over the 70% limit. Max |Spearman ρ| 0.216 (limit 0.90). No exemption granted.</p></article>
+<article class="gate-card"><span class="tag bad">HOLDOUT NEGATIVE</span><h3>Scientific performance</h3><p>Buffered whole-component holdout (gems57-pooled-hide-v2, n=22,893 withheld): GTD production arm HOLDOUT-DTI 0.1998 [0.184, 0.216] vs same-fold BPWD control 0.2060; paired Δ −0.0062 [−0.0111, −0.0012]. Undiscounted GTD arm 0.2076 (Δ +0.0016 [−0.0007, +0.0040]) — no proven improvement. Leakage canary 121/121 ≤ 0.90 (max 0.769). HOLDOUT-DTI is not an organizer score.</p></article>
 <article class="gate-card"><span class="tag bad">NO SLOT AUTHORIZED</span><h3>Competition eligibility</h3><p>A format pass cannot clear a duplicate, prove a leaderboard improvement, establish current quota, or authorize a submission. Slot selection remains separate.</p></article>
 </div></div></section>'''
     if kind == "overview":
@@ -111,18 +111,18 @@ def render(root: Path, kind: str) -> str:
 <p><strong>0.2778 is a user-reported claim, not an ORGANIZER-CONFIRMED receipt.</strong> Rechecked H33 support is a subset of D2.8: it removes near-catalogue dots rather than adding discoveries. Less redundant emission can improve the precision–coverage trade-off, but the hidden labels are needed to prove why a score changed.</p>
 <p>There is no defensible guarantee that this repository will beat that claim, the older 0.3195 claim, or the 0.4413 claim. A buffered, fold-matched improvement is a necessary project gate, not a leaderboard forecast.</p>
 <a href="research/session-b4dfa10c-review.md">Latest verification, scientific corrections &amp; limitations →</a></div>
-<div class="proof"><div class="kicker">Next scientific work</div><h3>Test displacement—not another edge map.</h3>
-<p>Four ranked, untested proposals are recorded before implementation. The leading proposal asks whether a coherent magnetic marker becomes continuous after a repeatable cross-boundary displacement. Intrusive contacts and depositional pinch-outs are explicit alternatives.</p>
-<p>It remains unrun: the universal duplicate stop comes first. No new external dataset is presented as obtainable without verification.</p>
-<a href="research/session-b4dfa10c-hypotheses.md">Read the four hypotheses and falsification plan →</a></div></div></section>
-<section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Data placement is no longer the blocker.</h2><p>The pinned core feature raster and shared external inputs have been restored; the existing preparation command successfully loads the shared feature planes on CPU. The remaining blocker is not a missing download: it is the unsatisfiable literal uniqueness condition, followed by scientific and organizer-access gates.</p>
+<div class="proof"><div class="kicker">Executed this session · H88-GTD</div><h3>Potential-field tensor dimensionality — measured, negative.</h3>
+<p>GTD-14 structure-tensor dimensionality ran under preregistration PREREG-20261025-GTD88. Zero-catalogue arm HOLDOUT-DTI 0.1191; tri-PoE arm 0.2076 vs BPWD control 0.2060 (no proven lift); novelty-discount production 0.1998, blind &gt;25 px stratum 0.0819 vs BPWD 0.0727. The allocator still reselects incumbent crests (70.5% within 3 px of BPWD).</p>
+<p>The three-experiment lane budget is consumed. Any successor (hard incumbent exclusion, scarp-profile/drainage veto, LEFM tip lobes, radiometric asymmetry) requires a fresh preregistration before computation.</p>
+<a href="data/gtd88_run_card.json">H88-GTD run card (JSON) →</a></div></div></section>
+<section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Data placement is no longer the blocker.</h2><p>The pinned core feature raster and shared external inputs have been restored; the existing preparation command successfully loads the shared feature planes on CPU. The remaining blockers are scientific, not downloads: no lane has beaten the same-fold BPWD control with a paired CI above zero, and final-dot uniqueness against the incumbent fields still fails. Organizer access and current quota remain unverified from this sandbox.</p>
 <div class="button-row"><a class="button button-primary" href="executive-summary.html">Open the submission guide →</a><a href="sources.html" class="button decision-outline">Sources &amp; verification limits</a></div>
 <p class="fine">Maximize P(Win): preserve scarce slots for evidence-backed, distinct candidates. Own the Outcome: report an unmet requirement instead of presenting a research TIFF as submission-ready.</p></div></section>'''
         return hero + content + inventory(audit)
     if kind != "guide":
         raise ValueError(f"unknown page kind: {kind}")
     guide = '''<section class="decision-explainer"><div class="wrap narrow"><div class="kicker">Executive summary</div><h2>Do not submit any current file.</h2>
-<p><strong>CURRENT DECISION 2026-10-25: NO NEW UNIQUE TIFF.</strong> The download above is an archived research artifact, not a newly selected competition candidate. There is no safe file to choose in the portal under the current project protocol.</p>
+<p><strong>CURRENT DECISION 2026-10-25: NO FILE IS CLEARED TO SUBMIT.</strong> The download above is an archived research artifact. The newest lane (H88-GTD) produced one new research TIFF and failed its frozen holdout and uniqueness gates; it appears in the inventory below as research-only. There is no safe file to choose in the portal under the current project protocol.</p>
 <ol class="steps"><li><h3>Run the automated project checks</h3><p>Restore pinned inputs, reopen saved TIFF/ZIP bytes, validate finite [0,1], the exact sample grid and footprint, one full-resolution raster and no external sidecar dependency, and check the pre-placement registry gate. Internal overviews are allowed; orphan or nested download packages fail the inventory check. No human inspector is required to decide these local checks.</p></li>
 <li><h3>Require scientific evidence for a genuinely new candidate</h3><p>Withhold whole fault segments with a buffer. Recompute catalogue-derived features from visible faults only; run every single-feature leakage canary; mask visible faults exactly. Use the shared pooled DTI evaluator, a paired confidence interval against the same-fold incumbent, then full surface/final-dot registry tests. Stop on a failed gate.</p></li>
 <li><h3>Keep slot selection separate</h3><p>Even if every local gate passes, the separate selector must authorize a slot within the current account limit. Current quota, competition timing and data-use terms are not verified from this sandbox. No guessed weekly allowance is used.</p></li>
@@ -136,7 +136,7 @@ python scripts/render_decision.py --check
 python scripts/check_site.py
 python scripts/preflight_mtas88.py --gate-generation
 # Expected final exit: 2 (DUPLICATE_STOP). Not a build failure to bypass.</code></pre>
-<p><a href="research/session-b4dfa10c-review.md">Latest review and limitations</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/mtas88_run_card.json">Negative run card</a></p>
+<p><a href="research/session-b4dfa10c-review.md">Latest review and limitations</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/mtas88_run_card.json">MTAS negative run card</a> · <a href="data/gtd88_run_card.json">GTD negative run card</a></p>
 </div></section>'''
     return hero + guide + inventory(audit)
 

@@ -1,0 +1,190 @@
+{
+  "passed": true,
+  "threshold": 0.9,
+  "features_tested": 121,
+  "zero_catalogue_features_tested": 98,
+  "fold_visible_features_tested": 23,
+  "max_symmetric_auc": 0.769268,
+  "max_feature": "d2 (seed=20)",
+  "max_zero_catalogue_symmetric_auc": 0.590462,
+  "max_gtd14_symmetric_auc": 0.558728,
+  "top15_all_features": [
+    {
+      "feature": "d2",
+      "group": "VIS-22",
+      "roc_auc": 0.230732,
+      "symmetric_auc": 0.769268
+    },
+    {
+      "feature": "d_perp",
+      "group": "VIS-22",
+      "roc_auc": 0.239184,
+      "symmetric_auc": 0.760816
+    },
+    {
+      "feature": "d",
+      "group": "VIS-22",
+      "roc_auc": 0.247997,
+      "symmetric_auc": 0.752003
+    },
+    {
+      "feature": "d_over_w",
+      "group": "VIS-22",
+      "roc_auc": 0.268361,
+      "symmetric_auc": 0.731639
+    },
+    {
+      "feature": "relay_facing",
+      "group": "VIS-22",
+      "roc_auc": 0.615286,
+      "symmetric_auc": 0.615286
+    },
+    {
+      "feature": "coherence",
+      "group": "VIS-22",
+      "roc_auc": 0.409379,
+      "symmetric_auc": 0.590621
+    },
+    {
+      "feature": "lidar_scarp_dipole",
+      "group": "PHYS-44",
+      "roc_auc": 0.590462,
+      "symmetric_auc": 0.590462
+    },
+    {
+      "feature": "log_len",
+      "group": "VIS-22",
+      "roc_auc": 0.411443,
+      "symmetric_auc": 0.588557
+    },
+    {
+      "feature": "relay_ratio",
+      "group": "VIS-22",
+      "roc_auc": 0.412157,
+      "symmetric_auc": 0.587843
+    },
+    {
+      "feature": "hgvc_lidar_bajada_polarity",
+      "group": "HGVC-20",
+      "roc_auc": 0.587012,
+      "symmetric_auc": 0.587012
+    },
+    {
+      "feature": "topo10_curv_prof",
+      "group": "PHYS-44",
+      "roc_auc": 0.586864,
+      "symmetric_auc": 0.586864
+    },
+    {
+      "feature": "d_par_abs",
+      "group": "VIS-22",
+      "roc_auc": 0.413936,
+      "symmetric_auc": 0.586064
+    },
+    {
+      "feature": "psgv_lidar_face_polarity_orth",
+      "group": "PSGV-20",
+      "roc_auc": 0.58489,
+      "symmetric_auc": 0.58489
+    },
+    {
+      "feature": "scarp_rel_cos2",
+      "group": "VIS-22",
+      "roc_auc": 0.584348,
+      "symmetric_auc": 0.584348
+    },
+    {
+      "feature": "hgvc_topo10_shorefree_crest",
+      "group": "HGVC-20",
+      "roc_auc": 0.582073,
+      "symmetric_auc": 0.582073
+    }
+  ],
+  "gtd14_features": [
+    {
+      "feature": "gtd_joint_step",
+      "group": "GTD-14",
+      "roc_auc": 0.558728,
+      "symmetric_auc": 0.558728
+    },
+    {
+      "feature": "gtd_zbase_step_s2",
+      "group": "GTD-14",
+      "roc_auc": 0.540761,
+      "symmetric_auc": 0.540761
+    },
+    {
+      "feature": "gtd_rtp_step_s2",
+      "group": "GTD-14",
+      "roc_auc": 0.536688,
+      "symmetric_auc": 0.536688
+    },
+    {
+      "feature": "gtd_cover_gated_joint",
+      "group": "GTD-14",
+      "roc_auc": 0.530433,
+      "symmetric_auc": 0.530433
+    },
+    {
+      "feature": "gtd_mimic_equant_energy",
+      "group": "GTD-14",
+      "roc_auc": 0.529911,
+      "symmetric_auc": 0.529911
+    },
+    {
+      "feature": "gtd_grav_step_s2",
+      "group": "GTD-14",
+      "roc_auc": 0.526783,
+      "symmetric_auc": 0.526783
+    },
+    {
+      "feature": "gtd_agree_grav_zbase",
+      "group": "GTD-14",
+      "roc_auc": 0.526324,
+      "symmetric_auc": 0.526324
+    },
+    {
+      "feature": "gtd_zbase_lin_s2",
+      "group": "GTD-14",
+      "roc_auc": 0.524012,
+      "symmetric_auc": 0.524012
+    },
+    {
+      "feature": "gtd_rtp_lin_s5",
+      "group": "GTD-14",
+      "roc_auc": 0.487952,
+      "symmetric_auc": 0.512048
+    },
+    {
+      "feature": "gtd_grav_lin_s5",
+      "group": "GTD-14",
+      "roc_auc": 0.490778,
+      "symmetric_auc": 0.509222
+    },
+    {
+      "feature": "gtd_persist_grav",
+      "group": "GTD-14",
+      "roc_auc": 0.491153,
+      "symmetric_auc": 0.508847
+    },
+    {
+      "feature": "gtd_agree_rtp_grav",
+      "group": "GTD-14",
+      "roc_auc": 0.505858,
+      "symmetric_auc": 0.505858
+    },
+    {
+      "feature": "gtd_rtp_lin_s2",
+      "group": "GTD-14",
+      "roc_auc": 0.497474,
+      "symmetric_auc": 0.502526
+    },
+    {
+      "feature": "gtd_grav_lin_s2",
+      "group": "GTD-14",
+      "roc_auc": 0.498094,
+      "symmetric_auc": 0.501906
+    }
+  ],
+  "zero_test_quadrant_leakage_scramble_equal": true
+}

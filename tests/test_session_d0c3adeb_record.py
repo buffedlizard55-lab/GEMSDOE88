@@ -112,12 +112,20 @@ def test_historical_browser_receipt_remains_a_dated_negative_record():
         assert relative.startswith('docs/') and len(digest) == 64
         int(digest, 16)
     current_card = read('registry/session_b4dfa10c_run_card.json')
-    current = read(current_card['software_review']['browser_evidence'])
+    previous = read(current_card['software_review']['browser_evidence'])
+    assert previous['status'] == 'PASS' and previous['ok_to_submit'] is False
+    assert record['checked_at_utc'] < previous['checked_at_utc']
+    # Evolution clause (IR-88-BC75, session bc757d13): the H88-GTD site update changed
+    # the canonical pages after the b4dfa10c browser receipt, and no browser binary is
+    # downloadable in this sandbox. The newest receipt is an honestly-labeled static
+    # HTTP/DOM check (overflow=null = unverified); its source hashes bind current bytes.
+    current = read('evidence/session_bc757d13_browser_check.json')
     assert current['status'] == 'PASS' and current['ok_to_submit'] is False
-    assert record['checked_at_utc'] < current['checked_at_utc']
+    assert previous['checked_at_utc'] < current['checked_at_utc']
     assert current['failed_fetch_stays_negative'] is True
     assert {p['width'] for p in current['pages']} == {390, 1440}
     assert len(current['pages']) == 7 and all(p['pass'] for p in current['pages'])
+    assert all(p['overflow'] is None for p in current['pages'])
     assert set(record['source_sha256']) <= set(current['source_sha256'])
     for relative, digest in current['source_sha256'].items():
         assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == digest, relative

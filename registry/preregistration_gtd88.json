@@ -1,0 +1,65 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "preregistration_id": "PREREG-20261025-GTD88",
+  "frozen_utc": "2026-10-25T17:00:00Z",
+  "session_branch": "arena/bc757d13-gemsdoe88",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "single_method_lane": {
+    "id": "H88-GTD",
+    "title": "Potential-Field Gradient-Tensor Source Dimensionality (quasi-2D step-source shape index) with cross-field strike agreement, scale persistence and incumbent-proximity novelty allocation",
+    "mechanism": "For GeoDAWN B02 rtp, B13 iso_grav_anom and B15 depth_to_base_surf, Gaussian-derivative structure tensors J = G*grad(F)grad(F)^T and Hessians at sigma = 2 and 5 px. Closed-form 2x2 eigenvalues give linearity L = (lam1-lam2)/(lam1+lam2) (~1 for an elongated quasi-2D step source such as a buried faulted basement contact, ~0 for equant 3-D bodies), energetic step score S = L * E, cross-field axial strike agreement cos(2*dtheta), sigma5/sigma2 scale persistence (deep fault steps persist; shallow volcanic texture decays), an explicit equant-source mimic channel (1-L)*E, and a cover-gated joint score (strong subsurface step, weak surface slope B19). GTD-14 channels are strictly zero-catalogue (existing_faults.tif / grid.catalogue never read in feature construction) and are appended to the cached PHYS-44 + HGVC-20 + BPWD PSGV-20 stacks inside the identical dual-expectation LightGBM specialists, distance-adaptive tri-specialist Log-Odds PoE and exact Dinkelbach allocator as H88-BPWD, so the paired same-fold contrast isolates the GTD marginal contribution. Production additionally applies a preregistered incumbent-proximity discount w = 0.55 + 0.45*clip(d/3px,0,1) versus shipped BPWD+HGVC+H33 dots (fold-fair analogue in holdout: versus that fold's BPWD-control dots) to keep the emission in its own lane instead of reselecting incumbent crests (the IR-88-127 / IR-88-249E-02 failure mode).",
+    "named_non_fault_mimics": [
+      "Laterally persistent unfaulted lithologic contact / stratigraphic pinch-out or dike swarm: elongated and step-like in potential fields without brittle offset; mitigated by requiring coincident B15 basement-depth step + cross-field agreement and by the supervised visible-fault contrast",
+      "Equant 3-D pluton roofs and volcanic centers: high gradient energy but L ~ 0; explicitly encoded as gtd_mimic_equant_energy so the learner can discount them",
+      "Airborne flight-line striping / micro-levelling corrugation: single-azimuth, single-scale linearity; mitigated by sigma5/sigma2 persistence and multi-field agreement requirements"
+    ]
+  },
+  "gtd14_features": [
+    "gtd_rtp_lin_s2", "gtd_rtp_step_s2",
+    "gtd_grav_lin_s2", "gtd_grav_step_s2",
+    "gtd_zbase_lin_s2", "gtd_zbase_step_s2",
+    "gtd_rtp_lin_s5", "gtd_grav_lin_s5",
+    "gtd_agree_rtp_grav", "gtd_agree_grav_zbase",
+    "gtd_joint_step", "gtd_persist_grav",
+    "gtd_mimic_equant_energy", "gtd_cover_gated_joint"
+  ],
+  "holdout_protocol": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seeds": [20, 21],
+    "folds": 8,
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "bootstrap_block_side_px": 200,
+    "bootstrap_draws": 2000,
+    "experiment_budget_max": 3,
+    "controls": ["phys44_zero_cat", "h88_adhr_incumbent", "h88_hgvc_incumbent", "h88_bpwd_incumbent"],
+    "experiments": [
+      {"id": "exp01_gtd_zero_cat", "description": "Zero-catalogue specialist: 36 X_phys_diff + 20 PSGV-20 + 20 HGVC-20 + 14 GTD-14 = 90 zero-catalogue channels, LGBM dual-expectation"},
+      {"id": "exp02_gtd_tri_poe", "description": "Identical architecture to H88-BPWD Exp03 (tri-specialist distance-adaptive Log-Odds PoE + Dinkelbach) with GTD-14 appended to both specialists"},
+      {"id": "exp03_gtd_tri_poe_novel", "description": "Exp02 posteriors + preregistered incumbent-proximity discount allocator (w_min = 0.55 within 3 px of fold BPWD-control dots). This is the production procedure; promotion is judged on this arm."}
+    ]
+  },
+  "production_emission_plan": {
+    "total_dots": 37654,
+    "near_stratum_d_cat_px": [2.5, 25.0],
+    "near_budget": 21200,
+    "near_spacing_px": 2.90,
+    "far_stratum_d_cat_px": [25.0, null],
+    "far_budget": 16454,
+    "far_spacing_px": 3.12,
+    "incumbent_proximity_discount_w_min": 0.55,
+    "incumbent_discount_rasters": ["H88-BPWD production (b8543782)", "H88-HGVC production (d5329f31)", "H33 (c55bafc4)"],
+    "values": "binary {0.0, 1.0} float32, nodata=None, all-finite zeros export (no NaN anywhere)"
+  },
+  "uniqueness_policy": {
+    "binding": "vendor/gems57/uniqueness.py::binding_duplicate_decision_v4 (representation-aware, IR-88-249E-01): |Spearman| <= 0.90 vs every registry raster; forward 3-px dot overlap <= 0.70 vs binary dot-field rasters literally and vs continuous probability surfaces via their top-N (N = candidate dots) emission; byte/pixel identity blocks. Adopted as binding for this lane under the session owner's explicit parallel-run protocol (dot overlap is defined against a registry raster's DOTS; a continuous surface positive on 100% of footprint cells has no dots until emitted) and protocol section 2 (fix a wrong shared tool once in the template and report it).",
+    "diagnostic_reported_verbatim": "literal v3 decision (binding_duplicate_decision_v3) including the dense 17GEMSDOE witness overlap, which is 1.0 for every nonempty raster including random dots and therefore carries no copying information",
+    "checks": "surface before placement AND final dots, per protocol section 1"
+  },
+  "promotion_rule_frozen": "OK TO SUBMIT iff ALL hold: (1) shared format validators pass on saved bytes (1 band, finite in [0,1] everywhere, CRS/shape/transform match sample, 0 outside footprint, 0 on catalogue); (2) every single-feature leakage canary symmetric AUC <= 0.90 and quadrant-scramble invariance holds; (3) fingerprint share_le2 == 0 and share_gt25 >= 0.35; (4) pre-placement surface |rho| <= 0.90 and final-dot v4 uniqueness pass across the complete accessible registry; (5) HOLDOUT-DTI of exp03 (production procedure) exceeds the same-fold recomputed H88-BPWD control pooled DTI with paired 95% CI lower bound > 0; (6) submission name/note unique and <= 140 chars. Any failure: verdict negative, file labelled DO-NOT-SUBMIT, 0 weekly slots spent or recommended by the lane (slot use remains the owner's separate action on the portal).",
+  "budget": {"max_experiments": 3, "max_hours": 2}
+}

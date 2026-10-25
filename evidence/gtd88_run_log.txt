@@ -1,0 +1,37 @@
+[1/7] Loading grid & building/loading PHYS-44 + HGVC-20 + PSGV-20 (BPWD) + GTD-14 memmaps...
+      GTD-14 ready: shape=[5167373, 14], zero_catalogue_reads=True, peak_rss=3125.0 MB
+[2/7] Leakage canary (98 zero-catalogue + 23 fold-visible = 121 features) & scramble invariance...
+      PASS 121/121 <= 0.90 (max=0.769268 on d2 (seed=20); max_zero_cat=0.590462; max_gtd14=0.558728); scramble_equal=True
+[3/7] 8-fold buffered whole-component holdout (4 controls + 3 preregistered GTD experiments)...
+      [seed=20 NW] BPWD=0.191933 | E1=0.087136 | E2=0.192641 | E3=0.179846 (far=0.116997, blind=0.061806)
+      [seed=20 NE] BPWD=0.226517 | E1=0.127122 | E2=0.226351 | E3=0.208679 (far=0.171466, blind=0.092063)
+      [seed=20 SW] BPWD=0.203307 | E1=0.105576 | E2=0.203841 | E3=0.195532 (far=0.095911, blind=0.038740)
+      [seed=20 SE] BPWD=0.212120 | E1=0.137408 | E2=0.211579 | E3=0.210787 (far=0.146492, blind=0.058947)
+      [seed=21 NW] BPWD=0.229434 | E1=0.094222 | E2=0.230678 | E3=0.208657 (far=0.135177, blind=0.069844)
+      [seed=21 NE] BPWD=0.191999 | E1=0.118715 | E2=0.194724 | E3=0.184255 (far=0.157311, blind=0.106802)
+      [seed=21 SW] BPWD=0.184424 | E1=0.099891 | E2=0.189335 | E3=0.183692 (far=0.087931, blind=0.048584)
+      [seed=21 SE] BPWD=0.218247 | E1=0.164844 | E2=0.221410 | E3=0.227630 (far=0.185634, blind=0.145536)
+      POOLED HOLDOUT-DTI E3=0.199773 CI=[0.18408445117366326, 0.21564617338627995] | BPWD-control=0.205991 (stored record 0.205991) | paired delta=-0.006218 CI=[-0.011078603815503909, -0.001152752844776613] (1/8 folds won)
+      E1=0.119073 E2=0.207624 (E2 delta vs BPWD=+0.001634 CI=[-0.0006873059240177441, 0.004007034768711444]) | E3 far=0.134865 blind=0.081902
+[4/7] Collecting accessible registry + incumbent dot union (BPWD + HGVC + H33)...
+      Registry size for uniqueness check: 278 rasters (file-SHA distinct)
+      Incumbent union dots: 106895
+[5/7] OOF production heads & discounted stratified allocation (37,654 dots)...
+      Pre-placement surface max |Spearman rho| = 0.215559 vs 17GEMSDOE:dense_17gemdoe.tif (limit 0.90)
+      Emitted 37654 dots: share_le2=0.0000, share_gt25=0.4370, median_d_cat=20.12 px
+[6/7] Final uniqueness gate (gate like-for-like + vendor v4 + literal v3 verbatim)...
+      gate like-for-like unique=False worst={'label': 'GEMSDOE88:gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif', 'value': 0.705024698571201} |rho|={'label': '17GEMSDOE:dense_17gemdoe.tif', 'value': 0.2155585430694911} | vendor v4 duplicate=True worst_eff_overlap=0.705024698571201 worst|rho|=0.2155585430694911 | literal witness=1.0000 (v3=negative)
+[7/7] Re-opening on-disk .tif/.zip for independent multi-decoder audit...
+================================================================================
+H88-GTD verdict: NEGATIVE | ok_to_download=True ok_to_submit=False
+TIFF: docs/downloads/gems88-gtd88-tensor-dim-37654-20261025-a49e9d38-zeros-DO-NOT-SUBMIT.tif sha256=a49e9d389f8bc823d53fc7becac159fd58ca1e9c8415e3d9c626e7d2713f1d45
+Name: GEMSDOE88-GTD88-A49E9D38 | Note (97/140): GTD88 tensor-dim 121ch tri-PoE novel 37654d; HOLDOUT-DTI 0.1998 far 0.1349 blind 0.0819; UNSCORED
+  BLOCK: UNIQUENESS-V4: duplicate=True worst_eff_overlap=0.705024698571201 (/home/user/GEMSDOE88/docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif) worst|rho|=0.2155585430694911 (/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif) invalid=False
+  BLOCK: HOLDOUT: exp03 0.199773 vs BPWD-control 0.205991, paired delta -0.006218 CI=[-0.011078603815503909, -0.001152752844776613] (need point>bar and CI>0)
+{
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "raster_sha256": "a49e9d389f8bc823d53fc7becac159fd58ca1e9c8415e3d9c626e7d2713f1d45",
+  "submission_name": "GEMSDOE88-GTD88-A49E9D38",
+  "submission_note": "GTD88 tensor-dim 121ch tri-PoE novel 37654d; HOLDOUT-DTI 0.1998 far 0.1349 blind 0.0819; UNSCORED"
+}

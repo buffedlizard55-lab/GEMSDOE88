@@ -1,0 +1,17 @@
+{
+  "schema": "gems88.gtd88.receipt.v1",
+  "run_id": "GEMSDOE88-GTD88-20261025-a49e9d38",
+  "tif": "docs/downloads/gems88-gtd88-tensor-dim-37654-20261025-a49e9d38-zeros-DO-NOT-SUBMIT.tif",
+  "zip": "docs/downloads/gems88-gtd88-tensor-dim-37654-20261025-a49e9d38-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "a49e9d389f8bc823d53fc7becac159fd58ca1e9c8415e3d9c626e7d2713f1d45",
+  "zip_sha256": "cc331722352e4a2fe6d61c6ac93f4b46deeb20848cbd417c1102830241ed56d5",
+  "submission_name": "GEMSDOE88-GTD88-A49E9D38",
+  "submission_note": "GTD88 tensor-dim 121ch tri-PoE novel 37654d; HOLDOUT-DTI 0.1998 far 0.1349 blind 0.0819; UNSCORED",
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "blocking_reasons": [
+    "UNIQUENESS-V4: duplicate=True worst_eff_overlap=0.705024698571201 (/home/user/GEMSDOE88/docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif) worst|rho|=0.2155585430694911 (/home/user/GEMSDOE88/data/registry/dense_17gemdoe.tif) invalid=False",
+    "HOLDOUT: exp03 0.199773 vs BPWD-control 0.205991, paired delta -0.006218 CI=[-0.011078603815503909, -0.001152752844776613] (need point>bar and CI>0)"
+  ],
+  "holdout_dti_evidence": "HOLDOUT-DTI (gems57-pooled-hide-v2) \u2014 see registry/gtd88_run_card.json; no organizer score exists for this file"
+}

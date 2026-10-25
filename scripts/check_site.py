@@ -664,10 +664,10 @@ def main(root: Path = ROOT) -> None:
     for page_text in (index, executive):
         require(
             page_text.index('id="mtas-review"') < page_text.index('class="archive-lanes"')
-            and 'NO NEW TIFF: DUPLICATE — STOP' in page_text
-            and 'data/mtas88_run_card.json' in page_text
+            and 'NO SUBMISSION-CLEARED TIFF: H88-GTD NEGATIVE — DO NOT SUBMIT' in page_text
+            and 'data/gtd88_run_card.json' in page_text
             and mtas["archived_research_download"]["sha256"] in page_text,
-            "Pages must lead with the MTAS no-new-file stop and a marked historical download",
+            "Pages must lead with the H88-GTD negative stop and a marked historical download",
         )
     js = (docs / "assets/site.js").read_text()
     require(

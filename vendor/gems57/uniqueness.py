@@ -991,3 +991,114 @@ def binding_duplicate_decision_v4(rows, *, rho_limit=RHO_LIMIT,
                         duplicate=literal['duplicate'],
                         binding_rule=literal['binding_rule']),
         rows=out_rows)
+
+
+# --- Session bc757d13 append (2026-10-25): representation-aware v4 helpers
+# promoted to the shared template under the session owner's parallel-run
+# protocol section 2 ("if a shared tool is wrong, fix it once in the template
+# and report it"). v3/v4/v5 decisions above are unchanged and every literal
+# measurement is still reported verbatim; these helpers only (a) classify a
+# registry raster's representation from its decoded values, (b) derive a
+# continuous surface's like-for-like top-N dot emission, and (c) prove before
+# placement whether ANY nonempty candidate could satisfy the v4 dot test.
+# IR-88-128 / IR-88-249E-01. Nothing here authorizes a competition slot.
+
+def classify_values(values, footprint):
+    """Return 'binary_dot_field' or 'continuous_surface' from decoded values.
+
+    Binary iff every finite footprint value is exactly 0 or 1 (the form of
+    every shipped dot submission). Anything else (e.g. the 17GEMSDOE
+    E-proba field: millions of distinct values in (0,1), positive on 100%
+    of footprint cells) is a continuous probability surface, which has no
+    dots until an emission rule (top-N) is applied.
+    """
+    v = np.asarray(values, dtype=np.float64)
+    fp = np.asarray(footprint, dtype=bool)
+    if v.shape != fp.shape:
+        raise ValueError('values/footprint shape mismatch')
+    sel = v[fp]
+    sel = sel[np.isfinite(sel)]
+    if sel.size == 0:
+        raise ValueError('no finite footprint values to classify')
+    uniq = np.unique(sel[::7]) if sel.size > 2_000_000 else np.unique(sel)
+    is_binary = bool(np.all((uniq == 0.0) | (uniq == 1.0)))
+    if is_binary and sel.size > 2_000_000:
+        # Subsample said binary; confirm on the full array before binding.
+        is_binary = bool(np.all((sel == 0.0) | (sel == 1.0)))
+    return 'binary_dot_field' if is_binary else 'continuous_surface'
+
+
+def topn_dots(values, footprint, n_target):
+    """Like-for-like dot emission of a continuous surface: top-N cells by value."""
+    v = np.asarray(values, dtype=np.float64)
+    fp = np.asarray(footprint, dtype=bool)
+    pos = np.isfinite(v) & (v > 0) & fp
+    k = min(int(n_target), int(pos.sum()))
+    out = np.zeros(v.shape, dtype=bool)
+    if k <= 0:
+        return out
+    flat = np.where(pos, v, -np.inf).ravel()
+    idx = np.argpartition(-flat, k - 1)[:k]
+    out.ravel()[idx] = True
+    return out & pos
+
+
+def effective_dots(values, footprint, n_target):
+    """Literal >0 support for binary dot fields; top-N for continuous surfaces."""
+    if classify_values(values, footprint) == 'binary_dot_field':
+        return _dots(values) & np.asarray(footprint, dtype=bool)
+    return topn_dots(values, footprint, n_target)
+
+
+def v4_preplacement_proof(registry_paths, footprint, catalogue=None, *,
+                          n_candidate_dots=37654, radius_px=RADIUS_PX):
+    """Prove whether a nonempty candidate can satisfy the v4 dot test at all.
+
+    For every registry raster, measures the fraction of *allowed* cells
+    (footprint minus catalogue) covered by the 3-px dilation of (i) its
+    literal >0 support and (ii) its effective (representation-aware) dots.
+    ``universal_v4_blocker`` is True iff some raster's *effective* halo
+    covers every allowed cell, which would force effective overlap 1.0 for
+    every nonempty candidate. The literal reading is reported verbatim as
+    ``universal_literal_blocker`` (True whenever a space-filling continuous
+    prior is registered; it carries no copying information because random
+    dots also measure 1.0 against it). Empty/errored inventories fail
+    closed (``invalid=True``).
+    """
+    fp = np.asarray(footprint, dtype=bool)
+    allowed = fp.copy() if catalogue is None else fp & ~np.asarray(catalogue, dtype=bool)
+    n_allowed = int(allowed.sum())
+    rows, errors = [], []
+    paths = [Path(p) for p in registry_paths]
+    if not paths or n_allowed == 0:
+        return dict(evidence_class='REGISTRY-MEASUREMENT', policy='gems57-uniqueness-v4-preplacement',
+                    n_allowed_cells=n_allowed, rasters_checked=0, rows=[], errors=['empty inventory or allowed set'],
+                    universal_v4_blocker=True, universal_literal_blocker=True, invalid=True)
+    for path in paths:
+        try:
+            with rasterio.open(path) as ds:
+                if (ds.height, ds.width) != fp.shape:
+                    raise ValueError(f'shape {(ds.height, ds.width)} != {fp.shape}')
+                vals = ds.read(1)
+            kind = classify_values(vals, fp)
+            lit = _dots(vals) & fp
+            eff = lit if kind == 'binary_dot_field' else topn_dots(vals, fp, n_candidate_dots)
+            lit_cov = float((_near(lit, radius_px) & allowed).sum()) / n_allowed
+            eff_cov = float((_near(eff, radius_px) & allowed).sum()) / n_allowed
+            rows.append(dict(file=path.name, representation=kind,
+                             literal_halo_coverage=lit_cov, effective_halo_coverage=eff_cov,
+                             n_positive=int(lit.sum()), n_effective_dots=int(eff.sum())))
+        except Exception as exc:  # fail closed, keep the reason verbatim
+            errors.append(f'{path}: {type(exc).__name__}: {exc}')
+    invalid = bool(errors or not rows)
+    return dict(
+        evidence_class='REGISTRY-MEASUREMENT', policy='gems57-uniqueness-v4-preplacement',
+        binding_rule=('representation-aware (IR-88-249E-01): dot overlap binds vs binary '
+                      'dot fields literally and vs continuous surfaces via top-N emission; '
+                      'rank correlation binds vs every raster'),
+        n_allowed_cells=n_allowed, rasters_checked=len(rows), rows=rows, errors=errors,
+        universal_v4_blocker=bool(invalid or any(r['effective_halo_coverage'] >= 1.0 for r in rows)),
+        universal_literal_blocker=bool(any(r['literal_halo_coverage'] >= 1.0 for r in rows)),
+        worst_effective_halo_coverage=(max((r['effective_halo_coverage'] for r in rows), default=None)),
+        worst_literal_halo_coverage=(max((r['literal_halo_coverage'] for r in rows), default=None)),
+        invalid=invalid)
