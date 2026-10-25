@@ -1,0 +1,29 @@
+{
+  "schema": "gems88.con88-clearance-withdrawal.v1",
+  "id": "IR-88-96F5F523-01",
+  "source_commit": "5b9397ba79be00164ab71e6145df777ffc607ea0",
+  "checked_at_utc": "2026-10-25T18:30:16.132127+00:00",
+  "new_tiffs_generated": 0,
+  "prediction_bytes_changed": false,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "former_metadata_sha256": {
+    "registry/con88_gates.json": "99c26d9d2bea8b55720f3180dff43aaf1ef751341e4fb5afc9a4c66d1daa0286",
+    "run_card_con88.json": "6d7f97480842c65a0fba6dda5efc9fb7a440a3d2f6e82292f9aa299b06acc3fb",
+    "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.json": "1fd6d367dd57ac7e129a574789eca2265833074f0d7323b0fc633e82cdf45f7c",
+    "scripts/con88_preflight.py": "66a498ccfc10f9174bf233a3aafb832c0d29d62fc0170137159889baceb5a06d",
+    "scripts/validate_con88.py": "b551ecb230ad56eebd5c9e5a4704027e722adc8825664b0b8c5d8b079641cd70"
+  },
+  "packaging": {
+    "old_tif": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "new_tif": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "unchanged_tiff_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "old_zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+    "new_zip_sha256": "73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb"
+  },
+  "corrected_metadata_sha256": {
+    "run_card_con88.json": "0e416f7b667e962e08ebb3ac2844012c49932210b3132e96c4a125274014d93a",
+    "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.json": "48607b6fe77905844772838fec2ea43d90bbaced48e6d93956829e437b7e87d8",
+    "registry/con88_gates.json": "6360b134d938cac2992a24b7f5957bbda939a9e3244d97afea8d5170c795de89"
+  }
+}

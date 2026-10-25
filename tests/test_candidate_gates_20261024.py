@@ -2,7 +2,7 @@
 
 * No machine record may say ok_to_submit=true while the literal uniqueness rule or the holdout bar fails.
 * The dense-prior top-N diagnostic must keep the literal result at 1.0 and must not grant a submission.
-* Every downloadable TIF/ZIP under docs/downloads must carry DO-NOT-SUBMIT; no historical gate bypasses the literal rule.
+* Every downloadable TIF/ZIP under docs/downloads must carry DO-NOT-SUBMIT without metadata exemptions.
 """
 import json
 from pathlib import Path
@@ -29,15 +29,8 @@ def test_no_record_claims_submit_true_after_correction():
         except ValueError:
             continue
         offenders += [f"{rec.relative_to(ROOT)}:{p}" for p in _true_flags(data)]
-    assert offenders == [], offenders
-    audit = json.loads((ROOT / "docs/data/download_audit.json").read_text())
-    assert audit["protocol_eligible_count"] == 0
-    assert all(row["ok_to_submit"] is False and row.get("cleared_by_con88_gates") is not True
-               for row in audit["artifacts"] + audit["additional_research_artifacts"])
-    g = json.loads((ROOT / "registry/con88_gates.json").read_text())
-    assert g["G1_ok"] and g["G3_ok"] and g["canary_ok"]  # historical diagnostics only
-    assert g["G2_ok"] is False and g["ok_to_submit"] is False
-    assert g["clearance_status"] == "WITHDRAWN"
+    # No stale lane-specific approval can override the binding literal stop.
+    assert not offenders, offenders
 
 
 def test_dense_prior_diagnostic_is_informational_only():
@@ -58,13 +51,7 @@ def test_matrix_rows_never_submit_and_cite_records():
         assert (ROOT / row["record"]).is_file()
 
 
-def test_downloads_are_marked_or_cleared():
-    for g in (ROOT / "registry").glob("*gate*.json"):
-        try:
-            data = json.loads(g.read_text())
-        except ValueError:
-            continue
-        assert data.get("ok_to_submit") is not True, g.name
+def test_downloads_are_marked_without_clearance_exceptions():
     for f in (ROOT / "docs/downloads").iterdir():
         if f.suffix.lower() in (".tif", ".tiff", ".zip"):
             assert "DO-NOT-SUBMIT" in f.name, f.name

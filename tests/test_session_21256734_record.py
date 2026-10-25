@@ -238,19 +238,16 @@ def test_session_21256734_docs_mirrors_links_and_untried_novelty() -> None:
         assert rel in readme
         assert (ROOT / rel).is_file()
 
-    browser_pins = json.loads((ROOT / "evidence/session_693b10af_browser_check.json").read_text(encoding="utf-8"))
-    assert len(browser_pins["source_sha256"]) == 14
-    regenerated = {
-        "docs/index.html",
-        "docs/executive-summary.html",
-        "docs/data/download_audit.json",
-        "evidence/download_audit.json",
-        "docs/data/hypothesis_queue.json",
-    }
+    # The 693b10af receipt is immutable history, not current page evidence.
+    historical = json.loads((ROOT / "evidence/session_693b10af_browser_check.json").read_text())
+    assert len(historical["source_sha256"]) == 14
+    status = json.loads((ROOT / "docs/status.json").read_text())
+    active = json.loads((ROOT / "docs" / status["current_review"]).read_text())
+    browser_pins = json.loads((ROOT / active["verification"]["browser_evidence"]).read_text())
+    assert browser_pins["status"] == "PASS" and browser_pins["ok_to_submit"] is False
+    assert set(historical["source_sha256"]) <= set(browser_pins["source_sha256"])
     for rel, expected_sha in browser_pins["source_sha256"].items():
-        if rel in regenerated:
-            continue
-        assert _sha256(ROOT / rel) == expected_sha, f"Pinned browser file drifted: {rel}"
+        assert _sha256(ROOT / rel) == expected_sha, f"Current browser file drifted: {rel}"
 
 
 def test_post_merge_ir06_and_pgtd_guard() -> None:

@@ -175,6 +175,4 @@ def test_current_browser_evidence_binds_actual_download_bytes_and_legacy_pages()
     published = ROOT / 'docs/data' / Path(card['verification']['browser_evidence']).name
     assert receipt == json.loads(published.read_text())
     for relative, digest in receipt['source_sha256'].items():
-        if relative in {'docs/index.html', 'docs/executive-summary.html', 'docs/data/download_audit.json', 'evidence/download_audit.json', 'docs/data/hypothesis_queue.json'}:
-            continue  # current rendered/evidence files changed after the historical browser receipt
         assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == digest, relative

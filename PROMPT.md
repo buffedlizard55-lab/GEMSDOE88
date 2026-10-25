@@ -1,12 +1,6 @@
-## Current session handoff — 2026-10-25, Arena branch `f9a92cf6`
+## Current session handoff — 2026-10-25: CON88 clearance withdrawn
 
-**NO FILE IS APPROVED TO SUBMIT.** The shared literal generation preflight exits `2` with `DUPLICATE_STOP`: SHA-pinned 17GEMSDOE positive support covers all allowed pixels, so any nonempty candidate exceeds the stated 70% overlap ceiling. The former CON88 equal-support clearance was an unauthorized exception and is withdrawn. Its unchanged TIFF bytes are archived with `DO-NOT-SUBMIT`; the old run card and page now explicitly disclose the withdrawal.
-
-This review did not generate a new TIFF, run a holdout, test canaries, or use a weekly slot. Validation-only inputs were restored; the full 19-band stack is not present in this workspace. The first-ranked untested conditional hypothesis remains SPR (profile restoration with drainage/shoreline null controls), but the binding preflight prevents feature construction or holdout work. The request's “single method paragraph below” was not supplied; no method lane is inferred from it.
-
-Start from `README.md`, the complete recorded request `USER_PROMPT_20261025.md`, `AGENTS.md`, `registry/hypothesis_queue.json`, and the latest review/run card linked at the top of README. Do not promote, upload, rename as a submission, or bypass the shared preflight. Any proposed change to the literal uniqueness policy must be explicitly authorized and implemented once in the shared protocol, not privately.
-
----
+**NO TIFF IS CLEARED TO SUBMIT.** IR-88-96F5F523-01 removes the CON88 equal-support generation, validator, and publication exceptions. Its TIFF bytes are unchanged; the archived TIFF/ZIP and ZIP member now carry `DO-NOT-SUBMIT`. See `evidence/con88_clearance_withdrawal_96f5f523.json`. Re-run the shared literal generation preflight before any feature work. The earlier CON88 promotion was invalid under the unchanged user protocol, and its fixed full-catalogue-masked diagnostic does not establish holdout improvement. No new TIFF or competition slot is produced by this repair.
 
 ## Current session handoff — 2026-10-25, 693b10af
 

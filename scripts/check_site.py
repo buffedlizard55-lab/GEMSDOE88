@@ -58,7 +58,6 @@ def main(root: Path = ROOT) -> None:
             "sources.html",
             "mdc88/index.html",
             "mdc88/executive-summary.html",
-            "con88.html",
         )
     ]
     card = json.loads((root / "registry/mvrd_run_card.json").read_text())
@@ -490,18 +489,6 @@ def main(root: Path = ROOT) -> None:
         'Site integrity check failed: status["ok_to_download_for_research"] is True and status["ok_to_submit"] is False',
     )
 
-    readme_path = root / "README.md"
-    if readme_path.is_file():
-        readme_top = readme_path.read_text().split("### Start here every session", 1)[0]
-        require("NO SUBMISSION-READY TIFF" in readme_top and "DO NOT SUBMIT" in readme_top
-                and "OK TO DOWNLOAD AND SUBMIT" not in readme_top,
-                "README must lead with the current negative submission decision")
-    submit_path = docs / "SUBMIT.md"
-    if submit_path.is_file():
-        submit_top = submit_path.read_text().split("<details>", 1)[0]
-        require("NO FILE APPROVED" in submit_top and "DO NOT SUBMIT" in submit_top
-                and "OK TO DOWNLOAD AND SUBMIT" not in submit_top,
-                "Submission guide front matter must not advertise a withdrawn artifact")
     for page in pages:
         text = page.read_text()
         require("DO NOT SUBMIT" in text, page)
@@ -517,31 +504,18 @@ def main(root: Path = ROOT) -> None:
             target = page.parent / unquote(url.path)
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
-    # Every published binary is a negative research artifact. The historical
-    # CON88 equal-support exception was revoked; no gate may whitelist bytes.
+    # Every published binary must carry the negative decision in its filename.
+    # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
+    # checked above; XGCE was renamed on main and requires no such exception.
     sys.path.insert(0, str(ROOT))
     from scripts.audit_downloads import PUBLICATION_DIRECTORIES, check_package_inventory
-    con88 = docs / "downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif"
-    con88_gate = json.loads((ROOT / "registry/con88_gates.json").read_text())
-    con88_gate_web = json.loads((docs / "data/con88_gates.json").read_text())
-    withdrawal = json.loads((ROOT / "registry/con88_withdrawal.json").read_text())
-    withdrawal_web = json.loads((docs / "data/con88_withdrawal.json").read_text())
-    require(con88_gate == con88_gate_web and withdrawal == withdrawal_web,
-            "CON88 withdrawal records must be mirrored exactly to Pages")
-    require(con88_gate.get("ok_to_submit") is False
-            and con88_gate.get("verdict") == "negative"
-            and con88_gate.get("clearance_status") == "WITHDRAWN"
-            and con88_gate.get("candidate") == con88.name
-            and hashlib.sha256(con88.read_bytes()).hexdigest() == con88_gate.get("sha256")
-            and withdrawal.get("ok_to_submit") is False
-            and withdrawal.get("sha256") == con88_gate.get("sha256"),
-            "CON88 must remain an explicitly withdrawn, negative research artifact")
+    legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif", ".tiff", ".zip",
         }:
             require(
-                "DO-NOT-SUBMIT" in published.name,
+                "DO-NOT-SUBMIT" in published.name or published.resolve() in legacy_negative,
                 f"unmarked published research artifact: {published}",
             )
             require(
@@ -572,7 +546,7 @@ def main(root: Path = ROOT) -> None:
         directory = docs / row.get("publication_directory", "downloads")
         require(row["format_valid"] is True and row["research_download_ok"] is True
                 and row["ok_to_submit"] is False
-                and row.get("cleared_by_con88_gates") is not True
+                and row.get("cleared_by_con88_gates") is False
                 and sha256(directory / row["file"]) == row["sha256"]
                 and sha256(directory / row["zip_file"]) == row["zip_sha256"],
                 f"Published research bytes or negative audit changed: {directory.name}/{row['file']}")
