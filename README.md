@@ -29,7 +29,7 @@ Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_P
 | Supplied results | **92** sites and **115** distinct file/value claims extracted with request-line provenance; four sites have no reported result. Claims are not organizer scores. |
 | H33 | Fresh geometry audit confirms subset/pruning ancestry. No submission receipt or causal proof of the supplied **0.2778** claim. No forecast above it. |
 
-[Detailed review, H33 explanation and next steps](research/session-d0c3adeb-review.md) · [Four ranked, untested geological proposals](research/session-d0c3adeb-hypotheses.md) · [Claim-level source ledger](knowledge/session-d0c3adeb-sources.md) · [Recorded user results (CSV)](docs/data/user_reported_results.csv) · [Session run card](registry/session_d0c3adeb_run_card.json)
+[Detailed review, H33 explanation and next steps](research/session-d0c3adeb-review.md) · [Four ranked, untested geological proposals](research/session-d0c3adeb-hypotheses.md) · [Claim-level source ledger](knowledge/session-d0c3adeb-sources.md) · [Recorded user results (CSV)](docs/data/user_reported_results.csv) · [Session run card](registry/session_d0c3adeb_run_card.json) · [Three-pass completion appendix](research/session-d0c3adeb-completion.md)
 
 ### Reproduce local validation without human inspection
 

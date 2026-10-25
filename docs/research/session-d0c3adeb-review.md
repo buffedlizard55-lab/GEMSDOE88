@@ -77,7 +77,7 @@ The exact prompt and supplied list are preserved in `USER_PROMPT_20261025.md` an
 
 Main advanced during review. Three **already-existing** research TIFFs (BGCD, executed MTAS, PRISM) and CXL's negative no-TIFF record were integrated; these are not experiments or new predictions made by this session. The saved-byte audit now covers **38/38 TIFF/ZIP pairs**, all research-only. The canonical download remains the unchanged TDKL file, not a newly renamed candidate.
 
-All five imported builders/runners now enter the same early duplicate-stop guard, bringing coverage to **76 CLI entrypoints**. The unused CXL production script proposed treating the dense witness as nondiscriminating and potentially setting submission eligibility; this session does not authorize that deviation. The guard stops its execution before model imports. PRISM's full-catalogue-collared fixed-raster zero is subject to the same hide-and-recover validity problem as SSA/GZZC; its inherited card is an archival claim, not a new scientific result.
+All five imported builders/runners now enter the same early duplicate-stop guard, bringing coverage to 76 CLI entrypoints at integration. The final alias audit also guards two historical rebuilders, four LBCAL feature/fitting helpers and the random-arm MASS diagnostic: **83 guarded CLI entrypoints** in the final tree. The unused CXL production script proposed treating the dense witness as nondiscriminating and potentially setting submission eligibility; this session does not authorize that deviation. The guard stops its execution before model imports. PRISM's full-catalogue-collared fixed-raster zero is subject to the same hide-and-recover validity problem as SSA/GZZC; its inherited card is an archival claim, not a new scientific result.
 
 The remote overview contained nested duplicate `<main id="main">` elements and competing first-download panels. Those panels were not allowed to replace the canonical generated decision. Compact, closed historical records preserve all four lanes and link their original machine evidence; added BGCD byte/card checks were retained. The RELAY ZIP repair retains this review's audited bytes, and its metadata references follow main's negative-label sidecar rename.
 
@@ -85,4 +85,4 @@ Newly imported statements about live official sources or leaderboard positions a
 
 ## Three-pass verification
 
-Pass 1, pass 2 and final pass results are recorded in the session run card and completion appendix after execution. Passing software tests does not establish new scientific performance or organizer acceptance.
+See the [completion appendix](session-d0c3adeb-completion.md) for all three review passes, exact scope and the original-requirement acceptance matrix. The session run card records automated outcomes and explicitly unmet items. Passing software tests does not establish new scientific performance or organizer acceptance.

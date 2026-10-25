@@ -17,13 +17,15 @@ from scripts import generation_guard  # noqa: E402
 
 def entrypoints() -> list[Path]:
     files = set()
-    for glob in ("build*.py", "run*.py", "generate*.py"):
+    for glob in ("build*.py", "run*.py", "generate*.py", "rebuild*.py", "fit*.py", "predict*.py", "train*.py", "emit*.py"):
         files.update((ROOT / "scripts").glob(glob))
     files.difference_update(ROOT / "scripts" / name for name in (
         "build_candidate_matrix.py", "generate_figures.py"))
     files.update(ROOT / "scripts" / name for name in (
         "make_concentration_variants.py", "evaluate_cgo88.py", "eval_concentration_proxy.py",
-        "exp_provcrest_spacing.py", "publish_kdmc_site.py", "finalize_concentration.py"))
+        "exp_provcrest_spacing.py", "publish_kdmc_site.py", "finalize_concentration.py",
+        "lbcal_build_stats.py", "lbcal_pixel.py", "lbcal_fit.py", "lbcal_extra_features.py",
+        "mass_r0_ranking_control.py"))
     return sorted(path for path in files if '__name__' in path.read_text())
 
 
