@@ -2,7 +2,8 @@
 -c requirements-constraints.txt
 numpy>=2.0
 scipy>=1.14
-rasterio>=1.4
+# Byte-exact historical GeoTIFF rebuilds depend on the wheel/GDAL encoder.
+rasterio==1.4.4
 lightgbm>=4.5
 scikit-learn>=1.5
 matplotlib>=3.9

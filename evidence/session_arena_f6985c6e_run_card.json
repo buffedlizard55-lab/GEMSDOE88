@@ -1,0 +1,84 @@
+{
+  "schema": "gems88.review-run-card.v1",
+  "session": "f6985c6e",
+  "date_utc": "2026-10-25",
+  "branch": "arena/f6985c6e-gemsdoe88",
+  "status": "AUDIT_ERROR_FAIL_CLOSED",
+  "hypothesis": {
+    "id": "H88-PRAN",
+    "status": "prospective_existing_hypothesis_not_tested",
+    "mechanism": "Terrain-bin-matched K:Th radiometric residual with along-strike coherence, conditional on relief, curvature and basement depth.",
+    "missing_fault_rationale": "A shallow alteration or soil-redistribution signature might persist above a covered structure without a mapped surface scarp; this is a hypothesis, not an observed fault.",
+    "named_non_fault_process": "K-rich transported alluvium, parent-rock/lithologic boundaries, or soil-moisture effects.",
+    "layers": [
+      "rad_k_over_th",
+      "det_elev_slope",
+      "topo10_curv_prof",
+      "depth_to_base_log"
+    ],
+    "source_queue": "research/candidate-hypotheses-20261025-mtas.md",
+    "ranking_note": "Existing qualitative proposal only; no DTI gain is projected. The queue's MTAS status is inconsistent with archived execution and is excluded."
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_count": null,
+    "dti": null,
+    "ci95": null,
+    "status": "NOT_RUN",
+    "reason": "Guard failed closed on missing NumPy before candidate construction; no holdout was performed."
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_NO_NEW_FEATURES",
+    "features_tested": 0,
+    "auc": null,
+    "threshold": 0.9
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT_PRIOR_EVIDENCE_NOT_FRESH_THIS_RUN",
+    "surface_rank_correlation": null,
+    "final_dot_overlap_within_3px": null,
+    "universal_overlap_lower_bound_for_any_nonempty_allowed_candidate": 1.0,
+    "overlap_limit": 0.7,
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "covered_allowed_pixels": 5106385,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "historical_record": "evidence/mtas88_preflight_20261025.json",
+    "fresh_check_this_session": "NOT_COMPLETED_MISSING_NUMPY_AND_DATA"
+  },
+  "raster_sha256": null,
+  "raster_file": null,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null,
+    "reason": "No candidate TIFF was created."
+  },
+  "submission": {
+    "name": "GEMSDOE88-REVIEW-F6985C6E-20261025-NO-FILE",
+    "name_status": "RESERVED_REVIEW_LABEL_NOT_FOR_PORTAL",
+    "note": "Duplicate stop; no features fit and no TIFF built; research-only review; UNSCORED; DO NOT SUBMIT",
+    "note_characters": 96,
+    "downloadable_submission_file": null,
+    "submission_eligible": false,
+    "organizer_confirmed_score": null,
+    "weekly_slots_used": 0
+  },
+  "verification": {
+    "generation_guard": "FAIL_CLOSED_AUDIT_ERROR_MODULE_NOT_FOUND_NUMPY",
+    "python_source_parse_count": 309,
+    "json_parse_count": 615,
+    "parse_errors": 0,
+    "pytest_suite": "NOT_RUN_DEPENDENCIES_UNAVAILABLE",
+    "pip_install": "STOPPED_HASH_MISMATCH_NO_BYPASS",
+    "data_directory_present": false,
+    "new_experiments": 0,
+    "new_rasters": 0
+  },
+  "verdict": "negative"
+}

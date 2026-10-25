@@ -13,6 +13,8 @@ These precise variants remain **PROPOSED_UNTESTED** in the reviewed checkout. Ex
 
 The literal full-registry witness still blocks every nonempty candidate before feature construction, canaries, holdout or placement. **Zero new geological experiments, zero new candidate TIFFs, zero weekly slots in session 693b10af.** Conditional first choice is not a selected submission.
 
+Parallel proposal record: [session db4a5e4b](research/session-db4a5e4b-hypotheses.md) independently ranked GTD first. Its record is preserved, not represented as an experiment or a second current queue. This review conditionally favors SPR because its available-resolution landform-restoration null is more directly falsifiable; harmonic source-dimensionality inversion is nonunique and more sensitive to continuation/taper choices. That is uncertain scientific judgment, not an empirical improvement claim.
+
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>
 

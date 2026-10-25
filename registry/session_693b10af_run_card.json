@@ -168,7 +168,8 @@
         "verified": true
       }
     },
-    "new_model_trained": false
+    "new_model_trained": false,
+    "repeated_after_integration": true
   },
   "research_queue": {
     "manifest": "registry/hypothesis_queue.json",
@@ -227,7 +228,7 @@
   },
   "verification": {
     "three_passes_completed": true,
-    "status": "LOCAL_REVIEW_PASSED_INTEGRATION_RECHECK_PENDING",
+    "status": "PASS_SOFTWARE_REVIEW_SCIENTIFIC_NEGATIVE",
     "pass1_initial_tests": {
       "passed": 792,
       "failed": 1,
@@ -261,11 +262,12 @@
     "pass3": {
       "status": "PASS_WITH_EXPLICIT_UNMET_SCIENTIFIC_REQUIREMENTS",
       "full_tests": {
-        "passed": 829,
+        "passed": 845,
         "failed": 0,
         "skipped": 23,
         "warnings": 68,
-        "seconds": 164.26
+        "seconds": 169.07,
+        "environment": "fresh constrained Python 3.11/Linux CPU venv after integrating parallel main"
       },
       "skip_scope": "Historical gitignored/unrestored variant/bridge rasters; not rebuilt to evade the duplicate stop. All 46 published packages were separately reopened.",
       "workflow_and_guard_checks": 47,
@@ -290,7 +292,13 @@
         "seconds": 168.13,
         "additional_review_fixes": "Source fingerprint covers nested model packages and rejects source symlinks escaping the repository; four regression cases passed without refreshing the unchanged source pin."
       },
-      "integration_recheck": "PENDING_MERGE_OF_PARALLEL_MAIN_CHANGES_AT_15b1d00"
+      "integration_recheck": "PASS",
+      "integration_base": "15b1d00e444285de22700c741ef2babcd364f678",
+      "preserved_parallel_changes": [
+        "Atomic fail-closed preparation receipts and surplus downloader argument rejection.",
+        "Exact Rasterio pin retained alongside complete tested CPU constraints.",
+        "Parallel review/incident/run cards and the alternate GTD-first proposal record retained without claiming this session executed them."
+      ]
     },
     "browser_evidence": "evidence/session_693b10af_browser_check.json",
     "browser_status": "PASS",
@@ -303,7 +311,7 @@
       "reason": "Both failures hard-coded the previous current browser receipt; preserved it as historical and performed a fresh 7-case browser check of the new page bytes."
     },
     "gate_evidence": "evidence/session_693b10af_gate_check.json",
-    "completed_at_utc": "2026-10-25T16:50:40.436960+00:00",
+    "completed_at_utc": "2026-10-25T17:03:18.087778+00:00",
     "remote_scope": "This is local verification evidence, not a claim of remote CI, current organizer access or submission acceptance. PR/check/merge status is authoritative on GitHub."
   },
   "unmet_requirements": [
@@ -327,5 +335,6 @@
     "ranked_unrun_variants": 4,
     "source_bound_queue_and_legacy_claim_corrections": "PASS",
     "three_software_review_passes": "COMPLETE"
-  }
+  },
+  "integration_base": "15b1d00e444285de22700c741ef2babcd364f678"
 }

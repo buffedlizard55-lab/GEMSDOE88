@@ -1,16 +1,21 @@
 {
   "schema": "gems88.cpu-reproduction.v1",
-  "checked_at_utc": "2026-10-25T16:37:21.439139+00:00",
+  "checked_at_utc": "2026-10-25T16:59:44.450496+00:00",
   "status": "PASS",
   "python": "3.11.2",
   "platform": "Linux x86_64 CPU",
   "constraints_file": "requirements-constraints.txt",
   "constraints_sha256": "7cc38ba1726b1a8a4f4aa99c06125c86b5e5a930faef1ac09dbd89e4cfbbeddd",
-  "requirements_sha256": "fcb3402a1435ee5371988c6edd36c2e8c11d21a209dd0e585185bea89e6d01b6",
+  "requirements_sha256": "fa1973093b4cdc1aa52a7d38c8f64d1537b5454f9019c73dd25ba7ab0e418659",
   "fresh_venv": true,
   "pip_check": "PASS",
   "hash_verification_bypassed": false,
   "installed_distributions": [
+    {
+      "name": "rasterio",
+      "version": "1.4.4",
+      "sha256": "e24b7b8c2df801dde2a1dffb44c58902bd76b5cab740dc11de4ff9963992a71a"
+    },
     {
       "name": "numpy",
       "version": "2.3.4",
@@ -20,11 +25,6 @@
       "name": "scipy",
       "version": "1.16.2",
       "sha256": "f5db5ba6188d698ba7abab982ad6973265b74bb40a1efe1821b58c87f73892b9"
-    },
-    {
-      "name": "rasterio",
-      "version": "1.4.4",
-      "sha256": "e24b7b8c2df801dde2a1dffb44c58902bd76b5cab740dc11de4ff9963992a71a"
     },
     {
       "name": "lightgbm",
@@ -173,12 +173,19 @@
   "unchanged_byte_exact_h33_rebuild_test": {
     "status": "PASS",
     "passed": 1,
-    "seconds": 7.28
+    "seconds": 10.07
   },
   "geological_experiments_run": 0,
   "ok_to_submit": false,
   "limitations": [
     "Tested Python 3.11/Linux x86_64 CPU environment, not cross-platform/GPU reproducibility or an organizer performance measurement.",
     "Pip/PyPI artifact integrity enabled; constraints are version pins, not a complete package-hash lock."
-  ]
+  ],
+  "prior_pre_integration_install": {
+    "status": "PASS",
+    "requirements_sha256": "fcb3402a1435ee5371988c6edd36c2e8c11d21a209dd0e585185bea89e6d01b6",
+    "byte_exact_rebuild_passed": 1,
+    "byte_exact_rebuild_seconds": 7.28
+  },
+  "integration_base": "15b1d00e444285de22700c741ef2babcd364f678"
 }

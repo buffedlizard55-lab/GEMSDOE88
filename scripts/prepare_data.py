@@ -16,6 +16,8 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,7 +61,48 @@ def ensure_symlink(source: Path, target: Path) -> None:
         shutil.copy2(source, target)
 
 
+def write_preparation_manifest(manifest: dict) -> None:
+    """Publish a complete status atomically; never expose partially written JSON."""
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=DATA_DIR,
+                                         prefix=".prepared-", suffix=".tmp", delete=False) as stream:
+            temporary = Path(stream.name)
+            stream.write(json.dumps(manifest, indent=2, allow_nan=False) + "\n")
+        temporary.replace(DATA_DIR / "prepared_data_manifest.json")
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
 def prepare_data(fetch: bool = False) -> dict:
+    """Invalidate a previous success BEFORE fetching or examining mutable inputs.
+
+    A killed process leaves ``preparing`` (not ready); caught failures leave
+    ``error``. Exceptions still propagate so CLI and automation fail nonzero.
+    This is a preparation receipt, not an authorization or concurrency lock.
+    """
+    pending = {
+        "status": "preparing",
+        "started_at_utc": datetime.now(timezone.utc).isoformat(),
+        "generation_authorized": False,
+        "ok_to_submit": False,
+        "provenance": "SHA-pinned owner mirrors; not authenticated organizer downloads",
+    }
+    write_preparation_manifest(pending)
+    try:
+        result = _prepare_data(fetch=fetch)
+        write_preparation_manifest(result)
+        return result
+    except BaseException as exc:
+        # Also invalidate on Ctrl-C/SystemExit from restoration helpers.
+        write_preparation_manifest({**pending, "status": "error",
+                                    "error": f"{type(exc).__name__}: {exc}"})
+        raise
+
+
+def _prepare_data(fetch: bool = False) -> dict:
     OFFICIAL_DIR.mkdir(parents=True, exist_ok=True)
     BRIDGE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -169,8 +212,7 @@ def prepare_data(fetch: bool = False) -> dict:
         "ok_to_submit": False,
     }
     out_path = DATA_DIR / "prepared_data_manifest.json"
-    out_path.write_text(json.dumps(manifest, indent=2, allow_nan=False) + "\n")
-    print(f"\n[prepare_data] Data preparation complete. Manifest saved to {out_path}.")
+    print(f"\n[prepare_data] Data checks complete. Manifest destination: {out_path}.")
     print("Shared inputs prepared; generation preflight, scientific validation and slot approval remain separate.")
     return manifest
 
