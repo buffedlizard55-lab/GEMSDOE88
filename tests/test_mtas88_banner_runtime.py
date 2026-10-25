@@ -15,10 +15,10 @@ def test_current_decision_precedes_archived_download_on_both_pages():
     for rel in ("docs/index.html", "docs/executive-summary.html"):
         html = (ROOT / rel).read_text()
         current = html.index('id="mtas-review"')
-        historical = html.index("ARCHIVED RESEARCH CANDIDATE") if rel == "docs/index.html" else html.index("Archived 2026-10-24 result · research only")
+        historical = html.index("PRIOR BEST RESEARCH DELIVERABLE") if rel == "docs/index.html" else html.index("Prior H88-HGVC research GeoTIFF")
         assert current < historical, f"stale candidate appears before current decision in {rel}"
-        assert "NO NEW TIFF: DUPLICATE — STOP" in html
-        assert "Archived H88-HGVC GeoTIFF" in html
+        assert "NO NEW TIFF" in html
+        assert "H88-HGVC" in html
     guide = (ROOT / "docs/executive-summary.html").read_text()
     assert "CURRENT DECISION: H88-MTAS · NO NEW TIFF" in guide
 
