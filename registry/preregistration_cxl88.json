@@ -1,0 +1,18 @@
+{
+  "schema": "gems88.cxl88.preregistration.v1",
+  "preregistration_id": "PREREG-20261025-CXL88",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "lane": "H88-CXL",
+  "hypothesis": "Blind geothermal faults under cover produce contrast-invariant multi-scale phase-congruent steps in RTP, isostatic gravity and detrended DEM that gradient/Hessian stacks rank below lithologic edges; adding monogenic phase-congruency/phase-symmetry/orientation-coherence channels to the HGVC PoE improves far-from-catalogue ranking at the H33 dot fingerprint.",
+  "mechanism": "CXL-26 zero-catalogue monogenic channels (bands 2/13/12, wavelengths 5/11/23 px, Riesz transform) + physics-44 + HGVC-20 -> distance-adaptive log-odds PoE -> 37654 binary dots, d_cat>2.5px, share_gt25>=0.35",
+  "named_non_fault_mimic": "Lithologic contacts and volcanic flow fronts (phase-congruent steps without faults); pluvial shoreline benches in DEM phase channels",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "alpha": 0.2, "beta": 0.8, "triangular_kernel_m": 300,
+  "holdout_seeds": [20, 21],
+  "arms": ["phys44_zero_cat", "exp01_cxl_zero_cat", "exp02_cxl_poe_conduit"],
+  "candidate_arm": "exp02_cxl_poe_conduit",
+  "promotion_gate": "candidate pooled HOLDOUT-DTI > 0.202947 (stored HGVC Exp03, same evaluator, n=22893) AND no sparse-registry duplicate blocker AND canary max symmetric AUC <= 0.90",
+  "duplicate_stop": {"max_abs_spearman_surface": 0.90, "max_dot_overlap_3px_sparse": 0.70},
+  "experiments_budget_max": 3,
+  "slots_to_spend": 0
+}
