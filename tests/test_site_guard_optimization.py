@@ -18,6 +18,7 @@ def test_guard_rejects_corruption_under_both_interpreters(
 ):
     # Share immutable large artifacts; isolate only the file being corrupted.
     (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
+    (tmp_path / "evidence").symlink_to(ROOT / "evidence", target_is_directory=True)
     docs = tmp_path / "docs"
     docs.mkdir()
     for source in (ROOT / "docs").iterdir():
@@ -54,6 +55,33 @@ def test_guard_rejects_corruption_under_both_interpreters(
         assert "unmarked published research artifact" in result.stderr
     elif corruption == "unique-claim":
         assert "must not overstate sparse-screen uniqueness" in result.stderr
+
+
+@pytest.mark.parametrize("optimized", [False, True])
+def test_marked_xgce_is_still_hash_pinned_and_negative(tmp_path, optimized):
+    (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
+    (tmp_path / "evidence").symlink_to(ROOT / "evidence", target_is_directory=True)
+    docs = tmp_path / "docs"
+    docs.mkdir()
+    for source in (ROOT / "docs").iterdir():
+        if source.name != "downloads":
+            (docs / source.name).symlink_to(source, target_is_directory=source.is_dir())
+            continue
+        downloads = docs / "downloads"
+        downloads.mkdir()
+        for item in source.iterdir():
+            if item.name == "gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif":
+                (downloads / item.name).write_bytes(item.read_bytes() + b"tamper")
+            else:
+                (downloads / item.name).symlink_to(item)
+    command = [sys.executable] + (["-O"] if optimized else [])
+    result = subprocess.run(
+        command + ["-c", "from pathlib import Path; from scripts.check_site import main; "
+                   "main(Path(__import__('sys').argv[1]))", str(tmp_path)],
+        cwd=ROOT, text=True, capture_output=True,
+    )
+    assert result.returncode != 0
+    assert "Pinned XGCE research pair must remain negative" in result.stderr
 
 
 def test_no_disableable_assertions_remain_in_production_site_guard():

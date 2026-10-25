@@ -46,6 +46,16 @@ jobs:
           set -e
           test "$code" -eq 2
           git diff --exit-code docs/data/literal_protocol_audit.json evidence/literal_protocol_audit_20261024.json
+      - name: Recompute H88-MTAS universal pre-placement stop; reject any generation
+        run: |
+          python scripts/preflight_mtas88.py
+          if python scripts/preflight_mtas88.py --gate-generation; then
+            echo 'MTAS unexpectedly allowed a new candidate'
+            exit 1
+          else
+            test "$?" -eq 2
+          fi
+          git diff --exit-code registry/mtas88_run_card.json docs/data/mtas88_run_card.json evidence/mtas88_preflight_20261025.json
       - name: Run full unified test suite
         run: pytest -v
       - name: Audit site, exact disk bytes and negative current release
