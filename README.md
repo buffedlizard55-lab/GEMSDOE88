@@ -14,6 +14,8 @@ All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant) are audited
 
 **Review 96f5f523 (2026-10-25):** removed the CON88 generation/validator/publication exemptions and quarantined its unchanged TIFF with a negative filename and ZIP member. [Three-pass review, conditional hypothesis ranking and H33 analysis](research/session-96f5f523-review.md) · [correction provenance](evidence/con88_clearance_withdrawal_96f5f523.json). All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant) are audited; **48** pass local research packaging checks, **0** are submission-eligible. No new TIFF, holdout or competition slot. Earlier counts and browser receipts below are historical; see the active run card for fresh verification. The urgent new unique-submission requirement remains unmet.
 
+**Parallel review `f9a92cf6` (2026-10-25):** independently completed three review passes, audited H33's evidence boundary, ranked three unrun hypotheses, and added a fail-closed negative run card. The literal registry preflight remains `DUPLICATE_STOP`; no new TIFF or slot was used. Final integrated local suite: **911 passed / 23 skipped**. [Review report](research/session-arena-f9a92cf6-review-20261025.md) · [run card](registry/session_f9a92cf6_run_card.json).
+
 ### Parallel historical reviews integrated in this branch
 
 Session e44e3ebe (CON88 clearance-claim correction in `docs/con88.html`): [review](research/session-e44e3ebe-review.md) · [negative run card](evidence/session_e44e3ebe_run_card.json)

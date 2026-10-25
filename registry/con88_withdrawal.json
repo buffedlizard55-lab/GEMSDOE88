@@ -1,0 +1,24 @@
+{
+  "schema": "gems88.con88-clearance-withdrawal.v1",
+  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+  "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "previous_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "previous_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "status": "WITHDRAWN \u2014 RESEARCH ONLY \u2014 DO NOT SUBMIT",
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "reason": "The prior automated approval used equal-support top-N for the saturated 17GEMSDOE raster. The binding protocol uses literal finite-positive support; overlap is 1.0, exceeding 0.70.",
+  "literal_witness": {
+    "name": "17GEMSDOE dense probability raster",
+    "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "covered_allowed_cells": 5106385,
+    "allowed_cells": 5106385,
+    "overlap_lower_bound": 1.0,
+    "limit": 0.7
+  },
+  "tiff_sha256_unchanged": true,
+  "zip_member_matches_negative_filename": true,
+  "organizer_confirmed_score": null,
+  "weekly_slots_used": 0
+}
