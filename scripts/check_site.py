@@ -58,6 +58,7 @@ def main(root: Path = ROOT) -> None:
             "sources.html",
             "mdc88/index.html",
             "mdc88/executive-summary.html",
+            *(("con88.html",) if (docs / "con88.html").is_file() else ()),
         )
     ]
     card = json.loads((root / "registry/mvrd_run_card.json").read_text())
@@ -501,6 +502,13 @@ def main(root: Path = ROOT) -> None:
             url = urlsplit(ref)
             if url.scheme or url.netloc or not url.path:
                 continue
+            rel_page_parent = page.parent.relative_to(docs).as_posix()
+            joined_ref = posixpath.join("" if rel_page_parent == "." else rel_page_parent, unquote(url.path))
+            norm_ref = posixpath.normpath(joined_ref)
+            require(
+                norm_ref != ".." and not norm_ref.startswith("../") and not norm_ref.startswith("/"),
+                f"{page.relative_to(docs)} escapes docs/ Pages root: {ref}",
+            )
             target = page.parent / unquote(url.path)
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
