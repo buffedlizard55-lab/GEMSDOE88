@@ -51,6 +51,26 @@
       banner.textContent = 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT';
     }
   }
+  const bpwdBanner = document.querySelector('[data-bpwd-status]');
+  if (bpwdBanner) {
+    try {
+      const [r, g] = await Promise.all([
+        fetch('data/bpwd88_run_card.json', { cache: 'no-store' }),
+        fetch('data/bpwd88_gate_v3.json', { cache: 'no-store' }),
+      ]);
+      if (!r.ok || !g.ok) throw new Error('bpwd feed unavailable');
+      const [bpwd, gv] = await Promise.all([r.json(), g.json()]);
+      const ok = bpwd.ok_to_download === true && bpwd.ok_to_submit === false &&
+        bpwd.all_5_discriminating_gates_pass === true && bpwd.beats_hgvc_holdout_best === true &&
+        bpwd.verdict === 'negative' && gv.ok_to_submit === false &&
+        bpwd.raster_sha256 === gv.sha256;
+      bpwdBanner.textContent = ok
+        ? `LIVE MACHINE GATE VERIFIED · ${bpwd.lane} HOLDOUT-DTI ${Number(bpwd.holdout_dti.candidate_exp03.dti).toFixed(6)} RECORD · 5/5 DISCRIMINATING GATES PASS · DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT`
+        : 'BPWD GATE INCONSISTENT — DO NOT SUBMIT';
+    } catch (_) {
+      bpwdBanner.textContent = 'BPWD PRE-FLIGHT UNAVAILABLE — DO NOT SUBMIT';
+    }
+  }
   // Any inherited leaderboard widget is explicitly historical. No live request
   // to DrivenData, no guessed current rank, and no organizer receipt is implied.
   const score = document.querySelector('[data-feed-score]');

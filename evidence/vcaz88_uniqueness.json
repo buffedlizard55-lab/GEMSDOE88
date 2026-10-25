@@ -1,15 +1,15 @@
 {
   "evidence_class": "REGISTRY-MEASUREMENT",
   "candidate_sha256": "34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12",
-  "registry_rasters_checked": 367,
-  "distinct_dot_sets_checked": 239,
+  "registry_rasters_checked": 368,
+  "distinct_dot_sets_checked": 240,
   "surface_preplacement_max_abs_spearman": 0.20802,
   "surface_preplacement_max_label": "17GEMSDOE:dense_17gemdoe.tif",
   "final_max_abs_spearman": 0.20802,
   "final_max_rho_label": "17GEMSDOE:dense_17gemdoe.tif",
   "final_worst_like_for_like_overlap_3px": {
-    "label": "GEMSDOE88:gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
-    "value": 0.6214457831325301
+    "label": "GEMSDOE88:gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+    "value": 0.6967469879518072
   },
   "unique_like_for_like": true,
   "like_for_like_blockers": [],
@@ -34,6 +34,14 @@
     "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
   },
   "top20_highest_like_for_like_overlap": [
+    {
+      "label": "GEMSDOE88:gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+      "like_for_like_overlap_3px": 0.696747,
+      "literal_overlap_3px": 0.696747,
+      "rho_preplacement": 0.148912,
+      "rho_final": 0.087203,
+      "dense": false
+    },
     {
       "label": "GEMSDOE88:gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
       "like_for_like_overlap_3px": 0.621446,
@@ -185,14 +193,11 @@
       "rho_preplacement": 0.084628,
       "rho_final": 0.024323,
       "dense": false
-    },
-    {
-      "label": "GEMSDOE36:gems36_anderson_pinn.tif",
-      "like_for_like_overlap_3px": 0.434849,
-      "literal_overlap_3px": 0.434849,
-      "rho_preplacement": 0.085765,
-      "rho_final": 0.024992,
-      "dense": false
     }
-  ]
+  ],
+  "distinct_decoded_dot_rasters_checked": 240,
+  "worst_like_for_like_overlap": {
+    "label": "GEMSDOE88:gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+    "value": 0.6967469879518072
+  }
 }

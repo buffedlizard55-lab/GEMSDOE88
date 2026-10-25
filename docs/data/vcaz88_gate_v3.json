@@ -51,12 +51,12 @@
         "radius_px": 3.0,
         "dense_fraction": 0.05
       },
-      "registry_rasters": 367,
-      "distinct_dot_sets": 239,
+      "registry_rasters": 368,
+      "distinct_dot_sets": 240,
       "missing": 0,
       "worst_like_for_like_overlap": {
-        "label": "GEMSDOE88:gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
-        "value": 0.6214457831325301
+        "label": "GEMSDOE88:gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+        "value": 0.6967469879518072
       },
       "worst_abs_rho": {
         "label": "17GEMSDOE:dense_17gemdoe.tif",

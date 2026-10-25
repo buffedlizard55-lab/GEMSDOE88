@@ -1,6 +1,6 @@
 {
   "schema": "gems88.download-audit.v1",
-  "checked_at_utc": "2026-10-25T07:19:07.729899+00:00",
+  "checked_at_utc": "2026-10-25T07:33:14.253893+00:00",
   "scope": "Every TIFF in docs/downloads, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
   "preplacement_registry_proof": {
     "evidence_class": "REGISTRY-MEASUREMENT",
@@ -20,8 +20,8 @@
   },
   "canonical_file": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
   "canonical_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-  "tiff_count": 42,
-  "research_download_pass_count": 42,
+  "tiff_count": 43,
+  "research_download_pass_count": 43,
   "protocol_eligible_count": 0,
   "exact_decoded_duplicate_groups": [],
   "artifacts": [
@@ -134,6 +134,63 @@
       "positive_support_sha256": "9cf02dee34120c560e690d9c8749fb6ae9fafe4fbbdbde2a59543903b20fbc5c",
       "zip_file": "gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.zip",
       "zip_sha256": "1d44161d500e671cd6e7c29c326e1791ee531aa62e9f8bddcb32a5d635428df7",
+      "zip_one_byte_identical_tif": true,
+      "negative_filename_markers": true,
+      "literal_overlap_lower_bound": 1.0,
+      "decision": "DUPLICATE_STOP"
+    },
+    {
+      "file": "gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777",
+      "bytes": 796147,
+      "evidence_class": "LOCAL-FORMAT-AUDIT_NOT_ORGANIZER_ACCEPTANCE",
+      "format_valid": true,
+      "research_download_ok": true,
+      "ok_to_submit": false,
+      "errors": [],
+      "validator_output": {
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "single_band": true,
+        "geotiff": true,
+        "real_numeric_dtype": true,
+        "no_nan_inside": true,
+        "range_0_1": true,
+        "footprint_nonempty": true,
+        "no_mass_outside": true,
+        "footprint_not_masked": true,
+        "strict_audit": true,
+        "ok": true,
+        "raster_sha256": "b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777",
+        "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+      },
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1,
+        "dtype": "float32"
+      },
+      "independent_decoders_agree": true,
+      "positive_pixels": 37654,
+      "positive_on_catalogue": 0,
+      "positive_outside_footprint": 0,
+      "decoded_float32_sha256": "895979fda2faa879d8e09efd74195a1259a4a1849c7c1db7b102b43415648c00",
+      "positive_support_sha256": "a3cba68b01b81f4868b65a28a2a01f63c8b90648a7721736057ad5f496422f8d",
+      "zip_file": "gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.zip",
+      "zip_sha256": "cb496d0f2a552e950f64e7babd084b23da3a6d7fdeaa1cf7c6c9ade937cc4c4e",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
       "literal_overlap_lower_bound": 1.0,

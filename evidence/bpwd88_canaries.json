@@ -1,0 +1,225 @@
+{
+  "passed": true,
+  "threshold": 0.9,
+  "features_tested": 107,
+  "zero_catalogue_features_tested": 84,
+  "fold_visible_features_tested": 23,
+  "max_symmetric_auc": 0.769268,
+  "max_feature": "d2 (seed=20)",
+  "max_zero_catalogue_symmetric_auc": 0.590462,
+  "top15_all_features": [
+    {
+      "feature": "d2",
+      "group": "VIS-22",
+      "roc_auc": 0.230732,
+      "symmetric_auc": 0.769268
+    },
+    {
+      "feature": "d_perp",
+      "group": "VIS-22",
+      "roc_auc": 0.239184,
+      "symmetric_auc": 0.760816
+    },
+    {
+      "feature": "d",
+      "group": "VIS-22",
+      "roc_auc": 0.247997,
+      "symmetric_auc": 0.752003
+    },
+    {
+      "feature": "d_over_w",
+      "group": "VIS-22",
+      "roc_auc": 0.268361,
+      "symmetric_auc": 0.731639
+    },
+    {
+      "feature": "relay_facing",
+      "group": "VIS-22",
+      "roc_auc": 0.615286,
+      "symmetric_auc": 0.615286
+    },
+    {
+      "feature": "coherence",
+      "group": "VIS-22",
+      "roc_auc": 0.409379,
+      "symmetric_auc": 0.590621
+    },
+    {
+      "feature": "lidar_scarp_dipole",
+      "group": "PHYS-44",
+      "roc_auc": 0.590462,
+      "symmetric_auc": 0.590462
+    },
+    {
+      "feature": "log_len",
+      "group": "VIS-22",
+      "roc_auc": 0.411443,
+      "symmetric_auc": 0.588557
+    },
+    {
+      "feature": "relay_ratio",
+      "group": "VIS-22",
+      "roc_auc": 0.412157,
+      "symmetric_auc": 0.587843
+    },
+    {
+      "feature": "hgvc_lidar_bajada_polarity",
+      "group": "HGVC-20",
+      "roc_auc": 0.587012,
+      "symmetric_auc": 0.587012
+    },
+    {
+      "feature": "topo10_curv_prof",
+      "group": "PHYS-44",
+      "roc_auc": 0.586864,
+      "symmetric_auc": 0.586864
+    },
+    {
+      "feature": "d_par_abs",
+      "group": "VIS-22",
+      "roc_auc": 0.413936,
+      "symmetric_auc": 0.586064
+    },
+    {
+      "feature": "psgv_lidar_face_polarity_orth",
+      "group": "PSGV-20",
+      "roc_auc": 0.58489,
+      "symmetric_auc": 0.58489
+    },
+    {
+      "feature": "scarp_rel_cos2",
+      "group": "VIS-22",
+      "roc_auc": 0.584348,
+      "symmetric_auc": 0.584348
+    },
+    {
+      "feature": "hgvc_topo10_shorefree_crest",
+      "group": "HGVC-20",
+      "roc_auc": 0.582073,
+      "symmetric_auc": 0.582073
+    }
+  ],
+  "psgv20_features": [
+    {
+      "feature": "psgv_lidar_face_polarity_orth",
+      "group": "PSGV-20",
+      "roc_auc": 0.58489,
+      "symmetric_auc": 0.58489
+    },
+    {
+      "feature": "psgv_transtens_worm_opening",
+      "group": "PSGV-20",
+      "roc_auc": 0.563717,
+      "symmetric_auc": 0.563717
+    },
+    {
+      "feature": "psgv_chi_unipolar_step_orth",
+      "group": "PSGV-20",
+      "roc_auc": 0.545467,
+      "symmetric_auc": 0.545467
+    },
+    {
+      "feature": "psgv_updip60_worm_z0_trace",
+      "group": "PSGV-20",
+      "roc_auc": 0.543041,
+      "symmetric_auc": 0.543041
+    },
+    {
+      "feature": "psgv_baranov_field_hp",
+      "group": "PSGV-20",
+      "roc_auc": 0.534995,
+      "symmetric_auc": 0.534995
+    },
+    {
+      "feature": "psgv_worm_grav_persistence",
+      "group": "PSGV-20",
+      "roc_auc": 0.527656,
+      "symmetric_auc": 0.527656
+    },
+    {
+      "feature": "psgv_worm_rtp_persistence",
+      "group": "PSGV-20",
+      "roc_auc": 0.521697,
+      "symmetric_auc": 0.521697
+    },
+    {
+      "feature": "psgv_baranov_hg_crest",
+      "group": "PSGV-20",
+      "roc_auc": 0.520207,
+      "symmetric_auc": 0.520207
+    },
+    {
+      "feature": "psgv_frangi_demag_worm_s2",
+      "group": "PSGV-20",
+      "roc_auc": 0.519881,
+      "symmetric_auc": 0.519881
+    },
+    {
+      "feature": "psgv_vg_rtp_demag_trough",
+      "group": "PSGV-20",
+      "roc_auc": 0.518737,
+      "symmetric_auc": 0.518737
+    },
+    {
+      "feature": "psgv_phase_quadrature_disloc",
+      "group": "PSGV-20",
+      "roc_auc": 0.518141,
+      "symmetric_auc": 0.518141
+    },
+    {
+      "feature": "psgv_updip60_demag_z0_trace",
+      "group": "PSGV-20",
+      "roc_auc": 0.51532,
+      "symmetric_auc": 0.51532
+    },
+    {
+      "feature": "psgv_poisson_admittance_resid",
+      "group": "PSGV-20",
+      "roc_auc": 0.514614,
+      "symmetric_auc": 0.514614
+    },
+    {
+      "feature": "psgv_curie_spectral_shallow",
+      "group": "PSGV-20",
+      "roc_auc": 0.512388,
+      "symmetric_auc": 0.512388
+    },
+    {
+      "feature": "psgv_worm_depth_focus_ratio",
+      "group": "PSGV-20",
+      "roc_auc": 0.511167,
+      "symmetric_auc": 0.511167
+    },
+    {
+      "feature": "psgv_claycap_poisson_conduit",
+      "group": "PSGV-20",
+      "roc_auc": 0.509082,
+      "symmetric_auc": 0.509082
+    },
+    {
+      "feature": "psgv_strike_worm_coherence",
+      "group": "PSGV-20",
+      "roc_auc": 0.492163,
+      "symmetric_auc": 0.507837
+    },
+    {
+      "feature": "psgv_poisson_demag_deficit",
+      "group": "PSGV-20",
+      "roc_auc": 0.507362,
+      "symmetric_auc": 0.507362
+    },
+    {
+      "feature": "psgv_worm_dip_migration_vec",
+      "group": "PSGV-20",
+      "roc_auc": 0.506562,
+      "symmetric_auc": 0.506562
+    },
+    {
+      "feature": "psgv_mimic_volcanic_remanent_rim",
+      "group": "PSGV-20",
+      "roc_auc": 0.504787,
+      "symmetric_auc": 0.504787
+    }
+  ],
+  "zero_test_quadrant_leakage_scramble_equal": true
+}

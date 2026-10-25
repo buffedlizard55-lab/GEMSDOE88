@@ -65,15 +65,15 @@
   },
   "correlation_overlap_vs_registry": {
     "evidence_class": "REGISTRY-MEASUREMENT",
-    "registry_rasters_checked": 367,
-    "distinct_dot_sets_checked": 239,
+    "registry_rasters_checked": 368,
+    "distinct_dot_sets_checked": 240,
     "surface_preplacement_max_abs_spearman": 0.20802,
     "surface_preplacement_max_label": "17GEMSDOE:dense_17gemdoe.tif",
     "final_max_abs_spearman": 0.20802,
     "final_max_rho_label": "17GEMSDOE:dense_17gemdoe.tif",
     "final_worst_like_for_like_overlap_3px": {
-      "label": "GEMSDOE88:gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
-      "value": 0.6214457831325301
+      "label": "GEMSDOE88:gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+      "value": 0.6967469879518072
     },
     "unique_like_for_like": true,
     "literal_all_positive_witness_overlap_3px": 1.0,
@@ -124,5 +124,9 @@
   "ok_to_download": true,
   "ok_to_submit": false,
   "verdict": "negative",
-  "verdict_explanation": "PASSES all 5 discriminating screens (portal [0,1] sample-parity format, 91/91 leakage canaries + quadrant scramble invariance, 8-fold HOLDOUT-DTI benchmark win over H88-ADHR, H33-parity basin fingerprint share_gt25 >= 35% & share_le2 == 0%, and full 362-raster (234 distinct decoded dot-sets) like-for-like uniqueness <= 0.70 across pinned + live-HEAD GEMSDOE86..92 + concurrent GEMSDOE88 rasters), while held fail-closed (verdict='negative', ok_to_submit=false, -DO-NOT-SUBMIT filename; 0 slots spent) under both the binding literal all-raster rule (17GEMSDOE dense_17gemdoe.tif yields 1.0000 > 0.70) and the repo all-time holdout promotion bar (0.200625 vs H88-HGVC 0.202947)."
+  "verdict_explanation": "PASSES all 5 discriminating screens (portal [0,1] sample-parity format, 91/91 leakage canaries + quadrant scramble invariance, 8-fold HOLDOUT-DTI benchmark win over H88-ADHR, H33-parity basin fingerprint share_gt25 >= 35% & share_le2 == 0%, and full 362-raster (234 distinct decoded dot-sets) like-for-like uniqueness <= 0.70 across pinned + live-HEAD GEMSDOE86..92 + concurrent GEMSDOE88 rasters), while held fail-closed (verdict='negative', ok_to_submit=false, -DO-NOT-SUBMIT filename; 0 slots spent) under both the binding literal all-raster rule (17GEMSDOE dense_17gemdoe.tif yields 1.0000 > 0.70) and the repo all-time holdout promotion bar (0.200625 vs H88-HGVC 0.202947).",
+  "blocking_reasons": [
+    "HOLD_LITERAL_WITNESS: forward 3px overlap = 1.0000 > 0.70 against dense 17GEMSDOE probability surface (binding repo rule; zero like-for-like dot blockers across 368 rasters, max = 0.696747 <= 0.70 vs H88-BPWD, 0.621446 vs H88-HGVC)",
+    "HOLD_PROMOTION_BAR: Exp02 cross-family PoE wins 8/8 folds over clean H88-ADHR (0.200625 vs 0.194876, +0.005749 [+0.001370, +0.009829]) and Exp03 emitted 3-regime raster reaches 0.152829 (> HGVC Exp4 0.148970), but overall holdout trails H88-BPWD (0.205991) and H88-HGVC (0.202947); weekly submission slot preserved."
+  ]
 }
