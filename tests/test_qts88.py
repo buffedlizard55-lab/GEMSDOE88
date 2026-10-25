@@ -94,6 +94,8 @@ def test_compute_qts_channels_and_dual_regime_allocator():
 
 
 def test_qts88_release_report_and_fail_closed_gate():
+    if not (ROOT / "data/bridge/existing_faults.tif").is_file():
+        pytest.skip("restore data/bridge via scripts/restore_inputs.py --validation")
     rep = qts88_release_report()
     assert rep["ok_to_download"] is True
     assert rep["ok_to_submit"] is False

@@ -122,10 +122,28 @@ def fabric_release_report(root=ROOT):
     expected_hashes = {r['sha256'] for r in rows} | {sha(tif), later['new_prior_sha256']}
     # Rasters that carry a gems88-gate-v3 verdict record (registry/*gate_v3.json, registry/gate_verdict.json) were reviewed against the
     # 216+-raster v3 registry by the session of 2026-10-24 (IR-88-59..71); any OTHER unreviewed TIFF still fails closed.
-    for record in ('gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json', 'lbcal_gate_v3.json', 'mvrd_gate_v3.json', 'gthc88_gate_v3.json'):
+    for record in (
+        'gate_verdict.json', 'provcrest_gate_v3.json', 'tiltzero_gate_v3.json',
+        'lbcal_gate_v3.json', 'mvrd_gate_v3.json', 'gthc88_gate_v3.json',
+        'sarcsd88_gate_v3.json', 'tdkl88_gate_verdict.json', 'vess88_gate_verdict.json',
+        'bgcd88_gate_verdict.json',
+    ):
         rec = root / 'registry' / record
         if rec.is_file():
-            expected_hashes.add(json.loads(rec.read_text())['sha256'])
+            gdata = json.loads(rec.read_text())
+            g_ok = gdata.get('ok_to_submit')
+            if g_ok is None:
+                g_ok = (gdata.get('gate_v3') or {}).get('ok_to_submit')
+            if g_ok is not False:
+                raise ValueError(f'{record} unexpectedly marked ok_to_submit')
+            g_sha = (
+                gdata.get('sha256')
+                or (gdata.get('candidate') or {}).get('sha256')
+                or (gdata.get('candidate') or {}).get('tif_sha256')
+            )
+            if not g_sha:
+                raise ValueError(f'{record} missing sha256')
+            expected_hashes.add(g_sha)
     # MDC-88 (PR #61, IR-88-75/73/74) stores its gate-v3 verdict nested under 'gate_v3'
     # with the file hash in 'candidate'. Same review standard, different record shape.
     for record in ('kdmc_gate.json', 'kdmc_gate_collar3.json', 'qts88_gate.json'):
@@ -169,23 +187,41 @@ def fabric_release_report(root=ROOT):
             or comparisons['final_dots']['worst_dot_overlap'] <= .70):
             raise ValueError('new KTH research TIFF has no verified negative audit')
         expected_hashes.add(sha(p))
-    for neg_rec, path_fn, sha_fn in (
-        ('phase88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256']),
-        ('mdps88_run_card.json', lambda d: d['raster']['file'], lambda d: d['raster_sha256']),
-        ('ibl88_run_card.json', lambda d: d['submission']['file'], lambda d: d['submission']['sha256']),
-        ('qtsk88_run_card.json', lambda d: d['raster']['tif_path'], lambda d: d['raster']['sha256']),
+    for neg_rec, path_fn, sha_fn, allowed_verdicts in (
+        ('phase88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
+        ('mdps88_run_card.json', lambda d: d['raster']['file'], lambda d: d['raster_sha256'], ('negative',)),
+        ('ibl88_run_card.json', lambda d: d['submission']['file'], lambda d: d['submission']['sha256'], ('negative',)),
+        ('qtsk88_run_card.json', lambda d: d['raster']['tif_path'], lambda d: d['raster']['sha256'], ('negative',)),
+        ('shore_hinge_run_card.json', lambda d: d['artifact'], lambda d: d['submission']['sha256'], ('negative',)),
+        ('phys_near_run_card.json', lambda d: d['artifact'], lambda d: d['raster_sha256'], ('promote-to-selector-only',)),
+        ('dhtc88_run_card.json', lambda d: d['submission']['file'], lambda d: d['raster_sha256'], ('negative',)),
     ):
         np_card = root / 'registry' / neg_rec
         if np_card.is_file():
             nd = json.loads(np_card.read_text())
             np_tif = (root / path_fn(nd)).resolve()
             if (not np_tif.is_relative_to((root / 'docs/downloads').resolve())
-                or nd.get('verdict') != 'negative'
+                or nd.get('verdict') not in allowed_verdicts
                 or nd.get('ok_to_submit') is not False
                 or 'DO-NOT-SUBMIT' not in np_tif.name
                 or sha(np_tif) != sha_fn(nd)):
                 raise ValueError(f'{neg_rec} research TIFF has no verified negative audit')
             expected_hashes.add(sha(np_tif))
+    ctra_card = root / 'registry/ctra_run_card.json'
+    if ctra_card.is_file():
+        cd = json.loads(ctra_card.read_text())
+        ctra_tif = root / 'docs/downloads' / Path(cd['file']).name
+        if ctra_tif.is_file() and 'DO-NOT-SUBMIT' in ctra_tif.name and sha(ctra_tif) == cd['sha256']:
+            expected_hashes.add(cd['sha256'])
+    cj_web = root / 'docs/data/cj88_run_card.json'
+    if cj_web.is_file():
+        cj_card = json.loads(cj_web.read_text())
+        if cj_card.get('verdict') == 'negative' and cj_card.get('ok_to_submit') is False:
+            for cj_json in sorted((root / 'docs/downloads').glob('gems88-cj88-*-DO-NOT-SUBMIT.json')):
+                cjd = json.loads(cj_json.read_text())
+                cj_tif = cj_json.with_suffix('.tif')
+                if cj_tif.is_file() and 'DO-NOT-SUBMIT' in cj_tif.name and sha(cj_tif) == cjd.get('sha256'):
+                    expected_hashes.add(cjd['sha256'])
     if observed_hashes != expected_hashes:
         raise ValueError('accessible registry changed since postmerge audit; recheck all prior rasters')
     index = dict(complete_accessible_scan=True, errors=[], rasters=[])
