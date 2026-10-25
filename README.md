@@ -70,6 +70,14 @@ bash scripts/download_competition_data.sh
 
 The literal uniqueness condition must become satisfiable under an explicitly authorized **shared** protocol before another candidate is constructed; no exemption is authorized here. New-model hide-and-recover and leakage tests are therefore not run. The current leaderboard, rules, weekly allowance, organizer input authentication and receipts cannot be verified through this session's permitted hosts. No credentials are requested. Full data caches are ignored, not committed; restore commands reconstruct them. Static Pages serves results, not account-authenticated uploads or training jobs.
 
+### Follow-up review — `26588c79`, 2026-10-25
+
+The literal preflight was independently reproduced: **DUPLICATE_STOP**, no new TIFF, no new holdout and no slot used. All **43** existing TIFF/ZIP pairs pass local research-format checks, but **none** is cleared for submission. The urgent new unique-file requirement remains **UNMET**.
+
+Fixed an all-download audit blind spot: orphan ZIPs (including uppercase suffixes), nested raster packages, ambiguous archive pairings and symlinks now fail closed. Corrected executive-guide language implying that human inspection or a boolean edit could override failed gates. A real desktop/mobile browser rerun refreshed the page-bound receipt rather than merely changing its hashes.
+
+[Three-pass follow-up, fresh H33 evidence and source limits](research/session-26588c79-review.md) · [Negative JSON run card](registry/session_26588c79_run_card.json). The existing four conditional geological proposals remain untested; no new-model performance or leaderboard improvement is claimed.
+
 ### Parallel scientific session record — `H88-BPWD` (`2026-10-25`, All-Time Repo Holdout Record `0.205991`, `0` slots spent)
 
 - **Artifact (`DOWNLOAD FOR RESEARCH: YES` · `SUBMIT: NO — DO NOT SUBMIT`):** [`docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif) (`SHA-256: b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777`, `37,654` binary `{0.0,1.0}` `float32` px, `nodata=None`, `0` NaN/Inf, `share_le2=0.0%`, `share_gt25=43.70%`) · [One-TIFF ZIP](docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.zip) (`SHA-256: cb496d0f2a552e950f64e7babd084b23da3a6d7fdeaa1cf7c6c9ade937cc4c4e`) · [Run Card](registry/bpwd88_run_card.json) · [Gate v3](registry/bpwd88_gate_v3.json) · [PhD Forensics & 5 Ranked Hypotheses](research/candidate-hypotheses-20261025-bpwd88.md).
