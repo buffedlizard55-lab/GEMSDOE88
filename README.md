@@ -66,6 +66,10 @@ bash scripts/download_competition_data.sh
 
 [Three-pass review and parser reliability fix](research/session-7bf01824-review.md) · [Session run card](registry/session_7bf01824_run_card.json). Fresh preflight confirms `DUPLICATE_STOP`; no new TIFF or slot. Offline leaderboard parsing now rejects malformed scores and incomplete ranked evidence without replacing the previous snapshot.
 
+### Session 2026-10-25 — unique-TIFF request: duplicate gate holds
+
+No new TIFF was generated and nothing is cleared for download-to-submit. The shared generation guard returned `DUPLICATE_STOP` (exit 2) on SHA-pinned bytes: the dense `17GEMSDOE` witness covers 100% of allowed pixels, so every candidate overlaps it at 1.0 against the 0.70 limit. Full record: [research note](research/session-20261025-unique-tif-gate-review.md) · [run card](registry/session_20261025_unique_tif_gate_run_card.json). Live leaderboard #1 = 0.4413 (public page, 2026-10-25); H33 0.2778 remains USER-REPORTED. The open blocker is an owner decision on how to define dots for dense priors, plus a lane paragraph that was never supplied.
+
 ### Remaining limitations
 
 The literal uniqueness condition must become satisfiable under an explicitly authorized **shared** protocol before another candidate is constructed; no exemption is authorized here. New-model hide-and-recover and leakage tests are therefore not run. The current leaderboard, rules, weekly allowance, organizer input authentication and receipts cannot be verified through this session's permitted hosts. No credentials are requested. Full data caches are ignored, not committed; restore commands reconstruct them. Static Pages serves results, not account-authenticated uploads or training jobs.

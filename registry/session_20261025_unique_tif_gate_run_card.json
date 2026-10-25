@@ -1,0 +1,43 @@
+{
+  "schema": "gems88.session-unique-tif-gate.run_card.v1",
+  "session_date_utc": "2026-10-25",
+  "lane": "NONE (no single method paragraph was supplied; see research note)",
+  "user_request": "Generate a unique submission TIF; state whether it is OK to download/submit; 3-5 new hypotheses; PR and merge.",
+  "decision": "DUPLICATE_STOP",
+  "generation_allowed": false,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "experiments_run": 0,
+  "new_rasters_generated": 0,
+  "weekly_slots_used": 0,
+  "preplacement_registry_proof": {
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "covered_allowed_fraction": 1.0,
+    "overlap_limit": 0.7,
+    "universal_overlap_blocker": true
+  },
+  "guard_command": ".venv/bin/python scripts/generation_guard.py  (exit 2 = measured DUPLICATE_STOP)",
+  "guard_exit_code": 2,
+  "holdout_dti": null,
+  "organizer_confirmed_score": null,
+  "leaderboard_check": {
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "retrieved_utc": "2026-10-25",
+    "rank_1": {
+      "participant": "xiaofanhu",
+      "score": 0.4413,
+      "label": "PUBLIC-PAGE"
+    },
+    "h33_0_2778": "USER-REPORTED (no portal receipt in repo)"
+  },
+  "validator_output": {
+    "audit_downloads_check": "PASS (43 TIFF/ZIP research pairs; protocol_eligible_count 0)",
+    "render_decision_check": "PASS",
+    "check_site": "PASS"
+  },
+  "submission_name": null,
+  "submission_note": null
+}
