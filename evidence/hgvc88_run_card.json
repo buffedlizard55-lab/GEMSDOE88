@@ -1,0 +1,436 @@
+{
+  "schema": "gems88.hgvc88.run_card.v1",
+  "run_id": "GEMSDOE88-HGVC88-20261024-d5329f31",
+  "generated_utc": "2026-10-25T02:25:22Z",
+  "lane": "H88-HGVC",
+  "preregistration_id": "PREREG-20261024-HGVC88",
+  "hypothesis": "Blind geothermal faults missing from the USGS/INGENIOUS surface catalogue lose brittle scarp relief to smectite/argillic alteration while lateral groundwater flow shifts high-geothermometer outflow plumes (quartz, chalcedony, Na-K-Ca minus surface temperature) and shallow 1m-2m conductive thermal gradients 1-3 km down-bajada from the concealed feeder fault. Back-projecting cold-well-decontaminated geochemical disequilibrium and vertical probe gradients up the hydraulic and basement-depth dip onto perched smectite clay-cap conductivity residuals, hydrothermal magnetite-destruction troughs, tufa-decontaminated opaline sinter corridors, and cover-decoupled basement steps recovers concealed geothermal fault conduits across both relay zones and >2.5 km blind basins.",
+  "mechanism": "20 zero-catalogue HGVC hydrothermal/geochemical/shallow-probe/clay-cap/sinter/basement-decoupling channels (dist_known_fault_px stripped on read; pluvial tufa separated; cold irrigation wells rejected; B12 det_elev scarp input; explicit trace_segments_utm11.csv) + 44 shared physics channels -> distance-adaptive Log-Odds Product-of-Experts (base 44/67-ch + decontaminated HGVC 56/87-ch with blind-basin tail preservation) -> 4-quadrant OOF cross-fitting -> H33-parity kernel-spaced CELF Dinkelbach allocation (37654 discrete {0,1} float32 dots, d_cat > 2.5 px, share_gt25 = 0.4290).",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan (~1330 m) and Lake Bonneville (~1555 m) shoreline carbonate tufa mounds (146/709 Paleo_geothermal_final.csv rows) and wave-cut benches, flat closed-basin playa evaporite brine collars (high raw cond_surf without basement step), and cold agricultural irrigation wells (Cold / temp_c < 18 C).",
+  "experiments_executed": 3,
+  "experiment_budget_max": 3,
+  "elapsed_seconds": 197.61,
+  "wallclock_budget_seconds_max": 7200,
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seeds": [
+      20,
+      21
+    ],
+    "n_folds": 8,
+    "withheld_positive_pixels": 22893,
+    "folds_won_vs_adhr": 8,
+    "candidate_exp03": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.2029470713394289,
+      "ci95": [
+        0.185868859876156,
+        0.21979007541452142
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6827.7917351731185,
+      "fpw": 69816.27785652946,
+      "fnw": 16065.208264826872
+    },
+    "exp01_zero_cat": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.11376734385525632,
+      "ci95": [
+        0.10020291946344576,
+        0.12713927826723403
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 5011.671820662947,
+      "fpw": 123676.01126727075,
+      "fnw": 17881.328179337044
+    },
+    "exp02_single_joint": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.19758207785802337,
+      "ci95": [
+        0.18044887109778093,
+        0.21411490161369476
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6452.961179751906,
+      "fpw": 65273.28048538567,
+      "fnw": 16440.038820248094
+    },
+    "control_phys44_zero_cat": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.1041632406049392,
+      "ci95": [
+        0.0908960083192137,
+        0.117125811075879
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 4315.018210565626,
+      "fpw": 111240.66836608533,
+      "fnw": 18577.981789434365
+    },
+    "control_h88_adhr_incumbent": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.19487581335786947,
+      "ci95": [
+        0.17837608242114458,
+        0.21137561152361495
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6464.596856403541,
+      "fpw": 67827.92847932842,
+      "fnw": 16428.40314359645
+    },
+    "far_gt10px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.1328004004705083,
+      "ci95": [
+        0.11336922153918828,
+        0.15403971543376227
+      ],
+      "withheld_positive_pixels": 10791,
+      "tpw": 1942.6129898095219,
+      "fpw": 28033.71576397793,
+      "fnw": 8848.387010190481
+    },
+    "blind_gt25px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.07895921444556538,
+      "ci95": [
+        0.0504068938226493,
+        0.11227649422250327
+      ],
+      "withheld_positive_pixels": 3117,
+      "tpw": 317.84599193000764,
+      "fpw": 7341.380080533718,
+      "fnw": 2799.1540080699924
+    },
+    "paired_delta_vs_adhr_overall": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.008071257981559443,
+      "ci95": [
+        0.0031629410161225003,
+        0.01277306522939559
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "paired_delta_vs_adhr_far_gt10px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.00931978969753633,
+      "ci95": [
+        0.0020540863085719745,
+        0.01687568223541811
+      ],
+      "withheld_positive_pixels": 10791
+    },
+    "paired_delta_vs_adhr_blind_gt25px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.00483746026455506,
+      "ci95": [
+        -0.009095306470461058,
+        0.018453185790035617
+      ],
+      "withheld_positive_pixels": 3117
+    }
+  },
+  "leakage_canary": {
+    "passed": true,
+    "threshold": 0.9,
+    "features_tested": 87,
+    "zero_catalogue_features_tested": 64,
+    "fold_visible_features_tested": 23,
+    "max_symmetric_auc": 0.770155,
+    "max_feature": "d2 (seed=20)",
+    "max_zero_catalogue_symmetric_auc": 0.590284,
+    "top15_all_features": [
+      {
+        "feature": "d2",
+        "group": "VIS-22",
+        "roc_auc": 0.229845,
+        "symmetric_auc": 0.770155
+      },
+      {
+        "feature": "d_perp",
+        "group": "VIS-22",
+        "roc_auc": 0.240997,
+        "symmetric_auc": 0.759003
+      },
+      {
+        "feature": "d",
+        "group": "VIS-22",
+        "roc_auc": 0.247393,
+        "symmetric_auc": 0.752607
+      },
+      {
+        "feature": "d_over_w",
+        "group": "VIS-22",
+        "roc_auc": 0.26764,
+        "symmetric_auc": 0.73236
+      },
+      {
+        "feature": "relay_facing",
+        "group": "VIS-22",
+        "roc_auc": 0.615828,
+        "symmetric_auc": 0.615828
+      },
+      {
+        "feature": "coherence",
+        "group": "VIS-22",
+        "roc_auc": 0.409144,
+        "symmetric_auc": 0.590856
+      },
+      {
+        "feature": "log_len",
+        "group": "VIS-22",
+        "roc_auc": 0.409702,
+        "symmetric_auc": 0.590298
+      },
+      {
+        "feature": "lidar_scarp_dipole",
+        "group": "PHYS-44",
+        "roc_auc": 0.590284,
+        "symmetric_auc": 0.590284
+      },
+      {
+        "feature": "relay_ratio",
+        "group": "VIS-22",
+        "roc_auc": 0.411598,
+        "symmetric_auc": 0.588402
+      },
+      {
+        "feature": "d_par_abs",
+        "group": "VIS-22",
+        "roc_auc": 0.411691,
+        "symmetric_auc": 0.588309
+      },
+      {
+        "feature": "hgvc_lidar_bajada_polarity",
+        "group": "HGVC-20",
+        "roc_auc": 0.586537,
+        "symmetric_auc": 0.586537
+      },
+      {
+        "feature": "topo10_curv_prof",
+        "group": "PHYS-44",
+        "roc_auc": 0.58481,
+        "symmetric_auc": 0.58481
+      },
+      {
+        "feature": "scarp_rel_cos2",
+        "group": "VIS-22",
+        "roc_auc": 0.583591,
+        "symmetric_auc": 0.583591
+      },
+      {
+        "feature": "cos2d",
+        "group": "VIS-22",
+        "roc_auc": 0.418121,
+        "symmetric_auc": 0.581879
+      },
+      {
+        "feature": "hgvc_topo10_shorefree_crest",
+        "group": "HGVC-20",
+        "roc_auc": 0.5803,
+        "symmetric_auc": 0.5803
+      }
+    ],
+    "hgvc20_features": [
+      {
+        "feature": "hgvc_lidar_bajada_polarity",
+        "group": "HGVC-20",
+        "roc_auc": 0.586537,
+        "symmetric_auc": 0.586537
+      },
+      {
+        "feature": "hgvc_topo10_shorefree_crest",
+        "group": "HGVC-20",
+        "roc_auc": 0.5803,
+        "symmetric_auc": 0.5803
+      },
+      {
+        "feature": "hgvc_zbase_antithetic_step",
+        "group": "HGVC-20",
+        "roc_auc": 0.548359,
+        "symmetric_auc": 0.548359
+      },
+      {
+        "feature": "hgvc_axial_strike_coherence",
+        "group": "HGVC-20",
+        "roc_auc": 0.548068,
+        "symmetric_auc": 0.548068
+      },
+      {
+        "feature": "hgvc_probe_vert_grad",
+        "group": "HGVC-20",
+        "roc_auc": 0.529991,
+        "symmetric_auc": 0.529991
+      },
+      {
+        "feature": "hgvc_updip_feeder_3p0km",
+        "group": "HGVC-20",
+        "roc_auc": 0.529518,
+        "symmetric_auc": 0.529518
+      },
+      {
+        "feature": "hgvc_kostrov_dilat_conduit",
+        "group": "HGVC-20",
+        "roc_auc": 0.529299,
+        "symmetric_auc": 0.529299
+      },
+      {
+        "feature": "hgvc_updip_feeder_1p5km",
+        "group": "HGVC-20",
+        "roc_auc": 0.528013,
+        "symmetric_auc": 0.528013
+      },
+      {
+        "feature": "hgvc_claycap_perched_resid",
+        "group": "HGVC-20",
+        "roc_auc": 0.527485,
+        "symmetric_auc": 0.527485
+      },
+      {
+        "feature": "hgvc_zbase_slope_decouple",
+        "group": "HGVC-20",
+        "roc_auc": 0.475214,
+        "symmetric_auc": 0.524786
+      },
+      {
+        "feature": "hgvc_lidar_crest_asymmetry",
+        "group": "HGVC-20",
+        "roc_auc": 0.524648,
+        "symmetric_auc": 0.524648
+      },
+      {
+        "feature": "hgvc_chi_strike_knick_bridge",
+        "group": "HGVC-20",
+        "roc_auc": 0.51934,
+        "symmetric_auc": 0.51934
+      },
+      {
+        "feature": "hgvc_redox_uth_kth_grad",
+        "group": "HGVC-20",
+        "roc_auc": 0.51126,
+        "symmetric_auc": 0.51126
+      },
+      {
+        "feature": "hgvc_updip60_hessian_crest",
+        "group": "HGVC-20",
+        "roc_auc": 0.508822,
+        "symmetric_auc": 0.508822
+      },
+      {
+        "feature": "hgvc_diseq_outflow_s8",
+        "group": "HGVC-20",
+        "roc_auc": 0.491455,
+        "symmetric_auc": 0.508545
+      },
+      {
+        "feature": "hgvc_sinter_decontam",
+        "group": "HGVC-20",
+        "roc_auc": 0.503539,
+        "symmetric_auc": 0.503539
+      },
+      {
+        "feature": "hgvc_demag_grav_conduit",
+        "group": "HGVC-20",
+        "roc_auc": 0.497671,
+        "symmetric_auc": 0.502329
+      },
+      {
+        "feature": "hgvc_multiphys_vessel_s2p5",
+        "group": "HGVC-20",
+        "roc_auc": 0.501172,
+        "symmetric_auc": 0.501172
+      },
+      {
+        "feature": "hgvc_spring_vent_s6",
+        "group": "HGVC-20",
+        "roc_auc": 0.500232,
+        "symmetric_auc": 0.500232
+      },
+      {
+        "feature": "hgvc_mimic_playa_tufa_shore",
+        "group": "HGVC-20",
+        "roc_auc": 0.500173,
+        "symmetric_auc": 0.500173
+      }
+    ],
+    "zero_test_quadrant_leakage_scramble_equal": true
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "registry_rasters_checked": 324,
+    "distinct_dot_sets_checked": 198,
+    "live_head_20261024_sibling_rasters_included": 86,
+    "surface_preplacement_max_abs_spearman": 0.208144,
+    "surface_preplacement_max_label": "17GEMSDOE:dense_17gemdoe.tif",
+    "final_max_abs_spearman": 0.20814359540776092,
+    "final_max_rho_label": "17GEMSDOE:dense_17gemdoe.tif",
+    "final_worst_like_for_like_overlap_3px": {
+      "label": "GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+      "value": 0.6074255059223456
+    },
+    "unique_like_for_like": true,
+    "literal_all_positive_witness_overlap_3px": 1.0,
+    "unique_literal": false,
+    "concurrent_gems88_max_overlap_3px": 0.607426,
+    "live_head_20261024_sibling_max_overlap_3px": 0.516917
+  },
+  "raster_sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
+  "zip_sha256": "5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409",
+  "download": "docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+  "zip_download": "docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.zip",
+  "repo_copy": "submissions/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+  "validator_output": {
+    "portal_ok": true,
+    "layout_parity_with_sample": true,
+    "no_nan_inside_footprint": true,
+    "no_nan_anywhere": true,
+    "values_in_0_1": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "nodata_undeclared": true,
+    "outside_footprint_zero": true,
+    "zero_on_mapped_catalogue": true,
+    "second_decoder": {
+      "name": "tifffile",
+      "equal": true
+    },
+    "positive_dots": 37654,
+    "fingerprint": {
+      "n": 37654,
+      "median_d_cat_px": 19.235383987426758,
+      "share_le2": 0.0,
+      "share_gt10": 0.6648696021671004,
+      "share_gt25": 0.4290115259998938
+    },
+    "fingerprint_screen_pass": true,
+    "raster_sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
+    "zip_sha256": "5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409"
+  },
+  "submission_name": "GEMSDOE88-HGVC88-D5329F31",
+  "submission_name_length": 25,
+  "submission_note": "HGVC88 87ch hydrothermal up-dip+sinter PoE 37654d; HOLDOUT-DTI 0.2029 far 0.1328 blind 0.0790; UNSCORED",
+  "submission_note_length": 103,
+  "all_5_discriminating_gates_pass": true,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "blocking_reasons": [
+    "UNIQUENESS (binding literal rule, IR-88-86): forward 3-px overlap = 1.0000 > 0.70 against full-footprint continuous 17GEMSDOE witness (5,167,373/5,167,373 footprint pixels > 0)"
+  ],
+  "organizer_confirmed_score": null,
+  "weekly_slots_spent": 0
+}

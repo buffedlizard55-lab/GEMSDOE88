@@ -1,0 +1,60 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "preregistration_id": "PREREG-20261024-HGVC88",
+  "frozen_utc": "2026-10-24T23:59:00Z",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "branch": "arena/ce9372c9-gemsdoe88",
+  "lane": "H88-HGVC",
+  "title": "Hydrothermal Geochemical-Outflow Up-Dip Advection, Pluvial-Tufa-Decontaminated Sinter & Perched Clay-Cap Conduit Tensor (HGVC-20)",
+  "hypothesis": "Blind geothermal faults missing from the USGS/INGENIOUS surface catalogue lose brittle scarp relief to smectite/argillic alteration while lateral groundwater flow shifts high-geothermometer outflow plumes (quartz, chalcedony, Na-K-Ca minus surface temperature) and shallow 1m-2m conductive thermal gradients 1-3 km down-bajada from the concealed feeder fault. Back-projecting cold-well-decontaminated geochemical disequilibrium and vertical probe gradients up the hydraulic and basement-depth dip onto perched smectite clay-cap conductivity residuals, hydrothermal magnetite-destruction troughs, tufa-decontaminated opaline sinter corridors, and cover-decoupled basement steps recovers concealed geothermal fault conduits across both relay zones and >2.5 km blind basins.",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan (~1330 m) and Lake Bonneville (~1555 m) shoreline carbonate tufa mounds (146/709 Paleo_geothermal_final.csv rows) and wave-cut benches, flat closed-basin playa evaporite brine collars (high raw cond_surf without basement step), and cold agricultural irrigation wells (Cold / temp_c < 18 C).",
+  "ranked_hypotheses_dossier": "research/candidate-hypotheses-20261024-hgvc88.md",
+  "evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "seeds": [20, 21],
+    "n_folds": 8,
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "bootstrap_block_side_px": 200,
+    "bootstrap_draws": 2000,
+    "bootstrap_seed": 520888
+  },
+  "experiments": [
+    {
+      "id": "Exp01_hgvc_zero_cat",
+      "description": "Zero-catalogue hydrothermal vent-conduit specialist (36 translation-invariant X_phys_diff + 20 HGVC-20 = 56 zero-catalogue channels; 0 catalogue features) vs phys44_zero_cat."
+    },
+    {
+      "id": "Exp02_hgvc_single_joint",
+      "description": "Single-branch joint specialist (X_phys + HGVC-20 + X_vis22 + d_over_w) + completeness fusion vs h88_adhr_incumbent."
+    },
+    {
+      "id": "Exp03_hgvc_poe_conduit",
+      "description": "Distance-adaptive Log-Odds Product-of-Experts specialist ensemble (base 44/67-ch + decontaminated HGVC-20 56/79-ch with blind-basin tail preservation) + completeness marginalization + exact CELF Dinkelbach allocation."
+    }
+  ],
+  "experiment_budget_max": 3,
+  "wallclock_budget_seconds_max": 7200,
+  "gates": {
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "test_quadrant_scramble_invariance_required": true,
+    "preplacement_surface_max_abs_spearman": 0.90,
+    "final_dots_max_abs_spearman": 0.90,
+    "final_dots_max_forward_overlap_3px_like_for_like": 0.70,
+    "final_dots_max_forward_overlap_3px_literal": 0.70,
+    "fingerprint_max_share_le2": 0.0,
+    "fingerprint_min_share_gt25": 0.35,
+    "holdout_must_beat_incumbent_with_positive_paired_ci95": true
+  },
+  "production_design": {
+    "cross_fitting": "strictly 4-quadrant out-of-fold across seeds 20+21 for both hydrothermal-physics and structural heads",
+    "target_dots": 37654,
+    "near_stratum": {"domain": "2.5 < d_cat <= 25.0 px", "budget": 21500, "min_spacing_px": 2.85},
+    "far_stratum": {"domain": "d_cat > 25.0 px", "budget": 16154, "min_spacing_px": 3.05},
+    "expected_share_gt25": 0.429012
+  }
+}
