@@ -4,7 +4,7 @@
   "review_branch": "arena/693b10af-gemsdoe88",
   "source_snapshot": {
     "files": 154,
-    "sha256": "08cf8ec84991a065d4235823a2e0ef41eadd3822527d76958844599ec4f20fc1"
+    "sha256": "fb91e32d8d0939535b68ede0cd724bd90c1a491cdf37ff24c9a8f82519c7f125"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
