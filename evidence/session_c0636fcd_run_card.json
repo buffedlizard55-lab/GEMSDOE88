@@ -1,0 +1,138 @@
+{
+  "schema": "gems88.session-run-card.v1",
+  "date_utc": "2026-10-25",
+  "branch": "arena/c0636fcd-gemsdoe88",
+  "hypothesis": "H88-PRAN: terrain-conditioned K:Th radiometric residual with along-strike coherence may indicate altered, cover-obscured structures absent from the USGS/INGENIOUS catalogue. This is the next qualitative queue candidate, not an executed experiment.",
+  "mechanism": "Compare radiometric K:Th values within matched detrended-slope/profile-curvature/basement-depth strata, then test along-strike coherence against a predeclared terrain-matched null. Use only the shared cached layers and shared holdout/evaluation tools if a future shared protocol authorizes the run.",
+  "named_non_fault_mimic": "K-rich transported alluvium or parent-rock contact; soil moisture can also perturb radiometric response.",
+  "candidate_queue": [
+    {
+      "rank": 1,
+      "id": "H88-PRAN",
+      "layers": ["rad_k_over_th", "det_elev_slope", "topo10_curv_prof", "depth_to_base_log"],
+      "signature": "terrain-bin-matched K:Th residual with along-strike coherence",
+      "missing_catalogue_rationale": "Tests alteration/soil response under cover without relying on catalogue geometry or an expressed scarp.",
+      "non_fault_mimic": "K-rich transported alluvium, parent-rock contact, soil-moisture effects",
+      "difference_from_repo": "MVRD uses radiometry plus scarp evidence; this tests terrain-conditioned residual information rather than that conjunction.",
+      "expected_gain_order": "highest of the four proposed; qualitative value-of-information judgment, not DTI projection",
+      "implementation_cost": "low-medium",
+      "new_external_data_required": false,
+      "experiment_status": "not run; no holdout or canary"
+    },
+    {
+      "rank": 2,
+      "id": "H88-FARC",
+      "layers": ["chi_step_max", "ksn_jump_norm", "topo10_hs_lineament", "lidar_scarp_coh"],
+      "signature": "replicated signed cross-channel offsets against catchment/stream-order matched nulls",
+      "missing_catalogue_rationale": "A weak blind rupture may offset several drainages below individual scarp-mapping confidence.",
+      "non_fault_mimic": "Lithologic knickzones, drainage capture, base-level change, climate-driven incision",
+      "difference_from_repo": "QTSK/TDKL use individual knickwave/scarp signals; this uses independent-catchment replication and matched nulls.",
+      "expected_gain_order": "second; qualitative value-of-information judgment, not DTI projection",
+      "implementation_cost": "medium",
+      "new_external_data_required": false,
+      "experiment_status": "not run; no holdout or canary"
+    },
+    {
+      "rank": 3,
+      "id": "H88-TCONS",
+      "layers": ["probe2m_dab_local", "well_temp_anom", "cond_edge_300m", "depth_to_base_log"],
+      "signature": "depth-conditioned temperature residual after accounting for conductivity and basin depth",
+      "missing_catalogue_rationale": "Focused fluid advection along a blind permeable fault may differ from broad conductive basin fill.",
+      "non_fault_mimic": "Playa/lake brine, groundwater circulation, unfractured permeable lithology",
+      "difference_from_repo": "DHTC/GTHC combine thermal/conductivity/structure; this tests residual temperature information after background controls.",
+      "expected_gain_order": "third; qualitative value-of-information judgment, not DTI projection",
+      "implementation_cost": "medium-high",
+      "new_external_data_required": false,
+      "experiment_status": "not run; no holdout or canary"
+    },
+    {
+      "rank": 4,
+      "id": "H88-FLAC",
+      "layers": ["rtp_grad_200m", "grav_grad_200m", "cond_edge_300m", "geod_shearrate", "geod_dilaterate"],
+      "signature": "multi-sensor edge persistence with explicit flight-line direction and leveling-artifact veto",
+      "missing_catalogue_rationale": "A buried discontinuity should persist across independent sensors rather than follow a survey seam.",
+      "non_fault_mimic": "Gridding/tie-line leveling artifacts or broad acquisition-aligned lithologic contacts",
+      "difference_from_repo": "MGC/XGCE compare cross-field edge geometry; this preregisters a directional acquisition-null control.",
+      "expected_gain_order": "fourth; qualitative value-of-information judgment, not DTI projection",
+      "implementation_cost": "low",
+      "new_external_data_required": false,
+      "experiment_status": "not run; no holdout or canary"
+    }
+  ],
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT RUN FOR THIS REVIEW OR H88-PRAN",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "value": null,
+    "ci95": null,
+    "reason": "Pre-placement DUPLICATE_STOP; no candidate feature surface, canary, fold prediction or experiment was run."
+  },
+  "historical_holdout_context": {
+    "evidence_class": "HOLDOUT-DTI",
+    "lane": "H88-MTAS, historical and already tried; not a score for H88-PRAN or this review",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "value": 0.049577,
+    "ci95": [0.044659, 0.054417],
+    "source": "evidence/mtas88_experiment_20261025.json",
+    "organizer_confirmed": false
+  },
+  "h33_claim": {
+    "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI AND NOT ORGANIZER-CONFIRMED",
+    "reported_value": 0.2778,
+    "source": "user prompt; no submission-page receipt found in this repository",
+    "interpretation": "Measured subset/pruning geometry is consistent with metric-aligned thinning, but is not causal evidence or a validated hidden-label score."
+  },
+  "registry_correlation_overlap": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface_rank_correlation": null,
+    "candidate_final_dot_overlap_3px": null,
+    "reason": "No candidate surface or dots were constructed; the guard stopped first.",
+    "witness": "17GEMSDOE dense registry raster",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "directly_covered_allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "lower_bound_forward_overlap_3px_for_any_nonempty_candidate": 1.0,
+    "overlap_threshold": 0.7,
+    "decision": "DUPLICATE_STOP before surface comparison or placement"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_tiff_generated": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "NOT RUN — no candidate TIFF",
+    "archived_tiffs": "separately audited for local research-format integrity; none passes protocol eligibility"
+  },
+  "submission": {
+    "submission_name": "GEMSDOE88-C0636FCD-NO-FILE",
+    "note": "PRAN hypothesis queued; pre-placement duplicate stop; no candidate TIFF or score; DO NOT SUBMIT",
+    "note_character_count": 95,
+    "download_new_file": false,
+    "submit": false,
+    "weekly_slots_used": 0,
+    "organizer_confirmed_receipt": null
+  },
+  "verification": {
+    "validation_restore": "PASS — hash-pinned validation-tier inputs restored from owner GitHub mirrors; not authenticated organizer download",
+    "generation_guard": "DUPLICATE_STOP (expected exit 2 after dependencies installed)",
+    "repo_review": "PASS — DUPLICATE_STOP, no audit errors",
+    "archived_package_audit": "46/46 local research TIFF/ZIP packages pass; 0 protocol-eligible",
+    "render_decision_check": "PASS",
+    "optimized_site_check": "PASS",
+    "pytest": "807 passed, 23 skipped, 0 failed",
+    "git_diff_check_before_review_record": "PASS"
+  },
+  "limitations": [
+    "The user prompt does not supply the single-method paragraph it references; this review does not invent an assigned lane.",
+    "The literal registry rule is incompatible with a nonempty prediction while the full-positive 17GEMSDOE witness remains in scope.",
+    "No candidate experiment, canary, holdout, TIFF, or upload was run in this review.",
+    "No authenticated DrivenData account access or organizer receipt was available; the leaderboard claims were not freshly retrieved.",
+    "The full 19-band cached feature stack was not restored because the pre-placement stop forbids model/feature work.",
+    "Historical archived results and local file checks do not establish new candidate performance or organizer acceptance."
+  ],
+  "verdict": "negative"
+}

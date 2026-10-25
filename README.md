@@ -20,7 +20,9 @@ Review follow-up: [dd90d368 three-pass evidence-label correction](research/sessi
 
 Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_PROMPT_20261025.md), and [AGENTS.md](AGENTS.md). The request is also embedded below. Do not append a competing “current candidate” banner or bypass the generation preflight.
 
-Current branch's audit-only review: [three-pass repository review](research/review-arena-89f65d48-20261025.md) · [machine-readable negative run card](evidence/repo_review_arena_89f65d48_20261025.json). Full suite: 805 passed / 23 skipped; preflight: `DUPLICATE_STOP`; no new TIFF or slot. This adds no upload clearance and does not change the research-only download decision.
+Prior audit-only session review: [three-pass repository review](research/review-arena-89f65d48-20261025.md) · [machine-readable negative run card](evidence/repo_review_arena_89f65d48_20261025.json). Full suite: 805 passed / 23 skipped; preflight: `DUPLICATE_STOP`; no new TIFF or slot. This adds no upload clearance and does not change the research-only download decision.
+
+Latest session review (`arena/c0636fcd-gemsdoe88`, 2026-10-25): [three-pass findings and four ranked unvalidated hypotheses](research/session-c0636fcd-review-20261025.md) · [negative machine-readable run card](evidence/session_c0636fcd_run_card.json). Validation inputs restored and checks passed (**807 tests passed, 23 skipped**), but the shared pre-placement gate still returns `DUPLICATE_STOP`; no experiment or TIFF was generated and no slot was used. The H33 `0.2778` remains user-reported, not organizer-confirmed.
 
 **Arena review `4fd0d184` (2026-10-25):** [three-pass review, H33 evidence limits, scratch-generation incident, and blockers](research/repo-review-arena-4fd0d184-20261025.md) · [machine-readable negative run card](evidence/repo_review_arena_4fd0d184_20261025.json). The pinned preflight returns `DUPLICATE_STOP`; four off-protocol scratch TIFFs were removed, zero outputs are cleared, no slot was used. The previous research-download decision remains unchanged.
 
