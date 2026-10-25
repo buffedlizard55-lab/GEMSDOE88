@@ -31,8 +31,9 @@
       const cardResponse = await fetch('data/mvrd_run_card.json', { cache: 'no-store' });
       const tdklResponse = await fetch('data/tdkl88_run_card.json', { cache: 'no-store' });
       const mtasResponse = await fetch('data/mtas88_run_card.json', { cache: 'no-store' });
+      const gzzcResponse = await fetch('data/gzzc88_run_card.json', { cache: 'no-store' });
       if (!response.ok || !currentResponse.ok || !cardResponse.ok ||
-          !tdklResponse.ok || !mtasResponse.ok) {
+          !tdklResponse.ok || !mtasResponse.ok || !gzzcResponse.ok) {
         throw new Error('pre-flight audit unavailable');
       }
       const data = await response.json();
@@ -40,8 +41,10 @@
       const card = await cardResponse.json();
       const tdkl = await tdklResponse.json();
       const mtas = await mtasResponse.json();
-      // All feeds must agree. TDKL is ONLY the archived research download; MTAS
-      // has no raster, score, or submission clearance. Never silently exempt the witness.
+      const gzzc = await gzzcResponse.json();
+      // All feeds must agree. GZZC is a research TIFF only. TDKL remains the
+      // canonical archived current_release. MTAS generated no raster. Never
+      // silently exempt the dense witness.
       const proof = mtas.preplacement_registry_proof;
       const archived = mtas.archived_research_download;
       const consistent = data.ok_to_download_for_research === true && data.ok_to_submit === false &&
@@ -57,7 +60,11 @@
           current.file_sha256 === tdkl.raster_sha256 && tdkl.ok_to_submit === false &&
           archived?.sha256 === current.file_sha256 &&
           archived?.validator_output?.ok === true && archived.ok_to_submit === false &&
-          card.ok_to_submit === false;
+          card.ok_to_submit === false &&
+          gzzc.ok_to_download === true && gzzc.ok_to_submit === false &&
+          gzzc.verdict === 'negative' &&
+          gzzc.uniqueness?.literal_dense_witness_overlap === 1.0 &&
+          gzzc.uniqueness?.literal_dense_witness_pass === false;
       banner.textContent = consistent
         ? 'H88-MTAS · NO NEW TIFF · OLD FILE DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated duplicate stop)'
         : 'PRE-FLIGHT AUDIT UNAVAILABLE OR INCONSISTENT — DO NOT SUBMIT';
