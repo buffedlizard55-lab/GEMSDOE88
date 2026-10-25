@@ -1,0 +1,26 @@
+[04:36:02] grid ok: footprint=5167373 catalogue=60988
+[04:37:05] features ready: (5167373, 36) schema=lsc88-36ch-v1
+[04:37:09] EXP1a single-feature leakage canary
+[04:37:12] canary: 36 features, max sym AUC 0.5883 on lidar_upface_max -> PASS
+[04:37:50] seed 20 fold NW: n_dots=8499 truth=1923 lsc_A_uniform=0.061141/0.031143/0.003654 lsc_A_adaptive=0.066002/0.029166/0.006819 org19_B_uniform=0.064734/0.044389/0.007849 (38s)
+[04:38:28] seed 20 fold NE: n_dots=10537 truth=2367 lsc_A_uniform=0.100789/0.081301/0.036681 lsc_A_adaptive=0.114386/0.098043/0.042934 org19_B_uniform=0.065534/0.055601/0.040941 (38s)
+[04:39:08] seed 20 fold SW: n_dots=10403 truth=3781 lsc_A_uniform=0.095733/0.088628/0.018478 lsc_A_adaptive=0.10431/0.0843/0.018652 org19_B_uniform=0.0637/0.059607/0.018079 (39s)
+[04:39:44] seed 20 fold SE: n_dots=8383 truth=3250 lsc_A_uniform=0.122251/0.118389/0.065236 lsc_A_adaptive=0.133596/0.132977/0.069575 org19_B_uniform=0.095205/0.092831/0.056047 (36s)
+[04:40:22] seed 21 fold NW: n_dots=8499 truth=1918 lsc_A_uniform=0.072939/0.049121/0.012942 lsc_A_adaptive=0.079611/0.051235/0.013289 org19_B_uniform=0.088594/0.058435/0.032631 (37s)
+[04:41:00] seed 21 fold NE: n_dots=10537 truth=2361 lsc_A_uniform=0.128199/0.120665/0.093994 lsc_A_adaptive=0.132945/0.121909/0.088573 org19_B_uniform=0.115023/0.115827/0.090875 (38s)
+[04:41:41] seed 21 fold SW: n_dots=10403 truth=3813 lsc_A_uniform=0.092856/0.062805/0.028443 lsc_A_adaptive=0.103598/0.072917/0.041051 org19_B_uniform=0.066786/0.053793/0.020069 (41s)
+[04:42:18] seed 21 fold SE: n_dots=8383 truth=3480 lsc_A_uniform=0.111132/0.113042/0.088711 lsc_A_adaptive=0.120129/0.121033/0.104738 org19_B_uniform=0.092287/0.096774/0.07997 (37s)
+[04:42:18] HOLDOUT overall: lsc_A_uniform=0.0997 [0.0841,0.1153] n=22893; lsc_A_adaptive=0.1086 [0.0940,0.1239] n=22893; org19_B_uniform=0.0809 [0.0682,0.0938] n=22893
+[04:42:18]    paired dA-uniform minus: lsc_A_adaptive: -0.0089 [-0.0126,-0.0053]; org19_B_uniform: +0.0188 [+0.0093,+0.0284]
+[04:42:18] HOLDOUT far10: lsc_A_uniform=0.0860 [0.0680,0.1024] n=10791; lsc_A_adaptive=0.0921 [0.0749,0.1082] n=10791; org19_B_uniform=0.0737 [0.0583,0.0898] n=10791
+[04:42:18]    paired dA-uniform minus: lsc_A_adaptive: -0.0061 [-0.0103,-0.0023]; org19_B_uniform: +0.0123 [+0.0038,+0.0203]
+[04:42:18] HOLDOUT blind25: lsc_A_uniform=0.0474 [0.0278,0.0668] n=3117; lsc_A_adaptive=0.0520 [0.0334,0.0706] n=3117; org19_B_uniform=0.0461 [0.0260,0.0681] n=3117
+[04:42:18]    paired dA-uniform minus: lsc_A_adaptive: -0.0047 [-0.0093,-0.0004]; org19_B_uniform: +0.0013 [-0.0073,+0.0101]
+[04:42:18] EXP1 decision: lidar arm beats organizer-only arm with CI>0 on overall AND far: True
+[04:42:18] EXP2 decision: adaptive spacing better than uniform: True
+[04:42:18] EXP3 production fit on the full visible catalogue
+[04:42:57] production: dots=40000 fingerprint={'dots': 40000, 'share_le2': 0.0, 'share_gt25': 0.162525, 'median_d_cat_px': 8.0, 'min_d_cat_px': 3.1622776985168457, 'on_catalogue': 0, 'outside_footprint': 0}
+[04:42:57] registry uniqueness (like-for-like dots; top-k/top-2% for dense rasters)
+[04:43:47] uniqueness: 60 rasters, worst overlap 0.5255, worst |rho| 0.7283 -> PASS
+[04:43:49] written gems88-lsc88-lidarstep-40000dots-20261025T044348Z-cbf6f408-zeros-DO-NOT-SUBMIT.tif sha256=85e4b9ae76a46f49b9f73b334ca52540bfc82e88f082bcb2de8272587030bab4 checks=True
+[04:43:49] RUN CARD verdict=negative ok_to_submit=False runtime=466.6s

@@ -18,6 +18,8 @@ def test_current_decision_precedes_archived_download_on_both_pages():
         # research TIFF, DO NOT SUBMIT) now leads; the earlier preflight
         # "NO NEW TIFF" record is retained verbatim below it as history.
         experiment = html.index('id="mtas-experiment"')
+        if rel == "docs/index.html":
+            assert html.index('id="decision"') < experiment, "H88-LSC decision must lead the index"
         current = html.index('id="autonomous-review"')
         historical = html.index('id="hgvc-current"') if rel == "docs/index.html" else html.index("Archived H88-HGVC GeoTIFF")
         assert experiment < current < historical, f"stale candidate appears before current decision in {rel}"
@@ -28,6 +30,7 @@ def test_current_decision_precedes_archived_download_on_both_pages():
         assert "H88-HGVC" in html
     guide = (ROOT / "docs/executive-summary.html").read_text()
     assert "CURRENT DECISION 2026-10-25" in guide
+    assert "CURRENT DECISION 2026-10-25 (H88-LSC" in guide
     assert "GEMSDOE88-MTAS88-ADMITTANCE-20261025" in guide
 
 
