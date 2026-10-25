@@ -2,6 +2,8 @@
 
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> **Fresh review (2026-10-25):** [Three-pass repo review](research/repo-review-20261025.md). No new TIFF or slot use: the literal all-registry overlap gate is universally blocked by the hash-pinned positive-everywhere witness. Existing downloads are **research only / DO NOT SUBMIT**. Validation suite: 399 passed, 23 skipped; live competition status is not verified in this sandbox.
+
 > ## ⛔ Latest session lane (2026-10-24): `H88-DHTC` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (like-for-like unique 0.5237 <= 0.70; canary pass 0.5903; held under literal `17GEMSDOE` dense witness; 0 slots spent)
 > [⬇ **Download H88-DHTC GeoTIFF (`.tif`, 81 KB, portal-valid zeros)**](docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`, 32 KB)**](docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/dhtc88_run_card.json) · [5 Ranked Hypotheses](research/candidate-hypotheses-20261024-dhtc88.md) · [PhD Forensic Analysis of H33 0.2778](research/h33-forensics-and-dhtc-phd-analysis.md) · [Executive Submission Guide](docs/executive-summary.html). Validate: `python3 scripts/validate_dhtc88.py` (exit 0 research; `--require-submit` exit 2).
 >
