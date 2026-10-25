@@ -166,3 +166,10 @@ the receipts above stand with registry scope extended by nine rasters. At merge,
 irregularity number was renumbered **IR-88-118 → IR-88-127** because concurrent lanes had
 already used 118–126 on `main` (118 three times); content unchanged. VHGD's pooled best arm
 (0.198664, unconstrained) remains below HGVC's 0.202947, so the holdout-best statement stands.
+A tenth concurrent raster, H88-PSGV (generated later on 2026-10-25 from the HGVC lane family),
+overlaps HGVC at 0.7899 forward (0.7976 reverse; |ρ| 0.2277). PSGV's own gate marked PSGV the
+duplicate (negative, DO NOT SUBMIT; its pooled 0.202494 also trails the 0.202947 bar). Per the
+protocol's *prior*-raster semantics, a posterior near-copy cannot retroactively disqualify the
+earlier artifact; the pair is disclosed in
+`registry/hgvc88_gate_v4_addendum_psgv_20261025.json` and on both web pages for owner review.
+SEPA vs PSGV: 0.4861 / |ρ| 0.0517 (unique, unchanged).

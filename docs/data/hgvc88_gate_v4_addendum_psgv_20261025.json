@@ -1,0 +1,23 @@
+{
+ "schema": "gems.gate_v4_addendum.v1",
+ "subject": "GEMSDOE88-HGVC88-D5329F31",
+ "subject_sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
+ "subject_created_utc": "2026-10-25T02:43:05Z",
+ "posterior_raster": "docs/downloads/gems88-psgv88-pseudograv-discordance-37654-20261025-c38f17fc-zeros-DO-NOT-SUBMIT.tif",
+ "posterior_created_utc": "2026-10-25T04:53:45Z",
+ "posterior_own_verdict": {
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "note": "PSGV session itself measured ~0.798 overlap against the HGVC lane and marked PSGV the duplicate (DO NOT SUBMIT)."
+ },
+ "measured_2026_10_25": {
+  "hgvc_forward_overlap_vs_psgv": 0.7898762415679609,
+  "psgv_forward_overlap_vs_hgvc": 0.79755138896266,
+  "abs_spearman_rho_pair": 0.22770750513577723,
+  "sepa_forward_overlap_vs_psgv": 0.48613693100334626,
+  "sepa_abs_rho_vs_psgv": 0.05167575315376515
+ },
+ "priority_rule": "A candidate is duplicate-tested against rasters that existed BEFORE it (protocol: 'prior submission' / registry at candidate time). PSGV was generated 2026-10-25, after HGVC (2026-10-24) and after the HGVC v4 re-audit snapshot (365 rasters + 9-raster merge addendum). A posterior near-copy cannot retroactively disqualify the earlier artifact; PSGV's own gate already adjudicated this pair against PSGV.",
+ "decision_unchanged": "OK TO DOWNLOAD AND SUBMIT (selector step) for HGVC; PSGV remains DO NOT SUBMIT. Disclosed for owner review: under a registry-at-upload-time reading (not adopted), this pair would block whichever file is considered second; by creation order that is PSGV.",
+ "sepa_unchanged": true
+}

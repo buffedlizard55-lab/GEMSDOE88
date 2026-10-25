@@ -849,6 +849,13 @@ def main(root: Path = ROOT) -> None:
         "OK to DOWNLOAD AND SUBMIT" in index and "OK to download and submit" in executive,
         "Pages must state the v4 submit-ready decision for HGVC",
     )
+    psgv_add = json.loads((root / "registry/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text())
+    require(psgv_add == json.loads((docs / "data/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text()), "PSGV addendum copies differ")
+    require(
+        abs(psgv_add["measured_2026_10_25"]["hgvc_forward_overlap_vs_psgv"] - 0.7898762415679609) < 1e-12
+        and "0.7899" in index and "0.7899" in executive,
+        "Posterior-copy (PSGV) disclosure must stay on both pages",
+    )
     require(
         "0.195069" in index and "0.195069" in executive,
         "Pages must publish the SEPA HOLDOUT-DTI point estimate",
