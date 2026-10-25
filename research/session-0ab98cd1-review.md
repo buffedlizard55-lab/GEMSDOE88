@@ -86,7 +86,7 @@ A future authorized run must freeze one lane and at most three experiments, rebu
 ## Corrections implemented
 
 1. Withdrew CON88 promotion in `run_card_con88.json`, `registry/con88_gates.json`, public mirrors, README, PROMPT, submission guide, standalone page, report, sidecar, and downloadable names.
-2. Replaced the CON88 generation exception with delegation to `scripts/generation_guard.py`; retained equal-support only as a diagnostic.
+2. Replaced the CON88 generation exception with delegation to `scripts/generation_guard.py`; retained equal-support only as a diagnostic. Post-main direct-CLI verification also repaired the wrapper's import path, and a subprocess regression now proves exit 2 / `DUPLICATE_STOP`.
 3. Rewrote `validate_con88.py` to validate an archived research package and fail `--require-submit` with exit 2.
 4. Removed the CON88 publication-audit/site exceptions; every served TIFF and ZIP must now contain `DO-NOT-SUBMIT` and every audit row must remain `ok_to_submit: false`.
 5. Preserved exact TIFF bytes; rebuilt only the negatively named one-TIFF ZIP and recorded old/new hashes in `evidence/con88_clearance_withdrawal_20261025.json`.
@@ -108,10 +108,11 @@ A future authorized run must freeze one lane and at most three experiments, rebu
 
 ### Pass 3 — clean final recheck
 
-- Full suite: **881 passed, 0 failed, 23 skipped, 64 warnings** in 208.05 s.
+- Pre-integration clean full suite: **881 passed, 0 failed, 23 skipped, 64 warnings** in 208.05 s.
+- After integrating upstream `origin/main` at `f67fb31` (including sessions 21256734 and 222254a5), all merge conflicts were resolved fail-closed. The first integrated suite passed 890 tests; an explicit direct-CLI check then exposed and repaired a `scripts/con88_preflight.py` import-path defect and added a regression. The definitive post-repair full suite passed: **891 passed, 0 failed, 23 skipped, 64 warnings** in 220.73 s (pytest exit 0).
 - Saved-byte audit: **48/48** public TIFF/ZIP pairs pass research-package checks; **0** are protocol-eligible. CON88 TIFF SHA remained unchanged; its negatively named ZIP contains exactly the same TIFF bytes.
 - Canonical renderer, research-state input-pin audit, normal and optimized site guards all passed.
-- Fresh browser receipt: **8/8** responsive cases pass with no overflow/errors; JavaScript-disabled and failed-evidence-fetch states stay negative; downloaded/clicked canonical TIFF bytes match SHA-256.
+- Post-integration browser receipt (`2026-10-25T18:53:24.730Z`, SHA-256 `7dea80f7b4ada6d52d4d37d7932de4877702f2c9bd473eecb964d393abe40782`): **8/8** responsive cases pass with no overflow/errors; JavaScript-disabled and failed-evidence-fetch states stay negative; downloaded/clicked canonical TIFF bytes match SHA-256.
 - Shared generation guard and preflight each exited **2** with `DUPLICATE_STOP`; CON88 archive validation exited 0 for research integrity and `--require-submit` exited **2**. No experiment or slot was used.
 
 ## Limitations, access needed, and next work

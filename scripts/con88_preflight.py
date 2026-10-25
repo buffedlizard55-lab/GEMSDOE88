@@ -10,8 +10,12 @@ all candidate generators.  There is no CON88-specific allow path.
 from __future__ import annotations
 
 from pathlib import Path
+import sys
 
-from scripts.generation_guard import ROOT, enforce_generation_preflight
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from scripts.generation_guard import enforce_generation_preflight  # noqa: E402
 
 
 def enforce_con88_preflight(root: Path = ROOT) -> None:

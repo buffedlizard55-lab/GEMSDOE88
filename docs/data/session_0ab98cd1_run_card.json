@@ -177,13 +177,14 @@
       "browser": "PASS_8_CASES_INCLUDING_CON88_MOBILE"
     },
     "pass3": {
-      "purpose": "Clean integrated recheck",
+      "purpose": "Clean final recheck followed by fail-closed integration of origin/main f67fb31",
       "full_tests": {
-        "passed": 881,
+        "passed": 891,
         "failed": 0,
         "skipped": 23,
         "warnings": 64,
-        "seconds": 208.05
+        "seconds": 220.73,
+        "pytest_exit": 0
       },
       "download_audit": "PASS_48_OF_48_RESEARCH_PACKAGES_0_PROTOCOL_ELIGIBLE",
       "research_state_input_pins": "PASS_FULL_OWNER_MIRROR_TIER",
@@ -196,17 +197,67 @@
       "generation_guard_exit": 2,
       "shared_preflight_exit": 2,
       "con88_archive_validator_exit": 0,
-      "con88_require_submit_exit": 2
+      "con88_require_submit_exit": 2,
+      "pre_main_integration_full_tests": {
+        "passed": 881,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 64,
+        "seconds": 208.05
+      },
+      "pre_direct_cli_repair_full_tests": {
+        "passed": 890,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 64,
+        "seconds": 221.86,
+        "pytest_exit": 0
+      }
     },
     "browser_evidence": "evidence/session_0ab98cd1_browser_check.json",
-    "browser_evidence_sha256": "3fd52d14137f1dd6a3000a843b66207b4a8906cd54d9658c33ea9608d51c4b70",
+    "browser_evidence_sha256": "7dea80f7b4ada6d52d4d37d7932de4877702f2c9bd473eecb964d393abe40782",
     "browser_status": "PASS",
     "full_recorded_request_reread": true,
     "shared_evaluator_holdout_writer_changed": false,
     "new_geological_experiments": 0,
     "new_rasters_generated": 0,
-    "completed_at_utc": "2026-10-25T18:50:13Z",
-    "remote_scope": "Local evidence only; GitHub PR/check/merge state and organizer portal state are separate."
+    "completed_at_utc": "2026-10-25T19:03:56Z",
+    "remote_scope": "Local evidence only; GitHub PR/check/merge state and organizer portal state are separate.",
+    "post_main_integration_browser_checked_at_utc": "2026-10-25T18:53:24.730Z",
+    "integrated_origin_main": {
+      "commit": "f67fb31fa256e97e0c28eb9fcda5e16055dbf92f",
+      "conflicts_resolved_fail_closed": true,
+      "targeted_tests_after_resolution": {
+        "passed": 131,
+        "failed": 0,
+        "warnings": 14,
+        "seconds": 42.65
+      },
+      "pre_direct_cli_repair_full_suite": {
+        "passed": 890,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 64,
+        "seconds": 221.86,
+        "pytest_exit": 0
+      },
+      "direct_cli_repair": {
+        "file": "scripts/con88_preflight.py",
+        "finding": "Direct script execution could not import scripts.generation_guard after upstream integration check",
+        "fixed": true,
+        "regression_test": "tests/test_con88_uniqueness_fix.py::test_con88_preflight_direct_cli_delegates_to_shared_guard",
+        "expected_exit": 2,
+        "decision": "DUPLICATE_STOP"
+      },
+      "final_full_suite_after_repair": {
+        "passed": 891,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 64,
+        "seconds": 220.73,
+        "pytest_exit": 0
+      }
+    }
   },
   "unmet_requirements": [
     "New protocol-unique submission TIFF",
@@ -244,13 +295,14 @@
     "IR-88-0AB98CD1-01: withdrew CON88 equal-support clearance and negative-labeled its unchanged TIFF/package.",
     "All CON88 generation/holdout entrypoints now enforce the shared literal guard before work; writers default negative after any future explicit policy revision.",
     "Removed publication/site clearance exceptions and added current-surface, package, validator, browser and generation regression coverage.",
-    "Repaired stale active-browser receipts and inventory-count test so mutations cannot be no-ops."
+    "Repaired stale active-browser receipts and inventory-count test so mutations cannot be no-ops.",
+    "Post-main direct CON88 preflight invocation now resolves the repository root and exits 2/DUPLICATE_STOP; added subprocess coverage."
   ],
   "delivery": {
     "base_branch": "main",
     "head_branch": "arena/0ab98cd1-gemsdoe88",
     "pull_request_url": null,
-    "merge_status": "PENDING_LOCAL_VERIFICATION_COMPLETE",
+    "merge_status": "LOCAL_MAIN_INTEGRATED_AWAITING_PR",
     "record_scope": "Remote CI and merge state are authoritative on GitHub."
   }
 }

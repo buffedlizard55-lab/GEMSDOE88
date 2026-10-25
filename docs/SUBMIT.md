@@ -31,6 +31,22 @@ H88-CBC remain stopped before feature construction. See the
 [current review](research/session-0ab98cd1-review.md) and
 [negative run card](data/session_0ab98cd1_run_card.json).
 
+
+## Integrated upstream safety records
+
+- Session `21256734` independently re-verified the same exit-2 `DUPLICATE_STOP`, replaced 124
+  optimization-sensitive bare assertions across seven validator/audit scripts with runtime guards and
+  SHA-256 pins (`IR-88-21256734-01`/`-02`), and published a
+  [three-pass review](research/session-21256734-review.md),
+  [ranked hypotheses](research/session-21256734-hypotheses.md), and
+  [negative run card](data/session_21256734_run_card.json). It generated zero rasters and spent zero slots.
+- **Critical legacy `releases/` warning (`IR-88-21256734-05`):** never upload any of the six legacy
+  `HOLD` `releases/h33-h33-2-b2-MASS*` artifacts. Three non-`-zeros` files lack a negative filename marker
+  and contain 7,111,787 exterior NaNs, reproducing the `Predicted values must be in range [0, 1]` rejection class.
+- The same upstream audit measured CON88's equal-support diagnostics but did not override the literal
+  user rule or its failed promotion result (`IR-88-21256734-06`). The current withdrawal and negatively
+  named archive above are authoritative.
+
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>
 

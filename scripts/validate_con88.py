@@ -33,6 +33,30 @@ def sha256(path: Path) -> str:
         return hashlib.file_digest(stream, "sha256").hexdigest()
 
 
+def _load_canary_surface(path: Path):
+    """Load a legacy canary surface, failing closed without a traceback.
+
+    Kept as a compatibility/safety API for historical recomputation callers. The
+    current archive validator does not treat uncommitted cache inputs as release
+    evidence.
+    """
+    if not path.is_file():
+        print(
+            json.dumps(
+                {
+                    "decision": "AUDIT_ERROR",
+                    "missing_prerequisite": str(path),
+                    "ok_to_submit": False,
+                }
+            ) + "\n",
+            file=sys.stderr,
+        )
+        raise SystemExit(1)
+    import numpy as np
+
+    return np.load(path)
+
+
 def validate(root: Path = ROOT) -> dict:
     root = Path(root)
     candidate = root / "docs/downloads" / CANDIDATE

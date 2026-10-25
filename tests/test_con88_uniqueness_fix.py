@@ -70,3 +70,23 @@ def test_archive_validator_passes_research_integrity_but_rejects_submission():
     )
     assert required.returncode == 2, required.stdout + required.stderr
     assert json.loads(required.stdout)["ok_to_submit"] is False
+
+
+@pytest.mark.skipif(
+    not (ROOT / "data/bridge/sample_submission.tif").is_file()
+    or not (ROOT / "data/registry/dense_17gemdoe.tif").is_file(),
+    reason="literal preflight inputs not restored",
+)
+def test_con88_preflight_direct_cli_delegates_to_shared_guard():
+    """The documented direct-script entry point must not fail at import time."""
+    result = subprocess.run(
+        [sys.executable, "scripts/con88_preflight.py"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        timeout=60,
+    )
+    assert result.returncode == 2, result.stdout + result.stderr
+    payload = json.loads(result.stderr)
+    assert payload["decision"] == "DUPLICATE_STOP"
+    assert payload["ok_to_submit"] is False

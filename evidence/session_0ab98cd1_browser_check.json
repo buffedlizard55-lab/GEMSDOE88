@@ -1,6 +1,6 @@
 {
   "schema": "gems88.browser-review.v1",
-  "checked_at_utc": "2026-10-25T18:50:01.781Z",
+  "checked_at_utc": "2026-10-25T18:53:24.730Z",
   "browser": "153.0.8010.0",
   "pages": [
     {
@@ -121,7 +121,7 @@
     "docs/data/hypothesis_queue.json": "f05aee8ff1e4b61a0e6116a32ed6c360b276b1270eea3d994cbcc9e42f180ad9",
     "docs/data/con88_gates.json": "ac07d7350bc2ea3ea590efca6670e711b9b04812fa18612802e4865e6568061f",
     "docs/data/con88_run_card.json": "a6cd94a814bb7ba8f5b3355b8430c4106fc6e0579ad39e53c3c9b422e037a45e",
-    "docs/SUBMIT.md": "d415b2e41ca8c64cb757a5a200adeec24c42345a321744a3695d4deae50e9baa",
+    "docs/SUBMIT.md": "ffbd936c95b0dc09c916902174f8600185175c9da8f52ad3bd72badb033763c5",
     "docs/status.json": "93899eaaa59cccf6f4420b97fa219795293ba796d31e5d1e986b1c439a977bf2",
     "docs/mdc88/index.html": "7968611af89256740904e40003e26bf49635d626a2f04b1e1943a1050d88ef1d",
     "docs/mdc88/executive-summary.html": "a224490fc994b54619d24275500ea6eba6670685be70bcda8f241ee4b25a8ae3",
