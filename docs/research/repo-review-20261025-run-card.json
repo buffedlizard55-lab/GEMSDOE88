@@ -1,0 +1,53 @@
+{
+  "schema": "gems88.repo-review-run-card.v1",
+  "date_utc": "2026-10-25",
+  "hypothesis": "No geological hypothesis was tested. Under the literal registry support rule, the hash-pinned full-footprint witness covers every allowed cell, so all nonempty dot placements fail the <=0.70 overlap gate before a new surface or raster is created.",
+  "mechanism": "Protocol-integrity review only: inspect the pinned saturation certificate, update landing-page status language, validate static-site links and artifact references, and run software tests. No geological model, feature stack, placement, or new TIFF was generated.",
+  "named_non_fault_process": "Not tested in this software review; for the historical MDPS-88 research artifact, the named geological mimic is Pleistocene Lake Lahontan shoreline benches and fluvial terrace risers.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "HISTORICAL_ONLY_NOT_RECOMPUTED_THIS_REVIEW",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.06672815072543178,
+    "ci95": [0.05511224682791515, 0.0784201650660985],
+    "withheld_positive_pixels": 22893,
+    "source": "evidence/mdps88_experiment2_20261024.json",
+    "new_experiments": 0
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "No new raster or surface was created. A hash-pinned dense witness is a pre-placement universal overlap blocker under the literal finite-value > 0 support rule.",
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "final_overlap_3px": 1.0,
+    "overlap_limit": 0.7,
+    "surface_spearman": null,
+    "surface_check": "NOT RUN; universal overlap certificate blocked before placement"
+  },
+  "raster": {
+    "status": "EXISTING_RESEARCH_ARTIFACT_ONLY; NOT GENERATED THIS REVIEW",
+    "file": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd"
+  },
+  "validator_output": {
+    "evidence_source": "historical saved-byte audit in evidence/protocol_review_43d08c7a.json; not rerun as a geological submission in this review",
+    "single_band_geotiff": true,
+    "no_nan_inside_footprint": true,
+    "all_finite": true,
+    "values_in_0_1": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "format_validity_is_not_uniqueness_or_slot_approval": true,
+    "ok_to_submit": false
+  },
+  "submission_name": "GEMSDOE88-MDPS88-MIX-20261024",
+  "submission_note": "Historical MDPS88 research raster; literal duplicate stop; no new model, score or slot; DO NOT SUBMIT",
+  "verdict": "negative",
+  "new_tiffs_generated": 0,
+  "experiments_run": 0,
+  "competition_slots_used": 0,
+  "organizer_confirmed_score": null
+}
