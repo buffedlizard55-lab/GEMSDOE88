@@ -1,0 +1,60 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "preregistration_id": "PREREG-20261025-PSGV88",
+  "frozen_utc": "2026-10-25T03:35:00Z",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "branch": "arena/08bcc64f-gemsdoe88",
+  "lane": "H88-PSGV",
+  "title": "2D FFT Wavenumber-Domain Baranov Pseudogravity-to-Bouguer Analytic Phase Dislocation, Multi-Depth Spectral Upward Continuation & 3-Specialist Hydrothermal Conduit Product-of-Experts (PSGV-20)",
+  "hypothesis": "Unfaulted granitic pluton margins and lithologic contacts step density and magnetization together so observed isostatic gravity horizontal gradients and Baranov pseudogravity horizontal gradients (obtained by 2D FFT wavenumber Poisson integration of Reduced-to-Pole magnetics, RTP / (|k| + k0)) are collinear and in-phase. Conversely, ascending 120-250 C hydrothermal fluids along blind intra-basin fault conduits alter ferrimagnetic titanomagnetite to paramagnetic hematite, pyrite, and smectite clay while preserving or silica-sealing the basement density step, creating a strong wavenumber Baranov pseudogravity deficit, monogenic phase dislocation, and multi-depth upward-continued tilt-angle decoupling that traces 60-degree dipping normal faults up-dip to their concealed surface rupture trace.",
+  "named_non_fault_mimic": "Reversely magnetized Miocene volcanic mesa rims and basalt flows (high Koenigsberger ratio Q > 1, producing negative RTP on high-slope plateau rims with zero geodetic transtensional strain), Pleistocene Lake Lahontan (~1330 m) and Lake Bonneville (~1555 m) shoreline carbonate tufa mounds, and flat closed-basin playa evaporite brine pans.",
+  "ranked_hypotheses_dossier": "research/candidate-hypotheses-20261025-psgv88.md",
+  "evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_radius_m": 300.0,
+    "seeds": [20, 21],
+    "n_folds": 8,
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "bootstrap_block_side_px": 200,
+    "bootstrap_draws": 2000,
+    "bootstrap_seed": 520888
+  },
+  "experiments": [
+    {
+      "id": "Exp01_psgv_zero_cat",
+      "description": "Pure zero-catalogue Spectral Baranov Pseudogravity + Hydrothermal Conduit Specialist (36 translation-invariant X_phys_diff + 20 PSGV-20 + 20 HGVC-20 = 76 zero-catalogue channels; 0 catalogue features) vs phys44_zero_cat and hgvc_zero_cat."
+    },
+    {
+      "id": "Exp02_psgv_spectral_joint",
+      "description": "Joint Spectral Baranov Pseudogravity + Structural Specialist (X_phys + PSGV-20 + X_vis22 + d_over_w) + completeness marginalization + exact CELF Dinkelbach allocation vs h88_adhr_incumbent."
+    },
+    {
+      "id": "Exp03_psgv_tri_specialist_poe",
+      "description": "3-Specialist Distance- & Uncertainty-Adaptive Log-Odds Product-of-Experts pooling Base Spatial Gradient (44/67-ch), Hydrothermal Outflow (HGVC-20), and 2D FFT Baranov Spectral Pseudogravity (PSGV-20) + completeness marginalization + exact CELF Dinkelbach allocation vs both h88_adhr_incumbent (0.194876) and h88_hgvc_incumbent (0.202947)."
+    }
+  ],
+  "experiment_budget_max": 3,
+  "wallclock_budget_seconds_max": 7200,
+  "gates": {
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "test_quadrant_scramble_invariance_required": true,
+    "preplacement_surface_max_abs_spearman": 0.90,
+    "final_dots_max_abs_spearman": 0.90,
+    "final_dots_max_forward_overlap_3px_like_for_like": 0.70,
+    "final_dots_max_forward_overlap_3px_literal": 0.70,
+    "fingerprint_max_share_le2": 0.0,
+    "fingerprint_min_share_gt25": 0.35,
+    "holdout_must_beat_incumbent_with_positive_paired_ci95": true
+  },
+  "production_design": {
+    "cross_fitting": "strictly 4-quadrant out-of-fold across seeds 20+21 for all 3 specialists (Base, HGVC-20, PSGV-20)",
+    "target_dots": 37654,
+    "near_stratum": {"domain": "2.5 < d_cat <= 25.0 px", "budget": 19200, "min_spacing_px": 3.05},
+    "far_stratum": {"domain": "d_cat > 25.0 px", "budget": 18454, "min_spacing_px": 3.15},
+    "expected_share_gt25": 0.490094
+  }
+}

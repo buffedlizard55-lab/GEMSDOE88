@@ -1,6 +1,12 @@
 # Competition submission guide (current decision: DO NOT SUBMIT)
 
-**Latest evaluated lane: H88-HGVC (5/5 discriminating screens PASS, `HOLDOUT-DTI = 0.202947`, `8/8` folds won; held fail-closed under literal `17GEMSDOE` dense witness — `DO NOT SUBMIT`, `0` weekly slots spent).**
+**Latest evaluated lane (`2026-10-25`): H88-PSGV (5/5 discriminating screens PASS, new all-time repo record `HOLDOUT-DTI = 0.204711`, `8/8` folds won vs `ADHR`, `6/8` vs `HGVC`, `350`-raster like-for-like unique `0.6321 <= 0.70`; held fail-closed under literal `17GEMSDOE` dense witness — `DO NOT SUBMIT`, `0` weekly slots spent).**
+- H88-PSGV GeoTIFF: [`gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT.tif`](downloads/gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT.tif) (`SHA-256: 19f22812894cd8b2498851846525d6d76caf7f87a40f59309ef74ca693f23b45`)
+- H88-PSGV Single-TIFF ZIP: [`gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT.zip`](downloads/gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT.zip) (`SHA-256: 884f3a52e6cea1a88f830815b1ef495143e328f2d22985334d6e05cd75600478`)
+- H88-PSGV Run card: [`data/psgv88_run_card.json`](data/psgv88_run_card.json) · Gate v3: [`data/psgv88_gate_v3.json`](data/psgv88_gate_v3.json)
+- Prepared Name (`25/140`): `GEMSDOE88-PSGV88-19F22812` · Prepared Note (`114/140`): `PSGV88 107ch Baranov spectral+hydrothermal 3-Spec PoE 37654d; HOLDOUT-DTI 0.2047 far 0.1342 blind 0.0763; UNSCORED`
+
+**Prior record lane (`2026-10-24`): H88-HGVC (5/5 discriminating screens PASS, `HOLDOUT-DTI = 0.202947`, `8/8` folds won; held fail-closed under literal `17GEMSDOE` dense witness — `DO NOT SUBMIT`, `0` weekly slots spent).**
 - H88-HGVC GeoTIFF: [`gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif`](downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif) (`SHA-256: d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef`)
 - H88-HGVC Single-TIFF ZIP: [`gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.zip`](downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.zip) (`SHA-256: 5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409`)
 - H88-HGVC Run card: [`data/hgvc88_run_card.json`](data/hgvc88_run_card.json) · Gate v3: [`data/hgvc88_gate_v3.json`](data/hgvc88_gate_v3.json)
@@ -39,6 +45,8 @@ Official review links: [metric and format](https://www.drivendata.org/competitio
 
 ```bash
 python scripts/restore_inputs.py --validation
+.venv/bin/python scripts/validate_psgv88.py
+.venv/bin/python scripts/validate_psgv88.py --require-submit  # expected exit 2
 .venv/bin/python scripts/validate_hgvc88.py
 .venv/bin/python scripts/validate_hgvc88.py --require-submit  # expected exit 2
 python3 scripts/validate_dhtc88.py

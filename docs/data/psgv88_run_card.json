@@ -1,0 +1,439 @@
+{
+  "schema": "gems88.psgv88.run_card.v1",
+  "run_id": "GEMSDOE88-PSGV88-20261025-19f22812",
+  "generated_utc": "2026-10-25T07:21:47Z",
+  "lane": "H88-PSGV",
+  "preregistration_id": "PREREG-20261025-PSGV88",
+  "hypothesis": "Unfaulted granitic pluton margins and lithologic contacts step density and magnetization together so observed isostatic gravity horizontal gradients and Baranov pseudogravity horizontal gradients (obtained by 2D FFT wavenumber Poisson integration of Reduced-to-Pole magnetics, RTP / (|k| + k0)) are collinear and in-phase. Conversely, ascending 120-250 C hydrothermal fluids along blind intra-basin fault conduits alter ferrimagnetic titanomagnetite to paramagnetic hematite, pyrite, and smectite clay while preserving or silica-sealing the basement density step, creating a strong wavenumber Baranov pseudogravity deficit, monogenic phase dislocation, and multi-depth upward-continued tilt-angle decoupling that traces 60-degree dipping normal faults up-dip to their concealed surface rupture trace.",
+  "mechanism": "20 zero-catalogue 2D FFT wavenumber-domain Baranov pseudogravity-to-Bouguer phase dislocation, multi-depth spectral upward continuation (0.5/1.5/3.0/6.0 km), Riesz monogenic phase congruency, and reversed-basalt/playa mimic decontamination channels + 20 HGVC hydrothermal conduit channels + 44 shared physics channels -> 3-Specialist Distance-Adaptive Log-Odds Product-of-Experts (ADHR base 44/67-ch + HGVC hydrothermal 56/87-ch + PSGV Baranov spectral 76/107-ch) -> 8-quadrant + disjoint boundary OOF cross-fitting -> H33-parity kernel-spaced CELF Dinkelbach allocation (37654 discrete {0,1} float32 dots, d_cat > 2.5 px, share_gt25 = 0.4901).",
+  "named_non_fault_mimic": "Reversely magnetized Miocene volcanic mesa rims and basalt flows (high Koenigsberger ratio Q > 1, producing negative RTP on high-slope plateau rims with zero geodetic transtensional strain), Pleistocene Lake Lahontan (~1330 m) and Lake Bonneville (~1555 m) shoreline carbonate tufa mounds, and flat closed-basin playa evaporite brine pans.",
+  "experiments_executed": 3,
+  "experiment_budget_max": 3,
+  "elapsed_seconds": 310.38,
+  "wallclock_budget_seconds_max": 7200,
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seeds": [
+      20,
+      21
+    ],
+    "n_folds": 8,
+    "withheld_positive_pixels": 22893,
+    "folds_won_vs_adhr": 8,
+    "folds_won_vs_hgvc": 6,
+    "candidate_exp03": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.2047111943059885,
+      "ci95": [
+        0.18691349394686108,
+        0.22180989889077113
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6904.70657663043,
+      "fpw": 70168.35946479328,
+      "fnw": 15988.293423369565
+    },
+    "exp01_zero_cat": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.11601187565604727,
+      "ci95": [
+        0.1032444428869377,
+        0.1288135141931301
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 5067.543561892666,
+      "fpw": 121766.6986109755,
+      "fnw": 17825.45643810733
+    },
+    "exp02_spectral_joint": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.19308541583599437,
+      "ci95": [
+        0.176327870159424,
+        0.20976568486036856
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6316.4099369145815,
+      "fpw": 65676.7643038915,
+      "fnw": 16576.59006308541
+    },
+    "control_phys44_zero_cat": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.1041632406049392,
+      "ci95": [
+        0.09120902426833577,
+        0.11782426166222124
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 4315.018210565626,
+      "fpw": 111240.66836608533,
+      "fnw": 18577.981789434365
+    },
+    "control_h88_adhr_incumbent": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.19487581335786947,
+      "ci95": [
+        0.1779885058395308,
+        0.21152814886175775
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 6464.596856403541,
+      "fpw": 67827.92847932842,
+      "fnw": 16428.40314359645
+    },
+    "far_gt10px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.13418992071470115,
+      "ci95": [
+        0.11441847551619638,
+        0.15585635514115412
+      ],
+      "withheld_positive_pixels": 10791,
+      "tpw": 1964.4949643193193,
+      "fpw": 28069.810610955512,
+      "fnw": 8826.505035680679
+    },
+    "blind_gt25px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.07632248676451044,
+      "ci95": [
+        0.0491938616540913,
+        0.10715633755462747
+      ],
+      "withheld_positive_pixels": 3117,
+      "tpw": 301.4241568536666,
+      "fpw": 6977.322158141092,
+      "fnw": 2815.575843146333
+    },
+    "paired_delta_vs_adhr_overall": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.009835380948119032,
+      "ci95": [
+        0.005036435194607646,
+        0.01445805584867555
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "paired_delta_vs_adhr_far_gt10px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.010709309941729167,
+      "ci95": [
+        0.002892766195636653,
+        0.018517090114412375
+      ],
+      "withheld_positive_pixels": 10791
+    },
+    "paired_delta_vs_adhr_blind_gt25px": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.00220073258350012,
+      "ci95": [
+        -0.01157544372608811,
+        0.015065287256577381
+      ],
+      "withheld_positive_pixels": 3117
+    }
+  },
+  "leakage_canary": {
+    "passed": true,
+    "threshold": 0.9,
+    "features_tested": 107,
+    "zero_catalogue_features_tested": 84,
+    "fold_visible_features_tested": 23,
+    "max_symmetric_auc": 0.770155,
+    "max_feature": "d2 (seed=20)",
+    "max_zero_catalogue_symmetric_auc": 0.590284,
+    "top15_all_features": [
+      {
+        "feature": "d2",
+        "group": "VIS-22",
+        "roc_auc": 0.229845,
+        "symmetric_auc": 0.770155
+      },
+      {
+        "feature": "d_perp",
+        "group": "VIS-22",
+        "roc_auc": 0.240997,
+        "symmetric_auc": 0.759003
+      },
+      {
+        "feature": "d",
+        "group": "VIS-22",
+        "roc_auc": 0.247393,
+        "symmetric_auc": 0.752607
+      },
+      {
+        "feature": "d_over_w",
+        "group": "VIS-22",
+        "roc_auc": 0.26764,
+        "symmetric_auc": 0.73236
+      },
+      {
+        "feature": "relay_facing",
+        "group": "VIS-22",
+        "roc_auc": 0.615828,
+        "symmetric_auc": 0.615828
+      },
+      {
+        "feature": "coherence",
+        "group": "VIS-22",
+        "roc_auc": 0.409144,
+        "symmetric_auc": 0.590856
+      },
+      {
+        "feature": "log_len",
+        "group": "VIS-22",
+        "roc_auc": 0.409702,
+        "symmetric_auc": 0.590298
+      },
+      {
+        "feature": "lidar_scarp_dipole",
+        "group": "PHYS-44",
+        "roc_auc": 0.590284,
+        "symmetric_auc": 0.590284
+      },
+      {
+        "feature": "relay_ratio",
+        "group": "VIS-22",
+        "roc_auc": 0.411598,
+        "symmetric_auc": 0.588402
+      },
+      {
+        "feature": "d_par_abs",
+        "group": "VIS-22",
+        "roc_auc": 0.411691,
+        "symmetric_auc": 0.588309
+      },
+      {
+        "feature": "psgv_lidar_bajada_psg_align",
+        "group": "PSGV-20",
+        "roc_auc": 0.587243,
+        "symmetric_auc": 0.587243
+      },
+      {
+        "feature": "hgvc_lidar_bajada_polarity",
+        "group": "HGVC-20",
+        "roc_auc": 0.586537,
+        "symmetric_auc": 0.586537
+      },
+      {
+        "feature": "topo10_curv_prof",
+        "group": "PHYS-44",
+        "roc_auc": 0.58481,
+        "symmetric_auc": 0.58481
+      },
+      {
+        "feature": "scarp_rel_cos2",
+        "group": "VIS-22",
+        "roc_auc": 0.583591,
+        "symmetric_auc": 0.583591
+      },
+      {
+        "feature": "cos2d",
+        "group": "VIS-22",
+        "roc_auc": 0.418121,
+        "symmetric_auc": 0.581879
+      }
+    ],
+    "hgvc20_features": [
+      {
+        "feature": "hgvc_lidar_bajada_polarity",
+        "group": "HGVC-20",
+        "roc_auc": 0.586537,
+        "symmetric_auc": 0.586537
+      },
+      {
+        "feature": "hgvc_topo10_shorefree_crest",
+        "group": "HGVC-20",
+        "roc_auc": 0.5803,
+        "symmetric_auc": 0.5803
+      },
+      {
+        "feature": "hgvc_zbase_antithetic_step",
+        "group": "HGVC-20",
+        "roc_auc": 0.548359,
+        "symmetric_auc": 0.548359
+      },
+      {
+        "feature": "hgvc_axial_strike_coherence",
+        "group": "HGVC-20",
+        "roc_auc": 0.548068,
+        "symmetric_auc": 0.548068
+      },
+      {
+        "feature": "hgvc_probe_vert_grad",
+        "group": "HGVC-20",
+        "roc_auc": 0.529991,
+        "symmetric_auc": 0.529991
+      },
+      {
+        "feature": "hgvc_updip_feeder_3p0km",
+        "group": "HGVC-20",
+        "roc_auc": 0.529518,
+        "symmetric_auc": 0.529518
+      },
+      {
+        "feature": "hgvc_kostrov_dilat_conduit",
+        "group": "HGVC-20",
+        "roc_auc": 0.529299,
+        "symmetric_auc": 0.529299
+      },
+      {
+        "feature": "hgvc_updip_feeder_1p5km",
+        "group": "HGVC-20",
+        "roc_auc": 0.528013,
+        "symmetric_auc": 0.528013
+      },
+      {
+        "feature": "hgvc_claycap_perched_resid",
+        "group": "HGVC-20",
+        "roc_auc": 0.527485,
+        "symmetric_auc": 0.527485
+      },
+      {
+        "feature": "hgvc_zbase_slope_decouple",
+        "group": "HGVC-20",
+        "roc_auc": 0.475214,
+        "symmetric_auc": 0.524786
+      },
+      {
+        "feature": "hgvc_lidar_crest_asymmetry",
+        "group": "HGVC-20",
+        "roc_auc": 0.524648,
+        "symmetric_auc": 0.524648
+      },
+      {
+        "feature": "hgvc_chi_strike_knick_bridge",
+        "group": "HGVC-20",
+        "roc_auc": 0.51934,
+        "symmetric_auc": 0.51934
+      },
+      {
+        "feature": "hgvc_redox_uth_kth_grad",
+        "group": "HGVC-20",
+        "roc_auc": 0.51126,
+        "symmetric_auc": 0.51126
+      },
+      {
+        "feature": "hgvc_updip60_hessian_crest",
+        "group": "HGVC-20",
+        "roc_auc": 0.508822,
+        "symmetric_auc": 0.508822
+      },
+      {
+        "feature": "hgvc_diseq_outflow_s8",
+        "group": "HGVC-20",
+        "roc_auc": 0.491455,
+        "symmetric_auc": 0.508545
+      },
+      {
+        "feature": "hgvc_sinter_decontam",
+        "group": "HGVC-20",
+        "roc_auc": 0.503539,
+        "symmetric_auc": 0.503539
+      },
+      {
+        "feature": "hgvc_demag_grav_conduit",
+        "group": "HGVC-20",
+        "roc_auc": 0.497671,
+        "symmetric_auc": 0.502329
+      },
+      {
+        "feature": "hgvc_multiphys_vessel_s2p5",
+        "group": "HGVC-20",
+        "roc_auc": 0.501172,
+        "symmetric_auc": 0.501172
+      },
+      {
+        "feature": "hgvc_spring_vent_s6",
+        "group": "HGVC-20",
+        "roc_auc": 0.500232,
+        "symmetric_auc": 0.500232
+      },
+      {
+        "feature": "hgvc_mimic_playa_tufa_shore",
+        "group": "HGVC-20",
+        "roc_auc": 0.500173,
+        "symmetric_auc": 0.500173
+      }
+    ],
+    "zero_test_quadrant_leakage_scramble_equal": true,
+    "max_psgv20_symmetric_auc": 0.587243,
+    "max_psgv20_feature": "psgv_lidar_bajada_psg_align"
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "registry_rasters_checked": 350,
+    "distinct_dot_sets_checked": 223,
+    "live_head_20261025_sibling_rasters_included": 109,
+    "surface_preplacement_max_abs_spearman": 0.176057,
+    "surface_preplacement_max_label": "sibling:GEMSDOE86__data__bridge__existing_faults.tif",
+    "final_max_abs_spearman": 0.1760573811953243,
+    "final_max_rho_label": "sibling:GEMSDOE86__data__bridge__existing_faults.tif",
+    "final_worst_like_for_like_overlap_3px": {
+      "label": "GEMSDOE88:gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+      "value": 0.6320975195198385
+    },
+    "unique_like_for_like": true,
+    "literal_all_positive_witness_overlap_3px": 1.0,
+    "unique_literal": false,
+    "concurrent_gems88_max_overlap_3px": 0.632098,
+    "live_head_20261025_sibling_max_overlap_3px": 0.488819
+  },
+  "raster_sha256": "19f22812894cd8b2498851846525d6d76caf7f87a40f59309ef74ca693f23b45",
+  "zip_sha256": "884f3a52e6cea1a88f830815b1ef495143e328f2d22985334d6e05cd75600478",
+  "download": "docs/downloads/gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT.tif",
+  "zip_download": "docs/downloads/gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT.zip",
+  "repo_copy": "submissions/gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT.tif",
+  "validator_output": {
+    "portal_ok": true,
+    "layout_parity_with_sample": true,
+    "no_nan_inside_footprint": true,
+    "no_nan_anywhere": true,
+    "values_in_0_1": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "nodata_undeclared": true,
+    "outside_footprint_zero": true,
+    "zero_on_mapped_catalogue": true,
+    "second_decoder": {
+      "name": "tifffile",
+      "equal": true
+    },
+    "positive_dots": 37654,
+    "fingerprint": {
+      "n": 37654,
+      "median_d_cat_px": 25.0,
+      "share_le2": 0.0,
+      "share_gt10": 0.7187284219472034,
+      "share_gt25": 0.4900940139161842
+    },
+    "fingerprint_screen_pass": true,
+    "raster_sha256": "19f22812894cd8b2498851846525d6d76caf7f87a40f59309ef74ca693f23b45",
+    "zip_sha256": "884f3a52e6cea1a88f830815b1ef495143e328f2d22985334d6e05cd75600478"
+  },
+  "submission_name": "GEMSDOE88-PSGV88-19F22812",
+  "submission_name_length": 25,
+  "submission_note": "PSGV88 107ch Baranov spectral+hydrothermal 3-Spec PoE 37654d; HOLDOUT-DTI 0.2047 far 0.1342 blind 0.0763; UNSCORED",
+  "submission_note_length": 114,
+  "all_5_discriminating_gates_pass": true,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "blocking_reasons": [
+    "UNIQUENESS: literal registry rule failed or unverified; no dense-prior exemption: 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif, sibling_head_20261025:GEMSDOE86__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
+  ],
+  "organizer_confirmed_score": null,
+  "weekly_slots_spent": 0
+}

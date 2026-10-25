@@ -675,8 +675,47 @@ def main(root: Path = ROOT) -> None:
         hgvc_card["raster_sha256"] in index and hgvc_card["raster_sha256"] in executive,
         "HGVC SHA-256 in pages",
     )
+
+    psgv_card = json.loads((root / "registry/psgv88_run_card.json").read_text())
+    psgv_web = json.loads((docs / "data/psgv88_run_card.json").read_text())
+    psgv_gv = json.loads((root / "registry/psgv88_gate_v3.json").read_text())
+    psgv_gv_web = json.loads((docs / "data/psgv88_gate_v3.json").read_text())
+    require(psgv_card == psgv_web, "Pages PSGV card differs from canonical registry card")
+    require(psgv_gv == psgv_gv_web, "Pages PSGV gate v3 differs from canonical registry gate")
+    require(
+        psgv_card["verdict"] == "negative"
+        and psgv_card["ok_to_download"] is True
+        and psgv_card["ok_to_submit"] is False
+        and psgv_card["all_5_discriminating_gates_pass"] is True,
+        "PSGV run card verdict/gate flags inconsistent",
+    )
+    require(
+        0 < len(psgv_card["submission_name"]) <= 140
+        and 0 < len(psgv_card["submission_note"]) <= 140,
+        "PSGV submission name/note must satisfy <=140 character cap",
+    )
+    psgv_tif = root / psgv_card["download"]
+    psgv_zip = root / psgv_card["zip_download"]
+    require(psgv_tif.is_file() and psgv_zip.is_file(), "PSGV tif/zip files exist")
+    require(
+        sha256(psgv_tif) == psgv_card["raster_sha256"] == psgv_gv["sha256"],
+        "PSGV TIFF SHA-256 mismatch across file, card, and gate",
+    )
+    require(
+        sha256(psgv_zip) == psgv_card["zip_sha256"] == psgv_gv["zip_sha256"],
+        "PSGV ZIP SHA-256 mismatch across file, card, and gate",
+    )
+    require(psgv_tif.name in index and psgv_tif.name in executive, "PSGV tif in pages")
+    require(
+        psgv_card["submission_name"] in index and psgv_card["submission_name"] in executive,
+        "PSGV name in pages",
+    )
+    require(
+        psgv_card["raster_sha256"] in index and psgv_card["raster_sha256"] in executive,
+        "PSGV SHA-256 in pages",
+    )
     print(
-        "PASS: H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
+        "PASS: H88-PSGV, H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
     )
 
 

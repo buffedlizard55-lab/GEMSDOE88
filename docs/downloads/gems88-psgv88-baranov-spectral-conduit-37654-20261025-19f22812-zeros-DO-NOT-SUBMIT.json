@@ -1,0 +1,16 @@
+{
+  "file": "gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "19f22812894cd8b2498851846525d6d76caf7f87a40f59309ef74ca693f23b45",
+  "zip_sha256": "884f3a52e6cea1a88f830815b1ef495143e328f2d22985334d6e05cd75600478",
+  "submission_name": "GEMSDOE88-PSGV88-19F22812",
+  "submission_note": "PSGV88 107ch Baranov spectral+hydrothermal 3-Spec PoE 37654d; HOLDOUT-DTI 0.2047 far 0.1342 blind 0.0763; UNSCORED",
+  "note_length": 114,
+  "positive_pixels": 37654,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "all_5_discriminating_gates_pass": true,
+  "verdict": "negative",
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null
+}

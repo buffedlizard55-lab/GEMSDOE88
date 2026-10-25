@@ -1,0 +1,90 @@
+{
+  "schema": "gems88.psgv88.gate_v3.v1",
+  "policy": "gems88-gate-v3",
+  "binding_literal_policy": "IR-88-86-literal-all-registry-v1",
+  "name": "gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT",
+  "submission_name": "GEMSDOE88-PSGV88-19F22812",
+  "submission_note": "PSGV88 107ch Baranov spectral+hydrothermal 3-Spec PoE 37654d; HOLDOUT-DTI 0.2047 far 0.1342 blind 0.0763; UNSCORED",
+  "candidate": {
+    "tif": "docs/downloads/gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-psgv88-baranov-spectral-conduit-37654-20261025-19f22812-zeros-DO-NOT-SUBMIT.zip",
+    "sha256": "19f22812894cd8b2498851846525d6d76caf7f87a40f59309ef74ca693f23b45",
+    "zip_sha256": "884f3a52e6cea1a88f830815b1ef495143e328f2d22985334d6e05cd75600478",
+    "dots": 37654
+  },
+  "sha256": "19f22812894cd8b2498851846525d6d76caf7f87a40f59309ef74ca693f23b45",
+  "zip_sha256": "884f3a52e6cea1a88f830815b1ef495143e328f2d22985334d6e05cd75600478",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "all_5_discriminating_gates_pass": true,
+  "verdict": "negative",
+  "label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT (held only by literal 17GEMSDOE dense witness + human selector)",
+  "blocking_reasons": [
+    "UNIQUENESS: literal registry rule failed or unverified; no dense-prior exemption: 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif, sibling_head_20261025:GEMSDOE86__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
+  ],
+  "portal_values_and_grid_ok": true,
+  "portal_layout_parity_with_sample": true,
+  "leakage_canary_pass": true,
+  "fingerprint": {
+    "n": 37654,
+    "median_d_cat_px": 25.0,
+    "share_le2": 0.0,
+    "share_gt10": 0.7187284219472034,
+    "share_gt25": 0.4900940139161842
+  },
+  "fingerprint_screen_pass": true,
+  "holdout_comparison": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 22893,
+    "candidate_dti": 0.2047111943059885,
+    "candidate_ci95": [
+      0.18691349394686108,
+      0.22180989889077113
+    ],
+    "far_gt10px_dti": 0.13418992071470115,
+    "far_gt10px_ci95": [
+      0.11441847551619638,
+      0.15585635514115412
+    ],
+    "blind_gt25px_dti": 0.07632248676451044,
+    "blind_gt25px_ci95": [
+      0.0491938616540913,
+      0.10715633755462747
+    ],
+    "adhr_incumbent_recomputed_dti": 0.19487581335786947,
+    "adhr_incumbent_stored_dti": 0.189634,
+    "hgvc_prior_record_dti": 0.202947,
+    "paired_delta_vs_adhr": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.009835380948119032,
+      "ci95": [
+        0.005036435194607646,
+        0.01445805584867555
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "folds_won_vs_adhr": 8,
+    "folds_won_vs_hgvc": 6,
+    "beats_both_bars_with_positive_ci95": true
+  },
+  "uniqueness": {
+    "registry_rasters_checked": 350,
+    "distinct_dot_sets_checked": 223,
+    "surface_preplacement_max_abs_spearman": 0.176057,
+    "worst_like_for_like_overlap": {
+      "label": "GEMSDOE88:gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+      "value": 0.6320975195198385
+    },
+    "worst_abs_rho": {
+      "label": "sibling:GEMSDOE86__data__bridge__existing_faults.tif",
+      "value": 0.1760573811953243
+    },
+    "unique_like_for_like": true,
+    "literal_all_positive_witness_overlap_3px": 1.0,
+    "unique_literal": false
+  },
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null
+}
