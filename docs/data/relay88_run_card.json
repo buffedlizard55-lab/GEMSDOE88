@@ -1,0 +1,49 @@
+{
+  "schema": "gems.run_card.v1",
+  "run_id": "GEMSDOE88-RELAY-fec0813c826b",
+  "generated_utc": "20261025T040124Z",
+  "lane": "H88-RELAY-DILATIONAL",
+  "hypothesis": "Geothermal upflow concentrates at fault-intersection / relay-zone / step-over dilational sites, not on simple fault traces.",
+  "mechanism": "Structure-tensor orientation/coherence of catalogue traces; junction proxy (on-trace low coherence); curvature (1-coherence); gaussian-smoothed relay propensity; zero within 3 px of trace and on catalogue; normalize [0,1].",
+  "named_non_fault_mimic": "Erosional drainage junctions and lithologic contacts produce curved intersecting lineament-like patterns.",
+  "how_it_differs": "Listed GEMSDOE submissions use distance-to-trace, scarp/ridge openness, or dotted Poisson ridge lines; this lane targets off-trace relay/dilational geometry.",
+  "evidence_class": "HOLDOUT-DTI (not yet established; local preflight only)",
+  "evaluator": "gems57-pooled-hide-v2 (alpha 0.2, beta 0.8, 300 m triangular)",
+  "holdout_dti": null,
+  "ci95": null,
+  "withheld_positives": null,
+  "uniqueness": {
+    "worst_dot_overlap_excl_witness": 0.6820405310971349,
+    "worst_dot_overlap_submission": "gems57_h57r2.tif",
+    "worst_spearman_excl_witness": 0.03780499944505947,
+    "worst_spearman_submission": "gems85_h85a_foldproper.tif",
+    "witness_3px_overlap": 1.0,
+    "witness_space_filling_all_footprint_cells_positive": true,
+    "literal_gate_result": "BLOCKED",
+    "overlap_limit": 0.7,
+    "rho_limit": 0.9
+  },
+  "validator": {
+    "all_checks_passed": true,
+    "no_nan": true,
+    "range_0_1": true,
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_match": true,
+    "zero_outside_footprint": true,
+    "zero_on_catalogue": true
+  },
+  "submission": {
+    "file": "docs/downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros.tif",
+    "sha256": "eb86d73d0fa20a7bd17d76a71a51ab527b5ace4594bcbcbdf9ab71898eb33825",
+    "bytes": 69585,
+    "name": "GEMSDOE88-RELAY-DILATIONAL",
+    "note": "Sparse relay-zone + intersection dilational dots off mapped traces; format-valid; UNSCORED; blocked-by-17GEMSDOE-witness",
+    "note_chars": 120,
+    "n_dots": 4293,
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "submit_block_reason": "binding literal 17GEMSDOE space-filling witness overlap > 0.70; not organizer-confirmed"
+  },
+  "verdict": "negative"
+}
