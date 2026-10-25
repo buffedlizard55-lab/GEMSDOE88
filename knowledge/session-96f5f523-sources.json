@@ -1,0 +1,39 @@
+{
+  "schema": "gems88.source-review.v1",
+  "retrieved_at_utc": "2026-10-25T18:32:23.061538+00:00",
+  "sources": [
+    {
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+      "classification": "OFFICIAL_REFERENCE_REPOSITORY",
+      "retrieved": true,
+      "bytes": 2367,
+      "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+      "verified_claim": "CPU and GPU setup options; download competition data separately."
+    },
+    {
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb",
+      "classification": "OFFICIAL_REFERENCE_REPOSITORY",
+      "retrieved": true,
+      "bytes": 1578736,
+      "sha256": "1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0",
+      "verified_claim": "Cells 0 and 16 use Monte Carlo U-Net training with Tversky loss alpha 0.2 beta 0.8; not independent certification of our triangular-kernel evaluator."
+    },
+    {
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/registry/submission_build.json",
+      "classification": "OWNER_BUILD_RECORD_NOT_ORGANIZER_RECEIPT",
+      "retrieved": true,
+      "bytes": 11644,
+      "sha256": "0d7c5c3fb0079410e0d519fac45a36b37dc6136f2e42d5c6b2468a29397c478a",
+      "verified_claim": "H33-2-B2 deletes dots within two catalogue pixels, leaving 37654; explicitly calls projection a model, not a score."
+    }
+  ],
+  "unretrieved_official_targets": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://gdr.openei.org/submissions/1391",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+  ],
+  "limitation": "These hosts are outside the sandbox outbound allowlist. No fresh primary geological literature, official leaderboard, portal receipt or account quota was retrieved."
+}

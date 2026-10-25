@@ -1,0 +1,128 @@
+{
+  "schema": "gems88.browser-review.v1",
+  "checked_at_utc": "2026-10-25T18:38:25.532Z",
+  "browser": "153.0.8010.0",
+  "pages": [
+    {
+      "page": "index.html",
+      "width": 1440,
+      "height": 1100,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "height": 844,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "research.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "sources.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/index.html",
+      "width": 1440,
+      "height": 1100,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "failed_fetch_stays_negative": true,
+  "source_sha256": {
+    "docs/index.html": "7584c0fdc4580626a058da6de46d7030abf3f29a0270bdb05dc6f58a1c5be24e",
+    "docs/executive-summary.html": "91f2928d42ea597c2b6249fec52e439b4ac2bc8c566355f186cb846e8b6f27a4",
+    "docs/research.html": "6079e27fe1d652c48e37cd3e529b355000ca152e44fcc41c5a243db37c038dd5",
+    "docs/sources.html": "6a595c6f28c52f89db5476cbf99b00bc3bd3d0d14c34593d6aba89277bb93629",
+    "docs/assets/site.css": "834256dce45ea5d350bea0942730f455e1c44edaa64e85f35527ad58c187c737",
+    "docs/assets/site.js": "d27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41",
+    "docs/data/current_release.json": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",
+    "docs/data/download_audit.json": "113e317fb3630647ee83e2222837e498d33f1ae6f3c0ab405d11fa96c7d3d43f",
+    "docs/data/mtas88_run_card.json": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
+    "docs/data/hypothesis_queue.json": "8878877962d1aac6a8b0b9633899b647042bb4cba57f826132dc1a7f5fa62849",
+    "docs/status.json": "65384ef5cac37cbb6399bd39fd8beb4b3b39aa091053371baa381084a407cdfa",
+    "docs/mdc88/index.html": "7968611af89256740904e40003e26bf49635d626a2f04b1e1943a1050d88ef1d",
+    "docs/mdc88/executive-summary.html": "a224490fc994b54619d24275500ea6eba6670685be70bcda8f241ee4b25a8ae3",
+    "docs/mdc88/status.json": "7d0223ff4f7b513ba5d3d68fd81ddc9b86f58955c9e3ffdf2e0131eff73033f9"
+  },
+  "ok_to_submit": false,
+  "research_download": {
+    "file": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "http_status": 200,
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "matches_canonical_bytes": true,
+    "ok_to_submit": false,
+    "click_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "suggested_filename": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "click_matches_canonical_bytes": true
+  },
+  "no_javascript_banner": "NO NEW TIFF · RESEARCH DOWNLOAD ONLY · DO NOT SUBMIT",
+  "no_javascript_stays_negative": true,
+  "status": "PASS"
+}

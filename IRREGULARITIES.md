@@ -837,3 +837,32 @@ Unconstrained pip rejected the selected NumPy 2.4.6 wheel for a hash mismatch (c
 ## IR-88-693B10AF-04 — late PGTD bypass and stale tensor novelty (2026-10-25)
 
 Main PR #168 added an executed harmonic Marussi-tensor method and negative archive while its CLI printed `generation_guard.inspect()` and continued into imports/fitting despite `DUPLICATE_STOP`. No user exception exists. Replaced the log-only call with `enforce_generation_preflight()` before all model imports; added real normal/optimized/module-entry negative tests. Retired the general GTD proposal against the SHA-pinned PGTD card; three source-reviewed variants remain. The parallel executed-lane helper also missed `sha256_tif`, PGTD’s real field; fixed its parsing and added an assertion. Preserved peer evidence/bytes as historical negative research, removed the misleading “unique TIFF” active banner into a closed archive, refreshed the complete 47-package audit and source snapshot only after reviewing the actual code. No model was rerun and no TIFF was created by this session. Shared evaluator/holdout/writer unchanged; parallel shared literal-v4 hardening and its documented pins are retained.
+
+## IR-88-96F5F523-01 — CON88 exception chain contradicted literal protocol
+
+At base `5b9397ba79be00164ab71e6145df777ffc607ea0`, CON88's preflight permitted
+generation, its validator used equal-support dense comparisons and did not require
+holdout improvement, its cards said `promote`, and the package/site audit trusted
+those stale flags to waive the negative marker. The primary warning was therefore
+not sufficient to prevent contradictory machine clearance. Six adversarial tests
+reproduced the row-level approval path before repair, including `python -O`.
+
+The compatibility preflight now delegates to the shared literal stop; the collar
+holdout CLI is also guarded before imports. The CON88 validator is a read-only,
+pinned saved-byte audit. Package/site auditors cannot grant slot approval or
+waive a filename marker from a historical card. Current CON88 metadata is negative;
+its original fixed-prediction diagnostics are not valid hide-and-recover evidence.
+The TIFF SHA is unchanged; only archive labeling/ZIP packaging was repaired.
+See `evidence/con88_clearance_withdrawal_96f5f523.json` for original metadata pins,
+source commit and old/new package hashes. This is not a new TIFF or experiment.
+
+## IR-88-96F5F523-02 — current evidence drift and a vacuous corruption test
+
+The first full review run found five failures (875 passed / 23 skipped): the
+withdrawn CON88 row still appeared cleared in saved evidence; README's current
+inventory count was stale; a corruption test hard-coded 47/47 after the inventory
+became 48/48; and two tests found the active browser receipt no longer matched the
+published hypothesis queue. Recomputed the research package audit, used the actual
+audited count and asserted that fixture replacement happens, and recorded a fresh
+browser receipt for the new current-review card without rewriting historical
+browser measurements. Final counts and gate results are recorded in that card.
