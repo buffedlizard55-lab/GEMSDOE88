@@ -142,7 +142,7 @@
   "verification": {
     "full_pytest": {
       "status": "PASS",
-      "passed": 900,
+      "passed": 903,
       "skipped": 23,
       "warnings": 70
     },
@@ -186,6 +186,12 @@
       "passed": 40,
       "skipped": 1,
       "superseded_by": "full suite after latest main integration: 900 passed / 23 skipped"
+    },
+    "latest_main_integration_suite": {
+      "status": "PASS",
+      "passed": 903,
+      "skipped": 23,
+      "warnings": 70
     }
   }
 }
