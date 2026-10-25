@@ -10,6 +10,7 @@ import zipfile
 from pathlib import Path
 
 import numpy as np
+import pytest
 import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
