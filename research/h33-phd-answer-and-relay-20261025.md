@@ -77,9 +77,9 @@ Machine-measured on `data/registry/h33_education.tif` (SHA-256 `c55bafc470054e82
 
 Build script: `scripts/build_unique_relay_submission.py` (deterministic; 19-band not required — catalogue grid only).
 Outputs:
-- `docs/downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros.tif` (SHA-256 `eb86d73d0fa20a7bd17d76a71a51ab527b5ace4594bcbcbdf9ab71898eb33825`)
+- `docs/downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros-DO-NOT-SUBMIT.tif` (SHA-256 `eb86d73d0fa20a7bd17d76a71a51ab527b5ace4594bcbcbdf9ab71898eb33825`)
 - single-member `.zip` (SHA-256 `2a1b...` see run card)
-- run card: `docs/downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros.run_card.json`
+- run card: `docs/downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros-DO-NOT-SUBMIT.run_card.json`
 - Local validation: `python scripts/restore_inputs.py --validation` then re-open the TIFF with rasterio/tifffile; all checks pass (see run card `validator.all_checks_passed: true`).
 
 Line-by-line confirmed against `vendor/gems57/grid.py`, `vendor/gems57/submission_writer.py`, `vendor/gems57/uniqueness.py`, `vendor/gems57/validate.py`. No hallucinated scores.

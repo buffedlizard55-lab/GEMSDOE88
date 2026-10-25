@@ -1,0 +1,68 @@
+{
+  "policy": "gems88-gate-v3",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "eligible_for_selector": false,
+  "approved_for_weekly_slot": false,
+  "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+  "blocking_reasons": [
+    "UNIQUENESS: literal registry rule failed or unverified; no dense-prior exemption: 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif, sibling_live:GEMSDOE86__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+    "UNIQUENESS: complete indexed registry audit not verified",
+    "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+    "UNIQUENESS (literal rule): forward 3px overlap vs dense/full-footprint registry raster(s): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif, sibling_live:GEMSDOE86__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
+  ],
+  "informational": [],
+  "note_len": 101,
+  "name_len": 36,
+  "human_step_remaining": "Separate selector authorization and the account's current portal allowance are required; this gate never spends a slot.",
+  "fingerprint": {
+    "n": 35000,
+    "median_d_cat_px": 25.05992889404297,
+    "share_le2": 0.0,
+    "share_gt10": 0.7571428571428571,
+    "share_gt25": 0.5142857142857142
+  },
+  "fingerprint_screen_passed": true,
+  "uniqueness_summary": {
+    "pinned_registry_rasters": 239,
+    "extended_registry_rasters": 326,
+    "worst_like_for_like_overlap_pinned": {
+      "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+      "value": 0.5433714285714286
+    },
+    "worst_like_for_like_overlap_extended": {
+      "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+      "value": 0.5433714285714286
+    },
+    "worst_abs_rho_extended": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 0.6676831888867063
+    },
+    "unique_like_for_like_pinned": true,
+    "unique_like_for_like_extended": true,
+    "unique_literal": false
+  },
+  "paired_delta_vs_adhr_b12_ctrl": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "delta": 0.00043928020340891494,
+    "ci95": [
+      -0.003808197793592312,
+      0.004727706673183349
+    ],
+    "withheld_positive_pixels": 22893
+  },
+  "beats_adhr_stored_bar": true,
+  "beats_vess_stored_bar": false,
+  "name": "gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT",
+  "file": "docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "fa17d9da6afae33298bc9e3cba83f26f6aefaffc357ce3b4c57827e11af2e8cb",
+  "zip_sha256": "1d44161d500e671cd6e7c29c326e1791ee531aa62e9f8bddcb32a5d635428df7",
+  "candidate": {
+    "tif": "docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.zip",
+    "tif_sha256": "fa17d9da6afae33298bc9e3cba83f26f6aefaffc357ce3b4c57827e11af2e8cb",
+    "zip_sha256": "1d44161d500e671cd6e7c29c326e1791ee531aa62e9f8bddcb32a5d635428df7"
+  }
+}

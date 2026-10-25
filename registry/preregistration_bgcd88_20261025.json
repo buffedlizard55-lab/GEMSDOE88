@@ -1,0 +1,51 @@
+{
+  "schema_version": "gems88.preregistration.v1",
+  "preregistration_id": "PREREG-H88-BGCD-20261025",
+  "written_utc": "2026-10-25T02:25:00Z",
+  "written_before_results": true,
+  "lane": "H88-BGCD",
+  "title": "Blind-Geothermal Geochemical-Disequilibrium, Tufa-Decontaminated Outflow Back-Projection, GeoDAWN 400 m Flight-Line-Notched Upward-Continuation & Active Slip-Deficit Structural Conduit Synthesis",
+  "budget": {
+    "max_experiments": 3,
+    "max_wall_seconds": 7200
+  },
+  "evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "version": "gems57-pooled-hide-v2",
+    "seeds": [20, 21],
+    "n_folds": 8,
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "block_side_px": 200,
+    "bootstrap_draws": 1000,
+    "withheld_positive_pixels_expected": {
+      "overall": 22893,
+      "far_gt10px": 10791,
+      "blind_gt25px": 3117
+    }
+  },
+  "physical_mechanism": "75% of Great Basin geothermal systems are blind (lack Quaternary surface scarps due to rapid alluvial-fan burial), yet leaking deep thermal fluids preserve high Na-K-Ca cation and chalcedony/quartz equilibration temperatures (120-265 C) inside cool/warm valley wells and springs (temp_c 15-45 C), creating a diagnostic chemical-thermal disequilibrium Delta_T_blind = max(T_cat, T_chalc, 0.85*T_qtz) - max(T_meas, 15). Back-projecting Delta_T_blind and tufa-decontaminated silica sinter/explosion-crater density up the piezometric/topographic gradient onto buried basement steps (B15 depth_to_base_surf), notched for USGS GeoDAWN 400 m E-W flight-line corrugations (Contract G16PC00016) and upward-continuation persistence (TMI_up150) plus fold-safe visible fault slip-rate (slip_mm_yr) tip-propagation deficits, isolates buried permeable fault conduits.",
+  "named_non_fault_mimics": [
+    "Pleistocene Lake Lahontan wave-agitated shoreline tufa mounds (~1,330 m Sehoo and ~1,555 m highstand shorelines; 158 Tufa/Tufa-travertine records in Paleo_geothermal_final.csv previously conflated with hydrothermal sinter)",
+    "USGS GeoDAWN Area-2 400 m (4 px) N90E aeromagnetic/radiometric traverse-line levelling corrugation and 150 m / 200 m basin-to-range hybrid drape transition artifacts",
+    "Flat basin-floor playa evaporite / smectite pans producing broad shallow MT conductivity highs (B17 cond_surf) over >1,200 m sediment fill without a basement density/depth step"
+  ],
+  "leakage_canary_rule": {
+    "max_single_feature_symmetric_auc": 0.90,
+    "wellspring_dist_known_fault_px_excluded": true,
+    "slip_rate_strictly_masked_to_fold_visible": true
+  },
+  "experiments": {
+    "Control": "h88_adhr_b12_ctrl: PHYS-44 + VIS-23 (corrected B12 det_elev scarp geometry + trace_segments_utm11.csv) dual-expectation LightGBM + Bayesian completeness fusion",
+    "Exp01": "bgcd_blind_phys57: Zero-catalogue 57-channel physical+hydrothermal model (PHYS-44 + BGCD-13 label-blind channels; zero catalogue features)",
+    "Exp02": "bgcd_slip_joint83: Single 83-channel joint dual-expectation model (PHYS-44 + BGCD-13 + VIS-23 + 3 fold-safe visible slip-rate channels) + completeness fusion (min_spacing_px=2.35)",
+    "Exp03": "h88_bgcd: Distance-adaptive Log-Odds Product-of-Experts pooling the 83-ch slip-structural specialist, 57-ch BGCD blind-geothermal specialist, and 44/67-ch baseline + ridge Dinkelbach allocation (min_spacing_px=2.35), with stratified share_gt25>=0.35 sensitivity logged alongside"
+  },
+  "uniqueness_and_gate_rules": {
+    "max_preplacement_abs_spearman_rho": 0.90,
+    "max_like_for_like_overlap_3px": 0.70,
+    "check_live_head_siblings_86_to_92": true,
+    "binding_literal_dense_witness_enforced": true,
+    "selector_required_for_weekly_slot": true
+  }
+}

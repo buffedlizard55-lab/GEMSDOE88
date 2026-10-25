@@ -130,31 +130,37 @@ def _bilinear_at_fp(
     return ((1.0 - wy) * ((1.0 - wx) * f00 + wx * f01) + wy * ((1.0 - wx) * f10 + wx * f11)).astype(np.float32)
 
 
-def _read_dbf_records(dbf_bytes: bytes) -> list[dict[str, str]]:
+def _iter_dbf_records(dbf_bytes: bytes, wanted: set[str] | None = None):
+    """Streaming DBF record generator (~0 MB RSS vs materializing hundreds of thousands of dicts)."""
     num_rec, hdr_len, rec_len = struct.unpack("<IHH", dbf_bytes[4:12])
-    fields: list[tuple[str, int]] = []
+    fields: list[tuple[str, int, int]] = []
     pos = 32
+    rel = 0
     while pos < hdr_len - 1 and dbf_bytes[pos] != 0x0D:
         fname = dbf_bytes[pos : pos + 11].split(b"\x00", 1)[0].decode("ascii", "replace")
         flen = dbf_bytes[pos + 16]
-        fields.append((fname, flen))
+        if wanted is None or fname in wanted:
+            fields.append((fname, rel, flen))
+        rel += flen
         pos += 32
-    records: list[dict[str, str]] = []
     offset = hdr_len
+    n_bytes = len(dbf_bytes)
     for _ in range(num_rec):
-        if offset >= len(dbf_bytes):
+        if offset >= n_bytes:
             break
         flag = dbf_bytes[offset]
-        offset += 1
-        row: dict[str, str] = {}
-        cur = offset
-        for fn, fl in fields:
-            row[fn] = dbf_bytes[cur : cur + fl].decode("latin1", "replace").strip()
-            cur += fl
-        offset += rec_len - 1
-        if flag != 0x2A:
-            records.append(row)
-    return records
+        base = offset + 1
+        offset += rec_len
+        if flag == 0x2A:
+            continue
+        yield {
+            fn: dbf_bytes[base + r0 : base + r0 + fl].decode("latin1", "replace").strip()
+            for fn, r0, fl in fields
+        }
+
+
+def _read_dbf_records(dbf_bytes: bytes) -> list[dict[str, str]]:
+    return list(_iter_dbf_records(dbf_bytes))
 
 
 def _splat_points(
@@ -339,12 +345,13 @@ def build_or_load_physics_memmap(
     slope_gate_fp = np.tanh(dmag[ys, xs] / 2.5).astype(np.float32)
     del dgy, dgx, dmag
 
+    mm.flush()
     with zipfile.ZipFile(ext / "2m_temperature_probe_INGENIOUS_regional_data.zip") as z:
-        dbf_rows = _read_dbf_records(
-            z.read("2m_temperature_probe_INGENIOUS_regional_data/2m_temperature_probe_n83geo/2m_temperature_probe_n83geo.dbf")
+        dbf_raw = z.read(
+            "2m_temperature_probe_INGENIOUS_regional_data/2m_temperature_probe_n83geo/2m_temperature_probe_n83geo.dbf"
         )
     plons, plats, pdabs = [], [], []
-    for r in dbf_rows:
+    for r in _iter_dbf_records(dbf_raw, wanted={"LongDegree", "LatDegreeN", "F2mDAB", "T2m"}):
         try:
             lon, lat = float(r["LongDegree"]), float(r["LatDegreeN"])
             dab, t2m = float(r["F2mDAB"]), float(r["T2m"])
@@ -354,6 +361,8 @@ def build_or_load_physics_memmap(
             plons.append(lon)
             plats.append(lat)
             pdabs.append(max(dab, 0.0) + 0.15 * max(t2m - 20.0, 0.0))
+    del dbf_raw
+    gc.collect()
     px_u, py_u = crs_transform("EPSG:4269", grid.crs, plons, plats)
     pcols, prows = inv_tf * (np.asarray(px_u), np.asarray(py_u))
     pw = np.asarray(pdabs, dtype=np.float32)
