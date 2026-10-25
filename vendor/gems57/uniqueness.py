@@ -826,10 +826,54 @@ def binding_duplicate_decision_v5(mine, registry_paths, allowed, valid, *, rho_l
                 verdict=('negative' if (dup or errors or my_dots == 0) else 'promote'), rows=rows)
 
 
+# IR-88-B4DFA10C-08: the preceding SDTL equal-support implementation and its
+# rationale are retained as historical diagnostics, NOT an authorized protocol
+# change. The standing user rule still binds on literal support for EVERY
+# registry raster. Reuse the existing shared v3 literal decision once here;
+# every public v5 caller receives that same gate, never a private lane exception.
+_equal_support_diagnostics_v5 = binding_duplicate_decision_v5
+
+
+def binding_duplicate_decision_v5(mine, registry_paths, allowed, valid, *,
+                                  rho_limit=RHO_LIMIT,
+                                  overlap_limit=OVERLAP_LIMIT,
+                                  expected_grid=None):
+    """Literal all-raster gate; equal-support comparisons are diagnostic only.
+
+    Historical numeric equal-support measurements remain reproducible. They
+    cannot replace a measured literal >0.70 overlap stop, including for dense
+    priors. Empty inventories, unreadable grids and missing/nonfinite rho fail
+    closed. This function never authorizes a competition slot.
+    """
+    out = _equal_support_diagnostics_v5(
+        mine, registry_paths, allowed, valid, rho_limit=rho_limit,
+        overlap_limit=overlap_limit, expected_grid=expected_grid)
+    rows = [dict(row, forward_overlap=row['literal_overlap'])
+            for row in out['rows']]
+    rows.extend(dict(error=row['error'], file=row['file'])
+                for row in out['errors'])
+    literal = binding_duplicate_decision_v3(
+        rows, rho_limit=rho_limit, overlap_limit=overlap_limit)
+    for row in out['rows']:
+        row['fails_equal_support_diagnostic'] = row['fails_overlap']
+        row['fails_overlap'] = bool(row['literal_overlap'] > overlap_limit)
+    invalid = bool(literal['invalid_measurements'] or out['my_dots'] == 0)
+    stop = bool(literal['stop_required'] or invalid)
+    out.update(
+        binding_rule=literal['binding_rule'],
+        equal_support_binding=False,
+        worst_literal_forward_overlap=literal['worst_literal_forward_overlap'],
+        worst_literal_forward_overlap_file=literal['worst_literal_forward_overlap_file'],
+        duplicate=literal['duplicate'], invalid_measurements=invalid,
+        stop_required=stop, verdict=('negative' if stop else 'promote'),
+        policy_correction='IR-88-B4DFA10C-08',
+        rationale='Equal-support top-n is diagnostic only; the user did not authorize replacing literal dot overlap.')
+    return out
+
+
 # --- Session 249e8cb3 append (IR-88-249E-01): representation-aware v4, proposed
 # under IR-88-128; retained append-only for reproducibility of the H88-MMRX run
-# card. Main subsequently adopted the equal-support v5 policy (IR-88-SDTL-01)
-# above; v4 grants no clearance and is not used by the current decision.
+# card. It grants no clearance and is not used by the current decision.
 
 def binding_duplicate_decision_v4(rows, *, rho_limit=RHO_LIMIT,
                                   overlap_limit=OVERLAP_LIMIT):

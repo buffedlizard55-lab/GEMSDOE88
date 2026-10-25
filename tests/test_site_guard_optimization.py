@@ -2,6 +2,7 @@
 
 import ast
 import json
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -16,33 +17,30 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_guard_rejects_corruption_under_both_interpreters(
     tmp_path, optimized, corruption
 ):
-    # Share immutable large artifacts; isolate only the file being corrupted.
+    # Copy published bytes: symlinks are not valid publication artifacts.
     (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
     (tmp_path / "evidence").symlink_to(ROOT / "evidence", target_is_directory=True)
-    (tmp_path / "research").symlink_to(ROOT / "research", target_is_directory=True)
-    (tmp_path / "IRREGULARITIES.md").symlink_to(ROOT / "IRREGULARITIES.md")
     docs = tmp_path / "docs"
     docs.mkdir()
     for source in (ROOT / "docs").iterdir():
         if source.name == "status.json":
             status = json.loads(source.read_text())
             if corruption == "status":
-                status["ok_to_submit"] = not status["ok_to_submit"]
+                status["ok_to_submit"] = True
             (docs / source.name).write_text(json.dumps(status))
         elif source.name == "index.html" and corruption == "unique-claim":
-            # Flip the rendered verdict pill without changing the evidence (IR-88-SDTL-01).
-            index = source.read_text()
-            if "SUBMIT: YES — OK TO DOWNLOAD AND SUBMIT" in index:
-                index = index.replace("SUBMIT: YES — OK TO DOWNLOAD AND SUBMIT", "SUBMIT: NO — DO NOT SUBMIT", 1)
-            else:
-                index = index.replace("SUBMIT: NO — DO NOT SUBMIT", "SUBMIT: YES — OK TO DOWNLOAD AND SUBMIT", 1)
+            index = source.read_text().replace(
+                "not unique under the binding all-registry rule", "genuinely unique"
+            )
             (docs / source.name).write_text(index)
         elif source.name == "downloads" and corruption == "download":
             downloads = docs / source.name
             downloads.mkdir()
             for artifact in source.iterdir():
-                (downloads / artifact.name).symlink_to(artifact)
+                shutil.copyfile(artifact, downloads / artifact.name)
             (downloads / "unmarked-research.tif").write_bytes(b"not a TIFF")
+        elif source.name in {"downloads", "research-variants"}:
+            shutil.copytree(source, docs / source.name)
         else:
             (docs / source.name).symlink_to(source, target_is_directory=source.is_dir())
     command = [sys.executable] + (["-O"] if optimized else [])
@@ -59,21 +57,21 @@ def test_guard_rejects_corruption_under_both_interpreters(
     if corruption == "download":
         assert "unmarked published research artifact" in result.stderr
     elif corruption == "unique-claim":
-        assert ("contradictory" in result.stderr or "machine evidence" in result.stderr
-                or "verdict" in result.stderr)
+        assert "must not overstate sparse-screen uniqueness" in result.stderr
 
 
 @pytest.mark.parametrize("optimized", [False, True])
 def test_marked_xgce_is_still_hash_pinned_and_negative(tmp_path, optimized):
     (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
     (tmp_path / "evidence").symlink_to(ROOT / "evidence", target_is_directory=True)
-    (tmp_path / "research").symlink_to(ROOT / "research", target_is_directory=True)
-    (tmp_path / "IRREGULARITIES.md").symlink_to(ROOT / "IRREGULARITIES.md")
     docs = tmp_path / "docs"
     docs.mkdir()
     for source in (ROOT / "docs").iterdir():
         if source.name != "downloads":
-            (docs / source.name).symlink_to(source, target_is_directory=source.is_dir())
+            if source.name == "research-variants":
+                shutil.copytree(source, docs / source.name)
+            else:
+                (docs / source.name).symlink_to(source, target_is_directory=source.is_dir())
             continue
         downloads = docs / "downloads"
         downloads.mkdir()
@@ -81,7 +79,7 @@ def test_marked_xgce_is_still_hash_pinned_and_negative(tmp_path, optimized):
             if item.name == "gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif":
                 (downloads / item.name).write_bytes(item.read_bytes() + b"tamper")
             else:
-                (downloads / item.name).symlink_to(item)
+                shutil.copyfile(item, downloads / item.name)
     command = [sys.executable] + (["-O"] if optimized else [])
     result = subprocess.run(
         command + ["-c", "from pathlib import Path; from scripts.check_site import main; "

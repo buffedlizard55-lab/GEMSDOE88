@@ -54,6 +54,8 @@ def main(root: Path = ROOT) -> None:
             "executive-summary.html",
             "research.html",
             "sources.html",
+            "mdc88/index.html",
+            "mdc88/executive-summary.html",
         )
     ]
     card = json.loads((root / "registry/mvrd_run_card.json").read_text())
@@ -97,8 +99,8 @@ def main(root: Path = ROOT) -> None:
     require(
         mtas["archived_research_download"]["validator_output"]["ok"] is True
         and mtas["archived_research_download"]["ok_to_submit"] is False
-        and mtas["archived_research_download"]["sha256"] == "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-        "MTAS archived format-only download disagrees with the pinned historical TDKL bytes",
+        and mtas["archived_research_download"]["sha256"] == current["file_sha256"],
+        "MTAS archived format-only download disagrees with canonical current release",
     )
     require(
         len(mtas["submission_note"]) == mtas["submission_note_length"] <= 140,
@@ -450,36 +452,40 @@ def main(root: Path = ROOT) -> None:
         'Site integrity check failed: audit["shared_gates_format_report"]["ok"] is True',
     )
 
-    # IR-88-SDTL-01: the canonical release is the current preregistered lane's
-    # v2 run card; its verdict (promote/negative) must be mirrored exactly, and
-    # historical cards (TDKL etc.) stay negative.
-    sdtl = json.loads((root / "registry/sdtl88_run_card.json").read_text())
-    sdtl_web = json.loads((docs / "data/sdtl88_run_card.json").read_text())
-    require(sdtl == sdtl_web, "Pages SDTL card differs from canonical registry card")
-    promote = sdtl["verdict"] == "promote" and sdtl["ok_to_submit"] is True
-    require(current["schema"] == "gems88.current-release.v3" and current["candidate"] == "H88-SDTL",
-            "current release must be the SDTL v3 card")
-    require(current["file"] == sdtl["raster"]["file"] and current["file_sha256"] == sdtl["raster"]["sha256"],
-            "current release file/hash differ from SDTL run card")
-    require(sha256(root / current["file"]) == current["file_sha256"], "current release bytes differ from card")
-    require(sha256(root / current["zip_file"]) == current["zip_sha256"], "current release ZIP bytes differ from card")
-    require(("DO-NOT-SUBMIT" in Path(current["file"]).name) is (not promote), "filename marker contradicts verdict")
-    require(current["ok_to_download"] is True and current["ok_to_submit"] is promote,
-            "current release ok_to_submit must equal the SDTL verdict")
-    require(status["status"] == ("OK_TO_SUBMIT" if promote else "BLOCKED"), "status.json state contradicts verdict")
-    require(status["raster_sha256"] == sdtl["raster"]["sha256"] and status["run_card"] == "registry/sdtl88_run_card.json",
-            "status does not bind canonical SDTL bytes/card")
-    require(status["ok_to_download_for_research"] is True and status["ok_to_submit"] is promote,
-            "status ok_to_submit must equal the SDTL verdict")
-    require(all(k in sdtl["validator"] and sdtl["validator"][k] is True for k in
-                ("no_nan_inside_footprint", "values_in_0_1", "crs_match", "shape_match", "transform_match", "ok")),
-            "SDTL validator output incomplete or failing")
-    if promote:
-        require(sdtl["holdout_dti"]["success"] is True and sdtl["leakage_canary"]["passed"] is True
-                and sdtl["correlation_overlap_vs_registry"]["surface_ok"] is True
-                and sdtl["correlation_overlap_vs_registry"]["dots_ok"] is True,
-                "promote verdict without all four gates passing")
-    require(tdkl["ok_to_submit"] is False, "historical TDKL card must remain negative")
+    require(
+        current["candidate"] == "H88-TDKL",
+        'Site integrity check failed: current["candidate"] == "H88-TDKL"',
+    )
+    require(
+        current["file"] == tdkl["raster"]["file"],
+        'Site integrity check failed: current file differs from TDKL run card',
+    )
+    require(
+        current["file_sha256"] == tdkl["raster_sha256"],
+        'Site integrity check failed: current hash differs from TDKL run card',
+    )
+    require(
+        current["ok_to_download"] is True and current["ok_to_submit"] is False,
+        'Site integrity check failed: current TDKL decision is not download-yes/submit-no',
+    )
+    require(
+        current["literal_duplicate"] is True and current["duplicate"] is True,
+        'Site integrity check failed: current TDKL literal duplicate stop is missing',
+    )
+    require(
+        status["status"] == "BLOCKED",
+        'Site integrity check failed: status["status"] == "BLOCKED"',
+    )
+    require(
+        status["raster_sha256"] == tdkl["raster_sha256"]
+        and status["run_card"] == "registry/tdkl88_run_card.json",
+        'Site integrity check failed: status does not bind canonical TDKL bytes/card',
+    )
+    require(
+        status["ok_to_download_for_research"] is True
+        and status["ok_to_submit"] is False,
+        'Site integrity check failed: status["ok_to_download_for_research"] is True and status["ok_to_submit"] is False',
+    )
 
     for page in pages:
         text = page.read_text()
@@ -499,21 +505,48 @@ def main(root: Path = ROOT) -> None:
     # Every published binary must carry the negative decision in its filename.
     # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
     # checked above; XGCE was renamed on main and requires no such exception.
+    sys.path.insert(0, str(ROOT))
+    from scripts.audit_downloads import PUBLICATION_DIRECTORIES, check_package_inventory
     legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
-    # IR-88-SDTL-01: the one promoted pair (verdict=promote on a v2 card whose
-    # bytes are hash-checked above) is the only unmarked binary allowed.
-    promoted = set()
-    if promote:
-        promoted = {(root / sdtl["raster"]["file"]).resolve(), (root / sdtl["raster"]["zip_file"]).resolve()}
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif", ".tiff", ".zip",
         }:
             require(
-                "DO-NOT-SUBMIT" in published.name or published.resolve() in legacy_negative
-                or published.resolve() in promoted,
+                "DO-NOT-SUBMIT" in published.name or published.resolve() in legacy_negative,
                 f"unmarked published research artifact: {published}",
             )
+            require(
+                published.parent in {docs / name for name in PUBLICATION_DIRECTORIES},
+                f"published artifact outside the declared audited directories: {published}",
+            )
+    # A negative filename is necessary but does not make an unrecorded ZIP or
+    # a newly added TIFF/ZIP pair part of the saved, two-decoder file audit.
+    check_package_inventory(root)
+    download_audit = json.loads((docs / "data/download_audit.json").read_text())
+    all_rows = download_audit["artifacts"] + download_audit.get("additional_research_artifacts", [])
+    recorded_files = {(row.get("publication_directory", "downloads"), name) for row in all_rows
+                      for name in (row["file"], row["zip_file"])}
+    actual_files = {(directory, p.name) for directory in PUBLICATION_DIRECTORIES
+                    for p in (docs / directory).glob("*")
+                    if p.is_file() and p.suffix.lower() in {".tif", ".tiff", ".zip"}}
+    require(actual_files == recorded_files and len(recorded_files) == 2 * len(all_rows),
+            "Published TIFF/ZIP inventory differs from the saved download audit")
+    require(download_audit["schema"] == "gems88.download-audit.v2"
+            and download_audit["tiff_count"] == len(download_audit["artifacts"])
+            and download_audit["research_download_pass_count"] == len(download_audit["artifacts"])
+            and download_audit["additional_research_tiff_count"] == len(download_audit["additional_research_artifacts"])
+            and download_audit["total_published_tiff_count"] == len(all_rows)
+            and download_audit["total_research_download_pass_count"] == len(all_rows)
+            and download_audit["protocol_eligible_count"] == 0,
+            "Saved download audit must cover both publication directories without granting submission clearance")
+    for row in all_rows:
+        directory = docs / row.get("publication_directory", "downloads")
+        require(row["format_valid"] is True and row["research_download_ok"] is True
+                and row["ok_to_submit"] is False
+                and sha256(directory / row["file"]) == row["sha256"]
+                and sha256(directory / row["zip_file"]) == row["zip_sha256"],
+                f"Published research bytes or negative audit changed: {directory.name}/{row['file']}")
 
     index = pages[0].read_text()
     executive = pages[1].read_text()
@@ -584,26 +617,29 @@ def main(root: Path = ROOT) -> None:
         and "literal_protocol_audit.json" in executive,
         'Site integrity check failed: "literal_protocol_audit.json" in index and "literal_protocol_audit.json" in executive',
     )
-    # IR-88-SDTL-01: the rendered decision must state the SDTL verdict explicitly.
-    for page_text in (index, executive):
-        block = page_text[page_text.index("<!-- CANONICAL-DECISION:START -->"):page_text.index("<!-- CANONICAL-DECISION:END -->")]
-        require("DOWNLOAD: YES" in block, "decision pill DOWNLOAD: YES missing")
-        if promote:
-            hero = block.split("decision-gates")[0]
-            require("SUBMIT: YES — OK TO DOWNLOAD AND SUBMIT" in hero and "SUBMIT: NO" not in hero
-                    and "DO NOT SUBMIT" not in hero,
-                    "promote verdict must render OK TO DOWNLOAD AND SUBMIT and nothing contradictory")
-        else:
-            require("SUBMIT: NO — DO NOT SUBMIT" in block and "OK TO DOWNLOAD AND SUBMIT" not in block,
-                    "negative verdict must render DO NOT SUBMIT and nothing contradictory")
-        require(sdtl["raster"]["sha256"] in page_text and sdtl["submission_name"] in page_text
-                and sdtl["submission_note"] in page_text and Path(sdtl["raster"]["file"]).name in page_text,
-                "SDTL file identity (hash, name, note, filename) missing from page")
-        require("data/sdtl88_run_card.json" in page_text, "SDTL run card link missing")
-    require("Current decision · " in index and "lane H88-SDTL" in index, "overview must lead with the SDTL decision")
+    require(
+        "DOWNLOAD FOR RESEARCH: YES" in index,
+        'Site integrity check failed: "DOWNLOAD FOR RESEARCH: YES" in index',
+    )
+    require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
+    require(
+        "Current review · 2026-10-25" in index
+        and "NO FILE APPROVED" in index
+        and "every nonempty dot set fails the literal overlap limit" in index,
+        "Overview must present the current fail-closed decision before archived candidates",
+    )
+    require(
+        "genuinely unique" not in index.lower()
+        and "not unique under the binding all-registry rule" in index,
+        "Overview must not overstate sparse-screen uniqueness as global uniqueness",
+    )
     require(
         card["raster_sha256"] in index,
         'Site integrity check failed: archived MVRD hash missing from overview',
+    )
+    require(
+        tdkl["raster_sha256"] in index and tdkl["raster_sha256"] in executive,
+        'Site integrity check failed: canonical TDKL hash missing from overview/guide',
     )
     require(
         "0.197314" in index and "0.197314" in research,
@@ -627,12 +663,15 @@ def main(root: Path = ROOT) -> None:
     require(dhtc["raster_sha256"][:16] in index and dhtc["raster_sha256"][:16] in executive, "DHTC hash in pages")
     for page_text in (index, executive):
         require(
-            page_text.index('id="current-decision"') < page_text.index('class="archive-lanes"'),
-            "Pages must lead with the current SDTL decision before archived lanes",
+            page_text.index('id="mtas-review"') < page_text.index('class="archive-lanes"')
+            and 'NO NEW TIFF: DUPLICATE — STOP' in page_text
+            and 'data/mtas88_run_card.json' in page_text
+            and mtas["archived_research_download"]["sha256"] in page_text,
+            "Pages must lead with the MTAS no-new-file stop and a marked historical download",
         )
     js = (docs / "assets/site.js").read_text()
     require(
-        "fetch('data/sdtl88_run_card.json'" in js
+        "fetch('data/mtas88_run_card.json'" in js
         and "fetch('data/download_audit.json'" in js
         and "fetch('status.json'" in js
         and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
@@ -768,6 +807,14 @@ def main(root: Path = ROOT) -> None:
     # the expected negative words happen to appear much further down the page.
     sys.path.insert(0, str(ROOT))
     from scripts import render_decision
+    for page, kind in ((pages[4], "overview"), (pages[5], "guide")):
+        require(page.read_text() == render_decision.legacy_notice(kind),
+                "Legacy page must withdraw unsupported upload clearance and link the canonical decision")
+    legacy_status = json.loads((docs / "mdc88/status.json").read_text())
+    require(legacy_status["ok_to_submit"] is False
+            and legacy_status["status"] == "BLOCKED_HISTORICAL_RESEARCH"
+            and legacy_status["recommended_for_weekly_slot"] is False,
+            "Legacy status must not advertise a ready-to-submit file")
     for page, kind in ((pages[0], "overview"), (pages[1], "guide")):
         text = page.read_text()
         require(
@@ -897,8 +944,8 @@ def main(root: Path = ROOT) -> None:
         require(bpwd_card["submission_name"] in page_txt, f"BPWD submission_name missing in {page_name}")
         require(bpwd_card["raster_sha256"] in page_txt, f"BPWD raster_sha256 missing in {page_name}")
     require(
-        index.index('id="current-decision"') < index.index('id="bpwd-hero"') < index.index('class="archive-lanes"')
-        and executive.index('id="current-decision"') < executive.index('id="bpwd-hero"') < executive.index('class="archive-lanes"'),
+        index.index('id="mtas-review"') < index.index('id="bpwd-hero"') < index.index('class="archive-lanes"')
+        and executive.index('id="mtas-review"') < executive.index('id="bpwd-hero"') < executive.index('class="archive-lanes"'),
         "BPWD hero must appear between canonical decision and archive-lanes",
     )
 
@@ -948,10 +995,9 @@ def main(root: Path = ROOT) -> None:
         vcaz_card["raster_sha256"] in index and vcaz_card["raster_sha256"] in executive,
         "VCAZ SHA-256 in pages",
     )
-    require("fetch('data/sdtl88_run_card.json'" in js and "fetch('data/bpwd88_run_card.json'" in js,
-            "site.js must verify the canonical SDTL card and the BPWD record")
+    require("fetch('data/vcaz88_run_card.json'" in js, "site.js must verify vcaz88_run_card.json")
     print(
-        "PASS: canonical SDTL decision first, H88-BPWD record, H88-VCAZ, research bytes, archived records, Pages links and verdict-consistent gates agree"
+        "PASS: canonical decision first, H88-BPWD record, H88-VCAZ, research bytes, archived records, Pages links and negative gates agree"
     )
 
 

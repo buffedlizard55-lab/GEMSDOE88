@@ -95,7 +95,7 @@
   },
   "generation_guard": {
     "file": "scripts/generation_guard.py",
-    "count": 90,
+    "count": 89,
     "entrypoints": [
       "build_candidate.py",
       "build_cj88_submission.py",
@@ -170,7 +170,6 @@
       "run_lsc88_experiment.py",
       "run_mdps88_experiment.py",
       "run_mdps88_experiment2.py",
-      "run_mmrx88_experiment.py",
       "run_mrr88_experiment.py",
       "run_mtas88_experiment.py",
       "run_mvrd88_experiment.py",

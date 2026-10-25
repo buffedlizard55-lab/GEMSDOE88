@@ -122,16 +122,21 @@
     "dots_worst_abs_spearman": 0.08365658134093792,
     "rho_limit": 0.9,
     "overlap_limit": 0.7,
-    "binding_rule": "equal-support-forward-overlap + rank-correlation (IR-88-SDTL-01)",
+    "binding_rule": "literal-forward-overlap + rank-correlation (IR-88-86; IR-88-B4DFA10C-08)",
     "surface_ok": true,
-    "dots_ok": true,
-    "scope": "Local registry: pinned sibling rasters in data/registry plus every GEMSDOE88 published TIFF; not a complete organizer registry."
+    "dots_ok": false,
+    "scope": "Historical source-card measurement against 68 local rasters, not a fresh current-registry audit or complete organizer registry. The current saved-file inventory is audited separately.",
+    "historical_equal_support_binding_rule": "equal-support-forward-overlap + rank-correlation (IR-88-SDTL-01)",
+    "historical_equal_support_dots_ok": true,
+    "equal_support_binding": false,
+    "literal_worst_forward_overlap": 1.0,
+    "literal_worst_overlap_file": "registry/dense_17gemdoe.tif"
   },
   "raster": {
-    "file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.tif",
+    "file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT.tif",
     "sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
-    "zip_file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.zip",
-    "zip_sha256": "37ba4d0a4685f47e2256fedec952f1b278392da7e79b2185da55af2655307e6f",
+    "zip_file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "9d576a0b11ea0deca95838e1eee6e27745bb1fd591e986823fe4cdaaaad6ab28",
     "n_dots": 24799,
     "k_truth_est": 14265.713885455294,
     "production_seed": 22
@@ -149,8 +154,8 @@
   "submission_name": "gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros",
   "submission_note": "H88-SDTL stress-field slip/dilation-tendency lineaments; HOLDOUT-DTI 0.0967 vs ctrl 0.0856; 24799 dots; UNSCORED",
   "note_chars": 112,
-  "verdict": "promote",
-  "ok_to_submit": true,
+  "verdict": "negative",
+  "ok_to_submit": false,
   "organizer_confirmed": null,
   "experiments_run": 3,
   "experiment_budget_max": 3,
@@ -1247,5 +1252,14 @@
       "fails_overlap": false,
       "fails_rho": false
     }
-  ]
+  ],
+  "status": "HISTORICAL_RESEARCH_CLEARANCE_WITHDRAWN",
+  "archival_relabel_only": true,
+  "current_session_experiments_run": 0,
+  "current_session_rasters_generated": 0,
+  "clearance_corrected_at_utc": "2026-10-25T14:48:56.293409+00:00",
+  "clearance_withdrawal_reason": "SDTL clearance withdrawn: equal-support top-n was not authorized to replace the standing literal >70% / 3 px overlap stop against any registry raster. The original SDTL dots_rows already measure literal overlap 1.0 against the pinned dense witness. Historical holdout improvement is versus its own PHYS-44 control, not a demonstrated win over the current same-fold incumbent. This is retained research, not a new candidate or upload clearance.",
+  "original_run_card_sha256": "91a85a69d1a72b1535f758419942d125673a4302cbeffe384ce215eec06003c5",
+  "scientific_origin_commit": "a63e54b64223db21432a9c0fa0b9e77e77c9ebab",
+  "scientific_measurements_sha256": "1b4ab51171e2d12b28e43382a433baf62d0de9f29f909b03c8bdd1bc9dfc2e91"
 }

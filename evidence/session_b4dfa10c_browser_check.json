@@ -1,0 +1,122 @@
+{
+  "schema": "gems88.browser-review.v1",
+  "checked_at_utc": "2026-10-25T14:52:20.215Z",
+  "browser": "153.0.8010.0",
+  "pages": [
+    {
+      "page": "index.html",
+      "width": 1440,
+      "height": 1100,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "height": 844,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "research.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "sources.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/index.html",
+      "width": 1440,
+      "height": 1100,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "failed_fetch_stays_negative": true,
+  "source_sha256": {
+    "docs/index.html": "e6fc8bf2d495bc5caae31bded50dfe94c665987d320e5d876ffb9fae8968b80a",
+    "docs/executive-summary.html": "b2f10f608e46d7d071b9489097d1e2301ff1b1f589e7bd449fb4d687674d9d09",
+    "docs/research.html": "8ed5f6b321dd457043f07873da72464cc7db4950140e559bff07116e323cf15b",
+    "docs/sources.html": "137c2a935cc0fe2a08db98c2107a0641c13ae91ab35029cb88b546dd2a75227b",
+    "docs/assets/site.css": "834256dce45ea5d350bea0942730f455e1c44edaa64e85f35527ad58c187c737",
+    "docs/assets/site.js": "d27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41",
+    "docs/data/current_release.json": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",
+    "docs/data/download_audit.json": "b98b0c9952d7f1396114a23da74d3116b3ceeb4feaece85d297c7ff83049065c",
+    "docs/data/mtas88_run_card.json": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
+    "docs/status.json": "fc998b0b8591dee68264aba839696d1b5d9a9df2acb6e95f37c37ca965cd540e",
+    "docs/mdc88/index.html": "7968611af89256740904e40003e26bf49635d626a2f04b1e1943a1050d88ef1d",
+    "docs/mdc88/executive-summary.html": "a224490fc994b54619d24275500ea6eba6670685be70bcda8f241ee4b25a8ae3",
+    "docs/mdc88/status.json": "7d0223ff4f7b513ba5d3d68fd81ddc9b86f58955c9e3ffdf2e0131eff73033f9"
+  },
+  "ok_to_submit": false,
+  "research_download": {
+    "file": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "http_status": 200,
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "matches_canonical_bytes": true,
+    "ok_to_submit": false
+  },
+  "status": "PASS"
+}

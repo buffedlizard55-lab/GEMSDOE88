@@ -132,11 +132,11 @@ def test_run_card_four_way_parity_and_audit_invariants():
     # The current status feed follows latest integrated H88-TDKL, while the
     # four-way MRR card remains immutable history.
     status_doc = json.loads((ROOT / "docs/status.json").read_text())
-    current_doc = json.loads((ROOT / "registry/sdtl88_run_card.json").read_text())
-    assert status_doc["raster_sha256"] == current_doc["raster"]["sha256"]
-    assert status_doc["run_card"] == "registry/sdtl88_run_card.json"
+    current_doc = json.loads((ROOT / "registry/tdkl88_run_card.json").read_text())
+    assert status_doc["raster_sha256"] == current_doc["raster_sha256"]
+    assert status_doc["run_card"] == "registry/tdkl88_run_card.json"
     assert status_doc["raster_sha256"] != card["raster_sha256"]
-    assert status_doc["ok_to_submit"] is (current_doc["verdict"] == "promote")
+    assert status_doc["ok_to_submit"] is False
     assert status_doc["ok_to_download_for_research"] is True
 
     tif_path = ROOT / card["artifact"]

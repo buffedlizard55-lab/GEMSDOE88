@@ -1,12 +1,12 @@
 {
-  "file": "gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.tif",
+  "file": "gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
   "bytes": 109159,
-  "submission_name": "gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros",
+  "submission_name": "gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT",
   "note": "H88-SDTL stress-field slip/dilation-tendency lineaments; HOLDOUT-DTI 0.0967 vs ctrl 0.0856; 24799 dots; UNSCORED",
   "note_chars": 112,
   "validator": {
-    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.tif",
+    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 109159,
     "sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
     "meta": {
@@ -62,7 +62,7 @@
     "footprint_fraction": 0.0047991503613151205
   },
   "template_report": {
-    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.tif",
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 109159,
     "sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
     "bands": 1,
@@ -110,14 +110,19 @@
     "ok": true,
     "validation_class": "local on-disk template/range check; not organizer upload acceptance"
   },
-  "zip_file": "gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.zip",
-  "zip_sha256": "37ba4d0a4685f47e2256fedec952f1b278392da7e79b2185da55af2655307e6f",
+  "zip_file": "gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "9d576a0b11ea0deca95838e1eee6e27745bb1fd591e986823fe4cdaaaad6ab28",
   "approved_for_weekly_slot": false,
   "promoted": false,
   "submission_slots_used": 0,
-  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "status": "HISTORICAL_RESEARCH_CLEARANCE_WITHDRAWN",
   "metadata": {
     "lane": "H88-SDTL",
     "preregistration_id": "PREREG-20261025-SDTL88"
-  }
+  },
+  "ok_to_submit": false,
+  "clearance_withdrawal_reason": "SDTL clearance withdrawn: equal-support top-n was not authorized to replace the standing literal >70% / 3 px overlap stop against any registry raster. The original SDTL dots_rows already measure literal overlap 1.0 against the pinned dense witness. Historical holdout improvement is versus its own PHYS-44 control, not a demonstrated win over the current same-fold incumbent. This is retained research, not a new candidate or upload clearance.",
+  "scientific_origin_commit": "a63e54b64223db21432a9c0fa0b9e77e77c9ebab",
+  "archival_relabel_only": true,
+  "original_tiff_sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e"
 }

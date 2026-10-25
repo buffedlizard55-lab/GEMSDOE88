@@ -23,8 +23,9 @@ import numpy as np
 import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "vendor"))
+sys.path[:0] = [str(ROOT), str(ROOT / "vendor")]
 from gems57.grid import load_grid  # noqa: E402
+from scripts.validate_artifact import validate_artifact  # noqa: E402
 
 
 def sha256(path: Path) -> str:
@@ -73,6 +74,8 @@ def main() -> int:
     with zipfile.ZipFile(zf) as z:
         require(z.namelist() == [tif.name] and z.read(tif.name) == tif.read_bytes(), "ZIP content")
 
+    shared_format = validate_artifact(tif, ROOT / "data/bridge/sample_submission.tif")
+    require(shared_format["ok"], "shared saved-file format audit failed")
     grid = load_grid(ROOT / "data/bridge")
     with rasterio.open(ROOT / "data/bridge/sample_submission.tif") as s:
         ref = (s.crs, s.width, s.height, s.transform)
@@ -93,6 +96,7 @@ def main() -> int:
         "ok": True, "file": tif.name, "sha256": card["sha256_tif"], "dots": n_dots,
         "ok_to_download": card["ok_to_download"], "ok_to_submit": card["ok_to_submit"],
         "verdict": card["verdict"], "gates": gates, "stop_reasons": card["stop_reasons"],
+        "shared_local_format_audit": shared_format,
     }, indent=1))
     if args.require_submit and not card["ok_to_submit"]:
         print("NOT CLEARED FOR A COMPETITION SLOT", file=sys.stderr)

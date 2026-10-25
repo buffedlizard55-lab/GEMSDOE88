@@ -105,52 +105,36 @@ def verify_template(root=ROOT):
 
 
 def current_status(root=ROOT):
-    """Represent the canonical lane (H88-SDTL v2 run card). Every flag is derived
-    from the card plus a fresh byte check; nothing here is hand-set (IR-88-SDTL-01)."""
-    import hashlib
+    """Represent canonical H88-TDKL. A format PASS is not slot approval."""
+    from scripts.validate_current import release_report
 
-    card = json.loads((root / 'registry/sdtl88_run_card.json').read_text())
-    if card.get('schema') != 'gems88.run_card.v2' or card.get('lane') != 'H88-SDTL':
-        raise ValueError('canonical run card is not a gems88.run_card.v2 H88-SDTL card')
-    tif = root / card['raster']['file']
-    with tif.open('rb') as stream:
-        on_disk = hashlib.file_digest(stream, 'sha256').hexdigest()
-    if on_disk != card['raster']['sha256']:
-        raise ValueError('canonical TIFF bytes differ from run card')
-    h = card['holdout_dti']
-    u = card['correlation_overlap_vs_registry']
+    report = release_report(root)
     problems = []
-    if not h['success']:
-        problems.append('HOLDOUT: preregistered rule (delta>0, CI low>0, >=5/8 folds) not met')
-    if not card['leakage_canary']['passed']:
-        problems.append('CANARY: single-feature symmetric AUC exceeds 0.90')
-    if not (u['surface_ok'] and u['dots_ok']):
-        problems.append('UNIQUENESS: v5 equal-support overlap or rank correlation exceeds the limit')
-    if not card['validator']['ok']:
+    if report['paired_delta_ci95'][0] <= 0:
+        problems.append('HOLDOUT: paired improvement is not positive at 95% confidence')
+    if report['duplicate'] or report['literal_registry_overlap_3px'] > 0.70:
+        problems.append('UNIQUENESS: literal registry overlap exceeds 0.70')
+    if report['postmerge_max_concurrent_overlap_3px'] > 0.70:
+        problems.append('UNIQUENESS: post-merge concurrent-lane overlap exceeds 0.70')
+    if not report['format_valid']:
         problems.append('FORMAT: saved-byte validation failed')
-    promote = card['verdict'] == 'promote' and card['ok_to_submit'] is True
-    if promote and problems:
-        raise ValueError('run card says promote but a gate fails: ' + '; '.join(problems))
-    if (not promote) and not problems:
-        problems.append('VERDICT: run card is negative')
     return {
-        'evidence_schema_complete': bool(card['validator']['ok']),
+        'evidence_schema_complete': bool(report['format_valid']),
         'approved_for_weekly_slot': False,
-        'status': 'OK_TO_SUBMIT' if promote else 'BLOCKED',
+        'status': 'BLOCKED' if problems else 'SELECTOR_REQUIRED',
         'problems': problems,
-        'ok_to_download_for_research': True,
-        'ok_to_submit': promote,
-        'raster_sha256': card['raster']['sha256'],
-        'policy': 'IR-88-SDTL-01: holdout rule + canary + uniqueness v5 (equal-support) + shared validator',
-        'run_card': 'registry/sdtl88_run_card.json',
-        'current_review': 'data/sdtl88_run_card.json',
-        'current_review_status': card['verdict'],
-        'new_tif_generated': True,
-        'new_tif_sha256': card['raster']['sha256'],
+        'ok_to_download_for_research': bool(report['research_download_ok']),
+        'ok_to_submit': False,  # selector has never approved a weekly slot
+        'raster_sha256': report['file_sha256'],
+        'policy': 'binding-literal-all-registry-v1 + concurrent-lane overlap',
+        'run_card': 'registry/tdkl88_run_card.json',
+        'current_review': 'data/repo_review_20261025.json',
+        'current_review_status': 'DUPLICATE_STOP',
+        'new_tif_generated': False,
+        'new_tif_sha256': None,
         'current_review_note': (
-            ('Verdict promote: all four automated gates pass; OK to download and submit. ' if promote else
-             'Verdict negative: a gate failed; research download only. ')
-            + 'Weekly slot choice remains the owner\'s; no slot is picked here.'
+            'No new TIFF can satisfy the literal 17GEMSDOE overlap gate; '
+            'archived current-release file remains research-only.'
         ),
     }
 
@@ -168,7 +152,7 @@ def main():
             'problems': [f'AUDIT_ERROR: {exc}'],
             'ok_to_download_for_research': False,
             'ok_to_submit': False,
-            'policy': 'IR-88-SDTL-01: holdout rule + canary + uniqueness v5 (equal-support) + shared validator',
+            'policy': 'binding-literal-all-registry-v1',
         }
     (ROOT / 'docs/status.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))

@@ -1,7 +1,10 @@
 """Independent format audit; never grants scientific promotion or writes predictions.
 
 Strict all-finite policy deliberately rejects NaN even outside the footprint.
-No clipping: a bad prediction must be fixed at its origin, not hidden by this audit.
+Only one full-resolution raster is allowed, with self-contained georeferencing:
+external sidecars must not make a TIFF pass locally but fail in its one-TIFF ZIP.
+Internal overviews are allowed. No clipping: a bad prediction must be fixed at
+its origin, not hidden by this audit.
 """
 import argparse
 import hashlib
@@ -15,9 +18,17 @@ import rasterio
 def validate(candidate, template):
     checks = {}
     with rasterio.open(template) as ref, rasterio.open(candidate) as src:
+        # Band count describes only the selected raster, not every TIFF IFD.
+        # A second full-resolution page can otherwise hide invalid predictions
+        # while rasterio.read(1) and tifffile.imread both return the first page.
+        # GDAL reports those pages as subdatasets, unlike internal overviews.
         checks.update(geotiff=src.driver == 'GTiff', single_band=src.count == 1,
+                      single_raster_dataset=not src.subdatasets,
+                      self_contained_dataset={Path(p).resolve() for p in src.files} == {Path(candidate).resolve()},
                       real_numeric_dtype=np.dtype(src.dtypes[0]).kind in 'uif',
                       template_single_band=ref.count == 1,
+                      template_single_raster_dataset=not ref.subdatasets,
+                      template_self_contained_dataset={Path(p).resolve() for p in ref.files} == {Path(template).resolve()},
                       crs_match=src.crs is not None and src.crs == ref.crs,
                       shape_match=src.shape == ref.shape,
                       transform_match=src.transform == ref.transform,
@@ -40,7 +51,7 @@ def validate(candidate, template):
         checks.update(all_finite=finite, values_in_0_1=bounded, all_pixels_unmasked=unmasked)
     with Path(candidate).open('rb') as f:
         digest = hashlib.file_digest(f, 'sha256').hexdigest()
-    return {'schema_version': 1, 'validator': 'gems88-format-audit-v1',
+    return {'schema_version': 1, 'validator': 'gems88-format-audit-v2',
             'artifact': Path(candidate).name, 'sha256': digest,
             'checks': checks, 'minimum': minimum, 'maximum': maximum,
             'format_valid': all(checks.values()), 'submission_ready': False,

@@ -70,12 +70,13 @@ def test_feature_names_frozen():
     )
 
 
-def test_mfs_runner_records_stop_and_cannot_submit():
-    """IR-88-BA739E0F-01: the disclosed research-only exception stays honest."""
+def test_mfs_runner_stops_before_imports_and_cannot_submit():
+    """IR-88-B4DFA10C-07: historical disclosure does not authorize a bypass."""
     from pathlib import Path
 
     src = (Path(__file__).resolve().parents[1] / "scripts/run_mfs88_experiment.py").read_text()
-    # The literal preflight is recorded before any feature construction.
+    assert src.index("enforce_generation_preflight()") < src.index("import numpy")
+    # The historical runner body retains its original read-only proof record.
     assert src.index("guard_inspect(ROOT)") < src.index("build_or_load(ROOT")
     assert src.index("guard_inspect(ROOT)") < src.index("emit_regime(p")
     # ok_to_submit requires the literal uniqueness gate (and the holdout bar).

@@ -1,3 +1,13 @@
+> **CURRENT STATUS — CLEARANCE WITHDRAWN / DO NOT SUBMIT (2026-10-25, PR #151).**
+> This is the preserved report from PR #148, not a new experiment in this session. Its
+> equal-support v5 promotion is superseded by the standing literal user rule: the
+> original dot rows measure 1.0 literal overlap against the pinned dense witness.
+> Its local PHYS-44 improvement is not a demonstrated win over the current same-fold
+> incumbent. TIFF bytes and all numeric scientific measurements are unchanged;
+> only archive filenames/ZIP packaging and publication authorization were corrected.
+> Any positive clearance wording below describes the historical, withdrawn decision,
+> not current download-and-submit instructions. Original evidence: [PR #148](https://github.com/buffedlizard55-lab/GEMSDOE88/pull/148).
+
 # Session SDTL-88 — 2026-10-25 — H33 forensic answer, ranked hypotheses, executed lane, results
 
 Branch `arena/47d7da6a-gemsdoe88`. Every number below is labelled **HOLDOUT-DTI** (evaluator `gems57-pooled-hide-v2`, withheld positives, 95% CI), **REGISTRY-MEASUREMENT** (local raster comparison) or **USER-REPORTED** (a score pasted into the request; no organizer receipt is held by this repository). Nothing here is ORGANIZER-CONFIRMED.
