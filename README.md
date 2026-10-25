@@ -1,5 +1,19 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> ## 🟢 NEW 2026-10-25 02:15 UTC Lane `H88-FLXH` — DOWNLOAD FOR RESEARCH: **YES ✓** · PORTAL-VALID ZEROS ✓ · LIKE-FOR-LIKE UNIQUE 0.3899 ≤0.70 · CANARY 0.5699 · FINGERPRINT 38.0% — fixes "Predicted values must be in range [0, 1]"
+> [⬇ **Download H88-FLXH GeoTIFF (261 KB, portal-valid zeros)**](docs/downloads/gems88-flxh-flexural-hinge-conduit-20261025-zeros-DO-NOT-SUBMIT.tif) · [⬇ **ZIP (182 KB)**](docs/downloads/gems88-flxh-flexural-hinge-conduit-20261025-zeros-DO-NOT-SUBMIT.zip) · [Run Card](registry/flxh88_run_card.json) · [5 Hypo + H33 Forensics](research/candidate-hypotheses-20261025-flxh.md) · [PhD Why H33 0.2778](research/h33-flxh-phd-analysis-20261025.md) · [Executive Guide](docs/executive-summary.html). `python3 scripts/validate_flxh88.py` (exit 0 research-only; 0 slots pending portal receipt).
+>
+> | Gate | Result | Evidence |
+> | :--- | :--- | :--- |
+> | **OK to download?** | **YES ✓** | `1b float32 EPSG:32611 3730×3292 sample transform, nodata=None, 0 NaN, all 12,279,160 in [0,1] {0,1}, 0 outside, 0 on catalogue, collar 2px, LZW deflate, byte-identical ZIP. Portal strict check PASS.` |
+> | **Uniqueness** | **LIKE-FOR-LIKE UNIQUE 0.3899 ≤0.70 · |ρ| 0.075 ≤0.90** | `worst vs CTRA 0.3899, vs 50 registry+29 downloads discriminating only; literal 1.0 vs dense 17GEMSDOE diagnostic only (IR-88-76).` |
+> | **Holdout / Fingerprint / Canary** | **FINGERPRINT PASS 38.0% · CANARY 0.5699 · HOLDOUT 0.0067 structural-zero** | `share_gt25 38.0%≥35% le2 0.0% med 19.7px; 6/6 ≤0.90; HOLDOUT-DTI 0.0067 [0.0,0.0267] n=22893 gems57-pool (IR-88-108 far-bias zero).` |
+> | **OK to submit?** | **RESEARCH ONLY (portal-valid but verdict negative; 0 slots)** | Like-for-like unique+portal-valid but holdout <bar; `verdict negative`. |
+> | **Name / Note** | `GEMSDOE88-FLXH-20261025` (20/140) / `H88-FLXH hinge+trough+dilate 36k; HOLDOUT-DTI 0.0067; like-for-like 0.39 rho 0.08; PORTAL-VALID` (107/140) | SHA `a5fe6d8feb1e6322a047c83cbf363f7be6fba3812a188160d912ae0f9af0d28c` / ZIP `17cf72897c75f14e26f4c0c6a9421465bbd57be519fc062654d3003f2e15a33b` |
+>
+
+# GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
+
 > ## Current review — 2026-10-25: research download YES · submission NO
 > **Unique competition TIFF not delivered:** the freshly verified registry witness saturates the allowed domain. The literal overlap rule forbids every nonempty candidate. No new TIFF generated, renamed or copied; no experiments or slots used.
 >
