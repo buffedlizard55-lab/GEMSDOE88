@@ -9,6 +9,18 @@
 
 
 
+> ## ⛔ Latest session lane (`2026-10-25`): `H88-PSGV` — **UNIQUE RESEARCH TIFF GENERATED · HOLDOUT TIE (`0.202494` vs bar `0.202947`) + HGVC-LANE DUPLICATE (`0.798`)** · DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (`0` slots spent; negative results are deliverables)
+> [⬇ **One-Click Download `H88-PSGV` GeoTIFF (`.tif`, 779 KB, zeros `[0,1]`)**](docs/downloads/gems88-psgv88-pseudograv-discordance-37654-20261025-c38f17fc-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-File ZIP (177 KB)**](docs/downloads/gems88-psgv88-pseudograv-discordance-37654-20261025-c38f17fc-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/psgv88_run_card.json) · [Gate v3](registry/psgv88_gate_v3.json) · [Holdout](evidence/psgv88_holdout_20261025.json) · [Uniqueness](evidence/psgv88_uniqueness.json) · [Canaries](evidence/psgv88_canaries.json) · [5 Hypotheses, H33 Forensics & Results](research/candidate-hypotheses-20261025-psgv88.md) · [Executive Submission Guide](docs/executive-summary.html) · [Standing Prompt](PROMPT.md). Validate with zero human input: `.venv/bin/python scripts/validate_psgv88.py` (exit `0` download; `--require-submit` exit `2`).
+>
+> | Automated Gate | Machine Result | Evidence |
+> | :--- | :--- | :--- |
+> | **OK to download?** | **YES** | 1 band `float32`, EPSG:32611, 3730×3292, exact sample transform, `nodata=None`, all 12,279,160 cells finite in `{0,1}`, 37,654 dots (0 on catalogue, 0 outside footprint), SHA-256 `c38f17fc924ec1fed1efa55b2819d70e911d4416f88a796d7dd50d9c8e3f21e3`; re-opened via rasterio + tifffile + ZIP byte identity. |
+> | **Leakage canary** | **PASS 95/95 ≤ 0.90** | max `d2` 0.770155; PSGV-8 max 0.543734 (`evidence/psgv88_canaries.json`). |
+> | **Holdout (kill rule)** | **FAIL — tie** | HOLDOUT-DTI `0.202494 [0.185513, 0.219885]` (n=22,893) ≤ HGVC bar `0.202947`; far `0.127990`, blind `0.070697`; paired vs ADHR `+0.007618 [0.002942, 0.011997]`, 8/8 folds. Controls reproduce HGVC run exactly (ADHR `0.194876`). |
+> | **Unique lane?** | **NO — HGVC duplicate** | Final-dot 3-px overlap vs H88-HGVC `0.7976 > 0.70` (241-raster pinned registry; vs H33 `0.4420`); surface `|ρ| = 0.227641 ≤ 0.90`; literal vs continuous 17GEMSDOE witness `1.0` (vacuous, IR-88-128). |
+> | **OK to submit?** | **NO — DO NOT SUBMIT** | Prepared name `GEMSDOE88-PSGV88-C38F17FC` (25/140) · note (106/140) in run card; `ORGANIZER-CONFIRMED: none`; live leaderboard 2026-10-25 #1 `0.4413`, #5 `0.3539`; H33 `0.2778` owner-reported (see research doc §1 for the subtraction algebra). |
+>
+
 > ## ⛔ Latest session 2026-10-25 — H88-CXL: NEW TIF TO DOWNLOAD/SUBMIT: **NO — DO NOT SUBMIT** (automated gate verdict, no human inspection needed)
 > The new monogenic phase-congruency lane was preregistered, canaried (max symmetric AUC 0.559367 ≤ 0.90) and holdout-tested on the identical evaluator: **HOLDOUT-DTI 0.143012 [0.127127, 0.159275]** (n=22,893, `gems57-pooled-hide-v2`) vs the HGVC bar **0.202947** — **promotion gate FAILED**, so no production TIF was built and **0 slots were spent**. CXL zero-catalogue signal is real (0.121012 > phys44 0.104163, control reproduced exactly). Evidence: [run card](registry/cxl88_run_card.json) · [holdout JSON](evidence/cxl88_holdout_20261025.json) · [hypotheses & H33 answer](research/candidate-hypotheses-20261025-cxl.md) · verify: `.venv/bin/python scripts/validate_cxl88.py` (`--require-submit` exits 2). The HGVC research download below remains **DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO**.
 
