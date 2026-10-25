@@ -24,6 +24,21 @@ FILE = 'docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-z
 SHA256 = 'e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68'
 
 
+def _load_canary_surface(path: Path):
+    """Legacy read-only diagnostic helper, never used by the approval path.
+
+    Retained for compatibility with the parallel missing-input regression test.
+    The current validator does not require or evaluate these historical caches.
+    """
+    if not path.is_file():
+        print(json.dumps({'decision': 'AUDIT_ERROR',
+                          'missing_prerequisite': str(path),
+                          'ok_to_submit': False}), file=sys.stderr)
+        raise SystemExit(1)
+    import numpy as np
+    return np.load(path, allow_pickle=False)
+
+
 def main(argv=None, root: Path = ROOT) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--require-submit', action='store_true')
