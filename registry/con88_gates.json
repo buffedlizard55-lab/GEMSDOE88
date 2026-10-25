@@ -1,5 +1,5 @@
 {
-  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
   "G1_format": {
     "one_band": true,
@@ -36,7 +36,7 @@
       "overlap_literal": 0.6936314866946407,
       "spearman": 0.3762046278934762
     },
-    "rule": "sparse:literal >0 support; dense(>200k pos):equal-support top-N",
+    "rule": "literal >0 positive support, including dense rasters; no equal-support exemption",
     "rows": [
       {
         "file": "data/registry/gems49_gate_ortho.tif",
@@ -128,9 +128,10 @@
         "overlap_literal": 0.5193870505125617,
         "spearman": 0.048171169641686926
       }
-    ]
+    ],
+    "literal_overlap_dense_witness": 1.0
   },
-  "G2_ok": true,
+  "G2_ok": false,
   "G3_fingerprint": {
     "share_gt25": 0.4174058532957986,
     "share_le3": 0.0,
@@ -247,5 +248,12 @@
     }
   },
   "canary_ok": true,
-  "ok_to_submit": true
+  "ok_to_submit": false,
+  "decision": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "status": "WITHDRAWN \u2014 RESEARCH ONLY \u2014 DO NOT SUBMIT",
+  "literal_binding_overlap_3px": 1.0,
+  "binding_gate_reason": "17GEMSDOE dense witness has positive support on every allowed cell; literal dot-support overlap is 1.0 > 0.70.",
+  "equal_support_results_status": "HISTORICAL_DIAGNOSTIC_ONLY_NOT_A_PROTOCOL_CLEARANCE",
+  "withdrawal_record": "evidence/con88_clearance_withdrawal_20261025.json"
 }

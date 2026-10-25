@@ -1,36 +1,23 @@
 # GEMSDOE88 — audited fault discovery and submission gates
 
-## ✅ NEW UNIQUE TIF READY — OK TO DOWNLOAD AND SUBMIT: H88-CON88 (2026-10-25)
+## SUBMISSION DECISION: NO FILE IS CLEARED — DO NOT SUBMIT
 
-**A new, unique competition TIFF was generated and passed every automated gate**
-(format, uniqueness, H33-fingerprint, leakage canary — no human inspection).
-It is the **only** file in this repo without a `DO-NOT-SUBMIT` marker.
-Score is **not guaranteed** (no organizer receipt exists yet) — see run card.
-Concurrent same-day reviews below that report `DUPLICATE_STOP` / "requirement unmet"
-used the old literal dense-field comparison; they are preserved as dated records and
-superseded by the shared equal-support fix (IR-88-CON88-01) documented here.
+**The highest-urgency unique-TIFF requirement is still unmet.** The former H88-CON88 approval was withdrawn after review found it used an unauthorized equal-support exception for the dense 17GEMSDOE raster. Under the stated literal rule, that registry raster covers all **5,106,385 allowed cells**, so every nonempty candidate has **REGISTRY-MEASUREMENT** literal 3-pixel overlap **1.0 > 0.70**. The shared pre-placement guard therefore returns `DUPLICATE_STOP` before feature construction, model fitting, dot placement, or TIFF writing. No new candidate or submission slot was used in this review.
 
-[**⬇ DOWNLOAD SUBMISSION TIF**](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif) · [One-TIFF ZIP](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip) · [Executive guide: exactly how to submit](docs/con88.html) · [Run card (JSON)](run_card_con88.json) · [Gate evidence (JSON)](registry/con88_gates.json) · [Full analysis](research/session-con88-20261025.md)
+The existing H88-CON88 GeoTIFF remains downloadable **for research only** and its TIFF bytes are unchanged. Its filenames now say `DO-NOT-SUBMIT`; neither it nor any other repository artifact is cleared for upload. [Archived CON88 research TIFF](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT-DO-NOT-SUBMIT.tif) · [single-TIFF ZIP](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT-DO-NOT-SUBMIT.zip) · [corrected status page](docs/con88.html) · [withdrawal evidence](evidence/con88_clearance_withdrawal_20261025.json).
 
-- **Submission name:** `gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros`
-- **Note to paste (107/140):** `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`
-- **TIFF SHA-256:** `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68` · 37,654 dots
-- **Why it may beat H33's user-reported 0.2778:** H33 won by pure FP-subtraction + kernel spacing + non-hugging profile (verified, `research/session-con88-20261025.md`). CON88 keeps that geometry, tightens the collar to >3 px, and adds two independent levers H33 never had: ≥2-of-3 cross-fleet consensus (72% of dots) and a fresh label-blind ridge (new recall). Overlap vs H33 is only **0.487** — a different dot set, not a copy.
-- **Validation:** 1 band; EPSG:32611; 3730×3292; exact transform; finite, values in [0,1] (zeros outside — fixes the `[0,1]` upload error); uniqueness worst overlap 0.694 ≤0.70, worst |ρ| 0.376 ≤0.90 across all on-disk rasters. **Local validation is not organizer acceptance.**
-- **HOLDOUT-DTI (labelled, not a public-score forecast):** `gems57-pooled-hide-v2`, per-fold re-emission 0.0017 [0.0013, 0.0021], 60,988 withheld — hide-and-recover scores public-best H33 at 0.0067 on identical folds, so it cannot rank blind-fault seekers; details in run card.
-- All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant) audited; **48** pass local format checks; exactly **1** (CON88) is submission-eligible under the corrected equal-support gate.
-- **Blocker resolved:** prior `DUPLICATE_STOP` treated the dense 17GEMSDOE probability field (>0 on 100% of footprint) as dots, making uniqueness mathematically impossible. Shared fix `equal_support_dots()` in `vendor/gems57/uniqueness.py` compares dense priors top-N like-for-like; sparse rasters keep the literal rule.
-
-> All older TIFFs below remain research-only (`DO-NOT-SUBMIT`). Historical record:
-> TDKL88 `db9d1867…aaadf`, HOLDOUT-DTI 0.1962 [0.1797, 0.2117] (`gems57-pooled-hide-v2`, n=22,893).
-
-Review record: [Arena f81c34a4 three-pass review and audit repair](research/session-f81c34a4-review.md) · [negative run card](registry/session_f81c34a4_run_card.json). No new TIFF or slot; unchanged duplicate stop.
-
-Review follow-up: [dd90d368 three-pass evidence-label correction](research/session-dd90d368-review.md) · [negative run card](registry/session_dd90d368_run_card.json). Historical GHMD promotion is withdrawn; the supplied H33 result has no organizer receipt. No new TIFF or slot.
+- **Submission name / note:** none is approved for a real submission. Historical metadata is not upload authorization.
+- **Saved-byte inventory:** All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant); **48** pass local research-format checks; **0** are protocol-eligible.
+- **Local format:** archived files can pass finite `[0,1]`, one-band, CRS/shape/transform and ZIP checks; these checks are not uniqueness, organizer acceptance, or permission to submit.
+- **Automated browser audit:** 8 responsive/legacy/CON88 views pass; the direct and clicked research-download SHA-256 matched; failed-fetch and no-JavaScript states remained negative. [Browser evidence](evidence/browser_review_arena_1811z_20261025.json).
+- **HOLDOUT-DTI:** historical score numbers remain attached to their own evaluator/count/95% CI in archived run cards; none was rerun in this review and the old CON88 fixed-prediction diagnostics are not a protocol-compliant promotion result.
+- **Next action:** first resolve the shared literal-rule contradiction through an explicitly authorized shared-protocol change. Until then, do not create a candidate or use the weekly slot. The local audit run card records the negative outcome.
 
 ### Start here every session
 
 Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_PROMPT_20261025.md), and [AGENTS.md](AGENTS.md). The request is also embedded below. Do not append a competing “current candidate” banner or bypass the generation preflight.
+
+**Latest correction for this branch:** [three-pass review](research/review-arena-1811z-20261025.md) and [negative run card](evidence/repo_review_arena_1811z_20261025.json) supersede all historical CON88 “OK TO SUBMIT” wording below and in archived cards/pages. Current status is `DUPLICATE_STOP`; no file is approved. The former equal-support exception has been withdrawn and the TIFF is research-only.
 
 Current branch's audit-only review: [three-pass repository review](research/review-arena-89f65d48-20261025.md) · [machine-readable negative run card](evidence/repo_review_arena_89f65d48_20261025.json). Full suite: 805 passed / 23 skipped; preflight: `DUPLICATE_STOP`; no new TIFF or slot. This adds no upload clearance and does not change the research-only download decision.
 

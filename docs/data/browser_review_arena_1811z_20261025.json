@@ -1,0 +1,145 @@
+{
+  "schema": "gems88.browser-review.v1",
+  "checked_at_utc": "2026-10-25T18:46:29.525Z",
+  "browser": "153.0.8010.0",
+  "pages": [
+    {
+      "page": "index.html",
+      "width": 1440,
+      "height": 1100,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "height": 844,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "research.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "sources.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "con88.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/index.html",
+      "width": 1440,
+      "height": 1100,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "failed_fetch_stays_negative": true,
+  "source_sha256": {
+    "docs/index.html": "00b65e61fb4ff6325dda77cdc4af85eb3cbf82ca20d670b96615996ab6bf84c7",
+    "docs/executive-summary.html": "8b9645f93d8e59eb5f374a7605d5b02c5c1514fce368b2a3475fbd3812ab3875",
+    "docs/research.html": "6079e27fe1d652c48e37cd3e529b355000ca152e44fcc41c5a243db37c038dd5",
+    "docs/sources.html": "6a595c6f28c52f89db5476cbf99b00bc3bd3d0d14c34593d6aba89277bb93629",
+    "docs/assets/site.css": "834256dce45ea5d350bea0942730f455e1c44edaa64e85f35527ad58c187c737",
+    "docs/assets/site.js": "d27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41",
+    "docs/data/current_release.json": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",
+    "docs/data/download_audit.json": "12334980d6b975f8130b55f341475464f5827578544c53e5bf1acdd4a801d792",
+    "docs/data/mtas88_run_card.json": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
+    "docs/data/hypothesis_queue.json": "c01db7688ac159a8c55e221ef2e50dd2827071f17f43d74dce742558173793bb",
+    "docs/status.json": "44664e2fdff3a4190085f2f5517086fb794fa1886cef7887e3e4bc5db0cbfd74",
+    "docs/con88.html": "48f9204660a91307eac16ad340a3f4a44c5697fcc3bfd646c3bea1956e023bd6",
+    "docs/data/con88_gates.json": "dc6145651cb284545616c3fc447bde3406e8203299c4da2fa928fbb3b690ca11",
+    "docs/data/con88_clearance_withdrawal_20261025.json": "e03396e59b8787f70f7f331e73106ed0218522e26d2a6e3ae0f3cf6692273947",
+    "docs/data/run_card_con88.json": "9ebdd6c436b4274f06c70b7bebe9e34ac32183ce603a2f0f557eeca3dc61ca88",
+    "docs/research/review-arena-1811z-20261025.md": "87ab9dc07a35096eec7d1238fd9560195b5682e21225266bb2952204c36acf0c",
+    "docs/mdc88/index.html": "7968611af89256740904e40003e26bf49635d626a2f04b1e1943a1050d88ef1d",
+    "docs/mdc88/executive-summary.html": "a224490fc994b54619d24275500ea6eba6670685be70bcda8f241ee4b25a8ae3",
+    "docs/mdc88/status.json": "7d0223ff4f7b513ba5d3d68fd81ddc9b86f58955c9e3ffdf2e0131eff73033f9"
+  },
+  "ok_to_submit": false,
+  "research_download": {
+    "file": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "http_status": 200,
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "matches_canonical_bytes": true,
+    "ok_to_submit": false,
+    "click_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "suggested_filename": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "click_matches_canonical_bytes": true
+  },
+  "no_javascript_banner": "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT",
+  "no_javascript_stays_negative": true,
+  "status": "PASS"
+}

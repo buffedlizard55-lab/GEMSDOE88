@@ -159,7 +159,7 @@ def test_site_guard_rejects_broken_or_escaping_docs_markdown_links(tmp_path):
 
     probe.unlink()
     submit = docs / "SUBMIT.md"
-    submit.write_text(submit.read_text().replace("**47/47**", "**46/46**", 1))
+    submit.write_text(submit.read_text().replace("**48/48**", "**47/47**", 1))
     with pytest.raises(ValueError, match="Submission guide inventory count is stale"):
         check_site.main(tmp_path)
 

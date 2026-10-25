@@ -1,12 +1,8 @@
-## Current session handoff — 2026-10-25, H88-CON88 (supersedes DUPLICATE_STOP handoffs below)
+## Current handoff — 2026-10-25, repository review
 
-> **NEW UNIQUE TIF GENERATED AND GATES-CLEARED:** `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` (SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). **✅ OK TO DOWNLOAD AND SUBMIT** per automated gates in `registry/con88_gates.json` (format/uniqueness/fingerprint/canary PASS; overlap vs H33 0.487; worst 0.6936 vs GEMSDOE49). Note (107/140): `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`. Guide: `docs/con88.html`. Run card: `run_card_con88.json`. Analysis: `research/session-con88-20261025.md`. Equal-support fix IR-88-CON88-01. Next: user submits within weekly cap and records ORGANIZER-CONFIRMED receipt.
+**Current decision: NO TIFF IS CLEARED FOR SUBMISSION.** The earlier H88-CON88 equal-support approval was withdrawn because it conflicts with the literal overlap rule. The SHA-pinned 17GEMSDOE raster covers every allowed pixel, so every nonempty candidate has literal forward overlap `1.0 > 0.70`. CON88's TIFF bytes are preserved only under a `DO-NOT-SUBMIT` filename for research. See [withdrawal evidence](evidence/con88_clearance_withdrawal_20261025.json), [review](research/review-arena-1811z-20261025.md), and [negative run card](evidence/repo_review_arena_1811z_20261025.json).
 
-## Current session handoff — 2026-10-25, 693b10af
-
-Read the full recorded request in README and `USER_PROMPT_20261025.md`, then `AGENTS.md` and `registry/session_693b10af_run_card.json`. Shared preflight remains `DUPLICATE_STOP` before feature construction: no new TIFF, geological experiment, holdout or slot. The urgent new unique-submission requirement remains unmet. No dense-prior exemption is authorized.
-
-Current proposals are in `registry/hypothesis_queue.json` / `research/session-693b10af-hypotheses.md`; MMRX, MTAS and MFS already have historical negative execution records. `scripts/audit_research_state.py` binds the queue to reviewed source/inputs and rejects the old GHMD promotion/false organizer label. The dated review runner is a historical replay, not fresh source retrieval. Install `requirements.txt` with its tested CPU constraints; never relax TIFF hashes to work around encoder drift. Use `scripts/render_decision.py` for the canonical primary decision and Research queue. Review, sources, fresh browser/clean-install evidence and limitations are linked from `research/session-693b10af-review.md`.
+The common pre-placement guard returned `DUPLICATE_STOP` (exit 2) before feature construction. No new TIFF, experiment, holdout, leakage canary, or slot was produced. Re-read the complete recorded request in `USER_PROMPT_20261025.md` and `AGENTS.md` before work. Do not treat a historical equal-support diagnostic, unique filename/hash, or local format pass as upload clearance.
 
 ---
 

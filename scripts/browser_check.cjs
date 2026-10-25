@@ -30,7 +30,7 @@ const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · S
   const cases = [
     ['index.html', 1440, 1100], ['index.html', 390, 844],
     ['executive-summary.html', 390, 844], ['research.html', 390, 844],
-    ['sources.html', 390, 844], ['mdc88/index.html', 1440, 1100],
+    ['sources.html', 390, 844], ['con88.html', 390, 844], ['mdc88/index.html', 1440, 1100],
     ['mdc88/executive-summary.html', 390, 844],
   ];
   const report = {schema: 'gems88.browser-review.v1', checked_at_utc: new Date().toISOString(),
@@ -90,13 +90,15 @@ const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · S
   const noScript = await browser.newPage({javaScriptEnabled: false});
   await noScript.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
   report.no_javascript_banner = await noScript.locator('[data-card-status]').innerText();
-  report.no_javascript_stays_negative = report.no_javascript_banner === 'NO NEW TIFF · RESEARCH DOWNLOAD ONLY · DO NOT SUBMIT';
+  report.no_javascript_stays_negative = report.no_javascript_banner === requiredBanner;
   failed ||= !report.no_javascript_stays_negative;
   await noScript.close();
   await browser.close();
   for (const relative of ['docs/index.html', 'docs/executive-summary.html', 'docs/research.html',
     'docs/sources.html', 'docs/assets/site.css', 'docs/assets/site.js', 'docs/data/current_release.json',
     'docs/data/download_audit.json', 'docs/data/mtas88_run_card.json', 'docs/data/hypothesis_queue.json', 'docs/status.json',
+    'docs/con88.html', 'docs/data/con88_gates.json', 'docs/data/con88_clearance_withdrawal_20261025.json',
+    'docs/data/run_card_con88.json', 'docs/research/review-arena-1811z-20261025.md',
     'docs/mdc88/index.html', 'docs/mdc88/executive-summary.html', 'docs/mdc88/status.json']) {
     report.source_sha256[relative] = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, relative))).digest('hex');
   }

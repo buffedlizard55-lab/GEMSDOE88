@@ -1,6 +1,19 @@
 #!/usr/bin/env python3
-"""Automated gates for H88-CON88. No human inspection. Exit 0 iff ok_to_submit."""
+"""Historical CON88 validator is retained for provenance and fails closed.
+
+Run the shared literal preflight before importing scientific/model dependencies.
+The prior equal-support clearance is withdrawn; this CLI cannot reissue it.
+Use audit_downloads.py for saved-byte format checks (research only).
+"""
 from __future__ import annotations
+
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 import hashlib, json, sys, zipfile
 from pathlib import Path
 import numpy as np
@@ -29,6 +42,9 @@ def topn_support(a, n, foot):
     return out
 
 def main():
+    # Rechecked here as well so direct function calls cannot bypass the CLI guard.
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
     cand = sorted((ROOT / "docs/downloads").glob(CAND_GLOB))[-1]
     sample, sds = load(ROOT / "data/bridge/sample_submission.tif")
     foot = np.isfinite(sample)

@@ -1,14 +1,14 @@
 {
   "schema": "gems88.hypothesis-queue.v1",
-  "reviewed_at_utc": "2026-10-25",
-  "review_branch": "arena/693b10af-gemsdoe88",
+  "reviewed_at_utc": "2026-10-25T18:11:00Z",
+  "review_branch": "arena/9d6e1b6f-gemsdoe88",
   "source_snapshot": {
     "files": 154,
-    "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+    "sha256": "4a2a1c6984f97d1bd4b79d7eb5845a2b24f39a4dc50f42f0e64a22a7da95c29e"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
-  "selection_status": "NOT STARTED \u2014 shared DUPLICATE_STOP takes precedence",
+  "selection_status": "NOT STARTED — shared DUPLICATE_STOP takes precedence",
   "generation_authorized": false,
   "ok_to_submit": false,
   "input_provenance": "SHA-pinned owner mirrors restored in this session; no authenticated organizer download or fresh primary-source license verification.",
@@ -193,6 +193,18 @@
       },
       "reason": "Merged H88-CON88 (IR-88-CON88-01 equal-support append-only vendor addition + con88 runner scripts) and PGTD guard enforcement fix; proposals re-reviewed: none implements H88-SPR/EELG/PRAN queue items, CON88 is a consensus-emission lane with its own run card (run_card_con88.json), not a queue proposal.",
       "reviewed_at_utc": "2026-10-25T18:00:00Z"
+    },
+    {
+      "snapshot": {
+        "files": 154,
+        "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+      },
+      "reason": "Superseded after explicit review of all changed candidate entrypoints: CON88 runners now call the same literal generation guard; the historical CON88 validator fails closed. No feature/model implementation changed; the three queue proposals SPR/AWA/CBC and retired-method inventory were rechecked against current source. The former equal-support submission exception was withdrawn; no experiments or candidates authorized.",
+      "reviewed_at_utc": "2026-10-25T18:11:00Z",
+      "new_snapshot": {
+        "files": 154,
+        "sha256": "4a2a1c6984f97d1bd4b79d7eb5845a2b24f39a4dc50f42f0e64a22a7da95c29e"
+      }
     }
   ]
 }

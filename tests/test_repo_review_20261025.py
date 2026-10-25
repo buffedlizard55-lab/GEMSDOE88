@@ -39,6 +39,33 @@ def test_safe_note_rejects_overlong_text_without_truncation() -> None:
         safe_note("")
 
 
+def test_current_review_site_mirror_uses_valid_pages_relative_links() -> None:
+    source = (ROOT / "research/review-arena-1811z-20261025.md").read_text()
+    expected = source
+    for old, new in (
+        ("(../evidence/", "(../data/"),
+        ("(../docs/downloads/", "(../downloads/"),
+        ("(../docs/index.html)", "(../index.html)"),
+        ("(../docs/executive-summary.html)", "(../executive-summary.html)"),
+        ("(../docs/con88.html)", "(../con88.html)"),
+        ("(../registry/hypothesis_queue.json)", "(../data/hypothesis_queue.json)"),
+    ):
+        expected = expected.replace(old, new)
+    page = ROOT / "docs/research/review-arena-1811z-20261025.md"
+    assert page.read_text() == expected
+    for relative in (
+        "docs/data/repo_review_arena_1811z_20261025.json",
+        "docs/data/con88_clearance_withdrawal_20261025.json",
+        "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+        "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+        "docs/index.html",
+        "docs/executive-summary.html",
+        "docs/con88.html",
+        "docs/data/hypothesis_queue.json",
+    ):
+        assert (ROOT / relative).is_file()
+
+
 def test_published_review_is_fail_closed_and_copies_match() -> None:
     evidence = json.loads((ROOT / "evidence/repo_review_20261025.json").read_text())
     pages = json.loads((ROOT / "docs/data/repo_review_20261025.json").read_text())
@@ -53,7 +80,7 @@ def test_published_review_is_fail_closed_and_copies_match() -> None:
     assert evidence["preplacement_registry_audit"]["covered_allowed_fraction"] == 1.0
     status = json.loads((ROOT / "docs/status.json").read_text())
     assert evidence["snapshot_scope"] == "HISTORICAL_HYPOTHESES_AND_SOURCE_ACCESS_NOT_REFRESHED_BY_REPLAY"
-    assert status["current_review"] == "data/session_693b10af_run_card.json"
+    assert status["current_review"] == "data/repo_review_arena_1811z_20261025.json"
     assert status["historical_review"] == "data/repo_review_20261025.json"
     assert status["research_queue"] == "data/hypothesis_queue.json"
     assert status["current_review_status"] == "DUPLICATE_STOP"

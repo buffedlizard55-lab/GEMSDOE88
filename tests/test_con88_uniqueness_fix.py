@@ -25,3 +25,22 @@ def test_dense_constant_field_no_longer_vacuous():
 
 def test_threshold_constant():
     assert DENSE_POSITIVE_THRESHOLD == 200_000
+
+
+def test_historical_con88_preflight_delegates_to_shared_literal_guard(monkeypatch):
+    from scripts import con88_preflight, generation_guard
+
+    class ReachedSharedGuard(Exception):
+        pass
+
+    def stop(root):
+        assert root.name == "sentinel"
+        raise ReachedSharedGuard
+
+    monkeypatch.setattr(generation_guard, "enforce_generation_preflight", stop)
+    try:
+        con88_preflight.enforce_con88_preflight(Path("sentinel"))
+    except ReachedSharedGuard:
+        pass
+    else:
+        raise AssertionError("historical CON88 wrapper bypassed the shared literal stop")

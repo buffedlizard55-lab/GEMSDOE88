@@ -1,0 +1,107 @@
+{
+  "schema": "gems88.repository-review-run-card.v1",
+  "review_id": "arena-1811z-20261025",
+  "date_utc": "2026-10-25",
+  "lane": "No active geological lane: the request refers to a single-method paragraph, but none is supplied. The shared pre-placement stop applies before selection or feature construction.",
+  "hypothesis": "No candidate hypothesis tested in this review. Conditional queue rank 1 is H88-SPR scarp-profile restoration with drainage/shoreline nulls; it was not run.",
+  "mechanism": "The SHA-pinned 17GEMSDOE raster has positive support on every allowed pixel. Under the literal >0 support definition, any nonempty allowed dot set is within 3 px of the witness at every dot, forcing forward overlap to 1.0.",
+  "named_non_fault_process_that_could_mimic_it": "Not applicable to a newly tested candidate; the unrun H88-SPR proposal names fluvial terrace risers and pluvial shoreline benches as mimics.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_count": null,
+    "score": null,
+    "ci95": null,
+    "reason": "No feature construction, candidate fit, holdout, or canary ran after the prerequisite failed. No score or projection is reported."
+  },
+  "registry_correlation_overlap": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "preplacement_surface_spearman": null,
+    "final_candidate_spearman": null,
+    "final_candidate_dot_overlap_3px": null,
+    "universal_literal_overlap_lower_bound_for_any_nonempty_candidate": 1.0,
+    "limit": 0.7,
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "covered_allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "support_definition": "finite prediction > 0; literal rule, no dense-prior exception",
+    "decision": "DUPLICATE_STOP"
+  },
+  "raster": {
+    "new_raster_generated": false,
+    "sha256": null,
+    "submission_name": null,
+    "submission_note": "No candidate exists; current decision is DUPLICATE_STOP \u2014 DO NOT SUBMIT.",
+    "submission_note_characters": 72
+  },
+  "validator": {
+    "new_candidate": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "archived_CON88_reopened": true,
+    "archived_CON88_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "archived_CON88_format_valid": true,
+    "archived_CON88_crs": "EPSG:32611",
+    "archived_CON88_shape": [
+      3730,
+      3292
+    ],
+    "archived_CON88_band_count": 1,
+    "archived_CON88_no_nan_inside_footprint": true,
+    "archived_CON88_values_in_0_1": true,
+    "archived_CON88_transform_match": true,
+    "archived_CON88_zip_one_byte_identical_tif": true,
+    "scope": "local saved-byte format audit only; it does not clear any file for submission"
+  },
+  "submission": {
+    "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "status": "EXISTING_ARCHIVE_RESEARCH_ONLY_NOT_NEW",
+    "zip": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "bd88ee9f2e537ae64a5d6247642ac29c212bc06fb0fd2ab6346c99216de05ed4",
+    "note": "No name or note is authorized for portal use. Historical CON88 name/note are withdrawn."
+  },
+  "organizer_confirmed_score": null,
+  "weekly_slots_used": 0,
+  "experiments_run": 0,
+  "new_tiffs_generated": 0,
+  "verdict": "negative",
+  "required_work_unmet": [
+    "new protocol-unique TIFF",
+    "candidate spatially blocked holdout and per-feature leakage canaries",
+    "demonstrated improvement beyond H33 user-reported claim",
+    "organizer acceptance and receipt"
+  ],
+  "verification": {
+    "pass_1": "Reviewed instructions, exact shared guard, historical CON88 clearance, artifact inventory, and current decision inconsistencies; restored only validation-tier inputs and reproduced pre-placement stop.",
+    "pass_2": "Withdrew unauthorized equal-support clearance; changed CON88 runner and validator CLI to shared guard; renamed archived file/ZIP member DO-NOT-SUBMIT without changing TIFF bytes; removed audit and site eligibility exceptions; refreshed the download audit and canonical pages.",
+    "pass_3": "Rechecked latest run card, all published binary labels, page links/status, machine queue fingerprint, format audit and regression tests; no holdout, score, candidate, slot, or organizer receipt was invented.",
+    "external_primary_sources_fetched_this_review": [],
+    "manual_review_links": [
+      "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "https://github.com/drivendataorg/gems-prize-reference-solution",
+      "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "https://gdr.openei.org/submissions/1391",
+      "https://epsg.io/32611"
+    ],
+    "source_access_note": "Links are provided for review but the non-GitHub primary hosts were not fetched in this session; public values supplied in the prompt are not treated as fresh verified leaderboard or receipt data.",
+    "browser_evidence": "evidence/browser_review_arena_1811z_20261025.json",
+    "browser_status": "PASS",
+    "browser_cases": 8,
+    "browser_download_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "browser_download_is_research_only": true
+  },
+  "archived_research_download": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "new_in_this_session": false,
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false
+  }
+}
