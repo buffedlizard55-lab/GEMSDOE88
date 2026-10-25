@@ -3,7 +3,7 @@
 > Historical decision record for the lanes listed here. This repository's **current**
 > decision is **`DUPLICATE_STOP` (`ok_to_submit: false`, `verdict: "negative"`, `0` protocol-eligible packages)**,
 > computed in the [executive summary](executive-summary.html), [`data/current_release.json`](data/current_release.json),
-> and [README.md](../README.md) (`H88-SDTL` clearance was withdrawn in `IR-88-B4DFA10C-08`; nothing in this file authorizes upload).
+> and [README.md](https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/README.md) (`H88-SDTL` clearance was withdrawn in `IR-88-B4DFA10C-08`; nothing in this file authorizes upload).
 
 **No new TIFF is eligible, and no competition slot was used by this session.** The primary [submission guide](executive-summary.html) and [canonical manifest](data/current_release.json) are authoritative. The [existing TDKL research TIFF](downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) and [single-TIFF ZIP](downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) are downloadable for education only; neither is a new or protocol-unique prediction.
 
