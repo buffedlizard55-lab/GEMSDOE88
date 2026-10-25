@@ -151,10 +151,10 @@
     "shape_match": null,
     "transform_match": null,
     "archived_inventory_audit": {
-      "main_downloads_tiff_zip_pairs": 45,
+      "main_downloads_tiff_zip_pairs": 46,
       "variant_downloads_tiff_zip_pairs": 1,
-      "total_published_tiff_zip_pairs": 46,
-      "total_research_download_pass_count": 46,
+      "total_published_tiff_zip_pairs": 47,
+      "total_research_download_pass_count": 47,
       "protocol_eligible_count": 0
     }
   },
@@ -236,7 +236,7 @@
     "three_passes_completed": true,
     "review_doc": "research/session-e9074a53-review.md",
     "hypotheses_doc": "research/session-e9074a53-hypotheses.md",
-    "browser_evidence_preserved": "evidence/session_b4dfa10c_browser_check.json",
+    "browser_evidence_preserved": "evidence/session_693b10af_browser_check.json",
     "passes": [
       {
         "pass": 1,

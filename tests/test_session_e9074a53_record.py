@@ -101,7 +101,7 @@ def test_ibl88_phys_near_sgmc88_and_mmrx88_provenance_and_verdict_repairs() -> N
 
 
 def test_fabric_release_report_and_browser_pinned_docs_stay_green() -> None:
-    browser = _read_json("evidence/session_b4dfa10c_browser_check.json")
+    browser = _read_json("evidence/session_693b10af_browser_check.json")
     for rel, digest in browser["source_sha256"].items():
         assert hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() == digest, rel
 

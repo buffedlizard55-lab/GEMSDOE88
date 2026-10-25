@@ -13,6 +13,9 @@
     "incumbent_artifact": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
     "site_reported_high": 0.3195,
     "competition_leaderboard_high": 0.4413,
+    "incumbent_user_reported_claim": 0.2778,
+    "incumbent_evidence_class": "USER-REPORTED CLAIM \u2014 NOT ORGANIZER-CONFIRMED",
+    "leaderboard_values_status": "Historical unreceipted claims; not a live leaderboard or an artifact score",
     "incumbent_user_reported_live_score": 0.2778,
     "incumbent_score_provenance": "USER-REPORTED; no submission-page receipt"
   },
@@ -231,8 +234,14 @@
     "post_placement_worst_discriminating_3px_overlap": 0.677989,
     "post_placement_worst_overlap_submission": "gems57-twohost-relay-bend-surface-20261010T201504Z-47ccc38b6bec.tif",
     "post_placement_worst_jaccard": 0.039663,
-    "unique": true,
-    "stop_required": false
+    "unique": false,
+    "stop_required": true,
+    "historical_discriminating_unique": true,
+    "historical_discriminating_stop_required": false,
+    "literal_overlap_3px": 1.0,
+    "literal_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "literal_proof": "registry/mtas88_run_card.json#preplacement_registry_proof",
+    "policy": "Binding all-registry literal overlap; historical discriminating-only measurements do not clear it"
   },
   "submission": {
     "file": "docs/downloads/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
@@ -277,8 +286,24 @@
   },
   "experiments_run": 3,
   "experiment_budget_max": 3,
-  "historical_verdict": "promote",
+  "historical_only": true,
   "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "correction": {
+    "id": "IR-88-693B10AF-01",
+    "date_utc": "2026-10-25",
+    "reason": "Legacy GHMD promotion and the H33 organizer-confirmed label were unsupported; the unchanged literal duplicate rule blocks every nonempty candidate.",
+    "original_metadata": {
+      "verdict": "promote",
+      "incumbent_organizer_confirmed_live_score": 0.2778,
+      "unique": true,
+      "stop_required": false
+    },
+    "original_metadata_git_ref": "d7f7502d93dc5e5d9685ba90d7374d71a2bc2a68:run_card.json",
+    "measurements_status": "Original experimental/format measurements retained, not rerun or newly confirmed by this correction.",
+    "prediction_bytes_changed": false
+  },
+  "historical_verdict": "promote",
   "superseded_by": "docs/data/current_release.json",
   "review_note": "Historical GHMD measurements retained; promotion withdrawn under literal registry gate. H33 has no organizer receipt."
 }

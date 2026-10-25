@@ -1,10 +1,10 @@
-# Current selector decision — NO SLOT (session d0c3adeb + H88-VCAZ archive)
+# Current selector decision — NO SLOT (session 693b10af evidence review)
 
 **Slots used: 0. Promote: NO.** Every nonempty allowed output necessarily exceeds the supplied 70% overlap limit against the registered dense witness (`17GEMSDOE`). Do not schedule a duplicate, an old renamed TIFF or an untested hypothesis.
 
-The full **43**-file research inventory (including `H88-BPWD` `b8543782…` and `H88-VCAZ` `gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.tif`, SHA-256 `34224a7c…6b12`) is downloadable for research/education only, **not** eligible to upload. The canonical educational download is TDKL, not the most recently merged lane. Stored HOLDOUT-DTI values across repository lanes were produced under different catalogue-visibility and sampling designs and cannot be ranked on one raw scale.
+The full **46**-file research inventory (45 main downloads plus one historical variant) (including `H88-BPWD` `b8543782…` and `H88-VCAZ` `gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.tif`, SHA-256 `34224a7c…6b12`) is downloadable for research/education only, **not** eligible to upload. The canonical educational download is TDKL, not the most recently merged lane. Stored HOLDOUT-DTI values across repository lanes were produced under different catalogue-visibility and sampling designs and cannot be ranked on one raw scale.
 
-A future selector must use a frozen complete registry and comparable buffered whole-segment holdout with per-feature leakage canaries and a paired physical-block interval. Only after all scientific/protocol gates pass may it consult the authenticated portal's actual weekly cap. This session did not determine the account's remaining quota and did not submit anything. The user authorized a code PR/merge, not automatic competition submission. [Ordered next steps](research/session-d0c3adeb-review.md#next-steps-in-order).
+A future selector must use a frozen complete registry and comparable buffered whole-segment holdout with per-feature leakage canaries and a paired physical-block interval. Only after all scientific/protocol gates pass may it consult the authenticated portal's actual weekly cap. This session did not determine the account's remaining quota and did not submit anything. The user authorized a code PR/merge, not automatic competition submission. [Current review and ordered next steps](research/session-693b10af-review.md#next-session-priorities).
 
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>

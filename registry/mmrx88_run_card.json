@@ -454,6 +454,7 @@
   "download": null,
   "zip_download": null,
   "repo_copy": "submissions/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.tif",
+  "repo_zip_copy": "submissions/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.zip",
   "validator_output": {
     "portal_tif_ok": true,
     "portal_zip_ok": true,
@@ -472,12 +473,18 @@
   "submission_note": "MMRX88 marker-restoration PoE 37654d; HOLDOUT-DTI 0.1884 far 0.1302 blind 0.0750; UNSCORED",
   "submission_note_length": 90,
   "beats_bpwd_in_run": false,
-  "ok_to_download": true,
+  "ok_to_download": false,
+  "ok_to_download_repo_archive_for_research_only": true,
   "ok_to_submit": false,
+  "policy_correction_78cfb743": {
+    "irregularities": [
+      "IR-88-78CFB743-01",
+      "IR-88-78CFB743-03"
+    ],
+    "note": "Cleared dangling docs/downloads paths (IR-88-249E-04 archived only under submissions/), mirrored run card to docs/data/mmrx88_run_card.json, and wrapped shared uniqueness.binding_duplicate_decision_v4 to delegate operative verdicts to literal v3."
+  },
   "submit_label": "DO NOT SUBMIT - automated gate(s) failed (see beats_bpwd_in_run / v4 verdict / fingerprint)",
   "weekly_slots_used_by_agent": 0,
   "organizer_confirmed_score": null,
-  "verdict": "negative",
-  "historical_omitted_docs_download": "docs/downloads/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.tif",
-  "repo_zip_copy": "submissions/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.zip"
+  "verdict": "negative"
 }

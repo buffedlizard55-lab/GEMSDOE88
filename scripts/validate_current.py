@@ -208,6 +208,7 @@ def fabric_release_report(root=ROOT):
         ('bpwd88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
         ('psgv88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
         ('mfs88_run_card.json', lambda d: f"docs/downloads/{d['submission_file']}", lambda d: d['sha256_tif'], ('negative',)),
+        ('pgtd88_run_card.json', lambda d: f"docs/downloads/{d['submission_file']}", lambda d: d['sha256_tif'], ('negative',)),
         ('hgvc88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
         ('sdtl88_run_card.json', lambda d: d['raster']['file'], lambda d: d['raster']['sha256'], ('negative',)),
     ):

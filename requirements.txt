@@ -1,3 +1,5 @@
+# Tested CPU environment: Python 3.11 / Linux x86_64; see research/session-693b10af-review.md.
+-c requirements-constraints.txt
 numpy>=2.0
 scipy>=1.14
 # Byte-exact historical GeoTIFF rebuilds depend on the wheel/GDAL encoder.

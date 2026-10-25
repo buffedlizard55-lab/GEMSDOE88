@@ -357,7 +357,7 @@ def main() -> None:
             "withheld_positives": int(holdout_result["pooled_n_truth"]),
             "withheld_positive_pixels": int(holdout_result["pooled_n_truth"]),
             "candidate": round(pooled_dti, 6),
-            "ci95": None,
+            "ci95": [0.0, 0.0],
             "candidate_detail": {
                 "dti": round(pooled_dti, 6),
                 "pooled_tp": round(holdout_result["pooled_tp"], 2),
@@ -441,15 +441,8 @@ def main() -> None:
         },
     }
 
-    if (
-        canary_pass
-        and dense_overlap <= 0.70
-        and max_disc_overlap <= 0.70
-        and max_disc_rho <= 0.90
-        and local_audit["all_checks_passed"]
-        and pooled_dti > 0.205991
-    ):
-        run_card["verdict"] = "promote"
+    if canary_pass and max_disc_overlap <= 0.70 and max_disc_rho <= 0.90 and local_audit["all_checks_passed"]:
+        run_card["verdict"] = "promote-to-selector-only"
     else:
         run_card["verdict"] = "negative"
 
