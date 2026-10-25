@@ -25,3 +25,17 @@ def test_dense_constant_field_no_longer_vacuous():
 
 def test_threshold_constant():
     assert DENSE_POSITIVE_THRESHOLD == 200_000
+
+
+def test_equal_support_is_diagnostic_not_a_uniqueness_clearance():
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from scripts.validate_con88 import literal_g2_pass
+    dense_witness_row = {
+        "overlap_equal_support": 0.02,
+        "overlap_literal": 1.0,
+        "spearman": 0.10,
+    }
+    assert literal_g2_pass([dense_witness_row]) is False
+    sparse_row = {"overlap_equal_support": 0.25, "overlap_literal": 0.25, "spearman": 0.1}
+    assert literal_g2_pass([sparse_row]) is True
+    assert literal_g2_pass([]) is False

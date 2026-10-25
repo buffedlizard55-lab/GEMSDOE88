@@ -1,0 +1,185 @@
+{
+  "schema": "gemsdoe88.session-run-card.v1",
+  "run_id": "GEMSDOE88-REVIEW-F9A92CF6-20261025",
+  "reviewed_at_utc": "2026-10-25",
+  "branch": "arena/f9a92cf6-gemsdoe88",
+  "lane": "SOFTWARE_AND_EVIDENCE_REVIEW_ONLY",
+  "hypothesis": "Conditional first-ranked queue hypothesis H88-SPR: a repeated, signed topographic step across independently held-out along-strike swaths can reveal a weak/cover-softened fault scarp that is absent from the surface catalogue, if the signal outperforms fluvial-terrace and pluvial-shoreline nulls.",
+  "mechanism": "Profile restoration likelihood using det_elev, det_elev_slope, cached 10 m terrain-derived hs_lineament/dem_mean, LiDAR-derived step/coherence/strike/validity, and channel-count controls; do not seed locations from the hidden fault catalogue. This is a proposal only: the literal generation preflight stopped the session before feature construction.",
+  "named_non_fault_process": "Fluvial terrace risers and constant-elevation Pleistocene Lake Lahontan shoreline benches; both can produce persistent topographic steps without a fault.",
+  "hypothesis_ranked_candidates": [
+    {
+      "rank": 1,
+      "id": "H88-SPR",
+      "layers": [
+        "training_features B12 det_elev and B19 det_elev_slope",
+        "topo_10m_derived_100m_u8 B8 hs_lineament and B9 dem_mean (decode via pinned manifest)",
+        "lidar_scarp_features_u8 B3 step_max, B10 coh100, B11 strike, B12 valid",
+        "dem10_chi_100m_u8 B1 chan_n and B4 valid_n"
+      ],
+      "physical_signature": "Cross-validated smooth-landform-plus-signed-step restoration likelihood across along-strike swaths, with a channel-exclusion and drainage/shoreline null comparison.",
+      "why_off_catalogue": "Targets a weak or cover-softened surface offset that may be too subtle for existing catalogue mapping and does not use catalogue traces as spatial seeds.",
+      "difference_from_repo": "Existing LSC/TDKL/VESS/SHORE lanes use scarp, polarity, knickpoint or shoreline indicators; SPR proposes fitted, held-out profile-restoration likelihood with explicit matched geomorphic nulls.",
+      "mimic": "Fluvial terrace risers and pluvial shoreline benches.",
+      "relative_expected_dti": "Highest relative priority; moderate but highly uncertain; no numerical projection.",
+      "implementation_cost": "Medium; uses cached layers after full-stack restoration; spatial sampling and null design required.",
+      "external_data": "No new external data; pinned cached layers are listed in registry/hypothesis_queue.json. The full feature stack was not restored in this review."
+    },
+    {
+      "rank": 2,
+      "id": "H88-AWA",
+      "layers": [
+        "geodawn_rad_u8 B1 K, B2 Th, B3 U (quantized indices)",
+        "training_features B2 rtp, B15 depth_to_base_surf, B19 det_elev_slope"
+      ],
+      "physical_signature": "Terrain-matched, within-band cross-strike radiometric residual decay-width asymmetry, conditioned on local RTP depression; do not interpret quantized codes as calibrated concentrations or physical K/Th ratios.",
+      "why_off_catalogue": "A cover-obscured fluid pathway may alter radiometric response across a broader one-sided halo even where no discrete scarp or mapped trace is present.",
+      "difference_from_repo": "KTH/MVRD compare radiometric level or edge patterns; AWA fits relative two-flank decay widths after terrain matching.",
+      "mimic": "Parent-material contrasts, K-rich transported alluvium, differential weathering and soil-moisture effects.",
+      "relative_expected_dti": "Second; low-to-moderate and uncertain; no numerical projection.",
+      "implementation_cost": "Medium; quantization, saturation and parent-material matching require controls.",
+      "external_data": "No new external data; pinned GeoDAWN-derived cache listed in registry/hypothesis_queue.json. Not freshly retrieved from the official source in this review."
+    },
+    {
+      "rank": 3,
+      "id": "H88-CBC",
+      "layers": [
+        "training_features B12 det_elev, B13 iso_grav_anom, B15 depth_to_base_surf, B17 cond_surf",
+        "dem10_chi_100m_u8 B1 chan_n and B4 valid_n"
+      ],
+      "physical_signature": "Topology-preserving conductivity connectivity across independently inferred basin-boundary saddles, conditional on boundary-normal gravity change and compared with drainage-aligned connectivity.",
+      "why_off_catalogue": "A buried cross-basin structure may lack a surface trace; the hypothesis is a structural pathway, not direct vent detection.",
+      "difference_from_repo": "CTRA/DHTC score conductivity curvature or thermal conjunctions; CBC tests basin-boundary connectivity against a paleochannel null.",
+      "mimic": "Unfaulted permeable paleochannels, saline groundwater plumes and smooth basin-fill gradients.",
+      "relative_expected_dti": "Third; low and uncertain; no numerical projection.",
+      "implementation_cost": "Medium-high; coarse conductivity resolution is a central limitation.",
+      "external_data": "No new external data; pinned cached layers listed in registry/hypothesis_queue.json. The full feature stack was not restored in this review."
+    }
+  ],
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_BINDING_DUPLICATE_STOP",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "reason": "The shared literal preflight stopped before feature construction, canaries, model fitting and holdout evaluation."
+  },
+  "historical_reference_holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "HISTORICAL_CARD_NOT_RERUN_THIS_REVIEW",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "artifact": "H88-CON88 archived fixed TIFF compared on the same hide-and-recover folds as H33",
+    "withheld_positive_pixels": 60988,
+    "dti": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "caveat": "Historical candidate card only; fixed-candidate holdout is not evidence of public leaderboard performance."
+  },
+  "baseline_reference": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "HISTORICAL_CARD_NOT_RERUN_THIS_REVIEW",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "candidate": "H88-BPWD historical per-fold model, same repository evaluation protocol",
+    "withheld_positive_pixels": 22893,
+    "dti": 0.2059906799008455,
+    "ci95": [
+      0.18810523423482492,
+      0.22334363824908246
+    ]
+  },
+  "user_reported_score_claims": {
+    "evidence_class": "USER-REPORTED_NOT_ORGANIZER_RECEIPT",
+    "H33_GEMSDOE32": 0.2778,
+    "leaderboard_value_in_user_prompt": 0.4413,
+    "older_leaderboard_value_in_user_prompt": 0.3195,
+    "organizer_receipt_present": false,
+    "note": "Conflicting leaderboard values in the user's prompt were not live-verified; none is treated as this candidate's score."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE",
+    "candidate_surface_spearman": null,
+    "candidate_final_dot_overlap_3px": null,
+    "preplacement_universal_overlap_lower_bound": 1.0,
+    "preplacement_witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "overlap_limit": 0.7,
+    "decision": "DUPLICATE_STOP",
+    "reason": "No surface or dots were constructed; every nonempty candidate has literal positive-support overlap 1.0 with the witness."
+  },
+  "raster_file": null,
+  "raster_sha256": null,
+  "new_tif_generated": false,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "note": "The archived CON88 TIFF passed historical local format diagnostics, but is not the candidate from this review and remains DO-NOT-SUBMIT."
+  },
+  "submission_name": "GEMSDOE88-F9A92CF6-NO-FILE",
+  "submission_note": "DUPLICATE_STOP: literal dense-witness overlap blocks all nonempty candidates; no TIFF generated; DO NOT SUBMIT",
+  "submission_note_length": 110,
+  "verdict": "negative",
+  "ok_to_download_new_file": false,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "source_access": {
+    "official_competition_page_fetched_this_review": false,
+    "official_rules_pdf_fetched_this_review": false,
+    "official_leaderboard_fetched_this_review": false,
+    "official_reference_repository_fetched_this_review": false,
+    "official_geological_sources_fetched_this_review": false,
+    "reason": "The execution environment permits outbound access only to GitHub, codeload.github.com, api.github.com, registry.npmjs.org, pypi.org and files.pythonhosted.org."
+  },
+  "verification": {
+    "full_pytest": {
+      "status": "PASS",
+      "passed": 875,
+      "skipped": 23,
+      "warnings": 64
+    },
+    "focused_protocol_site_inventory_tests": {
+      "status": "PASS",
+      "passed": 89
+    },
+    "site_guard_normal": {
+      "status": "PASS"
+    },
+    "site_guard_optimized": {
+      "status": "PASS"
+    },
+    "render_decision_check": {
+      "status": "PASS"
+    },
+    "download_audit_check": {
+      "status": "PASS",
+      "published_tiff_zip_packages": 48,
+      "research_format_pass": 48,
+      "protocol_eligible": 0
+    },
+    "generation_guard": {
+      "status": "DUPLICATE_STOP",
+      "expected_exit_code": 2
+    },
+    "validate_current_require_submit": {
+      "status": "BLOCKED",
+      "expected_exit_code": 2
+    },
+    "validate_release_require_submit": {
+      "status": "BLOCKED",
+      "expected_exit_code": 2
+    },
+    "h33_lineage_audit": {
+      "status": "PASS",
+      "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE"
+    }
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
   "bytes": 146769,
-  "submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
+  "submission_name": null,
   "note": "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card",
   "note_chars": 107,
   "validator": {
@@ -115,7 +115,7 @@
   "approved_for_weekly_slot": false,
   "promoted": false,
   "submission_slots_used": 0,
-  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "status": "WITHDRAWN \u2014 RESEARCH ONLY \u2014 DO NOT SUBMIT",
   "metadata": {
     "experiments": {
       "exp1_consensus_only": {
@@ -158,5 +158,10 @@
       "gems28_h27_4",
       "gems36_anderson_pinn (0.974 overlap with H33, measured)"
     ]
-  }
+  },
+  "historical_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "submission_note": null,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "clearance_withdrawal": "Literal positive-support overlap with 17GEMSDOE is 1.0 > 0.70; equal-support clearance withdrawn."
 }

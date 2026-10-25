@@ -1,6 +1,12 @@
-## Current session handoff — 2026-10-25, H88-CON88 (supersedes DUPLICATE_STOP handoffs below)
+## Current session handoff — 2026-10-25, Arena branch `f9a92cf6`
 
-> **NEW UNIQUE TIF GENERATED AND GATES-CLEARED:** `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` (SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). **✅ OK TO DOWNLOAD AND SUBMIT** per automated gates in `registry/con88_gates.json` (format/uniqueness/fingerprint/canary PASS; overlap vs H33 0.487; worst 0.6936 vs GEMSDOE49). Note (107/140): `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`. Guide: `docs/con88.html`. Run card: `run_card_con88.json`. Analysis: `research/session-con88-20261025.md`. Equal-support fix IR-88-CON88-01. Next: user submits within weekly cap and records ORGANIZER-CONFIRMED receipt.
+**NO FILE IS APPROVED TO SUBMIT.** The shared literal generation preflight exits `2` with `DUPLICATE_STOP`: SHA-pinned 17GEMSDOE positive support covers all allowed pixels, so any nonempty candidate exceeds the stated 70% overlap ceiling. The former CON88 equal-support clearance was an unauthorized exception and is withdrawn. Its unchanged TIFF bytes are archived with `DO-NOT-SUBMIT`; the old run card and page now explicitly disclose the withdrawal.
+
+This review did not generate a new TIFF, run a holdout, test canaries, or use a weekly slot. Validation-only inputs were restored; the full 19-band stack is not present in this workspace. The first-ranked untested conditional hypothesis remains SPR (profile restoration with drainage/shoreline null controls), but the binding preflight prevents feature construction or holdout work. The request's “single method paragraph below” was not supplied; no method lane is inferred from it.
+
+Start from `README.md`, the complete recorded request `USER_PROMPT_20261025.md`, `AGENTS.md`, `registry/hypothesis_queue.json`, and the latest review/run card linked at the top of README. Do not promote, upload, rename as a submission, or bypass the shared preflight. Any proposed change to the literal uniqueness policy must be explicitly authorized and implemented once in the shared protocol, not privately.
+
+---
 
 ## Current session handoff — 2026-10-25, 693b10af
 

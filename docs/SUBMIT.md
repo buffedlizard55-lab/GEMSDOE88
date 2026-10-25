@@ -1,27 +1,18 @@
-# Submission decision — DO NOT SUBMIT (2026-10-25, updated session 838cc402)
+# Submission decision — NO FILE APPROVED · DO NOT SUBMIT
 
-> **⚠ SUPERSEDED FOR ONE FILE (2026-10-25, H88-CON88):** new unique TIFF `gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` (SHA-256 `e830b58e…e8d68`) passed all automated gates under the corrected equal-support rule and **is OK TO DOWNLOAD AND SUBMIT** — see **[con88.html](con88.html)**. Below remains the accurate dated record for historical lanes.
+> **Current gate:** `DUPLICATE_STOP`, `ok_to_submit: false`, `verdict: negative`. The prior H88-CON88 clearance was withdrawn under IR-88-B4DFA10C-08 because equal-support top-N was used as an unauthorized exception for the dense 17GEMSDOE raster. The binding literal positive-support overlap lower bound is `1.0 > 0.70`. See [withdrawal record](data/con88_withdrawal.json) and [current executive guide](executive-summary.html).
 
-> Historical decision record for the lanes listed here. This repository's **current**
-> decision is **`DUPLICATE_STOP` (`ok_to_submit: false`, `verdict: "negative"`, `0` protocol-eligible packages)**,
-> computed in the [executive summary](executive-summary.html), [`data/current_release.json`](data/current_release.json),
-> and [README.md](https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/README.md) (`H88-SDTL` clearance was withdrawn in `IR-88-B4DFA10C-08`; nothing in this file authorizes upload).
+**There is no current submission TIFF to upload.** Existing files are archived research downloads, each marked `DO-NOT-SUBMIT`; local format checks do not authorize a slot or establish a competition score. No slot was used in this review. The user-reported H33 value has no organizer receipt in this repository.
 
-**No new TIFF is eligible, and no competition slot was used by this session.** The primary [submission guide](executive-summary.html) and [canonical manifest](data/current_release.json) are authoritative. The [existing TDKL research TIFF](downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) and [single-TIFF ZIP](downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) are downloadable for education only; neither is a new or protocol-unique prediction.
+- Automated saved-byte audit: **48/48** published TIFF/ZIP pairs pass local research-package checks; **0/48** are protocol-eligible. Counts refer only to files under GitHub Pages download directories. [Full audit](data/download_audit.json).
+- Historical CON88: [archive page](con88.html); it is no longer upload-cleared. Its TIFF payload hash is unchanged; only the filename/ZIP member is marked `DO-NOT-SUBMIT`.
+- Validation-tier data was restored from SHA-pinned owner mirrors for this review; the full feature stack is absent, and these mirrors are not organizer-authenticated downloads.
+- Reproduce the current checks: `python scripts/restore_inputs.py --validation`, `python scripts/generation_guard.py` (expected exit `2`), `python scripts/audit_downloads.py --check`, `python scripts/render_decision.py --check`, and `python -O scripts/check_site.py`.
 
-- Automated saved-byte audit: **48/48** published Pages TIFF/ZIP pairs (`47` main downloads in `docs/downloads/` + `1` historical variant in `docs/research-variants/`, exactly `1` eligible — H88-CON88 under equal-support gate `IR-88-CON88-01`, see [con88.html](con88.html); historical lanes remain `ok_to_submit: false`) plus **20/20** repo-side `submissions/` archives pass two independent decoders, finite/`[0,1]`, exact grid, footprint/catalogue masks and extraction labels (`IR-88-838C-01`, `IR-88-838C-02`). [Full audit](data/download_audit.json).
-- Current inventory updated by session 693b10af after the peer PGTD merge; its CLI guard bypass is revoked and tensor family retired. The 838cc402 access/repair claims below are that parallel session’s historical scope, not fresh external retrieval by 693b10af.
-- Session 838cc402 re-verified preflight (`DUPLICATE_STOP`, exit 2 on `17GEMSDOE`), repaired the post-PR-#152 withdrawn-SDTL-lane and stale package-count merge regression in this file plus the overlooked `submissions/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip` extraction member, verified official primary sources live, and published [five untried post-MMRX geological hypotheses](research/session-838cc402-hypotheses.md) and [three-pass review](research/session-838cc402-review.md) ([negative run card](data/session_838cc402_run_card.json)). Zero rasters generated; zero slots spent.
-- Session 249e8cb3 executed the former rank-1 hypothesis (`H88-MMRX` marker restoration): HOLDOUT-DTI `0.188378 [0.170922, 0.204215]` vs the `0.205991` bar, 0/8 folds won, and final-dot overlap `0.797578` vs H88-HGVC — negative; published repo-side in `submissions/` with `-DO-NOT-SUBMIT`, not added to this site's downloads. Zero slots spent.
-- Literal prerequisite: `17GEMSDOE` directly covers every one of 5,106,385 allowed pixels; every nonempty allowed candidate has overlap 1.0 > 0.70. **STOP before generation.**
-- The old `[0,1]` error is addressed locally by validation of strict finite zero-outside files, not by claiming portal acceptance. Its exact historical upload failure cannot be diagnosed without the uploaded bytes/receipt.
-- All validation is automated; no manual TIFF inspection is needed. A future eligible file would still require fold-rebuilt holdout superiority, complete registry checks and a separate selector within the actual authenticated account cap. No fresh cap or official receipt was obtained here.
-- Reproduce locally: `python scripts/audit_downloads.py --check`, `python scripts/render_decision.py --check`, `python -O scripts/check_site.py`. Candidate CLIs stop via the existing shared preflight; there is no override switch.
-
-**Unique new submission requirement: UNMET.** See [review and ordered next steps](research/session-d0c3adeb-review.md) and the [H88-MMRX session review](research/review-249e8cb3-mmrx88-20261025.md).
+**Unique new submission requirement: UNMET.** The site’s top-level decision and [executive summary](executive-summary.html) intentionally provide no active upload button until the binding gate can be satisfied.
 
 <details>
-<summary>Earlier session records — historical, not current authorization</summary>
+<summary>Historical instructions and lane records — not current authorization</summary>
 
 # Competition submission guide (current decision: DO NOT SUBMIT)
 

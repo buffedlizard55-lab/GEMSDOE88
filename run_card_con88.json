@@ -141,15 +141,19 @@
     "n_dots": 37654,
     "zip_single_tif_byte_identical": true
   },
-  "submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
-  "submission_note": "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card",
-  "ok_to_submit": true,
+  "submission_name": null,
+  "submission_note": null,
+  "ok_to_submit": false,
   "organizer_confirmed_score": null,
   "user_reported_reference_scores": {
     "h33_gemsdoe32": 0.2778,
     "leaderboard_top_prompt_stale": 0.4413,
     "note": "owner/user reported, no organizer receipt in repo"
   },
-  "verdict": "promote",
-  "expected_score_claim": "NONE. No number above 0.2778 is claimed or projected as a score. Beating 0.2778 requires +0% to reach parity and (forensics \u00a73) +27-29% credit for 0.3539; whether consensus delivers any gain is knowable only from an organizer receipt."
+  "verdict": "negative",
+  "expected_score_claim": "NONE. No number above 0.2778 is claimed or projected as a score. Beating 0.2778 requires +0% to reach parity and (forensics \u00a73) +27-29% credit for 0.3539; whether consensus delivers any gain is knowable only from an organizer receipt.",
+  "historical_submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
+  "status": "WITHDRAWN \u2014 RESEARCH ONLY \u2014 DO NOT SUBMIT",
+  "clearance_withdrawal": "The equal-support uniqueness exception was revoked; the literal dense witness yields overlap 1.0 > 0.70.",
+  "raster_filename": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif"
 }

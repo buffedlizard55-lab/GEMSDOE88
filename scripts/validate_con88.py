@@ -14,19 +14,18 @@ sys.path.insert(0, str(ROOT / "vendor"))
 from gems57 import evaluate_holdout, spatial
 from gems57.uniqueness import dot_overlap, _near, equal_support_dots, DENSE_POSITIVE_THRESHOLD
 
-CAND_GLOB = "gems88-con88-consensus-ridge-*-zeros.tif"
+CAND_GLOB = "gems88-con88-consensus-ridge-*-zeros-DO-NOT-SUBMIT.tif"
 
 def load(p):
     with rasterio.open(p) as ds:
         return ds.read(1), ds
 
-def topn_support(a, n, foot):
-    """Equal-support dots for a dense raster: its n highest finite footprint pixels."""
-    out = np.zeros(a.shape, bool)
-    vals = np.where(foot & np.isfinite(a), a, -np.inf).ravel()
-    idx = np.argpartition(vals, -n)[-n:]
-    out.ravel()[idx] = True
-    return out
+def literal_g2_pass(rows, overlap_limit=0.70, rho_limit=0.90):
+    """Binding all-registry G2 decision; equal-support overlap is diagnostic only."""
+    if not rows:
+        return False
+    return (max(float(r["overlap_literal"]) for r in rows) <= overlap_limit
+            and max(abs(float(r["spearman"])) for r in rows) <= rho_limit)
 
 def main():
     cand = sorted((ROOT / "docs/downloads").glob(CAND_GLOB))[-1]
@@ -77,7 +76,7 @@ def main():
         if nd == 0:
             continue
         dense = nd > DENSE_POSITIVE_THRESHOLD
-        support = topn_support(a, n, foot) if dense else their_dots
+        support = equal_support_dots(a, n, valid=foot) if dense else their_dots
         ov = float(_near(support, 3.0)[dots].mean())
         # Spearman: binary-vs-binary == Pearson(phi); binary-vs-dense via ranks on footprint sample
         if dense:
@@ -94,8 +93,11 @@ def main():
                          dense=bool(dense), overlap_equal_support=ov,
                          overlap_literal=literal_ov, spearman=rho))
     worst_ov = max(rows, key=lambda r: r["overlap_equal_support"])
+    worst_literal_ov = max(rows, key=lambda r: r["overlap_literal"])
     worst_rho = max(rows, key=lambda r: abs(r["spearman"]))
-    g2_ok = worst_ov["overlap_equal_support"] <= 0.70 and abs(worst_rho["spearman"]) <= 0.90
+    # Equal-support scores remain diagnostic only. The binding rule applies to
+    # literal positive support, including saturated dense probability rasters.
+    g2_ok = literal_g2_pass(rows)
 
     # G3 H33-parity fingerprint (thresholds from fleet forensics, research/h33-forensics)
     d = dcat[dots]
@@ -149,9 +151,11 @@ def main():
         candidate=cand.name,
         sha256=hashlib.sha256(cand.read_bytes()).hexdigest(),
         G1_format=g1, G1_ok=bool(g1_ok),
-        G2_uniqueness=dict(rasters_checked=len(rows), worst_overlap=worst_ov,
-                           worst_spearman=worst_rho, rule="sparse:literal >0 support; dense(>200k pos):equal-support top-N",
-                           rows=sorted(rows, key=lambda r: -r["overlap_equal_support"])[:10]),
+        G2_uniqueness=dict(rasters_checked=len(rows), worst_overlap_equal_support=worst_ov,
+                           worst_literal_overlap=worst_literal_ov,
+                           worst_spearman=worst_rho,
+                           rule="literal finite positive support for all rasters; equal-support dense diagnostic only",
+                           rows=sorted(rows, key=lambda r: -r["overlap_literal"])[:10]),
         G2_ok=bool(g2_ok), G3_fingerprint=g3, G3_ok=bool(g3_ok),
         holdout=dict(evidence_class="HOLDOUT-DTI", evaluator_version=evaluate_holdout.VERSION,
                      n_withheld_positives=n_withheld, pooled=pooled,
@@ -159,10 +163,20 @@ def main():
                             "candidate collar used full-catalogue distance so holdout is conservative (underestimate)"),
         leakage_canary=canary, canary_ok=bool(canary_ok),
     )
-    out["ok_to_submit"] = bool(g1_ok and g2_ok and g3_ok and canary_ok)
+    out["ok_to_submit"] = False  # research validator cannot authorize a slot; literal witness blocks
+    out["verdict"] = "negative"
+    out["clearance_status"] = "WITHDRAWN"
+    out["literal_rule_blocker"] = {
+        "witness": "17GEMSDOE dense prior",
+        "overlap": worst_literal_ov["overlap_literal"],
+        "limit": 0.70,
+        "decision": "DUPLICATE_STOP",
+        "reason": "The binding support rule is literal; equal-support top-N is diagnostic only.",
+    }
     (ROOT / "registry/con88_gates.json").write_text(json.dumps(out, indent=2, default=float) + "\n")
     print(json.dumps({k: out[k] for k in ["candidate", "sha256", "G1_ok", "G2_ok", "G3_ok", "canary_ok", "ok_to_submit"]}, indent=2))
-    print("worst_overlap", worst_ov["file"], round(worst_ov["overlap_equal_support"], 4))
+    print("worst_literal_overlap", worst_literal_ov["file"], round(worst_literal_ov["overlap_literal"], 4))
+    print("worst_equal_support_diagnostic", worst_ov["file"], round(worst_ov["overlap_equal_support"], 4))
     print("worst_rho", worst_rho["file"], round(worst_rho["spearman"], 4))
     print("holdout scores", {k: v for k, v in pooled.get("scores", {}).items()})
     return 0 if out["ok_to_submit"] else 2

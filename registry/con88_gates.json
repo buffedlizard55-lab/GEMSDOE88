@@ -1,5 +1,5 @@
 {
-  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
   "G1_format": {
     "one_band": true,
@@ -128,9 +128,19 @@
         "overlap_literal": 0.5193870505125617,
         "spearman": 0.048171169641686926
       }
-    ]
+    ],
+    "literal_rule": {
+      "support_definition": "finite prediction > 0",
+      "witness": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "overlap_3px": 1.0,
+      "limit": 0.7,
+      "blocks": true,
+      "decision": "DUPLICATE_STOP"
+    },
+    "equal_support_exception_status": "DIAGNOSTIC_ONLY_REVOKED_FOR_CLEARANCE"
   },
-  "G2_ok": true,
+  "G2_ok": false,
   "G3_fingerprint": {
     "share_gt25": 0.4174058532957986,
     "share_le3": 0.0,
@@ -247,5 +257,16 @@
     }
   },
   "canary_ok": true,
-  "ok_to_submit": true
+  "ok_to_submit": false,
+  "previous_candidate_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "verdict": "negative",
+  "clearance_status": "WITHDRAWN",
+  "withdrawal": {
+    "recorded_utc": "2026-10-25",
+    "basis": "Binding literal parallel-run protocol applies positive-support overlap to every registry raster; equal-support top-N was an unauthorized exception.",
+    "policy_reference": "AGENTS.md / IR-88-B4DFA10C-08 and literal protocol audit",
+    "new_tiff_generated": false,
+    "tiff_bytes_changed": false,
+    "archive_name_changed_only_to_add_negative_marker": true
+  }
 }
