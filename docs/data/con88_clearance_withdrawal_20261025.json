@@ -46,5 +46,13 @@
     "PR #158 bypassed scripts/generation_guard.py via scripts/con88_preflight.py and added carve-outs to audit_downloads.py, check_site.py, and five test modules.",
     "CON88 failed the spatially-blocked holdout gate (per-fold HOLDOUT-DTI 0.0017 [0.0013, 0.0021] vs H88-BPWD 0.205991; fixed-TIF 0.0000 vs H33 0.0067).",
     "Promotion to a weekly submission slot is a separate selector step and is forbidden from local format checks."
-  ]
+  ],
+  "archived_do_not_submit_sha256": {
+    "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip": "73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb",
+    "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.json": "48607b6fe77905844772838fec2ea43d90bbaced48e6d93956829e437b7e87d8",
+    "run_card_con88.json": "0e416f7b667e962e08ebb3ac2844012c49932210b3132e96c4a125274014d93a",
+    "registry/con88_run_card.json": "e624ed396b4e0211116896da0161f6fc40786c084fe7daa38bfaf438ed1aa92e",
+    "registry/con88_gates.json": "6360b134d938cac2992a24b7f5957bbda939a9e3244d97afea8d5170c795de89"
+  }
 }

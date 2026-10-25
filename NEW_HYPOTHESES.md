@@ -17,6 +17,8 @@ Parallel proposal record: [session db4a5e4b](research/session-db4a5e4b-hypothese
 
 Additional parallel proposal record: [session 838cc402](research/session-838cc402-hypotheses.md) retains its five alternatives and its own claimed source-access scope. Those records are preserved, not silently folded into this source-bound current queue. In particular, external-data access/permissions and ratios of quantized radiometric codes are not newly certified by this review. No duplicate-stop exception or independent experiment is authorized.
 
+Cross-fleet-screened parallel proposal record: [session 21256734](research/session-21256734-hypotheses.md) documents five complementary `0`-match geophysical inversions (`H88-ACDR` GeoDAWN `22°` drape/Beer–Lambert/Guspi continuation, `H88-POFD` Parker–Oldenburg 3D basement relief + flexural unloading, `H88-WDCS` complex Werner deconvolution + cepstral dike veto, `H88-OCST` `1915–1954` CNSB Okada Coulomb stress transfer, and `H88-OPERA-INSAR` NASA OPERA `DISP-S1` playa aquifer-baffle steps; `H88-ACDR..H88-WDCS` use SHA-pinned local inputs only) screened against live sibling fleets (`GEMSDOE86/91/92`) as well as all modules in `src/gems88/`. Preserved alongside the source-bound queue above; no duplicate-stop exception or experiment is authorized.
+
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>
 

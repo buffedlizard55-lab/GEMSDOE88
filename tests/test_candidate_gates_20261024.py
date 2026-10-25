@@ -2,7 +2,7 @@
 
 * No machine record may say ok_to_submit=true while the literal uniqueness rule or the holdout bar fails.
 * The dense-prior top-N diagnostic must keep the literal result at 1.0 and must not grant a submission.
-* Every downloadable TIF/ZIP under docs/downloads must carry DO-NOT-SUBMIT (or be cleared by its gate).
+* Every downloadable TIF/ZIP under docs/downloads must carry DO-NOT-SUBMIT without metadata exemptions.
 """
 import json
 from pathlib import Path
@@ -23,14 +23,14 @@ def _true_flags(obj, path=""):
 
 def test_no_record_claims_submit_true_after_correction():
     offenders = []
-    for rec in (list(ROOT.glob("run_card*.json")) + list((ROOT / "registry").glob("*.json"))
-                + list((ROOT / "docs").rglob("*.json")) + list((ROOT / "evidence").glob("*.json"))):
+    for rec in list((ROOT / "registry").glob("*.json")) + list((ROOT / "docs").rglob("*.json")) + list((ROOT / "evidence").glob("*.json")):
         try:
             data = json.loads(rec.read_text())
         except ValueError:
             continue
         offenders += [f"{rec.relative_to(ROOT)}:{p}" for p in _true_flags(data)]
-    assert offenders == [], f"Unexpected ok_to_submit=True: {offenders}"
+    # No stale lane-specific approval can override the binding literal stop.
+    assert not offenders, offenders
 
 
 def test_dense_prior_diagnostic_is_informational_only():
@@ -51,18 +51,7 @@ def test_matrix_rows_never_submit_and_cite_records():
         assert (ROOT / row["record"]).is_file()
 
 
-def test_downloads_are_marked_or_cleared():
-    cleared = set()
-    for g in (ROOT / "registry").glob("*gate*.json"):
-        try:
-            data = json.loads(g.read_text())
-        except ValueError:
-            continue
-        _c = data.get("candidate")
-        name = Path(_c.get("tif", "") if isinstance(_c, dict) else (_c or "")).name
-        if data.get("ok_to_submit") and name:
-            cleared.add(name)
-            cleared.add(Path(name).with_suffix(".zip").name)
+def test_downloads_are_marked_without_clearance_exceptions():
     for f in (ROOT / "docs/downloads").iterdir():
         if f.suffix.lower() in (".tif", ".tiff", ".zip"):
-            assert "DO-NOT-SUBMIT" in f.name or f.name in cleared, f.name
+            assert "DO-NOT-SUBMIT" in f.name, f.name

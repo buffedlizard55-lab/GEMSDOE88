@@ -1,6 +1,6 @@
 {
   "schema": "gems88.browser-review.v1",
-  "checked_at_utc": "2026-10-25T18:44:12.229Z",
+  "checked_at_utc": "2026-10-25T19:06:08.165Z",
   "browser": "153.0.8010.0",
   "pages": [
     {
@@ -96,14 +96,14 @@
   ],
   "failed_fetch_stays_negative": true,
   "source_sha256": {
-    "docs/index.html": "07f26fbcdfb7587f439616ef811f91603408492c5cdabf8517f919206dc79eb7",
-    "docs/executive-summary.html": "21c11c3a2376a2e79687efc3bf722d46f4dc4888aa89d8cf9fc497d356f27088",
+    "docs/index.html": "0368477b8f4dfc3ba9170509a01a9d72c04079053858e2a2ddeb675a420fddbe",
+    "docs/executive-summary.html": "4a4411eceace4bb9782e5a48a24bd3c65e678be15a48eda57d750d4386ce04db",
     "docs/research.html": "1a58f02e5b1b69ca3466cfdc586f21675f85fce2c9828e31f687b7ddeb764722",
     "docs/sources.html": "6a595c6f28c52f89db5476cbf99b00bc3bd3d0d14c34593d6aba89277bb93629",
     "docs/assets/site.css": "834256dce45ea5d350bea0942730f455e1c44edaa64e85f35527ad58c187c737",
     "docs/assets/site.js": "d27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41",
     "docs/data/current_release.json": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",
-    "docs/data/download_audit.json": "5a27b23ddf65fac75ebf240eea4c45832e2034b29d4fb5a21857821633cc8e62",
+    "docs/data/download_audit.json": "0be3e12160c412697bc90b080c089e40ac495301067b2f407a4e4b4b6d4294eb",
     "docs/data/mtas88_run_card.json": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
     "docs/data/hypothesis_queue.json": "6606c5b2cb255273da3b95aa54f01243a602cd08f73102add73645510da13642",
     "docs/status.json": "8fa371b6051d026fbb1f448af788fb7dbb541a744d50918333a9d9f70d48d2aa",

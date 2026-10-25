@@ -143,6 +143,7 @@ def test_published_inventory_covers_every_actual_tiff_and_zip():
         assert audit.sha(tif) == row['sha256']
         assert audit.sha(zipped) == row['zip_sha256']
         assert row['format_valid'] and row['research_download_ok']
+        assert row['cleared_by_con88_gates'] is False  # withdrawn; format is not scientific clearance
         assert row['ok_to_submit'] is False
         with zipfile.ZipFile(zipped) as z:
             assert z.namelist() == [tif.name]

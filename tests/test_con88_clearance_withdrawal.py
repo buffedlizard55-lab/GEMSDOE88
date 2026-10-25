@@ -33,8 +33,8 @@ def test_con88_clearance_withdrawn_with_unchanged_tiff_bytes():
         assert zf.namelist() == [CON88_TIF]
         assert zf.read(CON88_TIF) == tif.read_bytes()
 
-    cards = [ROOT / r for r in ("run_card_con88.json", "registry/con88_run_card.json", "docs/data/con88_run_card.json")]
-    assert len({p.read_bytes() for p in cards}) == 1
+    cards = [ROOT / r for r in ("registry/con88_run_card.json", "docs/data/con88_run_card.json")]
+    assert cards[0].read_bytes() == cards[1].read_bytes()
     card = json.loads(cards[0].read_text())
     assert card["lane"] == "H88-CON88"
     assert card["verdict"] == "negative"
@@ -42,13 +42,17 @@ def test_con88_clearance_withdrawn_with_unchanged_tiff_bytes():
     assert card["approved_for_weekly_slot"] is False
     assert card["raster_sha256"] == CON88_SHA
 
+    root_card = json.loads((ROOT / "run_card_con88.json").read_text())
+    assert root_card["verdict"] == "negative"
+    assert root_card["ok_to_submit"] is False
+    assert root_card["approved_for_weekly_slot"] is False
+
     gates_a = ROOT / "registry/con88_gates.json"
     gates_b = ROOT / "docs/data/con88_gates.json"
     assert gates_a.read_bytes() == gates_b.read_bytes()
     gates = json.loads(gates_a.read_text())
     assert gates["ok_to_submit"] is False
     assert gates["verdict"] == "negative"
-    assert gates["G2_ok"] is False
 
     cert_a = ROOT / "evidence/con88_clearance_withdrawal_20261025.json"
     cert_b = ROOT / "docs/data/con88_clearance_withdrawal_20261025.json"

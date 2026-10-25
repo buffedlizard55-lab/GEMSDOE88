@@ -158,10 +158,12 @@ def test_site_guard_rejects_broken_or_escaping_docs_markdown_links(tmp_path):
         check_site.main(tmp_path)
 
     probe.unlink()
-    audit_data = json.loads((docs / "data/download_audit.json").read_text())
-    total = audit_data["total_published_tiff_count"]
     submit = docs / "SUBMIT.md"
-    submit.write_text(submit.read_text().replace(f"**{total}/{total}**", f"**{total - 1}/{total - 1}**", 1))
+    count = json.loads((docs / "data/download_audit.json").read_text())["total_published_tiff_count"]
+    original = submit.read_text()
+    needle = f"**{count}/{count}**"
+    assert needle in original
+    submit.write_text(original.replace(needle, "**0/0**", 1))
     with pytest.raises(ValueError, match="Submission guide inventory count is stale"):
         check_site.main(tmp_path)
 

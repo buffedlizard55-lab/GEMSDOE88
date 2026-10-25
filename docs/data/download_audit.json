@@ -1,6 +1,6 @@
 {
   "schema": "gems88.download-audit.v2",
-  "checked_at_utc": "2026-10-25T18:31:59.179674+00:00",
+  "checked_at_utc": "2026-10-25T19:06:04.758027+00:00",
   "scope": "Every TIFF in docs/downloads and docs/research-variants, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
   "preplacement_registry_proof": {
     "evidence_class": "REGISTRY-MEASUREMENT",
@@ -80,6 +80,7 @@
       "zip_sha256": "5a3a64d31c28f5f7d49d46899ce7c578229877261f44e97d57a0001f02dd4c79",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "publication_directory": "research-variants",
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
@@ -142,6 +143,7 @@
       "zip_sha256": "729ca35f4aed1ba3c99cf5f420af89032c27d08308471a239ed8d1d46ad3a7fd",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -199,6 +201,7 @@
       "zip_sha256": "1d44161d500e671cd6e7c29c326e1791ee531aa62e9f8bddcb32a5d635428df7",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -256,6 +259,7 @@
       "zip_sha256": "cb496d0f2a552e950f64e7babd084b23da3a6d7fdeaa1cf7c6c9ade937cc4c4e",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -313,6 +317,7 @@
       "zip_sha256": "5da6887dee839923f02667ee4822dde449add0a82a3c9ea34f05b362b43ab33d",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -370,6 +375,7 @@
       "zip_sha256": "240f698b9feedc285602257c2267e9f66cecfa4d59d3a93a6c46f3b9a2549149",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -424,9 +430,10 @@
       "decoded_float32_sha256": "aadae21c87978ad5c4d3ff905aa3cc2c376cc3164d2a2c47030168abaa6f6572",
       "positive_support_sha256": "13f8f4e27f1162f6b2db5bc8e1304871ada0a274351abea064e0eed5116102d2",
       "zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
-      "zip_sha256": "8dcb396403dcd265303d783461ce598a8a346fecc8fbc5c7d0721eba32a856e2",
+      "zip_sha256": "73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -484,6 +491,7 @@
       "zip_sha256": "4e5d590a7099cae23e1912d6f847ffc805b15ca52d0d4962973203bc79792bee",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -541,6 +549,7 @@
       "zip_sha256": "3c0120be734b79871ee582acf6a84980d469e6271a2682652f83012d3c2333e4",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -598,6 +607,7 @@
       "zip_sha256": "938c3dbae8475d3973d2f8229902a7ac1e4bdb1f248ed3fe50924cba68a10188",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -655,6 +665,7 @@
       "zip_sha256": "ee83f6b51dadff44ef2ed1f66727b4d723e9df232fa1928f75157825aee9f366",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -712,6 +723,7 @@
       "zip_sha256": "836f8f74ad29de2b6db94b1c1c4e8bc3af43d3efbc3a124300ae74b2f6612dc5",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -769,6 +781,7 @@
       "zip_sha256": "5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -826,6 +839,7 @@
       "zip_sha256": "0917eec141a7d5813e15442c221739a2626c128b647977e40766fe94e0f1dc4e",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -883,6 +897,7 @@
       "zip_sha256": "e21c8aac70fdcca59fedd5e4b9ee2d8148dc34b12ea6b158698eb7ff5f9e75ca",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -940,6 +955,7 @@
       "zip_sha256": "d14f3b9a3634c8653eaa8402808403a5d5eec8e9a0ff7f1105910e62ca521f2e",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -997,6 +1013,7 @@
       "zip_sha256": "6ca1de8addd4f3e88e245d597da655ed39fc34398a010ad2c30d11d04df26cd1",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1054,6 +1071,7 @@
       "zip_sha256": "cd64e498a62175e833edbd9079e95bf8e0d296b89de63c03b6154d5a92d10606",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1111,6 +1129,7 @@
       "zip_sha256": "68cedfcd6ab66ec0fda9abbdb6f14d3e6537cffefef5d3bb4c5ffce1e4157814",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1168,6 +1187,7 @@
       "zip_sha256": "99ab66549c8c788c7b236b0cea0bb06be1972ac8d501f55c9355b2a594ee1242",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1225,6 +1245,7 @@
       "zip_sha256": "dc1433b8f622de939c61589dbf30ccb243c3f5231e872bb647466773cc58768f",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1282,6 +1303,7 @@
       "zip_sha256": "10921fdd4a0ed2808c3525ccaee02942f5f396378a9d89a5f0d4465428827aa9",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1339,6 +1361,7 @@
       "zip_sha256": "4470e339d9d8b9b8eb32f6b976fe32e17bd176e45b0d0ee91da258caab544dca",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1396,6 +1419,7 @@
       "zip_sha256": "2e47ce265304d7a40f3a4f1eb4ad5996958a6ad8cd1ef6dac24f6df404894621",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1453,6 +1477,7 @@
       "zip_sha256": "301e176d2cddf7f28c3d83f0b2d383bce0ba8c193df32ab6382dbd356acaca25",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1510,6 +1535,7 @@
       "zip_sha256": "b5ad4ac03d31a27c1da1bfbfebf0d066505613d0555c3b8fa5592686a865596a",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1567,6 +1593,7 @@
       "zip_sha256": "ae80e61b0b06ba51429521c63991b9a13736ab48f771159e7dacae1c41613634",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1624,6 +1651,7 @@
       "zip_sha256": "3a597650e7707213b87d691cca2131a8087ffcaf757fab75cd122a1d3dfcfc68",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1681,6 +1709,7 @@
       "zip_sha256": "b7aae7182d901fd440e4f3d971d5e436d29e367be0622f7d8be7c4671924cfc9",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1738,6 +1767,7 @@
       "zip_sha256": "5cd92c48d47f258f193f41171b4fcdf38265ac9bb6bf3b1d749a1d9a56bd3f6a",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1795,6 +1825,7 @@
       "zip_sha256": "cfd24498c8ca3e7e9247ce76b1097f434893aa9210b88401c5f7bed895e1443e",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1852,6 +1883,7 @@
       "zip_sha256": "3dfbb93aebf8e4f0d2f3d04ab1c7a7ddd1d107cc35d5a2d289bfabc3e88ece8c",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1909,6 +1941,7 @@
       "zip_sha256": "d367c2a4810bf91c5661a590b6bb0e7ba1c69e90ddb14fb44595c6e3c9dd993f",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -1966,6 +1999,7 @@
       "zip_sha256": "9d576a0b11ea0deca95838e1eee6e27745bb1fd591e986823fe4cdaaaad6ab28",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2023,6 +2057,7 @@
       "zip_sha256": "e3c602649f03c34dedb818a1414b5ffa78ff51749716c27c1043802b2bf4942a",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2080,6 +2115,7 @@
       "zip_sha256": "986408450f566c4412c6bc743fd8d89742628e768fab96c037f4afa3a324baef",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2137,6 +2173,7 @@
       "zip_sha256": "fbbfa151c4c3fbfe4e3da4e67222bda449f8c0318b61efb8c7b052171b521745",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2194,6 +2231,7 @@
       "zip_sha256": "980528364fc0609dd47ea32f432d5a92dc29bf3ca10f13afeb0a05f20e1c4168",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2251,6 +2289,7 @@
       "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2308,6 +2347,7 @@
       "zip_sha256": "2f39a484598382c93e90b46bc7f572b691af8bfb10c5ec88512c649d96257cd3",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2365,6 +2405,7 @@
       "zip_sha256": "edce6e3f0ba68f6c6142d38cbbd63a2b70d35033cceb7eb66b8554e5bbaacbe2",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2422,6 +2463,7 @@
       "zip_sha256": "b87b0d02c01d79be4a0ec61329191329d888d8ee3b36bc771eb3bc32a72ac670",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2479,6 +2521,7 @@
       "zip_sha256": "dab27331a669ec53fb6b6efa14fcceb8dd09054199adc10981d7a1030f57b3ec",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2536,6 +2579,7 @@
       "zip_sha256": "dcba915381b57090cbb30fa5b28bc1fe03388ebeeea292c74b1d77f137191e05",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2593,6 +2637,7 @@
       "zip_sha256": "eba566f9f960017f98d9502ee5026b3a48b2b3b59a0d6e320471f2ddd6e0fb5f",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2650,6 +2695,7 @@
       "zip_sha256": "612f489be9f48e51e38b4616aa5afc4a3167cc3a7822f25da2463be708244b45",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2707,6 +2753,7 @@
       "zip_sha256": "6a7b4ffd08831029844c075c91829e0b45acd65a397a7571f8e3d43b75f64ef6",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },
@@ -2764,6 +2811,7 @@
       "zip_sha256": "613551520f60b0188ac9e039e337812fcb4f954cf4ba592437a2ef462f9dff5f",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     }

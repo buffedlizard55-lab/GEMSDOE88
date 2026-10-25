@@ -546,6 +546,7 @@ def main(root: Path = ROOT) -> None:
         directory = docs / row.get("publication_directory", "downloads")
         require(row["format_valid"] is True and row["research_download_ok"] is True
                 and row["ok_to_submit"] is False
+                and row.get("cleared_by_con88_gates") is False
                 and sha256(directory / row["file"]) == row["sha256"]
                 and sha256(directory / row["zip_file"]) == row["zip_sha256"],
                 f"Published research bytes or negative audit changed: {directory.name}/{row['file']}")
