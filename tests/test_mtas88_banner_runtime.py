@@ -24,8 +24,13 @@ def test_current_decision_precedes_archived_download_on_both_pages():
 
 
 @pytest.mark.skipif(NODE is None, reason="Node.js runtime unavailable")
-@pytest.mark.parametrize("missing", [False, True])
-def test_mtas_banner_fails_closed_with_real_or_missing_feeds(missing):
+@pytest.mark.parametrize("state,offset_hours,expected", [
+    ("fresh", 1, "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"),
+    ("missing", 1, "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT"),
+    ("stale", 25, "SAVED LOCAL AUDIT STALE (>24H) · ARCHIVED RESEARCH DOWNLOAD ONLY · SUBMIT: NO — DO NOT SUBMIT"),
+    ("future", -2, "PRE-FLIGHT AUDIT UNAVAILABLE OR INCONSISTENT — DO NOT SUBMIT"),
+])
+def test_mtas_banner_fails_closed_with_fresh_missing_stale_or_future_feeds(state, offset_hours, expected):
     # No browser-only APIs required by the banner. Use the actual site.js and
     # committed JSON; this catches a valid-looking but wrong certificate key.
     snippet = r"""
@@ -33,7 +38,11 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
 const banner = {textContent: 'static DO NOT SUBMIT'};
-const fail = process.env.MISSING_FEED === '1';
+const fail = process.env.AUDIT_STATE === 'missing';
+const checked = JSON.parse(fs.readFileSync('docs/data/download_audit.json', 'utf8')).checked_at_utc;
+const offsetMs = Number(process.env.CLOCK_OFFSET_HOURS) * 3600_000;
+// Anchor the test clock to the saved evidence; CI must also pass years later.
+class Clock extends Date { static now() { return Date.parse(checked) + offsetMs; } }
 const env = {
   document: {
     querySelector: sel => sel === '[data-card-status]' ? banner : null,
@@ -44,12 +53,11 @@ const env = {
     const data = JSON.parse(fs.readFileSync(path.join('docs', url), 'utf8'));
     return {ok: true, json: async () => data};
   },
-  setTimeout, clearTimeout, console, Date,
+  setTimeout, clearTimeout, console, Date: Clock,
 };
 vm.runInNewContext(fs.readFileSync('docs/assets/site.js', 'utf8'), env);
 setImmediate(() => {
-  const expected = fail ? 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT'
-    : 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT';
+  const expected = process.env.EXPECTED_BANNER;
   if (banner.textContent !== expected) {
     console.error('Incorrect decision:', banner.textContent, 'expected:', expected);
     process.exitCode = 1;
@@ -58,7 +66,8 @@ setImmediate(() => {
 """
     import os
 
-    env = {**os.environ, "MISSING_FEED": "1" if missing else "0"}
+    env = {**os.environ, "AUDIT_STATE": state, "CLOCK_OFFSET_HOURS": str(offset_hours),
+           "EXPECTED_BANNER": expected}
     result = subprocess.run(
         [NODE, "-e", snippet], cwd=ROOT, env=env, capture_output=True, text=True,
         check=False,

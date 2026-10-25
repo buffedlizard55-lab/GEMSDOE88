@@ -73,13 +73,13 @@ def render(root: Path, kind: str) -> str:
     title = "Research download.<br>Not cleared to submit." if kind == "overview" else "How submission works.<br>Why it is blocked today."
     hero = f'''<section class="decision-hero" id="mtas-review" aria-labelledby="decision-title">
 <div class="wrap" id="autonomous-review">
-<div class="decision-kicker">Current review · 2026-10-25 · NO FILE APPROVED</div>
+<div class="decision-kicker">Recorded review · 2026-10-25 · NO FILE APPROVED</div>
 <div class="decision-grid"><div>
 <h1 id="decision-title">{title}</h1>
 <p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule. No old prediction was copied or renamed as a new submission.</p>
 <p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_d0c3adeb_run_card.json">This review’s negative run card</a>.</p>
+<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_3b5fe259_run_card.json">Negative session run card</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/research/session-3b5fe259-review-20261025.md">Independent three-pass review and source limits</a>.</p>
 </div><aside class="decision-download" aria-label="Canonical archived research download">
 <div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
 <h2>Download the audited TIFF</h2>
@@ -102,14 +102,14 @@ def render(root: Path, kind: str) -> str:
     if kind == "overview":
         content = '''<section class="decision-explainer"><div class="wrap split">
 <div><div class="kicker">H33 forensic answer</div><h2>Learn from the geometry.<br>Do not copy the submission.</h2>
-<p><strong>0.2778 is a user-reported claim, not an ORGANIZER-CONFIRMED receipt.</strong> Rechecked H33 support is a subset of D2.8: it removes near-catalogue dots rather than adding discoveries. Less redundant emission can improve the precision–coverage trade-off, but the hidden labels are needed to prove why a score changed.</p>
+<p><strong>0.2778 is a user-reported claim, not an ORGANIZER-CONFIRMED receipt.</strong> The <a href="https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/registry/submission_build.json">owner's pinned build record</a> describes a 2-pixel catalogue-flank prune and calls its 0.2747 estimate a <em>projection, not a score</em>. Rechecked H33 support is a subset of D2.8: it removes near-catalogue dots rather than adding discoveries. Less redundant emission can improve the precision–coverage trade-off, but the hidden labels are needed to prove why a score changed.</p>
 <p>There is no defensible guarantee that this repository will beat that claim, the older 0.3195 claim, or the 0.4413 claim. A buffered, fold-matched improvement is a necessary project gate, not a leaderboard forecast.</p>
 <a href="research/session-d0c3adeb-review.md">Evidence, scientific corrections &amp; limitations →</a></div>
 <div class="proof"><div class="kicker">Next scientific work</div><h3>Test displacement—not another edge map.</h3>
 <p>Four ranked, untested proposals are recorded before implementation. The leading proposal asks whether a coherent magnetic marker becomes continuous after a repeatable cross-boundary displacement. Intrusive contacts and depositional pinch-outs are explicit alternatives.</p>
 <p>It remains unrun: the universal duplicate stop comes first. No new external dataset is presented as obtainable without verification.</p>
 <a href="research/session-d0c3adeb-hypotheses.md">Read the four hypotheses and falsification plan →</a></div></div></section>
-<section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Data placement is no longer the blocker.</h2><p>The pinned core feature raster and shared external inputs have been restored; the existing preparation command successfully loads the shared feature planes on CPU. The remaining blocker is not a missing download: it is the unsatisfiable literal uniqueness condition, followed by scientific and organizer-access gates.</p>
+<section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Restoration is reproducible; generation is blocked.</h2><p>The owner-mirror inputs have a hash-pinned restore recipe and were prepared in an earlier review; a fresh checkout does not contain the ignored cache. A mirror is not an authenticated organizer download. The first blocker to candidate generation remains the literal uniqueness condition, followed by scientific and organizer-access gates.</p>
 <div class="button-row"><a class="button button-primary" href="executive-summary.html">Open the submission guide →</a><a href="sources.html" class="button decision-outline">Sources &amp; verification limits</a></div>
 <p class="fine">Maximize P(Win): preserve scarce slots for evidence-backed, distinct candidates. Own the Outcome: report an unmet requirement instead of presenting a research TIFF as submission-ready.</p></div></section>'''
         return hero + content + inventory(audit)

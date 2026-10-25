@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import re
 import sys
 import zipfile
 
@@ -142,6 +143,13 @@ def test_published_inventory_covers_every_actual_tiff_and_zip():
             assert z.namelist() == [tif.name]
             assert z.read(tif.name) == tif.read_bytes()
     assert report['protocol_eligible_count'] == 0
+
+
+def test_submission_guide_uses_dated_inventory_instead_of_stale_fixed_count():
+    introduction = (ROOT / 'docs/SUBMIT.md').read_text().split('<details>', 1)[0]
+    assert '(data/download_audit.json)' in introduction
+    assert re.search(r'\*\*\d+/\d+\*\*', introduction) is None
+    assert 'DO NOT SUBMIT' in introduction
 
 
 def test_packaging_repairs_did_not_change_any_tiff_bytes():

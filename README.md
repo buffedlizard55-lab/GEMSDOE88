@@ -20,6 +20,10 @@ Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_P
 
 Independent repository recheck (2026-10-25): [review report](research/repo-review-arena-f5e85a1a-20261025.md) · [negative run card](evidence/repo_review_arena_f5e85a1a_20261025.json). No new TIFF was produced: the pinned registry witness covers every allowed pixel, so the literal uniqueness rule blocks every nonempty candidate. This does not satisfy the unique-TIFF request; it records why generating one would violate the active protocol.
 
+### Independent three-pass review — branch `arena/3b5fe259-gemsdoe88`
+
+[Read the evidence-led review, H33 metric analysis, four ranked untried proposals and source-access limits](research/session-3b5fe259-review-20261025.md). Fresh SHA-pinned preflight returned **DUPLICATE_STOP (exit 2)**: the registered `17GEMSDOE` probability raster is positive on **all 5,106,385 allowed cells**, so **any** nonempty candidate has forward overlap **1.0 > 0.70**. **No new GeoTIFF, no new holdout, no slot.** The [session's negative run card](registry/session_3b5fe259_run_card.json) keeps the new-file hash, holdout and validator fields null, and the existing [research-only TIFF](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) remains downloadable but **NOT submit-approved**. Independently measured H33's strict subset chain and near-catalogue pruning; [its owner's pinned build record](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/registry/submission_build.json) labels `0.2747` a *projection*, not a score. The later **USER-REPORTED 0.2778 is not an organizer receipt or a verified forecast**. Fixed the site's misleading “live” saved-evidence label and stale package count; the browser now marks a local audit over 24 hours old as **stale**, without pretending to fetch the organizer leaderboard. The full original request remains verbatim below; no prior TIFF has been renamed as a new entry.
+
 ### Current review — session d0c3adeb, 2026-10-25
 
 | Work | Verified outcome |

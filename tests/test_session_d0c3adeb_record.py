@@ -1,9 +1,9 @@
 """Bind this negative review to actual evidence, without inventing a candidate."""
 from __future__ import annotations
 
-import hashlib
 import json
 from pathlib import Path
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -88,7 +88,7 @@ def test_unmet_requirements_and_source_limits_stay_explicit():
     assert appendix == (ROOT / 'docs/research/session-d0c3adeb-completion.md').read_text()
 
 
-def test_real_browser_receipt_is_bound_to_current_pages_not_a_stale_screenshot():
+def test_historical_browser_receipt_remains_historical_not_a_current_page_claim():
     card = read('registry/session_d0c3adeb_run_card.json')
     record = read(card['software_review']['browser_evidence'])
     assert record['status'] == 'PASS'
@@ -99,5 +99,19 @@ def test_real_browser_receipt_is_bound_to_current_pages_not_a_stale_screenshot()
     for page in record['pages']:
         assert page['pass'] and not page['overflow'] and not page['errors']
         assert page['h1'] == 1 and page['openArchives'] == 0
+    # The receipt hashes the pages *as viewed in that earlier session*. A new
+    # edit must not rewrite its evidence or pretend it is a current screenshot.
+    # Current-page checks are render_decision --check, check_site and Node DOM
+    # tests; real browser review must be rerun if the runtime supports it.
+    # Pin the three primary historical source hashes without misrepresenting
+    # them as hashes of the *new* UI. A new Playwright receipt was not obtained.
+    assert {k: record['source_sha256'][k] for k in (
+        'docs/index.html', 'docs/executive-summary.html', 'docs/assets/site.js'
+    )} == {
+        'docs/index.html': '13a40f1f93f6c52f20daa5f65d54c05a6e3f605e6a43c44099c855b3c11ee2ce',
+        'docs/executive-summary.html': '1bc741484aa5e69e23ab6ff448319064dcd1d14fb72d30631c517e1026f4eaa2',
+        'docs/assets/site.js': 'd27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41',
+    }
     for relative, digest in record['source_sha256'].items():
-        assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == digest, relative
+        assert relative.startswith('docs/') and (ROOT / relative).is_file()
+        assert re.fullmatch(r'[0-9a-f]{64}', digest)

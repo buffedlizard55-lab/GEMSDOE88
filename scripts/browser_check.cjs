@@ -13,7 +13,11 @@ const chromium = require(path.join(modules, '@sparticuz/chromium/build/index.js'
 const base = process.env.BROWSER_BASE_URL || 'http://127.0.0.1:8000/';
 const expected = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/data/current_release.json'), 'utf8'));
 const expectedTiff = expected.file.replace(/^docs\//, '');
-const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT';
+const savedAudit = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/data/download_audit.json'), 'utf8'));
+const auditAgeMs = Date.now() - Date.parse(savedAudit.checked_at_utc);
+const requiredBanner = auditAgeMs > 24 * 3600_000
+  ? 'SAVED LOCAL AUDIT STALE (>24H) · ARCHIVED RESEARCH DOWNLOAD ONLY · SUBMIT: NO — DO NOT SUBMIT'
+  : 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT';
 
 (async () => {
   const browser = await playwright.launch({
