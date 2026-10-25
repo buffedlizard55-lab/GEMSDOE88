@@ -12,6 +12,8 @@
 - **Local validation:** one band; no NaN/Inf anywhere; values in [0,1]; exact sample CRS, shape and transform; zero outside footprint and on the catalogue; two decoders agree; ZIP contains the byte-identical, negatively labeled TIFF. This is **not organizer acceptance**.
 - **Historical HOLDOUT-DTI context only:** `gems57-pooled-hide-v2`, 22,893 withheld positive pixels, 0.1962369466, 95% CI [0.1796859281, 0.2117291340]. **Not retrained in this review, not a new candidate score.**
 
+Review record: [Arena f81c34a4 three-pass review and audit repair](research/session-f81c34a4-review.md) · [negative run card](registry/session_f81c34a4_run_card.json). No new TIFF or slot; unchanged duplicate stop.
+
 ### Start here every session
 
 Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_PROMPT_20261025.md), and [AGENTS.md](AGENTS.md). The request is also embedded below. Do not append a competing “current candidate” banner or bypass the generation preflight.
