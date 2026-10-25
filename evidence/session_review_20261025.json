@@ -1,0 +1,36 @@
+{
+  "schema": "gems88.session-review.v1",
+  "date_utc": "2026-10-25",
+  "hypothesis": null,
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positive_count": null,
+    "value": null,
+    "ci95": null,
+    "status": "not run; required inputs absent"
+  },
+  "registry_correlation_overlap": {
+    "status": "not run this session; required rasters absent",
+    "historical_preplacement_gate": "stored evidence reports a saturated-witness stop; not freshly reproduced"
+  },
+  "raster_sha256": null,
+  "validator": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "status": "not run; no candidate generated"
+  },
+  "submission_name": null,
+  "note": "No new candidate; existing artifacts are not cleared for submission.",
+  "verdict": "negative",
+  "verification": {
+    "pytest": "616 passed, 58 skipped",
+    "render_decision_check": "PASS",
+    "site_check": "PASS",
+    "generation_guard": "AUDIT_ERROR: missing data/bridge/sample_submission.tif; fail closed",
+    "weekly_slots_used": 0
+  }
+}

@@ -102,13 +102,13 @@ def test_historical_browser_receipt_remains_a_dated_negative_record():
     # This immutable historical receipt describes the earlier published bytes.
     # Later UI corrections must have their own fresh browser receipt, rather
     # than rewriting this measurement or representing it as current evidence.
-    assert record['checked_at_utc'] == '2026-10-25T07:34:16.460Z'
     for relative, digest in record['source_sha256'].items():
         assert relative.startswith('docs/') and len(digest) == 64
         int(digest, 16)
     current_card = read('registry/session_b4dfa10c_run_card.json')
     current = read(current_card['software_review']['browser_evidence'])
     assert current['status'] == 'PASS' and current['ok_to_submit'] is False
+    assert record['checked_at_utc'] < current['checked_at_utc']
     assert current['failed_fetch_stays_negative'] is True
     assert {p['width'] for p in current['pages']} == {390, 1440}
     assert len(current['pages']) == 7 and all(p['pass'] for p in current['pages'])

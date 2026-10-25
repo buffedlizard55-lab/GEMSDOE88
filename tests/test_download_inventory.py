@@ -354,3 +354,136 @@ def test_failed_variant_fresh_audit_invalidates_saved_success(tmp_path, monkeypa
         assert failed['decision'] == 'AUDIT_ERROR'
         assert failed['ok_to_submit'] is False
         assert report['additional_research_artifacts'][0]['file'] in failed['error']
+
+
+def inventory_pair(root, name='research-DO-NOT-SUBMIT.tif'):
+    """Empty bytes suffice: these tests exercise coverage, not raster validity."""
+    path = root / 'docs/downloads' / name
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.touch()
+    path.with_suffix('.zip').touch()
+    return path
+
+
+def test_closed_publication_inventory_accepts_all_tiff_suffixes(tmp_path):
+    expected = [inventory_pair(tmp_path, f'{i}-DO-NOT-SUBMIT{suffix}')
+                for i, suffix in enumerate(('.tif', '.TIF', '.tiff', '.TIFF'))]
+    (tmp_path / 'docs/downloads/metadata.json').write_text('{}')
+    assert audit.publication_inventory(tmp_path) == expected
+
+
+@pytest.mark.parametrize('name', ['orphan.zip', 'orphan.ZIP', 'orphan.Zip'])
+def test_orphan_archive_cannot_escape_all_download_audit(tmp_path, name):
+    inventory_pair(tmp_path)
+    (tmp_path / 'docs/downloads' / name).touch()
+    with pytest.raises(ValueError, match='orphan ZIPs'):
+        audit.publication_inventory(tmp_path)
+
+
+def test_inventory_requires_exact_archive_path_not_case_folded_alias(tmp_path):
+    candidate = inventory_pair(tmp_path)
+    candidate.with_suffix('.zip').rename(candidate.with_suffix('.ZIP'))
+    with pytest.raises(ValueError, match='missing ZIPs=.*orphan ZIPs='):
+        audit.publication_inventory(tmp_path)
+
+
+def test_inventory_rejects_missing_package_and_ambiguous_stem(tmp_path):
+    candidate = inventory_pair(tmp_path)
+    candidate.with_suffix('.zip').unlink()
+    with pytest.raises(ValueError, match='missing ZIPs'):
+        audit.publication_inventory(tmp_path)
+    candidate.with_suffix('.zip').touch()
+    candidate.with_suffix('.tiff').touch()
+    with pytest.raises(ValueError, match='Multiple TIFFs'):
+        audit.publication_inventory(tmp_path)
+
+
+@pytest.mark.parametrize('suffix', ['.tif', '.TIFF', '.zip', '.ZIP'])
+def test_nested_payloads_are_not_silently_ignored(tmp_path, suffix):
+    inventory_pair(tmp_path)
+    hidden = tmp_path / 'docs/downloads/archive' / ('hidden' + suffix)
+    hidden.parent.mkdir()
+    hidden.touch()
+    with pytest.raises(ValueError, match='nested TIFF/ZIP'):
+        audit.publication_inventory(tmp_path)
+
+
+@pytest.mark.parametrize('target_type', ['file', 'directory', 'missing'])
+def test_symlinked_downloads_fail_closed(tmp_path, target_type):
+    inventory_pair(tmp_path)
+    target = tmp_path / 'outside'
+    if target_type == 'file':
+        target.touch()
+    elif target_type == 'directory':
+        target.mkdir()
+    (tmp_path / 'docs/downloads/linked.zip').symlink_to(target)
+    with pytest.raises(ValueError, match='Symlinks'):
+        audit.publication_inventory(tmp_path)
+
+
+def test_orphan_archive_invalidates_fresh_evidence_before_preflight(tmp_path, monkeypatch):
+    inventory_pair(tmp_path)
+    (tmp_path / 'docs/downloads/unchecked.ZIP').touch()
+    def forbidden_preflight(_):
+        pytest.fail('inventory must fail before expensive preflight')
+    monkeypatch.setattr(audit, 'preflight', forbidden_preflight)
+    for rel in audit.OUTPUTS:
+        path = tmp_path / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text('{"research_download_pass_count":43,"ok_to_submit":true}')
+    assert audit.main([], tmp_path) == 1
+    for rel in audit.OUTPUTS:
+        result = json.loads((tmp_path / rel).read_text())
+        assert result['decision'] == 'AUDIT_ERROR'
+        assert result['research_download_pass_count'] == 0
+        assert result['ok_to_submit'] is False
+        assert 'unchecked.ZIP' in result['error']
+
+
+def test_inventory_check_failure_is_read_only_but_nonzero(tmp_path):
+    inventory_pair(tmp_path)
+    (tmp_path / 'docs/downloads/orphan.zip').touch()
+    for rel in audit.OUTPUTS:
+        path = tmp_path / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text('stored evidence must not be overwritten in --check mode')
+    before = {rel: (tmp_path / rel).read_bytes() for rel in audit.OUTPUTS}
+    assert audit.main(['--check'], tmp_path) == 1
+    assert before == {rel: (tmp_path / rel).read_bytes() for rel in audit.OUTPUTS}
+
+
+def test_real_publication_inventory_has_no_unchecked_archives():
+    paths = audit.publication_inventory(ROOT)
+    report = json.loads((ROOT / 'docs/data/download_audit.json').read_text())
+    assert {p.with_suffix('.zip').name for p in paths} == {
+        row['zip_file'] for row in report['artifacts']}
+
+
+def test_publication_directory_itself_cannot_be_a_symlink(tmp_path):
+    target = tmp_path / 'elsewhere'
+    target.mkdir()
+    (target / 'research-DO-NOT-SUBMIT.tif').touch()
+    (target / 'research-DO-NOT-SUBMIT.zip').touch()
+    (tmp_path / 'docs').mkdir()
+    (tmp_path / 'docs/downloads').symlink_to(target, target_is_directory=True)
+    with pytest.raises(ValueError, match='Symlinks'):
+        audit.publication_inventory(tmp_path)
+
+
+@pytest.mark.parametrize('target_type', ['file', 'directory', 'missing', 'publication-root'])
+def test_variant_symlinks_are_rejected_by_the_same_inventory_policy(tmp_path, target_type):
+    inventory_pair(tmp_path)
+    target = tmp_path / 'outside'
+    if target_type == 'file':
+        target.touch()
+    elif target_type in {'directory', 'publication-root'}:
+        target.mkdir()
+    directory = tmp_path / 'docs/research-variants'
+    if target_type == 'publication-root':
+        directory.symlink_to(target, target_is_directory=True)
+    else:
+        directory.mkdir()
+        (directory / 'linked-DO-NOT-SUBMIT.zip').symlink_to(target)
+    for guard in (audit.check_package_inventory, audit.publication_inventory):
+        with pytest.raises(ValueError, match='Symlinks'):
+            guard(tmp_path)

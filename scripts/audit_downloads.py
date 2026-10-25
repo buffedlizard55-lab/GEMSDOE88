@@ -115,21 +115,28 @@ def check_package_inventory(root: Path) -> None:
     Both existing publication namespaces are flat. Without this check an
     orphan ZIP, uppercase .ZIP, nested artifact, or historical research variant
     is silently omitted by a downloads-only audit even though Pages serves it.
+    Symlinked directories and entries are rejected, including dangling links.
     Sidecars are rejected separately by the self-contained TIFF format check.
     """
     root = Path(root)
     docs = root / "docs"
     for name in PUBLICATION_DIRECTORIES:
         directory = docs / name
-        artifacts = [p for p in directory.rglob("*")
+        if directory.is_symlink():
+            raise ValueError(f"Symlinks are not audited publication artifacts: {directory}")
+        entries = list(directory.rglob("*"))
+        links = sorted(str(p.relative_to(directory)) for p in entries if p.is_symlink())
+        if links:
+            raise ValueError(f"Symlinks are not audited publication artifacts in {name}: {links}")
+        artifacts = [p for p in entries
                      if p.is_file() and p.suffix.lower() in {".tif", ".tiff", ".zip"}]
         nested = sorted(str(p.relative_to(directory)) for p in artifacts if p.parent != directory)
         if nested:
-            raise ValueError(f"Nested published artifacts are outside the flat audited inventory: {nested}")
+            raise ValueError(f"Nested published artifacts are outside the flat audited inventory (unaudited nested TIFF/ZIP): {nested}")
         tiffs = published_tiffs(root, name)
         expected = [p.with_suffix(".zip") for p in tiffs]
         if len(expected) != len(set(expected)):
-            raise ValueError("Multiple published TIFFs share the same ZIP path")
+            raise ValueError("Multiple TIFFs share the same ZIP path")
         actual = {p for p in artifacts if p.suffix.lower() == ".zip"}
         missing = sorted(p.name for p in set(expected) - actual)
         orphaned = sorted(p.name for p in actual - set(expected))
@@ -143,9 +150,23 @@ def check_package_inventory(root: Path) -> None:
         raise ValueError(f"Published artifacts outside the declared audited directories: {unknown}")
 
 
-def audit(root: Path = ROOT) -> dict:
+def publication_inventory(root: Path) -> list[Path]:
+    """Compatibility API: main download TIFFs after the shared full inventory check.
+
+    Historical callers keep their main-download count; variant packages are
+    checked by the same policy and audited separately in schema v2.
+    """
     root = Path(root)
     check_package_inventory(root)
+    paths = published_tiffs(root)
+    if not paths:
+        raise ValueError("no published research TIFFs found")
+    return paths
+
+
+def audit(root: Path = ROOT) -> dict:
+    root = Path(root)
+    paths = publication_inventory(root)
     prerequisite = preflight(root)
     certificate = prerequisite["preplacement_registry_proof"]
     if certificate["universal_overlap_blocker"] is not True or certificate["directly_saturated"] is not True:
@@ -155,9 +176,6 @@ def audit(root: Path = ROOT) -> dict:
         footprint = np.isfinite(s.read(1)) & (s.read_masks(1) > 0)
     with rasterio.open(root / "data/bridge/existing_faults.tif") as s:
         catalogue = (s.read(1) > 0) & footprint
-    paths = published_tiffs(root)
-    if not paths:
-        raise ValueError("no published research TIFFs found")
     rows = [audit_one(path, sample, catalogue, footprint) for path in paths]
     additional = []
     for directory in PUBLICATION_DIRECTORIES[1:]:

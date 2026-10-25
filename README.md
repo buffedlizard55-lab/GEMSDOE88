@@ -18,7 +18,9 @@ Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_P
 
 **Maximize P(Win):** reserve feedback for evidence-backed, genuinely distinct candidates. **Own the Outcome:** publish negative findings and unmet requirements instead of claiming a high score or unique file without evidence.
 
-Latest independent recheck (2026-10-25, session b4dfa10c): [three-pass review, H33 analysis and limitations](research/session-b4dfa10c-review.md) · [negative run card](registry/session_b4dfa10c_run_card.json) · [four ranked, untried proposals](research/session-b4dfa10c-hypotheses.md). The data downloader/preparation succeeded, but no new TIFF was produced: the pinned registry witness still blocks every nonempty candidate. Local format validation now rejects hidden second rasters and sidecar-dependent georeferencing; package inventory rejects orphan/nested archives. The unique-TIFF requirement remains unmet. [Previous review](research/repo-review-arena-f5e85a1a-20261025.md).
+Latest independent recheck (2026-10-25, session b4dfa10c): [three-pass review, H33 analysis and limitations](research/session-b4dfa10c-review.md) · [negative run card](registry/session_b4dfa10c_run_card.json) · [four ranked, untried proposals](research/session-b4dfa10c-hypotheses.md). The data downloader/preparation succeeded, but no new TIFF was produced: the pinned registry witness still blocks every nonempty candidate. Local format validation now rejects hidden second rasters and sidecar-dependent georeferencing; package inventory rejects orphan/nested archives and symlinks in both publication directories. All **44** existing TIFF/ZIP pairs (43 main downloads + 1 historical variant) pass local research checks; **0** are submission-eligible. Legacy MDC-88 upload clearance is withdrawn. The unique-TIFF requirement remains unmet. [Previous review](research/repo-review-arena-f5e85a1a-20261025.md).
+
+**Concurrent branch review (Arena `f8d5d693`, 2026-10-25):** [three-pass repository review](research/repo-review-arena-f8d5d693-20261025.md) · [machine-readable run card](evidence/repo_review_arena_f8d5d693_20261025.json). Validation-only restore and fresh preflight reproduced `DUPLICATE_STOP`; **654 passed / 23 skipped**, 43/43 archived research TIFF/ZIP format audits pass, but 0 files clear the protocol gate. No experiment, new TIFF, weekly slot, or organizer score. The MTAS TIFF already in the archive is historical, fails the literal duplicate rule, and remains `DO-NOT-SUBMIT`; the review flags conflicting historical timeline records rather than recasting it as a new deliverable.
 
 ### Current review — session d0c3adeb, 2026-10-25
 
@@ -66,9 +68,21 @@ bash scripts/download_competition_data.sh
 
 [Three-pass review and parser reliability fix](research/session-7bf01824-review.md) · [Session run card](registry/session_7bf01824_run_card.json). Fresh preflight confirms `DUPLICATE_STOP`; no new TIFF or slot. Offline leaderboard parsing now rejects malformed scores and incomplete ranked evidence without replacing the previous snapshot.
 
+### Session 2026-10-25 — unique-TIFF request: duplicate gate holds
+
+No new TIFF was generated and nothing is cleared for download-to-submit. The shared generation guard returned `DUPLICATE_STOP` (exit 2) on SHA-pinned bytes: the dense `17GEMSDOE` witness covers 100% of allowed pixels, so every candidate overlaps it at 1.0 against the 0.70 limit. Full record: [research note](research/session-20261025-unique-tif-gate-review.md) · [run card](registry/session_20261025_unique_tif_gate_run_card.json). That archived review reports a public-page leaderboard snapshot of 0.4413; it was not re-fetched or receipt-verified in session b4dfa10c. H33 0.2778 remains USER-REPORTED. The open blocker is an owner decision on how to define dots for dense priors, plus a lane paragraph that was never supplied.
+
 ### Remaining limitations
 
 The literal uniqueness condition must become satisfiable under an explicitly authorized **shared** protocol before another candidate is constructed; no exemption is authorized here. New-model hide-and-recover and leakage tests are therefore not run. The current leaderboard, rules, weekly allowance, organizer input authentication and receipts cannot be verified through this session's permitted hosts. No credentials are requested. Full data caches are ignored, not committed; restore commands reconstruct them. Static Pages serves results, not account-authenticated uploads or training jobs.
+
+### Follow-up review — `26588c79`, 2026-10-25
+
+The literal preflight was independently reproduced: **DUPLICATE_STOP**, no new TIFF, no new holdout and no slot used. All **43** existing TIFF/ZIP pairs pass local research-format checks, but **none** is cleared for submission. The urgent new unique-file requirement remains **UNMET**.
+
+Fixed an all-download audit blind spot: orphan ZIPs (including uppercase suffixes), nested raster packages, ambiguous archive pairings and symlinks now fail closed. Corrected executive-guide language implying that human inspection or a boolean edit could override failed gates. A real desktop/mobile browser rerun refreshed the page-bound receipt rather than merely changing its hashes.
+
+[Three-pass follow-up, fresh H33 evidence and source limits](research/session-26588c79-review.md) · [Negative JSON run card](registry/session_26588c79_run_card.json). The existing four conditional geological proposals remain untested; no new-model performance or leaderboard improvement is claimed.
 
 ### Parallel scientific session record — `H88-BPWD` (`2026-10-25`, All-Time Repo Holdout Record `0.205991`, `0` slots spent)
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 import hashlib
 from html.parser import HTMLParser
 import json
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -73,7 +74,7 @@ def test_generated_inventory_links_the_historical_variant_in_its_own_directory()
 
 @pytest.fixture
 def isolated_site(tmp_path):
-    # Only copy editable small files; large immutable binaries are shared.
+    # Copy publication bytes; symlinks are intentionally invalid packages.
     for directory in ('registry', 'evidence'):
         (tmp_path / directory).symlink_to(ROOT / directory, target_is_directory=True)
     docs = tmp_path / 'docs'
@@ -82,7 +83,9 @@ def isolated_site(tmp_path):
                 'mdc88/executive-summary.html', 'mdc88/status.json'}
     for source in (ROOT / 'docs').iterdir():
         target = docs / source.name
-        if source.name in {'data', 'mdc88', 'research-variants'}:
+        if source.name in {'downloads', 'research-variants'}:
+            shutil.copytree(source, target)
+        elif source.name in {'data', 'mdc88'}:
             target.mkdir()
             for child in source.iterdir():
                 dest = target / child.name
@@ -136,8 +139,7 @@ def test_site_guard_checks_legacy_and_variant_evidence_under_both_interpreters(i
     elif corruption == 'variant-changed-bytes':
         page = next((docs / 'research-variants').glob('*.tif'))
         original = page.read_bytes()
-        assert page.is_symlink()
-        page.unlink()  # unlink only the temporary test symlink, not its target
+        assert not page.is_symlink()
         page.write_bytes(original + b'tamper')
     else:
         unknown = docs / 'unregistered-lane'

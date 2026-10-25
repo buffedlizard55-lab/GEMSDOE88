@@ -2,6 +2,7 @@
 
 import ast
 import json
+import shutil
 from pathlib import Path
 import subprocess
 import sys
@@ -16,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_guard_rejects_corruption_under_both_interpreters(
     tmp_path, optimized, corruption
 ):
-    # Share immutable large artifacts; isolate only the file being corrupted.
+    # Copy published bytes: symlinks are not valid publication artifacts.
     (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
     (tmp_path / "evidence").symlink_to(ROOT / "evidence", target_is_directory=True)
     docs = tmp_path / "docs"
@@ -36,8 +37,10 @@ def test_guard_rejects_corruption_under_both_interpreters(
             downloads = docs / source.name
             downloads.mkdir()
             for artifact in source.iterdir():
-                (downloads / artifact.name).symlink_to(artifact)
+                shutil.copyfile(artifact, downloads / artifact.name)
             (downloads / "unmarked-research.tif").write_bytes(b"not a TIFF")
+        elif source.name in {"downloads", "research-variants"}:
+            shutil.copytree(source, docs / source.name)
         else:
             (docs / source.name).symlink_to(source, target_is_directory=source.is_dir())
     command = [sys.executable] + (["-O"] if optimized else [])
@@ -65,7 +68,10 @@ def test_marked_xgce_is_still_hash_pinned_and_negative(tmp_path, optimized):
     docs.mkdir()
     for source in (ROOT / "docs").iterdir():
         if source.name != "downloads":
-            (docs / source.name).symlink_to(source, target_is_directory=source.is_dir())
+            if source.name == "research-variants":
+                shutil.copytree(source, docs / source.name)
+            else:
+                (docs / source.name).symlink_to(source, target_is_directory=source.is_dir())
             continue
         downloads = docs / "downloads"
         downloads.mkdir()
@@ -73,7 +79,7 @@ def test_marked_xgce_is_still_hash_pinned_and_negative(tmp_path, optimized):
             if item.name == "gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif":
                 (downloads / item.name).write_bytes(item.read_bytes() + b"tamper")
             else:
-                (downloads / item.name).symlink_to(item)
+                shutil.copyfile(item, downloads / item.name)
     command = [sys.executable] + (["-O"] if optimized else [])
     result = subprocess.run(
         command + ["-c", "from pathlib import Path; from scripts.check_site import main; "
