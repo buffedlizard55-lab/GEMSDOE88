@@ -63,6 +63,8 @@ Latest independent recheck (2026-10-25, session b4dfa10c): [three-pass review, H
 
 A fresh three-pass review fixed three data-absent test-path defects, restored hash-pinned validation inputs, and confirmed **630 passed / 23 skipped**. It generated **no new TIFF**: the literal all-registry overlap stop remains binding. See the [review findings, H33 analysis, verification log, source-access limits and next steps](research/repo-review-followup-20261025.md) and the [machine-readable negative run card](evidence/repo_review_20261025.json).
 
+A later isolated checkout audit on branch `arena/f6985c6e-gemsdoe88` also generated **no TIFF**: its preflight failed closed because NumPy and `data/` were absent, and package installation stopped on a wheel hash mismatch. No hash checks were bypassed. See the [workspace audit](research/session-arena-f6985c6e-review-20261025.md) and [negative run card](evidence/session_arena_f6985c6e_run_card.json). This records an environment limitation, not a fresh duplicate measurement or a candidate validation.
+
 ### Reproduce local validation without human inspection
 
 ```bash
