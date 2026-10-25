@@ -2,7 +2,7 @@
 
 ## Download for research: YES · Submit: NO — DO NOT SUBMIT
 
-**No new protocol-unique competition TIFF was generated in this review.** The registered `17GEMSDOE` probability raster covers every allowed pixel. Any nonempty candidate therefore has literal forward overlap **1.0 > 0.70** and must stop before fitting or placement. The highest-urgency unique-submission requirement remains **unmet**; an old TIFF is not being passed off as a new one.
+**No new protocol-valid competition TIFF is available or cleared.** The registered `17GEMSDOE` probability raster covers every allowed pixel. Any nonempty candidate therefore has literal forward overlap **1.0 > 0.70** and must stop before fitting or placement. An earlier action in the 2026-10-25 Arena review bypassed this stop and created four scratch TIFF variants; the protocol breach is documented, all scratch outputs were removed, and none is treated as a submission or score. The highest-urgency unique-submission requirement remains **unmet**; an old TIFF is not being passed off as a new one.
 
 [**Download the existing, audited research TIFF**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [One-TIFF ZIP](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [Website](https://buffedlizard55-lab.github.io/GEMSDOE88/) · [Executive submission guide](docs/executive-summary.html) · [Complete automated file audit](docs/data/download_audit.json)
 
@@ -15,6 +15,8 @@
 ### Start here every session
 
 Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_PROMPT_20261025.md), and [AGENTS.md](AGENTS.md). The request is also embedded below. Do not append a competing “current candidate” banner or bypass the generation preflight.
+
+**Arena review `4fd0d184` (2026-10-25):** [three-pass review, H33 evidence limits, scratch-generation incident, and blockers](research/repo-review-arena-4fd0d184-20261025.md) · [machine-readable negative run card](evidence/repo_review_arena_4fd0d184_20261025.json). The pinned preflight returns `DUPLICATE_STOP`; four off-protocol scratch TIFFs were removed, zero outputs are cleared, no slot was used. The previous research-download decision remains unchanged.
 
 **Maximize P(Win):** reserve feedback for evidence-backed, genuinely distinct candidates. **Own the Outcome:** publish negative findings and unmet requirements instead of claiming a high score or unique file without evidence.
 
