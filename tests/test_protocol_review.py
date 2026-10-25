@@ -5,7 +5,10 @@ import zipfile
 
 import pytest
 
-from scripts import audit_protocol_integrity as audit
+try:
+    from scripts import audit_protocol_integrity as audit
+except ModuleNotFoundError:
+    import audit_protocol_integrity as audit
 
 ROOT = Path(__file__).resolve().parents[1]
 
