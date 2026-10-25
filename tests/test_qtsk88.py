@@ -158,6 +158,20 @@ def test_validate_qtsk88_and_current_release_cli():
     saved_cur = json.loads((ROOT / "docs/data/current_release.json").read_text())
     assert cur == saved_cur
     assert cur["candidate"] == "H88-SDTL" and cur["ok_to_submit"] is (cur["verdict"] == "promote")
+    assert cur["approved_for_weekly_slot"] is False
+    assert cur["organizer_confirmed_score"] is None
+
+    current_gate = subprocess.run(
+        [sys.executable, str(ROOT / "scripts/validate_current.py"), "--require-submit"],
+        capture_output=True, text=True,
+    )
+    assert current_gate.returncode == 0, current_gate.stderr
+    current_report = json.loads(current_gate.stdout)
+    assert current_report["candidate"] == "H88-SDTL"
+    assert current_report["ok_to_submit"] is True
+    assert current_report["approved_for_weekly_slot"] is False
+    assert current_report["organizer_confirmed_score"] is None
+    assert current_report["weekly_slots_used"] == 0
 
     proc_ok = subprocess.run([sys.executable, str(ROOT / "scripts/validate_qtsk88.py")], capture_output=True, text=True)
     assert proc_ok.returncode == 0

@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Current-release summary and fail-closed gates.
+"""Canonical current-release summary and fail-closed submission gate.
 
-The canonical current summary follows H88-TDKL, the latest frozen lane, and
-independently reopens its TIFF/ZIP via :mod:`scripts.validate_tdkl88`. Historical
-validators remain available below for audit compatibility. A scientific or
-uniqueness failure keeps ``ok_to_submit`` false; formatting never approves a
-weekly slot. Run ``--require-submit`` to demand a green current gate (exit 2
-today). No organizer upload/login is attempted.
+The current H88-SDTL release is re-opened from its v2 lane card and checked
+against IR-88-SDTL-01 (v5 equal-support uniqueness). ``--require-submit`` exits
+zero only when that recorded repository gate is green, otherwise exit 2. This
+does not approve a weekly slot or establish an organizer-confirmed score.
+Historical lane validators remain available for audit; no portal is accessed.
 """
 from __future__ import annotations
 import hashlib

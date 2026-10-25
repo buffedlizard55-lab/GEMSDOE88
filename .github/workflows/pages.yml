@@ -26,7 +26,7 @@ jobs:
           cache: pip
       - run: python -m pip install -r requirements.txt
       - run: python scripts/restore_inputs.py --validation
-      - name: Reopen every research TIFF/ZIP and verify the canonical negative UI
+      - name: Reopen every research TIFF/ZIP and verify the current release UI
         run: |
           python scripts/audit_downloads.py --check
           python scripts/render_decision.py --check
