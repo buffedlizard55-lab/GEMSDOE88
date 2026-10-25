@@ -13,6 +13,10 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 MVRD_NAME = "gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT"
+# Historical XGCE pair renamed by main to carry DO-NOT-SUBMIT; pin exact bytes.
+XGCE_TIF = "gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif"
+XGCE_SHA = "199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c"
+XGCE_ZIP_SHA = "eba566f9f960017f98d9502ee5026b3a48b2b3b59a0d6e320471f2ddd6e0fb5f"
 
 
 def require(condition: bool, message: object) -> None:
@@ -66,6 +70,59 @@ def main(root: Path = ROOT) -> None:
         (docs / "downloads" / f"{MVRD_NAME}.format-audit.json").read_text()
     )
     literal = json.loads((docs / "data/literal_protocol_audit.json").read_text())
+    mtas = json.loads((root / "registry/mtas88_run_card.json").read_text())
+    mtas_web = json.loads((docs / "data/mtas88_run_card.json").read_text())
+    mtas_evidence = json.loads((root / "evidence/mtas88_preflight_20261025.json").read_text())
+    require(mtas == mtas_web == mtas_evidence, "MTAS mirrored negative run cards disagree")
+    proof = mtas["preplacement_registry_proof"]
+    require(
+        mtas["decision"] == "DUPLICATE_STOP"
+        and mtas["verdict"] == "negative"
+        and mtas["ok_to_submit"] is False
+        and mtas["new_rasters_generated"] == 0
+        and mtas["raster_sha256"] is None
+        and mtas["holdout"]["dti"] is None
+        and mtas["validator_output"]["status"] == "NOT_RUN_NO_NEW_RASTER"
+        and proof["universal_overlap_blocker"] is True
+        and proof["directly_saturated"] is True
+        and proof["allowed_pixels"] == 5_106_385
+        and proof["uncovered_allowed_pixels"] == 0
+        and proof["overlap_limit"] == 0.7
+        and proof["witness_sha256"] == literal["saturation_certificate"]["witness_sha256"],
+        "MTAS negative stop missing, inconsistent or contradicted by literal audit",
+    )
+    require(
+        mtas["archived_research_download"]["validator_output"]["ok"] is True
+        and mtas["archived_research_download"]["ok_to_submit"] is False
+        and mtas["archived_research_download"]["sha256"] == current["file_sha256"],
+        "MTAS archived format-only download disagrees with canonical current release",
+    )
+    require(
+        len(mtas["submission_note"]) == mtas["submission_note_length"] <= 140,
+        "MTAS negative note exceeds 140 characters",
+    )
+    # A parallel research lane merged into main while this branch was reviewed.
+    # Its names now carry DO-NOT-SUBMIT. The exact binary bytes and negative
+    # card must still be bound to the literal witness failure.
+    xgce = json.loads((root / "registry/xgce88_run_card.json").read_text())
+    xgce_web = json.loads((docs / "data/xgce88_run_card.json").read_text())
+    xgce_tif = docs / "downloads" / XGCE_TIF
+    xgce_zip = xgce_tif.with_suffix(".zip")
+    require(
+        xgce == xgce_web and xgce["verdict"] == "negative"
+        and xgce["ok_to_submit"] is False
+        and xgce["uniqueness"]["literal_dense_witness_overlap"] == 1.0
+        and xgce["uniqueness"]["literal_dense_witness_pass"] is False
+        and sha256(xgce_tif) == XGCE_SHA == xgce["submission"]["raster_sha256"]
+        and sha256(xgce_zip) == XGCE_ZIP_SHA == xgce["submission"]["zip_sha256"],
+        "Pinned XGCE research pair must remain negative and DO NOT SUBMIT",
+    )
+    with zipfile.ZipFile(xgce_zip) as archive:
+        require(
+            archive.namelist() == [xgce_tif.name]
+            and archive.read(xgce_tif.name) == xgce_tif.read_bytes(),
+            "Inherited XGCE ZIP must contain the exact pinned research TIFF",
+        )
     ibl = json.loads((root / "registry/ibl88_run_card.json").read_text())
     ibl_web = json.loads((docs / "data/ibl88_run_card.json").read_text())
     qts = json.loads((root / "registry/qts88_run_card.json").read_text())
@@ -132,6 +189,31 @@ def main(root: Path = ROOT) -> None:
     require(
         sha256(sarcsd_zip) == sarcsd["zip_sha256"] == sarcsd_gv["zip_sha256"],
         "SAR-CSD ZIP SHA-256 mismatch across file, card, and gate",
+    )
+
+    dhtc = json.loads((root / "registry/dhtc88_run_card.json").read_text())
+    dhtc_web = json.loads((docs / "data/dhtc88_run_card.json").read_text())
+    require(dhtc == dhtc_web, "Pages DHTC card differs from canonical registry card")
+    require(
+        dhtc["verdict"] == "negative"
+        and dhtc["ok_to_download"] is True
+        and dhtc["ok_to_submit"] is False,
+        "DHTC run card must enforce negative DO-NOT-SUBMIT verdict",
+    )
+    require(
+        0 < len(dhtc["submission"]["submission_name"]) <= 140
+        and 0 < len(dhtc["submission"]["submission_note"]) <= 140,
+        "DHTC submission name/note must satisfy <=140 character portal cap",
+    )
+    dhtc_tif = root / dhtc["submission"]["file"]
+    dhtc_zip = root / dhtc["submission"]["zip_file"]
+    require(
+        sha256(dhtc_tif) == dhtc["raster_sha256"],
+        "DHTC TIFF SHA-256 mismatch",
+    )
+    require(
+        sha256(dhtc_zip) == dhtc["zip_sha256"],
+        "DHTC ZIP SHA-256 mismatch",
     )
 
     require(
@@ -414,22 +496,16 @@ def main(root: Path = ROOT) -> None:
             target = page.parent / unquote(url.path)
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
-    # Every published binary under docs/ must carry its negative decision in the
-    # filename. The pre-existing CTRA pair is the only legacy exception; its exact
-    # bytes are hash-bound above to a negative research card and the site labels it
-    # research-only. Any new unmarked binary still fails closed.
-    ctra_legacy = {ctra_tif.resolve(), ctra_zip.resolve()}
+    # Every published binary must carry the negative decision in its filename.
+    # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
+    # checked above; XGCE was renamed on main and requires no such exception.
+    legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
-            ".tif",
-            ".tiff",
-            ".zip",
+            ".tif", ".tiff", ".zip",
         }:
-            # Historical CTRA lane shipped without marker before guard extension (upstream main); keep hash-bound, do not rename (would break receipts).
-            if published.name.startswith("gems88-ctra-conductivity-curvature"):
-                continue
             require(
-                "DO-NOT-SUBMIT" in published.name or published.resolve() in ctra_legacy,
+                "DO-NOT-SUBMIT" in published.name or published.resolve() in legacy_negative,
                 f"unmarked published research artifact: {published}",
             )
 
@@ -508,6 +584,17 @@ def main(root: Path = ROOT) -> None:
     )
     require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
     require(
+        "Current review · 2026-10-25" in index
+        and "NO FILE APPROVED" in index
+        and "every nonempty dot set fails the literal overlap limit" in index,
+        "Overview must present the current fail-closed decision before archived candidates",
+    )
+    require(
+        "genuinely unique" not in index.lower()
+        and "not unique under the binding all-registry rule" in index,
+        "Overview must not overstate sparse-screen uniqueness as global uniqueness",
+    )
+    require(
         card["raster_sha256"] in index,
         'Site integrity check failed: archived MVRD hash missing from overview',
     )
@@ -531,6 +618,108 @@ def main(root: Path = ROOT) -> None:
     require(shore_tif.name in index and shore_tif.name in executive, "SHORE tif in pages")
     require(shore["submission_name"] in index and shore["submission_name"] in executive, "SHORE name in pages")
     require(shore["validator"]["raster_sha256"][:16] in index and shore["validator"]["raster_sha256"][:16] in executive, "SHORE hash in pages")
+
+    require(dhtc_tif.name in index and dhtc_tif.name in executive, "DHTC tif in pages")
+    require(dhtc["submission"]["submission_name"] in index and dhtc["submission"]["submission_name"] in executive, "DHTC name in pages")
+    require(dhtc["raster_sha256"][:16] in index and dhtc["raster_sha256"][:16] in executive, "DHTC hash in pages")
+    for page_text in (index, executive):
+        require(
+            page_text.index('id="mtas-review"') < page_text.index('class="archive-lanes"')
+            and 'NO NEW TIFF: DUPLICATE — STOP' in page_text
+            and 'data/mtas88_run_card.json' in page_text
+            and mtas["archived_research_download"]["sha256"] in page_text,
+            "Pages must lead with the MTAS no-new-file stop and a marked historical download",
+        )
+    js = (docs / "assets/site.js").read_text()
+    require(
+        "fetch('data/mtas88_run_card.json'" in js
+        and "fetch('data/gzzc88_run_card.json'" in js
+        and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
+        "Dynamic decision banner must fail closed on absent MTAS/GZZC proof",
+    )
+
+    gzzc_card = json.loads((root / "registry/gzzc88_run_card.json").read_text())
+    gzzc_web = json.loads((docs / "data/gzzc88_run_card.json").read_text())
+    require(gzzc_card == gzzc_web, "Pages GZZC card differs from canonical registry card")
+    require(
+        gzzc_card["verdict"] == "negative"
+        and gzzc_card["ok_to_download"] is True
+        and gzzc_card["ok_to_submit"] is False
+        and gzzc_card["uniqueness"]["literal_dense_witness_overlap"] == 1.0
+        and gzzc_card["uniqueness"]["literal_dense_witness_pass"] is False
+        and gzzc_card["uniqueness"]["unique_like_for_like"] is True,
+        "GZZC run card verdict/gate flags inconsistent",
+    )
+    require(
+        0 < len(gzzc_card["submission_name"]) <= 140
+        and 0 < len(gzzc_card["submission_note"]) <= 140,
+        "GZZC submission name/note must satisfy <=140 character cap",
+    )
+    gzzc_tif = root / gzzc_card["download"]
+    gzzc_zip = root / gzzc_card["zip_download"]
+    require(gzzc_tif.is_file() and gzzc_zip.is_file(), "GZZC tif/zip files exist")
+    require(
+        sha256(gzzc_tif) == gzzc_card["raster_sha256"],
+        "GZZC TIFF SHA-256 mismatch across file and card",
+    )
+    require(
+        sha256(gzzc_zip) == gzzc_card["zip_sha256"],
+        "GZZC ZIP SHA-256 mismatch across file and card",
+    )
+    require(gzzc_tif.name in index and gzzc_tif.name in executive, "GZZC tif in pages")
+    require(
+        gzzc_card["submission_name"] in index and gzzc_card["submission_name"] in executive,
+        "GZZC name in pages",
+    )
+    require(
+        gzzc_card["raster_sha256"] in index and gzzc_card["raster_sha256"] in executive,
+        "GZZC SHA-256 in pages",
+    )
+    with zipfile.ZipFile(gzzc_zip) as archive:
+        require(
+            archive.namelist() == [gzzc_tif.name]
+            and archive.read(gzzc_tif.name) == gzzc_tif.read_bytes(),
+            "GZZC ZIP must contain the exact research TIFF",
+        )
+
+    hgvc_card = json.loads((root / "registry/hgvc88_run_card.json").read_text())
+    hgvc_web = json.loads((docs / "data/hgvc88_run_card.json").read_text())
+    hgvc_gv = json.loads((root / "registry/hgvc88_gate_v3.json").read_text())
+    hgvc_gv_web = json.loads((docs / "data/hgvc88_gate_v3.json").read_text())
+    require(hgvc_card == hgvc_web, "Pages HGVC card differs from canonical registry card")
+    require(hgvc_gv == hgvc_gv_web, "Pages HGVC gate v3 differs from canonical registry gate")
+    require(
+        hgvc_card["verdict"] == "negative"
+        and hgvc_card["ok_to_download"] is True
+        and hgvc_card["ok_to_submit"] is False
+        and hgvc_card["all_5_discriminating_gates_pass"] is True,
+        "HGVC run card verdict/gate flags inconsistent",
+    )
+    require(
+        0 < len(hgvc_card["submission_name"]) <= 140
+        and 0 < len(hgvc_card["submission_note"]) <= 140,
+        "HGVC submission name/note must satisfy <=140 character cap",
+    )
+    hgvc_tif = root / hgvc_card["download"]
+    hgvc_zip = root / hgvc_card["zip_download"]
+    require(hgvc_tif.is_file() and hgvc_zip.is_file(), "HGVC tif/zip files exist")
+    require(
+        sha256(hgvc_tif) == hgvc_card["raster_sha256"] == hgvc_gv["sha256"],
+        "HGVC TIFF SHA-256 mismatch across file, card, and gate",
+    )
+    require(
+        sha256(hgvc_zip) == hgvc_card["zip_sha256"] == hgvc_gv["zip_sha256"],
+        "HGVC ZIP SHA-256 mismatch across file, card, and gate",
+    )
+    require(hgvc_tif.name in index and hgvc_tif.name in executive, "HGVC tif in pages")
+    require(
+        hgvc_card["submission_name"] in index and hgvc_card["submission_name"] in executive,
+        "HGVC name in pages",
+    )
+    require(
+        hgvc_card["raster_sha256"] in index and hgvc_card["raster_sha256"] in executive,
+        "HGVC SHA-256 in pages",
+    )
 
     gcsd_reg = json.loads((root / "registry/gcsd88_run_card.json").read_text())
     gcsd_web = json.loads((root / "docs/data/gcsd88_run_card.json").read_text())
@@ -560,7 +749,7 @@ def main(root: Path = ROOT) -> None:
         "GCSD HOLDOUT-DTI 0.201610 present across README and Pages",
     )
     print(
-        "PASS: canonical TDKL, H88-GCSD, and concurrent negative research artifacts, hashes, Pages links, and status agree"
+        "PASS: H88-GCSD, H88-GZZC, H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
     )
 
 

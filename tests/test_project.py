@@ -225,3 +225,51 @@ def test_transform_shape_and_interior_nan(tmp_path):
     a[2, 3] = np.nan
     write_tif(candidate, a)
     assert not validate_artifact(candidate, sample)["no_nan_inside"]
+
+
+@pytest.mark.parametrize("auc", [0., .099, .901, 1., -1., 2., float("nan"), float("inf"), True, "0.5", None])
+def test_readiness_rejects_inverted_or_invalid_canary(tmp_path, auc):
+    card = eligible_record(tmp_path)
+    card["canaries"][0]["auc"] = auc
+    assert assess(card, tmp_path)["status"] == "BLOCKED"
+
+
+@pytest.mark.parametrize("auc", [.1, .5, .9])
+def test_readiness_accepts_symmetric_canary_boundary(tmp_path, auc):
+    card = eligible_record(tmp_path)
+    card["canaries"][0]["auc"] = auc
+    assert assess(card, tmp_path)["status"] == "SELECTOR_REQUIRED"
+
+
+def test_duplicate_canary_cannot_hide_failed_copy(tmp_path):
+    card = eligible_record(tmp_path)
+    card["canaries"].append(dict(card["canaries"][0]))
+    assert assess(card, tmp_path)["status"] == "BLOCKED"
+
+
+def test_readiness_package_import_without_pytest_path_injection():
+    import subprocess
+    # Resolve the import as a package in an isolated subprocess without pytest's
+    # scripts/ sys.path injection. Stub heavy validation, not import resolution.
+    code = """
+from unittest.mock import patch
+from scripts import readiness
+with patch('scripts.validate_current.release_report', side_effect=ValueError('import resolved')):
+    try:
+        readiness.current_status()
+    except ValueError as error:
+        assert str(error) == 'import resolved'
+    else:
+        raise AssertionError('expected stub to run')
+"""
+    subprocess.run([sys.executable, "-c", code], cwd=ROOT, check=True)
+
+
+def test_readiness_direct_cli_without_pytest_path_injection():
+    import subprocess
+    if not (ROOT / "data/registry/dense_17gemdoe.tif").exists():
+        pytest.skip("restore_inputs.py --validation required")
+    result = subprocess.run([sys.executable, "scripts/readiness.py"], cwd=ROOT,
+                            capture_output=True, text=True, check=True)
+    status = json.loads(result.stdout)
+    assert status["status"] == "BLOCKED" and status["ok_to_submit"] is False

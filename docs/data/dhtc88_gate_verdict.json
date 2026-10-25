@@ -1,0 +1,82 @@
+{
+  "schema_version": "gems88.gate_verdict.v1",
+  "generated_utc": "2026-10-25T01:04:09Z",
+  "lane": "H88-DHTC",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "portal_validate": {
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "policy": "gems88-gate-v3",
+    "bytes": 81107,
+    "sha256": "bf42eb315bd2392b5748003ace2dd68cc96db0a945873513f8ff222e2fd1e1bd",
+    "problems": [],
+    "member_name": "gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "tiff_header": {
+      "byte_order": "II",
+      "is_classic_tiff": true,
+      "is_bigtiff": false
+    },
+    "layout": {
+      "compress": "deflate",
+      "tiled": true,
+      "block_shapes": [
+        [
+          256,
+          256
+        ]
+      ],
+      "predictor": null,
+      "interleave": "band"
+    },
+    "checks": {
+      "one_band": true,
+      "dtype_float32": true,
+      "crs_epsg_32611": true,
+      "shape_matches_sample": true,
+      "transform_matches_sample": true,
+      "bounds_match_sample": true,
+      "resolution_100m": true,
+      "nodata_undeclared": true,
+      "all_finite": true,
+      "masked_read_no_masked_cells": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "portal_range_check_nan_strict": true,
+      "portal_range_check_nanmin_nanmax": true,
+      "footprint_cells_finite": true,
+      "outside_footprint_zero": true,
+      "has_dots": true,
+      "no_internal_mask_band": true
+    },
+    "array_sha256": "74fe6b4f244b112d7648bcb4cbb22c0659369ea34aef931a4cbd839f14529c59",
+    "n_dots": 13629,
+    "min": 0.0,
+    "max": 1.0,
+    "n_unique_values": 2,
+    "layout_parity_with_sample": false,
+    "second_decoder": {
+      "name": "tifffile",
+      "equal": true
+    },
+    "ok": true
+  },
+  "fingerprint": {
+    "n": 13629,
+    "median_d_cat_px": 22.360679626464844,
+    "share_le2": 0.0,
+    "share_gt10": 0.7570621468926554,
+    "share_gt25": 0.43312055176461955
+  },
+  "fingerprint_screen_passed": true,
+  "like_for_like_uniqueness": {
+    "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+    "value": 0.523736150854795
+  },
+  "surface_max_abs_spearman": 0.178152,
+  "literal_uniqueness": false,
+  "literal_blockers": [
+    "17GEMSDOE:dense_17gemdoe.tif",
+    "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+  ]
+}
