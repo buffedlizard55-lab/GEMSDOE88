@@ -1,0 +1,67 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "preregistration_id": "PREREG-20261025-PSGV88",
+  "date_utc": "2026-10-25",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "lane": "H88-PSGV",
+  "lane_title": "True Wavenumber-Domain Baranov Pseudogravity Discordance (FFT Poisson integration of RTP magnetics vs observed isostatic gravity)",
+  "branch": "arena/ea90f040-gemsdoe88",
+  "hypothesis": "Hydrothermal alteration along permeable blind faults destroys magnetite (magnetization contrast -> 0 or reversed) while the fault still offsets basement density. A Baranov pseudogravity field computed by wavenumber-domain Poisson integration of the RTP magnetic anomaly (operator 1/|k|) therefore mispredicts the observed isostatic gravity field exactly along demagnetized fault damage zones buried under Quaternary cover, where neither the magnetic nor the gravity field alone carries a strong concordant edge and where air-photo/LiDAR catalogue mapping sees no scarp.",
+  "mechanism": "8 zero-catalogue PSGV channels from training_features.tif B02 rtp, B13 iso_grav_anom, B15 depth_to_base_surf: cosine-tapered zero-padded rFFT pseudogravity g_psg = IFFT{ H_hp(k) * RTP_hat(k)/|k| }, global robust regression residual of observed gravity on g_psg, its Hessian crest, tilt-angle phase dislocation |sin(tilt_grav - tilt_psg)|, pseudogravity tilt zero-crossing edge locator weighted by analytic-signal amplitude, log analytic-signal ratio, gradient-direction discordance |sin(dtheta)| between grad(grav) and grad(g_psg), local (sigma=8px) regression-slope deviation, and a basement-depth-gated residual. Added to the validated HGVC specialist heads only (PHYS_DIFF+HGVC-20+PSGV-8 and PHYS-44+HGVC-20+PSGV-8+VIS-23); learner, seeds, allocator (Dinkelbach expected-DTI), collar (>2.5px production), distance-regime budgets and spacings identical to H88-HGVC Exp03 so the paired contrast isolates the PSGV channels.",
+  "named_non_fault_mimic": "Reversely magnetized Miocene basalt flows (Koenigsberger Q>1) and non-magnetic sedimentary density contrasts: both decouple pseudogravity from observed gravity (pi phase flip / amplitude ratio) along unfaulted mesa rims and lithologic contacts with no brittle offset.",
+  "feature_bands": ["B02 rtp", "B13 iso_grav_anom", "B15 depth_to_base_surf"],
+  "psgv_features": [
+    "psgv_resid_signed",
+    "psgv_resid_crest_s2",
+    "psgv_tilt_phase_dislocation",
+    "psgv_tiltzero_edge",
+    "psgv_log_analytic_ratio",
+    "psgv_grad_direction_discordance",
+    "psgv_local_slope_deviation",
+    "psgv_cover_gated_resid"
+  ],
+  "inputs_sha256_expected": {
+    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "holdout": {
+    "evaluator": "gems57-pooled-hide-v2",
+    "instrument": "vendor/gems57/holdout.buffered_component_draw + vendor/gems57/evaluate_holdout (unmodified)",
+    "seeds": [20, 21],
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "metric": {"alpha": 0.2, "beta": 0.8, "triangular_radius_m": 300},
+    "bootstrap": "20 km physical spatial-block pooled bootstrap (evaluate_holdout.pooled_summary)",
+    "catalogue_features": "every catalogue-derived feature (VIS-23, d_over_w) derived only from fold-visible faults; visible faults masked pixel-exactly in scoring",
+    "bar_to_beat": {
+      "evidence_class": "HOLDOUT-DTI",
+      "lane": "H88-HGVC Exp03 (stored, registry/hgvc88_run_card.json)",
+      "overall_dti": 0.2029470713394289,
+      "ci95": [0.185869, 0.21979],
+      "withheld_positive_pixels": 22893,
+      "far_gt10px_dti": 0.1328,
+      "blind_gt25px_dti": 0.078959
+    },
+    "promotion_rule": "Candidate is selector-eligible only if its pooled overall HOLDOUT-DTI point estimate exceeds 0.202947 AND the in-run paired delta vs the H88-ADHR incumbent exceeds the HGVC margin (+0.008071) or its 95% CI excludes the stored HGVC point; otherwise verdict=negative (research deliverable only). No slot is spent by the agent under any outcome."
+  },
+  "experiments_budget_max": 3,
+  "experiments": [
+    {"id": "exp01_psgv_zero_cat", "description": "Zero-catalogue specialist PHYS_DIFF+HGVC-20+PSGV-8 alone (ablation vs stored HGVC Exp01 0.113767)"},
+    {"id": "exp02_psgv_single_joint", "description": "Single joint PHYS-44+HGVC-20+PSGV-8+VIS-23 fused with exp01 head (ablation vs stored HGVC Exp02 0.197582)"},
+    {"id": "exp03_psgv_poe_conduit", "description": "Distance-adaptive log-odds PoE candidate, identical fusion to HGVC Exp03 (primary; vs stored 0.202947)"}
+  ],
+  "controls_not_counted_as_experiments": ["phys44_zero_cat", "h88_adhr_incumbent"],
+  "leakage_canary": {"threshold_symmetric_auc": 0.9, "scope": "every input feature alone (PHYS-44 + HGVC-20 + PSGV-8 + VIS-23) on withheld positives, seeds 20+21; AUC>0.90 stops the lane"},
+  "uniqueness_gates": {
+    "preplacement_surface_max_abs_spearman": 0.9,
+    "final_dots_max_forward_overlap_3px_like_for_like": 0.7,
+    "literal_overlap_reporting": "literal >0-support overlap reported for every registry raster; dense continuous surfaces also reported like-for-like (top-N effective dots). The space-filling 17GEMSDOE witness makes the literal rule vacuous (random dots also 1.0); both numbers are published and the binding decision follows src/gems88/gate.py v3 + IR-88-86/113 (no silent exemption).",
+    "registry_scope": "src/gems88/registry_paths.registry_list (inventory + data/registry + data/fleet + data/siblings + docs/downloads), SHA-pinned restores"
+  },
+  "fingerprint_gate": {"share_le2_max": 0.0, "share_gt25_min": 0.35, "dots_target": 37654},
+  "portal_policy": "zeros: single-band float32, EPSG:32611, 3730x3292, transform (100,0,243350,0,-100,4508550), nodata=None, all 12,279,160 cells finite in {0.0,1.0} subset [0,1], 0 outside footprint, 0 on existing_faults; written only via vendor/gems57/submission_writer + portal_writer and re-opened from .tif and .zip before any download claim",
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null,
+  "external_data_new": "none; all inputs already SHA-pinned on disk (competition 19-band stack + GDR #1391 + GeoDAWN + 3DEP derivatives via scripts/restore_inputs.py). ECOSTRESS/Landsat pre-dawn TIR considered and rejected as non-viable in this sandbox (NASA Earthdata login + outbound allowlist); named in research doc, not used."
+}
