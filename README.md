@@ -12,7 +12,21 @@
 - **Local validation:** one band; no NaN/Inf anywhere; values in [0,1]; exact sample CRS, shape and transform; zero outside footprint and on the catalogue; two decoders agree; ZIP contains the byte-identical, negatively labeled TIFF. This is **not organizer acceptance**.
 - **Historical HOLDOUT-DTI context only:** `gems57-pooled-hide-v2`, 22,893 withheld positive pixels, 0.1962369466, 95% CI [0.1796859281, 0.2117291340]. **Not retrained in this review, not a new candidate score.**
 
-### Start here every session
+### Current session directive — 2026-10-25 (read at the start of every session)
+
+**Highest urgency:** generate a *unique* TIF submission for the DrivenData DOE GEMS (#306) competition. Do **not** copy a previous submission (except for learning/education). It must be obvious, from the downloaded file and the site, whether it is OK to download and submit the generated TIF. There must be an easy one-click download of the submission TIF, and inspection/validation must be done through the project without human intervention. A submission name and a note of at most 140 characters are required (e.g. clustering with k=25). The portal error “Predicted values must be in range [0, 1]” is a file-format check: submit only strict finite [0,1] single-band GeoTIFFs matching the sample CRS/shape/transform.
+
+**Parallel-run protocol (binding):**
+1. **LANE.** Stay in this session's single method lane: shared cached feature stack, buffered whole-segment hide-and-recover holdout, catalogue-derived features from visible faults only, pixel-exact visible-fault masking, pooled DTI (alpha 0.2, beta 0.8, 300 m triangular kernel). If a raster's rank-correlation with any registry raster exceeds 0.90, or more than 70% of dots fall within 3 px of one registry raster's dots, log it as a duplicate and stop — checked on the surface before placement AND on the final dots.
+2. **REUSE, DON'T REBUILD.** Use the template's cached feature stack, `vendor/gems57/evaluate_holdout.py` and `submission_writer.py`. Fix a shared tool once in the template and report it; never keep a private fork.
+3. **LABEL EVERY NUMBER** as HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (copied from a submission-page receipt). A projection is never written as a score.
+4. **LEAKAGE CANARY.** Test each feature alone on the holdout first; AUC above 0.90 means leakage until proven otherwise.
+5. **RUN CARD.** End each session with one JSON card: hypothesis; mechanism; named non-fault process that could mimic it; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator output (no NaN inside footprint, values in [0,1], CRS/shape/transform match); submission name + <=140 character note; verdict promote / negative. Negative results are deliverables.
+6. **BUDGET.** Stop after 3 experiments or 2 hours. Promotion to a real slot is a separate selector step within the weekly cap.
+
+**Scoring context (claims, not organizer receipts unless copied from a receipt):** GEMSDOE32 `h33-h33-2-b2-...-zeros` user-reported 0.2778 (no organizer receipt; audited as subset/pruning ancestry, not proven causal). Current cited leaderboard highs include 0.4413 and 0.3195, not verifiable from this unauthenticated sandbox. Repo all-time holdout record: H88-BPWD HOLDOUT-DTI 0.205991 [0.188105, 0.223344], 0 slots spent. No defensible forecast beats any cited figure.
+
+**This session's outcome (verified):** preflight `scripts/preflight_mtas88.py --gate-generation` exits 2 with `DUPLICATE_STOP`. The SHA-pinned `17GEMSDOE` witness covers all 5,106,385 allowed pixels, so every nonempty candidate has overlap 1.0 > 0.70. **No unique TIF was generated and no file is OK to submit.** Full card: `docs/data/session-20261025-run-card.json`. Five ranked, untested hypotheses: `research/candidate-hypotheses-20261025-session.md`. The complete recorded user request is in `USER_PROMPT_20261025.md`.
 
 Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_PROMPT_20261025.md), and [AGENTS.md](AGENTS.md). The request is also embedded below. Do not append a competing “current candidate” banner or bypass the generation preflight.
 
