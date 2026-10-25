@@ -40,7 +40,7 @@ const env = {
     querySelectorAll: () => [],
   },
   fetch: async url => {
-    if (fail && url === 'data/mtas88_run_card.json') return {ok: false};
+    if (fail && (url === 'data/mtas88_run_card.json' || url === 'data/gzzc88_run_card.json')) return {ok: false};
     const data = JSON.parse(fs.readFileSync(path.join('docs', url), 'utf8'));
     return {ok: true, json: async () => data};
   },
@@ -49,7 +49,7 @@ const env = {
 vm.runInNewContext(fs.readFileSync('docs/assets/site.js', 'utf8'), env);
 setImmediate(() => {
   const expected = fail ? 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT'
-    : 'H88-MTAS · NO NEW TIFF · OLD FILE DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated duplicate stop)';
+    : 'H88-GZZC · NEW RESEARCH TIFF · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (literal duplicate stop)';
   if (banner.textContent !== expected) {
     console.error('Incorrect decision:', banner.textContent, 'expected:', expected);
     process.exitCode = 1;

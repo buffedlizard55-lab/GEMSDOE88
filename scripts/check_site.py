@@ -633,9 +633,54 @@ def main(root: Path = ROOT) -> None:
     js = (docs / "assets/site.js").read_text()
     require(
         "fetch('data/mtas88_run_card.json'" in js
+        and "fetch('data/gzzc88_run_card.json'" in js
         and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
-        "Dynamic decision banner must fail closed on absent MTAS proof",
+        "Dynamic decision banner must fail closed on absent MTAS/GZZC proof",
     )
+
+    gzzc_card = json.loads((root / "registry/gzzc88_run_card.json").read_text())
+    gzzc_web = json.loads((docs / "data/gzzc88_run_card.json").read_text())
+    require(gzzc_card == gzzc_web, "Pages GZZC card differs from canonical registry card")
+    require(
+        gzzc_card["verdict"] == "negative"
+        and gzzc_card["ok_to_download"] is True
+        and gzzc_card["ok_to_submit"] is False
+        and gzzc_card["uniqueness"]["literal_dense_witness_overlap"] == 1.0
+        and gzzc_card["uniqueness"]["literal_dense_witness_pass"] is False
+        and gzzc_card["uniqueness"]["unique_like_for_like"] is True,
+        "GZZC run card verdict/gate flags inconsistent",
+    )
+    require(
+        0 < len(gzzc_card["submission_name"]) <= 140
+        and 0 < len(gzzc_card["submission_note"]) <= 140,
+        "GZZC submission name/note must satisfy <=140 character cap",
+    )
+    gzzc_tif = root / gzzc_card["download"]
+    gzzc_zip = root / gzzc_card["zip_download"]
+    require(gzzc_tif.is_file() and gzzc_zip.is_file(), "GZZC tif/zip files exist")
+    require(
+        sha256(gzzc_tif) == gzzc_card["raster_sha256"],
+        "GZZC TIFF SHA-256 mismatch across file and card",
+    )
+    require(
+        sha256(gzzc_zip) == gzzc_card["zip_sha256"],
+        "GZZC ZIP SHA-256 mismatch across file and card",
+    )
+    require(gzzc_tif.name in index and gzzc_tif.name in executive, "GZZC tif in pages")
+    require(
+        gzzc_card["submission_name"] in index and gzzc_card["submission_name"] in executive,
+        "GZZC name in pages",
+    )
+    require(
+        gzzc_card["raster_sha256"] in index and gzzc_card["raster_sha256"] in executive,
+        "GZZC SHA-256 in pages",
+    )
+    with zipfile.ZipFile(gzzc_zip) as archive:
+        require(
+            archive.namelist() == [gzzc_tif.name]
+            and archive.read(gzzc_tif.name) == gzzc_tif.read_bytes(),
+            "GZZC ZIP must contain the exact research TIFF",
+        )
 
     hgvc_card = json.loads((root / "registry/hgvc88_run_card.json").read_text())
     hgvc_web = json.loads((docs / "data/hgvc88_run_card.json").read_text())
@@ -676,7 +721,7 @@ def main(root: Path = ROOT) -> None:
         "HGVC SHA-256 in pages",
     )
     print(
-        "PASS: H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
+        "PASS: H88-GZZC research TIFF, H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
     )
 
 

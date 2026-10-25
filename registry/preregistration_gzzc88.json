@@ -1,0 +1,14 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "preregistration_id": "H88-GZZC-20261025",
+  "lane": "H88-GZZC",
+  "selected": "H88-GZZC",
+  "ranked": [
+    {"rank": 1, "id": "H88-GZZC", "status": "SELECTED"},
+    {"rank": 2, "id": "H88-PSGV", "status": "QUEUE"},
+    {"rank": 3, "id": "H88-BCSF", "status": "QUEUE"},
+    {"rank": 4, "id": "H88-EUTh", "status": "QUEUE"},
+    {"rank": 5, "id": "H88-S2TIR", "status": "BLOCKED_NO_EXTERNAL_HOST"}
+  ],
+  "dossier": "research/candidate-hypotheses-20261025-gzzc.md"
+}
