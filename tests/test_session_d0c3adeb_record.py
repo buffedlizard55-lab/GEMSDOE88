@@ -111,13 +111,11 @@ def test_historical_browser_receipt_remains_a_dated_negative_record():
     for relative, digest in record['source_sha256'].items():
         assert relative.startswith('docs/') and len(digest) == 64
         int(digest, 16)
-    current_card = read('registry/session_b4dfa10c_run_card.json')
-    current = read(current_card['software_review']['browser_evidence'])
-    assert current['status'] == 'PASS' and current['ok_to_submit'] is False
-    assert record['checked_at_utc'] < current['checked_at_utc']
-    assert current['failed_fetch_stays_negative'] is True
-    assert {p['width'] for p in current['pages']} == {390, 1440}
-    assert len(current['pages']) == 7 and all(p['pass'] for p in current['pages'])
-    assert set(record['source_sha256']) <= set(current['source_sha256'])
-    for relative, digest in current['source_sha256'].items():
-        assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == digest, relative
+    current_card = read('evidence/session_c0636fcd_run_card.json')
+    current = read('evidence/session_c0636fcd_browser_check.json')
+    assert current['status'] == 'BLOCKED_ENVIRONMENT'
+    assert current['browser_launched'] is False and current['pages'] == []
+    assert 'libnspr4.so' in current['error']
+    assert record['checked_at_utc'] < current['attempted_at_utc']
+    assert current_card['verification']['browser_check'].startswith('BLOCKED_ENVIRONMENT')
+    assert current_card['submission']['submit'] is False

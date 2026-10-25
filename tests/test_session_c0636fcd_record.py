@@ -21,10 +21,12 @@ def test_session_c0636fcd_run_card_is_fail_closed_and_complete():
 
     queue = card["candidate_queue"]
     assert [row["id"] for row in queue] == [
-        "H88-PRAN", "H88-FARC", "H88-TCONS", "H88-FLAC"
+        "H88-SPRV", "H88-CBBC", "H88-TAWA", "H88-MT3D-GDR"
     ]
     assert all(row["experiment_status"].startswith("not run") for row in queue)
-    assert all(row["new_external_data_required"] is False for row in queue)
+    assert [row["new_external_data_required"] for row in queue] == [False, False, False, True]
+    assert card["historical_holdout_context"][1]["lane"].startswith("H88-PGTD")
+    assert card["historical_holdout_context"][1]["evidence_class"] == "HOLDOUT-DTI"
 
 
 def test_session_c0636fcd_readme_links_review_and_preserves_submission_warning():

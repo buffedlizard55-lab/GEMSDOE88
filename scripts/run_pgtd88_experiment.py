@@ -19,8 +19,8 @@ if __name__ == "__main__":
     import sys as _guard_sys
     from pathlib import Path as _GuardPath
     _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
-    from scripts.generation_guard import inspect as _gi
-    print(_gi())  # recorded; literal-stop irregularity IR-88-PGTD-01 flagged in run card
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
 
 import gc
 import hashlib

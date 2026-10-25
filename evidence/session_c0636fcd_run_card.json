@@ -2,82 +2,128 @@
   "schema": "gems88.session-run-card.v1",
   "date_utc": "2026-10-25",
   "branch": "arena/c0636fcd-gemsdoe88",
-  "hypothesis": "H88-PRAN: terrain-conditioned K:Th radiometric residual with along-strike coherence may indicate altered, cover-obscured structures absent from the USGS/INGENIOUS catalogue. This is the next qualitative queue candidate, not an executed experiment.",
-  "mechanism": "Compare radiometric K:Th values within matched detrended-slope/profile-curvature/basement-depth strata, then test along-strike coherence against a predeclared terrain-matched null. Use only the shared cached layers and shared holdout/evaluation tools if a future shared protocol authorizes the run.",
-  "named_non_fault_mimic": "K-rich transported alluvium or parent-rock contact; soil moisture can also perturb radiometric response.",
+  "hypothesis": "H88-SPRV: cross-strike Hanks-Bucknam error-function scarp-profile restoration likelihood, with drainage and shoreline vetoes, may identify diffused or mantled faults absent from the USGS/INGENIOUS catalogue. This is the current post-MMRX untested queue leader, not an executed experiment.",
+  "mechanism": "Fit cross-strike detrended elevation profiles to a diffusive fault-scarp error-function model versus a linear-piedmont null; estimate the restored inflection locus and require along-strike coherence, while vetoing channel-incision and equipotential shoreline signatures. Use only the shared cached project layers and shared evaluator if a future shared preflight authorizes work.",
+  "named_non_fault_mimic": "Incised alluvial-fan channel margins or terrace risers, and Pleistocene Lake Lahontan wave-cut shoreline benches.",
   "candidate_queue": [
     {
       "rank": 1,
-      "id": "H88-PRAN",
-      "layers": ["rad_k_over_th", "det_elev_slope", "topo10_curv_prof", "depth_to_base_log"],
-      "signature": "terrain-bin-matched K:Th residual with along-strike coherence",
-      "missing_catalogue_rationale": "Tests alteration/soil response under cover without relying on catalogue geometry or an expressed scarp.",
-      "non_fault_mimic": "K-rich transported alluvium, parent-rock contact, soil-moisture effects",
-      "difference_from_repo": "MVRD uses radiometry plus scarp evidence; this tests terrain-conditioned residual information rather than that conjunction.",
-      "expected_gain_order": "highest of the four proposed; qualitative value-of-information judgment, not DTI projection",
-      "implementation_cost": "low-medium",
+      "id": "H88-SPRV",
+      "layers": [
+        "training_features B12 det_elev",
+        "B15 depth_to_base_surf",
+        "B19 det_elev_slope",
+        "topo_10m_derived_100m_u8 B6/B7/B9",
+        "lidar_scarp_features_u8 B3/B6/B7/B11/B12",
+        "dem10_chi_100m_u8 B1/B3",
+        "dem10_chi_100m_i16 B4/B5"
+      ],
+      "signature": "Hanks-Bucknam error-function cross-strike profile restoration, restored inflection locus, along-strike persistence, channel and shoreline vetoes",
+      "missing_catalogue_rationale": "Diffused or mantled scarps can have weak peak slope while preserving integrated throw; restored inflection loci target geometry not constructed from catalogue traces.",
+      "non_fault_mimic": "Fluvial terraces/fan channels and Lake Lahontan strandlines.",
+      "difference_from_repo": "The post-MMRX audit describes TDKL/LSC/MVRD/QTSK as pointwise summaries; profile-restoration likelihood plus shoreline-variance veto and inflection-locus emission is distinct.",
+      "expected_utility": "highest of remaining queue, qualitative judgment only; not a DTI projection",
+      "implementation_cost": "medium CPU cost, per prior 838cc402 dossier",
       "new_external_data_required": false,
-      "experiment_status": "not run; no holdout or canary"
+      "experiment_status": "not run; shared preflight blocks construction"
     },
     {
       "rank": 2,
-      "id": "H88-FARC",
-      "layers": ["chi_step_max", "ksn_jump_norm", "topo10_hs_lineament", "lidar_scarp_coh"],
-      "signature": "replicated signed cross-channel offsets against catchment/stream-order matched nulls",
-      "missing_catalogue_rationale": "A weak blind rupture may offset several drainages below individual scarp-mapping confidence.",
-      "non_fault_mimic": "Lithologic knickzones, drainage capture, base-level change, climate-driven incision",
-      "difference_from_repo": "QTSK/TDKL use individual knickwave/scarp signals; this uses independent-catchment replication and matched nulls.",
-      "expected_gain_order": "second; qualitative value-of-information judgment, not DTI projection",
-      "implementation_cost": "medium",
+      "id": "H88-CBBC",
+      "layers": [
+        "training_features B07 geod_shearrate",
+        "B08 geod_dilaterate",
+        "B13 iso_grav_anom",
+        "B15 depth_to_base_surf",
+        "B17 cond_surf",
+        "dem10_chi_100m_u8 B1",
+        "GDR wells/springs temperature/geothermometers"
+      ],
+      "signature": "Morse-Smale conductivity saddle/ridge connectors crossing basement horsts, weighted by cross-orientation and strain",
+      "missing_catalogue_rationale": "Buried transverse relay faults may connect conductive hydrothermal clay-cap alteration across basement highs without a surface rupture.",
+      "non_fault_mimic": "Saline playa evaporites and axial trunk paleochannels.",
+      "difference_from_repo": "Prior lanes test conductivity amplitude or isotropic curvature; this extracts saddle-graph topology and cross-bathymetric ridge orientation.",
+      "expected_utility": "moderate qualitative specificity, not a DTI projection",
+      "implementation_cost": "low-medium, per prior 838cc402 dossier",
       "new_external_data_required": false,
-      "experiment_status": "not run; no holdout or canary"
+      "experiment_status": "not run; shared preflight blocks construction"
     },
     {
       "rank": 3,
-      "id": "H88-TCONS",
-      "layers": ["probe2m_dab_local", "well_temp_anom", "cond_edge_300m", "depth_to_base_log"],
-      "signature": "depth-conditioned temperature residual after accounting for conductivity and basin depth",
-      "missing_catalogue_rationale": "Focused fluid advection along a blind permeable fault may differ from broad conductive basin fill.",
-      "non_fault_mimic": "Playa/lake brine, groundwater circulation, unfractured permeable lithology",
-      "difference_from_repo": "DHTC/GTHC combine thermal/conductivity/structure; this tests residual temperature information after background controls.",
-      "expected_gain_order": "third; qualitative value-of-information judgment, not DTI projection",
-      "implementation_cost": "medium-high",
+      "id": "H88-TAWA",
+      "layers": [
+        "GeoDAWN radiometric K/Th/U/TC",
+        "GeoDAWN extensions ThK/UK/UTh/TMI_up150",
+        "training_features B02 rtp",
+        "B12 det_elev",
+        "B15 depth_to_base_surf",
+        "B19 det_elev_slope"
+      ],
+      "signature": "Drape-compensated hanging-wall versus footwall exponential alteration-decay width asymmetry across magnetic tilt-zero contours",
+      "missing_catalogue_rationale": "Asymmetric alteration halos may persist around sealed fault-valve conduits where modern surface rupture or peak scarp expression is weak.",
+      "non_fault_mimic": "Rhyolite/basalt contacts and terrain-clearance attenuation of radiometric counts.",
+      "difference_from_repo": "Existing radiometric lanes measure fixed-radius steps/asymmetry; this fits flank decay widths after drape correction.",
+      "expected_utility": "low-moderate qualitative gain, not a DTI projection",
+      "implementation_cost": "medium, per prior 838cc402 dossier",
       "new_external_data_required": false,
-      "experiment_status": "not run; no holdout or canary"
+      "experiment_status": "not run; shared preflight blocks construction"
     },
     {
       "rank": 4,
-      "id": "H88-FLAC",
-      "layers": ["rtp_grad_200m", "grav_grad_200m", "cond_edge_300m", "geod_shearrate", "geod_dilaterate"],
-      "signature": "multi-sensor edge persistence with explicit flight-line direction and leveling-artifact veto",
-      "missing_catalogue_rationale": "A buried discontinuity should persist across independent sensors rather than follow a survey seam.",
-      "non_fault_mimic": "Gridding/tie-line leveling artifacts or broad acquisition-aligned lithologic contacts",
-      "difference_from_repo": "MGC/XGCE compare cross-field edge geometry; this preregisters a directional acquisition-null control.",
-      "expected_gain_order": "fourth; qualitative value-of-information judgment, not DTI projection",
-      "implementation_cost": "low",
-      "new_external_data_required": false,
-      "experiment_status": "not run; no holdout or canary"
+      "id": "H88-MT3D-GDR",
+      "layers": [
+        "official USGS 3-D MT conductance depth grids",
+        "USGS heat-flow residuals",
+        "local strain, basement, conductivity and gravity bands"
+      ],
+      "signature": "Deep 3-D conductor roots and heat-flow residuals projected up-dip toward shallow hydrothermal alteration",
+      "missing_catalogue_rationale": "Crustal fluid pathways may illuminate blind basin-interior fault arrays without range-front scarps.",
+      "non_fault_mimic": "Graphitic/carbonaceous shale thrust belts.",
+      "difference_from_repo": "Current feature stack has no deep MT or heat-flow bands; this requires an official external dataset rather than another transform of local bands.",
+      "expected_utility": "potentially high orthogonal value, not a DTI projection",
+      "implementation_cost": "medium-high staging cost, per prior 838cc402 dossier",
+      "new_external_data_required": true,
+      "official_source_and_obtainability": "Prior 838cc402 source dossier cites USGS data-release DOIs 10.5066/P9TWT2LU and 10.5066/P9BZPVUC via DOE GDR submission 1391 and records open/public terms; not refetched or obtained in this session. Not required for top-ranked SPRV.",
+      "experiment_status": "not run; shared preflight blocks construction and source/data recheck remains needed"
     }
   ],
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
-    "status": "NOT RUN FOR THIS REVIEW OR H88-PRAN",
+    "status": "NOT RUN FOR THIS REVIEW OR H88-SPRV",
     "evaluator_version": "gems57-pooled-hide-v2",
     "withheld_positive_pixels": null,
     "value": null,
     "ci95": null,
-    "reason": "Pre-placement DUPLICATE_STOP; no candidate feature surface, canary, fold prediction or experiment was run."
+    "reason": "Pre-placement DUPLICATE_STOP; no candidate feature surface, per-feature canary, fold prediction or experiment was run."
   },
-  "historical_holdout_context": {
-    "evidence_class": "HOLDOUT-DTI",
-    "lane": "H88-MTAS, historical and already tried; not a score for H88-PRAN or this review",
-    "evaluator_version": "gems57-pooled-hide-v2",
-    "withheld_positive_pixels": 22893,
-    "value": 0.049577,
-    "ci95": [0.044659, 0.054417],
-    "source": "evidence/mtas88_experiment_20261025.json",
-    "organizer_confirmed": false
-  },
+  "historical_holdout_context": [
+    {
+      "evidence_class": "HOLDOUT-DTI",
+      "lane": "H88-MTAS; previously executed and negative, unrelated to H88-SPRV",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 22893,
+      "value": 0.049577,
+      "ci95": [
+        0.044659,
+        0.054417
+      ],
+      "source": "evidence/mtas88_experiment_20261025.json",
+      "organizer_confirmed": false
+    },
+    {
+      "evidence_class": "HOLDOUT-DTI",
+      "lane": "H88-PGTD; historical run after duplicate stop, not a result of this review and not organizer-confirmed",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 22893,
+      "value": 0.0811,
+      "ci95": [
+        0.0674,
+        0.0957
+      ],
+      "source": "research/session-82dbb5e9-pgtd88.md and registry/pgtd88_run_card.json",
+      "interpretation": "negative versus repository holdout incumbent; not a competition score"
+    }
+  ],
   "h33_claim": {
     "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI AND NOT ORGANIZER-CONFIRMED",
     "reported_value": 0.2778,
@@ -88,7 +134,7 @@
     "evidence_class": "REGISTRY-MEASUREMENT",
     "candidate_surface_rank_correlation": null,
     "candidate_final_dot_overlap_3px": null,
-    "reason": "No candidate surface or dots were constructed; the guard stopped first.",
+    "reason": "No H88-SPRV candidate surface or dots were constructed; preflight stopped first.",
     "witness": "17GEMSDOE dense registry raster",
     "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
     "allowed_pixels": 5106385,
@@ -109,29 +155,34 @@
   },
   "submission": {
     "submission_name": "GEMSDOE88-C0636FCD-NO-FILE",
-    "note": "PRAN hypothesis queued; pre-placement duplicate stop; no candidate TIFF or score; DO NOT SUBMIT",
-    "note_character_count": 95,
+    "note": "SPRV queue leader; duplicate stop; no candidate TIFF or score; DO NOT SUBMIT",
+    "note_character_count": 76,
     "download_new_file": false,
     "submit": false,
     "weekly_slots_used": 0,
     "organizer_confirmed_receipt": null
   },
   "verification": {
-    "validation_restore": "PASS — hash-pinned validation-tier inputs restored from owner GitHub mirrors; not authenticated organizer download",
-    "generation_guard": "DUPLICATE_STOP (expected exit 2 after dependencies installed)",
+    "validation_restore": "PASS — SHA-pinned validation-tier inputs restored from owner GitHub mirrors; not authenticated organizer download",
+    "generation_guard": "DUPLICATE_STOP (expected exit 2); 5,106,385/5,106,385 allowed cells covered, 0 new rasters/experiments/slots",
+    "pgtd_cli_guard_fix": "The inherited run_pgtd88_experiment.py entrypoint previously called inspect() and continued; now invokes enforce_generation_preflight() before feature/model imports.",
     "repo_review": "PASS — DUPLICATE_STOP, no audit errors",
-    "archived_package_audit": "46/46 local research TIFF/ZIP packages pass; 0 protocol-eligible",
-    "render_decision_check": "PASS",
-    "optimized_site_check": "PASS",
-    "pytest": "807 passed, 23 skipped, 0 failed",
-    "git_diff_check_before_review_record": "PASS"
+    "archived_package_audit": "47/47 local research TIFF/ZIP packages pass after rebasing and refreshing the shared audit; 0 protocol-eligible",
+    "render_decision_check": "PASS after re-render from shared audit manifest",
+    "optimized_site_check": "PASS — standard and optimized site guards after current audit/render/link refresh",
+    "pytest": "PASS — 827 passed, 23 skipped, 0 failed (64 warnings), full suite after integration fixes",
+    "git_diff_check": "PASS after final source and documentation edits",
+    "browser_check": "BLOCKED_ENVIRONMENT — Chromium could not start because libnspr4.so is missing; no browser observations recorded.",
+    "remote_pr_checks": "PR #163 test and preflight failed at combined audit/render/optimized-site step; hosted log archive fetch returned EOF, exact remote failing command unconfirmed; local reruns pass"
   },
   "limitations": [
     "The user prompt does not supply the single-method paragraph it references; this review does not invent an assigned lane.",
-    "The literal registry rule is incompatible with a nonempty prediction while the full-positive 17GEMSDOE witness remains in scope.",
+    "The literal registry rule is incompatible with any nonempty prediction while the full-positive 17GEMSDOE witness remains in scope.",
     "No candidate experiment, canary, holdout, TIFF, or upload was run in this review.",
-    "No authenticated DrivenData account access or organizer receipt was available; the leaderboard claims were not freshly retrieved.",
-    "The full 19-band cached feature stack was not restored because the pre-placement stop forbids model/feature work.",
+    "A concurrent mainline PGTD run proceeded after a read-only guard inspection; this irregularity is logged and the CLI now fails closed. The historical artifact remains negative and research-only.",
+    "No authenticated DrivenData account or submission receipt was available; the leaderboard was not freshly retrieved by this branch session.",
+    "The full cached feature stack was not restored because the pre-placement stop forbids model/feature work.",
+    "MT3D-GDR source details are supported by prior 838cc402 source evidence, not a fresh retrieval or local download in this session.",
     "Historical archived results and local file checks do not establish new candidate performance or organizer acceptance."
   ],
   "verdict": "negative"

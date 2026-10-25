@@ -154,17 +154,15 @@ def test_site_guard_checks_legacy_and_variant_evidence_under_both_interpreters(i
     assert expected in result.stderr, result.stdout + result.stderr
 
 
-def test_current_browser_evidence_binds_actual_download_bytes_and_legacy_pages():
-    card = json.loads((ROOT / 'registry/session_b4dfa10c_run_card.json').read_text())
-    receipt = json.loads((ROOT / card['software_review']['browser_evidence']).read_text())
-    assert receipt['status'] == 'PASS' and receipt['ok_to_submit'] is False
-    assert receipt['failed_fetch_stays_negative'] is True
-    assert len(receipt['pages']) == 7
-    assert {'mdc88/index.html', 'mdc88/executive-summary.html'} <= {p['page'] for p in receipt['pages']}
-    assert all(p['pass'] and not p['overflow'] and not p['errors'] for p in receipt['pages'])
-    download = receipt['research_download']
-    assert download['http_status'] == 200 and download['matches_canonical_bytes'] is True
-    assert download['sha256'] == card['archived_research_download']['sha256']
-    assert download['ok_to_submit'] is False
-    for relative, digest in receipt['source_sha256'].items():
-        assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == digest, relative
+def test_current_browser_attempt_fails_closed_when_system_chromium_dependency_is_missing():
+    card = json.loads((ROOT / 'evidence/session_c0636fcd_run_card.json').read_text())
+    receipt = json.loads((ROOT / 'evidence/session_c0636fcd_browser_check.json').read_text())
+    assert receipt['status'] == 'BLOCKED_ENVIRONMENT'
+    assert receipt['browser_launched'] is False
+    assert receipt['ok_to_submit'] is False
+    assert receipt['pages'] == []
+    assert 'libnspr4.so' in receipt['error']
+    assert receipt['failed_fetch_stays_negative'] is None
+    assert 'no visual' in receipt['reason'].lower() and 'observations were made' in receipt['reason'].lower()
+    assert card['verification']['browser_check'].startswith('BLOCKED_ENVIRONMENT')
+    assert card['submission']['submit'] is False

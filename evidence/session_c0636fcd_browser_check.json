@@ -1,0 +1,16 @@
+{
+  "schema": "gems88.browser-review.v1",
+  "attempted_at_utc": "2026-10-25T17:58:10Z",
+  "status": "BLOCKED_ENVIRONMENT",
+  "ok_to_submit": false,
+  "browser_launched": false,
+  "pages": [],
+  "reason": "Bundled Chromium could not start because the sandbox lacks the system library libnspr4.so. No visual, responsive, interaction, failed-fetch, or browser-download observations were made in this attempt.",
+  "error": "/tmp/chromium: error while loading shared libraries: libnspr4.so: cannot open shared object file: No such file or directory",
+  "attempted_command": "BROWSER_BASE_URL=http://127.0.0.1:8000/ node scripts/browser_check.cjs",
+  "download_bytes_independently_checked": "scripts/audit_downloads.py --check (47/47 local research packages; 0 protocol-eligible)",
+  "failed_fetch_stays_negative": null,
+  "limitations": [
+    "No browser receipt is available for the current docs bytes. The prior dated browser receipts remain historical only."
+  ]
+}
