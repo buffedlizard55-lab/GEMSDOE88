@@ -846,8 +846,68 @@ def main(root: Path = ROOT) -> None:
     addendum = json.loads((root / "registry/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text())
     require(addendum == json.loads((docs / "data/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text())
             and addendum["ok_to_submit"] is False, "Creation-order exemption must not clear HGVC")
+
+    bpwd_card = json.loads((root / "registry/bpwd88_run_card.json").read_text())
+    bpwd_web = json.loads((docs / "data/bpwd88_run_card.json").read_text())
+    bpwd_ev = json.loads((root / "evidence/bpwd88_run_card.json").read_text())
+    bpwd_gv = json.loads((root / "registry/bpwd88_gate_v3.json").read_text())
+    bpwd_gv_web = json.loads((docs / "data/bpwd88_gate_v3.json").read_text())
+    require(bpwd_card == bpwd_web == bpwd_ev, "BPWD card mirrors differ")
+    require(bpwd_gv == bpwd_gv_web, "BPWD gate v3 mirrors differ")
+    require(
+        bpwd_card["verdict"] == "negative"
+        and bpwd_card["ok_to_download"] is True
+        and bpwd_card["ok_to_submit"] is False
+        and bpwd_card["all_5_discriminating_gates_pass"] is True
+        and bpwd_card["beats_hgvc_holdout_best"] is True
+        and bpwd_card["holdout_dti"]["candidate_exp03"]["dti"] > bpwd_card["holdout_dti"]["control_h88_hgvc_incumbent"]["dti"]
+        and bpwd_gv["ok_to_submit"] is False,
+        "BPWD run card verdict/gate flags inconsistent",
+    )
+    require(
+        0 < len(bpwd_card["submission_name"]) <= 140
+        and 0 < len(bpwd_card["submission_note"]) <= 140,
+        "BPWD submission name/note must satisfy <=140 character cap",
+    )
+    bpwd_tif = root / bpwd_card["download"]
+    bpwd_zip = root / bpwd_card["zip_download"]
+    require(bpwd_tif.is_file() and bpwd_zip.is_file(), "BPWD tif/zip files exist")
+    require(
+        sha256(bpwd_tif) == bpwd_card["raster_sha256"] == bpwd_gv["sha256"],
+        "BPWD TIFF SHA-256 mismatch across file, card, and gate",
+    )
+    require(
+        sha256(bpwd_zip) == bpwd_card["zip_sha256"] == bpwd_gv["zip_sha256"],
+        "BPWD ZIP SHA-256 mismatch across file, card, and gate",
+    )
+    with zipfile.ZipFile(bpwd_zip) as zf:
+        require(
+            zf.namelist() == [bpwd_tif.name] and zf.read(bpwd_tif.name) == bpwd_tif.read_bytes(),
+            "BPWD ZIP does not contain byte-identical single TIFF",
+        )
+    bpwd_doc_md = docs / "research/candidate-hypotheses-20261025-bpwd88.md"
+    bpwd_root_md = root / "research/candidate-hypotheses-20261025-bpwd88.md"
+    require(
+        bpwd_doc_md.is_file() and bpwd_root_md.is_file() and bpwd_doc_md.read_bytes() == bpwd_root_md.read_bytes(),
+        "BPWD PhD hypotheses markdown missing or mismatched",
+    )
+    for page_name, page_txt in (
+        ("index.html", index),
+        ("executive-summary.html", executive),
+        ("research.html", research),
+        ("sources.html", sources),
+    ):
+        require(bpwd_tif.name in page_txt, f"BPWD tif missing in {page_name}")
+        require(bpwd_card["submission_name"] in page_txt, f"BPWD submission_name missing in {page_name}")
+        require(bpwd_card["raster_sha256"] in page_txt, f"BPWD raster_sha256 missing in {page_name}")
+    require(
+        index.index('id="mtas-review"') < index.index('id="bpwd-hero"') < index.index('class="archive-lanes"')
+        and executive.index('id="mtas-review"') < executive.index('id="bpwd-hero"') < executive.index('class="archive-lanes"'),
+        "BPWD hero must appear between canonical decision and archive-lanes",
+    )
+
     print(
-        "PASS: canonical decision first, research bytes, archived records, Pages links and negative gates agree"
+        "PASS: canonical decision first, H88-BPWD record, research bytes, archived records, Pages links and negative gates agree"
     )
 
 

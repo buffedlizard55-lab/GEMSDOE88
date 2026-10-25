@@ -1,0 +1,17 @@
+{
+  "file": "gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777",
+  "zip_sha256": "cb496d0f2a552e950f64e7babd084b23da3a6d7fdeaa1cf7c6c9ade937cc4c4e",
+  "submission_name": "GEMSDOE88-BPWD88-B8543782",
+  "submission_note": "BPWD88 107ch Baranov Poisson+worm PoE 37654d; HOLDOUT-DTI 0.2060 far 0.1368 blind 0.0727; UNSCORED",
+  "note_length": 98,
+  "positive_pixels": 37654,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "all_5_discriminating_gates_pass": true,
+  "beats_hgvc_holdout_best": true,
+  "verdict": "negative",
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null
+}

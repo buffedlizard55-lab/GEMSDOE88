@@ -1,0 +1,103 @@
+{
+  "schema": "gems88.bpwd88.gate_v3.v1",
+  "policy": "gems88-gate-v3",
+  "binding_literal_policy": "IR-88-86-literal-all-registry-v1",
+  "name": "gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT",
+  "submission_name": "GEMSDOE88-BPWD88-B8543782",
+  "submission_note": "BPWD88 107ch Baranov Poisson+worm PoE 37654d; HOLDOUT-DTI 0.2060 far 0.1368 blind 0.0727; UNSCORED",
+  "candidate": {
+    "tif": "docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.zip",
+    "sha256": "b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777",
+    "zip_sha256": "cb496d0f2a552e950f64e7babd084b23da3a6d7fdeaa1cf7c6c9ade937cc4c4e",
+    "dots": 37654
+  },
+  "sha256": "b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777",
+  "zip_sha256": "cb496d0f2a552e950f64e7babd084b23da3a6d7fdeaa1cf7c6c9ade937cc4c4e",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "all_5_discriminating_gates_pass": true,
+  "beats_hgvc_holdout_best": true,
+  "verdict": "negative",
+  "label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT (held only by literal 17GEMSDOE dense witness + human selector)",
+  "blocking_reasons": [
+    "UNIQUENESS: literal registry rule failed or unverified; no dense-prior exemption: 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif, sibling_head_20261025:GEMSDOE86__9512ea19__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
+  ],
+  "portal_values_and_grid_ok": true,
+  "portal_layout_parity_with_sample": true,
+  "leakage_canary_pass": true,
+  "fingerprint": {
+    "n": 37654,
+    "median_d_cat_px": 20.2237491607666,
+    "share_le2": 0.0,
+    "share_gt10": 0.6770860997503585,
+    "share_gt25": 0.4369788070324534
+  },
+  "fingerprint_screen_pass": true,
+  "holdout_comparison": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 22893,
+    "candidate_dti": 0.2059906799008455,
+    "candidate_ci95": [
+      0.18810523423482492,
+      0.22334363824908246
+    ],
+    "far_gt10px_dti": 0.13678207607664875,
+    "far_gt10px_ci95": [
+      0.11633602262144223,
+      0.15997507447746154
+    ],
+    "blind_gt25px_dti": 0.07273260752166534,
+    "blind_gt25px_ci95": [
+      0.045431941846986866,
+      0.10312672176862667
+    ],
+    "hgvc_incumbent_recomputed_dti": 0.2029470713394289,
+    "hgvc_incumbent_stored_dti": 0.202947,
+    "paired_delta_vs_hgvc": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.003043608561416583,
+      "ci95": [
+        0.00031290592564178765,
+        0.005537153131268532
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "folds_won_vs_hgvc": 6,
+    "adhr_incumbent_recomputed_dti": 0.19487581335786947,
+    "adhr_incumbent_stored_dti": 0.189634,
+    "paired_delta_vs_adhr": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.011114866542976026,
+      "ci95": [
+        0.005669514239714861,
+        0.01632356862363943
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "folds_won_vs_adhr": 8,
+    "beats_hgvc_holdout_best_with_positive_ci95": true,
+    "beats_adhr_bar_with_positive_ci95": true
+  },
+  "uniqueness": {
+    "registry_rasters_checked": 350,
+    "distinct_dot_sets_checked": 223,
+    "surface_preplacement_max_abs_spearman": 0.225469,
+    "worst_like_for_like_overlap": {
+      "label": "GEMSDOE88:gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+      "value": 0.6499973442396558
+    },
+    "worst_abs_rho": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 0.22546875421748935
+    },
+    "unique_like_for_like": true,
+    "literal_all_positive_witness_overlap_3px": 1.0,
+    "unique_literal": false
+  },
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null
+}
