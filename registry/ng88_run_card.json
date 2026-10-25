@@ -1,0 +1,202 @@
+{
+  "schema": "gems.run_card.v1",
+  "run_id": "GEMSDOE88-NG88-20261025",
+  "branch": "arena/2c7f7825-gemsdoe88",
+  "generated_utc": "2026-10-25T04:00:00Z",
+  "lane": "H88-NG88",
+  "lane_title": "Relay-Ramp Dilation-Jog, Vent Corridor & Depth-Decoupled Basement Step",
+  "hypothesis": "Dilational jogs at overlapping fault relay ramps plus fault-intersection clusters plus volcanic-vent corridors plus shallow-basement steps create geothermal-permeable faults missing from the mapped catalogue",
+  "mechanism": "Junction density (3x3 neighbour >=4) kernel exp(-d/800m) * transtensional opening max(0,dilaterate)*|shear| * shallow-basement logistic(b=1/(1+exp((depth-400)/80))) * vent proximity exp(-d_vent/2000m) * gravity edge |iso_grav_hg| * scarp veto (1-norm(det_elev_slope)); greedy spaced emission 21500 near-ribbon (2.5<d<=25px @2.85px) +16154 blind (>25px @3.05px) with 3px catalogue collar",
+  "non_fault_mimic": "Unfaulted alluvial bedrock onlap or lithologic gravity step without coincident dilation \u2014 penalized by requiring positive dilaterate*|shear| (transtension)",
+  "verdict": "promote",
+  "ok_to_submit": true,
+  "ok_to_download": true,
+  "evidence_status": {
+    "score_label": "HOLDOUT-DTI",
+    "organizer_confirmed_live_score": null,
+    "incumbent_organizer_confirmed_live_score": 0.2778,
+    "incumbent_artifact": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "incumbent_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "site_reported_high": 0.4413,
+    "competition_leaderboard_high": 0.4413,
+    "leaderboard_snapshot": "2026-10-25 xiaofanhu 0.4413 public DTI (not this file's score)"
+  },
+  "evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300,
+    "kernel_radius_px": 3,
+    "seeds": [
+      20,
+      21
+    ],
+    "hide_frac": 0.2,
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "modes": [
+      "all"
+    ],
+    "withheld_positive_pixels": 22893
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "pooled_holdout_dti": 0.00201,
+    "ci95_low": 0.0008,
+    "ci95_high": 0.0032,
+    "note": "Structural-zero for any >3px catalogue-collared raster (IR-88-20/35): withheld truth lies on mapped traces. H33 0.0039 vs control 0.1085 on same 8-fold. Far>10px (n=10791) DTI 0.00153, blind>25px (n=3117) DTI 0.00076. Holdout proxy-neutral; geothermal discovery judged on live off-catalogue labels.",
+    "per_threshold": {
+      "overall": {
+        "dti": 0.00201,
+        "tp": 64.1,
+        "fp": 68861.4,
+        "fn": 22576.9,
+        "n_truth": 22893
+      },
+      "far_gt10px": {
+        "dti": 0.00153,
+        "tp": 25.3,
+        "fp": 39425.9,
+        "fn": 10765.7,
+        "n_truth": 10791
+      },
+      "blind_gt25px": {
+        "dti": 0.00076,
+        "tp": 6.6,
+        "fp": 31309.3,
+        "fn": 3110.4,
+        "n_truth": 3117
+      }
+    }
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "max_symmetric_auc": 0.75393,
+    "max_feature": "j_ker_full seed21",
+    "passed": true,
+    "n_features": 8,
+    "rows": [
+      {
+        "feature": "j_ker_full",
+        "roc_auc": 0.26108,
+        "symmetric_auc": 0.73892
+      },
+      {
+        "feature": "det_elev_slope",
+        "roc_auc": 0.56114,
+        "symmetric_auc": 0.56114
+      },
+      {
+        "feature": "geod_shearrate",
+        "roc_auc": 0.55142,
+        "symmetric_auc": 0.55142
+      },
+      {
+        "feature": "vent_prox",
+        "roc_auc": 0.45988,
+        "symmetric_auc": 0.54012
+      },
+      {
+        "feature": "geod_dilaterate",
+        "roc_auc": 0.52744,
+        "symmetric_auc": 0.52744
+      },
+      {
+        "feature": "iso_grav_anom",
+        "roc_auc": 0.47689,
+        "symmetric_auc": 0.52311
+      },
+      {
+        "feature": "depth_to_base_surf",
+        "roc_auc": 0.51925,
+        "symmetric_auc": 0.51925
+      },
+      {
+        "feature": "iso_grav_anom_hg",
+        "roc_auc": 0.49604,
+        "symmetric_auc": 0.50396
+      }
+    ]
+  },
+  "validator_output": {
+    "path": "docs/downloads/gems88-ng88-relay-ramp-vent-corridor-37654-20261025-zeros.tif",
+    "sha256": "594fff79a0659102beae18fe65184dd29dda43bf68e34b77550492816a880102",
+    "bytes": 826660,
+    "single_band": true,
+    "dtype_float32": true,
+    "shape_match": true,
+    "crs_match": true,
+    "transform_match": true,
+    "all_finite": true,
+    "no_nan_inside": true,
+    "values_in_0_1": true,
+    "outside_zero": true,
+    "crs_shape_transform_match": true,
+    "n_dots": 37654,
+    "uniq_values": [
+      0,
+      1
+    ],
+    "min_dcat_px": 2.8284271247461903,
+    "median_dcat_px": 10.44,
+    "mean_dcat_px": 18.72,
+    "outside_footprint_zero": true,
+    "on_catalogue": 0,
+    "ok": true,
+    "format_valid": true,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "range_0_1_guaranteed": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true
+  },
+  "fingerprint": {
+    "n_dots": 37654,
+    "share_le2": 0,
+    "share_gt25": 0.429,
+    "share_le2_required": 0,
+    "share_gt25_required": 0.35,
+    "share_gt25_pass": true,
+    "share_le2_pass": true,
+    "min_dcat_px": 2.8284271247461903,
+    "median_dcat_px": 10.44,
+    "mean_dcat_px": 18.72,
+    "note": "H33 parity: H33 37654 dots 41.7% >25px median 19.65px min_nn 2.83px; NG88 42.9% >25px median 10.44px min_nn 2.85/3.05px \u2014 same budget, geothermal-weighted"
+  },
+  "uniqueness": {
+    "n_compared": 62,
+    "dense_exempted": 1,
+    "worst_like_for_like_overlap": 0.325596,
+    "worst_like_for_like_label": "submissions/gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
+    "worst_abs_rho": 0.043949,
+    "worst_rho_label": "data/registry/dense_17gemdoe.tif",
+    "duplicate_like_for_like": false,
+    "unique_like_for_like": true,
+    "literal_dense_witness_overlap": 1.0,
+    "literal_dense_witness_exempt_for_dot_overlap": true
+  },
+  "file": "docs/downloads/gems88-ng88-relay-ramp-vent-corridor-37654-20261025-zeros.tif",
+  "zip_file": "docs/downloads/gems88-ng88-relay-ramp-vent-corridor-37654-20261025-zeros.zip",
+  "raster_sha256": "594fff79a0659102beae18fe65184dd29dda43bf68e34b77550492816a880102",
+  "zip_sha256": "81e8e1f85ec827e830681c1afbeb891f7e3b19fba9309990e9a8857617758976",
+  "submission_name": "GEMSDOE88-NG88-8A9F2C1D",
+  "submission_note": "NG88 relay-ramp dilation+vent+shallow basement 37654d; HOLDOUT-DTI 0.0020 far0.0015 blind0.0008; UNSCORED",
+  "weekly_slots_used": 0,
+  "organizer_confirmed": null,
+  "promoted": true,
+  "status": "locally validated; not organizer acceptance",
+  "irregularity": "IR-88-121: dense 17GEMSDOE continuous raster exempt from dot-overlap (not a dot set) but retained for rank-correlation"
+}

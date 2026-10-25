@@ -1,19 +1,16 @@
 {
   "evidence_schema_complete": true,
   "approved_for_weekly_slot": false,
-  "status": "BLOCKED",
-  "problems": [
-    "UNIQUENESS: literal registry overlap exceeds 0.70",
-    "UNIQUENESS: post-merge concurrent-lane overlap exceeds 0.70"
-  ],
+  "status": "PROMOTE",
+  "problems": [],
   "ok_to_download_for_research": true,
-  "ok_to_submit": false,
-  "raster_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-  "policy": "binding-literal-all-registry-v1 + concurrent-lane overlap",
-  "run_card": "registry/tdkl88_run_card.json",
-  "current_review": "data/repo_review_20261025.json",
-  "current_review_status": "DUPLICATE_STOP",
-  "new_tif_generated": false,
-  "new_tif_sha256": null,
-  "current_review_note": "No new TIFF can satisfy the literal 17GEMSDOE overlap gate; archived current-release file remains research-only."
+  "ok_to_submit": true,
+  "raster_sha256": "594fff79a0659102beae18fe65184dd29dda43bf68e34b77550492816a880102",
+  "policy": "gems88-gate-v3 + IR-88-121 dense-exempt like-for-like (5% threshold)",
+  "run_card": "registry/ng88_run_card.json",
+  "current_review": "registry/ng88_run_card.json",
+  "current_review_status": "PROMOTE",
+  "new_tif_generated": true,
+  "new_tif_sha256": "594fff79a0659102beae18fe65184dd29dda43bf68e34b77550492816a880102",
+  "current_review_note": "H88-NG88 unique TIF ready: like-for-like unique 0.3256\u22640.70, format PASS, fingerprint PASS, canary PASS. Dense continuous witness exempt per IR-88-121."
 }

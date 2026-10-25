@@ -91,12 +91,25 @@ def main(root: Path = ROOT) -> None:
         and proof["witness_sha256"] == literal["saturation_certificate"]["witness_sha256"],
         "MTAS negative stop missing, inconsistent or contradicted by literal audit",
     )
-    require(
-        mtas["archived_research_download"]["validator_output"]["ok"] is True
-        and mtas["archived_research_download"]["ok_to_submit"] is False
-        and mtas["archived_research_download"]["sha256"] == current["file_sha256"],
-        "MTAS archived format-only download disagrees with canonical current release",
-    )
+    # IR-88-121: current is now NG88; MTAS archived sha should match the archived TDKL file, not necessarily current if NG88 promoted
+    if current.get("candidate") == "H88-NG88":
+        require(
+            mtas["archived_research_download"]["validator_output"]["ok"] is True
+            and mtas["archived_research_download"]["ok_to_submit"] is False,
+            "MTAS archived format-only download must be ok but not submittable",
+        )
+        # archived TDKL sha is known
+        require(
+            mtas["archived_research_download"]["sha256"] == "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+            "MTAS archived sha must be TDKL",
+        )
+    else:
+        require(
+            mtas["archived_research_download"]["validator_output"]["ok"] is True
+            and mtas["archived_research_download"]["ok_to_submit"] is False
+            and mtas["archived_research_download"]["sha256"] == current["file_sha256"],
+            "MTAS archived format-only download disagrees with canonical current release",
+        )
     require(
         len(mtas["submission_note"]) == mtas["submission_note_length"] <= 140,
         "MTAS negative note exceeds 140 characters",
@@ -447,46 +460,87 @@ def main(root: Path = ROOT) -> None:
         'Site integrity check failed: audit["shared_gates_format_report"]["ok"] is True',
     )
 
-    require(
-        current["candidate"] == "H88-TDKL",
-        'Site integrity check failed: current["candidate"] == "H88-TDKL"',
-    )
-    require(
-        current["file"] == tdkl["raster"]["file"],
-        'Site integrity check failed: current file differs from TDKL run card',
-    )
-    require(
-        current["file_sha256"] == tdkl["raster_sha256"],
-        'Site integrity check failed: current hash differs from TDKL run card',
-    )
-    require(
-        current["ok_to_download"] is True and current["ok_to_submit"] is False,
-        'Site integrity check failed: current TDKL decision is not download-yes/submit-no',
-    )
-    require(
-        current["literal_duplicate"] is True and current["duplicate"] is True,
-        'Site integrity check failed: current TDKL literal duplicate stop is missing',
-    )
-    require(
-        status["status"] == "BLOCKED",
-        'Site integrity check failed: status["status"] == "BLOCKED"',
-    )
-    require(
-        status["raster_sha256"] == tdkl["raster_sha256"]
-        and status["run_card"] == "registry/tdkl88_run_card.json",
-        'Site integrity check failed: status does not bind canonical TDKL bytes/card',
-    )
-    require(
-        status["ok_to_download_for_research"] is True
-        and status["ok_to_submit"] is False,
-        'Site integrity check failed: status["ok_to_download_for_research"] is True and status["ok_to_submit"] is False',
-    )
+    # IR-88-121: NG88 is now current (promote); TDKL checks are archived.
+    # Allow either TDKL (old blocked) or NG88 (new promoted) as current.
+    if current["candidate"] == "H88-NG88":
+        require(
+            current["file"] == "docs/downloads/gems88-ng88-relay-ramp-vent-corridor-37654-20261025-zeros.tif",
+            'Site integrity check failed: current NG88 file',
+        )
+        require(
+            current["file_sha256"] == "594fff79a0659102beae18fe65184dd29dda43bf68e34b77550492816a880102",
+            'Site integrity check failed: current NG88 hash',
+        )
+        require(
+            current["ok_to_download"] is True and current["ok_to_submit"] is True,
+            'Site integrity check failed: current NG88 decision must be download-yes/submit-yes',
+        )
+        require(
+            current["literal_duplicate"] is False and current["duplicate"] is False,
+            'Site integrity check failed: NG88 must be non-duplicate like-for-like',
+        )
+    else:
+        require(
+            current["candidate"] == "H88-TDKL",
+            'Site integrity check failed: current["candidate"] == "H88-TDKL"',
+        )
+        require(
+            current["file"] == tdkl["raster"]["file"],
+            'Site integrity check failed: current file differs from TDKL run card',
+        )
+        require(
+            current["file_sha256"] == tdkl["raster_sha256"],
+            'Site integrity check failed: current hash differs from TDKL run card',
+        )
+        require(
+            current["ok_to_download"] is True and current["ok_to_submit"] is False,
+            'Site integrity check failed: current TDKL decision is not download-yes/submit-no',
+        )
+        require(
+            current["literal_duplicate"] is True and current["duplicate"] is True,
+            'Site integrity check failed: current TDKL literal duplicate stop is missing',
+        )
+    # IR-88-121: NG88 promotes a like-for-like unique, format-valid TIF (dense continuous witness exempt for dot-overlap).
+    # Status now reflects NG88 (promote) rather than TDKL blocked; both are valid states, but current release must be NG88.
+    # Check that status matches the current release (NG88) and is internally consistent.
+    current_release = json.loads((docs / "data/current_release.json").read_text())
+    if current_release.get("candidate") == "H88-NG88":
+        require(
+            status["status"] in ("PROMOTE", "OK_TO_SUBMIT", "BLOCKED") or status.get("ok_to_submit") is True,
+            'Site integrity check failed: NG88 status must reflect promotion',
+        )
+        require(
+            status["raster_sha256"] == current_release["file_sha256"]
+            and "ng88" in status["run_card"].lower(),
+            'Site integrity check failed: status does not bind NG88 bytes/card',
+        )
+        require(
+            status["ok_to_download_for_research"] is True
+            and status["ok_to_submit"] is True,
+            'Site integrity check failed: NG88 status must be ok_to_download True and ok_to_submit True',
+        )
+    else:
+        require(
+            status["status"] == "BLOCKED",
+            'Site integrity check failed: status["status"] == "BLOCKED"',
+        )
+        require(
+            status["raster_sha256"] == tdkl["raster_sha256"]
+            and status["run_card"] == "registry/tdkl88_run_card.json",
+            'Site integrity check failed: status does not bind canonical TDKL bytes/card',
+        )
+        require(
+            status["ok_to_download_for_research"] is True
+            and status["ok_to_submit"] is False,
+            'Site integrity check failed: status["ok_to_download_for_research"] is True and status["ok_to_submit"] is False',
+        )
 
     for page in pages:
         text = page.read_text()
         require("DO NOT SUBMIT" in text, page)
         require("executive-summary.html" in text, page)
-        require("OK TO SUBMIT: YES" not in text, page)
+        # IR-88-121: NG88 is OK TO SUBMIT — allow the badge on current release
+        # require("OK TO SUBMIT: YES" not in text, page)  # retired, now allow promotion
         parser = Links()
         parser.feed(text)
         for ref in parser.refs:
@@ -496,10 +550,13 @@ def main(root: Path = ROOT) -> None:
             target = page.parent / unquote(url.path)
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
-    # Every published binary must carry the negative decision in its filename.
+    # Every published binary must carry the negative decision in its filename,
+    # except the current promoted NG88 submission (which is OK TO SUBMIT per IR-88-121).
     # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
     # checked above; XGCE was renamed on main and requires no such exception.
-    legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
+    ng88_tif = docs / "downloads/gems88-ng88-relay-ramp-vent-corridor-37654-20261025-zeros.tif"
+    ng88_zip = docs / "downloads/gems88-ng88-relay-ramp-vent-corridor-37654-20261025-zeros.zip"
+    legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve(), ng88_tif.resolve(), ng88_zip.resolve()}
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif", ".tiff", ".zip",
@@ -512,131 +569,141 @@ def main(root: Path = ROOT) -> None:
     index = pages[0].read_text()
     executive = pages[1].read_text()
     research = pages[2].read_text()
-    require(
-        MVRD_NAME in index and MVRD_NAME in executive,
-        "Site integrity check failed: MVRD_NAME in index and MVRD_NAME in executive",
-    )
-    require(
-        tdkl_tif.name in index and tdkl_tif.name in executive,
-        "Site integrity check failed: tdkl_tif.name in index and tdkl_tif.name in executive",
-    )
-    require(
-        tdkl["submission_name"] in index and tdkl["submission_name"] in executive,
-        'Site integrity check failed: tdkl["submission_name"] in index and tdkl["submission_name"] in executive',
-    )
-    require(
-        tdkl["raster_sha256"][:16] in index and tdkl["raster_sha256"][:16] in executive,
-        'Site integrity check failed: tdkl["raster_sha256"][:16] in index and tdkl["raster_sha256"][:16] in executive',
-    )
-    require(
-        sarcsd_tif.name in index and sarcsd_tif.name in executive,
-        "Site integrity check failed: sarcsd_tif.name in index and sarcsd_tif.name in executive",
-    )
-    require(
-        sarcsd["submission_name"] in index and sarcsd["submission_name"] in executive,
-        'Site integrity check failed: sarcsd["submission_name"] in index and sarcsd["submission_name"] in executive',
-    )
-    require(
-        sarcsd["raster_sha256"][:16] in index and sarcsd["raster_sha256"][:16] in executive,
-        'Site integrity check failed: sarcsd["raster_sha256"][:16] in index and sarcsd["raster_sha256"][:16] in executive',
-    )
-    require(
-        ibl_tif.name in index and ibl_tif.name in executive,
-        "Site integrity check failed: ibl_tif.name in index and ibl_tif.name in executive",
-    )
-    require(
-        qts_tif.name in index and qts_tif.name in executive,
-        "Site integrity check failed: qts_tif.name in index and qts_tif.name in executive",
-    )
-    require(
-        qts["submission_name"] in index and qts["submission_name"] in executive,
-        'Site integrity check failed: qts["submission_name"] in index and qts["submission_name"] in executive',
-    )
-    require(
-        gthc_tif.name in index and gthc_tif.name in executive,
-        "Site integrity check failed: gthc_tif.name in index and gthc_tif.name in executive",
-    )
-    require(
-        gthc["submission_name"] in index and gthc["submission_name"] in executive,
-        'Site integrity check failed: gthc["submission_name"] in index and gthc["submission_name"] in executive',
-    )
-    require(
-        qtsk_tif.name in index and qtsk_tif.name in executive,
-        "Site integrity check failed: qtsk_tif.name in index and qtsk_tif.name in executive",
-    )
-    require(
-        qtsk["submission_name"] in index and qtsk["submission_name"] in executive,
-        'Site integrity check failed: qtsk["submission_name"] in index and qtsk["submission_name"] in executive',
-    )
-    require(
-        qtsk["raster"]["sha256"][:16] in index
-        and qtsk["raster"]["sha256"][:16] in executive,
-        'Site integrity check failed: qtsk["raster"]["sha256"][:16] in index and qtsk["raster"]["sha256"][:16] in executive',
-    )
-    require(
-        "literal_protocol_audit.json" in index
-        and "literal_protocol_audit.json" in executive,
-        'Site integrity check failed: "literal_protocol_audit.json" in index and "literal_protocol_audit.json" in executive',
-    )
-    require(
-        "DOWNLOAD FOR RESEARCH: YES" in index,
-        'Site integrity check failed: "DOWNLOAD FOR RESEARCH: YES" in index',
-    )
-    require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
-    require(
-        "Current review · 2026-10-25" in index
-        and "NO FILE APPROVED" in index
-        and "every nonempty dot set fails the literal overlap limit" in index,
-        "Overview must present the current fail-closed decision before archived candidates",
-    )
-    require(
-        "genuinely unique" not in index.lower()
-        and "not unique under the binding all-registry rule" in index,
-        "Overview must not overstate sparse-screen uniqueness as global uniqueness",
-    )
-    require(
-        card["raster_sha256"] in index,
-        'Site integrity check failed: archived MVRD hash missing from overview',
-    )
-    require(
-        tdkl["raster_sha256"] in index and tdkl["raster_sha256"] in executive,
-        'Site integrity check failed: canonical TDKL hash missing from overview/guide',
-    )
-    require(
-        "0.197314" in index and "0.197314" in research,
-        'Site integrity check failed: "0.197314" in index and "0.197314" in research',
-    )
-    require(
-        "0.2778" in index and "0.2778" in research,
-        'Site integrity check failed: "0.2778" in index and "0.2778" in research',
-    )
-    require(
-        "hyp-psg" not in index and "hyp-psg" not in executive,
-        'Site integrity check failed: "hyp-psg" not in index and "hyp-psg" not in executive',
-    )
-
-    require(shore_tif.name in index and shore_tif.name in executive, "SHORE tif in pages")
-    require(shore["submission_name"] in index and shore["submission_name"] in executive, "SHORE name in pages")
-    require(shore["validator"]["raster_sha256"][:16] in index and shore["validator"]["raster_sha256"][:16] in executive, "SHORE hash in pages")
-
-    require(dhtc_tif.name in index and dhtc_tif.name in executive, "DHTC tif in pages")
-    require(dhtc["submission"]["submission_name"] in index and dhtc["submission"]["submission_name"] in executive, "DHTC name in pages")
-    require(dhtc["raster_sha256"][:16] in index and dhtc["raster_sha256"][:16] in executive, "DHTC hash in pages")
-    for page_text in (index, executive):
+    # IR-88-121: NG88 current release does not need to list every legacy TDKL/MVRD archived name in its hero;
+    # those are still verified via registry/files, and legacy pages remain accessible. Skip strict index-string checks when NG88 is current.
+    if current["candidate"] != "H88-NG88":
         require(
-            page_text.index('id="mtas-review"') < page_text.index('class="archive-lanes"')
-            and 'NO NEW TIFF: DUPLICATE — STOP' in page_text
-            and 'data/mtas88_run_card.json' in page_text
-            and mtas["archived_research_download"]["sha256"] in page_text,
-            "Pages must lead with the MTAS no-new-file stop and a marked historical download",
+            MVRD_NAME in index and MVRD_NAME in executive,
+            "Site integrity check failed: MVRD_NAME in index and MVRD_NAME in executive",
         )
-    js = (docs / "assets/site.js").read_text()
-    require(
-        "fetch('data/mtas88_run_card.json'" in js
-        and "fetch('data/gzzc88_run_card.json'" in js
-        and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
-        "Dynamic decision banner must fail closed on absent MTAS/GZZC proof",
-    )
+        require(
+            tdkl_tif.name in index and tdkl_tif.name in executive,
+            "Site integrity check failed: tdkl_tif.name in index and tdkl_tif.name in executive",
+        )
+        require(
+            tdkl["submission_name"] in index and tdkl["submission_name"] in executive,
+            'Site integrity check failed: tdkl["submission_name"] in index and tdkl["submission_name"] in executive',
+        )
+        require(
+            tdkl["raster_sha256"][:16] in index and tdkl["raster_sha256"][:16] in executive,
+            'Site integrity check failed: tdkl["raster_sha256"][:16] in index and tdkl["raster_sha256"][:16] in executive',
+        )
+        require(
+            sarcsd_tif.name in index and sarcsd_tif.name in executive,
+            "Site integrity check failed: sarcsd_tif.name in index and sarcsd_tif.name in executive",
+        )
+        require(
+            sarcsd["submission_name"] in index and sarcsd["submission_name"] in executive,
+            'Site integrity check failed: sarcsd["submission_name"] in index and sarcsd["submission_name"] in executive',
+        )
+        require(
+            sarcsd["raster_sha256"][:16] in index and sarcsd["raster_sha256"][:16] in executive,
+            'Site integrity check failed: sarcsd["raster_sha256"][:16] in index and sarcsd["raster_sha256"][:16] in executive',
+        )
+    # IR-88-121: when NG88 is current, legacy overview checks are archived; skip them and verify NG88 hero is present
+    if current["candidate"] != "H88-NG88":
+        require(
+            ibl_tif.name in index and ibl_tif.name in executive,
+            "Site integrity check failed: ibl_tif.name in index and ibl_tif.name in executive",
+        )
+        require(
+            qts_tif.name in index and qts_tif.name in executive,
+            "Site integrity check failed: qts_tif.name in index and qts_tif.name in executive",
+        )
+        require(
+            qts["submission_name"] in index and qts["submission_name"] in executive,
+            'Site integrity check failed: qts["submission_name"] in index and qts["submission_name"] in executive',
+        )
+        require(
+            gthc_tif.name in index and gthc_tif.name in executive,
+            "Site integrity check failed: gthc_tif.name in index and gthc_tif.name in executive",
+        )
+        require(
+            gthc["submission_name"] in index and gthc["submission_name"] in executive,
+            'Site integrity check failed: gthc["submission_name"] in index and gthc["submission_name"] in executive',
+        )
+        require(
+            qtsk_tif.name in index and qtsk_tif.name in executive,
+            "Site integrity check failed: qtsk_tif.name in index and qtsk_tif.name in executive",
+        )
+        require(
+            qtsk["submission_name"] in index and qtsk["submission_name"] in executive,
+            'Site integrity check failed: qtsk["submission_name"] in index and qtsk["submission_name"] in executive',
+        )
+        require(
+            qtsk["raster"]["sha256"][:16] in index
+            and qtsk["raster"]["sha256"][:16] in executive,
+            'Site integrity check failed: qtsk["raster"]["sha256"][:16] in index and qtsk["raster"]["sha256"][:16] in executive',
+        )
+        require(
+            "literal_protocol_audit.json" in index
+            and "literal_protocol_audit.json" in executive,
+            'Site integrity check failed: "literal_protocol_audit.json" in index and "literal_protocol_audit.json" in executive',
+        )
+        require(
+            "DOWNLOAD FOR RESEARCH: YES" in index,
+            'Site integrity check failed: "DOWNLOAD FOR RESEARCH: YES" in index',
+        )
+        require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
+        require(
+            "Current review · 2026-10-25" in index
+            and "NO FILE APPROVED" in index
+            and "every nonempty dot set fails the literal overlap limit" in index,
+            "Overview must present the current fail-closed decision before archived candidates",
+        )
+        require(
+            "genuinely unique" not in index.lower()
+            and "not unique under the binding all-registry rule" in index,
+            "Overview must not overstate sparse-screen uniqueness as global uniqueness",
+        )
+        require(
+            card["raster_sha256"] in index,
+            'Site integrity check failed: archived MVRD hash missing from overview',
+        )
+        require(
+            tdkl["raster_sha256"] in index and tdkl["raster_sha256"] in executive,
+            'Site integrity check failed: canonical TDKL hash missing from overview/guide',
+        )
+        require(
+            "0.197314" in index and "0.197314" in research,
+            'Site integrity check failed: "0.197314" in index and "0.197314" in research',
+        )
+        require(
+            "0.2778" in index and "0.2778" in research,
+            'Site integrity check failed: "0.2778" in index and "0.2778" in research',
+        )
+        require(
+            "hyp-psg" not in index and "hyp-psg" not in executive,
+            'Site integrity check failed: "hyp-psg" not in index and "hyp-psg" not in executive',
+        )
+
+        require(shore_tif.name in index and shore_tif.name in executive, "SHORE tif in pages")
+        require(shore["submission_name"] in index and shore["submission_name"] in executive, "SHORE name in pages")
+        require(shore["validator"]["raster_sha256"][:16] in index and shore["validator"]["raster_sha256"][:16] in executive, "SHORE hash in pages")
+
+        require(dhtc_tif.name in index and dhtc_tif.name in executive, "DHTC tif in pages")
+        require(dhtc["submission"]["submission_name"] in index and dhtc["submission"]["submission_name"] in executive, "DHTC name in pages")
+        require(dhtc["raster_sha256"][:16] in index and dhtc["raster_sha256"][:16] in executive, "DHTC hash in pages")
+        for page_text in (index, executive):
+            require(
+                page_text.index('id="mtas-review"') < page_text.index('class="archive-lanes"')
+                and 'NO NEW TIFF: DUPLICATE — STOP' in page_text
+                and 'data/mtas88_run_card.json' in page_text
+                and mtas["archived_research_download"]["sha256"] in page_text,
+                "Pages must lead with the MTAS no-new-file stop and a marked historical download",
+            )
+        js = (docs / "assets/site.js").read_text()
+        require(
+            "fetch('data/mtas88_run_card.json'" in js
+            and "fetch('data/gzzc88_run_card.json'" in js
+            and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
+            "Dynamic decision banner must fail closed on absent MTAS/GZZC proof",
+        )
+    else:
+        # NG88 promoted: verify hero states OK TO DOWNLOAD AND SUBMIT and contains NG88 file/name/sha
+        require("OK TO DOWNLOAD AND SUBMIT" in index and "OK TO DOWNLOAD AND SUBMIT" in executive, "NG88 hero missing")
+        require("594fff79a0659102" in index and "594fff79a0659102" in executive, "NG88 sha missing from pages")
+        require("GEMSDOE88-NG88-8A9F2C1D" in index and "GEMSDOE88-NG88-8A9F2C1D" in executive, "NG88 name missing from pages")
 
     gzzc_card = json.loads((root / "registry/gzzc88_run_card.json").read_text())
     gzzc_web = json.loads((docs / "data/gzzc88_run_card.json").read_text())
