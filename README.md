@@ -1,5 +1,7 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+# GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
+
 > ## ⛔ Latest session lane (2026-10-24): `H88-DHTC` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (like-for-like unique 0.5237 <= 0.70; canary pass 0.5903; held under literal `17GEMSDOE` dense witness; 0 slots spent)
 > [⬇ **Download H88-DHTC GeoTIFF (`.tif`, 81 KB, portal-valid zeros)**](docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`, 32 KB)**](docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/dhtc88_run_card.json) · [5 Ranked Hypotheses](research/candidate-hypotheses-20261024-dhtc88.md) · [PhD Forensic Analysis of H33 0.2778](research/h33-forensics-and-dhtc-phd-analysis.md) · [Executive Submission Guide](docs/executive-summary.html). Validate: `python3 scripts/validate_dhtc88.py` (exit 0 research; `--require-submit` exit 2).
 >
@@ -12,6 +14,13 @@
 > | **Prepared Submission Note (`119/140` chars)** | `H88-DHTC 60ch deep conduit+basement shear Dinkelbach (13629 dots); HOLDOUT-DTI 0.1414 far 0.0886 blind 0.0543; UNSCORED` | `≤140` chars; labels HOLDOUT-DTI + UNSCORED. |
 > | **SHA-256 (`.tif` / `.zip`)** | `bf42eb315bd2392b5748003ace2dd68cc96db0a945873513f8ff222e2fd1e1bd` | ZIP: `3c0120be734b79871ee582acf6a84980d469e6271a2682652f83012d3c2333e4` |
 > | **Live Portal Status** | **`UNSCORED` (`0` weekly slots spent by agents)** | No `ORGANIZER-CONFIRMED` score exists for `H88-DHTC`; `H33 0.2778` remains `[OWNER]`, leaderboard top `0.4413` snapshot 2026-10-24. |
+>
+> > **2026-10-24 protocol-integrity review: DOWNLOAD FOR RESEARCH — YES; SUBMIT — NO / DO NOT SUBMIT.**
+> > [Download independently re-audited research TIFF](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [One-TIFF ZIP](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [Automated run card](docs/data/protocol_review_43d08c7a.json) · [Review and ranked future geological contrasts](research/review-43d08c7a-20261024.md) · [Executive submission guide](docs/executive-summary.html).
+> >
+> > **No new submission was generated in this review.** Fresh pinned-byte measurement reproduces the universal literal overlap blocker. The requested “unique TIFF” and “stop above 70% overlap with any registry raster” cannot both be satisfied with this registry. No dense-raster exemption was assumed. Existing files below are historical research deliverables, not approved slots. No new HOLDOUT-DTI or ORGANIZER-CONFIRMED score is claimed.
+> >
+> > Fixed the legacy v3 dense-prior approval bypass, inverted-AUC canary bypass, continuous-raster cache collision, missing surface/empty registry checks, and package import. All local gates keep slot selection separate. Recheck: `.venv/bin/python scripts/audit_protocol_integrity.py`; `--require-submit` must return **2**, not success. See [PROMPT.md](PROMPT.md) for the standing operating prompt and acceptance criteria; read it at every session start. **Maximize P(Win) · Own the Outcome:** report blockers, do not manufacture another cosmetically distinct candidate. Official reference supports CPU training; a GPU is not mandatory.
 >
 > ## ⛔ Prior session lane (2026-10-24): `H88-SHORE-HINGE` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (binding literal `17GEMSDOE` dense witness & holdout structural-zero; prior H88-SAR-CSD archived below)
 > [⬇ **Download H88-SHORE-HINGE GeoTIFF (`.tif`, 777 KB, research only)**](docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`)**](docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/shore_hinge_run_card.json) · [5 Ranked Hypotheses](research/candidate-hypotheses-20261024-shore-even.md) · [PhD Forensic Answer](research/h33-shore-phd-answer-20261024.md) · [Executive Submission Guide](docs/executive-summary.html).

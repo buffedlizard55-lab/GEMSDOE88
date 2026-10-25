@@ -1,0 +1,55 @@
+{
+  "schema": "gems88.protocol-review-verification.v1",
+  "date_utc": "2026-10-24",
+  "base_commit": "865957b70923666044b366dca4e33a99c3c186c0",
+  "passes": [
+    {
+      "pass": 1,
+      "baseline_tests_passed": 357,
+      "baseline_tests_skipped": 23,
+      "finding": "Legacy dense-prior authorization, inverted-AUC, rank-cache and package import defects reproduced."
+    },
+    {
+      "pass": 2,
+      "tests_passed": 395,
+      "tests_skipped": 23,
+      "finding": "Direct CLI import edge case corrected; decoder failures erase stale audit success."
+    },
+    {
+      "pass": 3,
+      "tests_passed": 396,
+      "tests_skipped": 23,
+      "warnings": 47,
+      "test_output_sha256": "e9f6d136004dab0a86e80693d68ccd57028b113d8216fd1c6d6fd55406759565",
+      "command": ".venv/bin/python -m pytest -q -rs"
+    }
+  ],
+  "independent_research_audits_completed": [
+    "scripts/audit_protocol_integrity.py",
+    "scripts/readiness.py",
+    "scripts/validate_mdps88.py",
+    "scripts/validate_current.py",
+    "scripts/validate_release.py",
+    "scripts/check_site.py",
+    "python -O scripts/check_site.py"
+  ],
+  "require_submit_exit_code": 2,
+  "skips_not_validated": "Absent gitignored historical variant rasters and full sibling inputs; no claim of complete historical model reproduction.",
+  "unchanged": [
+    "vendor/gems57/evaluate_holdout.py",
+    "vendor/gems57/submission_writer.py",
+    "registry/template_pin.json",
+    "docs/status.json",
+    "docs/data/current_release.json"
+  ],
+  "source_verified_this_session": {
+    "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+    "finding": "Official reference supplies CPU-only and GPU environments. GPU is optional, not a hard prerequisite."
+  },
+  "new_rasters_generated": 0,
+  "geological_experiments": 0,
+  "slots_used": 0,
+  "decision": "DUPLICATE_STOP",
+  "ok_to_submit": false,
+  "organizer_confirmed_score": null
+}

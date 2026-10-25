@@ -1,20 +1,14 @@
 """GEMS88 machine gate v3: portal-parity format check, uniqueness (literal AND like-for-like),
 evidence gates, and an unambiguous ``ok_to_download`` / ``ok_to_submit`` verdict.
 
-Design rules
-------------
-* No human input.  Every verdict is recomputed from bytes on disk.
-* The *literal* reading of the lane rule ("<=70% of my dots within 3 px of ANY one registry
-  raster") is vacuous against a dense continuous raster: ``17GEMSDOE_E-proba-multiscale`` is
-  positive on every one of the 5,167,373 footprint pixels, so ANY raster -- including random
-  dots -- scores overlap 1.0 (``vacuity_witness`` below proves it on a seeded random raster).
-  A gate that no raster can pass cannot discriminate, so v3 evaluates dense registry rasters
-  like-for-like: their *effective dots* are their top-N pixels by value, N = candidate dot
-  count.  Both readings are always computed and published; the verdict uses like-for-like.
-* Rank correlation is Spearman over the footprint (average ranks; binary rasters handled in
-  closed form).  Limits: |rho| <= 0.90 and forward 3-px overlap <= 0.70.
-* A passing gate means "eligible for a weekly slot".  It never spends a slot and never selects
-  the final submission; that is a separate human selector step (rules s3.4, s3.5, s3.6.2).
+Compatibility policy (IR-88-113)
+-------------------------------
+Dense/top-N comparisons are historical diagnostics ONLY. Literal overlap and
+rank correlation against every registered raster remain binding. Measurements
+use the shared template's overlap implementation; no private clearance rule.
+An arbitrary list of priors is not a verified complete registry. A missing
+pre-placement surface cannot be replaced by final dots for clearance. A local
+PASS can only establish selector eligibility; it cannot approve or spend a slot.
 """
 from __future__ import annotations
 
@@ -27,7 +21,7 @@ from pathlib import Path
 import numpy as np
 import rasterio
 from rasterio.io import MemoryFile
-from scipy import ndimage as ndi
+from gems57.uniqueness import dot_overlap
 from scipy.stats import rankdata
 
 POLICY_VERSION = "gems88-gate-v3"
@@ -184,6 +178,8 @@ def effective_dots(values, footprint, n_target):
         return pos
     flat = np.where(footprint, values, -np.inf).ravel()
     k = min(int(n_target), int(pos.sum()))
+    if k <= 0:
+        return np.zeros(values.shape, bool)
     idx = np.argpartition(-flat, k - 1)[:k]
     out = np.zeros(values.shape, bool)
     out.ravel()[idx] = True
@@ -191,19 +187,8 @@ def effective_dots(values, footprint, n_target):
 
 
 def forward_overlap(mine, theirs, radius=RADIUS_PX) -> float:
-    """Share of ``mine`` dots with a ``theirs`` dot within ``radius`` px (Euclidean, <=)."""
-    mine = np.asarray(mine, bool)
-    theirs = np.asarray(theirs, bool)
-    if not mine.any() or not theirs.any():
-        return 0.0
-    ty, tx = np.nonzero(theirs)
-    if ty.size > 400_000:  # dense raster: a distance transform is cheaper than a huge KD-tree
-        d = ndi.distance_transform_edt(~theirs)
-        return float((d[mine] <= radius).mean())
-    from scipy.spatial import cKDTree
-    tree = cKDTree(np.column_stack([ty, tx]))
-    d, _ = tree.query(np.argwhere(mine), distance_upper_bound=radius + 1e-9)
-    return float(np.mean(d <= radius))
+    """Compatibility alias for the shared literal Euclidean support test."""
+    return dot_overlap(mine, theirs, radius_px=radius)
 
 
 def rank_vec(a, footprint):
@@ -230,8 +215,11 @@ def spearman_on_footprint(a, b, footprint) -> float:
 
 
 def vacuity_witness(dense_values, footprint, n_dots, seed=88, radius=RADIUS_PX) -> dict:
-    """Prove the literal rule is unsatisfiable: a seeded RANDOM raster has literal overlap 1.0
-    against the dense raster, so the literal rule rejects every possible candidate."""
+    """Random-overlap diagnostic, not a universal mathematical certificate.
+
+    Only the shared saturation_certificate can prove coverage of every allowed
+    cell. One random placement alone cannot establish that universal claim.
+    """
     rng = np.random.default_rng(seed)
     idx = rng.choice(np.flatnonzero(footprint.ravel()), size=int(n_dots), replace=False)
     rnd = np.zeros(footprint.shape, bool)
@@ -253,6 +241,9 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
     cand_dots = (cand > 0) & footprint
     n = int(cand_dots.sum())
     surf = cand if surface is None else np.asarray(surface, np.float32)
+    if surf.shape != cand.shape or not np.isfinite(surf[footprint]).all():
+        raise ValueError("pre-placement surface must match the grid and be finite inside footprint")
+    surf_dots = (surf > 0) & footprint
     rk_final = rank_vec(cand, footprint)
     rk_pre = rk_final if surface is None else rank_vec(surf, footprint)
     rows, seen = [], {}
@@ -263,8 +254,8 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
             rows.append(dict(label=label, path=str(path), error="missing"))
             continue
         vals = read_values(path, footprint)
-        key = sha256_bytes(np.packbits(vals > 0).tobytes()) + ("D" if is_dense(vals, footprint) else "S")
-        if key in seen:  # identical decoded dot set already measured; copy the row
+        key = sha256_bytes(np.ascontiguousarray(vals).tobytes())
+        if key in seen:  # identical decoded VALUES (not merely support)
             r = dict(seen[key])
             r.update(label=label, path=str(path), duplicate_of=seen[key]["label"])
             rows.append(r)
@@ -273,15 +264,16 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
         lit_dots = (vals > 0) & footprint
         eff_dots = effective_dots(vals, footprint, n)
         lit = forward_overlap(cand_dots, lit_dots)
+        pre_lit = forward_overlap(surf_dots, lit_dots)
         like = lit if not dense else forward_overlap(cand_dots, eff_dots)
         rk_v = rank_vec(vals, footprint)
         rho_final = _pearson(rk_final, rk_v)
         rho_pre = rho_final if surface is None else _pearson(rk_pre, rk_v)
         r = dict(label=label, path=str(path), dense=dense, registry_dots=int(lit_dots.sum()),
-                 literal_overlap_3px=lit, like_for_like_overlap_3px=like,
+                 literal_overlap_3px=lit, surface_literal_overlap_3px=pre_lit, like_for_like_overlap_3px=like,
                  rho_final=rho_final, rho_preplacement=rho_pre,
                  identical_decoded=bool(np.array_equal(cand_dots, lit_dots)))
-        r["blocks_literal"] = bool(lit > OVERLAP_MAX or abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX or r["identical_decoded"])
+        r["blocks_literal"] = bool(lit > OVERLAP_MAX or pre_lit > OVERLAP_MAX or abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX or r["identical_decoded"])
         r["blocks_like_for_like"] = bool(like > OVERLAP_MAX or abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX or r["identical_decoded"])
         rows.append(r)
         seen[key] = r
@@ -294,14 +286,17 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
     worst_rho = max(ok_rows, key=lambda r: max(abs(r["rho_final"]), abs(r["rho_preplacement"])), default=None)
     return dict(
         policy=POLICY_VERSION, candidate=str(candidate_path), candidate_dots=n,
+        surface_checked=surface is not None,
+        registry_complete=False,  # curated path lists cannot certify the full inventory
+        scope="Historical compatibility diagnostics; use the shared indexed registry gate for clearance",
         limits=dict(overlap_max=OVERLAP_MAX, rho_max=RHO_MAX, radius_px=RADIUS_PX, dense_fraction=DENSE_FRACTION),
         registry_rasters=len(rows), distinct_dot_sets=len(seen), missing=len(errors),
         worst_like_for_like_overlap=None if worst is None else dict(label=worst["label"], value=worst["like_for_like_overlap_3px"]),
         worst_abs_rho=None if worst_rho is None else dict(label=worst_rho["label"], value=max(abs(worst_rho["rho_final"]), abs(worst_rho["rho_preplacement"]))),
         literal_blockers=[r["label"] for r in ok_rows if r["blocks_literal"]],
         like_for_like_blockers=[r["label"] for r in ok_rows if r["blocks_like_for_like"]],
-        unique_literal=bool(not errors and not any(r["blocks_literal"] for r in ok_rows)),
-        unique_like_for_like=bool(not errors and not any(r["blocks_like_for_like"] for r in ok_rows)),
+        unique_literal=bool(n > 0 and ok_rows and not errors and not any(r["blocks_literal"] for r in ok_rows)),
+        unique_like_for_like=bool(n > 0 and ok_rows and not errors and not any(r["blocks_like_for_like"] for r in ok_rows)),
         vacuity_witness=witness, rows=rows)
 
 
@@ -321,30 +316,43 @@ def fingerprint_screen(fp: dict) -> bool:
 # ----------------------------------------------------------------------------- decision
 def decide(*, portal, uniqueness, canary_passed, holdout_beats_bar, name, note, used_names,
            receipt_sha_matches=True) -> dict:
-    """Combine every gate into ONE verdict.  Every reason is machine-readable."""
+    """Fail-closed compatibility verdict; never approve a competition slot.
+
+    Indexed inventory verification belongs to the shared registry gate. This
+    function must not reinterpret literal failures as dense-prior exemptions.
+    """
     reasons_block, reasons_info = [], []
-    ok_download = bool(portal["ok"] and receipt_sha_matches)
-    if not portal["ok"]:
-        reasons_block.append("FORMAT: portal-parity validation failed: " + "; ".join(portal["problems"][:3]))
-    if not receipt_sha_matches:
+    ok_download = portal.get("ok") is True and receipt_sha_matches is True
+    if portal.get("ok") is not True:
+        reasons_block.append("FORMAT: local saved-byte validation failed: " + "; ".join(portal.get("problems", [])[:3]))
+    if receipt_sha_matches is not True:
         reasons_block.append("HASH: receipt sha256 differs from the file on disk")
-    if not uniqueness["unique_like_for_like"]:
-        reasons_block.append("UNIQUENESS: blocked (like-for-like) by " + ", ".join(uniqueness["like_for_like_blockers"][:5]))
-    if not uniqueness["unique_literal"]:
-        reasons_info.append("literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): "
-                            + ", ".join(uniqueness["literal_blockers"][:4]))
-    if not canary_passed:
-        reasons_block.append("LEAKAGE: a single feature has AUC > 0.90")
-    if not holdout_beats_bar:
+    if uniqueness.get("unique_literal") is not True:
+        reasons_block.append("UNIQUENESS: literal registry rule failed or unverified; no dense-prior exemption: "
+                             + ", ".join(uniqueness.get("literal_blockers", [])[:5]))
+    if uniqueness.get("registry_complete") is not True:
+        reasons_block.append("UNIQUENESS: complete indexed registry audit not verified")
+    if uniqueness.get("surface_checked") is not True:
+        reasons_block.append("UNIQUENESS: pre-placement surface audit not verified")
+    if uniqueness.get("unique_like_for_like") is False:
+        reasons_info.append("Like-for-like comparison also fails; diagnostic only")
+    if canary_passed is not True:
+        reasons_block.append("LEAKAGE: every feature must pass the symmetric AUC <= 0.90 canary")
+    if holdout_beats_bar is not True:
         reasons_block.append("HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)")
-    if len(name) > MAX_NAME or len(note) > MAX_NAME or not name or not note:
+    valid_text = all(isinstance(x, str) and 0 < len(x.strip()) <= MAX_NAME
+                     and len(x) <= MAX_NAME for x in (name, note))
+    if not valid_text:
         reasons_block.append(f"NAME/NOTE: name and note must be non-empty and <= {MAX_NAME} characters")
-    if name in set(used_names):
+    if isinstance(name, str) and name in set(used_names):
         reasons_block.append("NAME: not unique among previously used submission names")
-    ok_submit = bool(ok_download and not reasons_block)
-    return dict(policy=POLICY_VERSION, ok_to_download=ok_download, ok_to_submit=ok_submit,
-                label="OK TO DOWNLOAD - OK TO SUBMIT" if ok_submit else
-                      ("OK TO DOWNLOAD - NOT OK TO SUBMIT" if ok_download else "NOT OK TO DOWNLOAD OR SUBMIT"),
+    eligible = bool(ok_download and not reasons_block)
+    return dict(policy=POLICY_VERSION, ok_to_download=ok_download, ok_to_submit=False,
+                eligible_for_selector=eligible, approved_for_weekly_slot=False,
+                label=("OK TO DOWNLOAD - SELECTOR REQUIRED - DO NOT SUBMIT" if eligible else
+                       "OK TO DOWNLOAD - NOT OK TO SUBMIT" if ok_download else
+                       "NOT OK TO DOWNLOAD OR SUBMIT"),
                 blocking_reasons=reasons_block, informational=reasons_info,
-                note_len=len(note), name_len=len(name),
-                human_step_remaining="Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows).")
+                note_len=len(note) if isinstance(note, str) else None,
+                name_len=len(name) if isinstance(name, str) else None,
+                human_step_remaining="Separate selector authorization and the account's current portal allowance are required; this gate never spends a slot.")
