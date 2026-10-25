@@ -4,7 +4,7 @@
   "review_branch": "arena/89a41360-gemsdoe88",
   "source_snapshot": {
     "files": 154,
-    "sha256": "4a2a1c6984f97d1bd4b79d7eb5845a2b24f39a4dc50f42f0e64a22a7da95c29e"
+    "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -200,6 +200,14 @@
         "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
       },
       "reason": "Pre-review source fingerprint before IR-88-89A41360-01. The con88 CLI guard/validator and audit code were reviewed and corrected to restore the literal duplicate-stop policy; no feature/model/evaluator/holdout/writer implementation changed, no candidate experiment was run, and the SPR/AWA/CBC queue remains untested."
+    },
+    {
+      "snapshot": {
+        "files": 154,
+        "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+      },
+      "reason": "Reviewed latest main integration and restored the current CON88 compatibility entrypoints to scripts.con88_preflight.enforce_con88_preflight, which delegates to the shared literal generation guard. Source fingerprint returns to this previously recorded 2082024… corpus; no feature/model/evaluator/holdout/writer code changed and H88-SPR/AWA/CBC remain untested.",
+      "reviewed_at_utc": "2026-10-25T19:20:00Z"
     }
   ]
 }

@@ -2,7 +2,7 @@
   "schema": "gems88.con88-clearance-withdrawal.v1",
   "irregularity": "IR-88-89A41360-01",
   "recorded_at_utc": "2026-10-25",
-  "status": "WITHDRAWN \u2014 HISTORICAL RESEARCH ONLY \u2014 DO NOT SUBMIT",
+  "status": "WITHDRAWN — HISTORICAL RESEARCH ONLY — DO NOT SUBMIT",
   "reason": "The H88-CON88 equal-support interpretation treated the dense registry probability surface as a top-N dot set, contradicting the user-supplied literal test against any registry raster. The pinned 17GEMSDOE witness is positive at every allowed cell; any nonempty candidate therefore has literal forward 3-pixel overlap 1.0, above 0.70. No exception was authorized.",
   "artifact": {
     "filename": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
@@ -15,12 +15,13 @@
     "competition_submission_allowed": false
   },
   "pre_withdrawal_gate_record": {
-    "path": "evidence/con88_gates_prewithdrawal_20261025.json",
+    "path": null,
     "sha256": "99c26d9d2bea8b55720f3180dff43aaf1ef751341e4fb5afc9a4c66d1daa0286",
     "ok_to_submit_claim": true,
     "reported_equal_support_worst_overlap": 0.6936314866946407,
     "stored_field_named_literal_overlap_equal_support_value": 0.6936314866946407,
-    "interpretation": "The prior record copied the equal-support overlap into its field named overlap_literal. Recomputed literal overlap against the pinned saturated witness is 1.0, as confirmed by the current SHA-pinned preflight."
+    "interpretation": "The prior record copied the equal-support overlap into its field named overlap_literal. Recomputed literal overlap against the pinned saturated witness is 1.0, as confirmed by the current SHA-pinned preflight.",
+    "preservation_note": "Original historical gate JSON is retained by its SHA-256 fingerprint and git history; it is excluded from the current published JSON inventory because the binding correction forbids any record with ok_to_submit=true."
   },
   "current_gate_record": {
     "path": "registry/con88_gates.json",

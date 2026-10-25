@@ -115,11 +115,20 @@
     "three_review_passes": "COMPLETE: baseline/blocker review, policy repair and regression review, final validation",
     "input_pin_audit": "INCOMPLETE: AUDIT_ERROR; missing data/external/dem10_chi_100m_u8.tif; only validation tier restored"
   },
-  "irregularity": "Historical H88-CON88 gate used equal-support overlap in a field labelled literal; clearance withdrawn under IR-88-89A41360-01. Original gate preserved and TIFF bytes unchanged.",
+  "irregularity": "Historical H88-CON88 gate used equal-support overlap in a field labelled literal; clearance withdrawn under IR-88-89A41360-01. Its prior hash and claimed result are preserved in the withdrawal receipt; original TIFF bytes are unchanged.",
   "archived_research_download": {
     "path": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
     "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
     "zip_path": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
     "status": "existing research artifact only; not a new submission"
+  },
+  "integration_followup": {
+    "scope": "Validation after integrating subsequent main safety updates; status source is later session 96f5f523, while this card remains a dated session 89a41360 review.",
+    "full_pytest": "PASS: 903 passed, 23 skipped, 70 warnings",
+    "active_browser_receipt": "evidence/session_96f5f523_browser_check.json",
+    "active_browser": "PASS_7_CASES at 2026-10-25T19:20:01.695Z",
+    "research_queue_audit": "PASS; source snapshot 154 files, SHA-256 208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69",
+    "input_pin_check": "INCOMPLETE: data/external/dem10_chi_100m_u8.tif missing; validation tier only",
+    "submission_decision": "UNCHANGED_NEGATIVE_NO_FILE_CLEARED"
   }
 }

@@ -130,7 +130,7 @@
       }
     ]
   },
-  "G2_ok": true,
+  "G2_ok": false,
   "G3_fingerprint": {
     "share_gt25": 0.4174058532957986,
     "share_le3": 0.0,
@@ -230,7 +230,8 @@
         "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
       }
     },
-    "caveat": "fixed predictions on label-blind quadrant whole-component folds; candidate collar used full-catalogue distance so holdout is conservative (underestimate)"
+    "caveat": "Fixed predictions and full-catalogue collar are not visible-only hide-and-recover; no causal lower-bound claim is justified.",
+    "usable_for_promotion": false
   },
   "leakage_canary": {
     "consensus": {
@@ -248,13 +249,17 @@
   },
   "canary_ok": true,
   "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
   "verdict": "negative",
+  "historical_only": true,
+  "literal_overlap_3px": 1.0,
   "decision": "DUPLICATE_STOP",
-  "withdrawal": {
-    "recorded_by": "IR-88-89A41360-01",
-    "status": "WITHDRAWN",
-    "reason": "The equal-support reinterpretation is not authorized by the user's literal rule. The SHA-pinned 17GEMSDOE witness has positive support on every allowed pixel; every nonempty candidate has literal overlap 1.0 > 0.70.",
-    "original_record": "evidence/con88_gates_prewithdrawal_20261025.json",
-    "format_and_holdout_metrics_are_historical_only": true
-  }
+  "correction": {
+    "id": "IR-88-96F5F523-01",
+    "record": "evidence/con88_clearance_withdrawal_96f5f523.json",
+    "prediction_bytes_changed": false
+  },
+  "historical_holdout_valid_for_promotion": false,
+  "historical_holdout_limitation": "Fixed predictions and full-catalogue collar are not visible-only hide-and-recover; no causal lower-bound claim is justified.",
+  "submission_note": "Historical CON88 consensus artifact; literal duplicate; not valid hide-and-recover evidence; DO NOT SUBMIT"
 }

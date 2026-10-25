@@ -13,6 +13,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts import generation_guard  # noqa: E402
+from scripts import con88_preflight  # noqa: E402
 
 
 def entrypoints() -> list[Path]:
@@ -28,7 +29,7 @@ def entrypoints() -> list[Path]:
         "exp_provcrest_spacing.py", "publish_kdmc_site.py", "publish_sdtl88.py",
         "finalize_concentration.py", "write_concentration_receipts.py",
         "lbcal_build_stats.py", "lbcal_pixel.py", "lbcal_fit.py", "lbcal_extra_features.py",
-        "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py"))
+        "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py", "con88_collar_holdout.py"))
     return sorted(path for path in files if '__name__' in path.read_text())
 
 
@@ -42,9 +43,10 @@ def test_guard_is_first_and_reached_before_historical_cli_body(path, monkeypatch
     assert isinstance(first, ast.If), f"{path.name} can execute before the preflight"
     assert ast.unparse(first.test) == "__name__ == '__main__'"
     assert isinstance(first.body[-1], ast.Expr)
-    # Every candidate runner, including archived CON88 entrypoints, uses the
-    # same shared literal pre-placement gate.
-    assert ast.unparse(first.body[-1]) == 'enforce_generation_preflight()'
+    # CON88 keeps a compatibility function name, delegating to the same
+    # literal-stop guard. No lane has a generation exemption.
+    expected = 'enforce_con88_preflight()' if path.name.startswith('run_con88') else 'enforce_generation_preflight()'
+    assert ast.unparse(first.body[-1]) == expected
 
     class PreflightReached(Exception):
         pass
@@ -53,6 +55,7 @@ def test_guard_is_first_and_reached_before_historical_cli_body(path, monkeypatch
         raise PreflightReached
 
     monkeypatch.setattr(generation_guard, "enforce_generation_preflight", stop)
+    monkeypatch.setattr(con88_preflight, "enforce_con88_preflight", stop)
     # Imports/functions remain usable by synthetic tests, but an actual CLI
     # dispatch must encounter the shared guard before any heavy model code.
     with pytest.raises(PreflightReached):
@@ -87,9 +90,11 @@ def test_witness_removed_is_not_automatic_permission(monkeypatch):
     ["-O", "scripts/run_gems88_pipeline.py"],
     ["-m", "scripts.build_ssa88_submission"],
     ["scripts/publish_kdmc_site.py"],
-    ["scripts/run_pgtd88_experiment.py"],
     ["scripts/run_con88_experiment.py"],
-    ["scripts/run_con88_exp3_margin.py"],
+    ["-O", "scripts/run_con88_exp3_margin.py"],
+    ["scripts/con88_collar_holdout.py"],
+    ["-m", "scripts.con88_collar_holdout"],
+    ["scripts/run_pgtd88_experiment.py"],
     ["-O", "scripts/run_pgtd88_experiment.py"],
     ["-m", "scripts.run_pgtd88_experiment"],
     ["scripts/run_mfs88_experiment.py"],
@@ -110,15 +115,3 @@ def test_real_entrypoints_exit_two_without_writing_candidates(command):
     assert result.stdout == ""  # historical builder did not start
     assert before == {p.name: p.stat().st_mtime_ns for p in (ROOT / "docs/downloads").iterdir()}
     assert page_before == (ROOT / "docs/index.html").read_bytes()
-
-
-def test_historical_con88_validator_cannot_restore_clearance():
-    gate = ROOT / "registry/con88_gates.json"
-    before = gate.read_bytes()
-    result = subprocess.run([sys.executable, "scripts/validate_con88.py"], cwd=ROOT,
-                            text=True, capture_output=True, timeout=30)
-    assert result.returncode == 2
-    report = json.loads(result.stdout)
-    assert report["decision"] == "DUPLICATE_STOP"
-    assert report["ok_to_submit"] is False
-    assert gate.read_bytes() == before

@@ -1,8 +1,6 @@
-## Current session handoff — 2026-10-25, Arena branch `89a41360`
+## Current session handoff — 2026-10-25: CON88 clearance withdrawn
 
-Read README.md, the complete request in USER_PROMPT_20261025.md, this file, AGENTS.md, and the latest repository review before work. A fresh SHA-pinned preflight returned `DUPLICATE_STOP` (exit 2): the registered dense 17GEMSDOE witness covers all 5,106,385 allowed cells under the unchanged literal >0-support rule. No experiment, candidate TIFF, holdout fit, placement, or slot is authorized. The active queue is SPR/AWA/CBC; no candidate validation occurred.
-
-**Correction to the superseded CON88 banner:** its dense-raster equal-support exception did not satisfy the user's literal all-registry overlap rule. The approval is withdrawn; the unchanged artifact is renamed and marked `DO-NOT-SUBMIT`. Preserve the archived gate values only as historical evidence. See `evidence/con88_clearance_withdrawal_89a41360.json` and `research/session-89a41360-review-20261025.md`.
+**NO TIFF IS CLEARED TO SUBMIT.** IR-88-96F5F523-01 removes the CON88 equal-support generation, validator, and publication exceptions. Its TIFF bytes are unchanged; the archived TIFF/ZIP and ZIP member now carry `DO-NOT-SUBMIT`. See `evidence/con88_clearance_withdrawal_96f5f523.json`. Re-run the shared literal generation preflight before any feature work. The earlier CON88 promotion was invalid under the unchanged user protocol, and its fixed full-catalogue-masked diagnostic does not establish holdout improvement. No new TIFF or competition slot is produced by this repair.
 
 ## Current session handoff — 2026-10-25, 693b10af
 

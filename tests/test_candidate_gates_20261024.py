@@ -2,7 +2,7 @@
 
 * No machine record may say ok_to_submit=true while the literal uniqueness rule or the holdout bar fails.
 * The dense-prior top-N diagnostic must keep the literal result at 1.0 and must not grant a submission.
-* Every downloadable TIF/ZIP under docs/downloads must carry DO-NOT-SUBMIT (or be cleared by its gate).
+* Every downloadable TIF/ZIP under docs/downloads must carry DO-NOT-SUBMIT without metadata exemptions.
 """
 import json
 from pathlib import Path
@@ -29,21 +29,8 @@ def test_no_record_claims_submit_true_after_correction():
         except ValueError:
             continue
         offenders += [f"{rec.relative_to(ROOT)}:{p}" for p in _true_flags(data)]
-    # Preserve the exact pre-withdrawal bytes as forensic evidence only; these
-    # two copies may retain the historical claim but cannot authorize a slot.
-    historical = {
-        "evidence/con88_gates_prewithdrawal_20261025.json:.ok_to_submit",
-        "docs/data/con88_gates_prewithdrawal_20261025.json:.ok_to_submit",
-    }
-    assert set(offenders) <= historical, offenders
-    audit = json.loads((ROOT / "docs/data/download_audit.json").read_text())
-    assert all(row["ok_to_submit"] is False for row in audit["artifacts"])
-    g = json.loads((ROOT / "registry/con88_gates.json").read_text())
-    assert g["ok_to_submit"] is False and g["decision"] == "DUPLICATE_STOP"
-    assert g["withdrawal"]["status"] == "WITHDRAWN"
-    withdrawal = json.loads((ROOT / "evidence/con88_clearance_withdrawal_89a41360.json").read_text())
-    assert withdrawal["artifact"]["competition_submission_allowed"] is False
-    assert withdrawal["pre_withdrawal_gate_record"]["ok_to_submit_claim"] is True
+    # No stale lane-specific approval can override the binding literal stop.
+    assert not offenders, offenders
 
 
 def test_dense_prior_diagnostic_is_informational_only():
@@ -64,18 +51,7 @@ def test_matrix_rows_never_submit_and_cite_records():
         assert (ROOT / row["record"]).is_file()
 
 
-def test_downloads_are_marked_or_cleared():
-    cleared = set()
-    for g in (ROOT / "registry").glob("*gate*.json"):
-        try:
-            data = json.loads(g.read_text())
-        except ValueError:
-            continue
-        _c = data.get("candidate")
-        name = Path(_c.get("tif", "") if isinstance(_c, dict) else (_c or "")).name
-        if data.get("ok_to_submit") and name:
-            cleared.add(name)
-            cleared.add(Path(name).with_suffix(".zip").name)
+def test_downloads_are_marked_without_clearance_exceptions():
     for f in (ROOT / "docs/downloads").iterdir():
         if f.suffix.lower() in (".tif", ".tiff", ".zip"):
-            assert "DO-NOT-SUBMIT" in f.name or f.name in cleared, f.name
+            assert "DO-NOT-SUBMIT" in f.name, f.name

@@ -58,6 +58,7 @@ def main(root: Path = ROOT) -> None:
             "sources.html",
             "mdc88/index.html",
             "mdc88/executive-summary.html",
+            *(("con88.html",) if (docs / "con88.html").is_file() else ()),
         )
     ]
     card = json.loads((root / "registry/mvrd_run_card.json").read_text())
@@ -501,11 +502,19 @@ def main(root: Path = ROOT) -> None:
             url = urlsplit(ref)
             if url.scheme or url.netloc or not url.path:
                 continue
+            rel_page_parent = page.parent.relative_to(docs).as_posix()
+            joined_ref = posixpath.join("" if rel_page_parent == "." else rel_page_parent, unquote(url.path))
+            norm_ref = posixpath.normpath(joined_ref)
+            require(
+                norm_ref != ".." and not norm_ref.startswith("../") and not norm_ref.startswith("/"),
+                f"{page.relative_to(docs)} escapes docs/ Pages root: {ref}",
+            )
             target = page.parent / unquote(url.path)
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
-    # Every published binary must carry a fail-closed research-only marker.
-    # No lane-specific gate record can override the shared literal policy.
+    # Every published binary must carry the negative decision in its filename.
+    # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
+    # checked above; XGCE was renamed on main and requires no such exception.
     sys.path.insert(0, str(ROOT))
     from scripts.audit_downloads import PUBLICATION_DIRECTORIES, check_package_inventory
     legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
@@ -545,7 +554,7 @@ def main(root: Path = ROOT) -> None:
         directory = docs / row.get("publication_directory", "downloads")
         require(row["format_valid"] is True and row["research_download_ok"] is True
                 and row["ok_to_submit"] is False
-                and row["negative_filename_markers"] is True
+                and row.get("cleared_by_con88_gates") is False
                 and sha256(directory / row["file"]) == row["sha256"]
                 and sha256(directory / row["zip_file"]) == row["zip_sha256"],
                 f"Published research bytes or negative audit changed: {directory.name}/{row['file']}")
