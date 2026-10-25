@@ -2,12 +2,19 @@
 
 **Experiments: 0. Newly generated TIFFs: 0. Slots used by this session: 0. Promote: NO.** Every nonempty allowed output necessarily exceeds the supplied 70% overlap limit against the registered dense witness. Do not schedule a duplicate, an old renamed TIFF or an untested hypothesis.
 
-The full 41-file research inventory is downloadable but not eligible. The canonical educational download is TDKL, not the most recently merged lane. Stored HOLDOUT-DTI values and byte uniqueness do not confer eligibility. The 92-site results supplied by the user have no organizer receipts here.
+The full 42-file research inventory is downloadable but not eligible. The canonical educational download is TDKL, not the most recently merged lane. Stored HOLDOUT-DTI values and byte uniqueness do not confer eligibility. The 92-site results supplied by the user have no organizer receipts here.
 
 A future selector must use a frozen complete registry and comparable buffered whole-segment holdout with per-feature leakage canaries and a paired physical-block interval. Only after all scientific/protocol gates pass may it consult the authenticated portal's actual weekly cap. This session did not determine the account's remaining quota and did not submit anything. The user authorized a code PR/merge, not automatic competition submission. [Ordered next steps](research/session-d0c3adeb-review.md#next-steps-in-order).
 
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>
+
+# Parallel addendum (2026-10-25): H88-BPWD — ALL-TIME REPO HOLDOUT RECORD (`0.205991`) & 313-RASTER LIKE-FOR-LIKE UNIQUE (`0.6500 <= 0.70`) · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT (`0` slots spent)
+
+- **Candidate:** `docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777`) and `.zip` (`SHA-256: cb496d0f2a552e950f64e7babd084b23da3a6d7fdeaa1cf7c6c9ade937cc4c4e`).
+- **Prepared Name (`25/140`):** `GEMSDOE88-BPWD88-B8543782` · **Prepared Note (`98/140`):** `BPWD88 107ch Baranov Poisson+worm PoE 37654d; HOLDOUT-DTI 0.2060 far 0.1368 blind 0.0727; UNSCORED`
+- **8-Fold `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `n = 22,893`):** **`0.205991 [0.188105, 0.223344]`** (`+0.003044 [+0.000313, +0.005537]` vs `H88-HGVC` `0.202947`, `6/8` folds won; `+0.003497` vs concurrent `H88-PSGV` `0.202494`; `+0.011115 [+0.005670, +0.016324]` vs `H88-ADHR`, `8/8` folds won; Far `>10 px = 0.136782`; Blind `>25 px = 0.072733`).
+- **Gates:** `107/107` canaries `<= 0.769268`; `37,654` dots (`share_le2=0.0%`, `share_gt25=43.70%`); like-for-like max overlap `0.6500 <= 0.70` across `313` SHA-distinct rasters; literal `17GEMSDOE = 1.0000 > 0.70` -> **`ok_to_download = true`, `ok_to_submit = false`, `verdict = "negative"` (`0` slots spent; `validate_bpwd88.py --require-submit` exits `2`)**.
 
 # Latest addendum (2026-10-25): H88-BGCD — DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness & selector rule (`0` slots spent)
 

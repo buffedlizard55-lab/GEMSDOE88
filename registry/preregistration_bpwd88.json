@@ -1,0 +1,155 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "preregistration_id": "PREREG-20261025-BPWD88",
+  "frozen_utc": "2026-10-25T03:28:00Z",
+  "session_branch": "arena/ce030cd0-gemsdoe88",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "single_method_lane": {
+    "id": "H88-BPWD",
+    "title": "Wavenumber-Domain Baranov Pseudogravity-to-Gravity Poisson Phase Dislocation, Multiscale Upward-Continuation Sub-Alluvial Dip-Worm Tomography & Hydrothermal Demagnetization Conduit Specialist (PSGV-20)",
+    "mechanism": "Computes exact 2D cosine-tapered FFT Baranov pseudogravity integration g_psg(x) = F^-1{(|k|^2 + k0^2)^(-1/2) F{RTP}(k)} on USGS GeoDAWN Reduced-to-Pole magnetics (B02 rtp) so magnetic and isostatic gravity (B13 iso_grav_anom) share identical potential-field derivative order under Poisson's relation. Across unfaulted plutonic/volcanic contacts, density and magnetization step in phase (grad g_iso || grad g_psg); across hydrothermally altered blind geothermal fault damage zones, ascending 150-280 C fluids oxidize ferrimagnetic magnetite (Fe3O4 -> Fe2O3/FeS2) while preserving the horst/graben density step, creating local Poisson admittance collapse, quadrature phase dislocation, and 1st-vertical-derivative demagnetization troughs. Paired with exact 2D FFT multiscale upward continuation U_h (h = 200, 600, 1400, 2800 m) dip-worm persistence and up-dip surface-trace extrapolation (z_base / tan 60 deg) to z = 0, plus heterogeneous LightGBM + HistGradientBoosting 3-specialist distance-adaptive Log-Odds Product-of-Experts over cached PHYS-44 and HGVC-20 stacks.",
+    "named_non_fault_mimics": [
+      "Reversely magnetized unfaulted Miocene volcanic mesa rims (e.g., Steens/Lovejoy basalt flows with Koenigsberger ratio Q > 1 producing negative RTP over high-relief bedrock plateaus with near-zero depth_to_base_surf)",
+      "Unfaulted granitic/metamorphic batholith contacts where density and magnetization step collinearly (cos(phi_grav - phi_psg) ~ +1)",
+      "Closed-basin playa evaporite brines and Pleistocene Lake Lahontan/Bonneville tufa shorelines"
+    ]
+  },
+  "psgv20_features": [
+    "psgv_baranov_field_hp",
+    "psgv_baranov_hg_crest",
+    "psgv_poisson_admittance_resid",
+    "psgv_poisson_demag_deficit",
+    "psgv_phase_quadrature_disloc",
+    "psgv_vg_rtp_demag_trough",
+    "psgv_worm_grav_persistence",
+    "psgv_worm_rtp_persistence",
+    "psgv_worm_depth_focus_ratio",
+    "psgv_worm_dip_migration_vec",
+    "psgv_updip60_worm_z0_trace",
+    "psgv_updip60_demag_z0_trace",
+    "psgv_curie_spectral_shallow",
+    "psgv_claycap_poisson_conduit",
+    "psgv_transtens_worm_opening",
+    "psgv_chi_unipolar_step_orth",
+    "psgv_lidar_face_polarity_orth",
+    "psgv_frangi_demag_worm_s2",
+    "psgv_strike_worm_coherence",
+    "psgv_mimic_volcanic_remanent_rim"
+  ],
+  "ranked_candidate_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H88-BPWD",
+      "status": "selected_for_validation",
+      "layers": [
+        "data/training_features.tif: B02 rtp, B03 tmi_hg, B06 tc, B07 geod_shearrate, B08 geod_dilaterate, B09 tmi_vg, B11 iso_grav_anom_vg, B12 det_elev, B13 iso_grav_anom, B14 tmi, B15 depth_to_base_surf, B17 cond_surf, B18 iso_grav_anom_hg, B19 det_elev_slope",
+        "data/external/geodawn_extensions_u8.tif: B01 ThK, B02 UK, B03 UTh, B04 TMI_up150",
+        "data/external/dem10_chi_100m_i16.tif: B01 step_max_x1000, B02 step_min_x1000, B03 ksn_max_m0.9, B04 log10_area_m2_x1000 (-32768 masked)",
+        "data/external/lidar_scarp_features_u8.tif: B06 downface_max, B07 upface_max, B08 cross_max, B12 valid",
+        "Reused shared cached stacks: src/gems88/physics.py (PHYS-44) and src/gems88/hgvc.py (HGVC-20)"
+      ],
+      "expected_holdout_dti_lift_vs_hgvc": "+0.0020 to +0.0060",
+      "expected_holdout_dti_lift_vs_adhr": "+0.0100 to +0.0140",
+      "implementation_cost": "Low-Medium (~25 min on 2 vCPUs, < 650 MB RSS, 100% SHA-pinned local official inputs)",
+      "external_data_obtainable_in_sandbox": true
+    },
+    {
+      "rank": 2,
+      "id": "H88-LEFM",
+      "status": "reserve_untried_in_sandbox_viable",
+      "layers": [
+        "data/external/trace_segments_utm11.csv (x0,y0,x1,y1,slip_mm_yr,sense strictly masked to fold-visible segments)",
+        "data/training_features.tif: B07 geod_shearrate, B08 geod_dilaterate, B18 iso_grav_anom_hg"
+      ],
+      "expected_holdout_dti_lift_vs_hgvc": "+0.0015 to +0.0035 (zero lift in d_cat > 25 px blind basins)",
+      "implementation_cost": "Medium",
+      "external_data_obtainable_in_sandbox": true
+    },
+    {
+      "rank": 3,
+      "id": "H88-CURIE",
+      "status": "reserve_untried_in_sandbox_viable",
+      "layers": [
+        "data/training_features.tif: B02 rtp, B14 tmi, B15 depth_to_base_surf",
+        "data/external/geodawn_extensions_u8.tif: B04 TMI_up150"
+      ],
+      "expected_holdout_dti_lift_vs_hgvc": "+0.0010 to +0.0025",
+      "implementation_cost": "Medium-High (sliding-window 2D radial log-power spectra)",
+      "external_data_obtainable_in_sandbox": true
+    },
+    {
+      "rank": 4,
+      "id": "H88-MT3D",
+      "status": "blocked_by_sandbox_outbound_allowlist",
+      "layers": [
+        "NSF SAGE / IRIS SPUD 3D Magnetotelluric Earth Models of the Great Basin (https://ds.iris.edu/spud/emmodel)",
+        "data/training_features.tif: B17 cond_surf, B15 depth_to_base_surf"
+      ],
+      "expected_holdout_dti_lift_vs_hgvc": "+0.0030 to +0.0070 (if fetched externally)",
+      "implementation_cost": "High (requires external fetch outside github.com/pypi.org allowlist)",
+      "external_data_obtainable_in_sandbox": false
+    },
+    {
+      "rank": 5,
+      "id": "H88-INSAR-TIR",
+      "status": "blocked_by_sandbox_outbound_allowlist",
+      "layers": [
+        "NASA ASF DAAC OPERA L3 Surface Displacement (https://asf.alaska.edu/datasets/daac/opera/)",
+        "NASA LP DAAC ECOSTRESS L2 Land Surface Temperature (https://lpdaac.usgs.gov/products/eco2lstev001/)",
+        "data/training_features.tif: B07 geod_shearrate, B08 geod_dilaterate"
+      ],
+      "expected_holdout_dti_lift_vs_hgvc": "+0.0040 to +0.0090 (if fetched externally)",
+      "implementation_cost": "High (requires Earthdata login + outbound host access)",
+      "external_data_obtainable_in_sandbox": false
+    }
+  ],
+  "holdout_protocol": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "seeds": [20, 21],
+    "folds": 8,
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "bootstrap_block_side_px": 200,
+    "bootstrap_draws": 2000,
+    "experiment_budget_max": 3,
+    "controls": [
+      "phys44_zero_cat",
+      "h88_adhr_incumbent",
+      "h88_hgvc_incumbent"
+    ],
+    "experiments": [
+      {
+        "id": "exp01_psgv_zero_cat",
+        "description": "Zero-catalogue spectral potential-field + hydrothermal specialist (36 X_phys_diff + 20 PSGV-20 + 20 HGVC-20 = 76 strictly zero-catalogue channels, LightGBM+HGB dual-expectation ensemble, zero catalogue features)"
+      },
+      {
+        "id": "exp02_psgv_joint_spec",
+        "description": "Joint 107-channel spectral + hydrothermal + visible-structural LightGBM+HGB dual-expectation specialist with Bayesian completeness marginalization"
+      },
+      {
+        "id": "exp03_psgv_tri_poe",
+        "description": "Primary method: Heterogeneous 3-Specialist Distance-Adaptive Log-Odds Product-of-Experts pooling ADHR-67, HGVC-87, and PSGV-107 (LightGBM+HGB) with Bayesian unmapped-basin completeness marginalization and exact CELF Dinkelbach submodular allocation"
+      }
+    ]
+  },
+  "production_emission_plan": {
+    "total_dots": 37654,
+    "near_stratum_d_cat_px": [2.5, 25.0],
+    "near_budget": 21200,
+    "near_spacing_px": 2.90,
+    "far_stratum_d_cat_px": [25.0, null],
+    "far_budget": 16454,
+    "far_spacing_px": 3.12,
+    "psgv_specialist_far_dominance": 0.72,
+    "psgv_specialist_near_dominance": 0.58,
+    "uniqueness_gates": {
+      "preplacement_abs_spearman_max": 0.90,
+      "final_like_for_like_overlap_3px_max": 0.70,
+      "literal_all_registry_rule_enforced_fail_closed": true
+    }
+  }
+}

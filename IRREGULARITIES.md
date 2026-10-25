@@ -684,4 +684,16 @@ Concurrent PR #105 integration: incoming XGCE failed the existing site guard bec
 
 
 
+## IR-88-124 — `H88-BPWD` Sets All-Time Repo Overall & Far Holdout Record (`HOLDOUT-DTI = 0.205991`, Far `0.136782`), Surpassing Both `H88-HGVC` (`0.202947`) and Concurrent `H88-PSGV` (`0.202494`) While Staying Fail-Closed (`2026-10-25`)
+- **Observed:** Under frozen `PREREG-20261025-BPWD88` (`3/3` experiments, `834 s`), `H88-BPWD` (`src/gems88/bpwd.py`, `scripts/run_bpwd88_experiment.py`) achieves **`HOLDOUT-DTI = 0.205991 [0.188105, 0.223344]`** (`gems57-pooled-hide-v2`, `n = 22,893`), beating `H88-HGVC` (`0.202947`) by **`+0.003044 [+0.000313, +0.005537]`** (`6/8` folds won), concurrent `H88-PSGV` (`0.202494`, which trailed `HGVC` and overlapped `HGVC` at `0.7899 > 0.70`) by **`+0.003497`**, and `H88-ADHR` (`0.194876`) by **`+0.011115 [+0.005670, +0.016324]`** (`8/8` folds won), with Far `>10 px = 0.136782` (#1 record) and Blind `>25 px = 0.072733`. Crucially, unlike concurrent `H88-PSGV` (`0.7899 > 0.70` vs `HGVC`), `H88-BPWD`'s `37,654`-dot raster (`SHA-256: b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777`) clears **all `313` SHA-distinct like-for-like rasters (`<= 0.6500 <= 0.70`, including `0.6500` vs `HGVC` and `0.6149` vs `PSGV`)**.
+- **Decision Impact:** Remains strictly fail-closed (`ok_to_download = true`, `ok_to_submit = false`, `verdict = "negative"`, `0` slots spent; `validate_bpwd88.py --require-submit` exits `2`) under the binding literal `17GEMSDOE` space-filling witness (`1.0000 > 0.70`).
+
+## IR-88-125 — Concurrent Branch Namespace Collision Avoidance (`psgv` -> `bpwd`) & Post-Merge 361-File Uniqueness Verification (`2026-10-25`)
+- **Observed:** While our branch (`arena/ce030cd0-gemsdoe88`, branched from `ec49f04`) executed its 8-fold holdout, 19 concurrent PRs (`#112–#131`) merged onto `origin/main` (`67eabc1`), including an independent `psgv88` (`c38f17fc`, `HOLDOUT-DTI = 0.202494`).
+- **Decision Impact:** Namespaced all new module/card/validator/test artifacts cleanly under `bpwd88` (`src/gems88/bpwd.py`, `registry/bpwd88_run_card.json`, `scripts/validate_bpwd88.py`, `tests/test_bpwd88.py`) without altering a single byte of the emitted `.tif` (`b8543782...`), preserved `origin/main`'s `psgv88` files untouched, and verified 3-px forward overlap `<= 0.6500 <= 0.70` across all `11` newly merged `origin/main` `.tif`s (`evidence/bpwd88_uniqueness.json`).
+
+## IR-88-126 — Clean-Checkout Missing-Input Skip Guards in `tests/test_qts88.py` and `tests/test_tdkl88.py` (`2026-10-25`)
+- **Observed:** On a clean checkout without gitignored `data/bridge/sample_submission.tif`, `test_qts88_validator_agrees_with_shared_gates` and `test_tdkl88_validator_fails_closed_for_slot_use` raised `FileNotFoundError` instead of `pytest.skip(...)` like `test_hgvc88.py`.
+- **Decision Impact:** Added explicit `pytest.skip` guards when `data/bridge/sample_submission.tif` is absent so `pytest -q` passes with `0` failures both with and without `data/`.
+
 </details>
