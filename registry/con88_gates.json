@@ -1,5 +1,5 @@
 {
-  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
   "G1_format": {
     "one_band": true,
@@ -128,9 +128,15 @@
         "overlap_literal": 0.5193870505125617,
         "spearman": 0.048171169641686926
       }
-    ]
+    ],
+    "literal_witness_file": "data/registry/dense_17gemdoe.tif",
+    "literal_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "max_literal_dot_overlap": 1.0,
+    "literal_unique": false,
+    "literal_stop_required": true,
+    "equal_support_diagnostic_only_not_binding": true
   },
-  "G2_ok": true,
+  "G2_ok": false,
   "G3_fingerprint": {
     "share_gt25": 0.4174058532957986,
     "share_le3": 0.0,
@@ -230,7 +236,10 @@
         "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
       }
     },
-    "caveat": "fixed predictions on label-blind quadrant whole-component folds; candidate collar used full-catalogue distance so holdout is conservative (underestimate)"
+    "caveat": "fixed predictions on label-blind quadrant whole-component folds; candidate collar used full-catalogue distance so holdout is conservative (underestimate)",
+    "beats_same_fold_h33": false,
+    "beats_repo_holdout_best": false,
+    "repo_holdout_best_dti": 0.205991
   },
   "leakage_canary": {
     "consensus": {
@@ -247,5 +256,19 @@
     }
   },
   "canary_ok": true,
-  "ok_to_submit": true
+  "ok_to_submit": false,
+  "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "5a4f4a530c81210d70dc5cd01481602227d7d84dee5428cea98ae0638f2d855d",
+  "historical_unmarked_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "historical_unmarked_zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+  "G2_equal_support_diagnostic_ok": true,
+  "holdout_ok": false,
+  "all_gates_ok": false,
+  "verdict": "negative",
+  "decision": "WITHDRAWN_LITERAL_DUPLICATE_AND_HOLDOUT_FAILURE",
+  "policy_correction": "IR-88-3C391D97-01",
+  "ok_to_download": true,
+  "ok_to_download_for_research_only": true,
+  "approved_for_weekly_slot": false
 }

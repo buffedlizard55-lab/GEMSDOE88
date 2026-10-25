@@ -1,0 +1,140 @@
+{
+  "schema": "gems88.run-card.v1",
+  "lane": "H88-CON88",
+  "date_utc": "2026-10-25",
+  "status": "WITHDRAWN_LITERAL_DUPLICATE_AND_HOLDOUT_FAILURE",
+  "decision": "DUPLICATE_STOP",
+  "policy_correction": "IR-88-3C391D97-01",
+  "hypothesis": "Concealed geothermal-relevant fault splays outside the 300 m (3 px) catalogue collar are most reliably recovered where >=2 mutually-independent high-scoring fleet surfaces agree within the 3 px DTI kernel OR a fresh label-blind multi-modal geophysical ridge (magnetic/gravity/topographic edge ranks from the 19-band GeoDAWN stack) is locally extreme, emitted at H33's exact dot budget (37,654), min spacing 2.83 px, and H33's measured distance-to-catalogue profile (41.7% at >2.5 km) with a strictly outside-kernel collar (>3 px vs H33's 2.236 px).",
+  "mechanism": "Three-way kernel-windowed consensus across GEMSDOE49 gate-ortho (40k dots), GEMSDOE70 p5-dualsubmod (37,654 dots), and GEMSDOE88 BPWD Baranov-worm (37,654 dots) plus an 8:2 blend with a label-blind multi-modal ridge (rank-mean of tmi_hg, |rtp|, |tmi_vg|, iso_grav_anom_hg, |iso_grav_anom_vg|, det_elev_slope, and |Laplacian(det_elev)|, zero catalogue inputs). Spaced greedy selection (r>=2.83 px) inside distance bins (3-5, 5-10, 10-25, >25 px) matched to H33's shares.",
+  "named_non_fault_mimic": "Unfaulted Tertiary volcanic-intrusive contacts (caldera ring margins and steep plutonic wallrock boundaries) and range-front break-in-slope / piedmont alluvial fan heads that produce coincident magnetic, gravity, and topographic gradients without brittle fault slip.",
+  "holdout_dti": {
+    "fixed_tif_vs_withheld_segments": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 60988,
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "same_fold_h33_dti": 0.006697065848800547,
+      "same_fold_h33_ci95": [
+        0.005989872364602648,
+        0.0073681833290868395
+      ],
+      "paired_delta_vs_h33": -0.006697065848800547,
+      "paired_delta_ci95": [
+        -0.0073681833290868395,
+        -0.005989872364602648
+      ],
+      "beats_same_fold_h33": false,
+      "reason": "CON88 enforces d_full_catalogue > 3.0 px (>300 m) using the full catalogue; every withheld catalogue segment is in the full catalogue, so fixed-TIF 300 m kernel weight on withheld segments is identically 0 by construction."
+    },
+    "per_fold_collar_reemission_visible_only": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 60988,
+      "collar_3p0px_dti": 0.001713781485367719,
+      "collar_3p0px_ci95": [
+        0.00132506022049732,
+        0.0021425000587548364
+      ],
+      "collar_2p236px_dti": 0.0017147968211450354,
+      "collar_2p236px_ci95": [
+        0.0013253417329271752,
+        0.002144795343739658
+      ],
+      "paired_delta_2p236_minus_3p0": 1.0153357773163684e-06,
+      "paired_delta_ci95": [
+        -7.912479810630789e-09,
+        3.1733895131526073e-06
+      ],
+      "repo_holdout_best_lane": "H88-BPWD",
+      "repo_holdout_best_dti": 0.205991,
+      "repo_holdout_best_ci95": [
+        0.188105,
+        0.223344
+      ],
+      "repo_holdout_best_withheld_positive_pixels": 22893,
+      "beats_holdout_best": false,
+      "beats_same_fold_h33": false,
+      "receipt": "registry/con88_collar_holdout.json",
+      "protocol_note": "Contributors (gems49_gate_ortho.tif, gems70_p5_dualsubmod.tif, gems88-bpwd88) were pre-computed against the full catalogue rather than refitted per fold from visible faults only, and the resulting 0.001714 HOLDOUT-DTI still loses to both same-fold H33 (0.006697) and repo holdout best H88-BPWD (0.205991)."
+    },
+    "single_feature_leakage_canaries": {
+      "max_single_band_auc_on_holdout": 0.5621359403425444,
+      "threshold": 0.9,
+      "leakage_detected": false
+    }
+  },
+  "correlation_and_overlap_vs_registry": {
+    "rasters_checked_in_con88_gates": 144,
+    "rasters_checked_including_restored_siblings": 220,
+    "max_surface_spearman_rho": 0.14569107960235052,
+    "max_surface_spearman_vs": "docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+    "surface_spearman_limit": 0.9,
+    "literal_witness_file": "data/registry/dense_17gemdoe.tif",
+    "literal_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "max_literal_dot_overlap_3px": 1.0,
+    "literal_dot_overlap_limit": 0.7,
+    "literal_unique": false,
+    "literal_stop_required": true,
+    "max_equal_support_dot_overlap_3px": 0.6936314866946407,
+    "max_equal_support_dot_overlap_vs": "data/registry/gems49_gate_ortho.tif",
+    "equal_support_dot_overlap_vs_h33_3px": 0.4874116959685558,
+    "equal_support_dot_overlap_vs_17gemdoe_3px": 0.052584054814893505,
+    "equal_support_diagnostic_only_not_binding": true,
+    "rule_note": "Under the unchanged literal Parallel-Run Protocol (AGENTS.md Rule 2, IR-88-D0C3ADEB-08, IR-88-B4DFA10C-08, IR-88-78CFB743-01, IR-88-3C391D97-01), literal 3-pixel forward overlap 1.0 > 0.70 against data/registry/dense_17gemdoe.tif is binding and requires DUPLICATE_STOP. Equal-support top-N overlap (0.693631) is preserved as a non-binding diagnostic."
+  },
+  "experiments_run_this_session": 3,
+  "experiment_ledger": "registry/con88_experiments.json",
+  "raster": {
+    "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "zip_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+    "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "zip_sha256": "5a4f4a530c81210d70dc5cd01481602227d7d84dee5428cea98ae0638f2d855d",
+    "historical_unmarked_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "historical_unmarked_zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+    "bytes": 13530278,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape": [
+      3292,
+      3730
+    ],
+    "positive_dots": 37654,
+    "share_gt_2p5km": 0.4174058532957986,
+    "min_dist_to_catalogue_px": 3.1622776985168457,
+    "corroborated_by_ge2_fleet_surfaces": 0.7227386200669251
+  },
+  "download": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+  "zip_download": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+  "raster_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "zip_sha256": "5a4f4a530c81210d70dc5cd01481602227d7d84dee5428cea98ae0638f2d855d",
+  "validator_output": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "submission_name": "GEMSDOE88-CON88-CONSENSUS-RIDGE-20261025-DO-NOT-SUBMIT",
+  "submission_note": "H88-CON88 archived research: literal overlap 1.0 vs 17GEMSDOE, HOLDOUT-DTI 0.001714 vs 0.205991; DO NOT SUBMIT",
+  "submission_note_chars": 110,
+  "ok_to_download": true,
+  "ok_to_download_for_research_only": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "organizer_confirmed_score": null,
+  "verdict": "negative"
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "gems88.con88-clearance-withdrawal.v1",
+  "date_utc": "2026-10-25",
+  "irregularity_id": "IR-88-3C391D97-01",
+  "lane": "H88-CON88",
+  "action": "WITHDRAW_PR158_UNSUPPORTED_PROMOTION_RESTORE_LITERAL_DUPLICATE_STOP_AND_HOLDOUT_BAR",
+  "decision": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "ok_to_download_new_file": false,
+  "ok_to_download_archived_research_only": true,
+  "approved_for_weekly_slot": false,
+  "why_pr158_promotion_was_withdrawn": [
+    "PR #158 bypassed scripts/generation_guard.py via a lane-specific scripts/con88_preflight.py wrapper that returned generation_allowed: True while data/registry/dense_17gemdoe.tif (ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be) covers 5,106,385 / 5,106,385 allowed pixels (literal 3-pixel forward overlap 1.0000 > 0.70). Under AGENTS.md Rules 2-3 and IR-88-D0C3ADEB-08 / IR-88-B4DFA10C-08 / IR-88-78CFB743-01, equal-support helpers (equal_support_dots) are diagnostic only and run/build/publish entrypoints have no active-lane exemption.",
+    "CON88 failed the competition holdout gate under both reported evaluators: its fixed-TIF HOLDOUT-DTI is 0.0000 [0.0000, 0.0000] (gems57-pooled-hide-v2, n=60,988) because it masks against the full catalogue (d_cat > 3.0 px), losing to same-fold H33 (0.006697 [0.005990, 0.007368], paired delta -0.006697); its per-fold collar re-emission HOLDOUT-DTI is 0.001714 [0.001325, 0.002143] (n=60,988), which still uses full-catalogue contributor rasters (gems49_gate_ortho.tif, gems70_p5_dualsubmod.tif, gems88-bpwd88) and loses to both same-fold H33 (0.006697) and the repository fold-fair holdout best H88-BPWD (0.205991 [0.188105, 0.223344], n=22,893).",
+    "PR #158 published docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif and .zip without the required -DO-NOT-SUBMIT filename marker, injected a cleared_by_con88_gates exception in scripts/audit_downloads.py, and added contradictory OK TO DOWNLOAD AND SUBMIT banners to README.md, PROMPT.md, docs/SUBMIT.md, index.html, and docs/con88.html while leaving 3 pytest failures on main."
+  ],
+  "preserved_con88_research_artifact": {
+    "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "zip_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+    "metadata_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.json",
+    "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "zip_sha256": "5a4f4a530c81210d70dc5cd01481602227d7d84dee5428cea98ae0638f2d855d",
+    "historical_unmarked_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "historical_unmarked_zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+    "prediction_bytes_changed": false,
+    "positive_dots": 37654,
+    "holdout_dti_fixed_tif": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 60988,
+      "dti": 0.0,
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "same_fold_h33_dti": 0.006697065848800547
+    },
+    "holdout_dti_per_fold_collar_reemission": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 60988,
+      "dti": 0.001713781485367719,
+      "ci95": [
+        0.00132506022049732,
+        0.0021425000587548364
+      ],
+      "repo_holdout_best_lane": "H88-BPWD",
+      "repo_holdout_best_dti": 0.205991,
+      "beats_holdout_best": false
+    },
+    "uniqueness_measurements": {
+      "max_surface_spearman_rho": 0.14569107960235053,
+      "literal_3px_overlap_vs_dense_17gemdoe": 1.0,
+      "literal_unique": false,
+      "max_equal_support_3px_overlap_diagnostic": 0.6936314866946407,
+      "max_equal_support_vs": "data/registry/gems49_gate_ortho.tif",
+      "equal_support_3px_overlap_vs_h33_diagnostic": 0.4874116959685558,
+      "equal_support_3px_overlap_vs_17gemdoe_diagnostic": 0.052584054814893505
+    },
+    "ok_to_download_for_research_only": true,
+    "ok_to_submit": false,
+    "verdict": "negative"
+  }
+}

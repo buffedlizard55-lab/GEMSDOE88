@@ -58,6 +58,7 @@ def main(root: Path = ROOT) -> None:
             "sources.html",
             "mdc88/index.html",
             "mdc88/executive-summary.html",
+            "con88.html",
         )
     ]
     card = json.loads((root / "registry/mvrd_run_card.json").read_text())
@@ -506,17 +507,49 @@ def main(root: Path = ROOT) -> None:
 
     # Every published binary must carry the negative decision in its filename.
     # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
-    # checked above; XGCE was renamed on main and requires no such exception.
+    # checked above; XGCE and CON88 were renamed to carry DO-NOT-SUBMIT.
     sys.path.insert(0, str(ROOT))
     from scripts.audit_downloads import PUBLICATION_DIRECTORIES, check_package_inventory
     legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
-    # CON88 cleared exception (IR-88-CON88-01): exact gates-cleared bytes only.
-    _con88 = docs / "downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif"
-    _gates = json.loads((ROOT / "registry/con88_gates.json").read_text())
-    require(_gates.get("ok_to_submit") is True and _gates.get("candidate") == _con88.name
-            and hashlib.sha256(_con88.read_bytes()).hexdigest() == _gates.get("sha256"),
-            "CON88 cleared bytes disagree with gates record")
-    legacy_negative |= {_con88.resolve(), _con88.with_suffix(".zip").resolve()}
+    _con88_tif = docs / "downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif"
+    _con88_zip = _con88_tif.with_suffix(".zip")
+    _con88_card = json.loads((root / "registry/con88_run_card.json").read_text())
+    _con88_web = json.loads((docs / "data/con88_run_card.json").read_text())
+    _con88_gates = json.loads((root / "registry/con88_gates.json").read_text())
+    _con88_gates_web = json.loads((docs / "data/con88_gates.json").read_text())
+    _con88_with = json.loads((root / "evidence/con88_clearance_withdrawal_20261025.json").read_text())
+    _con88_with_web = json.loads((docs / "data/con88_clearance_withdrawal_20261025.json").read_text())
+    require(
+        _con88_card == _con88_web
+        and _con88_gates == _con88_gates_web
+        and _con88_with == _con88_with_web,
+        "CON88 negative run card, gates or withdrawal mirrors disagree",
+    )
+    if (root / "run_card_con88.json").is_file():
+        require(
+            json.loads((root / "run_card_con88.json").read_text()) == _con88_card,
+            "Root run_card_con88.json disagrees with registry/con88_run_card.json",
+        )
+    if (root / "index.html").is_file():
+        _root_index = (root / "index.html").read_text(encoding="utf-8")
+        require(
+            "DO NOT SUBMIT" in _root_index
+            and "OK TO DOWNLOAD AND SUBMIT" not in _root_index
+            and "OK TO SUBMIT: YES" not in _root_index,
+            "Root index.html must remain fail-closed DO NOT SUBMIT",
+        )
+    require(
+        _con88_card.get("ok_to_submit") is False
+        and _con88_card.get("verdict") == "negative"
+        and _con88_gates.get("ok_to_submit") is False
+        and _con88_gates.get("verdict") == "negative"
+        and _con88_with.get("ok_to_submit") is False
+        and _con88_with.get("verdict") == "negative"
+        and _con88_gates.get("candidate") == _con88_tif.name
+        and sha256(_con88_tif) == _con88_card["raster_sha256"] == _con88_gates["sha256"]
+        and sha256(_con88_zip) == _con88_card["zip_sha256"] == _con88_gates["zip_sha256"],
+        "CON88 withdrawn research archive or negative gates mismatch",
+    )
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif", ".tiff", ".zip",
@@ -552,7 +585,7 @@ def main(root: Path = ROOT) -> None:
     for row in all_rows:
         directory = docs / row.get("publication_directory", "downloads")
         require(row["format_valid"] is True and row["research_download_ok"] is True
-                and row["ok_to_submit"] is (True if row.get("cleared_by_con88_gates") else False)
+                and row["ok_to_submit"] is False
                 and sha256(directory / row["file"]) == row["sha256"]
                 and sha256(directory / row["zip_file"]) == row["zip_sha256"],
                 f"Published research bytes or negative audit changed: {directory.name}/{row['file']}")

@@ -143,7 +143,8 @@ def test_published_inventory_covers_every_actual_tiff_and_zip():
         assert audit.sha(tif) == row['sha256']
         assert audit.sha(zipped) == row['zip_sha256']
         assert row['format_valid'] and row['research_download_ok']
-        assert row['ok_to_submit'] is (True if row.get('cleared_by_con88_gates') else False)  # CON88 exception IR-88-CON88-01
+        assert row['ok_to_submit'] is False
+        assert row['negative_filename_markers'] is True
         with zipfile.ZipFile(zipped) as z:
             assert z.namelist() == [tif.name]
             assert z.read(tif.name) == tif.read_bytes()

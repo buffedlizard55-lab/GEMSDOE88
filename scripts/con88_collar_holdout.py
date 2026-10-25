@@ -9,6 +9,16 @@ and disclosed). Collars: 2.236 (H33 parity) vs 3.0 (exp2 as built).
 Final collar = argmax pooled HOLDOUT-DTI (pre-registered rule).
 """
 from __future__ import annotations
+
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_root = _GuardPath(__file__).resolve().parents[1]
+    if str(_guard_root) not in _guard_sys.path:
+        _guard_sys.path.insert(0, str(_guard_root))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 import json, sys
 from pathlib import Path
 import numpy as np
