@@ -533,9 +533,9 @@ def main(root: Path = ROOT) -> None:
     )
     require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
     require(
-        "2026-10-25 REVIEW" in index
+        "Current review · 2026-10-25" in index
         and "NO FILE APPROVED" in index
-        and "every nonempty dot placement is blocked" in index,
+        and "every nonempty dot set fails the literal overlap limit" in index,
         "Overview must present the current fail-closed decision before archived candidates",
     )
     require(
