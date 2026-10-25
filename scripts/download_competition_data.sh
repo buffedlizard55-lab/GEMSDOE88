@@ -12,6 +12,10 @@ PYTHON="${PYTHON:-python3}"
 if [[ -x "${ROOT_DIR}/.venv/bin/python" && "${PYTHON}" == "python3" ]]; then
     PYTHON="${ROOT_DIR}/.venv/bin/python"
 fi
+if (( $# > 1 )); then
+    echo "Usage: bash scripts/download_competition_data.sh [--validation|--registry]" >&2
+    exit 1
+fi
 MODE="${1:-}"
 case "${MODE}" in
     --validation)

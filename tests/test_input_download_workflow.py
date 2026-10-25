@@ -53,3 +53,16 @@ def test_all_three_workflows_validate_bytes_and_rendered_decision():
         text = (ROOT / '.github/workflows' / file).read_text()
         for command in ('python scripts/audit_downloads.py --check', 'python scripts/render_decision.py --check', 'python -O scripts/check_site.py'):
             assert command in text
+
+
+@pytest.mark.parametrize('arguments', [['--validation', '--registry'], ['', '--ignore-pins']])
+def test_extra_arguments_fail_before_any_download(tmp_path, arguments):
+    fake = tmp_path / 'python'
+    fake.write_text('#!/bin/bash\necho UNEXPECTED_RESTORE\n')
+    fake.chmod(0o755)
+    result = subprocess.run(['bash', str(SCRIPT), *arguments], cwd=tmp_path,
+                            env={**os.environ, 'PYTHON': str(fake)},
+                            text=True, capture_output=True)
+    assert result.returncode == 1
+    assert 'Usage:' in result.stderr
+    assert 'UNEXPECTED_RESTORE' not in result.stdout
