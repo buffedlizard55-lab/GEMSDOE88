@@ -69,9 +69,9 @@
     "note": "Literal 1.0 vs dense 17GEMSDOE (space-filling, halo 1.0) makes the literal >0.70 gate impossible for ANY nonempty candidate (IR-88-01, IR-88-76). Binding decision uses chance-corrected excess: worst excess -0.0519 <=0.70 PASS, worst |rho| 0.0449 <=0.90 PASS, so like-for-like PASS. Literal DUPLICATE is reported honestly but is vacuous."
   },
   "submission": {
-    "file": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros.tif",
-    "zip_file": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros.zip",
-    "repo_copy": "submissions/gems88-ibl88-basin-lattice-37654-20261024-zeros.tif",
+    "file": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "zip_file": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "repo_copy": "submissions/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
     "sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
     "zip_sha256": "0917eec141a7d5813e15442c221739a2626c128b647977e40766fe94e0f1dc4e",
     "bytes": 114474,
@@ -110,7 +110,7 @@
     }
   },
   "validator": {
-    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros.tif",
+    "file": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 114474,
     "sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
     "meta": {
@@ -168,7 +168,9 @@
   "evidence_status": {
     "score_label": "HOLDOUT-DTI",
     "organizer_confirmed_live_score": null,
-    "incumbent_organizer_confirmed_live_score": 0.2778,
+    "incumbent_organizer_confirmed_live_score": null,
+    "incumbent_user_reported_live_score": 0.2778,
+    "incumbent_score_provenance": "USER-REPORTED ONLY \u2014 supplied in user prompt; no DrivenData submission-page receipt exists in this repository",
     "incumbent_artifact": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
     "site_reported_high": 0.3195,
     "competition_leaderboard_high": 0.4413

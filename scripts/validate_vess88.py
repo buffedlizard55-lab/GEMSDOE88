@@ -91,14 +91,19 @@ def validate_vess88(root: Path = ROOT) -> dict:
             "ok_to_download": True, "ok_to_submit": False, "verdict": reg["verdict"]}
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--require-submit", action="store_true")
+    args = parser.parse_args([] if argv is None and __name__ != "__main__" else argv)
     rep = validate_vess88()
     print(json.dumps(rep, indent=2))
-    if "--require-submit" in sys.argv:
+    if args.require_submit:
         print("AUTOMATIC SUBMISSION GATE: DO NOT SUBMIT (lane duplicate + literal witness; exit 2).", file=sys.stderr)
         return 2
     return 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(main(sys.argv[1:]))

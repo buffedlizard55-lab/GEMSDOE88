@@ -21,39 +21,44 @@ from gems88.gate import portal_validate  # noqa: E402
 from validate_artifact import validate_artifact  # noqa: E402
 
 
+
+def _require(cond: object, msg: object = "validation check failed") -> None:
+    if not cond:
+        raise AssertionError(str(msg))
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--require-submit", action="store_true")
     args = ap.parse_args(argv)
     card = json.loads((ROOT / "registry/gthc88_run_card.json").read_text())
     pub_card = json.loads((ROOT / "docs/data/gthc88_run_card.json").read_text())
-    assert card == pub_card, "registry/gthc88_run_card.json and docs/data/gthc88_run_card.json must match"
+    _require(card == pub_card, "registry/gthc88_run_card.json and docs/data/gthc88_run_card.json must match")
     tif = ROOT / card["download"]
     sample = ROOT / "data/bridge/sample_submission.tif"
     zipped = tif.with_suffix(".zip")
-    assert tif.name.endswith("DO-NOT-SUBMIT.tif")
-    assert len(card["submission_note"]) <= 140
-    assert len(card["submission_name"]) <= 140
-    assert card["verdict"] == "negative" and not card["ok_to_submit"]
-    assert card["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI"
-    assert card["holdout_dti"]["evaluator_version"] == "gems57-pooled-hide-v2"
-    assert card["holdout_dti"]["ci95"] and card["holdout_dti"]["withheld_positive_pixels"] == 22893
-    assert card["unstratified_scrd_holdout_dti"]["dti"] > card["incumbent_holdout_dti"]["dti"]
-    assert card["correlation_overlap_vs_registry"]["final_overlap_3px"] > 0.70
-    assert card["correlation_overlap_vs_registry"]["like_for_like_unique"] is True
-    assert card["correlation_overlap_vs_registry"]["like_for_like_worst_overlap_3px"]["value"] <= 0.70
-    assert card["correlation_overlap_vs_registry"]["preplacement_max_abs_rho"] <= 0.90
-    assert card["correlation_overlap_vs_registry"]["fingerprint_screen_passed"] is True
-    assert card["leakage_canary"] and all(
+    _require(tif.name.endswith("DO-NOT-SUBMIT.tif"))
+    _require(len(card["submission_note"]) <= 140)
+    _require(len(card["submission_name"]) <= 140)
+    _require(card["verdict"] == "negative" and not card["ok_to_submit"])
+    _require(card["holdout_dti"]["evidence_class"] == "HOLDOUT-DTI")
+    _require(card["holdout_dti"]["evaluator_version"] == "gems57-pooled-hide-v2")
+    _require(card["holdout_dti"]["ci95"] and card["holdout_dti"]["withheld_positive_pixels"] == 22893)
+    _require(card["unstratified_scrd_holdout_dti"]["dti"] > card["incumbent_holdout_dti"]["dti"])
+    _require(card["correlation_overlap_vs_registry"]["final_overlap_3px"] > 0.70)
+    _require(card["correlation_overlap_vs_registry"]["like_for_like_unique"] is True)
+    _require(card["correlation_overlap_vs_registry"]["like_for_like_worst_overlap_3px"]["value"] <= 0.70)
+    _require(card["correlation_overlap_vs_registry"]["preplacement_max_abs_rho"] <= 0.90)
+    _require(card["correlation_overlap_vs_registry"]["fingerprint_screen_passed"] is True)
+    _require(card["leakage_canary"] and all(
         max(v["auc"], 1.0 - v["auc"]) <= 0.90 for v in card["leakage_canary"].values()
-    )
-    assert hashlib.sha256(tif.read_bytes()).hexdigest() == card["raster_sha256"]
-    assert hashlib.sha256(sample.read_bytes()).hexdigest() == grid.SHA256_SAMPLE_SUBMISSION
+    ))
+    _require(hashlib.sha256(tif.read_bytes()).hexdigest() == card["raster_sha256"])
+    _require(hashlib.sha256(sample.read_bytes()).hexdigest() == grid.SHA256_SAMPLE_SUBMISSION)
     with zipfile.ZipFile(zipped) as z:
-        assert z.namelist() == [tif.name] and z.testzip() is None
-        assert z.read(tif.name) == tif.read_bytes()
+        _require(z.namelist() == [tif.name] and z.testzip() is None)
+        _require(z.read(tif.name) == tif.read_bytes())
     independent = validate_artifact(tif, sample)
-    assert independent["ok"] and independent["raster_sha256"] == card["raster_sha256"]
+    _require(independent["ok"] and independent["raster_sha256"] == card["raster_sha256"])
     fp = grid.load_grid().footprint
     for file in (tif, zipped):
         report = portal_validate(file, sample, footprint=fp)

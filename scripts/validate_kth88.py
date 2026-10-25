@@ -20,6 +20,11 @@ from gems88.gate import portal_validate
 from validate_artifact import validate_artifact
 
 
+
+def _require(cond: object, msg: object = "validation check failed") -> None:
+    if not cond:
+        raise AssertionError(str(msg))
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument('--require-submit', action='store_true')
@@ -28,22 +33,22 @@ def main() -> int:
     tif = ROOT / card['download']
     sample = ROOT / 'data/bridge/sample_submission.tif'
     zipped = tif.with_suffix('.zip')
-    assert tif.name.endswith('DO-NOT-SUBMIT.tif')
-    assert len(card['submission_note']) <= 140
-    assert card['verdict'] == 'negative' and not card['ok_to_submit']
-    assert card['holdout_dti']['evidence_class'] == 'HOLDOUT-DTI'
-    assert card['holdout_dti']['evaluator_version'] == 'gems57-pooled-hide-v2'
-    assert card['holdout_dti']['ci95'] and card['holdout_dti']['withheld_positive_pixels'] == 22893
-    assert card['correlation_overlap_vs_registry']['final_overlap_3px'] > .70
-    assert card['correlation_overlap_vs_registry']['preplacement_max_abs_rho'] <= .90
-    assert card['leakage_canary'] and all(max(v['auc'],1-v['auc']) <= .90 for v in card['leakage_canary'].values())
-    assert hashlib.sha256(tif.read_bytes()).hexdigest() == card['raster_sha256']
-    assert hashlib.sha256(sample.read_bytes()).hexdigest() == grid.SHA256_SAMPLE_SUBMISSION
+    _require(tif.name.endswith('DO-NOT-SUBMIT.tif'))
+    _require(len(card['submission_note']) <= 140)
+    _require(card['verdict'] == 'negative' and not card['ok_to_submit'])
+    _require(card['holdout_dti']['evidence_class'] == 'HOLDOUT-DTI')
+    _require(card['holdout_dti']['evaluator_version'] == 'gems57-pooled-hide-v2')
+    _require(card['holdout_dti']['ci95'] and card['holdout_dti']['withheld_positive_pixels'] == 22893)
+    _require(card['correlation_overlap_vs_registry']['final_overlap_3px'] > .70)
+    _require(card['correlation_overlap_vs_registry']['preplacement_max_abs_rho'] <= .90)
+    _require(card['leakage_canary'] and all(max(v['auc'],1-v['auc']) <= .90 for v in card['leakage_canary'].values()))
+    _require(hashlib.sha256(tif.read_bytes()).hexdigest() == card['raster_sha256'])
+    _require(hashlib.sha256(sample.read_bytes()).hexdigest() == grid.SHA256_SAMPLE_SUBMISSION)
     with zipfile.ZipFile(zipped) as z:
-        assert z.namelist() == [tif.name] and z.testzip() is None
-        assert z.read(tif.name) == tif.read_bytes()
+        _require(z.namelist() == [tif.name] and z.testzip() is None)
+        _require(z.read(tif.name) == tif.read_bytes())
     independent = validate_artifact(tif, sample)
-    assert independent['ok'] and independent['raster_sha256'] == card['raster_sha256']
+    _require(independent['ok'] and independent['raster_sha256'] == card['raster_sha256'])
     for file in (tif, zipped):
         report = portal_validate(file, sample, footprint=grid.load_grid().footprint)
         if not report['ok']:

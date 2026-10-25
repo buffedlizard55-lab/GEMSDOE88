@@ -31,10 +31,7 @@
     "withheld_positives": 45260,
     "withheld_positive_pixels": 45260,
     "candidate": 0.002453,
-    "ci95": [
-      0.0,
-      0.0
-    ],
+    "ci95": null,
     "candidate_detail": {
       "dti": 0.002453,
       "pooled_tp": 105.63,
@@ -63,7 +60,12 @@
       "draw21_foldSE_all": 0.000373,
       "draw21_foldSE_detached": 8.2e-05
     },
-    "caveat": "Lightweight build without full bootstrap CI; HOLDOUT-DTI measures recovery of withheld whole-component catalogue faults; NOT an organizer test-set score."
+    "caveat": "Lightweight build without full bootstrap CI; HOLDOUT-DTI measures recovery of withheld whole-component catalogue faults; NOT an organizer test-set score.",
+    "historical_ci95_placeholder": [
+      0.0,
+      0.0
+    ],
+    "audit_remediation_20261025": "Bootstrap CI was omitted in this historical lightweight build (replaced invalid [0.0, 0.0] placeholder with null); note also that withheld_positives=45260 summed overlapping *_all and *_detached fold modes rather than the canonical 22893 *_all-only count of vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)."
   },
   "leakage_canary": {
     "features_tested": 4,
@@ -402,7 +404,7 @@
   "submission_name": "GEMSDOE88-PHYS-NEAR-CONJUNCTION-20261024",
   "submission_note": "H88-PHYS-NEAR phys-conj 19301prox+7654blind=26955dots; HOLDOUT-DTI 0.0025; UNSCORED",
   "submission_note_length": 83,
-  "verdict": "promote-to-selector-only",
+  "verdict": "negative",
   "ok_to_download": true,
   "ok_to_submit": false,
   "stop_reason": "Physics-near conjunction raster passes all format, canary (max AUC=0.5440), and sparse-discriminating uniqueness gates (max dot overlap=0.2456 <= 0.70, max |rho|=0.0128 <= 0.90). HOLDOUT-DTI=0.002453. Literally blocked by 17GEMSDOE dense witness (overlap=1.0000 > 0.70). Not submitted; download for research only.",
@@ -412,5 +414,6 @@
     "wall_clock_cap_seconds": 7200,
     "weekly_slots_used": 0,
     "organizer_confirmed_score": null
-  }
+  },
+  "historical_verdict": "promote-to-selector-only"
 }

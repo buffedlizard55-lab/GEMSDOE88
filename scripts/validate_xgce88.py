@@ -29,8 +29,12 @@ def require(condition, message):
     if not condition:
         raise ValueError(str(message))
 
-def main():
-    require_submit = "--require-submit" in sys.argv
+def main(argv=None):
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--require-submit", action="store_true")
+    require_submit = parser.parse_args([] if argv is None and __name__ != "__main__" else argv).require_submit
     g = grid_mod.load_grid(ROOT/"data/bridge")
     require(TIF.exists(), f"missing {TIF}")
     require(ZIP.exists(), f"missing {ZIP}")
@@ -92,4 +96,4 @@ def main():
         sys.exit(0)
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

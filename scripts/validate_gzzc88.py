@@ -38,8 +38,12 @@ def require(condition: bool, message: object) -> None:
         raise ValueError(str(message))
 
 
-def main() -> None:
-    require_submit = "--require-submit" in sys.argv
+def main(argv: list[str] | None = None) -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--require-submit", action="store_true")
+    require_submit = parser.parse_args([] if argv is None and __name__ != "__main__" else argv).require_submit
     require(CARD.is_file(), f"missing {CARD}")
     card = json.loads(CARD.read_text())
     tif = ROOT / card["download"]
@@ -102,4 +106,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

@@ -451,8 +451,8 @@
   },
   "raster_sha256": "40d720509a12faeb6c94ab167cc94205b8d5476d4f6acfe108b28f0e10ca86c8",
   "zip_sha256": "9892600d40944a8e9a0cd8336f38a4c88962e61e9bb40d47c49106f1a16ea0ec",
-  "download": "docs/downloads/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.tif",
-  "zip_download": "docs/downloads/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.zip",
+  "download": null,
+  "zip_download": null,
   "repo_copy": "submissions/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.tif",
   "validator_output": {
     "portal_tif_ok": true,
@@ -477,5 +477,7 @@
   "submit_label": "DO NOT SUBMIT - automated gate(s) failed (see beats_bpwd_in_run / v4 verdict / fingerprint)",
   "weekly_slots_used_by_agent": 0,
   "organizer_confirmed_score": null,
-  "verdict": "negative"
+  "verdict": "negative",
+  "historical_omitted_docs_download": "docs/downloads/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.tif",
+  "repo_zip_copy": "submissions/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.zip"
 }
