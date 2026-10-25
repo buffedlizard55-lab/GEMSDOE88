@@ -2,7 +2,7 @@
 
 **No new TIFF is eligible, and no competition slot was used by this session.** The primary [submission guide](executive-summary.html) and [canonical manifest](data/current_release.json) are authoritative. The [existing TDKL research TIFF](downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) and [single-TIFF ZIP](downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) are downloadable for education only; neither is a new or protocol-unique prediction.
 
-- Automated saved-byte audit: **38/38** TIFF/ZIP pairs pass two independent decoders, finite/[0,1], exact grid, footprint/catalogue masks and extraction labels. [Full audit](data/download_audit.json).
+- Automated saved-byte audit: **40/40** TIFF/ZIP pairs pass two independent decoders, finite/[0,1], exact grid, footprint/catalogue masks and extraction labels. [Full audit](data/download_audit.json).
 - Literal prerequisite: `17GEMSDOE` directly covers every one of 5,106,385 allowed pixels; every nonempty allowed candidate has overlap 1.0 > 0.70. **STOP before generation.**
 - The old `[0,1]` error is addressed locally by validation of strict finite zero-outside files, not by claiming portal acceptance. Its exact historical upload failure cannot be diagnosed without the uploaded bytes/receipt.
 - All validation is automated; no manual TIFF inspection is needed. A future eligible file would still require fold-rebuilt holdout superiority, complete registry checks and a separate selector within the actual authenticated account cap. No fresh cap or official receipt was obtained here.

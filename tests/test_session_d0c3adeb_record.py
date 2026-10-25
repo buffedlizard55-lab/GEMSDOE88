@@ -81,6 +81,8 @@ def test_unmet_requirements_and_source_limits_stay_explicit():
     assert card['source_scope']['organizer_receipt_available'] is False
     assert card['software_review']['passes'][2]['all_requested_deliverables_met'] is False
     assert [p['pass'] for p in card['software_review']['passes']] == [1, 2, 3]
+    assert card['software_review']['three_passes_completed'] is True
+    assert all(p['status'] == 'PASS' for p in card['software_review']['passes'])
     appendix = (ROOT / card['software_review']['completion_appendix']).read_text()
     assert 'UNMET' in appendix
     assert appendix == (ROOT / 'docs/research/session-d0c3adeb-completion.md').read_text()

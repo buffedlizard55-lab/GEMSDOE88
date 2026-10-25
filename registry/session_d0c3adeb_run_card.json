@@ -5,7 +5,7 @@
   "recorded_at_utc": "2026-10-25T05:06:20.316279+00:00",
   "branch": "arena/d0c3adeb-gemsdoe88",
   "initial_commit": "1c935e96faf2363f1cb4f9bdc43c0621d8e07966",
-  "integrated_main_commit": "8e8bdf2",
+  "integrated_main_commit": "66218d7da4e044eb53a0ea4c61237e6ce75eadea",
   "hypothesis": "Magnetic-marker restoration across a candidate fault discontinuity (ranked first; NOT EXECUTED).",
   "mechanism": "Test whether a repeatable cross-boundary displacement restores continuity of a magnetic marker better than an unfaulted contact; no new feature, fit or candidate was computed.",
   "named_non_fault_mimic": "Unfaulted intrusive/lithologic contact or depositional pinch-out.",
@@ -70,7 +70,7 @@
   "new_rasters_generated": 0,
   "weekly_slots_used": 0,
   "portal_submissions": 0,
-  "imported_existing_research_tiffs_from_main": 3,
+  "imported_existing_research_tiffs_from_main": 5,
   "archived_research_download": {
     "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
     "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
@@ -80,8 +80,8 @@
     "ok_to_download_for_research": true,
     "ok_to_submit": false,
     "audit": "docs/data/download_audit.json",
-    "tiff_zip_pairs": 38,
-    "local_research_passes": 38,
+    "tiff_zip_pairs": 40,
+    "local_research_passes": 40,
     "protocol_eligible_count": 0,
     "independent_decoders": [
       "rasterio",
@@ -95,7 +95,7 @@
   },
   "generation_guard": {
     "file": "scripts/generation_guard.py",
-    "count": 83,
+    "count": 85,
     "entrypoints": [
       "build_candidate.py",
       "build_cj88_submission.py",
@@ -165,12 +165,14 @@
       "run_kdmc_experiment.py",
       "run_kdmc_sgmc_free_control.py",
       "run_kth_step.py",
+      "run_lsc88_experiment.py",
       "run_mdps88_experiment.py",
       "run_mdps88_experiment2.py",
       "run_mrr88_experiment.py",
       "run_mtas88_experiment.py",
       "run_mvrd88_experiment.py",
       "run_phase88.py",
+      "run_psgv88_experiment.py",
       "run_qts88_experiment.py",
       "run_qtsk88_experiment.py",
       "run_r0_prune.py",
@@ -209,7 +211,7 @@
     "ledger": "knowledge/session-d0c3adeb-sources.md"
   },
   "software_review": {
-    "three_passes_completed": false,
+    "three_passes_completed": true,
     "passes": [
       {
         "pass": 1,
@@ -235,21 +237,30 @@
       },
       {
         "pass": 3,
-        "scope": "Re-read original requirements, preserve explicit unmet items, recheck saved bytes, canonical release/readiness, normal/optimized guards, real-browser layout and failed-fetch behavior.",
-        "status": "FINAL_CHECKS_IN_PROGRESS",
+        "scope": "Re-read original requirements, preserve explicit unmet items, recheck saved bytes, canonical release/readiness, normal/optimized guards, real-browser layout and failed-fetch behavior. A second concurrent-main refresh imported existing LSC/PSGV records; both runners are guarded, with 85 total entrypoints and 40 audited existing packages.",
+        "status": "PASS",
         "requirements_review_complete": true,
-        "all_requested_deliverables_met": false
+        "all_requested_deliverables_met": false,
+        "pytest": {
+          "passed": 605,
+          "skipped": 23,
+          "warnings": 61,
+          "seconds": 195.76,
+          "stage": "final local tree after both concurrent-main integrations"
+        }
       }
     ],
     "latest_full_suite": {
-      "passed": 596,
+      "passed": 605,
       "skipped": 23,
       "warnings": 61,
-      "seconds": 199.98,
-      "stage": "after final record checks; before second concurrent-main refresh"
+      "seconds": 195.76,
+      "stage": "final local tree after both concurrent-main integrations"
     },
     "browser_evidence": "evidence/session_d0c3adeb_browser_check.json",
-    "completion_appendix": "research/session-d0c3adeb-completion.md"
+    "completion_appendix": "research/session-d0c3adeb-completion.md",
+    "skip_scope": "22 checks require absent local-only historical release rasters; 1 requires the optional complete sibling registry. These skips are not uniqueness clearance.",
+    "warning_scope": "61 rasterio/Affine pending-deprecation warnings; no numerical range warning was suppressed."
   },
   "acceptance": {
     "unique_new_competition_tiff": "UNMET_BINDING_DUPLICATE_STOP",
@@ -266,5 +277,6 @@
   "organizer_confirmed_score": null,
   "promote": false,
   "verdict": "negative",
-  "next_step": "Preserve the stop. Only a separately authorized shared protocol change, complete registry, fold-rebuilt evidence and authenticated organizer checks can enable a future selector; do not create or rename a TIFF now."
+  "next_step": "Preserve the stop. Only a separately authorized shared protocol change, complete registry, fold-rebuilt evidence and authenticated organizer checks can enable a future selector; do not create or rename a TIFF now.",
+  "completed_at_utc": "2026-10-25T05:22:45.734219+00:00"
 }

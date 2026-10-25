@@ -52,3 +52,5 @@ No credentials are requested, stored or invented. An authenticated organizer con
 
 - Git fetched `buffedlizard55-lab/GEMSDOE88` main at `8e8bdf2` during this review. Existing BGCD/MTAS/PRISM TIFFs and CXL evidence were integrated, not generated anew. Their owner-authored holdout/source statements remain historical. Independent local byte validation covers the three added TIFF/ZIP pairs; it does not freshly reproduce their geological experiments, organizer claims or source access.
 - Main's earlier live-leaderboard access statements do not remove this session's outbound-host restrictions. The current leaderboard, account quota and organizer receipts remain unverified here.
+
+- A second git refresh through `66218d7` imported existing LSC/PSGV records. Local independent byte audits now cover 40 public TIFF/ZIP pairs. Their scientific results and alleged live-source observations were not rerun or freshly authenticated here.

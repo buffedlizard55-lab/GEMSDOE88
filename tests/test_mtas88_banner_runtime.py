@@ -64,3 +64,13 @@ setImmediate(() => {
         check=False,
     )
     assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_concurrent_lsc_and_psgv_records_cannot_precede_canonical_decision():
+    for relative in ('docs/index.html', 'docs/executive-summary.html'):
+        html = (ROOT / relative).read_text()
+        assert html.index('id="autonomous-review"') < html.index('class="archive-lanes"')
+        for anchor in ('lsc88-archived', 'psgv88-archived'):
+            assert html.index('class="archive-lanes"') < html.index(f'id="{anchor}"')
+        assert 'data/lsc88_run_card.json' in html
+        assert 'data/psgv88_run_card.json' in html

@@ -1,0 +1,16 @@
+{
+  "file": "gems88-psgv88-pseudograv-discordance-37654-20261025-c38f17fc-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "gems88-psgv88-pseudograv-discordance-37654-20261025-c38f17fc-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "c38f17fc924ec1fed1efa55b2819d70e911d4416f88a796d7dd50d9c8e3f21e3",
+  "zip_sha256": "5cd92c48d47f258f193f41171b4fcdf38265ac9bb6bf3b1d749a1d9a56bd3f6a",
+  "submission_name": "GEMSDOE88-PSGV88-C38F17FC",
+  "submission_note": "PSGV88 FFT pseudogravity discordance+HGVC PoE 37654d; HOLDOUT-DTI 0.2025 far 0.1280 blind 0.0707; UNSCORED",
+  "note_length": 106,
+  "positive_pixels": 37654,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "discriminating_gates_pass": false,
+  "verdict": "negative",
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null
+}
