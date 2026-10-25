@@ -54,7 +54,11 @@ def test_existing_downloads_are_not_passed_off_as_new_rasters():
     assert old['file'] == current['file']
     assert old['sha256'] == current['file_sha256'] == audit['canonical_sha256']
     assert old['zip_sha256'] == current['zip_sha256']
-    assert old['tiff_zip_pairs'] == old['local_research_passes'] == audit['tiff_count'] == audit['research_download_pass_count']
+    # IR-88-BA739E0F-05: the card froze the inventory size at THAT session (43).
+    # Binding it to the live, ever-growing audit count would make any future
+    # research artifact fail CI; assert the historical value and monotonicity.
+    assert old['tiff_zip_pairs'] == old['local_research_passes'] == 43
+    assert audit['tiff_count'] == audit['research_download_pass_count'] >= 43
     assert old['protocol_eligible_count'] == 0
     assert card['ok_to_download_new_file'] is False
     assert old['ok_to_download_for_research'] is True

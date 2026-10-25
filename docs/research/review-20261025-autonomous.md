@@ -66,8 +66,8 @@ The machine review retains links to the official [DrivenData problem](https://ww
 
 ## Verification record
 
-- Final `.venv/bin/python -m pytest -q`: **653 passed, 23 skipped, 61 warnings**. The remaining warnings are Rasterio's upstream `PendingDeprecationWarning`; no test failed.
-- `.venv/bin/python scripts/audit_downloads.py --check`: **43/43** research TIFF/ZIP pairs passed local format checks; **0** were protocol-eligible.
+- Final `.venv/bin/python -m pytest -q`: **682 passed, 23 skipped, 61 warnings**. The remaining warnings are Rasterio's upstream `PendingDeprecationWarning`; no test failed.
+- `.venv/bin/python scripts/audit_downloads.py --check`: **44/44** research TIFF/ZIP pairs passed local format checks; **0** were protocol-eligible.
 - `scripts/review_repo_20261025.py --require-submit` and `scripts/preflight_mtas88.py --gate-generation`: both returned the expected **exit 2 / `DUPLICATE_STOP`**. The FARC holdout is null, no candidate was fit or placed, and no slot was approved.
 - `scripts/render_decision.py --check`, `scripts/check_site.py`, and `python -O scripts/check_site.py`: PASS. The site now displays the four unexecuted candidates, FARC's blocked status, and the MTAS record conflict. `compileall` and `git diff --check` passed.
 - The read-only H33 lineage recheck matched its saved report after dropping the timestamp. It measures raster geometry only.
