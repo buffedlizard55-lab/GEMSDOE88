@@ -39,10 +39,10 @@ Previous comprehensive recheck (2026-10-25, session b4dfa10c): [three-pass revie
 | Work | Verified outcome |
 |---|---|
 | Data placement | Shared inputs restored from pinned owner mirrors; requested downloader/preparation commands succeed on CPU. Core grid/band checks pass; shared feature planes load. This is not authenticated organizer provenance or authorization to train. |
-| Published downloads | All **43** TIFF/ZIP pairs audited. Two ZIP member-name faults repaired without changing TIFF bytes. **43** pass local research checks; **0** pass the binding uniqueness rule. |
+| Published downloads | All **48** TIFF/ZIP pairs audited (47 main downloads + 1 historical variant). Two ZIP member-name faults repaired without changing TIFF bytes. **48** pass local research checks; **0** pass the binding uniqueness rule. |
 | Generation controls | One preflight guards candidate/experiment CLI entrypoints (`89` scripts, including `run_bpwd88_experiment.py` and `run_vcaz88_experiment.py`) before feature/model imports; shared evaluator/writer unchanged. |
 | Site | One evidence-rendered primary decision, complete download inventory, `H88-BPWD` (`b8543782…`, `HOLDOUT-DTI = 0.205991`) and `H88-VCAZ` (`34224a7c…`, `HOLDOUT-DTI = 0.200625 [0.184176, 0.216992]`, `8/8` folds won vs `ADHR`, `0.6967 <= 0.70` like-for-like across `368` rasters) held fail-closed (`DO NOT SUBMIT`), and explicit submission instructions. |
-| Three-pass verification | **630+ tests passed**; 43 saved-byte package audits; normal/optimized site guards; five desktop/mobile browser cases and failed-fetch denial. Scientific/unique-TIFF promotion requirements remain unmet (`0` slots spent). |
+| Three-pass verification | **630+ tests passed**; 48 saved-byte package audits; normal/optimized site guards; five desktop/mobile browser cases and failed-fetch denial. Scientific/unique-TIFF promotion requirements remain unmet (`0` slots spent). |
 | Supplied results | **92** sites and **115** distinct file/value claims extracted with request-line provenance; four sites have no reported result. Claims are not organizer scores. |
 | Protocol regression | Revoked the concurrent unsupported HGVC v4 upload clearance; no dense-prior or creation-order exemption, and no selector bypass. Historical evidence remains traceable. |
 | H33 | Fresh geometry audit confirms subset/pruning ancestry. No submission receipt or causal proof of the supplied **0.2778** claim. No forecast above it. |
