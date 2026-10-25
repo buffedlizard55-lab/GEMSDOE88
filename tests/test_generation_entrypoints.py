@@ -72,8 +72,10 @@ def test_witness_removed_is_not_automatic_permission(monkeypatch):
     monkeypatch.setattr(preflight_mtas88, "inspect", lambda _: {
         "preplacement_registry_proof": {"universal_overlap_blocker": False}})
     result = generation_guard.inspect(ROOT)
-    assert result["decision"] == "INCOMPLETE_REGISTRY_GATE"
-    assert result["generation_allowed"] is False
+    # IR-88-SDTL-01: generation may proceed under the equal-support rule, but
+    # a preflight is never submit clearance.
+    assert result["decision"] == "GENERATION_ALLOWED_PENDING_UNIQUENESS"
+    assert result["ok_to_submit"] is False
 
 
 @pytest.mark.skipif(not (ROOT / "data/registry/dense_17gemdoe.tif").is_file(), reason="validation inputs not restored")
@@ -89,7 +91,7 @@ def test_real_entrypoints_exit_two_without_writing_candidates(command):
     result = subprocess.run([sys.executable, *command], cwd=ROOT, text=True, capture_output=True, timeout=30)
     assert result.returncode == 2, result.stdout + result.stderr
     report = json.loads(result.stderr)
-    assert report["decision"] == "DUPLICATE_STOP"
+    assert report["decision"] == "SUPERSEDED_ENTRYPOINT_STOP"
     assert report["new_rasters_generated"] == report["experiments_run"] == 0
     assert result.stdout == ""  # historical builder did not start
     assert before == {p.name: p.stat().st_mtime_ns for p in (ROOT / "docs/downloads").iterdir()}

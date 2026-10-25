@@ -154,8 +154,11 @@ def test_tdkl_independent_current_release_validator():
     from scripts.validate_tdkl88 import validate_tdkl88
 
     report = validate_tdkl88(ROOT)
+    # TDKL is archived history (IR-88-SDTL-01): its independent validator must still
+    # reproduce the pinned negative record, but it is no longer the current release.
     saved = json.loads((ROOT / "docs/data/current_release.json").read_text())
-    assert report == saved
+    assert saved["candidate"] == "H88-SDTL" and saved["file_sha256"] != report["file_sha256"]
+    assert report["ok_to_submit"] is False
     assert report["candidate"] == "H88-TDKL"
     assert report["format_valid"] is True
     assert report["literal_duplicate"] is True

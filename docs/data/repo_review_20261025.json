@@ -205,11 +205,11 @@
   },
   "current_research_download": {
     "evidence_class": "LOCAL-FORMAT-AUDIT",
-    "candidate": "H88-TDKL",
-    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
-    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
-    "tif_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+    "candidate": "H88-SDTL",
+    "file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.tif",
+    "zip_file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.zip",
+    "tif_sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
+    "zip_sha256": "37ba4d0a4685f47e2256fedec952f1b278392da7e79b2185da55af2655307e6f",
     "validator": {
       "crs_match": true,
       "shape_match": true,
@@ -224,7 +224,7 @@
       "footprint_not_masked": true,
       "strict_audit": true,
       "ok": true,
-      "raster_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+      "raster_sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
       "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
       "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
     },

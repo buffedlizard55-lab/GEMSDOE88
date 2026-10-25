@@ -106,3 +106,4 @@ def test_current_readme_counts_match_full_download_inventory():
     report = json.loads((ROOT / 'docs/data/download_audit.json').read_text())
     assert f"All **{report['tiff_count']}** TIFF/ZIP pairs" in text
     assert f"**{report['research_download_pass_count']}** pass" in text
+    assert f"**{report['protocol_eligible_count']}** pass the binding uniqueness rule" in text

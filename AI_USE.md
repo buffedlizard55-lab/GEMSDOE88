@@ -266,3 +266,7 @@ AI agent work: null-control audit of the PROVCREST promote, spacing and count sw
 
 
 </details>
+
+## Session SDTL-88 (`arena/47d7da6a`, 2026-10-25)
+
+Agent Mode on Arena.ai (multi-model) wrote `src/gems88/sdtl.py`, `scripts/run_sdtl88_experiment.py`, `scripts/build_sdtl88_submission.py`, `scripts/publish_sdtl88.py`, the v5 block in `vendor/gems57/uniqueness.py`, the data-driven `scripts/render_decision.py`/`scripts/audit_downloads.py` rewrites, tests, `research/session-sdtl88-20261025.md` and the IR-88-SDTL entries. All numbers in those files are produced by the shared evaluator/writer and copied by code into the run card and pages; none were typed by hand. External web pages were not reachable (sandbox allow-list), so citations outside GitHub/PyPI are links for manual review, not retrieved sources.
