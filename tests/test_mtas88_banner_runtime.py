@@ -27,7 +27,8 @@ def test_current_decision_precedes_archived_download_on_both_pages():
         assert "0.049577" in html
         assert "H88-HGVC" in html
     guide = (ROOT / "docs/executive-summary.html").read_text()
-    assert "CURRENT DECISION 2026-10-25: NEW H88-MTAS RESEARCH TIFF BELOW" in guide
+    assert "CURRENT DECISION 2026-10-25" in guide
+    assert "GEMSDOE88-MTAS88-ADMITTANCE-20261025" in guide
 
 
 @pytest.mark.skipif(NODE is None, reason="Node.js runtime unavailable")

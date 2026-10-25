@@ -1,10 +1,20 @@
-# 2026-10-25 addendum: H88-MTAS executed — DO NOT SUBMIT, no slot
+# Latest addendum (2026-10-25): H88-VHGD — ALL-TIME BLIND-BASIN (`>25 px`) HOLDOUT RECORD (`0.092061`) & LIKE-FOR-LIKE UNIQUE (`0.6885 <= 0.70`) · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT (`0` slots spent)
 
-MTAS (`gems88-mtas88-admittance-37654dots-20261025-zeros-DO-NOT-SUBMIT.tif`, SHA-256 `2cb82893…479cc`) completed its single preregistered experiment: HOLDOUT-DTI 0.049577 [0.044659, 0.054417] (`gems57-pooled-hide-v2`, n=22,893) < stored bar 0.187888; literal any-raster overlap 1.0 vs dense witnesses; fingerprint screen FAIL (share ≤2 px = 4.83%). Like-for-like unique (0.4232). **Verdict negative; 0 slots used; no slot authorized.** Next lane H88-PRAN requires fresh preregistration and a paired same-fold win before any slot discussion. Full record: `research/session-20261025-mtas-execution.md`.
+- **Candidate:** `docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: 752dba748b55b855678f6447628d95bdabc43f785d2c72772004b429f9cb21ab`) and single-TIFF `.zip` (`SHA-256: dcba915381b57090cbb30fa5b28bc1fe03388ebeeea292c74b1d77f137191e05`).
+- **Prepared Submission Name (`32/140` chars):** `GEMSDOE88-VHGD88-3STRAT-20261025`
+- **Prepared Submission Note (`105/140` chars):** `H88-VHGD 107ch dT/dz+diseq+Salem PoE (27821d); HOLDOUT-DTI Exp2 0.1987 Exp3 0.1389 blind 0.0921; UNSCORED`
+- **8-Fold `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `seeds 20+21`, `n=22,893`):** Exp 2 unconstrained 107-ch PoE **`0.198664 [0.180377, 0.215592]`** (paired $\Delta$ vs fold-fair `ADHR` `0.188798` = **`+0.009866 [+0.004247, +0.015700]`**, `7/8` folds won; Far `>10 px = 0.132383`; **Blind `>25 px = 0.092061` #1 in repo**); Exp 3 emitted 3-stratum `0.138938 [0.122623, 0.153991]` (`+37.1%` blind-basin `TP_w`).
+- **Gates:** `84/84` canaries `<= 0.61607 <= 0.90`; `27,821` dots (`share_le2 = 0.0%`, `share_gt25 = 36.82% >= 35%`); pre-placement `|rho| = 0.560056 <= 0.90`; post-placement like-for-like 3-px overlap **`0.688545 <= 0.70` (`0` blockers across all `243+` pinned + concurrent `main` rasters)**; literal `17GEMSDOE` = `1.0000 > 0.70` -> **`ok_to_download = true`, `ok_to_submit = false` (`0` weekly slots spent)**.
 
 ---
 
-# Latest addendum (2026-10-24): H88-HGVC — FIRST RASTER TO CLEAR ALL 5 DISCRIMINATING GATES · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness (`0` slots spent)
+# Parallel addendum (2026-10-25): H88-MTAS executed — DO NOT SUBMIT, no slot
+
+MTAS (`gems88-mtas88-admittance-37654dots-20261025-zeros-DO-NOT-SUBMIT.tif`, SHA-256 `2cb82893…479cc`) completed its single preregistered experiment: HOLDOUT-DTI 0.049577 [0.044659, 0.054417] (`gems57-pooled-hide-v2`, n=22,893) < stored bar 0.187888; literal any-raster overlap 1.0 vs dense witnesses; fingerprint screen FAIL (share ≤2 px = 4.83%). Like-for-like unique (0.4232). **Verdict negative; 0 slots used; no slot authorized.** Full record: `research/session-20261025-mtas-execution.md`.
+
+---
+
+# Earlier addendum (2026-10-24): H88-HGVC — FIRST RASTER TO CLEAR ALL 5 DISCRIMINATING GATES · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness (`0` slots spent)
 
 - **Candidate:** `docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef`) and single-TIFF `.zip` (`SHA-256: 5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409`).
 - **Prepared Submission Name (`25/140` chars):** `GEMSDOE88-HGVC88-D5329F31`
