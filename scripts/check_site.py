@@ -533,6 +533,17 @@ def main(root: Path = ROOT) -> None:
     )
     require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
     require(
+        "2026-10-25 REVIEW" in index
+        and "NO FILE APPROVED" in index
+        and "every nonempty dot placement is blocked" in index,
+        "Overview must present the current fail-closed decision before archived candidates",
+    )
+    require(
+        "genuinely unique" not in index.lower()
+        and "not unique under the binding all-registry rule" in index,
+        "Overview must not overstate sparse-screen uniqueness as global uniqueness",
+    )
+    require(
         card["raster_sha256"] in index,
         'Site integrity check failed: archived MVRD hash missing from overview',
     )
