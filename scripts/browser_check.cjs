@@ -30,8 +30,8 @@ const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · S
   const cases = [
     ['index.html', 1440, 1100], ['index.html', 390, 844],
     ['executive-summary.html', 390, 844], ['research.html', 390, 844],
-    ['sources.html', 390, 844], ['mdc88/index.html', 1440, 1100],
-    ['mdc88/executive-summary.html', 390, 844],
+    ['sources.html', 390, 844], ['con88.html', 390, 844],
+    ['mdc88/index.html', 1440, 1100], ['mdc88/executive-summary.html', 390, 844],
   ];
   const report = {schema: 'gems88.browser-review.v1', checked_at_utc: new Date().toISOString(),
     browser: browser.version(), pages: [], failed_fetch_stays_negative: false,
@@ -96,7 +96,9 @@ const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · S
   await browser.close();
   for (const relative of ['docs/index.html', 'docs/executive-summary.html', 'docs/research.html',
     'docs/sources.html', 'docs/assets/site.css', 'docs/assets/site.js', 'docs/data/current_release.json',
-    'docs/data/download_audit.json', 'docs/data/mtas88_run_card.json', 'docs/data/hypothesis_queue.json', 'docs/status.json',
+    'docs/data/download_audit.json', 'docs/data/mtas88_run_card.json', 'docs/data/hypothesis_queue.json',
+    'docs/con88.html', 'docs/data/run_card_con88.json', 'docs/data/con88_gates.json',
+    'docs/data/con88_clearance_withdrawal_20261025.json', 'docs/status.json',
     'docs/mdc88/index.html', 'docs/mdc88/executive-summary.html', 'docs/mdc88/status.json']) {
     report.source_sha256[relative] = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, relative))).digest('hex');
   }

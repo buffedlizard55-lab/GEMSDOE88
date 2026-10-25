@@ -56,6 +56,7 @@ def main(root: Path = ROOT) -> None:
             "executive-summary.html",
             "research.html",
             "sources.html",
+            "con88.html",
             "mdc88/index.html",
             "mdc88/executive-summary.html",
         )
@@ -66,6 +67,20 @@ def main(root: Path = ROOT) -> None:
     web_gate = json.loads((docs / "data/mvrd-gate-v3.json").read_text())
     current = json.loads((docs / "data/current_release.json").read_text())
     status = json.loads((docs / "status.json").read_text())
+    con88 = json.loads((docs / "data/run_card_con88.json").read_text())
+    con88_gate = json.loads((root / "registry/con88_gates.json").read_text())
+    con88_gate_web = json.loads((docs / "data/con88_gates.json").read_text())
+    con88_correction = json.loads((root / "evidence/con88_clearance_withdrawal_20261025.json").read_text())
+    con88_correction_web = json.loads((docs / "data/con88_clearance_withdrawal_20261025.json").read_text())
+    require(con88_gate == con88_gate_web and con88_correction == con88_correction_web,
+            "Pages CON88 evidence differs from canonical negative records")
+    require(con88["verdict"] == "negative" and con88["ok_to_submit"] is False
+            and con88["approved_for_weekly_slot"] is False
+            and con88_gate["ok_to_submit"] is False
+            and con88_gate["verdict"] == "negative"
+            and con88_correction["ok_to_submit"] is False
+            and con88_correction["verdict"] == "negative",
+            "CON88 withdrawal records must fail closed")
     ctra = json.loads((root / "registry/ctra_run_card.json").read_text())
     ctra_web = json.loads((docs / "data/ctra_run_card.json").read_text())
     require(ctra == ctra_web, "Pages CTRA card differs from canonical registry card")
@@ -506,17 +521,15 @@ def main(root: Path = ROOT) -> None:
 
     # Every published binary must carry the negative decision in its filename.
     # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
-    # checked above; XGCE was renamed on main and requires no such exception.
+    # checked above.  IR-88-F55AFF34-01 removed CON88's unsafe exception.
     sys.path.insert(0, str(ROOT))
     from scripts.audit_downloads import PUBLICATION_DIRECTORIES, check_package_inventory
     legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
-    # CON88 cleared exception (IR-88-CON88-01): exact gates-cleared bytes only.
-    _con88 = docs / "downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif"
+    _con88 = docs / "downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif"
     _gates = json.loads((ROOT / "registry/con88_gates.json").read_text())
-    require(_gates.get("ok_to_submit") is True and _gates.get("candidate") == _con88.name
+    require(_gates.get("ok_to_submit") is False and _gates.get("candidate") == _con88.name
             and hashlib.sha256(_con88.read_bytes()).hexdigest() == _gates.get("sha256"),
-            "CON88 cleared bytes disagree with gates record")
-    legacy_negative |= {_con88.resolve(), _con88.with_suffix(".zip").resolve()}
+            "CON88 negative bytes disagree with corrected gates record")
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif", ".tiff", ".zip",
@@ -552,7 +565,8 @@ def main(root: Path = ROOT) -> None:
     for row in all_rows:
         directory = docs / row.get("publication_directory", "downloads")
         require(row["format_valid"] is True and row["research_download_ok"] is True
-                and row["ok_to_submit"] is (True if row.get("cleared_by_con88_gates") else False)
+                and row["ok_to_submit"] is False
+                and row.get("cleared_by_con88_gates") is False
                 and sha256(directory / row["file"]) == row["sha256"]
                 and sha256(directory / row["zip_file"]) == row["zip_sha256"],
                 f"Published research bytes or negative audit changed: {directory.name}/{row['file']}")
@@ -816,7 +830,8 @@ def main(root: Path = ROOT) -> None:
     # the expected negative words happen to appear much further down the page.
     sys.path.insert(0, str(ROOT))
     from scripts import render_decision
-    for page, kind in ((pages[4], "overview"), (pages[5], "guide")):
+    for page, kind in ((docs / "mdc88/index.html", "overview"),
+                       (docs / "mdc88/executive-summary.html", "guide")):
         require(page.read_text() == render_decision.legacy_notice(kind),
                 "Legacy page must withdraw unsupported upload clearance and link the canonical decision")
     legacy_status = json.loads((docs / "mdc88/status.json").read_text())

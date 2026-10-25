@@ -1,10 +1,10 @@
 {
   "schema": "gems88.hypothesis-queue.v1",
-  "reviewed_at_utc": "2026-10-25",
-  "review_branch": "arena/693b10af-gemsdoe88",
+  "reviewed_at_utc": "2026-10-25T18:20:00Z",
+  "review_branch": "arena/f55aff34-gemsdoe88",
   "source_snapshot": {
     "files": 154,
-    "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+    "sha256": "25c397c503ca152e110b881546017e549b8d9f8b2dfbef57d3a297fb5fd2bfdf"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -193,6 +193,14 @@
       },
       "reason": "Merged H88-CON88 (IR-88-CON88-01 equal-support append-only vendor addition + con88 runner scripts) and PGTD guard enforcement fix; proposals re-reviewed: none implements H88-SPR/EELG/PRAN queue items, CON88 is a consensus-emission lane with its own run card (run_card_con88.json), not a queue proposal.",
       "reviewed_at_utc": "2026-10-25T18:00:00Z"
+    },
+    {
+      "superseded_snapshot": {
+        "files": 154,
+        "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+      },
+      "reason": "IR-88-F55AFF34-01 reviewed and removed the CON88 lane-specific generation bypass; model mechanisms/proposals are unchanged.",
+      "reviewed_at_utc": "2026-10-25T18:20:00Z"
     }
   ]
 }

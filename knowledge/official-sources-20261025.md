@@ -29,3 +29,10 @@ This file records only pages fetched or repository refs/hash-checked on 2026-10-
 - `H33 = 0.2778` is retained as `USER-REPORTED CLAIM — NOT HOLDOUT-DTI AND NOT ORGANIZER-CONFIRMED`; no DrivenData receipt is present.
 - The literal duplicate stop is a local registry measurement: the dense witness covers every allowed cell, so every nonempty allowed candidate has forward 3-pixel overlap 1.0. It is not a leaderboard score and not a claim about the organizer's hidden labels.
 - The downloadable H88-TDKL TIFF passes local format/range checks only and is marked `DO-NOT-SUBMIT`. No new MTAS TIFF was created because the pre-placement proof fires first.
+
+## Session f55aff34 retrieval ledger (2026-10-25)
+
+- Fresh GitHub API check: official DrivenData reference repository commit `aebe92f7c8a990f0e3443451b7a825d9afd6336b`, committed 2026-06-16. The README contains setup/reference-model information but no H33 or CON88 organizer receipt.
+- Fresh GitHub API check: owner H33 build record at commit `012e17b2a115c3c0d5e7885bea625bf9657c99fc`. It explicitly classifies `0.2747` as a model projection, not a score, and says that repository has no organizer score.
+- Network boundary: DrivenData, NLR, USGS and DOE hosts were not available from this sandbox's allowed-host list during f55aff34. Their earlier 2026-10-25 entries above remain historical retrieval records and were not upgraded to fresh evidence.
+- Correction: H88-CON88 is now a `DO-NOT-SUBMIT` research artifact. Its local finite-`[0,1]` TIFF validation is not a portal receipt; its literal registry overlap is `1.0`, its pre-placement surface test is absent, and its HOLDOUT-DTI does not beat the repository best. See `research/session-f55aff34-review.md` and `evidence/con88_clearance_withdrawal_20261025.json`.

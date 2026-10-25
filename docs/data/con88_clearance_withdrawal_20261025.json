@@ -1,0 +1,30 @@
+{
+  "schema": "gems88.clearance-withdrawal.v1",
+  "id": "IR-88-F55AFF34-01",
+  "reviewed_at_utc": "2026-10-25T18:15:00Z",
+  "candidate": "H88-CON88",
+  "old_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "new_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+  "tif_sha256_unchanged": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "old_zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+  "new_zip_sha256": "e749e57107de0b75cf92bc2200fbf09927ec58a5ef82564f3ff2109dfc668fd3",
+  "zip_member": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+  "findings": [
+    "Binding literal final-dot overlap is 1.0 > 0.70 against the pinned 17GEMSDOE witness.",
+    "Required pre-placement continuous-surface registry correlation was not recorded.",
+    "HOLDOUT-DTI per-fold re-emission 0.001714 [0.001325, 0.002143] (gems57-pooled-hide-v2; n=60,988) does not beat current best 0.205991.",
+    "Original uniqueness scan covered 77 on-disk rasters, not the later complete sibling/fleet inventory."
+  ],
+  "format_valid": true,
+  "equal_support_diagnostic_pass": true,
+  "binding_literal_overlap_pass": false,
+  "preplacement_surface_pass": false,
+  "holdout_superiority_pass": false,
+  "complete_registry_pass": false,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "verdict": "negative"
+}

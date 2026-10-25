@@ -11,13 +11,12 @@ and (d) the distance-to-catalogue histogram matches H33's measured profile.
 No catalogue-trained classifier is fitted; the catalogue is used only as an
 exclusion mask and distance field, exactly as the organiser masks it.
 
-Uniqueness fix (shared-tool defect, protocol rule 2): the pinned 17GEMSDOE
-registry raster is a DENSE probability field (5,167,373 finite >0 pixels =
-100% of the footprint).  Treating every >0 pixel as a "dot" makes the
->70%-within-3px rule unsatisfiable for ANY nonempty candidate (proof in
-docs/data/download_audit.json).  Dense rasters (>200k positives) are therefore
-compared equal-support: their top-N pixels by value, N = candidate dot count.
-Sparse dot rasters keep the literal rule.  Both numbers are reported.
+Historical uniqueness diagnostic: the pinned 17GEMSDOE raster is a dense
+probability field.  The lane measured both literal support and a top-N
+like-for-like diagnostic.  IR-88-F55AFF34-01 confirms that the user's literal
+all-registry rule remains binding: equal-support is diagnostic only and cannot
+authorize generation.  This CLI therefore reaches the shared generation guard
+before feature imports and exits without writing.
 """
 from __future__ import annotations
 
@@ -25,8 +24,8 @@ if __name__ == "__main__":
     import sys as _guard_sys
     from pathlib import Path as _GuardPath
     _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
-    from scripts.con88_preflight import enforce_con88_preflight
-    enforce_con88_preflight()
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
 
 import hashlib, json, sys
 from datetime import datetime, timezone

@@ -1,4 +1,4 @@
-"""CON88 equal-support fix: dense priors must not make uniqueness vacuous."""
+"""CON88 equal-support remains diagnostic; literal overlap remains binding."""
 import sys
 from pathlib import Path
 import numpy as np
@@ -25,3 +25,14 @@ def test_dense_constant_field_no_longer_vacuous():
 
 def test_threshold_constant():
     assert DENSE_POSITIVE_THRESHOLD == 200_000
+
+
+def test_equal_support_cannot_clear_con88():
+    import json
+    root = Path(__file__).resolve().parents[1]
+    gate = json.loads((root / "registry/con88_gates.json").read_text())
+    assert gate["G2_uniqueness"]["equal_support_diagnostic_ok"] is True
+    assert gate["G2_uniqueness"]["binding_literal"]["ok"] is False
+    assert gate["G2_uniqueness"]["preplacement_surface"]["ok"] is False
+    assert gate["holdout_ok"] is False
+    assert gate["ok_to_submit"] is False

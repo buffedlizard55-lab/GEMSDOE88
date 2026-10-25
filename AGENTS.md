@@ -11,6 +11,8 @@
 
 ## Policy-regression warning
 
+**IR-88-F55AFF34-01:** H88-CON88 is negative and its former clearance is withdrawn. `equal_support_dots()` is diagnostic only. CON88 runners use `scripts/generation_guard.py`; no lane-specific preflight may authorize generation. Every published CON88 binary carries `DO-NOT-SUBMIT`, `registry/con88_gates.json` is false, and its HOLDOUT-DTI does not beat the 0.205991 repository best. Do not restore the green page or exception.
+
 The imported `decide_v4` API is compatibility-only and delegates to the original literal gate. Its dense/creation-order exceptions and automatic HGVC upload clearance were revoked in IR-88-D0C3ADEB-08. Never resurrect them or whitelist an `ok_to_submit: true` record while the literal gate/selector fails.
 
 

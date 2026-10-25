@@ -128,7 +128,7 @@ def test_historical_browser_receipt_remains_a_dated_negative_record():
     assert record['checked_at_utc'] < current['checked_at_utc']
     assert current['failed_fetch_stays_negative'] is True
     assert {p['width'] for p in current['pages']} == {390, 1440}
-    assert len(current['pages']) == 7 and all(p['pass'] for p in current['pages'])
+    assert len(current['pages']) == 8 and all(p['pass'] for p in current['pages'])
     assert set(record['source_sha256']) <= set(current['source_sha256'])
     for relative, digest in current['source_sha256'].items():
         if relative in {'docs/index.html', 'docs/executive-summary.html', 'docs/data/download_audit.json', 'evidence/download_audit.json'}:

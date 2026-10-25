@@ -160,8 +160,8 @@ def test_current_browser_evidence_binds_actual_download_bytes_and_legacy_pages()
     receipt = json.loads((ROOT / card['verification']['browser_evidence']).read_text())
     assert receipt['status'] == 'PASS' and receipt['ok_to_submit'] is False
     assert receipt['failed_fetch_stays_negative'] is True
-    assert len(receipt['pages']) == 7
-    assert {'mdc88/index.html', 'mdc88/executive-summary.html'} <= {p['page'] for p in receipt['pages']}
+    assert len(receipt['pages']) == 8
+    assert {'con88.html', 'mdc88/index.html', 'mdc88/executive-summary.html'} <= {p['page'] for p in receipt['pages']}
     assert all(p['pass'] and not p['overflow'] and not p['errors'] for p in receipt['pages'])
     download = receipt['research_download']
     assert download['http_status'] == 200 and download['matches_canonical_bytes'] is True
