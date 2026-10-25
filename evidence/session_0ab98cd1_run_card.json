@@ -301,8 +301,9 @@
   "delivery": {
     "base_branch": "main",
     "head_branch": "arena/0ab98cd1-gemsdoe88",
-    "pull_request_url": null,
-    "merge_status": "LOCAL_MAIN_INTEGRATED_AWAITING_PR",
-    "record_scope": "Remote CI and merge state are authoritative on GitHub."
+    "pull_request_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/pull/185",
+    "merge_status": "PR_CREATED_REMOTE_STATE_AUTHORITATIVE",
+    "record_scope": "Remote CI and merge state are authoritative on GitHub.",
+    "pull_request_number": 185
   }
 }
