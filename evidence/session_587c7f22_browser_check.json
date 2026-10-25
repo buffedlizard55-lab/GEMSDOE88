@@ -1,6 +1,6 @@
 {
   "schema": "gems88.browser-review.v1",
-  "checked_at_utc": "2026-10-25T19:17:10.952Z",
+  "checked_at_utc": "2026-10-25T19:50:05.676Z",
   "browser": "153.0.8010.0",
   "pages": [
     {
@@ -99,7 +99,7 @@
     "docs/index.html": "5eb164f840bfd681f2ff15c3b01ac7d0749e8f65bb3e8a1db6ae762c87941a3c",
     "docs/executive-summary.html": "2d109a973bece63b7d17baab7dd254666c34401e9ffb92a1d5a2c5ba8aca5163",
     "docs/research.html": "1a58f02e5b1b69ca3466cfdc586f21675f85fce2c9828e31f687b7ddeb764722",
-    "docs/sources.html": "6a595c6f28c52f89db5476cbf99b00bc3bd3d0d14c34593d6aba89277bb93629",
+    "docs/sources.html": "69d147a8ea46ece01e69856831b3c85be49c4cd516f2eae29e892fb6a9667a10",
     "docs/assets/site.css": "834256dce45ea5d350bea0942730f455e1c44edaa64e85f35527ad58c187c737",
     "docs/assets/site.js": "d27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41",
     "docs/data/current_release.json": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",

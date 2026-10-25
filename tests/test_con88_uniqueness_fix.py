@@ -1,4 +1,4 @@
-"""CON88 equal-support fix: dense priors must not make uniqueness vacuous."""
+"""Historical equal-support helper stays diagnostic; literal overlap remains binding."""
 import sys
 from pathlib import Path
 import numpy as np

@@ -281,7 +281,8 @@
     },
     "workflow_and_guard_checks": 58,
     "expected_negative_exit_2_checks": 29,
-    "candidate_cli_preimport_guard_tests": 97
+    "candidate_cli_preimport_guard_tests": 97,
+    "browser": "PASS_7_CASES at 2026-10-25T19:50:05.676Z; actual download bytes/hash, click, failed-fetch and no-JavaScript checks passed"
   },
   "unmet_requirements": [
     "New protocol-unique submission TIFF (blocked by literal 1.0000 > 0.70 overlap against 17GEMSDOE)",

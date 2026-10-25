@@ -1,0 +1,55 @@
+{
+  "schema": "gems88.con88-clearance-withdrawal.v1",
+  "irregularity": "IR-88-89A41360-01",
+  "recorded_at_utc": "2026-10-25",
+  "status": "WITHDRAWN — HISTORICAL RESEARCH ONLY — DO NOT SUBMIT",
+  "reason": "The H88-CON88 equal-support interpretation treated the dense registry probability surface as a top-N dot set, contradicting the user-supplied literal test against any registry raster. The pinned 17GEMSDOE witness is positive at every allowed cell; any nonempty candidate therefore has literal forward 3-pixel overlap 1.0, above 0.70. No exception was authorized.",
+  "artifact": {
+    "filename": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "original_filename": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "bytes_unchanged": true,
+    "zip_filename": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+    "zip_member_is_marked": true,
+    "research_download_allowed": true,
+    "competition_submission_allowed": false
+  },
+  "pre_withdrawal_gate_record": {
+    "path": null,
+    "sha256": "99c26d9d2bea8b55720f3180dff43aaf1ef751341e4fb5afc9a4c66d1daa0286",
+    "ok_to_submit_claim": true,
+    "reported_equal_support_worst_overlap": 0.6936314866946407,
+    "stored_field_named_literal_overlap_equal_support_value": 0.6936314866946407,
+    "interpretation": "The prior record copied the equal-support overlap into its field named overlap_literal. Recomputed literal overlap against the pinned saturated witness is 1.0, as confirmed by the current SHA-pinned preflight.",
+    "preservation_note": "Original historical gate JSON is retained by its SHA-256 fingerprint and git history; it is excluded from the current published JSON inventory because the binding correction forbids any record with ok_to_submit=true."
+  },
+  "current_gate_record": {
+    "path": "registry/con88_gates.json",
+    "sha256": "a9681b7906c2e557878ea3356778884b7d3e0ca87879c7b0d5b658489c967049",
+    "ok_to_submit": false,
+    "decision": "DUPLICATE_STOP"
+  },
+  "historical_performance": {
+    "evidence_class": "HOLDOUT-DTI (historical experiment; not an organizer score)",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "n_withheld_positive_pixels": 60988,
+    "dti": 0.001713781485367719,
+    "ci95": [
+      0.00132506022049732,
+      0.0021425000587548364
+    ],
+    "note": "Per-fold re-emission result recorded by the earlier lane; does not clear the uniqueness gate or demonstrate improvement over the user-reported H33 public result."
+  },
+  "organizer_confirmed_score": null,
+  "weekly_slots_used": 0,
+  "no_new_prediction_created_by_withdrawal": true,
+  "measured_literal_registry_proof": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "covered_allowed_pixels": 5106385,
+    "literal_forward_overlap": 1.0,
+    "limit": 0.7,
+    "preflight": "scripts/preflight_mtas88.py --gate-generation; exit 2 DUPLICATE_STOP"
+  }
+}

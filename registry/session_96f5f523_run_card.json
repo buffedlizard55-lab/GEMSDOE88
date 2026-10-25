@@ -196,7 +196,8 @@
       "scope": "constrained Python 3.11 Linux CPU environment; validation tier restored"
     },
     "completed_at_utc": "2026-10-25T18:52:56.854421+00:00",
-    "integration_review": "Preserved parallel validator/SHA hardening. Replaced one new test that treated an old browser receipt as current with stronger active-receipt checks of every source hash; historical receipts unchanged."
+    "integration_review": "Preserved parallel validator/SHA hardening. Replaced one new test that treated an old browser receipt as current with stronger active-receipt checks of every source hash; historical receipts unchanged.",
+    "browser": "PASS_7_CASES at 2026-10-25T19:20:01.695Z; actual download bytes/hash, click, failed-fetch and no-JavaScript checks passed"
   },
   "unmet_requirements": [
     "New protocol-unique submission TIFF",
