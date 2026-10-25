@@ -51,10 +51,15 @@ def test_02_run_card_schema_and_strict_score_labels():
     for rc_path in [ROOT / "run_card.json", ROOT / "docs" / "data" / "run_card.json", ROOT / "evidence" / "run_card.json"]:
         assert rc_path.exists()
         rc = json.loads(rc_path.read_text())
-        assert rc["verdict"] == "promote"
+        assert rc["verdict"] == "negative"
+        assert rc["historical_verdict"] == "promote"
+        assert rc["ok_to_submit"] is False
+        assert rc["superseded_by"] == "docs/data/current_release.json"
         assert rc["evidence_status"]["score_label"] == "HOLDOUT-DTI"
         assert rc["evidence_status"]["organizer_confirmed_live_score"] is None
-        assert rc["evidence_status"]["incumbent_organizer_confirmed_live_score"] == 0.2778
+        assert rc["evidence_status"]["incumbent_organizer_confirmed_live_score"] is None
+        assert rc["evidence_status"]["incumbent_user_reported_live_score"] == 0.2778
+        assert "no submission-page receipt" in rc["evidence_status"]["incumbent_score_provenance"]
         assert rc["experiments_run"] <= rc["experiment_budget_max"] == 3
 
 
