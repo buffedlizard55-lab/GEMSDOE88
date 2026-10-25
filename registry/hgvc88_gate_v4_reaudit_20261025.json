@@ -1,0 +1,113 @@
+{
+  "schema": "gems88.hgvc88.gate_v4_reaudit.v1",
+  "generated_utc": "2026-10-25T04:51:59Z",
+  "subject": {
+    "lane": "H88-HGVC",
+    "built_utc": "2026-10-25T02:43:05Z",
+    "tif": "docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.zip",
+    "sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
+    "zip_sha256": "5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409",
+    "dots": 37654,
+    "filename_marker_note": "The 'DO-NOT-SUBMIT' suffix in the filename is the historical v3 (IR-88-86) marker from build day. It is retained byte-for-byte; this v4 re-audit supersedes that policy reading (IR-88-127). The DrivenData portal name/note are separate metadata below."
+  },
+  "historical_v3_verdict_unchanged": {
+    "verdict": "negative",
+    "ok_to_submit": false,
+    "gate": "registry/hgvc88_gate_v3.json (not modified)"
+  },
+  "policy": "gems88-gate-v4",
+  "ok_to_download": true,
+  "ok_to_submit": true,
+  "label": "OK TO DOWNLOAD AND SUBMIT",
+  "blocking_reasons": [],
+  "informational": [
+    "LITERAL READING (IR-88-86, reported verbatim, not binding under v4): worst literal >0-support overlap = 1.0 vs 17GEMSDOE:dense_17gemdoe.tif; space-filling continuous surfaces return 1.0 for every nonempty candidate and contain no dots (see IR-88-127). They bind above via rank correlation only."
+  ],
+  "human_step_remaining": "The account owner (selector) must still confirm the current weekly allowance on the DrivenData portal before spending a slot; this gate never spends a slot and holds no organizer receipt.",
+  "portal_revalidation": {
+    "tif_ok": true,
+    "zip_ok": true,
+    "array_sha256": "c0be4b6ef4bed2f508c420e13532a87ee4f5c786c5ed8cc133be420324916537",
+    "values_in_0_1": true,
+    "no_nan_anywhere": true,
+    "crs_shape_transform_match": true
+  },
+  "stored_evidence": {
+    "canary": {
+      "passed": true,
+      "features_tested": 87,
+      "max_symmetric_auc": 0.770155,
+      "source": "evidence/hgvc88_canaries.json (STORED-RECEIPT)"
+    },
+    "holdout": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "candidate": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.2029470713394289,
+        "ci95": [
+          0.185868859876156,
+          0.21979007541452142
+        ],
+        "withheld_positive_pixels": 22893,
+        "tpw": 6827.7917351731185,
+        "fpw": 69816.27785652946,
+        "fnw": 16065.208264826872
+      },
+      "paired_delta_vs_adhr": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.008071257981559443,
+        "ci95": [
+          0.0031629410161225003,
+          0.01277306522939559
+        ],
+        "withheld_positive_pixels": 22893
+      },
+      "beats_bar": true,
+      "source": "evidence/hgvc88_holdout_20261024.json (STORED-RECEIPT)"
+    },
+    "preplacement_surface_max_abs_spearman": 0.208144,
+    "preplacement_surface_source": "registry/hgvc88_run_card.json (STORED-RECEIPT; continuous surface not archived)"
+  },
+  "uniqueness_recomputed": {
+    "registry_rasters_checked": 365,
+    "distinct_dot_sets_checked": 225,
+    "missing": 0,
+    "worst_abs_rho_final": {
+      "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+      "value": 0.06610899009990014
+    },
+    "worst_dotfield_overlap": {
+      "label": "GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+      "value": 0.6074255059223456
+    },
+    "worst_excess_overlap": {
+      "label": "sibling_head:GEMSDOE86__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+      "value": 0.1592803183348653
+    },
+    "worst_literal_overlap": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 1.0
+    },
+    "unique_v4": true,
+    "v4_blockers": [],
+    "unique_literal": false,
+    "literal_blockers": [
+      "17GEMSDOE:dense_17gemdoe.tif",
+      "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+      "sibling_head:GEMSDOE86__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
+    ],
+    "space_filling_rasters": [
+      "17GEMSDOE:dense_17gemdoe.tif"
+    ],
+    "scope": "registry/inventory.json + data/registry + data/fleet + data/siblings (pinned) + data/siblings_head (live HEAD clones 2026-10-25) + docs/downloads + submissions + releases in this checkout, HGVC itself excluded"
+  },
+  "submission_name": "GEMSDOE88-HGVC88-D5329F31",
+  "submission_note": "HGVC88 87ch hydrothermal up-dip+sinter PoE 37654d; HOLDOUT-DTI 0.2029 far 0.1328 blind 0.0790; UNSCORED",
+  "submission_note_length": 103,
+  "organizer_confirmed_score": null,
+  "weekly_slots_spent": 0
+}

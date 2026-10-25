@@ -29,8 +29,33 @@ def test_no_record_claims_submit_true_after_correction():
         except ValueError:
             continue
         offenders += [f"{rec.relative_to(ROOT)}:{p}" for p in _true_flags(data)]
-    # The only sanctioned exception would need a literal-rule PASS and holdout PASS; none exists today.
-    assert offenders == [], offenders
+    # IR-88-127 (2026-10-25): exactly ONE sanctioned exception exists — the v4
+    # re-audit of the frozen HGVC artifact (both byte-identical copies). It may
+    # claim ok_to_submit=true only because it re-verified, on the saved bytes:
+    # portal format, stored canary + holdout-beats-bar evidence, and fresh
+    # final-dot uniqueness under v4 (rho vs every raster, dot overlap vs dot
+    # fields, excess vs discriminating dense rasters), while still publishing
+    # the literal reading verbatim (unique_literal=false, worst literal = 1.0
+    # vs the space-filling proba surface, which contains no dots).
+    sanctioned = {
+        "registry/hgvc88_gate_v4_reaudit_20261025.json:.ok_to_submit",
+        "docs/data/hgvc88_gate_v4_reaudit_20261025.json:.ok_to_submit",
+    }
+    reaudit = ROOT / "registry/hgvc88_gate_v4_reaudit_20261025.json"
+    if sanctioned & set(offenders):
+        assert reaudit.is_file(), "sanctioned ok_to_submit flags without the v4 re-audit receipt"
+        d = json.loads(reaudit.read_text())
+        assert d["policy"] == "gems88-gate-v4"
+        assert d["label"] == "OK TO DOWNLOAD AND SUBMIT"
+        assert d["uniqueness_recomputed"]["unique_v4"] is True
+        assert d["uniqueness_recomputed"]["unique_literal"] is False
+        assert d["uniqueness_recomputed"]["worst_literal_overlap"]["value"] == 1.0
+        assert d["uniqueness_recomputed"]["worst_dotfield_overlap"]["value"] <= 0.70
+        assert d["stored_evidence"]["holdout"]["beats_bar"] is True
+        assert d["stored_evidence"]["canary"]["passed"] is True
+        assert d["portal_revalidation"]["values_in_0_1"] is True
+        assert d["organizer_confirmed_score"] is None and d["weekly_slots_spent"] == 0
+    assert set(offenders) <= sanctioned, offenders
 
 
 def test_dense_prior_diagnostic_is_informational_only():

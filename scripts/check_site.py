@@ -807,8 +807,61 @@ def main(root: Path = ROOT) -> None:
         bgcd["zip_sha256"] in index and bgcd["zip_sha256"] in executive,
         "BGCD zip_sha256 missing in index/executive",
     )
+    # --- 2026-10-25 session: H88-SEPA (new, negative) + HGVC gate-v4 re-audit (IR-88-127)
+    sepa_card = json.loads((root / "registry/sepa88_run_card.json").read_text())
+    sepa_web = json.loads((docs / "data/sepa88_run_card.json").read_text())
+    sepa_gv = json.loads((root / "registry/sepa88_gate_v4.json").read_text())
+    sepa_gv_web = json.loads((docs / "data/sepa88_gate_v4.json").read_text())
+    reaudit = json.loads((root / "registry/hgvc88_gate_v4_reaudit_20261025.json").read_text())
+    reaudit_web = json.loads((docs / "data/hgvc88_gate_v4_reaudit_20261025.json").read_text())
+    require(sepa_card == sepa_web, "Pages SEPA card differs from canonical registry card")
+    require(sepa_gv == sepa_gv_web, "Pages SEPA gate differs from canonical registry gate")
+    require(reaudit == reaudit_web, "Pages HGVC v4 re-audit differs from canonical registry receipt")
+    require(
+        sepa_card["verdict"] == "negative"
+        and sepa_card["ok_to_download"] is True
+        and sepa_card["ok_to_submit"] is False
+        and sepa_card["holdout_dti"]["candidate_exp03"]["dti"] == 0.1950687168543028
+        and sepa_card["correlation_overlap_vs_registry"]["unique_v4"] is True
+        and sepa_card["correlation_overlap_vs_registry"]["unique_literal"] is False,
+        "SEPA run card verdict/gate flags inconsistent (must stay negative: holdout bar not beaten)",
+    )
+    sepa_tif = root / sepa_card["download"]
+    require(sepa_tif.is_file() and "DO-NOT-SUBMIT" in sepa_tif.name, "SEPA tif exists and is marked DO-NOT-SUBMIT")
+    require(sha256(sepa_tif) == sepa_card["raster_sha256"], "SEPA TIFF SHA-256 mismatch vs card")
+    require(sepa_tif.name in index and sepa_tif.name in executive, "SEPA tif in pages")
+    require(sepa_card["raster_sha256"] in index and sepa_card["raster_sha256"] in executive, "SEPA SHA-256 in pages")
+    require(
+        reaudit["policy"] == "gems88-gate-v4"
+        and reaudit["ok_to_submit"] is True
+        and reaudit["label"] == "OK TO DOWNLOAD AND SUBMIT"
+        and reaudit["subject"]["sha256"] == hgvc_card["raster_sha256"]
+        and reaudit["historical_v3_verdict_unchanged"]["ok_to_submit"] is False
+        and reaudit["uniqueness_recomputed"]["unique_v4"] is True
+        and reaudit["uniqueness_recomputed"]["unique_literal"] is False
+        and reaudit["uniqueness_recomputed"]["worst_literal_overlap"]["value"] == 1.0
+        and reaudit["uniqueness_recomputed"]["worst_dotfield_overlap"]["value"] <= 0.70
+        and reaudit["organizer_confirmed_score"] is None
+        and reaudit["weekly_slots_spent"] == 0,
+        "HGVC v4 re-audit (IR-88-127) inconsistent: sole sanctioned ok_to_submit receipt",
+    )
+    require(
+        "OK to DOWNLOAD AND SUBMIT" in index and "OK to download and submit" in executive,
+        "Pages must state the v4 submit-ready decision for HGVC",
+    )
+    psgv_add = json.loads((root / "registry/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text())
+    require(psgv_add == json.loads((docs / "data/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text()), "PSGV addendum copies differ")
+    require(
+        abs(psgv_add["measured_2026_10_25"]["hgvc_forward_overlap_vs_psgv"] - 0.7898762415679609) < 1e-12
+        and "0.7899" in index and "0.7899" in executive,
+        "Posterior-copy (PSGV) disclosure must stay on both pages",
+    )
+    require(
+        "0.195069" in index and "0.195069" in executive,
+        "Pages must publish the SEPA HOLDOUT-DTI point estimate",
+    )
     print(
-        "PASS: H88-BGCD, H88-GZZC, H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
+        "PASS: H88-BGCD, H88-GZZC, H88-HGVC (+gate-v4 re-audit), H88-SEPA negative lane, MTAS pre-placement stop, canonical archived bytes, Pages links, and decisions agree"
     )
 
 
