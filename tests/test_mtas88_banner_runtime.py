@@ -11,6 +11,18 @@ ROOT = Path(__file__).resolve().parents[1]
 NODE = shutil.which("node")
 
 
+def test_current_decision_precedes_archived_download_on_both_pages():
+    for rel in ("docs/index.html", "docs/executive-summary.html"):
+        html = (ROOT / rel).read_text()
+        current = html.index('id="mtas-review"')
+        historical = html.index("PRIOR BEST RESEARCH DELIVERABLE") if rel == "docs/index.html" else html.index("Prior H88-HGVC research GeoTIFF")
+        assert current < historical, f"stale candidate appears before current decision in {rel}"
+        assert "NO NEW TIFF" in html
+        assert "H88-HGVC" in html
+    guide = (ROOT / "docs/executive-summary.html").read_text()
+    assert "CURRENT DECISION: H88-MTAS · NO NEW TIFF" in guide
+
+
 @pytest.mark.skipif(NODE is None, reason="Node.js runtime unavailable")
 @pytest.mark.parametrize("missing", [False, True])
 def test_mtas_banner_fails_closed_with_real_or_missing_feeds(missing):
