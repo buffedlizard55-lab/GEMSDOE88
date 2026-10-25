@@ -1,0 +1,49 @@
+{
+  "schema": "gems88.con88-clearance-withdrawal.v1",
+  "checked_at_utc": "2026-10-25T18:30:00Z",
+  "irregularity": "IR-88-4A703178-01",
+  "reason": "The CON88 equal-support exception conflicts with the binding literal all-registry rule. The pinned dense witness covers every allowed cell, so literal forward overlap is 1.0 > 0.70.",
+  "original_records": {
+    "registry/con88_gates.json_sha256": "99c26d9d2bea8b55720f3180dff43aaf1ef751341e4fb5afc9a4c66d1daa0286",
+    "run_card_con88.json_sha256": "6d7f97480842c65a0fba6dda5efc9fb7a440a3d2f6e82292f9aa299b06acc3fb",
+    "artifact_metadata_sha256": "1fd6d367dd57ac7e129a574789eca2265833074f0d7323b0fc633e82cdf45f7c",
+    "candidate_filename": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "tiff_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08"
+  },
+  "archived_package": {
+    "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "tiff_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "tiff_bytes_changed": false,
+    "zip_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "6d5dbf761a81d3ee2e3228da737ad1a2a76c732c5bec42867e00c50a364c864c",
+    "zip_repacked_only_to_preserve_negative_member_name": true
+  },
+  "binding_measurement": {
+    "status": "FAIL_DUPLICATE_STOP",
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "support_definition": "finite prediction > 0",
+    "allowed_pixels": 5106385,
+    "covered_allowed_pixels": 5106385,
+    "forward_overlap_lower_bound": 1.0,
+    "limit": 0.7
+  },
+  "historical_equal_support_measurement": {
+    "status": "DIAGNOSTIC_ONLY_NOT_BINDING_CLEARANCE",
+    "worst_overlap": 0.6936314866946407,
+    "worst_overlap_file": "data/registry/gems49_gate_ortho.tif",
+    "worst_abs_spearman": 0.3762046278934762,
+    "threshold_overlap": 0.7,
+    "threshold_abs_spearman": 0.9,
+    "historical_pass": true
+  },
+  "scientific_measurements_changed": false,
+  "new_tif_generated": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "approved_for_weekly_slot": false,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}

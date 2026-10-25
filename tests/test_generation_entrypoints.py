@@ -43,8 +43,8 @@ def test_guard_is_first_and_reached_before_historical_cli_body(path, monkeypatch
     assert isinstance(first, ast.If), f"{path.name} can execute before the preflight"
     assert ast.unparse(first.test) == "__name__ == '__main__'"
     assert isinstance(first.body[-1], ast.Expr)
-    # CON88 runners use the equal-support preflight (IR-88-CON88-01); all
-    # historical lanes keep the original literal-stop guard.
+    # CON88 keeps a compatibility wrapper, but that wrapper delegates to the
+    # same binding generation guard; it is not a lane-specific exception.
     expected = 'enforce_con88_preflight()' if path.name.startswith('run_con88') else 'enforce_generation_preflight()'
     assert ast.unparse(first.body[-1]) == expected
 
@@ -99,6 +99,9 @@ def test_witness_removed_is_not_automatic_permission(monkeypatch):
     ["scripts/run_sdtl88_experiment.py"],
     ["-O", "scripts/build_sdtl88_submission.py"],
     ["-m", "scripts.publish_sdtl88"],
+    ["scripts/con88_preflight.py"],
+    ["-O", "scripts/con88_preflight.py"],
+    ["-m", "scripts.con88_preflight"],
 ])
 def test_real_entrypoints_exit_two_without_writing_candidates(command):
     before = {p.name: p.stat().st_mtime_ns for p in (ROOT / "docs/downloads").iterdir()}

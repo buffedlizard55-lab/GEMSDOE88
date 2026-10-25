@@ -1,12 +1,12 @@
 {
-  "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
   "bytes": 146769,
-  "submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
-  "note": "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card",
-  "note_chars": 107,
+  "submission_name": "GEMSDOE88-CON88-E830B58E-DO-NOT-SUBMIT",
+  "note": "CON88 historical consensus-ridge; literal 17GEMSDOE overlap 1.0 > 0.70; no receipt; DO NOT SUBMIT",
+  "note_chars": 97,
   "validator": {
-    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 146769,
     "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
     "meta": {
@@ -59,10 +59,11 @@
     "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
     "on_catalogue_positive_pixels": 0,
     "in_footprint_positive_pixels": 37654,
-    "footprint_fraction": 0.007286874781441169
+    "footprint_fraction": 0.007286874781441169,
+    "original_file": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif"
   },
   "template_report": {
-    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 146769,
     "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
     "bands": 1,
@@ -108,14 +109,15 @@
     "mass_outside_footprint": 0,
     "problems": [],
     "ok": true,
-    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance",
+    "original_path": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif"
   },
-  "zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip",
-  "zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+  "zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "6d5dbf761a81d3ee2e3228da737ad1a2a76c732c5bec42867e00c50a364c864c",
   "approved_for_weekly_slot": false,
   "promoted": false,
   "submission_slots_used": 0,
-  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "status": "ARCHIVED RESEARCH ONLY \u2014 binding DUPLICATE_STOP; DO NOT SUBMIT",
   "metadata": {
     "experiments": {
       "exp1_consensus_only": {
@@ -158,5 +160,11 @@
       "gems28_h27_4",
       "gems36_anderson_pinn (0.974 overlap with H33, measured)"
     ]
-  }
+  },
+  "original_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "original_zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip",
+  "original_zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+  "ok_to_submit": false,
+  "clearance_withdrawn": true,
+  "withdrawal_record": "evidence/con88_clearance_withdrawal_20261025.json"
 }

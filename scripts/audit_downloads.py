@@ -84,22 +84,14 @@ def audit_one(path: Path, sample: Path, catalogue: np.ndarray, footprint: np.nda
         result["negative_filename_markers"] = all(
             "DO-NOT-SUBMIT" in item.name for item in (path, archive)
         )
-        # CON88 (2026-10-25): a file may instead be cleared by machine gates
-        # whose recorded SHA matches these exact bytes (registry/con88_gates.json).
-        cleared = False
-        gates_path = path.parents[2] / "registry/con88_gates.json" if len(path.parents) > 2 else None
-        try:
-            import json as _json
-            g = _json.loads(gates_path.read_text()) if gates_path and gates_path.is_file() else {}
-            cleared = bool(g.get("ok_to_submit") is True and g.get("candidate") == path.name
-                           and g.get("sha256") == result["sha256"] and g.get("G1_ok") and g.get("G2_ok"))
-        except Exception:
-            cleared = False
-        result["cleared_by_con88_gates"] = cleared
-        result["ok_to_submit"] = bool(cleared and result["format_valid"])
+        # A research package must remain visibly negative. Local format or a
+        # historical lane-specific gate can never override the binding literal
+        # preflight or silently create a submission exception.
+        result["cleared_by_con88_gates"] = False  # retained for schema compatibility
+        result["ok_to_submit"] = False
         result["research_download_ok"] = bool(
             result["format_valid"] and result["zip_one_byte_identical_tif"]
-            and (result["negative_filename_markers"] or cleared)
+            and result["negative_filename_markers"]
             and result["positive_pixels"] > 0
             and result["positive_on_catalogue"] == 0
             and result["positive_outside_footprint"] == 0

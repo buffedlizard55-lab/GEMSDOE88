@@ -1,6 +1,6 @@
-## Current session handoff — 2026-10-25, H88-CON88 (supersedes DUPLICATE_STOP handoffs below)
+## Current session handoff — 2026-10-25, literal stop restored
 
-> **NEW UNIQUE TIF GENERATED AND GATES-CLEARED:** `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` (SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). **✅ OK TO DOWNLOAD AND SUBMIT** per automated gates in `registry/con88_gates.json` (format/uniqueness/fingerprint/canary PASS; overlap vs H33 0.487; worst 0.6936 vs GEMSDOE49). Note (107/140): `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`. Guide: `docs/con88.html`. Run card: `run_card_con88.json`. Analysis: `research/session-con88-20261025.md`. Equal-support fix IR-88-CON88-01. Next: user submits within weekly cap and records ORGANIZER-CONFIRMED receipt.
+> **CON88 CLEARANCE WITHDRAWN — DO NOT SUBMIT:** the archived TIFF is now `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif` (unchanged TIFF SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). Its historical equal-support overlap `0.693631` is diagnostic only. The binding literal `17GEMSDOE` witness covers all 5,106,385 allowed pixels, making overlap `1.0 > 0.70`; the shared guard returns `DUPLICATE_STOP`. The TIFF/ZIP are safe to download only as negative research archives and must not be uploaded to the competition. See `evidence/con88_clearance_withdrawal_20261025.json`, `run_card_con88.json`, and `docs/con88.html`. No experiment or weekly slot was used by this correction.
 
 ## Current session handoff — 2026-10-25, 693b10af
 

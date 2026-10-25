@@ -31,5 +31,8 @@
   },
   "chosen": "exp2_consensus_plus_ridge",
   "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
-  "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif"
+  "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+  "original_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "status": "HISTORICAL_EXPERIMENT_ARCHIVED_NEGATIVE",
+  "ok_to_submit": false
 }

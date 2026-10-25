@@ -1,0 +1,143 @@
+{
+  "schema": "gems88.negative-run-card.v1",
+  "session": "arena/4a703178-gemsdoe88",
+  "date": "2026-10-25",
+  "objective": "Maximize P(Win) and Own the Outcome without bypassing the supplied literal duplicate stop.",
+  "method_assignment": {
+    "status": "MISSING_FROM_REQUEST",
+    "action": "No geological lane invented or executed."
+  },
+  "hypothesis": {
+    "id": "H88-SPR",
+    "status": "RANKED_PROPOSAL_NOT_RUN",
+    "title": "Segmented piedmont scarp restoration",
+    "mechanism": "Restore paired scarp-profile offsets on buffered, catalogue-visible-only fault-segment holdouts.",
+    "named_non_fault_mimic": "Quaternary terrace risers and shorelines",
+    "ranking_record": "registry/hypothesis_queue.json"
+  },
+  "mechanism": "No implementation: the project-level pre-placement duplicate prerequisite stopped before feature construction.",
+  "named_non_fault_mimic": "Quaternary terrace risers and shorelines (for the unrun rank-1 SPR proposal)",
+  "holdout_DTI": {
+    "status": "NOT_RUN_BINDING_DUPLICATE_STOP",
+    "label": "HOLDOUT-DTI",
+    "evaluator": "gems57-pooled-hide-v2",
+    "value": null,
+    "ci95": null,
+    "withheld_positive_count": null,
+    "repository_record_reference": {
+      "lane": "H88-BPWD",
+      "value": 0.205991,
+      "ci95": [
+        0.188105,
+        0.223344
+      ],
+      "withheld_positive_count": 22893
+    }
+  },
+  "registry_correlation_overlap": {
+    "phase": "PRE_PLACEMENT",
+    "correlation": null,
+    "correlation_status": "NOT_RUN_NO_CANDIDATE_SURFACE",
+    "literal_forward_overlap_lower_bound": 1.0,
+    "overlap_limit": 0.7,
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "covered_allowed_pixels": 5106385,
+    "decision": "DUPLICATE_STOP"
+  },
+  "raster_sha256": null,
+  "raster_status": "NO_NEW_RASTER_GENERATED",
+  "archived_con88": {
+    "status": "SAFE_TO_DOWNLOAD_FOR_RESEARCH_ONLY_DO_NOT_SUBMIT",
+    "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "raster_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "zip_sha256": "6d5dbf761a81d3ee2e3228da737ad1a2a76c732c5bec42867e00c50a364c864c",
+    "literal_overlap": 1.0,
+    "historical_equal_support_overlap": 0.6936314866946407,
+    "clearance_withdrawal": "evidence/con88_clearance_withdrawal_20261025.json"
+  },
+  "automated_validator_output": {
+    "generation_guard": {
+      "expected_exit": 2,
+      "decision": "DUPLICATE_STOP",
+      "generation_allowed": false
+    },
+    "con88_archive_validator": {
+      "default_expected_exit": 0,
+      "research_download_ok": true,
+      "require_submit_expected_exit": 2,
+      "ok_to_submit": false
+    },
+    "download_inventory": {
+      "total_published_tiffs": 48,
+      "research_download_pass": 48,
+      "protocol_eligible": 0
+    },
+    "format_contract": "finite [0,1], one band, exact sample CRS/shape/transform; ZIP contains exactly the same negatively named TIFF"
+  },
+  "unique_name": "GEMSDOE88-4A703178-NEGATIVE-NO-CANDIDATE",
+  "note": "No candidate: literal 17GEMSDOE overlap 1.0 > 0.70; CON88 clearance withdrawn; 0 experiments, 0 slots; negative.",
+  "note_chars": 112,
+  "experiments_run": 0,
+  "experiment_budget": 3,
+  "new_rasters_generated": 0,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "user_reported_h33_score": 0.2778,
+  "h33_evidence_class": "USER-REPORTED; no organizer receipt",
+  "approved_for_weekly_slot": false,
+  "ok_to_submit": false,
+  "promote": false,
+  "verdict": "negative",
+  "review_report": "research/session-4a703178-review.md",
+  "verification": {
+    "passes_required": 3,
+    "passes_completed": 3,
+    "status": "PASS",
+    "pass_1": {
+      "scope": "CON88 revocation, package audit, preflight, focused safety tests",
+      "result": "PASS after regenerating the 48-package audit"
+    },
+    "pass_2": {
+      "scope": "Adversarial integrated review of isolated-site fixtures, immutable browser evidence, startup aliases, and strict validator exits",
+      "first_full_suite": "875 passed, 23 skipped, 7 failed; failures exposed readiness.py reverting the current status and therefore selecting stale browser evidence",
+      "fix": "Made readiness.py reproduce the current negative review pointer and reran a real seven-case browser audit; no historical receipt rewritten."
+    },
+    "pass_3": {
+      "scope": "Final full repository suite plus normal/optimized site guards and machine audits",
+      "full_test_result": {
+        "passed": 883,
+        "skipped": 23,
+        "failed": 0,
+        "warnings": 64,
+        "duration_seconds": 243.98
+      },
+      "download_audit": "48/48 research packages pass; 0 protocol eligible",
+      "generation_guard_expected_exit": 2,
+      "con88_require_submit_expected_exit": 2,
+      "site_guard_normal": "PASS",
+      "site_guard_optimized": "PASS"
+    },
+    "browser_evidence": "evidence/session_4a703178_browser_check.json",
+    "browser_checked_at_utc": "2026-10-25T18:54:40.605Z",
+    "browser_status": "PASS",
+    "browser_cases": 7,
+    "browser_receipt_sha256": "5c597036a3940de6b78daaf8862e429a88c645ea654e0829aa62c8640ba3df69",
+    "historical_startup_receipt_unchanged": true
+  },
+  "limitations": [
+    "The requested single-method paragraph was absent; no lane was inferred.",
+    "The literal uniqueness requirement is unsatisfiable while the universal positive-support witness remains in scope.",
+    "No authenticated organizer submission receipt or current account quota was available.",
+    "Historical equal-support and fleet correlations are diagnostics, not proof of hidden-label performance or clearance."
+  ],
+  "archived_research_download": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false
+  }
+}

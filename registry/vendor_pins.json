@@ -63,5 +63,13 @@
       "irregularity": "IR-88-B4DFA10C-08",
       "pull_request": 151
     }
-  ]
+  ],
+  "current_policy": "Literal >0 support overlap within 3 px binds against every registry raster. Equal-support/top-N values are diagnostics only and cannot authorize generation or submission.",
+  "latest_policy_correction": {
+    "irregularity": "IR-88-4A703178-01",
+    "date": "2026-10-25",
+    "reason": "Withdraw CON88 lane-specific equal-support clearance; shared public v3/v4/v5 decisions remain literal and equal-support_dots remains callable only for historical diagnostics.",
+    "vendor_bytes_changed": false,
+    "uniqueness_sha256": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb"
+  }
 }

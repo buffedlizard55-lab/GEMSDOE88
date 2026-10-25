@@ -1,7 +1,10 @@
 """Do not mint new experiments for aliases of already-built PRUNE radii."""
 from decimal import Decimal
+import hashlib
 import json
 from pathlib import Path
+import subprocess
+import sys
 
 from audit_session_start import prune_coverage, radius
 
@@ -45,3 +48,19 @@ def test_recorded_session_stop_is_not_a_submission_receipt():
     assert snap["minimum_catalogue_distance_px"] < 3
     assert not snap["collar_eligible_from_record"]
     assert report["preexisting_tracked_tif_zip_paths_data_use_unchecked"]
+
+
+def test_current_audit_allows_same_row_hash_aliases_and_preserves_historical_receipt():
+    historical = ROOT / "evidence/session_20261023_prune_stop.json"
+    before = hashlib.sha256(historical.read_bytes()).hexdigest()
+    result = subprocess.run(
+        [sys.executable, "scripts/audit_session_start.py"], cwd=ROOT,
+        text=True, capture_output=True, timeout=60,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert '"decision": "STOP_NO_NEW_VARIANTS"' in result.stdout
+    assert '"report": ".cache/session-start-audit.json"' in result.stdout
+    current = json.loads((ROOT / ".cache/session-start-audit.json").read_text())
+    assert current["unique_primary_and_fallback_hashes"] is True
+    assert current["unique_literal_parent_axis_value"] is True
+    assert hashlib.sha256(historical.read_bytes()).hexdigest() == before

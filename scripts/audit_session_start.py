@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Audit the brief-v2 startup and stop before rebuilding an exhausted PRUNE axis.
+"""Audit startup state and stop before rebuilding an exhausted PRUNE axis.
 
 Offline after the explicit SHA-pinned restore. No candidate, submission, or new
 ledger row is created. Historical release JSON is evidence, not a fresh TIFF
-validation or a portal receipt.
+validation or a portal receipt. The current receipt is written only to ignored
+``.cache`` state; dated historical evidence is never overwritten.
 """
 from __future__ import annotations
 
@@ -61,7 +62,15 @@ def main() -> int:
     # Collapse duplicated local/remote IDs in the coverage display only.
     for arm in coverage.values():
         arm["existing_ids"] = sorted(set(arm["existing_ids"]))
-    hashes = [r[key] for r in rows for key in ("sha256", "sha256_zeros") if r[key]]
+    # A zeros-safe artifact may intentionally use the same byte identity in its
+    # primary and fallback columns. Reject reuse across *different entries*, not
+    # the same row's two aliases.
+    hash_owners: dict[str, set[str]] = {}
+    for row in rows:
+        for key in ("sha256", "sha256_zeros"):
+            if row[key]:
+                hash_owners.setdefault(row[key], set()).add(row["id"])
+    unique_hash_owners = all(len(owners) == 1 for owners in hash_owners.values())
     pairs = [(r["parent"], r["axis"], r["value"]) for r in rows]
     tracked_bulk = [p for p in git("ls-files").splitlines()
                     if p.endswith((".tif", ".zip"))]
@@ -89,7 +98,7 @@ def main() -> int:
         "ledger_sha256": hashlib.sha256(ledger_bytes).hexdigest(),
         "ledger_rows": len(rows),
         "remote_ledger_rows": len(remote_rows),
-        "unique_primary_and_fallback_hashes": len(hashes) == len(set(hashes)),
+        "unique_primary_and_fallback_hashes": unique_hash_owners,
         "unique_literal_parent_axis_value": len(pairs) == len(set(pairs)),
         "portal_receipts_with_score_and_date": sum(bool(r["receipt_score"] and r["receipt_date"]) for r in rows),
         "requested_prune_radii_px": coverage,
@@ -103,7 +112,10 @@ def main() -> int:
                         "Inspected PRUNEp3px/SNAPscarp2px TIFFs absent; no fresh candidate validation.",
                         "No holdout, leakage-canary, or SGMC rerun; no new model field or candidate."],
     }
-    out = ROOT / "evidence/session_20261023_prune_stop.json"
+    # The 2026-10-23 receipt is immutable historical evidence. A current startup
+    # audit belongs in ignored runtime state rather than rewriting old counts.
+    out = ROOT / ".cache/session-start-audit.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n")
     print(json.dumps({"decision": report["decision"], "ledger_rows": len(rows), "report": str(out.relative_to(ROOT))}))
     return 0 if report["unique_primary_and_fallback_hashes"] and report["unique_literal_parent_axis_value"] else 1
