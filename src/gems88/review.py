@@ -191,7 +191,12 @@ OFFICIAL_SOURCES: tuple[dict[str, str], ...] = (
 
 
 def hypothesis_queue() -> list[dict[str, Any]]:
-    """Return a JSON-safe copy of the five ranked, untested hypotheses."""
+    """Replay the original review's five hypotheses, not today's active queue.
+
+    These statuses were recorded before MTAS was later executed. Current
+    source-bound proposal/evaluation state is registry/hypothesis_queue.json.
+    Source-access records below are likewise historical, not live fetches.
+    """
 
     return [h.as_json() for h in HYPOTHESES]
 
@@ -237,7 +242,7 @@ def safe_note(note: str, *, maximum: int = 140) -> str:
     return note
 
 
-# Reconciled live queue after H88-MTAS (PR #146, negative 0.197730) and
+# Parallel 78cfb743 proposal snapshot after H88-MTAS (PR #146, negative 0.197730) and
 # H88-MMRX (PR #152, negative 0.188378) were executed and archived.
 LIVE_UNTRIED_HYPOTHESES: tuple[Hypothesis, ...] = (
     Hypothesis(
@@ -361,6 +366,7 @@ def executed_registry_lanes(root: Path) -> set[str]:
             or (isinstance(data.get("raster"), dict) and data["raster"].get("sha256"))
             or (isinstance(data.get("submission"), dict) and (data["submission"].get("sha256") or data["submission"].get("raster_sha256")))
             or data.get("sha256")
+            or data.get("sha256_tif")
         )
         if has_raster:
             executed.add(lane.strip().split()[0])
@@ -368,7 +374,12 @@ def executed_registry_lanes(root: Path) -> set[str]:
 
 
 def live_untried_hypothesis_queue(root: Path) -> list[dict[str, Any]]:
-    """Return the reconciled 5-hypothesis untried queue verified against registry/*run_card*.json."""
+    """Return the parallel 78cfb743 proposal snapshot, screening executed IDs.
+
+    This compatibility interface is not the primary site/selector queue. The
+    source-bound active queue is registry/hypothesis_queue.json; matching names
+    alone cannot establish physical novelty. No source is fetched here.
+    """
     rows = [h.as_json() for h in LIVE_UNTRIED_HYPOTHESES]
     validate_hypothesis_queue(rows)
     executed = executed_registry_lanes(root)

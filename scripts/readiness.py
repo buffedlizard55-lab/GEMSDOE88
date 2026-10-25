@@ -128,8 +128,10 @@ def current_status(root=ROOT):
         'raster_sha256': report['file_sha256'],
         'policy': 'binding-literal-all-registry-v1 + concurrent-lane overlap',
         'run_card': 'registry/tdkl88_run_card.json',
-        'current_review': 'data/repo_review_20261025.json',
+        'current_review': 'data/session_693b10af_run_card.json',
         'current_review_status': 'DUPLICATE_STOP',
+        'research_queue': 'data/hypothesis_queue.json',
+        'historical_review': 'data/repo_review_20261025.json',
         'new_tif_generated': False,
         'new_tif_sha256': None,
         'current_review_note': (

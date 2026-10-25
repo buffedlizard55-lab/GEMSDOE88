@@ -7,11 +7,11 @@ Shared tools only for scoring/writing/validation: vendor/gems57
 src/gems88 (pgtd88 features, shared Poisson-disc emitter, registry list).
 Preregistration: registry/preregistration_pgtd88.json (frozen before any run).
 
-HISTORICAL GUARD DEVIATION: concurrent session ba739e0f recorded a
-DUPLICATE_STOP and proceeded research-only. That exception is revoked by
-IR-88-B4DFA10C-07: the CLI now delegates to the unchanged shared preflight
-BEFORE importing any model/feature code. The archived file and measurements
-remain evidence only, never permission to rerun or submit.
+HISTORICAL GUARD DEVIATION: session 82dbb5e9 printed a negative preflight
+but continued into model imports and generation. IR-88-693B10AF-04 withdraws
+that bypass: the shared preflight now stops this CLI before model/feature
+imports. Preserved peer measurements/artifacts are negative historical
+evidence, never permission to rerun or submit.
 """
 from __future__ import annotations
 
@@ -19,8 +19,8 @@ if __name__ == "__main__":
     import sys as _guard_sys
     from pathlib import Path as _GuardPath
     _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
-    from scripts.generation_guard import inspect as _gi
-    print(_gi())  # recorded; literal-stop irregularity IR-88-PGTD-01 flagged in run card
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
 
 import gc
 import hashlib

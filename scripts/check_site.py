@@ -1012,6 +1012,11 @@ def main(root: Path = ROOT) -> None:
             "MMRX card must stay negative and must not advertise nonexistent docs/downloads paths",
         )
 
+    submit_top = (docs / "SUBMIT.md").read_text().split("<details>", 1)[0]
+    inventory_fraction = f"**{download_audit['total_research_download_pass_count']}/{download_audit['total_published_tiff_count']}**"
+    require(inventory_fraction in submit_top,
+            "Submission guide inventory count is stale against saved-byte audit")
+
     # Every JSON file served under docs/ must be strict RFC-8259 JSON (no NaN/Infinity that breaks browser JSON.parse).
     for docs_json in sorted(docs.rglob("*.json")):
         bad_constants: list[str] = []
