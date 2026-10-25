@@ -16,13 +16,13 @@
 
 ## Ranked Matrix
 
-| Rank | ID | Hypothesis | Expected DTI Gain (bps) | Cost | Status |
+| Rank | ID | Hypothesis | Relative research priority (not a score projection) | Cost | Status |
 |------|----|------------|-------------------------|------|--------|
-| **1** | **H88-XGCE** | **Cross-Gradient Orthogonal Conduit Extraction (gravity × magnetic intersections weighted by dilation)** | **+450 to +700** | **Low** | **SELECTED** |
-| 2 | H88-RADM | Radiometric Alteration Demagnetization Corridor (K/Th + U/Th + magnetic low) | +300 to +500 | Low | Queue |
-| 3 | H88-SLIP | Slip & Dilation Tendency Orientation Filter (SHmax-resolved) | +250 to +450 | Low-Mod | Queue |
-| 4 | H88-THCL | Thermal Conductivity Lateral Contrast (10 km vs 32 km MT) | +200 to +400 | Low | Queue |
-| 5 | H88-CHIK | Coupled Chi-Knickpoint + Curvature Step (10 m DEM fluvial) | +150 to +350 | High (external DEM tiling) | Queue |
+| **1** | **H88-XGCE** | **Cross-Gradient Orthogonal Conduit Extraction (gravity × magnetic intersections weighted by dilation)** | High-priority hypothesis; outcome unvalidated | **Low** | **SELECTED, but negative/UNSCORED** |
+| 2 | H88-RADM | Radiometric Alteration Demagnetization Corridor (K/Th + U/Th + magnetic low) | Moderate-priority hypothesis; untested | Low | Queue |
+| 3 | H88-SLIP | Slip & Dilation Tendency Orientation Filter (SHmax-resolved) | Moderate-priority hypothesis; untested | Low-Mod | Queue |
+| 4 | H88-THCL | Thermal Conductivity Lateral Contrast (10 km vs 32 km MT) | Lower-priority hypothesis; partly overlaps tested DHTC | Low | Queue |
+| 5 | H88-CHIK | Coupled Chi-Knickpoint + Curvature Step (10 m DEM fluvial) | Lower-priority hypothesis; overlaps TDKL/QTSK methods | High (external DEM tiling) | Queue |
 
 ---
 
