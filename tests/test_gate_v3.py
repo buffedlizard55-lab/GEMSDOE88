@@ -146,7 +146,9 @@ def test_decide_matrix():
     uniq_ok = dict(unique_like_for_like=True, unique_literal=False, literal_blockers=["dense"], like_for_like_blockers=[])
     v = gate.decide(portal=ok_portal, uniqueness=uniq_ok, canary_passed=True, holdout_beats_bar=True,
                     name="gems88-new-1", note="short note", used_names=["old"])
-    assert v["ok_to_submit"] and v["ok_to_download"] and "OK TO SUBMIT" in v["label"] and v["informational"]
+    assert not v["ok_to_submit"] and v["ok_to_download"]
+    assert not v["eligible_for_selector"]
+    assert any("literal registry rule" in r for r in v["blocking_reasons"])
     v2 = gate.decide(portal=ok_portal, uniqueness=uniq_ok, canary_passed=True, holdout_beats_bar=False,
                      name="gems88-new-1", note="n", used_names=[])
     assert v2["ok_to_download"] and not v2["ok_to_submit"] and any(r.startswith("HOLDOUT") for r in v2["blocking_reasons"])
@@ -170,3 +172,98 @@ def test_spearman_binary_matches_scipy():
     assert gate.spearman_on_footprint(a, b, fp) == pytest.approx(spearmanr(a.ravel(), b.ravel())[0], abs=1e-9)
     c = rng.random((30, 30)).astype("float32")
     assert gate.spearman_on_footprint(a, c, fp) == pytest.approx(spearmanr(a.ravel(), c.ravel())[0], abs=1e-9)
+
+
+def _decision(**overrides):
+    args = dict(portal={"ok": True, "problems": []},
+                uniqueness={"unique_literal": True, "registry_complete": True,
+                            "surface_checked": True, "literal_blockers": []},
+                canary_passed=True, holdout_beats_bar=True,
+                name="synthetic-only", note="unit test, not geological evidence", used_names=[])
+    args.update(overrides)
+    return gate.decide(**args)
+
+
+def test_local_pass_is_selector_eligibility_not_slot_approval():
+    result = _decision()
+    assert result["eligible_for_selector"] is True
+    assert result["ok_to_submit"] is False
+    assert result["approved_for_weekly_slot"] is False
+    assert "SELECTOR REQUIRED" in result["label"]
+
+
+@pytest.mark.parametrize("key,value", [
+    ("unique_literal", False), ("unique_literal", None),
+    ("registry_complete", False), ("surface_checked", False),
+    ("unique_literal", "true"),
+])
+def test_compatibility_gate_fails_closed(key, value):
+    u = dict(unique_literal=True, registry_complete=True, surface_checked=True)
+    u[key] = value
+    result = _decision(uniqueness=u)
+    assert not result["eligible_for_selector"] and not result["ok_to_submit"]
+
+
+@pytest.mark.parametrize("name,note", [(None, "n"), ("a", None), ("   ", "n"), ("a", " ")])
+def test_invalid_identity_is_blocked_without_exception(name, note):
+    result = _decision(name=name, note=note)
+    assert not result["eligible_for_selector"] and not result["ok_to_submit"]
+
+
+def test_empty_registry_never_unique(world):
+    tmp, fp, _ = world
+    c = tmp / "c.tif"
+    _write(c, _cand(fp, [(10, 10)]))
+    report = gate.uniqueness_report(c, [], fp)
+    assert not report["unique_literal"] and not report["unique_like_for_like"]
+    assert not report["registry_complete"] and not report["surface_checked"]
+
+
+def test_equal_support_different_values_do_not_share_rank_cache(world):
+    tmp, fp, _ = world
+    a = np.zeros((H, W), np.float32)
+    a[fp] = np.linspace(0.01, 1.0, int(fp.sum()))
+    b = np.where(fp, 1.01 - a, 0).astype(np.float32)
+    c, one, two = (tmp / n for n in ("c.tif", "one.tif", "two.tif"))
+    for p, values in ((c, a), (one, a), (two, b)):
+        _write(p, values)
+    report = gate.uniqueness_report(c, [("one", one), ("two", two)], fp, surface=a)
+    r1, r2 = report["rows"]
+    assert "duplicate_of" not in r2
+    assert r1["rho_final"] == pytest.approx(1.0)
+    assert r2["rho_final"] == pytest.approx(-1.0)
+
+
+def test_surface_positive_support_is_checked_before_placement(world):
+    tmp, fp, _ = world
+    cand, prior = tmp / "c.tif", tmp / "p.tif"
+    a = _cand(fp, [(10, 10)])
+    b = _cand(fp, [(40, 65)])
+    _write(cand, a)
+    _write(prior, b)
+    surface = a + b
+    report = gate.uniqueness_report(cand, [("prior", prior)], fp, surface=surface)
+    row = report["rows"][0]
+    assert report["surface_checked"] is True
+    assert row["literal_overlap_3px"] == 0
+    assert row["surface_literal_overlap_3px"] == .5
+    surface = b + a * 0  # placement no longer resembles its input: both phases bind
+    report = gate.uniqueness_report(cand, [("prior", prior)], fp, surface=surface)
+    assert report["rows"][0]["surface_literal_overlap_3px"] == 1
+    assert report["unique_literal"] is False
+
+
+@pytest.mark.parametrize("kind", ["shape", "nan"])
+def test_invalid_surface_rejected(world, kind):
+    tmp, fp, _ = world
+    c = tmp / "c.tif"
+    a = _cand(fp, [(10, 10)])
+    _write(c, a)
+    surface = a[:-1] if kind == "shape" else np.where(fp, np.nan, 0)
+    with pytest.raises(ValueError, match="surface"):
+        gate.uniqueness_report(c, [], fp, surface=surface)
+
+
+def test_empty_effective_dot_request(world):
+    _, fp, _ = world
+    assert not gate.effective_dots(fp.astype(np.float32), fp, 0).any()

@@ -1,5 +1,13 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> **2026-10-24 protocol-integrity review: DOWNLOAD FOR RESEARCH — YES; SUBMIT — NO / DO NOT SUBMIT.**
+> [Download independently re-audited research TIFF](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [One-TIFF ZIP](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [Automated run card](docs/data/protocol_review_43d08c7a.json) · [Review and ranked future geological contrasts](research/review-43d08c7a-20261024.md) · [Executive submission guide](docs/executive-summary.html).
+>
+> **No new submission was generated in this review.** Fresh pinned-byte measurement reproduces the universal literal overlap blocker. The requested “unique TIFF” and “stop above 70% overlap with any registry raster” cannot both be satisfied with this registry. No dense-raster exemption was assumed. Existing files below are historical research deliverables, not approved slots. No new HOLDOUT-DTI or ORGANIZER-CONFIRMED score is claimed.
+>
+> Fixed the legacy v3 dense-prior approval bypass, inverted-AUC canary bypass, continuous-raster cache collision, missing surface/empty registry checks, and package import. All local gates keep slot selection separate. Recheck: `.venv/bin/python scripts/audit_protocol_integrity.py`; `--require-submit` must return **2**, not success. See [PROMPT.md](PROMPT.md) for the standing operating prompt and acceptance criteria; read it at every session start. **Maximize P(Win) · Own the Outcome:** report blockers, do not manufacture another cosmetically distinct candidate. Official reference supports CPU training; a GPU is not mandatory.
+
+
 > ## ⛔ Latest session lane (2026-10-24): `H88-SHORE-HINGE` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (binding literal `17GEMSDOE` dense witness & holdout structural-zero; prior H88-SAR-CSD archived below)
 > [⬇ **Download H88-SHORE-HINGE GeoTIFF (`.tif`, 777 KB, research only)**](docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`)**](docs/downloads/gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/shore_hinge_run_card.json) · [5 Ranked Hypotheses](research/candidate-hypotheses-20261024-shore-even.md) · [PhD Forensic Answer](research/h33-shore-phd-answer-20261024.md) · [Executive Submission Guide](docs/executive-summary.html).
 >
