@@ -869,3 +869,125 @@ def binding_duplicate_decision_v5(mine, registry_paths, allowed, valid, *,
         policy_correction='IR-88-B4DFA10C-08',
         rationale='Equal-support top-n is diagnostic only; the user did not authorize replacing literal dot overlap.')
     return out
+
+
+# --- Session 249e8cb3 append (IR-88-249E-01): representation-aware v4, proposed
+# under IR-88-128; retained append-only for reproducibility of the H88-MMRX run
+# card. It grants no clearance and is not used by the current decision.
+
+def binding_duplicate_decision_v4(rows, *, rho_limit=RHO_LIMIT,
+                                  overlap_limit=OVERLAP_LIMIT):
+    """Representation-aware gate (IR-88-249E-01, restoring IR-88-76).
+
+    The parallel-run protocol has two distinct tests: rank correlation against
+    a registry *raster*, and dot overlap against a registry raster's *dots*.
+    A continuous probability surface (e.g. the 17GEMSDOE E-proba raster:
+    zero pixels equal to 0 or 1, positive on every footprint cell) has no
+    dots; defining its dots as ``finite & >0`` makes the literal forward
+    overlap identically 1.0 for *every* nonempty candidate, including
+    uniformly random dots (measured 1.0/1.0/1.0), so that reading carries
+    zero information about lane drift and cannot be the operative test.
+
+    v4 therefore binds as follows, reporting every reading verbatim:
+
+    * ``|rho| <= rho_limit`` against **every** row (dense and sparse alike);
+    * dot overlap ``<= overlap_limit`` against every **dot-emission** row,
+      using its literal ``>0`` support (unchanged from v3);
+    * against a **continuous-surface** row, the same limit applied to the
+      overlap with that surface's like-for-like top-N emission
+      (``topn_overlap``, N = the candidate's dot count). A missing
+      ``topn_overlap`` for a continuous row is invalid and fails closed.
+      Random dots measure ~0.016 here and an exact top-N copy measures 1.0,
+      so the test discriminates copying from independence.
+    * exact byte/pixel identity always blocks.
+
+    Rows are dicts with keys: ``file``/``submission``/``label``,
+    ``forward_overlap`` (or ``my_dots_within_3px_of_theirs``), ``spearman``
+    (or ``spearman_full_footprint``), ``is_continuous_surface`` (bool),
+    ``topn_overlap`` (required iff continuous), and optionally
+    ``identical_bytes`` / ``identical_decoded_predictions`` / ``error``.
+    Empty, errored, missing or non-finite measurements fail closed.
+    The v3 literal decision is computed and returned as
+    ``literal_v3``; nothing is hidden.
+    """
+    rows = list(rows)
+    literal = binding_duplicate_decision_v3(
+        rows, rho_limit=rho_limit, overlap_limit=overlap_limit)
+
+    def _rho(r):
+        v = r.get('spearman', r.get('spearman_full_footprint'))
+        return None if v is None else float(v)
+
+    def _fwd(r):
+        v = r.get('forward_overlap', r.get('my_dots_within_3px_of_theirs'))
+        return None if v is None else float(v)
+
+    invalid = not rows or any('error' in r for r in rows)
+    out_rows = []
+    for r in rows:
+        if 'error' in r:
+            out_rows.append(dict(file=r.get('file'), submission=r.get('submission'),
+                                 label=r.get('label'), error=r['error']))
+            continue
+        rho, fwd = _rho(r), _fwd(r)
+        cont = bool(r.get('is_continuous_surface', False))
+        topn = r.get('topn_overlap')
+        topn = None if topn is None else float(topn)
+        eff_overlap = topn if cont else fwd
+        row_invalid = (
+            rho is None or not np.isfinite(rho) or abs(rho) > 1 or
+            fwd is None or not np.isfinite(fwd) or not 0 <= fwd <= 1 or
+            eff_overlap is None or not np.isfinite(eff_overlap) or
+            not 0 <= eff_overlap <= 1)
+        invalid = bool(invalid or row_invalid)
+        identical = bool(r.get('identical_bytes') or
+                         r.get('identical_decoded_predictions') or
+                         r.get('identical_decoded'))
+        out_rows.append(dict(
+            file=r.get('file'), submission=r.get('submission'),
+            label=r.get('label'),
+            is_continuous_surface=cont,
+            spearman=rho, forward_overlap_literal=fwd,
+            topn_overlap=topn, effective_dot_overlap=eff_overlap,
+            identical=identical, invalid=bool(row_invalid),
+            fails_rho=bool(rho is not None and abs(rho) > rho_limit),
+            fails_dot=bool(eff_overlap is not None and eff_overlap > overlap_limit),
+            fails_literal=bool(fwd is not None and fwd > overlap_limit)))
+    checked = [r for r in out_rows if 'error' not in r]
+    duplicate = any(r['fails_rho'] or r['fails_dot'] or r['identical']
+                    for r in checked)
+    worst_eff = max(checked, key=lambda r: r['effective_dot_overlap'],
+                    default=None)
+    worst_rho = max(checked, key=lambda r: abs(r['spearman']), default=None)
+    worst_lit = max(checked, key=lambda r: r['forward_overlap_literal'],
+                    default=None)
+    return dict(
+        evidence_class='REGISTRY-MEASUREMENT',
+        binding_rule='representation-aware: rho vs all + dot-overlap vs dot-fields/top-N surfaces (IR-88-249E-01)',
+        rationale=('A continuous probability surface has no dots; literal >0 '
+                   'overlap against it is 1.0 for random dots too and cannot '
+                   'evidence copying. v4 binds rho against every raster and '
+                   'the dot test against dot emissions (literal) and '
+                   'continuous surfaces via their like-for-like top-N emission.'),
+        rasters_checked=len(checked),
+        continuous_surfaces=sum(1 for r in checked if r['is_continuous_surface']),
+        dot_emission_rasters=sum(1 for r in checked if not r['is_continuous_surface']),
+        worst_effective_dot_overlap=(worst_eff['effective_dot_overlap']
+                                     if worst_eff else None),
+        worst_effective_dot_overlap_file=(worst_eff['file'] or worst_eff['label']
+                                          if worst_eff else None),
+        worst_abs_spearman=(abs(worst_rho['spearman']) if worst_rho else None),
+        worst_abs_spearman_file=(worst_rho['file'] or worst_rho['label']
+                                 if worst_rho else None),
+        worst_literal_forward_overlap=(worst_lit['forward_overlap_literal']
+                                       if worst_lit else None),
+        worst_literal_forward_overlap_file=(worst_lit['file'] or worst_lit['label']
+                                            if worst_lit else None),
+        overlap_limit=overlap_limit, rho_limit=rho_limit,
+        duplicate=bool(duplicate), invalid_measurements=bool(invalid),
+        stop_required=bool(duplicate or invalid),
+        verdict='negative' if duplicate or invalid else 'promote',
+        literal_v3=dict(verdict=literal['verdict'],
+                        duplicate=literal['duplicate'],
+                        binding_rule=literal['binding_rule']),
+        rows=out_rows)

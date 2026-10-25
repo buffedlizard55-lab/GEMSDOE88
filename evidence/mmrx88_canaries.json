@@ -1,0 +1,200 @@
+{
+  "passed": true,
+  "threshold": 0.9,
+  "features_tested": 123,
+  "zero_catalogue_features_tested": 100,
+  "fold_visible_features_tested": 23,
+  "max_symmetric_auc": 0.769681,
+  "max_feature": "d2 (seed=20)",
+  "max_zero_catalogue_symmetric_auc": 0.58957,
+  "top15_all_features": [
+    {
+      "feature": "d2",
+      "group": "VIS-22",
+      "roc_auc": 0.230319,
+      "symmetric_auc": 0.769681
+    },
+    {
+      "feature": "d_perp",
+      "group": "VIS-22",
+      "roc_auc": 0.238398,
+      "symmetric_auc": 0.761602
+    },
+    {
+      "feature": "d",
+      "group": "VIS-22",
+      "roc_auc": 0.246586,
+      "symmetric_auc": 0.753414
+    },
+    {
+      "feature": "d_over_w",
+      "group": "VIS-22",
+      "roc_auc": 0.266696,
+      "symmetric_auc": 0.733304
+    },
+    {
+      "feature": "relay_facing",
+      "group": "VIS-22",
+      "roc_auc": 0.616583,
+      "symmetric_auc": 0.616583
+    },
+    {
+      "feature": "coherence",
+      "group": "VIS-22",
+      "roc_auc": 0.409391,
+      "symmetric_auc": 0.590609
+    },
+    {
+      "feature": "relay_ratio",
+      "group": "VIS-22",
+      "roc_auc": 0.410127,
+      "symmetric_auc": 0.589873
+    },
+    {
+      "feature": "lidar_scarp_dipole",
+      "group": "PHYS-44",
+      "roc_auc": 0.58957,
+      "symmetric_auc": 0.58957
+    },
+    {
+      "feature": "log_len",
+      "group": "VIS-22",
+      "roc_auc": 0.411221,
+      "symmetric_auc": 0.588779
+    },
+    {
+      "feature": "d_par_abs",
+      "group": "VIS-22",
+      "roc_auc": 0.412872,
+      "symmetric_auc": 0.587128
+    },
+    {
+      "feature": "hgvc_lidar_bajada_polarity",
+      "group": "HGVC-20",
+      "roc_auc": 0.586622,
+      "symmetric_auc": 0.586622
+    },
+    {
+      "feature": "topo10_curv_prof",
+      "group": "PHYS-44",
+      "roc_auc": 0.584837,
+      "symmetric_auc": 0.584837
+    },
+    {
+      "feature": "psgv_lidar_face_polarity_orth",
+      "group": "PSGV-20",
+      "roc_auc": 0.584756,
+      "symmetric_auc": 0.584756
+    },
+    {
+      "feature": "scarp_rel_cos2",
+      "group": "VIS-22",
+      "roc_auc": 0.58437,
+      "symmetric_auc": 0.58437
+    },
+    {
+      "feature": "cos2d",
+      "group": "VIS-22",
+      "roc_auc": 0.418526,
+      "symmetric_auc": 0.581474
+    }
+  ],
+  "mmrx16_features": [
+    {
+      "feature": "mmrx_depthstep_aligned",
+      "group": "MMRX-16",
+      "roc_auc": 0.539823,
+      "symmetric_auc": 0.539823
+    },
+    {
+      "feature": "mmrx_rtp_step",
+      "group": "MMRX-16",
+      "roc_auc": 0.534425,
+      "symmetric_auc": 0.534425
+    },
+    {
+      "feature": "mmrx_mimic_contact",
+      "group": "MMRX-16",
+      "roc_auc": 0.527512,
+      "symmetric_auc": 0.527512
+    },
+    {
+      "feature": "mmrx_rtp_corr0",
+      "group": "MMRX-16",
+      "roc_auc": 0.473675,
+      "symmetric_auc": 0.526325
+    },
+    {
+      "feature": "mmrx_rtp_corr_best",
+      "group": "MMRX-16",
+      "roc_auc": 0.475869,
+      "symmetric_auc": 0.524131
+    },
+    {
+      "feature": "mmrx_grav_varratio_abs",
+      "group": "MMRX-16",
+      "roc_auc": 0.51472,
+      "symmetric_auc": 0.51472
+    },
+    {
+      "feature": "mmrx_rtp_gain_blur",
+      "group": "MMRX-16",
+      "roc_auc": 0.514364,
+      "symmetric_auc": 0.514364
+    },
+    {
+      "feature": "mmrx_rtp_gain",
+      "group": "MMRX-16",
+      "roc_auc": 0.513844,
+      "symmetric_auc": 0.513844
+    },
+    {
+      "feature": "mmrx_rtp_gain_x_coh",
+      "group": "MMRX-16",
+      "roc_auc": 0.513578,
+      "symmetric_auc": 0.513578
+    },
+    {
+      "feature": "mmrx_grav_gain",
+      "group": "MMRX-16",
+      "roc_auc": 0.512549,
+      "symmetric_auc": 0.512549
+    },
+    {
+      "feature": "mmrx_cross_gain_min",
+      "group": "MMRX-16",
+      "roc_auc": 0.510011,
+      "symmetric_auc": 0.510011
+    },
+    {
+      "feature": "mmrx_rtp_best_x_step",
+      "group": "MMRX-16",
+      "roc_auc": 0.493778,
+      "symmetric_auc": 0.506222
+    },
+    {
+      "feature": "mmrx_rtp_shift_best",
+      "group": "MMRX-16",
+      "roc_auc": 0.495209,
+      "symmetric_auc": 0.504791
+    },
+    {
+      "feature": "mmrx_grav_corr_best",
+      "group": "MMRX-16",
+      "roc_auc": 0.503406,
+      "symmetric_auc": 0.503406
+    },
+    {
+      "feature": "mmrx_rtp_varratio_abs",
+      "group": "MMRX-16",
+      "roc_auc": 0.498008,
+      "symmetric_auc": 0.501992
+    },
+    {
+      "feature": "mmrx_rtp_shift_abs",
+      "group": "MMRX-16",
+      "roc_auc": 0.501921,
+      "symmetric_auc": 0.501921
+    }
+  ]
+}

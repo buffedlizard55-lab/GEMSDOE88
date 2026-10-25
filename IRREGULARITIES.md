@@ -10,6 +10,39 @@
 
 ---
 
+# Session irregularities — session 249e8cb3 (H88-MMRX), 2026-10-25 (concurrent negative lane)
+
+Executed against `3778c1f` and merged after two further main revisions; this lane changes no
+current decision state. Records: [session review](research/review-249e8cb3-mmrx88-20261025.md),
+[run card](registry/mmrx88_run_card.json).
+
+1. **IR-88-249E-01 — v4 retained append-only for reproducibility; grants nothing.**
+   `binding_duplicate_decision_v4` was appended to `vendor/gems57/uniqueness.py` exactly per the
+   IR-88-128 recommendation (classify dot-fields vs continuous surfaces; like-for-like top-N for
+   surfaces; literal v3 nested verbatim). Main's policy text has since moved twice (equal-support
+   v5 for SDTL, then the literal-equivalent v5 binding in session b4dfa10c); on each merge v4 was
+   re-appended so this session's recorded measurements stay reproducible byte-for-byte. Pin chain:
+   `356dba55` → `9c9cb0b5` (SDTL v5) → `544781a2` (b4dfa10c) → merged `6631d18e` (this lane).
+2. **IR-88-249E-02 — MMRX emission duplicates the HGVC lane (repeat of IR-88-127).**
+   Despite a novel, grep-clean feature channel, 79.76% of the candidate's final dots lie within
+   3 px of H88-HGVC production dots (> 0.70 limit; PSGV previously failed at 0.7976 the same way).
+   Root cause: the shared allocator reselects the same catalogue-anchored crest cells; feature
+   novelty does not survive to emission. HOLDOUT-DTI also lost independently
+   (0.188378 vs bar 0.205991, 0/8 folds). Verdict `negative`; file carries `-DO-NOT-SUBMIT`.
+3. **IR-88-249E-03 — Disclosed deviations from the frozen preregistration (`PREREG-20261025-MMRX88`).**
+   (a) Implemented geometry (σ3/σ8 tensor incl. depth, along-strike smoothing) differs from the
+   frozen text (σ1.5/σ4, σ3 window) because the text version failed synthetic validation; the
+   preregistration JSON was not rewritten. (b) The prose names Exp02 the candidate architecture
+   with Exp03 as alternative-fuse slot, while the runner designated Exp03 pre-run; redesignation
+   after folds was refused (and Exp02 loses to the bar pooled regardless). (c) `--fast-controls`:
+   BPWD recomputed exactly on fold 1 (0.191933 ≡ stored), stored BPWD scores used thereafter;
+   candidate-vs-BPWD is therefore a point delta with per-fold deltas, not a block-paired CI.
+4. **IR-88-249E-04 — Publication scope of the negative artifact.** The MMRX TIFF/ZIP are published
+   repo-side only (`submissions/`), not added to `docs/downloads/` by this lane. The new runner
+   carries the shared generation preflight as required (the historical 89-entry guard snapshot in
+   the d0c3adeb record remains untouched; current code guards supersede it by inclusion).
+
+---
 # Historical concurrent irregularities - session ba739e0f, 2026-10-25
 
 1. **IR-88-BA739E0F-01 - Research generation after a recorded guard stop (deviation, no clearance).** `scripts/run_mfs88_experiment.py` records `generation_guard.inspect()` = `DUPLICATE_STOP` in `evidence/mfs88_preflight.json`, then proceeds under this session's explicit generate-and-validate instruction, contrary to AGENTS.md guard-enforcement for new CLIs. The product is hard-blocked from any slot (`ok_to_submit=false` in runner, `scripts/validate_mfs88.py`, run card, filename, site; `--require-submit` exit 2; 0 slots). Selector/reviewer must adjudicate whether research generation under a vacuous literal rule is acceptable; the deviation is disclosed, not hidden.
