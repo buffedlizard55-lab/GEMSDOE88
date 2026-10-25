@@ -12,7 +12,21 @@
 
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
-> ## ⛔ Latest session lane (2026-10-24): `H88-DHTC` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (like-for-like unique 0.5237 <= 0.70; canary pass 0.5903; held under literal `17GEMSDOE` dense witness; 0 slots spent)
+> ## ✅ Latest session lane (2026-10-25): `H88-XGCE` — **DOWNLOAD FOR RESEARCH: YES — ONE-CLICK PORTAL-VALID ZEROS [0,1]** · SUBMIT: **NO — DO NOT SUBMIT (literal dense-witness FAIL-CLOSED, 0 slots spent; like-for-like UNIQUE 0.204 ≤0.70)**
+> [⬇ **Download H88-XGCE GeoTIFF (`.tif`, 85 KB, portal-valid zeros — ONE CLICK)**](docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`, 37 KB)**](docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/xgce88_run_card.json) · [5 Ranked Hypotheses](research/candidate-hypotheses-20261025-xgce.md) · [PhD Forensic Analysis of H33 0.2778 & Can XGCE Beat It?](research/h33-forensics-and-xgce-phd-analysis.md) · [Executive Submission Guide](docs/executive-summary.html). Validate: `python3 scripts/validate_xgce88.py` (exit 0 research; `--require-submit` exit 2).
+>
+> | Gate / Field | Machine Result | Binding Evidence |
+> | :--- | :--- | :--- |
+> | **OK to download for research?** | **YES — ONE-CLICK PORTAL-VALID ✓** | `1` band `float32`, `EPSG:32611`, `3730×3292`, exact `sample_submission.tif` geotransform `(100,0,243350,0,-100,4508550)`, `0` NaN/Inf, all 12,279,160 values in `[0.0, 1.0]` (`{0,1}` binary), `nodata=None`, `30,000` positive pixels (`0` outside footprint, `0` on `existing_faults.tif`, min `d_cat=3.00 px`), LZW deflate 256×256 striped, byte-identical single-member ZIP. **Fixes** `Predicted values must be in range [0,1]`: zeros outside with `nodata=None` passes strict `(a≥0 & a≤1).all()` where old `nan`-outside fails. |
+> | **Holdout / Fingerprint / Uniqueness** | **FINGERPRINT PASS · LIKE-FOR-LIKE UNIQUE (0.204 ≤0.70) · CANARY PASS (0.568 ≤0.90)** | Fingerprint `share_gt25=49.50% ≥35%`, `share_le2=0.0%`, median `24.7 px`; like-for-like discriminating `max 3-px overlap 0.2037 ≤0.70` vs `gems80_h80_dpvc`, `max |ρ| 0.0092 ≤0.90` across 17 discriminating rasters; raw canary 5/5 ≤0.90; **HOLDOUT-DTI UNSCORED** (structural-zero regime: every `>3px` raster `0.0000` vs control `0.1085`, H33 `0.0039`; IR-88-20/35); literal `1.0000 >0.70` vs dense space-filling witness. |
+> | **OK to submit to competition?** | **NO — `DO NOT SUBMIT` (`ok_to_submit = false`)** | Binding literal dense-witness rule `1.0>0.70` enforces FAIL-CLOSED (IR-88-113); verdict `negative`. `0` weekly slots spent. Like-for-like UNIQUE is reported separately. |
+> | **Prepared Submission Name (`29/140` chars)** | `GEMSDOE88-XGCE-30000-B4FFC782` | Byte-unique (max discriminating overlap `0.204 ≤0.70`). |
+> | **Prepared Submission Note (`104/140` chars)** | `H88-XGCE grav×mag cross-grad orthogonal conduit 30000 dots; fingerprint gt25 0.49 canary 0.568; UNSCORED` | `≤140` chars; labels fingerprint + canary + UNSCORED. |
+> | **SHA-256 (`.tif` / `.zip`)** | `199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c` | ZIP: `eba566f9f960017f98d9502ee5026b3a48b2b3b59a0d6e320471f2ddd6e0fb5f` |
+> | **Live Portal Status** | **`UNSCORED` (`0` weekly slots spent by agents)** | No `ORGANIZER-CONFIRMED` score exists for `H88-XGCE`; `H33 0.2778` remains `[OWNER]` unverified, leaderboard top `0.4413` snapshot 2026-10-24. See forensic analysis for why sparsity+dilation explains H33 lead. |
+>
+
+> ## ⛔ Prior session lane (2026-10-24): `H88-DHTC` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (like-for-like unique 0.5237 <= 0.70; canary pass 0.5903; held under literal `17GEMSDOE` dense witness; 0 slots spent)
 > [⬇ **Download H88-DHTC GeoTIFF (`.tif`, 81 KB, portal-valid zeros)**](docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`, 32 KB)**](docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/dhtc88_run_card.json) · [5 Ranked Hypotheses](research/candidate-hypotheses-20261024-dhtc88.md) · [PhD Forensic Analysis of H33 0.2778](research/h33-forensics-and-dhtc-phd-analysis.md) · [Executive Submission Guide](docs/executive-summary.html). Validate: `python3 scripts/validate_dhtc88.py` (exit 0 research; `--require-submit` exit 2).
 >
 > | Gate / Field | Machine Result | Binding Evidence |
