@@ -1,0 +1,44 @@
+{
+  "stamp": "20261025T161406Z",
+  "results": {
+    "exp1_consensus_only": {
+      "n_dots": 37654,
+      "share_gt25": 0.4174058532957986,
+      "share_le3": 0.0,
+      "median_dcat": 20.39607810974121,
+      "overlap_vs_h33": 0.5064003824294896,
+      "corroborated_ge2": 0.7956126839114038,
+      "mean_surface": 0.5017016530036926
+    },
+    "exp2_consensus_plus_ridge": {
+      "n_dots": 37654,
+      "share_gt25": 0.4174058532957986,
+      "share_le3": 0.0,
+      "median_dcat": 20.248456954956055,
+      "overlap_vs_h33": 0.4874116959685558,
+      "corroborated_ge2": 0.7227386200669251,
+      "mean_surface": 0.5296825766563416
+    },
+    "exp3_ridge_only": {
+      "n_dots": 37654,
+      "share_gt25": 0.4174058532957986,
+      "share_le3": 0.0,
+      "median_dcat": 20.59126091003418,
+      "overlap_vs_h33": 0.2037499336059914,
+      "corroborated_ge2": 0.15775216444468051,
+      "mean_surface": 0.7344204187393188
+    }
+  },
+  "chosen": "exp2_consensus_plus_ridge",
+  "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "5a4f4a530c81210d70dc5cd01481602227d7d84dee5428cea98ae0638f2d855d",
+  "historical_unmarked_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "historical_unmarked_zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "decision": "WITHDRAWN_LITERAL_DUPLICATE_AND_HOLDOUT_FAILURE",
+  "policy_correction": "IR-88-3C391D97-01"
+}

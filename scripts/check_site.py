@@ -7,6 +7,8 @@ import hashlib
 from html.parser import HTMLParser
 import json
 from pathlib import Path
+import posixpath
+import re
 import sys
 import zipfile
 from urllib.parse import unquote, urlsplit
@@ -56,6 +58,7 @@ def main(root: Path = ROOT) -> None:
             "sources.html",
             "mdc88/index.html",
             "mdc88/executive-summary.html",
+            *(("con88.html",) if (docs / "con88.html").is_file() else ()),
         )
     ]
     card = json.loads((root / "registry/mvrd_run_card.json").read_text())
@@ -499,6 +502,13 @@ def main(root: Path = ROOT) -> None:
             url = urlsplit(ref)
             if url.scheme or url.netloc or not url.path:
                 continue
+            rel_page_parent = page.parent.relative_to(docs).as_posix()
+            joined_ref = posixpath.join("" if rel_page_parent == "." else rel_page_parent, unquote(url.path))
+            norm_ref = posixpath.normpath(joined_ref)
+            require(
+                norm_ref != ".." and not norm_ref.startswith("../") and not norm_ref.startswith("/"),
+                f"{page.relative_to(docs)} escapes docs/ Pages root: {ref}",
+            )
             target = page.parent / unquote(url.path)
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
@@ -544,6 +554,7 @@ def main(root: Path = ROOT) -> None:
         directory = docs / row.get("publication_directory", "downloads")
         require(row["format_valid"] is True and row["research_download_ok"] is True
                 and row["ok_to_submit"] is False
+                and row.get("cleared_by_con88_gates") is False
                 and sha256(directory / row["file"]) == row["sha256"]
                 and sha256(directory / row["zip_file"]) == row["zip_sha256"],
                 f"Published research bytes or negative audit changed: {directory.name}/{row['file']}")
@@ -664,10 +675,10 @@ def main(root: Path = ROOT) -> None:
     for page_text in (index, executive):
         require(
             page_text.index('id="mtas-review"') < page_text.index('class="archive-lanes"')
-            and 'NO SUBMISSION-CLEARED TIFF: H88-GTD NEGATIVE — DO NOT SUBMIT' in page_text
-            and 'data/gtd88_run_card.json' in page_text
+            and 'NO NEW TIFF: DUPLICATE — STOP' in page_text
+            and 'data/mtas88_run_card.json' in page_text
             and mtas["archived_research_download"]["sha256"] in page_text,
-            "Pages must lead with the H88-GTD negative stop and a marked historical download",
+            "Pages must lead with the MTAS no-new-file stop and a marked historical download",
         )
     js = (docs / "assets/site.js").read_text()
     require(
@@ -996,6 +1007,89 @@ def main(root: Path = ROOT) -> None:
         "VCAZ SHA-256 in pages",
     )
     require("fetch('data/vcaz88_run_card.json'" in js, "site.js must verify vcaz88_run_card.json")
+
+    if (docs / "data/mmrx88_run_card.json").is_file():
+        mmrx_card = json.loads((root / "registry/mmrx88_run_card.json").read_text())
+        mmrx_web = json.loads((docs / "data/mmrx88_run_card.json").read_text())
+        require(mmrx_card == mmrx_web, "Pages MMRX card differs from canonical registry card")
+        require(
+            mmrx_card["verdict"] == "negative"
+            and mmrx_card["ok_to_submit"] is False
+            and mmrx_card["ok_to_download"] is False
+            and mmrx_card["download"] is None
+            and mmrx_card["zip_download"] is None,
+            "MMRX card must stay negative and must not advertise nonexistent docs/downloads paths",
+        )
+
+    submit_top = (docs / "SUBMIT.md").read_text().split("<details>", 1)[0]
+    inventory_fraction = f"**{download_audit['total_research_download_pass_count']}/{download_audit['total_published_tiff_count']}**"
+    require(inventory_fraction in submit_top,
+            "Submission guide inventory count is stale against saved-byte audit")
+
+    # Every JSON file served under docs/ must be strict RFC-8259 JSON (no NaN/Infinity that breaks browser JSON.parse).
+    for docs_json in sorted(docs.rglob("*.json")):
+        bad_constants: list[str] = []
+        json.loads(docs_json.read_text(encoding="utf-8"), parse_constant=bad_constants.append)
+        require(
+            not bad_constants,
+            f"{docs_json.relative_to(docs)} contains non-RFC-8259 JSON constants: {bad_constants[:3]}",
+        )
+
+    # Guard local links in Markdown files served under docs/ (e.g., docs/research/*.md).
+    md_link_re = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+    inline_code_re = re.compile(r"`[^`]*`")
+    for md_path in sorted(docs.rglob("*.md")):
+        rel_md = md_path.relative_to(docs)
+        in_fence = False
+        for line_no, raw_line in enumerate(md_path.read_text(encoding="utf-8").splitlines(), 1):
+            stripped = raw_line.lstrip()
+            if stripped.startswith(("```", "~~~")):
+                in_fence = not in_fence
+                continue
+            if in_fence:
+                continue
+            cleaned = inline_code_re.sub("", raw_line)
+            for match in md_link_re.finditer(cleaned):
+                ref = match.group(1).strip().split()[0]
+                parsed_url = urlsplit(ref)
+                if parsed_url.scheme or parsed_url.netloc or not parsed_url.path:
+                    continue
+                rel_parent = rel_md.parent.as_posix()
+                joined = posixpath.join("" if rel_parent == "." else rel_parent, unquote(parsed_url.path))
+                norm = posixpath.normpath(joined)
+                require(
+                    norm != ".." and not norm.startswith("../") and not norm.startswith("/"),
+                    f"{rel_md}:{line_no} escapes docs/ Pages root: {ref}",
+                )
+                require(
+                    (docs / norm).exists(),
+                    f"{rel_md}:{line_no} has broken local Markdown link: {ref}",
+                )
+
+    sub_dir = root / "submissions"
+    if sub_dir.is_dir() and not sub_dir.is_symlink():
+        sub_tifs = sorted(p for p in sub_dir.iterdir() if p.is_file() and p.suffix.lower() in {".tif", ".tiff"})
+        sub_zips = {p.name for p in sub_dir.iterdir() if p.is_file() and p.suffix.lower() == ".zip"}
+        require(
+            not any(p.is_symlink() for p in sub_dir.iterdir()),
+            "Symlinks are forbidden inside submissions/",
+        )
+        require(
+            {t.with_suffix(".zip").name for t in sub_tifs} == sub_zips,
+            "submissions/ TIFF and ZIP archives must be paired 1-for-1",
+        )
+        for sub_tif in sub_tifs:
+            sub_zip = sub_tif.with_suffix(".zip")
+            require(
+                "DO-NOT-SUBMIT" in sub_tif.name and "DO-NOT-SUBMIT" in sub_zip.name,
+                f"submissions/ archive lacks DO-NOT-SUBMIT marker: {sub_tif.name}",
+            )
+            with zipfile.ZipFile(sub_zip) as zf:
+                require(
+                    zf.namelist() == [sub_tif.name] and zf.read(sub_tif.name) == sub_tif.read_bytes(),
+                    f"submissions/ ZIP member mismatch or missing DO-NOT-SUBMIT inside {sub_zip.name}",
+                )
+
     print(
         "PASS: canonical decision first, H88-BPWD record, H88-VCAZ, research bytes, archived records, Pages links and negative gates agree"
     )

@@ -1,0 +1,24 @@
+{
+  "schema": "gems88.archive-repair.v1",
+  "session": "838cc402",
+  "branch": "arena/838cc402-gemsdoe88",
+  "date_utc": "2026-10-25",
+  "irregularity_id": "IR-88-838C-02",
+  "new_tiffs_generated": 0,
+  "repairs": [
+    {
+      "file": "submissions/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "tif_sha256_unchanged": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
+      "archive": "submissions/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip",
+      "source_already_repaired_archive": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip",
+      "old_zip_sha256": "8fa123568a45c2b81355ca4bac97adc88386517ae3024284542bf9a0c585c3c2",
+      "new_zip_sha256": "0917eec141a7d5813e15442c221739a2626c128b647977e40766fe94e0f1dc4e",
+      "old_member": "gems88-ibl88-basin-lattice-37654-20261024-zeros.tif",
+      "new_member": "gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "reason": "Session d0c3adeb repaired docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip (evidence/archive_repairs_20261025.json) so extraction preserves the DO-NOT-SUBMIT label, but overlooked the duplicate archive in submissions/. Syncing the already-repaired ZIP preserves exact TIFF bytes (0 new predictions) and brings all 20/20 submissions/ pairs into full audit_downloads.audit_one compliance."
+    }
+  ],
+  "verified_submissions_directory_count": 20,
+  "all_submissions_research_download_ok": true,
+  "all_submissions_ok_to_submit_false": true
+}

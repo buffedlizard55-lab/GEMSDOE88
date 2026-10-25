@@ -19,3 +19,15 @@ this user's unchanged literal protocol. Dense/saturated priors still bind. Equal
 helpers are diagnostic only; public v5 delegates to the shared literal v3 decision.
 SDTL is preserved historical research, never the currently cleared release. Run, build
 and publish entrypoints have no active-lane exemption. See the corrective evidence card.
+
+
+**Session 693b10af / IR-88-693B10AF-01–03:** use the constrained `requirements.txt` CPU environment (Rasterio 1.4.4 / GDAL 3.10.3 is required for the historical byte-exact encoder check; never relax pinned raster hashes). Read `registry/hypothesis_queue.json` and run `scripts/audit_research_state.py` before ranking a lane. MMRX, MTAS and MFS are already historical evaluated negatives, not untested first choices. Source snapshot drift requires reviewing the new code/evidence before updating the fingerprint, not blindly regenerating a hash. All three legacy GHMD cards must remain identical, historical/negative and unreceipted; the old test asserting `promote` and an organizer-confirmed H33 value was wrong and has been corrected. The dated `review_repo_20261025.py` replays historical hypothesis/source-access context; it does not fetch sources or establish the current queue. Latest session record: `registry/session_693b10af_run_card.json`.
+
+**Session 96f5f523 / IR-88-96F5F523-01:** CON88's equal-support generation,
+validator and publication exemptions were invalid and are removed. Its existing
+TIFF is negative research with unchanged bytes and a repaired negative filename
+and ZIP member. `con88_preflight` is only a shared-literal-guard compatibility
+alias. `validate_con88.py` is read-only, not a fitting or clearance path. Never
+restore the historical `G1 && G2 && G3 && canary` approval: it omitted holdout
+improvement and used a withdrawn registry exception. Current review evidence is
+`registry/session_587c7f22_run_card.json` (integrating `session_96f5f523`, `session_21256734`, and `IR-88-587C7F22-01..05`); earlier browser receipts remain historical.

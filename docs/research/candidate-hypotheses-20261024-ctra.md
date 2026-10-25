@@ -2,7 +2,7 @@
 
 **Lane:** `H88-CTRA` (single method, zeros encoding, no private metric fork)
 **Preregistration ID:** `PREREG-20261024-CTRA`
-**Artifact:** [`gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif) ([ZIP](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.zip)) · [JSON Run Card](../../registry/ctra_run_card.json)
+**Artifact:** [`gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif`](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif) ([ZIP](../downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.zip)) · [JSON Run Card](../data/ctra_run_card.json)
 **Status:** `DOWNLOAD FOR RESEARCH: YES` · `SUBMIT: NO — RESEARCH ONLY` (format-valid, uniqueness like-for-like PASS, holdout pending/negative on 4-fold quick instrument; see §5)
 
 ---
@@ -21,7 +21,7 @@
 | Format: single-band float32, `EPSG:32611`, 100 m, values in `[0,1]` | problem page | same |
 | Portal error `Predicted values must be in range [0,1]` means NaN/sentinel/out-of-range | reproduced locally on `nan` outside-footprint files (see §3) | <https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/> |
 
-**Diagnosis of the owner's sites:** The 60+ GEMSDOE sites cluster `h16→h19-4→h19-5→d1-5→d2-8→h27-4→h33` shows two separable geometric optima that align exactly with the DTI algebra (see [session-20261024-audit-why-0.2778.md](session-20261024-audit-why-0.2778.md) and [evidence/lineage_live_vs_geometry.json](../../evidence/lineage_live_vs_geometry.json)):
+**Diagnosis of the owner's sites:** The 60+ GEMSDOE sites cluster `h16→h19-4→h19-5→d1-5→d2-8→h27-4→h33` shows two separable geometric optima that align exactly with the DTI algebra (see [session-20261024-audit-why-0.2778.md](session-20261024-audit-why-0.2778.md) and [evidence/lineage_live_vs_geometry.json](https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/evidence/lineage_live_vs_geometry.json)):
 
 | Raster | CLAIM | dots | median d_cat | NN spacing | share >25px |
 |---|---:|---:|---:|---:|---:|

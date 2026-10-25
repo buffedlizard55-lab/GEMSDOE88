@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GEMSDOE88 — H88-CON88 Archived Research Record (DO NOT SUBMIT)</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html">Canonical Decision</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="research.html">Research Queue</a>
+      <a href="sources.html">Verified Sources</a>
+      <a href="con88.html" aria-current="page">H88-CON88 Record</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <section class="banner banner-stop" role="region" aria-label="Submission decision">
+    <div class="status-pill">NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT</div>
+    <h1>H88-CON88 Upload Clearance Withdrawn (IR-88-3C391D97-01) — DO NOT SUBMIT</h1>
+    <p>
+      <strong>Submission status:</strong> <code>DUPLICATE_STOP</code> · <code>ok_to_submit: false</code> · <code>verdict: negative</code> · Weekly competition slots used: <strong>0 / 3</strong>.
+      PR #158's upload clearance for <strong>H88-CON88</strong> is withdrawn under <a href="data/con88_clearance_withdrawal_20261025.json">IR-88-3C391D97-01</a> because (1) literal 3-pixel forward overlap against the pinned registry witness <code>data/registry/dense_17gemdoe.tif</code> (<code>ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be</code>) is <strong>1.0000 &gt; 0.70</strong>, and (2) buffered holdout validation fails both on the fixed GeoTIFF (<code>HOLDOUT-DTI = 0.0000 [0.0000, 0.0000]</code> vs same-fold H33 <code>0.006697 [0.005990, 0.007368]</code>, <code>gems57-pooled-hide-v2</code>, <code>n = 60,988</code>) and on per-fold collar re-emission (<code>HOLDOUT-DTI = 0.001714 [0.001325, 0.002143]</code> vs repository fold-fair holdout best <strong>H88-BPWD</strong> <code>0.205991 [0.188105, 0.223344]</code>, <code>n = 22,893</code>).
+    </p>
+    <p>
+      <strong>Archived research download only (DO NOT UPLOAD TO DRIVENDATA):</strong><br>
+      GeoTIFF: <a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif"><code>gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif</code></a>
+      (13,530,278 B · SHA-256 <code>e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68</code>)<br>
+      ZIP: <a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip"><code>gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip</code></a>
+      (SHA-256 <code>73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb</code>; historical unmarked ZIP SHA-256 <code>6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08</code>)<br>
+      <strong>Audit identifier (not for portal upload):</strong> <code>GEMSDOE88-CON88-CONSENSUS-RIDGE-20261025-DO-NOT-SUBMIT</code><br>
+      <strong>Audit note (110 / 140 chars):</strong> <code>H88-CON88 archived research: literal overlap 1.0 vs 17GEMSDOE, HOLDOUT-DTI 0.001714 vs 0.205991; DO NOT SUBMIT</code>
+    </p>
+    <p>
+      Return to the <a href="index.html">Canonical Overview</a> or <a href="executive-summary.html">Executive Summary</a>.
+    </p>
+  </section>
+
+  <section class="panel">
+    <h2>Gate Summary — Why H88-CON88 Is Archived as Negative Research (<code>IR-88-3C391D97-01</code>)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Gate</th>
+          <th>Requirement</th>
+          <th>Measured on H88-CON88</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>G0 — Pre-placement registry witness</td>
+          <td>Stop before feature construction/placement if any registry raster forces literal 3 px overlap &gt; 0.70</td>
+          <td><code>data/registry/dense_17gemdoe.tif</code> covers 5,106,385 / 5,106,385 allowed pixels → literal overlap = 1.0000</td>
+          <td><strong>FAIL (DUPLICATE_STOP)</strong></td>
+        </tr>
+        <tr>
+          <td>G1 — Format &amp; [0, 1] integrity</td>
+          <td>1-band float32 GeoTIFF, EPSG:32611, 3292×3730, finite in [0, 1], 0 outside footprint, 0 on catalogue, dual-decoder match</td>
+          <td>min=0.0, max=1.0, NaN=0, outside=0, on-catalogue=0, 37,654 positive dots (<code>FORMAT_ONLY_NOT_SLOT_APPROVAL</code>)</td>
+          <td>PASS (Format only)</td>
+        </tr>
+        <tr>
+          <td>G2 — Literal 3 px overlap vs registry</td>
+          <td>Surface Spearman &le; 0.90 AND literal 3 px dot overlap &le; 0.70</td>
+          <td>Max surface Spearman = 0.1457; <strong>literal 3 px overlap = 1.0000 &gt; 0.70</strong> (diagnostic equal-support top-N overlap = 0.6936 vs <code>gems49_gate_ortho.tif</code>, 0.4874 vs H33, 0.0526 vs 17GEMSDOE)</td>
+          <td><strong>FAIL (Binding literal rule)</strong></td>
+        </tr>
+        <tr>
+          <td>G3 — Buffered hide-and-recover holdout</td>
+          <td>Beat same-fold incumbent and repository fold-fair holdout best before touching a weekly slot</td>
+          <td><code>HOLDOUT-DTI</code> (<code>gems57-pooled-hide-v2</code>, <code>n = 60,988</code>): fixed TIF = <strong>0.0000 [0.0000, 0.0000]</strong>; per-fold collar re-emission = <strong>0.001714 [0.001325, 0.002143]</strong> vs same-fold H33 <code>0.006697 [0.005990, 0.007368]</code> and repo best H88-BPWD <code>0.205991 [0.188105, 0.223344]</code></td>
+          <td><strong>FAIL (Holdout bar)</strong></td>
+        </tr>
+        <tr>
+          <td>G4 — Single-feature leakage canaries</td>
+          <td>Single-feature holdout AUC &le; 0.90</td>
+          <td>Max symmetric AUC = 0.6306 (consensus 0.6306, ridge 0.5015, blend 0.5998); note contributors used full-catalogue collars</td>
+          <td>Diagnostic only</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>Auditable JSON &amp; Markdown receipts:</strong>
+      <a href="data/con88_run_card.json"><code>data/con88_run_card.json</code></a> ·
+      <a href="data/con88_gates.json"><code>data/con88_gates.json</code></a> ·
+      <a href="data/con88_experiments.json"><code>data/con88_experiments.json</code></a> ·
+      <a href="data/con88_collar_holdout.json"><code>data/con88_collar_holdout.json</code></a> ·
+      <a href="data/con88_clearance_withdrawal_20261025.json"><code>data/con88_clearance_withdrawal_20261025.json</code></a> ·
+      <a href="research/session-con88-20261025.md"><code>research/session-con88-20261025.md</code></a>
+    </p>
+  </section>
+</main>
+</body>
+</html>

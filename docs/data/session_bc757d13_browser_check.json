@@ -1,0 +1,132 @@
+{
+  "schema": "gems88.browser-review.v1",
+  "checked_at_utc": "2026-10-25T20:00:12Z",
+  "browser": "unavailable-in-sandbox; static HTTP+DOM check only (no layout/overflow measurement)",
+  "method_limit": "IR-88-BC75-05: Chromium/Playwright binaries cannot be downloaded in this sandbox (CDN not allowlisted). Pages fetched over local HTTP and DOM-checked (status, banner, h1, open details, first TIFF link). overflow=null means unverified. This receipt binds current source bytes after the H88-GTD merge; it supersedes no historical real-browser receipt.",
+  "pages": [
+    {
+      "page": "index.html",
+      "width": 1440,
+      "height": 1100,
+      "http_status": 200,
+      "banners": [
+        "NO FILE APPROVED"
+      ],
+      "overflow": null,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "height": 844,
+      "http_status": 200,
+      "banners": [
+        "NO FILE APPROVED"
+      ],
+      "overflow": null,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "http_status": 200,
+      "banners": [
+        "NO FILE APPROVED"
+      ],
+      "overflow": null,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "research.html",
+      "width": 390,
+      "height": 844,
+      "http_status": 200,
+      "banners": [],
+      "overflow": null,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "sources.html",
+      "width": 390,
+      "height": 844,
+      "http_status": 200,
+      "banners": [],
+      "overflow": null,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/index.html",
+      "width": 1440,
+      "height": 1100,
+      "http_status": 200,
+      "banners": [],
+      "overflow": null,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "http_status": 200,
+      "banners": [],
+      "overflow": null,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "failed_fetch_stays_negative": true,
+  "source_sha256": {
+    "docs/assets/site.css": "834256dce45ea5d350bea0942730f455e1c44edaa64e85f35527ad58c187c737",
+    "docs/assets/site.js": "d27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41",
+    "docs/data/current_release.json": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",
+    "docs/data/download_audit.json": "38d463d4d58ab88d9f0e932e76297fe1b4a9f52da6dd7884e511aa45b2d2f68e",
+    "docs/data/hypothesis_queue.json": "9163e1fd2efb416bb4f3a4edb16c624f83d9f036611a85f34a3f578b5df56fa2",
+    "docs/data/mtas88_run_card.json": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
+    "docs/executive-summary.html": "b08e2aea73e8da3e4f7e87cb79895aa20f885c444e51a0978932ea563146f7a8",
+    "docs/index.html": "7793fe6ea01a26da1af10f972093bb9e5edca2c533689398eab480cfd5a00fbe",
+    "docs/mdc88/executive-summary.html": "a224490fc994b54619d24275500ea6eba6670685be70bcda8f241ee4b25a8ae3",
+    "docs/mdc88/index.html": "7968611af89256740904e40003e26bf49635d626a2f04b1e1943a1050d88ef1d",
+    "docs/mdc88/status.json": "7d0223ff4f7b513ba5d3d68fd81ddc9b86f58955c9e3ffdf2e0131eff73033f9",
+    "docs/research.html": "1a58f02e5b1b69ca3466cfdc586f21675f85fce2c9828e31f687b7ddeb764722",
+    "docs/sources.html": "6a595c6f28c52f89db5476cbf99b00bc3bd3d0d14c34593d6aba89277bb93629",
+    "docs/status.json": "8fa371b6051d026fbb1f448af788fb7dbb541a744d50918333a9d9f70d48d2aa",
+    "docs/data/gtd88_run_card.json": "c8b6cc6815bf10cef70ac5f2edb2d0c47034c92016a5f0d9476519cbd8b3937b"
+  },
+  "ok_to_submit": false,
+  "research_download": {
+    "file": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "http_status": 200,
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "matches_canonical_bytes": true,
+    "ok_to_submit": false
+  },
+  "status": "PASS"
+}

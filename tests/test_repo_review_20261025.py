@@ -18,7 +18,7 @@ from gems88.review import (  # noqa: E402
 )
 
 
-def test_ranked_queue_has_five_untried_hypotheses() -> None:
+def test_historical_review_retains_its_original_five_hypotheses() -> None:
     queue = hypothesis_queue()
     validate_hypothesis_queue(queue)
     assert len(queue) == 5
@@ -52,7 +52,10 @@ def test_published_review_is_fail_closed_and_copies_match() -> None:
     assert evidence["preplacement_registry_audit"]["universal_overlap_blocker"] is True
     assert evidence["preplacement_registry_audit"]["covered_allowed_fraction"] == 1.0
     status = json.loads((ROOT / "docs/status.json").read_text())
-    assert status["current_review"] == "data/repo_review_20261025.json"
+    assert evidence["snapshot_scope"] == "HISTORICAL_HYPOTHESES_AND_SOURCE_ACCESS_NOT_REFRESHED_BY_REPLAY"
+    assert status["current_review"] == "data/session_587c7f22_run_card.json"
+    assert status["historical_review"] == "data/repo_review_20261025.json"
+    assert status["research_queue"] == "data/hypothesis_queue.json"
     assert status["current_review_status"] == "DUPLICATE_STOP"
     assert status["new_tif_generated"] is False
 

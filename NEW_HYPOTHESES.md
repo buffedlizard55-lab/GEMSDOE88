@@ -1,13 +1,25 @@
-# Current conditional hypotheses — four ranked, none executed in session `db4a5e4b` (plus archived ledgers below)
+# Current source-reviewed hypotheses — unrun cached-input variants, no generation authorized
 
-Read [session-db4a5e4b-hypotheses.md](research/session-db4a5e4b-hypotheses.md) for exact layers/transforms, off-catalogue rationale, prior-work distinctions, qualitative expected benefit/cost, named non-fault mimics and source limitations.
+> Executed since the review below (session bc757d13): **H88-GTD** (potential-field tensor dimensionality) ran under `PREREG-20261025-GTD88` and is **negative** (production HOLDOUT-DTI 0.1998 vs BPWD control 0.2060; final-dot overlap 70.5% > 70%); retired in `registry/hypothesis_queue.json` alongside H88-PGTD. Do not revive the tensor family under a new ID.
 
-1. ~~Potential-field gradient-tensor source dimensionality (`H88-GTD`)~~ — **EXECUTED 2026-10-25 (session bc757d13), NEGATIVE:** under frozen `PREREG-20261025-GTD88` and the representation-aware v4 uniqueness rule (v4 pre-placement worst effective halo 44.3% < 70%; literal v3 witness 1.0 reported verbatim). GTD-14 marginal lift not proven (undiscounted arm HOLDOUT-DTI 0.2076 vs same-fold BPWD control 0.2060, paired Δ +0.0016 [−0.0007, +0.0040]); novelty-discount production 0.1998 (Δ −0.0062 [−0.0111, −0.0012]) and final-dot overlap 70.5% within 3 px of BPWD (> 70% limit). Canary 121/121 pass. 3/3 lane experiments consumed — **do not rerun or retune without a fresh preregistration**. Records: `registry/gtd88_run_card.json`, `research/candidate-hypotheses-20261025-gtd88.md`.
-2. Scarp-profile restoration with a drainage-erosion veto (`H88-SPR`).
-3. Alteration-width asymmetry against a lithologic-contact null (`H88-AWA`).
-4. Conductive basin-breach continuity against a permeable paleochannel null (`H88-CBBC`).
+Read [session-587c7f22-hypotheses.md](research/session-587c7f22-hypotheses.md) (5-hypothesis ranked dossier), [session-693b10af-hypotheses.md](research/session-693b10af-hypotheses.md), and the [source-bound JSON queue](registry/hypothesis_queue.json) before proposing another experiment. Run `python scripts/audit_research_state.py` to detect source/run-card drift; use `--check-inputs` after the full shared restore. This metadata audit never grants a slot.
 
-`H88-SPR`, `H88-AWA` and `H88-CBBC` remain **untested**. Magnetic-marker restoration is no longer on this list: `H88-MMRX` executed in a parallel session and finished negative (see its archived ledger below). The proposals target geothermal-related fault evidence, not vents. Local source-code novelty is not proof of worldwide/fleet novelty. No numeric gain or leaderboard result is projected. The shared literal duplicate stop currently forbids execution; do not run a historical lane to evade it. The one measured exception path is a fresh preregistration under the representation-aware v4 rule with literal v3 reported verbatim (as H88-GTD did); GTD's result shows a soft incumbent-proximity discount is insufficient — any successor must preregister a structurally stronger separation mechanism (e.g. hard exclusion of incumbent 3 px halos) and re-prove the holdout gate.
+1. **H88-SPR** — repeated scarp-profile restoration against drainage, terrace and shoreline nulls (conditional first choice).
+2. **H88-AWA** — terrain-matched radiometric alteration-*width* asymmetry, not calibrated ratios of quantized codes.
+3. **H88-CBC** — conductive cross-basin breach connectivity against paleochannel/brine explanations.
+*(Extended 5-hypothesis dossier in [session-587c7f22-hypotheses.md](research/session-587c7f22-hypotheses.md) also ranks **4. H88-DRP** cross-divide $\chi$/$k_{sn}$ polarity reversal and **5. H88-TMA** cross-scale magnetic azimuth rotation $\Delta\theta$.)*
+
+These precise variants remain **PROPOSED_UNTESTED** in the reviewed checkout. Expected benefit is qualitative and uncertain, never a DTI projection. All required inputs are already in the SHA-pinned shared owner-mirror tier; no new external dataset is assumed obtainable. This is source-reviewed local novelty, not proof of worldwide or fleet-wide originality.
+
+**Corrected stale recommendations:** magnetic-marker restoration (`src/gems88/mmrx.py`), cross-scale admittance (`mtas.py`), Gaussian gradient-decay/scaling-break (`mfs88.py`), the harmonic tensor family (`pgtd88.py`, parallel PR #168), and cross-fleet consensus + ridge (`scripts/run_con88_experiment.py`, parallel PR #158, clearance withdrawn in `IR-88-587C7F22-01`) have already been implemented and evaluated with historical negative run cards. They are **not untested ideas**. Their archived execution is not authorization to evade the unchanged duplicate-stop rule. The older records below are historical snapshots, not today's queue.
+
+The literal full-registry witness still blocks every nonempty candidate before feature construction, canaries, holdout or placement. **Zero new geological experiments, zero new candidate TIFFs, zero weekly slots in session 693b10af.** Conditional first choice is not a selected submission.
+
+Parallel proposal record: [session db4a5e4b](research/session-db4a5e4b-hypotheses.md) independently ranked GTD first. Its record is preserved, not represented as an experiment or a second current queue. This review conditionally favors SPR because its available-resolution landform-restoration null is more directly falsifiable; harmonic source-dimensionality inversion is nonunique and more sensitive to continuation/taper choices. That is uncertain scientific judgment, not an empirical improvement claim.
+
+Additional parallel proposal record: [session 838cc402](research/session-838cc402-hypotheses.md) retains its five alternatives and its own claimed source-access scope. Those records are preserved, not silently folded into this source-bound current queue. In particular, external-data access/permissions and ratios of quantized radiometric codes are not newly certified by this review. No duplicate-stop exception or independent experiment is authorized.
+
+Cross-fleet-screened parallel proposal record: [session 21256734](research/session-21256734-hypotheses.md) documents five complementary `0`-match geophysical inversions (`H88-ACDR` GeoDAWN `22°` drape/Beer–Lambert/Guspi continuation, `H88-POFD` Parker–Oldenburg 3D basement relief + flexural unloading, `H88-WDCS` complex Werner deconvolution + cepstral dike veto, `H88-OCST` `1915–1954` CNSB Okada Coulomb stress transfer, and `H88-OPERA-INSAR` NASA OPERA `DISP-S1` playa aquifer-baffle steps; `H88-ACDR..H88-WDCS` use SHA-pinned local inputs only) screened against live sibling fleets (`GEMSDOE86/91/92`) as well as all modules in `src/gems88/`. Preserved alongside the source-bound queue above; no duplicate-stop exception or experiment is authorized.
 
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>
@@ -152,3 +164,5 @@ Owner GitHub mirrors provide SHA-pinned inputs via `scripts/restore_inputs.py`; 
 
 
 </details>
+
+**Late-main correction (IR-88-693B10AF-04):** GTD is retired after the parallel PGTD execution; it is not an untried fourth lane. Three unrun variants remain. The peer CLI printed `DUPLICATE_STOP` but continued; the shared enforce-before-import guard is reinstated. No exception is authorized.

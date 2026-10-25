@@ -13,6 +13,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts import generation_guard  # noqa: E402
+from scripts import con88_preflight  # noqa: E402
 
 
 def entrypoints() -> list[Path]:
@@ -25,9 +26,10 @@ def entrypoints() -> list[Path]:
     # pre-import guard contract as every other candidate runner.
     files.update(ROOT / "scripts" / name for name in (
         "make_concentration_variants.py", "evaluate_cgo88.py", "eval_concentration_proxy.py",
-        "exp_provcrest_spacing.py", "publish_kdmc_site.py", "publish_sdtl88.py", "finalize_concentration.py",
+        "exp_provcrest_spacing.py", "publish_kdmc_site.py", "publish_sdtl88.py",
+        "finalize_concentration.py", "write_concentration_receipts.py",
         "lbcal_build_stats.py", "lbcal_pixel.py", "lbcal_fit.py", "lbcal_extra_features.py",
-        "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py"))
+        "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py", "con88_collar_holdout.py"))
     return sorted(path for path in files if '__name__' in path.read_text())
 
 
@@ -84,12 +86,19 @@ def test_witness_removed_is_not_automatic_permission(monkeypatch):
     ["-O", "scripts/run_gems88_pipeline.py"],
     ["-m", "scripts.build_ssa88_submission"],
     ["scripts/publish_kdmc_site.py"],
+    ["scripts/run_pgtd88_experiment.py"],
+    ["-O", "scripts/run_pgtd88_experiment.py"],
+    ["-m", "scripts.run_pgtd88_experiment"],
     ["scripts/run_mfs88_experiment.py"],
     ["-O", "scripts/run_mfs88_experiment.py"],
     ["-m", "scripts.run_mfs88_experiment"],
     ["scripts/run_sdtl88_experiment.py"],
     ["-O", "scripts/build_sdtl88_submission.py"],
     ["-m", "scripts.publish_sdtl88"],
+    ["scripts/run_con88_experiment.py"],
+    ["scripts/run_con88_exp3_margin.py"],
+    ["scripts/con88_collar_holdout.py"],
+    ["scripts/con88_preflight.py"],
 ])
 def test_real_entrypoints_exit_two_without_writing_candidates(command):
     before = {p.name: p.stat().st_mtime_ns for p in (ROOT / "docs/downloads").iterdir()}

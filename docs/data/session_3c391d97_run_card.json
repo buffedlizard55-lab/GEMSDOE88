@@ -1,0 +1,401 @@
+{
+  "schema": "gems88.session-review.v1",
+  "run_id": "GEMSDOE88-REVIEW-693B10AF-20261025",
+  "branch": "arena/3c391d97-gemsdoe88",
+  "base_commit": "3017fe7d9eaafe24054067cd69005913e6af93f1",
+  "reviewed_at_utc": "2026-10-25T18:52:00Z",
+  "lane": "SOFTWARE_AND_EVIDENCE_REVIEW_ONLY",
+  "hypothesis": "Repeated scarp-profile restoration against a drainage/shoreline null",
+  "mechanism": "On independent along-strike swaths, fit smooth-landform-plus-signed-step versus no-step profiles; score restoration on held-out profile samples and require a repeatable step away from channel corridors. Use the manifest to decode topographic indices and mask invalid/saturated values.",
+  "named_non_fault_mimic": "Fluvial terrace risers and constant-elevation pluvial shoreline benches",
+  "geological_hypothesis_status": "CONDITIONAL_PROPOSAL_NOT_EXECUTED",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_BINDING_DUPLICATE_STOP",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null
+  },
+  "single_feature_canaries": {
+    "status": "NOT_RUN_NO_NEW_FEATURES",
+    "features_tested": 0,
+    "max_symmetric_auc": null,
+    "stop_threshold": 0.9
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE",
+    "surface_rank_correlation": null,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap": null,
+    "universal_overlap_lower_bound": 1.0,
+    "proof": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+      "directly_covered_allowed_pixels": 5106385,
+      "directly_saturated": true,
+      "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+    },
+    "note": "No new surface or dot set exists; the proof is sufficient to stop before either is constructed, not an exhaustive fleet clearance."
+  },
+  "raster_file": null,
+  "raster_sha256": null,
+  "new_tif_generated": false,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null
+  },
+  "submission_name": "GEMSDOE88-SESSION-3C391D97-20261025-DUPLICATE-STOP-NO-FILE",
+  "submission_note": "Session 3c391d97 DUPLICATE_STOP: 17GEMSDOE literal overlap 1.0>0.70; CON88 withdrawn; 0 new TIFs; 0 slots; DO NOT SUBMIT",
+  "ok_to_download_new_file": false,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "status": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "archived_research_download": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+    "new_in_this_session": false,
+    "local_format_audit": {
+      "schema_version": 1,
+      "validator": "gems88-format-audit-v2",
+      "artifact": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+      "checks": {
+        "geotiff": true,
+        "single_band": true,
+        "single_raster_dataset": true,
+        "self_contained_dataset": true,
+        "real_numeric_dtype": true,
+        "template_single_band": true,
+        "template_single_raster_dataset": true,
+        "template_self_contained_dataset": true,
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "no_nodata_sentinel": true,
+        "all_finite": true,
+        "values_in_0_1": true,
+        "all_pixels_unmasked": true
+      },
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "format_valid": true,
+      "submission_ready": false,
+      "note": "Format only. Holdout, leakage, registry and selector approval are separate."
+    },
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false
+  },
+  "h33_forensics": {
+    "schema": "gems88.h33-lineage-audit.v1",
+    "checked_at_utc": "2026-10-25T17:08:56.277602+00:00",
+    "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE",
+    "inputs": [
+      {
+        "label": "H19-5 (19GEMSDOE)",
+        "file": "data/registry/gems19_h19_5.tif",
+        "sha256": "ef2ae808eb7179861b9f1ff753fd3ded625ace7b7c158e29cec45bbd8fa3cfaa",
+        "positive_pixels": 121131
+      },
+      {
+        "label": "D2.8 (GEMSDOE25)",
+        "file": "data/registry/gems25_d28.tif",
+        "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+        "positive_pixels": 44090
+      },
+      {
+        "label": "SOLO-D2.8 B=1 (GEMSDOE28)",
+        "file": "data/registry/gems28_h27_4.tif",
+        "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+        "positive_pixels": 40199
+      },
+      {
+        "label": "H33 b2 (GEMSDOE32) = R0",
+        "file": "data/registry/h33_education.tif",
+        "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "positive_pixels": 37654
+      }
+    ],
+    "h33_subset_of_d28": true,
+    "h33_subset_of_solo": true,
+    "h33_subset_of_h19": true,
+    "d28_to_h33_removed_pixels": 6436,
+    "removed_pixels_all_within_2px_catalogue": true,
+    "h33_positive_within_2px_catalogue": 0,
+    "h33_minimum_nearest_neighbour_px": 2.8284271247461903,
+    "h33_median_catalogue_distance_px": 19.6468827043885,
+    "organizer_confirmed_score": null,
+    "new_rasters_generated": 0,
+    "limitations": [
+      "Geometry is measured from owner-mirror bytes, not hidden organizer truth.",
+      "The supplied 0.2778 is an unverified claim; no portal receipt is present.",
+      "A nested thinning/collar-removal lineage is not proof of causal score improvement."
+    ]
+  },
+  "data_preparation": {
+    "status": "SHARED_TIER_RESTORED_AND_PREPARED",
+    "provenance": "SHA-pinned owner mirrors, not authenticated organizer downloads",
+    "files": {
+      "sample_submission.tif": {
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "bytes": 1599597,
+        "verified": true
+      },
+      "existing_faults.tif": {
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "bytes": 425830,
+        "verified": true
+      },
+      "training_features.tif": {
+        "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+        "bytes": 418912844,
+        "verified": true
+      }
+    },
+    "new_model_trained": false,
+    "repeated_after_integration": true
+  },
+  "research_queue": {
+    "manifest": "registry/hypothesis_queue.json",
+    "source_snapshot": {
+      "files": 154,
+      "sha256": "08cf8ec84991a065d4235823a2e0ef41eadd3822527d76958844599ec4f20fc1"
+    },
+    "conditional_first_choice": "H88-SPR",
+    "proposals": [
+      "H88-SPR",
+      "H88-AWA",
+      "H88-CBC"
+    ],
+    "already_evaluated": [
+      "H88-MMRX",
+      "H88-MTAS",
+      "H88-MFS",
+      "H88-PGTD"
+    ],
+    "source_review_addendum": "Reviewed late main PGTD implementation, literal-v4 compatibility correction and parallel helper/metadata changes. Retired tensor-family GTD, repaired the print-only PGTD guard, and recognized sha256_tif execution identities. Previous source pins retained; no experiment or candidate generated in this session."
+  },
+  "sources": [
+    {
+      "id": "official_reference",
+      "authority": "ORGANIZER_OFFICIAL_CODE",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+      "retrieved_this_session": true,
+      "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+      "verified_claim": "README documents separate competition data download and CPU-only/GPU environments; no GPU requirement."
+    },
+    {
+      "id": "h33_owner_build",
+      "authority": "OWNER_RECORD_NOT_ORGANIZER_RECEIPT",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/registry/submission_build.json",
+      "retrieved_this_session": true,
+      "sha256": "0d7c5c3fb0079410e0d519fac45a36b37dc6136f2e42d5c6b2468a29397c478a",
+      "verified_claim": "H33 is the prior 40,199-dot emission minus every dot within two catalogue pixels; its live estimate is explicitly a projection, not a score."
+    }
+  ],
+  "source_scope": {
+    "all_92_sites_freshly_scraped": false,
+    "leaderboard_verified_this_session": false,
+    "current_rules_quota_deadlines_verified": false,
+    "official_geological_data_hosts_retrieved": false,
+    "organizer_authenticated_inputs": false
+  },
+  "corrections": [
+    "IR-88-693B10AF-01: GHMD promotion and false organizer score label withdrawn; metadata copies reconciled without modifying TIFF/ZIP bytes.",
+    "IR-88-693B10AF-02: MMRX/MTAS/MFS moved out of the untested recommendation queue; source fingerprint detects future implementation drift.",
+    "IR-88-693B10AF-03: tested CPU dependencies constrained; Rasterio 1.4.3 failed byte-exact lineage encoding, 1.4.4/GDAL 3.10.3 passes; hashes never relaxed."
+  ],
+  "budget": {
+    "geological_experiments_run": 0,
+    "new_candidate_tiffs": 0,
+    "max_experiments": 3,
+    "max_wallclock_seconds": 7200
+  },
+  "verification": {
+    "three_passes_completed": true,
+    "status": "PASS_SOFTWARE_REVIEW_SCIENTIFIC_NEGATIVE",
+    "pass1_initial_tests": {
+      "passed": 792,
+      "failed": 1,
+      "skipped": 23,
+      "reason": "Rasterio 1.4.3 encoding mismatch; targeted rebuild passed after 1.4.4"
+    },
+    "pass1_targeted_tests": {
+      "passed": 50,
+      "failed": 0
+    },
+    "pass2": {
+      "status": "PASS_AFTER_FIXES",
+      "full_tests": {
+        "passed": 828,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 68,
+        "seconds": 165.62
+      },
+      "clean_environment_install": "PASS",
+      "byte_exact_rebuild": "PASS",
+      "browser": "PASS_7_CASES",
+      "fixes": [
+        "Retired already-executed MMRX/MTAS/MFS recommendations on the Research page as well as Overview.",
+        "Generated the Research queue from the same validated source-bound manifest; added regression coverage.",
+        "Rejected malformed input pin/band/rank metadata and removal of known evaluated mechanisms.",
+        "Preserved prior browser receipts as historical; active receipt now follows docs/status.json.",
+        "Browser automation verifies actual TIFF-click bytes, no-JavaScript denial and failed-fetch denial; uses the npm package NSS/NSPR libraries in the minimal sandbox."
+      ]
+    },
+    "pass3": {
+      "status": "PASS_WITH_EXPLICIT_UNMET_SCIENTIFIC_REQUIREMENTS",
+      "full_tests": {
+        "passed": 869,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 64,
+        "seconds": 205.0,
+        "environment": "Same separately fresh-installed constrained Python 3.11/Linux CPU environment; requirements unchanged; final integration through 3c2531250409b5f70469ce211ba67bec4526c88c"
+      },
+      "skip_scope": "Historical gitignored/unrestored variants/bridge rasters; not rebuilt to evade the duplicate stop. All 47 published packages separately reopened.",
+      "workflow_and_guard_checks": 53,
+      "expected_negative_exit_2_checks": 26,
+      "normal_and_optimized_site_guards": "PASS",
+      "full_input_sha_audit": "PASS",
+      "canonical_renderer": "PASS",
+      "actual_browser_tiff_click_matches_sha256": true,
+      "no_javascript_stays_negative": true,
+      "failed_fetch_stays_negative": true,
+      "full_recorded_request_reread": true,
+      "readme_request_embedding_matches_recorded_request": true,
+      "request_sha256": "fc0affe0d1eed0dc42c4541dc01113be064c55589090c9dd693d8da82a706b60",
+      "shared_evaluator_writer_changed": false,
+      "all_requested_deliverables_met": false,
+      "pre_upstream_clean_environment_tests": {
+        "passed": 833,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 68,
+        "seconds": 168.13,
+        "additional_review_fixes": "Source fingerprint covers nested model packages and rejects source symlinks escaping the repository; four regression cases passed without refreshing the unchanged source pin."
+      },
+      "integration_recheck": "PASS",
+      "integration_base": "3c2531250409b5f70469ce211ba67bec4526c88c",
+      "preserved_parallel_changes": [
+        "Atomic fail-closed preparation receipts and surplus downloader argument rejection.",
+        "Exact Rasterio pin retained alongside complete tested CPU constraints.",
+        "Parallel review/incident/run cards and the alternate GTD-first proposal record retained without claiming this session executed them.",
+        "Pinned footprint/catalogue SHA checks before H33 audit geometry; parser warning correction; docs/SUBMIT.md correction and 20 submission-archive integrity tests/IBL ZIP naming repair.",
+        "Parallel source snapshots/five-proposal records remain historical; their test now checks their own report and separately validates the active source-bound queue.",
+        "Compatible parallel GHMD historical-verdict/supersession/user-claim aliases retained alongside stricter literal-stop semantics; source-pin refresh followed an explicit metadata-only diff review, with old pin retained in queue history.",
+        "Late main PGTD negative archive retained; tensor family GTD retired; print-only PGTD preflight replaced with mandatory enforcement; shared literal-v4 compatibility fix and MMRX/Markdown/archive repairs retained; execution-ID helper recognizes sha256_tif."
+      ],
+      "first_integration_full_tests": {
+        "passed": 845,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 68,
+        "seconds": 169.07,
+        "environment": "fresh constrained Python 3.11/Linux CPU venv after integrating parallel main"
+      },
+      "requirements_unchanged_since_fresh_cpu_install": true,
+      "additional_repository_archive_pairs_audited": 20,
+      "second_integration_full_tests": {
+        "passed": 855,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 64,
+        "seconds": 178.32,
+        "environment": "fresh constrained CPU environment; all code integrated through 696c1140a1bb2dd60ea832146c86b6fde853b6e4"
+      },
+      "all_47_archived_tiff_zip_pairs": "PASS_RESEARCH_ONLY_0_PROTOCOL_ELIGIBLE",
+      "late_main_verification": "PASS",
+      "candidate_cli_preimport_guard_tests": 96,
+      "third_withdrawal_integration_full_tests": {
+        "passed": 855,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 64,
+        "seconds": 177.49,
+        "environment": "fresh constrained CPU environment after parallel GHMD withdrawal integration"
+      },
+      "historical_inventory_preserved": "b4dfa10c 46-package snapshot retained byte-for-byte under its original SHA; current inventory separately audits 47 packages."
+    },
+    "browser_evidence": "evidence/session_3c391d97_browser_check.json",
+    "browser_status": "PASS",
+    "clean_cpu_install_evidence": "evidence/session_693b10af_cpu_reproduction.json",
+    "pass2_initial_integrated_tests": {
+      "passed": 826,
+      "failed": 2,
+      "skipped": 23,
+      "seconds": 168.33,
+      "reason": "Both failures hard-coded the previous current browser receipt; preserved it as historical and performed a fresh 7-case browser check of the new page bytes."
+    },
+    "gate_evidence": "evidence/session_693b10af_gate_check.json",
+    "completed_at_utc": "2026-10-25T18:52:00+00:00",
+    "remote_scope": "This is local verification evidence, not a claim of remote CI, current organizer access or submission acceptance. PR/check/merge status is authoritative on GitHub.",
+    "browser_evidence_sha256": "cfa43df774d2c6fea2b7ac13f7933bce1e943115e85c0e43f1fa32482cf948e5"
+  },
+  "unmet_requirements": [
+    "New protocol-unique submission TIFF",
+    "New top-candidate holdout and per-feature leakage tests",
+    "Demonstrated improvement beyond the unreceipted H33 claim",
+    "Organizer acceptance, receipt, current timing and account quota"
+  ],
+  "next_actions": [
+    "Resolve the shared literal registry-support contradiction explicitly before modeling; no exemption is authorized here.",
+    "Only under a satisfiable shared contract, preregister SPR, reproduce the same-fold incumbent and require paired improvement plus null controls.",
+    "Verify official input provenance, external-data permissions, contest timing and account quota in an authorized environment; never infer a receipt from local validation."
+  ],
+  "submission_note_characters": 120,
+  "acceptance": {
+    "new_protocol_unique_tiff": "UNMET_BINDING_DUPLICATE_STOP",
+    "new_top_candidate_holdout": "NOT_RUN_BINDING_DUPLICATE_STOP",
+    "improvement_beyond_h33": "NOT_ESTABLISHED",
+    "automatic_archived_format_validation": "PASS_RESEARCH_ONLY",
+    "autonomous_shared_data_preparation": "PASS_OWNER_MIRROR_NOT_ORGANIZER_AUTHENTICATED",
+    "ranked_unrun_variants": 4,
+    "source_bound_queue_and_legacy_claim_corrections": "PASS",
+    "three_software_review_passes": "COMPLETE"
+  },
+  "integration_base": "3c2531250409b5f70469ce211ba67bec4526c88c",
+  "delivery": {
+    "pull_request_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/pull/164",
+    "base_branch": "main",
+    "head_branch": "arena/693b10af-gemsdoe88",
+    "record_scope": "Local verification snapshot. Live GitHub PR/check/merge state is authoritative; this card does not claim a remote CI result or organizer acceptance.",
+    "actions_control_limitation": "Reading workflow status is permitted, but cancellation of superseded queued runs returned HTTP 403 (Resource not accessible by integration); no cancellations or remote passes are claimed.",
+    "observed_parallel_main": "3c2531250409b5f70469ce211ba67bec4526c88c",
+    "verification_scope": "Local full suite, 53 actual gates and real browser receipts; not a claim of GitHub Actions execution or Pages deployment. Live PR/check state is authoritative."
+  },
+  "h33_forensics_initial_checked_at_utc": "2026-10-25T16:15:58.845138+00:00",
+  "session_id": "3c391d97",
+  "decision": "DUPLICATE_STOP",
+  "con88_clearance_withdrawal": {
+    "irregularity_id": "IR-88-3C391D97-01",
+    "receipt": "evidence/con88_clearance_withdrawal_20261025.json",
+    "archived_tif": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "archived_zip": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+    "tif_sha256_unchanged": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "zip_sha256": "5a4f4a530c81210d70dc5cd01481602227d7d84dee5428cea98ae0638f2d855d",
+    "literal_overlap_3px_vs_17gemdoe": 1.0,
+    "holdout_dti_fixed_tif": 0.0,
+    "holdout_dti_collar_reemission": 0.001713781485367719,
+    "ok_to_submit": false,
+    "verdict": "negative",
+    "new_zip_sha256": "73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb"
+  }
+}

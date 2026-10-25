@@ -1,0 +1,474 @@
+{
+  "schema": "gems88.review-gates.v1",
+  "checked_at_utc": "2026-10-25T18:53:22.824023+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "command": "scripts/audit_research_state.py --check-inputs",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "b456aebdd3840092591bca9d8bb841780865720162b5a49bc91c75fa8a95fe11",
+      "seconds": 0.524
+    },
+    {
+      "command": "scripts/audit_downloads.py --check",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "d636fbc2b31f55cceb696b1fbf1359ef482f5968340737e3508189ed893b7612",
+      "seconds": 32.881
+    },
+    {
+      "command": "scripts/render_decision.py --check",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "01fd3bb30f47af86b1ef66ec97af138d86e0fe346af7f2375ba6ef4c2d86695b",
+      "seconds": 0.126
+    },
+    {
+      "command": "scripts/check_site.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "9bfd25e80b49faa9af85a8353aba21cc42cabdbbb5cc6eff317278f890a54fb1",
+      "seconds": 0.875
+    },
+    {
+      "command": "scripts/review_repo_20261025.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "336878c7e6f28af1dd1426367fd681ba7f1d024ceff354b46b34a8f5eefa74ab",
+      "seconds": 1.037
+    },
+    {
+      "command": "scripts/review_submission_status.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "d0738162a36c00c85dfacc156506cd4a0209e7d29f80468df091cfd2f33074ae",
+      "seconds": 1.695
+    },
+    {
+      "command": "scripts/audit_protocol_integrity.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "cd85ebc7a96a34956ec9982c0c8101eada6e2393fa8f73e6243c26f3af7499ff",
+      "seconds": 1.636
+    },
+    {
+      "command": "scripts/audit_literal_protocol.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "7d92a877879db7ea67331d2330a4806994f1054377a12fcea6b6011634122b92",
+      "seconds": 1.674
+    },
+    {
+      "command": "scripts/preflight_mtas88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
+      "seconds": 1.557
+    },
+    {
+      "command": "scripts/readiness.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "8fa371b6051d026fbb1f448af788fb7dbb541a744d50918333a9d9f70d48d2aa",
+      "seconds": 1.716
+    },
+    {
+      "command": "scripts/audit_submissions_dir.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "c78ff2b49fb3171126f096db7be83ee298c63fc70867cd3b8c68fcca01590279",
+      "seconds": 8.652
+    },
+    {
+      "command": "scripts/validate_hgvc88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "a1f8f9115626fbfca17fba7f3d77c2dd1b391c97e478e9bcef6853de35e9fd7e",
+      "seconds": 1.97
+    },
+    {
+      "command": "scripts/validate_sarcsd88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "58441332bf51a459dbc5a3876938fc49b72e84faaf6b87a24d32c69404239eb2",
+      "seconds": 2.018
+    },
+    {
+      "command": "scripts/validate_qtsk88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "dd0a7cf6d6d71dfbedfe63fddfe7852e1abff3a80ac6e98dc5fa7a0082af086b",
+      "seconds": 1.904
+    },
+    {
+      "command": "scripts/validate_kth88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "aaec545a488e5ce57326644f4cc5968d9cd513dcd63c4834cfec33a811e91250",
+      "seconds": 1.928
+    },
+    {
+      "command": "scripts/validate_current.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",
+      "seconds": 1.704
+    },
+    {
+      "command": "scripts/validate_release.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "a3f9e431f0aa244c7ebc55fc402248c7d34c3ac3c16f07984102d013126ecc4f",
+      "seconds": 1.497
+    },
+    {
+      "command": "scripts/validate_qts88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "945379e0761fe789c28ca0facd9a039ca9c6dde4c6ddabee6bb206dd43952ab8",
+      "seconds": 3.444
+    },
+    {
+      "command": "scripts/validate_gthc88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "60b13be2fd869f876150d8b08ddeca42f46f67a34971ec76c75395ff6a8a25d4",
+      "seconds": 1.884
+    },
+    {
+      "command": "scripts/validate_bgcd88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "de2a765b62fc1993800e0ecf4cf22eeaab341037db7a9fbf4b6bc93430e9c54f",
+      "seconds": 1.962
+    },
+    {
+      "command": "scripts/validate_mfs88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "780c527a0b606cae0f81dd96e23c5721506a482c358378f54dd34b4391173983",
+      "seconds": 0.966
+    },
+    {
+      "command": "scripts/validate_vhgd88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "566bb20c144f7531609cd7eae34c60e36f3882030a45bcc12bc4c93e434fc2e4",
+      "seconds": 2.941
+    },
+    {
+      "command": "scripts/validate_bpwd88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "71577dde579ad8d7c3b8ca9030f387ae4160fe15c17afdcd4044781d99a2251e",
+      "seconds": 1.812
+    },
+    {
+      "command": "scripts/validate_vcaz88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "b1bbc709b836681fc02cdc691a35104a1d34b70e3aa75fb3f6954d108025aea9",
+      "seconds": 9.541
+    },
+    {
+      "command": "scripts/validate_mmrx88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "e6bc602298e2eeef1eb70898995dc68589110d8b14ced513e5ccf4b8326db85a",
+      "seconds": 1.67
+    },
+    {
+      "command": "scripts/validate_lsc88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "a1b0214f422d3a5dfafc040cf38d996594ee2bfb78b2b50d12d2f51b286c4f9f",
+      "seconds": 0.417
+    },
+    {
+      "command": "scripts/generation_guard.py",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "9fea01823fe0c2473eca14ae2bb8c2cad9d5b1541fd30f0ce27bf573050fe3f3",
+      "seconds": 1.568
+    },
+    {
+      "command": "scripts/audit_research_state.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "f916d68ea4f4f4f4d826ae855f15c687dc4f5240bdfce37eb00062fda337634d",
+      "seconds": 0.054
+    },
+    {
+      "command": "scripts/review_repo_20261025.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "336878c7e6f28af1dd1426367fd681ba7f1d024ceff354b46b34a8f5eefa74ab",
+      "seconds": 1.02
+    },
+    {
+      "command": "scripts/review_submission_status.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "d0738162a36c00c85dfacc156506cd4a0209e7d29f80468df091cfd2f33074ae",
+      "seconds": 1.657
+    },
+    {
+      "command": "scripts/audit_protocol_integrity.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "cd85ebc7a96a34956ec9982c0c8101eada6e2393fa8f73e6243c26f3af7499ff",
+      "seconds": 1.705
+    },
+    {
+      "command": "scripts/audit_literal_protocol.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "7d92a877879db7ea67331d2330a4806994f1054377a12fcea6b6011634122b92",
+      "seconds": 1.671
+    },
+    {
+      "command": "scripts/preflight_mtas88.py --gate-generation",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
+      "seconds": 1.568
+    },
+    {
+      "command": "scripts/audit_submissions_dir.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "0accd4f366407b306117bc4800909af920d30932a396ce89bbde4088914bc838",
+      "seconds": 8.779
+    },
+    {
+      "command": "scripts/validate_hgvc88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "531f7d93b1d7c5f8b85a9eb441837c6de221592228dc92deb11093692d14293f",
+      "seconds": 1.852
+    },
+    {
+      "command": "scripts/validate_sarcsd88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "1f0b455e031de5bea60baf00736e43cd06cf4f781c5b208b17f46bd5a7a05247",
+      "seconds": 1.78
+    },
+    {
+      "command": "scripts/validate_qtsk88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "9e3237a2f8b206ee40fe7da9adc03ced4ceac69fb4d7e724884355dbc7064db8",
+      "seconds": 1.821
+    },
+    {
+      "command": "scripts/validate_kth88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "aaec545a488e5ce57326644f4cc5968d9cd513dcd63c4834cfec33a811e91250",
+      "seconds": 1.91
+    },
+    {
+      "command": "scripts/validate_current.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "e65b5767fb151ecea4e1eb32071b0b4ca8885b28f9c653d2efd93cc0082d4012",
+      "seconds": 1.665
+    },
+    {
+      "command": "scripts/validate_release.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "5a5df0337a1fc28a531de3e0f67e6bf18411440f15da06c10c04e7d20cd8dfc9",
+      "seconds": 1.502
+    },
+    {
+      "command": "scripts/validate_qts88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "945379e0761fe789c28ca0facd9a039ca9c6dde4c6ddabee6bb206dd43952ab8",
+      "seconds": 3.46
+    },
+    {
+      "command": "scripts/validate_gthc88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "60b13be2fd869f876150d8b08ddeca42f46f67a34971ec76c75395ff6a8a25d4",
+      "seconds": 1.813
+    },
+    {
+      "command": "scripts/validate_bgcd88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "fc464f4cc5574a6451e4c843b333c5dbaf29c92762f0254f85b67262ad9b06af",
+      "seconds": 1.994
+    },
+    {
+      "command": "scripts/validate_mfs88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "1153496df69594805c69b6feab789082999a2cd1b876d1393bb296d2ad034a76",
+      "seconds": 0.964
+    },
+    {
+      "command": "scripts/validate_vhgd88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "d17bd13b673677c38c2c66ed3c05845ff0fd32d16ee0f76aa932e84ef62d049b",
+      "seconds": 2.888
+    },
+    {
+      "command": "scripts/validate_bpwd88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "4793334e85b3973b788ef76e49359c5c2b01afada16948b245b4d5419b33a108",
+      "seconds": 1.912
+    },
+    {
+      "command": "scripts/validate_vcaz88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "b1bbc709b836681fc02cdc691a35104a1d34b70e3aa75fb3f6954d108025aea9",
+      "seconds": 9.221
+    },
+    {
+      "command": "scripts/validate_mmrx88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "feb1061adb7bb128b94587ca1506af73b49ac88398591df4563570424ab89f9c",
+      "seconds": 1.732
+    },
+    {
+      "command": "scripts/validate_lsc88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "fc02bce7456674990a3f838c93de78590cbd6f75108e8b829c48c518aaa6fce3",
+      "seconds": 0.421
+    },
+    {
+      "command": "-O scripts/check_site.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "9bfd25e80b49faa9af85a8353aba21cc42cabdbbb5cc6eff317278f890a54fb1",
+      "seconds": 1.208
+    },
+    {
+      "command": "-O scripts/generation_guard.py",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "d87c28db0574dc97e64dafc1f888d49c75753fe6001da008f295095c9b5a3078",
+      "seconds": 1.96
+    },
+    {
+      "command": "-O scripts/audit_research_state.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "f916d68ea4f4f4f4d826ae855f15c687dc4f5240bdfce37eb00062fda337634d",
+      "seconds": 0.15
+    },
+    {
+      "command": "-O scripts/validate_gthc88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "60b13be2fd869f876150d8b08ddeca42f46f67a34971ec76c75395ff6a8a25d4",
+      "seconds": 2.16
+    },
+    {
+      "command": "scripts/validate_con88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "9cc908016fd5f83e1232876bf219b79204fd386dbd1ce790f6cc07aa7d2493ce",
+      "seconds": 1.136
+    },
+    {
+      "command": "-O scripts/validate_con88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "9cc908016fd5f83e1232876bf219b79204fd386dbd1ce790f6cc07aa7d2493ce",
+      "seconds": 1.522
+    },
+    {
+      "command": "scripts/validate_con88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "9cc908016fd5f83e1232876bf219b79204fd386dbd1ce790f6cc07aa7d2493ce",
+      "seconds": 1.198
+    },
+    {
+      "command": "-O scripts/validate_con88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "9cc908016fd5f83e1232876bf219b79204fd386dbd1ce790f6cc07aa7d2493ce",
+      "seconds": 1.481
+    },
+    {
+      "command": "-O scripts/con88_preflight.py",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "2ad8019965d837c0764b4e5034e2472b959052edf6fefe360637ea697d2145e9",
+      "seconds": 1.919
+    }
+  ],
+  "expected_negative_count": 29,
+  "geological_experiments_run": 0,
+  "ok_to_submit": false
+}

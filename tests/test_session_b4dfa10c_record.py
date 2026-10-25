@@ -30,24 +30,20 @@ def test_session_card_is_one_mirrored_negative_record():
 
 def test_session_audit_counts_main_and_variant_without_rewriting_history():
     card = read('registry/session_b4dfa10c_run_card.json')
-    audit = read('docs/data/download_audit.json')
     inventory = card['download_inventory']
+    audit = read(inventory['historical_snapshot'])
+    current = read('docs/data/download_audit.json')
+    assert current['total_published_tiff_count'] >= inventory['total_published_tiff_count']
+    assert current['protocol_eligible_count'] == 0
     assert inventory['schema'] == 'gems88.download-audit.v2'
     assert inventory['tiff_count'] == inventory['research_download_pass_count'] == 45
     assert inventory['additional_research_tiff_count'] == 1
     assert inventory['total_published_tiff_count'] == inventory['total_research_download_pass_count'] == 46
     assert inventory['protocol_eligible_count'] == 0
-    # Evolution clause (IR-88-BC75, session bc757d13): the H88-GTD lane later added one
-    # research TIFF, so the live audit is a superset of this historical inventory. The
-    # historical card bytes are unchanged; equality with the live audit is no longer
-    # the invariant -- monotone growth with zero eligible files is.
-    assert audit['tiff_count'] >= inventory['tiff_count']
-    assert audit['additional_research_tiff_count'] >= inventory['additional_research_tiff_count']
-    assert audit['total_published_tiff_count'] >= inventory['total_published_tiff_count']
-    assert audit['exact_decoded_duplicate_groups'] == inventory['exact_decoded_duplicate_groups'] == []
-    assert audit['protocol_eligible_count'] == 0
-    assert len(inventory['saved_audit_sha256']) == 64
-    int(inventory['saved_audit_sha256'], 16)
+    for key in ('tiff_count', 'additional_research_tiff_count', 'total_published_tiff_count', 'exact_decoded_duplicate_groups'):
+        assert inventory[key] <= audit[key] if isinstance(inventory[key], int) else inventory[key] == audit[key]
+    assert inventory['saved_audit_sha256'] == hashlib.sha256((ROOT / inventory['historical_snapshot']).read_bytes()).hexdigest()
+    assert (ROOT / inventory['historical_snapshot']).read_bytes() == (ROOT / 'docs/data/download_audit_b4dfa10c_snapshot.json').read_bytes()
     archive = card['archived_research_download']
     assert hashlib.sha256((ROOT / archive['download']).read_bytes()).hexdigest() == archive['sha256']
     assert archive['ok_to_download_for_research_only'] is True and archive['ok_to_submit'] is False

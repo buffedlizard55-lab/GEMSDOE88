@@ -1,0 +1,228 @@
+{
+  "schema": "gems88.hypothesis-queue.v1",
+  "reviewed_at_utc": "2026-10-25T20:30:00Z",
+  "review_branch": "arena/bc757d13-gemsdoe88",
+  "source_snapshot": {
+    "files": 156,
+    "sha256": "fd344fe0fe495c74407debd948a665760f7e40d72670ed425b27d47689910627"
+  },
+  "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
+  "conditional_first_choice": "H88-SPR",
+  "selection_status": "NOT STARTED \u2014 shared DUPLICATE_STOP takes precedence",
+  "generation_authorized": false,
+  "ok_to_submit": false,
+  "input_provenance": "SHA-pinned owner mirrors restored in this session; no authenticated organizer download or fresh primary-source license verification.",
+  "input_pins": {
+    "data/external/dem10_chi_100m_u8.tif": "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a",
+    "data/external/geodawn_rad_u8.tif": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+    "data/external/lidar_scarp_features_u8.tif": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+    "data/external/topo_10m_derived_100m_u8.manifest.json": "181d5527ba7ed2990031918a8b6c9d5d94e3998b2daf656de0c33322ca94120a",
+    "data/external/topo_10m_derived_100m_u8.tif": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+    "data/training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "already_evaluated": [
+    {
+      "id": "H88-MMRX",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/mmrx88_run_card.json",
+      "run_card_sha256": "19fc7f0919fd03cc3663da1ae73e5df7819340e48a3e5bd826f760539bc854e0",
+      "reason": "Already implemented and evaluated; not an untested first choice. Historical run is negative and final dots overlap HGVC beyond the limit."
+    },
+    {
+      "id": "H88-MTAS",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/mtas88_experiment_run_card.json",
+      "run_card_sha256": "424f30b0c527bfc842951ef1d6b1a6d7607b38ae6da8a33302d3c3ec0df4636e",
+      "reason": "The initial preflight and the later historical execution are distinct records; do not describe the mechanism as never executed."
+    },
+    {
+      "id": "H88-MFS",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/mfs88_run_card.json",
+      "run_card_sha256": "88af28a3f9022ff52bea0bd723d6bcea428e04514488865e9a2b8281c1f74294",
+      "reason": "Multiscale gradient-decay/scaling-break channels already exist; historical execution is not permission to bypass the guard."
+    },
+    {
+      "id": "H88-PGTD",
+      "run_card": "registry/pgtd88_run_card.json",
+      "run_card_sha256": "7d3eb406b5a56c15b8dc2f5ad8a2ed84c4638f05eaa75937b08358cc0ce25696",
+      "status": "HISTORICAL_EVALUATED_NEGATIVE",
+      "retired_proposal_alias": "H88-GTD",
+      "scope": "Parallel 82dbb5e9 ran after a negative preflight; no exception authorized. Retire the general harmonic-tensor dimensionality proposal rather than advertise it as untried. No experiment in session 693b10af."
+    },
+    {
+      "id": "H88-CON88",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/con88_run_card.json",
+      "run_card_sha256": "0e50c5e4a43ddd60a8f3e5ab3bebf441957e64f56020400b83402235337e9c5b",
+      "reason": "Executed in PR #158 and withdrawn in IR-88-3C391D97-01: literal 3-pixel overlap 1.0 > 0.70 against dense_17gemdoe.tif, fixed-TIF HOLDOUT-DTI 0.0000 [0.0000, 0.0000] and per-fold collar re-emission HOLDOUT-DTI 0.001714 [0.001325, 0.002143] vs same-fold H33 0.006697 and repo holdout best H88-BPWD 0.205991; do not re-propose as an untested candidate."
+    },
+    {
+      "id": "H88-GTD",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/gtd88_run_card.json",
+      "run_card_sha256": "c8b6cc6815bf10cef70ac5f2edb2d0c47034c92016a5f0d9476519cbd8b3937b",
+      "reason": "Executed 2026-10-25 (session bc757d13) under PREREG-20261025-GTD88: GTD-14 tensor dimensionality marginal lift unproven (paired +0.0016, CI crosses 0); novelty-discount production HOLDOUT-DTI 0.1998 vs BPWD control 0.2060 and final-dot overlap 70.5% within 3px of BPWD. Distinct implementation of the tensor family also covered by H88-PGTD; both negative. Lane budget consumed."
+    }
+  ],
+  "proposals": [
+    {
+      "rank": 1,
+      "id": "H88-SPR",
+      "title": "Repeated scarp-profile restoration against a drainage/shoreline null",
+      "status": "PROPOSED_UNTESTED",
+      "new_external_data_required": false,
+      "layers": [
+        {
+          "file": "data/training_features.tif",
+          "bands": [
+            12,
+            19
+          ],
+          "description": "det_elev; det_elev_slope"
+        },
+        {
+          "file": "data/external/topo_10m_derived_100m_u8.tif",
+          "bands": [
+            8,
+            9
+          ],
+          "description": "hs_lineament; dem_mean at 100 m, encoded by its pinned manifest"
+        },
+        {
+          "file": "data/external/lidar_scarp_features_u8.tif",
+          "bands": [
+            3,
+            10,
+            11,
+            12
+          ],
+          "description": "step_max; coh100; strike; valid"
+        },
+        {
+          "file": "data/external/dem10_chi_100m_u8.tif",
+          "bands": [
+            1,
+            4
+          ],
+          "description": "chan_n; valid_n"
+        }
+      ],
+      "signature": "On independent along-strike swaths, fit smooth-landform-plus-signed-step versus no-step profiles; score restoration on held-out profile samples and require a repeatable step away from channel corridors. Use the manifest to decode topographic indices and mask invalid/saturated values.",
+      "off_catalogue_rationale": "A weak or cover-softened offset repeated across an otherwise smooth piedmont could escape catalogue mapping while retaining a resolvable profile signal. No mapped trace seeds the surface. Sub-pixel scarps are not claimed detectable from this 100 m cache.",
+      "non_fault_mimic": "Fluvial terrace risers and constant-elevation pluvial shoreline benches",
+      "difference_from_implemented": "LSC/TDKL/VESS/SHORE use scarp responses, polarity, knickpoint or shoreline context; they do not fit a cross-validated landform-restoration likelihood. MMRX restores magnetic texture, not landform profiles.",
+      "expected_potential": "First relative priority; moderate but highly uncertain; no numerical DTI projection",
+      "implementation_cost": "Medium; cached inputs only",
+      "falsification": "Reject if sign/step evidence disappears across adjacent withheld swaths, depends on drainage pixels, or is equally explained by contour-following shoreline/terrace controls."
+    },
+    {
+      "rank": 2,
+      "id": "H88-AWA",
+      "title": "Terrain-matched radiometric alteration-width asymmetry",
+      "status": "PROPOSED_UNTESTED",
+      "new_external_data_required": false,
+      "layers": [
+        {
+          "file": "data/external/geodawn_rad_u8.tif",
+          "bands": [
+            1,
+            2,
+            3
+          ],
+          "description": "K; Th; U quantized indices, not calibrated concentration ratios"
+        },
+        {
+          "file": "data/training_features.tif",
+          "bands": [
+            2,
+            15,
+            19
+          ],
+          "description": "rtp; depth_to_base_surf; det_elev_slope"
+        }
+      ],
+      "signature": "Fit relative cross-strike decay widths of within-band, terrain-matched K/Th/U residual profiles on two flanks and test repeated width asymmetry alongside a local RTP depression. Quantized code values must not be divided and called physical K/Th concentrations.",
+      "off_catalogue_rationale": "A covered permeable structure might alter one wall more broadly than the other despite no discrete scarp. This conditional spatial pattern does not identify an alteration mineral or prove fluid temperature.",
+      "non_fault_mimic": "Differential weathering of adjacent rock units and K-rich transported alluvium",
+      "difference_from_implemented": "KTH/MVRD compare enrichment/redox levels or edges; this tests relative fitted decay width, not another radiometric high or a magnetic marker shift.",
+      "expected_potential": "Second priority; low-to-moderate, uncertain; no numerical DTI projection",
+      "implementation_cost": "Medium; quantization and background fitting need care",
+      "falsification": "Reject if a parent-material/terrain-matched null reproduces the width asymmetry or the apparent signal is quantization/saturation dependent."
+    },
+    {
+      "rank": 3,
+      "id": "H88-CBC",
+      "title": "Conductive basin-breach connectivity against a paleochannel null",
+      "status": "PROPOSED_UNTESTED",
+      "new_external_data_required": false,
+      "layers": [
+        {
+          "file": "data/training_features.tif",
+          "bands": [
+            12,
+            13,
+            15,
+            17
+          ],
+          "description": "det_elev; iso_grav_anom; depth_to_base_surf; cond_surf"
+        },
+        {
+          "file": "data/external/dem10_chi_100m_u8.tif",
+          "bands": [
+            1,
+            4
+          ],
+          "description": "chan_n; valid_n"
+        }
+      ],
+      "signature": "Compare narrow conductivity connectivity across independently inferred basin-boundary saddles with a smooth basin-fill null; require cross-boundary gravity discontinuity and test a terrain-aligned drainage explanation. Work on relative model fields, not a claim of resolved metre-scale conduits.",
+      "off_catalogue_rationale": "A buried cross-basin structural connection may have no mapped surface trace. The target is a candidate fault-related pathway, never a directly detected geothermal vent.",
+      "non_fault_mimic": "Unfaulted permeable alluvial paleochannels and saline groundwater plumes",
+      "difference_from_implemented": "CTRA/DHTC use conductivity curvature and thermal conjunctions; this tests topology-preserving cross-basin connectivity against an explicit drainage null.",
+      "expected_potential": "Third remaining priority; low, uncertain; no numerical DTI projection",
+      "implementation_cost": "Medium-high; coarse-field resolution is a major limitation",
+      "falsification": "Reject if basin-fill smoothness or drainage connectivity explains the bridge equally well, or no boundary-normal gravity change is present."
+    }
+  ],
+  "source_snapshot_history": [
+    {
+      "snapshot": {
+        "files": 150,
+        "sha256": "1432106995112c206526841147d5a6d0b7f6a9a8f71563199a6b3a2e7d781dd7"
+      },
+      "reason": "Reviewed parallel GHMD metadata-only aliases integrated; no model/feature/evaluator changes. The changed corpus file is scripts/run_gems88_pipeline.py."
+    },
+    {
+      "snapshot": {
+        "files": 150,
+        "sha256": "28945afbfcb71f77d5d2055456ddd5a0b113b45158c3f0b877e738b03d4f3409"
+      },
+      "reason": "Late main integration adds evaluated PGTD, shared literal-v4 compatibility hardening, historical review helpers and metadata repairs. Reviewed these diffs, retired GTD, and reinstated PGTD pre-import stop before refreshing the source pin."
+    },
+    {
+      "superseded_snapshot": {
+        "files": 152,
+        "sha256": "625401b58740ab4243f187311e45d58c7430425e6638fc51a02d3f7d7f7b8a8a"
+      },
+      "reason": "Merged H88-CON88 (IR-88-CON88-01 equal-support append-only vendor addition + con88 runner scripts) and PGTD guard enforcement fix; proposals re-reviewed: none implements H88-SPR/EELG/PRAN queue items, CON88 is a consensus-emission lane with its own run card (run_card_con88.json), not a queue proposal.",
+      "reviewed_at_utc": "2026-10-25T18:00:00Z"
+    },
+    {
+      "superseded_snapshot": {
+        "files": 154,
+        "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+      },
+      "reason": "Withdrew H88-CON88 upload clearance (IR-88-3C391D97-01), enforced enforce_generation_preflight() on scripts/run_con88_experiment.py and scripts/run_con88_exp3_margin.py, and recorded H88-CON88 in already_evaluated; remaining untested proposals (H88-SPR, H88-AWA, H88-CBC) remain distinct.",
+      "reviewed_at_utc": "2026-10-25T18:30:00Z"
+    },
+    {
+      "superseded_snapshot": {
+        "files": 154,
+        "sha256": "fb91e32d8d0939535b68ede0cd724bd90c1a491cdf37ff24c9a8f82519c7f125"
+      },
+      "reason": "Merged H88-GTD lane (session bc757d13, PREREG-20261025-GTD88): added src/gems88/gtd.py, scripts/run_gtd88_experiment.py and append-only v4 helpers in vendor/gems57/uniqueness.py (IR-88-BC75-01); recorded H88-GTD in already_evaluated as negative. Untested proposals (H88-SPR, H88-AWA, H88-CBC) unchanged.",
+      "reviewed_at_utc": "2026-10-25T20:30:00Z"
+    }
+  ]
+}

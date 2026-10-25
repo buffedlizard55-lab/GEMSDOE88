@@ -84,6 +84,13 @@ def audit_one(path: Path, sample: Path, catalogue: np.ndarray, footprint: np.nda
         result["negative_filename_markers"] = all(
             "DO-NOT-SUBMIT" in item.name for item in (path, archive)
         )
+        # This is a format/package audit, not the scientific gate or slot
+        # selector. CON88 clearance was withdrawn. Even an exact-SHA historical
+        # gate record cannot override the current literal protocol, waive the
+        # negative filename marker, or authorize a row in a blocked report.
+        # Keep the legacy field for stored-report compatibility, always false.
+        result["cleared_by_con88_gates"] = False
+        result["ok_to_submit"] = False
         result["research_download_ok"] = bool(
             result["format_valid"] and result["zip_one_byte_identical_tif"]
             and result["negative_filename_markers"]

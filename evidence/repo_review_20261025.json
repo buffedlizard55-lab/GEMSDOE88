@@ -1,6 +1,9 @@
 {
   "schema": "gems88.repo-review-20261025.v1",
   "review_date_utc": "2026-10-25",
+  "snapshot_scope": "HISTORICAL_HYPOTHESES_AND_SOURCE_ACCESS_NOT_REFRESHED_BY_REPLAY",
+  "current_research_queue": "registry/hypothesis_queue.json",
+  "current_review_addendum": "docs/data/session_587c7f22_run_card.json",
   "review_status": "DUPLICATE_STOP",
   "hypothesis_queue": [
     {

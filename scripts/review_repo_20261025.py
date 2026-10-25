@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Re-run the 2026-10-25 repository review without fitting or uploading.
 
-This is an autonomous, fail-closed review command.  It ranks the five frozen
-candidate hypotheses, rechecks the official-source inventory and the current
-research download, then proves (from hash-pinned local bytes) whether the
-literal registry rule can admit any nonempty candidate.  It does *not* train,
+This is an autonomous, fail-closed replay of the original dated review. It
+retains that review's five-hypothesis and source-access snapshot; it does NOT
+refetch official pages or certify that its old proposals are still untested.
+The current source-reviewed queue is registry/hypothesis_queue.json. This
+command reopens the archived research download and proves (from hash-pinned
+local bytes) whether the literal registry rule admits any nonempty candidate.  It does *not* train,
 place dots, create a new TIFF, select a weekly slot, or call DrivenData.
 
 Exit codes:
@@ -231,6 +233,9 @@ def build_report(root: Path = ROOT) -> dict:
     return {
         "schema": "gems88.repo-review-20261025.v1",
         "review_date_utc": DATE_UTC,
+        "snapshot_scope": "HISTORICAL_HYPOTHESES_AND_SOURCE_ACCESS_NOT_REFRESHED_BY_REPLAY",
+        "current_research_queue": "registry/hypothesis_queue.json",
+        "current_review_addendum": "docs/data/session_587c7f22_run_card.json",
         "review_status": review_status,
         "hypothesis_queue": queue,
         "selected_lane": {

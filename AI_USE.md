@@ -270,3 +270,8 @@ AI agent work: null-control audit of the PROVCREST promote, spacing and count sw
 ## Session SDTL-88 (`arena/47d7da6a`, 2026-10-25)
 
 Agent Mode on Arena.ai (multi-model) wrote `src/gems88/sdtl.py`, `scripts/run_sdtl88_experiment.py`, `scripts/build_sdtl88_submission.py`, `scripts/publish_sdtl88.py`, the v5 block in `vendor/gems57/uniqueness.py`, the data-driven `scripts/render_decision.py`/`scripts/audit_downloads.py` rewrites, tests, `research/session-sdtl88-20261025.md` and the IR-88-SDTL entries. All numbers in those files are produced by the shared evaluator/writer and copied by code into the run card and pages; none were typed by hand. External web pages were not reachable (sandbox allow-list), so citations outside GitHub/PyPI are links for manual review, not retrieved sources.
+
+
+## 2026-10-25 — Arena session 693b10af
+
+Autonomous agent reviewed the standing request and existing code/evidence, restored SHA-pinned owner-mirror data, ran the unchanged pre-generation duplicate guard, audited historical download packages and H33 geometry, and retrieved the official reference README/H33 owner build record via GitHub. No new model, feature transform, canary, holdout, prediction TIFF or competition submission was produced. Repaired unsupported legacy promotion/organizer labels and a test enforcing them; corrected the stale untested queue; added source-bound metadata checks and tested CPU dependency constraints after an encoding mismatch. Source-access limitations, geological alternatives, negative outcome and three-pass verification are recorded in `research/session-693b10af-review.md` and its JSON run card. No credentials or raw data are added. Proposed geological mechanisms are hypotheses, not verified discoveries.

@@ -1,6 +1,6 @@
 # Ranked Geological Hypotheses — 2026-10-25 Lane H88-PRISM
 
-Read with [PROMPT.md](../PROMPT.md). **Maximize P(Win) · Own the Outcome.**
+Read with [PROMPT.md](https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/PROMPT.md). **Maximize P(Win) · Own the Outcome.**
 This session's method lane is **H88-PRISM: Piedmont Ridge Intersection & Step-over Magnetotelluric Gradient**.
 
 Official sources (manual review):

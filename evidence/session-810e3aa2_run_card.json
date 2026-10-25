@@ -1,0 +1,101 @@
+{
+  "schema": "gems88.run_card.v1",
+  "run_id": "GEMSDOE88-SESSION-810E3AA2-20261025",
+  "branch": "arena/810e3aa2-gemsdoe88",
+  "generated_utc": "2026-10-25T17:00:00Z",
+  "lane": "H88-SESSION-DETERMINATION",
+  "verdict": "negative",
+  "evidence_status": {
+    "score_label": "none generated",
+    "organizer_confirmed_live_score": null,
+    "incumbent_owner_reported": 0.2778,
+    "incumbent_artifact": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros (GEMSDOE32)",
+    "site_reported_stale_snapshot": 0.3195,
+    "competition_leaderboard_public_high": 0.4413,
+    "leaderboard_source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "leaderboard_snapshot": "docs/data/leaderboard_official_snapshot_20261025.json",
+    "leaderboard_snapshot_date": "2026-10-25",
+    "note": "0.4413 is the verified public leaderboard high (participant xiaofanhu); H33's 0.2778 is owner-reported with no organizer receipt and would sit below rank 50 (0.2818) on the 2026-10-25 snapshot."
+  },
+  "evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "module_sha256": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0
+  },
+  "hypothesis": "Session determination: no new candidate. Blocked by the binding literal duplicate stop; the top untested geological hypothesis is blind damage-zone demagnetization (RTP-gravity Poisson admittance/phase discontinuity), see research/session-810e3aa2-20261025-determination.md section 4.",
+  "mechanism": "No prediction was built. The 17GEMSDOE dense witness covers every allowed cell (covered_allowed_fraction 1.0, uncovered 0), so the shared preflight returns DUPLICATE_STOP before feature construction, holdout fitting, dot placement, or TIFF writing.",
+  "named_non_fault_process": "N/A — no feature was fitted; cannot claim a mimic result.",
+  "experiments_executed": 0,
+  "experiment_budget_max": 3,
+  "wallclock_budget_seconds_max": 7200,
+  "preplacement_registry_proof": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.70,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+    "directly_covered_allowed_pixels": 5106385,
+    "directly_saturated": true
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap_3px": null,
+    "universal_lower_bound_on_any_nonempty_candidate_overlap_3px": 1.0,
+    "threshold": 0.70,
+    "rho_limit": 0.90,
+    "scope": "One SHA-pinned counterexample suffices to block; not an inventory-wide uniqueness clearance."
+  },
+  "holdout": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "evaluator_version_if_unblocked": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "reason": "No hypothesis was fitted and no prediction was emitted because the pre-placement registry gate blocks all candidate construction."
+  },
+  "single_feature_canaries": {
+    "status": "NOT_RUN_NO_FEATURES_FITTED",
+    "auc": null,
+    "note": "AUC above 0.90 on a single feature means leakage until proven otherwise; no features were tested."
+  },
+  "representative_research_raster_validator_output": {
+    "artifact": "docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif",
+    "raster_sha256": "b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "format_valid": true,
+    "submission_ready": false,
+    "checks": {
+      "geotiff": true,
+      "single_band": true,
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "all_finite": true,
+      "no_nan_inside": true,
+      "values_in_0_1": true,
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL",
+    "note": "Format validity does not authorize a competition slot; addresses the portal \"Predicted values must be in range [0, 1]\" error locally."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "name_note_limit_chars": 140,
+  "download_status": "OK for research/education only — one-click TIFF and one-TIFF ZIP downloads at docs/index.html",
+  "submit_status": "NO — DO NOT SUBMIT; binding DUPLICATE_STOP; 0 weekly slots spent; no organizer-confirmed score",
+  "blocker": "DUPLICATE_STOP — 17GEMSDOE dense witness covers 100% of allowed cells; overlap lower bound 1.00 > 0.70. Unblocking requires a shared protocol revision, not a private fork or filename change.",
+  "next_steps": "Revise the shared uniqueness condition; preregister the top hypothesis (section 4 of research/session-810e3aa2-20261025-determination.md); run buffered hide-and-recover holdout, leakage canaries, pooled DTI with paired CI, and registry tests; only then consider a slot.",
+  "generated_by": "scripts/generation_guard.py / scripts/preflight_mtas88.py / scripts/validate_artifact.py"
+}
