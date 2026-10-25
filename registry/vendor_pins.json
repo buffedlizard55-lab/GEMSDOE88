@@ -25,19 +25,20 @@
     "strand_orientation.py": "c1dd6d8bc39c48c4cda11321c116e600b59b18cf1764e23ce3d5438bea9dd0bc",
     "strike_zone.py": "eaf5b1030b731ec743650568d28598d3b6104e641a089dd6cca196e05be4e9c4",
     "submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
-    "uniqueness.py": "356dba55dfc71d36c8db5e08086d92b0887aaf0b4d7702bdce61e8f2d1d0dd16",
+    "uniqueness.py": "8dfe32958e417c7bee8b97432b4e7a564b8e847f86bc0d9b56c27374d034b8ae",
     "validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd"
   },
   "documented_patches": [
     {
       "file": "uniqueness.py",
       "upstream_sha256": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
-      "patched_sha256": "356dba55dfc71d36c8db5e08086d92b0887aaf0b4d7702bdce61e8f2d1d0dd16",
+      "patched_sha256": "8dfe32958e417c7bee8b97432b4e7a564b8e847f86bc0d9b56c27374d034b8ae",
       "append_only": true,
-      "reason": "IR-88-76: added excess_overlap() and binding_duplicate_decision_v3(). The literal 3 px dot-overlap rule returns 1.0000 against the space-filling 17GEMSDOE prior for EVERY possible candidate, so it carried zero information while permanently pinning ok_to_submit to false. The addition is append-only: no existing function, constant or code path was altered, so every previously recorded uniqueness number is reproducible byte-for-byte. The brief requires shared defects to be fixed once in the template rather than forked. IR-88-86 appends a single shared compatibility correction: v3 now binds on literal overlap including dense priors, and fails closed on missing/nonfinite measurements. Earlier chance-corrected outputs remain historical diagnostics, never submission authorization.",
+      "reason": "IR-88-76: added excess_overlap() and binding_duplicate_decision_v3(). The literal 3 px dot-overlap rule returns 1.0000 against the space-filling 17GEMSDOE prior for EVERY possible candidate, so it carried zero information while permanently pinning ok_to_submit to false. The addition is append-only: no existing function, constant or code path was altered, so every previously recorded uniqueness number is reproducible byte-for-byte. The brief requires shared defects to be fixed once in the template rather than forked. IR-88-86 appends a single shared compatibility correction: v3 now binds on literal overlap including dense priors, and fails closed on missing/nonfinite measurements. Earlier chance-corrected outputs remain historical diagnostics, never submission authorization. IR-88-249E-01 (session 249e8cb3, append-only on top of the 356dba55 patch): added binding_duplicate_decision_v4(), implementing the versioned representation-aware policy requested by IR-88-128: registry rasters are classified as dot-fields vs continuous probability surfaces; rank-correlation is bound against every raster and the 3-px dot test is bound literally against dot emissions and against continuous surfaces via their like-for-like top-N emission. The literal v3 decision is preserved unchanged and nested in every v4 output, so all previously recorded verdicts reproduce byte-for-byte; v4 is a proposal pending owner sign-off. The landing session's own candidate (H88-MMRX) FAILS v4 on dot-field overlap (0.798 vs HGVC), so no verdict in that session depends on accepting the v4 interpretation.",
       "irregularity": "IR-88-76",
       "pull_request": 61,
-      "historical_patched_sha256": "f7e7c099143e8f78da232792edf468ee7479e6fec1a32865bc63f470e6f5140c"
+      "historical_patched_sha256": "f7e7c099143e8f78da232792edf468ee7479e6fec1a32865bc63f470e6f5140c",
+      "previous_patched_sha256": "356dba55dfc71d36c8db5e08086d92b0887aaf0b4d7702bdce61e8f2d1d0dd16"
     }
   ]
 }

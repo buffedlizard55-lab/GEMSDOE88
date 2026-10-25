@@ -1,0 +1,22 @@
+{
+  "schema": "gems88.mmrx88.preflight.v1",
+  "dense_witness": {
+    "file": "data/registry/dense_17gemdoe.tif",
+    "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "min": 0.0004625781439244747,
+    "median": 0.21869072318077087,
+    "max": 0.984115719795227,
+    "n_zero": 0,
+    "n_one": 0,
+    "n_positive": 5167373,
+    "footprint": 5167373,
+    "representation": "continuous probability surface (no dot emission)"
+  },
+  "random_dot_vacuity_witness": {
+    "n_random_dots": 37654,
+    "literal_overlap_3px": 1.0,
+    "conclusion": "literal >0 dot test is constant 1.0; carries no lane-drift information"
+  },
+  "binding_rule": "v4 representation-aware (rho vs all; dots vs dot-fields / top-N surfaces); literal reported verbatim",
+  "generation_allowed_under_v4_pending_surface_and_final_checks": true
+}

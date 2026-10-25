@@ -2,13 +2,14 @@
 
 **No new TIFF is eligible, and no competition slot was used by this session.** The primary [submission guide](executive-summary.html) and [canonical manifest](data/current_release.json) are authoritative. The [existing TDKL research TIFF](downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) and [single-TIFF ZIP](downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) are downloadable for education only; neither is a new or protocol-unique prediction.
 
-- Automated saved-byte audit: **41/41** TIFF/ZIP pairs pass two independent decoders, finite/[0,1], exact grid, footprint/catalogue masks and extraction labels. [Full audit](data/download_audit.json).
+- Automated saved-byte audit: **43/43** TIFF/ZIP pairs pass two independent decoders, finite/[0,1], exact grid, footprint/catalogue masks and extraction labels. [Full audit](data/download_audit.json).
+- Session 249e8cb3 executed the leading ranked hypothesis (H88-MMRX marker restoration): HOLDOUT-DTI `0.188378 [0.170922, 0.204215]` vs the `0.205991` bar, 0/8 folds won, and final-dot overlap `0.797578` vs H88-HGVC — negative; published repo-side in `submissions/` with `-DO-NOT-SUBMIT`, not added to this site's downloads. Zero slots spent.
 - Literal prerequisite: `17GEMSDOE` directly covers every one of 5,106,385 allowed pixels; every nonempty allowed candidate has overlap 1.0 > 0.70. **STOP before generation.**
 - The old `[0,1]` error is addressed locally by validation of strict finite zero-outside files, not by claiming portal acceptance. Its exact historical upload failure cannot be diagnosed without the uploaded bytes/receipt.
 - All validation is automated; no manual TIFF inspection is needed. A future eligible file would still require fold-rebuilt holdout superiority, complete registry checks and a separate selector within the actual authenticated account cap. No fresh cap or official receipt was obtained here.
 - Reproduce locally: `python scripts/audit_downloads.py --check`, `python scripts/render_decision.py --check`, `python -O scripts/check_site.py`. Candidate CLIs stop via the existing shared preflight; there is no override switch.
 
-**Unique new submission requirement: UNMET.** See [review and ordered next steps](research/session-d0c3adeb-review.md).
+**Unique new submission requirement: UNMET.** See [review and ordered next steps](research/session-d0c3adeb-review.md) and the [H88-MMRX session review](research/review-249e8cb3-mmrx88-20261025.md).
 
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>

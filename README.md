@@ -18,7 +18,20 @@ Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_P
 
 **Maximize P(Win):** reserve feedback for evidence-backed, genuinely distinct candidates. **Own the Outcome:** publish negative findings and unmet requirements instead of claiming a high score or unique file without evidence.
 
-### Current review — session d0c3adeb, 2026-10-25
+### Current review — session 249e8cb3 (H88-MMRX), 2026-10-25
+
+| Work | Verified outcome |
+|---|---|
+| Hypothesis execution | The leading untested proposal from ranked hypothesis reviews (magnetic marker displacement/restoration) was preregistered (`PREREG-20261025-MMRX88`) and executed end-to-end: 16 zero-catalogue channels (`src/gems88/mmrx.py`), synthetic-mechanism tests, leakage canary pass (max symmetric AUC 0.769681 overall; MMRX max 0.539823). |
+| Holdout (HOLDOUT-DTI, `gems57-pooled-hide-v2`, 22,893 withheld positives) | Candidate Exp03 **0.188378 [0.170922, 0.204215]** vs H88-BPWD bar **0.205991 [0.188105, 0.223344]** — point delta −0.017613, folds won **0/8**; Exp02 joint 0.201867; Exp01 zero-catalogue 0.109017. BPWD instrument reproduced exactly on fold 1 (0.191933 ≡ stored); remaining BPWD fold scores are the stored record under the disclosed `--fast-controls` deviation, so candidate-vs-BPWD carries no paired CI. |
+| Uniqueness (`REGISTRY-MEASUREMENT`, 254 rasters) | Surface worst \|ρ\| = 0.218 ≤ 0.90, but final-dot overlap **0.797578 vs H88-HGVC > 0.70** — the shared allocator reselects incumbent crests (same failure as IR-88-127 for PSGV). Verdict `negative`. |
+| Artifact | [`submissions/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.tif`](submissions/gems88-mmrx88-marker-restoration-37654-20261025-40d72050-zeros-DO-NOT-SUBMIT.tif) (SHA-256 `40d720509a…0e10ca86c8`, 37,654 dots) + one-TIFF ZIP (`9892600d…6f1a16ea0ec`); independently reopened: one float32 band, values exactly {0,1}, no NaN/nodata — the historical "[0, 1]" portal error cannot fire on this package. Published repo-side only; site/download inventory and the d0c3adeb browser-bound records are unchanged this session (IR-88-249E-04). |
+| Shared-tool change | `binding_duplicate_decision_v4` appended to the shared uniqueness template exactly as requested by IR-88-128, with both pin files updated and the literal v3 decision nested verbatim; v4 is a proposal pending owner sign-off and the candidate fails it regardless. The new runner carries the shared generation preflight (guard inventory 89 → 90). |
+| Verification | Full test suite green; site guards (`audit_downloads --check`, `render_decision --check`, `check_site`) pass with the canonical decision untouched. |
+
+[Session review, H33 explanation, failure analysis and next steps](research/review-249e8cb3-mmrx88-20261025.md) · [Five ranked candidate hypotheses](research/candidate-hypotheses-20261025-mmrx88.md) · [Run card](registry/mmrx88_run_card.json) · [Holdout evidence](evidence/mmrx88_holdout_20261025.json) · [Canaries](evidence/mmrx88_canaries.json) · [Uniqueness](evidence/mmrx88_uniqueness_20261025.json)
+
+### Previous review — session d0c3adeb, 2026-10-25
 
 | Work | Verified outcome |
 |---|---|

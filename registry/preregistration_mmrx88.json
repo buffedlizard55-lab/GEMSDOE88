@@ -1,0 +1,80 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "preregistration_id": "PREREG-20261025-MMRX88",
+  "frozen_utc": "2026-10-25T13:30:00Z",
+  "session_branch": "arena/249e8cb3-gemsdoe88",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "single_method_lane": {
+    "id": "H88-MMRX",
+    "title": "Magnetic Marker Restoration: oriented cross-fault displaced-template correlation and depth-attenuation asymmetry (MMRX-16) stacked on the BPWD PoE base",
+    "mechanism": "From a joint RTP+gravity structure tensor, take local strike t and cross-strike normal n (n signed toward increasing depth_to_base_surf, i.e. into the hanging-wall basin). Sample high-pass RTP in strips at -4n (footwall) and +4n + s*t (hanging wall) for s in {-4,-2,0,2,4} px, plus a sigma=1.5 low-passed hanging-wall strip (burial attenuation). Local (sigma=3 px Gaussian window) correlations corr_s measure whether a displacement restores marker continuity across the candidate boundary: restoration gain = max_s corr_s - corr_0. Cross-strike strip-variance ratio measures hanging-wall short-wavelength attenuation from deeper magnetic basement. The same geometry at s in {-4,0,4} on high-pass isostatic gravity gives a second-field restoration gain; min(gain_rtp, gain_grav) requires both fields to restore. A step-without-gain channel explicitly encodes the unfaulted-contact mimic. Sixteen zero-catalogue channels (src/gems88/mmrx.py) are added to the proven PHYS-44 + HGVC-20 + PSGV-20 + VIS-23 base with dual-expectation (cell + 300 m kernel-credit) LightGBM/HGB specialists and the shared Dinkelbach emitter. No catalogue reads inside channel construction.",
+    "named_non_fault_mimics": [
+      "Unfaulted lithologic/intrusive contact or depositional pinch-out: coincident RTP+gravity step with no displaced-marker restoration gain (encoded as mmrx_mimic_contact)",
+      "GeoDAWN flight-line levelling seams: rectilinear apparent offsets along survey lines without gravity restoration or basement-depth step",
+      "Reversely magnetized volcanic flow margins: strong RTP texture steps with no cross-strike depth attenuation ordering"
+    ]
+  },
+  "mmrx16_features": [
+    "mmrx_rtp_corr_best",
+    "mmrx_rtp_corr0",
+    "mmrx_rtp_gain",
+    "mmrx_rtp_shift_best",
+    "mmrx_rtp_shift_abs",
+    "mmrx_rtp_gain_blur",
+    "mmrx_rtp_varratio_abs",
+    "mmrx_rtp_step",
+    "mmrx_rtp_gain_x_coh",
+    "mmrx_rtp_best_x_step",
+    "mmrx_grav_corr_best",
+    "mmrx_grav_gain",
+    "mmrx_grav_varratio_abs",
+    "mmrx_cross_gain_min",
+    "mmrx_mimic_contact",
+    "mmrx_depthstep_aligned"
+  ],
+  "layers": [
+    "data/training_features.tif B02 rtp (USGS GeoDAWN airborne magnetics, https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)",
+    "data/training_features.tif B13 iso_grav_anom, B15 depth_to_base_surf",
+    "Reused shared cached stacks only: src/gems88/physics.py PHYS-44, src/gems88/hgvc.py HGVC-20, src/gems88/bpwd.py PSGV-20, src/gems88/adhr.py VIS-23 (fold-visible catalogue features rebuilt per fold)"
+  ],
+  "holdout_protocol": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "splitter": "vendor/gems57/holdout.py buffered_component_draw(buffer_px=3, boundary_px=12)",
+    "seeds": [20, 21],
+    "folds": 8,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "bootstrap_block_side_px": 200,
+    "bootstrap_draws": 2000,
+    "experiment_budget_max": 3,
+    "wallclock_budget_hours_max": 2,
+    "leakage_canary": "every input feature alone vs withheld positives; symmetric AUC > 0.90 stops the run",
+    "controls_recomputed_in_run": ["phys44_zero_cat", "h88_adhr_incumbent", "h88_hgvc_incumbent", "exp03_psgv_tri_poe (BPWD champion architecture)"],
+    "experiments": [
+      {"id": "exp01_mmrx_zero_cat", "description": "Zero-catalogue specialist: PHYS-diff (36) + MMRX-16 = 52 ch HGB dual-expectation; catalogue-free ranking evidence for the new measurement alone (with PHYS context), scaled/fused exactly as BPWD exp01"},
+      {"id": "exp02_mmrx_joint_spec", "description": "Joint specialist: PHYS-44 + MMRX-16 + HGVC-20 + PSGV-20 + VIS-23 = 123 ch LightGBM dual-expectation fused with its zero-catalogue counterpart (PHYS-diff + MMRX-16 + HGVC-20 + PSGV-20 = 92 ch) via adhr._fuse_log_odds(beta_phys=0.38)"},
+      {"id": "exp03_mmrx_candidate", "description": "Candidate arm = exp02 architecture (kept production-faithful). exp03 slot is spent only if exp02's zero-cat/joint fusion needs the pre-registered alternative beta_phys=0.58, pi_unmapped=0.65 production-style fuse; otherwise exp03 == exp02 and only 2 experiments are consumed. No post-hoc arm invention."}
+    ],
+    "kill_rule": "Candidate is selector-eligible only if its pooled HOLDOUT-DTI beats the in-run recomputed BPWD control exp03_psgv_tri_poe on identical folds/emitter; otherwise verdict=negative and DO-NOT-SUBMIT. Stored cross-session maxima are never used as the bar."
+  },
+  "uniqueness_protocol": {
+    "surface_spearman_abs_max": 0.90,
+    "dot_overlap_3px_max": 0.70,
+    "representation_aware_v4": "rho against every registry raster; dot overlap against dot-emission rasters literally and against continuous surfaces via their top-N (N=candidate dots) emission; literal >0 overlap vs the dense 17GEMSDOE witness reported verbatim with a random-dot vacuity witness (see research/candidate-hypotheses-20261025-mmrx88.md, IR-88-249E-01)",
+    "checked_before_placement_and_on_final_dots": true
+  },
+  "production_emission_plan": {
+    "total_dots": 37654,
+    "collar_min_d_cat_px": 2.5,
+    "near_stratum_d_cat_px": [2.5, 25.0],
+    "near_budget": 21200,
+    "near_spacing_px": 2.90,
+    "far_stratum_d_cat_px": [25.0, null],
+    "far_budget": 16454,
+    "far_spacing_px": 3.12,
+    "cross_fitting": "4-quadrant OOF zero-catalogue specialist + 8-fold (seeds 20,21) OOF joint specialist, mirroring bpwd.fit_and_emit_production_psgv structure with MMRX channels added",
+    "writer": "vendor/gems57/submission_writer.py (preflight check) + src/gems88/portal_writer.py (portal-parity LZW layout), values binary {0,1} float32, nodata=None, zero outside footprint"
+  }
+}

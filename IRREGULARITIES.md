@@ -1,4 +1,41 @@
-# Current irregularities — session d0c3adeb, 2026-10-25
+# Current irregularities — session 249e8cb3 (H88-MMRX), 2026-10-25
+
+The [session review](research/review-249e8cb3-mmrx88-20261025.md) and
+[run card](registry/mmrx88_run_card.json) are the current record. A new research TIFF was
+generated and tested this session; it is **negative** (no slot spent, no verified organizer
+score), and the canonical site decision below (session d0c3adeb) is unchanged.
+
+1. **IR-88-249E-01 — Versioned uniqueness policy implemented as proposed, not self-approved.**
+   `binding_duplicate_decision_v4` was appended to `vendor/gems57/uniqueness.py` exactly per the
+   IR-88-128 recommendation (classify dot-fields vs continuous surfaces; like-for-like top-N for
+   surfaces; literal v3 nested verbatim). Both pin files (`registry/vendor_pins.json`,
+   `registry/template_pin.json`) declare the append-only patch (`356dba55…` → `8dfe3295…`).
+   v4 remains a **proposal pending owner sign-off**; the session's own candidate fails v4 anyway
+   (see item 2), so no verdict in this session depends on the interpretation.
+2. **IR-88-249E-02 — MMRX emission duplicates the HGVC lane (repeat of IR-88-127).**
+   Despite a novel, grep-clean feature channel, 79.76% of the candidate's final dots lie within
+   3 px of H88-HGVC production dots (> 0.70 limit; PSGV previously failed at 0.7976 the same way).
+   Root cause: the shared allocator reselects the same catalogue-anchored crest cells; feature
+   novelty does not survive to emission. HOLDOUT-DTI also lost independently
+   (0.188378 vs bar 0.205991, 0/8 folds). Verdict `negative`; file carries `-DO-NOT-SUBMIT`.
+3. **IR-88-249E-03 — Disclosed deviations from the frozen preregistration (`PREREG-20261025-MMRX88`).**
+   (a) Implemented geometry (σ3/σ8 tensor incl. depth, along-strike smoothing) differs from the
+   frozen text (σ1.5/σ4, σ3 window) because the text version failed synthetic validation; the
+   preregistration JSON was not rewritten. (b) The prose names Exp02 the candidate architecture
+   with Exp03 as alternative-fuse slot, while the runner designated Exp03 pre-run; redesignation
+   after folds was refused (and Exp02 loses to the bar pooled regardless). (c) `--fast-controls`:
+   BPWD recomputed exactly on fold 1 (0.191933 ≡ stored), stored BPWD scores used thereafter;
+   candidate-vs-BPWD is therefore a point delta with per-fold deltas, not a block-paired CI.
+4. **IR-88-249E-04 — Publication scope of the negative artifact.** The MMRX TIFF/ZIP are published
+   repo-side only (`submissions/`), not added to `docs/downloads/`, so the session-d0c3adeb
+   browser-bound page evidence and the 43-file download inventory remain byte-exact instead of
+   being re-stamped without a real browser re-check. The one current-state record maintained is
+   the generation-guard inventory (89 → 90 entrypoints: this runner now carries the shared
+   preflight as required), updated identically in `registry/` + `docs/data/` session cards.
+
+---
+
+# Session irregularities — session d0c3adeb, 2026-10-25
 
 The [current review](research/session-d0c3adeb-review.md) and [source ledger](knowledge/session-d0c3adeb-sources.md) supersede conflicting historical wording below. No new TIFF, holdout experiment, verified organizer score or slot was produced in this session.
 
