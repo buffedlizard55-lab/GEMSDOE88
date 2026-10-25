@@ -14,13 +14,13 @@ NODE = shutil.which("node")
 def test_current_decision_precedes_archived_download_on_both_pages():
     for rel in ("docs/index.html", "docs/executive-summary.html"):
         html = (ROOT / rel).read_text()
-        current = html.index('id="mtas-review"')
-        historical = html.index("PRIOR BEST RESEARCH DELIVERABLE") if rel == "docs/index.html" else html.index("Prior H88-HGVC research GeoTIFF")
+        current = html.index('id="autonomous-review"')
+        historical = html.index('id="hgvc-current"') if rel == "docs/index.html" else html.index("Archived H88-HGVC GeoTIFF")
         assert current < historical, f"stale candidate appears before current decision in {rel}"
         assert "NO NEW TIFF" in html
         assert "H88-HGVC" in html
     guide = (ROOT / "docs/executive-summary.html").read_text()
-    assert "CURRENT DECISION: H88-MTAS · NO NEW TIFF" in guide
+    assert "CURRENT DECISION 2026-10-25: NO NEW UNIQUE TIFF" in guide
 
 
 @pytest.mark.skipif(NODE is None, reason="Node.js runtime unavailable")
@@ -49,7 +49,7 @@ const env = {
 vm.runInNewContext(fs.readFileSync('docs/assets/site.js', 'utf8'), env);
 setImmediate(() => {
   const expected = fail ? 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT'
-    : 'H88-GZZC · NEW RESEARCH TIFF · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (literal duplicate stop)';
+    : 'H88-MTAS · NO NEW TIFF · OLD FILE DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated duplicate stop)';
   if (banner.textContent !== expected) {
     console.error('Incorrect decision:', banner.textContent, 'expected:', expected);
     process.exitCode = 1;
