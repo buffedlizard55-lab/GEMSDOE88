@@ -1,3 +1,5 @@
+> **CORRECTION — 2026-10-25:** This archived analysis overstates causal proof, hidden-truth precision, alluvium interpretation and score projections. These are not established findings. Its special-case break-even expression also has an erroneous denominator. Read [the corrected evidence assessment](review-20261025.md) before relying on this document. User-reported scores are not organizer receipts.
+
 # PhD Forensic Analysis: Mathematical Decomposition of GEMSDOE32 / H33 (0.2778), Metric Mechanics, and Architectural Roadmap to Surpass It
 
 **Author:** Geothermal Geophysical & Structural Permeability Working Group (GEMSDOE88)  

@@ -1,5 +1,15 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> ## Current review — 2026-10-25: research download YES · submission NO
+> **Unique competition TIFF not delivered:** the freshly verified registry witness saturates the allowed domain. The literal overlap rule forbids every nonempty candidate. No new TIFF generated, renamed or copied; no experiments or slots used.
+>
+> [Download existing research TIFF — DO NOT SUBMIT](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [One-TIFF ZIP](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [Fresh JSON card](docs/data/submission_review_latest.json) · [Review and ranked conditional hypotheses](research/review-20261025.md) · [Executive submission guide](docs/executive-summary.html).
+>
+> Read [the standing user prompt](PROMPT.md) before each session. The latest request repeats its unique-TIFF, literal duplicate-stop, shared-tool, canary, three-experiment/two-hour, automatic-gating and separate-selector requirements. No missing method paragraph or dense-witness exemption is assumed. **Maximize P(Win) · Own the Outcome.** H33 causal/precision overclaims are corrected in the review; user-reported scores are not organizer receipts.
+>
+> Reproduce: `python scripts/restore_inputs.py --validation && python scripts/review_submission_status.py`. `--require-submit` returns **2** for blocked; missing/corrupt evidence returns **1**. Unflagged exit 0 is research-audit completion only.
+
+
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
 > ## ⛔ Latest session lane (2026-10-24): `H88-DHTC` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (like-for-like unique 0.5237 <= 0.70; canary pass 0.5903; held under literal `17GEMSDOE` dense witness; 0 slots spent)
