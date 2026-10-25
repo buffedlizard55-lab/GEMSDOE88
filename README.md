@@ -1,6 +1,22 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
-> ## 🌟 Latest session lane (`2026-10-24`): `H88-HGVC` — **FIRST RASTER IN `GEMSDOE88` TO PASS ALL 5 DISCRIMINATING GATES (`HOLDOUT-DTI 0.202947`, `8/8` FOLDS WON, `326`-RASTER LIKE-FOR-LIKE UNIQUE)** · DOWNLOAD FOR RESEARCH: **YES** · AUTO-SUBMIT: **NO — DO NOT SUBMIT** (held fail-closed solely under binding literal `17GEMSDOE` space-filling witness + human selector rule; `0` slots spent)
+> ## 🌟 Latest session lane (`2026-10-25`): `H88-GZZC` — residual isostatic-gravity **zero-contour buried contact** · **DOWNLOAD FOR RESEARCH: YES** · **SUBMIT: NO — DO NOT SUBMIT**
+> [⬇ **One-Click Download `H88-GZZC` GeoTIFF (`.tif`, 768 KB, zeros `[0,1]`)**](docs/downloads/gems88-gzzc-gravzero-buried-20261025-961e034d-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-File ZIP**](docs/downloads/gems88-gzzc-gravzero-buried-20261025-961e034d-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/gzzc88_run_card.json) · [5 Ranked Hypotheses](research/candidate-hypotheses-20261025-gzzc.md) · [H33 forensics](research/h33-forensics-and-gzzc-phd-analysis.md) · [Executive Submission Guide](docs/executive-summary.html) · [Standing Prompt](PROMPT.md).
+>
+> | Automated Gate | Machine Result | Evidence |
+> | :--- | :--- | :--- |
+> | **OK to download (`[0,1]`)?** | **YES — OK TO DOWNLOAD** | 1 band float32, EPSG:32611, 3730×3292, sample transform, `nodata=None`, 0 NaN/Inf, all 12,279,160 values in `{0,1} ⊂ [0,1]`, 32,000 dots, 0 on catalogue, min d_cat 3.16 px. Fixes `Predicted values must be in range [0, 1]`. |
+> | **Leakage canary** | **PASS (0.572 ≤ 0.90)** | 4/4 raw channels; max symmetric AUC 0.571998 on `low_slope_gate`. |
+> | **8-fold / fixed-raster holdout** | **NEGATIVE `HOLDOUT-DTI 0.0000`** | Evaluator `gems57-pooled-hide-v2`, n=22,641 withheld positives scored. Catalogue-collar structural zero (IR-88-20/35). **Not ORGANIZER-CONFIRMED.** |
+> | **Fingerprint** | **PASS** | share_le2=0.0, share_gt25=0.45 ≥ 0.35, median 22.7 px. |
+> | **Uniqueness** | **like-for-like PASS · literal FAIL** | max 3-px overlap 0.343219 ≤ 0.70, \|ρ\|=0.039342 ≤ 0.90; literal 17GEMSDOE **1.0 > 0.70**. Byte-distinct; **not unique under the binding all-registry rule**. |
+> | **OK to submit?** | **NO — DO NOT SUBMIT** | `ok_to_submit=false`, 0 slots, verdict negative. Validate: `.venv/bin/python scripts/validate_gzzc88.py` (exit 0; `--require-submit` exit 2). |
+> | **Prepared name / note** | `GEMSDOE88-GZZC-961E034D` (23/140) | `H88-GZZC grav-zero buried contact 32000d; HOLDOUT-DTI 0.0000; gt25 0.45; UNSCORED` (81/140) |
+> | **SHA-256 tif / zip** | `961e034d515fa74388f4417def3723584bdcb6d7fe7f97892b193898c13d78ad` | ZIP `836f8f74ad29de2b6db94b1c1c4e8bc3af43d3efbc3a124300ae74b2f6612dc5` |
+>
+> **Why H33 0.2778 and can we beat it?** User-reported, not a receipt. Nested thinning of the H19-5 ridge family. GZZC is a contrarian buried-contact prior (not a copy). Beating 0.2778 / live 0.4413 is **not shown**. Read the prompt in [PROMPT.md](PROMPT.md) every session.
+
+> ## 🌟 Prior session lane (`2026-10-24`): `H88-HGVC` — **FIRST RASTER IN `GEMSDOE88` TO PASS ALL 5 DISCRIMINATING GATES (`HOLDOUT-DTI 0.202947`, `8/8` FOLDS WON, `326`-RASTER LIKE-FOR-LIKE UNIQUE)** · DOWNLOAD FOR RESEARCH: **YES** · AUTO-SUBMIT: **NO — DO NOT SUBMIT** (held fail-closed solely under binding literal `17GEMSDOE` space-filling witness + human selector rule; `0` slots spent)
 > [⬇ **One-Click Download `H88-HGVC` GeoTIFF (`.tif`, 795 KB, LZW sample-parity `[0,1]` zeros)**](docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-File ZIP (`.zip`, 178 KB)**](docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/hgvc88_run_card.json) · [Gate v3 Receipt](registry/hgvc88_gate_v3.json) · [Portal Format Audit](docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.format-audit.json) · [8-Fold Holdout Ledger](evidence/hgvc88_holdout_20261024.json) · [5 Ranked Hypotheses & PhD Forensic Answer](research/candidate-hypotheses-20261024-hgvc88.md) · [Executive Submission Guide](docs/executive-summary.html) · [Standing Prompt & Core Values (`Maximize P(Win)` · `Own the Outcome`)](PROMPT.md).
 >
 > | Automated Gate (`Zero Human Input`) | Machine Result | Binding Evidence |
