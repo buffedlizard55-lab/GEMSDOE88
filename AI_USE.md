@@ -1,3 +1,14 @@
+# AI-assisted review — session d0c3adeb (2026-10-25)
+
+An Arena coding agent reviewed the request, repository, pinned official reference code and owner H33 source/build record; wrote conditional hypotheses; rechecked historical geometry and downloadable bytes; restored disclosed owner-mirror inputs; added shared pre-generation guards, fail-closed UI and tests; integrated concurrent main records; and documented limitations.
+
+No model training, new geological experiment, new prediction TIFF, portal submission or organizer-confirmed score occurred in this review. Synthetic unit-test arrays are software checks, not geological experiments. Existing imported BGCD/MTAS/PRISM artifacts are prior-session records. Scientific explanations and inferred mechanisms are explicitly separated from measurements and unknowns.
+
+All 92 supplied site links/115 file-value claims are preserved with request-line provenance, not represented as fresh browsing of all sites. The complete normalized request is embedded in README and retained in `USER_PROMPT_20261025.md`. Fresh external access is limited to the immutable GitHub sources in the source ledger. The source report and completion appendix record verification and unresolved requirements; no secret/account credential was requested or stored.
+
+<details>
+<summary>Earlier session records — historical, not current authorization</summary>
+
 # AI_USE — Generative-AI Disclosure (NLR Official Rules §3.6)
 
 - **Competing Entity (1 human competitor):** `buffedlizard55-lab` (sole submitter, slot owner, and blind-final selector).
@@ -252,3 +263,6 @@ AI agent work: null-control audit of the PROVCREST promote, spacing and count sw
 - **Emitted artifact (`all_5_discriminating_gates_pass = true`, held fail-closed by literal `17GEMSDOE` witness):** `docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef`, `37,654` `{0,1}` `float32` dots, LZW 1-row-strip sample parity, `share_le2 = 0.0000`, `share_gt25 = 0.4290 >= 0.35`, `324`-raster like-for-like max 3-px overlap `0.607426 <= 0.70`, `|rho| = 0.208144 <= 0.90`).
 - **AI did NOT:** contact `drivendata.org` or `dropbox.com`, spend any weekly submission slot (`0` slots spent), claim any `ORGANIZER-CONFIRMED` score (`none`), or override the binding literal `17GEMSDOE` space-filling witness (`1.0000 > 0.70`).
 
+
+
+</details>

@@ -46,3 +46,9 @@ Retrieval hashes (SHA-256, not performance scores):
 | [Tversky overview](https://en.wikipedia.org/wiki/Tversky_index) | General mathematical background | Not an official competition specification; not fetched or used as authoritative validation. |
 
 No credentials are requested, stored or invented. An authenticated organizer context with permitted network access would be needed for official input comparisons, current rules/allowance and eventual receipts, **after** the project gates become satisfiable.
+
+
+## Concurrent main source boundary
+
+- Git fetched `buffedlizard55-lab/GEMSDOE88` main at `8e8bdf2` during this review. Existing BGCD/MTAS/PRISM TIFFs and CXL evidence were integrated, not generated anew. Their owner-authored holdout/source statements remain historical. Independent local byte validation covers the three added TIFF/ZIP pairs; it does not freshly reproduce their geological experiments, organizer claims or source access.
+- Main's earlier live-leaderboard access statements do not remove this session's outbound-host restrictions. The current leaderboard, account quota and organizer receipts remain unverified here.

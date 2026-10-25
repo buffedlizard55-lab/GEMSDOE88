@@ -781,6 +781,50 @@ def main(root: Path = ROOT) -> None:
         require(text.count('<h1') == 1, "Only one primary page heading is allowed")
         expected = render_decision.replace_block(text, render_decision.render(root, kind))
         require(expected == text, "Canonical decision panel is stale or altered; render from machine evidence")
+    bgcd = json.loads((root / "registry/bgcd88_run_card.json").read_text())
+    bgcd_web = json.loads((docs / "data/bgcd88_run_card.json").read_text())
+    bgcd_gate = json.loads((root / "registry/bgcd88_gate_verdict.json").read_text())
+    bgcd_gate_web = json.loads((docs / "data/bgcd88_gate_verdict.json").read_text())
+    require(bgcd == bgcd_web, "Pages BGCD card differs from canonical registry card")
+    require(bgcd_gate == bgcd_gate_web, "Pages BGCD gate verdict differs from registry")
+    require(
+        bgcd["verdict"] == "negative"
+        and bgcd["ok_to_download"] is True
+        and bgcd["ok_to_submit"] is False
+        and bgcd_gate["ok_to_submit"] is False,
+        "BGCD fail-closed status invariant failed",
+    )
+    bgcd_tif = root / bgcd["submission"]["file"]
+    bgcd_zip = root / bgcd["submission"]["zip_file"]
+    require(sha256(bgcd_tif) == bgcd["raster_sha256"], "BGCD TIFF SHA256 mismatch")
+    require(sha256(bgcd_zip) == bgcd["zip_sha256"], "BGCD ZIP SHA256 mismatch")
+    with zipfile.ZipFile(bgcd_zip) as zf:
+        require(
+            zf.namelist() == [bgcd_tif.name] and zf.read(bgcd_tif.name) == bgcd_tif.read_bytes(),
+            "BGCD ZIP does not contain byte-identical single TIFF",
+        )
+    bgcd_doc_md = docs / "research/bgcd88-forensics-and-phd-synthesis-20261025.md"
+    require(bgcd_doc_md.is_file(), "BGCD PhD synthesis markdown missing under docs/research")
+    bgcd_root_md = root / "research/bgcd88-forensics-and-phd-synthesis-20261025.md"
+    if bgcd_root_md.is_file():
+        require(
+            bgcd_root_md.read_bytes() == bgcd_doc_md.read_bytes(),
+            "BGCD PhD synthesis markdown differs between research/ and docs/research/",
+        )
+    sources = (docs / "sources.html").read_text()
+    for page_name, page_txt in (
+        ("index.html", index),
+        ("executive-summary.html", executive),
+        ("research.html", research),
+        ("sources.html", sources),
+    ):
+        require(bgcd_tif.name in page_txt, f"BGCD tif missing in {page_name}")
+        require(bgcd["submission"]["submission_name"] in page_txt, f"BGCD submission_name missing in {page_name}")
+        require(bgcd["raster_sha256"] in page_txt, f"BGCD raster_sha256 missing in {page_name}")
+    require(
+        bgcd["zip_sha256"] in index and bgcd["zip_sha256"] in executive,
+        "BGCD zip_sha256 missing in index/executive",
+    )
     print(
         "PASS: canonical decision first, research bytes, archived records, Pages links and negative gates agree"
     )

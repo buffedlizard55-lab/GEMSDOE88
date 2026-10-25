@@ -31,7 +31,7 @@
       "new_member": "gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros-DO-NOT-SUBMIT.tif",
       "reason": "Preserve DO-NOT-SUBMIT label when extracted; identical existing research TIFF bytes, not a new prediction",
       "updated_references": [
-        "docs/downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros.json",
+        "docs/downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros-DO-NOT-SUBMIT.json",
         "docs/executive-summary.html",
         "docs/index.html"
       ]

@@ -1,5 +1,41 @@
-# Ranked Un-Tried Geological Hypotheses & H88-VHGD / H88-HGVC / H88-DHTC Validation Dossier (2026-10-25)
+# Current conditional hypotheses — four ranked, none executed
 
+Read [session-d0c3adeb-hypotheses.md](research/session-d0c3adeb-hypotheses.md) for exact layers/transforms, off-catalogue rationale, prior-work distinctions, qualitative expected benefit/cost, named non-fault mimics and source limitations.
+
+1. Magnetic-marker restoration across candidate discontinuities (first choice only after prerequisites are satisfiable).
+2. Scarp-profile restoration with a drainage-erosion veto.
+3. Alteration-width asymmetry against a lithologic-contact null.
+4. Conductive basin-breach continuity against a permeable paleochannel null.
+
+All remain **untested**. They propose geothermal-related fault evidence, not vent detection. Local source-code novelty is not proof of worldwide/fleet novelty. No numeric gain or leaderboard result is projected. The shared literal duplicate stop currently forbids execution; do not run any historical lane below to evade it.
+
+<details>
+<summary>Earlier session records — historical, not current authorization</summary>
+
+# Ranked Un-Tried Geological Hypotheses & H88-BGCD / H88-HGVC / H88-DHTC / QTS-88 / H88-TDKL Validation Dossier (2026-10-25)
+
+> **LATEST PREREGISTERED & VERIFIED HYPOTHESIS LEDGER (`PREREG-H88-BGCD-20261025`, 2026-10-25):** See [research/bgcd88-forensics-and-phd-synthesis-20261025.md](research/bgcd88-forensics-and-phd-synthesis-20261025.md), [registry/preregistration_bgcd88_20261025.json](registry/preregistration_bgcd88_20261025.json), [registry/bgcd88_run_card.json](registry/bgcd88_run_card.json), and [evidence/bgcd88_holdout_20261025.json](evidence/bgcd88_holdout_20261025.json).
+> - **Selected & Executed Primary Hypothesis (`H88-BGCD`):** *Blind-Geothermal Geochemical-Disequilibrium, Tufa-Decontaminated Outflow Back-Projection, Flight-Line-Notched Upward-Continuation & Slip-Deficit PoE* across verified `gdr_wellspring_in_footprint.csv` (`temp_c`, `geothermcat_c`, `geothermchalc_c`, `geothermquartz_c`; `dist_known_fault_px` excluded), `Paleo_geothermal_final.csv` (`Deposit_type`, `158` Lahontan `Tufa` mimics removed), `geodawn_extensions_u8.tif` (`B2 UK`, `B3 UTh`, `B4 TMI_up150`), `geodawn_rad_u8.tif` (`B1 K`, `B2 Th`, `B4 TC`), `training_features.tif` (`B2 rtp`, `B4 geod_2ndinv`, `B5 iso_grav_anom_slope`, `B7 geod_shearrate`, `B8 geod_dilaterate`, `B9 tmi_vg`, `B12 det_elev`, `B15 depth_to_base_surf`, `B17 cond_surf`, `B19 det_elev_slope`), `dem10_chi_100m_i16/u8.tif`, `lidar_scarp_features_u8.tif` (`B10, B12`), and fold-masked `trace_segments_utm11.csv` (`slip_mm_yr`).
+> - **Verified 8-Fold `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `seeds 20+21`, `n=22,893` overall, `n=10,791` far `> 10 px`, `n=3,117` blind `> 25 px`):**
+>   - **Control (`h88_adhr_b12_ctrl`, `PHYS-44 + VIS-23` with `B12 det_elev` fix):** `HOLDOUT-DTI = 0.192945 [0.176023, 0.209598]` (far `0.116028`, blind `0.063343`).
+>   - **Exp 1 (`bgcd_blind_phys57`, pure zero-catalogue `57`-ch):** `HOLDOUT-DTI = 0.100109 [0.087835, 0.112522]` (far `0.079660`, blind `0.051453`; `+0.038350` over `DHTC` `0.061759`).
+>   - **Exp 2 (`bgcd_slip_joint83`, single `83`-ch stack):** `HOLDOUT-DTI = 0.189604 [0.171982, 0.206782]` (far `0.113530`, blind `0.062640`).
+>   - **Exp 3 (`h88_bgcd`, distance-adaptive Log-Odds PoE):** **`HOLDOUT-DTI = 0.193384 [0.176011, 0.210509]`** (far **`0.116300`**, blind **`0.064326`**; beats `Exp 2` by **`+0.003780 [+0.001804, +0.005774]`**, beats stored `H88-ADHR` `0.189634`, wins `5/8` folds vs `h88_adhr_b12_ctrl` `+0.000439 [-0.003808, +0.004728]`).
+>   - **Post-hoc 3-Regime Stratified Diagnostic (`share_gt25=50%`, `s=3.20`):** `HOLDOUT-DTI = 0.126097 [0.111270, 0.140740]` (far `0.079308`, blind `0.053635`) — quantifies Selected-At-Random holdout penalty where `47.17%` of footprint vs `13.62%` (`3,117/22,893`) of mapped catalogue lies at `d_cat > 25 px`.
+> - **Production Emission & Gating (`330` Distinct Rasters = `326` Pre-Merge + `4` Newly Merged Concurrent `GEMSDOE88` Rasters):**
+>   - **Total Dots:** `35,000` binary dots strictly in `{0.0, 1.0}` (`8,500` `<=10 px`, `8,500` `10..25 px`, `18,000` `>25 px`; `min_spacing = 3.20 px`; all `12,279,160` cells finite, `0` NaN/Inf, single-band `float32`, `EPSG:32611`, `3730x3292`, `nodata=None`, `0` outside footprint, `0` on catalogue).
+>   - **Leakage Canary:** `60/60` PASS (`max symmetric AUC = 0.66343 <= 0.90`).
+>   - **Distance Profile:** `share_le2 = 0.0%`, `share_gt10 = 75.71%`, `share_gt25 = 51.43% >= 35%`, `min_d_cat = 2.828 px`.
+>   - **Surface Rank Correlation & Like-for-Like Uniqueness (`330` rasters):** `max |Spearman rho| = 0.667683 <= 0.90`; worst like-for-like 3-px overlap `= 0.543371 <= 0.70` (**PASS across all `330` rasters**).
+>   - **Literal Overlap & Gate Verdict:** `1.0000 > 0.70` vs space-filling witness `17GEMSDOE` + paired CI vs in-run `B12` control crosses zero -> `ok_to_download: true`, `ok_to_submit: false`, `verdict: "negative"` (`0` weekly slots spent).
+>   - **Artifacts:** GeoTIFF [`docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.tif) (SHA-256 `fa17d9da6afae33298bc9e3cba83f26f6aefaffc357ce3b4c57827e11af2e8cb`), ZIP [`docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.zip`](docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.zip) (SHA-256 `1d44161d500e671cd6e7c29c326e1791ee531aa62e9f8bddcb32a5d635428df7`).
+> - **Ranked Reserve Hypotheses (`PREREG-H88-BGCD-20261025`, all band tags verified on disk):**
+>   2. `H88-RDCG` — *Paired Cross-Strike Redox Uranium (`U/Th`) vs Adularia (`K/Th`) Fault-Valve Alteration Asymmetry* (`geodawn_extensions_u8.tif` `B1–B3`, `geodawn_rad_u8.tif` `B1–B4`, `training_features.tif` `B5, B15, B17`; mimic: unfaulted rhyolitic ash-flow tuff sheets).
+>   3. `H88-CSDA` — *Kostrov Geodetic Principal-Strain Obliquity & Aseismic Fluid-Pressurized Dilatancy Tendency* (`training_features.tif` `B2, B4, B5, B7, B8, B10, B16, B17`; mimic: circular granitic pluton roofs).
+>   4. `H88-PTHW` — *Piedmont Ephemeral Raised-Channel Fraction (`raised_n/chan_n`) vs Basement-Depth Admittance Step* (`dem10_chi_100m_u8.tif` `B1–B4`, `dem10_chi_100m_i16.tif` `B1, B2, B4`, `training_features.tif` `B11, B15`; mimic: alluvial-fan avulsion lobes).
+>   5. `H88-ING3D` — *External Official DOE GDR `#1592` 3D Magnetotelluric Crustal Conductor Roots (`2–10 km`) + NBMG Drillhole Lithology Offsets* ([DOE GDR `#1592`](https://gdr.openei.org/submissions/1592), [USGS QFaults](https://www.usgs.gov/programs/earthquake-hazards/faults), [NBMG](https://data.nbmg.unr.edu/); requires external host fetch outside sandbox allowlist).
+
+> **Forensic Correction Note (`IR-88-118`, `2026-10-25`) on Historical `PR #102` (`DHTC`) & `TDKL` Reserve Entries Below:** Direct `rasterio` verification of SHA-pinned `data/training_features.tif` confirms it contains **no** `cond_10km`, `cond_32km`, or `hf_mwm2` bands (`B10` is `deq_n100a15`, `B18` is `iso_grav_anom_hg`, `B19` is `det_elev_slope`), and the three reserve filenames (`geology_500k_100m_u8.tif`, `sentinel2_indices_100m_u8.tif`, `insar_comet_u8.tif`) do not exist in `data/external/` or `restore_inputs.py`. Furthermore, `evidence/dhtc88_holdout_20261024.json` records `Exp 1 = 0.061759` and `Exp 3 blind >25 px = 0.065078` (vs `0.0634` / `0.0617` / `0.0543` in prose). The historical text below is preserved strictly for audit traceability.
 > **NEWEST PREREGISTERED & VERIFIED HYPOTHESIS LEDGER (`PREREG-20261025-VHGD88`, 2026-10-25):** See [research/candidate-hypotheses-20261025-vhgd88.md](research/candidate-hypotheses-20261025-vhgd88.md), [registry/preregistration_vhgd88.json](registry/preregistration_vhgd88.json), [registry/vhgd88_run_card.json](registry/vhgd88_run_card.json), and [registry/vhgd88_gate_verdict.json](registry/vhgd88_gate_verdict.json).
 > - **Selected & Executed Primary Hypothesis (`H88-VHGD`):** *Vertical Heat-Flux Gradient, Geothermometer Kinetic Disequilibrium & Depth-Compensated Basement Admittance (`3-Stratum`)* across `T1m`/`T15m`/`T2m..T2m_7` shallow 2-m probes (`1,718` multi-depth, `1,867` multi-season), `geothermcat_c` vs `geothermchalc_c` disequilibrium (`1,040` wells/springs + `402` paleo-geothermal sites), depth-compensated Salem gravity tilt-wavenumber contacts, 150-m magnetic persistence, and 10-m piedmont roughness breaklines (`84/84` canaries PASS `<= 0.61607`).
 > - **Verified 8-Fold `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `seeds 20+21`, `n=22,893` overall, `n=10,791` far `> 10 px`, `n=3,117` blind `> 25 px`):**
@@ -100,3 +136,6 @@ We validated `QTS-88` (`src/gems88/qts88.py`, `scripts/run_qts88_experiment.py`)
 
 ## 3. Limitations & Blockers (Corrected After Reconciliation)
 Owner GitHub mirrors provide SHA-pinned inputs via `scripts/restore_inputs.py`; a competition-account download is still required to authenticate those bytes. The external datasets above require separate official-source AOI, license/shareability and time-series checks before they are viable. No MAG-PSG physical transform or legitimate holdout was implemented in the archived PR. Do not generate a competition file from random stripes.
+
+
+</details>

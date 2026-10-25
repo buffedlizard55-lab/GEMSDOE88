@@ -129,6 +129,14 @@ jobs:
           code=$?
           set -e
           test "$code" -eq 2
+      - name: Independently recheck H88-BGCD research deliverable and expected negative slot gate
+        run: |
+          python scripts/validate_bgcd88.py
+          set +e
+          python scripts/validate_bgcd88.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
       - name: Independently recheck H88-VHGD research deliverable and expected negative slot gate
         run: |
           python scripts/validate_vhgd88.py

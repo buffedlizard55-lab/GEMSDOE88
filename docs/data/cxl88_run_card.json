@@ -1,0 +1,170 @@
+{
+  "schema": "gems88.cxl88.run_card.v1",
+  "lane": "H88-CXL",
+  "date": "2026-10-25",
+  "hypothesis": "Blind faults under cover yield contrast-invariant multi-scale phase-congruent steps in RTP/gravity/DEM; monogenic CXL-26 channels added to an HGVC-style PoE improve far-from-catalogue ranking at the H33 dot fingerprint.",
+  "mechanism": "CXL-26 zero-catalogue Riesz monogenic channels (bands 2/13/12, wavelengths 5/11/23 px) + physics-44 + HGVC-20 -> distance-adaptive log-odds PoE (simplified, n_ensemble=1, no full67 base head) -> Dinkelbach allocation in holdout folds only",
+  "named_non_fault_process": "Lithologic contacts and volcanic flow fronts (phase-congruent steps without faults); pluvial shoreline benches in DEM phase channels",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator": "gems57-pooled-hide-v2",
+    "n_withheld_positives": 22893,
+    "candidate_exp02": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.14301238200371827,
+      "ci95": [
+        0.1271267133221878,
+        0.1592746651718507
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 5961.766759610842,
+      "fpw": 110901.56856176848,
+      "fnw": 16931.233240389152
+    },
+    "exp01_cxl_zero_cat": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.12101238615903145,
+      "ci95": [
+        0.1066810430002556,
+        0.13585109907233914
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 5184.305547484102,
+      "fpw": 117449.26927156861,
+      "fnw": 17708.69445251589
+    },
+    "phys44_zero_cat": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.1041632406049392,
+      "ci95": [
+        0.0908960083192137,
+        0.117125811075879
+      ],
+      "withheld_positive_pixels": 22893,
+      "tpw": 4315.018210565626,
+      "fpw": 111240.66836608533,
+      "fnw": 18577.981789434365
+    },
+    "far_gt10px_candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.10801772196427158,
+      "ci95": [
+        0.08988776681197795,
+        0.1251969719580749
+      ],
+      "withheld_positive_pixels": 10791,
+      "tpw": 2666.151466066285,
+      "fpw": 77582.5357107728,
+      "fnw": 8124.848533933709
+    },
+    "blind_gt25px_candidate": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.06559837852379714,
+      "ci95": [
+        0.04591967678580073,
+        0.08765764504626612
+      ],
+      "withheld_positive_pixels": 3117,
+      "tpw": 786.9689782520014,
+      "fpw": 46728.90531572252,
+      "fnw": 2330.0310217479987
+    },
+    "paired_vs_phys44": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.03884914139877907,
+      "ci95": [
+        0.030428141065273875,
+        0.04709820658878617
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "stored_hgvc_exp03_bar": {
+      "dti": 0.2029470713394289,
+      "ci95": [
+        0.185868859876156,
+        0.21979007541452142
+      ],
+      "label": "HOLDOUT-DTI (stored, same evaluator)"
+    },
+    "beats_stored_hgvc": false,
+    "folds_won_vs_phys44": 8,
+    "canary": {
+      "passed": true,
+      "features_tested": 26,
+      "max_symmetric_auc": 0.559367,
+      "max_feature": "cxl_elev_pc",
+      "top10": [
+        {
+          "feature": "cxl_elev_pc",
+          "roc_auc": 0.440633,
+          "symmetric_auc": 0.559367
+        },
+        {
+          "feature": "cxl_elev_logE0",
+          "roc_auc": 0.538106,
+          "symmetric_auc": 0.538106
+        },
+        {
+          "feature": "cxl_elev_logE1",
+          "roc_auc": 0.530613,
+          "symmetric_auc": 0.530613
+        },
+        {
+          "feature": "cxl_rtp_logE0",
+          "roc_auc": 0.528827,
+          "symmetric_auc": 0.528827
+        },
+        {
+          "feature": "cxl_elev_logE2",
+          "roc_auc": 0.527153,
+          "symmetric_auc": 0.527153
+        },
+        {
+          "feature": "cxl_rtp_logE1",
+          "roc_auc": 0.525486,
+          "symmetric_auc": 0.525486
+        },
+        {
+          "feature": "cxl_rtp_logE2",
+          "roc_auc": 0.522658,
+          "symmetric_auc": 0.522658
+        },
+        {
+          "feature": "cxl_grav_pc",
+          "roc_auc": 0.518541,
+          "symmetric_auc": 0.518541
+        },
+        {
+          "feature": "cxl_rtp_psym2",
+          "roc_auc": 0.517293,
+          "symmetric_auc": 0.517293
+        },
+        {
+          "feature": "cxl_elev_psym2",
+          "roc_auc": 0.516991,
+          "symmetric_auc": 0.516991
+        }
+      ],
+      "note": "CXL-26 only; physics-44/HGVC-20 canaries stored in evidence/hgvc88_canaries.json (max 0.770155)"
+    }
+  },
+  "correlation_overlap_vs_registry": "NOT MEASURED - production raster never built because promotion gate failed before placement (protocol: do not place dots for an unproven lane)",
+  "raster_sha256": null,
+  "new_tif_generated": false,
+  "validator_output": "No new raster exists to validate. scripts/validate_cxl88.py re-checks the holdout evidence, the canary, the HGVC-bar comparison and independently re-audits the archived HGVC research TIFF format ([0,1], no NaN, CRS/shape/transform).",
+  "organizer_confirmed": null,
+  "submission_name": null,
+  "submission_note": null,
+  "ok_to_download_new_tif": false,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "slots_spent": 0,
+  "interpretation": "CXL signal is real but insufficient as implemented: zero-catalogue CXL arm 0.121012 beats phys44 0.104163 (identical to stored phys44 control, evaluator verified), yet the simplified PoE (0.143012) trails HGVC Exp03's exact architecture (0.202947). Next step, not run under the 3-experiment budget: inject CXL-26 into hgvc.predict_hgvc_all_arms_fold unmodified (n_ensemble=2, full67 base) - one experiment, ~1h on this 2-core box.",
+  "elapsed_holdout_s": 3173.7
+}

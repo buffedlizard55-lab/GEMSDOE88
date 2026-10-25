@@ -87,3 +87,22 @@ def test_claim_level_review_copies_remain_equal():
     assert (ROOT / 'research/session-d0c3adeb-review.md').read_bytes() == (ROOT / 'docs/research/session-d0c3adeb-review.md').read_bytes()
     assert (ROOT / 'research/session-d0c3adeb-hypotheses.md').read_bytes() == (ROOT / 'docs/research/session-d0c3adeb-hypotheses.md').read_bytes()
     assert (ROOT / 'knowledge/session-d0c3adeb-sources.md').read_bytes() == (ROOT / 'docs/research/session-d0c3adeb-sources.md').read_bytes()
+
+
+def test_published_csv_matches_every_json_claim_without_upgrading_evidence():
+    import csv
+    rows = list(csv.DictReader((ROOT / 'docs/data/user_reported_results.csv').read_text().splitlines()))
+    stored = json.loads((ROOT / 'docs/data/user_reported_results.json').read_text())['claims']
+    assert len(rows) == len(stored)
+    for row, claim in zip(rows, stored):
+        for key in ('site', 'source_url', 'submission_name', 'user_reported_value', 'evidence_class'):
+            assert row[key] == claim[key]
+        assert row['organizer_receipt'] == ''
+        assert row['request_line_numbers'] == ';'.join(map(str, claim['request_line_numbers']))
+
+
+def test_current_readme_counts_match_full_download_inventory():
+    text = (ROOT / 'README.md').read_text().split('<!-- USER-REQUEST:START -->', 1)[0]
+    report = json.loads((ROOT / 'docs/data/download_audit.json').read_text())
+    assert f"All **{report['tiff_count']}** TIFF/ZIP pairs" in text
+    assert f"**{report['research_download_pass_count']}** pass" in text

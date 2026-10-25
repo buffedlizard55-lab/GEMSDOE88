@@ -13,7 +13,7 @@ This session continues the preceding stop/integrity handoff. The request provide
 - Restored the shared core input tier through pinned owner GitHub mirrors; ran the requested download/preparation commands. The feature TIFF is present locally; all core grids and band counts agree; nine shared physical planes load on CPU. Data placement is **not** the sole remaining blocker. A GPU is optional according to the freshly retrieved official reference README.
 - Re-ran the existing shared pre-placement proof and existing artifact validator. The evaluator, holdout splitter, metric, submission writer and uniqueness implementation were **not forked or changed**.
 - Added one orchestration guard to candidate-generation/experiment CLI entrypoints and the superseded publisher. The guard executes before feature/model imports. It delegates to the existing preflight; no dense-prior exemption, silent fallback, approval override or new metric exists. Missing/corrupt prerequisites exit with an audit error, not permission to continue.
-- Reopened **all 35 published TIFFs**, with rasterio and tifffile; checked strict all-finite [0,1], reference CRS/shape/transform, footprint and catalogue support, and each one-file ZIP. Found and repaired two filename-only ZIP faults. **All TIFF bytes are unchanged**. All 35 now pass these local research-package checks. None is protocol eligible. No two published TIFFs have exactly identical normalized float32 values; that is **not** a full registry uniqueness pass.
+- Reopened **all 38 published TIFFs**, with rasterio and tifffile; checked strict all-finite [0,1], reference CRS/shape/transform, footprint and catalogue support, and each one-file ZIP. Found and repaired two filename-only ZIP faults. **All TIFF bytes are unchanged**. All 38 now pass these local research-package checks. None is protocol eligible. No two published TIFFs have exactly identical normalized float32 values; that is **not** a full registry uniqueness pass.
 - Replaced competing “current” site banners with one machine-rendered primary decision and a complete research-download inventory. Historical lane records remain in a closed archive, explicitly superseded. Added static-content consistency and fail-closed runtime checks rather than asking a human to inspect rasters.
 - Recorded the complete supplied site/result list: **92 sites**, **115 distinct reported file/value pairs**, and four sites with no reported result. Results remain unverified user claims with request-line provenance; blanks are not converted to zeroes.
 
@@ -72,6 +72,16 @@ The exact prompt and supplied list are preserved in `USER_PROMPT_20261025.md` an
 5. Only then can the separate selector authorize a slot. A static GitHub Pages website can serve and explain a file, but cannot securely perform account-authenticated submissions or heavy model training by itself.
 
 **Maximize P(Win):** do not spend a scarce slot on a duplicate or an untested forecast. **Own the Outcome:** the unique-TIFF requirement is explicitly unmet, even though data placement, packaging and automated local validation are fixed.
+
+## Concurrent-main integration (8e8bdf2)
+
+Main advanced during review. Three **already-existing** research TIFFs (BGCD, executed MTAS, PRISM) and CXL's negative no-TIFF record were integrated; these are not experiments or new predictions made by this session. The saved-byte audit now covers **38/38 TIFF/ZIP pairs**, all research-only. The canonical download remains the unchanged TDKL file, not a newly renamed candidate.
+
+All five imported builders/runners now enter the same early duplicate-stop guard, bringing coverage to **76 CLI entrypoints**. The unused CXL production script proposed treating the dense witness as nondiscriminating and potentially setting submission eligibility; this session does not authorize that deviation. The guard stops its execution before model imports. PRISM's full-catalogue-collared fixed-raster zero is subject to the same hide-and-recover validity problem as SSA/GZZC; its inherited card is an archival claim, not a new scientific result.
+
+The remote overview contained nested duplicate `<main id="main">` elements and competing first-download panels. Those panels were not allowed to replace the canonical generated decision. Compact, closed historical records preserve all four lanes and link their original machine evidence; added BGCD byte/card checks were retained. The RELAY ZIP repair retains this review's audited bytes, and its metadata references follow main's negative-label sidecar rename.
+
+Newly imported statements about live official sources or leaderboard positions are not fresh observations by this session. Its restricted-source ledger still governs what was actually retrieved. GitHub's REST quota was exhausted at 04:46 UTC; git fetching and a separate available GraphQL quota supported integration without requesting credentials.
 
 ## Three-pass verification
 
