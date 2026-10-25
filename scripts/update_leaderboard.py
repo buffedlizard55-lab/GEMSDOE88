@@ -72,24 +72,32 @@ def parse_leaderboard(html):
                 continue
             results = []
             for cells in table[header_index + 1 :]:
-                if not cells or not re.search(r"#\s*\d+", cells[0]):
+                if not cells:
                     continue
-                rank = int(re.search(r"#\s*(\d+)", cells[0]).group(1))
-                if idx >= len(cells):
+                rank_match = re.fullmatch(r"#\s*([1-9]\d*)", cells[0])
+                if rank_match is None:
+                    # Explanatory/footer rows are not ranked evidence. A row
+                    # claiming a rank must never be silently discarded.
+                    if cells[0].startswith("#"):
+                        raise ValueError("invalid rank; previous snapshot preserved")
                     continue
-                candidates = re.findall(r"(?<!\d)0\.\d{4}(?!\d)", cells[idx])
-                if len(candidates) != 1:
-                    continue
-                score = float(candidates[0])
-                if not (0 < score <= 1):
-                    continue
-                participant = cells[idx - 1].strip() if idx > 0 else ""
+                rank = int(rank_match.group(1))
+                if idx >= len(cells) or idx == 0:
+                    raise ValueError("missing ranked score; previous snapshot preserved")
+                # Parse the entire cell, not a plausible substring inside a
+                # negative value, percentage, exponent, or arbitrary text.
+                if re.fullmatch(r"(?:0\.\d{4}|1\.0000)", cells[idx]) is None:
+                    raise ValueError("invalid ranked score; previous snapshot preserved")
+                score = float(cells[idx])
+                participant = cells[idx - 1].strip()
+                if not participant:
+                    raise ValueError("missing participant; previous snapshot preserved")
                 results.append(
                     dict(rank=rank, participant=participant, public_dti=score)
                 )
             if (
                 len(results) >= 3
-                and [r["rank"] for r in results[:3]] == [1, 2, 3]
+                and [r["rank"] for r in results] == list(range(1, len(results) + 1))
                 and all(
                     results[i]["public_dti"] >= results[i + 1]["public_dti"]
                     for i in range(len(results) - 1)
