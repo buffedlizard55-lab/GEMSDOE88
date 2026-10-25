@@ -18,6 +18,11 @@ jobs:
       - run: python -m pip install -r requirements.txt
       - name: Restore SHA-pinned mirrored grid, catalogue and registry witnesses
         run: python scripts/restore_inputs.py --validation
+      - name: Reopen every research TIFF/ZIP and verify the canonical negative UI
+        run: |
+          python scripts/audit_downloads.py --check
+          python scripts/render_decision.py --check
+          python -O scripts/check_site.py
       - name: Re-run autonomous 2026-10-25 review and keep its machine card fail-closed
         run: |
           python scripts/review_repo_20261025.py

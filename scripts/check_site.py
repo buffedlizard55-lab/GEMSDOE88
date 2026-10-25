@@ -33,9 +33,12 @@ class Links(HTMLParser):
     def __init__(self):
         super().__init__()
         self.refs: list[str] = []
+        self.open_archives = 0
 
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
+        if tag == "details" and "archive-lanes" in values.get("class", "").split() and "open" in values:
+            self.open_archives += 1
         for key in ("href", "src"):
             if key in values:
                 self.refs.append(values[key])
@@ -489,6 +492,7 @@ def main(root: Path = ROOT) -> None:
         require("OK TO SUBMIT: YES" not in text, page)
         parser = Links()
         parser.feed(text)
+        require(parser.open_archives == 0, "Historical lane archive must remain closed by default")
         for ref in parser.refs:
             url = urlsplit(ref)
             if url.scheme or url.netloc or not url.path:
@@ -633,9 +637,10 @@ def main(root: Path = ROOT) -> None:
     js = (docs / "assets/site.js").read_text()
     require(
         "fetch('data/mtas88_run_card.json'" in js
-        and "fetch('data/gzzc88_run_card.json'" in js
+        and "fetch('data/download_audit.json'" in js
+        and "fetch('status.json'" in js
         and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
-        "Dynamic decision banner must fail closed on absent MTAS/GZZC proof",
+        "Dynamic decision banner must fail closed on absent canonical audit/proof",
     )
 
     gzzc_card = json.loads((root / "registry/gzzc88_run_card.json").read_text())
@@ -762,8 +767,22 @@ def main(root: Path = ROOT) -> None:
         vhgd_card["raster_sha256"] in index and vhgd_card["raster_sha256"] in executive,
         "VHGD SHA-256 in pages",
     )
+    # The primary panels must be generated from the same canonical evidence.
+    # A new lane cannot prepend a contradictory banner and still pass because
+    # the expected negative words happen to appear much further down the page.
+    sys.path.insert(0, str(ROOT))
+    from scripts import render_decision
+    for page, kind in ((pages[0], "overview"), (pages[1], "guide")):
+        text = page.read_text()
+        require(
+            text.split('<main id="main">', 1)[1].split(render_decision.START, 1)[0].strip() == "",
+            "Primary decision must precede every lane banner and download",
+        )
+        require(text.count('<h1') == 1, "Only one primary page heading is allowed")
+        expected = render_decision.replace_block(text, render_decision.render(root, kind))
+        require(expected == text, "Canonical decision panel is stale or altered; render from machine evidence")
     print(
-        "PASS: H88-GZZC research TIFF, H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
+        "PASS: canonical decision first, research bytes, archived records, Pages links and negative gates agree"
     )
 
 

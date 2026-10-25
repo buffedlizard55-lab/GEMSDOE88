@@ -5,6 +5,15 @@ and Atomic GeoTIFF Packaging via unmodified vendor/gems57/submission_writer.py.
 """
 from __future__ import annotations
 
+# Project-wide literal duplicate stop: execute before feature/model imports.
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
+
 import gc
 import hashlib
 import json

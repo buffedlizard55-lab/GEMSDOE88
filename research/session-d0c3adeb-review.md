@@ -1,0 +1,78 @@
+# Repository review — d0c3adeb — 2026-10-25
+
+## Executive decision
+
+**Research download: YES. Competition submission: NO — DO NOT SUBMIT. New protocol-unique TIFF: NOT GENERATED.**
+
+The highest-urgency requested deliverable remains unmet, for a measured reason rather than a missing download. The SHA-pinned `17GEMSDOE` probability raster is positive on every allowed cell. Under the binding literal positive-support interpretation, any nonempty candidate has forward overlap **1.0**, exceeding **0.70**. A necessary-condition rejection before feature construction is stronger and cheaper than emitting another file and rediscovering the same failure. No candidate pixels were generated, copied, renamed or claimed as new. No competition slot was selected or spent.
+
+This session continues the preceding stop/integrity handoff. The request provides no actual single-method paragraph. [Four conditional geological proposals](session-d0c3adeb-hypotheses.md) were recorded before implementation; none was fitted. Their priority labels are judgments, not projected scores.
+
+## What was completed autonomously
+
+- Restored the shared core input tier through pinned owner GitHub mirrors; ran the requested download/preparation commands. The feature TIFF is present locally; all core grids and band counts agree; nine shared physical planes load on CPU. Data placement is **not** the sole remaining blocker. A GPU is optional according to the freshly retrieved official reference README.
+- Re-ran the existing shared pre-placement proof and existing artifact validator. The evaluator, holdout splitter, metric, submission writer and uniqueness implementation were **not forked or changed**.
+- Added one orchestration guard to candidate-generation/experiment CLI entrypoints and the superseded publisher. The guard executes before feature/model imports. It delegates to the existing preflight; no dense-prior exemption, silent fallback, approval override or new metric exists. Missing/corrupt prerequisites exit with an audit error, not permission to continue.
+- Reopened **all 35 published TIFFs**, with rasterio and tifffile; checked strict all-finite [0,1], reference CRS/shape/transform, footprint and catalogue support, and each one-file ZIP. Found and repaired two filename-only ZIP faults. **All TIFF bytes are unchanged**. All 35 now pass these local research-package checks. None is protocol eligible. No two published TIFFs have exactly identical normalized float32 values; that is **not** a full registry uniqueness pass.
+- Replaced competing “current” site banners with one machine-rendered primary decision and a complete research-download inventory. Historical lane records remain in a closed archive, explicitly superseded. Added static-content consistency and fail-closed runtime checks rather than asking a human to inspect rasters.
+- Recorded the complete supplied site/result list: **92 sites**, **115 distinct reported file/value pairs**, and four sites with no reported result. Results remain unverified user claims with request-line provenance; blanks are not converted to zeroes.
+
+## H33: what actually changed, and why that can help
+
+**The supplied 0.2778 is a USER-REPORTED CLAIM, not HOLDOUT-DTI and not ORGANIZER-CONFIRMED.** Neither this repository nor the freshly retrieved GEMSDOE32 build record supplies its submission-page receipt. The supplied 0.3195 and 0.4413 maxima are also not authenticated current standings in this session.
+
+Fresh **REGISTRY-MEASUREMENTS**, not performance scores, reproduce:
+
+| Raster | Positive cells | Geometric relationship |
+|---|---:|---|
+| H19-5 | 121,131 | Upstream support |
+| D2.8 | 44,090 | Thinned support |
+| SOLO-D2.8 | 40,199 | Near-catalogue pruning |
+| H33-2-B2 | 37,654 | Exact subset of all three; no added cells |
+
+H33 removes **6,436** D2.8 dots; every removed dot lies within **2 pixels** of the catalogue. Its nearest-neighbor minimum is **2.828427 pixels**. These results are reproducible with `python scripts/audit_h33_lineage.py`, and the inputs are hash-pinned. The educational comparison does not copy any ancestor into a new submission.
+
+The owner build record explicitly identifies H33-2-B2 as collar pruning. A repository containing sophisticated geological hypotheses does not prove that those hypotheses generated a particular downloadable TIFF. Inspecting that artifact's build record and exact support matters more than its repository title.
+
+For the **shared local binary DTI definition**, let `T` be truth-cell credit, `M` the sum of each dot's nearest-truth kernel credit, `n` the number of dots and `G` the number of truth cells:
+
+```
+D = 0.8 G + 0.2 T + 0.2 (n - M)
+DTI = T / D
+```
+
+A deleted dot loses truth coverage `δT`, removes its own self-credit `k`, and changes the denominator to `D − 0.2(δT + 1 − k)`. Deletion helps only when the lost coverage is small enough relative to the reduced false-positive cost. Redundant dots can be expensive without adding much coverage; pruning can therefore improve the trade-off. Conversely, deleting a useful point can reduce the score, and hidden faults can run close to the public catalogue. There is **no proof that all H33 deletions were pure false positives**.
+
+The shared metric's **code** keeps truth credit and dot self-credit separate. Its archived explanatory prose saying marginal truth credit must be no greater than a single dot's self-credit is not generally correct: one dot can cover multiple truth cells. This review does not change the pinned metric or use a private replacement; the limitation is recorded for a single upstream documentation correction. The exact algebra above is the basis of the interpretation, not a guessed hidden-label count.
+
+**Can a new approach exceed H33?** It is possible in principle, but not established by these files or this review. Catalogue hide-and-recover performance is a proxy for previously unmapped faults; tuning repeatedly against it and then reading a maximum as a leaderboard forecast is not valid. A frozen, same-fold comparison with a paired physical-block CI and genuine off-catalogue generalization evidence is needed. There is no new model result or numerical forecast here.
+
+## Scientific and workflow irregularities found
+
+1. **Unsatisfiable uniqueness prerequisite.** The dense witness was already known, yet some later builders wrote TIFFs before checking it. `build_unique_relay_submission.py` wrote before its registry scan and had no executed holdout/canary. Its “pre-placement surface” comparison used final dots, not the continuous propensity. Generating another artifact by the same route would violate the supplied stop protocol. CLI execution is now stopped first.
+2. **Fixed-raster evaluation is not hide-and-recover.** The SSA/GZZC-style builders exclude the *complete* catalogue before evaluating a fixed raster on withheld catalogue components. The withheld truth has already influenced that exclusion. With a kernel-width collar the resulting structural zero is expected; it is not evidence that the geology has zero predictive information. These archived numbers cannot clear or reject a new model under the requested fold-rebuilt protocol. No repaired scientific score is invented.
+3. **Conflicting primary UI.** RELAY, SSA, VHGD, HGVC and MTAS banners all appeared as current, while the canonical manifest referred to TDKL. The primary panels now derive from the canonical manifest and audited bytes; historical claims stay below an explicit archive boundary. A generated-block equality check prevents a parallel lane from silently inserting another “current” panel.
+4. **Unsafe ZIP extraction labels.** IBL and RELAY ZIPs contained byte-identical TIFFs but with old member names omitting DO-NOT-SUBMIT. Repacked those two ZIPs; updated their recorded ZIP hashes; preserved original/new hashes and unchanged TIFF hashes in `evidence/archive_repairs_20261025.json`.
+5. **Data provenance overstated.** The downloader described user-provided Dropbox links as official, and preparation claimed official checksums and full train-to-submit readiness. It now uses disclosed pinned mirrors, fails on restore errors, checks all core grids, and states that input preparation is not generation or submission clearance.
+6. **Historical source statements are not fresh verification.** The sandbox cannot access DrivenData, NLR, USGS, GDR, EPSG or Dropbox under its outbound allowlist. Earlier “fetched today” assertions are not adopted as new observations. Freshly retrieved GitHub evidence is separated from official links for later review.
+7. **Unsupported geological/statistical inferences remain historical only.** Distance beyond the catalogue does not establish flat terrain or alluvial lithology. An owner-projection does not establish precision on hidden labels, hidden-positive counts, a required route to a target score, or organizer acceptance. Those interpretations are not used as present gates.
+
+## Source-level verification
+
+[Source ledger](session-d0c3adeb-sources.md) links every external authority used or needed and distinguishes freshly retrieved official code, owner records, local measurements and inaccessible official pages. The official notebook's alpha/beta are Tversky **training-loss** settings, not independent certification of the project's distance-weighted holdout. No current leaderboard, deadline, weekly allowance or authenticated organizer receipt was retrieved.
+
+The exact prompt and supplied list are preserved in `USER_PROMPT_20261025.md` and embedded in README. The site exposes JSON/CSV request-line provenance instead of silently turning the user's result list into a verified leaderboard.
+
+## Next steps, in order
+
+1. Preserve the literal stop. A separately documented, authorized shared definition capable of distinguishing a continuous probability surface from a dot emission would be necessary before a nonempty candidate can become eligible. This session does **not** authorize that change or quietly apply top-N support.
+2. Once the prerequisite is genuinely resolved, freeze one geological lane and a complete hash-bound registry snapshot. Reuse the cached stack and shared metric/writer. Build every catalogue-dependent field from visible faults per fold; run single-feature canaries before interpreting results.
+3. Use a matched incumbent, paired physical-block intervals, withheld-label scrambling and a mechanism-specific non-fault null. Repeatedly optimized historical maxima do not constitute an untouched validation target. Stop at the stated experiment/time budget.
+4. Verify organizer input identity, current rules/data permissions, available submission slots and eventual receipts in an authenticated, permitted network context. No credentials should be placed in chat or source control.
+5. Only then can the separate selector authorize a slot. A static GitHub Pages website can serve and explain a file, but cannot securely perform account-authenticated submissions or heavy model training by itself.
+
+**Maximize P(Win):** do not spend a scarce slot on a duplicate or an untested forecast. **Own the Outcome:** the unique-TIFF requirement is explicitly unmet, even though data placement, packaging and automated local validation are fixed.
+
+## Three-pass verification
+
+Pass 1, pass 2 and final pass results are recorded in the session run card and completion appendix after execution. Passing software tests does not establish new scientific performance or organizer acceptance.

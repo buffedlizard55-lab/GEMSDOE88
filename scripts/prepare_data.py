@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Prepare and verify competition data for training, inference, and validation.
 
-This script ensures all required datasets are present, matches official SHA-256
-checksums, verifies CRS/transform/shape parity, populates data/official and
-data/bridge references, and validates that feature planes load cleanly.
+This script restores the shared input tier, matches SHA-256 checksums recorded
+in owner mirrors (NOT organizer-authenticated checksums), verifies grid parity,
+populates historical data/official and data/bridge paths, and loads feature planes.
+Data preparation does not authorize generation or establish end-to-end model validity.
 
 Can be run with optional `--fetch` flag to invoke restore_inputs.py automatically.
 """
@@ -133,6 +134,21 @@ def prepare_data(fetch: bool = False) -> dict:
             raise ValueError(f"Transform mismatch: expected {EXPECTED_GRID['transform']}, got {t}")
         print(f"  [OK] Spatial Grid: EPSG:{epsg}, {shape[0]}x{shape[1]}, Affine={t}")
 
+    # Check every core file, not just the sample. A filename is not a grid contract.
+    grid_checks = {}
+    for fname, fpath in resolved.items():
+        with rasterio.open(fpath) as ds:
+            expected_count = 19 if fname == "training_features.tif" else 1
+            checks = {
+                "crs_match": ds.crs is not None and ds.crs.to_epsg() == EXPECTED_GRID["crs"],
+                "shape_match": ds.shape == EXPECTED_GRID["shape"],
+                "transform_match": tuple(ds.transform)[:6] == EXPECTED_GRID["transform"],
+                "band_count_match": ds.count == expected_count,
+            }
+            if not all(checks.values()):
+                raise ValueError(f"Core input grid/band mismatch: {fname}: {checks}")
+            grid_checks[fname] = checks
+
     # Verify planes load via vendor/gems57/geo.py
     print("[prepare_data] Testing feature stack integration (vendor/gems57/geo.py)...")
     from gems57 import geo, grid
@@ -146,11 +162,16 @@ def prepare_data(fetch: bool = False) -> dict:
         "catalogue_pixels": int(g.catalogue.sum()),
         "files": audit,
         "planes": list(planes.keys()),
+        "grid_checks": grid_checks,
+        "provenance": "SHA-pinned owner mirrors; not authenticated organizer downloads",
+        "scope": "shared core inputs and feature-plane load only; not every lane-specific dataset or fitted model",
+        "generation_authorized": False,
+        "ok_to_submit": False,
     }
     out_path = DATA_DIR / "prepared_data_manifest.json"
-    out_path.write_text(json.dumps(manifest, indent=2) + "\n")
+    out_path.write_text(json.dumps(manifest, indent=2, allow_nan=False) + "\n")
     print(f"\n[prepare_data] Data preparation complete. Manifest saved to {out_path}.")
-    print("Full train -> inference -> validate pipeline is ready to run.")
+    print("Shared inputs prepared; generation preflight, scientific validation and slot approval remain separate.")
     return manifest
 
 

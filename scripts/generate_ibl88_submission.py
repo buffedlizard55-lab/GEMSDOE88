@@ -15,6 +15,15 @@ Generates 37,654 binary dots (zeros encoding: all-finite float32 in [0,1],
 Computes HOLDOUT-DTI via vendor holdout (whole-component, buffer=3px, pooled
 alpha 0.2 beta 0.8 300m kernel) and uniqueness vs restored registry.
 """
+
+# Project-wide literal duplicate stop: execute before feature/model imports.
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 import hashlib
 import json
 import sys
