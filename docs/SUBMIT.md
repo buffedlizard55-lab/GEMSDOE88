@@ -33,8 +33,7 @@ Official review links: [metric and format](https://www.drivendata.org/competitio
 
 ```bash
 python scripts/restore_inputs.py --validation
-.venv/bin/python scripts/validate_tdkl88.py
-.venv/bin/python scripts/validate_tdkl88.py --require-submit  # expected exit 2
-.venv/bin/python scripts/validate_current.py --require-submit # expected exit 2
-.venv/bin/python scripts/check_site.py
+python3 scripts/validate_dhtc88.py
+python3 scripts/validate_dhtc88.py --require-submit  # expected exit 2
+python scripts/check_site.py
 ```
