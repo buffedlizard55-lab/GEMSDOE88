@@ -72,6 +72,14 @@ bash scripts/download_competition_data.sh
 
 No new TIFF was generated and nothing is cleared for download-to-submit. The shared generation guard returned `DUPLICATE_STOP` (exit 2) on SHA-pinned bytes: the dense `17GEMSDOE` witness covers 100% of allowed pixels, so every candidate overlaps it at 1.0 against the 0.70 limit. Full record: [research note](research/session-20261025-unique-tif-gate-review.md) · [run card](registry/session_20261025_unique_tif_gate_run_card.json). Live leaderboard #1 = 0.4413 (public page, 2026-10-25); H33 0.2778 remains USER-REPORTED. The open blocker is an owner decision on how to define dots for dense priors, plus a lane paragraph that was never supplied.
 
+### Review supplement — session fd5f1d8b (2026-10-25)
+
+[Review, H33 arithmetic, leaderboard reconciliation, irregularities and decisions](research/session-fd5f1d8b-review.md) · [Run card (negative)](evidence/session_fd5f1d8b_run_card.json) · [Official public leaderboard snapshot, 50 rows](docs/data/leaderboard_official_snapshot_20261025.json).
+
+- **No new TIFF.** The literal duplicate stop still returns `DUPLICATE_STOP` (exit 2). The pinned dense `17GEMSDOE` witness is a continuous probability raster covering **100 %** of the 5,106,385 allowed cells, so every nonempty candidate fails the 0.70 limit. This rule also blocks sparse candidates. The decision to change it belongs to the rule owner (see the review, D1).
+- **Stale and misattributed figures.** `0.3195` matches a 2026-10-04 snapshot value. `0.4413` is the rank-1 public score of a non-GEMSDOE participant. `0.2778` (H33) has no organizer receipt. Public top-50 range (checked 2026-10-25): 0.4413 down to 0.2818.
+- **GitHub:** `gh auth status` reports an invalid `GH_TOKEN`, yet pull request #145 was created from this branch. Its merge is pending CI and a conflict re-check; see the review, section 8.
+
 ### Remaining limitations
 
 The literal uniqueness condition must become satisfiable under an explicitly authorized **shared** protocol before another candidate is constructed; no exemption is authorized here. New-model hide-and-recover and leakage tests are therefore not run. The current leaderboard, rules, weekly allowance, organizer input authentication and receipts cannot be verified through this session's permitted hosts. No credentials are requested. Full data caches are ignored, not committed; restore commands reconstruct them. Static Pages serves results, not account-authenticated uploads or training jobs.
