@@ -1,13 +1,13 @@
-# Current conditional hypotheses — four ranked, none executed (plus archived `H88-VCAZ` 5-hypothesis ledger below)
+# Current conditional hypotheses — four ranked, none executed in session `db4a5e4b` (plus archived ledgers below)
 
-Read [session-d0c3adeb-hypotheses.md](research/session-d0c3adeb-hypotheses.md) for exact layers/transforms, off-catalogue rationale, prior-work distinctions, qualitative expected benefit/cost, named non-fault mimics and source limitations, and [candidate-hypotheses-20261025-vcaz88.md](research/candidate-hypotheses-20261025-vcaz88.md) for the `PREREG-20261025-VCAZ88` 5-hypothesis ranking and `H88-VCAZ` empirical evaluation.
+Read [session-db4a5e4b-hypotheses.md](research/session-db4a5e4b-hypotheses.md) for exact layers/transforms, off-catalogue rationale, prior-work distinctions, qualitative expected benefit/cost, named non-fault mimics and source limitations.
 
-1. Magnetic-marker restoration across candidate discontinuities (first choice only after prerequisites are satisfiable).
-2. Scarp-profile restoration with a drainage-erosion veto.
-3. Alteration-width asymmetry against a lithologic-contact null.
-4. Conductive basin-breach continuity against a permeable paleochannel null.
+1. Potential-field gradient-tensor source dimensionality (`H88-GTD`; first choice only after prerequisites are satisfiable).
+2. Scarp-profile restoration with a drainage-erosion veto (`H88-SPR`).
+3. Alteration-width asymmetry against a lithologic-contact null (`H88-AWA`).
+4. Conductive basin-breach continuity against a permeable paleochannel null (`H88-CBBC`).
 
-All four conditional proposals above remain **untested**. They propose geothermal-related fault evidence, not vent detection. Local source-code novelty is not proof of worldwide/fleet novelty. No numeric gain or leaderboard result is projected. The shared literal duplicate stop currently forbids execution; do not run any historical lane below to evade it.
+These four conditional proposals remain **untested**. Magnetic-marker restoration is no longer on this list: `H88-MMRX` executed in a parallel session and finished negative (see its archived ledger below). The proposals target geothermal-related fault evidence, not vents. Local source-code novelty is not proof of worldwide/fleet novelty. No numeric gain or leaderboard result is projected. The shared literal duplicate stop currently forbids execution; do not run a historical lane to evade it.
 
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>
