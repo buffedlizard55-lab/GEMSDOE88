@@ -14,9 +14,13 @@
 
 Review record: [Arena f81c34a4 three-pass review and audit repair](research/session-f81c34a4-review.md) · [negative run card](registry/session_f81c34a4_run_card.json). No new TIFF or slot; unchanged duplicate stop.
 
+Review follow-up: [dd90d368 three-pass evidence-label correction](research/session-dd90d368-review.md) · [negative run card](registry/session_dd90d368_run_card.json). Historical GHMD promotion is withdrawn; the supplied H33 result has no organizer receipt. No new TIFF or slot.
+
 ### Start here every session
 
 Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_PROMPT_20261025.md), and [AGENTS.md](AGENTS.md). The request is also embedded below. Do not append a competing “current candidate” banner or bypass the generation preflight.
+
+Current branch's audit-only review: [three-pass repository review](research/review-arena-89f65d48-20261025.md) · [machine-readable negative run card](evidence/repo_review_arena_89f65d48_20261025.json). Full suite: 805 passed / 23 skipped; preflight: `DUPLICATE_STOP`; no new TIFF or slot. This adds no upload clearance and does not change the research-only download decision.
 
 **Arena review `4fd0d184` (2026-10-25):** [three-pass review, H33 evidence limits, scratch-generation incident, and blockers](research/repo-review-arena-4fd0d184-20261025.md) · [machine-readable negative run card](evidence/repo_review_arena_4fd0d184_20261025.json). The pinned preflight returns `DUPLICATE_STOP`; four off-protocol scratch TIFFs were removed, zero outputs are cleared, no slot was used. The previous research-download decision remains unchanged.
 

@@ -54,12 +54,16 @@ def test_02_run_card_schema_and_strict_score_labels():
         # Preserve historical measurements, never an unsupported promotion or
         # an organizer label for a user-supplied number (IR-88-693B10AF-01).
         assert rc["verdict"] == "negative"
+        assert rc["historical_verdict"] == "promote"
+        assert rc["superseded_by"] == "docs/data/current_release.json"
         assert rc["historical_only"] is True
         assert rc["ok_to_submit"] is rc["approved_for_weekly_slot"] is False
         assert rc["evidence_status"]["score_label"] == "HOLDOUT-DTI"
         assert rc["evidence_status"]["organizer_confirmed_live_score"] is None
         assert rc["evidence_status"]["incumbent_organizer_confirmed_live_score"] is None
         assert rc["evidence_status"]["incumbent_user_reported_claim"] == 0.2778
+        assert rc["evidence_status"]["incumbent_user_reported_live_score"] == 0.2778
+        assert "no submission-page receipt" in rc["evidence_status"]["incumbent_score_provenance"]
         assert rc["evidence_status"]["incumbent_evidence_class"].startswith("USER-REPORTED")
         assert rc["uniqueness"]["unique"] is False
         assert rc["uniqueness"]["stop_required"] is True

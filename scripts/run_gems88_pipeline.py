@@ -632,15 +632,19 @@ def main() -> None:
         "lane_title": "Geothermal Hydro-Mechanical De-Biased Fault Discovery & Exact Dual-Head Expected-DTI Allocation",
         # Historical builder, not a current full-registry/selector contract.
         # The entrypoint guard stops execution; never resurrect its old clearance.
+        "historical_verdict": "promote",
         "verdict": "negative",
         "historical_only": True,
         "ok_to_submit": False,
         "approved_for_weekly_slot": False,
+        "superseded_by": "docs/data/current_release.json",
         "evidence_status": {
             "score_label": "HOLDOUT-DTI",
             "organizer_confirmed_live_score": None,
             "incumbent_organizer_confirmed_live_score": None,
             "incumbent_user_reported_claim": 0.2778,
+            "incumbent_user_reported_live_score": 0.2778,
+            "incumbent_score_provenance": "USER-REPORTED; no submission-page receipt",
             "incumbent_evidence_class": "USER-REPORTED CLAIM — NOT ORGANIZER-CONFIRMED",
             "leaderboard_values_status": "Historical unreceipted claims; not a live leaderboard or an artifact score",
             "incumbent_artifact": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",

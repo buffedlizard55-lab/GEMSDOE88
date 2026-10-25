@@ -4,7 +4,7 @@
   "review_branch": "arena/693b10af-gemsdoe88",
   "source_snapshot": {
     "files": 150,
-    "sha256": "1432106995112c206526841147d5a6d0b7f6a9a8f71563199a6b3a2e7d781dd7"
+    "sha256": "28945afbfcb71f77d5d2055456ddd5a0b113b45158c3f0b877e738b03d4f3409"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -186,6 +186,15 @@
       "expected_potential": "Fourth priority; low, uncertain; no numerical DTI projection",
       "implementation_cost": "Medium-high; coarse-field resolution is a major limitation",
       "falsification": "Reject if basin-fill smoothness or drainage connectivity explains the bridge equally well, or no boundary-normal gravity change is present."
+    }
+  ],
+  "source_snapshot_history": [
+    {
+      "snapshot": {
+        "files": 150,
+        "sha256": "1432106995112c206526841147d5a6d0b7f6a9a8f71563199a6b3a2e7d781dd7"
+      },
+      "reason": "Reviewed parallel GHMD metadata-only aliases integrated; no model/feature/evaluator changes. The changed corpus file is scripts/run_gems88_pipeline.py."
     }
   ]
 }

@@ -140,9 +140,9 @@
     }
   },
   "corrected_metadata_sha256": {
-    "run_card.json": "ce2da073738dc065b3f2cbdac6b91f3e3113d4d1905438836e5e236311a4cdba",
-    "docs/data/run_card.json": "ce2da073738dc065b3f2cbdac6b91f3e3113d4d1905438836e5e236311a4cdba",
-    "evidence/run_card.json": "ce2da073738dc065b3f2cbdac6b91f3e3113d4d1905438836e5e236311a4cdba"
+    "run_card.json": "981a346a7c0bbbe6bd5cc01d48a2d39289649f1598dc1d266df06cb2ae140a31",
+    "docs/data/run_card.json": "981a346a7c0bbbe6bd5cc01d48a2d39289649f1598dc1d266df06cb2ae140a31",
+    "evidence/run_card.json": "981a346a7c0bbbe6bd5cc01d48a2d39289649f1598dc1d266df06cb2ae140a31"
   },
   "original_git_commit": "d7f7502d93dc5e5d9685ba90d7374d71a2bc2a68",
   "unchanged_tiff_sha256": "81e580f13b45e1e6aa554eaf5e8c54d1e0064769ba8e7193b6e7f53e3842308a",
@@ -150,5 +150,19 @@
   "binding_proof": "registry/mtas88_run_card.json",
   "supporting_fresh_preflight": "registry/session_693b10af_run_card.json",
   "ok_to_submit": false,
-  "verdict": "negative"
+  "verdict": "negative",
+  "canonical_metadata_sha256_before_parallel_integration": {
+    "run_card.json": "ce2da073738dc065b3f2cbdac6b91f3e3113d4d1905438836e5e236311a4cdba",
+    "docs/data/run_card.json": "ce2da073738dc065b3f2cbdac6b91f3e3113d4d1905438836e5e236311a4cdba",
+    "evidence/run_card.json": "ce2da073738dc065b3f2cbdac6b91f3e3113d4d1905438836e5e236311a4cdba"
+  },
+  "parallel_withdrawal_integration": {
+    "source_commit": "8dc9670e1dd15253ade1828a3311f0c9e322d2b6",
+    "prior_main_metadata_sha256": {
+      "run_card.json": "162923e99982250abb4a8a78fa6208798c1632216b854ba0c4923e546b853df4",
+      "docs/data/run_card.json": "162923e99982250abb4a8a78fa6208798c1632216b854ba0c4923e546b853df4",
+      "evidence/run_card.json": "4b139d163ecb5ac508d7845132b40de24168bd545706bd364de3be4940d1371c"
+    },
+    "note": "Independent withdrawal was compatible but did not reconcile metadata mirrors or binding uniqueness. Retained its historical verdict, supersession and user-claim provenance aliases alongside the stricter canonical literal stop; no TIFF/ZIP bytes changed."
+  }
 }

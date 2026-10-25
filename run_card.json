@@ -15,7 +15,9 @@
     "competition_leaderboard_high": 0.4413,
     "incumbent_user_reported_claim": 0.2778,
     "incumbent_evidence_class": "USER-REPORTED CLAIM \u2014 NOT ORGANIZER-CONFIRMED",
-    "leaderboard_values_status": "Historical unreceipted claims; not a live leaderboard or an artifact score"
+    "leaderboard_values_status": "Historical unreceipted claims; not a live leaderboard or an artifact score",
+    "incumbent_user_reported_live_score": 0.2778,
+    "incumbent_score_provenance": "USER-REPORTED; no submission-page receipt"
   },
   "evaluator": {
     "module": "vendor/gems57/evaluate_holdout.py",
@@ -300,5 +302,8 @@
     "original_metadata_git_ref": "d7f7502d93dc5e5d9685ba90d7374d71a2bc2a68:run_card.json",
     "measurements_status": "Original experimental/format measurements retained, not rerun or newly confirmed by this correction.",
     "prediction_bytes_changed": false
-  }
+  },
+  "historical_verdict": "promote",
+  "superseded_by": "docs/data/current_release.json",
+  "review_note": "Historical GHMD measurements retained; promotion withdrawn under literal registry gate. H33 has no organizer receipt."
 }

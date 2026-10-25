@@ -175,7 +175,7 @@
     "manifest": "registry/hypothesis_queue.json",
     "source_snapshot": {
       "files": 150,
-      "sha256": "1432106995112c206526841147d5a6d0b7f6a9a8f71563199a6b3a2e7d781dd7"
+      "sha256": "28945afbfcb71f77d5d2055456ddd5a0b113b45158c3f0b877e738b03d4f3409"
     },
     "conditional_first_choice": "H88-SPR",
     "proposals": [
@@ -188,7 +188,8 @@
       "H88-MMRX",
       "H88-MTAS",
       "H88-MFS"
-    ]
+    ],
+    "source_review_addendum": "Reviewed metadata-only legacy generator aliases from parallel withdrawal; no new physical feature or experiment. Prior source pin retained in queue history."
   },
   "sources": [
     {
@@ -266,8 +267,8 @@
         "failed": 0,
         "skipped": 23,
         "warnings": 64,
-        "seconds": 178.32,
-        "environment": "fresh constrained CPU environment; all code integrated through 696c1140a1bb2dd60ea832146c86b6fde853b6e4"
+        "seconds": 177.49,
+        "environment": "fresh constrained CPU environment after parallel GHMD withdrawal integration"
       },
       "skip_scope": "Historical gitignored/unrestored variant/bridge rasters; not rebuilt to evade the duplicate stop. All 46 published packages were separately reopened.",
       "workflow_and_guard_checks": 47,
@@ -293,13 +294,14 @@
         "additional_review_fixes": "Source fingerprint covers nested model packages and rejects source symlinks escaping the repository; four regression cases passed without refreshing the unchanged source pin."
       },
       "integration_recheck": "PASS",
-      "integration_base": "696c1140a1bb2dd60ea832146c86b6fde853b6e4",
+      "integration_base": "8dc9670e1dd15253ade1828a3311f0c9e322d2b6",
       "preserved_parallel_changes": [
         "Atomic fail-closed preparation receipts and surplus downloader argument rejection.",
         "Exact Rasterio pin retained alongside complete tested CPU constraints.",
         "Parallel review/incident/run cards and the alternate GTD-first proposal record retained without claiming this session executed them.",
         "Pinned footprint/catalogue SHA checks before H33 audit geometry; parser warning correction; docs/SUBMIT.md correction and 20 submission-archive integrity tests/IBL ZIP naming repair.",
-        "Parallel source snapshots/five-proposal records remain historical; their test now checks their own report and separately validates the active source-bound queue."
+        "Parallel source snapshots/five-proposal records remain historical; their test now checks their own report and separately validates the active source-bound queue.",
+        "Compatible parallel GHMD historical-verdict/supersession/user-claim aliases retained alongside stricter literal-stop semantics; source-pin refresh followed an explicit metadata-only diff review, with old pin retained in queue history."
       ],
       "first_integration_full_tests": {
         "passed": 845,
@@ -310,7 +312,15 @@
         "environment": "fresh constrained Python 3.11/Linux CPU venv after integrating parallel main"
       },
       "requirements_unchanged_since_fresh_cpu_install": true,
-      "additional_repository_archive_pairs_audited": 20
+      "additional_repository_archive_pairs_audited": 20,
+      "second_integration_full_tests": {
+        "passed": 855,
+        "failed": 0,
+        "skipped": 23,
+        "warnings": 64,
+        "seconds": 178.32,
+        "environment": "fresh constrained CPU environment; all code integrated through 696c1140a1bb2dd60ea832146c86b6fde853b6e4"
+      }
     },
     "browser_evidence": "evidence/session_693b10af_browser_check.json",
     "browser_status": "PASS",
@@ -323,7 +333,7 @@
       "reason": "Both failures hard-coded the previous current browser receipt; preserved it as historical and performed a fresh 7-case browser check of the new page bytes."
     },
     "gate_evidence": "evidence/session_693b10af_gate_check.json",
-    "completed_at_utc": "2026-10-25T17:13:11.555207+00:00",
+    "completed_at_utc": "2026-10-25T17:24:38.909895+00:00",
     "remote_scope": "This is local verification evidence, not a claim of remote CI, current organizer access or submission acceptance. PR/check/merge status is authoritative on GitHub."
   },
   "unmet_requirements": [
@@ -348,12 +358,13 @@
     "source_bound_queue_and_legacy_claim_corrections": "PASS",
     "three_software_review_passes": "COMPLETE"
   },
-  "integration_base": "696c1140a1bb2dd60ea832146c86b6fde853b6e4",
+  "integration_base": "8dc9670e1dd15253ade1828a3311f0c9e322d2b6",
   "delivery": {
     "pull_request_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/pull/164",
     "base_branch": "main",
     "head_branch": "arena/693b10af-gemsdoe88",
-    "record_scope": "Local verification snapshot. Live GitHub PR/check/merge state is authoritative; this card does not claim a remote CI result or organizer acceptance."
+    "record_scope": "Local verification snapshot. Live GitHub PR/check/merge state is authoritative; this card does not claim a remote CI result or organizer acceptance.",
+    "actions_control_limitation": "Reading workflow status is permitted, but cancellation of superseded queued runs returned HTTP 403 (Resource not accessible by integration); no cancellations or remote passes are claimed."
   },
   "h33_forensics_initial_checked_at_utc": "2026-10-25T16:15:58.845138+00:00"
 }
