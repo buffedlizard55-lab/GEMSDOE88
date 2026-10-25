@@ -3,8 +3,8 @@
   "reviewed_at_utc": "2026-10-25",
   "review_branch": "arena/693b10af-gemsdoe88",
   "source_snapshot": {
-    "files": 152,
-    "sha256": "625401b58740ab4243f187311e45d58c7430425e6638fc51a02d3f7d7f7b8a8a"
+    "files": 154,
+    "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -185,6 +185,14 @@
         "sha256": "28945afbfcb71f77d5d2055456ddd5a0b113b45158c3f0b877e738b03d4f3409"
       },
       "reason": "Late main integration adds evaluated PGTD, shared literal-v4 compatibility hardening, historical review helpers and metadata repairs. Reviewed these diffs, retired GTD, and reinstated PGTD pre-import stop before refreshing the source pin."
+    },
+    {
+      "superseded_snapshot": {
+        "files": 152,
+        "sha256": "625401b58740ab4243f187311e45d58c7430425e6638fc51a02d3f7d7f7b8a8a"
+      },
+      "reason": "Merged H88-CON88 (IR-88-CON88-01 equal-support append-only vendor addition + con88 runner scripts) and PGTD guard enforcement fix; proposals re-reviewed: none implements H88-SPR/EELG/PRAN queue items, CON88 is a consensus-emission lane with its own run card (run_card_con88.json), not a queue proposal.",
+      "reviewed_at_utc": "2026-10-25T18:00:00Z"
     }
   ]
 }

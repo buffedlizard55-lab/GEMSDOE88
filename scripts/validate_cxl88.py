@@ -2,62 +2,104 @@
 """Independent CXL-88 audit: holdout evidence + negative verdict + archived HGVC TIFF format.
 
 Exits 0 when the negative verdict is correctly recorded. --require-submit exits 2
-(no CXL raster was promoted; none may be submitted). Python -O safe.
+(no CXL raster was promoted; none may be submitted). Enforces checks under python -O.
 """
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
-import sys
 from pathlib import Path
+import sys
 
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / "src"), str(ROOT / "vendor")]
+from gems57 import grid  # noqa: E402
+
 HGVC_BAR = 0.2029470713394289
-SAMPLE_SHA256 = "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"
 
 
-def require(cond: bool, msg: str = "CXL88 validation gate failed") -> None:
-    if not cond:
-        raise AssertionError(msg)
+def _require(condition: object, message: object = "CXL88 validation failed") -> None:
+    if not condition:
+        raise AssertionError(str(message))
 
 
-def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--require-submit", action="store_true")
-    args = parser.parse_args([] if argv is None and __name__ != "__main__" else argv)
+def _sha256(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
-    ho = json.loads((ROOT / "evidence/cxl88_holdout_20261025.json").read_text())
-    card = json.loads((ROOT / "registry/cxl88_run_card.json").read_text())
+
+def main(root: Path = ROOT, argv: list[str] | None = None) -> int:
+    root = Path(root)
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--require-submit", action="store_true")
+    args = ap.parse_args(sys.argv[1:] if argv is None else argv)
+    ho = json.loads((root / "evidence/cxl88_holdout_20261025.json").read_text())
+    card = json.loads((root / "registry/cxl88_run_card.json").read_text())
     cand = ho["pooled_overall"]["scores"]["exp02_cxl_poe_conduit"]
     phys = ho["pooled_overall"]["scores"]["phys44_zero_cat"]
-    require(ho["evaluator_version"] == "gems57-pooled-hide-v2", "unexpected evaluator_version")
-    require(cand["withheld_positive_pixels"] == 22893, "unexpected withheld_positive_pixels")
-    require(abs(phys["dti"] - 0.1041632406049392) < 1e-6, "phys44 control must reproduce stored value")
-    require(bool(ho["canary"]["passed"]) and ho["canary"]["max_symmetric_auc"] <= 0.90, "canary check failed")
-    require(cand["dti"] < HGVC_BAR and ho["beats_stored_hgvc"] is False, "CXL candidate must remain below HGVC bar")
-    require(
-        card["verdict"] == "negative" and card["ok_to_submit"] is False and card["new_tif_generated"] is False,
-        "CXL run card must record negative verdict with no new TIFF",
+    _require(ho["evaluator_version"] == "gems57-pooled-hide-v2", "evaluator_version mismatch")
+    _require(cand["withheld_positive_pixels"] == 22893, "withheld_positive_pixels mismatch")
+    _require(
+        abs(phys["dti"] - 0.1041632406049392) < 1e-6,
+        "phys44 control must reproduce stored value",
     )
-    # Independently re-audit the archived best research TIFF (HGVC) format.
+    _require(
+        ho["canary"]["passed"] and ho["canary"]["max_symmetric_auc"] <= 0.90,
+        "canary gate failed",
+    )
+    _require(
+        cand["dti"] < HGVC_BAR and ho["beats_stored_hgvc"] is False,
+        "candidate must record negative comparison against HGVC bar",
+    )
+    _require(
+        card["verdict"] == "negative"
+        and card["ok_to_submit"] is False
+        and card["new_tif_generated"] is False,
+        "run card must remain negative / ok_to_submit=False / new_tif_generated=False",
+    )
+    # Independently re-audit the archived best research TIFF (HGVC) format and sample pin.
     import rasterio
 
-    sample = ROOT / "data/bridge/sample_submission.tif"
-    require(hashlib.sha256(sample.read_bytes()).hexdigest() == SAMPLE_SHA256, "sample_submission.tif SHA-256 mismatch")
-    tif = ROOT / "docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif"
-    with rasterio.open(sample) as ref, rasterio.open(tif) as ds:
+    sample = root / "data/bridge/sample_submission.tif"
+    faults = root / "data/bridge/existing_faults.tif"
+    _require(
+        sample.is_file() and _sha256(sample) == grid.SHA256_SAMPLE_SUBMISSION,
+        "sample_submission.tif missing or SHA-256 pin mismatch",
+    )
+    _require(
+        faults.is_file() and _sha256(faults) == grid.SHA256_EXISTING_FAULTS,
+        "existing_faults.tif missing or SHA-256 pin mismatch",
+    )
+    tif = root / "docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif"
+    with rasterio.open(sample) as ref, rasterio.open(faults) as cds, rasterio.open(tif) as ds:
+        ref_arr = ref.read(1)
+        cat_arr = cds.read(1)
         a = ds.read(1)
-        require(
-            ds.count == 1 and str(ds.crs) == str(ref.crs) and ds.shape == ref.shape and ds.transform == ref.transform,
-            "HGVC reference grid mismatch",
+        _require(
+            ds.count == 1
+            and str(ds.crs) == str(ref.crs)
+            and ds.shape == ref.shape
+            and ds.transform == ref.transform,
+            "HGVC TIFF grid/CRS/transform mismatch",
         )
-        require(
-            bool(np.isfinite(a).all()) and float(a.min()) >= 0.0 and float(a.max()) <= 1.0 and ds.nodata is None,
-            "HGVC finite/[0,1]/nodata check failed",
+        _require(
+            int(np.isnan(a).sum()) == 0
+            and np.isfinite(a).all()
+            and float(a.min()) >= 0.0
+            and float(a.max()) <= 1.0
+            and ds.nodata is None,
+            "HGVC TIFF failed finite/[0,1]/nodata check",
+        )
+        _require(
+            int((a[~np.isfinite(ref_arr)] != 0).sum()) == 0
+            and int((a[cat_arr > 0] > 0).sum()) == 0,
+            "HGVC TIFF failed outside-footprint zero or catalogue zero check",
         )
     print(
         f"CXL88 AUDIT PASS: candidate HOLDOUT-DTI={cand['dti']:.6f} < HGVC bar {HGVC_BAR}; "
@@ -71,4 +113,4 @@ def main(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main(sys.argv[1:]))
+    raise SystemExit(main())

@@ -234,6 +234,14 @@ def fabric_release_report(root=ROOT):
             or sha(mmrx_tif) != md['raster_sha256']):
             raise ValueError('mmrx88_run_card.json research TIFF has no verified negative audit')
         expected_hashes.add(sha(mmrx_tif))
+    con88_gates = root / 'registry/con88_gates.json'
+    if con88_gates.is_file():
+        cg = json.loads(con88_gates.read_text())
+        con88_tif = (root / 'docs/downloads' / cg['candidate']).resolve()
+        if (con88_tif.is_file()
+            and con88_tif.is_relative_to((root / 'docs/downloads').resolve())
+            and sha(con88_tif) == cg.get('sha256')):
+            expected_hashes.add(sha(con88_tif))
     relay_card = root / 'registry/relay88_run_card.json'
     if relay_card.is_file():
         rd = json.loads(relay_card.read_text())
