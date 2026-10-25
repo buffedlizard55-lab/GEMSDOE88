@@ -1,13 +1,15 @@
-# Submission decision — DO NOT SUBMIT (2026-10-25, d0c3adeb)
+# Submission decision — DO NOT SUBMIT (2026-10-25, updated session 838cc402)
 
 > Historical decision record for the lanes listed here. This repository's **current**
-> lane decision is computed in the [executive summary](executive-summary.html) / README
-> decision block (lane H88-SDTL); nothing in this file changes it.
+> decision is **`DUPLICATE_STOP` (`ok_to_submit: false`, `verdict: "negative"`, `0` protocol-eligible packages)**,
+> computed in the [executive summary](executive-summary.html), [`data/current_release.json`](data/current_release.json),
+> and [README.md](../README.md) (`H88-SDTL` clearance was withdrawn in `IR-88-B4DFA10C-08`; nothing in this file authorizes upload).
 
 **No new TIFF is eligible, and no competition slot was used by this session.** The primary [submission guide](executive-summary.html) and [canonical manifest](data/current_release.json) are authoritative. The [existing TDKL research TIFF](downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) and [single-TIFF ZIP](downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) are downloadable for education only; neither is a new or protocol-unique prediction.
 
-- Automated saved-byte audit: **45/45** published TIFF/ZIP pairs pass two independent decoders, finite/[0,1], exact grid, footprint/catalogue masks and extraction labels (count tracks the live audit). [Full audit](data/download_audit.json).
-- Session 249e8cb3 executed the leading ranked hypothesis (H88-MMRX marker restoration): HOLDOUT-DTI `0.188378 [0.170922, 0.204215]` vs the `0.205991` bar, 0/8 folds won, and final-dot overlap `0.797578` vs H88-HGVC — negative; published repo-side in `submissions/` with `-DO-NOT-SUBMIT`, not added to this site's downloads. Zero slots spent.
+- Automated saved-byte audit: **46/46** published Pages TIFF/ZIP pairs (`45` main downloads in `docs/downloads/` + `1` historical variant in `docs/research-variants/`, `0` protocol-eligible) plus **20/20** repo-side `submissions/` archives pass two independent decoders, finite/`[0,1]`, exact grid, footprint/catalogue masks and extraction labels (`IR-88-838C-01`, `IR-88-838C-02`). [Full audit](data/download_audit.json).
+- Session 838cc402 re-verified preflight (`DUPLICATE_STOP`, exit 2 on `17GEMSDOE`), repaired the post-PR-#152 withdrawn-SDTL-lane and stale package-count merge regression in this file plus the overlooked `submissions/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip` extraction member, verified official primary sources live, and published [five untried post-MMRX geological hypotheses](research/session-838cc402-hypotheses.md) and [three-pass review](research/session-838cc402-review.md) ([negative run card](data/session_838cc402_run_card.json)). Zero rasters generated; zero slots spent.
+- Session 249e8cb3 executed the former rank-1 hypothesis (`H88-MMRX` marker restoration): HOLDOUT-DTI `0.188378 [0.170922, 0.204215]` vs the `0.205991` bar, 0/8 folds won, and final-dot overlap `0.797578` vs H88-HGVC — negative; published repo-side in `submissions/` with `-DO-NOT-SUBMIT`, not added to this site's downloads. Zero slots spent.
 - Literal prerequisite: `17GEMSDOE` directly covers every one of 5,106,385 allowed pixels; every nonempty allowed candidate has overlap 1.0 > 0.70. **STOP before generation.**
 - The old `[0,1]` error is addressed locally by validation of strict finite zero-outside files, not by claiming portal acceptance. Its exact historical upload failure cannot be diagnosed without the uploaded bytes/receipt.
 - All validation is automated; no manual TIFF inspection is needed. A future eligible file would still require fold-rebuilt holdout superiority, complete registry checks and a separate selector within the actual authenticated account cap. No fresh cap or official receipt was obtained here.
