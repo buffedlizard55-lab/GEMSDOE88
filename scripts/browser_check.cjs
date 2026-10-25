@@ -9,15 +9,21 @@ const crypto = require('node:crypto');
 const ROOT = path.resolve(__dirname, '..');
 const modules = path.join(ROOT, '.cache/browser/node_modules');
 const {chromium: playwright} = require(path.join(modules, 'playwright-core'));
-const chromium = require(path.join(modules, '@sparticuz/chromium/build/index.js')).default;
+const chromiumPackage = require(path.join(modules, '@sparticuz/chromium/build/index.js'));
+const chromium = chromiumPackage.default;
 const base = process.env.BROWSER_BASE_URL || 'http://127.0.0.1:8000/';
 const expected = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/data/current_release.json'), 'utf8'));
 const expectedTiff = expected.file.replace(/^docs\//, '');
 const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT';
 
 (async () => {
+  // The minimal sandbox lacks NSS/NSPR. Use the libraries shipped with this
+  // exact npm browser package, not an unverified system download or apt bypass.
+  await chromiumPackage.inflate(path.join(modules, '@sparticuz/chromium/bin/al2023.tar.br'));
   const browser = await playwright.launch({
     executablePath: await chromium.executablePath(),
+    env: {...process.env, LD_LIBRARY_PATH: [path.join(require('node:os').tmpdir(), 'al2023/lib'),
+      process.env.LD_LIBRARY_PATH].filter(Boolean).join(':')},
     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
     headless: true,
   });
@@ -69,11 +75,28 @@ const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · S
     matches_canonical_bytes: response.status() === 200 && digest === expected.file_sha256,
     ok_to_submit: false};
   failed ||= !report.research_download.matches_canonical_bytes;
+  await download.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+  const [clicked] = await Promise.all([
+    download.waitForEvent('download'),
+    download.locator('a[download][href$=".tif"]').first().click(),
+  ]);
+  const clickedDigest = crypto.createHash('sha256').update(fs.readFileSync(await clicked.path())).digest('hex');
+  report.research_download.click_sha256 = clickedDigest;
+  report.research_download.suggested_filename = clicked.suggestedFilename();
+  report.research_download.click_matches_canonical_bytes = clickedDigest === expected.file_sha256
+    && clicked.suggestedFilename().includes('DO-NOT-SUBMIT');
+  failed ||= !report.research_download.click_matches_canonical_bytes;
   await download.close();
+  const noScript = await browser.newPage({javaScriptEnabled: false});
+  await noScript.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+  report.no_javascript_banner = await noScript.locator('[data-card-status]').innerText();
+  report.no_javascript_stays_negative = report.no_javascript_banner === 'NO NEW TIFF · RESEARCH DOWNLOAD ONLY · DO NOT SUBMIT';
+  failed ||= !report.no_javascript_stays_negative;
+  await noScript.close();
   await browser.close();
   for (const relative of ['docs/index.html', 'docs/executive-summary.html', 'docs/research.html',
     'docs/sources.html', 'docs/assets/site.css', 'docs/assets/site.js', 'docs/data/current_release.json',
-    'docs/data/download_audit.json', 'docs/data/mtas88_run_card.json', 'docs/status.json',
+    'docs/data/download_audit.json', 'docs/data/mtas88_run_card.json', 'docs/data/hypothesis_queue.json', 'docs/status.json',
     'docs/mdc88/index.html', 'docs/mdc88/executive-summary.html', 'docs/mdc88/status.json']) {
     report.source_sha256[relative] = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, relative))).digest('hex');
   }

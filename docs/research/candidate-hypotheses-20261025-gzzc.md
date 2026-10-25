@@ -1,6 +1,6 @@
 # Ranked geological hypotheses — 2026-10-25 lane `H88-GZZC`
 
-Read with [PROMPT.md](../PROMPT.md). **Maximize P(Win) · Own the Outcome.** This session’s method paragraph is **H88-GZZC: residual isostatic-gravity zero-contour buried density contact**. No weekly slot is spent.
+Read with [PROMPT.md](https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/PROMPT.md). **Maximize P(Win) · Own the Outcome.** This session’s method paragraph is **H88-GZZC: residual isostatic-gravity zero-contour buried density contact**. No weekly slot is spent.
 
 Official sources (manual review):
 

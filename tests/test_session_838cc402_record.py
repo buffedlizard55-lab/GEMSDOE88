@@ -92,12 +92,21 @@ def test_submissions_directory_dual_decoder_format_audit() -> None:
         assert row["positive_outside_footprint"] == 0, (tif.name, row)
 
 
-def test_new_hypotheses_records_mmrx_negative_and_five_untried_proposals() -> None:
-    top = (ROOT / "NEW_HYPOTHESES.md").read_text(encoding="utf-8").split("<details>", 1)[0]
-    assert "All four conditional proposals above remain **untested**" not in top
-    assert "H88-MMRX" in top and "0.188378" in top and "0.797578" in top
+def test_historical_five_proposals_remain_recorded_without_overriding_current_queue() -> None:
+    # This parallel review is a dated proposal record, not a permanent requirement
+    # to put its five ideas above the active source-reviewed queue after each merge.
+    historical = (ROOT / "research/session-838cc402-hypotheses.md").read_text(encoding="utf-8")
     for hid in ("H88-SPRV", "H88-PGTD", "H88-CBBC", "H88-TAWA", "H88-MT3D-GDR"):
-        assert hid in top
+        assert hid in historical
+    from scripts.audit_research_state import inspect_queue
+    current = inspect_queue(ROOT)
+    assert "H88-MMRX" in {p["id"] for p in current["already_evaluated"]}
+    top = (ROOT / "NEW_HYPOTHESES.md").read_text(encoding="utf-8").split("<details>", 1)[0]
+    assert "session-838cc402-hypotheses.md" in top
+    assert "hypothesis_queue.json" in top
+    for proposal in current["proposals"]:
+        assert proposal["id"] in top
+    assert "H88-MMRX" not in {p["id"] for p in current["proposals"]}
 
     for fname in ("session-838cc402-review.md", "session-838cc402-hypotheses.md"):
         repo_copy = ROOT / "research" / fname

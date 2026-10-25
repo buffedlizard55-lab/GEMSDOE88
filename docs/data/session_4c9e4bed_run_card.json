@@ -1,0 +1,44 @@
+{
+  "schema": "gems88.review-run-card.v2",
+  "session": "4c9e4bed",
+  "branch": "arena/4c9e4bed-gemsdoe88",
+  "checked_at_utc": "2026-10-25T17:03:00+00:00",
+  "base_commit": "b29a124c4f5843bc429451f4a9966231667852b1",
+  "status": "DUPLICATE_STOP",
+  "decision": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "ok_to_download_new_tif": false,
+  "ok_to_download_existing_research_tifs": true,
+  "new_rasters_generated": 0,
+  "experiments_run": 0,
+  "experiment_budget_limit": 3,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "hypothesis": "H88-SPRV (rank #1 untried in NEW_HYPOTHESES.md / research/session-838cc402-hypotheses.md): cross-strike Hanks-Bucknam error-function scarp-profile restoration likelihood with drainage-incision and pluvial-shoreline vetoes, dots on restored inflection loci. NOT EXECUTED.",
+  "mechanism": "Invert 1D cross-strike profiles z(u)=a+b*u+(dH/2)*erf((u-u0)/sqrt(4*kappa*t)) vs linear null, require along-strike persistence, veto chan_n/log10_area channels and constant-zmean_m Lahontan shoreline contours, emit on u0(x) inflection curves instead of shared gradient crests.",
+  "named_non_fault_process": "Incised alluvial-fan channel margins / fluvial terrace risers and Pleistocene Lake Lahontan wave-cut shoreline benches with zero basement offset.",
+  "holdout_dti": null,
+  "holdout_note": "No HOLDOUT-DTI computed this session: generation preflight fails closed before feature construction. Prior best in repo (not this session, not organizer-confirmed): H88-BPWD HOLDOUT-DTI 0.205991 [0.188105,0.223344], evaluator gems57-pooled-hide-v2, n=22893 withheld positives (docs/data/bpwd88_run_card.json).",
+  "correlation_overlap_vs_registry": {
+    "literal_17GEMSDOE_forward_3px_overlap": 1.0,
+    "threshold": 0.70,
+    "source": "docs/data/current_release.json + vendor/gems57/uniqueness.py: continuous 17GEMSDOE witness covers 5,106,385/5,106,385 allowed cells, so every nonempty allowed candidate has overlap 1.0 > 0.70"
+  },
+  "raster_sha256": null,
+  "new_raster_sha256_note": "No new raster generated. Canonical archived research raster (DO NOT SUBMIT): db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf (H88-TDKL, docs/data/current_release.json).",
+  "validator_output": {
+    "generation_guard_this_sandbox": "AUDIT_ERROR fail-closed: ModuleNotFoundError scipy/rasterio initially, then FileNotFoundError data/bridge/sample_submission.tif after deps installed from PyPI; generation_allowed=false, ok_to_submit=false",
+    "archived_tif_format": "PASS per docs/data/current_release.json: no NaN inside footprint, values in [0,1], CRS/shape/transform match sample (EPSG:32611, 3730x3292)",
+    "tests": "105 passed, 10 skipped: tests/test_literal_protocol.py + tests/test_generation_entrypoints.py (2026-10-25)"
+  },
+  "submission_name": null,
+  "submission_note_max140": null,
+  "submission_note_reason": "No name/note issued: issuing one for upload would contradict ok_to_submit=false. Prepared-but-unused names for archived lanes remain in docs/SUBMIT.md.",
+  "irregularities_flagged": [
+    "IR-4C9E-01: Sandbox has no data/ stack (data/bridge/sample_submission.tif and cached training_features absent, gitignored; DrivenData download requires login per README). Shared guard correctly fails closed with AUDIT_ERROR instead of DUPLICATE_STOP here; the DUPLICATE_STOP determination rests on the pinned registry audit already in repo, not a fresh re-measurement this session.",
+    "IR-4C9E-02: User request demands a unique submittable TIF, but the user's own PARALLEL-RUN PROTOCOL §1 + AGENTS.md §2 forbid it: literal overlap 1.0 > 0.70 vs 17GEMSDOE. Log duplicate and stop; do not rename/re-threshold to evade.",
+    "IR-4C9E-03: All fleet scores incl. h33 0.2778 and leaderboard 0.4413 are USER-REPORTED/OBSERVED-PUBLIC, not ORGANIZER-CONFIRMED (no submission-page receipt in repo)."
+  ],
+  "h33_answer_summary": "h33 (USER-REPORTED 0.2778) = sparse binary {0,1} dots, 37,654 px, 2.8px kernel-spaced multi-physics contact support with the <=2px catalogue collar removed (-6,436 dots vs ancestor), so denominator mass is not spent within 200m of already-mapped faults. See docs/research/bgcd88-forensics-and-phd-synthesis-20261025.md §1 (byte/SHA-verified lineage). Beating it requires spaced NEW support off shared crests (H88-SPRV class), validated by buffered hide-and-recover HOLDOUT-DTI beating 0.205991 — impossible to execute until the literal registry gate or data stack changes."
+}

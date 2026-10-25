@@ -3,7 +3,7 @@
   "session": "21256734",
   "branch": "arena/21256734-gemsdoe88",
   "checked_at_utc": "2026-10-25T20:15:00+00:00",
-  "base_commit": "805bdd561844bb0479df17df51ef226b4cfefcc1",
+  "base_commit": "3017fe7d9eaafe24054067cd69005913e6af93f1",
   "status": "DUPLICATE_STOP",
   "decision": "DUPLICATE_STOP",
   "verdict": "negative",
@@ -53,7 +53,7 @@
     }
   ],
   "cross_fleet_screened_prior_proposals": {
-    "H88-PGTD_status": "DEMOTED \u2014 independently falsified on 2026-10-25 in sibling GEMSDOE91 S17-LFTG (3D Laplace Marussi full-tensor gravity + notch-destriped mag/rad scored HOLDOUT-DTI 0.188596 vs 0.192208 incumbent, delta -0.003612)",
+    "H88-PGTD_status": "EXECUTED_AND_DOUBLY_FALSIFIED \u2014 GEMSDOE91 S17-LFTG scored HOLDOUT-DTI 0.188596 vs 0.192208 (-0.003612), and concurrent GEMSDOE88 PR #168 (pgtd88) scored HOLDOUT-DTI 0.0811 vs 0.205991 BPWD with |rho|=0.9095>0.90 and like-for-like overlap 0.8061>0.70",
     "GEMSDOE92_LISTRICDIP_lesson": "Constant 500 m updip shift collapsed to HOLDOUT-DTI 0.005420; H88-POFD fixes this by inverting spatially varying Parker-Oldenburg 3D basement depth z_base(x,y) first"
   },
   "lane_status": "Post-PR-#162 integrity audit, -O/SHA hardening of 8 validator & forensics scripts, live 50-row leaderboard + cross-fleet verification, PhD-level H33 forensics, and 5 grep-verified zero-match geological hypotheses. Preflight returned DUPLICATE_STOP (exit 2) before any model import or raster construction.",
@@ -121,7 +121,9 @@
       "scripts/forensics_h33.py"
     ],
     "pinned_browser_check_files_exact": "13/13",
-    "pytest_full_suite": "822 passed, 22 skipped (0 failures)"
+    "pytest_full_suite": "882 passed, 22 skipped (0 failures)",
+    "pages_research_packages_audited": "48/48 PASS local format checks (47 main downloads + 1 historical variant; 0 protocol-eligible under literal 17GEMSDOE gate)",
+    "repo_wide_tif_zip_inventory": "74/74 total .tif/.zip pairs inventoried (48 Pages + 20 submissions/ + 6 HOLD releases/ MASS pairs with 3 exterior-NaN files explicitly flagged)"
   },
   "package_audits": {
     "pages_download_audit_sha256": "b98b0c9952d7f1396114a23da74d3116b3ceeb4feaece85d297c7ff83049065c",
@@ -184,6 +186,11 @@
       "id": "IR-88-21256734-05",
       "status": "DOCUMENTED_WITH_SAFETY_WARNING",
       "summary": "Inventoried all 72 repo-wide .tif/.zip pairs and flagged 6 legacy HOLD releases/h33-h33-2-b2-MASS* pairs (3 containing 7,111,787 exterior NaNs without -DO-NOT-SUBMIT filenames) so users never upload releases/*.tif."
+    },
+    {
+      "id": "IR-88-21256734-06",
+      "status": "DOCUMENTED_WITH_REGRESSION_CHECK",
+      "summary": "Flagged scientific/protocol caveats on concurrent H88-CON88 (IR-88-CON88-01 equal-support 0.6936 vs canonical current_release.json ok_to_submit:false, HOLDOUT-DTI 0.0017 vs 0.205991 BPWD) and confirmed H88-PGTD (PR #168, 0.0811) double-falsification alongside GEMSDOE91 S17-LFTG (0.188596)."
     }
   ],
   "review_document": "research/session-21256734-review.md",

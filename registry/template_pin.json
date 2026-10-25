@@ -25,7 +25,7 @@
     "strand_orientation.py": "c1dd6d8bc39c48c4cda11321c116e600b59b18cf1764e23ce3d5438bea9dd0bc",
     "strike_zone.py": "eaf5b1030b731ec743650568d28598d3b6104e641a089dd6cca196e05be4e9c4",
     "submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
-    "uniqueness.py": "6631d18eb3a482a90b683a10621a1bc91e4b14cfa85d1d2a89bdf2bcb4935d45",
+    "uniqueness.py": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb",
     "validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd"
   },
   "core_modules_unmodified": {
@@ -40,7 +40,7 @@
     {
       "file": "vendor/gems57/uniqueness.py",
       "upstream_sha256": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
-      "patched_sha256": "6631d18eb3a482a90b683a10621a1bc91e4b14cfa85d1d2a89bdf2bcb4935d45",
+      "patched_sha256": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb",
       "patch": "append-only: excess_overlap() + binding_duplicate_decision_v3(); IR-88-86 shared literal-policy wrapper; session 249e8cb3 appended binding_duplicate_decision_v4() (IR-88-249E-01)",
       "reason": "IR-88-76: added excess_overlap() and binding_duplicate_decision_v3(). The literal 3 px dot-overlap rule returns 1.0000 against the space-filling 17GEMSDOE prior for EVERY possible candidate, so it carried zero information while permanently pinning ok_to_submit to false. The addition is append-only: no existing function, constant or code path was altered, so every previously recorded uniqueness number is reproducible byte-for-byte. The brief requires shared defects to be fixed once in the template rather than forked. IR-88-86 restores literal overlap as the binding decision for every caller, retaining chance correction only for diagnosis. Session 249e8cb3 (IR-88-249E-01) appended binding_duplicate_decision_v4() (representation-aware proposal per IR-88-128) for reproducibility of the H88-MMRX run card; v4 grants no clearance and that candidate failed it (0.798 dot overlap vs HGVC).",
       "irregularity": "IR-88-76",
@@ -51,7 +51,7 @@
     {
       "file": "vendor/gems57/uniqueness.py",
       "upstream_sha256": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
-      "patched_sha256": "6631d18eb3a482a90b683a10621a1bc91e4b14cfa85d1d2a89bdf2bcb4935d45",
+      "patched_sha256": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb",
       "patch": "append-only: registry_dots() + equal_support_overlap() + binding_duplicate_decision_v5(); IR-88-SDTL-01 equal-support rule for continuous registry surfaces; session 249e8cb3 appended binding_duplicate_decision_v4() (IR-88-249E-01)",
       "reason": "IR-88-SDTL-01: a continuous registry surface positive on every allowed cell makes the literal 3 px dot test unsatisfiable for every candidate. v5 compares a candidate's dots with the top-n cells of such a surface at the candidate's own dot count (the emission that surface would itself make), keeps the 0.70/0.90 thresholds, keeps rank correlation against every raster, and still reports the literal reading. Append-only: no existing function, constant or code path altered; v3/v4 remain callable. Session 249e8cb3 (IR-88-249E-01) appended binding_duplicate_decision_v4() (representation-aware proposal per IR-88-128) for reproducibility of the H88-MMRX run card; v4 grants no clearance and that candidate failed it (0.798 dot overlap vs HGVC).",
       "irregularity": "IR-88-SDTL-01",
@@ -64,7 +64,7 @@
       "file": "vendor/gems57/uniqueness.py",
       "upstream_sha256": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
       "previous_patched_sha256": "544781a2dc0c35615a890394d2537092442f5e657d9acd303f9c4a66fdfc3355",
-      "patched_sha256": "6631d18eb3a482a90b683a10621a1bc91e4b14cfa85d1d2a89bdf2bcb4935d45",
+      "patched_sha256": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb",
       "append_only": true,
       "reason": "IR-88-B4DFA10C-08: restore the standing literal >0.70 / 3 px stop for every public v5 caller by delegating to the existing shared v3 literal decision. Equal-support measurements and original SDTL code are preserved as historical diagnostics, not submission clearance. Empty or invalid measurements fail closed. Core metric, evaluator and writer are unchanged. Session 249e8cb3 (IR-88-249E-01) appended binding_duplicate_decision_v4() (representation-aware proposal per IR-88-128) for reproducibility of the H88-MMRX run card; v4 grants no clearance and that candidate failed it (0.798 dot overlap vs HGVC).",
       "patch": "append-only shared literal-policy compatibility wrapper for v5; session 249e8cb3 appended binding_duplicate_decision_v4() (IR-88-249E-01)",

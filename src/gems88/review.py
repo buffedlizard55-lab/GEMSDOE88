@@ -9,6 +9,8 @@ registry uniqueness, and the separate weekly-slot selector remain independent.
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+import json
+from pathlib import Path
 from typing import Any
 
 
@@ -189,7 +191,12 @@ OFFICIAL_SOURCES: tuple[dict[str, str], ...] = (
 
 
 def hypothesis_queue() -> list[dict[str, Any]]:
-    """Return a JSON-safe copy of the five ranked, untested hypotheses."""
+    """Replay the original review's five hypotheses, not today's active queue.
+
+    These statuses were recorded before MTAS was later executed. Current
+    source-bound proposal/evaluation state is registry/hypothesis_queue.json.
+    Source-access records below are likewise historical, not live fetches.
+    """
 
     return [h.as_json() for h in HYPOTHESES]
 
@@ -233,3 +240,151 @@ def safe_note(note: str, *, maximum: int = 140) -> str:
     if len(note) > maximum:
         raise ValueError(f"submission note is {len(note)} characters; maximum is {maximum}")
     return note
+
+
+# Parallel 78cfb743 proposal snapshot after H88-MTAS (PR #146, negative 0.197730) and
+# H88-MMRX (PR #152, negative 0.188378) were executed and archived.
+LIVE_UNTRIED_HYPOTHESES: tuple[Hypothesis, ...] = (
+    Hypothesis(
+        1,
+        "H88-FARC",
+        (
+            "dem10_chi_100m_i16.tif",
+            "dem10_chi_100m_sig_i32.tif",
+            "topo_10m_derived_100m_u8.tif",
+            "lidar_scarp_features_u8.tif",
+            "det_elev",
+            "det_elev_slope",
+        ),
+        "Cross-catchment replicated signed fluvial chi/ksn offset polarity across >=3 independent Strahler/chi-stratified drainages along strike, scored against a catchment-permuted pseudo-crest null.",
+        "Low-slip piedmont or alluvial-fan fault splays often fall below single-scarp mapping thresholds in individual fans, yet a continuous basement-rooted strand offsets neighboring independent drainages with consistent down-to-basin polarity.",
+        "Resistant dipping ash-flow tuff ledges (stratigraphic knickzones), Pleistocene pluvial Lake Lahontan/Bonneville shoreline benches, and drainage-capture divide migration.",
+        "QTSK and TDKL score point/pixel knickpoint amplitude or local scarp aspect; PRISM scores piedmont ridge intersections; MMRX tested magnetic marker restoration (negative 0.188378). None tests replicated signed fluvial steps across >=3 independent catchments vs a channel-order null.",
+        "high",
+        "medium",
+        "none beyond restored SHA-pinned stack (upstream public source: USGS 3DEP 10 m DEM)",
+    ),
+    Hypothesis(
+        2,
+        "H88-EELG",
+        (
+            "rtp",
+            "tmi_hg",
+            "tmi_vg_finite_clamped",
+            "iso_grav_anom",
+            "iso_grav_anom_hg",
+            "iso_grav_anom_vg",
+            "depth_to_base_surf",
+            "det_elev",
+        ),
+        "2D windowed Reid-et-al. Euler deconvolution solved for contact/fault structural index N in {0.0, 0.5} independently on isostatic gravity and finite-clamped RTP, retaining tightly clustered horizontal origins (sigma <= 150 m) whose inverted depth z0 agrees with depth_to_base_surf along >=1.5 km strike.",
+        "Beneath unbroken Quaternary valley fill where surface scarps are absent, raw horizontal-gradient maxima shift downdip and smear laterally with burial depth; Euler homogeneity inversion collapses dipping step gradients back to the subsurface fault-contact apex while separating step contacts (N ~ 0-0.5) from compact intrusives (N >= 2).",
+        "Unfaulted steep plutonic or caldera-margin intrusive contacts, incised paleochannel walls in Tertiary volcanics, and Band 9 (tmi_vg) -FLT_MAX sentinel artifacts if uncleaned.",
+        "TILTZERO and GZZC trace zero contours; HGVC and VCAZ use raw horizontal-gradient ridges/azimuths; MTAS used 200 m vs 800 m scalar gradient differences (negative 0.197730). No lane in GEMSDOE88 has solved Euler homogeneity equations for (x0, y0, z0) at structural index N in {0, 0.5} or filtered by depth_to_base_surf consistency.",
+        "medium-high",
+        "low-medium",
+        "none; 100% within core 19-band training_features.tif",
+    ),
+    Hypothesis(
+        3,
+        "H88-PRAN",
+        (
+            "geodawn_rad_u8.tif",
+            "rtp",
+            "det_elev_slope",
+            "depth_to_base_surf",
+            "topo_10m_derived_100m_u8.tif",
+        ),
+        "Terrain-bin-conditioned radiometric K/Th alteration-width asymmetry (stratified on slope, profile curvature, and basement depth to remove bedrock-exposure bias) paired with a co-located RTP magnetite-destruction trough.",
+        "Hydrothermal fluid circulation along unmapped permeable fault segments potassically alters wallrock (illite/adularia raising K/Th while oxidizing magnetite, depressing RTP) even when surface scarps are eroded or cemented.",
+        "Unfaulted potassic rhyolite domes/ash-flow tuffs, arkosic alluvial fans shed from granitoids, playa-margin clay illuviation, and u8 index quantization limits.",
+        "KTH-ANTISYMMETRIC-STEP tested unconditional cross-strike step antisymmetry (negative); MVRD mixed radiometry directly with scarp fields. Neither conditions out topographic outcrop exposure before testing co-located RTP magnetite-destruction troughs.",
+        "medium",
+        "low-medium",
+        "none beyond restored SHA-pinned stack (upstream public source: USGS GeoDAWN CC0 compilation)",
+    ),
+    Hypothesis(
+        4,
+        "H88-SESR",
+        (
+            "geod_2ndinv",
+            "geod_shearrate",
+            "geod_dilaterate",
+            "deq_n100a15",
+            "ieq_n100a15",
+            "cond_surf",
+            "iso_grav_anom_hg",
+        ),
+        "Kinematic transtension obliquity psi = atan2(geod_dilaterate, geod_shearrate) crossed with microseismic density-gradient edges as a zero-catalogue modulator on sharp gravity/surface-conductance structural boundaries.",
+        "Great Basin and Walker Lane blind geothermal conduits concentrate in active transtensional step-overs and accommodation zones where strain transfers across short oblique faults omitted from 1:250k Quaternary fault maps.",
+        "Long-wavelength GPS continuum smoothing halos, off-fault volcanic/geothermal swarm seismicity, and conductive evaporite/clay playas.",
+        "SDTL used deterministic Mohr-Coulomb stress assumptions; RELAY-DILATIONAL used visible-catalogue geometry; SEPA tested persistence without kinematic shear-dilation obliquity gating on MT+gravity edges.",
+        "medium",
+        "low",
+        "none; 100% within core 19-band training_features.tif",
+    ),
+    Hypothesis(
+        5,
+        "H88-FLAC",
+        (
+            "rtp",
+            "iso_grav_anom_hg",
+            "cond_surf",
+            "det_elev_slope",
+            "geodawn_extensions_u8.tif",
+        ),
+        "Directional steerable-filter decomposition that penalizes narrow E-W (090 deg +- 8 deg) single-sensor magnetic lineaments lacking gravity, conductivity, or topographic corroboration while retaining multi-sensor oblique structures.",
+        "Suppressing airborne magnetic flight-line leveling corrugations frees dot budget in covered basins so genuine low-amplitude NNE/NNW concealed intrabasin faults clear the emission threshold without extra false-positive mass.",
+        "Genuine E-W transverse accommodation faults or caldera ring fractures lacking density/topographic contrast, plus E-W cultural infrastructure.",
+        "SSA, XGCE, and BPWD reward multi-sensor agreement isotropically without an explicit GeoDAWN E-W acquisition-azimuth veto.",
+        "low-medium",
+        "low",
+        "none; GeoDAWN E-W flight-line azimuth comes from official survey metadata",
+    ),
+)
+
+
+def executed_registry_lanes(root: Path) -> set[str]:
+    """Return canonical lane IDs that already have an executed raster/holdout run card."""
+    executed: set[str] = set()
+    reg_dir = Path(root) / "registry"
+    if not reg_dir.is_dir():
+        return executed
+    for card_path in sorted(reg_dir.glob("*run_card*.json")):
+        try:
+            data = json.loads(card_path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if not isinstance(data, dict):
+            continue
+        lane = data.get("lane") or data.get("lane_id") or data.get("hypothesis_id")
+        if not isinstance(lane, str) or not lane.strip():
+            continue
+        # Pre-placement stop cards (raster_sha256 is None and no holdout dti) do not mark a lane executed.
+        has_raster = bool(
+            data.get("raster_sha256")
+            or (isinstance(data.get("raster"), dict) and data["raster"].get("sha256"))
+            or (isinstance(data.get("submission"), dict) and (data["submission"].get("sha256") or data["submission"].get("raster_sha256")))
+            or data.get("sha256")
+            or data.get("sha256_tif")
+        )
+        if has_raster:
+            executed.add(lane.strip().split()[0])
+    return executed
+
+
+def live_untried_hypothesis_queue(root: Path) -> list[dict[str, Any]]:
+    """Return the parallel 78cfb743 proposal snapshot, screening executed IDs.
+
+    This compatibility interface is not the primary site/selector queue. The
+    source-bound active queue is registry/hypothesis_queue.json; matching names
+    alone cannot establish physical novelty. No source is fetched here.
+    """
+    rows = [h.as_json() for h in LIVE_UNTRIED_HYPOTHESES]
+    validate_hypothesis_queue(rows)
+    executed = executed_registry_lanes(root)
+    collisions = sorted(row["id"] for row in rows if row["id"] in executed)
+    if collisions:
+        raise ValueError(f"untried hypothesis queue collides with executed registry lanes: {collisions}")
+    return rows
+

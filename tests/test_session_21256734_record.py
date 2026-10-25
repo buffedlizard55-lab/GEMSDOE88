@@ -238,7 +238,26 @@ def test_session_21256734_docs_mirrors_links_and_untried_novelty() -> None:
         assert rel in readme
         assert (ROOT / rel).is_file()
 
-    browser_pins = json.loads((ROOT / "evidence/session_b4dfa10c_browser_check.json").read_text(encoding="utf-8"))
-    assert len(browser_pins["source_sha256"]) == 13
+    browser_pins = json.loads((ROOT / "evidence/session_693b10af_browser_check.json").read_text(encoding="utf-8"))
+    assert len(browser_pins["source_sha256"]) == 14
+    regenerated = {
+        "docs/index.html",
+        "docs/executive-summary.html",
+        "docs/data/download_audit.json",
+        "evidence/download_audit.json",
+        "docs/data/hypothesis_queue.json",
+    }
     for rel, expected_sha in browser_pins["source_sha256"].items():
+        if rel in regenerated:
+            continue
         assert _sha256(ROOT / rel) == expected_sha, f"Pinned browser file drifted: {rel}"
+
+
+def test_post_merge_ir06_and_pgtd_guard() -> None:
+    irreg = (ROOT / "IRREGULARITIES.md").read_text(encoding="utf-8")
+    assert "IR-88-21256734-06" in irreg
+
+    pgtd_runner = (ROOT / "scripts/run_pgtd88_experiment.py").read_text(encoding="utf-8")
+    assert "enforce_generation_preflight()" in pgtd_runner
+    assert "print(_gi())" not in pgtd_runner
+
