@@ -18,6 +18,8 @@ Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_P
 
 **Maximize P(Win):** reserve feedback for evidence-backed, genuinely distinct candidates. **Own the Outcome:** publish negative findings and unmet requirements instead of claiming a high score or unique file without evidence.
 
+Independent repository recheck (2026-10-25): [review report](research/repo-review-arena-f5e85a1a-20261025.md) · [negative run card](evidence/repo_review_arena_f5e85a1a_20261025.json). No new TIFF was produced: the pinned registry witness covers every allowed pixel, so the literal uniqueness rule blocks every nonempty candidate. This does not satisfy the unique-TIFF request; it records why generating one would violate the active protocol.
+
 ### Current review — session d0c3adeb, 2026-10-25
 
 | Work | Verified outcome |
