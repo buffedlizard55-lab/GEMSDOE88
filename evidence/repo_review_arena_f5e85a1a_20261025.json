@@ -1,0 +1,48 @@
+{
+  "schema": "gems88.review-run-card.v1",
+  "review_date_utc": "2026-10-25",
+  "hypothesis": "H88-MTAS: cross-scale gravity/RTP admittance residual may reveal a buried basement fault under cover; selected as qualitative top candidate but NOT tested.",
+  "mechanism": "Compare cached RTP and gravity gradient responses at 200 m and 800 m, conditioned on basement depth, detrended slope, and transtension; pre-placement registry audit blocks feature construction.",
+  "named_non_fault_process": "Unfaulted intrusive or volcanic density contact with weak magnetic contrast; flight-line leveling seam.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "reason": "No candidate feature, fit, prediction, or holdout was run in this review."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "surface_rank_correlation": null,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap_3px": null,
+    "universal_overlap_lower_bound_for_any_nonempty_allowed_candidate": 1.0,
+    "overlap_limit": 0.7,
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "covered_allowed_pixels": 5106385,
+    "allowed_pixels": 5106385,
+    "interpretation": "The witness is positive on every allowed pixel, so any nonempty candidate support has forward 3-pixel overlap 1.0. No new surface or dots were constructed."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster_generated": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null,
+    "status": "NOT_RUN_NO_NEW_RASTER"
+  },
+  "submission_name": "GEMSDOE88-MTAS-PREFLIGHT-20261025-NO-FILE",
+  "submission_note": "Pre-placement duplicate stop; no new TIFF; UNSCORED; DO NOT SUBMIT",
+  "submission_note_characters": 66,
+  "ok_to_download_new_file": false,
+  "ok_to_submit": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "verdict": "negative",
+  "reason": "Binding literal uniqueness rule is unsatisfiable for a nonempty allowed candidate while the pinned full-support registry witness remains in scope."
+}

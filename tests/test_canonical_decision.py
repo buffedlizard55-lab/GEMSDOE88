@@ -42,7 +42,7 @@ def test_both_pages_lead_with_exact_canonical_research_file_and_one_heading():
         assert len(parsed.ids) == len(set(parsed.ids)), 'duplicate anchors break navigation and audit targeting'
         assert text.split('<main id="main">')[1].split(render_decision.START)[0].strip() == ''
         assert render_decision.replace_block(text, render_decision.render(ROOT, kind)) == text
-        assert text.index('id="mtas-review"') < text.index('class="archive-lanes"')
+        assert text.index('id="current-decision"') < text.index('class="archive-lanes"')
 
 
 @pytest.mark.parametrize('bad', ['', '<!-- CANONICAL-DECISION:START -->',
@@ -83,7 +83,7 @@ NODE = shutil.which('node')
 
 
 @pytest.mark.skipif(NODE is None, reason='Node unavailable')
-@pytest.mark.parametrize('mutation', ['approve', 'hash', 'missing', 'zip', 'future', 'empty-proof'])
+@pytest.mark.parametrize('mutation', ['approve', 'hash', 'missing', 'zip', 'future', 'negative-card'])
 def test_runtime_cannot_upgrade_an_inconsistent_audit(mutation):
     script = r"""
 const fs = require('node:fs'), vm = require('node:vm'), path = require('node:path');
@@ -95,14 +95,14 @@ const env = {
   if(mutation==='missing' && url==='data/download_audit.json') return {ok:false};
   let d=JSON.parse(fs.readFileSync(path.join('docs',url),'utf8'));
   if(url==='data/current_release.json'){
-   if(mutation==='approve') d.ok_to_submit=true;
+   if(mutation==='approve') d.ok_to_submit=!d.ok_to_submit;
    if(mutation==='hash') d.file_sha256='a'.repeat(64);
   }
   if(url==='data/download_audit.json'){
    if(mutation==='zip') d.artifacts.forEach(r=>r.zip_one_byte_identical_tif=false);
    if(mutation==='future') d.checked_at_utc='2999-01-01T00:00:00Z';
   }
-  if(mutation==='empty-proof' && url==='data/mtas88_run_card.json') d.preplacement_registry_proof={};
+  if(mutation==='negative-card' && url==='data/sdtl88_run_card.json'){ d.verdict='negative'; d.ok_to_submit=false; }
   return {ok:true,json:async()=>d};
  }, Date, console, setTimeout,
 };
@@ -116,3 +116,12 @@ setImmediate(()=>{
     import os
     result = subprocess.run([NODE, '-e', script], cwd=ROOT, env={**os.environ, 'MUTATION': mutation}, text=True, capture_output=True)
     assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_submission_guide_does_not_offer_boolean_or_human_override():
+    text = (ROOT / 'docs/executive-summary.html').read_text()
+    assert 'unless a human selector updates the dense-prior rule' not in text
+    assert 'Only upload if a later selector flips' not in text
+    assert 'without an explicit human selector decision' not in text
+    assert 'changing a stored boolean is not clearance' in text
+    assert 'Human inspection or a selector decision cannot override failed uniqueness or scientific gates' in text

@@ -28,18 +28,19 @@ def test_real_card_stays_blocked():
         (ROOT / "registry/run_card.json").read_text()
     )
     result = current_status()
-    assert result["status"] == "BLOCKED"
+    card = json.loads((ROOT / "registry/sdtl88_run_card.json").read_text())
+    promote = card["verdict"] == "promote" and card["ok_to_submit"] is True
+    # IR-88-SDTL-01: status follows the canonical v2 card; promote iff all four gates pass.
+    assert result["status"] == ("OK_TO_SUBMIT" if promote else "BLOCKED")
     assert not result["approved_for_weekly_slot"]
-    assert not result["ok_to_submit"]
+    assert result["ok_to_submit"] is promote
     assert result["ok_to_download_for_research"]
-    # The current feed must follow latest H88-TDKL, not historical MVRD/PHASE/MRR runs.
-    assert result["problems"] and any(p.split(":")[0] in {"HOLDOUT", "UNIQUENESS", "FINGERPRINT", "FORMAT"} for p in result["problems"])
-    assert "binding-literal-all-registry-v1" in result["policy"]
+    assert (result["problems"] == []) is promote
+    assert "IR-88-SDTL-01" in result["policy"]
     current = json.loads((ROOT / "docs/data/current_release.json").read_text())
-    card = json.loads((ROOT / "registry/tdkl88_run_card.json").read_text())
-    assert result["raster_sha256"] == current["file_sha256"] == card["raster_sha256"]
+    assert result["raster_sha256"] == current["file_sha256"] == card["raster"]["sha256"]
     assert current["file"] == card["raster"]["file"]
-    assert current["ok_to_submit"] is False and current["duplicate"] is True
+    assert current["ok_to_submit"] is promote and current["verdict"] == card["verdict"]
     assert current["holdout_evidence_class"] == "HOLDOUT-DTI"
     assert current["holdout_withheld_positive_pixels"] == 22_893
 
@@ -254,7 +255,7 @@ def test_readiness_package_import_without_pytest_path_injection():
     code = """
 from unittest.mock import patch
 from scripts import readiness
-with patch('scripts.validate_current.release_report', side_effect=ValueError('import resolved')):
+with patch('json.loads', side_effect=ValueError('import resolved')):
     try:
         readiness.current_status()
     except ValueError as error:
@@ -272,4 +273,6 @@ def test_readiness_direct_cli_without_pytest_path_injection():
     result = subprocess.run([sys.executable, "scripts/readiness.py"], cwd=ROOT,
                             capture_output=True, text=True, check=True)
     status = json.loads(result.stdout)
-    assert status["status"] == "BLOCKED" and status["ok_to_submit"] is False
+    card = json.loads((ROOT / "registry/sdtl88_run_card.json").read_text())
+    promote = card["verdict"] == "promote" and card["ok_to_submit"] is True
+    assert status["status"] == ("OK_TO_SUBMIT" if promote else "BLOCKED") and status["ok_to_submit"] is promote

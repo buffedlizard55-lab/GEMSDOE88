@@ -1,0 +1,166 @@
+{
+  "schema": "gems88.arena-repo-review.v1",
+  "review_date_utc": "2026-10-25",
+  "branch": "arena/f8d5d693-gemsdoe88",
+  "hypothesis": "H88-MTAS: cross-scale gravity-minus-magnetic gradient residual under low-relief basin cover may reveal buried faults missing from the USGS/INGENIOUS catalogue.",
+  "mechanism": "Contrast percentile-normalized 200 m versus 800 m gravity and RTP gradient responses, gated by basement depth, terrain slope, and transtension. No feature or surface was constructed during this review because the pre-placement duplicate proof fired first.",
+  "named_non_fault_process": "Unfaulted intrusive or volcanic lithologic contact with a density contrast but weak magnetic contrast; survey levelling seams are an acquisition confounder.",
+  "candidate_hypotheses": {
+    "evidence_class": "QUALITATIVE_HYPOTHESIS_RANKING_NOT_DTI_PROJECTION",
+    "source": "research/candidate-hypotheses-20261025-mtas.md",
+    "count": 5,
+    "ranked_ids": ["H88-MTAS", "H88-PRAN", "H88-FARC", "H88-TCONS", "H88-FLAC"],
+    "ranking_basis": "qualitative expected-gain versus implementation-cost judgment",
+    "viable_experiments_this_review": 0,
+    "reason": "The literal pre-placement registry witness blocks every nonempty candidate before feature construction."
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_IN_THIS_REVIEW",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "reason": "Pre-placement DUPLICATE_STOP; no feature stack, candidate surface, fold prediction, or experiment was produced in this review.",
+    "historical_mtas_record": {
+      "evidence_class": "HOLDOUT-DTI",
+      "status": "HISTORICAL_SAVED_RUN_CARD_NOT_RECOMPUTED_THIS_REVIEW",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 22893,
+      "dti": 0.049577,
+      "ci95": [0.044659, 0.054417],
+      "source": "registry/mtas88_experiment_run_card.json",
+      "not_organizer_confirmed": true
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "preplacement_surface_rank_correlation_this_review": null,
+    "final_candidate_dot_overlap_this_review": null,
+    "universal_overlap_lower_bound_for_any_nonempty_allowed_candidate": 1.0,
+    "overlap_limit": 0.7,
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "directly_covered_allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "scope": "Exact direct-support saturation proof from the hash-pinned 17GEMSDOE witness; sufficient to reject any nonempty candidate, not a full registry correlation inventory.",
+    "historical_mtas_raster": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "final_literal_overlap_3px": 1.0,
+      "historical_surface_max_abs_spearman": 0.10456498607216727,
+      "historical_like_for_like_max_overlap_3px": 0.423248526053009,
+      "source": "registry/mtas88_experiment_run_card.json and recomputed saved-byte validator"
+    }
+  },
+  "raster_sha256": {
+    "new_raster_generated_this_review": false,
+    "new_raster_sha256": null,
+    "historical_mtas_raster_sha256": "2cb828939e11cf07e12be7917722f73816550ed4e297e2409b8674ac131479cc",
+    "historical_file": "docs/downloads/gems88-mtas88-admittance-37654dots-20261025-zeros-DO-NOT-SUBMIT.tif"
+  },
+  "validator_output": {
+    "new_raster": "NOT_RUN_NO_NEW_RASTER",
+    "historical_mtas_raster": {
+      "evidence_class": "LOCAL-FORMAT-AUDIT",
+      "validator_command": ".venv/bin/python scripts/validate_mtas88_experiment.py",
+      "exit_code": 0,
+      "single_band": true,
+      "dtype": "float32",
+      "shape": [3730, 3292],
+      "crs": "EPSG:32611",
+      "transform_matches_sample": true,
+      "no_nan_or_inf": true,
+      "finite_values_range": [0.0, 1.0],
+      "positive_pixels_on_catalogue": 0,
+      "zip_single_byte_identical_tif": true,
+      "ok_to_download_for_research": true,
+      "ok_to_submit": false,
+      "qualification": "Format/identity only; not uniqueness clearance, organizer acceptance, or slot approval."
+    },
+    "generation_preflight": {
+      "command": ".venv/bin/python scripts/preflight_mtas88.py --gate-generation",
+      "exit_code": 2,
+      "expected": "DUPLICATE_STOP"
+    }
+  },
+  "submission": {
+    "name": "GEMSDOE88-MTAS-REVIEW-20261025-NO-NEW-FILE",
+    "name_status": "reserved review identifier only; not a portal submission name",
+    "note": "Pre-placement DUPLICATE_STOP; no new TIFF; no slot used; DO NOT SUBMIT",
+    "note_characters": 70,
+    "new_tif_download_ok": false,
+    "historical_mtas_download_ok_for_research_only": true,
+    "ok_to_submit": false,
+    "approved_for_weekly_slot": false,
+    "weekly_slots_used": 0,
+    "organizer_confirmed_score": null
+  },
+  "irregularities": [
+    {
+      "id": "MTAS-HISTORY-TIMELINE-CONFLICT",
+      "status": "FLAGGED",
+      "description": "The historical execution document and saved run card report a generated MTAS TIFF and holdout run; the later pre-placement review/run card reports no fit or emitted candidate because the universal duplicate proof fired. The Pages archive says the TIFF was generated in another session despite that stop. Preserve the distinction: this review obeyed the stop and generated nothing; the earlier artifact remains an explicitly negative, non-unique research archive."
+    },
+    {
+      "id": "LEADERBOARD-SNAPSHOT-MISMATCH",
+      "status": "FLAGGED",
+      "description": "The user prompt cites 0.3195 and 0.4413 as current highs. Archived local snapshots differ in date; this review did not fetch the live DrivenData leaderboard and makes no current-score claim."
+    },
+    {
+      "id": "H33-SCORE-PROVENANCE",
+      "status": "FLAGGED",
+      "description": "H33 0.2778 is USER-REPORTED in available evidence; no submission-page receipt is present to label it ORGANIZER-CONFIRMED."
+    }
+  ],
+  "verification": {
+    "pytest": {"passed": 654, "skipped": 23, "warnings": 61},
+    "research_tiff_zip_pairs_audited": 43,
+    "research_pair_format_pass": 43,
+    "protocol_eligible_files": 0,
+    "render_decision_check": "PASS",
+    "check_site_normal": "PASS",
+    "check_site_optimized": "PASS",
+    "audit_downloads_check": "PASS",
+    "new_experiments": 0,
+    "new_tiffs": 0,
+    "weekly_slots_used": 0
+  },
+  "sources": [
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "status_this_review": "official_manual_review_link_not_fetched"
+    },
+    {
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "status_this_review": "authentication_required_no_logged_in_download"
+    },
+    {
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "status_this_review": "official_manual_review_link_not_fetched"
+    },
+    {
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+      "status_this_review": "official_reference_repository_not_reaudited_this_review"
+    },
+    {
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "status_this_review": "official_context_link_no_new_data_fetched"
+    },
+    {
+      "url": "https://gdr.openei.org/submissions/1391",
+      "status_this_review": "official_context_link_no_new_data_fetched"
+    },
+    {
+      "url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+      "status_this_review": "pinned_owner_repository_bytes_restored_and_hash_verified_not_organizer_truth"
+    }
+  ],
+  "verdict": "negative",
+  "decision": "DUPLICATE_STOP",
+  "next_steps": [
+    "Do not generate, rename, or submit a new TIFF under the current literal all-raster rule.",
+    "Keep any future experiment behind the shared pre-placement guard and use the shared holdout/evaluator/writer only after a documented shared-protocol resolution makes the uniqueness criterion non-vacuous.",
+    "After protocol clearance, reauthenticate organizer data, preregister one lane, test each feature-alone leakage canary, and compare to the same-fold incumbent before separate slot selection.",
+    "Refresh current leaderboard/rules/quota only from accessible official pages; preserve any score receipt verbatim as ORGANIZER-CONFIRMED evidence."
+  ]
+}
