@@ -10,6 +10,9 @@
 > ## Historical lane record — H88-HGVC (`2026-10-24`)
 > **Research download: YES · competition submission: NO — DO NOT SUBMIT** (held by the binding literal witness and separate selector; `0` slots spent). [H88-HGVC TIFF](docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif) · [run card](registry/hgvc88_run_card.json) · [8-fold holdout ledger](evidence/hgvc88_holdout_20261024.json).
 >
+> ## Archived parallel lane — H88-GZZC (`2026-10-25`)
+> **Research download: YES · competition submission: NO — DO NOT SUBMIT.** H88-GZZC is a separate, historical research artifact retained from the merged mainline; its local fixed-raster result is `HOLDOUT-DTI 0.0000` (`gems57-pooled-hide-v2`, `22,641` withheld positives), not an organizer score, and its literal dense-witness overlap is `1.0 > 0.70`. [GZZC TIFF](docs/downloads/gems88-gzzc-gravzero-buried-20261025-961e034d-zeros-DO-NOT-SUBMIT.tif) · [ZIP](docs/downloads/gems88-gzzc-gravzero-buried-20261025-961e034d-zeros-DO-NOT-SUBMIT.zip) · [run card](registry/gzzc88_run_card.json) · [hypotheses](research/candidate-hypotheses-20261025-gzzc.md).
+>
 > | Automated Gate (`Zero Human Input`) | Machine Result | Binding Evidence |
 > | :--- | :--- | :--- |
 > | **1. OK to download (`[0, 1]` local check)?** | **YES — `OK TO DOWNLOAD`** | Reopened from both `.tif` and `.zip` via `rasterio` + `tifffile` (`equal=True`): `1` band `float32`, `EPSG:32611`, `3730×3292`, exact `sample_submission.tif` geotransform `(100, 0, 243350, 0, -100, 4508550)`, LZW 1-row-strip parity (`True`), `nodata=None`, **`0` NaN/Inf across all `12,279,160` cells**, strict `np.all((a>=0)&(a<=1)) == True` (`{0.0, 1.0}` binary), `37,654` dots (`0` outside footprint, `0` on `existing_faults.tif`, min `d_cat > 2.5 px`). Addresses `"Predicted values must be in range [0, 1]"`. |
