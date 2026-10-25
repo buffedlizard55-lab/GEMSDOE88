@@ -2,9 +2,8 @@
 
 * No machine record may say ok_to_submit=true while the literal uniqueness rule or the holdout bar fails.
 * The dense-prior top-N diagnostic must keep the literal result at 1.0 and must not grant a submission.
-* Every downloadable TIF/ZIP under docs/downloads must carry DO-NOT-SUBMIT (or be cleared by its gate), except the exact hash-pinned negative XGCE pair inherited from main.
+* Every downloadable TIF/ZIP under docs/downloads must carry DO-NOT-SUBMIT (or be cleared by its gate).
 """
-import hashlib
 import json
 from pathlib import Path
 
@@ -62,22 +61,6 @@ def test_downloads_are_marked_or_cleared():
         name = Path((data.get("candidate") or {}).get("tif", "")).name
         if data.get("ok_to_submit") and name:
             cleared.add(name)
-    # PR #105 on main introduced an unmarked research-only XGCE pair. Do not
-    # pretend its literal duplicate is cleared; allow only these exact bytes.
-    legacy = {
-        "gems88-xgce-crossgradient-30000dots-20261025-zeros.tif":
-            "199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c",
-        "gems88-xgce-crossgradient-30000dots-20261025-zeros.zip":
-            "f92fe721152ce04a0739a08c4c91314c76d144c91a7e7d7dac77d9e0e3040876",
-    }
-    card = json.loads((ROOT / "registry/xgce88_run_card.json").read_text())
-    assert card["verdict"] == "negative" and card["ok_to_submit"] is False
-    assert card["uniqueness"]["literal_dense_witness_overlap"] == 1.0
-    assert card["uniqueness"]["literal_dense_witness_pass"] is False
-    assert {Path(card["submission"][key]).name for key in ("file", "zip_file")} == set(legacy)
     for f in (ROOT / "docs/downloads").iterdir():
         if f.suffix.lower() in (".tif", ".tiff", ".zip"):
-            if f.name in legacy:
-                assert hashlib.sha256(f.read_bytes()).hexdigest() == legacy[f.name]
-            else:
-                assert "DO-NOT-SUBMIT" in f.name or f.name in cleared, f.name
+            assert "DO-NOT-SUBMIT" in f.name or f.name in cleared, f.name

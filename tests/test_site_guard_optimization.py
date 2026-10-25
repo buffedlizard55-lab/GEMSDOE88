@@ -51,7 +51,7 @@ def test_guard_rejects_corruption_under_both_interpreters(
 
 
 @pytest.mark.parametrize("optimized", [False, True])
-def test_inherited_unmarked_xgce_is_allowed_only_for_pinned_negative_bytes(tmp_path, optimized):
+def test_marked_xgce_is_still_hash_pinned_and_negative(tmp_path, optimized):
     (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
     (tmp_path / "evidence").symlink_to(ROOT / "evidence", target_is_directory=True)
     docs = tmp_path / "docs"
@@ -63,7 +63,7 @@ def test_inherited_unmarked_xgce_is_allowed_only_for_pinned_negative_bytes(tmp_p
         downloads = docs / "downloads"
         downloads.mkdir()
         for item in source.iterdir():
-            if item.name == "gems88-xgce-crossgradient-30000dots-20261025-zeros.tif":
+            if item.name == "gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif":
                 (downloads / item.name).write_bytes(item.read_bytes() + b"tamper")
             else:
                 (downloads / item.name).symlink_to(item)
@@ -74,7 +74,7 @@ def test_inherited_unmarked_xgce_is_allowed_only_for_pinned_negative_bytes(tmp_p
         cwd=ROOT, text=True, capture_output=True,
     )
     assert result.returncode != 0
-    assert "Inherited XGCE pair must remain hash-pinned" in result.stderr
+    assert "Pinned XGCE research pair must remain negative" in result.stderr
 
 
 def test_no_disableable_assertions_remain_in_production_site_guard():

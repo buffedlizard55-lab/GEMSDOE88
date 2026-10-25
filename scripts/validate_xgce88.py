@@ -12,8 +12,8 @@ from gems57 import grid as grid_mod
 from gems88.gate import portal_validate
 from validate_artifact import validate_artifact
 
-TIF = ROOT/"docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros.tif"
-ZIP = ROOT/"docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros.zip"
+TIF = ROOT/"docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif"
+ZIP = ROOT/"docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.zip"
 SAMPLE = ROOT/"data/bridge/sample_submission.tif"
 CARD = ROOT/"registry/xgce88_run_card.json"
 

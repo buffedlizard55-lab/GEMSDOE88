@@ -18,6 +18,15 @@ jobs:
       - run: python -m pip install -r requirements.txt
       - name: Restore SHA-pinned mirrored grid, catalogue and registry witnesses
         run: python scripts/restore_inputs.py --validation
+      - name: Fresh dated review must reject submission clearance
+        run: |
+          python scripts/review_submission_status.py
+          if python scripts/review_submission_status.py --require-submit; then
+            echo 'Blocked research artifact unexpectedly cleared'
+            exit 1
+          else
+            test "$?" -eq 2
+          fi
       - name: Audit protocol-integrity regressions without authorizing a slot
         run: |
           python scripts/audit_protocol_integrity.py

@@ -13,10 +13,10 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 MVRD_NAME = "gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT"
-# Inherited unmarked XGCE pair from main: exact hash-bound negative research only.
-XGCE_TIF = "gems88-xgce-crossgradient-30000dots-20261025-zeros.tif"
+# Historical XGCE pair renamed by main to carry DO-NOT-SUBMIT; pin exact bytes.
+XGCE_TIF = "gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif"
 XGCE_SHA = "199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c"
-XGCE_ZIP_SHA = "f92fe721152ce04a0739a08c4c91314c76d144c91a7e7d7dac77d9e0e3040876"
+XGCE_ZIP_SHA = "eba566f9f960017f98d9502ee5026b3a48b2b3b59a0d6e320471f2ddd6e0fb5f"
 
 
 def require(condition: bool, message: object) -> None:
@@ -102,8 +102,8 @@ def main(root: Path = ROOT) -> None:
         "MTAS negative note exceeds 140 characters",
     )
     # A parallel research lane merged into main while this branch was reviewed.
-    # Its unmarked filenames predate this guard; permit exactly these two pinned
-    # bytes only when the archived card explicitly fails the binding literal gate.
+    # Its names now carry DO-NOT-SUBMIT. The exact binary bytes and negative
+    # card must still be bound to the literal witness failure.
     xgce = json.loads((root / "registry/xgce88_run_card.json").read_text())
     xgce_web = json.loads((docs / "data/xgce88_run_card.json").read_text())
     xgce_tif = docs / "downloads" / XGCE_TIF
@@ -115,7 +115,7 @@ def main(root: Path = ROOT) -> None:
         and xgce["uniqueness"]["literal_dense_witness_pass"] is False
         and sha256(xgce_tif) == XGCE_SHA == xgce["submission"]["raster_sha256"]
         and sha256(xgce_zip) == XGCE_ZIP_SHA == xgce["submission"]["zip_sha256"],
-        "Inherited XGCE pair must remain hash-pinned and DO NOT SUBMIT",
+        "Pinned XGCE research pair must remain negative and DO NOT SUBMIT",
     )
     with zipfile.ZipFile(xgce_zip) as archive:
         require(
@@ -497,12 +497,9 @@ def main(root: Path = ROOT) -> None:
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
     # Every published binary must carry the negative decision in its filename.
-    # Inherited unmarked CTRA and XGCE pairs are exceptions ONLY for the exact
-    # hash-pinned, negative bytes already checked above; no prefix-wide bypass.
-    legacy_negative = {
-        ctra_tif.resolve(), ctra_zip.resolve(),
-        xgce_tif.resolve(), xgce_zip.resolve(),
-    }
+    # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
+    # checked above; XGCE was renamed on main and requires no such exception.
+    legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif", ".tiff", ".zip",
