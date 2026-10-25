@@ -11,13 +11,12 @@ and (d) the distance-to-catalogue histogram matches H33's measured profile.
 No catalogue-trained classifier is fitted; the catalogue is used only as an
 exclusion mask and distance field, exactly as the organiser masks it.
 
-Uniqueness fix (shared-tool defect, protocol rule 2): the pinned 17GEMSDOE
-registry raster is a DENSE probability field (5,167,373 finite >0 pixels =
-100% of the footprint).  Treating every >0 pixel as a "dot" makes the
->70%-within-3px rule unsatisfiable for ANY nonempty candidate (proof in
-docs/data/download_audit.json).  Dense rasters (>200k positives) are therefore
-compared equal-support: their top-N pixels by value, N = candidate dot count.
-Sparse dot rasters keep the literal rule.  Both numbers are reported.
+Historical method only — generation is not authorized. The pinned 17GEMSDOE
+registry raster is positive on 100% of the allowed footprint, so the user's
+literal >70%-within-3px rule rejects every nonempty candidate. The former
+equal-support top-N exception is withdrawn by IR-88-0AB98CD1-01; those figures
+remain diagnostics only. The shared mandatory guard stops this CLI before model
+imports, and ``main()`` repeats that guard for programmatic callers.
 """
 from __future__ import annotations
 
@@ -25,8 +24,8 @@ if __name__ == "__main__":
     import sys as _guard_sys
     from pathlib import Path as _GuardPath
     _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
-    from scripts.con88_preflight import enforce_con88_preflight
-    enforce_con88_preflight()
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
 
 import hashlib, json, sys
 from datetime import datetime, timezone
@@ -92,6 +91,8 @@ def spaced_topk(surface, allowed, quotas):
     return dots
 
 def main():
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     sample, prof = load("data/bridge/sample_submission.tif")
     foot = np.isfinite(sample)
@@ -178,9 +179,9 @@ def main():
     assert not (dots & cat).any() and not (dots & ~foot).any()
     assert (dcat[dots] > COLLAR_PX).all()
 
-    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros"
+    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros-DO-NOT-SUBMIT"
     out = ROOT / "docs/downloads" / f"{name}.tif"
-    note = "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card"
+    note = "H88-CON88 archived research; literal overlap gate must be rerun after any policy change; DO NOT SUBMIT"
     assert len(note) <= 140, len(note)
     from gems57.submission_writer import write_submission
     receipt = write_submission(out, pred, ROOT / "data/bridge/sample_submission.tif",

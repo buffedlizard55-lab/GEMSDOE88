@@ -1,0 +1,52 @@
+{
+  "schema": "gems88.clearance-withdrawal.v1",
+  "correction_id": "IR-88-0AB98CD1-01",
+  "corrected_at_utc": "2026-10-25T20:00:00+00:00",
+  "artifact_role": "HISTORICAL_RESEARCH_ONLY",
+  "old_paths": {
+    "tif": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "zip": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip",
+    "sidecar": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.json"
+  },
+  "new_paths": {
+    "tif": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+    "sidecar": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.json"
+  },
+  "tif_sha256_unchanged": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "old_zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+  "new_zip_sha256": "ad4ffe50b0c9f2d415a2bf98417fad6a2dde5dea2354081acff618122fb0250a",
+  "old_sidecar_sha256": "1fd6d367dd57ac7e129a574789eca2265833074f0d7323b0fc633e82cdf45f7c",
+  "new_sidecar_sha256": "c17430ab37dffab76ea5512bad7c4405e1bc6d358d6069edc1f14734eb69495f",
+  "new_tiffs_generated": 0,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "old_claim_preserved_as_withdrawn": {
+    "ok_to_submit_historical_value": "true (withdrawn; string for fail-closed consumers)",
+    "verdict_historical_value": "promote (withdrawn)",
+    "uniqueness_rule": "equal-support top-N for dense priors"
+  },
+  "corrected_decision": {
+    "decision": "DUPLICATE_STOP",
+    "ok_to_submit": false,
+    "approved_for_weekly_slot": false,
+    "verdict": "negative"
+  },
+  "binding_reason": {
+    "rule": "literal finite value > 0 support; stop if >70% of final dots are within 3 px of any registry raster",
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "covered_allowed_pixels": 5106385,
+    "allowed_pixels": 5106385,
+    "literal_overlap": 1.0,
+    "limit": 0.7
+  },
+  "scientific_reason": {
+    "candidate_fixed_tif_holdout_dti": 0.0,
+    "candidate_per_fold_reemission_holdout_dti": 0.001713781485367719,
+    "incumbent_holdout_dti": 0.2059906799,
+    "candidate_beats_incumbent": false,
+    "evidence_class": "HOLDOUT-DTI; gems57-pooled-hide-v2; historical measurements, not organizer scores"
+  },
+  "note": "Only the archive name, ZIP member/package and sidecar changed. Exact TIFF prediction bytes and SHA-256 are preserved."
+}

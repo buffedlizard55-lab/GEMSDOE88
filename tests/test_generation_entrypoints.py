@@ -29,7 +29,7 @@ def entrypoints() -> list[Path]:
         "exp_provcrest_spacing.py", "publish_kdmc_site.py", "publish_sdtl88.py",
         "finalize_concentration.py", "write_concentration_receipts.py",
         "lbcal_build_stats.py", "lbcal_pixel.py", "lbcal_fit.py", "lbcal_extra_features.py",
-        "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py"))
+        "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py", "con88_collar_holdout.py"))
     return sorted(path for path in files if '__name__' in path.read_text())
 
 
@@ -43,10 +43,9 @@ def test_guard_is_first_and_reached_before_historical_cli_body(path, monkeypatch
     assert isinstance(first, ast.If), f"{path.name} can execute before the preflight"
     assert ast.unparse(first.test) == "__name__ == '__main__'"
     assert isinstance(first.body[-1], ast.Expr)
-    # CON88 runners use the equal-support preflight (IR-88-CON88-01); all
-    # historical lanes keep the original literal-stop guard.
-    expected = 'enforce_con88_preflight()' if path.name.startswith('run_con88') else 'enforce_generation_preflight()'
-    assert ast.unparse(first.body[-1]) == expected
+    # IR-88-0AB98CD1-01 removed the CON88 equal-support exception. Every
+    # candidate/experiment entrypoint must call the same literal-stop guard.
+    assert ast.unparse(first.body[-1]) == 'enforce_generation_preflight()'
 
     class PreflightReached(Exception):
         pass
@@ -55,7 +54,6 @@ def test_guard_is_first_and_reached_before_historical_cli_body(path, monkeypatch
         raise PreflightReached
 
     monkeypatch.setattr(generation_guard, "enforce_generation_preflight", stop)
-    monkeypatch.setattr(con88_preflight, "enforce_con88_preflight", stop)
     # Imports/functions remain usable by synthetic tests, but an actual CLI
     # dispatch must encounter the shared guard before any heavy model code.
     with pytest.raises(PreflightReached):
@@ -84,6 +82,13 @@ def test_witness_removed_is_not_automatic_permission(monkeypatch):
     assert result["generation_allowed"] is False
 
 
+def test_con88_compatibility_preflight_delegates_to_shared_guard(monkeypatch):
+    calls = []
+    monkeypatch.setattr(con88_preflight, "enforce_generation_preflight", lambda root: calls.append(Path(root)))
+    con88_preflight.enforce_con88_preflight(ROOT)
+    assert calls == [ROOT]
+
+
 @pytest.mark.skipif(not (ROOT / "data/registry/dense_17gemdoe.tif").is_file(), reason="validation inputs not restored")
 @pytest.mark.parametrize("command", [
     ["scripts/build_unique_relay_submission.py"],
@@ -96,6 +101,9 @@ def test_witness_removed_is_not_automatic_permission(monkeypatch):
     ["scripts/run_mfs88_experiment.py"],
     ["-O", "scripts/run_mfs88_experiment.py"],
     ["-m", "scripts.run_mfs88_experiment"],
+    ["scripts/run_con88_experiment.py"],
+    ["-O", "scripts/run_con88_exp3_margin.py"],
+    ["-m", "scripts.con88_collar_holdout"],
     ["scripts/run_sdtl88_experiment.py"],
     ["-O", "scripts/build_sdtl88_submission.py"],
     ["-m", "scripts.publish_sdtl88"],

@@ -1,5 +1,5 @@
 {
-  "schema": "gems88.run-card.con88.v1",
+  "schema": "gems88.run-card.con88.v2-withdrawn",
   "hypothesis": "Dots corroborated by >=2 mutually independent high-scoring fleet surfaces, blended with a fresh label-blind magnetic/gravity/topographic ridge and emitted with H33 geometry (37,654 dots, >=2.83px spacing, H33 distance profile) but a stricter >3px catalogue collar, contain more true blind-fault credit per dot than H33's single-ancestry subtraction chain.",
   "mechanism": "Independent FP processes cancel under consensus voting (kernel votes); label-blind ridge adds dots no fleet raster contains; collar>3px removes masked-catalogue pure-FP zone; kernel spacing avoids max-vs-sum DTI waste (vendor/gems57/metric.py algebra).",
   "named_non_fault_mimic": "Shared GeoDAWN/DEM inputs make contributors partially dependent: unfaulted lithologic contacts, Lahontan shoreline benches and survey seams can be corroborated FPs. Ridge AUC vs catalogue = 0.50 (null) shows ridge alone does not locate mapped faults.",
@@ -48,7 +48,13 @@
       "fpw": 37648.280904158215,
       "fnw": 60982.16652224138
     },
-    "interpretation": "Hide-and-recover cannot rank blind-fault seekers: public-best H33 scores 0.0067 and BPWD shipped TIF 0.0001 on identical folds; collar>=kernel makes fixed-TIF credit identically 0. Candidate does NOT beat trained-model holdout record 0.205991 (BPWD per-fold models). Promotion rests on fleet distance fingerprint (Spearman +0.90, n=20, research/h33-forensics-20261024.md) + consensus corroboration, disclosed as inference."
+    "interpretation": "Hide-and-recover cannot rank blind-fault seekers: public-best H33 scores 0.0067 and BPWD shipped TIF 0.0001 on identical folds; collar>=kernel makes fixed-TIF credit identically 0. Candidate does NOT beat trained-model holdout record 0.205991 (BPWD per-fold models). Promotion rests on fleet distance fingerprint (Spearman +0.90, n=20, research/h33-forensics-20261024.md) + consensus corroboration, disclosed as inference.",
+    "selection_gate": {
+      "incumbent_dti": 0.2059906799,
+      "candidate_best_recorded_dti": 0.0017147968211450354,
+      "candidate_beats_incumbent": false,
+      "passes": false
+    }
   },
   "leakage_canary": {
     "consensus": {
@@ -116,7 +122,16 @@
     },
     "overlap_vs_h33": 0.4874116959685558,
     "near_boundary_flag": "Worst overlap 0.6936 vs GEMSDOE49 is 0.006 below 0.70 limit \u2014 passes, thin margin flagged.",
-    "dense_rule": "17GEMSDOE dense prior compared equal-support top-N (shared fix in vendor/gems57/uniqueness.py); literal overlap vs dense = 1.0 reported in gates rows."
+    "dense_rule": "Equal-support top-N figures are historical diagnostics only; binding literal overlap versus dense 17GEMSDOE is 1.0 and fails the 0.70 limit.",
+    "binding_literal_witness": {
+      "file": "data/registry/dense_17gemdoe.tif",
+      "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "allowed_pixels": 5106385,
+      "covered_allowed_pixels": 5106385,
+      "literal_overlap": 1.0,
+      "limit": 0.7,
+      "passes": false
+    }
   },
   "fingerprint_G3": {
     "share_gt25": 0.4174058532957986,
@@ -141,15 +156,28 @@
     "n_dots": 37654,
     "zip_single_tif_byte_identical": true
   },
-  "submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
-  "submission_note": "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card",
-  "ok_to_submit": true,
+  "submission_name": "GEMSDOE88-CON88-E830B58E-DO-NOT-SUBMIT",
+  "submission_note": "H88-CON88 archived research; literal overlap 1.0 and HOLDOUT-DTI 0.0017 fail promotion; DO NOT SUBMIT",
+  "ok_to_submit": false,
   "organizer_confirmed_score": null,
   "user_reported_reference_scores": {
     "h33_gemsdoe32": 0.2778,
     "leaderboard_top_prompt_stale": 0.4413,
     "note": "owner/user reported, no organizer receipt in repo"
   },
-  "verdict": "promote",
-  "expected_score_claim": "NONE. No number above 0.2778 is claimed or projected as a score. Beating 0.2778 requires +0% to reach parity and (forensics \u00a73) +27-29% credit for 0.3539; whether consensus delivers any gain is knowable only from an organizer receipt."
+  "verdict": "negative",
+  "expected_score_claim": "NONE. No organizer receipt exists, and no local evidence demonstrates improvement beyond the user-reported H33 claim.",
+  "artifact_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+  "archive_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+  "submission_note_characters": 101,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "decision": "DUPLICATE_STOP",
+  "withdrawal": {
+    "correction_id": "IR-88-0AB98CD1-01",
+    "reason": "Literal any-registry overlap is 1.0 > 0.70 and recorded holdout does not beat the incumbent.",
+    "record": "evidence/con88_clearance_withdrawal_20261025.json",
+    "tiff_bytes_changed": false,
+    "new_rasters_generated": 0
+  }
 }

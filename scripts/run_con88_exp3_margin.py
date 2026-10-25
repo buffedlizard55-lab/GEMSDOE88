@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-"""CON88 experiment 3: uniqueness-margin blend. Adopted only if worst
-contributor/H33 overlap <=0.65 AND >=60% dots corroborated by >=2 contributors."""
+"""Historical CON88 experiment 3; generation is now blocked fail-closed.
+
+The old conditional margin logic is retained for provenance only. Both CLI and
+programmatic entry enforce the shared literal generation guard before work.
+"""
 from __future__ import annotations
 
 if __name__ == "__main__":
     import sys as _guard_sys
     from pathlib import Path as _GuardPath
     _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
-    from scripts.con88_preflight import enforce_con88_preflight
-    enforce_con88_preflight()
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
 
 import json, sys
 from datetime import datetime, timezone
@@ -26,6 +29,8 @@ def load(p):
     with rasterio.open(ROOT / p) as ds: return ds.read(1)
 
 def main():
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
     sample = load("data/bridge/sample_submission.tif"); foot = np.isfinite(sample)
     cat = load("data/bridge/existing_faults.tif") == 1
     dcat = distance_transform_edt(~cat).astype(np.float32)
@@ -55,15 +60,15 @@ def main():
         print("REJECT exp3, keep exp2"); return 1
     pred = np.zeros(sample.shape, np.float32); pred[dots] = 1.0
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros"
-    note = "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card"
+    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros-DO-NOT-SUBMIT"
+    note = "H88-CON88 archived research; literal overlap gate must be rerun after any policy change; DO NOT SUBMIT"
     from gems57.submission_writer import write_submission
     r = write_submission(ROOT / "docs/downloads" / f"{name}.tif", pred,
                          ROOT / "data/bridge/sample_submission.tif", foot,
                          note=note, name=name, catalogue=cat, metadata=dict(exp3=stats))
     np.save(ROOT / ".cache/con88_consensus.npy", (2 * consensus_w))  # keep canary scale-free (AUC invariant)
     (ROOT / "registry/con88_exp3.json").write_text(json.dumps(dict(stats=stats, file=r["file"], sha256=r["sha256"]), indent=2) + "\n")
-    print("ADOPTED", r["file"], r["sha256"]); return 0
+    print("ARCHIVED_RESEARCH_WRITTEN_DO_NOT_SUBMIT", r["file"], r["sha256"]); return 0
 
 if __name__ == "__main__":
     raise SystemExit(main())

@@ -1,10 +1,10 @@
 {
   "schema": "gems88.hypothesis-queue.v1",
-  "reviewed_at_utc": "2026-10-25",
-  "review_branch": "arena/693b10af-gemsdoe88",
+  "reviewed_at_utc": "2026-10-25T18:25:00Z",
+  "review_branch": "arena/0ab98cd1-gemsdoe88",
   "source_snapshot": {
     "files": 154,
-    "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+    "sha256": "c0ae7459e9444bc7cbb97987c6424d91e07a58f214cd9aff47f5403775ce1f9b"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -193,6 +193,22 @@
       },
       "reason": "Merged H88-CON88 (IR-88-CON88-01 equal-support append-only vendor addition + con88 runner scripts) and PGTD guard enforcement fix; proposals re-reviewed: none implements H88-SPR/EELG/PRAN queue items, CON88 is a consensus-emission lane with its own run card (run_card_con88.json), not a queue proposal.",
       "reviewed_at_utc": "2026-10-25T18:00:00Z"
+    },
+    {
+      "superseded_snapshot": {
+        "files": 154,
+        "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+      },
+      "reason": "IR-88-0AB98CD1-01: reviewed CON88 source correction. Both run_con88 candidate entrypoints now call the shared mandatory literal guard directly before model imports and again inside main(); the former equal-support permission prose was removed. con88_collar_holdout is also guarded. No proposal implementation, evaluator, writer, feature, TIFF or experiment changed.",
+      "reviewed_at_utc": "2026-10-25T18:25:00Z"
+    },
+    {
+      "superseded_snapshot": {
+        "files": 154,
+        "sha256": "ca0116908f9cba267aa4b741694dee6303d91c4f690fe6a82217ef5d1e49201a"
+      },
+      "reason": "IR-88-0AB98CD1-01 defense in depth reviewed: historical CON88 writers now default any future explicitly authorized output to a DO-NOT-SUBMIT filename/note, requiring a separate promotion decision. No proposal implementation, evaluator, feature, TIFF or experiment changed.",
+      "reviewed_at_utc": "2026-10-25T18:28:00Z"
     }
   ]
 }

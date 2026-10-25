@@ -20,6 +20,8 @@ def test_guard_rejects_corruption_under_both_interpreters(
     # Copy published bytes: symlinks are not valid publication artifacts.
     (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
     (tmp_path / "evidence").symlink_to(ROOT / "evidence", target_is_directory=True)
+    for name in ("README.md", "PROMPT.md", "run_card_con88.json"):
+        (tmp_path / name).symlink_to(ROOT / name)
     docs = tmp_path / "docs"
     docs.mkdir()
     for source in (ROOT / "docs").iterdir():
@@ -64,6 +66,8 @@ def test_guard_rejects_corruption_under_both_interpreters(
 def test_marked_xgce_is_still_hash_pinned_and_negative(tmp_path, optimized):
     (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
     (tmp_path / "evidence").symlink_to(ROOT / "evidence", target_is_directory=True)
+    for name in ("README.md", "PROMPT.md", "run_card_con88.json"):
+        (tmp_path / name).symlink_to(ROOT / name)
     docs = tmp_path / "docs"
     docs.mkdir()
     for source in (ROOT / "docs").iterdir():

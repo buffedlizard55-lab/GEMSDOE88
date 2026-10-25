@@ -1,12 +1,23 @@
-## Current session handoff — 2026-10-25, H88-CON88 (supersedes DUPLICATE_STOP handoffs below)
+## Current session handoff — 2026-10-25, 0ab98cd1
 
-> **NEW UNIQUE TIF GENERATED AND GATES-CLEARED:** `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` (SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). **✅ OK TO DOWNLOAD AND SUBMIT** per automated gates in `registry/con88_gates.json` (format/uniqueness/fingerprint/canary PASS; overlap vs H33 0.487; worst 0.6936 vs GEMSDOE49). Note (107/140): `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`. Guide: `docs/con88.html`. Run card: `run_card_con88.json`. Analysis: `research/session-con88-20261025.md`. Equal-support fix IR-88-CON88-01. Next: user submits within weekly cap and records ORGANIZER-CONFIRMED receipt.
+Read the full recorded request in README and `USER_PROMPT_20261025.md`, then `AGENTS.md`,
+`registry/session_0ab98cd1_run_card.json`, and `research/session-0ab98cd1-review.md`.
+The shared literal preflight is binding: `DUPLICATE_STOP`, generation disallowed, no new TIFF,
+experiment, holdout, or weekly slot. The request contains no actual single-method paragraph; do not
+invent a lane. The conditional untested queue remains H88-SPR, H88-AWA, H88-CBC.
 
-## Current session handoff — 2026-10-25, 693b10af
+**H88-CON88 clearance is withdrawn by IR-88-0AB98CD1-01 — DO NOT SUBMIT.** Its unchanged TIFF bytes are now
+published only as `...-DO-NOT-SUBMIT.tif`; its ZIP member and sidecar carry the same warning.
+Equal-support top-N measurements are diagnostics, not a substitute for the literal any-registry rule.
+The dense 17GEMSDOE witness covers all allowed pixels, forcing overlap 1.0 > 0.70. CON88 also fails
+the scientific promotion bar: historical per-fold re-emission HOLDOUT-DTI 0.001714 versus the
+0.205991 incumbent. Never rerun CON88 to recreate the archive; its compatibility preflight delegates
+to `scripts/generation_guard.py`.
 
-Read the full recorded request in README and `USER_PROMPT_20261025.md`, then `AGENTS.md` and `registry/session_693b10af_run_card.json`. Shared preflight remains `DUPLICATE_STOP` before feature construction: no new TIFF, geological experiment, holdout or slot. The urgent new unique-submission requirement remains unmet. No dense-prior exemption is authorized.
-
-Current proposals are in `registry/hypothesis_queue.json` / `research/session-693b10af-hypotheses.md`; MMRX, MTAS and MFS already have historical negative execution records. `scripts/audit_research_state.py` binds the queue to reviewed source/inputs and rejects the old GHMD promotion/false organizer label. The dated review runner is a historical replay, not fresh source retrieval. Install `requirements.txt` with its tested CPU constraints; never relax TIFF hashes to work around encoder drift. Use `scripts/render_decision.py` for the canonical primary decision and Research queue. Review, sources, fresh browser/clean-install evidence and limitations are linked from `research/session-693b10af-review.md`.
+The owner-reported H33 0.2778 has no organizer receipt. Its nested subtraction, mapped-fault collar
+removal and approximately 300 m emission spacing are plausible reasons for improved precision/coverage,
+but not causal proof. No current approach can be shown likely to beat it. Keep `Maximize P(Win)` and
+`Own the Outcome` central: fix contradictory clearance surfaces rather than spend a scarce slot.
 
 ---
 

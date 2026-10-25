@@ -138,7 +138,8 @@ def test_site_guard_rejects_broken_or_escaping_docs_markdown_links(tmp_path):
     for directory in ("registry", "evidence", "research", "src", "vendor", "scripts", "submissions"):
         shutil.copytree(ROOT / directory, tmp_path / directory,
                         ignore=shutil.ignore_patterns("__pycache__"))
-    shutil.copyfile(ROOT / "run_card.json", tmp_path / "run_card.json")
+    for name in ("run_card.json", "run_card_con88.json", "README.md", "PROMPT.md"):
+        shutil.copyfile(ROOT / name, tmp_path / name)
     docs = tmp_path / "docs"
     docs.mkdir()
     for src in (ROOT / "docs").iterdir():
@@ -159,7 +160,10 @@ def test_site_guard_rejects_broken_or_escaping_docs_markdown_links(tmp_path):
 
     probe.unlink()
     submit = docs / "SUBMIT.md"
-    submit.write_text(submit.read_text().replace("**47/47**", "**46/46**", 1))
+    audit = json.loads((docs / "data/download_audit.json").read_text())
+    current = f"**{audit['total_research_download_pass_count']}/{audit['total_published_tiff_count']}**"
+    assert current in submit.read_text()
+    submit.write_text(submit.read_text().replace(current, "**0/0**", 1))
     with pytest.raises(ValueError, match="Submission guide inventory count is stale"):
         check_site.main(tmp_path)
 

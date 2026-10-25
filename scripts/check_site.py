@@ -56,6 +56,7 @@ def main(root: Path = ROOT) -> None:
             "executive-summary.html",
             "research.html",
             "sources.html",
+            "con88.html",
             "mdc88/index.html",
             "mdc88/executive-summary.html",
         )
@@ -488,6 +489,26 @@ def main(root: Path = ROOT) -> None:
         and status["ok_to_submit"] is False,
         'Site integrity check failed: status["ok_to_download_for_research"] is True and status["ok_to_submit"] is False',
     )
+    current_review_path = docs / status["current_review"]
+    current_review = json.loads(current_review_path.read_text())
+    require(
+        current_review.get("status") == "DUPLICATE_STOP"
+        and current_review.get("verdict") == "negative"
+        and current_review.get("ok_to_submit") is False
+        and current_review.get("approved_for_weekly_slot") is False
+        and current_review.get("new_tif_generated") is False
+        and current_review.get("weekly_slots_used") == 0,
+        "Current review must remain a zero-generation negative decision",
+    )
+
+    # Current prose surfaces must agree before historical details or archives.
+    readme_top = (root / "README.md").read_text().split("### Start here every session", 1)[0]
+    prompt_top = (root / "PROMPT.md").read_text().split("## Historical parallel handoff", 1)[0]
+    submit_top = (docs / "SUBMIT.md").read_text().split("<details>", 1)[0]
+    for label, text in (("README", readme_top), ("PROMPT", prompt_top), ("SUBMIT", submit_top)):
+        require("DO NOT SUBMIT" in text and "DUPLICATE_STOP" in text, f"{label} current block is not fail-closed")
+        require("OK TO DOWNLOAD AND SUBMIT" not in text and "ok_to_submit: true" not in text,
+                f"{label} current block advertises stale clearance")
 
     for page in pages:
         text = page.read_text()
@@ -505,24 +526,42 @@ def main(root: Path = ROOT) -> None:
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
     # Every published binary must carry the negative decision in its filename.
-    # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
-    # checked above; XGCE was renamed on main and requires no such exception.
-    sys.path.insert(0, str(ROOT))
+    # There are no clearance or legacy-name exceptions.
+    sys.path.insert(0, str(root))
     from scripts.audit_downloads import PUBLICATION_DIRECTORIES, check_package_inventory
-    legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
-    # CON88 cleared exception (IR-88-CON88-01): exact gates-cleared bytes only.
-    _con88 = docs / "downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif"
-    _gates = json.loads((ROOT / "registry/con88_gates.json").read_text())
-    require(_gates.get("ok_to_submit") is True and _gates.get("candidate") == _con88.name
-            and hashlib.sha256(_con88.read_bytes()).hexdigest() == _gates.get("sha256"),
-            "CON88 cleared bytes disagree with gates record")
-    legacy_negative |= {_con88.resolve(), _con88.with_suffix(".zip").resolve()}
+    con88 = docs / "downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif"
+    con88_zip = con88.with_suffix(".zip")
+    con88_gates = json.loads((root / "registry/con88_gates.json").read_text())
+    con88_run = json.loads((root / "run_card_con88.json").read_text())
+    con88_web_gates = json.loads((docs / "data/con88_gates.json").read_text())
+    con88_web_run = json.loads((docs / "data/con88_run_card.json").read_text())
+    con88_withdrawal = json.loads((root / "evidence/con88_clearance_withdrawal_20261025.json").read_text())
+    require(con88_gates == con88_web_gates and con88_run == con88_web_run,
+            "CON88 corrected cards differ from public mirrors")
+    require(
+        con88_gates.get("candidate") == con88.name
+        and con88_gates.get("sha256") == sha256(con88)
+        and con88_gates.get("decision") == "DUPLICATE_STOP"
+        and con88_gates.get("G2_ok") is False
+        and con88_gates.get("G2_uniqueness", {}).get("candidate_literal_3px_overlap") == 1.0
+        and con88_gates.get("holdout_selection", {}).get("candidate_beats_incumbent") is False
+        and con88_gates.get("ok_to_submit") is False
+        and con88_run.get("raster_sha256") == sha256(con88)
+        and con88_run.get("verdict") == "negative"
+        and con88_run.get("ok_to_submit") is False
+        and con88_withdrawal.get("tif_sha256_unchanged") == sha256(con88)
+        and con88_withdrawal.get("new_zip_sha256") == sha256(con88_zip),
+        "CON88 withdrawal, literal gate, holdout gate or archive bytes disagree",
+    )
+    with zipfile.ZipFile(con88_zip) as archive:
+        require(archive.namelist() == [con88.name] and archive.read(con88.name) == con88.read_bytes(),
+                "CON88 research ZIP must contain the exact negatively named TIFF")
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif", ".tiff", ".zip",
         }:
             require(
-                "DO-NOT-SUBMIT" in published.name or published.resolve() in legacy_negative,
+                "DO-NOT-SUBMIT" in published.name,
                 f"unmarked published research artifact: {published}",
             )
             require(
@@ -552,7 +591,8 @@ def main(root: Path = ROOT) -> None:
     for row in all_rows:
         directory = docs / row.get("publication_directory", "downloads")
         require(row["format_valid"] is True and row["research_download_ok"] is True
-                and row["ok_to_submit"] is (True if row.get("cleared_by_con88_gates") else False)
+                and row["ok_to_submit"] is False
+                and row.get("cleared_by_con88_gates") is False
                 and sha256(directory / row["file"]) == row["sha256"]
                 and sha256(directory / row["zip_file"]) == row["zip_sha256"],
                 f"Published research bytes or negative audit changed: {directory.name}/{row['file']}")
@@ -814,9 +854,10 @@ def main(root: Path = ROOT) -> None:
     # The primary panels must be generated from the same canonical evidence.
     # A new lane cannot prepend a contradictory banner and still pass because
     # the expected negative words happen to appear much further down the page.
-    sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(root))
     from scripts import render_decision
-    for page, kind in ((pages[4], "overview"), (pages[5], "guide")):
+    for page, kind in ((docs / "mdc88/index.html", "overview"),
+                       (docs / "mdc88/executive-summary.html", "guide")):
         require(page.read_text() == render_decision.legacy_notice(kind),
                 "Legacy page must withdraw unsupported upload clearance and link the canonical decision")
     legacy_status = json.loads((docs / "mdc88/status.json").read_text())

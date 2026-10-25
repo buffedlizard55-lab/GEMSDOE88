@@ -2,7 +2,7 @@
 
 * No machine record may say ok_to_submit=true while the literal uniqueness rule or the holdout bar fails.
 * The dense-prior top-N diagnostic must keep the literal result at 1.0 and must not grant a submission.
-* Every downloadable TIF/ZIP under docs/downloads must carry DO-NOT-SUBMIT (or be cleared by its gate).
+* Every downloadable TIF/ZIP under docs/downloads must carry DO-NOT-SUBMIT; there are no gate exceptions.
 """
 import json
 from pathlib import Path
@@ -29,19 +29,15 @@ def test_no_record_claims_submit_true_after_correction():
         except ValueError:
             continue
         offenders += [f"{rec.relative_to(ROOT)}:{p}" for p in _true_flags(data)]
-    # Sanctioned exception (2026-10-25, IR-88-CON88-01): CON88 gates file only,
-    # and only while its G1/G2/G3/canary booleans all pass on the recorded SHA.
-    _audit0 = json.loads((ROOT / "docs/data/download_audit.json").read_text())
-    _idx = next(i for i, r in enumerate(_audit0["artifacts"]) if r.get("cleared_by_con88_gates"))
-    allowed = {"registry/con88_gates.json:.ok_to_submit",
-               f"docs/data/download_audit.json:.artifacts[{_idx}].ok_to_submit",
-               f"evidence/download_audit.json:.artifacts[{_idx}].ok_to_submit"}
+    assert offenders == [], offenders
     audit = json.loads((ROOT / "docs/data/download_audit.json").read_text())
-    true_rows = [r for r in audit["artifacts"] if r.get("ok_to_submit")]
-    assert len(true_rows) == 1 and "con88" in true_rows[0]["file"]
+    assert not any(row.get("ok_to_submit") for row in audit["artifacts"])
+    assert not any(row.get("cleared_by_con88_gates") for row in audit["artifacts"])
     g = json.loads((ROOT / "registry/con88_gates.json").read_text())
-    assert g["G1_ok"] and g["G2_ok"] and g["G3_ok"] and g["canary_ok"]
-    assert set(offenders) <= allowed, offenders
+    assert g["G1_ok"] and g["G3_ok"] and g["canary_ok"]
+    assert g["G2_ok"] is False and g["ok_to_submit"] is False
+    assert g["G2_uniqueness"]["candidate_literal_3px_overlap"] == 1.0
+    assert g["holdout_selection"]["candidate_beats_incumbent"] is False
 
 
 def test_dense_prior_diagnostic_is_informational_only():
@@ -62,18 +58,7 @@ def test_matrix_rows_never_submit_and_cite_records():
         assert (ROOT / row["record"]).is_file()
 
 
-def test_downloads_are_marked_or_cleared():
-    cleared = set()
-    for g in (ROOT / "registry").glob("*gate*.json"):
-        try:
-            data = json.loads(g.read_text())
-        except ValueError:
-            continue
-        _c = data.get("candidate")
-        name = Path(_c.get("tif", "") if isinstance(_c, dict) else (_c or "")).name
-        if data.get("ok_to_submit") and name:
-            cleared.add(name)
-            cleared.add(Path(name).with_suffix(".zip").name)
+def test_downloads_are_all_negatively_marked_without_clearance_exceptions():
     for f in (ROOT / "docs/downloads").iterdir():
         if f.suffix.lower() in (".tif", ".tiff", ".zip"):
-            assert "DO-NOT-SUBMIT" in f.name or f.name in cleared, f.name
+            assert "DO-NOT-SUBMIT" in f.name, f.name

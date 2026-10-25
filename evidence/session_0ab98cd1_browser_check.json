@@ -1,0 +1,144 @@
+{
+  "schema": "gems88.browser-review.v1",
+  "checked_at_utc": "2026-10-25T18:50:01.781Z",
+  "browser": "153.0.8010.0",
+  "pages": [
+    {
+      "page": "index.html",
+      "width": 1440,
+      "height": 1100,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "height": 844,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "research.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "sources.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "con88.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/index.html",
+      "width": 1440,
+      "height": 1100,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "failed_fetch_stays_negative": true,
+  "source_sha256": {
+    "docs/index.html": "0067db65e510d203ed5c4c62f623fee1114d67acab4721ca6a7f14870fa0e656",
+    "docs/executive-summary.html": "7d1920ad46731e17a94b7d384d1bdb5b19865accf7a1dd4e6c20ec13faca2d1c",
+    "docs/research.html": "6079e27fe1d652c48e37cd3e529b355000ca152e44fcc41c5a243db37c038dd5",
+    "docs/sources.html": "9a188f90c87dde35bee4364ac55a0649dce16230ecb71960cf30ea5cb75c8e64",
+    "docs/con88.html": "e4de05078f862b00d9cd2d25dde9d6b40822ee01662c0b0890bb4e0f998f981a",
+    "docs/assets/site.css": "834256dce45ea5d350bea0942730f455e1c44edaa64e85f35527ad58c187c737",
+    "docs/assets/site.js": "d27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41",
+    "docs/data/current_release.json": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",
+    "docs/data/download_audit.json": "800b5c79cb6055226b807fe7bd58352ca1cd87db336a11562ce9cd9d6ea495c3",
+    "docs/data/mtas88_run_card.json": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
+    "docs/data/hypothesis_queue.json": "f05aee8ff1e4b61a0e6116a32ed6c360b276b1270eea3d994cbcc9e42f180ad9",
+    "docs/data/con88_gates.json": "ac07d7350bc2ea3ea590efca6670e711b9b04812fa18612802e4865e6568061f",
+    "docs/data/con88_run_card.json": "a6cd94a814bb7ba8f5b3355b8430c4106fc6e0579ad39e53c3c9b422e037a45e",
+    "docs/SUBMIT.md": "d415b2e41ca8c64cb757a5a200adeec24c42345a321744a3695d4deae50e9baa",
+    "docs/status.json": "93899eaaa59cccf6f4420b97fa219795293ba796d31e5d1e986b1c439a977bf2",
+    "docs/mdc88/index.html": "7968611af89256740904e40003e26bf49635d626a2f04b1e1943a1050d88ef1d",
+    "docs/mdc88/executive-summary.html": "a224490fc994b54619d24275500ea6eba6670685be70bcda8f241ee4b25a8ae3",
+    "docs/mdc88/status.json": "7d0223ff4f7b513ba5d3d68fd81ddc9b86f58955c9e3ffdf2e0131eff73033f9"
+  },
+  "ok_to_submit": false,
+  "research_download": {
+    "file": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "http_status": 200,
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "matches_canonical_bytes": true,
+    "ok_to_submit": false,
+    "click_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "suggested_filename": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "click_matches_canonical_bytes": true
+  },
+  "no_javascript_banner": "NO NEW TIFF · RESEARCH DOWNLOAD ONLY · DO NOT SUBMIT",
+  "no_javascript_stays_negative": true,
+  "status": "PASS"
+}

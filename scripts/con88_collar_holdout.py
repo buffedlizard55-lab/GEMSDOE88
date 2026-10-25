@@ -7,8 +7,19 @@ only (withheld components hidden), shared evaluator, pooled terms.
 Surface = exp2 blend (contributor votes still fixed: conservative bias kept
 and disclosed). Collars: 2.236 (H33 parity) vs 3.0 (exp2 as built).
 Final collar = argmax pooled HOLDOUT-DTI (pre-registered rule).
+
+Historical only: IR-88-0AB98CD1-01 withdrew CON88 clearance. The shared literal
+preflight now stops this experiment before scientific imports or writes.
 """
 from __future__ import annotations
+
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 import json, sys
 from pathlib import Path
 import numpy as np
@@ -23,6 +34,8 @@ def load(p):
     with rasterio.open(ROOT / p) as ds: return ds.read(1)
 
 def main():
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
     foot = np.isfinite(load("data/bridge/sample_submission.tif"))
     cat = load("data/bridge/existing_faults.tif") == 1
     surf = 0.6 * np.load(ROOT / ".cache/con88_consensus.npy") + 0.4 * np.load(ROOT / ".cache/con88_ridge.npy")
