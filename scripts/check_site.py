@@ -13,6 +13,10 @@ from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 MVRD_NAME = "gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT"
+# Inherited unmarked XGCE pair from main: exact hash-bound negative research only.
+XGCE_TIF = "gems88-xgce-crossgradient-30000dots-20261025-zeros.tif"
+XGCE_SHA = "199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c"
+XGCE_ZIP_SHA = "f92fe721152ce04a0739a08c4c91314c76d144c91a7e7d7dac77d9e0e3040876"
 
 
 def require(condition: bool, message: object) -> None:
@@ -97,6 +101,28 @@ def main(root: Path = ROOT) -> None:
         len(mtas["submission_note"]) == mtas["submission_note_length"] <= 140,
         "MTAS negative note exceeds 140 characters",
     )
+    # A parallel research lane merged into main while this branch was reviewed.
+    # Its unmarked filenames predate this guard; permit exactly these two pinned
+    # bytes only when the archived card explicitly fails the binding literal gate.
+    xgce = json.loads((root / "registry/xgce88_run_card.json").read_text())
+    xgce_web = json.loads((docs / "data/xgce88_run_card.json").read_text())
+    xgce_tif = docs / "downloads" / XGCE_TIF
+    xgce_zip = xgce_tif.with_suffix(".zip")
+    require(
+        xgce == xgce_web and xgce["verdict"] == "negative"
+        and xgce["ok_to_submit"] is False
+        and xgce["uniqueness"]["literal_dense_witness_overlap"] == 1.0
+        and xgce["uniqueness"]["literal_dense_witness_pass"] is False
+        and sha256(xgce_tif) == XGCE_SHA == xgce["submission"]["raster_sha256"]
+        and sha256(xgce_zip) == XGCE_ZIP_SHA == xgce["submission"]["zip_sha256"],
+        "Inherited XGCE pair must remain hash-pinned and DO NOT SUBMIT",
+    )
+    with zipfile.ZipFile(xgce_zip) as archive:
+        require(
+            archive.namelist() == [xgce_tif.name]
+            and archive.read(xgce_tif.name) == xgce_tif.read_bytes(),
+            "Inherited XGCE ZIP must contain the exact pinned research TIFF",
+        )
     ibl = json.loads((root / "registry/ibl88_run_card.json").read_text())
     ibl_web = json.loads((docs / "data/ibl88_run_card.json").read_text())
     qts = json.loads((root / "registry/qts88_run_card.json").read_text())
@@ -470,22 +496,19 @@ def main(root: Path = ROOT) -> None:
             target = page.parent / unquote(url.path)
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
-    # Every published binary under docs/ must carry its negative decision in the
-    # filename. The pre-existing CTRA pair is the only legacy exception; its exact
-    # bytes are hash-bound above to a negative research card and the site labels it
-    # research-only. Any new unmarked binary still fails closed.
-    ctra_legacy = {ctra_tif.resolve(), ctra_zip.resolve()}
+    # Every published binary must carry the negative decision in its filename.
+    # Inherited unmarked CTRA and XGCE pairs are exceptions ONLY for the exact
+    # hash-pinned, negative bytes already checked above; no prefix-wide bypass.
+    legacy_negative = {
+        ctra_tif.resolve(), ctra_zip.resolve(),
+        xgce_tif.resolve(), xgce_zip.resolve(),
+    }
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
-            ".tif",
-            ".tiff",
-            ".zip",
+            ".tif", ".tiff", ".zip",
         }:
-            # Historical CTRA lane shipped without marker before guard extension (upstream main); keep hash-bound, do not rename (would break receipts).
-            if published.name.startswith("gems88-ctra-conductivity-curvature"):
-                continue
             require(
-                "DO-NOT-SUBMIT" in published.name or published.resolve() in ctra_legacy,
+                "DO-NOT-SUBMIT" in published.name or published.resolve() in legacy_negative,
                 f"unmarked published research artifact: {published}",
             )
 
