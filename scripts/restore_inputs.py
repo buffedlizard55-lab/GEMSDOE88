@@ -306,6 +306,18 @@ EXTERNAL_GROUP = [
       "data/external/dem10_chi_100m_u8.tif",
       "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a"
     ],
+    # IR-88-118: dem10_chi_100m_sig_i32.tif is listed with SHA-256 in
+    # dem10_chi_100m.manifest.json and used by H88-VCAZ drainage-branch piracy.
+    [
+      "data/external/dem10_chi_100m_sig_i32.tif",
+      "data/external/dem10_chi_100m_sig_i32.tif",
+      "0ba7816bc082b8a71ebcb26596b5e330abb63231be94abad4e447eb316ffb95c"
+    ],
+    [
+      "data/external/audit_sources/GeoDAWN_report.txt",
+      "data/external/audit_sources/GeoDAWN_report.txt",
+      "28431423cf920636002ad58c3392de6d3a1cf6d05188a4e734d37f2b91498556"
+    ],
     [
       "data/external/dem10_chi_100m.manifest.json",
       "data/external/dem10_chi_100m.manifest.json",

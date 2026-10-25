@@ -9,12 +9,15 @@
         fetch('data/current_release.json', { cache: 'no-store' }),
         fetch('data/download_audit.json', { cache: 'no-store' }),
         fetch('status.json', { cache: 'no-store' }),
+        fetch('data/vcaz88_run_card.json', { cache: 'no-store' }),
       ]);
       if (responses.some(response => !response.ok)) throw new Error('audit unavailable');
-      const [preflight, current, audit, status] = await Promise.all(responses.map(r => r.json()));
+      const [preflight, current, audit, status, vcaz] = await Promise.all(responses.map(r => r.json()));
       const proof = preflight.preplacement_registry_proof;
       const file = Array.isArray(audit.artifacts)
         ? audit.artifacts.find(row => `docs/downloads/${row.file}` === current.file) : null;
+      const vcazFile = Array.isArray(audit.artifacts)
+        ? audit.artifacts.find(row => `docs/downloads/${row.file}` === vcaz.download) : null;
       const at = new Date(audit.checked_at_utc);
       const consistent = preflight.decision === 'DUPLICATE_STOP' &&
         preflight.ok_to_submit === false && preflight.new_rasters_generated === 0 &&
@@ -34,6 +37,12 @@
         file?.independent_decoders_agree === true && file?.zip_one_byte_identical_tif === true &&
         file?.negative_filename_markers === true && file?.ok_to_submit === false &&
         file?.validator_output?.ok === true &&
+        vcaz?.lane === 'H88-VCAZ' && vcaz?.verdict === 'negative' &&
+        vcaz?.ok_to_download === true && vcaz?.ok_to_submit === false &&
+        vcaz?.raster_sha256 === '34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12' &&
+        vcaz?.organizer_confirmed_score === null &&
+        vcazFile?.sha256 === vcaz.raster_sha256 && vcazFile?.zip_sha256 === vcaz.zip_sha256 &&
+        vcazFile?.research_download_ok === true && vcazFile?.ok_to_submit === false &&
         !Number.isNaN(at.getTime()) && at.getTime() <= Date.now() + 3600_000;
       banner.textContent = consistent
         ? 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT'

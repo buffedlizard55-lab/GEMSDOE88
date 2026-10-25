@@ -40,7 +40,7 @@ const env = {
     querySelectorAll: () => [],
   },
   fetch: async url => {
-    if (fail && (url === 'data/mtas88_run_card.json' || url === 'data/download_audit.json')) return {ok: false};
+    if (fail && (url === 'data/mtas88_run_card.json' || url === 'data/download_audit.json' || url === 'data/vcaz88_run_card.json')) return {ok: false};
     const data = JSON.parse(fs.readFileSync(path.join('docs', url), 'utf8'));
     return {ok: true, json: async () => data};
   },
@@ -66,11 +66,12 @@ setImmediate(() => {
     assert result.returncode == 0, result.stdout + result.stderr
 
 
-def test_concurrent_lsc_and_psgv_records_cannot_precede_canonical_decision():
+def test_concurrent_lsc_psgv_and_vcaz_records_cannot_precede_canonical_decision():
     for relative in ('docs/index.html', 'docs/executive-summary.html'):
         html = (ROOT / relative).read_text()
         assert html.index('id="autonomous-review"') < html.index('class="archive-lanes"')
-        for anchor in ('lsc88-archived', 'psgv88-archived'):
+        for anchor in ('vcaz88-archived', 'lsc88-archived', 'psgv88-archived'):
             assert html.index('class="archive-lanes"') < html.index(f'id="{anchor}"')
+        assert 'data/vcaz88_run_card.json' in html
         assert 'data/lsc88_run_card.json' in html
         assert 'data/psgv88_run_card.json' in html

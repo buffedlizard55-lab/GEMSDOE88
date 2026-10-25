@@ -80,8 +80,8 @@
     "ok_to_download_for_research": true,
     "ok_to_submit": false,
     "audit": "docs/data/download_audit.json",
-    "tiff_zip_pairs": 42,
-    "local_research_passes": 42,
+    "tiff_zip_pairs": 43,
+    "local_research_passes": 43,
     "protocol_eligible_count": 0,
     "independent_decoders": [
       "rasterio",
@@ -95,7 +95,7 @@
   },
   "generation_guard": {
     "file": "scripts/generation_guard.py",
-    "count": 88,
+    "count": 89,
     "entrypoints": [
       "build_candidate.py",
       "build_cj88_submission.py",
@@ -183,6 +183,7 @@
       "run_str88_experiment.py",
       "run_tdkl88_experiment.py",
       "run_ugfv_experiments.py",
+      "run_vcaz88_experiment.py",
       "run_vess88_experiment.py",
       "run_vhgd88_experiment.py"
     ],

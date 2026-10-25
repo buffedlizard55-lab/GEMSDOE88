@@ -1,6 +1,6 @@
 {
   "schema": "gems88.download-audit.v1",
-  "checked_at_utc": "2026-10-25T06:55:51.512881+00:00",
+  "checked_at_utc": "2026-10-25T07:33:14.253893+00:00",
   "scope": "Every TIFF in docs/downloads, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
   "preplacement_registry_proof": {
     "evidence_class": "REGISTRY-MEASUREMENT",
@@ -20,8 +20,8 @@
   },
   "canonical_file": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
   "canonical_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-  "tiff_count": 42,
-  "research_download_pass_count": 42,
+  "tiff_count": 43,
+  "research_download_pass_count": 43,
   "protocol_eligible_count": 0,
   "exact_decoded_duplicate_groups": [],
   "artifacts": [
@@ -2072,6 +2072,63 @@
       "positive_support_sha256": "0882bb7688d781c0c7f1dfbd73a1ead855a87daee47fc1979f7abd833a87d35e",
       "zip_file": "gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.zip",
       "zip_sha256": "edce6e3f0ba68f6c6142d38cbbd63a2b70d35033cceb7eb66b8554e5bbaacbe2",
+      "zip_one_byte_identical_tif": true,
+      "negative_filename_markers": true,
+      "literal_overlap_lower_bound": 1.0,
+      "decision": "DUPLICATE_STOP"
+    },
+    {
+      "file": "gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12",
+      "bytes": 787359,
+      "evidence_class": "LOCAL-FORMAT-AUDIT_NOT_ORGANIZER_ACCEPTANCE",
+      "format_valid": true,
+      "research_download_ok": true,
+      "ok_to_submit": false,
+      "errors": [],
+      "validator_output": {
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "single_band": true,
+        "geotiff": true,
+        "real_numeric_dtype": true,
+        "no_nan_inside": true,
+        "range_0_1": true,
+        "footprint_nonempty": true,
+        "no_mass_outside": true,
+        "footprint_not_masked": true,
+        "strict_audit": true,
+        "ok": true,
+        "raster_sha256": "34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12",
+        "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+      },
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1,
+        "dtype": "float32"
+      },
+      "independent_decoders_agree": true,
+      "positive_pixels": 33200,
+      "positive_on_catalogue": 0,
+      "positive_outside_footprint": 0,
+      "decoded_float32_sha256": "60004788a685dc46dc403549c40aab458f339d1bedb850807c4093a49a95f984",
+      "positive_support_sha256": "d0b77d9b8f894eb565367e245624467c92e441b1594db6c684a1a09687f9f604",
+      "zip_file": "gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.zip",
+      "zip_sha256": "b87b0d02c01d79be4a0ec61329191329d888d8ee3b36bc771eb3bc32a72ac670",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
       "literal_overlap_lower_bound": 1.0,
