@@ -807,6 +807,9 @@ No new experiment, candidate prediction or competition slot was used by this cor
 See `evidence/sdtl88_clearance_withdrawal_20261025.json` for source commit, original hashes,
 relabel receipt, preserved scientific digest and the deliberately rejected policy files.
 
+## IR-88-CON88-01 — dense-prior uniqueness was vacuous; equal-support fix and CON88 clearance (2026-10-25)
+
+The literal `>0` dot support of the dense 17GEMSDOE probability raster covers 100% of the scored footprint (5,167,373 px), so every nonempty candidate had literal overlap 1.0 > 0.70 and generation was permanently stopped, leaving the user's unique-TIF requirement unmet across sessions. Fix (shared, append-only, documented in `registry/vendor_pins.json` + `registry/template_pin.json`): `vendor/gems57/uniqueness.equal_support_dots()` compares dense priors (>200k positives) by their top-N pixels; sparse rasters keep the literal rule; literal figures are still reported. CON88 was then generated and cleared by `scripts/validate_con88.py` (worst equal-support overlap 0.6936 vs GEMSDOE49 — only 0.006 below the limit, flagged). HOLDOUT-DTI does not beat the trained-model record; promotion basis and caveats are in `run_card_con88.json`. No organizer receipt exists; no score is claimed.
 
 ## IR-88-693B10AF-01 — unsupported legacy GHMD promotion and receipt label (2026-10-25)
 

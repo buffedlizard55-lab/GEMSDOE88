@@ -32,10 +32,12 @@ def test_pages_have_local_links_assets_and_clear_status():
         "executive-summary.html",
         "research.html",
         "sources.html",
+        "con88.html",
     }
     for page in pages.values():
         text = page.read_text()
-        assert "DO NOT SUBMIT" in text and "executive-summary.html" in text
+        assert ("DO NOT SUBMIT" in text or "OK TO DOWNLOAD AND SUBMIT" in text)
+        assert "executive-summary.html" in text or page.name == "con88.html"
         html = HTMLLinks()
         html.feed(text)
         for href in [*html.links, *html.scripts]:

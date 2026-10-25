@@ -1,0 +1,162 @@
+{
+  "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "bytes": 146769,
+  "submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
+  "note": "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card",
+  "note_chars": 107,
+  "validator": {
+    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "bytes": 146769,
+    "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "bytes": 146769,
+    "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip",
+  "zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "experiments": {
+      "exp1_consensus_only": {
+        "n_dots": 37654,
+        "share_gt25": 0.4174058532957986,
+        "share_le3": 0.0,
+        "median_dcat": 20.39607810974121,
+        "overlap_vs_h33": 0.5064003824294896,
+        "corroborated_ge2": 0.7956126839114038,
+        "mean_surface": 0.5017016530036926
+      },
+      "exp2_consensus_plus_ridge": {
+        "n_dots": 37654,
+        "share_gt25": 0.4174058532957986,
+        "share_le3": 0.0,
+        "median_dcat": 20.248456954956055,
+        "overlap_vs_h33": 0.4874116959685558,
+        "corroborated_ge2": 0.7227386200669251,
+        "mean_surface": 0.5296825766563416
+      },
+      "exp3_ridge_only": {
+        "n_dots": 37654,
+        "share_gt25": 0.4174058532957986,
+        "share_le3": 0.0,
+        "median_dcat": 20.59126091003418,
+        "overlap_vs_h33": 0.2037499336059914,
+        "corroborated_ge2": 0.15775216444468051,
+        "mean_surface": 0.7344204187393188
+      }
+    },
+    "contributors": [
+      "GATE49_gems49_gate_ortho_userreported_0.2376",
+      "G70SUB_gems70_p5_dualsubmod_userreported_0.2478",
+      "BPWD_gems88_bpwd_holdout_0.205991_unscored"
+    ],
+    "excluded_lineage": [
+      "h33_education",
+      "gems19_h19_5",
+      "gems25_d28",
+      "gems28_h27_4",
+      "gems36_anderson_pinn (0.974 overlap with H33, measured)"
+    ]
+  }
+}
