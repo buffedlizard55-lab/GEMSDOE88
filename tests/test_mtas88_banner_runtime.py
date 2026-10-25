@@ -17,10 +17,8 @@ def test_current_decision_precedes_archived_download_on_both_pages():
         current = html.index('id="autonomous-review"')
         historical = html.index('id="hgvc-current"') if rel == "docs/index.html" else html.index("Archived H88-HGVC GeoTIFF")
         assert current < historical, f"stale candidate appears before current decision in {rel}"
-        assert "NO NEW TIFF" in html
         assert "H88-HGVC" in html
-    guide = (ROOT / "docs/executive-summary.html").read_text()
-    assert "CURRENT DECISION 2026-10-25: NO NEW UNIQUE TIFF" in guide
+        assert html.index('id="current-decision"') < current
 
 
 @pytest.mark.skipif(NODE is None, reason="Node.js runtime unavailable")
@@ -40,7 +38,7 @@ const env = {
     querySelectorAll: () => [],
   },
   fetch: async url => {
-    if (fail && (url === 'data/mtas88_run_card.json' || url === 'data/download_audit.json' || url === 'data/vcaz88_run_card.json')) return {ok: false};
+    if (fail && (url === 'data/sdtl88_run_card.json' || url === 'data/download_audit.json')) return {ok: false};
     const data = JSON.parse(fs.readFileSync(path.join('docs', url), 'utf8'));
     return {ok: true, json: async () => data};
   },
@@ -48,8 +46,11 @@ const env = {
 };
 vm.runInNewContext(fs.readFileSync('docs/assets/site.js', 'utf8'), env);
 setImmediate(() => {
+  const card = JSON.parse(fs.readFileSync('docs/data/sdtl88_run_card.json', 'utf8'));
+  const promote = card.verdict === 'promote' && card.ok_to_submit === true;
   const expected = fail ? 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT'
-    : 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT';
+    : (promote ? 'H88-SDTL · DOWNLOAD: YES · SUBMIT: YES — OK TO DOWNLOAD AND SUBMIT'
+               : 'H88-SDTL · DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT');
   if (banner.textContent !== expected) {
     console.error('Incorrect decision:', banner.textContent, 'expected:', expected);
     process.exitCode = 1;

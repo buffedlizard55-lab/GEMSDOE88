@@ -5,48 +5,38 @@
   if (banner) {
     try {
       const responses = await Promise.all([
-        fetch('data/mtas88_run_card.json', { cache: 'no-store' }),
+        fetch('data/sdtl88_run_card.json', { cache: 'no-store' }),
         fetch('data/current_release.json', { cache: 'no-store' }),
         fetch('data/download_audit.json', { cache: 'no-store' }),
         fetch('status.json', { cache: 'no-store' }),
-        fetch('data/vcaz88_run_card.json', { cache: 'no-store' }),
       ]);
       if (responses.some(response => !response.ok)) throw new Error('audit unavailable');
-      const [preflight, current, audit, status, vcaz] = await Promise.all(responses.map(r => r.json()));
-      const proof = preflight.preplacement_registry_proof;
+      const [card, current, audit, status] = await Promise.all(responses.map(r => r.json()));
       const file = Array.isArray(audit.artifacts)
         ? audit.artifacts.find(row => `docs/downloads/${row.file}` === current.file) : null;
-      const vcazFile = Array.isArray(audit.artifacts)
-        ? audit.artifacts.find(row => `docs/downloads/${row.file}` === vcaz.download) : null;
       const at = new Date(audit.checked_at_utc);
-      const consistent = preflight.decision === 'DUPLICATE_STOP' &&
-        preflight.ok_to_submit === false && preflight.new_rasters_generated === 0 &&
-        preflight.raster_sha256 === null && preflight.holdout?.dti === null &&
-        proof?.universal_overlap_blocker === true && proof?.directly_saturated === true &&
-        proof?.allowed_pixels > 0 && proof?.uncovered_allowed_pixels === 0 &&
-        proof?.directly_covered_allowed_pixels === proof?.allowed_pixels && proof?.overlap_limit === 0.7 &&
-        audit.preplacement_registry_proof?.witness_sha256 === proof?.witness_sha256 &&
-        audit.canonical_sha256 === current.file_sha256 && audit.ok_to_submit === false &&
-        audit.protocol_eligible_count === 0 && audit.tiff_count === audit.artifacts.length &&
-        current.ok_to_download === true && current.ok_to_submit === false &&
-        current.literal_duplicate === true && current.approved_for_weekly_slot === false &&
-        status.status === 'BLOCKED' && status.ok_to_submit === false &&
-        status.raster_sha256 === current.file_sha256 && status.approved_for_weekly_slot === false &&
+      const promote = card.verdict === 'promote' && card.ok_to_submit === true;
+      const gates = card.holdout_dti?.success === true && card.leakage_canary?.passed === true &&
+        card.correlation_overlap_vs_registry?.surface_ok === true &&
+        card.correlation_overlap_vs_registry?.dots_ok === true && card.validator?.ok === true;
+      const consistent = card.schema === 'gems88.run_card.v2' && card.lane === 'H88-SDTL' &&
+        (promote ? gates : true) &&
+        current.schema === 'gems88.current-release.v3' && current.file_sha256 === card.raster?.sha256 &&
+        current.ok_to_download === true && current.ok_to_submit === promote &&
+        current.approved_for_weekly_slot === false &&
+        audit.canonical_sha256 === current.file_sha256 && audit.ok_to_submit === promote &&
+        (audit.protocol_eligible_count > 0) === promote && audit.tiff_count === audit.artifacts.length &&
+        status.ok_to_submit === promote && status.raster_sha256 === current.file_sha256 &&
         file?.sha256 === current.file_sha256 && file?.zip_sha256 === current.zip_sha256 &&
         file?.research_download_ok === true && file?.format_valid === true &&
         file?.independent_decoders_agree === true && file?.zip_one_byte_identical_tif === true &&
-        file?.negative_filename_markers === true && file?.ok_to_submit === false &&
+        file?.negative_filename_markers === !promote && (file?.ok_to_submit === true) === promote &&
         file?.validator_output?.ok === true &&
-        vcaz?.lane === 'H88-VCAZ' && vcaz?.verdict === 'negative' &&
-        vcaz?.ok_to_download === true && vcaz?.ok_to_submit === false &&
-        vcaz?.raster_sha256 === '34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12' &&
-        vcaz?.organizer_confirmed_score === null &&
-        vcazFile?.sha256 === vcaz.raster_sha256 && vcazFile?.zip_sha256 === vcaz.zip_sha256 &&
-        vcazFile?.research_download_ok === true && vcazFile?.ok_to_submit === false &&
         !Number.isNaN(at.getTime()) && at.getTime() <= Date.now() + 3600_000;
-      banner.textContent = consistent
-        ? 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT'
-        : 'PRE-FLIGHT AUDIT UNAVAILABLE OR INCONSISTENT — DO NOT SUBMIT';
+      banner.textContent = !consistent
+        ? 'PRE-FLIGHT AUDIT UNAVAILABLE OR INCONSISTENT — DO NOT SUBMIT'
+        : (promote ? 'H88-SDTL · DOWNLOAD: YES · SUBMIT: YES — OK TO DOWNLOAD AND SUBMIT'
+                   : 'H88-SDTL · DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT');
     } catch (_) {
       banner.textContent = 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT';
     }

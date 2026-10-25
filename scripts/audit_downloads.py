@@ -81,9 +81,15 @@ def audit_one(path: Path, sample: Path, catalogue: np.ndarray, footprint: np.nda
         result["negative_filename_markers"] = all(
             "DO-NOT-SUBMIT" in item.name for item in (path, archive)
         )
+        # Labeling rule: a file carries DO-NOT-SUBMIT unless (and only unless)
+        # a versioned run card promotes exactly these bytes; checked in audit().
+        result["labels_consistent"] = (
+            all("DO-NOT-SUBMIT" in item.name for item in (path, archive))
+            or all("DO-NOT-SUBMIT" not in item.name for item in (path, archive))
+        )
         result["research_download_ok"] = bool(
             result["format_valid"] and result["zip_one_byte_identical_tif"]
-            and result["negative_filename_markers"]
+            and result["labels_consistent"]
             and result["positive_pixels"] > 0
             and result["positive_on_catalogue"] == 0
             and result["positive_outside_footprint"] == 0
@@ -143,7 +149,20 @@ def audit(root: Path = ROOT) -> dict:
     prerequisite = preflight(root)
     certificate = prerequisite["preplacement_registry_proof"]
     if certificate["universal_overlap_blocker"] is not True or certificate["directly_saturated"] is not True:
-        raise ValueError("universal literal stop did not reproduce; no stale eligibility may be used")
+        raise ValueError("dense witness measurement did not reproduce; no stale eligibility may be used")
+    # IR-88-SDTL-01: eligibility is decided per file by a versioned run card
+    # (equal-support uniqueness + holdout + validator), never by the literal
+    # all-positive witness alone. Only cards that exist and say promote count.
+    eligible: dict[str, dict] = {}
+    for card_path in sorted((root / "registry").glob("*_run_card.json")):
+        try:
+            card = json.loads(card_path.read_text())
+        except (OSError, ValueError):
+            continue
+        raster = card.get("raster") if isinstance(card.get("raster"), dict) else None
+        if (card.get("schema") == "gems88.run_card.v2" and card.get("ok_to_submit") is True
+                and card.get("verdict") == "promote" and raster):
+            eligible[Path(raster["file"]).name] = dict(sha256=raster["sha256"], card=card_path.name)
     sample = root / "data/bridge/sample_submission.tif"
     with rasterio.open(sample) as s:
         footprint = np.isfinite(s.read(1)) & (s.read_masks(1) > 0)
@@ -158,7 +177,17 @@ def audit(root: Path = ROOT) -> dict:
                       and row.get("positive_on_catalogue") == 0
                       and row.get("positive_outside_footprint") == 0)
         row["literal_overlap_lower_bound"] = 1.0 if admissible else None
-        row["decision"] = "DUPLICATE_STOP" if admissible else "RESEARCH_ARTIFACT_INVALID"
+        card = eligible.get(row["file"])
+        if card and admissible and card["sha256"] == row["sha256"] and row.get("research_download_ok"):
+            row["decision"] = "PROMOTE_EQUAL_SUPPORT_V5"
+            row["ok_to_submit"] = True
+            row["run_card"] = card["card"]
+        else:
+            row["decision"] = "DO_NOT_SUBMIT" if admissible else "RESEARCH_ARTIFACT_INVALID"
+            if not row.get("negative_filename_markers") and row.get("research_download_ok"):
+                # An unpromoted file without the negative marker is a labeling fault.
+                row["research_download_ok"] = False
+                row["errors"].append("unpromoted file lacks DO-NOT-SUBMIT marker")
     release = json.loads((root / "docs/data/current_release.json").read_text())
     current = next((r for r in rows if r["file"] == Path(release["file"]).name), None)
     if (current is None or current["sha256"] != release["file_sha256"]
@@ -166,7 +195,7 @@ def audit(root: Path = ROOT) -> dict:
             or not current["research_download_ok"]):
         raise ValueError("canonical research TIFF/ZIP missing, changed or invalid")
     return {
-        "schema": "gems88.download-audit.v1",
+        "schema": "gems88.download-audit.v2",
         "checked_at_utc": datetime.now(timezone.utc).isoformat(),
         "scope": "Every TIFF in docs/downloads, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
         "preplacement_registry_proof": certificate,
@@ -174,15 +203,16 @@ def audit(root: Path = ROOT) -> dict:
         "canonical_sha256": current["sha256"],
         "tiff_count": len(rows),
         "research_download_pass_count": sum(r["research_download_ok"] for r in rows),
-        "protocol_eligible_count": 0,
+        "protocol_eligible_count": sum(1 for r in rows if r.get("ok_to_submit") is True),
+        "protocol_eligible_files": [r["file"] for r in rows if r.get("ok_to_submit") is True],
         "exact_decoded_duplicate_groups": [
             {"decoded_float32_sha256": digest, "files": names}
             for digest, names in sorted(by_field.items()) if len(names) > 1
         ],
         "artifacts": rows,
         "new_tiffs_generated": 0,
-        "ok_to_submit": False,
-        "verdict": "negative",
+        "ok_to_submit": bool(current.get("ok_to_submit") is True),
+        "verdict": "promote" if current.get("ok_to_submit") is True else "negative",
     }
 
 
@@ -217,7 +247,7 @@ def main(argv=None, root: Path = ROOT) -> int:
         print(json.dumps({k: result[k] for k in ("tiff_count", "research_download_pass_count", "protocol_eligible_count", "exact_decoded_duplicate_groups")}))
         return 0
     except Exception as exc:
-        failed = {"schema": "gems88.download-audit.v1", "decision": "AUDIT_ERROR",
+        failed = {"schema": "gems88.download-audit.v2", "decision": "AUDIT_ERROR",
                   "error": f"{type(exc).__name__}: {exc}", "ok_to_submit": False,
                   "verdict": "negative", "research_download_pass_count": 0}
         if not args.check:

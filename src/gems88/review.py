@@ -39,13 +39,14 @@ class Hypothesis:
         return value
 
 
-# H88-MTAS is deliberately excluded: registry/mtas88_experiment_run_card.json
-# and evidence/mtas88_experiment_20261025.json record that lane as executed and
-# negative. The queue below contains only proposals with no matching executable
-# experiment/run card in this repository. Exact input names are from
-# src/gems88/physics.py / registry/feature_receipt.json; this is not proof that
-# the owner-mirrored values are authenticated organizer downloads.
-HISTORICALLY_EXECUTED_LANES = frozenset({"H88-MTAS"})
+# H88-MTAS is deliberately excluded because its separate execution card and
+# hash-matched raster prove it ran, despite a conflicting pre-placement record.
+# H88-SDTL is also excluded: main now contains its preregistration, experiment,
+# HOLDOUT-DTI, and promoted v5 release card. The queue below contains only
+# proposals with no matching experiment/run card in this repository. Exact input
+# names are from src/gems88/physics.py / registry/feature_receipt.json; owner-
+# mirrored values are not thereby authenticated organizer downloads.
+HISTORICALLY_EXECUTED_LANES = frozenset({"H88-MTAS", "H88-SDTL"})
 
 HYPOTHESES: tuple[Hypothesis, ...] = (
     Hypothesis(

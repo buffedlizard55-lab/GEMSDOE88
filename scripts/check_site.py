@@ -62,6 +62,29 @@ def main(root: Path = ROOT) -> None:
     web_gate = json.loads((docs / "data/mvrd-gate-v3.json").read_text())
     current = json.loads((docs / "data/current_release.json").read_text())
     status = json.loads((docs / "status.json").read_text())
+    review = json.loads((docs / "data/repo_review_20261025.json").read_text())
+    review_evidence = json.loads((root / "evidence/repo_review_20261025.json").read_text())
+    mtas_execution = json.loads((root / "registry/mtas88_experiment_run_card.json").read_text())
+    mtas_execution_evidence = json.loads((root / "evidence/mtas88_experiment_20261025.json").read_text())
+    require(review == review_evidence, "current repository-review JSON mirrors disagree")
+    queue = review["hypothesis_queue"]
+    require([row["id"] for row in queue] == ["H88-FARC", "H88-TCONS", "H88-PRAN", "H88-FLAC"]
+            and all(row["status"] == "UNTESTED" for row in queue),
+            "review queue must list exactly the four currently unexecuted hypotheses")
+    require("H88-MTAS" not in {row["id"] for row in queue}
+            and "H88-SDTL" not in {row["id"] for row in queue},
+            "executed MTAS/SDTL lanes must never be labeled untried")
+    require(mtas_execution == mtas_execution_evidence
+            and mtas_execution["lane"] == "H88-MTAS"
+            and mtas_execution["verdict"] == "negative"
+            and mtas_execution["holdout"]["evidence_class"] == "HOLDOUT-DTI",
+            "MTAS execution record must remain separately reconciled")
+    release_context = review["current_repository_release"]
+    require(release_context["lane"] == "H88-SDTL"
+            and release_context["ok_to_submit_under_current_repository_policy"] is True
+            and release_context["approved_for_weekly_slot"] is False
+            and release_context["organizer_confirmed_score"] is None,
+            "review must distinguish the inherited SDTL release from the unrun FARC proposal")
     ctra = json.loads((root / "registry/ctra_run_card.json").read_text())
     ctra_web = json.loads((docs / "data/ctra_run_card.json").read_text())
     require(ctra == ctra_web, "Pages CTRA card differs from canonical registry card")
@@ -73,27 +96,6 @@ def main(root: Path = ROOT) -> None:
         (docs / "downloads" / f"{MVRD_NAME}.format-audit.json").read_text()
     )
     literal = json.loads((docs / "data/literal_protocol_audit.json").read_text())
-    repo_review = json.loads((root / "evidence/repo_review_20261025.json").read_text())
-    repo_review_web = json.loads((docs / "data/repo_review_20261025.json").read_text())
-    mtas_execution = json.loads((root / "registry/mtas88_experiment_run_card.json").read_text())
-    mtas_execution_web = json.loads((docs / "data/mtas88_experiment_run_card.json").read_text())
-    require(repo_review == repo_review_web, "current repository review copies disagree")
-    require(
-        repo_review["schema"] == "gems88.repo-review-20261025.v2"
-        and repo_review["review_status"] == "DUPLICATE_STOP"
-        and [row["id"] for row in repo_review["hypothesis_queue"]]
-            == ["H88-FARC", "H88-TCONS", "H88-PRAN", "H88-FLAC"]
-        and repo_review["selected_lane"]["id"] == "H88-FARC"
-        and repo_review["holdout"]["dti"] is None,
-        "current review queue/result status is stale or improperly scored",
-    )
-    require(
-        mtas_execution == mtas_execution_web
-        and mtas_execution["lane"] == "H88-MTAS"
-        and mtas_execution["holdout"]["evidence_class"] == "HOLDOUT-DTI"
-        and repo_review["historical_experiment_reconciliation"]["executed_lane_excluded_from_untried_queue"]["conflicting_preplacement_records"]["status"].startswith("CONFLICTS_WITH"),
-        "MTAS executed/pre-placement record conflict must be preserved and visible",
-    )
     mtas = json.loads((root / "registry/mtas88_run_card.json").read_text())
     mtas_web = json.loads((docs / "data/mtas88_run_card.json").read_text())
     mtas_evidence = json.loads((root / "evidence/mtas88_preflight_20261025.json").read_text())
@@ -118,8 +120,8 @@ def main(root: Path = ROOT) -> None:
     require(
         mtas["archived_research_download"]["validator_output"]["ok"] is True
         and mtas["archived_research_download"]["ok_to_submit"] is False
-        and mtas["archived_research_download"]["sha256"] == current["file_sha256"],
-        "MTAS archived format-only download disagrees with canonical current release",
+        and mtas["archived_research_download"]["sha256"] == "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+        "MTAS archived format-only download disagrees with the pinned historical TDKL bytes",
     )
     require(
         len(mtas["submission_note"]) == mtas["submission_note_length"] <= 140,
@@ -471,40 +473,36 @@ def main(root: Path = ROOT) -> None:
         'Site integrity check failed: audit["shared_gates_format_report"]["ok"] is True',
     )
 
-    require(
-        current["candidate"] == "H88-TDKL",
-        'Site integrity check failed: current["candidate"] == "H88-TDKL"',
-    )
-    require(
-        current["file"] == tdkl["raster"]["file"],
-        'Site integrity check failed: current file differs from TDKL run card',
-    )
-    require(
-        current["file_sha256"] == tdkl["raster_sha256"],
-        'Site integrity check failed: current hash differs from TDKL run card',
-    )
-    require(
-        current["ok_to_download"] is True and current["ok_to_submit"] is False,
-        'Site integrity check failed: current TDKL decision is not download-yes/submit-no',
-    )
-    require(
-        current["literal_duplicate"] is True and current["duplicate"] is True,
-        'Site integrity check failed: current TDKL literal duplicate stop is missing',
-    )
-    require(
-        status["status"] == "BLOCKED",
-        'Site integrity check failed: status["status"] == "BLOCKED"',
-    )
-    require(
-        status["raster_sha256"] == tdkl["raster_sha256"]
-        and status["run_card"] == "registry/tdkl88_run_card.json",
-        'Site integrity check failed: status does not bind canonical TDKL bytes/card',
-    )
-    require(
-        status["ok_to_download_for_research"] is True
-        and status["ok_to_submit"] is False,
-        'Site integrity check failed: status["ok_to_download_for_research"] is True and status["ok_to_submit"] is False',
-    )
+    # IR-88-SDTL-01: the canonical release is the current preregistered lane's
+    # v2 run card; its verdict (promote/negative) must be mirrored exactly, and
+    # historical cards (TDKL etc.) stay negative.
+    sdtl = json.loads((root / "registry/sdtl88_run_card.json").read_text())
+    sdtl_web = json.loads((docs / "data/sdtl88_run_card.json").read_text())
+    require(sdtl == sdtl_web, "Pages SDTL card differs from canonical registry card")
+    promote = sdtl["verdict"] == "promote" and sdtl["ok_to_submit"] is True
+    require(current["schema"] == "gems88.current-release.v3" and current["candidate"] == "H88-SDTL",
+            "current release must be the SDTL v3 card")
+    require(current["file"] == sdtl["raster"]["file"] and current["file_sha256"] == sdtl["raster"]["sha256"],
+            "current release file/hash differ from SDTL run card")
+    require(sha256(root / current["file"]) == current["file_sha256"], "current release bytes differ from card")
+    require(sha256(root / current["zip_file"]) == current["zip_sha256"], "current release ZIP bytes differ from card")
+    require(("DO-NOT-SUBMIT" in Path(current["file"]).name) is (not promote), "filename marker contradicts verdict")
+    require(current["ok_to_download"] is True and current["ok_to_submit"] is promote,
+            "current release ok_to_submit must equal the SDTL verdict")
+    require(status["status"] == ("OK_TO_SUBMIT" if promote else "BLOCKED"), "status.json state contradicts verdict")
+    require(status["raster_sha256"] == sdtl["raster"]["sha256"] and status["run_card"] == "registry/sdtl88_run_card.json",
+            "status does not bind canonical SDTL bytes/card")
+    require(status["ok_to_download_for_research"] is True and status["ok_to_submit"] is promote,
+            "status ok_to_submit must equal the SDTL verdict")
+    require(all(k in sdtl["validator"] and sdtl["validator"][k] is True for k in
+                ("no_nan_inside_footprint", "values_in_0_1", "crs_match", "shape_match", "transform_match", "ok")),
+            "SDTL validator output incomplete or failing")
+    if promote:
+        require(sdtl["holdout_dti"]["success"] is True and sdtl["leakage_canary"]["passed"] is True
+                and sdtl["correlation_overlap_vs_registry"]["surface_ok"] is True
+                and sdtl["correlation_overlap_vs_registry"]["dots_ok"] is True,
+                "promote verdict without all four gates passing")
+    require(tdkl["ok_to_submit"] is False, "historical TDKL card must remain negative")
 
     for page in pages:
         text = page.read_text()
@@ -525,12 +523,18 @@ def main(root: Path = ROOT) -> None:
     # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
     # checked above; XGCE was renamed on main and requires no such exception.
     legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
+    # IR-88-SDTL-01: the one promoted pair (verdict=promote on a v2 card whose
+    # bytes are hash-checked above) is the only unmarked binary allowed.
+    promoted = set()
+    if promote:
+        promoted = {(root / sdtl["raster"]["file"]).resolve(), (root / sdtl["raster"]["zip_file"]).resolve()}
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif", ".tiff", ".zip",
         }:
             require(
-                "DO-NOT-SUBMIT" in published.name or published.resolve() in legacy_negative,
+                "DO-NOT-SUBMIT" in published.name or published.resolve() in legacy_negative
+                or published.resolve() in promoted,
                 f"unmarked published research artifact: {published}",
             )
 
@@ -603,29 +607,26 @@ def main(root: Path = ROOT) -> None:
         and "literal_protocol_audit.json" in executive,
         'Site integrity check failed: "literal_protocol_audit.json" in index and "literal_protocol_audit.json" in executive',
     )
-    require(
-        "DOWNLOAD FOR RESEARCH: YES" in index,
-        'Site integrity check failed: "DOWNLOAD FOR RESEARCH: YES" in index',
-    )
-    require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
-    require(
-        "Current review · 2026-10-25" in index
-        and "NO FILE APPROVED" in index
-        and "every nonempty dot set fails the literal overlap limit" in index,
-        "Overview must present the current fail-closed decision before archived candidates",
-    )
-    require(
-        "genuinely unique" not in index.lower()
-        and "not unique under the binding all-registry rule" in index,
-        "Overview must not overstate sparse-screen uniqueness as global uniqueness",
-    )
+    # IR-88-SDTL-01: the rendered decision must state the SDTL verdict explicitly.
+    for page_text in (index, executive):
+        block = page_text[page_text.index("<!-- CANONICAL-DECISION:START -->"):page_text.index("<!-- CANONICAL-DECISION:END -->")]
+        require("DOWNLOAD: YES" in block, "decision pill DOWNLOAD: YES missing")
+        if promote:
+            hero = block.split("decision-gates")[0]
+            require("SUBMIT: YES — OK TO DOWNLOAD AND SUBMIT" in hero and "SUBMIT: NO" not in hero
+                    and "DO NOT SUBMIT" not in hero,
+                    "promote verdict must render OK TO DOWNLOAD AND SUBMIT and nothing contradictory")
+        else:
+            require("SUBMIT: NO — DO NOT SUBMIT" in block and "OK TO DOWNLOAD AND SUBMIT" not in block,
+                    "negative verdict must render DO NOT SUBMIT and nothing contradictory")
+        require(sdtl["raster"]["sha256"] in page_text and sdtl["submission_name"] in page_text
+                and sdtl["submission_note"] in page_text and Path(sdtl["raster"]["file"]).name in page_text,
+                "SDTL file identity (hash, name, note, filename) missing from page")
+        require("data/sdtl88_run_card.json" in page_text, "SDTL run card link missing")
+    require("Current decision · " in index and "lane H88-SDTL" in index, "overview must lead with the SDTL decision")
     require(
         card["raster_sha256"] in index,
         'Site integrity check failed: archived MVRD hash missing from overview',
-    )
-    require(
-        tdkl["raster_sha256"] in index and tdkl["raster_sha256"] in executive,
-        'Site integrity check failed: canonical TDKL hash missing from overview/guide',
     )
     require(
         "0.197314" in index and "0.197314" in research,
@@ -649,17 +650,12 @@ def main(root: Path = ROOT) -> None:
     require(dhtc["raster_sha256"][:16] in index and dhtc["raster_sha256"][:16] in executive, "DHTC hash in pages")
     for page_text in (index, executive):
         require(
-            page_text.index('id="mtas-review"') < page_text.index('class="archive-lanes"')
-            and 'NO NEW TIFF: DUPLICATE — STOP' in page_text
-            and 'data/repo_review_20261025.json' in page_text
-            and 'H88-FARC' in page_text
-            and 'H88-MTAS' in page_text
-            and mtas["archived_research_download"]["sha256"] in page_text,
-            "Pages must lead with the current FARC stop, preserve MTAS historical status, and mark the download",
+            page_text.index('id="current-decision"') < page_text.index('class="archive-lanes"'),
+            "Pages must lead with the current SDTL decision before archived lanes",
         )
     js = (docs / "assets/site.js").read_text()
     require(
-        "fetch('data/mtas88_run_card.json'" in js
+        "fetch('data/sdtl88_run_card.json'" in js
         and "fetch('data/download_audit.json'" in js
         and "fetch('status.json'" in js
         and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
@@ -924,8 +920,8 @@ def main(root: Path = ROOT) -> None:
         require(bpwd_card["submission_name"] in page_txt, f"BPWD submission_name missing in {page_name}")
         require(bpwd_card["raster_sha256"] in page_txt, f"BPWD raster_sha256 missing in {page_name}")
     require(
-        index.index('id="mtas-review"') < index.index('id="bpwd-hero"') < index.index('class="archive-lanes"')
-        and executive.index('id="mtas-review"') < executive.index('id="bpwd-hero"') < executive.index('class="archive-lanes"'),
+        index.index('id="current-decision"') < index.index('id="bpwd-hero"') < index.index('class="archive-lanes"')
+        and executive.index('id="current-decision"') < executive.index('id="bpwd-hero"') < executive.index('class="archive-lanes"'),
         "BPWD hero must appear between canonical decision and archive-lanes",
     )
 
@@ -975,9 +971,10 @@ def main(root: Path = ROOT) -> None:
         vcaz_card["raster_sha256"] in index and vcaz_card["raster_sha256"] in executive,
         "VCAZ SHA-256 in pages",
     )
-    require("fetch('data/vcaz88_run_card.json'" in js, "site.js must verify vcaz88_run_card.json")
+    require("fetch('data/sdtl88_run_card.json'" in js and "fetch('data/bpwd88_run_card.json'" in js,
+            "site.js must verify the canonical SDTL card and the BPWD record")
     print(
-        "PASS: current decision, four-lane untried queue, MTAS reconciliation, H88-BPWD/H88-VCAZ records, research bytes and negative gates agree"
+        "PASS: current SDTL release, four-lane untried queue, MTAS execution reconciliation, H88-BPWD/H88-VCAZ records, research bytes and verdict-consistent gates agree"
     )
 
 

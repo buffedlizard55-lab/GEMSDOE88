@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Re-run the 2026-10-25 repository review without fitting or uploading.
 
-This is an autonomous, fail-closed review command.  It ranks the five frozen
-candidate hypotheses, rechecks the official-source inventory and the current
-research download, then proves (from hash-pinned local bytes) whether the
-literal registry rule can admit any nonempty candidate.  It does *not* train,
-place dots, create a new TIFF, select a weekly slot, or call DrivenData.
+This is an autonomous, fail-closed review command. It ranks four repo-local,
+currently unexecuted hypotheses, reconciles historical MTAS evidence, and
+rechecks the current release separately from the selected FARC review lane.
+Its pre-placement test records the literal dense-witness bound; the later main
+release adopts the documented equal-support v5 rule (IR-88-SDTL-01). This
+command does *not* train, place dots, create a new TIFF, select a weekly slot,
+or call DrivenData.
 
 Exit codes:
   0  the audit completed; this is not submission approval
@@ -141,40 +143,99 @@ def audit_saturation(root: Path) -> dict:
 
 
 def audit_research_download(root: Path) -> dict:
-    """Reopen the current advertised file and its one-member ZIP.
+    """Reopen the current release bytes and preserve the recorded policy decision.
 
-    The result is explicitly format-only.  A valid local file is never promoted
-    by this function; the current release card is a historical research record.
+    The local format audit is independent of the H88-SDTL run card's holdout,
+    canary and v5 uniqueness evidence. This review never upgrades that decision;
+    it verifies that current_release, status, the run card and byte audit agree.
     """
 
     status = _json(root / "docs/status.json")
     release = _json(root / "docs/data/current_release.json")
+    audit = _json(root / "docs/data/download_audit.json")
+    card = _json(root / release["run_card"])
     tif = root / release["file"]
     archive = root / release["zip_file"]
     if not tif.is_file() or not archive.is_file():
-        raise FileNotFoundError("current research TIFF or ZIP is missing")
-    if sha256(tif) != release["file_sha256"] or sha256(archive) != release["zip_sha256"]:
-        raise ValueError("current research TIFF/ZIP changed from current-release card")
+        raise FileNotFoundError("current release TIFF or ZIP is missing")
+    tif_digest, zip_digest = sha256(tif), sha256(archive)
+    if tif_digest != release["file_sha256"] or zip_digest != release["zip_sha256"]:
+        raise ValueError("current release TIFF/ZIP changed from current-release card")
+    if card.get("raster", {}).get("sha256") != tif_digest or card.get("raster", {}).get("zip_sha256") != zip_digest:
+        raise ValueError("current release and lane run-card hashes disagree")
+    if audit.get("canonical_sha256") != tif_digest or audit.get("canonical_file") != tif.name:
+        raise ValueError("current release and download audit identify different candidate bytes")
+    artifact = next((row for row in audit.get("artifacts", []) if row.get("sha256") == tif_digest), None)
+    if artifact is None or artifact.get("zip_sha256") != zip_digest:
+        raise ValueError("current release missing from saved-byte download audit")
     sample = root / "data/bridge/sample_submission.tif"
     checks = validate_artifact(tif, sample)
     with zipfile.ZipFile(archive) as member_zip:
         members = member_zip.namelist()
         one_matching_member = members == [tif.name] and member_zip.read(tif.name) == tif.read_bytes()
-    if not one_matching_member:
-        raise ValueError("research ZIP must contain exactly its byte-identical TIFF")
+    if not checks["ok"] or not one_matching_member:
+        raise ValueError("current release failed saved-byte format or exact-ZIP validation")
+
+    recorded_submit = bool(
+        release.get("ok_to_submit") is True
+        and status.get("ok_to_submit") is True
+        and card.get("ok_to_submit") is True
+        and artifact.get("ok_to_submit") is True
+        and audit.get("ok_to_submit") is True
+    )
+    if bool(release.get("approved_for_weekly_slot")) or int(card.get("weekly_slots_used", 0)) != 0:
+        raise ValueError("current release must not silently select or consume a weekly slot")
+    uniqueness = card.get("correlation_overlap_vs_registry", {})
+    dense_row = next((row for row in card.get("dots_rows", [])
+                      if Path(row.get("file", "")).name == Path(WITNESS_REL).name), {})
+    holdout = card.get("holdout_dti", {})
+    candidate_holdout = holdout.get("candidate", {})
+    control_holdout = holdout.get("control_phys44", {})
+    paired_delta = holdout.get("paired_delta_vs_control", {})
     return {
-        "evidence_class": "LOCAL-FORMAT-AUDIT",
+        "evidence_class": "LOCAL-FORMAT-AUDIT_NOT_ORGANIZER-ACCEPTANCE",
         "candidate": release["candidate"],
+        "lane": card.get("lane"),
         "file": release["file"],
         "zip_file": release["zip_file"],
-        "tif_sha256": sha256(tif),
-        "zip_sha256": sha256(archive),
+        "tif_sha256": tif_digest,
+        "zip_sha256": zip_digest,
         "validator": checks,
         "zip_one_byte_identical_tif": True,
-        "ok_to_download_for_research": bool(status.get("ok_to_download_for_research", True)),
-        "ok_to_submit": False,
-        "status_source": "docs/status.json + docs/data/current_release.json",
-        "warning": "A local format PASS is not organizer acceptance, a uniqueness pass, or a weekly-slot selector decision.",
+        "verdict": card.get("verdict"),
+        "ok_to_download": release.get("ok_to_download") is True and status.get("ok_to_download_for_research") is True,
+        "ok_to_submit_under_current_repository_policy": recorded_submit,
+        "approved_for_weekly_slot": release.get("approved_for_weekly_slot") is True,
+        "weekly_slots_used": card.get("weekly_slots_used"),
+        "organizer_confirmed_score": release.get("organizer_confirmed_score"),
+        "protocol_correction": release.get("protocol_correction"),
+        "holdout": {
+            "evidence_class": candidate_holdout.get("evidence_class"),
+            "evaluator_version": candidate_holdout.get("evaluator_version"),
+            "withheld_positive_pixels": candidate_holdout.get("withheld_positive_pixels"),
+            "candidate_dti": candidate_holdout.get("dti"),
+            "candidate_ci95": candidate_holdout.get("ci95"),
+            "control_dti": control_holdout.get("dti"),
+            "paired_delta": paired_delta.get("delta"),
+            "paired_delta_ci95": paired_delta.get("ci95"),
+            "folds_won_vs_control": holdout.get("folds_won_vs_control"),
+        },
+        "leakage_canary": card.get("leakage_canary"),
+        "uniqueness": {
+            "binding_rule": uniqueness.get("binding_rule"),
+            "rasters_checked": uniqueness.get("rasters_checked"),
+            "surface_worst_abs_spearman": uniqueness.get("surface_worst_abs_spearman"),
+            "final_dot_worst_equal_support_overlap": uniqueness.get("dots_worst_equal_support_overlap"),
+            "dense_witness_equal_support_overlap": dense_row.get("equal_support_overlap"),
+            "dense_witness_literal_overlap": dense_row.get("literal_overlap"),
+            "dense_witness_file": dense_row.get("file"),
+        },
+        "status_source": "docs/status.json + docs/data/current_release.json + matching run card and download audit",
+        "warning": (
+            "The current repository marks H88-SDTL eligible under IR-88-SDTL-01 equal-support v5. "
+            "The literal dense-witness dot overlap remains 1.0; v5 instead compares continuous-prior top-n cells. "
+            "This format audit is not organizer acceptance, a score receipt, or weekly-slot approval."
+        ),
     }
 
 
@@ -313,6 +374,7 @@ def build_report(root: Path = ROOT) -> dict:
         "schema": "gems88.repo-review-20261025.v2",
         "review_date_utc": DATE_UTC,
         "review_status": review_status,
+        "review_scope": "The DUPLICATE_STOP below applies to the H88-FARC candidate considered by this review under the literal pre-placement proof; it is not the current-release selector.",
         "hypothesis_queue": queue,
         "selected_lane": {
             "id": queue_head["id"],
@@ -329,6 +391,19 @@ def build_report(root: Path = ROOT) -> dict:
         "h33_forensics": h33_forensics(root),
         "preplacement_registry_audit": saturation,
         "current_research_download": research_download,
+        "current_repository_release": {
+            "lane": research_download["lane"],
+            "candidate": research_download["candidate"],
+            "file": research_download["file"],
+            "sha256": research_download["tif_sha256"],
+            "verdict": research_download["verdict"],
+            "ok_to_download": research_download["ok_to_download"],
+            "ok_to_submit_under_current_repository_policy": research_download["ok_to_submit_under_current_repository_policy"],
+            "approved_for_weekly_slot": research_download["approved_for_weekly_slot"],
+            "organizer_confirmed_score": research_download["organizer_confirmed_score"],
+            "protocol_correction": research_download["protocol_correction"],
+            "note": "Inherited from the later origin/main SDTL-88 merge; it was not generated by this FARC review. See docs/research/review-20261025-autonomous.md for the chronology and literal-vs-v5 policy distinction.",
+        },
         "holdout": {
             "status": "NOT RUN — pre-placement duplicate stop",
             "candidate_lane": queue_head["id"],
@@ -344,12 +419,14 @@ def build_report(root: Path = ROOT) -> dict:
             "features_tested": 0,
         },
         "new_tif": {
+            "scope": "H88-FARC candidate considered in this review only",
             "generated": False,
             "file": None,
             "sha256": None,
-            "reason": "The SHA-pinned dense registry witness covers every allowed cell. A new nonempty candidate would have literal forward overlap 1.0 > 0.70, so it was stopped before construction; renaming or copying an archived TIFF would not satisfy uniqueness.",
+            "reason": "For the H88-FARC lane considered by this review under the literal pre-placement test, the SHA-pinned dense witness covers every allowed cell, so any nonempty candidate would have forward overlap 1.0 > 0.70. This does not describe the separately imported H88-SDTL release, which is evaluated under the later documented v5 rule.",
         },
         "submission": {
+            "scope": "H88-FARC review candidate only; current H88-SDTL repository release is reported separately",
             "reserved_name": RESERVED_NAME,
             "reserved_name_status": "NO_FILE_NOT_FOR_PORTAL",
             "reserved_note": RESERVED_NOTE,
@@ -375,10 +452,10 @@ def build_report(root: Path = ROOT) -> dict:
             "The untested FARC hypothesis has no new HOLDOUT-DTI or canary result because the literal pre-placement rule stops this run first.",
             "The hidden organizer labels are unavailable; catalogued-fault holdout evidence cannot establish the leaderboard score.",
             "H33 0.2778 remains USER-REPORTED without a submission receipt; the prompt's leaderboard snapshots 0.3195 and 0.4413 conflict and were not freshly verified here.",
-            "The literal all-registry overlap condition is unsatisfiable for a nonempty candidate while the hash-pinned full-support 17GEMSDOE witness remains in scope.",
+            "The literal all-registry dot-overlap condition is unsatisfiable for a nonempty candidate while the full-support 17GEMSDOE witness remains in scope; the later main SDTL release uses the documented equal-support v5 correction and records both readings.",
             "The current organizer data page requires account access; the local owner mirrors do not authenticate data identity or rights. No external data were newly downloaded for this review.",
         ],
-        "next_action": "Do not spend a slot. First resolve the universal witness/protocol contradiction through a documented shared-template decision. If it is resolved, preregister H88-FARC, restore/authenticate the required stack, run per-feature leakage canaries and paired buffered holdout against the recorded incumbent, then run surface and final-dot uniqueness before any separate weekly-slot selection.",
+        "next_action": "Do not spend a slot. The current H88-SDTL release is marked eligible under the shared v5 rule but has no organizer receipt or weekly-slot approval; review its recorded gates and protocol correction before any separate selector decision. This review did not fit H88-FARC. Any later experiment must stay within its own preregistered budget, restore/authenticate inputs, run feature-alone canaries and whole-component buffered holdout with the shared evaluator, then check surface and final dots before separate slot selection.",
     }
 
 

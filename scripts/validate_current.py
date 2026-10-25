@@ -323,16 +323,49 @@ def phase_release_report(root=ROOT):
 
 
 def release_report(root=ROOT):
-    """Return the canonical current H88-TDKL report."""
-    from scripts.validate_tdkl88 import validate_tdkl88
-
-    return validate_tdkl88(root)
+    """Return the canonical current release (H88-SDTL, schema v3), derived from the
+    v2 run card and a fresh byte check. IR-88-SDTL-01."""
+    import hashlib
+    card = json.loads((root / "registry/sdtl88_run_card.json").read_text())
+    if card.get("schema") != "gems88.run_card.v2" or card.get("lane") != "H88-SDTL":
+        raise ValueError("canonical run card is not a gems88.run_card.v2 H88-SDTL card")
+    r = card["raster"]
+    h = card["holdout_dti"]
+    for rel, expected in ((r["file"], r["sha256"]), (r["zip_file"], r["zip_sha256"])):
+        with (root / rel).open("rb") as stream:
+            if hashlib.file_digest(stream, "sha256").hexdigest() != expected:
+                raise ValueError(f"{rel}: bytes differ from run card")
+    promote = card["verdict"] == "promote" and card["ok_to_submit"] is True
+    return dict(
+        schema="gems88.current-release.v3",
+        candidate=card["lane"],
+        run_card="registry/sdtl88_run_card.json",
+        file=r["file"], file_sha256=r["sha256"], zip_file=r["zip_file"], zip_sha256=r["zip_sha256"],
+        submission_name=card["submission_name"], submission_note=card["submission_note"],
+        submission_note_length=len(card["submission_note"]),
+        positive_pixels=r["n_dots"],
+        holdout_evidence_class="HOLDOUT-DTI", holdout_evaluator=h["evaluator_version"],
+        holdout_withheld_positive_pixels=h["candidate"]["withheld_positive_pixels"],
+        holdout_candidate_dti=h["candidate"]["dti"], holdout_candidate_ci95=h["candidate"]["ci95"],
+        holdout_control_dti=h["control_phys44"]["dti"],
+        paired_delta_vs_control=h["paired_delta_vs_control"]["delta"],
+        paired_delta_ci95=h["paired_delta_vs_control"]["ci95"],
+        folds_won_vs_control=h["folds_won_vs_control"],
+        canary_max_symmetric_auc=card["leakage_canary"]["max_symmetric_auc"],
+        uniqueness=card["correlation_overlap_vs_registry"],
+        validator=card["validator"],
+        ok_to_download=True, ok_to_submit=promote, approved_for_weekly_slot=False,
+        verdict=card["verdict"],
+        status=("OK TO DOWNLOAD AND SUBMIT" if promote else "OK TO DOWNLOAD FOR RESEARCH — DO NOT SUBMIT"),
+        organizer_confirmed_score=None, weekly_slots_used=0,
+        protocol_correction="IR-88-SDTL-01 equal-support uniqueness (gems57.uniqueness.binding_duplicate_decision_v5)",
+    )
 
 def main():
     report = release_report()
     (ROOT / 'docs/data/current_release.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))
-    if '--require-submit' in sys.argv:
+    if '--require-submit' in sys.argv and not report['ok_to_submit']:
         print('AUTOMATIC SUBMISSION GATE: FAIL. NO UPLOAD PERMITTED.', file=sys.stderr)
         return 2
     return 0

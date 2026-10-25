@@ -129,6 +129,8 @@ def test_published_inventory_covers_every_actual_tiff_and_zip():
     report = json.loads((ROOT / 'docs/data/download_audit.json').read_text())
     assert report == json.loads((ROOT / 'evidence/download_audit.json').read_text())
     actual = {p.name for p in audit.published_tiffs(ROOT)}
+    sdtl = json.loads((ROOT / 'registry/sdtl88_run_card.json').read_text())
+    promoted_sha = sdtl['raster']['sha256'] if (sdtl['verdict'] == 'promote' and sdtl['ok_to_submit'] is True) else None
     assert {r['file'] for r in report['artifacts']} == actual
     assert len(report['artifacts']) == report['tiff_count']
     for row in report['artifacts']:
@@ -137,11 +139,12 @@ def test_published_inventory_covers_every_actual_tiff_and_zip():
         assert audit.sha(tif) == row['sha256']
         assert audit.sha(zipped) == row['zip_sha256']
         assert row['format_valid'] and row['research_download_ok']
-        assert row['ok_to_submit'] is False
+        # IR-88-SDTL-01: only the canonical promoted card's bytes may carry ok_to_submit.
+        assert row['ok_to_submit'] is (row['sha256'] == promoted_sha)
         with zipfile.ZipFile(zipped) as z:
             assert z.namelist() == [tif.name]
             assert z.read(tif.name) == tif.read_bytes()
-    assert report['protocol_eligible_count'] == 0
+    assert report['protocol_eligible_count'] == (1 if promoted_sha else 0)
 
 
 def test_packaging_repairs_did_not_change_any_tiff_bytes():

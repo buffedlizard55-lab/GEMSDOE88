@@ -30,3 +30,9 @@ main>section{padding:68px 0}.section-intro{color:var(--muted);margin-bottom:27px
 @media(max-width:760px){.decision-grid{grid-template-columns:1fr}.decision-hero{padding:34px 0}.decision-download{max-width:580px}.section-heading{display:block}.section-heading>a{display:inline-block;margin-top:15px}.decision-explainer .split{gap:25px}.decision-pills span{font-size:.65rem}.decision-hero h1{font-size:2.65rem}}
 @media(max-width:450px){.gate-grid{grid-template-columns:1fr}.decision-download{padding:22px}.download-secondary{font-size:.75rem}.decision-hero h1{font-size:2.25rem}.decision-pills{display:grid}.section-heading h2{font-size:1.6rem}.gate-card{padding:20px}.decision-explainer .proof{padding:24px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}.button:hover{transform:none}}
+
+/* IR-88-SDTL-01: explicit positive state for a cleared file */
+.decision-pills .ok-pill{background:#c5f0cf;color:#0f5a2a;font-size:.78rem}
+.gate-card .tag.ok{background:#c5f0cf;color:#0f5a2a}
+.gate-reasons{margin:10px 0 0 18px;padding:0;font-size:.9rem;line-height:1.5}
+.download-inventory .tag.ok{color:#0f5a2a;font-weight:800}

@@ -19,18 +19,23 @@ def test_guard_rejects_corruption_under_both_interpreters(
     # Share immutable large artifacts; isolate only the file being corrupted.
     (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
     (tmp_path / "evidence").symlink_to(ROOT / "evidence", target_is_directory=True)
+    (tmp_path / "research").symlink_to(ROOT / "research", target_is_directory=True)
+    (tmp_path / "IRREGULARITIES.md").symlink_to(ROOT / "IRREGULARITIES.md")
     docs = tmp_path / "docs"
     docs.mkdir()
     for source in (ROOT / "docs").iterdir():
         if source.name == "status.json":
             status = json.loads(source.read_text())
             if corruption == "status":
-                status["ok_to_submit"] = True
+                status["ok_to_submit"] = not status["ok_to_submit"]
             (docs / source.name).write_text(json.dumps(status))
         elif source.name == "index.html" and corruption == "unique-claim":
-            index = source.read_text().replace(
-                "not unique under the binding all-registry rule", "genuinely unique"
-            )
+            # Flip the rendered verdict pill without changing the evidence (IR-88-SDTL-01).
+            index = source.read_text()
+            if "SUBMIT: YES — OK TO DOWNLOAD AND SUBMIT" in index:
+                index = index.replace("SUBMIT: YES — OK TO DOWNLOAD AND SUBMIT", "SUBMIT: NO — DO NOT SUBMIT", 1)
+            else:
+                index = index.replace("SUBMIT: NO — DO NOT SUBMIT", "SUBMIT: YES — OK TO DOWNLOAD AND SUBMIT", 1)
             (docs / source.name).write_text(index)
         elif source.name == "downloads" and corruption == "download":
             downloads = docs / source.name
@@ -54,13 +59,16 @@ def test_guard_rejects_corruption_under_both_interpreters(
     if corruption == "download":
         assert "unmarked published research artifact" in result.stderr
     elif corruption == "unique-claim":
-        assert "must not overstate sparse-screen uniqueness" in result.stderr
+        assert ("contradictory" in result.stderr or "machine evidence" in result.stderr
+                or "verdict" in result.stderr)
 
 
 @pytest.mark.parametrize("optimized", [False, True])
 def test_marked_xgce_is_still_hash_pinned_and_negative(tmp_path, optimized):
     (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
     (tmp_path / "evidence").symlink_to(ROOT / "evidence", target_is_directory=True)
+    (tmp_path / "research").symlink_to(ROOT / "research", target_is_directory=True)
+    (tmp_path / "IRREGULARITIES.md").symlink_to(ROOT / "IRREGULARITIES.md")
     docs = tmp_path / "docs"
     docs.mkdir()
     for source in (ROOT / "docs").iterdir():
