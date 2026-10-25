@@ -633,9 +633,54 @@ def main(root: Path = ROOT) -> None:
     js = (docs / "assets/site.js").read_text()
     require(
         "fetch('data/mtas88_run_card.json'" in js
+        and "fetch('data/gzzc88_run_card.json'" in js
         and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
-        "Dynamic decision banner must fail closed on absent MTAS proof",
+        "Dynamic decision banner must fail closed on absent MTAS/GZZC proof",
     )
+
+    gzzc_card = json.loads((root / "registry/gzzc88_run_card.json").read_text())
+    gzzc_web = json.loads((docs / "data/gzzc88_run_card.json").read_text())
+    require(gzzc_card == gzzc_web, "Pages GZZC card differs from canonical registry card")
+    require(
+        gzzc_card["verdict"] == "negative"
+        and gzzc_card["ok_to_download"] is True
+        and gzzc_card["ok_to_submit"] is False
+        and gzzc_card["uniqueness"]["literal_dense_witness_overlap"] == 1.0
+        and gzzc_card["uniqueness"]["literal_dense_witness_pass"] is False
+        and gzzc_card["uniqueness"]["unique_like_for_like"] is True,
+        "GZZC run card verdict/gate flags inconsistent",
+    )
+    require(
+        0 < len(gzzc_card["submission_name"]) <= 140
+        and 0 < len(gzzc_card["submission_note"]) <= 140,
+        "GZZC submission name/note must satisfy <=140 character cap",
+    )
+    gzzc_tif = root / gzzc_card["download"]
+    gzzc_zip = root / gzzc_card["zip_download"]
+    require(gzzc_tif.is_file() and gzzc_zip.is_file(), "GZZC tif/zip files exist")
+    require(
+        sha256(gzzc_tif) == gzzc_card["raster_sha256"],
+        "GZZC TIFF SHA-256 mismatch across file and card",
+    )
+    require(
+        sha256(gzzc_zip) == gzzc_card["zip_sha256"],
+        "GZZC ZIP SHA-256 mismatch across file and card",
+    )
+    require(gzzc_tif.name in index and gzzc_tif.name in executive, "GZZC tif in pages")
+    require(
+        gzzc_card["submission_name"] in index and gzzc_card["submission_name"] in executive,
+        "GZZC name in pages",
+    )
+    require(
+        gzzc_card["raster_sha256"] in index and gzzc_card["raster_sha256"] in executive,
+        "GZZC SHA-256 in pages",
+    )
+    with zipfile.ZipFile(gzzc_zip) as archive:
+        require(
+            archive.namelist() == [gzzc_tif.name]
+            and archive.read(gzzc_tif.name) == gzzc_tif.read_bytes(),
+            "GZZC ZIP must contain the exact research TIFF",
+        )
 
     hgvc_card = json.loads((root / "registry/hgvc88_run_card.json").read_text())
     hgvc_web = json.loads((docs / "data/hgvc88_run_card.json").read_text())
@@ -675,8 +720,95 @@ def main(root: Path = ROOT) -> None:
         hgvc_card["raster_sha256"] in index and hgvc_card["raster_sha256"] in executive,
         "HGVC SHA-256 in pages",
     )
+
+    vhgd_card = json.loads((root / "registry/vhgd88_run_card.json").read_text())
+    vhgd_web = json.loads((docs / "data/vhgd88_run_card.json").read_text())
+    vhgd_gv = json.loads((root / "registry/vhgd88_gate_verdict.json").read_text())
+    vhgd_gv_web = json.loads((docs / "data/vhgd88_gate_verdict.json").read_text())
+    require(vhgd_card == vhgd_web, "Pages VHGD card differs from canonical registry card")
+    require(vhgd_gv == vhgd_gv_web, "Pages VHGD gate v3 differs from canonical registry gate")
+    require(
+        vhgd_card["verdict"] == "negative"
+        and vhgd_card["ok_to_download"] is True
+        and vhgd_card["ok_to_submit"] is False
+        and vhgd_gv["ok_to_submit"] is False
+        and vhgd_card["correlation_overlap_vs_registry"]["unique_like_for_like"] is True
+        and vhgd_card["correlation_overlap_vs_registry"]["final_worst_like_for_like_overlap_3px"]["value"] <= 0.70,
+        "VHGD run card verdict/gate flags inconsistent",
+    )
+    require(
+        0 < len(vhgd_card["submission"]["submission_name"]) <= 140
+        and 0 < len(vhgd_card["submission"]["submission_note"]) <= 140,
+        "VHGD submission name/note must satisfy <=140 character cap",
+    )
+    vhgd_tif = root / vhgd_card["submission"]["file"]
+    vhgd_zip = root / vhgd_card["submission"]["zip_file"]
+    require(vhgd_tif.is_file() and vhgd_zip.is_file(), "VHGD tif/zip files exist")
+    require(
+        sha256(vhgd_tif) == vhgd_card["raster_sha256"] == vhgd_gv["sha256"],
+        "VHGD TIFF SHA-256 mismatch across file, card, and gate",
+    )
+    require(
+        sha256(vhgd_zip) == vhgd_card["zip_sha256"] == vhgd_gv["zip_sha256"],
+        "VHGD ZIP SHA-256 mismatch across file, card, and gate",
+    )
+    require(vhgd_tif.name in index and vhgd_tif.name in executive, "VHGD tif in pages")
+    require(
+        vhgd_card["submission"]["submission_name"] in index
+        and vhgd_card["submission"]["submission_name"] in executive,
+        "VHGD name in pages",
+    )
+    require(
+        vhgd_card["raster_sha256"] in index and vhgd_card["raster_sha256"] in executive,
+        "VHGD SHA-256 in pages",
+    )
+
+    bgcd = json.loads((root / "registry/bgcd88_run_card.json").read_text())
+    bgcd_web = json.loads((docs / "data/bgcd88_run_card.json").read_text())
+    bgcd_gate = json.loads((root / "registry/bgcd88_gate_verdict.json").read_text())
+    bgcd_gate_web = json.loads((docs / "data/bgcd88_gate_verdict.json").read_text())
+    require(bgcd == bgcd_web, "Pages BGCD card differs from canonical registry card")
+    require(bgcd_gate == bgcd_gate_web, "Pages BGCD gate verdict differs from registry")
+    require(
+        bgcd["verdict"] == "negative"
+        and bgcd["ok_to_download"] is True
+        and bgcd["ok_to_submit"] is False
+        and bgcd_gate["ok_to_submit"] is False,
+        "BGCD fail-closed status invariant failed",
+    )
+    bgcd_tif = root / bgcd["submission"]["file"]
+    bgcd_zip = root / bgcd["submission"]["zip_file"]
+    require(sha256(bgcd_tif) == bgcd["raster_sha256"], "BGCD TIFF SHA256 mismatch")
+    require(sha256(bgcd_zip) == bgcd["zip_sha256"], "BGCD ZIP SHA256 mismatch")
+    with zipfile.ZipFile(bgcd_zip) as zf:
+        require(
+            zf.namelist() == [bgcd_tif.name] and zf.read(bgcd_tif.name) == bgcd_tif.read_bytes(),
+            "BGCD ZIP does not contain byte-identical single TIFF",
+        )
+    bgcd_doc_md = docs / "research/bgcd88-forensics-and-phd-synthesis-20261025.md"
+    require(bgcd_doc_md.is_file(), "BGCD PhD synthesis markdown missing under docs/research")
+    bgcd_root_md = root / "research/bgcd88-forensics-and-phd-synthesis-20261025.md"
+    if bgcd_root_md.is_file():
+        require(
+            bgcd_root_md.read_bytes() == bgcd_doc_md.read_bytes(),
+            "BGCD PhD synthesis markdown differs between research/ and docs/research/",
+        )
+    sources = (docs / "sources.html").read_text()
+    for page_name, page_txt in (
+        ("index.html", index),
+        ("executive-summary.html", executive),
+        ("research.html", research),
+        ("sources.html", sources),
+    ):
+        require(bgcd_tif.name in page_txt, f"BGCD tif missing in {page_name}")
+        require(bgcd["submission"]["submission_name"] in page_txt, f"BGCD submission_name missing in {page_name}")
+        require(bgcd["raster_sha256"] in page_txt, f"BGCD raster_sha256 missing in {page_name}")
+    require(
+        bgcd["zip_sha256"] in index and bgcd["zip_sha256"] in executive,
+        "BGCD zip_sha256 missing in index/executive",
+    )
     print(
-        "PASS: H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
+        "PASS: H88-BGCD, H88-GZZC, H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
     )
 
 

@@ -1,0 +1,44 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "preregistration_id": "PREREG-20261025-VHGD88",
+  "created_utc": "2026-10-25T02:15:00Z",
+  "lane": "H88-VHGD",
+  "title": "Vertical Heat-Flux Gradient, Geothermometer Kinetic Disequilibrium & Depth-Compensated Basement Admittance with H33-Forensic 3-Stratum Completeness Allocation",
+  "hypothesis": "Concealed geothermal feeder faults missing from public USGS/INGENIOUS Quaternary trace maps (existing_faults.tif) manifest where (1) positive shallow conductive vertical temperature gradients (dT/dz from T2m-T1m and T2m-T15m across 1,717 multi-depth 2-m probes) and multi-season thermal excess persist above survey backgrounds, (2) slowly re-equilibrating Na-K-Ca cation geothermometers exceed chalcedony and surface outflow temperatures (ascensional flash/conductive cooling & cold-aquifer mixing above blind roots), and (3) depth-compensated Salem isostatic-gravity tilt-wavenumber contacts, 150-m upward-continued magnetic structural-index persistence, and 10-m sub-pixel roughness-coherence piedmont breaklines localize the underlying brittle fault trace across relay tips (2-9 px), outboard piedmont bajadas (9-25 px), and blind basin interiors (>25 px).",
+  "mechanism": "Range-front normal faults in the Great Basin step basinward 1.0-2.5 km into active alluvial bajadas (piedmont scarps) and >2.5 km into Cenozoic valley fill (intrabasinal accommodation zones and buried horst margins) where Holocene sedimentation erases subaerial scarps and 1/z^2 upward-continuation attenuates raw gravity gradients. Depth-invariant potential-field tilt zero-crossings weighted by Salem local wavenumber ||grad(theta)|| and depth-to-basement admittance recover buried density/susceptibility steps, while 1-2 m vertical probe gradients (q_z = -k dT/dz) and cation-chalcedony-outflow chemical disequilibrium (T_cat - T_chalc, max(T_geotherm) - T_outflow) pulled back up-hydraulic-head (+grad DEM) pinpoint actively convecting blind fault conduits.",
+  "named_non_fault_mimic": "1. Shallow non-tectonic volcanic flow lobes and basaltic cinder aprons (strong high-wavenumber magnetic edge that decays rapidly under 150-m upward continuation, high volcanic-vent proximity, and non-zero gravity tilt angle with no basement density step). 2. Closed-basin evaporitic playa brines and pluvial Lake Lahontan/Bonneville shoreline benches (1330 m / 1555 m contour flats with high shallow electrical conductivity cond_surf in negative detrended elevation det_elev < 0, zero basement gravity contact, and zero cation-chalcedony disequilibrium).",
+  "verified_inputs": {
+    "competition_stack": "data/training_features.tif (19 verified bands: B01 mag_anom, B02 rtp, B03 tmi_hg, B04 geod_2ndinv, B05 iso_grav_anom_slope, B06 tc, B07 geod_shearrate, B08 geod_dilaterate, B09 tmi_vg, B10 deq_n100a15, B11 iso_grav_anom_vg, B12 det_elev, B13 iso_grav_anom, B14 tmi, B15 depth_to_base_surf, B16 ieq_n100a15, B17 cond_surf, B18 iso_grav_anom_hg, B19 det_elev_slope)",
+    "external_official": [
+      "data/external/2m_temperature_probe_INGENIOUS_regional_data.zip (DOE GDR #1391; 3,800 probes; first-ever extraction of T1m [1,571 pairs], T15m [1,717 pairs], and multi-epoch T2m_2..T2m_7)",
+      "data/external/gdr_wellspring_in_footprint.csv (DOE GDR #1391; 27,092 records; geothermcat_c [1,185], geothermquartz_c [973], geothermchalc_c [966], temp_c [8,718]; dist_known_fault_px strictly quarantined)",
+      "data/external/paleo_geothermal_regional.zip (DOE GDR #1391; Paleo_geothermal_final.csv via Long_deg_NAD83/Lat_deg_NAD83)",
+      "data/external/geodawn_extensions_u8.tif (USGS ScienceBase 657e1d85d34e23d3533209f7; B02 UK, B03 UTh, B04 TMI_up150)",
+      "data/external/topo_10m_derived_100m_u8.tif (USGS 3DEP 10 m; B04 slope_std, B05 relief_local, B07 aspect_coherence, B09 dem_mean)"
+    ]
+  },
+  "experiments_preregistered": [
+    {
+      "id": "vhgd88_exp1_zerocat",
+      "description": "Zero-catalogue crustal & hydrothermal disequilibrium discovery (44 physics + 16 VHGD = 60 label-blind channels; zero catalogue geometry features at inference)."
+    },
+    {
+      "id": "vhgd88_exp2_poe_unconstrained",
+      "description": "Multi-expert Log-Odds Product-of-Experts (VHGD-60 + VESS-12 + TDKL-12 + B12-corrected VIS_STRUCT-23) with inverse-probability calibrated LightGBM dual-expectation heads and unconstrained Dinkelbach allocation for apples-to-apples holdout comparison against H88-ADHR (0.189634) and H88-VESS (0.200941)."
+    },
+    {
+      "id": "h88_vhgd_3stratum",
+      "description": "Production emitted arm: H33-forensic 3-stratum completeness-decomposed Dinkelbach allocation (36,000 production dots at min_spacing_px=2.85: 6,480 [18%] near-tip 2<d<=9 px; 12,960 [36%] outboard piedmont/stepover 9<d<=25 px; 16,560 [46%] blind-basin d>25 px; fold-scaled 9,000 dots/fold on holdout)."
+    }
+  ],
+  "gates": {
+    "leakage_canary_max_symmetric_auc": 0.90,
+    "pre_placement_max_abs_spearman_rho": 0.90,
+    "post_placement_max_3px_overlap": 0.70,
+    "fingerprint_share_le2_eq": 0.0,
+    "fingerprint_share_gt25_min": 0.35,
+    "experiment_budget_max": 3,
+    "wallclock_hours_max": 2.0,
+    "ok_to_submit": false
+  }
+}

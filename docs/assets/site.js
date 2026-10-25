@@ -31,8 +31,10 @@
       const cardResponse = await fetch('data/mvrd_run_card.json', { cache: 'no-store' });
       const tdklResponse = await fetch('data/tdkl88_run_card.json', { cache: 'no-store' });
       const mtasResponse = await fetch('data/mtas88_run_card.json', { cache: 'no-store' });
+      const mtasExpResponse = await fetch('data/mtas88_experiment_run_card.json', { cache: 'no-store' });
+      const gzzcResponse = await fetch('data/gzzc88_run_card.json', { cache: 'no-store' });
       if (!response.ok || !currentResponse.ok || !cardResponse.ok ||
-          !tdklResponse.ok || !mtasResponse.ok) {
+          !tdklResponse.ok || !mtasResponse.ok || !mtasExpResponse.ok || !gzzcResponse.ok) {
         throw new Error('pre-flight audit unavailable');
       }
       const data = await response.json();
@@ -40,8 +42,11 @@
       const card = await cardResponse.json();
       const tdkl = await tdklResponse.json();
       const mtas = await mtasResponse.json();
-      // All feeds must agree. TDKL is ONLY the archived research download; MTAS
-      // has no raster, score, or submission clearance. Never silently exempt the witness.
+      const mtasExp = await mtasExpResponse.json();
+      const gzzc = await gzzcResponse.json();
+      // All feeds must agree. GZZC is a research TIFF only. TDKL remains the
+      // canonical archived current_release. MTAS generated no raster. Never
+      // silently exempt the dense witness.
       const proof = mtas.preplacement_registry_proof;
       const archived = mtas.archived_research_download;
       const consistent = data.ok_to_download_for_research === true && data.ok_to_submit === false &&
@@ -57,9 +62,19 @@
           current.file_sha256 === tdkl.raster_sha256 && tdkl.ok_to_submit === false &&
           archived?.sha256 === current.file_sha256 &&
           archived?.validator_output?.ok === true && archived.ok_to_submit === false &&
-          card.ok_to_submit === false;
+          card.ok_to_submit === false &&
+          gzzc.ok_to_download === true && gzzc.ok_to_submit === false &&
+          gzzc.verdict === 'negative' &&
+          gzzc.uniqueness?.literal_dense_witness_overlap === 1.0 &&
+          gzzc.uniqueness?.literal_dense_witness_pass === false &&
+          mtasExp.lane === 'H88-MTAS' && mtasExp.verdict === 'negative' &&
+          mtasExp.ok_to_submit === false && mtasExp.ok_to_download === true &&
+          mtasExp.raster_sha256 === '2cb828939e11cf07e12be7917722f73816550ed4e297e2409b8674ac131479cc' &&
+          mtasExp.validator_output?.all_checks_passed === true &&
+          mtasExp.holdout?.evidence_class === 'HOLDOUT-DTI' &&
+          mtasExp.organizer_confirmed_score === null;
       banner.textContent = consistent
-        ? 'H88-MTAS · NO NEW TIFF · OLD FILE DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated duplicate stop)'
+        ? 'H88-MTAS · NEW RESEARCH TIFF: DOWNLOAD YES · SUBMIT: NO — DO NOT SUBMIT (HOLDOUT-DTI 0.0496 below bar; literal duplicate stop)'
         : 'PRE-FLIGHT AUDIT UNAVAILABLE OR INCONSISTENT — DO NOT SUBMIT';
     } catch (_) {
       banner.textContent = 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT';

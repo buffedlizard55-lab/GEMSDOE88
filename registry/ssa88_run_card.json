@@ -1,0 +1,206 @@
+{
+  "schema": "gems88.run-card.v3",
+  "generated_utc": "2026-10-25T03:59:15Z",
+  "lane": "H88-SSA",
+  "hypothesis": "Crustal-scale geothermal feeder faults align structure-tensor strike across RTP, TMI-HG, isostatic gravity HG, basement depth, and DEM even when surface scarps are absent from USGS/INGENIOUS catalogues",
+  "mechanism": "300 m structure tensors; weighted circular resultant length of 2-theta orientations; basement-step gate; low-slope dip-slope penalty; elevation-detrended conductivity residual; 3 px collar; 3.2 px spacing; dual-regime 55/45",
+  "named_non_fault_process": "Unfaulted tilted fault-block dip slopes or granitic batholith contacts with coherent strike but no brittle offset",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "verdict_summary": "NEGATIVE \u2014 research download only; literal 17GEMSDOE overlap 1.0 > 0.70; 0 slots",
+  "weekly_slots_used": 0,
+  "organizer_confirmed": null,
+  "submission_name": "GEMSDOE88-SSA88-2A3BFF3B",
+  "submission_note": "H88-SSA tensor azimuth coherence 32000d; HOLDOUT-DTI 0.0000; gt25 0.45; UNSCORED",
+  "submission_note_length": 80,
+  "download": "docs/downloads/gems88-ssa88-azimuth-coherence-20261025-2a3bff3b-zeros-DO-NOT-SUBMIT.tif",
+  "zip_download": "docs/downloads/gems88-ssa88-azimuth-coherence-20261025-2a3bff3b-zeros-DO-NOT-SUBMIT.zip",
+  "raster_sha256": "2a3bff3bd68259ecfb0bb3b25018e6ff7f8e1dd89e98faa71774d5d2078b1c1f",
+  "zip_sha256": "980528364fc0609dd47ea32f432d5a92dc29bf3ca10f13afeb0a05f20e1c4168",
+  "elapsed_s": 100.4,
+  "experiments": {
+    "exp1_kappa_only": {
+      "n_dots": 29956,
+      "share_le2": 0.0,
+      "share_gt10": 0.8147282681265856,
+      "share_gt25": 0.5409266924823074,
+      "median_d_cat_px": 27.80287742614746,
+      "min_d_cat_px": 3.1622776985168457
+    },
+    "exp2_kappa_x_basement": {
+      "n_dots": 18729,
+      "share_le2": 0.0,
+      "share_gt10": 0.8460142025735491,
+      "share_gt25": 0.5855624966629291,
+      "median_d_cat_px": 30.5941162109375,
+      "min_d_cat_px": 3.1622776985168457
+    },
+    "exp3_ssa_full": {
+      "n_dots": 18168,
+      "share_le2": 0.0,
+      "share_gt10": 0.8457177454865697,
+      "share_gt25": 0.5747468075737561,
+      "median_d_cat_px": 30.0,
+      "min_d_cat_px": 3.1622776985168457
+    }
+  },
+  "fingerprint": {
+    "n_dots": 32000,
+    "share_le2": 0.0,
+    "share_gt10": 0.793625,
+    "share_gt25": 0.45,
+    "median_d_cat_px": 23.409399032592773,
+    "min_d_cat_px": 3.1622776985168457
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "max_symmetric_auc": 0.560802,
+    "max_feature": "ssa_low_slope",
+    "passed": true,
+    "n_features": 4,
+    "rows": [
+      {
+        "feature": "ssa_kappa",
+        "auc": 0.519298,
+        "symmetric_auc": 0.519298
+      },
+      {
+        "feature": "ssa_basement_step",
+        "auc": 0.525866,
+        "symmetric_auc": 0.525866
+      },
+      {
+        "feature": "ssa_low_slope",
+        "auc": 0.439198,
+        "symmetric_auc": 0.560802
+      },
+      {
+        "feature": "ssa_cal_residual",
+        "auc": 0.503819,
+        "symmetric_auc": 0.503819
+      }
+    ],
+    "note": "Proxy canary vs mapped catalogue positives. Surface is catalogue-collared by construction."
+  },
+  "uniqueness": {
+    "n_compared": 57,
+    "max_3px_overlap_disc": 0.288313,
+    "max_3px_overlap_label": "GEMSDOE88:gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "max_abs_rho_disc": 0.061652,
+    "max_abs_rho_label": "GEMSDOE88:gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "unique_like_for_like": true,
+    "max_3px_overlap_disc_pass": true,
+    "max_rho_pass": true,
+    "literal_dense_witness_overlap": 1.0,
+    "literal_dense_witness_pass": false,
+    "literal_duplicate": true,
+    "rows_head": [
+      {
+        "label": "17GEMSDOE:dense_17gemdoe.tif",
+        "overlap_3px": 1.0,
+        "abs_spearman": 0.206995,
+        "dense": true
+      },
+      {
+        "label": "GEMSDOE88:gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.288313,
+        "abs_spearman": 0.061652,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.2755,
+        "abs_spearman": 0.030909,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88-GHMD:gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.206406,
+        "abs_spearman": 0.019254,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-cj88-crestjunction-37654dots-20261024-611844330c-zeros-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.195844,
+        "abs_spearman": 0.005761,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE80:gems80_adpt_kkt.tif",
+        "overlap_3px": 0.191969,
+        "abs_spearman": 0.023254,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.173563,
+        "abs_spearman": 0.01601,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE80:gems80_h80_dpvc.tif",
+        "overlap_3px": 0.171625,
+        "abs_spearman": 0.038331,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE78:gems78_h78_gfv.tif",
+        "overlap_3px": 0.159875,
+        "abs_spearman": 0.018215,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-gzzc-gravzero-buried-20261025-961e034d-zeros-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.159031,
+        "abs_spearman": 0.037976,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.15725,
+        "abs_spearman": 0.025147,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE83:gems83_h83_gvcd.tif",
+        "overlap_3px": 0.147906,
+        "abs_spearman": 0.010787,
+        "dense": false
+      }
+    ]
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22641,
+    "n_fold_cells": 8,
+    "dti": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "note": "Fixed-raster rescore of the emitted bytes (not a fold-refit model). Not ORGANIZER-CONFIRMED. CI collapsed: no spatial bootstrap on this arm.",
+    "tp": 0.0,
+    "fp": 57400.0,
+    "fn": 22641.0
+  },
+  "validator_output": {
+    "portal_tif_ok": true,
+    "portal_zip_ok": true,
+    "no_nan": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "layout_parity_with_sample": true,
+    "problems": []
+  },
+  "submission": {
+    "file": "docs/downloads/gems88-ssa88-azimuth-coherence-20261025-2a3bff3b-zeros-DO-NOT-SUBMIT.tif",
+    "zip_file": "docs/downloads/gems88-ssa88-azimuth-coherence-20261025-2a3bff3b-zeros-DO-NOT-SUBMIT.zip",
+    "raster_sha256": "2a3bff3bd68259ecfb0bb3b25018e6ff7f8e1dd89e98faa71774d5d2078b1c1f",
+    "zip_sha256": "980528364fc0609dd47ea32f432d5a92dc29bf3ca10f13afeb0a05f20e1c4168",
+    "positive_pixels": 32000,
+    "submission_name": "GEMSDOE88-SSA88-2A3BFF3B",
+    "submission_note": "H88-SSA tensor azimuth coherence 32000d; HOLDOUT-DTI 0.0000; gt25 0.45; UNSCORED"
+  }
+}
