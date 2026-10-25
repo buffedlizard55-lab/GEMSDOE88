@@ -2,7 +2,7 @@
 
 An Arena coding agent reviewed the request, repository, pinned official reference code and owner H33 source/build record; wrote conditional hypotheses; rechecked historical geometry and downloadable bytes; restored disclosed owner-mirror inputs; added shared pre-generation guards, fail-closed UI and tests; integrated concurrent main records; and documented limitations.
 
-No model training, new geological experiment, new prediction TIFF, portal submission or organizer-confirmed score occurred in this review. Synthetic unit-test arrays are software checks, not geological experiments. Existing imported BGCD/MTAS/PRISM/LSC/PSGV artifacts are prior-session records. Scientific explanations and inferred mechanisms are explicitly separated from measurements and unknowns.
+No model training, new geological experiment, new prediction TIFF, portal submission or organizer-confirmed score occurred in this review. Synthetic unit-test arrays are software checks, not geological experiments. Existing imported BGCD/MTAS/PRISM/LSC/PSGV/SEPA artifacts are prior-session records. Scientific explanations and inferred mechanisms are explicitly separated from measurements and unknowns.
 
 All 92 supplied site links/115 file-value claims are preserved with request-line provenance, not represented as fresh browsing of all sites. The complete normalized request is embedded in README and retained in `USER_PROMPT_20261025.md`. Fresh external access is limited to the immutable GitHub sources in the source ledger. The source report and completion appendix record verification and unresolved requirements; no secret/account credential was requested or stored.
 

@@ -54,3 +54,5 @@ No credentials are requested, stored or invented. An authenticated organizer con
 - Main's earlier live-leaderboard access statements do not remove this session's outbound-host restrictions. The current leaderboard, account quota and organizer receipts remain unverified here.
 
 - A second git refresh through `66218d7` imported existing LSC/PSGV records. Local independent byte audits now cover 40 public TIFF/ZIP pairs. Their scientific results and alleged live-source observations were not rerun or freshly authenticated here.
+
+- Third refresh `e37c667` imported SEPA and an unauthorized-for-this-request v4 HGVC approval. The original receipt's immutable URL and hash are in `evidence/session_d0c3adeb_protocol_correction.json`. Diagnostic numerical evidence is retained; its clearance and creation-order exemption are revoked. The final independent audit covers 41 existing public packages, none eligible.

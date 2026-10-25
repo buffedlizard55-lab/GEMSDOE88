@@ -59,7 +59,7 @@ const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · S
   await browser.close();
   for (const relative of ['docs/index.html', 'docs/executive-summary.html', 'docs/research.html',
     'docs/sources.html', 'docs/assets/site.css', 'docs/assets/site.js', 'docs/data/current_release.json',
-    'docs/data/download_audit.json', 'docs/status.json']) {
+    'docs/data/download_audit.json', 'docs/data/mtas88_run_card.json', 'docs/status.json']) {
     report.source_sha256[relative] = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, relative))).digest('hex');
   }
   report.status = failed ? 'FAIL' : 'PASS';

@@ -1,6 +1,6 @@
 {
   "schema": "gems88.browser-review.v1",
-  "checked_at_utc": "2026-10-25T05:16:21.230Z",
+  "checked_at_utc": "2026-10-25T05:38:01.677Z",
   "browser": "153.0.8010.0",
   "pages": [
     {
@@ -72,14 +72,15 @@
   ],
   "failed_fetch_stays_negative": true,
   "source_sha256": {
-    "docs/index.html": "4bb849b9e769551fc2c9e91646b3049739b950f080ee4ffe0260814d7f7b7184",
-    "docs/executive-summary.html": "5a05b8a0c6b35eb7b5540f2dc3c564ca5ada56b33047ded71827ad28b6638b2e",
-    "docs/research.html": "ff06218ff2a8d3fc7b537e47446a00ef8b24acf5656c097cc6587c5411773a29",
-    "docs/sources.html": "862f662536eba9600352ce445af3aa3a956c89e7e234682c178d607e3ca344ea",
+    "docs/index.html": "de168b667eb46ee74154e4389935fc32c388d0c83e3e5937eb049cb5f8dee3d1",
+    "docs/executive-summary.html": "a329b90dba9ea1918ba7d8b599ce143bf9c392c8e7e58c20b691f6b563b3f27f",
+    "docs/research.html": "102e135186784c3315bd4e0b9ab163002201a9b208b1b8bc847bfc853c22cac8",
+    "docs/sources.html": "a8634c8cd6fce6dc496b5184b09c23986d53f4311dc0947d4721a28807ea3819",
     "docs/assets/site.css": "afac9aae4627ec3053821e354b782f1fb6d0da902d1c27e4d6411db849f10949",
     "docs/assets/site.js": "3c5b347fe5b343fd231c59ad1f4ea067d171d290bb38aba62dd5d4f456fd9bf2",
     "docs/data/current_release.json": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",
-    "docs/data/download_audit.json": "bbdd5fb4de5761909733891c1de84e1e4f1265fef18eaa4004547e6d023dcb98",
+    "docs/data/download_audit.json": "7dccd63f94a6d62f6c5cf37e2f704db912f9153135c293995d93536aa6542040",
+    "docs/data/mtas88_run_card.json": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
     "docs/status.json": "fc998b0b8591dee68264aba839696d1b5d9a9df2acb6e95f37c37ca965cd540e"
   },
   "ok_to_submit": false,

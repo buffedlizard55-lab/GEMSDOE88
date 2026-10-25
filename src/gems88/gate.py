@@ -21,10 +21,11 @@ from pathlib import Path
 import numpy as np
 import rasterio
 from rasterio.io import MemoryFile
-from gems57.uniqueness import dot_overlap
+from gems57.uniqueness import _near, dot_overlap, excess_overlap
 from scipy.stats import rankdata
 
 POLICY_VERSION = "gems88-gate-v3"
+POLICY_VERSION_V4 = "gems88-gate-v4"
 FP_SCREEN_MIN_GT25 = 0.35   # share of dots > 25 px from any mapped fault (derived from 20 owner-reported rasters; necessary, not sufficient)
 OVERLAP_MAX = 0.70
 RHO_MAX = 0.90
@@ -275,6 +276,29 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
                  identical_decoded=bool(np.array_equal(cand_dots, lit_dots)))
         r["blocks_literal"] = bool(lit > OVERLAP_MAX or pre_lit > OVERLAP_MAX or abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX or r["identical_decoded"])
         r["blocks_like_for_like"] = bool(like > OVERLAP_MAX or abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX or r["identical_decoded"])
+        # --- Historical v4 diagnostics ONLY (not an authorized decision policy).
+        # The binding literal rule remains above and in decide(). Dense surfaces
+        # on rank correlation plus chance-corrected excess overlap when their
+        # 3-px halo does not already cover the whole footprint. A continuous
+        # probability surface positive everywhere has no dots, so the literal
+        # `>0`-support overlap (= 1.0 for every candidate) cannot evidence
+        # lane drift; it is still reported verbatim above as `literal_*`.
+        if dense:
+            halo_cov = float(_near(lit_dots, RADIUS_PX)[footprint].mean())
+            excess = excess_overlap(lit, halo_cov)
+        else:
+            halo_cov, excess = None, None
+        r["halo_coverage_footprint"] = halo_cov
+        r["excess_overlap_3px"] = excess
+        r["space_filling"] = bool(dense and excess is None)
+        rho_blocks = abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX
+        if not dense:
+            dot_blocks = lit > OVERLAP_MAX
+        elif excess is not None:
+            dot_blocks = excess > OVERLAP_MAX
+        else:
+            dot_blocks = False  # historical diagnostic only; literal overlap still blocks
+        r["blocks_v4"] = bool(rho_blocks or dot_blocks or r["identical_decoded"])
         rows.append(r)
         seen[key] = r
         if dense and witness is None:
@@ -297,6 +321,16 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
         like_for_like_blockers=[r["label"] for r in ok_rows if r["blocks_like_for_like"]],
         unique_literal=bool(n > 0 and ok_rows and not errors and not any(r["blocks_literal"] for r in ok_rows)),
         unique_like_for_like=bool(n > 0 and ok_rows and not errors and not any(r["blocks_like_for_like"] for r in ok_rows)),
+        policy_v4=POLICY_VERSION_V4,
+        v4_blockers=[r["label"] for r in ok_rows if r["blocks_v4"]],
+        unique_v4=bool(n > 0 and ok_rows and not errors and not any(r["blocks_v4"] for r in ok_rows)),
+        space_filling_rasters=[r["label"] for r in ok_rows if r.get("space_filling")],
+        worst_dotfield_overlap=(lambda w: None if w is None else dict(label=w["label"], value=w["literal_overlap_3px"]))(
+            max((r for r in ok_rows if not r["dense"]), key=lambda r: r["literal_overlap_3px"], default=None)),
+        worst_excess_overlap=(lambda w: None if w is None else dict(label=w["label"], value=w["excess_overlap_3px"]))(
+            max((r for r in ok_rows if r.get("excess_overlap_3px") is not None), key=lambda r: r["excess_overlap_3px"], default=None)),
+        worst_literal_overlap=(lambda w: None if w is None else dict(label=w["label"], value=w["literal_overlap_3px"]))(
+            max(ok_rows, key=lambda r: r["literal_overlap_3px"], default=None)),
         vacuity_witness=witness, rows=rows)
 
 
@@ -356,3 +390,21 @@ def decide(*, portal, uniqueness, canary_passed, holdout_beats_bar, name, note, 
                 note_len=len(note) if isinstance(note, str) else None,
                 name_len=len(name) if isinstance(name, str) else None,
                 human_step_remaining="Separate selector authorization and the account's current portal allowance are required; this gate never spends a slot.")
+
+
+def decide_v4(*, portal, uniqueness, canary_passed, holdout_beats_bar, name, note, used_names,
+              receipt_sha_matches=True) -> dict:
+    """Compatibility name only: delegate to the original literal gate.
+
+    IR-88-127's dense/creation-order exemptions were not authorized by the
+    user's any-registry rule. The v4 diagnostic fields may remain in historical
+    evidence, but cannot replace unique_literal or authorize a selector/slot.
+    Keeping one decision implementation avoids a second, weaker policy path.
+    """
+    result = decide(portal=portal, uniqueness=uniqueness, canary_passed=canary_passed,
+                    holdout_beats_bar=holdout_beats_bar, name=name, note=note,
+                    used_names=used_names, receipt_sha_matches=receipt_sha_matches)
+    result["compatibility_entrypoint"] = POLICY_VERSION_V4
+    result["informational"].append(
+        "Legacy v4/excess-overlap diagnostics are not authorization to waive the literal any-registry gate.")
+    return result

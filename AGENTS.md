@@ -8,3 +8,7 @@
 6. Do not append new "current" banners to the website. `scripts/render_decision.py` renders the primary overview and executive guide from the canonical manifest and `scripts/audit_downloads.py` evidence. `--check` rejects drift. Keep historical lane records in their closed archive. Every published research TIFF and the TIFF inside its ZIP must keep the negative filename marker unless a future shared approval contract genuinely clears it.
 7. Cite immutable sources and state which were actually retrieved. Network/auth limitations do not justify calling user-provided Dropbox links official or calling local checks organizer acceptance. Only a submission-page receipt can establish ORGANIZER-CONFIRMED evidence.
 8. Complete three review passes; run tests, normal and optimized site guards, and the expected negative generation/slot gate. Preserve negative results and explicit limitations. Keep raw data, feature caches and browser/test artifacts out of Git.
+
+## Policy-regression warning
+
+The imported `decide_v4` API is compatibility-only and delegates to the original literal gate. Its dense/creation-order exceptions and automatic HGVC upload clearance were revoked in IR-88-D0C3ADEB-08. Never resurrect them or whitelist an `ok_to_submit: true` record while the literal gate/selector fails.

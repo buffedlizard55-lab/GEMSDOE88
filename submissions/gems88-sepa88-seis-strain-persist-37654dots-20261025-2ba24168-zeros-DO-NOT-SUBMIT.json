@@ -1,0 +1,15 @@
+{
+  "file": "gems88-sepa88-seis-strain-persist-37654dots-20261025-2ba24168-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "gems88-sepa88-seis-strain-persist-37654dots-20261025-2ba24168-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "2ba2416809abf4c728e70142a12ef28199bdc154e89ea0cb153747788ee8329c",
+  "zip_sha256": "e3c602649f03c34dedb818a1414b5ffa78ff51749716c27c1043802b2bf4942a",
+  "submission_name": "GEMSDOE88-SEPA88-2BA24168",
+  "submission_note": "SEPA88 seis-strain+persist PoE 37654d; HOLDOUT-DTI 0.1951 far 0.1221 blind 0.0743; UNSCORED",
+  "note_length": 91,
+  "positive_pixels": 37654,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null
+}

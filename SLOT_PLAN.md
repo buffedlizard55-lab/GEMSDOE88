@@ -2,7 +2,7 @@
 
 **Experiments: 0. Newly generated TIFFs: 0. Slots used by this session: 0. Promote: NO.** Every nonempty allowed output necessarily exceeds the supplied 70% overlap limit against the registered dense witness. Do not schedule a duplicate, an old renamed TIFF or an untested hypothesis.
 
-The full 40-file research inventory is downloadable but not eligible. The canonical educational download is TDKL, not the most recently merged lane. Stored HOLDOUT-DTI values and byte uniqueness do not confer eligibility. The 92-site results supplied by the user have no organizer receipts here.
+The full 41-file research inventory is downloadable but not eligible. The canonical educational download is TDKL, not the most recently merged lane. Stored HOLDOUT-DTI values and byte uniqueness do not confer eligibility. The 92-site results supplied by the user have no organizer receipts here.
 
 A future selector must use a frozen complete registry and comparable buffered whole-segment holdout with per-feature leakage canaries and a paired physical-block interval. Only after all scientific/protocol gates pass may it consult the authenticated portal's actual weekly cap. This session did not determine the account's remaining quota and did not submit anything. The user authorized a code PR/merge, not automatic competition submission. [Ordered next steps](research/session-d0c3adeb-review.md#next-steps-in-order).
 

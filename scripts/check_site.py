@@ -825,6 +825,27 @@ def main(root: Path = ROOT) -> None:
         bgcd["zip_sha256"] in index and bgcd["zip_sha256"] in executive,
         "BGCD zip_sha256 missing in index/executive",
     )
+    # Concurrent SEPA is archived; the unauthorized HGVC v4 approval is revoked.
+    sepa = json.loads((root / "registry/sepa88_run_card.json").read_text())
+    require(sepa == json.loads((docs / "data/sepa88_run_card.json").read_text()), "SEPA card mirrors differ")
+    require(sepa["ok_to_submit"] is False and sepa["verdict"] == "negative", "SEPA must stay negative")
+    sepa_tif = root / sepa["download"]
+    require(sha256(sepa_tif) == sepa["raster_sha256"], "SEPA TIFF differs from record")
+    for page in (index, executive):
+        require(sepa_tif.name in page and sepa["raster_sha256"] in page, "SEPA archival identity missing")
+        require("Unsupported HGVC submission clearance revoked" in page, "v4 correction must be disclosed")
+    reaudit = json.loads((root / "registry/hgvc88_gate_v4_reaudit_20261025.json").read_text())
+    require(reaudit == json.loads((docs / "data/hgvc88_gate_v4_reaudit_20261025.json").read_text()), "HGVC correction mirrors differ")
+    require(reaudit["policy"] == "gems88-gate-v3" and reaudit["ok_to_submit"] is False
+            and reaudit["eligible_for_selector"] is False and reaudit["approved_for_weekly_slot"] is False
+            and reaudit["subject"]["sha256"] == hgvc_card["raster_sha256"]
+            and reaudit["uniqueness_recomputed"]["unique_literal"] is False
+            and reaudit["uniqueness_recomputed"]["worst_literal_overlap"]["value"] == 1.0
+            and reaudit["correction"]["reason_id"] == "IR-88-D0C3ADEB-08",
+            "Unsupported v4 dense-prior/selector clearance must remain revoked")
+    addendum = json.loads((root / "registry/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text())
+    require(addendum == json.loads((docs / "data/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text())
+            and addendum["ok_to_submit"] is False, "Creation-order exemption must not clear HGVC")
     print(
         "PASS: canonical decision first, research bytes, archived records, Pages links and negative gates agree"
     )
