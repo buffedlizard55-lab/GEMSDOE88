@@ -1,0 +1,86 @@
+{
+  "schema": "gems88.protocol-integrity-review.v1",
+  "date_utc": "2026-10-24",
+  "lane": "protocol-integrity-only",
+  "hypothesis": "Local eligibility must not authorize literal duplicates or inverted leakage features.",
+  "mechanism": "Shared pinned-byte saturation/overlap and format audits plus synthetic negative gate probes; no geological model fitted.",
+  "named_non_fault_process": "Not tested in this software review. Existing MDPS88 artifact's geological mimic: pluvial shoreline benches and fluvial terrace risers.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "HISTORICAL_ONLY_NOT_RETRAINED_IN_THIS_REVIEW",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "dti": 0.06672815072543178,
+    "ci95": [
+      0.05511224682791515,
+      0.0784201650660985
+    ],
+    "withheld_positive_pixels": 22893,
+    "source": "evidence/mdps88_experiment2_20261024.json",
+    "new_holdout_experiments": 0,
+    "limitation": "Catalogue recovery does not validate hidden off-catalogue leaderboard performance. No new experiment permitted after DUPLICATE_STOP."
+  },
+  "correlation_overlap_vs_registry": {
+    "final_literal_overlap_3px_remeasured": 1.0,
+    "literal_duplicate": true,
+    "scope": "One hash-pinned counterexample suffices to reject; NOT a complete registry uniqueness scan.",
+    "preplacement": "Universal coverage certificate blocks every nonempty dot placement before training; no new surface created.",
+    "historical_surface_abs_spearman": 0.10556715616150086,
+    "historical_surface_rho_not_recomputed": true
+  },
+  "saturation_certificate": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.7,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate."
+  },
+  "validator_output": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "existing_research_artifact": "docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+  "raster_sha256": "bd64000f96e96f09202d61027fb5ef45cff53baed7591279cc7e971ba1e835cd",
+  "zip_one_byte_identical_tif": true,
+  "submission_name": "GEMSDOE88-MDPS88-MIX-20261024",
+  "submission_note": "Protocol-integrity audit of existing MDPS88; literal duplicate stop; no new model or organizer score; DO NOT SUBMIT",
+  "software_checks": {
+    "template_pins_unchanged": true,
+    "literal_duplicate_cannot_be_selector_eligible": true,
+    "both_auc_directions_blocked": true
+  },
+  "new_rasters_generated": 0,
+  "experiments_run": 0,
+  "slots_used": 0,
+  "organizer_confirmed_score": null,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "decision": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "limitations": [
+    "No actual single-method paragraph was supplied; software review lane only.",
+    "No protocol-unique nonempty raster exists against the measured dense witness under the current support definition.",
+    "Current DrivenData standings, rules, deadlines, account receipts and weekly allowance cannot be verified within this sandbox's host allowlist.",
+    "Restored input hashes authenticate owner-mirror bytes, not organizer provenance or redistribution permission."
+  ]
+}

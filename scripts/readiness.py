@@ -9,9 +9,14 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+# Direct CLI execution sets sys.path[0] to scripts/, not the repository root.
+# Keep package-qualified imports working both from Python and as a script.
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 
 def finite(x):
@@ -43,10 +48,13 @@ def assess(card, root=ROOT):
         require(h.get(flag) is True, f'Holdout protocol not verified: {flag}')
     canaries = card.get('canaries') or []
     require(bool(canaries), 'Feature-alone leakage canaries missing')
-    require(set(card.get('feature_names') or []) == {c.get('feature') for c in canaries}
-            and bool(card.get('feature_names')), 'Canaries do not cover all features')
+    names = card.get('feature_names') or []
+    require(set(names) == {c.get('feature') for c in canaries}
+            and bool(names) and len(names) == len(set(names)) == len(canaries),
+            'Canaries must cover each feature exactly once')
     for c in canaries:
-        require(finite(c.get('auc')) and 0 <= c['auc'] <= 0.90,
+        require(finite(c.get('auc')) and 0 <= c['auc'] <= 1
+                and max(c['auc'], 1 - c['auc']) <= 0.90,
                 f'Leakage canary blocked: {c.get("feature")}')
     u = card.get('uniqueness') or {}
     require(u.get('registry_complete') is True, 'Registry inventory incomplete')
@@ -98,7 +106,7 @@ def verify_template(root=ROOT):
 
 def current_status(root=ROOT):
     """Represent canonical H88-TDKL. A format PASS is not slot approval."""
-    from validate_current import release_report
+    from scripts.validate_current import release_report
 
     report = release_report(root)
     problems = []

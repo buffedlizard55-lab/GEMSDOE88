@@ -9,9 +9,9 @@
   - **Blind-Basin `> 25 px` (`n=3,117`):** **`0.078959`** (`95% CI [0.050407, 0.112276]`), paired $\Delta$ vs `H88-ADHR` (`0.074122`, stored bar `0.065263`) = **`+0.004837`** (`+0.013696` vs stored bar).
 - **Single-Feature Leakage Canary & Scramble Gate (`87` features):** **PASS** (`87/87 <= 0.90`, `max = 0.770155`, `max zero-cat = 0.590284`, `max HGVC-20 = 0.58654`; quadrant scramble bit-identical `True`).
 - **H33-Parity Fingerprint Screen (`gems88-gate-v3`):** **PASS** (`37,654` dots; `share_le2 = 0.0000`; `share_gt25 = 0.4290 >= 0.35`; `median_d_cat = 19.24 px`).
-- **324-Raster Uniqueness Gate (`238` pinned/concurrent + `86` live-HEAD `2026-10-24` `GEMSDOE86..92` rasters):**
+- **326-Raster Uniqueness Gate (`240` pinned/concurrent + `86` live-HEAD `2026-10-24` `GEMSDOE86..92` rasters):**
   - Pre-placement continuous surface max `|Spearman rho| = 0.208144 <= 0.90` (**PASS**).
-  - Final binary like-for-like 3-px forward overlap across all `324` rasters (`198` distinct dot sets): **`max = 0.607426 <= 0.70` (`0` blockers — PASS!)** (vs `TDKL` `0.3831`, vs `VESS` `0.3851`, vs `GTHC` `0.5976`, vs `QTSK` `0.6074`, vs `H33` `0.4442`, vs `GEMSDOE89` `0.3087`, vs `GEMSDOE90` `0.0722`).
+  - Final binary like-for-like 3-px forward overlap across all `326` rasters (`200` distinct dot sets): **`max = 0.607426 <= 0.70` (`0` blockers — PASS!)** (vs `TDKL` `0.3831`, vs `VESS` `0.3851`, vs `GTHC` `0.5976`, vs `QTSK` `0.6074`, vs `H33` `0.4442`, vs `GEMSDOE89` `0.3087`, vs `GEMSDOE90` `0.0722`).
   - Binding literal stop (`IR-88-86` / `IR-88-114`): literal `17GEMSDOE` space-filling witness is `1.0000 > 0.70` (`5,167,373/5,167,373` footprint cells `> 0`), and weekly slot promotion requires an explicit human selector decision. Therefore `ok_to_download = true`, `ok_to_submit = false`, `all_5_discriminating_gates_pass = true`, `verdict = "negative"` (`0` weekly slots spent; `validate_hgvc88.py --require-submit` exits `2`).
 
 ---

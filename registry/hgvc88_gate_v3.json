@@ -20,7 +20,7 @@
   "verdict": "negative",
   "label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT (held only by literal 17GEMSDOE dense witness + human selector)",
   "blocking_reasons": [
-    "UNIQUENESS (binding literal rule, IR-88-86): forward 3-px overlap = 1.0000 > 0.70 against full-footprint continuous 17GEMSDOE witness (5,167,373/5,167,373 footprint pixels > 0)"
+    "UNIQUENESS: literal registry rule failed or unverified; no dense-prior exemption: 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif, sibling_head_20261024:GEMSDOE86__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
   ],
   "portal_values_and_grid_ok": true,
   "portal_layout_parity_with_sample": true,
@@ -68,8 +68,8 @@
     "beats_both_bars_with_positive_ci95": true
   },
   "uniqueness": {
-    "registry_rasters_checked": 324,
-    "distinct_dot_sets_checked": 198,
+    "registry_rasters_checked": 326,
+    "distinct_dot_sets_checked": 200,
     "surface_preplacement_max_abs_spearman": 0.208144,
     "worst_like_for_like_overlap": {
       "label": "GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",

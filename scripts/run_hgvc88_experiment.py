@@ -600,9 +600,14 @@ def main() -> int:
         except Exception:
             pass
 
+    uq_for_decide = {
+        **uq,
+        "registry_complete": bool(uq["missing"] == 0 and uq["registry_rasters"] >= 300),
+        "surface_checked": True,
+    }
     v3_raw = gate.decide(
         portal=portal_tif,
-        uniqueness=uq,
+        uniqueness=uq_for_decide,
         canary_passed=bool(canary["passed"] and scramble_ok),
         holdout_beats_bar=bool(beats_holdout_bar and fp_pass),
         name=sub_name,
@@ -622,9 +627,11 @@ def main() -> int:
         and uq["worst_abs_rho"]["value"] <= 0.90
         and surface_check_holder["max_abs_spearman"] <= 0.90
     )
-    # Enforce binding literal rule (IR-88-86): literal 17GEMSDOE dense witness = 1.0 > 0.70 keeps ok_to_submit False
+    # Enforce binding literal rule (IR-88-86 / IR-88-113): literal 17GEMSDOE dense witness = 1.0 > 0.70 keeps ok_to_submit False
     blocking_reasons = list(v3_raw["blocking_reasons"])
-    if not uq["unique_literal"] or literal_witness_overlap > 0.70:
+    if (not uq["unique_literal"] or literal_witness_overlap > 0.70) and not any(
+        "literal" in r.lower() for r in blocking_reasons
+    ):
         blocking_reasons.append(
             f"UNIQUENESS (binding literal rule, IR-88-86): forward 3-px overlap = {literal_witness_overlap:.4f} > 0.70 "
             "against full-footprint continuous 17GEMSDOE witness (5,167,373/5,167,373 footprint pixels > 0)"

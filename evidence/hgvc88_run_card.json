@@ -1,7 +1,7 @@
 {
   "schema": "gems88.hgvc88.run_card.v1",
   "run_id": "GEMSDOE88-HGVC88-20261024-d5329f31",
-  "generated_utc": "2026-10-25T02:25:22Z",
+  "generated_utc": "2026-10-25T02:43:05Z",
   "lane": "H88-HGVC",
   "preregistration_id": "PREREG-20261024-HGVC88",
   "hypothesis": "Blind geothermal faults missing from the USGS/INGENIOUS surface catalogue lose brittle scarp relief to smectite/argillic alteration while lateral groundwater flow shifts high-geothermometer outflow plumes (quartz, chalcedony, Na-K-Ca minus surface temperature) and shallow 1m-2m conductive thermal gradients 1-3 km down-bajada from the concealed feeder fault. Back-projecting cold-well-decontaminated geochemical disequilibrium and vertical probe gradients up the hydraulic and basement-depth dip onto perched smectite clay-cap conductivity residuals, hydrothermal magnetite-destruction troughs, tufa-decontaminated opaline sinter corridors, and cover-decoupled basement steps recovers concealed geothermal fault conduits across both relay zones and >2.5 km blind basins.",
@@ -9,7 +9,7 @@
   "named_non_fault_mimic": "Pleistocene Lake Lahontan (~1330 m) and Lake Bonneville (~1555 m) shoreline carbonate tufa mounds (146/709 Paleo_geothermal_final.csv rows) and wave-cut benches, flat closed-basin playa evaporite brine collars (high raw cond_surf without basement step), and cold agricultural irrigation wells (Cold / temp_c < 18 C).",
   "experiments_executed": 3,
   "experiment_budget_max": 3,
-  "elapsed_seconds": 197.61,
+  "elapsed_seconds": 206.89,
   "wallclock_budget_seconds_max": 7200,
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
@@ -370,8 +370,8 @@
   },
   "correlation_overlap_vs_registry": {
     "evidence_class": "REGISTRY-MEASUREMENT",
-    "registry_rasters_checked": 324,
-    "distinct_dot_sets_checked": 198,
+    "registry_rasters_checked": 326,
+    "distinct_dot_sets_checked": 200,
     "live_head_20261024_sibling_rasters_included": 86,
     "surface_preplacement_max_abs_spearman": 0.208144,
     "surface_preplacement_max_label": "17GEMSDOE:dense_17gemdoe.tif",
@@ -429,7 +429,7 @@
   "ok_to_submit": false,
   "verdict": "negative",
   "blocking_reasons": [
-    "UNIQUENESS (binding literal rule, IR-88-86): forward 3-px overlap = 1.0000 > 0.70 against full-footprint continuous 17GEMSDOE witness (5,167,373/5,167,373 footprint pixels > 0)"
+    "UNIQUENESS: literal registry rule failed or unverified; no dense-prior exemption: 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif, sibling_head_20261024:GEMSDOE86__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
   ],
   "organizer_confirmed_score": null,
   "weekly_slots_spent": 0
