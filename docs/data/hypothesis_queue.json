@@ -4,7 +4,7 @@
   "review_branch": "arena/693b10af-gemsdoe88",
   "source_snapshot": {
     "files": 154,
-    "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+    "sha256": "062d23ee578ea5488049870d51be30cd75802f8e4f762ed42e9c792a47b42042"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -49,6 +49,13 @@
       "status": "HISTORICAL_EVALUATED_NEGATIVE",
       "retired_proposal_alias": "H88-GTD",
       "scope": "Parallel 82dbb5e9 ran after a negative preflight; no exception authorized. Retire the general harmonic-tensor dimensionality proposal rather than advertise it as untried. No experiment in session 693b10af."
+    },
+    {
+      "id": "H88-CON88",
+      "implementation": "scripts/run_con88_experiment.py",
+      "run_card": "registry/con88_run_card.json",
+      "run_card_sha256": "e624ed396b4e0211116896da0161f6fc40786c084fe7daa38bfaf438ed1aa92e",
+      "why_not_untested": "Cross-fleet consensus (GEMSDOE49, GEMSDOE70, BPWD) + label-blind ridge blend was executed in PR #158 (HOLDOUT-DTI 0.0017 [0.0013, 0.0021], literal overlap 1.0000 vs 17GEMSDOE and 0.8912 vs GEMSDOE87) and its unauthorized equal-support promotion was withdrawn to negative in IR-88-587C7F22-01."
     }
   ],
   "proposals": [

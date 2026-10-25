@@ -1,72 +1,43 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>H88-CON88 — downloadable · submission blocked | GEMSDOE88</title>
-<link rel="stylesheet" href="style.css">
-<style>.big{display:inline-block;padding:1rem 1.6rem;font-size:1.25rem;font-weight:700;background:#067d2e;color:#fff;border-radius:.6rem;text-decoration:none}.warn{background:#fff3cd;padding:1rem;border-radius:.5rem}.mono{font-family:monospace;word-break:break-all}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:.4rem .6rem}</style>
-</head><body><main style="max-width:900px;margin:2rem auto;padding:0 1rem">
-<h1>⚠ Downloadable · Submission Blocked</h1>
-<p><strong>H88-CON88</strong> is a new, unique competition TIFF generated 2026-10-25.
-It passed local format, uniqueness (equal-support), fingerprint, and leakage-canary checks
-with <strong>no human inspection</strong>. It is the only file here without a
-<span class="mono">DO-NOT-SUBMIT</span> filename marker.
-Its competition score is <strong>unknown</strong> — no score above H33's user-reported
-0.2778 is claimed or guaranteed.</p>
-<p class="warn"><strong>Submission is BLOCKED today.</strong> The binding generation protocol
-returns <strong>`DUPLICATE_STOP`</strong>: the pinned 17GEMSDOE dense witness covers
-100% of the 5,106,385 allowed pixels, so every nonempty allowed candidate has literal
-overlap 1.0 > 0.70 under the binding protocol. The equal-support comparison that made
-CON88 appear eligible was withdrawn under IR-88-B4DFA10C-08 / PR #151 (see AGENTS.md).
-<strong>This file is OK to download for research/review, but NOT OK to submit to the competition today.</strong></p>
+<title>Archived H88-CON88 Research Only — DO NOT SUBMIT | GEMSDOE88</title>
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/gate.css">
+</head><body><a href="#main" class="sr-only">Skip to content</a>
+<header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE88</a>
+<nav class="nav" aria-label="Main navigation"><a href="index.html">Current decision</a>
+<a href="executive-summary.html">Submission guide</a><a href="research.html">Research queue</a><a href="sources.html">Sources</a></nav></div></header>
+<main id="main"><section><div class="wrap">
+<div class="kicker">Historical lane archived · IR-88-587C7F22-01 · 2026-10-25</div>
+<h1>Archived H88-CON88 — Research Download Only · DO NOT SUBMIT</h1>
+<div class="callout warn"><h2>SUBMIT: NO — DO NOT SUBMIT (`ok_to_submit: false`)</h2>
+<p>PR #158's equal-support clearance for <strong>H88-CON88</strong> is withdrawn under the binding literal Parallel-Run Protocol and <code>AGENTS.md</code> (`IR-88-B4DFA10C-08` / `IR-88-587C7F22-01`). The GeoTIFF bytes (<code>SHA-256: e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68</code>, <code>37,654</code> dots) are preserved unchanged under a mandatory <code>-DO-NOT-SUBMIT</code> filename for research and audit only.</p></div>
 
-<p><a class="big" href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif" download>⬇ DOWNLOAD RESEARCH .TIF</a>
-&nbsp;<a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip" download>or one-TIFF .ZIP</a></p>
+<p><strong>Why submission is blocked:</strong></p>
+<ul>
+<li><strong>Binding literal overlap gate (`1.0000 &gt; 0.70`):</strong> Pinned <code>17GEMSDOE</code> covers all <code>5,106,385</code> allowed footprint pixels (literal 3-px overlap <code>1.0000 &gt; 0.70</code>), and sibling <code>GEMSDOE87</code> (<code>gems87-bmtd</code>) has literal overlap <code>0.891220 &gt; 0.70</code>. Equal-support top-N (<code>0.6936</code> vs <code>GEMSDOE49</code>) is diagnostic-only and never grants clearance.</li>
+<li><strong>Holdout gate (`HOLDOUT-DTI = 0.0017` vs `0.205991`):</strong> Per-fold re-emission scored <code>HOLDOUT-DTI = 0.001714 [0.001325, 0.002143]</code> (<code>gems57-pooled-hide-v2</code>, <code>n = 60,988</code> withheld positives on 4 quadrant folds) and fixed-TIF scored <code>0.0000</code> vs <code>H33</code> <code>0.006697</code> on identical folds, well below repo holdout best <code>H88-BPWD</code> (<code>0.205991 [0.188105, 0.223344]</code>, <code>n = 22,893</code>).</li>
+<li><strong>Separate selector rule:</strong> Weekly submission slots are never chosen or authorized by a local format check (`0` slots spent; no <code>ORGANIZER-CONFIRMED</code> score exists).</li>
+</ul>
 
-<h2>Exactly how to submit (when unblocked)</h2>
-<p class="warn"><strong>Do not submit this file today.</strong> The binding protocol blocks submission
-(<code>DUPLICATE_STOP</code>). These steps apply once a future shared protocol revision clears a candidate.</p>
-<ol>
-<li>Download the <span class="mono">.tif</span> above (or the ZIP — it contains only that TIF).</li>
-<li>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData competition 306 submissions page</a> → <em>New submission</em>.</li>
-<li><strong>File to submit:</strong> choose <span class="mono">gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif</span></li>
-<li><strong>Note:</strong> paste exactly:<br><span class="mono">H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card</span> (107/140 chars)</li>
-<li>Submit, then <strong>save/screenshot the receipt and score</strong> — that receipt is the only ORGANIZER-CONFIRMED evidence. Respect the weekly cap shown on that page.</li>
-</ol>
-<p class="warn"><strong>“Predicted values must be in range [0, 1]” — fixed:</strong> this file has
-<strong>no NaN anywhere</strong> (zeros outside the footprint, suffix <span class="mono">-zeros</span>),
-min 0.0 / max 1.0, one band, EPSG:32611, 3730×3292, exact sample transform — all machine-verified
-in <a href="../registry/con88_gates.json">con88_gates.json</a>. If the portal still rejects it, save the
-exact error + receipt and file it as an irregularity; do not hand-edit the TIF.</p>
+<div class="button-row">
+  <a class="button button-primary" href="index.html">Current decision &amp; canonical research download →</a>
+  <a class="button" href="executive-summary.html">Current executive submission guide →</a>
+</div>
 
-<h2>Why this could beat 0.2778 (and why nobody can promise it)</h2>
-<p>H33 (GEMSDOE32, user-reported 0.2778) is a pure <em>subtraction</em> chain from H19-5: deleting
-≤2 px catalogue-collar dots (pure false positives under DTI algebra), 2.83–3 px kernel spacing, and a
-non-hugging distance profile (41.7% of dots &gt;25 px from any mapped fault; fleet Spearman +0.90 with score).
-CON88 preserves that exact geometry, tightens the collar to &gt;3 px, and adds (1) cross-fleet consensus —
-72% of dots corroborated by ≥2 of GEMSDOE49/GEMSDOE70/GEMSDOE88-BPWD — and (2) a fresh label-blind
-magnetic/gravity/topographic ridge for recall no fleet raster contains. Overlap vs H33: <strong>0.487</strong>
-(limit 0.70). Full line-by-line analysis: <a href="https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/research/session-con88-20261025.md">research/session-con88-20261025.md</a>,
-run card: <a href="https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/run_card_con88.json">run_card_con88.json</a>.</p>
+<p><strong>Archived research artifacts (education/audit only — DO NOT UPLOAD):</strong><br>
+<a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif" download><code>gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif</code></a> ·
+<a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip" download>One-TIFF <code>.zip</code></a> ·
+<a href="data/con88_gates.json">Corrected gates JSON</a> ·
+<a href="data/con88_run_card.json">Corrected run card</a> ·
+<a href="data/con88_clearance_withdrawal_20261025.json">Clearance withdrawal certificate</a> ·
+<a href="research/session-587c7f22-review.md">Session 587c7f22 three-pass review</a>.</p>
 
-<h2>Automated gates (all PASS)</h2>
-<table>
-<tr><th>Gate</th><th>Measured</th><th>Limit</th></tr>
-<tr><td>Format G1 (CRS/shape/transform/[0,1]/finite/ZIP)</td><td>all true</td><td>exact</td></tr>
-<tr><td>Uniqueness G2 worst overlap (all on-disk rasters)</td><td>0.6936 vs GEMSDOE49 ⚠ thin margin</td><td>≤0.70</td></tr>
-<tr><td>Uniqueness worst |Spearman ρ|</td><td>0.376</td><td>≤0.90</td></tr>
-<tr><td>Overlap vs H33</td><td>0.487</td><td>≤0.70</td></tr>
-<tr><td>Fingerprint G3: share &gt;25 px / median distance</td><td>41.7% / 20.2 px</td><td>≥35% / ≥15 px</td></tr>
-<tr><td>Leakage canary max symmetric AUC</td><td>0.631</td><td>≤0.90</td></tr>
-<tr><td>HOLDOUT-DTI (gems57-pooled-hide-v2, n=60,988, per-fold re-emission)</td><td>0.0017 [0.0013, 0.0021] — H33 fixed TIF scores 0.0067 on same folds; instrument cannot rank blind seekers (see run card)</td><td>reported</td></tr>
-</table>
-<p class="warn"><strong>Binding protocol override:</strong> despite all equal-support gates passing, the binding literal
-protocol returns <code>DUPLICATE_STOP</code> (17GEMSDOE witness covers 100% of allowed cells; overlap 1.0000 > 0.70).
-Equal-support comparison was withdrawn under IR-88-B4DFA10C-08 / PR #151. <strong>ok_to_submit = false.</strong></p>
-<p>SHA-256: <span class="mono">e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68</span> · 37,654 dots ·
-Reproduce: <span class="mono">python scripts/run_con88_experiment.py &amp;&amp; python scripts/validate_con88.py</span> ·
-Sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">competition problem</a>,
-<a href="https://github.com/drivendataorg/gems-prize-reference-solution">official reference solution</a>,
+<p><strong>Automated local format verification (no human inspector):</strong> Single-band <code>float32</code>, <code>EPSG:32611</code>, <code>3730×3292</code>, exact sample geotransform, <code>nodata=None</code>, all <code>12,279,160</code> cells finite in <code>[0.0, 1.0]</code> (<code>0.0</code> outside footprint, <code>0</code> on mapped catalogue), verified by two independent decoders in <a href="data/download_audit.json"><code>data/download_audit.json</code></a>. Official competition &amp; data references:
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData GEMS problem</a>,
+<a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md">official reference solution</a>,
 <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a>,
-<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR rules PDF</a>,
-<a href="https://epsg.io/32611">EPSG:32611</a>. All other TIFFs on this site remain DO NOT SUBMIT.</p>
-</main></body></html>
+<a href="https://gdr.openei.org/submissions/1391">DOE GDR #1391</a>,
+<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR rules PDF</a>.</p>
+</div></section></main></body></html>

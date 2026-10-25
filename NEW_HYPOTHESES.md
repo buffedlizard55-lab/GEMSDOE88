@@ -1,14 +1,15 @@
-# Current source-reviewed hypotheses — three unrun variants, no generation authorized
+# Current source-reviewed hypotheses — unrun cached-input variants, no generation authorized
 
-Read [session-693b10af-hypotheses.md](research/session-693b10af-hypotheses.md) and the [source-bound JSON queue](registry/hypothesis_queue.json) before proposing another experiment. Run `python scripts/audit_research_state.py` to detect source/run-card drift; use `--check-inputs` after the full shared restore. This metadata audit never grants a slot.
+Read [session-587c7f22-hypotheses.md](research/session-587c7f22-hypotheses.md) (5-hypothesis ranked dossier), [session-693b10af-hypotheses.md](research/session-693b10af-hypotheses.md), and the [source-bound JSON queue](registry/hypothesis_queue.json) before proposing another experiment. Run `python scripts/audit_research_state.py` to detect source/run-card drift; use `--check-inputs` after the full shared restore. This metadata audit never grants a slot.
 
 1. **H88-SPR** — repeated scarp-profile restoration against drainage, terrace and shoreline nulls (conditional first choice).
 2. **H88-AWA** — terrain-matched radiometric alteration-*width* asymmetry, not calibrated ratios of quantized codes.
 3. **H88-CBC** — conductive cross-basin breach connectivity against paleochannel/brine explanations.
+*(Extended 5-hypothesis dossier in [session-587c7f22-hypotheses.md](research/session-587c7f22-hypotheses.md) also ranks **4. H88-DRP** cross-divide $\chi$/$k_{sn}$ polarity reversal and **5. H88-TMA** cross-scale magnetic azimuth rotation $\Delta\theta$.)*
 
 These precise variants remain **PROPOSED_UNTESTED** in the reviewed checkout. Expected benefit is qualitative and uncertain, never a DTI projection. All required inputs are already in the SHA-pinned shared owner-mirror tier; no new external dataset is assumed obtainable. This is source-reviewed local novelty, not proof of worldwide or fleet-wide originality.
 
-**Corrected stale recommendations:** magnetic-marker restoration (`src/gems88/mmrx.py`), cross-scale admittance (`mtas.py`) and Gaussian gradient-decay/scaling-break (`mfs88.py`) and the harmonic tensor family (`pgtd88.py`, parallel PR #168) have already been implemented and evaluated with historical negative run cards. They are **not untested ideas**. Their archived execution is not authorization to evade the unchanged duplicate-stop rule. The older records below are historical snapshots, not today's queue.
+**Corrected stale recommendations:** magnetic-marker restoration (`src/gems88/mmrx.py`), cross-scale admittance (`mtas.py`), Gaussian gradient-decay/scaling-break (`mfs88.py`), the harmonic tensor family (`pgtd88.py`, parallel PR #168), and cross-fleet consensus + ridge (`scripts/run_con88_experiment.py`, parallel PR #158, clearance withdrawn in `IR-88-587C7F22-01`) have already been implemented and evaluated with historical negative run cards. They are **not untested ideas**. Their archived execution is not authorization to evade the unchanged duplicate-stop rule. The older records below are historical snapshots, not today's queue.
 
 The literal full-registry witness still blocks every nonempty candidate before feature construction, canaries, holdout or placement. **Zero new geological experiments, zero new candidate TIFFs, zero weekly slots in session 693b10af.** Conditional first choice is not a selected submission.
 

@@ -25,8 +25,8 @@ if __name__ == "__main__":
     import sys as _guard_sys
     from pathlib import Path as _GuardPath
     _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
-    from scripts.con88_preflight import enforce_con88_preflight
-    enforce_con88_preflight()
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
 
 import hashlib, json, sys
 from datetime import datetime, timezone
@@ -178,9 +178,9 @@ def main():
     assert not (dots & cat).any() and not (dots & ~foot).any()
     assert (dcat[dots] > COLLAR_PX).all()
 
-    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros"
+    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros-DO-NOT-SUBMIT"
     out = ROOT / "docs/downloads" / f"{name}.tif"
-    note = "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card"
+    note = "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; DO NOT SUBMIT"
     assert len(note) <= 140, len(note)
     from gems57.submission_writer import write_submission
     receipt = write_submission(out, pred, ROOT / "data/bridge/sample_submission.tif",

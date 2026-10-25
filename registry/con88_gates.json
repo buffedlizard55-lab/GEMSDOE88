@@ -1,5 +1,5 @@
 {
-  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
   "G1_format": {
     "one_band": true,
@@ -13,7 +13,8 @@
     "min": 0.0,
     "max": 1.0,
     "n_dots": 37654,
-    "zip_single_tif_byte_identical": true
+    "zip_single_tif_byte_identical": true,
+    "zip_member_matches": true
   },
   "G1_ok": true,
   "G2_uniqueness": {
@@ -128,9 +129,17 @@
         "overlap_literal": 0.5193870505125617,
         "spearman": 0.048171169641686926
       }
-    ]
+    ],
+    "worst_literal_overlap": 1.0,
+    "literal_witness_file": "data/registry/dense_17gemdoe.tif",
+    "literal_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "additional_sibling_literal_blocker": {
+      "file": "data/siblings/GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+      "overlap_literal": 0.8912200563021193
+    },
+    "equal_support_diagnostic_only": true
   },
-  "G2_ok": true,
+  "G2_ok": false,
   "G3_fingerprint": {
     "share_gt25": 0.4174058532957986,
     "share_le3": 0.0,
@@ -247,5 +256,13 @@
     }
   },
   "canary_ok": true,
-  "ok_to_submit": true
+  "ok_to_submit": false,
+  "G2_equal_support_diagnostic_ok": true,
+  "holdout_beats_incumbent": false,
+  "ok_to_download_for_research": true,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "status": "HISTORICAL_RESEARCH_CLEARANCE_WITHDRAWN",
+  "historical_ok_to_submit_before_withdrawal": true,
+  "withdrawal_irregularity": "IR-88-587C7F22-01"
 }

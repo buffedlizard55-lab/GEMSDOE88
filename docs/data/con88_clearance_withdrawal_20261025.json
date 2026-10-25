@@ -1,0 +1,50 @@
+{
+  "schema": "gems88.historical-clearance-withdrawal.v1",
+  "date_utc": "2026-10-25",
+  "id": "IR-88-587C7F22-01",
+  "lane": "H88-CON88",
+  "scientific_origin_commit": "dcd9d8a37552a776ad18e92df11de637180a52e3",
+  "scientific_origin_pr": 158,
+  "unchanged_tiff_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "unchanged_tiff_bytes": 146769,
+  "original_unmarked_files": {
+    "tiff": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "zip": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip",
+    "sidecar": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.json"
+  },
+  "original_sha256": {
+    "tiff": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "zip": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+    "sidecar": "1fd6d367dd57ac7e129a574789eca2265833074f0d7323b0fc633e82cdf45f7c",
+    "run_card_con88.json": "6d7f97480842c65a0fba6dda5efc9fb7a440a3d2f6e82292f9aa299b06acc3fb",
+    "registry/con88_gates.json": "99c26d9d2bea8b55720f3180dff43aaf1ef751341e4fb5afc9a4c66d1daa0286"
+  },
+  "archived_files": {
+    "tiff": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+    "sidecar": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.json",
+    "run_card": "run_card_con88.json",
+    "registry_mirror": "registry/con88_run_card.json",
+    "gates": "registry/con88_gates.json"
+  },
+  "archived_sha256": {
+    "tiff": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "zip": "8dcb396403dcd265303d783461ce598a8a346fecc8fbc5c7d0721eba32a856e2",
+    "sidecar": "f89b45635d333a80b38440d6c8507c68f32819ae0d3f3494cbfa451d46a53b5b",
+    "run_card_con88.json": "e624ed396b4e0211116896da0161f6fc40786c084fe7daa38bfaf438ed1aa92e",
+    "registry/con88_run_card.json": "e624ed396b4e0211116896da0161f6fc40786c084fe7daa38bfaf438ed1aa92e",
+    "registry/con88_gates.json": "7dc8cd67bdf36fb1351b22651fe626a6972082891d038f8711493efa86710c48"
+  },
+  "prediction_bytes_changed": false,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "reasons": [
+    "Literal 3-px forward dot overlap is 1.0000 > 0.70 against pinned 17GEMSDOE (ab0a0a62...) and 0.891220 > 0.70 against GEMSDOE87 gems87-bmtd.",
+    "Equal-support promotion was explicitly revoked in AGENTS.md / IR-88-B4DFA10C-08 (PR #151); equal_support_dots is diagnostic-only.",
+    "PR #158 bypassed scripts/generation_guard.py via scripts/con88_preflight.py and added carve-outs to audit_downloads.py, check_site.py, and five test modules.",
+    "CON88 failed the spatially-blocked holdout gate (per-fold HOLDOUT-DTI 0.0017 [0.0013, 0.0021] vs H88-BPWD 0.205991; fixed-TIF 0.0000 vs H33 0.0067).",
+    "Promotion to a weekly submission slot is a separate selector step and is forbidden from local format checks."
+  ]
+}
