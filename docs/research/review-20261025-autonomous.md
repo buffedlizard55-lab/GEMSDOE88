@@ -1,5 +1,8 @@
 # Autonomous repository review — 2026-10-25
 
+> **Superseded (2026-10-25):** this is an earlier review. The [current report](repo-review-dea470d9-20261025.md) preserves the H88-MTAS historical holdout, distinguishes it from the later stop, and limits novelty claims to exact method formulations.
+
+
 ## Decision first
 
 **New unique competition TIFF: not generated. Downloadable research TIFF: yes. Competition submission: no — DO NOT SUBMIT. Weekly slots used: 0.**

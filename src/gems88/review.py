@@ -32,6 +32,10 @@ class Hypothesis:
     implementation_cost: str
     external_data: str
     status: str = "UNTESTED"
+    novelty_scope: str = (
+        "The exact formulation was not found in the checked repository; related feature families exist. "
+        "This is not a claim of global or fleet-wide novelty."
+    )
 
     def as_json(self) -> dict[str, Any]:
         value = asdict(self)
@@ -39,99 +43,78 @@ class Hypothesis:
         return value
 
 
-# The queue is intentionally separate from historical lanes.  The entries are
-# methods to test, not claims that a feature is predictive.  The exact input
-# names are the names emitted by src/gems88/physics.py or the 19-band manifest.
+# This is a method-level shortlist, not a claim that its raw inputs or broad
+# geological families are new.  Exact formulations are untested; related lanes
+# are named in each contrast.  Historical H88-MTAS is deliberately excluded.
 HYPOTHESES: tuple[Hypothesis, ...] = (
     Hypothesis(
         1,
-        "H88-MTAS",
+        "MAGNETIC-MARKER-RESTORATION",
         (
-            "rtp_grad_200m",
-            "rtp_grad_800m",
-            "grav_grad_200m",
-            "grav_grad_800m",
-            "depth_to_base_log",
-            "det_elev_slope",
-            "geod_transtension",
+            "training_features.tif:B02_rtp",
+            "training_features.tif:B14_tmi",
+            "training_features.tif:B13_iso_grav_anom",
+            "training_features.tif:B12_det_elev",
+            "training_features.tif:B15_depth_to_base_surf",
         ),
-        "A normalized cross-scale gravity-to-magnetic admittance residual: a short-scale gravity edge that persists while the magnetic edge is smoothed or demagnetized, gated by basin cover and low relief.",
-        "A buried or cover-obscured basement discontinuity can retain a density edge without producing a mapped surface scarp; it therefore targets a missing fault rather than copying the catalogue geometry.",
-        "An unfaulted intrusive or volcanic lithologic contact with density contrast but weak magnetic contrast; flight-line leveling seams are a second acquisition confounder.",
-        "No existing lane in this repository combines the two scale differences across gravity and RTP as one residual. MRR is within-magnetic residualization; PHASE is angular discordance; GTHC is upward-continuation/amplitude logic.",
-        "highest",
-        "low-medium",
-        "none; uses the restored cached stack",
+        "Whiten paired magnetic texture patches on opposite sides of a candidate discontinuity; estimate a translation by phase correlation and require a stable displacement that restores marker continuity across independent swaths.",
+        "A buried or covered basement rupture can offset a subsurface magnetic marker while leaving no resolvable surface scarp; the signal is the repeatable displacement, not a ridge crest or mapped-fault distance.",
+        "Depositional facies pinch-out or an intrusive contact; GeoDAWN flight-line leveling seams are an acquisition confounder.",
+        "MAG-FABRIC-DISLOCATION measures opposite-side axial gradient-orientation change, while PHASE/XGCE compare gradient geometry. None of those exact implementations estimates a translation that restores matched-patch texture continuity; the conceptual magnetic-dislocation family is related, not novel globally.",
+        "moderate, uncertain",
+        "medium-high",
+        "No new raster proposed; uses bands in the existing feature manifest. The full training stack is absent in this checkout and owner-mirror provenance/rights were not refreshed this review.",
     ),
     Hypothesis(
         2,
-        "H88-PRAN",
+        "DRAINAGE-VETOED-SCARP-PROFILE-RESTORATION",
         (
-            "rad_k_over_th",
-            "det_elev_slope",
-            "topo10_curv_prof",
-            "depth_to_base_log",
+            "training_features.tif:B12_det_elev",
+            "training_features.tif:B19_det_elev_slope",
+            "topo_10m_derived_100m_u8.tif:curvature_relief_aspect",
+            "lidar_scarp_features_u8.tif:downface_upface_cross_scarp",
         ),
-        "Terrain-bin-matched radiometric K:Th residual with along-strike coherence, rather than a global radiometric high.",
-        "Hydrothermal alteration or soil redistribution along a covered structure may persist in shallow radiometry even when a discrete scarp is absent; matching relief reduces the mapped-scarp shortcut.",
-        "K-rich transported alluvium, parent-rock boundaries, and radiometric soil-moisture effects.",
-        "MVRD uses radiometric evidence with scarp fields; this candidate tests a terrain-matched conditional null and does not use catalogue geometry for its surface.",
+        "Fit flanking elevation profiles to a shared smooth landform plus a signed step; compare held-out profile likelihood against a smooth no-step null, repeat along strike, and veto drainage-aligned corridors.",
+        "Low-amplitude cover-softened offsets can be invisible to a single-cell ridge detector but become measurable when the same signed step repeats along an otherwise continuous piedmont profile.",
+        "Fluvial terrace risers, fan toes and pluvial shoreline benches.",
+        "TDKL, VESS, LSC and SHORE use scarp/knickpoint evidence, but the exact held-out profile-restoration likelihood with a preregistered drainage veto was not found. This is a new test statistic within a heavily tested scarp family, not a globally novel geological idea.",
+        "moderate-low, uncertain",
         "medium",
-        "low-medium",
-        "none; all named layers are already restored",
+        "No new raster proposed; depends on existing terrain/LiDAR-derived inputs. The full feature stack is absent here and source-byte identity/redistribution terms were not freshly authenticated.",
     ),
     Hypothesis(
         3,
-        "H88-FARC",
+        "TERRAIN-MATCHED-ALTERATION-WIDTH-ASYMMETRY",
         (
-            "chi_step_max",
-            "ksn_jump_norm",
-            "topo10_hs_lineament",
-            "lidar_scarp_coh",
-            "det_elev_slope",
+            "geodawn_rad_u8.tif:K_Th_U",
+            "training_features.tif:B02_rtp",
+            "training_features.tif:B19_det_elev_slope",
+            "training_features.tif:B15_depth_to_base_surf",
         ),
-        "Repeated, signed cross-channel drainage offsets normalized within catchment and channel-order strata, with a matched pseudo-crest null.",
-        "A blind rupture crossing several independent channels can leave repeated baseline offsets even when all individual scarps are below mapping confidence; replication is the missing-fault criterion.",
-        "Lithologic knickzones, inherited drainage capture, and regional base-level or climate change.",
-        "QTSK/TDKL rank absolute knickwaves or scarp polarity; FARC requires cross-catchment replication against a channel-matched null, a different statistic.",
+        "After fitting a terrain- and parent-background-matched radiometric null on training blocks, compare cross-strike K:Th residual decay widths on opposite flanks; require a localized magnetic-amplitude depression, not a radiometric edge alone.",
+        "A concealed fluid pathway may alter one permeable wall more broadly than the other even where the fault lacks a mapped surface break; paired flank width reduces broad lithologic-background effects.",
+        "Differential weathering of adjacent units, transported K-rich alluvium and soil-moisture effects.",
+        "KTH-88 already tests a signed opposite-flank K:Th step and MVRD/other lanes use radiometric or redox evidence. The untested formulation is terrain-matched residual decay-width asymmetry, not generic K:Th enrichment or asymmetry.",
+        "low-moderate, uncertain",
         "medium",
-        "medium",
-        "none; uses cached DEM-derived channels",
+        "No new raster proposed; existing GeoDAWN-derived channels are referenced. The full stack is absent and this review did not refresh GeoDAWN provenance or derivative-sharing terms.",
     ),
     Hypothesis(
         4,
-        "H88-TCONS",
+        "CONDUCTIVE-BASIN-BREACH-CONTINUITY",
         (
-            "probe2m_dab_local",
-            "well_temp_anom",
-            "cond_edge_300m",
-            "depth_to_base_log",
+            "training_features.tif:B17_cond_surf",
+            "training_features.tif:B13_iso_grav_anom",
+            "training_features.tif:B15_depth_to_base_surf",
+            "training_features.tif:B12_det_elev",
         ),
-        "Depth-conditioned temperature-to-conductivity residual: a local thermal anomaly that is not explained by regional conductance or basin depth.",
-        "A focused fluid pathway can produce a thermal response offset from a broad conductive basin halo and may mark a blind permeable fault; the residual is designed to target the mismatch.",
-        "Lake-brine conductivity, groundwater circulation, and unfractured permeable lithology.",
-        "DHTC combines deep heat/MT and basement structure; TCONS is a conditional residual with head-matched negative controls and no direct vent label.",
-        "medium",
-        "medium",
-        "none for the cached owner-mirror stack; official GDR license must be rechecked before sharing derivatives",
-    ),
-    Hypothesis(
-        5,
-        "H88-FLAC",
-        (
-            "rtp_grad_200m",
-            "grav_grad_200m",
-            "cond_edge_300m",
-            "geod_shearrate",
-            "geod_dilaterate",
-        ),
-        "Multi-sensor edge persistence after an explicit flight-line-direction artifact veto and local cross-sensor continuity test.",
-        "A fault-related edge should persist across independent sensors and not be confined to the documented east-west survey-line direction; this can recover a concealed discontinuity while rejecting a processing seam.",
-        "Common gridding artifacts, tie-line leveling, and broad lithologic contacts that align with acquisition direction.",
-        "MGC/XGCE reward cross-field edge geometry but do not apply a preregistered flight-direction null; FLAC is a robustness/control transform, not a new data source.",
-        "low-medium",
-        "low",
-        "none; GeoDAWN acquisition metadata are official context, not a new raster",
+        "Test whether a narrow conductive connection crosses an independently estimated basin-boundary saddle and coincides with a basement/gravity discontinuity; compare with a smooth basin-fill model and a drainage-aligned null.",
+        "A covered permeable connection crossing a structural basin boundary could be omitted by surface-trace mapping and could mark a blind geothermal fluid pathway.",
+        "An unfaulted permeable alluvial paleochannel or saline groundwater plume.",
+        "CTRA/DHTC use conductive curvature, thermal or multi-sensor co-occurrence. No exact topology-preserving breach-across-saddle test with a drainage-aligned null was found; its component sensors and conductive-fault family are already represented.",
+        "low, uncertain",
+        "medium-high",
+        "No new raster proposed; depends on existing conductance/gravity/depth bands. Their full-stack availability, organizer identity and reuse terms are not freshly verified here.",
     ),
 )
 
@@ -140,56 +123,62 @@ OFFICIAL_SOURCES: tuple[dict[str, str], ...] = (
     {
         "id": "competition_problem",
         "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
-        "status": "OFFICIAL_PAGE_FETCHED_2026-10-25",
-        "verified_claim": "The target is geological faults indicative of geothermal resources; the page states the 100 m EPSG:32611 feature grid, [0,1] GeoTIFF predictions, and 300 m triangular distance weighting.",
+        "status": "LINKED_NOT_FETCHED_IN_THIS_REVIEW",
+        "verified_claim": "Official manual-review link only. Claims in prior local source ledgers are historical and were not refreshed here.",
     },
     {
         "id": "competition_leaderboard",
         "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-        "status": "OFFICIAL_PAGE_FETCHED_2026-10-25",
-        "verified_claim": "The fetched public page displayed xiaofanhu at 0.4413. This is OBSERVED-PUBLIC, not a score for a GEMSDOE88 artifact and not a private/final result.",
+        "status": "NOT_FETCHED_IN_THIS_REVIEW_CURRENT_STANDING_UNVERIFIED",
+        "verified_claim": "No current leaderboard retrieval was made. The 0.3195 and 0.4413 figures remain differently scoped historical/user-reported claims in repository materials.",
     },
     {
         "id": "competition_data",
         "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
-        "status": "OFFICIAL_MANUAL_REVIEW_LINK_AUTHENTICATION_REQUIRED",
-        "verified_claim": "The organizer data page is the authoritative place to obtain challenge files; this sandbox uses no DrivenData credentials and does not call it as an authenticated download.",
+        "status": "AUTHENTICATED_ACCESS_NOT_AVAILABLE",
+        "verified_claim": "Official review link only; no DrivenData login or authenticated download was used. Owner-mirror hashes do not authenticate organizer bytes or redistribution rights.",
     },
     {
         "id": "official_rules",
         "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
-        "status": "OFFICIAL_PDF_FETCHED_2026-10-25",
-        "verified_claim": "The rules state that one 100 m GeoTIFF is submitted, allow up to three submissions per week as specified by the website, and require one selected submission for both prize rounds; they also require disclosure of generative-AI use.",
+        "status": "NOT_FETCHED_IN_THIS_REVIEW",
+        "verified_claim": "Official manual-review link only. No current rules, deadline, weekly allowance or terms are asserted from a fresh retrieval.",
     },
     {
         "id": "reference_solution",
-        "url": "https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b",
-        "status": "OFFICIAL_REPOSITORY_HASH_VERIFIED_2026-10-25",
-        "verified_claim": "The pinned README instructs competitors to obtain competition data from the challenge website and documents CPU-only and GPU environment options.",
+        "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+        "status": "PINNED_GITHUB_HTML_FETCHED_2026-10-25; API_ATTEMPT_403",
+        "verified_claim": "The GitHub API request returned HTTP 403 rate limit at 2026-10-25 13:52:36 UTC, but a later fetch_page of this exact pinned GitHub HTML URL succeeded. The README identifies the official GEMS Prize reference solution, directs data downloads to the challenge website, and describes CPU-only and GPU options (including Apple Silicon MPS). This does not authenticate organizer data, current rules, or any score receipt.",
     },
     {
         "id": "geodawn",
         "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
-        "status": "OFFICIAL_USGS_PAGE_FETCHED_2026-10-25",
-        "verified_claim": "USGS describes the magnetic/radiometric survey, lidar coordination, flight specifications, processing, and CC0 rights on the landing page.",
+        "status": "LINKED_NOT_FETCHED_IN_THIS_REVIEW",
+        "verified_claim": "Official manual-review link only; no new USGS retrieval or license/availability check was made.",
     },
     {
         "id": "ingenious",
         "url": "https://gdr.openei.org/submissions/1391",
-        "status": "OFFICIAL_GDR_PAGE_FETCHED_2026-10-25",
-        "verified_claim": "The GDR page identifies the INGENIOUS Great Basin compilation, DOI 10.15121/1881483, free access, and a CC BY 4.0 license link; individual derivative rights still require checking.",
+        "status": "LINKED_NOT_FETCHED_IN_THIS_REVIEW",
+        "verified_claim": "Official manual-review link only; no new GDR retrieval or derivative-rights check was made.",
+    },
+    {
+        "id": "usgs_3dep",
+        "url": "https://www.usgs.gov/3d-elevation-program",
+        "status": "LINKED_NOT_FETCHED_IN_THIS_REVIEW",
+        "verified_claim": "Official manual-review link only; no new 3DEP availability or license check was made.",
     },
     {
         "id": "epsg_32611",
         "url": "https://epsg.io/32611",
-        "status": "EPSG_PAGE_FETCHED_2026-10-25",
-        "verified_claim": "EPSG:32611 is WGS 84 / UTM zone 11N with metre units; the page is the CRS reference, not a competition submission receipt.",
+        "status": "LINKED_NOT_FETCHED_IN_THIS_REVIEW",
+        "verified_claim": "CRS review link only; no new EPSG retrieval was made.",
     },
 )
 
 
 def hypothesis_queue() -> list[dict[str, Any]]:
-    """Return a JSON-safe copy of the five ranked, untested hypotheses."""
+    """Return a JSON-safe copy of four method-level, untested formulations."""
 
     return [h.as_json() for h in HYPOTHESES]
 
@@ -215,6 +204,7 @@ def validate_hypothesis_queue(queue: list[dict[str, Any]] | None = None) -> None
         "expected_gain",
         "implementation_cost",
         "external_data",
+        "novelty_scope",
     )
     for row in rows:
         if row.get("status") != "UNTESTED":

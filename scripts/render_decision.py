@@ -17,10 +17,13 @@ START = "<!-- CANONICAL-DECISION:START -->"
 END = "<!-- CANONICAL-DECISION:END -->"
 
 
-def read_inputs(root: Path) -> tuple[dict, dict, dict]:
+def read_inputs(root: Path) -> tuple[dict, dict, dict, dict]:
     current = json.loads((root / "docs/data/current_release.json").read_text())
     stop = json.loads((root / "registry/mtas88_run_card.json").read_text())
     audit = json.loads((root / "docs/data/download_audit.json").read_text())
+    historical = json.loads((root / "docs/data/mtas88_experiment_run_card.json").read_text())
+    historical_registry = json.loads((root / "registry/mtas88_experiment_run_card.json").read_text())
+    historical_evidence = json.loads((root / "evidence/mtas88_experiment_20261025.json").read_text())
     status = json.loads((root / "docs/status.json").read_text())
     if not (
         current["ok_to_submit"] is False and current["ok_to_download"] is True
@@ -29,6 +32,12 @@ def read_inputs(root: Path) -> tuple[dict, dict, dict]:
         and stop["preplacement_registry_proof"]["universal_overlap_blocker"] is True
         and audit["ok_to_submit"] is False and audit["canonical_sha256"] == current["file_sha256"]
         and audit["protocol_eligible_count"] == 0
+        and historical == historical_registry == historical_evidence
+        and historical.get("lane") == "H88-MTAS"
+        and historical.get("holdout", {}).get("evidence_class") == "HOLDOUT-DTI"
+        and historical.get("holdout", {}).get("evaluator_version") == "gems57-pooled-hide-v2"
+        and historical.get("ok_to_submit") is False
+        and historical.get("organizer_confirmed_score") is None
     ):
         raise ValueError("canonical decision inputs disagree; never render a clearance")
     for key, digest_key in (("file", "file_sha256"), ("zip_file", "zip_sha256")):
@@ -38,7 +47,7 @@ def read_inputs(root: Path) -> tuple[dict, dict, dict]:
         with (root / relative).open("rb") as stream:
             if hashlib.file_digest(stream, "sha256").hexdigest() != current[digest_key]:
                 raise ValueError("canonical downloadable bytes disagree with release card")
-    return current, stop, audit
+    return current, stop, audit, historical
 
 
 def inventory(audit: dict) -> str:
@@ -63,7 +72,7 @@ def inventory(audit: dict) -> str:
 
 
 def render(root: Path, kind: str) -> str:
-    current, stop, audit = read_inputs(root)
+    current, stop, audit, historical = read_inputs(root)
     tif = escape(Path(current["file"]).relative_to("docs").as_posix())
     zipped = escape(Path(current["zip_file"]).relative_to("docs").as_posix())
     name, note = escape(current["submission_name"]), escape(current["submission_note"])
@@ -79,7 +88,7 @@ def render(root: Path, kind: str) -> str:
 <p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule. No old prediction was copied or renamed as a new submission.</p>
 <p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_d0c3adeb_run_card.json">This review’s negative run card</a>.</p>
+<p class="micro">No competition slot used in this review. No organizer-confirmed score. Local validation cannot establish hidden-label performance or choose a weekly slot. <a href="data/repo_review_20261025.json">Current review card</a> · <a href="research/repo-review-dea470d9-20261025.md">Three-pass report</a>.</p>
 </div><aside class="decision-download" aria-label="Canonical archived research download">
 <div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
 <h2>Download the audited TIFF</h2>
@@ -102,17 +111,21 @@ def render(root: Path, kind: str) -> str:
     if kind == "overview":
         content = '''<section class="decision-explainer"><div class="wrap split">
 <div><div class="kicker">H33 forensic answer</div><h2>Learn from the geometry.<br>Do not copy the submission.</h2>
-<p><strong>0.2778 is a user-reported claim, not an ORGANIZER-CONFIRMED receipt.</strong> Rechecked H33 support is a subset of D2.8: it removes near-catalogue dots rather than adding discoveries. Less redundant emission can improve the precision–coverage trade-off, but the hidden labels are needed to prove why a score changed.</p>
-<p>There is no defensible guarantee that this repository will beat that claim, the older 0.3195 claim, or the 0.4413 claim. A buffered, fold-matched improvement is a necessary project gate, not a leaderboard forecast.</p>
-<a href="research/session-d0c3adeb-review.md">Evidence, scientific corrections &amp; limitations →</a></div>
+<p><strong>0.2778 is a user-reported claim, not an ORGANIZER-CONFIRMED receipt.</strong> H33's 37,654 dots are a strict subset of H19-5, D2.8 and SOLO-D2.8; it removes 6,436 D2.8 dots, all within 2 pixels of the catalogue. This supports a de-redundancy hypothesis but does not establish score causality.</p>
+<p>There is no defensible guarantee that this repository will beat that claim or the older 0.3195/0.4413 figures. A buffered, fold-matched improvement is a necessary project gate, not a leaderboard forecast.</p>
+<a href="research/repo-review-dea470d9-20261025.md#h33">H33 evidence, metric and limitations →</a></div>
 <div class="proof"><div class="kicker">Next scientific work</div><h3>Test displacement—not another edge map.</h3>
-<p>Four ranked, untested proposals are recorded before implementation. The leading proposal asks whether a coherent magnetic marker becomes continuous after a repeatable cross-boundary displacement. Intrusive contacts and depositional pinch-outs are explicit alternatives.</p>
-<p>It remains unrun: the universal duplicate stop comes first. No new external dataset is presented as obtainable without verification.</p>
-<a href="research/session-d0c3adeb-hypotheses.md">Read the four hypotheses and falsification plan →</a></div></div></section>
-<section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Data placement is no longer the blocker.</h2><p>The pinned core feature raster and shared external inputs have been restored; the existing preparation command successfully loads the shared feature planes on CPU. The remaining blocker is not a missing download: it is the unsatisfiable literal uniqueness condition, followed by scientific and organizer-access gates.</p>
+<p>Four exact method-level formulations remain untested, but their broad geological families and inputs overlap prior lanes. Global/fleet-wide novelty is not certified. The leading formulation asks whether a coherent magnetic marker becomes continuous after a repeatable cross-boundary displacement; intrusive contacts and depositional pinch-outs are explicit alternatives.</p>
+<p>No candidate has been selected or run. The universal duplicate stop comes first; official source availability and data rights remain unverified.</p>
+<a href="research/repo-review-dea470d9-20261025.md#hypotheses">Read the four conditional hypotheses →</a></div></div></section>
+<section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>The full feature stack is absent.</h2><p>Only validation-tier inputs are currently available. <code>data/training_features.tif</code> is absent, and owner-mirror bytes are not authenticated organizer downloads. First resolve the literal-support/dot-set protocol contradiction explicitly without bypassing the current stop; then verify source provenance/rights and restore the full stack before any assigned method's shared canaries and buffered holdout.</p>
 <div class="button-row"><a class="button button-primary" href="executive-summary.html">Open the submission guide →</a><a href="sources.html" class="button decision-outline">Sources &amp; verification limits</a></div>
 <p class="fine">Maximize P(Win): preserve scarce slots for evidence-backed, distinct candidates. Own the Outcome: report an unmet requirement instead of presenting a research TIFF as submission-ready.</p></div></section>'''
-        return hero + content + inventory(audit)
+        historical_holdout = historical["holdout"]
+        mtas_section = f'''<section class="decision-explainer" id="historical-mtas-result"><div class="wrap narrow"><div class="kicker">Historical experiment · not this preflight</div><h2>H88-MTAS has a measured negative holdout.</h2>
+<p><strong>HOLDOUT-DTI {historical_holdout["dti"]:.6f} [{historical_holdout["ci95"][0]:.6f}, {historical_holdout["ci95"][1]:.6f}]</strong> · evaluator <code>{escape(historical_holdout["evaluator_version"])}</code> · {historical_holdout["withheld_positive_pixels"]:,} withheld positives · {historical_holdout["n_folds"]} folds. This is a historical local result, not ORGANIZER-CONFIRMED. The later generation preflight stopped before a new experiment; it did not rerun or invalidate this result.</p>
+<p><a href="data/mtas88_experiment_run_card.json">Historical MTAS experiment run card →</a> · <a href="data/repo_review_20261025.json">Current preflight/review card →</a></p></div></section>'''
+        return hero + content + mtas_section + inventory(audit)
     if kind != "guide":
         raise ValueError(f"unknown page kind: {kind}")
     guide = '''<section class="decision-explainer"><div class="wrap narrow"><div class="kicker">Executive summary</div><h2>Do not submit any current file.</h2>
@@ -130,7 +143,7 @@ python scripts/render_decision.py --check
 python scripts/check_site.py
 python scripts/preflight_mtas88.py --gate-generation
 # Expected final exit: 2 (DUPLICATE_STOP). Not a build failure to bypass.</code></pre>
-<p><a href="research/session-d0c3adeb-review.md">Current review and limitations</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/mtas88_run_card.json">Negative run card</a></p>
+<p><a href="research/repo-review-dea470d9-20261025.md">Current review and limitations</a> · <a href="data/repo_review_20261025.json">Current machine review card</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/mtas88_run_card.json">Preflight stop card</a> · <a href="data/mtas88_experiment_run_card.json">Historical MTAS experiment card</a></p>
 </div></section>'''
     return hero + guide + inventory(audit)
 

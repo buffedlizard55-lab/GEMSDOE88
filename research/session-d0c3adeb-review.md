@@ -1,5 +1,7 @@
 # Repository review — d0c3adeb — 2026-10-25
 
+> **Supersession notice (2026-10-25):** historical review only. The current three-pass review is `docs/research/repo-review-dea470d9-20261025.md`; it corrects queue status and data availability, marks prior HGVC clearance and rename/upload advice revoked, and preserves the literal preflight stop.
+
 ## Executive decision
 
 **Research download: YES. Competition submission: NO — DO NOT SUBMIT. New protocol-unique TIFF: NOT GENERATED.**

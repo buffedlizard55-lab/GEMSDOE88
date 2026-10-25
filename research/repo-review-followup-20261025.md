@@ -1,5 +1,7 @@
 # GEMSDOE88 repository review follow-up — 2026-10-25
 
+> **Supersession notice (2026-10-25):** this is a historical session review. The current repository review is [`docs/research/repo-review-dea470d9-20261025.md`](../docs/research/repo-review-dea470d9-20261025.md); it reconciles the historical H88-MTAS holdout, marks the HGVC v4 clearance/rename advice revoked, identifies current feature-stack absence, and does not assign a method lane.
+
 ## Executive decision
 
 **No new competition TIFF was generated or cleared. Do not upload any archived download.** The local, hash-pinned registry audit records that `data/registry/dense_17gemdoe.tif` is positive on every allowed prediction cell. Under the repository's literal forward 3-pixel overlap definition, any nonempty candidate therefore has overlap 1.0, above the 0.70 stop threshold. Constructing or renaming a raster would not resolve that contradiction. The current negative decision is recorded in [`evidence/repo_review_20261025.json`](../evidence/repo_review_20261025.json) and mirrored for Pages at [`docs/data/repo_review_20261025.json`](../docs/data/repo_review_20261025.json).

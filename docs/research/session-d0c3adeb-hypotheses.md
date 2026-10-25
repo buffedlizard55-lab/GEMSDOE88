@@ -1,6 +1,8 @@
 # Prerequisite review and ranked research queue — 2026-10-25
 
-**Recorded before implementation in session `arena/d0c3adeb-gemsdoe88`.** This session continues the previous stop/integrity work, not an invented geological lane. The request contains no actual single-method paragraph. All proposals below are **untested**; none is a score, a discovery, a promise of improvement, or permission to generate a raster. No geological experiments have run.
+> **Superseded queue:** the exact-method ideas below are untested proposals, not an assigned lane or permission to build. Related geological families already appear in prior code/experiments; do not claim global or fleet-wide novelty. The current review is `docs/research/repo-review-dea470d9-20261025.md`.
+>
+> **Historical record:** these proposals were recorded before implementation in session `arena/d0c3adeb-gemsdoe88`. The preserved request contains no actual single-method paragraph, so no lane was assigned. Subsequent review found substantial family overlap, including magnetic-fabric dislocation, scarp/knickpoint, K/Th, drainage and conductive/thermal work. None is a score, discovery, promise of improvement or permission to generate a raster.
 
 ## Binding prerequisite
 

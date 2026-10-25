@@ -1,12 +1,8 @@
-# Session 2026-10-25 — H88-SEPA (new lane, negative) + H88-HGVC gate-v4 re-audit (submit-ready)
+# Historical session record — H88-SEPA negative + superseded HGVC gate-v4 claim
 
-**Deliverables.** (1) A newly generated, unique GeoTIFF for a preregistered lane
-(`H88-SEPA`, 37,654 dots, SHA-256 `2ba2416809abf4c728e70142a12ef28199bdc154e89ea0cb153747788ee8329c`)
-with an automatic, unambiguous verdict: **download for research YES, submit NO** (it did not beat
-the holdout bar). (2) A correction of the shared uniqueness gate (**IR-88-127 / gate v4**) and a
-byte-exact re-audit of the frozen holdout-best artifact `H88-HGVC`, which under the corrected gate
-is **OK TO DOWNLOAD AND SUBMIT** for the account-owner/selector step. Zero weekly slots were spent
-by this session; neither file has an ORGANIZER-CONFIRMED score.
+> **Current-status notice (2026-10-25):** this session log is archival. Its HGVC v4 “OK TO DOWNLOAD AND SUBMIT” conclusion and local rename/upload advice are **REVOKED** under the binding literal all-registry rule. No archived TIFF is cleared for a weekly slot. The later preflight is separate and did not rerun the historical MTAS experiment. Current decision, source limitations and queue reconciliation: [three-pass review](../docs/research/repo-review-dea470d9-20261025.md).
+
+**Historical deliverables.** (1) The saved H88-SEPA GeoTIFF (`37,654` dots, SHA-256 `2ba2416809abf4c728e70142a12ef28199bdc154e89ea0cb153747788ee8329c`) was held for research only because it did not beat its recorded holdout bar. (2) The session recorded an H88-HGVC v4 re-audit; that re-audit's clearance/rename conclusion is superseded and must not be followed. Zero weekly slots were spent; neither artifact has an ORGANIZER-CONFIRMED score.
 
 Machine evidence: [SEPA run card](../registry/sepa88_run_card.json) ·
 [SEPA gate v4](../registry/sepa88_gate_v4.json) ·
@@ -122,8 +118,9 @@ Re-auditing frozen HGVC bytes under v4 (no refit, no copy, v3 history untouched)
 365 rasters, worst dot-field overlap 0.6074, worst excess 0.1593, worst final |ρ| 0.0661,
 stored pre-placement surface |ρ| 0.208144 (receipt; the continuous surface was not archived —
 stated limitation), portal format re-validated ([0,1], CRS/shape/transform), stored canary
-87/87 and holdout-beats-bar evidence re-read from ledgers → **OK TO DOWNLOAD AND SUBMIT**
-(selector confirms weekly allowance; 0 slots spent by this repo).
+87/87 and holdout-beats-bar evidence re-read from ledgers. The session originally claimed
+**OK TO DOWNLOAD AND SUBMIT**, but that clearance and associated rename/upload advice are
+**REVOKED** by the current literal all-registry rule; no selector/slot approval is recorded.
 
 ## 5. Limitations and irregularities flagged
 

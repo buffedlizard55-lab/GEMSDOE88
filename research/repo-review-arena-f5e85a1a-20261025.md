@@ -1,5 +1,7 @@
 # Independent repository review — Arena session `f5e85a1a` (2026-10-25)
 
+> **Supersession notice (2026-10-25):** this is a historical session review. The current repository review is [`docs/research/repo-review-dea470d9-20261025.md`](../docs/research/repo-review-dea470d9-20261025.md); it reconciles the historical H88-MTAS holdout, marks the HGVC v4 clearance/rename advice revoked, identifies current feature-stack absence, and does not assign a method lane.
+
 ## Executive result
 
 **Decision: NEGATIVE / DUPLICATE_STOP. No new TIF was produced, and none is approved for competition submission.** This is deliberate protocol compliance, not a claim that the unique-submission requirement was met. The existing download promoted by the site is prominently marked `DO-NOT-SUBMIT` and is for research only.
