@@ -636,8 +636,47 @@ def main(root: Path = ROOT) -> None:
         and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
         "Dynamic decision banner must fail closed on absent MTAS proof",
     )
+
+    hgvc_card = json.loads((root / "registry/hgvc88_run_card.json").read_text())
+    hgvc_web = json.loads((docs / "data/hgvc88_run_card.json").read_text())
+    hgvc_gv = json.loads((root / "registry/hgvc88_gate_v3.json").read_text())
+    hgvc_gv_web = json.loads((docs / "data/hgvc88_gate_v3.json").read_text())
+    require(hgvc_card == hgvc_web, "Pages HGVC card differs from canonical registry card")
+    require(hgvc_gv == hgvc_gv_web, "Pages HGVC gate v3 differs from canonical registry gate")
+    require(
+        hgvc_card["verdict"] == "negative"
+        and hgvc_card["ok_to_download"] is True
+        and hgvc_card["ok_to_submit"] is False
+        and hgvc_card["all_5_discriminating_gates_pass"] is True,
+        "HGVC run card verdict/gate flags inconsistent",
+    )
+    require(
+        0 < len(hgvc_card["submission_name"]) <= 140
+        and 0 < len(hgvc_card["submission_note"]) <= 140,
+        "HGVC submission name/note must satisfy <=140 character cap",
+    )
+    hgvc_tif = root / hgvc_card["download"]
+    hgvc_zip = root / hgvc_card["zip_download"]
+    require(hgvc_tif.is_file() and hgvc_zip.is_file(), "HGVC tif/zip files exist")
+    require(
+        sha256(hgvc_tif) == hgvc_card["raster_sha256"] == hgvc_gv["sha256"],
+        "HGVC TIFF SHA-256 mismatch across file, card, and gate",
+    )
+    require(
+        sha256(hgvc_zip) == hgvc_card["zip_sha256"] == hgvc_gv["zip_sha256"],
+        "HGVC ZIP SHA-256 mismatch across file, card, and gate",
+    )
+    require(hgvc_tif.name in index and hgvc_tif.name in executive, "HGVC tif in pages")
+    require(
+        hgvc_card["submission_name"] in index and hgvc_card["submission_name"] in executive,
+        "HGVC name in pages",
+    )
+    require(
+        hgvc_card["raster_sha256"] in index and hgvc_card["raster_sha256"] in executive,
+        "HGVC SHA-256 in pages",
+    )
     print(
-        "PASS: MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
+        "PASS: H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
     )
 
 
