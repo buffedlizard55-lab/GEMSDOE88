@@ -1,4 +1,14 @@
-# Current integrity, `-O` validator hardening & cross-fleet review — session 21256734, 2026-10-25
+# Current integrity, `118`-claim sync, CON88 mirror/CI hardening & live browser receipt — session 0df81d99, 2026-10-25
+
+**No new candidate TIFF or submission slot from this review (`DUPLICATE_STOP`, exit 2 on `17GEMSDOE`).** See [three-pass review, `IR-88-0DF81D99-01..03` remediations, and PhD `H33` analysis](research/session-0df81d99-review.md), [four ranked untried geological hypotheses (`H88-HRLC..H88-USMT-3D`)](research/session-0df81d99-hypotheses.md), and [negative run card](registry/session_0df81d99_run_card.json).
+
+- **IR-88-0DF81D99-01 — Prompt & supplied-result inventory drift (`115 -> 118` claims) and `SLOT_PLAN.md` `47/48 -> 48/48` count reconciliation (fixed).** Synchronized `USER_PROMPT_20261025.md`, `README.md` (`<!-- USER-REQUEST:START/END -->`), `docs/data/user_reported_results.{json,csv}`, `docs/sources.html`, and `tests/test_request_evidence.py` with the newly supplied sibling claims (`GEMSDOE91`: `s17-cwpc-e3:0.1367`, `s17-lftg:0.1823`; `GEMSDOE92`: `listricdip-updip50:0.0255`; `118` distinct claims across `92` sites; `2` blank sites `GEMSDOE86`, `GEMSDOE88`), and updated `SLOT_PLAN.md` from `47/48` to `48/48` `-DO-NOT-SUBMIT` Pages pairs.
+- **IR-88-0DF81D99-02 — `scripts/validate_con88.py` missing run-card / gate / withdrawal mirror tamper checks & CI workflow enforcement (fixed).** Added `-O`-safe runtime checks on `run_card_con88.json` / `{registry,docs/data}/con88_run_card.json` (`ok_to_submit == False`), `{registry,docs/data}/con88_gates.json` mirror equality, and `{evidence,docs/data}/con88_clearance_withdrawal_20261025.json` mirror equality to `scripts/validate_con88.py`, and wired `python -O scripts/validate_con88.py` plus `--require-submit` exit-`2` into `.github/workflows/{checks,ci,pages}.yml`.
+- **IR-88-0DF81D99-03 — `scripts/browser_check.cjs` external-server hang & missing `try/finally` lifecycle cleanup (fixed).** Hardened `scripts/browser_check.cjs` to launch an ephemeral `127.0.0.1:0` `node:http` static server over `docs/` when `BROWSER_BASE_URL` is unset, guaranteed `browser.close()` and `server.close()` inside `try/finally`, added automated `con88.html` `DO NOT SUBMIT` verification, and executed real headless Chromium `153.0.8010.0` writing `{evidence,docs/data}/session_0df81d99_browser_check.json` (`14/14` `source_sha256` pins verified).
+
+---
+
+# Prior integrity, `-O` validator hardening & cross-fleet review — session 21256734, 2026-10-25
 
 **No new candidate TIFF or submission slot from this review (`DUPLICATE_STOP`, exit 2 on `17GEMSDOE`).** See [three-pass review, `-O` validator/forensics hardening, and PhD-level `H33` analysis](research/session-21256734-review.md), [five ranked cross-fleet-screened geological hypotheses](research/session-21256734-hypotheses.md), [negative run card](registry/session_21256734_run_card.json), and [live 50-row official leaderboard snapshot (`#8 DARD = 0.3398`)](evidence/leaderboard_official_snapshot_21256734_20261025.json).
 

@@ -2,13 +2,15 @@
 
 ## ⛔ CURRENT DECISION: NO TIFF IS CLEARED TO SUBMIT
 
-**Do not submit any artifact from this repository at this time.** The shared protocol preflight has a binding `DUPLICATE_STOP`: a registered dense raster covers every allowed pixel, so every nonempty candidate has 3-pixel forward overlap 1.0, above the protocol's 0.70 limit. The authoritative current status is [`docs/status.json`](docs/status.json), with supporting negative run card [`docs/data/session_3c391d97_run_card.json`](docs/data/session_3c391d97_run_card.json) (and parallel [`docs/data/session_96f5f523_run_card.json`](docs/data/session_96f5f523_run_card.json)). No new TIFF was produced in that review; no score is established by a projection or local validation.
+**Do not submit any artifact from this repository at this time.** The shared protocol preflight has a binding `DUPLICATE_STOP`: a registered dense raster covers every allowed pixel, so every nonempty candidate has 3-pixel forward overlap 1.0, above the protocol's 0.70 limit. The authoritative current status is [`docs/status.json`](docs/status.json), with supporting negative run card [`docs/data/session_0df81d99_run_card.json`](docs/data/session_0df81d99_run_card.json) (previous [`docs/data/session_3c391d97_run_card.json`](docs/data/session_3c391d97_run_card.json) and parallel [`docs/data/session_96f5f523_run_card.json`](docs/data/session_96f5f523_run_card.json)). No new TIFF was produced in this review; no score is established by a projection or local validation.
 
-Existing TIFFs (including the historically promoted CON88) are **research/archive artifacts only** unless a current run card explicitly authorizes submission. The dated CON88 promotion banner and its associated “OK TO SUBMIT” claims were superseded by later protocol audits (`IR-88-96F5F523-01` / `IR-88-3C391D97-01`) and must not be relied on. This repository does not currently provide a TIFF that is both protocol-cleared and authorized for a weekly slot. Do not rename or relabel an archived TIFF to imply clearance.
+Existing TIFFs (including the historically promoted CON88) are **research/archive artifacts only** unless a current run card explicitly authorizes submission. The dated CON88 promotion banner and its associated “OK TO SUBMIT” claims were superseded by later protocol audits (`IR-88-96F5F523-01` / `IR-88-3C391D97-01` / `IR-88-0DF81D99-02`) and must not be relied on. This repository does not currently provide a TIFF that is both protocol-cleared and authorized for a weekly slot. Do not rename or relabel an archived TIFF to imply clearance.
 
-[Submission guide and current stop](docs/SUBMIT.md) · [Executive guide](docs/executive-summary.html) · [Latest repository review](research/session-3c391d97-review.md) · [Parallel review 96f5f523](research/session-96f5f523-review.md) · [Source queue](registry/hypothesis_queue.json)
+[Submission guide and current stop](docs/SUBMIT.md) · [Executive guide](docs/executive-summary.html) · [Latest repository review (0df81d99)](research/session-0df81d99-review.md) · [Four ranked untried hypotheses](research/session-0df81d99-hypotheses.md) · [Prior review 3c391d97](research/session-3c391d97-review.md) · [Parallel review 96f5f523](research/session-96f5f523-review.md) · [Source queue](registry/hypothesis_queue.json)
 
 **H33 score context:** `0.2778` is recorded as a user-reported result, not an organizer-confirmed receipt. It must not be represented as HOLDOUT-DTI. See the dated forensic analysis and the current run card for evidence classes and limits.
+
+**Review 0df81d99 (2026-10-25):** [three-pass PhD review, `IR-88-0DF81D99-01..03` remediations, `118`-claim sync & `H33` analysis](research/session-0df81d99-review.md) · [four ranked untried hypotheses (`H88-HRLC`, `H88-DFHB`, `H88-SBPV`, `H88-USMT-3D`)](research/session-0df81d99-hypotheses.md) · [negative run card](registry/session_0df81d99_run_card.json) · [fresh 14/14 Chromium browser receipt](evidence/session_0df81d99_browser_check.json). Synchronized `118` user-reported claims across `92` sites (`GEMSDOE91` + `GEMSDOE92`), hardened `scripts/validate_con88.py` with run-card/gate/withdrawal mirror checks and wired it into CI under `python -O`, hardened `scripts/browser_check.cjs` with a self-hosted ephemeral server + `try/finally` cleanup, and reconciled `SLOT_PLAN.md` to `48/48` `-DO-NOT-SUBMIT` pairs (`0` experiments, `0` new TIFFs, `0` slots).
 
 **Review 3c391d97 (2026-10-25):** [three-pass PhD review, 0.2778/0.3195/0.4413 analysis, [0,1] portal diagnosis & 5 untried hypotheses](research/session-3c391d97-review.md) · [negative run card](registry/session_3c391d97_run_card.json) · [CON88 withdrawal receipt](evidence/con88_clearance_withdrawal_20261025.json) · [CON88 archived report](research/session-con88-20261025.md) · [CON88 archived page](docs/con88.html). Enforced `enforce_generation_preflight()` directly in `scripts/run_con88_experiment.py` and `scripts/run_con88_exp3_margin.py`, retired `H88-CON88` into `registry/hypothesis_queue.json` (`already_evaluated`), mirrored CON88 negative artifacts to `docs/data/` and `docs/research/`, and added `"con88.html"` to `scripts/check_site.py` (`IR-88-3C391D97-01`). All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant) are audited; **48** pass local research packaging checks, **0** are submission-eligible (`0` slots spent).
 
@@ -813,13 +815,15 @@ gems90-cnc-35000dots-20261024T084324Z:0.0749
 
 https://buffedlizard55-lab.github.io/GEMSDOE91/
 
-:
+s17-cwpc-e3:0.1367
+
+s17-lftg:0.1823
 
 ....
 
 https://buffedlizard55-lab.github.io/GEMSDOE92/
 
-:
+listricdip-updip50:0.0255
 
 ....
 

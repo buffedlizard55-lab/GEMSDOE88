@@ -94,7 +94,7 @@ def render(root: Path, kind: str) -> str:
 <p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule. No old prediction was copied or renamed as a new submission.</p>
 <p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_96f5f523_run_card.json">Latest review’s negative run card</a>.</p>
+<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_0df81d99_run_card.json">Latest review’s negative run card</a>.</p>
 </div><aside class="decision-download" aria-label="Canonical archived research download">
 <div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
 <h2>Download the audited TIFF</h2>
@@ -119,11 +119,11 @@ def render(root: Path, kind: str) -> str:
 <div><div class="kicker">H33 forensic answer</div><h2>Learn from the geometry.<br>Do not copy the submission.</h2>
 <p><strong>0.2778 is a user-reported claim, not an ORGANIZER-CONFIRMED receipt.</strong> Rechecked H33 support is a subset of D2.8: it removes near-catalogue dots rather than adding discoveries. Less redundant emission can improve the precision–coverage trade-off, but the hidden labels are needed to prove why a score changed.</p>
 <p>There is no defensible guarantee that this repository will beat that claim, the older 0.3195 claim, or the 0.4413 claim. A buffered, fold-matched improvement is a necessary project gate, not a leaderboard forecast.</p>
-<a href="research/session-96f5f523-review.md">Latest verification, scientific corrections &amp; limitations →</a></div>
+<a href="research/session-0df81d99-review.md">Latest verification, scientific corrections &amp; limitations →</a></div>
 <div class="proof"><div class="kicker">Source-bound research queue</div><h3>Test landform restoration—with null controls.</h3>
 <p>The conditional first choice is <strong>{escape(first_choice['id'])}</strong>: {escape(first_choice['title'])}. All {len(queue['proposals'])} proposals remain untested; none authorizes generation while the universal duplicate stop binds.</p>
-<p><strong>Magnetic-marker restoration is no longer untested:</strong> the merged MMRX run already evaluated it with a negative verdict. MTAS and MFS are also historical evaluated lanes, not fresh ideas. The queue is bound to a source fingerprint so code changes require a new review.</p>
-<a href="research/session-693b10af-hypotheses.md">Ranked hypotheses, exact layers &amp; falsification plan →</a> · <a href="data/hypothesis_queue.json">Machine-readable queue</a></div></div></section>
+<p><strong>Magnetic-marker restoration and consensus ridge are no longer untested:</strong> MMRX, MTAS, MFS, PGTD, and CON88 already have historical negative execution records, not fresh ideas. Four additional untried geological contrasts (<code>H88-HRLC</code>, <code>H88-DFHB</code>, <code>H88-SBPV</code>, <code>H88-USMT-3D</code>) are ranked alongside the source-bound queue.</p>
+<a href="research/session-0df81d99-hypotheses.md">Latest ranked hypotheses (H88-HRLC..USMT-3D) →</a> · <a href="research/session-693b10af-hypotheses.md">Source queue notes (SPR/AWA/CBC)</a> · <a href="data/hypothesis_queue.json">Machine-readable queue</a></div></div></section>
 <section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Data placement is no longer the blocker.</h2><p>The pinned core feature raster and shared external inputs have been restored; the existing preparation command successfully loads the shared feature planes on CPU. The remaining blocker is not a missing download: it is the unsatisfiable literal uniqueness condition, followed by scientific and organizer-access gates.</p>
 <div class="button-row"><a class="button button-primary" href="executive-summary.html">Open the submission guide →</a><a href="sources.html" class="button decision-outline">Sources &amp; verification limits</a></div>
 <p class="fine">Maximize P(Win): preserve scarce slots for evidence-backed, distinct candidates. Own the Outcome: report an unmet requirement instead of presenting a research TIFF as submission-ready.</p></div></section>'''
@@ -146,7 +146,7 @@ python scripts/render_decision.py --check
 python scripts/check_site.py
 python scripts/preflight_mtas88.py --gate-generation
 # Expected final exit: 2 (DUPLICATE_STOP). Not a build failure to bypass.</code></pre>
-<p><a href="research/session-96f5f523-review.md">Latest review and limitations</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/session_96f5f523_run_card.json">Negative run card</a></p>
+<p><a href="research/session-0df81d99-review.md">Latest review and limitations</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/session_0df81d99_run_card.json">Negative run card</a> · <a href="data/con88_clearance_withdrawal_20261025.json">CON88 withdrawal receipt</a></p>
 </div></section>'''
     return hero + guide + inventory(audit)
 
@@ -196,8 +196,8 @@ def render_research_queue(root: Path) -> str:
         )
     return ('<section><div class="wrap"><div class="kicker">Source-bound conditional queue · no generation authorized</div>'
             '<h2>' + str(len(queue["proposals"])) + ' unrun contrasts—not another stale first choice.</h2>'
-            '<p>Magnetic-marker restoration (MMRX), cross-scale admittance (MTAS) gradient-scaling breaks (MFS) and harmonic tensor dimensionality (PGTD) '
-            'already have historical negative execution records. They are not untested proposals. Their execution '
+            '<p>Magnetic-marker restoration (MMRX), cross-scale admittance (MTAS), gradient-scaling breaks (MFS), harmonic tensor dimensionality (PGTD), '
+            'and cross-fleet consensus ridge (CON88) already have historical negative execution records. They are not untested proposals. Their execution '
             'does not authorize bypassing the unchanged duplicate stop.</p>'
             '<div class="table-scroll"><table><thead><tr><th>Rank / lane</th><th>Proposed physical test</th>'
             '<th>Non-fault alternative</th><th>Potential / cost</th></tr></thead><tbody>' + ''.join(rows) +
@@ -205,7 +205,8 @@ def render_research_queue(root: Path) -> str:
             'still-unimplemented variants in this checkout, not proof of worldwide novelty. All inputs are in the '
             'existing pinned owner-mirror tier; no new external data availability is assumed. Every proposal is '
             'held before feature construction by the same literal witness.</p>'
-            '<p><a href="research/session-693b10af-hypotheses.md">Exact layers, contrasts and falsification plan →</a> · '
+            '<p><a href="research/session-0df81d99-hypotheses.md">Four new untried hypotheses (H88-HRLC..USMT-3D) →</a> · '
+            '<a href="research/session-693b10af-hypotheses.md">Queue notes (SPR/AWA/CBC) →</a> · '
             '<a href="data/hypothesis_queue.json">Source-fingerprinted JSON queue</a></p></div></section>')
 
 
