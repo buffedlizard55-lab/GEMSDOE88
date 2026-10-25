@@ -1,58 +1,32 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GEMSDOE88 · unique generated TIF — download and submission status</title></head>
-<body><main style="font-family:system-ui;max-width:860px;margin:2rem auto;padding:0 1rem;line-height:1.6">
-<h1>GEMSDOE88 — unique competition TIFF: download status and submission status</h1>
-
-<p style="background:#fff3cd;border:1px solid#b98a1a;border-radius:.5rem;padding:1rem;margin:1rem 0"><strong>It is obvious whether this file may be submitted:</strong>
-<span style="color:#0a7a0a"><strong>OK TO DOWNLOAD for research/review: YES.</strong></span>&nbsp;
-<span style="color:#b00020"><strong>OK TO SUBMIT to the DrivenData GEMS competition today: NO — blocked.</strong></span><br>
-The binding generation protocol returns <code>DUPLICATE_STOP</code>: the SHA-pinned 17GEMSDOE dense witness has positive support on 100% of the 5,106,385 allowed pixels, so every nonempty allowed candidate has literal 3-pixel overlap 1.0 with it, above the 0.70 limit. The earlier equal-support clearance was withdrawn (IR-88-B4DFA10C-08 / PR #151). <strong>Zero weekly submission slots were spent.</strong> No organizer-confirmed score exists for any file here.
-</p>
-
-<h2>1. The unique generated TIF (not copied from any listed GEMSDOE site)</h2>
-<p><strong>File:</strong> <code>gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif</code><br>
-<strong>What it is:</strong> a newly generated, single-band float32 GeoTIFF (37,654 binary dots) built from cross-fleet consensus ridges plus a label-blind magnetic/gravity/topographic ridge, with a &gt;3 px catalogue collar and H33 geometry spacing. It is unique against the 77-raster registry (worst like-for-like overlap 0.6936 vs GEMSDOE49; worst |Spearman &rho;| 0.376) and was machine-verified without human inspection.</p>
-
-<p style="font-size:1.25rem">
-<a class="button" href="docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif" download>⬇ Download the generated TIF (one click)</a>
-&nbsp;<a class="button" href="docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip" download>⬇ or one-TIFF ZIP</a>
-</p>
-
-<dl>
-<dt>SHA-256 (TIFF)</dt><dd><code style="font-family:monospace">e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68</code></dd>
-<dt>Submission name (26/140 chars)</dt><dd><code>GEMSDOE88-CON88-E830B58E</code> <button onclick="navigator.clipboard.writeText('GEMSDOE88-CON88-E830B58E');this.textContent='copied';setTimeout(()=>this.textContent='copy',900)">copy</button></dd>
-<dt>Submission note (107/140 chars)</dt><dd><code>H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card</code> <button onclick="navigator.clipboard.writeText('H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card');this.textContent='copied';setTimeout(()=>this.textContent='copy',900)">copy</button></dd>
-<dt>Research guide</dt><dd><a href="docs/con88.html">docs/con88.html</a> — full executive guide, exact how-to-submit steps, and all gate JSONs.</dd>
-<dt>Decision record</dt><dd><a href="docs/index.html">docs/index.html</a> — canonical research archive, download audit, and negative run cards.</dd>
-</dl>
-
-<h2>2. Automated project validation (no human inspection)</h2>
-<ul>
-<li><strong>Format / range (fixes “Predicted values must be in range [0, 1]”):</strong> one band, all 12,279,160 cells finite, <code>min 0.0 / max 1.0</code>, binary <code>{0,1}</code>, <code>nodata=None</code>, <strong>0 NaN / 0 Inf</strong>, <code>EPSG:32611</code>, <code>3730×3292</code>, exact sample submission transform, 0 dots on the mapped catalogue, 0 dots outside the footprint — the portal range error cannot fire on this encoding.</li>
-<li><strong>Uniqueness:</strong> worst 3-px dot overlap 0.6936 ≤ 0.70 and worst |&rho;| 0.376 ≤ 0.90 vs the 77-raster registry (equal-support diagnostic rule; see <code>registry/con88_gates.json</code>). Binding literal rule still blocks submission (17GEMSDOE overlap 1.0000 &gt; 0.70).</li>
-<li><strong>Leakage canary:</strong> max symmetric AUC 0.6306 ≤ 0.90 — passed.</li>
-<li><strong>Holdout (HOLDOUT-DTI):</strong> not re-fitted this session — the binding stop precedes feature construction. Recorded fixed-TIF pooled DTI is 0.0 (gems57-pooled-hide-v2); it does <em>not</em> beat the repo holdout record (H88-BPWD 0.205991 [0.188105, 0.223344]) and no score above H33's user-reported 0.2778 is claimed or guaranteed.</li>
-</ul>
-
-<h2>3. Can this beat H33's reported 0.2778?</h2>
-<p><strong>Honest answer: it cannot be shown today, and it must not be claimed.</strong> H33's 0.2778 is a user-reported claim with no organizer submission receipt; on this repository's spatially blocked holdout the H33 fixed TIFF scores only 0.0067. The public leaderboard snapshot (0.4413, a non-GEMSDOE participant) shows higher scores are achievable in principle, but no local gate or projection is an organizer score. A submission requires: (1) the literal uniqueness stop resolved by the rule owner, (2) a holdout result beating the current record on identical folds, and (3) a separate slot-selection authorization — then an ORGANIZER-CONFIRMED receipt from the portal.</p>
-
-<h2>4. Ranked hypotheses not yet tried (validation blocked by the stop)</h2>
-<ol>
-<li><strong>H88-SPR — Repeated scarp-profile restoration vs a drainage/shoreline null</strong> (top priority). Layers: 100 m det_elev/slope and LiDAR scarp/step/coherence/strike bands; transform: cross-validated signed-step landform restoration on held-out swaths. Catches cover-concealed offsets with no mapped trace. Mimic: fluvial terrace risers and pluvial shoreline benches. Cost: medium, cached inputs only.</li>
-<li><strong>H88-AWA — Terrain-matched radiometric alteration-width asymmetry</strong>. Layers: GeoDAWN K/Th/U quantized indices + RTP/depth/slope; transform: fitted cross-strike residual decay-width asymmetry on two flanks. Mimic: differential weathering and K-rich transported alluvium. Cost: medium.</li>
-<li><strong>H88-CBC — Conductive basin-breach connectivity vs a paleochannel null</strong>. Layers: det_elev, iso_grav_anom, depth_to_base_surf, cond_surf, drainage; transform: narrow cross-boundary conductivity bridges with gravity discontinuity test. Mimic: unfaulted alluvial paleochannels/saline plumes. Cost: medium-high.</li>
-</ol>
-<p>Source: <a href="research/session-693b10af-hypotheses.md">ranked hypotheses, exact layers and falsification plan</a>. Top candidate (SPR) was <strong>not validated</strong> because the shared preflight returns DUPLICATE_STOP before any feature construction — a negative, documented deliverable, not a submission.</p>
-
-<h2>5. How to submit (only when a future gate returns ok_to_submit: true)</h2>
-<ol>
-<li>Download the generated TIF above (or the ZIP — it contains only that TIF).</li>
-<li>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData competition 306 submissions page</a> → <em>New submission</em>.</li>
-<li><strong>File to submit:</strong> choose the downloaded <code>.tif</code> (single-band GeoTIFF; or the one-TIFF ZIP).</li>
-<li><strong>Name:</strong> <code>GEMSDOE88-CON88-E830B58E</code> &nbsp;<strong>Note (≤140 chars):</strong> paste the prepared note above.</li>
-<li>Submit, then save/screenshot the receipt — only that receipt is ORGANIZER-CONFIRMED. Respect the weekly cap shown on the page.</li>
-</ol>
-<p><a href="docs/executive-summary.html">Executive submission guide &rarr;</a> &nbsp;·&nbsp; <a href="docs/index.html">Full research archive &rarr;</a> &nbsp;·&nbsp; <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN source &rarr;</a></p>
-<style>.button{display:inline-block;padding:.7rem 1.2rem;margin:.25rem .5rem .25rem 0;background:#0a7a0a;color:#fff;border-radius:.5rem;text-decoration:none;font-weight:600}</style>
-</main></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GEMSDOE88 — Canonical Submission Status (NO FILE APPROVED — DO NOT SUBMIT)</title>
+  <link rel="stylesheet" href="docs/assets/site.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="banner banner-stop" role="region" aria-label="Submission decision">
+    <div class="status-pill">NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT</div>
+    <h1>NO NEW SUBMISSION FILE GENERATED — DO NOT SUBMIT ANY ARCHIVED RASTER</h1>
+    <p>
+      <strong>Canonical decision:</strong> <code>DUPLICATE_STOP</code> · <code>ok_to_submit: false</code> · <code>verdict: negative</code> · Weekly competition slots used: <strong>0 / 3</strong>.
+      The pinned registry witness <code>data/registry/dense_17gemdoe.tif</code> (SHA-256 <code>ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be</code>) covers all <strong>5,106,385 / 5,106,385</strong> allowed pixels in the challenge footprint, forcing a literal 3-pixel forward overlap of <strong>1.0000 &gt; 0.70</strong> for every nonempty allowed candidate.
+    </p>
+    <p>
+      <strong>H88-CON88 clearance withdrawal (<code>IR-88-3C391D97-01</code>):</strong> PR #158's promotion of <code>gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros</code> is withdrawn (`ok_to_submit: false`, `verdict: negative`) because its literal 3-pixel overlap is <strong>1.0000 &gt; 0.70</strong> and its buffered holdout score (<code>HOLDOUT-DTI = 0.0000</code> fixed TIF; <code>0.001714 [0.001325, 0.002143]</code> per-fold collar re-emission, <code>gems57-pooled-hide-v2</code>, <code>n = 60,988</code>) fails to beat both same-fold H33 (<code>0.006697 [0.005990, 0.007368]</code>) and the repository fold-fair holdout best <strong>H88-BPWD</strong> (<code>0.205991 [0.188105, 0.223344]</code>, <code>n = 22,893</code>). Its bytes are preserved for research inspection only at <a href="docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif"><code>docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif</code></a> (SHA-256 <code>e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68</code>).
+    </p>
+    <p>
+      <strong>Primary GitHub Pages entrypoints:</strong>
+      <a href="docs/index.html">Canonical Overview (<code>docs/index.html</code>)</a> ·
+      <a href="docs/executive-summary.html">Executive Summary (<code>docs/executive-summary.html</code>)</a> ·
+      <a href="docs/research.html">Research Queue (<code>docs/research.html</code>)</a> ·
+      <a href="docs/sources.html">Verified Sources (<code>docs/sources.html</code>)</a> ·
+      <a href="docs/con88.html">H88-CON88 Withdrawal Record (<code>docs/con88.html</code>)</a>
+    </p>
+  </section>
+</main>
+</body>
+</html>
