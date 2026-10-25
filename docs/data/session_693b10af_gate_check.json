@@ -1,6 +1,6 @@
 {
   "schema": "gems88.review-gates.v1",
-  "checked_at_utc": "2026-10-25T16:59:11.710982+00:00",
+  "checked_at_utc": "2026-10-25T17:50:18.801149+00:00",
   "status": "PASS",
   "checks": [
     {
@@ -8,16 +8,16 @@
       "expected_exit": 0,
       "exit_code": 0,
       "pass": true,
-      "output_sha256": "1390b4fb9de6e46a281a642ad97aa8a77c0035217ee62355b8c6a72a14350b79",
-      "seconds": 0.638
+      "output_sha256": "6824b6d559b5187286109229f9d10f7da7feb5717e37c0149e7491ea6b852ece",
+      "seconds": 0.46
     },
     {
       "command": "scripts/audit_downloads.py --check",
       "expected_exit": 0,
       "exit_code": 0,
       "pass": true,
-      "output_sha256": "ba87ca71842cb75de1d52143fac9184176723e66f27e6a8cd55ef4e3b9ade59a",
-      "seconds": 36.386
+      "output_sha256": "6bb9c2d94c2e83c12d5ebd85538e951c4e85191d655cc2de20c360c10a301afb",
+      "seconds": 25.688
     },
     {
       "command": "scripts/render_decision.py --check",
@@ -25,7 +25,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "9d717777dfdcbe523d649b7f46341ab214064c87a76fd20febb86eec7fa7aed2",
-      "seconds": 0.077
+      "seconds": 0.117
     },
     {
       "command": "scripts/check_site.py",
@@ -33,7 +33,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "a2c6be7432f45a2da55d8172471688c56721203d45013b0fdb8b7c1476395e5f",
-      "seconds": 0.759
+      "seconds": 0.928
     },
     {
       "command": "scripts/review_repo_20261025.py",
@@ -41,7 +41,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "ee7e8512fac5ccf7b3566b7e390c0eec67b1a140a46e9d73a268ab95df89411b",
-      "seconds": 1.125
+      "seconds": 1.11
     },
     {
       "command": "scripts/review_submission_status.py",
@@ -49,7 +49,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "c8712d3bea6d037a6d5a080913bb7ed523a670f61e28ddb105abf9d833168cc9",
-      "seconds": 1.597
+      "seconds": 1.738
     },
     {
       "command": "scripts/audit_protocol_integrity.py",
@@ -57,7 +57,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "c9ca17782f46070ac4c41374809f5c2bd26d2412d0179efdc181e8ce0235dab6",
-      "seconds": 1.398
+      "seconds": 1.62
     },
     {
       "command": "scripts/audit_literal_protocol.py",
@@ -65,7 +65,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "5d09162d65fb4376bbad0263f291a387b668eb1fe7f5d7aae764ffe9478eff35",
-      "seconds": 1.446
+      "seconds": 1.551
     },
     {
       "command": "scripts/preflight_mtas88.py",
@@ -73,7 +73,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "67ad59da8e45e96bf039f493973ed663d8219fdae39102c7e8507740cdf527e3",
-      "seconds": 1.394
+      "seconds": 1.286
     },
     {
       "command": "scripts/readiness.py",
@@ -81,7 +81,15 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "e29f9e569281cc8fd48e41dea01fdc88efb3c4da8d9983ea66593e13e8613991",
-      "seconds": 1.452
+      "seconds": 1.692
+    },
+    {
+      "command": "scripts/audit_submissions_dir.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "ef8e0f92153d8dc7191951221961c9d18486600765d160ef91bd62965d2bd498",
+      "seconds": 8.068
     },
     {
       "command": "scripts/validate_hgvc88.py",
@@ -89,7 +97,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "18d033d77e5234431cb6c29f13c21917e0f1badc868eddc2c39245301712a6a7",
-      "seconds": 1.643
+      "seconds": 1.75
     },
     {
       "command": "scripts/validate_sarcsd88.py",
@@ -97,7 +105,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "39c0a9225f3904cffbd33149f80d494334eb39cb19d09632afbcd39c5d3356cd",
-      "seconds": 1.599
+      "seconds": 1.834
     },
     {
       "command": "scripts/validate_qtsk88.py",
@@ -105,7 +113,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "c601961f2945a5c2453fa47eea8df40e1055b35dcae5fb98725f66715e66ee65",
-      "seconds": 1.754
+      "seconds": 1.717
     },
     {
       "command": "scripts/validate_kth88.py",
@@ -113,7 +121,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "e75f32b3836485da7eb397278850448cd4055034befc8365444423bac718f117",
-      "seconds": 1.723
+      "seconds": 1.9
     },
     {
       "command": "scripts/validate_current.py",
@@ -121,7 +129,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "c4c3c7a7e618aa44e8ecd593ae7cc5f0d6f3846ce8d6aaee4ad78a6b4e2a9555",
-      "seconds": 1.497
+      "seconds": 1.558
     },
     {
       "command": "scripts/validate_release.py",
@@ -129,7 +137,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "d7ca4b32c6503eb3f66fd8c40774b47323f4dbaddec41a56dfc1b7c030d046e8",
-      "seconds": 1.414
+      "seconds": 1.386
     },
     {
       "command": "scripts/validate_qts88.py",
@@ -137,7 +145,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "919295410aa6b09baac05c9e0e864565e42682aa9025634d7ea2ac1b17cb748f",
-      "seconds": 2.994
+      "seconds": 3.273
     },
     {
       "command": "scripts/validate_gthc88.py",
@@ -145,7 +153,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "b96ad8ba9a3f6c61d6263c95cf3f85b088aea44c58638c41bdaa602d0144a155",
-      "seconds": 1.721
+      "seconds": 1.784
     },
     {
       "command": "scripts/validate_bgcd88.py",
@@ -153,7 +161,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "0f542381cc7ca2eed414a30473af7e259dbba1194a92c0f674e0d96e7a3e789d",
-      "seconds": 1.632
+      "seconds": 1.79
     },
     {
       "command": "scripts/validate_mfs88.py",
@@ -161,7 +169,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "ea31d97278b5c2b618d2f79ca5168e0fa53d9b6f870fad836f1c884edd8f7c7e",
-      "seconds": 0.856
+      "seconds": 0.918
     },
     {
       "command": "scripts/validate_vhgd88.py",
@@ -169,7 +177,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "91ef26f6c176376a1fbcfc10298722f91580dcfc44d9ae237c5cb0bbf28df04f",
-      "seconds": 2.36
+      "seconds": 2.608
     },
     {
       "command": "scripts/validate_bpwd88.py",
@@ -177,7 +185,7 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "d829accfca25f6c87289512aaadb5bd01ef0a7b31bbbbffaf09a794ccf7a22f0",
-      "seconds": 1.709
+      "seconds": 1.954
     },
     {
       "command": "scripts/validate_vcaz88.py",
@@ -185,23 +193,39 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "69096bd185492af9e1eb2d856ef6e04e967707e0775ae9b178f617215e1af480",
-      "seconds": 7.337
+      "seconds": 8.317
+    },
+    {
+      "command": "scripts/validate_mmrx88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "99d3383e85787e33749c25c7bd350a94faa58971ccaf22519e57b89e680b5255",
+      "seconds": 1.719
+    },
+    {
+      "command": "scripts/validate_lsc88.py",
+      "expected_exit": 0,
+      "exit_code": 0,
+      "pass": true,
+      "output_sha256": "91497770119a4593b10083091af2ee0fca15fcd2002418b810a4c1c076812b9f",
+      "seconds": 0.474
     },
     {
       "command": "scripts/generation_guard.py",
       "expected_exit": 2,
       "exit_code": 2,
       "pass": true,
-      "output_sha256": "a93304f0ebbca7af4fea8c6d1072db7c2d849a5d2af199af92b6570ddff17fce",
-      "seconds": 1.172
+      "output_sha256": "665ebbf6a2bbaa38b1cf3ffabd2a0cb068fef8fa4ea8b98d85532772cb8dfa6e",
+      "seconds": 1.406
     },
     {
       "command": "scripts/audit_research_state.py --require-submit",
       "expected_exit": 2,
       "exit_code": 2,
       "pass": true,
-      "output_sha256": "ca2f2b930f0cc1048f183e7ed34527a77c7fa30cda90a10442fb3bdba5e2dbdd",
-      "seconds": 0.04
+      "output_sha256": "e4643995f68ab70d78e1f7ba237011af625d8ce95d4a27de4d72ef001fca3d57",
+      "seconds": 0.046
     },
     {
       "command": "scripts/review_repo_20261025.py --require-submit",
@@ -209,7 +233,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "ee7e8512fac5ccf7b3566b7e390c0eec67b1a140a46e9d73a268ab95df89411b",
-      "seconds": 0.825
+      "seconds": 0.998
     },
     {
       "command": "scripts/review_submission_status.py --require-submit",
@@ -217,7 +241,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "c8712d3bea6d037a6d5a080913bb7ed523a670f61e28ddb105abf9d833168cc9",
-      "seconds": 1.395
+      "seconds": 1.45
     },
     {
       "command": "scripts/audit_protocol_integrity.py --require-submit",
@@ -225,7 +249,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "c9ca17782f46070ac4c41374809f5c2bd26d2412d0179efdc181e8ce0235dab6",
-      "seconds": 1.464
+      "seconds": 1.593
     },
     {
       "command": "scripts/audit_literal_protocol.py --require-submit",
@@ -233,7 +257,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "5d09162d65fb4376bbad0263f291a387b668eb1fe7f5d7aae764ffe9478eff35",
-      "seconds": 1.335
+      "seconds": 1.59
     },
     {
       "command": "scripts/preflight_mtas88.py --gate-generation",
@@ -241,7 +265,15 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "67ad59da8e45e96bf039f493973ed663d8219fdae39102c7e8507740cdf527e3",
-      "seconds": 1.359
+      "seconds": 1.365
+    },
+    {
+      "command": "scripts/audit_submissions_dir.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "0ac939cfbe3c73329dc2da445e78968be46b0cdf82f057a394d1b0339a9274e0",
+      "seconds": 7.532
     },
     {
       "command": "scripts/validate_hgvc88.py --require-submit",
@@ -249,7 +281,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "1c042d4e400c3ff97c6c9724f212184cca2d89b8524658f738c33d0b7b50b731",
-      "seconds": 1.678
+      "seconds": 1.817
     },
     {
       "command": "scripts/validate_sarcsd88.py --require-submit",
@@ -257,7 +289,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "e500d9391da585bc1f9448dfa7b5736252510cfa7862f24a2825ea07960ceadc",
-      "seconds": 1.711
+      "seconds": 1.89
     },
     {
       "command": "scripts/validate_qtsk88.py --require-submit",
@@ -265,7 +297,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "ea2e1e6fd26d4bf54abc3dfc62ac9e7a496845ecfb0dae4575526d34dcee6b67",
-      "seconds": 1.668
+      "seconds": 1.781
     },
     {
       "command": "scripts/validate_kth88.py --require-submit",
@@ -273,7 +305,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "e75f32b3836485da7eb397278850448cd4055034befc8365444423bac718f117",
-      "seconds": 1.723
+      "seconds": 1.765
     },
     {
       "command": "scripts/validate_current.py --require-submit",
@@ -281,7 +313,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "adf0c32d9266ddb7391db9e728ac1810fbd140b9bdaea35d8ecd13100252dec2",
-      "seconds": 1.453
+      "seconds": 1.603
     },
     {
       "command": "scripts/validate_release.py --require-submit",
@@ -289,7 +321,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "6b6978c6bf84f5d24909d367e729a02c3beb09b1443b89914b942fa608664bd4",
-      "seconds": 1.3
+      "seconds": 1.511
     },
     {
       "command": "scripts/validate_qts88.py --require-submit",
@@ -297,7 +329,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "919295410aa6b09baac05c9e0e864565e42682aa9025634d7ea2ac1b17cb748f",
-      "seconds": 2.946
+      "seconds": 3.372
     },
     {
       "command": "scripts/validate_gthc88.py --require-submit",
@@ -305,7 +337,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "b96ad8ba9a3f6c61d6263c95cf3f85b088aea44c58638c41bdaa602d0144a155",
-      "seconds": 1.692
+      "seconds": 1.963
     },
     {
       "command": "scripts/validate_bgcd88.py --require-submit",
@@ -313,7 +345,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "797c4a233d6d7be2dd79b2fc9de372ede242fccc7dec79c8b7451b5ec77f4daf",
-      "seconds": 1.594
+      "seconds": 1.985
     },
     {
       "command": "scripts/validate_mfs88.py --require-submit",
@@ -321,7 +353,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "80e7fd4878546ba1d248e0f9535083d8d301c7082f55cee88db333f46d6b1747",
-      "seconds": 0.835
+      "seconds": 1.036
     },
     {
       "command": "scripts/validate_vhgd88.py --require-submit",
@@ -329,7 +361,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "17f25bde35cdfb6f5cb7986f1371f9afe4e03e3a9ff716f4f886844255524c25",
-      "seconds": 2.626
+      "seconds": 2.984
     },
     {
       "command": "scripts/validate_bpwd88.py --require-submit",
@@ -337,7 +369,7 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "1d2e6282d18c787a29eb318b9d3b8872a4694940f53deddd290a00fffbbc3a7d",
-      "seconds": 1.745
+      "seconds": 1.987
     },
     {
       "command": "scripts/validate_vcaz88.py --require-submit",
@@ -345,7 +377,23 @@
       "exit_code": 2,
       "pass": true,
       "output_sha256": "69096bd185492af9e1eb2d856ef6e04e967707e0775ae9b178f617215e1af480",
-      "seconds": 7.544
+      "seconds": 9.109
+    },
+    {
+      "command": "scripts/validate_mmrx88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "772ebc80e2d6375a74ee1ceaf494beed44db5763e77856aba65ea34b37186867",
+      "seconds": 1.672
+    },
+    {
+      "command": "scripts/validate_lsc88.py --require-submit",
+      "expected_exit": 2,
+      "exit_code": 2,
+      "pass": true,
+      "output_sha256": "165c6d3eb3122b254c237f7b1d167f9ea552480c2afd20547e7d6e96d4b96cb4",
+      "seconds": 0.514
     },
     {
       "command": "-O scripts/check_site.py",
@@ -353,34 +401,34 @@
       "exit_code": 0,
       "pass": true,
       "output_sha256": "a2c6be7432f45a2da55d8172471688c56721203d45013b0fdb8b7c1476395e5f",
-      "seconds": 1.024
+      "seconds": 1.146
     },
     {
       "command": "-O scripts/generation_guard.py",
       "expected_exit": 2,
       "exit_code": 2,
       "pass": true,
-      "output_sha256": "9fc5502fd682bf464e158e649233639c5864351124949eb55661cea5fc99310f",
-      "seconds": 1.515
+      "output_sha256": "c4f7288c8def66e07e082e64cbb40f0fe38a4a5639ca7360a2235935b15b6541",
+      "seconds": 1.874
     },
     {
       "command": "-O scripts/audit_research_state.py --require-submit",
       "expected_exit": 2,
       "exit_code": 2,
       "pass": true,
-      "output_sha256": "ca2f2b930f0cc1048f183e7ed34527a77c7fa30cda90a10442fb3bdba5e2dbdd",
-      "seconds": 0.113
+      "output_sha256": "e4643995f68ab70d78e1f7ba237011af625d8ce95d4a27de4d72ef001fca3d57",
+      "seconds": 0.132
     },
     {
-      "command": "-O scripts/validate_release.py --require-submit",
+      "command": "-O scripts/validate_gthc88.py --require-submit",
       "expected_exit": 2,
       "exit_code": 2,
       "pass": true,
-      "output_sha256": "6b6978c6bf84f5d24909d367e729a02c3beb09b1443b89914b942fa608664bd4",
-      "seconds": 1.54
+      "output_sha256": "b96ad8ba9a3f6c61d6263c95cf3f85b088aea44c58638c41bdaa602d0144a155",
+      "seconds": 2.085
     }
   ],
-  "expected_negative_count": 23,
+  "expected_negative_count": 26,
   "ok_to_submit": false,
   "geological_experiments_run": 0,
   "new_candidate_tiffs": 0

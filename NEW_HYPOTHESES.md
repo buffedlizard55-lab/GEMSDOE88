@@ -1,21 +1,20 @@
-# Current source-reviewed hypotheses — four unrun variants, no generation authorized
+# Current source-reviewed hypotheses — three unrun variants, no generation authorized
 
 Read [session-693b10af-hypotheses.md](research/session-693b10af-hypotheses.md) and the [source-bound JSON queue](registry/hypothesis_queue.json) before proposing another experiment. Run `python scripts/audit_research_state.py` to detect source/run-card drift; use `--check-inputs` after the full shared restore. This metadata audit never grants a slot.
 
 1. **H88-SPR** — repeated scarp-profile restoration against drainage, terrace and shoreline nulls (conditional first choice).
 2. **H88-AWA** — terrain-matched radiometric alteration-*width* asymmetry, not calibrated ratios of quantized codes.
-3. **H88-GTD** — harmonic potential-field source-dimensionality invariants against compact-body/dike/contact nulls.
-4. **H88-CBC** — conductive cross-basin breach connectivity against paleochannel/brine explanations.
+3. **H88-CBC** — conductive cross-basin breach connectivity against paleochannel/brine explanations.
 
 These precise variants remain **PROPOSED_UNTESTED** in the reviewed checkout. Expected benefit is qualitative and uncertain, never a DTI projection. All required inputs are already in the SHA-pinned shared owner-mirror tier; no new external dataset is assumed obtainable. This is source-reviewed local novelty, not proof of worldwide or fleet-wide originality.
 
-**Corrected stale recommendations:** magnetic-marker restoration (`src/gems88/mmrx.py`), cross-scale admittance (`mtas.py`) and Gaussian gradient-decay/scaling-break (`mfs88.py`) have already been implemented and evaluated with historical negative run cards. They are **not untested ideas**. Their archived execution is not authorization to evade the unchanged duplicate-stop rule. The older records below are historical snapshots, not today's queue.
+**Corrected stale recommendations:** magnetic-marker restoration (`src/gems88/mmrx.py`), cross-scale admittance (`mtas.py`) and Gaussian gradient-decay/scaling-break (`mfs88.py`) and the harmonic tensor family (`pgtd88.py`, parallel PR #168) have already been implemented and evaluated with historical negative run cards. They are **not untested ideas**. Their archived execution is not authorization to evade the unchanged duplicate-stop rule. The older records below are historical snapshots, not today's queue.
 
 The literal full-registry witness still blocks every nonempty candidate before feature construction, canaries, holdout or placement. **Zero new geological experiments, zero new candidate TIFFs, zero weekly slots in session 693b10af.** Conditional first choice is not a selected submission.
 
 Parallel proposal record: [session db4a5e4b](research/session-db4a5e4b-hypotheses.md) independently ranked GTD first. Its record is preserved, not represented as an experiment or a second current queue. This review conditionally favors SPR because its available-resolution landform-restoration null is more directly falsifiable; harmonic source-dimensionality inversion is nonunique and more sensitive to continuation/taper choices. That is uncertain scientific judgment, not an empirical improvement claim.
 
-Additional parallel proposal record: [session 838cc402](research/session-838cc402-hypotheses.md) retains its five alternatives and its own claimed source-access scope. Those records are preserved, not silently folded into this four-entry current queue. In particular, external-data access/permissions and ratios of quantized radiometric codes are not newly certified by this review. No duplicate-stop exception or independent experiment is authorized.
+Additional parallel proposal record: [session 838cc402](research/session-838cc402-hypotheses.md) retains its five alternatives and its own claimed source-access scope. Those records are preserved, not silently folded into this source-bound current queue. In particular, external-data access/permissions and ratios of quantized radiometric codes are not newly certified by this review. No duplicate-stop exception or independent experiment is authorized.
 
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>
@@ -160,3 +159,5 @@ Owner GitHub mirrors provide SHA-pinned inputs via `scripts/restore_inputs.py`; 
 
 
 </details>
+
+**Late-main correction (IR-88-693B10AF-04):** GTD is retired after the parallel PGTD execution; it is not an untried fourth lane. Three unrun variants remain. The peer CLI printed `DUPLICATE_STOP` but continued; the shared enforce-before-import guard is reinstated. No exception is authorized.

@@ -123,7 +123,7 @@ def render(root: Path, kind: str) -> str:
 <div class="proof"><div class="kicker">Source-bound research queue</div><h3>Test landform restoration—with null controls.</h3>
 <p>The conditional first choice is <strong>{escape(first_choice['id'])}</strong>: {escape(first_choice['title'])}. All {len(queue['proposals'])} proposals remain untested; none authorizes generation while the universal duplicate stop binds.</p>
 <p><strong>Magnetic-marker restoration is no longer untested:</strong> the merged MMRX run already evaluated it with a negative verdict. MTAS and MFS are also historical evaluated lanes, not fresh ideas. The queue is bound to a source fingerprint so code changes require a new review.</p>
-<a href="research/session-693b10af-hypotheses.md">Four ranked hypotheses, exact layers &amp; falsification plan →</a> · <a href="data/hypothesis_queue.json">Machine-readable queue</a></div></div></section>
+<a href="research/session-693b10af-hypotheses.md">Ranked hypotheses, exact layers &amp; falsification plan →</a> · <a href="data/hypothesis_queue.json">Machine-readable queue</a></div></div></section>
 <section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Data placement is no longer the blocker.</h2><p>The pinned core feature raster and shared external inputs have been restored; the existing preparation command successfully loads the shared feature planes on CPU. The remaining blocker is not a missing download: it is the unsatisfiable literal uniqueness condition, followed by scientific and organizer-access gates.</p>
 <div class="button-row"><a class="button button-primary" href="executive-summary.html">Open the submission guide →</a><a href="sources.html" class="button decision-outline">Sources &amp; verification limits</a></div>
 <p class="fine">Maximize P(Win): preserve scarce slots for evidence-backed, distinct candidates. Own the Outcome: report an unmet requirement instead of presenting a research TIFF as submission-ready.</p></div></section>'''
@@ -196,7 +196,7 @@ def render_research_queue(root: Path) -> str:
         )
     return ('<section><div class="wrap"><div class="kicker">Source-bound conditional queue · no generation authorized</div>'
             '<h2>' + str(len(queue["proposals"])) + ' unrun contrasts—not another stale first choice.</h2>'
-            '<p>Magnetic-marker restoration (MMRX), cross-scale admittance (MTAS) and gradient-scaling breaks (MFS) '
+            '<p>Magnetic-marker restoration (MMRX), cross-scale admittance (MTAS) gradient-scaling breaks (MFS) and harmonic tensor dimensionality (PGTD) '
             'already have historical negative execution records. They are not untested proposals. Their execution '
             'does not authorize bypassing the unchanged duplicate stop.</p>'
             '<div class="table-scroll"><table><thead><tr><th>Rank / lane</th><th>Proposed physical test</th>'

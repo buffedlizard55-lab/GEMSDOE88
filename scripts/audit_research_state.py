@@ -78,8 +78,12 @@ def inspect_queue(root: Path = ROOT, *, check_inputs: bool = False) -> dict:
             or [p["rank"] for p in proposals] != list(range(1, len(proposals) + 1))):
         raise ValueError("expected 3–5 uniquely ranked proposals")
     retired = queue["already_evaluated"]
-    if not {"H88-MMRX", "H88-MTAS", "H88-MFS"}.issubset({p["id"] for p in retired}):
+    if not {"H88-MMRX", "H88-MTAS", "H88-MFS", "H88-PGTD"}.issubset({p["id"] for p in retired}):
         raise ValueError("known evaluated mechanisms cannot be removed from the review")
+    # PGTD implements the generic tensor family formerly proposed as GTD.
+    # Different IDs are not physical novelty; do not revive the known alias.
+    if any(p["id"] == "H88-GTD" for p in proposals):
+        raise ValueError("evaluated PGTD tensor family cannot be revived as untried GTD")
     ids = [p["id"] for p in proposals] + [p["id"] for p in retired]
     if (any(not isinstance(name, str) or re.fullmatch(r"H88-[A-Z0-9]+", name) is None for name in ids)
             or len(ids) != len(set(ids)) or queue["conditional_first_choice"] != proposals[0]["id"]):

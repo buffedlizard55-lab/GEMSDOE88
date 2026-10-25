@@ -127,7 +127,9 @@
       "downloads",
       "research-variants"
     ],
-    "saved_audit_sha256": "b98b0c9952d7f1396114a23da74d3116b3ceeb4feaece85d297c7ff83049065c"
+    "saved_audit_sha256": "b98b0c9952d7f1396114a23da74d3116b3ceeb4feaece85d297c7ff83049065c",
+    "historical_snapshot": "evidence/download_audit_b4dfa10c_snapshot.json",
+    "scope": "Historical 46-package measurement; immutable bytes preserved. Current inventory is docs/data/download_audit.json, including later peer artifacts."
   },
   "fresh_h33_geometry_audit": {
     "schema": "gems88.h33-lineage-audit.v1",

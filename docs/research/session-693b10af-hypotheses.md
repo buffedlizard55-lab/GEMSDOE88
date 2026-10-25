@@ -34,6 +34,23 @@ Expected potential is ordinal judgment with substantial uncertainty, **never a n
 - **Implementation cost:** Medium; quantization and background fitting need care
 - **Falsification:** Reject if a parent-material/terrain-matched null reproduces the width asymmetry or the apparent signal is quantization/saturation dependent.
 
+### 3. H88-CBC — Conductive basin-breach connectivity against a paleochannel null
+
+- **Exact layers:** `data/training_features.tif` bands 12, 13, 15, 17: det_elev; iso_grav_anom; depth_to_base_surf; cond_surf; `data/external/dem10_chi_100m_u8.tif` bands 1, 4: chan_n; valid_n.
+- **Physical signature:** Compare narrow conductivity connectivity across independently inferred basin-boundary saddles with a smooth basin-fill null; require cross-boundary gravity discontinuity and test a terrain-aligned drainage explanation. Work on relative model fields, not a claim of resolved metre-scale conduits.
+- **Why a missing catalogue fault:** A buried cross-basin structural connection may have no mapped surface trace. The target is a candidate fault-related pathway, never a directly detected geothermal vent.
+- **Named non-fault mimic:** Unfaulted permeable alluvial paleochannels and saline groundwater plumes
+- **Contrast with implemented work:** CTRA/DHTC use conductivity curvature and thermal conjunctions; this tests topology-preserving cross-basin connectivity against an explicit drainage null.
+- **Expected potential:** Third remaining priority; low, uncertain; no numerical DTI projection
+- **Implementation cost:** Medium-high; coarse-field resolution is a major limitation
+- **Falsification:** Reject if basin-fill smoothness or drainage connectivity explains the bridge equally well, or no boundary-normal gravity change is present.
+
+## Late-main correction: tensor proposal retired, not relabeled as fresh
+
+PR #168 (parallel session 82dbb5e9) implemented the harmonic tensor-dimensionality family as H88-PGTD and recorded a negative verdict after continuing past a negative preflight. The current queue is therefore **three** unrun variants: SPR, AWA, CBC. PGTD is pinned as a fourth evaluated negative alongside MMRX, MTAS and MFS. No new model or artifact was produced by this review; its runner’s log-only guard is corrected to the same mandatory pre-import stop.
+
+<details><summary>Initially ranked tensor proposal — now historical/evaluated, NOT untried</summary>
+
 ### 3. H88-GTD — Potential-field source dimensionality versus compact-body null
 
 - **Exact layers:** `data/training_features.tif` bands 2, 13, 15: rtp; iso_grav_anom; depth_to_base_surf.
@@ -45,16 +62,8 @@ Expected potential is ordinal judgment with substantial uncertainty, **never a n
 - **Implementation cost:** Low-to-medium, but an ill-conditioned inverse problem
 - **Falsification:** Reject if continuation, taper or azimuth changes reverse the classification, or unfaulted dike/contact controls are indistinguishable from the target.
 
-### 4. H88-CBC — Conductive basin-breach connectivity against a paleochannel null
 
-- **Exact layers:** `data/training_features.tif` bands 12, 13, 15, 17: det_elev; iso_grav_anom; depth_to_base_surf; cond_surf; `data/external/dem10_chi_100m_u8.tif` bands 1, 4: chan_n; valid_n.
-- **Physical signature:** Compare narrow conductivity connectivity across independently inferred basin-boundary saddles with a smooth basin-fill null; require cross-boundary gravity discontinuity and test a terrain-aligned drainage explanation. Work on relative model fields, not a claim of resolved metre-scale conduits.
-- **Why a missing catalogue fault:** A buried cross-basin structural connection may have no mapped surface trace. The target is a candidate fault-related pathway, never a directly detected geothermal vent.
-- **Named non-fault mimic:** Unfaulted permeable alluvial paleochannels and saline groundwater plumes
-- **Contrast with implemented work:** CTRA/DHTC use conductivity curvature and thermal conjunctions; this tests topology-preserving cross-basin connectivity against an explicit drainage null.
-- **Expected potential:** Fourth priority; low, uncertain; no numerical DTI projection
-- **Implementation cost:** Medium-high; coarse-field resolution is a major limitation
-- **Falsification:** Reject if basin-fill smoothness or drainage connectivity explains the bridge equally well, or no boundary-normal gravity change is present.
+</details>
 
 ## Conditional validation plan for H88-SPR (not executed)
 

@@ -3,8 +3,8 @@
   "reviewed_at_utc": "2026-10-25",
   "review_branch": "arena/693b10af-gemsdoe88",
   "source_snapshot": {
-    "files": 150,
-    "sha256": "28945afbfcb71f77d5d2055456ddd5a0b113b45158c3f0b877e738b03d4f3409"
+    "files": 152,
+    "sha256": "625401b58740ab4243f187311e45d58c7430425e6638fc51a02d3f7d7f7b8a8a"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -25,7 +25,7 @@
       "id": "H88-MMRX",
       "status": "EVALUATED_NEGATIVE_HISTORICAL",
       "run_card": "registry/mmrx88_run_card.json",
-      "run_card_sha256": "64afeb8f34b931b580d0f89fcf13ac60d72c0d49fa7b69072c65ebc330f9b0ce",
+      "run_card_sha256": "19fc7f0919fd03cc3663da1ae73e5df7819340e48a3e5bd826f760539bc854e0",
       "reason": "Already implemented and evaluated; not an untested first choice. Historical run is negative and final dots overlap HGVC beyond the limit."
     },
     {
@@ -41,6 +41,14 @@
       "run_card": "registry/mfs88_run_card.json",
       "run_card_sha256": "88af28a3f9022ff52bea0bd723d6bcea428e04514488865e9a2b8281c1f74294",
       "reason": "Multiscale gradient-decay/scaling-break channels already exist; historical execution is not permission to bypass the guard."
+    },
+    {
+      "id": "H88-PGTD",
+      "run_card": "registry/pgtd88_run_card.json",
+      "run_card_sha256": "7d3eb406b5a56c15b8dc2f5ad8a2ed84c4638f05eaa75937b08358cc0ce25696",
+      "status": "HISTORICAL_EVALUATED_NEGATIVE",
+      "retired_proposal_alias": "H88-GTD",
+      "scope": "Parallel 82dbb5e9 ran after a negative preflight; no exception authorized. Retire the general harmonic-tensor dimensionality proposal rather than advertise it as untried. No experiment in session 693b10af."
     }
   ],
   "proposals": [
@@ -130,31 +138,6 @@
     },
     {
       "rank": 3,
-      "id": "H88-GTD",
-      "title": "Potential-field source dimensionality versus compact-body null",
-      "status": "PROPOSED_UNTESTED",
-      "new_external_data_required": false,
-      "layers": [
-        {
-          "file": "data/training_features.tif",
-          "bands": [
-            2,
-            13,
-            15
-          ],
-          "description": "rtp; iso_grav_anom; depth_to_base_surf"
-        }
-      ],
-      "signature": "Construct a regularized harmonic potential-field gradient tensor from gravity and assess its eigenvalue/determinant dimensionality across scales; compare elongated quasi-2D source edges with compact-body synthetic nulls, using magnetics as an independent contextual check. Freeze derivative sign conventions and padding before fitting.",
-      "off_catalogue_rationale": "An elongated buried density discontinuity can survive cover without a surface rupture; testing source geometry may reject compact plutons favored by simple edge magnitude.",
-      "non_fault_mimic": "Unfaulted two-dimensional dikes and stratigraphic pinch-out contacts",
-      "difference_from_implemented": "HGVC/BPWD/VESS use Hessian ridge/vesselness of response images; MMRX tests shifted texture, MFS tests Gaussian gradient decay. This proposal uses invariants of a reconstructed harmonic field tensor, not the ridge Hessian.",
-      "expected_potential": "Third priority; low-to-moderate, uncertain; no numerical DTI projection",
-      "implementation_cost": "Low-to-medium, but an ill-conditioned inverse problem",
-      "falsification": "Reject if continuation, taper or azimuth changes reverse the classification, or unfaulted dike/contact controls are indistinguishable from the target."
-    },
-    {
-      "rank": 4,
       "id": "H88-CBC",
       "title": "Conductive basin-breach connectivity against a paleochannel null",
       "status": "PROPOSED_UNTESTED",
@@ -183,7 +166,7 @@
       "off_catalogue_rationale": "A buried cross-basin structural connection may have no mapped surface trace. The target is a candidate fault-related pathway, never a directly detected geothermal vent.",
       "non_fault_mimic": "Unfaulted permeable alluvial paleochannels and saline groundwater plumes",
       "difference_from_implemented": "CTRA/DHTC use conductivity curvature and thermal conjunctions; this tests topology-preserving cross-basin connectivity against an explicit drainage null.",
-      "expected_potential": "Fourth priority; low, uncertain; no numerical DTI projection",
+      "expected_potential": "Third remaining priority; low, uncertain; no numerical DTI projection",
       "implementation_cost": "Medium-high; coarse-field resolution is a major limitation",
       "falsification": "Reject if basin-fill smoothness or drainage connectivity explains the bridge equally well, or no boundary-normal gravity change is present."
     }
@@ -195,6 +178,13 @@
         "sha256": "1432106995112c206526841147d5a6d0b7f6a9a8f71563199a6b3a2e7d781dd7"
       },
       "reason": "Reviewed parallel GHMD metadata-only aliases integrated; no model/feature/evaluator changes. The changed corpus file is scripts/run_gems88_pipeline.py."
+    },
+    {
+      "snapshot": {
+        "files": 150,
+        "sha256": "28945afbfcb71f77d5d2055456ddd5a0b113b45158c3f0b877e738b03d4f3409"
+      },
+      "reason": "Late main integration adds evaluated PGTD, shared literal-v4 compatibility hardening, historical review helpers and metadata repairs. Reviewed these diffs, retired GTD, and reinstated PGTD pre-import stop before refreshing the source pin."
     }
   ]
 }

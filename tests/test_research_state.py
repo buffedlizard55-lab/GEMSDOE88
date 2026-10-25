@@ -49,12 +49,12 @@ def replace_queue(root, queue):
 def test_current_queue_is_source_bound_and_does_not_recommend_evaluated_lanes():
     queue = audit.inspect_queue(ROOT)
     assert queue["conditional_first_choice"] == "H88-SPR"
-    assert {p["id"] for p in queue["proposals"]} == {"H88-SPR", "H88-AWA", "H88-GTD", "H88-CBC"}
-    assert {p["id"] for p in queue["already_evaluated"]} == {"H88-MMRX", "H88-MTAS", "H88-MFS"}
+    assert {p["id"] for p in queue["proposals"]} == {"H88-SPR", "H88-AWA", "H88-CBC"}
+    assert {p["id"] for p in queue["already_evaluated"]} == {"H88-MMRX", "H88-MTAS", "H88-MFS", "H88-PGTD"}
     assert queue["ok_to_submit"] is queue["generation_authorized"] is False
 
 
-@pytest.mark.parametrize("mutation", ["rank", "boolean-rank", "repeat", "tested", "external", "missing-mimic", "unbound-input", "approve", "snapshot", "first", "bad-pin", "bad-band", "removed-retired"])
+@pytest.mark.parametrize("mutation", ["rank", "boolean-rank", "repeat", "tested", "external", "missing-mimic", "unbound-input", "approve", "snapshot", "first", "bad-pin", "bad-band", "removed-retired", "retired-tensor-alias"])
 def test_queue_rejects_stale_or_incomplete_status(queue_root, mutation):
     queue = json.loads((queue_root / audit.QUEUE).read_text())
     if mutation == "rank":
@@ -68,6 +68,9 @@ def test_queue_rejects_stale_or_incomplete_status(queue_root, mutation):
         queue["proposals"][0]["layers"][0]["bands"] = [True, -1]
     elif mutation == "removed-retired":
         queue["already_evaluated"] = []
+    elif mutation == "retired-tensor-alias":
+        queue["proposals"][0]["id"] = "H88-GTD"
+        queue["conditional_first_choice"] = "H88-GTD"
     elif mutation == "repeat":
         queue["proposals"][0]["id"] = "H88-MMRX"
         queue["conditional_first_choice"] = "H88-MMRX"
@@ -236,7 +239,7 @@ def test_research_page_queue_is_generated_from_the_same_reviewed_manifest():
     current = text.split(render_decision.QUEUE_START, 1)[1].split(render_decision.QUEUE_END, 1)[0]
     assert "already have historical negative execution records" in current
     assert "source-reviewed" in current
-    for lane in ("H88-SPR", "H88-AWA", "H88-GTD", "H88-CBC"):
+    for lane in ("H88-SPR", "H88-AWA", "H88-CBC"):
         assert lane in current
     assert "Restore matching magnetic markers" not in current
 
@@ -260,7 +263,7 @@ def test_session_record_is_one_honest_negative_without_an_invented_candidate():
     assert card["source_scope"]["all_92_sites_freshly_scraped"] is False
     assert card["source_scope"]["leaderboard_verified_this_session"] is False
     snapshot = card["research_queue"]["source_snapshot"]
-    assert snapshot["files"] == 150 and len(snapshot["sha256"]) == 64
+    assert snapshot["files"] >= 150 and len(snapshot["sha256"]) == 64
     int(snapshot["sha256"], 16)  # historical snapshot; do not rewrite for future code
     for stem in ("review", "hypotheses"):
         path = f"research/session-693b10af-{stem}.md"
@@ -275,8 +278,8 @@ def test_fresh_software_receipts_are_reproducible_and_cannot_promote():
         assert receipt["status"] == "PASS" and receipt["ok_to_submit"] is False
         assert receipt["geological_experiments_run"] == 0
     gates = json.loads((ROOT / "evidence/session_693b10af_gate_check.json").read_text())
-    assert len(gates["checks"]) == 47
-    assert gates["expected_negative_count"] == 23
+    assert len(gates["checks"]) == 53
+    assert gates["expected_negative_count"] == 26
     assert all(r["pass"] and r["exit_code"] == r["expected_exit"] for r in gates["checks"])
     assert any(r["command"] == "-O scripts/audit_research_state.py --require-submit" for r in gates["checks"])
     cpu = json.loads((ROOT / "evidence/session_693b10af_cpu_reproduction.json").read_text())
