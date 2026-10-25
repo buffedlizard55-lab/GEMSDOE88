@@ -26,6 +26,15 @@ jobs:
           cache: pip
       - run: python -m pip install -r requirements.txt
       - run: python scripts/restore_inputs.py --validation
+      - name: Re-run autonomous 2026-10-25 review and keep its machine card fail-closed
+        run: |
+          python scripts/review_repo_20261025.py
+          set +e
+          python scripts/review_repo_20261025.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+          git diff --exit-code evidence/repo_review_20261025.json docs/data/repo_review_20261025.json
       - name: Audit protocol-integrity regressions without authorizing a slot
         run: |
           python scripts/audit_protocol_integrity.py
