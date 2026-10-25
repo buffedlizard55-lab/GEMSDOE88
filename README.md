@@ -18,15 +18,21 @@ superseded by the shared equal-support fix (IR-88-CON88-01) documented here.
 - **Why it may beat H33's user-reported 0.2778:** H33 won by pure FP-subtraction + kernel spacing + non-hugging profile (verified, `research/session-con88-20261025.md`). CON88 keeps that geometry, tightens the collar to >3 px, and adds two independent levers H33 never had: ≥2-of-3 cross-fleet consensus (72% of dots) and a fresh label-blind ridge (new recall). Overlap vs H33 is only **0.487** — a different dot set, not a copy.
 - **Validation:** 1 band; EPSG:32611; 3730×3292; exact transform; finite, values in [0,1] (zeros outside — fixes the `[0,1]` upload error); uniqueness worst overlap 0.694 ≤0.70, worst |ρ| 0.376 ≤0.90 across all on-disk rasters. **Local validation is not organizer acceptance.**
 - **HOLDOUT-DTI (labelled, not a public-score forecast):** `gems57-pooled-hide-v2`, per-fold re-emission 0.0017 [0.0013, 0.0021], 60,988 withheld — hide-and-recover scores public-best H33 at 0.0067 on identical folds, so it cannot rank blind-fault seekers; details in run card.
-- All **47** TIFF/ZIP pairs (46 main downloads + 1 historical variant) audited; **47** pass local format checks; exactly **1** (CON88) is submission-eligible under the corrected equal-support gate.
+- All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant) audited; **48** pass local format checks; exactly **1** (CON88) is submission-eligible under the corrected equal-support gate.
 - **Blocker resolved:** prior `DUPLICATE_STOP` treated the dense 17GEMSDOE probability field (>0 on 100% of footprint) as dots, making uniqueness mathematically impossible. Shared fix `equal_support_dots()` in `vendor/gems57/uniqueness.py` compares dense priors top-N like-for-like; sparse rasters keep the literal rule.
 
 > All older TIFFs below remain research-only (`DO-NOT-SUBMIT`). Historical record:
 > TDKL88 `db9d1867…aaadf`, HOLDOUT-DTI 0.1962 [0.1797, 0.2117] (`gems57-pooled-hide-v2`, n=22,893).
 
+Review record: [Arena f81c34a4 three-pass review and audit repair](research/session-f81c34a4-review.md) · [negative run card](registry/session_f81c34a4_run_card.json). No new TIFF or slot; unchanged duplicate stop.
+
+Review follow-up: [dd90d368 three-pass evidence-label correction](research/session-dd90d368-review.md) · [negative run card](registry/session_dd90d368_run_card.json). Historical GHMD promotion is withdrawn; the supplied H33 result has no organizer receipt. No new TIFF or slot.
+
 ### Start here every session
 
 Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_PROMPT_20261025.md), and [AGENTS.md](AGENTS.md). The request is also embedded below. Do not append a competing “current candidate” banner or bypass the generation preflight.
+
+Current branch's audit-only review: [three-pass repository review](research/review-arena-89f65d48-20261025.md) · [machine-readable negative run card](evidence/repo_review_arena_89f65d48_20261025.json). Full suite: 805 passed / 23 skipped; preflight: `DUPLICATE_STOP`; no new TIFF or slot. This adds no upload clearance and does not change the research-only download decision.
 
 **Arena review `4fd0d184` (2026-10-25):** [three-pass review, H33 evidence limits, scratch-generation incident, and blockers](research/repo-review-arena-4fd0d184-20261025.md) · [machine-readable negative run card](evidence/repo_review_arena_4fd0d184_20261025.json). The pinned preflight returns `DUPLICATE_STOP`; four off-protocol scratch TIFFs were removed, zero outputs are cleared, no slot was used. The previous research-download decision remains unchanged.
 
@@ -56,7 +62,9 @@ Previous comprehensive recheck (2026-10-25, session b4dfa10c): [three-pass revie
 | Supplied results | **92** sites and **115** distinct file/value claims extracted with request-line provenance; four sites have no reported result. Claims are not organizer scores. |
 | Protocol regression | Revoked the concurrent unsupported HGVC v4 upload clearance; no dense-prior or creation-order exemption, and no selector bypass. Historical evidence remains traceable. |
 | H33 | Fresh geometry audit confirms subset/pruning ancestry. No submission receipt or causal proof of the supplied **0.2778** claim. No forecast above it. |
+| Current session `arena/810e3aa2-gemsdoe88` (2026-10-25) | Binding preflight re-verified: `DUPLICATE_STOP` (exit 2), `17GEMSDOE` covers 5,106,385/5,106,385 allowed cells, overlap lower bound 1.00 > 0.70, `ok_to_submit = false`, 0 slots spent. No new TIFF generated; none presented as submission-ready. PhD H33 analysis, [0,1] portal-error answer, 5 ranked hypotheses, and negative run card: [`research/session-810e3aa2-20261025-determination.md`](research/session-810e3aa2-20261025-determination.md) · [`registry/session-810e3aa2_run_card.json`](registry/session-810e3aa2_run_card.json). |
 | Independent repo review (2026-10-25) | **630 passed, 23 skipped**; 43/43 research packages locally validated; preflight exits 2 as expected on the universal registry witness; no new TIFF or submission slot. [Three-pass review and negative run card](research/arena-repo-review-20261025.md). |
+| Session `78cfb743` three-pass review (2026-10-25) | Restored SHA-pinned inputs; re-verified `DUPLICATE_STOP` (`0` new TIFFs, `0` experiments, `0` slots); wrapped shared `uniqueness.binding_duplicate_decision_v4` (`IR-88-78CFB743-01`); repaired `submissions/gems88-ibl88-...zip` unmarked inner member & added `scripts/audit_submissions_dir.py` (`IR-88-78CFB743-02`); fixed `mmrx88` dangling download metadata + added `scripts/validate_mmrx88.py` (`IR-88-78CFB743-03`); fixed 12 broken `docs/research/*.md` links & extended `scripts/check_site.py` (`IR-88-78CFB743-04`); reconciled 5 untried hypotheses (`H88-FARC`, `H88-EELG`, `H88-PRAN`, `H88-SESR`, `H88-FLAC`) against 30 executed registry lanes (`IR-88-78CFB743-05`); fixed fail-open `validate_lsc88.py --require-submit` so `27/27` validators exit `2` (`IR-88-78CFB743-06`). [Session review](research/session-78cfb743-review.md) · [Ranked hypotheses](research/session-78cfb743-hypotheses.md) · [Run card](registry/session_78cfb743_run_card.json). |
 
 
 ### Parallel scientific session record — `H88-MMRX` (`2026-10-25`, session 249e8cb3, `0` slots spent)

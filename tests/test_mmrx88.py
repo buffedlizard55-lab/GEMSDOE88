@@ -80,10 +80,18 @@ def _row(**kw):
 def test_v4_random_dots_vs_dense_surface_pass_but_v3_fails():
     rows = [_row(file="dense_proba.tif", forward_overlap=1.0, spearman=-0.001,
                  is_continuous_surface=True, topn_overlap=0.016)]
+    diag = uniqueness._representation_aware_diagnostics_v4(rows)
     v4 = uniqueness.binding_duplicate_decision_v4(rows)
-    assert v4["verdict"] == "promote"
+    assert diag["verdict"] == "promote"
+    assert diag["worst_effective_dot_overlap"] == 0.016
+    assert v4["worst_effective_dot_overlap"] == 0.016
     assert v4["worst_literal_forward_overlap"] == 1.0  # literal still reported
-    assert v4["literal_v3"]["verdict"] == "negative"  # ... and v3 fails it
+    assert v4["representation_aware_binding"] is False
+    assert v4["policy_correction"] == "IR-88-78CFB743-01"
+    assert v4["verdict"] == "negative"  # public v4 delegates binding verdict to literal v3
+    assert v4["duplicate"] is True and v4["stop_required"] is True
+    assert v4["literal_v3"]["verdict"] == "negative"
+
 
 
 def test_v4_copy_of_dense_topn_blocks():

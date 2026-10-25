@@ -1,0 +1,7 @@
+{"lane":"H88-PGTD","frozen_before_feature_canary_holdout_or_production_build":true,
+"hypothesis":"Buried 2D fault sheets have Laplace-consistent Marussi tensor det(T)~0 (sheetness->1) unlike 3D volcanic plugs; gating sheetness by potential-field gradient isolates sub-alluvial faults missing from USGS/INGENIOUS catalogue.",
+"mechanism":"Full 3x3 trace-free Hessian tensor of RTP (B02, vg B09) and isostatic gravity (B13, vg B11) at sigma=1.5px; dimensionality I=|det|/(||T||_F^3/(3sqrt6)); sheet=1-I; sheetxgrad; 2D Hessian anisotropy; topo anisotropy; cross-field sheet/grad concordance. 19 raw bands control arm B; arm A adds 12 PGTD channels.",
+"named_non_fault_mimics":["2D mafic dike swarms (Northern Nevada Rift)","narrow paleochannels","3D volcanic plugs/calderas (rejected by dim->1)"],
+"mimic_named_in_run_card":"psgv_mimic_volcanic_remanent_rim / 2D mafic dike swarm",
+"budget_experiments":3,"evaluator":"gems57-pooled-hide-v2","repo_best_to_beat":0.205991,
+"note":"Euler structural index omitted (needs source-location solve); documented limitation."}

@@ -21,11 +21,16 @@ sys.path[:0] = [str(ROOT), str(ROOT / "vendor")]
 from gems57 import grid  # noqa: E402
 from scripts.forensics_h33 import LINEAGE, dots_of, sha  # noqa: E402
 from scripts.restore_inputs import VALIDATION_GROUPS  # noqa: E402
+from scripts.audit_literal_protocol import pinned  # noqa: E402
 
 
 def inspect(root: Path = ROOT) -> dict:
     root = Path(root)
     expected = {dst: digest for group in VALIDATION_GROUPS for _, dst, digest in group[3]}
+    # Grid parity alone does not authenticate the footprint or catalogue values.
+    # Verify both inputs before deriving distances or any lineage conclusions.
+    pinned(root, "data/bridge/sample_submission.tif", grid.SHA256_SAMPLE_SUBMISSION)
+    pinned(root, "data/bridge/existing_faults.tif", grid.SHA256_EXISTING_FAULTS)
     g = grid.load_grid(root / "data/bridge")
     dcat = distance_transform_edt(~g.catalogue)
     masks = []

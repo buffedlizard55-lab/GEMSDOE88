@@ -1,6 +1,6 @@
 {
   "schema": "gems88.download-audit.v2",
-  "checked_at_utc": "2026-10-25T16:51:03.014715+00:00",
+  "checked_at_utc": "2026-10-25T17:34:38.289019+00:00",
   "scope": "Every TIFF in docs/downloads and docs/research-variants, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
   "preplacement_registry_proof": {
     "evidence_class": "REGISTRY-MEASUREMENT",
@@ -20,11 +20,11 @@
   },
   "canonical_file": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
   "canonical_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-  "tiff_count": 46,
-  "research_download_pass_count": 46,
+  "tiff_count": 47,
+  "research_download_pass_count": 47,
   "additional_research_tiff_count": 1,
-  "total_published_tiff_count": 47,
-  "total_research_download_pass_count": 47,
+  "total_published_tiff_count": 48,
+  "total_research_download_pass_count": 48,
   "additional_research_artifacts": [
     {
       "file": "gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros-DO-NOT-SUBMIT.tif",
@@ -1359,6 +1359,64 @@
       "positive_support_sha256": "3228990c680b76436115b280d0c8943beeb523aec4043c4b8aac55c4dcb59efe",
       "zip_file": "gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.zip",
       "zip_sha256": "4470e339d9d8b9b8eb32f6b976fe32e17bd176e45b0d0ee91da258caab544dca",
+      "zip_one_byte_identical_tif": true,
+      "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
+      "literal_overlap_lower_bound": 1.0,
+      "decision": "DUPLICATE_STOP"
+    },
+    {
+      "file": "gems88-pgtd88-marussi-37654dots-20261025T171809Z-af016438-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "f9ac5c5728869bb1c3096046b42cc7a71beec9d7f398d5a34700ff1f42573fd8",
+      "bytes": 140036,
+      "evidence_class": "LOCAL-FORMAT-AUDIT_NOT_ORGANIZER_ACCEPTANCE",
+      "format_valid": true,
+      "research_download_ok": true,
+      "ok_to_submit": false,
+      "errors": [],
+      "validator_output": {
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "single_band": true,
+        "geotiff": true,
+        "real_numeric_dtype": true,
+        "no_nan_inside": true,
+        "range_0_1": true,
+        "footprint_nonempty": true,
+        "no_mass_outside": true,
+        "footprint_not_masked": true,
+        "strict_audit": true,
+        "ok": true,
+        "raster_sha256": "f9ac5c5728869bb1c3096046b42cc7a71beec9d7f398d5a34700ff1f42573fd8",
+        "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+      },
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1,
+        "dtype": "float32"
+      },
+      "independent_decoders_agree": true,
+      "positive_pixels": 37654,
+      "positive_on_catalogue": 0,
+      "positive_outside_footprint": 0,
+      "decoded_float32_sha256": "af016438a13f2f9e53901de44912ad706e858158c3bd8e4bd38554648dc675a6",
+      "positive_support_sha256": "a50bbe5a8e84553a381595c9605d84a176718aaefaa1098575fddbaca279bc96",
+      "zip_file": "gems88-pgtd88-marussi-37654dots-20261025T171809Z-af016438-zeros-DO-NOT-SUBMIT.zip",
+      "zip_sha256": "2e47ce265304d7a40f3a4f1eb4ad5996958a6ad8cd1ef6dac24f6df404894621",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
       "cleared_by_con88_gates": false,

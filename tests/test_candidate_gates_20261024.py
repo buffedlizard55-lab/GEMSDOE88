@@ -31,9 +31,11 @@ def test_no_record_claims_submit_true_after_correction():
         offenders += [f"{rec.relative_to(ROOT)}:{p}" for p in _true_flags(data)]
     # Sanctioned exception (2026-10-25, IR-88-CON88-01): CON88 gates file only,
     # and only while its G1/G2/G3/canary booleans all pass on the recorded SHA.
+    _audit0 = json.loads((ROOT / "docs/data/download_audit.json").read_text())
+    _idx = next(i for i, r in enumerate(_audit0["artifacts"]) if r.get("cleared_by_con88_gates"))
     allowed = {"registry/con88_gates.json:.ok_to_submit",
-               "docs/data/download_audit.json:.artifacts[5].ok_to_submit",
-               "evidence/download_audit.json:.artifacts[5].ok_to_submit"}
+               f"docs/data/download_audit.json:.artifacts[{_idx}].ok_to_submit",
+               f"evidence/download_audit.json:.artifacts[{_idx}].ok_to_submit"}
     audit = json.loads((ROOT / "docs/data/download_audit.json").read_text())
     true_rows = [r for r in audit["artifacts"] if r.get("ok_to_submit")]
     assert len(true_rows) == 1 and "con88" in true_rows[0]["file"]

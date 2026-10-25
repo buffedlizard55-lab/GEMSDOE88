@@ -1,0 +1,63 @@
+{
+  "schema": "gems88.session-review.v1",
+  "session": "dd90d368",
+  "date": "2026-10-25",
+  "hypothesis": "No new geological lane assigned; retained ranked untested queue in research/session-b4dfa10c-hypotheses.md",
+  "mechanism": "Pre-placement literal registry support audit; no feature construction permitted",
+  "named_non_fault_process": "Depositional facies pinch-out can mimic the queued magnetic-marker displacement hypothesis",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "withheld_positives": null,
+    "evaluator": "gems57-pooled-hide-v2",
+    "status": "NOT_RUN: preflight stop"
+  },
+  "registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.7,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+    "directly_covered_allowed_pixels": 5106385,
+    "directly_saturated": true,
+    "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+  },
+  "surface_rank_correlation": null,
+  "final_dot_overlap": null,
+  "raster_sha256": null,
+  "validator": {
+    "new_raster": "NOT_GENERATED",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "historical_published_pairs_pass": 46,
+    "historical_pairs_submission_eligible": 0
+  },
+  "submission_name": null,
+  "submission_note": "No new TIFF: literal registry saturation blocks every nonempty candidate. Historical downloads remain DO NOT SUBMIT.",
+  "verdict": "negative",
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "ok_to_submit": false,
+  "verification": {
+    "full_suite": {
+      "passed": 815,
+      "skipped": 23,
+      "warnings": 64
+    },
+    "focused_tests_passed": 33,
+    "render_check": true,
+    "site_guard": true,
+    "optimized_site_guard": true,
+    "generation_gate_exit": 2,
+    "submission_gate_exit": 2,
+    "h33_lineage_reproduced": true
+  }
+}

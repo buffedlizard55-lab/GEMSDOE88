@@ -1022,3 +1022,38 @@ def binding_duplicate_decision_v4(rows, *, rho_limit=RHO_LIMIT,
                         duplicate=literal['duplicate'],
                         binding_rule=literal['binding_rule']),
         rows=out_rows)
+
+
+# IR-88-78CFB743-01: PR #152 appended binding_duplicate_decision_v4 after PR #151
+# (IR-88-B4DFA10C-08) had withdrawn unauthorized continuous-surface exemptions.
+# Keep the representation-aware calculation callable for historical diagnostics
+# while delegating the public v4 decision to the shared literal v3 gate.
+_representation_aware_diagnostics_v4 = binding_duplicate_decision_v4
+
+
+def binding_duplicate_decision_v4(rows, *, rho_limit=RHO_LIMIT,
+                                  overlap_limit=OVERLAP_LIMIT):
+    """Literal all-raster gate; representation-aware top-N values are diagnostic only."""
+    rows = list(rows)
+    out = _representation_aware_diagnostics_v4(
+        rows, rho_limit=rho_limit, overlap_limit=overlap_limit)
+    literal = binding_duplicate_decision_v3(
+        rows, rho_limit=rho_limit, overlap_limit=overlap_limit)
+    for row in out['rows']:
+        if 'error' not in row:
+            row['fails_effective_dot_diagnostic'] = row['fails_dot']
+            row['fails_dot'] = bool(row['fails_literal'])
+    invalid = bool(out['invalid_measurements'] or literal['invalid_measurements'])
+    stop = bool(literal['stop_required'] or invalid)
+    out.update(
+        binding_rule=literal['binding_rule'],
+        representation_aware_binding=False,
+        duplicate=bool(literal['duplicate']),
+        invalid_measurements=invalid,
+        stop_required=stop,
+        verdict=('negative' if stop else 'promote'),
+        policy_correction='IR-88-78CFB743-01',
+        rationale=('Representation-aware top-N overlap is diagnostic only; '
+                   'the user did not authorize replacing literal dot overlap.'))
+    return out
+

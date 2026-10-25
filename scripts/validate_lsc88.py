@@ -14,6 +14,7 @@ Checks (no human inspector):
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import sys
@@ -37,7 +38,11 @@ def require(cond: bool, msg: str) -> None:
         raise SystemExit(f"LSC88 VALIDATION FAILED: {msg}")
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--require-submit", action="store_true")
+    args = ap.parse_args(argv)
+
     card = json.loads((ROOT / "registry/lsc88_run_card.json").read_text())
     mirror = json.loads((ROOT / "docs/data/lsc88_run_card.json").read_text())
     require(card == mirror, "docs/data mirror differs from registry card")
@@ -81,7 +86,11 @@ def main() -> None:
         "ok_to_download": card["ok_to_download"], "ok_to_submit": card["ok_to_submit"],
         "verdict": card["verdict"], "gates": gates,
     }, indent=1))
+    if args.require_submit and not card["ok_to_submit"]:
+        print("DO NOT SUBMIT: H88-LSC verdict is negative (ok_to_submit=false).", file=sys.stderr)
+        return 2
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
