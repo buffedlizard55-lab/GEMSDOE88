@@ -389,8 +389,8 @@ def main() -> None:
         run_card["verdict"] = "negative"
 
     for dest in (
-        "registry/run_card.json", "docs/run_card.json",
-        "docs/data/run-card.json", "evidence/run-card.json",
+        "registry/sgmc88_run_card.json",
+        "docs/data/sgmc88_run_card.json",
     ):
         write_json(ROOT / dest, run_card)
 
@@ -411,7 +411,11 @@ def main() -> None:
         "dense_overlap": round(dense_overlap, 4),
         "verdict": run_card["verdict"],
     }
-    write_json(ROOT / "registry" / "gate_verdict.json", gate_verdict)
+    for gv_dest in (
+        "registry/sgmc88_gate_verdict.json",
+        "docs/data/sgmc88_gate_verdict.json",
+    ):
+        write_json(ROOT / gv_dest, gate_verdict)
 
     elapsed = round(time.monotonic() - t0, 2)
     print(f"\n[COMPLETE] {elapsed:.1f}s -> {tif_path.name}", flush=True)
