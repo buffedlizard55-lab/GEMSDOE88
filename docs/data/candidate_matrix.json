@@ -5,6 +5,33 @@
   "weekly_slots_used": 0,
   "rows": [
     {
+      "label": "H88-VHGD (2026-10-25; Exp 3 3-stratum emitted; Exp 2 PoE 0.1987, blind 0.0921 record)",
+      "record": "registry/vhgd88_run_card.json",
+      "holdout_dti": 0.1389381771212047,
+      "ci95": [
+        0.1226233045139424,
+        0.1539914402798988
+      ],
+      "withheld_positive_px": 22893,
+      "paired_delta": -0.049859778019640894,
+      "paired_delta_ci95": [
+        -0.05994853631809557,
+        -0.03982012451946325
+      ],
+      "note": "107ch dT/dz+cation-chalcedony diseq+Salem tilt PoE; Exp2 overall 0.1987 (+0.0099 vs ADHR), far 0.1324 (#1), blind 0.0921 (#1); 27821d share_gt25=36.82% PASS; 239-raster like-for-like 0.6885 <= 0.70 PASS; literal 1.0",
+      "evidence_class": "HOLDOUT-DTI (gems57-pooled-hide-v2)",
+      "organizer_confirmed": null,
+      "tif": "docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.tif",
+      "tif_sha256": "752dba748b55b855678f6447628d95bdabc43f785d2c72772004b429f9cb21ab",
+      "zip": "docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.zip",
+      "dots": 27821,
+      "literal_overlap_vs_17GEMSDOE": 1.0,
+      "topN_like_for_like_overlap": 0.6885446245641781,
+      "ok_to_download_research": true,
+      "ok_to_submit": false,
+      "reason_not_submit": "literal 17GEMSDOE overlap 1.0 > 0.70 and emitted 3-stratum overall holdout 0.1389 < ADHR 0.1888 (Exp 2 unconstrained benchmark 0.1987 beats ADHR + sets far/blind records; 239/239 like-for-like 0.6885 <= 0.70 PASS)"
+    },
+    {
       "label": "H88-SHORE-HINGE (this session; shoreline-filtered piedmont hinge)",
       "record": "registry/shore_hinge_run_card.json",
       "holdout_dti": 0.0,

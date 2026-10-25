@@ -159,6 +159,34 @@ def main(root: Path = ROOT) -> None:
         "DHTC ZIP SHA-256 mismatch",
     )
 
+    vhgd = json.loads((root / "registry/vhgd88_run_card.json").read_text())
+    vhgd_web = json.loads((docs / "data/vhgd88_run_card.json").read_text())
+    vhgd_gate = json.loads((root / "registry/vhgd88_gate_verdict.json").read_text())
+    vhgd_gate_web = json.loads((docs / "data/vhgd88_gate_verdict.json").read_text())
+    require(vhgd == vhgd_web, "Pages VHGD card differs from canonical registry card")
+    require(vhgd_gate == vhgd_gate_web, "Pages VHGD gate differs from canonical registry gate")
+    require(
+        vhgd["verdict"] == "negative"
+        and vhgd["ok_to_download"] is True
+        and vhgd["ok_to_submit"] is False
+        and vhgd_gate["ok_to_submit"] is False,
+        "VHGD must remain download-yes / submit-no",
+    )
+    require(
+        0 < len(vhgd["submission"]["submission_name"]) <= 140
+        and 0 < len(vhgd["submission"]["submission_note"]) <= 140,
+        "VHGD submission name/note must satisfy <=140 character portal cap",
+    )
+    require(
+        vhgd["correlation_overlap_vs_registry"]["unique_like_for_like"] is True
+        and vhgd["correlation_overlap_vs_registry"]["final_worst_like_for_like_overlap_3px"]["value"] <= 0.70,
+        "VHGD 239-raster like-for-like uniqueness check failed",
+    )
+    vhgd_tif = root / vhgd["submission"]["file"]
+    vhgd_zip = root / vhgd["submission"]["zip_file"]
+    require(sha256(vhgd_tif) == vhgd["raster_sha256"], "VHGD TIFF SHA-256 mismatch")
+    require(sha256(vhgd_zip) == vhgd["zip_sha256"], "VHGD ZIP SHA-256 mismatch")
+
     require(
         literal["decision"] == "DUPLICATE_STOP",
         'Site integrity check failed: literal["decision"] == "DUPLICATE_STOP"',
@@ -560,6 +588,10 @@ def main(root: Path = ROOT) -> None:
     require(dhtc_tif.name in index and dhtc_tif.name in executive, "DHTC tif in pages")
     require(dhtc["submission"]["submission_name"] in index and dhtc["submission"]["submission_name"] in executive, "DHTC name in pages")
     require(dhtc["raster_sha256"][:16] in index and dhtc["raster_sha256"][:16] in executive, "DHTC hash in pages")
+
+    require(vhgd_tif.name in index and vhgd_tif.name in executive, "VHGD tif in pages")
+    require(vhgd["submission"]["submission_name"] in index and vhgd["submission"]["submission_name"] in executive, "VHGD name in pages")
+    require(vhgd["raster_sha256"][:16] in index and vhgd["raster_sha256"][:16] in executive, "VHGD hash in pages")
     print(
         "PASS: canonical TDKL and concurrent negative research artifacts, hashes, Pages links, and status agree"
     )

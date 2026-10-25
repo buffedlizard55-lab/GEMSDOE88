@@ -1,4 +1,21 @@
-# Latest addendum (2026-10-24): H88-TDKL — DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness (`0` slots spent)
+# Latest addendum (2026-10-25): H88-VHGD — DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT (`0` slots spent)
+
+- **Candidate:** `docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: 752dba748b55b855678f6447628d95bdabc43f785d2c72772004b429f9cb21ab`) and single-TIFF `.zip` (`SHA-256: dcba915381b57090cbb30fa5b28bc1fe03388ebeeea292c74b1d77f137191e05`).
+- **Submission Name (`32` chars):** `GEMSDOE88-VHGD88-3STRAT-20261025`
+- **Submission Note (`105` chars `<= 140`):** `H88-VHGD 107ch dT/dz+diseq+Salem PoE (27821d); HOLDOUT-DTI Exp2 0.1987 Exp3 0.1389 blind 0.0921; UNSCORED`
+- **Scientific Gate (`HOLDOUT-DTI`, evaluator `gems57-pooled-hide-v2`, 8 folds across `seeds 20+21`):**
+  - **Exp 2 Unconstrained Benchmark (`vhgd88_exp2_poe_unconstrained`):** **Overall `0.198664`** (`95% CI [0.180377, 0.215592]`, `n=22,893`), paired $\Delta$ vs fold-fair `h88_adhr_control` (`0.188798`) = **`+0.009866` (`95% CI [+0.004247, +0.015700]`, 7/8 folds won)**; **Far `> 10 px` = `0.132383`** (`95% CI [0.110117, 0.156767]`, `n=10,791`, **all-time repo record**); **Blind `> 25 px` = `0.092061`** (`95% CI [0.056908, 0.132098]`, `n=3,117`, **all-time repo record**, `+41.1%` over `ADHR`).
+  - **Exp 3 Emitted 3-Stratum Arm (`h88_vhgd_3stratum`):** `0.138938` (`95% CI [0.122623, 0.153991]`, `n=22,893`), far `0.090354`, blind `0.055719` (`+37.1%` blind-basin `TP_w` vs Exp 2).
+- **Single-Feature Leakage Canary (`84` zero-catalogue channels):** **PASS** (`0/84 > 0.90`, `max_symmetric_auc = 0.61607`).
+- **Fingerprint Screen (`gems88-gate-v3`):** **PASS** (`27,821` dots; `share_le2 = 0.0000`; `share_gt25 = 0.3682 >= 0.35`).
+- **Registry Uniqueness Gate (`239` rasters checked):**
+  - Pre-placement continuous surface max `|Spearman rho| = 0.560056 <= 0.90` (**PASS**).
+  - Post-placement **239-raster like-for-like 3-px dot overlap (`gems88-gate-v3`): max `= 0.688545 <= 0.70` (PASS — `0` like-for-like blockers**, resolving the `0.8455` `VESS`/`TDKL` collision!).
+  - Literal dense-witness stop: `1.0000 > 0.70` vs `17GEMSDOE:dense_17gemdoe.tif` + stratified overall holdout bar -> **`ok_to_download = true`, `ok_to_submit = false` (`0` weekly slots spent)**.
+
+---
+
+# Earlier addendum (2026-10-24): H88-TDKL — DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness (`0` slots spent)
 
 - **Candidate:** `docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf`) and single-TIFF `.zip` (`SHA-256: af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5`).
 - **Submission Name (`29` chars):** `GEMSDOE88-TDKL88-POE-20261024`

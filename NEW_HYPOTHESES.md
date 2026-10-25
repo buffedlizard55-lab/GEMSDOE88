@@ -1,3 +1,27 @@
+# Ranked Un-Tried Geological Hypotheses & H88-VHGD Validation Dossier (2026-10-25)
+
+> **LATEST PREREGISTERED & VERIFIED HYPOTHESIS LEDGER (`PREREG-20261025-VHGD88`, 2026-10-25):** See [research/candidate-hypotheses-20261025-vhgd88.md](research/candidate-hypotheses-20261025-vhgd88.md), [registry/preregistration_vhgd88.json](registry/preregistration_vhgd88.json), [registry/vhgd88_run_card.json](registry/vhgd88_run_card.json), and [registry/vhgd88_gate_verdict.json](registry/vhgd88_gate_verdict.json).
+> - **Selected & Executed Primary Hypothesis (`H88-VHGD`):** *Vertical Heat-Flux Gradient, Geothermometer Kinetic Disequilibrium & Depth-Compensated Basement Admittance (`3-Stratum`)* — first lane in the repository to extract 1-m / 1.5-m / 2-m conductive vertical temperature gradients (`T2m - T1m`, `2(T2m - T15m)` across `1,718` multi-depth probes) and multi-season persistence (`T2m..T2m_7` across `1,867` stations) from DOE GDR `#1391`, repair `IR-88-117`/`IR-88-118` (`geothermcat_c` vs `geothermchalc_c` disequilibrium across `1,040` wells/springs + `402` paleo-geothermal manifestations), and combine depth-compensated Salem gravity tilt-wavenumber contacts, 150-m upward-continued magnetic persistence, and 10-m sub-pixel piedmont roughness-coherence breaklines with H33-forensic 3-stratum Dinkelbach allocation (`(2,9]`, `(9,25]`, `>25 px`).
+> - **Verified 8-Fold `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `seeds 20+21`, `n=22,893` overall, `n=10,791` far `> 10 px`, `n=3,117` blind `> 25 px`):**
+>   - **Control (`h88_adhr_control`, 67-ch fold-fair calibrated LightGBM dual):** `HOLDOUT-DTI = 0.188798` (`95% CI [0.170545, 0.205002]`, far `0.114950`, blind `0.064234`).
+>   - **Exp 1 (`vhgd88_exp1_zerocat`, 60-ch label-blind pure crust/hydrothermal):** `HOLDOUT-DTI = 0.078274` (`95% CI [0.062253, 0.094914]`, far `0.077251`, blind `0.069546`).
+>   - **Exp 2 (`vhgd88_exp2_poe_unconstrained`, 107-ch Log-Odds PoE benchmark):** **Overall `HOLDOUT-DTI = 0.198664`** (`95% CI [0.180377, 0.215592]`, **paired `Δ` vs `ADHR` = `+0.009866`, `95% CI [+0.004247, +0.015700]`**, **7/8 folds won**); **Far `> 10 px` `HOLDOUT-DTI = 0.132383`** (`95% CI [0.110117, 0.156767]`, **#1 all-time repo record**, surpassing `H88-VESS` `0.131922`); **Blind `> 25 px` `HOLDOUT-DTI = 0.092061`** (`95% CI [0.056908, 0.132098]`, **#1 all-time repo record**, `+41.1%` over `ADHR` `0.065263`, surpassing `H88-VESS` `0.090449`).
+>   - **Exp 3 (`h88_vhgd_3stratum`, emitted 3-stratum allocator):** `HOLDOUT-DTI = 0.138938` (`95% CI [0.122623, 0.153991]`, far `0.090354`, blind `0.055719`; lifts blind-basin weighted true-positive recall `TP_w` by **`+37.1%`** from `358.13` to `491.10`).
+> - **Production Emission & Gating (`239` Registry Rasters Checked):**
+>   - **Total Dots:** `27,821` positive-marginal-gain binary dots (`5,703` in `2<d<=9 px`, `11,874` in `9<d<=25 px`, `10,244` in `d>25 px`; `share_le2 = 0.0%`, `share_gt25 = 36.82% >= 35%`, median `d_cat = 14.04 px`).
+>   - **Leakage Canary:** `84/84` PASS (`max_symmetric_auc = 0.61607 <= 0.90`).
+>   - **Surface Rank Correlation:** `max |rho| = 0.560056 <= 0.90` (**PASS**).
+>   - **Like-for-Like Uniqueness (`239` rasters):** **`0.688545 <= 0.70` (PASS — `0` like-for-like blockers across all 239 registry/sibling/concurrent rasters**, breaking the `0.8455` `VESS`/`TDKL` collision: `0.6681` vs `VESS`, `0.6621` vs `TDKL`, `0.4225` vs `H33`, `0.0730` vs `DHTC`).
+>   - **Literal Overlap:** `1.0000 > 0.70` vs `17GEMSDOE` space-filling witness -> **`ok_to_download: true`, `ok_to_submit: false` (`verdict: "negative"`, `0` weekly slots spent)**.
+>   - **Artifacts:** GeoTIFF [`docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.tif) (`SHA-256: 752dba748b55b855678f6447628d95bdabc43f785d2c72772004b429f9cb21ab`), ZIP [`docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.zip`](docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.zip) (`SHA-256: dcba915381b57090cbb30fa5b28bc1fe03388ebeeea292c74b1d77f137191e05`).
+> - **Ranked Reserve Hypotheses (Preregistered in `PREREG-20261025-VHGD88`):**
+>   2. `H88-EULER3D` — *Multi-Window 3D Euler Deconvolution Homogeneity & Structural-Index Clustering* (`N in {0, 0.5, 1}`).
+>   3. `H88-FLEXISO` — *Spectral Thin-Plate Flexural Isostatic Admittance Residual & Hanging-Wall Rollover* (`2D FFT W(k)`).
+>   4. `H88-SLIPTEND` — *Principal-Strain Mohr-Coulomb Slip & Dilation Tendency on Geophysical Strike Tensors*.
+>   5. `H88-LODE-EPITHERM` — *PLSS-Deconfounded Historic Epithermal Lode-Claim Structural Corridor Conjunction* (`blm_closed_claim_distance_m.tif`).
+
+---
+
 # Ranked Un-Tried Geological Hypotheses & H88-DHTC / H88-TDKL Validation Dossier (2026-10-24)
 
 > **LATEST PREREGISTERED & VERIFIED HYPOTHESIS LEDGER (`PREREG-20261024-DHTC88`, 2026-10-24):** See [research/candidate-hypotheses-20261024-dhtc88.md](research/candidate-hypotheses-20261024-dhtc88.md), [research/h33-forensics-and-dhtc-phd-analysis.md](research/h33-forensics-and-dhtc-phd-analysis.md), [registry/preregistration_dhtc88.json](registry/preregistration_dhtc88.json), and [registry/dhtc88_run_card.json](registry/dhtc88_run_card.json).

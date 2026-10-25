@@ -1,3 +1,17 @@
+## Latest handoff — H88-VHGD integrated review & validation (2026-10-25)
+
+Read `README.md`, `PROMPT.md`, `registry/vhgd88_run_card.json`, `registry/vhgd88_gate_verdict.json`, `research/candidate-hypotheses-20261025-vhgd88.md`, and `IRREGULARITIES.md` (`IR-88-116..119`) first. Recheck automatically with `python scripts/restore_inputs.py --validation && PYTHONPATH=src:vendor python scripts/validate_vhgd88.py`.
+
+1. **What `H88-VHGD` accomplished (`PREREG-20261025-VHGD88`, 3 experiments, `0` slots spent):**
+   - Repaired `IR-88-116..119` (schema hallucinations in `DHTC`/`UGFV`/`GTHC` and unweighted/self-leaking LightGBM production fits) and extracted previously unopened physical measurements from DOE GDR `#1391` (`T1m`/`T15m` shallow vertical heat-flux gradients $\partial T/\partial z$ across `1,718` probes, `T2m..T2m_7` multi-season persistence across `1,867` probes, and `geothermcat_c` vs `geothermchalc_c` kinetic disequilibrium across `1,040` wells/springs).
+   - Achieved **new all-time repository records** on `gems57-pooled-hide-v2` in **Far (`>10 px`) `HOLDOUT-DTI = 0.132383` (`[0.110117, 0.156767]`, `n=10,791`)** and **Blind-Basin (`>25 px`) `HOLDOUT-DTI = 0.092061` (`[0.056908, 0.132098]`, `n=3,117`, `+41.1%` vs `ADHR`)**, with **Overall `HOLDOUT-DTI = 0.198664`** (`paired Δ = +0.009866 [+0.004247, +0.015700]` vs fold-fair `ADHR` `0.188798`).
+   - Emitted `docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: 752dba748b55b855678f6447628d95bdabc43f785d2c72772004b429f9cb21ab`, `27,821` binary dots, `share_le2 = 0.0%`, `share_gt25 = 36.82% >= 35%`), passing **all 239 registry/sibling/concurrent rasters like-for-like (`0.688545 <= 0.70`, `0` blockers)** while remaining **`OK TO DOWNLOAD: YES · OK TO SUBMIT: NO`** under the binding literal `17GEMSDOE` dense-witness rule (`1.0000 > 0.70`).
+2. **Next separately preregistered scientific frontier (`PREREG` required before execution):**
+   - Evaluate Rank #2 **`H88-EULER3D`** (sliding $7\times 7$ / $11\times 11$ 3D Euler deconvolution homogeneity clustering for contact structural indices $N \in \{0.0, 0.5, 1.0\}$ where $|z_0 - z_{\text{base}}| \le 500\text{ m}$) or Rank #3 **`H88-FLEXISO`** (2D FFT thin-plate flexural isostatic admittance residual) combined with continuous polyline/graph strand linking across `d_cat > 25 px` blind-basin corridors.
+   - Maintain strict literal dense-witness accounting (`ok_to_submit: false` unless a separate portfolio selector revises the dense-witness rule and authorizes a live DrivenData slot with authenticated receipt verification).
+
+---
+
 ## Binding handoff — protocol-integrity review (2026-10-24)
 
 Read `PROMPT.md` and `research/review-43d08c7a-20261024.md` first. Recheck with `python scripts/restore_inputs.py --validation` then `python scripts/audit_protocol_integrity.py`. The `--require-submit` variant must return **2** while the literal dense witness binds. **Do not generate more cosmetic variants:** all nonempty allowed dot sets are duplicates under the current definition. Zero experiments and zero slots in this review.
