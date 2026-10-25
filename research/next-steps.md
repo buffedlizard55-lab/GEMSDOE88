@@ -1,4 +1,10 @@
-## Latest handoff — `H88-GZZC` gravity zero-contour (`2026-10-25`)
+## Latest handoff — `H88-VHGD` Vertical Heat-Flux Gradient & Salem 3-Stratum PoE (`2026-10-25`, `IR-88-118..121`)
+
+Read `PROMPT.md`, `README.md`, `registry/vhgd88_run_card.json`, `registry/vhgd88_gate_verdict.json`, and `research/candidate-hypotheses-20261025-vhgd88.md` first. Recheck automatically with `.venv/bin/python scripts/validate_vhgd88.py` (`--require-submit` exits `2`).
+- **Completed:** `H88-VHGD` (`PREREG-20261025-VHGD88`, `3` experiments, `0` slots spent) achieved the repository's **#1 all-time Blind-Basin (`>25 px`) `HOLDOUT-DTI = 0.092061 [0.056908, 0.132098]`** (`n=3,117`, `+41.1%` over `ADHR`), Far `>10 px = 0.132383`, and Overall `0.198664` (`paired Δ = +0.009866 [+0.004247, +0.015700]` vs fold-fair `ADHR` `0.188798`), and emitted `docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: 752dba748b55b855678f6447628d95bdabc43f785d2c72772004b429f9cb21ab`, `27,821` dots, `share_gt25 = 36.82% >= 35%`, `243+`-raster like-for-like max overlap `0.688545 <= 0.70`, `ok_to_download = true`, `ok_to_submit = false`).
+- **Next:** (1) human selector decision on dense space-filling priors (`17GEMSDOE`); (2) separately preregister reserve `H88-EULER3D` (3D Euler deconvolution homogeneity clustering) or `H88-FLEXISO` (2D FFT flexural admittance residual) with blind-basin polyline linking; (3) verify DrivenData byte identity & remaining weekly quota on an authenticated machine.
+
+## Parallel handoff — `H88-GZZC` gravity zero-contour (`2026-10-25`)
 
 Read `PROMPT.md`, `README.md`, `registry/gzzc88_run_card.json`, and `research/candidate-hypotheses-20261025-gzzc.md` first.
 - **Completed:** unique research GeoTIFF `gems88-gzzc-gravzero-buried-20261025-961e034d-zeros-DO-NOT-SUBMIT.tif` (32,000 dots, SHA-256 `961e034d515fa74388f4417def3723584bdcb6d7fe7f97892b193898c13d78ad`). Format PASS, canary 0.572, fingerprint gt25=0.45, like-for-like 0.343. **HOLDOUT-DTI 0.0000**. **DO NOT SUBMIT** (literal 17GEMSDOE 1.0). 0 slots.

@@ -721,6 +721,48 @@ def main(root: Path = ROOT) -> None:
         "HGVC SHA-256 in pages",
     )
 
+    vhgd_card = json.loads((root / "registry/vhgd88_run_card.json").read_text())
+    vhgd_web = json.loads((docs / "data/vhgd88_run_card.json").read_text())
+    vhgd_gv = json.loads((root / "registry/vhgd88_gate_verdict.json").read_text())
+    vhgd_gv_web = json.loads((docs / "data/vhgd88_gate_verdict.json").read_text())
+    require(vhgd_card == vhgd_web, "Pages VHGD card differs from canonical registry card")
+    require(vhgd_gv == vhgd_gv_web, "Pages VHGD gate v3 differs from canonical registry gate")
+    require(
+        vhgd_card["verdict"] == "negative"
+        and vhgd_card["ok_to_download"] is True
+        and vhgd_card["ok_to_submit"] is False
+        and vhgd_gv["ok_to_submit"] is False
+        and vhgd_card["correlation_overlap_vs_registry"]["unique_like_for_like"] is True
+        and vhgd_card["correlation_overlap_vs_registry"]["final_worst_like_for_like_overlap_3px"]["value"] <= 0.70,
+        "VHGD run card verdict/gate flags inconsistent",
+    )
+    require(
+        0 < len(vhgd_card["submission"]["submission_name"]) <= 140
+        and 0 < len(vhgd_card["submission"]["submission_note"]) <= 140,
+        "VHGD submission name/note must satisfy <=140 character cap",
+    )
+    vhgd_tif = root / vhgd_card["submission"]["file"]
+    vhgd_zip = root / vhgd_card["submission"]["zip_file"]
+    require(vhgd_tif.is_file() and vhgd_zip.is_file(), "VHGD tif/zip files exist")
+    require(
+        sha256(vhgd_tif) == vhgd_card["raster_sha256"] == vhgd_gv["sha256"],
+        "VHGD TIFF SHA-256 mismatch across file, card, and gate",
+    )
+    require(
+        sha256(vhgd_zip) == vhgd_card["zip_sha256"] == vhgd_gv["zip_sha256"],
+        "VHGD ZIP SHA-256 mismatch across file, card, and gate",
+    )
+    require(vhgd_tif.name in index and vhgd_tif.name in executive, "VHGD tif in pages")
+    require(
+        vhgd_card["submission"]["submission_name"] in index
+        and vhgd_card["submission"]["submission_name"] in executive,
+        "VHGD name in pages",
+    )
+    require(
+        vhgd_card["raster_sha256"] in index and vhgd_card["raster_sha256"] in executive,
+        "VHGD SHA-256 in pages",
+    )
+
     bgcd = json.loads((root / "registry/bgcd88_run_card.json").read_text())
     bgcd_web = json.loads((docs / "data/bgcd88_run_card.json").read_text())
     bgcd_gate = json.loads((root / "registry/bgcd88_gate_verdict.json").read_text())
