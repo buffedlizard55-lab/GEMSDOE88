@@ -1,0 +1,191 @@
+{
+  "schema": "gems88.hypothesis-queue.v1",
+  "reviewed_at_utc": "2026-10-25",
+  "review_branch": "arena/693b10af-gemsdoe88",
+  "source_snapshot": {
+    "files": 150,
+    "sha256": "1432106995112c206526841147d5a6d0b7f6a9a8f71563199a6b3a2e7d781dd7"
+  },
+  "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
+  "conditional_first_choice": "H88-SPR",
+  "selection_status": "NOT STARTED \u2014 shared DUPLICATE_STOP takes precedence",
+  "generation_authorized": false,
+  "ok_to_submit": false,
+  "input_provenance": "SHA-pinned owner mirrors restored in this session; no authenticated organizer download or fresh primary-source license verification.",
+  "input_pins": {
+    "data/external/dem10_chi_100m_u8.tif": "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a",
+    "data/external/geodawn_rad_u8.tif": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+    "data/external/lidar_scarp_features_u8.tif": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+    "data/external/topo_10m_derived_100m_u8.manifest.json": "181d5527ba7ed2990031918a8b6c9d5d94e3998b2daf656de0c33322ca94120a",
+    "data/external/topo_10m_derived_100m_u8.tif": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4",
+    "data/training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "already_evaluated": [
+    {
+      "id": "H88-MMRX",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/mmrx88_run_card.json",
+      "run_card_sha256": "64afeb8f34b931b580d0f89fcf13ac60d72c0d49fa7b69072c65ebc330f9b0ce",
+      "reason": "Already implemented and evaluated; not an untested first choice. Historical run is negative and final dots overlap HGVC beyond the limit."
+    },
+    {
+      "id": "H88-MTAS",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/mtas88_experiment_run_card.json",
+      "run_card_sha256": "424f30b0c527bfc842951ef1d6b1a6d7607b38ae6da8a33302d3c3ec0df4636e",
+      "reason": "The initial preflight and the later historical execution are distinct records; do not describe the mechanism as never executed."
+    },
+    {
+      "id": "H88-MFS",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/mfs88_run_card.json",
+      "run_card_sha256": "88af28a3f9022ff52bea0bd723d6bcea428e04514488865e9a2b8281c1f74294",
+      "reason": "Multiscale gradient-decay/scaling-break channels already exist; historical execution is not permission to bypass the guard."
+    }
+  ],
+  "proposals": [
+    {
+      "rank": 1,
+      "id": "H88-SPR",
+      "title": "Repeated scarp-profile restoration against a drainage/shoreline null",
+      "status": "PROPOSED_UNTESTED",
+      "new_external_data_required": false,
+      "layers": [
+        {
+          "file": "data/training_features.tif",
+          "bands": [
+            12,
+            19
+          ],
+          "description": "det_elev; det_elev_slope"
+        },
+        {
+          "file": "data/external/topo_10m_derived_100m_u8.tif",
+          "bands": [
+            8,
+            9
+          ],
+          "description": "hs_lineament; dem_mean at 100 m, encoded by its pinned manifest"
+        },
+        {
+          "file": "data/external/lidar_scarp_features_u8.tif",
+          "bands": [
+            3,
+            10,
+            11,
+            12
+          ],
+          "description": "step_max; coh100; strike; valid"
+        },
+        {
+          "file": "data/external/dem10_chi_100m_u8.tif",
+          "bands": [
+            1,
+            4
+          ],
+          "description": "chan_n; valid_n"
+        }
+      ],
+      "signature": "On independent along-strike swaths, fit smooth-landform-plus-signed-step versus no-step profiles; score restoration on held-out profile samples and require a repeatable step away from channel corridors. Use the manifest to decode topographic indices and mask invalid/saturated values.",
+      "off_catalogue_rationale": "A weak or cover-softened offset repeated across an otherwise smooth piedmont could escape catalogue mapping while retaining a resolvable profile signal. No mapped trace seeds the surface. Sub-pixel scarps are not claimed detectable from this 100 m cache.",
+      "non_fault_mimic": "Fluvial terrace risers and constant-elevation pluvial shoreline benches",
+      "difference_from_implemented": "LSC/TDKL/VESS/SHORE use scarp responses, polarity, knickpoint or shoreline context; they do not fit a cross-validated landform-restoration likelihood. MMRX restores magnetic texture, not landform profiles.",
+      "expected_potential": "First relative priority; moderate but highly uncertain; no numerical DTI projection",
+      "implementation_cost": "Medium; cached inputs only",
+      "falsification": "Reject if sign/step evidence disappears across adjacent withheld swaths, depends on drainage pixels, or is equally explained by contour-following shoreline/terrace controls."
+    },
+    {
+      "rank": 2,
+      "id": "H88-AWA",
+      "title": "Terrain-matched radiometric alteration-width asymmetry",
+      "status": "PROPOSED_UNTESTED",
+      "new_external_data_required": false,
+      "layers": [
+        {
+          "file": "data/external/geodawn_rad_u8.tif",
+          "bands": [
+            1,
+            2,
+            3
+          ],
+          "description": "K; Th; U quantized indices, not calibrated concentration ratios"
+        },
+        {
+          "file": "data/training_features.tif",
+          "bands": [
+            2,
+            15,
+            19
+          ],
+          "description": "rtp; depth_to_base_surf; det_elev_slope"
+        }
+      ],
+      "signature": "Fit relative cross-strike decay widths of within-band, terrain-matched K/Th/U residual profiles on two flanks and test repeated width asymmetry alongside a local RTP depression. Quantized code values must not be divided and called physical K/Th concentrations.",
+      "off_catalogue_rationale": "A covered permeable structure might alter one wall more broadly than the other despite no discrete scarp. This conditional spatial pattern does not identify an alteration mineral or prove fluid temperature.",
+      "non_fault_mimic": "Differential weathering of adjacent rock units and K-rich transported alluvium",
+      "difference_from_implemented": "KTH/MVRD compare enrichment/redox levels or edges; this tests relative fitted decay width, not another radiometric high or a magnetic marker shift.",
+      "expected_potential": "Second priority; low-to-moderate, uncertain; no numerical DTI projection",
+      "implementation_cost": "Medium; quantization and background fitting need care",
+      "falsification": "Reject if a parent-material/terrain-matched null reproduces the width asymmetry or the apparent signal is quantization/saturation dependent."
+    },
+    {
+      "rank": 3,
+      "id": "H88-GTD",
+      "title": "Potential-field source dimensionality versus compact-body null",
+      "status": "PROPOSED_UNTESTED",
+      "new_external_data_required": false,
+      "layers": [
+        {
+          "file": "data/training_features.tif",
+          "bands": [
+            2,
+            13,
+            15
+          ],
+          "description": "rtp; iso_grav_anom; depth_to_base_surf"
+        }
+      ],
+      "signature": "Construct a regularized harmonic potential-field gradient tensor from gravity and assess its eigenvalue/determinant dimensionality across scales; compare elongated quasi-2D source edges with compact-body synthetic nulls, using magnetics as an independent contextual check. Freeze derivative sign conventions and padding before fitting.",
+      "off_catalogue_rationale": "An elongated buried density discontinuity can survive cover without a surface rupture; testing source geometry may reject compact plutons favored by simple edge magnitude.",
+      "non_fault_mimic": "Unfaulted two-dimensional dikes and stratigraphic pinch-out contacts",
+      "difference_from_implemented": "HGVC/BPWD/VESS use Hessian ridge/vesselness of response images; MMRX tests shifted texture, MFS tests Gaussian gradient decay. This proposal uses invariants of a reconstructed harmonic field tensor, not the ridge Hessian.",
+      "expected_potential": "Third priority; low-to-moderate, uncertain; no numerical DTI projection",
+      "implementation_cost": "Low-to-medium, but an ill-conditioned inverse problem",
+      "falsification": "Reject if continuation, taper or azimuth changes reverse the classification, or unfaulted dike/contact controls are indistinguishable from the target."
+    },
+    {
+      "rank": 4,
+      "id": "H88-CBC",
+      "title": "Conductive basin-breach connectivity against a paleochannel null",
+      "status": "PROPOSED_UNTESTED",
+      "new_external_data_required": false,
+      "layers": [
+        {
+          "file": "data/training_features.tif",
+          "bands": [
+            12,
+            13,
+            15,
+            17
+          ],
+          "description": "det_elev; iso_grav_anom; depth_to_base_surf; cond_surf"
+        },
+        {
+          "file": "data/external/dem10_chi_100m_u8.tif",
+          "bands": [
+            1,
+            4
+          ],
+          "description": "chan_n; valid_n"
+        }
+      ],
+      "signature": "Compare narrow conductivity connectivity across independently inferred basin-boundary saddles with a smooth basin-fill null; require cross-boundary gravity discontinuity and test a terrain-aligned drainage explanation. Work on relative model fields, not a claim of resolved metre-scale conduits.",
+      "off_catalogue_rationale": "A buried cross-basin structural connection may have no mapped surface trace. The target is a candidate fault-related pathway, never a directly detected geothermal vent.",
+      "non_fault_mimic": "Unfaulted permeable alluvial paleochannels and saline groundwater plumes",
+      "difference_from_implemented": "CTRA/DHTC use conductivity curvature and thermal conjunctions; this tests topology-preserving cross-basin connectivity against an explicit drainage null.",
+      "expected_potential": "Fourth priority; low, uncertain; no numerical DTI projection",
+      "implementation_cost": "Medium-high; coarse-field resolution is a major limitation",
+      "falsification": "Reject if basin-fill smoothness or drainage connectivity explains the bridge equally well, or no boundary-normal gravity change is present."
+    }
+  ]
+}

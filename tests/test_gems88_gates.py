@@ -13,7 +13,7 @@
 10. Strictly monotonic zero-leakage `HOLDOUT-DTI` progression (`B0 < B1 < EXP-1 < EXP-2 < EXP-3`)
 11. Paired 20 km spatial-cluster bootstrap significance vs `B1_FoldFair_H33_2_B2` (`Seed 20` & `Seed 30`)
 12. Pre-placement continuous surface uniqueness (`|Spearman rho| <= 0.90` & `overlap <= 0.70`)
-13. Full 5,167,373-pixel `vendor/gems57/uniqueness.py` scan across ALL `1,167` org rasters (`errors = 0`)
+13. Archived 1,167-raster discriminating-only scan (historical; NOT binding uniqueness clearance)
 14. Submission note length (`<= 140` chars) & unique submission identifier
 15. Publication figure presence & non-empty valid PNG headers (`docs/assets/fig1..4.png`)
 16. HTML & Markdown link / integrity check across `README.md`, `docs/index.html`, and `docs/executive-summary.html`
@@ -51,10 +51,19 @@ def test_02_run_card_schema_and_strict_score_labels():
     for rc_path in [ROOT / "run_card.json", ROOT / "docs" / "data" / "run_card.json", ROOT / "evidence" / "run_card.json"]:
         assert rc_path.exists()
         rc = json.loads(rc_path.read_text())
-        assert rc["verdict"] == "promote"
+        # Preserve historical measurements, never an unsupported promotion or
+        # an organizer label for a user-supplied number (IR-88-693B10AF-01).
+        assert rc["verdict"] == "negative"
+        assert rc["historical_only"] is True
+        assert rc["ok_to_submit"] is rc["approved_for_weekly_slot"] is False
         assert rc["evidence_status"]["score_label"] == "HOLDOUT-DTI"
         assert rc["evidence_status"]["organizer_confirmed_live_score"] is None
-        assert rc["evidence_status"]["incumbent_organizer_confirmed_live_score"] == 0.2778
+        assert rc["evidence_status"]["incumbent_organizer_confirmed_live_score"] is None
+        assert rc["evidence_status"]["incumbent_user_reported_claim"] == 0.2778
+        assert rc["evidence_status"]["incumbent_evidence_class"].startswith("USER-REPORTED")
+        assert rc["uniqueness"]["unique"] is False
+        assert rc["uniqueness"]["stop_required"] is True
+        assert rc["uniqueness"]["literal_overlap_3px"] == 1.0
         assert rc["experiments_run"] <= rc["experiment_budget_max"] == 3
 
 

@@ -1,4 +1,12 @@
-## Current session handoff — 2026-10-25, d0c3adeb
+## Current session handoff — 2026-10-25, 693b10af
+
+Read the full recorded request in README and `USER_PROMPT_20261025.md`, then `AGENTS.md` and `registry/session_693b10af_run_card.json`. Shared preflight remains `DUPLICATE_STOP` before feature construction: no new TIFF, geological experiment, holdout or slot. The urgent new unique-submission requirement remains unmet. No dense-prior exemption is authorized.
+
+Current proposals are in `registry/hypothesis_queue.json` / `research/session-693b10af-hypotheses.md`; MMRX, MTAS and MFS already have historical negative execution records. `scripts/audit_research_state.py` binds the queue to reviewed source/inputs and rejects the old GHMD promotion/false organizer label. The dated review runner is a historical replay, not fresh source retrieval. Install `requirements.txt` with its tested CPU constraints; never relax TIFF hashes to work around encoder drift. Use `scripts/render_decision.py` for the canonical primary decision and Research queue. Review, sources, fresh browser/clean-install evidence and limitations are linked from `research/session-693b10af-review.md`.
+
+---
+
+## Historical session handoff — 2026-10-25, d0c3adeb
 
 > **Historical parallel-lane record (2026-10-25, H88-MFS, session ba739e0f; not slot authorization):** Preregistered multifractal scaling-break lane executed research-only after recording the literal `DUPLICATE_STOP` preflight (deviation logged IR-88-BA739E0F-01). New GeoTIFF `gems88-mfs88-multifractal-37654dots-20261025T134532Z-22a651df-zeros-DO-NOT-SUBMIT.tif` (SHA-256 `c61a090412f11edfb0200d4be49e95921322efc7e3af6493075a41a58008e494`). **DOWNLOAD FOR RESEARCH: YES - SUBMIT: NO.** HOLDOUT-DTI 0.0802 [0.0668, 0.0948] (`gems57-pooled-hide-v2`, n=22,893) beats its matched 19-band control (paired +0.0125, CI>0 overall/far/blind) but not the repo record 0.205991; surface |rho| 0.9082 vs dense 17GEMSDOE and literal overlap 1.0000 fail uniqueness; 0 slots. See `research/session-ba739e0f-mfs88.md`. **That generation exception is revoked in IR-88-B4DFA10C-07: the runner now enforces the unchanged shared preflight before model/feature imports. Historical execution is not authorization to rerun.**
 

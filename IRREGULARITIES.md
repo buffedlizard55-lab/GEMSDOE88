@@ -794,3 +794,16 @@ bytes/SHA and a DO-NOT-SUBMIT name; its one-member ZIP uses the corrected archiv
 No new experiment, candidate prediction or competition slot was used by this correction.
 See `evidence/sdtl88_clearance_withdrawal_20261025.json` for source commit, original hashes,
 relabel receipt, preserved scientific digest and the deliberately rejected policy files.
+
+
+## IR-88-693B10AF-01 — unsupported legacy GHMD promotion and receipt label (2026-10-25)
+
+Fresh audit found `run_card.json`, `docs/data/run_card.json` and `evidence/run_card.json` still saying `promote` and labeling the supplied H33 claim as organizer-confirmed, with a test explicitly enforcing both. No organizer receipt supports that label. The evidence copy additionally had stale pre-quarantine filenames/ZIP identity. Corrected all three copies to identical historical/negative metadata, null organizer fields, a labeled user claim and binding literal uniqueness failure; updated the guarded legacy generator and the erroneous test. Original flags/metadata hashes and identities are retained in `evidence/ghmd88_clearance_withdrawal_20261025.json`. No TIFF/ZIP bytes changed and no old experiment is recast as freshly confirmed.
+
+## IR-88-693B10AF-02 — stale untested queue after merged scientific runs (2026-10-25)
+
+The canonical site/NEW_HYPOTHESES still called magnetic-marker restoration untested although `mmrx.py` and its negative run card already exist. MTAS/MFS similarly have executed historical records. Added a source-fingerprinted queue separating those evaluated negatives from four precise still-unrun proposals; corrected the primary site and historical-review scope. `audit_research_state.py` checks source/run-card/input pins and legacy metadata without constructing features or granting clearance. Fingerprints detect drift, not semantic novelty. The literal universal witness is unchanged; no experiment or TIFF is authorized.
+
+## IR-88-693B10AF-03 — floating packages and encoder-dependent SHA reproduction (2026-10-25)
+
+Unconstrained pip rejected the selected NumPy 2.4.6 wheel for a hash mismatch (cause not established; integrity was not bypassed). Exact verified NumPy 2.3.4 installed. First full suite: 792 passed, 1 failed, 23 skipped; Rasterio 1.4.3 reproduced the parent pixels but not the mandated encoded TIFF hash. Rasterio 1.4.4/GDAL 3.10.3 passed the unchanged exact-byte test. Added tested CPU constraints (including transitive packages) to the normal install and all workflow cache keys, keeping hash expectations and the shared writer untouched. Portability beyond this Python 3.11/Linux x86_64 CPU environment is not asserted. Review and final verification: `research/session-693b10af-review.md` and `registry/session_693b10af_run_card.json`.

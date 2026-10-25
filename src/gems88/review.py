@@ -189,7 +189,12 @@ OFFICIAL_SOURCES: tuple[dict[str, str], ...] = (
 
 
 def hypothesis_queue() -> list[dict[str, Any]]:
-    """Return a JSON-safe copy of the five ranked, untested hypotheses."""
+    """Replay the original review's five hypotheses, not today's active queue.
+
+    These statuses were recorded before MTAS was later executed. Current
+    source-bound proposal/evaluation state is registry/hypothesis_queue.json.
+    Source-access records below are likewise historical, not live fetches.
+    """
 
     return [h.as_json() for h in HYPOTHESES]
 

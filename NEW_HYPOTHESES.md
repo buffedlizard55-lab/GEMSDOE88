@@ -1,13 +1,17 @@
-# Current conditional hypotheses — four ranked, none executed (plus archived `H88-VCAZ` 5-hypothesis ledger below)
+# Current source-reviewed hypotheses — four unrun variants, no generation authorized
 
-Read [session-d0c3adeb-hypotheses.md](research/session-d0c3adeb-hypotheses.md) for exact layers/transforms, off-catalogue rationale, prior-work distinctions, qualitative expected benefit/cost, named non-fault mimics and source limitations, and [candidate-hypotheses-20261025-vcaz88.md](research/candidate-hypotheses-20261025-vcaz88.md) for the `PREREG-20261025-VCAZ88` 5-hypothesis ranking and `H88-VCAZ` empirical evaluation.
+Read [session-693b10af-hypotheses.md](research/session-693b10af-hypotheses.md) and the [source-bound JSON queue](registry/hypothesis_queue.json) before proposing another experiment. Run `python scripts/audit_research_state.py` to detect source/run-card drift; use `--check-inputs` after the full shared restore. This metadata audit never grants a slot.
 
-1. Magnetic-marker restoration across candidate discontinuities (first choice only after prerequisites are satisfiable).
-2. Scarp-profile restoration with a drainage-erosion veto.
-3. Alteration-width asymmetry against a lithologic-contact null.
-4. Conductive basin-breach continuity against a permeable paleochannel null.
+1. **H88-SPR** — repeated scarp-profile restoration against drainage, terrace and shoreline nulls (conditional first choice).
+2. **H88-AWA** — terrain-matched radiometric alteration-*width* asymmetry, not calibrated ratios of quantized codes.
+3. **H88-GTD** — harmonic potential-field source-dimensionality invariants against compact-body/dike/contact nulls.
+4. **H88-CBC** — conductive cross-basin breach connectivity against paleochannel/brine explanations.
 
-All four conditional proposals above remain **untested**. They propose geothermal-related fault evidence, not vent detection. Local source-code novelty is not proof of worldwide/fleet novelty. No numeric gain or leaderboard result is projected. The shared literal duplicate stop currently forbids execution; do not run any historical lane below to evade it.
+These precise variants remain **PROPOSED_UNTESTED** in the reviewed checkout. Expected benefit is qualitative and uncertain, never a DTI projection. All required inputs are already in the SHA-pinned shared owner-mirror tier; no new external dataset is assumed obtainable. This is source-reviewed local novelty, not proof of worldwide or fleet-wide originality.
+
+**Corrected stale recommendations:** magnetic-marker restoration (`src/gems88/mmrx.py`), cross-scale admittance (`mtas.py`) and Gaussian gradient-decay/scaling-break (`mfs88.py`) have already been implemented and evaluated with historical negative run cards. They are **not untested ideas**. Their archived execution is not authorization to evade the unchanged duplicate-stop rule. The older records below are historical snapshots, not today's queue.
+
+The literal full-registry witness still blocks every nonempty candidate before feature construction, canaries, holdout or placement. **Zero new geological experiments, zero new candidate TIFFs, zero weekly slots in session 693b10af.** Conditional first choice is not a selected submission.
 
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>

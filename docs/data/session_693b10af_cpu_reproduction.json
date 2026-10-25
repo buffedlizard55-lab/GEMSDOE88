@@ -1,0 +1,184 @@
+{
+  "schema": "gems88.cpu-reproduction.v1",
+  "checked_at_utc": "2026-10-25T16:37:21.439139+00:00",
+  "status": "PASS",
+  "python": "3.11.2",
+  "platform": "Linux x86_64 CPU",
+  "constraints_file": "requirements-constraints.txt",
+  "constraints_sha256": "7cc38ba1726b1a8a4f4aa99c06125c86b5e5a930faef1ac09dbd89e4cfbbeddd",
+  "requirements_sha256": "fcb3402a1435ee5371988c6edd36c2e8c11d21a209dd0e585185bea89e6d01b6",
+  "fresh_venv": true,
+  "pip_check": "PASS",
+  "hash_verification_bypassed": false,
+  "installed_distributions": [
+    {
+      "name": "numpy",
+      "version": "2.3.4",
+      "sha256": "a7b2f9a18b5ff9824a6af80de4f37f4ec3c2aab05ef08f51c77a093f5b89adda"
+    },
+    {
+      "name": "scipy",
+      "version": "1.16.2",
+      "sha256": "f5db5ba6188d698ba7abab982ad6973265b74bb40a1efe1821b58c87f73892b9"
+    },
+    {
+      "name": "rasterio",
+      "version": "1.4.4",
+      "sha256": "e24b7b8c2df801dde2a1dffb44c58902bd76b5cab740dc11de4ff9963992a71a"
+    },
+    {
+      "name": "lightgbm",
+      "version": "4.6.0",
+      "sha256": "cb19b5afea55b5b61cbb2131095f50538bd608a00655f23ad5d25ae3e3bf1c8d"
+    },
+    {
+      "name": "scikit-learn",
+      "version": "1.7.2",
+      "sha256": "89877e19a80c7b11a2891a27c21c4894fb18e2c2e077815bcade10d34287b20d"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.10.7",
+      "sha256": "2222c7ba2cbde7fe63032769f6eb7e83ab3227f47d997a8453377709b7fe3a5a"
+    },
+    {
+      "name": "pytest",
+      "version": "8.4.2",
+      "sha256": "872f880de3fc3a5bdc88a11b39c9710c3497a547cfa9320bc3c5e62fbf272e79"
+    },
+    {
+      "name": "tifffile",
+      "version": "2025.10.16",
+      "sha256": "41463d979c1c262b0a5cdef2a7f95f0388a072ad82d899458b154a48609d759c"
+    },
+    {
+      "name": "imagecodecs",
+      "version": "2025.8.2",
+      "sha256": "8e993b0b1601d19ee1aadb10fceb93524d88b874ee728f82d3f9b40bddccd223"
+    },
+    {
+      "name": "pillow",
+      "version": "11.3.0",
+      "sha256": "106064daa23a745510dabce1d84f29137a37224831d88eb4ce94bb187b1d7e5f"
+    },
+    {
+      "name": "click",
+      "version": "8.5.0",
+      "sha256": "255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360"
+    },
+    {
+      "name": "cligj",
+      "version": "0.7.2",
+      "sha256": "c1ca117dbce1fe20a5809dc96f01e1c2840f6dcc939b3ddbb1111bf330ba82df"
+    },
+    {
+      "name": "contourpy",
+      "version": "1.3.3",
+      "sha256": "51e79c1f7470158e838808d4a996fa9bac72c498e93d8ebe5119bc1e6becb0db"
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1",
+      "sha256": "85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30"
+    },
+    {
+      "name": "fonttools",
+      "version": "4.67.0",
+      "sha256": "59f44309ce78851c9621ee88e3f667ca3fbcc89dc0e8641336be3f12ba06bfd4"
+    },
+    {
+      "name": "iniconfig",
+      "version": "2.3.1",
+      "sha256": "9121e2c1fdb355232495be3194c8dfe87ccc2d5dee45947b78e68f499790d7a7"
+    },
+    {
+      "name": "joblib",
+      "version": "1.6.0",
+      "sha256": "3dbbf9f6e4b592a2357b854608e980fe6390d131d7a82f011a377ef2ebef7aba"
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.5.1",
+      "sha256": "95a02752aa032eef4aed01cda6d9b687c669bd0396bf4519eef8bba22a286720"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3",
+      "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c"
+    },
+    {
+      "name": "pluggy",
+      "version": "1.7.0",
+      "sha256": "7dd7b0d8832ba3cb632c306926ded123429211b83641b35dc5c41ad2d34f9bec"
+    },
+    {
+      "name": "Pygments",
+      "version": "2.21.0",
+      "sha256": "2363c69b61c4a97c838da3b130dcd6468f4848992b21a82f2a63ec34377137d9"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.3",
+      "sha256": "ece8c00a69cf01b45d0b1dedabb469c90d8caf996d4fda40f147627a122849a4"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "3.0.0",
+      "sha256": "3c79630202e4152c6add678446984236efe4f57e84d8e892aab0637bab82e9fd"
+    },
+    {
+      "name": "threadpoolctl",
+      "version": "3.7.0",
+      "sha256": "cd8b60b5641b45c67bbf73c64c843235fc2d8a480c87389f52f5dbee893b86be"
+    },
+    {
+      "name": "affine",
+      "version": "3.0.1",
+      "sha256": "cda3b303325e7bf2bf34817e68753a0d1c4cacbdd451fe67c4878dc2ecbaa540"
+    },
+    {
+      "name": "attrs",
+      "version": "26.1.0",
+      "sha256": "c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23",
+      "sha256": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1"
+    },
+    {
+      "name": "click-plugins",
+      "version": "1.1.1.2",
+      "sha256": "008d65743833ffc1f5417bf0e78e8d2c23aab04d9745ba817bd3e71b0feb6aa6"
+    },
+    {
+      "name": "cloudpickle",
+      "version": "3.1.2",
+      "sha256": "9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a"
+    },
+    {
+      "name": "six",
+      "version": "1.17.0",
+      "sha256": "4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.5",
+      "sha256": "b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac"
+    }
+  ],
+  "rasterio": "1.4.4",
+  "gdal": "3.10.3",
+  "numpy": "2.3.4",
+  "unchanged_byte_exact_h33_rebuild_test": {
+    "status": "PASS",
+    "passed": 1,
+    "seconds": 7.28
+  },
+  "geological_experiments_run": 0,
+  "ok_to_submit": false,
+  "limitations": [
+    "Tested Python 3.11/Linux x86_64 CPU environment, not cross-platform/GPU reproducibility or an organizer performance measurement.",
+    "Pip/PyPI artifact integrity enabled; constraints are version pins, not a complete package-hash lock."
+  ]
+}
