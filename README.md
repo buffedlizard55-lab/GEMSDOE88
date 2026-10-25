@@ -20,6 +20,8 @@ Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_P
 
 Independent repository recheck (2026-10-25): [review report](research/repo-review-arena-f5e85a1a-20261025.md) · [negative run card](evidence/repo_review_arena_f5e85a1a_20261025.json). No new TIFF was produced: the pinned registry witness covers every allowed pixel, so the literal uniqueness rule blocks every nonempty candidate. This does not satisfy the unique-TIFF request; it records why generating one would violate the active protocol.
 
+**Latest branch review (Arena `f8d5d693`, 2026-10-25):** [three-pass repository review](research/repo-review-arena-f8d5d693-20261025.md) · [machine-readable run card](evidence/repo_review_arena_f8d5d693_20261025.json). Validation-only restore and fresh preflight reproduced `DUPLICATE_STOP`; **654 passed / 23 skipped**, 43/43 archived research TIFF/ZIP format audits pass, but 0 files clear the protocol gate. No experiment, new TIFF, weekly slot, or organizer score. The MTAS TIFF already in the archive is historical, fails the literal duplicate rule, and remains `DO-NOT-SUBMIT`; the review flags conflicting historical timeline records rather than recasting it as a new deliverable.
+
 ### Current review — session d0c3adeb, 2026-10-25
 
 | Work | Verified outcome |
