@@ -1,10 +1,24 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c2436"><meta name="description" content="GEMSDOE88 executive submission decision and exact DrivenData upload procedure."><title>Executive submission guide · GEMSDOE88</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><a href="#main" class="sr-only">Skip to content</a><header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html" aria-current="page">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Sources</a></nav></div></header>
-<div class="alert-strip"><div class="wrap"><span class="alert-icon">!</span><strong>CURRENT DECISION: DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (literal duplicate stop)</strong></div></div>
+<div class="alert-strip"><div class="wrap"><span class="alert-icon">!</span><strong>NEW 2026-10-25 H88-FLXH: DOWNLOAD FOR RESEARCH: YES · PORTAL-VALID ZEROS ✓ · LIKE-FOR-LIKE UNIQUE ✓ · RESEARCH ONLY (0 slots) — See Overview for download</strong></div></div>
 <main id="main">
+<section style="background:#0a2e1f;color:#fff;padding:20px;border-radius:8px;margin:20px 0;border-left:4px solid #76ddca">
+<h2 style="color:#76ddca;margin-top:0">Latest Candidate: H88-FLXH Flexural-Hinge & Conductance-Trough (2026-10-25) — PORTAL-VALID ✓ — DOWNLOAD FOR RESEARCH: YES</h2>
+<p><strong>Status: DOWNLOAD FOR RESEARCH: YES · like-for-like unique (0.39 ≤0.70) · fingerprint pass (38.0% far) · PORTAL FORMAT PASS ✓ — RESEARCH ONLY (holdout 0.0067 structural-zero; 0 slots spent)</strong></p>
+<p><code>H88-FLXH</code> (36,000 dots, <code>EPSG:32611 3730×3292</code>, <code>nodata=None</code>, all finite in <code>[0,1]</code> <code>{0,1}</code> binary) fixes the prior <code>"Predicted values must be in range [0, 1]"</code> error by storing <code>0</code> outside footprint (<code>0 NaN</code>). It passes 6/6 leakage canaries (<code>max 0.5699 ≤0.90</code>), passes like-for-like uniqueness (<code>0.39 ≤0.70 vs CTRA</code>, <code>|ρ| 0.075 ≤0.90</code>), and passes basin fingerprint (<code>share_gt25 38.0% ≥35%</code>). HOLDOUT-DTI 0.0067 is structural-zero for far-biased designs (IR-88-108). Validate: <code>python3 scripts/validate_flxh88.py</code>.</p>
+<div class="button-row">
+<a class="button button-primary" href="downloads/gems88-flxh-flexural-hinge-conduit-20261025-zeros-DO-NOT-SUBMIT.tif" download>⬇ Download H88-FLXH TIFF (portal-valid zeros · 261 KB)</a>
+<a class="button button-ghost" href="downloads/gems88-flxh-flexural-hinge-conduit-20261025-zeros-DO-NOT-SUBMIT.zip" download>⬇ H88-FLXH ZIP (182 KB)</a>
+<a class="button button-ghost" href="data/flxh88_run_card.json">FLXH Run Card</a>
+<a class="button button-ghost" href="research/candidate-hypotheses-20261025-flxh.md">Research Dossier</a>
+</div>
+<p style="margin-top:10px;font-size:0.9em"><strong>Submission Name (20/140):</strong> <code>GEMSDOE88-FLXH-20261025</code><br>
+<strong>Note (107/140):</strong> <code>H88-FLXH hinge+trough+dilate 36k; HOLDOUT-DTI 0.0067 far 0.0000 blind 0.0000; like-for-like 0.39 rho 0.08; PORTAL-VALID</code><br>
+<strong>SHA-256:</strong> <code>a5fe6d8feb1e6322a047c83cbf363f7be6fba3812a188160d912ae0f9af0d28c</code> · <strong>ZIP:</strong> <code>324ae47f8c9ab59f6208263b20ae27074cfd3dfab1049c0fcd49b5f4d1594338</code></p>
+</section>
 <section style="background:#0c2b42;color:#fff;padding:20px;border-radius:8px;margin:20px 0;border-left:4px solid #76ddca">
-<h2 style="color:#76ddca;margin-top:0">Latest Session Candidate: H88-DHTC (2026-10-24)</h2>
+<h2 style="color:#76ddca;margin-top:0">Prior Candidate: H88-DHTC (2026-10-24)</h2>
 <p><strong>Status: DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT</strong></p>
 <p><code>H88-DHTC</code> (Deep Hydrothermal Conduit &amp; Basement Shear Coupled Dinkelbach) emitted a 13,629-dot raster that is strictly in <code>[0.0, 1.0]</code> with zero NaNs and passes both rasterio and tifffile validation. Evaluated on 8-fold holdout (<code>gems57-pooled-hide-v2</code>, 22,893 withheld positives), its <code>HOLDOUT-DTI</code> is <code>0.141378 [0.127688, 0.156112]</code>. It clears all 60 single-feature leakage canaries (<code>max AUC = 0.59028 &le; 0.90</code>), clears like-for-like uniqueness across all 238 registry rasters (<code>0.5237 &le; 0.70</code>), and satisfies the basin fingerprint (<code>share_gt25 = 43.31% &ge; 35%</code>, <code>share_le2 = 0.0%</code>). Under the literal dense witness rule, forward overlap is 1.0, enforcing an automated fail-closed stop.</p>
 <div class="button-row">

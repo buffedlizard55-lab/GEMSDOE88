@@ -1,0 +1,58 @@
+{
+  "schema_version": "gems88.preregistration.v1",
+  "preregistration_id": "PREREG-GEMSDOE88-FLXH-20261025",
+  "generated_utc": "2026-10-25T00:00:00Z",
+  "lane": "H88-FLXH",
+  "lane_title": "Flexural-Hinge & Conductance-Trough Coupling with Dilatant-Strain Gate",
+  "status": "active",
+  "hypothesis": "Basement flexural hinge curvature (Laplacian + Hessian ridge of depth_to_base_surf) coincident with MT conductance-trough clay caps (Hessian trough of log cond_surf) and gated by active dilatant transtensional strain (shear * max(dilatation,0)) isolates concealed high-permeability geothermal conduit faults beneath alluvial cover where surface scarps are absent.",
+  "mechanism": "Buried normal-fault monocline hinges produce sharp basement curvature under flat piedmonts; fault gouge seals with smectite clay producing conductive troughs; dilatant step-overs open permeability for geothermal fluids. Conjunction of hinge+ trough + dilate at 100-600 m scales captures blind basin faults; anisotropic strand smoothing along topographic strike enforces fault continuity.",
+  "named_non_fault_mimic": "Pleistocene Lake Lahontan/Bonneville paleoshorelines (~1330/1555 m constant-elevation benches) and fan-toe radial onlap producing hinge curvature without dilatant strain or conductive trough continuity.",
+  "layers": [
+    "training_features.tif B15 depth_to_base_surf",
+    "training_features.tif B17 cond_surf",
+    "training_features.tif B07 geod_shearrate",
+    "training_features.tif B08 geod_dilaterate",
+    "training_features.tif B12 det_elev",
+    "training_features.tif B19 det_elev_slope",
+    "training_features.tif B05 iso_grav_anom_slope",
+    "training_features.tif B18 iso_grav_anom_hg",
+    "external topo_10m_derived_100m_u8.tif aspect_coherence, relief_local, curv_prof_absmax",
+    "external lidar_scarp_features_u8.tif strike, cross"
+  ],
+  "physical_signature": "Laplacian and Hessian ridge/trough at sigma 1.0/3.0/6.0 px on depth_to_base_surf and log(cond_surf), gated by shear*dilate product, conjunction at p70, anisotropic smoothing sigma_along 2.5 px sigma_cross 0.55 px.",
+  "why_off_catalogue": "USGS/INGENIOUS mappers require surface scarp (det_elev_slope high); buried intra-basin faults under 10-100 m alluvium lack scarps but generate basement flexure hinges + clay gouge troughs + active dilatation invisible to air-photo mapping.",
+  "difference_from_existing": "First to combine depth_to_base_surf flexural curvature (Laplacian+Hessian) ∩ log(cond) trough (Hessian trough) ∩ dilatant shear product with anisotropic strand integration. DHTC used deep MT + basement steps; QTSK used cover-thickness decoupling; MVRD used magnetite polarity; CTRA used conductivity curvature + gravity step. No prior uses hinge+trough+dilate conjunction.",
+  "official_data_sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "https://github.com/drivendataorg/gems-prize-reference-solution",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://www.usgs.gov/3d-elevation-program",
+    "https://gbcge.org/current-projects/ingenious/",
+    "https://epsg.io/32611"
+  ],
+  "experiments_budget": 3,
+  "target_candidate": "h88_flxh",
+  "canary_threshold": 0.9,
+  "holdout_evaluator": "gems57-pooled-hide-v2",
+  "holdout_seeds": [20, 21],
+  "holdout_withheld": 22893,
+  "uniqueness_limits": {
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7
+  },
+  "fingerprint_requirements": {
+    "share_le2": 0.0,
+    "share_gt25_min": 0.35
+  },
+  "format_requirements": {
+    "crs": "EPSG:32611",
+    "shape": [3730, 3292],
+    "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0],
+    "dtype": "float32",
+    "nodata": null,
+    "values": "[0,1] binary {0,1}, all finite, 0 outside footprint, 0 on catalogue"
+  }
+}
