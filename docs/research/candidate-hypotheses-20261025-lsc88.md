@@ -1,0 +1,11 @@
+# Candidate hypotheses ranked before computation — 2026-10-25 (H88-LSC session)
+
+Ranking criteria: expected DTI lift on the official metric (one saturating credit per truth pixel, α = 0.2 per-dot FP charge, 300 m triangular kernel), cost in sandbox time, and distinctness from the GEMSDOE fleet. All candidates use **zero catalogue-derived features** (the catalogue enters only as a 3-px exclusion collar). Full table with layers, transforms, mimics and sources: `research/lsc88-20261025.md` §3.
+
+1. **H88-LSC lidar step-couplet (run).** Layers: USGS 3DEP 1 m lidar scarp bands (`step_max`, `coh100`, Laplacian crest/base couplet, oriented persistence), 10 m topography (slope, relief, aspect coherence, hillshade lineament), χ-channel density/knickpoints, organizer bands 2, 3, 6, 12, 15, 17, 18, 19. Physical signature: metre-scale, strike-persistent topographic steps whose up-/down-facing asymmetry and ±Laplacian couplet separate scarps from shorelines (Lahontan, `dem_mean`) and channels (`chan_n`). Why it finds missing faults: the catalogue predates 1 m lidar; most expert "new" faults are subtle scarps and splays. Differs from repo: prior lanes buried the lidar bands in 44–107-channel geophysical stacks with fold-visible catalogue features; sibling lidar lanes used fixed percentile thresholds. Expected lift medium, cost low.
+2. **Continuous-field emission** of a calibrated probability surface (not dots), mass only at `p ≥ 0.05`; tests whether the 0.326–0.3335 public plateau is the organizer U-Net reference behaviour. Expected lift high if true; cost low. Not run (budget).
+3. **Density-adaptive carpet spacing** (2.8 px in the top tier, 4 px below) — run as EXP2: paired +0.0089 [+0.0053, +0.0126] over uniform.
+4. **Magnetic-source-depth discontinuity under basin fill** (band 15 vs TMI upward-continued 150 m): blind basin-bounding faults without scarps. Expected lift low–medium; cost medium.
+5. **Radiometric K/Th depletion stripes under thin cover** stratified by relief decile (`geodawn_rad_u8`). Expected lift low; cost medium.
+
+External data: none new. 3DEP lidar/10 m DEM are USGS public domain (https://www.usgs.gov/3d-elevation-program); the sandbox cannot re-download them (host allow-list), so the SHA-pinned owner mirror is used and recorded in `registry/data_manifest.json`.

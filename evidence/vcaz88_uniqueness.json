@@ -1,8 +1,8 @@
 {
   "evidence_class": "REGISTRY-MEASUREMENT",
   "candidate_sha256": "34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12",
-  "registry_rasters_checked": 362,
-  "distinct_dot_sets_checked": 234,
+  "registry_rasters_checked": 367,
+  "distinct_dot_sets_checked": 239,
   "surface_preplacement_max_abs_spearman": 0.20802,
   "surface_preplacement_max_label": "17GEMSDOE:dense_17gemdoe.tif",
   "final_max_abs_spearman": 0.20802,
@@ -40,6 +40,14 @@
       "literal_overlap_3px": 0.621446,
       "rho_preplacement": 0.107023,
       "rho_final": 0.066898,
+      "dense": false
+    },
+    {
+      "label": "GEMSDOE88:gems88-psgv88-pseudograv-discordance-37654-20261025-c38f17fc-zeros-DO-NOT-SUBMIT.tif",
+      "like_for_like_overlap_3px": 0.584066,
+      "literal_overlap_3px": 0.584066,
+      "rho_preplacement": 0.102138,
+      "rho_final": 0.061715,
       "dense": false
     },
     {
@@ -115,6 +123,14 @@
       "dense": false
     },
     {
+      "label": "GEMSDOE88:gems88-sepa88-seis-strain-persist-37654dots-20261025-2ba24168-zeros-DO-NOT-SUBMIT.tif",
+      "like_for_like_overlap_3px": 0.463072,
+      "literal_overlap_3px": 0.463072,
+      "rho_preplacement": 0.086691,
+      "rho_final": 0.054424,
+      "dense": false
+    },
+    {
       "label": "registry:calib_d15_02477.tif",
       "like_for_like_overlap_3px": 0.454488,
       "literal_overlap_3px": 0.454488,
@@ -176,22 +192,6 @@
       "literal_overlap_3px": 0.434849,
       "rho_preplacement": 0.085765,
       "rho_final": 0.024992,
-      "dense": false
-    },
-    {
-      "label": "fleet:GEMSDOE28__gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
-      "like_for_like_overlap_3px": 0.434277,
-      "literal_overlap_3px": 0.434277,
-      "rho_preplacement": 0.07178,
-      "rho_final": 0.023168,
-      "dense": false
-    },
-    {
-      "label": "sibling:GEMSDOE92__releases__h33-h33-2-b2-MASS_A10-20261023-e5613a00-zeros.tif",
-      "like_for_like_overlap_3px": 0.433434,
-      "literal_overlap_3px": 0.433434,
-      "rho_preplacement": 0.091669,
-      "rho_final": 0.02754,
       "dense": false
     }
   ]

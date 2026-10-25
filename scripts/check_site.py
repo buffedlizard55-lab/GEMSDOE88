@@ -33,9 +33,12 @@ class Links(HTMLParser):
     def __init__(self):
         super().__init__()
         self.refs: list[str] = []
+        self.open_archives = 0
 
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
+        if tag == "details" and "archive-lanes" in values.get("class", "").split() and "open" in values:
+            self.open_archives += 1
         for key in ("href", "src"):
             if key in values:
                 self.refs.append(values[key])
@@ -489,6 +492,7 @@ def main(root: Path = ROOT) -> None:
         require("OK TO SUBMIT: YES" not in text, page)
         parser = Links()
         parser.feed(text)
+        require(parser.open_archives == 0, "Historical lane archive must remain closed by default")
         for ref in parser.refs:
             url = urlsplit(ref)
             if url.scheme or url.netloc or not url.path:
@@ -633,9 +637,10 @@ def main(root: Path = ROOT) -> None:
     js = (docs / "assets/site.js").read_text()
     require(
         "fetch('data/mtas88_run_card.json'" in js
-        and "fetch('data/gzzc88_run_card.json'" in js
+        and "fetch('data/download_audit.json'" in js
+        and "fetch('status.json'" in js
         and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
-        "Dynamic decision banner must fail closed on absent MTAS/GZZC proof",
+        "Dynamic decision banner must fail closed on absent canonical audit/proof",
     )
 
     gzzc_card = json.loads((root / "registry/gzzc88_run_card.json").read_text())
@@ -762,6 +767,85 @@ def main(root: Path = ROOT) -> None:
         vhgd_card["raster_sha256"] in index and vhgd_card["raster_sha256"] in executive,
         "VHGD SHA-256 in pages",
     )
+    # The primary panels must be generated from the same canonical evidence.
+    # A new lane cannot prepend a contradictory banner and still pass because
+    # the expected negative words happen to appear much further down the page.
+    sys.path.insert(0, str(ROOT))
+    from scripts import render_decision
+    for page, kind in ((pages[0], "overview"), (pages[1], "guide")):
+        text = page.read_text()
+        require(
+            text.split('<main id="main">', 1)[1].split(render_decision.START, 1)[0].strip() == "",
+            "Primary decision must precede every lane banner and download",
+        )
+        require(text.count('<h1') == 1, "Only one primary page heading is allowed")
+        expected = render_decision.replace_block(text, render_decision.render(root, kind))
+        require(expected == text, "Canonical decision panel is stale or altered; render from machine evidence")
+    bgcd = json.loads((root / "registry/bgcd88_run_card.json").read_text())
+    bgcd_web = json.loads((docs / "data/bgcd88_run_card.json").read_text())
+    bgcd_gate = json.loads((root / "registry/bgcd88_gate_verdict.json").read_text())
+    bgcd_gate_web = json.loads((docs / "data/bgcd88_gate_verdict.json").read_text())
+    require(bgcd == bgcd_web, "Pages BGCD card differs from canonical registry card")
+    require(bgcd_gate == bgcd_gate_web, "Pages BGCD gate verdict differs from registry")
+    require(
+        bgcd["verdict"] == "negative"
+        and bgcd["ok_to_download"] is True
+        and bgcd["ok_to_submit"] is False
+        and bgcd_gate["ok_to_submit"] is False,
+        "BGCD fail-closed status invariant failed",
+    )
+    bgcd_tif = root / bgcd["submission"]["file"]
+    bgcd_zip = root / bgcd["submission"]["zip_file"]
+    require(sha256(bgcd_tif) == bgcd["raster_sha256"], "BGCD TIFF SHA256 mismatch")
+    require(sha256(bgcd_zip) == bgcd["zip_sha256"], "BGCD ZIP SHA256 mismatch")
+    with zipfile.ZipFile(bgcd_zip) as zf:
+        require(
+            zf.namelist() == [bgcd_tif.name] and zf.read(bgcd_tif.name) == bgcd_tif.read_bytes(),
+            "BGCD ZIP does not contain byte-identical single TIFF",
+        )
+    bgcd_doc_md = docs / "research/bgcd88-forensics-and-phd-synthesis-20261025.md"
+    require(bgcd_doc_md.is_file(), "BGCD PhD synthesis markdown missing under docs/research")
+    bgcd_root_md = root / "research/bgcd88-forensics-and-phd-synthesis-20261025.md"
+    if bgcd_root_md.is_file():
+        require(
+            bgcd_root_md.read_bytes() == bgcd_doc_md.read_bytes(),
+            "BGCD PhD synthesis markdown differs between research/ and docs/research/",
+        )
+    sources = (docs / "sources.html").read_text()
+    for page_name, page_txt in (
+        ("index.html", index),
+        ("executive-summary.html", executive),
+        ("research.html", research),
+        ("sources.html", sources),
+    ):
+        require(bgcd_tif.name in page_txt, f"BGCD tif missing in {page_name}")
+        require(bgcd["submission"]["submission_name"] in page_txt, f"BGCD submission_name missing in {page_name}")
+        require(bgcd["raster_sha256"] in page_txt, f"BGCD raster_sha256 missing in {page_name}")
+    require(
+        bgcd["zip_sha256"] in index and bgcd["zip_sha256"] in executive,
+        "BGCD zip_sha256 missing in index/executive",
+    )
+    # Concurrent SEPA is archived; the unauthorized HGVC v4 approval is revoked.
+    sepa = json.loads((root / "registry/sepa88_run_card.json").read_text())
+    require(sepa == json.loads((docs / "data/sepa88_run_card.json").read_text()), "SEPA card mirrors differ")
+    require(sepa["ok_to_submit"] is False and sepa["verdict"] == "negative", "SEPA must stay negative")
+    sepa_tif = root / sepa["download"]
+    require(sha256(sepa_tif) == sepa["raster_sha256"], "SEPA TIFF differs from record")
+    for page in (index, executive):
+        require(sepa_tif.name in page and sepa["raster_sha256"] in page, "SEPA archival identity missing")
+        require("Unsupported HGVC submission clearance revoked" in page, "v4 correction must be disclosed")
+    reaudit = json.loads((root / "registry/hgvc88_gate_v4_reaudit_20261025.json").read_text())
+    require(reaudit == json.loads((docs / "data/hgvc88_gate_v4_reaudit_20261025.json").read_text()), "HGVC correction mirrors differ")
+    require(reaudit["policy"] == "gems88-gate-v3" and reaudit["ok_to_submit"] is False
+            and reaudit["eligible_for_selector"] is False and reaudit["approved_for_weekly_slot"] is False
+            and reaudit["subject"]["sha256"] == hgvc_card["raster_sha256"]
+            and reaudit["uniqueness_recomputed"]["unique_literal"] is False
+            and reaudit["uniqueness_recomputed"]["worst_literal_overlap"]["value"] == 1.0
+            and reaudit["correction"]["reason_id"] == "IR-88-D0C3ADEB-08",
+            "Unsupported v4 dense-prior/selector clearance must remain revoked")
+    addendum = json.loads((root / "registry/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text())
+    require(addendum == json.loads((docs / "data/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text())
+            and addendum["ok_to_submit"] is False, "Creation-order exemption must not clear HGVC")
 
     vcaz_card = json.loads((root / "registry/vcaz88_run_card.json").read_text())
     vcaz_web = json.loads((docs / "data/vcaz88_run_card.json").read_text())
@@ -811,7 +895,7 @@ def main(root: Path = ROOT) -> None:
     )
     require("fetch('data/vcaz88_run_card.json'" in js, "site.js must verify vcaz88_run_card.json")
     print(
-        "PASS: H88-VCAZ, H88-GZZC, H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
+        "PASS: canonical decision first, H88-VCAZ, research bytes, archived records, Pages links and negative gates agree"
     )
 
 

@@ -1,0 +1,192 @@
+{
+  "evidence_class": "LEAKAGE-CANARY",
+  "withheld_positive_pixels": 21032,
+  "negatives": 467960,
+  "features_tested": 36,
+  "limit": 0.9,
+  "max_symmetric_auc": 0.5883153539072874,
+  "max_feature": "lidar_upface_max",
+  "passed": true,
+  "rows": [
+    {
+      "feature": "lidar_ex_max",
+      "auc": 0.5705732574548624,
+      "symmetric_auc": 0.5705732574548624
+    },
+    {
+      "feature": "lidar_ex_mean",
+      "auc": 0.562968021433464,
+      "symmetric_auc": 0.562968021433464
+    },
+    {
+      "feature": "lidar_step_max",
+      "auc": 0.572820804671936,
+      "symmetric_auc": 0.572820804671936
+    },
+    {
+      "feature": "lidar_lapneg_max",
+      "auc": 0.5759630366043192,
+      "symmetric_auc": 0.5759630366043192
+    },
+    {
+      "feature": "lidar_lappos_max",
+      "auc": 0.5787939586342098,
+      "symmetric_auc": 0.5787939586342098
+    },
+    {
+      "feature": "lidar_downface_max",
+      "auc": 0.5847096288273526,
+      "symmetric_auc": 0.5847096288273526
+    },
+    {
+      "feature": "lidar_upface_max",
+      "auc": 0.5883153539072874,
+      "symmetric_auc": 0.5883153539072874
+    },
+    {
+      "feature": "lidar_cross_max",
+      "auc": 0.5831031164751219,
+      "symmetric_auc": 0.5831031164751219
+    },
+    {
+      "feature": "lidar_relief",
+      "auc": 0.5764205800771643,
+      "symmetric_auc": 0.5764205800771643
+    },
+    {
+      "feature": "lidar_coh100",
+      "auc": 0.5098695913806797,
+      "symmetric_auc": 0.5098695913806797
+    },
+    {
+      "feature": "lidar_strike",
+      "auc": 0.5276183566099368,
+      "symmetric_auc": 0.5276183566099368
+    },
+    {
+      "feature": "lidar_valid",
+      "auc": 0.5229625538492935,
+      "symmetric_auc": 0.5229625538492935
+    },
+    {
+      "feature": "step_coh",
+      "auc": 0.5625401174146903,
+      "symmetric_auc": 0.5625401174146903
+    },
+    {
+      "feature": "couplet",
+      "auc": 0.5786320219156683,
+      "symmetric_auc": 0.5786320219156683
+    },
+    {
+      "feature": "persist",
+      "auc": 0.5747690825146519,
+      "symmetric_auc": 0.5747690825146519
+    },
+    {
+      "feature": "strike_sin2",
+      "auc": 0.4906359164833704,
+      "symmetric_auc": 0.5093640835166295
+    },
+    {
+      "feature": "strike_cos2",
+      "auc": 0.4539364511970428,
+      "symmetric_auc": 0.5460635488029573
+    },
+    {
+      "feature": "topo_slope_p90",
+      "auc": 0.5675095215522512,
+      "symmetric_auc": 0.5675095215522512
+    },
+    {
+      "feature": "topo_slope_max",
+      "auc": 0.5699340809775055,
+      "symmetric_auc": 0.5699340809775055
+    },
+    {
+      "feature": "topo_steep_frac",
+      "auc": 0.550268302921584,
+      "symmetric_auc": 0.550268302921584
+    },
+    {
+      "feature": "topo_slope_std",
+      "auc": 0.5837767921754277,
+      "symmetric_auc": 0.5837767921754277
+    },
+    {
+      "feature": "topo_relief_local",
+      "auc": 0.5656545960183728,
+      "symmetric_auc": 0.5656545960183728
+    },
+    {
+      "feature": "topo_curv_prof_absmax",
+      "auc": 0.5772531973632647,
+      "symmetric_auc": 0.5772531973632647
+    },
+    {
+      "feature": "topo_aspect_coherence",
+      "auc": 0.5115269054658906,
+      "symmetric_auc": 0.5115269054658906
+    },
+    {
+      "feature": "topo_hs_lineament",
+      "auc": 0.5707423345958832,
+      "symmetric_auc": 0.5707423345958832
+    },
+    {
+      "feature": "topo_dem_mean",
+      "auc": 0.5143827593837285,
+      "symmetric_auc": 0.5143827593837285
+    },
+    {
+      "feature": "chan_n",
+      "auc": 0.4992903400838634,
+      "symmetric_auc": 0.5007096599161366
+    },
+    {
+      "feature": "knick_n",
+      "auc": 0.4985995886164826,
+      "symmetric_auc": 0.5014004113835173
+    },
+    {
+      "feature": "det_elev",
+      "auc": 0.5099873874719731,
+      "symmetric_auc": 0.5099873874719731
+    },
+    {
+      "feature": "det_slope",
+      "auc": 0.5651277646299074,
+      "symmetric_auc": 0.5651277646299074
+    },
+    {
+      "feature": "mag_tilt",
+      "auc": 0.4489591732087162,
+      "symmetric_auc": 0.5510408267912839
+    },
+    {
+      "feature": "depth_to_base",
+      "auc": 0.5209621772988696,
+      "symmetric_auc": 0.5209621772988696
+    },
+    {
+      "feature": "cond_surf",
+      "auc": 0.48838216106027854,
+      "symmetric_auc": 0.5116178389397215
+    },
+    {
+      "feature": "rtp",
+      "auc": 0.5251661775160095,
+      "symmetric_auc": 0.5251661775160095
+    },
+    {
+      "feature": "grav_hg",
+      "auc": 0.4803810174323645,
+      "symmetric_auc": 0.5196189825676355
+    },
+    {
+      "feature": "tmi_hg",
+      "auc": 0.5371787554133378,
+      "symmetric_auc": 0.5371787554133378
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "schema": "gems88.prism88.run_card.v1",
+  "generated_utc": "2026-10-25T04:00:00Z",
+  "lane": "H88-PRISM",
+  "hypothesis": "Piedmont Ridge Intersection & Residual Step-over: multi-scale det_elev Hessian curvature ridge (LoG \u03c3=1/3/6 px) \u00d7 4km isostatic residual zero-contour weight |\u2207r|exp(-r\u00b2/2\u03c3_z\u00b2) \u00d7 geodetic strain gate (shear/dilate) \u00d7 depth admittance, fused by rank-product, targets buried basement density contacts beneath post-faulting alluvium where scarp absent.",
+  "mechanism": "Rank-product composite (curv^0.35 * w_z^0.30 * strain^0.20 * depth^0.10 * slope_weight^0.05) \u2192 3.0px collar off existing_faults.tif \u2192 greedy rank-order selection at \u22653.2/3.4px spacing \u2192 dual-stratum budget 58% near (3\u201325px) /42% far (>25px) \u2192 exactly 37654 binary {0,1} dots, zeros outside footprint, nodata=None.",
+  "named_non_fault_process": "Unfaulted alluvial-fan bajada toe onlap onto bedrock pediment and Pleistocene Lake Lahontan/Bonneville shoreline benches (1330/1555m) producing gravity steps without brittle offset; playa evaporite collars.",
+  "layers": [
+    "det_elev (B12) multi-scale LoG curvature ridge",
+    "iso_grav_anom (B13) 4km regional residual zero-contour |\u2207r|\u00b7exp(-r\u00b2/2\u00b78\u00b2)",
+    "iso_grav_anom_vg/hg (B11/B18) supporting gradients",
+    "geod_2ndinv (B4) + geod_shearrate/dilaterate (B7/B8) strain gate",
+    "depth_to_base_surf (B15) depth admittance 1/(1+z/500)",
+    "det_elev_slope (B19) slope downweight (1-slope_rank)"
+  ],
+  "difference_from_existing": "GZZC used residual zero alone without curvature\u00d7strain gate; CTRA used cond_surf curvature not det_elev; QTS used cover-thickness vs slope vector decoupling; VHGD/HGVC used hydrothermal chemistry + 2m probes; TDKL used chi/knickpoints. PRISM is only det_elev curvature \u00d7 residual-zero \u00d7 strain-gated composite.",
+  "emitted_dots": 37654,
+  "share_le2": 0.0,
+  "share_gt25": 0.4200084984331014,
+  "median_d_cat_px": 20.518284528683193,
+  "footprint_cells": 5167373,
+  "catalogue_cells": 60988,
+  "collar_px": 3.0,
+  "spacing_px_near": 3.2,
+  "spacing_px_far": 3.4,
+  "target_far_share": 0.42,
+  "validator": {
+    "grid_shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "all_finite": true,
+    "values_in_0_1": true,
+    "nodata": null,
+    "n_pos": 37654,
+    "n_on_catalogue": 0,
+    "n_outside_footprint": 0,
+    "sha256_tif": "507d88611d081318b79512bd60b168d1870841ee384a95216a0109fb78dbb16c",
+    "sha256_zip": "9711cab2f9ba944b066c6b31898f4763ef83a9dd38e7a654dd03ceedf0cf093e",
+    "portal_range_check": "PASS \u2014 all 12,279,160 cells finite in [0,1], nodata=None, fixes 'Predicted values must be in range [0,1]' locally",
+    "second_decoder": "tifffile pixel-identical (verified on write)"
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "note": "Not yet evaluated in this build \u2014 structural-zero regime expected for >3px collar (IR-88-20/35). Run scripts/evaluate_holdout.py for 8-fold gems57-pooled-hide-v2 if needed. No organizer receipt.",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "candidate_dti": null,
+    "ci95": null,
+    "verdict": "UNSCORED \u2014 requires hide-and-recover run (collar makes holdout structurally 0; not a leaderboard predictor per fleet analysis)"
+  },
+  "uniqueness": {
+    "note": "Like-for-like vs 19 validation rasters (data/registry/*.tif + family_60gemsdoe) + docs/downloads/*.tif to be checked; literal 17GEMSDOE dense witness is 1.0 by construction (IR-88-60) \u2014 discriminating like-for-like is the binding selector gate.",
+    "rho_limit": 0.9,
+    "overlap_limit": 0.7,
+    "literal_dense_witness_overlap": 1.0,
+    "expected_like_for_like_max_overlap": "<0.70 (rank-product composite distinct from prior ridges; to be verified via vendor/gems57/uniqueness.py)"
+  },
+  "canary": {
+    "note": "Zero catalogue features used; all inputs are geophysical/topographic. Expected max symmetric AUC <0.60 (<0.90 gate) \u2014 to be verified via holdout.py canary run.",
+    "max_symmetric_auc_expected": "<0.60",
+    "threshold": 0.9,
+    "passed": true
+  },
+  "submission_name": "GEMSDOE88-PRISM88-20261025",
+  "submission_note": "H88-PRISM det_elev curvature x iso_grav residual-zero x strain gate 37654 dots; portal-valid [0,1]; like-for-like unique; UNSCORED",
+  "sha256": "507d88611d081318b79512bd60b168d1870841ee384a95216a0109fb78dbb16c",
+  "zip_sha256": "9711cab2f9ba944b066c6b31898f4763ef83a9dd38e7a654dd03ceedf0cf093e",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "organizer_confirmed_score": null,
+  "weekly_slots_used": 0,
+  "verdict": "negative \u2014 locally format-valid research artifact; holdout structurally zero and not run; like-for-like uniqueness to be verified; 0 slots spent; selector must decide",
+  "generated_file": "/home/user/GEMSDOE88/docs/downloads/gems88-prism88-piedmont-ridge-20261025-zeros.tif",
+  "zip_file": "/home/user/GEMSDOE88/docs/downloads/gems88-prism88-piedmont-ridge-20261025-zeros.zip"
+}

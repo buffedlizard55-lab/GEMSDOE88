@@ -4,6 +4,15 @@
 Physical test: if expert fault traces sit at the BASE of the topographic break that the
 ridge indicator marks, truth density should be higher on the downhill-adjacent pixels.
 """
+
+# Historical reconstruction/fitting must not bypass the shared generation stop.
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 import json, sys
 from pathlib import Path
 import numpy as np, rasterio

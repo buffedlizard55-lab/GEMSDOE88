@@ -1,10 +1,19 @@
 #!/usr/bin/env python3
-"""Execute the preregistered 3-experiment H88-VCAZ suite, full 317-SHA uniqueness audit,
+"""Execute the preregistered 3-experiment H88-VCAZ suite, full 367-raster uniqueness audit,
 and fail-closed portal-format GeoTIFF + ZIP emission (0 weekly slots spent).
 
 Preregistration: ``registry/preregistration_vcaz88.json`` (``PREREG-20261025-VCAZ88``).
 """
 from __future__ import annotations
+
+# No candidate generation or unsupported clearance may precede the shared stop.
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 
 import gc
 import hashlib

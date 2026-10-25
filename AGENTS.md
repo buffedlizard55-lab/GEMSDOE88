@@ -1,0 +1,14 @@
+# Start-of-session contract
+
+1. Read `README.md`, `PROMPT.md`, `USER_PROMPT_20261025.md`, and the latest machine review before doing work. The full recorded human request is embedded in README; figures supplied by the user are not organizer receipts.
+2. Follow the literal parallel-run protocol. Re-run the existing preflight on SHA-pinned inputs **before** feature construction, holdout fitting, placement, or writing. A saturated registry witness means DUPLICATE_STOP for every nonempty allowed candidate. Do not evade this by importing a builder, discarding a dense prior, changing thresholds, renaming a TIFF, or treating sparse-only diagnostics as clearance.
+3. Candidate CLI entrypoints call `scripts/generation_guard.py` before feature/model imports. New candidate CLIs must use the same guard. It delegates to the shared preflight; it does not implement a private metric. Read-only audits and synthetic unit tests are still allowed.
+4. Keep the shared cached stack, `vendor/gems57/evaluate_holdout.py`, `holdout.py`, `submission_writer.py`, and `uniqueness.py`. Do not introduce private metric/writer forks. If a shared defect is established, document and fix it in the shared template once with provenance and tests.
+5. A new experiment, if genuinely unblocked, must be preregistered in one lane, use buffered whole-component hide-and-recover with visible-only catalogue features, run each feature's leakage canary, and compare against a same-fold incumbent. A fixed prediction masked using the full catalogue is not this protocol. Maximum three experiments or two hours. No slot selection from a local format check.
+6. Do not append new "current" banners to the website. `scripts/render_decision.py` renders the primary overview and executive guide from the canonical manifest and `scripts/audit_downloads.py` evidence. `--check` rejects drift. Keep historical lane records in their closed archive. Every published research TIFF and the TIFF inside its ZIP must keep the negative filename marker unless a future shared approval contract genuinely clears it.
+7. Cite immutable sources and state which were actually retrieved. Network/auth limitations do not justify calling user-provided Dropbox links official or calling local checks organizer acceptance. Only a submission-page receipt can establish ORGANIZER-CONFIRMED evidence.
+8. Complete three review passes; run tests, normal and optimized site guards, and the expected negative generation/slot gate. Preserve negative results and explicit limitations. Keep raw data, feature caches and browser/test artifacts out of Git.
+
+## Policy-regression warning
+
+The imported `decide_v4` API is compatibility-only and delegates to the original literal gate. Its dense/creation-order exceptions and automatic HGVC upload clearance were revoked in IR-88-D0C3ADEB-08. Never resurrect them or whitelist an `ok_to_submit: true` record while the literal gate/selector fails.

@@ -1,4 +1,15 @@
-# Latest addendum (2026-10-25): H88-VCAZ — 8/8 FOLDS WON OVER H88-ADHR (`HOLDOUT-DTI = 0.200625`), HIGHEST EMITTED 3-REGIME HOLDOUT (`0.152829`), & 362-RASTER LIKE-FOR-LIKE UNIQUE (`0.6214 <= 0.70`) · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT (`0` slots spent)
+# Current selector decision — NO SLOT (session d0c3adeb + H88-VCAZ archive)
+
+**Slots used: 0. Promote: NO.** Every nonempty allowed output necessarily exceeds the supplied 70% overlap limit against the registered dense witness (`17GEMSDOE`). Do not schedule a duplicate, an old renamed TIFF or an untested hypothesis.
+
+The full **42**-file research inventory (including `H88-VCAZ` `gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.tif`, SHA-256 `34224a7c…6b12`) is downloadable for research but not eligible for upload. The canonical educational download is TDKL, not the most recently merged lane. Stored HOLDOUT-DTI values and byte uniqueness do not confer eligibility. The 92-site results supplied by the user have no organizer receipts here.
+
+A future selector must use a frozen complete registry and comparable buffered whole-segment holdout with per-feature leakage canaries and a paired physical-block interval. Only after all scientific/protocol gates pass may it consult the authenticated portal's actual weekly cap. This session did not determine the account's remaining quota and did not submit anything. The user authorized a code PR/merge, not automatic competition submission. [Ordered next steps](research/session-d0c3adeb-review.md#next-steps-in-order).
+
+<details>
+<summary>Earlier session records — historical, not current authorization</summary>
+
+# Addendum (2026-10-25): H88-VCAZ — 8/8 FOLDS WON OVER H88-ADHR (`HOLDOUT-DTI = 0.200625`), HIGHEST EMITTED 3-REGIME HOLDOUT (`0.152829`), & 367-RASTER LIKE-FOR-LIKE UNIQUE (`0.6214 <= 0.70`) · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT (`0` slots spent)
 
 - **Candidate:** `docs/downloads/gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: 34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12`) and single-TIFF `.zip` (`SHA-256: b87b0d02c01d79be4a0ec61329191329d888d8ee3b36bc771eb3bc32a72ac670`).
 - **Prepared Submission Name (`25/140` chars):** `GEMSDOE88-VCAZ88-34224A7C`
@@ -6,10 +17,31 @@
 - **8-Fold `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `seeds 20+21`, `n=22,893`):**
   - **Exp01 (`exp01_vcaz_zerocat`):** `0.109732 [0.097766, 0.121948]` (Far `>10 px = 0.088475`, Blind `>25 px = 0.055981`).
   - **Exp02 (`exp02_vcaz_crossfam_poe`):** **Overall `0.200625 [0.184176, 0.216992]`** (paired $\Delta$ vs clean `H88-ADHR` `0.194876` = **`+0.005749 [+0.001370, +0.009829]`**, **`8/8` folds won**; Far `>10 px = 0.130260`; Blind `>25 px = 0.069299`).
-  - **Exp03 (`exp03_vcaz_3regime_prod`, emitted `33,200` dots):** **`0.152829 [0.137764, 0.167441]`** (surpassing `HGVC Exp4` `0.148970`, `SAR-CSD Exp03` `0.151589`, and `VHGD Exp3` `0.138938`; Far `0.099305`, Blind `0.060274`).
-- **Gates:** `91/91` canaries `<= 0.771903 <= 0.90` (`max VCAZ-24 = 0.563917`, scramble invariance `True`); `33,200` dots (`share_le2 = 0.0%`, `share_gt25 = 41.00% >= 35%`, `median_d_cat = 18.38 px`); pre-placement & final `|Spearman rho| = 0.208020 <= 0.90`; post-placement like-for-like 3-px overlap **`0.621446 <= 0.70` (`0` blockers across all `362` pinned + live-HEAD `GEMSDOE86..92` + concurrent `GEMSDOE88` rasters)**; held fail-closed (`ok_to_download = true`, `ok_to_submit = false`, `verdict = "negative"`, `0` slots spent) under literal `17GEMSDOE` (`1.0000 > 0.70`) and repo holdout record (`0.200625 < 0.202947` `H88-HGVC`).
+  - **Exp03 (`exp03_vcaz_3regime_prod`, emitted `33,200` dots):** **`0.152829 [0.137764, 0.167441]`** (surpassing `HGVC Exp4` `0.148970`, `SAR-CSD Exp03` `0.151589`, `VHGD Exp3` `0.138938`, and `BGCD` `0.126097`; Far `0.099305`, Blind `0.060274`).
+- **Gates:** `91/91` canaries `<= 0.771903 <= 0.90` (`max VCAZ-24 = 0.563917`, scramble invariance `True`); `33,200` dots (`share_le2 = 0.0%`, `share_gt25 = 41.00% >= 35%`, `median_d_cat = 18.38 px`); pre-placement & final `|Spearman rho| = 0.208020 <= 0.90`; post-placement like-for-like 3-px overlap **`0.621446 <= 0.70` (`0` blockers across all `367` pinned + live-HEAD `GEMSDOE86..92` + concurrent `GEMSDOE88` rasters)**; held fail-closed (`ok_to_download = true`, `ok_to_submit = false`, `verdict = "negative"`, `0` slots spent) under literal `17GEMSDOE` (`1.0000 > 0.70`) and repo holdout record (`0.200625 < 0.202947` `H88-HGVC`).
 
 ---
+
+# Earlier addendum (2026-10-25): H88-BGCD — DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness & selector rule (`0` slots spent)
+
+- **Candidate:** `docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: fa17d9da6afae33298bc9e3cba83f26f6aefaffc357ce3b4c57827e11af2e8cb`) and single-TIFF `.zip` (`SHA-256: 1d44161d500e671cd6e7c29c326e1791ee531aa62e9f8bddcb32a5d635428df7`).
+- **Submission Name (`36` chars `<= 140`):** `GEMSDOE88-BGCD88-HYDRO-SLIP-20261025`
+- **Submission Note (`101` chars `<= 140`):** `H88-BGCD blind geotherm diseq+slip PoE (35000d); HOLDOUT-DTI 0.1934 far 0.1163 blind 0.0643; UNSCORED`
+- **Scientific Gate (`HOLDOUT-DTI`, evaluator `gems57-pooled-hide-v2`, 8 folds across `seeds 20+21`):** **MIXED / HELD (`5/8` folds won vs `B12` control; strictly beats `Exp 02` & stored `ADHR`, trails `HGVC`/`VESS`/`TDKL`)**
+  - **Overall (`n=22,893`):** **`0.193384`** (`95% CI [0.176011, 0.210509]`), beating `Exp 02` (`0.189604`) by **`+0.003780`** (`95% CI [+0.001804, +0.005774]`), beating stored `H88-ADHR` (`0.189634`), and winning `5/8` folds against in-run `h88_adhr_b12_ctrl` (`0.192945`, paired $\Delta = +0.000439$ `[-0.003808, +0.004728]`), while trailing `H88-HGVC` (`0.202947`), `H88-VESS` (`0.200941`), and `H88-TDKL` (`0.196237`).
+  - **Far `> 10 px` (`n=10,791`):** **`0.116300`** (`95% CI [0.099496, 0.136386]`) vs `h88_adhr_b12_ctrl` `0.116028`.
+  - **Blind-Basin `> 25 px` (`n=3,117`):** **`0.064326`** (`95% CI [0.036045, 0.095468]`) vs `h88_adhr_b12_ctrl` `0.063343`.
+  - **Zero-Catalogue `Exp 01` (`bgcd_blind_phys57`):** **`0.100109`** (`95% CI [0.087835, 0.112522]`), `+0.038350` (`+62.1%`) over `DHTC` `0.061759`.
+- **Single-Feature Leakage Canary (`60` channels):** **PASS** (`0/60 > 0.90`, `max_symmetric_auc = 0.66343`).
+- **Fingerprint Screen (`gems88-gate-v3`):** **PASS** (`35,000` dots; `share_le2 = 0.0000`; `share_gt10 = 0.7571`; `share_gt25 = 0.5143 >= 0.35`; `min_spacing = 3.20 px`).
+- **Registry Uniqueness Gate (`330` distinct rasters = `326` pre-merge + `4` newly merged concurrent `GEMSDOE88` rasters):**
+  - Pre-placement continuous surface max `|Spearman rho| = 0.667683 <= 0.90` (**PASS**).
+  - Like-for-like 3-px dot overlap across **all `330` rasters**: max `= 0.543371 <= 0.70` vs `GEMSDOE88:GTHC` (**PASS**, `0` like-for-like blockers — including `0.4220` vs `HGVC`, `0.3863` vs `TDKL`, `0.3849` vs `VESS`, `0.4090` vs `H33`, `0.1753` vs `GEMSDOE90`, `0.1501` vs `GZZC`, `0.1425` vs `SGMC-DIST-CONJ-v2`, `0.0650` vs `XGCE`).
+  - Literal dense witness stop: `1.0000 > 0.70` vs `17GEMSDOE` (`dense_17gemdoe.tif`). Therefore `ok_to_download = true`, `ok_to_submit = false`, `verdict = "negative"` (`0` weekly slots spent; `.venv/bin/python scripts/validate_bgcd88.py --require-submit` exits `2`).
+
+---
+
+# Parallel addendum (2026-10-24): H88-HGVC — FIRST RASTER TO CLEAR ALL 5 DISCRIMINATING GATES · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness (`0` slots spent)
 
 # Earlier addendum (2026-10-25): H88-VHGD — ALL-TIME BLIND-BASIN (`>25 px`) HOLDOUT RECORD (`0.092061`) & LIKE-FOR-LIKE UNIQUE (`0.6885 <= 0.70`) · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT (`0` slots spent)
 
@@ -125,3 +157,6 @@ Prior slot ordering above concerns the PRUNE lineage and is unchanged. The PROVC
 4. Independent format validation must pass on the saved TIFF and one-member ZIP, including all-finite values in `[0,1]`.
 5. An authenticated organizer template byte check and a separate explicit human portfolio-selector decision are required.
 6. After a manual upload only, log the receipt as ORGANIZER-CONFIRMED. Never treat MODEL, PROXY, HOLDOUT-DTI, or H33's reported `0.2778` as a portal receipt.
+
+
+</details>

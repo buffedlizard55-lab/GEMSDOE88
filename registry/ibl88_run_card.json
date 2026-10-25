@@ -73,7 +73,7 @@
     "zip_file": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip",
     "repo_copy": "submissions/gems88-ibl88-basin-lattice-37654-20261024-zeros.tif",
     "sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
-    "zip_sha256": "8fa123568a45c2b81355ca4bac97adc88386517ae3024284542bf9a0c585c3c2",
+    "zip_sha256": "0917eec141a7d5813e15442c221739a2626c128b647977e40766fe94e0f1dc4e",
     "bytes": 114474,
     "submission_name": "GEMSDOE88-IBL88-BASIN-20261024",
     "submission_note": "IBL-88 basin lattice 37654 dots b2 collar 2.83px 60% far-basin infill HOLDOUT 0.0* UNSCORED; DO NOT SUBMIT - instrument-limit",

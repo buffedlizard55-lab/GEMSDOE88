@@ -40,8 +40,12 @@ def test_current_bytes_fail_literal_rule():
 
 def test_public_status_uses_literal_audit():
     js = (ROOT / "docs/assets/site.js").read_text()
-    assert "fetch('data/literal_protocol_audit.json'" in js
-    assert "data.validator_output?.ok === true" in js
+    # Runtime now binds the canonical file's all-download audit to the shared
+    # pre-placement proof, rather than an unrelated archived MDPS artifact.
+    assert "fetch('data/mtas88_run_card.json'" in js
+    assert "fetch('data/download_audit.json'" in js
+    assert "proof?.universal_overlap_blocker === true" in js
+    assert "file?.validator_output?.ok === true" in js
     for name in ("index.html", "executive-summary.html"):
         html = (ROOT / "docs" / name).read_text()
         assert "Literal protocol audit: DUPLICATE — STOP" in html

@@ -12,6 +12,15 @@ Competition rasters are written only under the gitignored ``releases/`` path.
 """
 from __future__ import annotations
 
+# Historical reconstruction/fitting must not bypass the shared generation stop.
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
+
 import csv
 import datetime as dt
 import hashlib

@@ -3,6 +3,15 @@
 skeleton junctions/endpoints/stepovers of the B19/3/18/15 composite crest (geophysics+topo only,
 no catalogue geometry). Holdout: seeds20+30 buffered hide-and-recover, gems57-pooled-hide-v2.
 Mimic: unfaulted bajada/terrace/volcanic-flow crest junctions."""
+
+# Project-wide literal duplicate stop: execute before feature/model imports.
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 import hashlib,json,sys,time,zipfile
 from pathlib import Path
 import numpy as np, rasterio

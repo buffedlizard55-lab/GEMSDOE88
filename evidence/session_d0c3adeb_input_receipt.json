@@ -1,0 +1,129 @@
+{
+  "schema": "gems88.session-input-receipt.v1",
+  "checked_at_utc": "2026-10-25T04:38:56.352100+00:00",
+  "command": "bash scripts/download_competition_data.sh; python scripts/prepare_data.py",
+  "status": "ready",
+  "footprint_pixels": 5167373,
+  "catalogue_pixels": 60988,
+  "files": {
+    "sample_submission.tif": {
+      "path": "data/bridge/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597,
+      "verified": true
+    },
+    "existing_faults.tif": {
+      "path": "data/bridge/existing_faults.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "verified": true
+    },
+    "training_features.tif": {
+      "path": "data/training_features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844,
+      "verified": true
+    }
+  },
+  "planes": [
+    "g_tmi_hg",
+    "g_tc",
+    "g_slope",
+    "g_grav_hg",
+    "g_curv",
+    "g_edge_max",
+    "g_cond",
+    "g_base_edge",
+    "g_strain"
+  ],
+  "grid_checks": {
+    "sample_submission.tif": {
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "band_count_match": true
+    },
+    "existing_faults.tif": {
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "band_count_match": true
+    },
+    "training_features.tif": {
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "band_count_match": true
+    }
+  },
+  "provenance": "SHA-pinned owner mirrors; not authenticated organizer downloads",
+  "scope": "shared core inputs and feature-plane load only; not every lane-specific dataset or fitted model",
+  "generation_authorized": false,
+  "ok_to_submit": false,
+  "external_inputs": [
+    {
+      "path": "data/external/2m_temperature_probe_INGENIOUS_regional_data.zip",
+      "sha256": "1301f70d230058e616ea5d34d1c7a32fabf7d49198172f376c59c89bd652eca3"
+    },
+    {
+      "path": "data/external/audit_sources/receipt.json",
+      "sha256": "45ce9c1cfa91d15358cf22d73735f42d3598931e7d9dfe431576868e7a1011e9"
+    },
+    {
+      "path": "data/external/dem10_chi_100m.manifest.json",
+      "sha256": "187a961ef5da45278c84b25d16296a5f3458da37abff45046d31ed58b9f5af86"
+    },
+    {
+      "path": "data/external/dem10_chi_100m_i16.tif",
+      "sha256": "8897ba9c30ef1cd7ad5f23c16c6dfd7bb070e7e757f36fd9486eb45edfd973a5"
+    },
+    {
+      "path": "data/external/dem10_chi_100m_u8.tif",
+      "sha256": "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a"
+    },
+    {
+      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0"
+    },
+    {
+      "path": "data/external/gdr_volcanic_vents_in_footprint.csv",
+      "sha256": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf"
+    },
+    {
+      "path": "data/external/gdr_wellspring_in_footprint.csv",
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea"
+    },
+    {
+      "path": "data/external/geodawn_extensions_u8.tif",
+      "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b"
+    },
+    {
+      "path": "data/external/geodawn_rad_u8.tif",
+      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682"
+    },
+    {
+      "path": "data/external/lidar_scarp_features_u8.tif",
+      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568"
+    },
+    {
+      "path": "data/external/paleo_geothermal_regional.zip",
+      "sha256": "faffcf697f32dbbf6cbb317cd1effb3e305538ce38eb239d72d0c6fa071e91ca"
+    },
+    {
+      "path": "data/external/sgmc_faults_100m.tif",
+      "sha256": "26d142c4c93282cd94f6950ab96f22aeff59fbbea523d43d662e76fa1b161b5c"
+    },
+    {
+      "path": "data/external/topo_10m_derived_100m_u8.manifest.json",
+      "sha256": "181d5527ba7ed2990031918a8b6c9d5d94e3998b2daf656de0c33322ca94120a"
+    },
+    {
+      "path": "data/external/topo_10m_derived_100m_u8.tif",
+      "sha256": "a6398d9950965dec6aae6ccecdaa6ced48645d133eab222cbdd11def9bdabfa4"
+    },
+    {
+      "path": "data/external/trace_segments_utm11.csv",
+      "sha256": "c5edf9df3e0e1413c52784884fc38e5b9ca54627b27c6f8baf7713e908f48513"
+    }
+  ]
+}

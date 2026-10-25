@@ -1,0 +1,92 @@
+{
+  "policy_v4": "gems88-gate-v4",
+  "policy_v3_literal": "gems88-gate-v3",
+  "candidate": "docs/downloads/gems88-sepa88-seis-strain-persist-37654dots-20261025-2ba24168-zeros-DO-NOT-SUBMIT.tif",
+  "candidate_sha256": "2ba2416809abf4c728e70142a12ef28199bdc154e89ea0cb153747788ee8329c",
+  "candidate_dots": 37654,
+  "registry_rasters_checked": 367,
+  "distinct_dot_sets_checked": 226,
+  "missing": 0,
+  "worst_abs_rho": {
+    "label": "17GEMSDOE:dense_17gemdoe.tif",
+    "value": 0.37405615317471497
+  },
+  "worst_dotfield_overlap": {
+    "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+    "value": 0.6942157539703617
+  },
+  "worst_excess_overlap": {
+    "label": "sibling_head:GEMSDOE86__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+    "value": 0.49057652473320446
+  },
+  "worst_literal_overlap": {
+    "label": "17GEMSDOE:dense_17gemdoe.tif",
+    "value": 1.0
+  },
+  "worst_like_for_like_overlap": {
+    "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+    "value": 0.6942157539703617
+  },
+  "unique_v4": true,
+  "v4_blockers": [],
+  "unique_literal": false,
+  "literal_blockers": [
+    "17GEMSDOE:dense_17gemdoe.tif",
+    "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+    "sibling_head:GEMSDOE86__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
+  ],
+  "space_filling_rasters": [
+    "17GEMSDOE:dense_17gemdoe.tif"
+  ],
+  "top10_dotfield_overlap": [
+    {
+      "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+      "overlap": 0.6942157539703617
+    },
+    {
+      "label": "GEMSDOE88:gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "overlap": 0.6786529983534286
+    },
+    {
+      "label": "GEMSDOE88:gems88-vess88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "overlap": 0.6781218462845913
+    },
+    {
+      "label": "GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+      "overlap": 0.6769267541297074
+    },
+    {
+      "label": "sibling_head:GEMSDOE91__docs__downloads__gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+      "overlap": 0.5887555107027141
+    },
+    {
+      "label": "fleet:GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif",
+      "overlap": 0.5611090455197323
+    },
+    {
+      "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+      "overlap": 0.5534073405215914
+    },
+    {
+      "label": "sibling_head:GEMSDOE91__docs__downloads__gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif",
+      "overlap": 0.5240877463217719
+    },
+    {
+      "label": "sibling_head:GEMSDOE91__docs__downloads__gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
+      "overlap": 0.5235034790460509
+    },
+    {
+      "label": "sibling_head:GEMSDOE91__docs__downloads__gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
+      "overlap": 0.5211929675466086
+    }
+  ],
+  "vacuity_witness": {
+    "random_dots": 37654,
+    "seed": 88,
+    "literal_overlap": 1.0,
+    "like_for_like_overlap": 0.0189621288574919,
+    "literal_rule_vacuous": true,
+    "dense_label": "17GEMSDOE:dense_17gemdoe.tif"
+  },
+  "scope": "registry/inventory.json + data/registry + data/fleet + data/siblings (pinned commits) + docs/downloads + submissions + releases present in this checkout; live unindexed sources are a stated limitation, never a claim of absence."
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "gems88.hgvc88.gate_v4_reaudit.v1",
+  "generated_utc": "2026-10-25T04:51:59Z",
+  "subject": {
+    "lane": "H88-HGVC",
+    "built_utc": "2026-10-25T02:43:05Z",
+    "tif": "docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.zip",
+    "sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
+    "zip_sha256": "5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409",
+    "dots": 37654,
+    "filename_marker_note": "DO-NOT-SUBMIT remains binding. This review changes neither the HGVC TIFF nor its historical negative run card."
+  },
+  "historical_v3_verdict_unchanged": {
+    "verdict": "negative",
+    "ok_to_submit": false,
+    "gate": "registry/hgvc88_gate_v3.json (not modified)"
+  },
+  "policy": "gems88-gate-v3",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT",
+  "blocking_reasons": [
+    "Literal any-registry overlap 1.0 > 0.70 against the pinned 17GEMSDOE witness; no dense-prior exemption.",
+    "Stored pre-placement surface is not an archived surface rechecked against a complete current registry.",
+    "Historical HGVC forward overlap vs now-registered PSGV is reported as 0.7898762415679609 > 0.70; no creation-order exemption.",
+    "No separate selector authorization or authenticated current portal allowance."
+  ],
+  "informational": [
+    "Original v4 numerical evidence is retained for provenance, not adopted as an authorized protocol.",
+    "All holdout/canary/registry values in this inherited receipt are historical, not newly measured by session d0c3adeb."
+  ],
+  "human_step_remaining": "Do not submit. A gate result cannot waive the literal rule or authorize a slot.",
+  "portal_revalidation": {
+    "tif_ok": true,
+    "zip_ok": true,
+    "array_sha256": "c0be4b6ef4bed2f508c420e13532a87ee4f5c786c5ed8cc133be420324916537",
+    "values_in_0_1": true,
+    "no_nan_anywhere": true,
+    "crs_shape_transform_match": true
+  },
+  "stored_evidence": {
+    "canary": {
+      "passed": true,
+      "features_tested": 87,
+      "max_symmetric_auc": 0.770155,
+      "source": "evidence/hgvc88_canaries.json (STORED-RECEIPT)"
+    },
+    "holdout": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "candidate": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "dti": 0.2029470713394289,
+        "ci95": [
+          0.185868859876156,
+          0.21979007541452142
+        ],
+        "withheld_positive_pixels": 22893,
+        "tpw": 6827.7917351731185,
+        "fpw": 69816.27785652946,
+        "fnw": 16065.208264826872
+      },
+      "paired_delta_vs_adhr": {
+        "evidence_class": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "delta": 0.008071257981559443,
+        "ci95": [
+          0.0031629410161225003,
+          0.01277306522939559
+        ],
+        "withheld_positive_pixels": 22893
+      },
+      "beats_bar": true,
+      "source": "evidence/hgvc88_holdout_20261024.json (STORED-RECEIPT)"
+    },
+    "preplacement_surface_max_abs_spearman": 0.208144,
+    "preplacement_surface_source": "registry/hgvc88_run_card.json (STORED-RECEIPT; continuous surface not archived)"
+  },
+  "uniqueness_recomputed": {
+    "registry_rasters_checked": 365,
+    "distinct_dot_sets_checked": 225,
+    "missing": 0,
+    "worst_abs_rho_final": {
+      "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+      "value": 0.06610899009990014
+    },
+    "worst_dotfield_overlap": {
+      "label": "GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+      "value": 0.6074255059223456
+    },
+    "worst_excess_overlap": {
+      "label": "sibling_head:GEMSDOE86__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+      "value": 0.1592803183348653
+    },
+    "worst_literal_overlap": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 1.0
+    },
+    "unique_v4": true,
+    "v4_blockers": [],
+    "unique_literal": false,
+    "literal_blockers": [
+      "17GEMSDOE:dense_17gemdoe.tif",
+      "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+      "sibling_head:GEMSDOE86__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
+    ],
+    "space_filling_rasters": [
+      "17GEMSDOE:dense_17gemdoe.tif"
+    ],
+    "scope": "registry/inventory.json + data/registry + data/fleet + data/siblings (pinned) + data/siblings_head (live HEAD clones 2026-10-25) + docs/downloads + submissions + releases in this checkout, HGVC itself excluded"
+  },
+  "submission_name": "GEMSDOE88-HGVC88-D5329F31",
+  "submission_note": "HGVC88 87ch hydrothermal up-dip+sinter PoE 37654d; HOLDOUT-DTI 0.2029 far 0.1328 blind 0.0790; UNSCORED",
+  "submission_note_length": 103,
+  "organizer_confirmed_score": null,
+  "weekly_slots_spent": 0,
+  "eligible_for_selector": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "correction": {
+    "schema": "gems88.protocol-correction.v1",
+    "date_utc": "2026-10-25",
+    "reason_id": "IR-88-D0C3ADEB-08",
+    "source_commit": "e37c6672a25d1ac1c47792dcf93f119e8c637124",
+    "source_path": "registry/hgvc88_gate_v4_reaudit_20261025.json",
+    "source_sha256": "65f168827a1202acf76a082ee11b7b271d8ee99d13cb009f75edba7de6ac5e5f",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/e37c6672a25d1ac1c47792dcf93f119e8c637124/registry/hgvc88_gate_v4_reaudit_20261025.json",
+    "rejected_claim": "The previous v4 receipt marked an existing HGVC TIFF OK TO DOWNLOAD AND SUBMIT while literal overlap was 1.0.",
+    "reason": "No dense-prior or creation-order exemption is authorized by this session's supplied any-registry rule; the literal gate and a separate selector remain binding.",
+    "raster_bytes_changed": false,
+    "new_rasters_generated": 0,
+    "ok_to_submit": false,
+    "verdict": "negative"
+  }
+}

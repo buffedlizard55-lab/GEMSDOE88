@@ -65,8 +65,8 @@
   },
   "correlation_overlap_vs_registry": {
     "evidence_class": "REGISTRY-MEASUREMENT",
-    "registry_rasters_checked": 362,
-    "distinct_dot_sets_checked": 234,
+    "registry_rasters_checked": 367,
+    "distinct_dot_sets_checked": 239,
     "surface_preplacement_max_abs_spearman": 0.20802,
     "surface_preplacement_max_label": "17GEMSDOE:dense_17gemdoe.tif",
     "final_max_abs_spearman": 0.20802,
