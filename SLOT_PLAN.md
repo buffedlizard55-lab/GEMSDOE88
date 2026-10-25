@@ -1,10 +1,10 @@
-# Current selector decision — NO SLOT (session d0c3adeb + H88-VCAZ archive)
+# Current selector decision — NO SLOT (session 21256734, 2026-10-25)
 
-**Slots used: 0. Promote: NO.** Every nonempty allowed output necessarily exceeds the supplied 70% overlap limit against the registered dense witness (`17GEMSDOE`). Do not schedule a duplicate, an old renamed TIFF or an untested hypothesis.
+**Slots used: 0. Promote: NO (`ok_to_submit: false`).** Every nonempty allowed output necessarily exceeds the supplied 70% 3-px dot-overlap limit (`1.0000 > 0.70`) against the registered dense witness (`17GEMSDOE`, `ab0a0a62…`, `5,106,385 / 5,106,385` allowed cells `> 0`). Do not schedule a duplicate, an old renamed TIFF, or an untested hypothesis.
 
-The full **43**-file research inventory (including `H88-BPWD` `b8543782…` and `H88-VCAZ` `gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.tif`, SHA-256 `34224a7c…6b12`) is downloadable for research/education only, **not** eligible to upload. The canonical educational download is TDKL, not the most recently merged lane. Stored HOLDOUT-DTI values across repository lanes were produced under different catalogue-visibility and sampling designs and cannot be ranked on one raw scale.
-
-A future selector must use a frozen complete registry and comparable buffered whole-segment holdout with per-feature leakage canaries and a paired physical-block interval. Only after all scientific/protocol gates pass may it consult the authenticated portal's actual weekly cap. This session did not determine the account's remaining quota and did not submit anything. The user authorized a code PR/merge, not automatic competition submission. [Ordered next steps](research/session-d0c3adeb-review.md#next-steps-in-order).
+- **Audited Pages research inventory (`46/46` `.tif`/`.zip` pairs = `45` in `docs/downloads/` + `1` in `docs/research-variants/`)** and **repo-side `submissions/` inventory (`20/20` `.tif`/`.zip` pairs)**: all `66` carry `-DO-NOT-SUBMIT` filenames, pass `[0.0, 1.0]` / zero-NaN / `EPSG:32611` / zero-outside-footprint validation for research inspection only, and are **NOT** eligible to upload (`0` protocol-eligible). The canonical educational download remains `H88-TDKL` (`db9d1867…`), not the most recently merged lane.
+- **Critical warning on `releases/*.tif` (`IR-88-21256734-05`):** Never upload any of the `6` legacy `HOLD` `releases/h33-h33-2-b2-MASS*` pairs (`3` of which lack `-DO-NOT-SUBMIT` in their filenames and contain `7,111,787` exterior `NaN`s, reproducing the `"Predicted values must be in range [0, 1]"` portal rejection class).
+- **Rules reminder ([Official DOE GEMS Prize Rules PDF §3.2–3.6](https://docs.nlr.gov/docs/fy26osti/96647.pdf)):** Max `3` submissions/week centralized across the team; **only ONE selected submission** is judged across **both** Phase 1 (`$50,000`) and Phase 2 (`$250,000` expert-revised fault map); mandatory AI tool disclosure in narrative. See [Session `21256734` Review & Next Steps (`D1`–`D5`)](research/session-21256734-review.md).
 
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>

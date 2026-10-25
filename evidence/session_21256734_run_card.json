@@ -1,0 +1,191 @@
+{
+  "schema": "gems88.review-run-card.v2",
+  "session": "21256734",
+  "branch": "arena/21256734-gemsdoe88",
+  "checked_at_utc": "2026-10-25T20:15:00+00:00",
+  "base_commit": "805bdd561844bb0479df17df51ef226b4cfefcc1",
+  "status": "DUPLICATE_STOP",
+  "decision": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "ok_to_download_new_tif": false,
+  "ok_to_download_existing_research_tifs": true,
+  "new_rasters_generated": 0,
+  "experiments_run": 0,
+  "experiment_budget_limit": 3,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "hypothesis": "H88-ACDR (Rank #1 cross-fleet-screened conditional proposal, unexecuted under DUPLICATE_STOP): GeoDAWN 22-deg E-W aircraft climb-envelope drape reconstruction (geodawn_dem_a2_100m.tif), Beer-Lambert gamma-ray air-attenuation restoration (geodawn_rad_u8.tif), and Guspi variable-surface magnetic continuation (B02/B03/B06/B09) emitted on restored tilt zero-contours in excess-clearance range-front toe pockets.",
+  "mechanism": "Reconstruct row-wise E-W slope-bounded flight surface z_env(x,y) = max_x'[z_DEM(x',y) + h0 - |x-x'|*tan(22 deg)], derive excess sensor clearance dh(x,y) >= 0, invert channel-specific Beer-Lambert gamma attenuation exp(+mu_air,b * dh) and regularized Guspi Taylor downward continuation to nominal h0=150 m, veto unfaulted fluvial gorges using trunk chi thalwegs and cross-toe B13/B15 step polarity, and place dots on restored magnetic tilt zero-contours (tc_corr=0) inside dh>50 m piedmont shadow pockets rather than shared HGVC/BPWD crests.",
+  "named_non_fault_mimic": "Unfaulted steep V-shaped fluvial gorges and cliff-forming welded-tuff ledges creating E-W aircraft clearance pockets with zero cross-toe B13 isostatic-gravity or B15 depth-to-basement step.",
+  "named_non_fault_process": "Unfaulted steep V-shaped fluvial gorges and cliff-forming welded-tuff ledges creating E-W aircraft clearance pockets with zero cross-toe B13 isostatic-gravity or B15 depth-to-basement step.",
+  "hypothesis_queue": "research/session-21256734-hypotheses.md",
+  "ranked_untried_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H88-ACDR",
+      "status": "UNTESTED_ALL_INPUTS_ON_DISK",
+      "mimic": "Unfaulted steep V-shaped fluvial gorges and welded-tuff ledges creating E-W clearance pockets"
+    },
+    {
+      "rank": 2,
+      "id": "H88-POFD",
+      "status": "UNTESTED_ALL_INPUTS_ON_DISK",
+      "mimic": "Unfaulted incised Miocene paleovalleys and sub-circular caldera moat fills"
+    },
+    {
+      "rank": 3,
+      "id": "H88-WDCS",
+      "status": "UNTESTED_ALL_INPUTS_ON_DISK",
+      "mimic": "Unfaulted Miocene Northern Nevada Rift basaltic-andesite feeder dikes"
+    },
+    {
+      "rank": 4,
+      "id": "H88-OCST",
+      "status": "UNTESTED_PUBLIC_DOMAIN_USGS_FINITE_FAULT_PARAMS",
+      "mimic": "Geothermal production/injection induced microseismicity (Dixie Valley, Bradys, San Emidio) and mine blasts"
+    },
+    {
+      "rank": 5,
+      "id": "H88-OPERA-INSAR",
+      "status": "UNTESTED_REQUIRES_OPERA_DISP_S1_MIRROR_STAGING",
+      "mimic": "Agricultural pumping field boundaries, fan-toe clay pinchouts, and playa moisture-dielectric artifacts"
+    }
+  ],
+  "cross_fleet_screened_prior_proposals": {
+    "H88-PGTD_status": "DEMOTED \u2014 independently falsified on 2026-10-25 in sibling GEMSDOE91 S17-LFTG (3D Laplace Marussi full-tensor gravity + notch-destriped mag/rad scored HOLDOUT-DTI 0.188596 vs 0.192208 incumbent, delta -0.003612)",
+    "GEMSDOE92_LISTRICDIP_lesson": "Constant 500 m updip shift collapsed to HOLDOUT-DTI 0.005420; H88-POFD fixes this by inverting spatially varying Parker-Oldenburg 3D basement depth z_base(x,y) first"
+  },
+  "lane_status": "Post-PR-#162 integrity audit, -O/SHA hardening of 8 validator & forensics scripts, live 50-row leaderboard + cross-fleet verification, PhD-level H33 forensics, and 5 grep-verified zero-match geological hypotheses. Preflight returned DUPLICATE_STOP (exit 2) before any model import or raster construction.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "reason": "Preflight stopped at exit 2 before feature construction or fitting. Historical repository benchmark context only (not generated in this session): H88-BPWD HOLDOUT-DTI = 0.205991 [0.188105, 0.223344] (gems57-pooled-hide-v2, n=22,893); H88-HGVC = 0.202947 [0.185869, 0.219790]; H88-VHGD Blind (>25 px) = 0.092061 [0.056908, 0.132098]."
+  },
+  "single_feature_canaries": {
+    "status": "NOT_RUN_NO_NEW_FEATURES",
+    "limit_symmetric_auc": 0.9,
+    "max_symmetric_auc": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE",
+    "surface_rank_correlation": null,
+    "surface_rank_correlation_limit": 0.9,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap_3px": null,
+    "universal_overlap_lower_bound_for_any_nonempty_allowed_candidate": 1.0,
+    "overlap_limit": 0.7,
+    "proof": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+      "directly_covered_allowed_pixels": 5106385,
+      "directly_saturated": true,
+      "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+    }
+  },
+  "raster_sha256": null,
+  "raster_file": null,
+  "submission_name": "GEMSDOE88-S21256734-DUPLICATE",
+  "submission_name_length": 29,
+  "submission_note": "DO NOT SUBMIT: session 21256734 DUPLICATE_STOP (17GEMSDOE 1.0000>0.70); 0 new TIFs; 8 scripts -O/SHA hardened; 46+20 pass.",
+  "submission_note_length": 122,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "new_raster_generated": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null,
+    "hardened_validator_scripts_python_O_verified": [
+      "scripts/validate_cxl88.py",
+      "scripts/validate_prism88.py",
+      "scripts/validate_gthc88.py",
+      "scripts/validate_kth88.py",
+      "scripts/validate_vhgd88.py",
+      "scripts/validate_concentration_releases.py",
+      "scripts/audit_mass_ranking.py",
+      "scripts/forensics_h33.py"
+    ],
+    "pinned_browser_check_files_exact": "13/13",
+    "pytest_full_suite": "822 passed, 22 skipped (0 failures)"
+  },
+  "package_audits": {
+    "pages_download_audit_sha256": "b98b0c9952d7f1396114a23da74d3116b3ceeb4feaece85d297c7ff83049065c",
+    "pages_main_downloads_pass": "45/45",
+    "pages_research_variants_pass": "1/1",
+    "pages_total_published_pass": "46/46",
+    "pages_protocol_eligible_count": 0,
+    "repo_submissions_directory_pass": "20/20",
+    "repo_submissions_protocol_eligible_count": 0,
+    "legacy_releases_hold_pairs": "6 (3 zeros + 3 exterior-NaN HOLD artifacts; NEVER submit)",
+    "total_repo_tiff_zip_pairs_inventoried": 72
+  },
+  "h33_and_leaderboard_reconciliation": {
+    "h33_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "h33_positive_pixels": 37654,
+    "h33_min_d_cat_px": 2.23606797749979,
+    "h33_min_interdot_nn_px": 2.8284271247461903,
+    "h33_median_d_cat_px": 19.6468827043885,
+    "h33_top_band_separations_auc": {
+      "B19_det_elev_slope": 0.6574784670287354,
+      "B06_tc": 0.3776380258405482,
+      "B03_tmi_hg": 0.5744978598555266,
+      "B12_det_elev": 0.560820285627025,
+      "B13_iso_grav_anom": 0.5517100964041005
+    },
+    "h33_user_reported_claim": 0.2778,
+    "h33_organizer_confirmed_score": null,
+    "stale_0_3195_claim_status": "Historical 2026-10-04 DARD snapshot; on 2026-10-25 live leaderboard DARD rose to rank #8 at 0.3398 (27 entries, OFFICIAL-PUBLIC)",
+    "public_rank_1_score": 0.4413,
+    "public_rank_1_participant": "xiaofanhu",
+    "public_rank_1_entries": 30,
+    "public_rank_5_prize_cutoff_score": 0.3539,
+    "public_rank_8_dard_score": 0.3398,
+    "public_rank_50_score": 0.2818,
+    "live_leaderboard_snapshot": "evidence/leaderboard_official_snapshot_21256734_20261025.json",
+    "live_leaderboard_snapshot_sha256": "ea7da2d7f717901b7983f8ebb2711e7c3e1613115f39c8fb45d56402632798c5"
+  },
+  "irregularities_logged_and_repaired": [
+    {
+      "id": "IR-88-21256734-01",
+      "status": "FIXED_WITH_REGRESSION_TEST",
+      "summary": "Replaced 124 bare assert statements across 7 validator/audit scripts (validate_{cxl88,prism88,gthc88,kth88,vhgd88,concentration_releases}.py, audit_mass_ranking.py) with -O-safe _require(...) guards and SHA-256 reference pins."
+    },
+    {
+      "id": "IR-88-21256734-02",
+      "status": "FIXED_WITH_REGRESSION_TEST",
+      "summary": "Hardened scripts/forensics_h33.py with SHA-256 verification on all 7 input rasters, (shape, crs, transform) grid alignment checks, |b|<=1e30 float32 sentinel filtering, allow_nan=False atomic JSON writes, and write_output=False support."
+    },
+    {
+      "id": "IR-88-21256734-03",
+      "status": "DOCUMENTED_AND_REPAIRED",
+      "summary": "Documented PR #162 factual/novelty drift (D2.8->SOLO deletion 3891 vs 6436, omitted B06 tc AUC=0.3776, 5 overlapping feature proposals vs tdkl/gzzc/mvrd/sdtl, xiaofanhu 30 subs) and repaired stale 43-file Pages count in SLOT_PLAN.md to 46/46 + 20/20."
+    },
+    {
+      "id": "IR-88-21256734-04",
+      "status": "VERIFIED_AND_ARCHIVED",
+      "summary": "Live-fetched DrivenData leaderboard (#8 DARD=0.3398 at 27 subs; #35 pberlizov at 15 subs) and sibling portals (GEMSDOE86/91/92), demoting H88-PGTD after GEMSDOE91 S17-LFTG falsified 3D Laplace full-tensor gravity (0.188596 vs 0.192208)."
+    },
+    {
+      "id": "IR-88-21256734-05",
+      "status": "DOCUMENTED_WITH_SAFETY_WARNING",
+      "summary": "Inventoried all 72 repo-wide .tif/.zip pairs and flagged 6 legacy HOLD releases/h33-h33-2-b2-MASS* pairs (3 containing 7,111,787 exterior NaNs without -DO-NOT-SUBMIT filenames) so users never upload releases/*.tif."
+    }
+  ],
+  "review_document": "research/session-21256734-review.md",
+  "unmet_requirement": "No new protocol-unique competition TIFF can be generated while pinned 17GEMSDOE covers 100% of allowed pixels under the unchanged literal 3-px dot-overlap rule (Owner Decision D1 required)."
+}
