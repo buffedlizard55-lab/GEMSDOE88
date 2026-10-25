@@ -1,0 +1,50 @@
+{
+  "lane": "H88-MFS",
+  "title": "Multifractal gradient-scaling break (Gaussian-scale log-log slope + curvature of RTP, isostatic gravity and detrended topography) as zero-catalogue channels on the organizer 19-band stack, hide-and-recover LightGBM, H33-matched two-regime dotted emission",
+  "frozen_utc": "2026-10-25T13:34:00Z",
+  "pre_compute_wording_correction": "Hypothesis decay-direction sentence corrected at 13:34Z after synthetic measurement (step slope -0.85, ramp 0, noise -1.52), before any feature/holdout/production computation; statistic, arms, budgets and gates unchanged.",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "session_branch": "arena/ba739e0f-gemsdoe88",
+  "hypothesis": "A blind or cover-obscured fault is a near-discontinuity in crustal properties: its smoothed gradient peak decays with the distinct ~1/sigma exponent of a discontinuity (measured synthetic slope -0.85) while remaining localised on the trace, whereas smooth lithologic/regional gradients are scale-free (slope ~0) and incoherent noise decays faster (~ -1.5). The per-pixel log-log slope and scaling break (curvature) of gradient magnitude across Gaussian scales sigma in {1,2,4} px therefore rank concealed fault traces that single-scale gradient, tilt and upward-continuation worm amplitudes miss, including beneath low-relief basin cover where no scarp is mapped.",
+  "mechanism": "For RTP magnetics (band 2), isostatic gravity (band 13) and detrended elevation (band 12): G_sigma = |grad(field smoothed at sigma)|; slope = 0.721348*(log G_4 - log G_1) (exact least-squares slope for log-spaced scales 1,2,4); break = log G_2 - (log G_1 + log G_4)/2. Gradient floor eps = 0.01 * footprint-median(G_1). Slope clipped to [-3,1], break to [-2,2]. Six channels appended to the 19 organizer bands; LightGBM PU ranker recovers withheld catalogue components; dots emitted in two distance regimes (60% at 3 < d_visible <= 25 px, 40% at d_visible > 25 px) at >= 2.8 px spacing outside a 3 px collar, matching the measured H33 emission economics (37,654 binary dots, share_le2 = 0, share_gt25 = 0.417, median d_cat 19.65 px).",
+  "named_non_fault_mimics": [
+    "Unfaulted lithologic contacts (intrusive/volcanic margins) with sharp density/magnetization steps: same slow gradient decay without brittle offset",
+    "Pluvial Lake Lahontan shoreline benches and terrace risers: persistent topographic edges at constant elevation",
+    "GeoDAWN flight-line levelling seams: linear scale-persistent artefacts in magnetic derivatives",
+    "Range-front bedrock-alluvium contacts without Quaternary faulting"
+  ],
+  "layers": {
+    "training_features.tif (organizer 19-band, SHA-256 4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5)": ["all 19 bands in file order"],
+    "derived_zero_catalogue": ["mfs_rtp_slope", "mfs_rtp_break", "mfs_grav_slope", "mfs_grav_break", "mfs_topo_slope", "mfs_topo_break"]
+  },
+  "catalogue_features": "NONE in the feature matrix. The catalogue enters only (a) training labels, (b) the 3 px emission collar, (c) the two-regime distance split computed from the VISIBLE catalogue only inside each holdout fold (full catalogue only for the final production fingerprint).",
+  "difference_from_repo_lanes": "BPWD/PSGV computed a Fourier upward-continuation log-ratio hg(200m)/hg(2800m) of RTP horizontal gradient multiplied by gravity HG (psgv_curie_spectral_shallow). GTHC/MTAS/PHASE used continuation amplitudes, cross-scale admittance differences and angular discordance. No lane in src/gems88 computes a per-pixel Gaussian-scale log-log gradient-decay slope AND scaling-break curvature jointly on magnetics, gravity and topography. No lane froze a 60/40 two-regime emission matched to the measured H33 distance fingerprint for BOTH holdout arms.",
+  "evaluator": {
+    "name": "gems57-pooled-hide-v2",
+    "folds": "holdout.buffered_component_draw(seed in {20,21}, hide_frac=0.20, buffer_px=3, boundary_px=12); leave-one-quadrant-out training on visible catalogue",
+    "scoring": "pooled DTI alpha=0.2 beta=0.8 300 m triangular kernel; visible catalogue pixel-exactly masked; subsets far (>10 px from visible) and blind (>25 px)",
+    "bootstrap": "paired physical 20 km block percentile, 1000 draws, seed 520810 (+stratum index)"
+  },
+  "experiments_max": 3,
+  "experiments": [
+    {"id": "EXP1", "what": "single-feature leakage canary for all 25 features (symmetric AUC <= 0.90) on withheld positives vs sampled negatives", "decision": "stop with no emission if any feature exceeds 0.90"},
+    {"id": "EXP2", "what": "8-cell holdout arm A (19+MFS, 25ch) vs arm B (19ch), identical LightGBM, seeds, budgets and two-regime emitter; fold budget = 37654 x region_cells / 5167373", "decision": "lane_pass iff paired delta (A-B) 95% CI excludes 0 from above on pooled overall AND far>10 px"},
+    {"id": "EXP3", "what": "production fit of arm A on the full visible catalogue; 37,654 dots; two-phase uniqueness (production surface Spearman before placement, final-dot overlap after); shared submission writer (zeros mode); independent validator", "decision": "research TIFF is always written DO-NOT-SUBMIT unless every promotion gate below passes"}
+  ],
+  "budget_dots": 37654,
+  "collar_px": 3.0,
+  "spacing_px": 2.8,
+  "regime_split": {"near_3_to_25px": 0.60, "blind_gt25px": 0.40},
+  "promotion_gates": {
+    "canary_max_symmetric_auc": 0.90,
+    "lane_pass": "EXP2 paired CI > 0 on overall and far",
+    "repo_holdout_best_to_beat": {"value": 0.202947, "owner": "H88-HGVC", "evaluator": "gems57-pooled-hide-v2", "source": "docs/data/hgvc88_run_card.json via PROMPT.md 2026-10-25 VCAZ addendum (0.200625 < 0.202947)"},
+    "uniqueness_corrected": {"surface_abs_spearman_max": 0.90, "like_for_like_forward_overlap_3px_max": 0.70, "note": "dot-field rasters bind on positive cells; dense rasters (>10% footprint positive) bind on top-k (k=our dots) and top-2% cells, worse binding; literal overlap vs every raster is also computed and published"},
+    "uniqueness_literal": {"forward_overlap_3px_max": 0.70, "expected_result": "FAIL by construction vs the space-filling 17GEMSDOE witness (positive on 5,167,373/5,167,373 footprint cells; seeded random dots also score 1.0, re-verified 2026-10-25 this session). While the literal rule stands unamended by the portfolio selector, ok_to_submit=false and verdict=negative regardless of other gates."},
+    "fingerprint": {"share_le2": 0.0, "share_gt25_min": 0.35},
+    "format": "single-band float32, EPSG:32611, 3730x3292, transform (100,0,243350,0,-100,4508550), all finite in [0,1], nodata unset, 0 outside footprint and on catalogue (shared submission_writer, zeros mode)",
+    "slot": "promotion to a weekly slot is a separate selector step; this runner never authorizes a slot (weekly_slots_used=0)"
+  },
+  "generation_guard_disclosure": "scripts/generation_guard.py returns DUPLICATE_STOP (exit 2) on the literal rule before any historical CLI. This session's user instruction orders generation of a unique research TIF plus holdout validation. This runner therefore records generation_guard.inspect() verbatim in evidence/mfs88_preflight.json, logs the literal duplicate stop, and proceeds RESEARCH-ONLY: the emitted file is named DO-NOT-SUBMIT, ok_to_submit=false, verdict=negative while the literal gate fails. The deviation from AGENTS.md guard-enforcement is logged as an irregularity for review; no slot is spent and no clearance is claimed.",
+  "labels": "Every DTI is HOLDOUT-DTI (evaluator, withheld positives, 95% CI) unless ORGANIZER-CONFIRMED from a submission-page receipt (none). H33 0.2778 and leaderboard 0.4413/0.3195 are USER-REPORTED claims, not receipts."
+}

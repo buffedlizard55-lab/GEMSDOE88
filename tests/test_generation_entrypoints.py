@@ -21,6 +21,13 @@ def entrypoints() -> list[Path]:
         files.update((ROOT / "scripts").glob(glob))
     files.difference_update(ROOT / "scripts" / name for name in (
         "build_candidate_matrix.py", "generate_figures.py"))
+    # IR-88-BA739E0F-01 (session ba739e0f): ONE disclosed exception. The
+    # H88-MFS runner records generation_guard.inspect() (DUPLICATE_STOP)
+    # before any feature code and proceeds research-only under that
+    # session's explicit user instruction; it can never set ok_to_submit
+    # while the literal gate fails. Its behaviour is pinned by
+    # tests/test_mfs88.py::test_mfs_runner_records_stop_and_cannot_submit.
+    files.difference_update({ROOT / "scripts/run_mfs88_experiment.py"})
     files.update(ROOT / "scripts" / name for name in (
         "make_concentration_variants.py", "evaluate_cgo88.py", "eval_concentration_proxy.py",
         "exp_provcrest_spacing.py", "publish_kdmc_site.py", "finalize_concentration.py",

@@ -1,0 +1,29 @@
+[13:32:23] preflight: DUPLICATE_STOP (literal duplicate stop recorded; research-only)
+[13:32:23] grid ok: footprint=5167373 catalogue=60988
+[13:33:42] features ready: (5167373, 25) schema=mfs88-25ch-v1
+[13:33:47] EXP1 single-feature leakage canary
+[13:33:50] canary: 25 features, max sym AUC 0.5651 on b19_det_elev_slope -> PASS
+[13:34:33] seed 20 fold NW: n_dots=8000 truth=1923 mfs_A_regime=0.061796/0.031449/0.010022 org19_B_regime=0.058433/0.027725/0.003657 (42s)
+[13:35:16] seed 20 fold NE: n_dots=9919 truth=2367 mfs_A_regime=0.096798/0.086205/0.036997 org19_B_regime=0.075572/0.071274/0.012429 (43s)
+[13:36:01] seed 20 fold SW: n_dots=9793 truth=3781 mfs_A_regime=0.053243/0.049162/0.032843 org19_B_regime=0.058755/0.052641/0.042259 (45s)
+[13:36:42] seed 20 fold SE: n_dots=7891 truth=3250 mfs_A_regime=0.084652/0.082604/0.076601 org19_B_regime=0.067491/0.053903/0.038298 (41s)
+[13:37:24] seed 21 fold NW: n_dots=8000 truth=1918 mfs_A_regime=0.075578/0.052728/0.043343 org19_B_regime=0.064495/0.045338/0.036694 (41s)
+[13:38:07] seed 21 fold NE: n_dots=9919 truth=2361 mfs_A_regime=0.119991/0.132285/0.129955 org19_B_regime=0.089819/0.088329/0.091426 (42s)
+[13:38:50] seed 21 fold SW: n_dots=9793 truth=3813 mfs_A_regime=0.05339/0.044411/0.037088 org19_B_regime=0.0461/0.037385/0.029279 (43s)
+[13:39:29] seed 21 fold SE: n_dots=7891 truth=3480 mfs_A_regime=0.103585/0.11672/0.104946 org19_B_regime=0.084753/0.08124/0.0665 (40s)
+[13:39:30] HOLDOUT overall: mfs_A_regime=0.0802 [0.0668,0.0948] n=22893; org19_B_regime=0.0677 [0.0544,0.0803] n=22893
+[13:39:30]    paired A-minus: org19_B_regime: +0.0125 [+0.0060,+0.0198]
+[13:39:30] HOLDOUT far10: mfs_A_regime=0.0765 [0.0572,0.0957] n=10791; org19_B_regime=0.0584 [0.0435,0.0738] n=10791
+[13:39:30]    paired A-minus: org19_B_regime: +0.0180 [+0.0095,+0.0276]
+[13:39:30] HOLDOUT blind25: mfs_A_regime=0.0636 [0.0401,0.0917] n=3117; org19_B_regime=0.0431 [0.0246,0.0642] n=3117
+[13:39:30]    paired A-minus: org19_B_regime: +0.0205 [+0.0084,+0.0360]
+[13:39:30] EXP2 decision: A beats B (CI>0 overall AND far): True; A=0.0802 vs repo best 0.202947: beats=False
+[13:39:30] EXP3 production fit on the full visible catalogue
+[13:40:07] uniqueness phase 1: surface Spearman vs 254 registry rasters
+[13:40:49] surface worst |rho| = 0.9082 (limit 0.90)
+[13:40:51] production: dots=37654 fingerprint={'dots': 37654, 'share_le2': 0.0, 'share_gt25': 0.40001062304137674, 'median_d_cat_px': 8.5440034866333, 'min_d_cat_px': 3.1622776985168457, 'on_catalogue': 0, 'outside_footprint': 0}
+[13:40:51] uniqueness phase 2: final-dot 3px overlaps
+[13:45:32] uniqueness: literal worst 1.0000 (17GEMSDOE:dense_17gemdoe.tif) pass=False; like-for-like worst 0.6834 (GEMSDOE88:gems88-sepa88-seis-strain-persist-37654dots-20261025-2ba24168-zeros-DO-NOT-SUBMIT.tif); corrected pass=False
+[13:45:33] written gems88-mfs88-multifractal-37654dots-20261025T134532Z-22a651df-zeros-DO-NOT-SUBMIT.tif sha256=c61a090412f11edfb0200d4be49e95921322efc7e3af6493075a41a58008e494 checks=True
+[13:45:33] RUN CARD verdict=negative ok_to_submit=False runtime=791.6s
+RUNNER_EXIT=0
