@@ -1,0 +1,207 @@
+{
+  "schema": "gems88.run-card.v3",
+  "generated_utc": "2026-10-25T03:25:30Z",
+  "lane": "H88-GZZC",
+  "hypothesis": "Residual isostatic-gravity zero-contour marks buried basin-basement density contacts omitted from USGS/INGENIOUS surface-scarp catalogues",
+  "mechanism": "4 km residual gravity; |grad r| * exp(-r^2/2 sigma_z^2) zero ridge; (1-slope)^2 buried gate; shear+dilation strain; 3 px collar; 3.2 px spacing; dual-regime 55/45 near/far",
+  "named_non_fault_process": "Unfaulted alluvial onlap onto a bedrock pediment (gravity step without brittle offset)",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "verdict_summary": "NEGATIVE \u2014 research download only; literal 17GEMSDOE overlap 1.0 > 0.70; 0 slots",
+  "weekly_slots_used": 0,
+  "organizer_confirmed": null,
+  "submission_name": "GEMSDOE88-GZZC-961E034D",
+  "submission_note": "H88-GZZC grav-zero buried contact 32000d; HOLDOUT-DTI 0.0000; gt25 0.45; UNSCORED",
+  "submission_note_length": 81,
+  "download": "docs/downloads/gems88-gzzc-gravzero-buried-20261025-961e034d-zeros-DO-NOT-SUBMIT.tif",
+  "zip_download": "docs/downloads/gems88-gzzc-gravzero-buried-20261025-961e034d-zeros-DO-NOT-SUBMIT.zip",
+  "raster_sha256": "961e034d515fa74388f4417def3723584bdcb6d7fe7f97892b193898c13d78ad",
+  "zip_sha256": "836f8f74ad29de2b6db94b1c1c4e8bc3af43d3efbc3a124300ae74b2f6612dc5",
+  "elapsed_s": 127.8,
+  "experiments": {
+    "exp1_ridge_only": {
+      "n_dots": 20852,
+      "share_le2": 0.0,
+      "share_gt10": 0.7515346249760215,
+      "share_gt25": 0.4437943602532131,
+      "median_d_cat_px": 21.40093421936035,
+      "min_d_cat_px": 3.1622776985168457
+    },
+    "exp2_buried_lowslope": {
+      "n_dots": 21060,
+      "share_le2": 0.0,
+      "share_gt10": 0.768423551756885,
+      "share_gt25": 0.46092117758784423,
+      "median_d_cat_px": 22.56102752685547,
+      "min_d_cat_px": 3.1622776985168457
+    },
+    "exp3_gzzc_strain": {
+      "n_dots": 20889,
+      "share_le2": 0.0,
+      "share_gt10": 0.7540810953133228,
+      "share_gt25": 0.4413806309540907,
+      "median_d_cat_px": 21.587032318115234,
+      "min_d_cat_px": 3.1622776985168457
+    }
+  },
+  "fingerprint": {
+    "n_dots": 32000,
+    "share_le2": 0.0,
+    "share_gt10": 0.76453125,
+    "share_gt25": 0.45,
+    "median_d_cat_px": 22.671567916870117,
+    "min_d_cat_px": 3.1622776985168457
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "max_symmetric_auc": 0.571998,
+    "max_feature": "strain_gate",
+    "passed": true,
+    "n_features": 4,
+    "rows": [
+      {
+        "feature": "grav_zero_ridge",
+        "auc": 0.528792,
+        "symmetric_auc": 0.528792
+      },
+      {
+        "feature": "low_slope_gate",
+        "auc": 0.439445,
+        "symmetric_auc": 0.560555
+      },
+      {
+        "feature": "strain_gate",
+        "auc": 0.571998,
+        "symmetric_auc": 0.571998
+      },
+      {
+        "feature": "grav_residual",
+        "auc": 0.518864,
+        "symmetric_auc": 0.518864
+      }
+    ],
+    "note": "Proxy canary vs mapped catalogue positives (not holdout labels). Surface is catalogue-collared by construction and is not a binding canary channel."
+  },
+  "uniqueness": {
+    "n_compared": 55,
+    "max_3px_overlap_disc": 0.343219,
+    "max_3px_overlap_label": "GEMSDOE88:gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+    "max_abs_rho_disc": 0.039342,
+    "max_abs_rho_label": "57GEMSDOE:gems57_h57r2.tif",
+    "unique_like_for_like": true,
+    "max_3px_overlap_disc_pass": true,
+    "max_rho_pass": true,
+    "literal_dense_witness_overlap": 1.0,
+    "literal_dense_witness_pass": false,
+    "literal_duplicate": true,
+    "rows_head": [
+      {
+        "label": "17GEMSDOE:dense_17gemdoe.tif",
+        "overlap_3px": 1.0,
+        "abs_spearman": 0.062629,
+        "dense": true
+      },
+      {
+        "label": "GEMSDOE88:gems88-tiltzero-rank-denovo-37654-20261024-a2150eeb-zeros-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.343219,
+        "abs_spearman": 0.03174,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-fabric-dislocation-20261024-621b097b-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.324437,
+        "abs_spearman": 0.03047,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-phase88-crossgrad-20261024-d7d02ab4-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.300344,
+        "abs_spearman": 0.03116,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.250563,
+        "abs_spearman": 0.024406,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.232531,
+        "abs_spearman": 0.025602,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88-GHMD:gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.221531,
+        "abs_spearman": 0.017119,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.215812,
+        "abs_spearman": 0.008477,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.2145,
+        "abs_spearman": 0.021359,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE82:gems82_csam_dink.tif",
+        "overlap_3px": 0.212844,
+        "abs_spearman": 0.021761,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.211188,
+        "abs_spearman": 0.024406,
+        "dense": false
+      },
+      {
+        "label": "GEMSDOE88:gems88-cj88-crestjunction-37654dots-20261024-611844330c-zeros-DO-NOT-SUBMIT.tif",
+        "overlap_3px": 0.204625,
+        "abs_spearman": 0.009567,
+        "dense": false
+      }
+    ]
+  },
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22641,
+    "n_fold_cells": 8,
+    "dti": 0.0,
+    "ci95": [
+      0.0,
+      0.0
+    ],
+    "note": "Fixed-raster rescore of the emitted bytes (not a fold-refit model). Catalogue-collared rasters are often structurally near-zero on this instrument (IR-88-20/35). Not ORGANIZER-CONFIRMED. CI collapsed because no spatial bootstrap was run on this arm.",
+    "tp": 0.0,
+    "fp": 58636.0,
+    "fn": 22641.0,
+    "denom_check": 51437.0
+  },
+  "validator_output": {
+    "portal_tif_ok": true,
+    "portal_zip_ok": true,
+    "no_nan": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "layout_parity_with_sample": true,
+    "problems": []
+  },
+  "submission": {
+    "file": "docs/downloads/gems88-gzzc-gravzero-buried-20261025-961e034d-zeros-DO-NOT-SUBMIT.tif",
+    "zip_file": "docs/downloads/gems88-gzzc-gravzero-buried-20261025-961e034d-zeros-DO-NOT-SUBMIT.zip",
+    "raster_sha256": "961e034d515fa74388f4417def3723584bdcb6d7fe7f97892b193898c13d78ad",
+    "zip_sha256": "836f8f74ad29de2b6db94b1c1c4e8bc3af43d3efbc3a124300ae74b2f6612dc5",
+    "positive_pixels": 32000,
+    "submission_name": "GEMSDOE88-GZZC-961E034D",
+    "submission_note": "H88-GZZC grav-zero buried contact 32000d; HOLDOUT-DTI 0.0000; gt25 0.45; UNSCORED"
+  }
+}
