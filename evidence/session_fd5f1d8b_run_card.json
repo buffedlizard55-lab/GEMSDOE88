@@ -61,11 +61,15 @@
   },
   "tests": {
     "command": ".venv/bin/python -m pytest tests -q",
-    "result": "651 passed, 23 skipped, 0 failed"
+    "result_final_merged_tree": "671 passed, 23 skipped, 0 failed",
+    "result_pre_merge": "651 passed, 23 skipped, 0 failed"
   },
   "github": {
-    "gh_auth": "FAILED: token rejected. Pull request and merge not completed.",
-    "git_push_dry_run": "succeeded"
+    "gh_auth_status": "reports GH_TOKEN invalid (warning), yet gh pr create and gh pr view succeeded",
+    "pull_request": "https://github.com/buffedlizard55-lab/GEMSDOE88/pull/145",
+    "pr_initial_mergeable": "CONFLICTING with main (main advanced via PRs 141-143); resolved by merging origin/main into the branch",
+    "merge_status": "PENDING (requires CI and mergeable re-check)",
+    "git_push": "succeeded"
   },
   "irregularities": [
     "I-1 literal overlap rule blocks all candidates when a dense continuous registry member exists",
@@ -75,7 +79,7 @@
     "I-5 H33 0.2778 has no receipt",
     "I-6 machine hypothesis queue rank 1 (H88-MTAS, already run) disagrees with markdown queue (MMR)",
     "I-7 AI_USE.md cites rules section 3.6; the NLR rules place the disclosure in section 3.2",
-    "I-8 gh token rejected",
+    "I-8 gh auth status reports an invalid token while PR create/view succeeded; treat as a warning to re-verify before merge",
     "I-9 full 19-band stack not restored in this session"
   ],
   "sources": [

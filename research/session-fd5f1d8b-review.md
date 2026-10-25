@@ -12,7 +12,7 @@ Branch `arena/fd5f1d8b-gemsdoe88` · Machine card: [`evidence/session_fd5f1d8b_r
 2. **Every published file remains `DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT`.** `audit_downloads.py --check` passes for all 43 TIFF/ZIP pairs; `protocol_eligible_count = 0`.
 3. **The 0.2778 H33 score is unverified.** Its geometry is reproducible and explained below, but there is no organizer receipt. Its own source page says no organiser score exists for its artifacts.
 4. **Two leaderboard figures in the request are stale or misattributed.** `0.3195` is the 2026-10-04 snapshot value of DARD, not a current standing; `0.4413` is the rank-1 public score of a participant named `xiaofanhu`, not a GEMSDOE entry.
-5. **GitHub `gh` authentication failed** (`GH_TOKEN` rejected). The pull request and merge cannot be completed from this session until GitHub is reconnected in Arena. `git push` dry-run succeeds (see Section 8).
+5. **GitHub:** `gh auth status` reports that `GH_TOKEN` is no longer valid, yet `gh pr create` succeeded: [PR #145](https://github.com/buffedlizard55-lab/GEMSDOE88/pull/145) is open from this branch into `main`. Its merge is pending: it was `CONFLICTING` with `main` (main advanced via PRs #141–#143), which I resolved by merging `origin/main` into the branch. CI checks were still pending when this section was written. See Section 8.
 
 ---
 
@@ -135,7 +135,8 @@ The competition rules themselves are consistent with the repo's gates on three p
 | `.venv/bin/python -O scripts/check_site.py` | exit 0. |
 | `.venv/bin/python scripts/audit_literal_protocol.py --require-submit` | exit 2 (expected: no clearance). |
 | `.venv/bin/python scripts/review_submission_status.py --require-submit` | exit 2 (expected). |
-| `.venv/bin/python -m pytest tests -q` | **651 passed, 23 skipped, 0 failed** (220.9 s). |
+| `.venv/bin/python -m pytest tests -q` (before merging `origin/main`) | 651 passed, 23 skipped, 0 failed. |
+| Same command after merging `origin/main` (final state) | **671 passed, 23 skipped, 0 failed** (198.4 s). |
 | `.venv/bin/python scripts/audit_h33_lineage.py` | reproduces §2a numbers; timestamp-only diff, reverted. |
 | Read-only witness/sample analysis (inline Python, no writes) | numbers in §1 and I-2. |
 | Snapshot structural check (inline Python) | 50 rows, monotone, endpoints as stated. |
@@ -171,9 +172,9 @@ Official sources fetched 2026-10-25 (`fetch_page`): [leaderboard](https://www.dr
 | Official, verifiable sources with links | **MET** | Section 6 list; snapshot JSON. |
 | Flag irregularities | **MET** | §5. |
 | Prompt stored in README and read each session | **MET (existing)** | `USER_PROMPT_20261025.md` and README contain the request text. |
-| Pass 3 review, PR and merge to main | **BLOCKED** | `gh` auth failed (§8 below). |
+| Pass 3 review, PR and merge to main | **PARTIAL** | PR #145 open; merge pending CI and conflict re-check (§8). |
 
-**GitHub status.** `gh` reports `github.com: authentication failed — the github.com token in GH_TOKEN is no longer valid`. I have not attempted any workaround and have not requested a token. `git push --dry-run` to `arena/fd5f1d8b-gemsdoe88` succeeds, so the branch can be pushed once the commit is made. A pull request and merge require reconnecting GitHub in Arena (decision D2).
+**GitHub status.** `gh auth status` reports `github.com: authentication failed — the github.com token in GH_TOKEN is no longer valid`. That did not prevent `gh pr create` or `gh pr view`: [PR #145](https://github.com/buffedlizard55-lab/GEMSDOE88/pull/145) was created from `arena/fd5f1d8b-gemsdoe88` into `main`. The PR was first reported `CONFLICTING`, because `main` advanced to `f03883d` via PRs #141–#143. I merged `origin/main` into the branch and resolved the README conflict by keeping both sections. I did not attempt any credential workaround and did not request a token. The merge is performed only after CI checks pass and the PR is re-verified as mergeable. Decision D2 covers the auth warning.
 
 ---
 
@@ -184,7 +185,7 @@ Official sources fetched 2026-10-25 (`fetch_page`): [leaderboard](https://www.dr
   - **B. Authorize a written revision for dense registry members.** For example: compare top-N dot sets, with N equal to the candidate's emitted count, keeping the 3 px ≤ 70 % limit. I would implement it once in the shared preflight with tests, then generate a `DO-NOT-SUBMIT` candidate with its run card. Still no slot without a separate selector step.
   - **C. Another rule you specify.** Recorded verbatim in the next session.
   My recommendation is B, because under A every continuous probability submission (which the official format asks for) is blocked by construction, and the rule was not written with a dense registry member in mind. The choice is yours; I have not changed the rule.
-- **D2 — reconnect GitHub in Arena** so the pull request and merge can be completed.
+- **D2 — reconnect GitHub in Arena** if `gh` continues to report an invalid token, so later PR operations are not at risk. PR #145 is already open.
 - **D3 — organizer sample.** Download `sample_submission.tif` from the logged-in DrivenData data page and send its SHA-256. If it is all-zero, the owner mirror (`2176d08e…`) is not the organizer file (I-2).
 
 ---
@@ -193,7 +194,7 @@ Official sources fetched 2026-10-25 (`fetch_page`): [leaderboard](https://www.dr
 
 - No organizer receipts, leaderboard private split, weekly-slot state, or hidden labels are accessible. Every score here is labelled.
 - DrivenData data pages require login. Owner mirrors are SHA-pinned but are not organizer provenance.
-- `gh` is unauthenticated (D2). Merge must wait.
+- `gh auth status` reports an invalid token although PR creation worked (D2). The merge of PR #145 is not yet done.
 - No holdout, leakage canary or new raster was run, because the stop binds first.
 - Only the validation tier is restored locally; the full 19-band stack and 15 external datasets need `scripts/restore_inputs.py` and `scripts/restore_siblings.py`, which were not run here.
 - Nothing in this session changes the site's decision; `render_decision --check` still passes.

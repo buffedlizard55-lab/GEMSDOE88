@@ -116,3 +116,12 @@ setImmediate(()=>{
     import os
     result = subprocess.run([NODE, '-e', script], cwd=ROOT, env={**os.environ, 'MUTATION': mutation}, text=True, capture_output=True)
     assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_submission_guide_does_not_offer_boolean_or_human_override():
+    text = (ROOT / 'docs/executive-summary.html').read_text()
+    assert 'unless a human selector updates the dense-prior rule' not in text
+    assert 'Only upload if a later selector flips' not in text
+    assert 'without an explicit human selector decision' not in text
+    assert 'changing a stored boolean is not clearance' in text
+    assert 'Human inspection or a selector decision cannot override failed uniqueness or scientific gates' in text

@@ -66,17 +66,29 @@ bash scripts/download_competition_data.sh
 
 [Three-pass review and parser reliability fix](research/session-7bf01824-review.md) · [Session run card](registry/session_7bf01824_run_card.json). Fresh preflight confirms `DUPLICATE_STOP`; no new TIFF or slot. Offline leaderboard parsing now rejects malformed scores and incomplete ranked evidence without replacing the previous snapshot.
 
+### Session 2026-10-25 — unique-TIFF request: duplicate gate holds
+
+No new TIFF was generated and nothing is cleared for download-to-submit. The shared generation guard returned `DUPLICATE_STOP` (exit 2) on SHA-pinned bytes: the dense `17GEMSDOE` witness covers 100% of allowed pixels, so every candidate overlaps it at 1.0 against the 0.70 limit. Full record: [research note](research/session-20261025-unique-tif-gate-review.md) · [run card](registry/session_20261025_unique_tif_gate_run_card.json). Live leaderboard #1 = 0.4413 (public page, 2026-10-25); H33 0.2778 remains USER-REPORTED. The open blocker is an owner decision on how to define dots for dense priors, plus a lane paragraph that was never supplied.
+
 ### Review supplement — session fd5f1d8b (2026-10-25)
 
 [Review, H33 arithmetic, leaderboard reconciliation, irregularities and decisions](research/session-fd5f1d8b-review.md) · [Run card (negative)](evidence/session_fd5f1d8b_run_card.json) · [Official public leaderboard snapshot, 50 rows](docs/data/leaderboard_official_snapshot_20261025.json).
 
 - **No new TIFF.** The literal duplicate stop still returns `DUPLICATE_STOP` (exit 2). The pinned dense `17GEMSDOE` witness is a continuous probability raster covering **100 %** of the 5,106,385 allowed cells, so every nonempty candidate fails the 0.70 limit. This rule also blocks sparse candidates. The decision to change it belongs to the rule owner (see the review, D1).
 - **Stale and misattributed figures.** `0.3195` matches a 2026-10-04 snapshot value. `0.4413` is the rank-1 public score of a non-GEMSDOE participant. `0.2778` (H33) has no organizer receipt. Public top-50 range (checked 2026-10-25): 0.4413 down to 0.2818.
-- **GitHub authentication failed** (`gh` token rejected), so the pull request and merge are pending a reconnect in Arena.
+- **GitHub:** `gh auth status` reports an invalid `GH_TOKEN`, yet pull request #145 was created from this branch. Its merge is pending CI and a conflict re-check; see the review, section 8.
 
 ### Remaining limitations
 
 The literal uniqueness condition must become satisfiable under an explicitly authorized **shared** protocol before another candidate is constructed; no exemption is authorized here. New-model hide-and-recover and leakage tests are therefore not run. The current leaderboard, rules, weekly allowance, organizer input authentication and receipts cannot be verified through this session's permitted hosts. No credentials are requested. Full data caches are ignored, not committed; restore commands reconstruct them. Static Pages serves results, not account-authenticated uploads or training jobs.
+
+### Follow-up review — `26588c79`, 2026-10-25
+
+The literal preflight was independently reproduced: **DUPLICATE_STOP**, no new TIFF, no new holdout and no slot used. All **43** existing TIFF/ZIP pairs pass local research-format checks, but **none** is cleared for submission. The urgent new unique-file requirement remains **UNMET**.
+
+Fixed an all-download audit blind spot: orphan ZIPs (including uppercase suffixes), nested raster packages, ambiguous archive pairings and symlinks now fail closed. Corrected executive-guide language implying that human inspection or a boolean edit could override failed gates. A real desktop/mobile browser rerun refreshed the page-bound receipt rather than merely changing its hashes.
+
+[Three-pass follow-up, fresh H33 evidence and source limits](research/session-26588c79-review.md) · [Negative JSON run card](registry/session_26588c79_run_card.json). The existing four conditional geological proposals remain untested; no new-model performance or leaderboard improvement is claimed.
 
 ### Parallel scientific session record — `H88-BPWD` (`2026-10-25`, All-Time Repo Holdout Record `0.205991`, `0` slots spent)
 
