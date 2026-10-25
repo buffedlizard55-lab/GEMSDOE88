@@ -25,7 +25,7 @@ def entrypoints() -> list[Path]:
     # pre-import guard contract as every other candidate runner.
     files.update(ROOT / "scripts" / name for name in (
         "make_concentration_variants.py", "evaluate_cgo88.py", "eval_concentration_proxy.py",
-        "exp_provcrest_spacing.py", "publish_kdmc_site.py", "finalize_concentration.py",
+        "exp_provcrest_spacing.py", "publish_kdmc_site.py", "publish_sdtl88.py", "finalize_concentration.py",
         "lbcal_build_stats.py", "lbcal_pixel.py", "lbcal_fit.py", "lbcal_extra_features.py",
         "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py"))
     return sorted(path for path in files if '__name__' in path.read_text())
@@ -87,6 +87,9 @@ def test_witness_removed_is_not_automatic_permission(monkeypatch):
     ["scripts/run_mfs88_experiment.py"],
     ["-O", "scripts/run_mfs88_experiment.py"],
     ["-m", "scripts.run_mfs88_experiment"],
+    ["scripts/run_sdtl88_experiment.py"],
+    ["-O", "scripts/build_sdtl88_submission.py"],
+    ["-m", "scripts.publish_sdtl88"],
 ])
 def test_real_entrypoints_exit_two_without_writing_candidates(command):
     before = {p.name: p.stat().st_mtime_ns for p in (ROOT / "docs/downloads").iterdir()}

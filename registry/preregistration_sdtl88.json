@@ -1,0 +1,69 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "preregistration_id": "PREREG-20261025-SDTL88",
+  "lane": "H88-SDTL",
+  "frozen_utc": "2026-10-25T13:45:00Z",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "hypothesis": "Stress-field slip/dilation-tendency lineaments (SDTL): terrain and magnetic linear fabric whose strike is optimally oriented for slip/dilation under the contemporary regional stress field marks the ACTIVE fault population; active faults break the youngest alluvium and leave LiDAR/DEM-visible scarps, so expert-mapped new faults should concentrate on optimally oriented lineaments, not on lineaments of arbitrary strike.",
+  "mechanism": "Dilation tendency Td = (sigma1 - sigma_n)/(sigma1 - sigma3) and slip tendency Ts = tau/sigma_n (Morris, Ferrill & Henderson 1996, Geology 24:275; Ferrill et al. 1999 GSA Today 9(5)) are maximal for normal faults striking perpendicular to the least principal stress sigma3. Faulds & Hinz (2015, World Geothermal Congress) and Siler et al. (2019, Geosphere 15) show Great Basin geothermal systems concentrate on such optimally oriented, critically stressed structures. The favourable strike is NOT imported from literature; it is estimated per holdout fold as the 30 km circular-mean (double-angle) strike of the VISIBLE catalogue only, so any catalogue-dependent field is rebuilt from visible faults. The kinematic regime (normal vs transtensional) is read from the zero-catalogue geodetic bands (shear rate vs dilatation rate), which switches the favourable orientation from Td (strike perpendicular to sigma3) to Riedel shears at +/-30 degrees.",
+  "layers": {
+    "training_features.tif": [
+      "band 12 det_elev (terrain fabric via structure tensor at 300 m and 1 km integration)",
+      "band 6 tc magnetic tilt (magnetic fabric via structure tensor at 600 m)",
+      "band 7 geod_shearrate and band 8 geod_dilaterate (kinematic regime)",
+      "band 19 det_elev_slope (via PHYS-44 baseline)"
+    ],
+    "existing_faults.tif": "visible subset only, per fold, for the favourable-strike field",
+    "shared cached stack": "PHYS-44 zero-catalogue memmap from src/gems88/physics.py (unchanged)"
+  },
+  "named_non_fault_mimics": [
+    "Pleistocene Lake Lahontan shoreline terraces: contour-parallel, therefore range-front-parallel and often optimally oriented; mitigated by the shared pluvial_shoreline_pen channel and the slope channels in PHYS-44",
+    "Bedding/dip-slope traces in tilted Miocene volcanic sections: parallel to block-bounding faults; mitigated by the magnetic-fabric arm and by requiring coherence at two scales",
+    "Linear anthropogenic features (roads, canals, field edges) aligned with the UTM grid"
+  ],
+  "features_new": [
+    "sdtl_td_terrain_300",
+    "sdtl_td_terrain_1000",
+    "sdtl_td_mag_600",
+    "sdtl_riedel_terrain_300",
+    "sdtl_riedel_terrain_1000",
+    "sdtl_regime_shear_frac",
+    "sdtl_td_x_extension_300",
+    "sdtl_riedel_x_shear_300",
+    "sdtl_misorient_300",
+    "sdtl_fav_concentration",
+    "sdtl_coh_terrain_300",
+    "sdtl_coh_terrain_1000"
+  ],
+  "catalogue_dependent_features": [
+    "sdtl_td_*",
+    "sdtl_riedel_*",
+    "sdtl_misorient_300",
+    "sdtl_fav_concentration",
+    "sdtl_td_x_extension_300",
+    "sdtl_riedel_x_shear_300"
+  ],
+  "catalogue_dependent_rule": "Recomputed per holdout seed from fold['visible'] (collar-buffered visible catalogue). Never from the full catalogue during holdout. The production raster uses the full catalogue as 'visible' (allowed by the protocol: at production time every catalogue fault is known).",
+  "arms": {
+    "control_phys44": "PHYS-44 only; trained on withheld components of the three training quadrants (positives) vs non-catalogue cells of those quadrants (negatives), domain excludes visible catalogue; dual-expectation HistGradientBoosting from src/gems88/adhr.py; Dinkelbach allocation with min spacing 2.05 px",
+    "candidate_sdtl": "PHYS-44 + SDTL-12, identical training design, model, emitter and budget rule",
+    "ablation_sdtl_only": "SDTL-12 alone, identical design (mechanism check: does the orientation physics carry signal by itself?)"
+  },
+  "holdout": {
+    "evaluator": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2), unchanged",
+    "split": "vendor/gems57/holdout.buffered_component_draw seeds 20 and 21, buffer 3 px, boundary 12 px, whole 8-connected catalogue components withheld",
+    "scoring": "pooled DTI alpha 0.2 beta 0.8, 300 m triangular kernel; paired 20 km physical-block bootstrap CI (1000 draws)"
+  },
+  "leakage_canary": "each SDTL feature alone, symmetric AUC on withheld positives vs allowed negatives of the fold region; AUC > 0.90 = leakage stop",
+  "success_rule": "candidate_sdtl pooled HOLDOUT-DTI exceeds control_phys44 with a paired 95% CI excluding zero and >= 5/8 folds won; otherwise verdict = negative (a deliverable)",
+  "budget": {
+    "experiments_max": 3,
+    "wallclock_seconds_max": 7200
+  },
+  "uniqueness": "surface rank correlation <= 0.90 against every local registry raster; equal-support 3 px dot overlap <= 0.70 against every registry raster (continuous surfaces compared through their top-n cells at the candidate's dot count n, see IR-88-SDTL-01); checked on the surface before placement and on the final dots",
+  "submission_name_template": "gems88-sdtl88-slipdilation-{ndots}dots-{utc}-{sha8}-zeros",
+  "note_template": "H88-SDTL stress-field slip/dilation-tendency lineaments; HOLDOUT-DTI {dti}; UNSCORED",
+  "evidence_labels": "Every number is HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or REGISTRY-MEASUREMENT. No ORGANIZER-CONFIRMED number exists for this lane.",
+  "record_status": "HISTORICAL_PREREGISTRATION_PROTOCOL_INTERPRETATION_SUPERSEDED",
+  "policy_correction": "IR-88-B4DFA10C-08: equal-support is diagnostic only, not an authorized replacement for this user's literal duplicate rule; no active generation lane is cleared."
+}

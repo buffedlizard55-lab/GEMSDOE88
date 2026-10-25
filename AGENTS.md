@@ -12,3 +12,10 @@
 ## Policy-regression warning
 
 The imported `decide_v4` API is compatibility-only and delegates to the original literal gate. Its dense/creation-order exceptions and automatic HGVC upload clearance were revoked in IR-88-D0C3ADEB-08. Never resurrect them or whitelist an `ok_to_submit: true` record while the literal gate/selector fails.
+
+
+**PR #151 / IR-88-B4DFA10C-08:** PR #148's equal-support promotion is withdrawn under
+this user's unchanged literal protocol. Dense/saturated priors still bind. Equal-support
+helpers are diagnostic only; public v5 delegates to the shared literal v3 decision.
+SDTL is preserved historical research, never the currently cleared release. Run, build
+and publish entrypoints have no active-lane exemption. See the corrective evidence card.

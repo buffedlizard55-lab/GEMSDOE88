@@ -1,0 +1,245 @@
+{
+  "schema": "gems88.historical-clearance-withdrawal.v1",
+  "corrected_at_utc": "2026-10-25T14:48:56.293409+00:00",
+  "source_commit": "a63e54b64223db21432a9c0fa0b9e77e77c9ebab",
+  "source_pull_request": 148,
+  "correction_pull_request": 151,
+  "reason": "SDTL clearance withdrawn: equal-support top-n was not authorized to replace the standing literal >70% / 3 px overlap stop against any registry raster. The original SDTL dots_rows already measure literal overlap 1.0 against the pinned dense witness. Historical holdout improvement is versus its own PHYS-44 control, not a demonstrated win over the current same-fold incumbent. This is retained research, not a new candidate or upload clearance.",
+  "decision": "HISTORICAL_RESEARCH_CLEARANCE_WITHDRAWN",
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "new_candidate_generated": false,
+  "experiments_run_in_this_correction": 0,
+  "weekly_slots_used_in_this_correction": 0,
+  "original_run_card": {
+    "file": "registry/sdtl88_run_card.json",
+    "sha256": "91a85a69d1a72b1535f758419942d125673a4302cbeffe384ce215eec06003c5",
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/registry/sdtl88_run_card.json"
+  },
+  "original_artifacts": {
+    "tif": {
+      "file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.tif",
+      "sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
+      "bytes": 109159,
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.tif"
+    },
+    "zip": {
+      "file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.zip",
+      "sha256": "37ba4d0a4685f47e2256fedec952f1b278392da7e79b2185da55af2655307e6f",
+      "bytes": 69180,
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.zip"
+    },
+    "json": {
+      "file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.json",
+      "sha256": "eec16fc9457050c19a160eb65a8458a8a813bbbb75d230c5bc61621c5da410f1",
+      "bytes": 3600,
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.json"
+    }
+  },
+  "retained_artifact": {
+    "file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
+    "bytes": 109159,
+    "tiff_bytes_unchanged": true,
+    "zip_file": "docs/downloads/gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "9d576a0b11ea0deca95838e1eee6e27745bb1fd591e986823fe4cdaaaad6ab28",
+    "zip_change": "Only archival member filename/packaging changed; its one TIFF payload is byte-identical to source."
+  },
+  "scientific_fields_unchanged": [
+    "hypothesis",
+    "mechanism",
+    "named_non_fault_mimics",
+    "holdout_dti",
+    "leakage_canary",
+    "organizer_confirmed",
+    "experiments_run",
+    "surface_rows",
+    "dots_rows"
+  ],
+  "scientific_measurements_sha256": "1b4ab51171e2d12b28e43382a433baf62d0de9f29f909b03c8bdd1bc9dfc2e91",
+  "historical_literal_overlap_witness": {
+    "file": "registry/dense_17gemdoe.tif",
+    "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "their_kind": "continuous_surface",
+    "their_support_fraction": 1.0,
+    "their_dots": 24799,
+    "equal_support_overlap": 0.06516391789991532,
+    "literal_overlap": 1.0,
+    "spearman_full_footprint": 0.08365658134093792,
+    "fails_overlap": false,
+    "fails_rho": false
+  },
+  "literal_overlap_limit": 0.7,
+  "literal_rule_superseded_by_user": false,
+  "shared_uniqueness_sha256": "544781a2dc0c35615a890394d2537092442f5e657d9acd303f9c4a66fdfc3355",
+  "policy_restorations": [
+    {
+      "file": "AGENTS.md",
+      "original_sha256": "21e543ddaf9ca9d05e8c93d20e6c8fbe4a060595887ec51d53d8f6c775f949f6",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/AGENTS.md"
+    },
+    {
+      "file": "IRREGULARITIES.md",
+      "original_sha256": "f0129af2fb2d4acab192c1f773f9889252549b6e89c2c2ca2ff7085415a92cd6",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/IRREGULARITIES.md"
+    },
+    {
+      "file": "README.md",
+      "original_sha256": "a827832034fa95160ba9a33a23cac1ba0f552b24ecccddea7bed0a2fed360b42",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/README.md"
+    },
+    {
+      "file": "docs/assets/site.js",
+      "original_sha256": "9eb7f0084dd063e3c1281be09617489865229e9b9836710212ce817863f2fa10",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/docs/assets/site.js"
+    },
+    {
+      "file": "docs/data/current_release.json",
+      "original_sha256": "adc5836e803d06c0205ed7597b8a9f045c3e9b8e7f4011eb34a6225416b57d5b",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/docs/data/current_release.json"
+    },
+    {
+      "file": "docs/status.json",
+      "original_sha256": "125c8d3f9c550fcbd984dadf80c671c974289102834dff3af7e90af4c39ac239",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/docs/status.json"
+    },
+    {
+      "file": "docs/data/repo_review_20261025.json",
+      "original_sha256": "99567a8fe4551c45ca8f9f5a7a6ebf134a6fe4f8e7ce46beb56dc809e260ecbe",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/docs/data/repo_review_20261025.json"
+    },
+    {
+      "file": "evidence/repo_review_20261025.json",
+      "original_sha256": "99567a8fe4551c45ca8f9f5a7a6ebf134a6fe4f8e7ce46beb56dc809e260ecbe",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/evidence/repo_review_20261025.json"
+    },
+    {
+      "file": "docs/index.html",
+      "original_sha256": "49538cae2aaca58920692850866940fdc2f92e840a5a0e0b49eaa881964c7597",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/docs/index.html"
+    },
+    {
+      "file": "docs/executive-summary.html",
+      "original_sha256": "96018a2d5b04f360ae1923c6b20122242a0df3421472d48a26ad5f4381588483",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/docs/executive-summary.html"
+    },
+    {
+      "file": "scripts/audit_downloads.py",
+      "original_sha256": "b0127729776ac3fb9a4658a24dca9a93da733e5755e1020cd75038794d3402b5",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/scripts/audit_downloads.py"
+    },
+    {
+      "file": "scripts/check_site.py",
+      "original_sha256": "c9821d115c415d75cc18b1e93b54805642adafc0b531d74d382cca8746bdb16e",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/scripts/check_site.py"
+    },
+    {
+      "file": "scripts/render_decision.py",
+      "original_sha256": "cf03507592a28c9bf5709295d6f45cf347e7f21b0bb40194e657bcbbcc31db23",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/scripts/render_decision.py"
+    },
+    {
+      "file": "scripts/generation_guard.py",
+      "original_sha256": "b7b9188a8267568ae645187dbd832d131061161bdb2efc5f92514d28a18acca5",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/scripts/generation_guard.py"
+    },
+    {
+      "file": "scripts/preflight_mtas88.py",
+      "original_sha256": "a6e6a611e4fd14b7956b01d0d82bfa80d0c3112d01a5a544761a1a3c291e7ddd",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/scripts/preflight_mtas88.py"
+    },
+    {
+      "file": "scripts/readiness.py",
+      "original_sha256": "d4d4af228dbdec2847d0051e8c82ae66944e0126effdd11e5f6c44819ca49272",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/scripts/readiness.py"
+    },
+    {
+      "file": "scripts/validate_current.py",
+      "original_sha256": "2108b3257eda175e2981276002ef202f4f237eac73233a5d43077fac625f171a",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/scripts/validate_current.py"
+    },
+    {
+      "file": "tests/test_candidate_gates_20261024.py",
+      "original_sha256": "64378ffd52ebb0b9100db26f460adad82e0899540e6b6c683d64799d74a65e47",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_candidate_gates_20261024.py"
+    },
+    {
+      "file": "tests/test_canonical_decision.py",
+      "original_sha256": "6287108fbd022a17e7e6e38d6d6abcde33880296f487a0665ce6eddfbaaa22a9",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_canonical_decision.py"
+    },
+    {
+      "file": "tests/test_download_inventory.py",
+      "original_sha256": "f81bba519c84fb0b9f5eb1b1edaeeb3ea03c1e427c33419900e8dd7158ff8127",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_download_inventory.py"
+    },
+    {
+      "file": "tests/test_generation_entrypoints.py",
+      "original_sha256": "3a6444e80e8a322fe5322488f26405fe95666e0aab591b5777eff8804e7c5a19",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_generation_entrypoints.py"
+    },
+    {
+      "file": "tests/test_literal_protocol_audit.py",
+      "original_sha256": "ffb7840352c63902234d643b4ba4d2f8284eab421a6baa5e16021c8430407455",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_literal_protocol_audit.py"
+    },
+    {
+      "file": "tests/test_mtas88_banner_runtime.py",
+      "original_sha256": "0c1d80b85b89a49f78cea24c0fe592a6f29ffb1f9bf7d0153fb3c02034057264",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_mtas88_banner_runtime.py"
+    },
+    {
+      "file": "tests/test_mtas88_preflight.py",
+      "original_sha256": "770fb798fdaa052ea719bbc713ff6d93d3e46d05d065ef18c5a9d8295c3b1b09",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_mtas88_preflight.py"
+    },
+    {
+      "file": "tests/test_project.py",
+      "original_sha256": "5cadff33955951cc73059ead7648867cf9ba8ab18937c17910a564c94edf6020",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_project.py"
+    },
+    {
+      "file": "tests/test_qtsk88.py",
+      "original_sha256": "a3a04f4bc9d0b322193096d26f537b3f9124fd815fdff70d7492cc2ed610244d",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_qtsk88.py"
+    },
+    {
+      "file": "tests/test_repo_review_20261025.py",
+      "original_sha256": "a7c22a2a907e0cfab8969d0a7ab0defdd0dcea6c16c1d184bf5453b969dc2545",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_repo_review_20261025.py"
+    },
+    {
+      "file": "tests/test_request_evidence.py",
+      "original_sha256": "9f9710fe3643b6e500badd85cc6ec34dee9b012e8c3c185bd19420706893040d",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_request_evidence.py"
+    },
+    {
+      "file": "tests/test_session_d0c3adeb_record.py",
+      "original_sha256": "23222de02987232709d738b83191031bfa26200b7b8e0131163ce75a62d94167",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_session_d0c3adeb_record.py"
+    },
+    {
+      "file": "tests/test_site_guard_optimization.py",
+      "original_sha256": "6ceecd278cd06c2f8ae1e2993a5f8507e5ebd45e4a91ab9cdfc99a23773255ea",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_site_guard_optimization.py"
+    },
+    {
+      "file": "tests/test_tdkl88.py",
+      "original_sha256": "a522fe85d82c5e2d129774c1f05f3341f3e78f272f620261e16e0fbcfa6011de",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_tdkl88.py"
+    },
+    {
+      "file": "tests/test_ugfv.py",
+      "original_sha256": "e71c0c69633f5f8b62ddfea080074ca67be7a911c0178e2c16039857e00643c2",
+      "original_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/a63e54b64223db21432a9c0fa0b9e77e77c9ebab/tests/test_ugfv.py"
+    }
+  ],
+  "preserved_research": [
+    "src/gems88/sdtl.py",
+    "scripts/run_sdtl88_experiment.py",
+    "scripts/build_sdtl88_submission.py",
+    "registry/preregistration_sdtl88.json",
+    "research/session-sdtl88-20261025.md"
+  ],
+  "not_adopted": "The concurrent active-lane generation bypass, equal-support binding semantics, and positive canonical upload clearance. The additive scientific implementation and original numerical evidence are retained; conflicting contract tests were restored, with new strict v5 regression coverage added."
+}

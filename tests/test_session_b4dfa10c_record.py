@@ -33,9 +33,9 @@ def test_session_audit_counts_main_and_variant_without_rewriting_history():
     audit = read('docs/data/download_audit.json')
     inventory = card['download_inventory']
     assert inventory['schema'] == 'gems88.download-audit.v2'
-    assert inventory['tiff_count'] == inventory['research_download_pass_count'] == 44
+    assert inventory['tiff_count'] == inventory['research_download_pass_count'] == 45
     assert inventory['additional_research_tiff_count'] == 1
-    assert inventory['total_published_tiff_count'] == inventory['total_research_download_pass_count'] == 45
+    assert inventory['total_published_tiff_count'] == inventory['total_research_download_pass_count'] == 46
     assert inventory['protocol_eligible_count'] == 0
     for key in ('tiff_count', 'additional_research_tiff_count', 'total_published_tiff_count', 'exact_decoded_duplicate_groups'):
         assert inventory[key] == audit[key]

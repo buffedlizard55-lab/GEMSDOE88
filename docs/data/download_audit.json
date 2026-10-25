@@ -1,6 +1,6 @@
 {
   "schema": "gems88.download-audit.v2",
-  "checked_at_utc": "2026-10-25T14:30:18.146627+00:00",
+  "checked_at_utc": "2026-10-25T14:49:27.343510+00:00",
   "scope": "Every TIFF in docs/downloads and docs/research-variants, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
   "preplacement_registry_proof": {
     "evidence_class": "REGISTRY-MEASUREMENT",
@@ -20,11 +20,11 @@
   },
   "canonical_file": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
   "canonical_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
-  "tiff_count": 44,
-  "research_download_pass_count": 44,
+  "tiff_count": 45,
+  "research_download_pass_count": 45,
   "additional_research_tiff_count": 1,
-  "total_published_tiff_count": 45,
-  "total_research_download_pass_count": 45,
+  "total_published_tiff_count": 46,
+  "total_research_download_pass_count": 46,
   "additional_research_artifacts": [
     {
       "file": "gemsdoe88-mdc88-pu-concentration-2p83px-collar3-20261024T0755Z-zeros-DO-NOT-SUBMIT.tif",
@@ -1793,6 +1793,63 @@
       "positive_support_sha256": "d00aa60cfa0cf905d174883da8e9b3a84ced2a5ee80d3325703b3ce08080f6a5",
       "zip_file": "gems88-sarcsd-missingness-csd20-35998-20261024-07b74d36-zeros-DO-NOT-SUBMIT.zip",
       "zip_sha256": "d367c2a4810bf91c5661a590b6bb0e7ba1c69e90ddb14fb44595c6e3c9dd993f",
+      "zip_one_byte_identical_tif": true,
+      "negative_filename_markers": true,
+      "literal_overlap_lower_bound": 1.0,
+      "decision": "DUPLICATE_STOP"
+    },
+    {
+      "file": "gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
+      "bytes": 109159,
+      "evidence_class": "LOCAL-FORMAT-AUDIT_NOT_ORGANIZER_ACCEPTANCE",
+      "format_valid": true,
+      "research_download_ok": true,
+      "ok_to_submit": false,
+      "errors": [],
+      "validator_output": {
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "single_band": true,
+        "geotiff": true,
+        "real_numeric_dtype": true,
+        "no_nan_inside": true,
+        "range_0_1": true,
+        "footprint_nonempty": true,
+        "no_mass_outside": true,
+        "footprint_not_masked": true,
+        "strict_audit": true,
+        "ok": true,
+        "raster_sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
+        "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+      },
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1,
+        "dtype": "float32"
+      },
+      "independent_decoders_agree": true,
+      "positive_pixels": 24799,
+      "positive_on_catalogue": 0,
+      "positive_outside_footprint": 0,
+      "decoded_float32_sha256": "5ae83963080f2df62a475c71e13486181648bf65c16a74fd50eb279bd8024d53",
+      "positive_support_sha256": "91140279f2b051cfb3bd30a0479fd76adbeb9c1b67e126fa1f993a1930e5aec0",
+      "zip_file": "gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros-DO-NOT-SUBMIT.zip",
+      "zip_sha256": "9d576a0b11ea0deca95838e1eee6e27745bb1fd591e986823fe4cdaaaad6ab28",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
       "literal_overlap_lower_bound": 1.0,

@@ -1,7 +1,7 @@
 {
   "schema": "gems88.review-run-card.v2",
   "session": "b4dfa10c",
-  "checked_at_utc": "2026-10-25T14:40:58.737317+00:00",
+  "checked_at_utc": "2026-10-25T15:00:52.795747+00:00",
   "base_commit": "dcd60754749e1e5d88d535c0973245c889f8c15f",
   "status": "DUPLICATE_STOP",
   "hypothesis": "H88-MMR (conditional, unimplemented): repeatable magnetic-marker displacement restoration may reveal a covered fault missed by surface mapping.",
@@ -115,19 +115,19 @@
   },
   "download_inventory": {
     "schema": "gems88.download-audit.v2",
-    "checked_at_utc": "2026-10-25T14:30:18.146627+00:00",
-    "tiff_count": 44,
-    "research_download_pass_count": 44,
+    "checked_at_utc": "2026-10-25T14:49:27.343510+00:00",
+    "tiff_count": 45,
+    "research_download_pass_count": 45,
     "additional_research_tiff_count": 1,
-    "total_published_tiff_count": 45,
-    "total_research_download_pass_count": 45,
+    "total_published_tiff_count": 46,
+    "total_research_download_pass_count": 46,
     "protocol_eligible_count": 0,
     "exact_decoded_duplicate_groups": [],
     "publication_directories": [
       "downloads",
       "research-variants"
     ],
-    "saved_audit_sha256": "380fb46397d19925bad59d470ba896b2cef26964a76f06216f2401154b14ff04"
+    "saved_audit_sha256": "b98b0c9952d7f1396114a23da74d3116b3ceeb4feaece85d297c7ff83049065c"
   },
   "fresh_h33_geometry_audit": {
     "schema": "gems88.h33-lineage-audit.v1",
@@ -287,10 +287,11 @@
       "Withdraw unsupported legacy MDC-88 upload instructions; check nested links and negative status.",
       "Bind every published TIFF/ZIP hash and complete manifest inventory to the site guard under normal and optimized Python.",
       "Preserve the imported historical browser receipt and record a fresh seven-case desktop/mobile check plus an actual exact-hash download.",
-      "Revoke the concurrently added MFS research-generation exception; restore standard pre-import guard and three real CLI-denial regressions. Its read-only validator delegates to the shared saved-file audit."
+      "Revoke the concurrently added MFS research-generation exception; restore standard pre-import guard and three real CLI-denial regressions. Its read-only validator delegates to the shared saved-file audit.",
+      "Reject the concurrent unauthorized equal-support substitution in shared public v5 by reusing literal v3, with diagnostic measurements preserved; withdraw SDTL submit clearance without altering TIFF predictions or scientific evidence."
     ],
     "shared_metric_and_writer_modified": false,
-    "published_tif_or_zip_bytes_modified": false,
+    "published_tif_or_zip_bytes_modified": true,
     "browser_evidence": "evidence/session_b4dfa10c_browser_check.json",
     "historical_browser_receipt_preserved": "evidence/session_d0c3adeb_browser_check.json",
     "pre_integration_full_pytest": {
@@ -313,25 +314,25 @@
       {
         "pass": 2,
         "status": "PASS",
-        "scope": "Shared validator/inventory fixes, 44-file coverage and legacy negative corrections; edge cases under normal/optimized Python; reconcile concurrent main symlink checks and retain both regression sets."
+        "scope": "Shared validator/inventory fixes, 44-file coverage and legacy negative corrections; edge cases under normal/optimized Python; reconcile concurrent main symlink checks and retain both regression sets. Concurrent SDTL: preserve original scientific measurements and TIFF bytes, reject unauthorized binding-rule replacement, restore shared literal v5 and negative publication; archive-only ZIP member rename."
       },
       {
         "pass": 3,
         "status": "PASS",
-        "scope": "Full merged suite, saved-byte audit, render checks, browser receipt, normal/optimized guards and expected negative generation/slot checks.",
+        "scope": "Final a63e54b integrated suite, 46 saved-byte packages, seven fresh browser cases, 23 expected-exit gates and unchanged core evaluator/writer pins. Software completion is not scientific promotion.",
         "all_requested_deliverables_met": false
       }
     ],
     "three_passes_completed": true,
     "final_gates": {
-      "checked_at_utc": "2026-10-25T14:36:57.503479+00:00",
+      "checked_at_utc": "2026-10-25T14:57:46.349739+00:00",
       "checks": [
         {
           "command": ".venv/bin/python scripts/audit_downloads.py --check",
           "expected_exit": 0,
           "actual_exit": 0,
           "pass": true,
-          "local_output_sha256": "fcc2f27267c5803e0c6788582fd779c12d9388a539a439927873ead73bc05d76"
+          "local_output_sha256": "cef36b9f2e2e383e7c872008a4d26ddbced4b72ba3d4af1d654ccf5f313240b2"
         },
         {
           "command": ".venv/bin/python scripts/render_decision.py --check",
@@ -359,7 +360,7 @@
           "expected_exit": 2,
           "actual_exit": 2,
           "pass": true,
-          "local_output_sha256": "3c2b34382af538747fe6ad3b0e913acd9e7837157c7c6da501b0ccf57627870d"
+          "local_output_sha256": "bbb3d3053ffb997202b3f0a67d84f232be1a9460358126c9e44569cb2cff8760"
         },
         {
           "command": ".venv/bin/python scripts/preflight_mtas88.py --gate-generation",
@@ -373,21 +374,21 @@
           "expected_exit": 2,
           "actual_exit": 2,
           "pass": true,
-          "local_output_sha256": "4e1d2491a0236acf0344dd78599ff0bf6015f6f1d458af5cc8439c44c35c58e1"
+          "local_output_sha256": "6d9f00fdb83903ca46ee1ddace179db66da4000ae358013ffcb6957d86f01dc1"
         },
         {
           "command": ".venv/bin/python -O scripts/run_mfs88_experiment.py",
           "expected_exit": 2,
           "actual_exit": 2,
           "pass": true,
-          "local_output_sha256": "ee2a62638726a7f4afbe4509d630138340c20c1d78cc06809fd199cc51c8f0f2"
+          "local_output_sha256": "8bf877611f8a3ac5385a76246c5efb390e39e703eb593c24092fe0001233425b"
         },
         {
           "command": ".venv/bin/python -m scripts.run_mfs88_experiment",
           "expected_exit": 2,
           "actual_exit": 2,
           "pass": true,
-          "local_output_sha256": "930375bb253583bb17d9b0291062cc4967f3c39d3a933faff33d2fc19ca6575e"
+          "local_output_sha256": "82c6f7eb6807d7e46e1abd58014d98fb9560c42b1498985953d19decfe041181"
         },
         {
           "command": ".venv/bin/python scripts/validate_current.py --require-submit",
@@ -423,10 +424,73 @@
           "actual_exit": 2,
           "pass": true,
           "local_output_sha256": "1153496df69594805c69b6feab789082999a2cd1b876d1393bb296d2ad034a76"
+        },
+        {
+          "command": ".venv/bin/python scripts/run_sdtl88_experiment.py",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "bcbf06089076b24ad184d103023e55668b7fde870cc656bea798e61dde5c849b"
+        },
+        {
+          "command": ".venv/bin/python -O scripts/run_sdtl88_experiment.py",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "31c3fae6e66e546cf92770454042ff1ce1e920a19c5bc0b6421607be544d03dc"
+        },
+        {
+          "command": ".venv/bin/python -m scripts.run_sdtl88_experiment",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "7539d486e7aab6aa32f85520acbcc2b173a06e6ba9b8aac83cd42e3bcda4d667"
+        },
+        {
+          "command": ".venv/bin/python scripts/build_sdtl88_submission.py",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "ed9f9e3a47470bf80c918f77665d738f71fa7ccf8e1e67688528fde123a50c02"
+        },
+        {
+          "command": ".venv/bin/python -O scripts/build_sdtl88_submission.py",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "e6e0055b293e0fc83f8504cd3c1c5fa95640d12222646e66618eb91558e280f3"
+        },
+        {
+          "command": ".venv/bin/python -m scripts.build_sdtl88_submission",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "dfcb73a5842adf5e24040d25877d400f1a9ad5d459afe3798c7b37897b7f92f3"
+        },
+        {
+          "command": ".venv/bin/python scripts/publish_sdtl88.py",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "fea50669987b656ae9fdf577be669f209ac76ec873d7da6fe5ba230b2103b1b9"
+        },
+        {
+          "command": ".venv/bin/python -O scripts/publish_sdtl88.py",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "4894f35cbe8570210b10fbc596e7cbc84a2a67f010f431f35af39b825400d0c6"
+        },
+        {
+          "command": ".venv/bin/python -m scripts.publish_sdtl88",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "4f1cd7882e3341086bcbc8fa7f98fa0e0f044991b41d1d5750a11ced4aa29df1"
         }
       ],
-      "all_expected_exits": true,
-      "scope": "Software/file/negative-gate verification only; not a new holdout or slot approval. Raw logs are local ignored test artifacts."
+      "published_tiff_zip_hashes_unchanged_during_gates": true,
+      "all_pass": true
     },
     "browser_summary": {
       "status": "PASS",
@@ -437,15 +501,18 @@
       ],
       "failed_fetch_remains_negative": true,
       "actual_research_download_matches_sha256": true,
-      "no_current_upload_clearance": true
+      "no_current_upload_clearance": true,
+      "checked_at_utc": "2026-10-25T14:52:20.215Z",
+      "receipt_sha256": "a9d2699f2ec6dfecc93e0ebdf691bc852c035b785d98659fb6d005938f8ec389"
     },
     "all_requested_deliverables_met": false,
     "final_scientific_verdict": "NEGATIVE_NO_NEW_UNIQUE_TIFF_NO_NEW_HOLDOUT_NO_SLOT",
     "post_metadata_focused_pytest": {
-      "passed": 183,
-      "warnings": 46,
-      "seconds": 36.0,
-      "scope": "Final run-card/mirror checks, request provenance, both inventories, container/sidecar regressions, canonical/legacy Pages and normal/optimized guard corruption tests after the final evidence update."
+      "passed": 49,
+      "warnings": 1,
+      "seconds": 20.21,
+      "local_output_sha256": "0ce374dbdb7aff323a5f384c8e4f6a03ac4d0be5aaa38c300ad3505a3197beb8",
+      "scope": "Final mirrored session records, request provenance, frozen historical records, SDTL withdrawal, diagnostic helpers and publication guards after evidence refresh."
     },
     "pre_mfs_integration_full_pytest": {
       "command": ".venv/bin/python -m pytest -q -ra",
@@ -456,8 +523,24 @@
       "local_output_sha256": "a230a36a7158606a841848a055cc92adc06ea00ef99618a31ed9f00e47bbccbd",
       "scope": "Restored shared-input tier after integration of current main; 23 optional historical/local-only artifact tests skipped, not certified passes. No geological model generation."
     },
-    "published_binary_scope": "No TIFF/ZIP generated or modified by this review; the concurrent MFS pair was imported byte-identically from origin/main, not generated here.",
+    "published_binary_scope": "No candidate TIFF or prediction bytes generated or modified by this review. Concurrent MFS and SDTL TIFF payloads are byte-identical to source main. SDTL clearance is withdrawn: filename relabeled DO-NOT-SUBMIT and ZIP repackaged only to match that archival member name; original and new ZIP hashes are in the correction receipt.",
     "final_pytest": {
+      "command": ".venv/bin/python -m pytest -q -ra",
+      "passed": 782,
+      "skipped": 23,
+      "warnings": 68,
+      "seconds": 267.34,
+      "local_output_sha256": "a244d4560659d294db25ba078026607dd2bbd3daff4c9184695a9ab8b1c8b5db",
+      "scope": "Final integrated code through source main a63e54b, including strict shared literal v5 and preserved SDTL historical research. Shared-input tier restored; optional/local-only skipped tests are not certified passes. No geological experiment or candidate generation in this session."
+    },
+    "post_mfs_focused_pytest": {
+      "passed": 283,
+      "warnings": 46,
+      "seconds": 47.45,
+      "scope": "Shared pre-import guard and MFS normal/optimized/module denial tests; record/provenance, both inventories, container/sidecar and canonical/legacy UI regressions."
+    },
+    "generation_guard_entrypoint_count": 93,
+    "previous_completed_verification_before_sdtl_merge": {
       "command": ".venv/bin/python -m pytest -q -ra",
       "passed": 767,
       "skipped": 23,
@@ -466,26 +549,32 @@
       "local_output_sha256": "56569d847a41eda236893bca0327b51508fa1e58b8481248ea50442a6fed5573",
       "scope": "Final integrated code, including MFS guard restoration. Shared-input tier restored; 23 optional historical/local-only tests skipped, not certified passes. No geological model generation."
     },
-    "post_mfs_focused_pytest": {
-      "passed": 283,
-      "warnings": 46,
-      "seconds": 47.45,
-      "scope": "Shared pre-import guard and MFS normal/optimized/module denial tests; record/provenance, both inventories, container/sidecar and canonical/legacy UI regressions."
-    },
-    "generation_guard_entrypoint_count": 90
+    "published_tiff_prediction_bytes_modified": false,
+    "archival_sdtl_zip_repackaged": true,
+    "shared_uniqueness_policy_wrapper_modified": true,
+    "post_sdtl_focused_pytest": {
+      "passed": 118,
+      "warnings": 5,
+      "seconds": 21.69,
+      "scope": "Strict v5 withdrawal, preserved science/hash/ZIP receipt, equal-support diagnostics, all 93 pre-import entrypoints, real CLI denials, vendor pins and session-card checks."
+    }
   },
   "organizer_confirmed_score": null,
   "verdict": "negative",
   "unmet_requirement": "No new unique competition TIFF can be produced under the binding all-registry overlap rule.",
   "branch": "arena/b4dfa10c-gemsdoe88",
   "integration": {
-    "incorporated_main_commit": "f0cb2d85c4bcc5343bb9858ea40e77190907c985",
+    "incorporated_main_commit": "a63e54b64223db21432a9c0fa0b9e77e77c9ebab",
     "local_merge_commit": "8aa5f81c94c4c9d752eb597e9a65de5d8b2abc4b",
     "inventory_resolution": "One shared policy covers both publication directories, retains main publication_inventory API and symlink restrictions; no separate private inventory gate.",
     "prior_integrated_main_commit": "4e3e9f6721ef8eeb9319f93126d3895260100d1a",
     "mfs_historical_artifact_imported_unchanged": true,
     "mfs_guard_exception_revoked": true,
-    "post_mfs_local_merge_commit": "21b073836b791d03373a9d37d6667461d0b0e457"
+    "post_mfs_local_merge_commit": "21b073836b791d03373a9d37d6667461d0b0e457",
+    "pre_sdtl_integrated_main_commit": "f0cb2d85c4bcc5343bb9858ea40e77190907c985",
+    "local_merge_commit_scope": "First integration of 4e3e9f6; post-MFS integration is separately pinned at 21b0738. Final SDTL integration is recorded in branch git merge history, not a self-referential card hash.",
+    "sdtl_science_and_tiff_predictions_preserved": true,
+    "sdtl_unauthorized_clearance_withdrawn": true
   },
   "source_scope": {
     "all_92_sites_freshly_scraped": false,
@@ -499,7 +588,7 @@
     "unique_new_competition_tiff": "UNMET_BINDING_DUPLICATE_STOP",
     "new_top_candidate_holdout": "NOT_RUN_BINDING_DUPLICATE_STOP",
     "improvement_beyond_h33": "NOT_ESTABLISHED",
-    "automatic_local_saved_file_and_package_audit": "PASS_45_OF_45_RESEARCH_ONLY",
+    "automatic_local_saved_file_and_package_audit": "PASS_46_OF_46_RESEARCH_ONLY",
     "organizer_or_slot_acceptance": "NOT_ESTABLISHED_DO_NOT_SUBMIT"
   },
   "irregularities": [
@@ -537,6 +626,22 @@
       "id": "IR-88-B4DFA10C-07",
       "status": "BYPASS_REVOKED_REGRESSIONS_ADDED",
       "finding": "PR #146 exempted MFS from the mandatory generation test and continued after recording DUPLICATE_STOP. Restored the shared pre-import guard, removed the exemption, preserved negative historical bytes/measurements, and added normal/optimized/module denial tests."
+    },
+    {
+      "id": "IR-88-B4DFA10C-08",
+      "status": "CLEARANCE_WITHDRAWN_SHARED_V5_CORRECTED",
+      "finding": "PR #148 substituted equal-support top-n for literal dot overlap and allowlisted SDTL despite its raw 1.0 literal-overlap witness. Original scientific measurements and TIFF SHA retained; current run/build/publish entrypoints fail closed and public v5 delegates to the existing shared literal v3 decision."
     }
-  ]
+  ],
+  "concurrent_sdtl_integration": {
+    "source_commit": "a63e54b64223db21432a9c0fa0b9e77e77c9ebab",
+    "source_pull_request": 148,
+    "policy_correction": "IR-88-B4DFA10C-08",
+    "science_retained": true,
+    "historical_tiff_sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
+    "tiff_bytes_unchanged": true,
+    "submission_clearance_withdrawn": true,
+    "new_experiment_in_this_session": false,
+    "corrective_evidence": "evidence/sdtl88_clearance_withdrawal_20261025.json"
+  }
 }

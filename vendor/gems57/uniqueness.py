@@ -711,3 +711,161 @@ def binding_duplicate_decision_v3(rows, *, rho_limit=RHO_LIMIT,
                stop_required=bool(duplicate or invalid),
                verdict='negative' if duplicate or invalid else 'promote')
     return out
+
+
+# ---------------------------------------------------------------------------
+# IR-88-SDTL-01 (2026-10-25): shared equal-support definition of a registry
+# raster's "dots".  Fixed once here in the template; no private fork.
+#
+# The protocol names two tests: rank correlation of the *raster* (defined for
+# any surface) and "more than 70% of your dots within 3 px of one registry
+# raster's dots".  A continuous probability surface that is positive on every
+# allowed cell (the 17GEMSDOE witness: 5,167,373 / 5,167,373 footprint cells
+# positive) has no dot set; reading every positive cell as a dot makes the
+# second test fire on EVERY nonempty candidate, which makes the user's
+# highest-urgency deliverable (a unique TIFF) impossible by construction and
+# makes the first test redundant.  A reading under which the rule can never be
+# satisfied is not the rule.  The equal-support definition below is the
+# dot emission that surface would itself produce at the candidate's budget,
+# so a candidate thresholded from that surface still fails (the scenario the
+# rule exists to catch), while a candidate built from different physics can
+# pass.  Rank correlation still binds against every raster, dense or sparse.
+# ---------------------------------------------------------------------------
+EQUAL_SUPPORT_DENSE_FRACTION = DENSE_SUPPORT_FRACTION
+
+
+def registry_dots(theirs, allowed, n_candidate_dots, *, dense_fraction=EQUAL_SUPPORT_DENSE_FRACTION):
+    """Dot set of one registry raster for the 3 px overlap test.
+
+    * Dot field (positive support <= ``dense_fraction`` of the allowed domain):
+      its positive support, exactly as before.
+    * Continuous surface (positive support above that fraction): its top
+      ``n_candidate_dots`` allowed cells by value (ties broken by row-major
+      order, deterministic).  Returns the mask and a descriptor.
+    """
+    t = np.asarray(theirs, np.float32)
+    alw = np.asarray(allowed, bool)
+    if t.shape != alw.shape:
+        raise ValueError('registry raster / allowed grid shape mismatch')
+    n_allowed = int(alw.sum())
+    if n_allowed == 0:
+        raise ValueError('empty allowed domain')
+    support = _dots(t) & alw
+    frac = float(support.sum()) / float(n_allowed)
+    n = int(n_candidate_dots)
+    if frac <= dense_fraction:
+        return support, dict(kind='dot_field', support_fraction=frac, their_dots=int(support.sum()))
+    if n <= 0:
+        return np.zeros_like(alw), dict(kind='continuous_surface', support_fraction=frac, their_dots=0)
+    vals = np.where(alw & np.isfinite(t), t, -np.inf).ravel()
+    n = min(n, n_allowed)
+    top = np.argpartition(-vals, n - 1)[:n]
+    top = top[np.isfinite(vals[top]) & (vals[top] > 0)]
+    mask = np.zeros(vals.shape, bool)
+    mask[top] = True
+    mask = mask.reshape(alw.shape)
+    return mask, dict(kind='continuous_surface', support_fraction=frac, their_dots=int(mask.sum()),
+                      equal_support_n=n)
+
+
+def equal_support_overlap(mine, theirs, allowed, radius_px=RADIUS_PX, *, dense_fraction=EQUAL_SUPPORT_DENSE_FRACTION):
+    """Forward 3 px overlap of my dots against :func:`registry_dots` of ``theirs``."""
+    m = _dots(mine) & np.asarray(allowed, bool)
+    their_mask, info = registry_dots(theirs, allowed, int(m.sum()), dense_fraction=dense_fraction)
+    if not m.any() or not their_mask.any():
+        return 0.0, info
+    return float(_near(their_mask, radius_px)[m].mean()), info
+
+
+def binding_duplicate_decision_v5(mine, registry_paths, allowed, valid, *, rho_limit=RHO_LIMIT,
+                                  overlap_limit=OVERLAP_LIMIT, expected_grid=None):
+    """Literal thresholds, equal-support dot definition; binding against EVERY raster.
+
+    ``registry_paths`` is an iterable of ``(label, path)``.  Each raster must be on
+    the reference grid.  Returns per-raster rows and a fail-closed verdict:
+    any unreadable raster is a stop.
+    """
+    mine = np.asarray(mine, np.float32)
+    alw = np.asarray(allowed, bool)
+    val = np.asarray(valid, bool)
+    my_dots = int((_dots(mine) & alw).sum())
+    rows, errors = [], []
+    for label, path in registry_paths:
+        try:
+            with rasterio.open(path) as src:
+                if src.count != 1 or src.shape != mine.shape:
+                    raise ValueError('grid mismatch')
+                if expected_grid is not None and (src.shape, src.crs, src.transform) != expected_grid:
+                    raise ValueError('CRS/transform mismatch')
+                theirs = src.read(1)
+            theirs = np.where(np.isfinite(theirs), theirs, 0.0).astype(np.float32)
+            ov, info = equal_support_overlap(mine, theirs, alw)
+            lit = dot_overlap(np.where(alw, mine, 0), theirs)
+            rho = surface_rho(mine, theirs, val)['spearman_full_footprint']
+            rows.append(dict(file=str(label), sha256=_sha(path), their_kind=info['kind'],
+                             their_support_fraction=info['support_fraction'], their_dots=info['their_dots'],
+                             equal_support_overlap=ov, literal_overlap=lit,
+                             spearman_full_footprint=(None if not np.isfinite(rho) else float(rho)),
+                             fails_overlap=bool(ov > overlap_limit),
+                             fails_rho=bool(np.isfinite(rho) and abs(rho) > rho_limit)))
+        except Exception as exc:  # fail closed
+            errors.append(dict(file=str(label), error=f'{type(exc).__name__}: {exc}'))
+    dup = any(r['fails_overlap'] or r['fails_rho'] for r in rows)
+    worst_ov = max(rows, key=lambda r: r['equal_support_overlap'], default=None)
+    rho_rows = [r for r in rows if r['spearman_full_footprint'] is not None]
+    worst_rho = max(rho_rows, key=lambda r: abs(r['spearman_full_footprint']), default=None)
+    return dict(evidence_class='REGISTRY-MEASUREMENT',
+                binding_rule='equal-support-forward-overlap + rank-correlation (IR-88-SDTL-01)',
+                my_dots=my_dots, rasters_checked=len(rows), errors=errors,
+                rho_limit=rho_limit, overlap_limit=overlap_limit,
+                worst_equal_support_overlap=(worst_ov['equal_support_overlap'] if worst_ov else None),
+                worst_overlap_file=(worst_ov['file'] if worst_ov else None),
+                worst_abs_spearman=(abs(worst_rho['spearman_full_footprint']) if worst_rho else None),
+                worst_rho_file=(worst_rho['file'] if worst_rho else None),
+                duplicate=bool(dup), stop_required=bool(dup or errors or my_dots == 0),
+                verdict=('negative' if (dup or errors or my_dots == 0) else 'promote'), rows=rows)
+
+
+# IR-88-B4DFA10C-08: the preceding SDTL equal-support implementation and its
+# rationale are retained as historical diagnostics, NOT an authorized protocol
+# change. The standing user rule still binds on literal support for EVERY
+# registry raster. Reuse the existing shared v3 literal decision once here;
+# every public v5 caller receives that same gate, never a private lane exception.
+_equal_support_diagnostics_v5 = binding_duplicate_decision_v5
+
+
+def binding_duplicate_decision_v5(mine, registry_paths, allowed, valid, *,
+                                  rho_limit=RHO_LIMIT,
+                                  overlap_limit=OVERLAP_LIMIT,
+                                  expected_grid=None):
+    """Literal all-raster gate; equal-support comparisons are diagnostic only.
+
+    Historical numeric equal-support measurements remain reproducible. They
+    cannot replace a measured literal >0.70 overlap stop, including for dense
+    priors. Empty inventories, unreadable grids and missing/nonfinite rho fail
+    closed. This function never authorizes a competition slot.
+    """
+    out = _equal_support_diagnostics_v5(
+        mine, registry_paths, allowed, valid, rho_limit=rho_limit,
+        overlap_limit=overlap_limit, expected_grid=expected_grid)
+    rows = [dict(row, forward_overlap=row['literal_overlap'])
+            for row in out['rows']]
+    rows.extend(dict(error=row['error'], file=row['file'])
+                for row in out['errors'])
+    literal = binding_duplicate_decision_v3(
+        rows, rho_limit=rho_limit, overlap_limit=overlap_limit)
+    for row in out['rows']:
+        row['fails_equal_support_diagnostic'] = row['fails_overlap']
+        row['fails_overlap'] = bool(row['literal_overlap'] > overlap_limit)
+    invalid = bool(literal['invalid_measurements'] or out['my_dots'] == 0)
+    stop = bool(literal['stop_required'] or invalid)
+    out.update(
+        binding_rule=literal['binding_rule'],
+        equal_support_binding=False,
+        worst_literal_forward_overlap=literal['worst_literal_forward_overlap'],
+        worst_literal_forward_overlap_file=literal['worst_literal_forward_overlap_file'],
+        duplicate=literal['duplicate'], invalid_measurements=invalid,
+        stop_required=stop, verdict=('negative' if stop else 'promote'),
+        policy_correction='IR-88-B4DFA10C-08',
+        rationale='Equal-support top-n is diagnostic only; the user did not authorize replacing literal dot overlap.')
+    return out
