@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Re-audit the frozen H88-HGVC artifact (2026-10-24) under gate v4 (IR-88-127).
+"""Historical HGVC re-audit helper; unsupported v4 authorization was revoked.
+
+The CLI now stops at the shared preflight. The compatibility decision function
+delegates to the original literal gate; no dense or creation-order exemption
+is authorized, and a stored surface receipt cannot certify a current surface audit.
 
 This is a *gate re-evaluation only*: no model is fit, no raster is generated,
 moved, renamed or copied, and the historical v3 run card / gate verdict are
@@ -21,6 +25,15 @@ Exit codes: 0 = re-audit receipt written and internally consistent;
 with ``--require-submit``, 2 unless ``ok_to_submit`` is True.
 """
 from __future__ import annotations
+
+# No candidate generation or unsupported clearance may precede the shared stop.
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 
 import argparse
 import hashlib
@@ -83,8 +96,8 @@ def main(argv=None) -> int:
     uq = gate.uniqueness_report(tif, entries, g.footprint, surface=None)
     stored_surface_rho = rc["correlation_overlap_vs_registry"]["surface_preplacement_max_abs_spearman"]
     uq_for_decide = {**uq,
-                     "registry_complete": bool(uq["missing"] == 0 and uq["registry_rasters"] >= 200),
-                     "surface_checked": True}
+                     "registry_complete": False,  # an accessible count is not a complete pinned registry
+                     "surface_checked": False}  # the continuous surface was not archived
     used_names = set()
     for p_rc in (ROOT / "registry").glob("*.json"):
         if "hgvc" in p_rc.name:
@@ -113,13 +126,11 @@ def main(argv=None) -> int:
                     "tif": rc["download"], "zip": rc["zip_download"],
                     "sha256": rc["raster_sha256"], "zip_sha256": rc["zip_sha256"],
                     "dots": rc["validator_output"]["positive_dots"],
-                    "filename_marker_note": ("The 'DO-NOT-SUBMIT' suffix in the filename is the historical "
-                                             "v3 (IR-88-86) marker from build day. It is retained byte-for-byte; "
-                                             "this v4 re-audit supersedes that policy reading (IR-88-127). The "
-                                             "DrivenData portal name/note are separate metadata below.")},
+                    "filename_marker_note": ("DO-NOT-SUBMIT remains binding. Historical v4 diagnostics do not "
+                                             "authorize any exemption, relabeling, selector or upload.")},
         "historical_v3_verdict_unchanged": {"verdict": rc["verdict"], "ok_to_submit": rc["ok_to_submit"],
                                             "gate": "registry/hgvc88_gate_v3.json (not modified)"},
-        "policy": gate.POLICY_VERSION_V4,
+        "policy": gv["policy"],
         "ok_to_download": gv["ok_to_download"], "ok_to_submit": gv["ok_to_submit"],
         "label": gv["label"], "blocking_reasons": gv["blocking_reasons"], "informational": gv["informational"],
         "human_step_remaining": gv["human_step_remaining"],

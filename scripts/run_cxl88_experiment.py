@@ -5,6 +5,15 @@ Reuses vendor/gems57 evaluator/holdout/emit and src/gems88 physics/HGVC/adhr sta
 Candidate promotion gate (preregistered): pooled HOLDOUT-DTI > 0.202947 (stored HGVC Exp03).
 """
 from __future__ import annotations
+
+# No model/feature work may precede the shared literal duplicate-stop gate.
+if __name__ == "__main__":
+    from pathlib import Path as _GuardPath
+    import sys as _guard_sys
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 import gc, json, sys, time
 from datetime import datetime, timezone
 from pathlib import Path

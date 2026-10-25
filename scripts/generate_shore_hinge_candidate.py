@@ -7,6 +7,15 @@ spatially-blocked holdout before touching a weekly slot, and writes run_card.
 All steps use only pinned official data and vendor/gems57 shared tools.
 No private metric fork. No human approval of validity.
 """
+
+# Project-wide literal duplicate stop: execute before feature/model imports.
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 from pathlib import Path
 import sys, json, hashlib, time, zipfile
 import numpy as np, rasterio

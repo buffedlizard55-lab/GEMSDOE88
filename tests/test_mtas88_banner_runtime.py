@@ -14,24 +14,13 @@ NODE = shutil.which("node")
 def test_current_decision_precedes_archived_download_on_both_pages():
     for rel in ("docs/index.html", "docs/executive-summary.html"):
         html = (ROOT / rel).read_text()
-        # 2026-10-25 execution session: the executed MTAS experiment (new
-        # research TIFF, DO NOT SUBMIT) now leads; the earlier preflight
-        # "NO NEW TIFF" record is retained verbatim below it as history.
-        experiment = html.index('id="mtas-experiment"')
-        if rel == "docs/index.html":
-            assert html.index('id="decision"') < experiment, "H88-LSC decision must lead the index"
         current = html.index('id="autonomous-review"')
         historical = html.index('id="hgvc-current"') if rel == "docs/index.html" else html.index("Archived H88-HGVC GeoTIFF")
-        assert experiment < current < historical, f"stale candidate appears before current decision in {rel}"
-        assert "NO NEW TIFF" in html  # retained preflight history
-        assert "NEW UNIQUE RESEARCH TIFF GENERATED" in html
-        assert "DO NOT SUBMIT" in html
-        assert "0.049577" in html
+        assert current < historical, f"stale candidate appears before current decision in {rel}"
+        assert "NO NEW TIFF" in html
         assert "H88-HGVC" in html
     guide = (ROOT / "docs/executive-summary.html").read_text()
-    assert "CURRENT DECISION 2026-10-25" in guide
-    assert "CURRENT DECISION 2026-10-25 (H88-LSC" in guide
-    assert "GEMSDOE88-MTAS88-ADMITTANCE-20261025" in guide
+    assert "CURRENT DECISION 2026-10-25: NO NEW UNIQUE TIFF" in guide
 
 
 @pytest.mark.skipif(NODE is None, reason="Node.js runtime unavailable")
@@ -51,7 +40,7 @@ const env = {
     querySelectorAll: () => [],
   },
   fetch: async url => {
-    if (fail && (url === 'data/mtas88_run_card.json' || url === 'data/mtas88_experiment_run_card.json' || url === 'data/gzzc88_run_card.json')) return {ok: false};
+    if (fail && (url === 'data/mtas88_run_card.json' || url === 'data/download_audit.json')) return {ok: false};
     const data = JSON.parse(fs.readFileSync(path.join('docs', url), 'utf8'));
     return {ok: true, json: async () => data};
   },
@@ -60,7 +49,7 @@ const env = {
 vm.runInNewContext(fs.readFileSync('docs/assets/site.js', 'utf8'), env);
 setImmediate(() => {
   const expected = fail ? 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT'
-    : 'H88-MTAS · NEW RESEARCH TIFF: DOWNLOAD YES · SUBMIT: NO — DO NOT SUBMIT (HOLDOUT-DTI 0.0496 below bar; literal duplicate stop)';
+    : 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT';
   if (banner.textContent !== expected) {
     console.error('Incorrect decision:', banner.textContent, 'expected:', expected);
     process.exitCode = 1;
@@ -75,3 +64,13 @@ setImmediate(() => {
         check=False,
     )
     assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_concurrent_lsc_and_psgv_records_cannot_precede_canonical_decision():
+    for relative in ('docs/index.html', 'docs/executive-summary.html'):
+        html = (ROOT / relative).read_text()
+        assert html.index('id="autonomous-review"') < html.index('class="archive-lanes"')
+        for anchor in ('lsc88-archived', 'psgv88-archived'):
+            assert html.index('class="archive-lanes"') < html.index(f'id="{anchor}"')
+        assert 'data/lsc88_run_card.json' in html
+        assert 'data/psgv88_run_card.json' in html

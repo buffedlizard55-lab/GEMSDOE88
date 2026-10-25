@@ -8,8 +8,8 @@ exact sample geotransform, undeclared nodata, all-finite values in [0, 1]
 be in range [0, 1]"), SHA-256 identity against the run card, single-member
 ZIP byte identity, frozen preregistration, leakage canary, holdout numbers
 cross-checked against the evidence ledger, v4 gate fields (IR-88-127), and
-naming consistency with the verdict (promote => no DO-NOT-SUBMIT marker;
-negative => DO-NOT-SUBMIT marker mandatory).
+negative naming consistency (DO-NOT-SUBMIT marker mandatory). Historical
+v4 diagnostics cannot authorize an exemption or a submission.
 
 Where ``data/bridge/sample_submission.tif`` has been restored, it also runs
 ``gate.portal_validate`` and ``gems57.validate`` against sample/catalogue.
@@ -91,7 +91,14 @@ def sepa88_report(root: Path = ROOT) -> dict:
           "withheld positives must be 22,893")
     check(rc["holdout_dti"]["candidate_exp03"].get("evidence_class", "HOLDOUT-DTI") == "HOLDOUT-DTI", "evidence class")
 
-    check(gv.get("policy") == "gems88-gate-v4", "gate policy must be gems88-gate-v4")
+    # This is a frozen historical negative artifact, not a selector. Its old
+    # v4 label is provenance only and cannot waive the current literal rule.
+    check(gv.get("policy") == "gems88-gate-v4", "historical gate policy identifier changed")
+    check(rc.get("ok_to_submit") is False and gv.get("ok_to_submit") is False
+          and rc.get("verdict") == "negative", "Historical SEPA validation cannot authorize a submission")
+    if uq.get("unique_literal") is not True:
+        check(rc.get("ok_to_submit") is False and gv.get("eligible_for_selector") is False,
+              "Literal registry failure cannot be waived by v4 diagnostics")
     check(uq["candidate_sha256"] == rc["raster_sha256"], "uniqueness/candidate sha mismatch")
     check(rc["correlation_overlap_vs_registry"]["unique_v4"] == uq["unique_v4"], "unique_v4 mismatch card vs evidence")
 
@@ -103,7 +110,7 @@ def sepa88_report(root: Path = ROOT) -> dict:
     for p in (tif_path, zip_path, sub_tif, sub_zip, audit_path):
         check(p.is_file(), f"missing file {p}")
     if problems:
-        return {"ok": False, "problems": problems, "ok_to_submit": bool(rc.get("ok_to_submit"))}
+        return {"ok": False, "problems": problems, "ok_to_submit": False}
 
     check(_sha256(tif_path) == rc["raster_sha256"], "tif sha256 != run card")
     check(_sha256(zip_path) == rc["zip_sha256"], "zip sha256 != run card")
@@ -112,17 +119,8 @@ def sepa88_report(root: Path = ROOT) -> dict:
         check(z.namelist() == [tif_path.name] and z.read(tif_path.name) == tif_path.read_bytes(),
               "ZIP must contain exactly the identical TIFF")
 
-    promote = rc["verdict"] == "promote" and rc["ok_to_submit"] is True
-    if promote:
-        check("DO-NOT-SUBMIT" not in tif_path.name, "promoted file must not carry DO-NOT-SUBMIT")
-        check(gv["label"] == "OK TO DOWNLOAD AND SUBMIT", "promoted gate label mismatch")
-        check(uq["unique_v4"] is True, "promoted candidate must be unique_v4")
-        check(rc["holdout_dti"]["candidate_exp03"]["dti"] > pre["promotion_bar"]["current_holdout_best"]["dti"],
-              "promoted candidate must beat the preregistered HGVC holdout bar")
-        check(rc["holdout_dti"]["paired_delta_vs_adhr_overall"]["ci95"][0] > 0, "promoted paired delta CI must be > 0")
-    else:
-        check("DO-NOT-SUBMIT" in tif_path.name, "negative file must carry DO-NOT-SUBMIT in its name")
-        check(rc["ok_to_submit"] is False, "negative verdict must have ok_to_submit false")
+    check("DO-NOT-SUBMIT" in tif_path.name, "historical negative file must carry DO-NOT-SUBMIT in its name")
+    check(rc["ok_to_submit"] is False, "negative verdict must have ok_to_submit false")
 
     with rasterio.open(tif_path) as ds:
         a = ds.read(1)
@@ -157,8 +155,8 @@ def sepa88_report(root: Path = ROOT) -> dict:
         check(int((a[g.catalogue] > 0).sum()) == 0, "dots found on mapped catalogue (restored check)")
         check(bool((a[~g.footprint] == 0).all()), "nonzero outside footprint (restored check)")
 
-    return {"ok": not problems, "problems": problems, "ok_to_download": True,
-            "ok_to_submit": bool(rc["ok_to_submit"]), "verdict": rc["verdict"],
+    return {"ok": not problems, "problems": problems, "ok_to_download": not problems,
+            "ok_to_submit": False, "verdict": "negative",
             "file": rc["download"], "sha256": rc["raster_sha256"], "dots": n_dots,
             "submission_name": rc["submission_name"], "submission_note": rc["submission_note"],
             "restored_portal_check": portal_ok,

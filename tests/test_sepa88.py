@@ -1,4 +1,4 @@
-"""H88-SEPA lane: synthetic feature-transform checks + gate v4 (IR-88-127) semantics."""
+"""H88-SEPA lane: synthetic feature-transform checks + literal-gate compatibility regression (IR-88-D0C3ADEB-08)."""
 import sys
 from pathlib import Path
 
@@ -49,14 +49,24 @@ def _uq(**kw):
     return base
 
 
-def test_gate_v4_promotes_when_only_literal_dense_reading_fails():
+def test_legacy_v4_cannot_waive_the_literal_dense_stop():
     gv = gate.decide_v4(portal=_portal_ok(), uniqueness=_uq(), canary_passed=True,
                         holdout_beats_bar=True, name="X-SEPA-TEST", note="note", used_names=[])
-    assert gv["policy"] == "gems88-gate-v4"
-    assert gv["ok_to_submit"] is True
-    assert gv["label"] == "OK TO DOWNLOAD AND SUBMIT"
-    assert any("LITERAL READING" in s for s in gv["informational"])  # disclosed, never hidden
-    assert gv["approved_for_weekly_slot"] is False                   # gate never spends a slot
+    assert gv["policy"] == "gems88-gate-v3"
+    assert gv["compatibility_entrypoint"] == "gems88-gate-v4"
+    assert gv["ok_to_submit"] is False
+    assert gv["eligible_for_selector"] is False
+    assert any("literal" in s for s in gv["blocking_reasons"])
+    assert gv["approved_for_weekly_slot"] is False
+
+
+def test_even_a_literal_gate_pass_is_not_selector_authorization():
+    gv = gate.decide_v4(portal=_portal_ok(), uniqueness=_uq(unique_literal=True),
+                        canary_passed=True, holdout_beats_bar=True,
+                        name="X-SEPA-TEST", note="note", used_names=[])
+    assert gv["eligible_for_selector"] is True
+    assert gv["ok_to_submit"] is False
+    assert gv["approved_for_weekly_slot"] is False
 
 
 def test_gate_v4_blocks_dotfield_duplicate_and_failed_holdout():
@@ -103,8 +113,10 @@ def test_hgvc_v4_reaudit_receipt_if_present():
     assert d["subject"]["sha256"] == rc["raster_sha256"] == "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef"
     assert rc["verdict"] == "negative" and rc["ok_to_submit"] is False  # v3 history untouched
     assert d["historical_v3_verdict_unchanged"]["ok_to_submit"] is False
-    if d["ok_to_submit"]:
-        assert d["uniqueness_recomputed"]["unique_v4"] is True
-        assert d["uniqueness_recomputed"]["worst_dotfield_overlap"]["value"] <= 0.70
-        assert d["uniqueness_recomputed"]["worst_abs_rho_final"]["value"] <= 0.90
-        assert d["uniqueness_recomputed"]["unique_literal"] is False  # literal reading published, not hidden
+    assert d["ok_to_submit"] is False
+    assert d["eligible_for_selector"] is False
+    assert d["approved_for_weekly_slot"] is False
+    assert d["policy"] == "gems88-gate-v3"
+    assert d["uniqueness_recomputed"]["unique_literal"] is False
+    assert d["correction"]["reason_id"] == "IR-88-D0C3ADEB-08"
+    assert d["correction"]["raster_bytes_changed"] is False

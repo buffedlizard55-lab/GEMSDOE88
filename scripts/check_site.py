@@ -33,9 +33,12 @@ class Links(HTMLParser):
     def __init__(self):
         super().__init__()
         self.refs: list[str] = []
+        self.open_archives = 0
 
     def handle_starttag(self, tag, attrs):
         values = dict(attrs)
+        if tag == "details" and "archive-lanes" in values.get("class", "").split() and "open" in values:
+            self.open_archives += 1
         for key in ("href", "src"):
             if key in values:
                 self.refs.append(values[key])
@@ -489,6 +492,7 @@ def main(root: Path = ROOT) -> None:
         require("OK TO SUBMIT: YES" not in text, page)
         parser = Links()
         parser.feed(text)
+        require(parser.open_archives == 0, "Historical lane archive must remain closed by default")
         for ref in parser.refs:
             url = urlsplit(ref)
             if url.scheme or url.netloc or not url.path:
@@ -633,9 +637,10 @@ def main(root: Path = ROOT) -> None:
     js = (docs / "assets/site.js").read_text()
     require(
         "fetch('data/mtas88_run_card.json'" in js
-        and "fetch('data/gzzc88_run_card.json'" in js
+        and "fetch('data/download_audit.json'" in js
+        and "fetch('status.json'" in js
         and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
-        "Dynamic decision banner must fail closed on absent MTAS/GZZC proof",
+        "Dynamic decision banner must fail closed on absent canonical audit/proof",
     )
 
     gzzc_card = json.loads((root / "registry/gzzc88_run_card.json").read_text())
@@ -762,7 +767,20 @@ def main(root: Path = ROOT) -> None:
         vhgd_card["raster_sha256"] in index and vhgd_card["raster_sha256"] in executive,
         "VHGD SHA-256 in pages",
     )
-
+    # The primary panels must be generated from the same canonical evidence.
+    # A new lane cannot prepend a contradictory banner and still pass because
+    # the expected negative words happen to appear much further down the page.
+    sys.path.insert(0, str(ROOT))
+    from scripts import render_decision
+    for page, kind in ((pages[0], "overview"), (pages[1], "guide")):
+        text = page.read_text()
+        require(
+            text.split('<main id="main">', 1)[1].split(render_decision.START, 1)[0].strip() == "",
+            "Primary decision must precede every lane banner and download",
+        )
+        require(text.count('<h1') == 1, "Only one primary page heading is allowed")
+        expected = render_decision.replace_block(text, render_decision.render(root, kind))
+        require(expected == text, "Canonical decision panel is stale or altered; render from machine evidence")
     bgcd = json.loads((root / "registry/bgcd88_run_card.json").read_text())
     bgcd_web = json.loads((docs / "data/bgcd88_run_card.json").read_text())
     bgcd_gate = json.loads((root / "registry/bgcd88_gate_verdict.json").read_text())
@@ -807,61 +825,29 @@ def main(root: Path = ROOT) -> None:
         bgcd["zip_sha256"] in index and bgcd["zip_sha256"] in executive,
         "BGCD zip_sha256 missing in index/executive",
     )
-    # --- 2026-10-25 session: H88-SEPA (new, negative) + HGVC gate-v4 re-audit (IR-88-127)
-    sepa_card = json.loads((root / "registry/sepa88_run_card.json").read_text())
-    sepa_web = json.loads((docs / "data/sepa88_run_card.json").read_text())
-    sepa_gv = json.loads((root / "registry/sepa88_gate_v4.json").read_text())
-    sepa_gv_web = json.loads((docs / "data/sepa88_gate_v4.json").read_text())
+    # Concurrent SEPA is archived; the unauthorized HGVC v4 approval is revoked.
+    sepa = json.loads((root / "registry/sepa88_run_card.json").read_text())
+    require(sepa == json.loads((docs / "data/sepa88_run_card.json").read_text()), "SEPA card mirrors differ")
+    require(sepa["ok_to_submit"] is False and sepa["verdict"] == "negative", "SEPA must stay negative")
+    sepa_tif = root / sepa["download"]
+    require(sha256(sepa_tif) == sepa["raster_sha256"], "SEPA TIFF differs from record")
+    for page in (index, executive):
+        require(sepa_tif.name in page and sepa["raster_sha256"] in page, "SEPA archival identity missing")
+        require("Unsupported HGVC submission clearance revoked" in page, "v4 correction must be disclosed")
     reaudit = json.loads((root / "registry/hgvc88_gate_v4_reaudit_20261025.json").read_text())
-    reaudit_web = json.loads((docs / "data/hgvc88_gate_v4_reaudit_20261025.json").read_text())
-    require(sepa_card == sepa_web, "Pages SEPA card differs from canonical registry card")
-    require(sepa_gv == sepa_gv_web, "Pages SEPA gate differs from canonical registry gate")
-    require(reaudit == reaudit_web, "Pages HGVC v4 re-audit differs from canonical registry receipt")
-    require(
-        sepa_card["verdict"] == "negative"
-        and sepa_card["ok_to_download"] is True
-        and sepa_card["ok_to_submit"] is False
-        and sepa_card["holdout_dti"]["candidate_exp03"]["dti"] == 0.1950687168543028
-        and sepa_card["correlation_overlap_vs_registry"]["unique_v4"] is True
-        and sepa_card["correlation_overlap_vs_registry"]["unique_literal"] is False,
-        "SEPA run card verdict/gate flags inconsistent (must stay negative: holdout bar not beaten)",
-    )
-    sepa_tif = root / sepa_card["download"]
-    require(sepa_tif.is_file() and "DO-NOT-SUBMIT" in sepa_tif.name, "SEPA tif exists and is marked DO-NOT-SUBMIT")
-    require(sha256(sepa_tif) == sepa_card["raster_sha256"], "SEPA TIFF SHA-256 mismatch vs card")
-    require(sepa_tif.name in index and sepa_tif.name in executive, "SEPA tif in pages")
-    require(sepa_card["raster_sha256"] in index and sepa_card["raster_sha256"] in executive, "SEPA SHA-256 in pages")
-    require(
-        reaudit["policy"] == "gems88-gate-v4"
-        and reaudit["ok_to_submit"] is True
-        and reaudit["label"] == "OK TO DOWNLOAD AND SUBMIT"
-        and reaudit["subject"]["sha256"] == hgvc_card["raster_sha256"]
-        and reaudit["historical_v3_verdict_unchanged"]["ok_to_submit"] is False
-        and reaudit["uniqueness_recomputed"]["unique_v4"] is True
-        and reaudit["uniqueness_recomputed"]["unique_literal"] is False
-        and reaudit["uniqueness_recomputed"]["worst_literal_overlap"]["value"] == 1.0
-        and reaudit["uniqueness_recomputed"]["worst_dotfield_overlap"]["value"] <= 0.70
-        and reaudit["organizer_confirmed_score"] is None
-        and reaudit["weekly_slots_spent"] == 0,
-        "HGVC v4 re-audit (IR-88-127) inconsistent: sole sanctioned ok_to_submit receipt",
-    )
-    require(
-        "OK to DOWNLOAD AND SUBMIT" in index and "OK to download and submit" in executive,
-        "Pages must state the v4 submit-ready decision for HGVC",
-    )
-    psgv_add = json.loads((root / "registry/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text())
-    require(psgv_add == json.loads((docs / "data/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text()), "PSGV addendum copies differ")
-    require(
-        abs(psgv_add["measured_2026_10_25"]["hgvc_forward_overlap_vs_psgv"] - 0.7898762415679609) < 1e-12
-        and "0.7899" in index and "0.7899" in executive,
-        "Posterior-copy (PSGV) disclosure must stay on both pages",
-    )
-    require(
-        "0.195069" in index and "0.195069" in executive,
-        "Pages must publish the SEPA HOLDOUT-DTI point estimate",
-    )
+    require(reaudit == json.loads((docs / "data/hgvc88_gate_v4_reaudit_20261025.json").read_text()), "HGVC correction mirrors differ")
+    require(reaudit["policy"] == "gems88-gate-v3" and reaudit["ok_to_submit"] is False
+            and reaudit["eligible_for_selector"] is False and reaudit["approved_for_weekly_slot"] is False
+            and reaudit["subject"]["sha256"] == hgvc_card["raster_sha256"]
+            and reaudit["uniqueness_recomputed"]["unique_literal"] is False
+            and reaudit["uniqueness_recomputed"]["worst_literal_overlap"]["value"] == 1.0
+            and reaudit["correction"]["reason_id"] == "IR-88-D0C3ADEB-08",
+            "Unsupported v4 dense-prior/selector clearance must remain revoked")
+    addendum = json.loads((root / "registry/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text())
+    require(addendum == json.loads((docs / "data/hgvc88_gate_v4_addendum_psgv_20261025.json").read_text())
+            and addendum["ok_to_submit"] is False, "Creation-order exemption must not clear HGVC")
     print(
-        "PASS: H88-BGCD, H88-GZZC, H88-HGVC (+gate-v4 re-audit), H88-SEPA negative lane, MTAS pre-placement stop, canonical archived bytes, Pages links, and decisions agree"
+        "PASS: canonical decision first, research bytes, archived records, Pages links and negative gates agree"
     )
 
 

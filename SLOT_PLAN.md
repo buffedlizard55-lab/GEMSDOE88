@@ -1,3 +1,14 @@
+# Current selector decision — NO SLOT (session d0c3adeb)
+
+**Experiments: 0. Newly generated TIFFs: 0. Slots used by this session: 0. Promote: NO.** Every nonempty allowed output necessarily exceeds the supplied 70% overlap limit against the registered dense witness. Do not schedule a duplicate, an old renamed TIFF or an untested hypothesis.
+
+The full 41-file research inventory is downloadable but not eligible. The canonical educational download is TDKL, not the most recently merged lane. Stored HOLDOUT-DTI values and byte uniqueness do not confer eligibility. The 92-site results supplied by the user have no organizer receipts here.
+
+A future selector must use a frozen complete registry and comparable buffered whole-segment holdout with per-feature leakage canaries and a paired physical-block interval. Only after all scientific/protocol gates pass may it consult the authenticated portal's actual weekly cap. This session did not determine the account's remaining quota and did not submit anything. The user authorized a code PR/merge, not automatic competition submission. [Ordered next steps](research/session-d0c3adeb-review.md#next-steps-in-order).
+
+<details>
+<summary>Earlier session records — historical, not current authorization</summary>
+
 # Latest addendum (2026-10-25): H88-BGCD — DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness & selector rule (`0` slots spent)
 
 - **Candidate:** `docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: fa17d9da6afae33298bc9e3cba83f26f6aefaffc357ce3b4c57827e11af2e8cb`) and single-TIFF `.zip` (`SHA-256: 1d44161d500e671cd6e7c29c326e1791ee531aa62e9f8bddcb32a5d635428df7`).
@@ -133,3 +144,6 @@ Prior slot ordering above concerns the PRUNE lineage and is unchanged. The PROVC
 4. Independent format validation must pass on the saved TIFF and one-member ZIP, including all-finite values in `[0,1]`.
 5. An authenticated organizer template byte check and a separate explicit human portfolio-selector decision are required.
 6. After a manual upload only, log the receipt as ORGANIZER-CONFIRMED. Never treat MODEL, PROXY, HOLDOUT-DTI, or H33's reported `0.2778` as a portal receipt.
+
+
+</details>

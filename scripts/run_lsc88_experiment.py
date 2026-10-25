@@ -8,6 +8,15 @@ Preregistration: registry/preregistration_lsc88.json (frozen before any run).
 """
 from __future__ import annotations
 
+# The shared duplicate-stop gate precedes all feature/model imports.
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
+
 import gc
 import hashlib
 import json

@@ -1,3 +1,17 @@
+# Current conditional hypotheses — four ranked, none executed
+
+Read [session-d0c3adeb-hypotheses.md](research/session-d0c3adeb-hypotheses.md) for exact layers/transforms, off-catalogue rationale, prior-work distinctions, qualitative expected benefit/cost, named non-fault mimics and source limitations.
+
+1. Magnetic-marker restoration across candidate discontinuities (first choice only after prerequisites are satisfiable).
+2. Scarp-profile restoration with a drainage-erosion veto.
+3. Alteration-width asymmetry against a lithologic-contact null.
+4. Conductive basin-breach continuity against a permeable paleochannel null.
+
+All remain **untested**. They propose geothermal-related fault evidence, not vent detection. Local source-code novelty is not proof of worldwide/fleet novelty. No numeric gain or leaderboard result is projected. The shared literal duplicate stop currently forbids execution; do not run any historical lane below to evade it.
+
+<details>
+<summary>Earlier session records — historical, not current authorization</summary>
+
 # Ranked Un-Tried Geological Hypotheses & H88-BGCD / H88-HGVC / H88-DHTC / QTS-88 / H88-TDKL Validation Dossier (2026-10-25)
 
 > **LATEST PREREGISTERED & VERIFIED HYPOTHESIS LEDGER (`PREREG-H88-BGCD-20261025`, 2026-10-25):** See [research/bgcd88-forensics-and-phd-synthesis-20261025.md](research/bgcd88-forensics-and-phd-synthesis-20261025.md), [registry/preregistration_bgcd88_20261025.json](registry/preregistration_bgcd88_20261025.json), [registry/bgcd88_run_card.json](registry/bgcd88_run_card.json), and [evidence/bgcd88_holdout_20261025.json](evidence/bgcd88_holdout_20261025.json).
@@ -122,3 +136,6 @@ We validated `QTS-88` (`src/gems88/qts88.py`, `scripts/run_qts88_experiment.py`)
 
 ## 3. Limitations & Blockers (Corrected After Reconciliation)
 Owner GitHub mirrors provide SHA-pinned inputs via `scripts/restore_inputs.py`; a competition-account download is still required to authenticate those bytes. The external datasets above require separate official-source AOI, license/shareability and time-series checks before they are viable. No MAG-PSG physical transform or legitimate holdout was implemented in the archived PR. Do not generate a competition file from random stripes.
+
+
+</details>

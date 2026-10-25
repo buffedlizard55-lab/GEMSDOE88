@@ -276,7 +276,8 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
                  identical_decoded=bool(np.array_equal(cand_dots, lit_dots)))
         r["blocks_literal"] = bool(lit > OVERLAP_MAX or pre_lit > OVERLAP_MAX or abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX or r["identical_decoded"])
         r["blocks_like_for_like"] = bool(like > OVERLAP_MAX or abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX or r["identical_decoded"])
-        # --- v4 (IR-88-127): dot test binds on dot fields; dense surfaces bind
+        # --- Historical v4 diagnostics ONLY (not an authorized decision policy).
+        # The binding literal rule remains above and in decide(). Dense surfaces
         # on rank correlation plus chance-corrected excess overlap when their
         # 3-px halo does not already cover the whole footprint. A continuous
         # probability surface positive everywhere has no dots, so the literal
@@ -296,7 +297,7 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
         elif excess is not None:
             dot_blocks = excess > OVERLAP_MAX
         else:
-            dot_blocks = False  # space-filling: binds via rho only (see IR-88-127)
+            dot_blocks = False  # historical diagnostic only; literal overlap still blocks
         r["blocks_v4"] = bool(rho_blocks or dot_blocks or r["identical_decoded"])
         rows.append(r)
         seen[key] = r
@@ -393,56 +394,17 @@ def decide(*, portal, uniqueness, canary_passed, holdout_beats_bar, name, note, 
 
 def decide_v4(*, portal, uniqueness, canary_passed, holdout_beats_bar, name, note, used_names,
               receipt_sha_matches=True) -> dict:
-    """Binding v4 verdict (IR-88-127); supersedes `decide` for new lanes.
+    """Compatibility name only: delegate to the original literal gate.
 
-    Identical to v3 except the uniqueness test: v3's literal `>0`-support
-    overlap against a space-filling continuous probability surface is 1.0 for
-    every nonempty candidate (the surface has no dots), so v4 binds on
-    ``unique_v4`` — rank correlation vs every raster, dot overlap vs dot
-    fields, chance-corrected excess vs discriminating dense rasters — and
-    reports the literal reading as informational, never hidden.  A v4 pass
-    means the file is submit-ready for the account owner's selector step;
-    this gate still never spends a weekly slot itself.
+    IR-88-127's dense/creation-order exemptions were not authorized by the
+    user's any-registry rule. The v4 diagnostic fields may remain in historical
+    evidence, but cannot replace unique_literal or authorize a selector/slot.
+    Keeping one decision implementation avoids a second, weaker policy path.
     """
-    reasons_block, reasons_info = [], []
-    ok_download = portal.get("ok") is True and receipt_sha_matches is True
-    if portal.get("ok") is not True:
-        reasons_block.append("FORMAT: local saved-byte validation failed: " + "; ".join(portal.get("problems", [])[:3]))
-    if receipt_sha_matches is not True:
-        reasons_block.append("HASH: receipt sha256 differs from the file on disk")
-    if uniqueness.get("unique_v4") is not True:
-        reasons_block.append("UNIQUENESS (v4/IR-88-127): duplicate or unverified vs dot fields / discriminating rasters / rank correlation: "
-                             + ", ".join(uniqueness.get("v4_blockers", [])[:5]))
-    if uniqueness.get("unique_literal") is not True:
-        worst_lit = uniqueness.get("worst_literal_overlap") or {}
-        reasons_info.append(
-            "LITERAL READING (IR-88-86, reported verbatim, not binding under v4): worst literal "
-            f">0-support overlap = {worst_lit.get('value')} vs {worst_lit.get('label')}; "
-            "space-filling continuous surfaces return 1.0 for every nonempty candidate and contain no dots "
-            "(see IR-88-127). They bind above via rank correlation only.")
-    if uniqueness.get("registry_complete") is not True:
-        reasons_block.append("UNIQUENESS: complete indexed registry audit not verified")
-    if uniqueness.get("surface_checked") is not True:
-        reasons_block.append("UNIQUENESS: pre-placement surface audit not verified")
-    if canary_passed is not True:
-        reasons_block.append("LEAKAGE: every feature must pass the symmetric AUC <= 0.90 canary")
-    if holdout_beats_bar is not True:
-        reasons_block.append("HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)")
-    valid_text = all(isinstance(x, str) and 0 < len(x.strip()) <= MAX_NAME
-                     and len(x) <= MAX_NAME for x in (name, note))
-    if not valid_text:
-        reasons_block.append(f"NAME/NOTE: name and note must be non-empty and <= {MAX_NAME} characters")
-    if isinstance(name, str) and name in set(used_names):
-        reasons_block.append("NAME: not unique among previously used submission names")
-    eligible = bool(ok_download and not reasons_block)
-    return dict(policy=POLICY_VERSION_V4, ok_to_download=ok_download, ok_to_submit=eligible,
-                eligible_for_selector=eligible, approved_for_weekly_slot=False,
-                label=("OK TO DOWNLOAD AND SUBMIT" if eligible else
-                       "OK TO DOWNLOAD — DO NOT SUBMIT" if ok_download else
-                       "NOT OK TO DOWNLOAD OR SUBMIT"),
-                blocking_reasons=reasons_block, informational=reasons_info,
-                note_len=len(note) if isinstance(note, str) else None,
-                name_len=len(name) if isinstance(name, str) else None,
-                human_step_remaining=("The account owner (selector) must still confirm the current weekly "
-                                      "allowance on the DrivenData portal before spending a slot; this "
-                                      "gate never spends a slot and holds no organizer receipt."))
+    result = decide(portal=portal, uniqueness=uniqueness, canary_passed=canary_passed,
+                    holdout_beats_bar=holdout_beats_bar, name=name, note=note,
+                    used_names=used_names, receipt_sha_matches=receipt_sha_matches)
+    result["compatibility_entrypoint"] = POLICY_VERSION_V4
+    result["informational"].append(
+        "Legacy v4/excess-overlap diagnostics are not authorization to waive the literal any-registry gate.")
+    return result

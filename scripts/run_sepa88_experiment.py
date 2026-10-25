@@ -13,6 +13,15 @@ separate SEPA cache directory. Evaluator/writer/uniqueness are the shared
 """
 from __future__ import annotations
 
+# No candidate generation or unsupported clearance may precede the shared stop.
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
+
 import gc
 import hashlib
 import json

@@ -111,7 +111,7 @@
     "validation_class": "local on-disk template/range check; not organizer upload acceptance"
   },
   "zip_file": "gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros-DO-NOT-SUBMIT.zip",
-  "zip_sha256": "43f2c800e18c5bc5b9c2d38b5208ca675738de0ff39c16f3d99f972fe8c7682c",
+  "zip_sha256": "613551520f60b0188ac9e039e337812fcb4f954cf4ba592437a2ef462f9dff5f",
   "approved_for_weekly_slot": false,
   "promoted": false,
   "submission_slots_used": 0,

@@ -1,0 +1,15 @@
+{
+  "schema": "gems88.protocol-correction.v1",
+  "date_utc": "2026-10-25",
+  "reason_id": "IR-88-D0C3ADEB-08",
+  "source_commit": "e37c6672a25d1ac1c47792dcf93f119e8c637124",
+  "source_path": "registry/hgvc88_gate_v4_reaudit_20261025.json",
+  "source_sha256": "65f168827a1202acf76a082ee11b7b271d8ee99d13cb009f75edba7de6ac5e5f",
+  "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/e37c6672a25d1ac1c47792dcf93f119e8c637124/registry/hgvc88_gate_v4_reaudit_20261025.json",
+  "rejected_claim": "The previous v4 receipt marked an existing HGVC TIFF OK TO DOWNLOAD AND SUBMIT while literal overlap was 1.0.",
+  "reason": "No dense-prior or creation-order exemption is authorized by this session's supplied any-registry rule; the literal gate and a separate selector remain binding.",
+  "raster_bytes_changed": false,
+  "new_rasters_generated": 0,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}

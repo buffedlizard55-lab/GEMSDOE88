@@ -16,6 +16,15 @@ Enforces:
 """
 from __future__ import annotations
 
+# No model/feature work may precede the shared literal duplicate-stop gate.
+if __name__ == "__main__":
+    from pathlib import Path as _GuardPath
+    import sys as _guard_sys
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
+
 import gc
 import hashlib
 import json

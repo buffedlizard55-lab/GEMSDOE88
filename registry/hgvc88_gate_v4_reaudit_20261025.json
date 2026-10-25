@@ -9,22 +9,28 @@
     "sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
     "zip_sha256": "5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409",
     "dots": 37654,
-    "filename_marker_note": "The 'DO-NOT-SUBMIT' suffix in the filename is the historical v3 (IR-88-86) marker from build day. It is retained byte-for-byte; this v4 re-audit supersedes that policy reading (IR-88-127). The DrivenData portal name/note are separate metadata below."
+    "filename_marker_note": "DO-NOT-SUBMIT remains binding. This review changes neither the HGVC TIFF nor its historical negative run card."
   },
   "historical_v3_verdict_unchanged": {
     "verdict": "negative",
     "ok_to_submit": false,
     "gate": "registry/hgvc88_gate_v3.json (not modified)"
   },
-  "policy": "gems88-gate-v4",
+  "policy": "gems88-gate-v3",
   "ok_to_download": true,
-  "ok_to_submit": true,
-  "label": "OK TO DOWNLOAD AND SUBMIT",
-  "blocking_reasons": [],
-  "informational": [
-    "LITERAL READING (IR-88-86, reported verbatim, not binding under v4): worst literal >0-support overlap = 1.0 vs 17GEMSDOE:dense_17gemdoe.tif; space-filling continuous surfaces return 1.0 for every nonempty candidate and contain no dots (see IR-88-127). They bind above via rank correlation only."
+  "ok_to_submit": false,
+  "label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT",
+  "blocking_reasons": [
+    "Literal any-registry overlap 1.0 > 0.70 against the pinned 17GEMSDOE witness; no dense-prior exemption.",
+    "Stored pre-placement surface is not an archived surface rechecked against a complete current registry.",
+    "Historical HGVC forward overlap vs now-registered PSGV is reported as 0.7898762415679609 > 0.70; no creation-order exemption.",
+    "No separate selector authorization or authenticated current portal allowance."
   ],
-  "human_step_remaining": "The account owner (selector) must still confirm the current weekly allowance on the DrivenData portal before spending a slot; this gate never spends a slot and holds no organizer receipt.",
+  "informational": [
+    "Original v4 numerical evidence is retained for provenance, not adopted as an authorized protocol.",
+    "All holdout/canary/registry values in this inherited receipt are historical, not newly measured by session d0c3adeb."
+  ],
+  "human_step_remaining": "Do not submit. A gate result cannot waive the literal rule or authorize a slot.",
   "portal_revalidation": {
     "tif_ok": true,
     "zip_ok": true,
@@ -109,5 +115,23 @@
   "submission_note": "HGVC88 87ch hydrothermal up-dip+sinter PoE 37654d; HOLDOUT-DTI 0.2029 far 0.1328 blind 0.0790; UNSCORED",
   "submission_note_length": 103,
   "organizer_confirmed_score": null,
-  "weekly_slots_spent": 0
+  "weekly_slots_spent": 0,
+  "eligible_for_selector": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "correction": {
+    "schema": "gems88.protocol-correction.v1",
+    "date_utc": "2026-10-25",
+    "reason_id": "IR-88-D0C3ADEB-08",
+    "source_commit": "e37c6672a25d1ac1c47792dcf93f119e8c637124",
+    "source_path": "registry/hgvc88_gate_v4_reaudit_20261025.json",
+    "source_sha256": "65f168827a1202acf76a082ee11b7b271d8ee99d13cb009f75edba7de6ac5e5f",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/blob/e37c6672a25d1ac1c47792dcf93f119e8c637124/registry/hgvc88_gate_v4_reaudit_20261025.json",
+    "rejected_claim": "The previous v4 receipt marked an existing HGVC TIFF OK TO DOWNLOAD AND SUBMIT while literal overlap was 1.0.",
+    "reason": "No dense-prior or creation-order exemption is authorized by this session's supplied any-registry rule; the literal gate and a separate selector remain binding.",
+    "raster_bytes_changed": false,
+    "new_rasters_generated": 0,
+    "ok_to_submit": false,
+    "verdict": "negative"
+  }
 }

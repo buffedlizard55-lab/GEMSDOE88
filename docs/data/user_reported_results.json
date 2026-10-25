@@ -1,0 +1,1747 @@
+{
+  "schema": "gems88.user-claims-inventory.v1",
+  "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+  "not_a_live_leaderboard": true,
+  "not_used_as_promotion_evidence": true,
+  "sites": [
+    {
+      "site": "GEMSDOE32",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "6GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/6GEMSDOE/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE3",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html",
+      "reported_entries": 3
+    },
+    {
+      "site": "GEMSDOE2",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE2/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE4",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE4/",
+      "reported_entries": 1
+    },
+    {
+      "site": "5GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/5GEMSDOE/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "7GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/7GEMSDOE/",
+      "reported_entries": 1
+    },
+    {
+      "site": "8GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/8GEMSDOE/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE9",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE9/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "11GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/11GEMSDOE/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "12GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/12GEMSDOE/docs/index.html",
+      "reported_entries": 2
+    },
+    {
+      "site": "15GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/15GEMSDOE/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "14GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/14GEMSDOE/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "17GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/17GEMSDOE/",
+      "reported_entries": 1
+    },
+    {
+      "site": "18GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/18GEMSDOE/",
+      "reported_entries": 1
+    },
+    {
+      "site": "19GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/19GEMSDOE/docs/index.html",
+      "reported_entries": 2
+    },
+    {
+      "site": "GEMSDOE10",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE10/",
+      "reported_entries": 4
+    },
+    {
+      "site": "13GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/13GEMSDOE/",
+      "reported_entries": 1
+    },
+    {
+      "site": "16GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/16GEMSDOE/docs/index.html",
+      "reported_entries": 3
+    },
+    {
+      "site": "GEMSDOE21",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE21/",
+      "reported_entries": 1
+    },
+    {
+      "site": "20GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/20GEMSDOE/docs/index.html",
+      "reported_entries": 2
+    },
+    {
+      "site": "GEMSDOE22",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE22/docs/index.html",
+      "reported_entries": 2
+    },
+    {
+      "site": "GEMSDOE23",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE23/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE24",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE24/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE25",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE25/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE26",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE26/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE27",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE27/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE30",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE30/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE31",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE31/docs/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE33",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE33/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE34",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE34/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE35",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE35/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE36",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE37",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE37/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE38",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE38/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE42",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE42/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE43",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE43/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE45",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE45/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE49",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE49/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE28",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+      "reported_entries": 4
+    },
+    {
+      "site": "GEMSDOE29",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html",
+      "reported_entries": 7
+    },
+    {
+      "site": "GEMSDOE46",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE46/",
+      "reported_entries": 2
+    },
+    {
+      "site": "GEMSDOE39",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE39/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE40",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE40/docs/index.html",
+      "reported_entries": 3
+    },
+    {
+      "site": "GEMSDOE41",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE41/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE44",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE44/docs/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE47",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE47/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE48",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE48/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE50",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE50/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE51",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE51/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE52",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE52/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE53",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE53/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE54",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE54/docs/",
+      "reported_entries": 1
+    },
+    {
+      "site": "55GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/55GEMSDOE/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "56GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/56GEMSDOE/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "57GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/57GEMSDOE/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "58GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/58GEMSDOE/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "59GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/59GEMSDOE/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "60GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/60GEMSDOE/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "61GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/61GEMSDOE/docs/index.html",
+      "reported_entries": 2
+    },
+    {
+      "site": "62GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/62GEMSDOE/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE63",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE63/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE64",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE64/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE65",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE65/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE66",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE66/docs/index.html",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE67",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE67/",
+      "reported_entries": 2
+    },
+    {
+      "site": "GEMSDOE68",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE68/",
+      "reported_entries": 2
+    },
+    {
+      "site": "GEMSDOE69",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE69/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE70",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE70/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE71",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE71/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE72",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE72/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE73",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE73/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE74",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE74/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE75",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE75/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE76",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE76/",
+      "reported_entries": 2
+    },
+    {
+      "site": "GEMSDOE77",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE77/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE78",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE78/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE79",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE79/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE80",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE80/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE81",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE81/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE82",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE82/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE83",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE83/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE84",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE84/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE85",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE85/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE86",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE86/",
+      "reported_entries": 0
+    },
+    {
+      "site": "GEMSDOE87",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE87/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE88",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE88/",
+      "reported_entries": 0
+    },
+    {
+      "site": "GEMSDOE89",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE89/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE90",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE90/",
+      "reported_entries": 1
+    },
+    {
+      "site": "GEMSDOE91",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE91/",
+      "reported_entries": 0
+    },
+    {
+      "site": "GEMSDOE92",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE92/",
+      "reported_entries": 0
+    }
+  ],
+  "claims": [
+    {
+      "site": "GEMSDOE32",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+      "submission_name": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "user_reported_value": "0.2778",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        37,
+        51,
+        319
+      ]
+    },
+    {
+      "site": "GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE/docs/index.html",
+      "submission_name": "gems-submission-20260925T001403Z-7f00890a",
+      "user_reported_value": "0.1563",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        63
+      ]
+    },
+    {
+      "site": "6GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/6GEMSDOE/",
+      "submission_name": "gems6_hgb88-topk03_33cec71ff0",
+      "user_reported_value": "0.0286",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        69
+      ]
+    },
+    {
+      "site": "GEMSDOE3",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html",
+      "submission_name": "pindrop-v4-nodes-20260925T152420Z-f347b70daa",
+      "user_reported_value": "0.1193",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        75
+      ]
+    },
+    {
+      "site": "GEMSDOE3",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html",
+      "submission_name": "pindrop-v4-discovery-20260925T152423Z-37f9d5b855",
+      "user_reported_value": "0.0830",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        77
+      ]
+    },
+    {
+      "site": "GEMSDOE3",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE3/docs/index.html",
+      "submission_name": "pindrop-v4-ridge-20260925T152422Z-4e03fc9705",
+      "user_reported_value": "0.1152",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        79
+      ]
+    },
+    {
+      "site": "GEMSDOE2",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE2/docs/index.html",
+      "submission_name": "gemsdoe2-dual-family-union-20260925T160406Z-f68e590f",
+      "user_reported_value": "0.1560",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        85
+      ]
+    },
+    {
+      "site": "GEMSDOE4",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE4/",
+      "submission_name": "gems-submission-20260926T163915Z-237f0063",
+      "user_reported_value": "0.0343",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        91
+      ]
+    },
+    {
+      "site": "5GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/5GEMSDOE/docs/index.html",
+      "submission_name": "gems-submission-20260926T175114Z-7f00890a",
+      "user_reported_value": "0.1563",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        97
+      ]
+    },
+    {
+      "site": "7GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/7GEMSDOE/",
+      "submission_name": "lidarscarp-ridge-top2pct-36c3a3f341c8",
+      "user_reported_value": "0.1461",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        103
+      ]
+    },
+    {
+      "site": "8GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/8GEMSDOE/",
+      "submission_name": "Hedge-v2_submission",
+      "user_reported_value": "0.1563",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        109
+      ]
+    },
+    {
+      "site": "GEMSDOE9",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE9/docs/index.html",
+      "submission_name": "2314b599",
+      "user_reported_value": "0.0107",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        115
+      ]
+    },
+    {
+      "site": "11GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/11GEMSDOE/docs/index.html",
+      "submission_name": "gems-structural-area06-v1",
+      "user_reported_value": "0.0202",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        121
+      ]
+    },
+    {
+      "site": "12GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/12GEMSDOE/docs/index.html",
+      "submission_name": "r7-nms3-dem10-scarp_0c9199f14e62",
+      "user_reported_value": "0.1294",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        127
+      ]
+    },
+    {
+      "site": "12GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/12GEMSDOE/docs/index.html",
+      "submission_name": "r7-nms3-dem10-scarp_0c9199f14e62_allfinite",
+      "user_reported_value": "0.1294",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        129
+      ]
+    },
+    {
+      "site": "15GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/15GEMSDOE/docs/index.html",
+      "submission_name": "gems-tso1-20260929T005627Z-conj_alteration_mag",
+      "user_reported_value": "0.0782",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        135
+      ]
+    },
+    {
+      "site": "14GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/14GEMSDOE/docs/index.html",
+      "submission_name": "GEMS_r5-geom-horse-ensemble_20260929T154852Z_ccbe1de0_site_e96e942f",
+      "user_reported_value": "0.0020",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        141
+      ]
+    },
+    {
+      "site": "17GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/17GEMSDOE/",
+      "submission_name": "17GEMSDOE_F-ensemble-2pct_20260930T050626Z",
+      "user_reported_value": "0.0187",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        147
+      ]
+    },
+    {
+      "site": "18GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/18GEMSDOE/",
+      "submission_name": "H19-C_20260930T212401Z_c11e495e",
+      "user_reported_value": "0.0297",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        153
+      ]
+    },
+    {
+      "site": "19GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/19GEMSDOE/docs/index.html",
+      "submission_name": "h19-4-multiline-corroborated-openness-thermal-pop-20260930-691e4dfa-nan",
+      "user_reported_value": "0.1894",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        159
+      ]
+    },
+    {
+      "site": "19GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/19GEMSDOE/docs/index.html",
+      "submission_name": "h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan",
+      "user_reported_value": "0.1922",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        161
+      ]
+    },
+    {
+      "site": "GEMSDOE10",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE10/",
+      "submission_name": "h16-continuation-20260927T065521077735Z-3431b83c7c",
+      "user_reported_value": "0.0461",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        167
+      ]
+    },
+    {
+      "site": "GEMSDOE10",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE10/",
+      "submission_name": "h20-dem10-scarp-thin-20260927T155223039488Z-ffc91a1686",
+      "user_reported_value": "0.0921",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        169
+      ]
+    },
+    {
+      "site": "GEMSDOE10",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE10/",
+      "submission_name": "H25-ctx-ridge-20260927T232947704150Z-6452ae1d00",
+      "user_reported_value": "0.1280",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        171
+      ]
+    },
+    {
+      "site": "GEMSDOE10",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE10/",
+      "submission_name": "h28-dotted-ridge-20260928T020256236880Z-6452ae1d00",
+      "user_reported_value": "0.1839",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        173
+      ]
+    },
+    {
+      "site": "13GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/13GEMSDOE/",
+      "submission_name": "20261001_r13-lattice-s5_v2_nan-outside",
+      "user_reported_value": "0.0904",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        179
+      ]
+    },
+    {
+      "site": "16GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/16GEMSDOE/docs/index.html",
+      "submission_name": "h16-1-topo-geophys-baseline-ridges-20260930-df20f65e-nan",
+      "user_reported_value": "0.1855",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        185
+      ]
+    },
+    {
+      "site": "16GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/16GEMSDOE/docs/index.html",
+      "submission_name": "h18-3a-topo-geophys-x-complexity-prior-20260930-c502dfab-nan",
+      "user_reported_value": "0.0976",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        187
+      ]
+    },
+    {
+      "site": "16GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/16GEMSDOE/docs/index.html",
+      "submission_name": "h18-4-usgs-geologic-map-faults-gap-20260930-aef8f42c-nan",
+      "user_reported_value": "0.0360",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        189
+      ]
+    },
+    {
+      "site": "GEMSDOE21",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE21/",
+      "submission_name": "h19-4-reference-20260930-691e4dfa",
+      "user_reported_value": "0.1894",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        195
+      ]
+    },
+    {
+      "site": "20GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/20GEMSDOE/docs/index.html",
+      "submission_name": "h20-1-sarnnpu-powerlaw-pi0363-tilt-wingcrack-20260930-be0e8f6b-nan",
+      "user_reported_value": "0.1890",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        201
+      ]
+    },
+    {
+      "site": "20GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/20GEMSDOE/docs/index.html",
+      "submission_name": "h20-5-continuous-pu-proxy-unverified-20260930-824ce73a-nan",
+      "user_reported_value": "0.1859",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        203
+      ]
+    },
+    {
+      "site": "GEMSDOE22",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE22/docs/index.html",
+      "submission_name": "h23-a-dti-optimal-emission-6pct-20261002-e2ec4b49-nan",
+      "user_reported_value": "0.1002",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        209
+      ]
+    },
+    {
+      "site": "GEMSDOE22",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE22/docs/index.html",
+      "submission_name": "h23-b-dti-optimal-emission-10pct-20261002-86176698-nan",
+      "user_reported_value": "0.0748",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        211
+      ]
+    },
+    {
+      "site": "GEMSDOE23",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE23/",
+      "submission_name": "h30-arrangement-matched-habitat-20261002-0d4e02e8-nan",
+      "user_reported_value": "0.1352",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        217
+      ]
+    },
+    {
+      "site": "GEMSDOE24",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE24/",
+      "submission_name": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+      "user_reported_value": "0.2477",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        223
+      ]
+    },
+    {
+      "site": "GEMSDOE25",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE25/",
+      "submission_name": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+      "user_reported_value": "0.2600",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        229
+      ]
+    },
+    {
+      "site": "GEMSDOE26",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE26/",
+      "submission_name": "dilcond-oof-v1-20261003-47629f496133-nan",
+      "user_reported_value": "0.1223",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        235
+      ]
+    },
+    {
+      "site": "GEMSDOE27",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE27/",
+      "submission_name": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+      "user_reported_value": "0.2449",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        241
+      ]
+    },
+    {
+      "site": "GEMSDOE30",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE30/",
+      "submission_name": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+      "user_reported_value": "0.2600",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        247
+      ]
+    },
+    {
+      "site": "GEMSDOE31",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE31/docs/",
+      "submission_name": "h27-4-solo-d28-20261004-8acb75e1-nan",
+      "user_reported_value": "0.2708",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        253
+      ]
+    },
+    {
+      "site": "GEMSDOE33",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE33/",
+      "submission_name": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+      "user_reported_value": "0.2632",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        259
+      ]
+    },
+    {
+      "site": "GEMSDOE34",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE34/docs/index.html",
+      "submission_name": "h34-scatter-q50-arr-matched-20261004T223317Z",
+      "user_reported_value": "0.0778",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        265
+      ]
+    },
+    {
+      "site": "GEMSDOE35",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE35/docs/index.html",
+      "submission_name": "h35-06-aaa86efb25-20261004T225420098147Z-candidate",
+      "user_reported_value": "0.0418",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        271
+      ]
+    },
+    {
+      "site": "GEMSDOE36",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE36/docs/",
+      "submission_name": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+      "user_reported_value": "0.2750",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        277
+      ]
+    },
+    {
+      "site": "GEMSDOE37",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE37/",
+      "submission_name": "h6-physics-dotted-80k-20261005T055000Z-0bef9211631c",
+      "user_reported_value": "0.1193",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        283
+      ]
+    },
+    {
+      "site": "GEMSDOE38",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE38/docs/index.html",
+      "submission_name": "D-step-3p0-07pct-tipProt-20261005-ecfbf59e2b48-zero",
+      "user_reported_value": "0.0763",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        289
+      ]
+    },
+    {
+      "site": "GEMSDOE42",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE42/docs/index.html",
+      "submission_name": "xscale-worm-persistence-20261006T000541Z-nan",
+      "user_reported_value": "0.0581",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        295
+      ]
+    },
+    {
+      "site": "GEMSDOE43",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE43/docs/index.html",
+      "submission_name": "sup01-hgb21-sep40-n40000-20261006-bc2e4e9a8d6f-nan",
+      "user_reported_value": "0.0424",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        301
+      ]
+    },
+    {
+      "site": "GEMSDOE45",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE45/",
+      "submission_name": "h51-km-faultzone-20261006-zeros",
+      "user_reported_value": "0.0106",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        307
+      ]
+    },
+    {
+      "site": "GEMSDOE49",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE49/docs/index.html",
+      "submission_name": "gate_ortho_w0.25-40k-20261006T213721Z-nan",
+      "user_reported_value": "0.2376",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        313
+      ]
+    },
+    {
+      "site": "GEMSDOE28",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+      "submission_name": "h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan",
+      "user_reported_value": "0.2708",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        325
+      ]
+    },
+    {
+      "site": "GEMSDOE28",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+      "submission_name": "h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan",
+      "user_reported_value": "0.2649",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        327
+      ]
+    },
+    {
+      "site": "GEMSDOE28",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+      "submission_name": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+      "user_reported_value": "0.2710",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        329
+      ]
+    },
+    {
+      "site": "GEMSDOE28",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+      "submission_name": "h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan",
+      "user_reported_value": "0.2707",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        331
+      ]
+    },
+    {
+      "site": "GEMSDOE29",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html",
+      "submission_name": "efd28-repro-20261003-1cc7dc534d51-nan",
+      "user_reported_value": "0.2600",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        337
+      ]
+    },
+    {
+      "site": "GEMSDOE29",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html",
+      "submission_name": "repo-c0-habitat-emission-20261003-a4d439b07426-nan",
+      "user_reported_value": "0.0041",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        339
+      ]
+    },
+    {
+      "site": "GEMSDOE29",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html",
+      "submission_name": "sgmc-off-catalogue-44k-20261003-c8dcd780e3fd-nan",
+      "user_reported_value": "0.0512",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        341
+      ]
+    },
+    {
+      "site": "GEMSDOE29",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html",
+      "submission_name": "wormrank-d28-20261003-59dcaf6dd11d-zeros",
+      "user_reported_value": "0.2560",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        343
+      ]
+    },
+    {
+      "site": "GEMSDOE29",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html",
+      "submission_name": "wormsurv-filter-20261003-921f10960d6e-zeros",
+      "user_reported_value": "0.0532",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        345
+      ]
+    },
+    {
+      "site": "GEMSDOE29",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html",
+      "submission_name": "xfit-c0-habitat-20261003-ca879db0089a-zeros",
+      "user_reported_value": "0.0439",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        347
+      ]
+    },
+    {
+      "site": "GEMSDOE29",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html",
+      "submission_name": "xfit-h41-union-qfaults-20261003-9edb34b99e3a-zeros",
+      "user_reported_value": "0.0356",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        349
+      ]
+    },
+    {
+      "site": "GEMSDOE46",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE46/",
+      "submission_name": "r11f-scarp-radiometric-fusion-00e049b51218-zeros",
+      "user_reported_value": "0.1589",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        355
+      ]
+    },
+    {
+      "site": "GEMSDOE46",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE46/",
+      "submission_name": "r12-scarp-rad-concordance-23e807e2de9f-zeros",
+      "user_reported_value": "0.0843",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        357
+      ]
+    },
+    {
+      "site": "GEMSDOE39",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE39/",
+      "submission_name": "h40-e-disc-h40e-30k-zeros",
+      "user_reported_value": "0.0339",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        363
+      ]
+    },
+    {
+      "site": "GEMSDOE40",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE40/docs/index.html",
+      "submission_name": "h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1",
+      "user_reported_value": "0.0355",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        369
+      ]
+    },
+    {
+      "site": "GEMSDOE40",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE40/docs/index.html",
+      "submission_name": "h8-euler-lineament-depthcluster-20261006-785c4f5d5ce1-hard",
+      "user_reported_value": "0.0397",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        371
+      ]
+    },
+    {
+      "site": "GEMSDOE40",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE40/docs/index.html",
+      "submission_name": "h45-eulerdepthreadcluster-20261006-f28e5cff6826-zeros",
+      "user_reported_value": "0.0984",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        373
+      ]
+    },
+    {
+      "site": "GEMSDOE41",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE41/",
+      "submission_name": "h42-submission-primary",
+      "user_reported_value": "0.0245",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        379
+      ]
+    },
+    {
+      "site": "GEMSDOE44",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE44/docs/",
+      "submission_name": "h46-twostageAB_20261006T160000Z_b0cfe956-zeros",
+      "user_reported_value": "0.0715",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        385
+      ]
+    },
+    {
+      "site": "GEMSDOE47",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE47/",
+      "submission_name": "h60-lidarscarp-s2p0-20261007-nanoutside",
+      "user_reported_value": "0.0430",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        391
+      ]
+    },
+    {
+      "site": "GEMSDOE48",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE48/docs/index.html",
+      "submission_name": "h59-cover-ds-belief-b2xh33d-20261008T184547Z-b79c4c61d8d8",
+      "user_reported_value": "0.2296",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        397
+      ]
+    },
+    {
+      "site": "GEMSDOE50",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE50/",
+      "submission_name": "h59-sharpened-scarp-scatter-90k-20261007T171954Z-allfinite",
+      "user_reported_value": "0.0764",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        403
+      ]
+    },
+    {
+      "site": "GEMSDOE51",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE51/",
+      "submission_name": "h53-twostage-20261008T040951Z-9a0b32c871",
+      "user_reported_value": "0.1047",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        409
+      ]
+    },
+    {
+      "site": "GEMSDOE52",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE52/",
+      "submission_name": "h97b-candidate",
+      "user_reported_value": "0.0856",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        415
+      ]
+    },
+    {
+      "site": "GEMSDOE53",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE53/docs/index.html",
+      "submission_name": "h8-tiprelay-ridgeconcord-pr2-n80000-20261009-49bec522-zeros",
+      "user_reported_value": "0.0159",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        421
+      ]
+    },
+    {
+      "site": "GEMSDOE54",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE54/docs/",
+      "submission_name": "h54c-manifest-edge-20261009T025732Z-73454bc5",
+      "user_reported_value": "0.0449",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        427
+      ]
+    },
+    {
+      "site": "55GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/55GEMSDOE/docs/index.html",
+      "submission_name": "tensor_full-n16000-sep3-20261009T211747Z-nan",
+      "user_reported_value": "0.0290",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        433
+      ]
+    },
+    {
+      "site": "56GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/56GEMSDOE/docs/index.html",
+      "submission_name": "h56-final-dotted-ridge-d2p8-20261009T190421Z",
+      "user_reported_value": "0.0658",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        439
+      ]
+    },
+    {
+      "site": "57GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/57GEMSDOE/docs/index.html",
+      "submission_name": "h57r-joint-strata-38000-20261010T214547Z-00cf5b2066f1-zeros",
+      "user_reported_value": "0.0254",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        445
+      ]
+    },
+    {
+      "site": "58GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/58GEMSDOE/docs/index.html",
+      "submission_name": "ml-binary-ridge-20261012T000000Z",
+      "user_reported_value": "0.0180",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        451
+      ]
+    },
+    {
+      "site": "59GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/59GEMSDOE/docs/index.html",
+      "submission_name": "h59j-coherence-consensus-dotted-20261011T043000Z",
+      "user_reported_value": "0.0499",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        457
+      ]
+    },
+    {
+      "site": "60GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/60GEMSDOE/docs/index.html",
+      "submission_name": "h73-chi-coherent-corridor-12000-20261011T195818Z-zeros",
+      "user_reported_value": "0.0351",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        463
+      ]
+    },
+    {
+      "site": "61GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/61GEMSDOE/docs/index.html",
+      "submission_name": "h61a-basement-step-20000dots-20261011T012029Z-eb2ae4bb024b-zeros",
+      "user_reported_value": "0.0009",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        469
+      ]
+    },
+    {
+      "site": "61GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/61GEMSDOE/docs/index.html",
+      "submission_name": "h61o-vardepth-none-40000dots-20261011T160711Z-28d4fac611ea-zeros-zeros",
+      "user_reported_value": "0.0751",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        471
+      ]
+    },
+    {
+      "site": "62GEMSDOE",
+      "source_url": "https://buffedlizard55-lab.github.io/62GEMSDOE/",
+      "submission_name": "datum-lahontan-strain-gauge-defensible-440dots-zeros",
+      "user_reported_value": "0.0000",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        477
+      ]
+    },
+    {
+      "site": "GEMSDOE63",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE63/",
+      "submission_name": "cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-zeros",
+      "user_reported_value": "0.2303",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        483
+      ]
+    },
+    {
+      "site": "GEMSDOE64",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE64/",
+      "submission_name": "h64-lidar-scarp-cv-20261011T220000Z",
+      "user_reported_value": "0.0383",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        489
+      ]
+    },
+    {
+      "site": "GEMSDOE65",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE65/docs/index.html",
+      "submission_name": "sar-em-propensity-half-20261011T223500Z-5e4660cd-zeros",
+      "user_reported_value": "0.0431",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        495
+      ]
+    },
+    {
+      "site": "GEMSDOE66",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE66/docs/index.html",
+      "submission_name": "gems66-lidar03-cvretrain-reliefdecile-37654dots-20261020T190152Z-zeros",
+      "user_reported_value": "0.1152",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        501
+      ]
+    },
+    {
+      "site": "GEMSDOE67",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE67/",
+      "submission_name": "h67a-orientip-lane-29447dots-20261012T021226Z-allfinite",
+      "user_reported_value": "0.0356",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        507
+      ]
+    },
+    {
+      "site": "GEMSDOE67",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE67/",
+      "submission_name": "ovtr-ml-cover-tau3p0-20261012-nan",
+      "user_reported_value": "0.1426",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        509
+      ]
+    },
+    {
+      "site": "GEMSDOE68",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE68/",
+      "submission_name": "gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-nan",
+      "user_reported_value": "0.0437",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        515
+      ]
+    },
+    {
+      "site": "GEMSDOE68",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE68/",
+      "submission_name": "gems68-autoctx-s3-strands-35000dots-20261020T210000Z-849a0f04-zeros",
+      "user_reported_value": "0.0437",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        517
+      ]
+    },
+    {
+      "site": "GEMSDOE69",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE69/",
+      "submission_name": "h69-joint-relayramp-pullapart-38669-20261020T201504Z-f29b6df5",
+      "user_reported_value": "0.0053",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        523
+      ]
+    },
+    {
+      "site": "GEMSDOE70",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE70/",
+      "submission_name": "gems70-p5-dual-submod300-oof38k-20261020",
+      "user_reported_value": "0.2478",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        529
+      ]
+    },
+    {
+      "site": "GEMSDOE71",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE71/",
+      "submission_name": "gems71-hydro-conduit-38800-20261020T120000Z-zeros",
+      "user_reported_value": "0.0558",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        535
+      ]
+    },
+    {
+      "site": "GEMSDOE72",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE72/",
+      "submission_name": "gemsdoe72-h72-1-sgmc-offcatalogue-20261020T195456Z-6e6525e5-zeros",
+      "user_reported_value": "0.0492",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        541
+      ]
+    },
+    {
+      "site": "GEMSDOE73",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE73/",
+      "submission_name": "gems73-h73-mcsc-seamfree-blakely-37654dots-20261021T073716Z-b27ac445-zeros",
+      "user_reported_value": "0.1917",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        547
+      ]
+    },
+    {
+      "site": "GEMSDOE74",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE74/",
+      "submission_name": "gemsdoe74-triregime-radon-piedmont-37654-20261021T051000Z-zeros",
+      "user_reported_value": "0.0669",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        553
+      ]
+    },
+    {
+      "site": "GEMSDOE75",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE75/",
+      "submission_name": "gems75-trlt-radon-loco-ridge-20261021-zeros",
+      "user_reported_value": "0.1627",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        559
+      ]
+    },
+    {
+      "site": "GEMSDOE76",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE76/",
+      "submission_name": "gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros",
+      "user_reported_value": "0.1555",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        565
+      ]
+    },
+    {
+      "site": "GEMSDOE76",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE76/",
+      "submission_name": "gems76-ptcf-tiltworm-submod39k-20261021T034000Z-6316481d-zeros",
+      "user_reported_value": "0.2343",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        567
+      ]
+    },
+    {
+      "site": "GEMSDOE77",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE77/",
+      "submission_name": "gems85-h85-edti-collar35-skel-r33-20261021-d97b248e-zeros",
+      "user_reported_value": "0.0964",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        573
+      ]
+    },
+    {
+      "site": "GEMSDOE78",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE78/",
+      "submission_name": "gems78-h78sigx-fuse-b5-44090dots-20261022T021932Z-zeros",
+      "user_reported_value": "0.1564",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        579
+      ]
+    },
+    {
+      "site": "GEMSDOE79",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE79/",
+      "submission_name": "gems79-tilt-ring-100000dots-20261022T212135Z-50a5d7498c71-zeros",
+      "user_reported_value": "0.0005",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        585
+      ]
+    },
+    {
+      "site": "GEMSDOE80",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE80/",
+      "submission_name": "gemsdoe80-h80g-choquet-tworegime-20261022T000000Z-zeros",
+      "user_reported_value": "0.0943",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        591
+      ]
+    },
+    {
+      "site": "GEMSDOE81",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE81/",
+      "submission_name": "gems81-cont-poisson44090-buf2-20261021T233115Z-42223e10-zeros",
+      "user_reported_value": "0.0041",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        597
+      ]
+    },
+    {
+      "site": "GEMSDOE82",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE82/",
+      "submission_name": "gemsdoe82-h82-submodular-punoisyor-20261021T235456Z-fe137199-zeros",
+      "user_reported_value": "0.1886",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        603
+      ]
+    },
+    {
+      "site": "GEMSDOE83",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE83/",
+      "submission_name": "gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros",
+      "user_reported_value": "0.0573",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        609
+      ]
+    },
+    {
+      "site": "GEMSDOE84",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE84/",
+      "submission_name": "gems84-h84-kthm-tworegime-58000px-20261022T235900Z-zeros",
+      "user_reported_value": "0.0132",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        615
+      ]
+    },
+    {
+      "site": "GEMSDOE85",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE85/",
+      "submission_name": "gemsdoe85-hjcd-ventbridge-submod-zeros",
+      "user_reported_value": "0.1110",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        621
+      ]
+    },
+    {
+      "site": "GEMSDOE87",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE87/",
+      "submission_name": "h87-h87-cmgep-20261022T060000Z-8f394f43",
+      "user_reported_value": "0.0500",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        633
+      ]
+    },
+    {
+      "site": "GEMSDOE89",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE89/",
+      "submission_name": "gemsdoe89-bh-rtp-habc-20261024-d7e1507c-zeros",
+      "user_reported_value": "0.0301",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        645
+      ]
+    },
+    {
+      "site": "GEMSDOE90",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE90/",
+      "submission_name": "gems90-cnc-35000dots-20261024T084324Z",
+      "user_reported_value": "0.0749",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        651
+      ]
+    }
+  ],
+  "site_count": 92,
+  "distinct_claim_count": 115,
+  "sites_without_a_reported_result": [
+    "GEMSDOE86",
+    "GEMSDOE88",
+    "GEMSDOE91",
+    "GEMSDOE92"
+  ],
+  "request_file": "USER_PROMPT_20261025.md",
+  "request_sha256": "67cf8f6368a8b710a6df3bdb1980ba40f435e27830aa192ff1adf8c291c8fc50"
+}
