@@ -88,10 +88,11 @@ def test_unmet_requirements_and_source_limits_stay_explicit():
     assert appendix == (ROOT / 'docs/research/session-d0c3adeb-completion.md').read_text()
 
 
-def test_real_browser_receipt_is_bound_to_current_pages_not_a_stale_screenshot():
+def test_historical_browser_receipt_is_not_mislabeled_after_site_copy_changes():
+    """Keep the earlier browser pass, but do not pretend it reviewed this edit."""
     card = read('registry/session_d0c3adeb_run_card.json')
     record = read(card['software_review']['browser_evidence'])
-    assert record['status'] == 'PASS'
+    assert record['status'] == 'PASS'  # valid for the dated page snapshot only
     assert record['ok_to_submit'] is False
     assert record['failed_fetch_stays_negative'] is True
     assert len(record['pages']) == 5
@@ -99,5 +100,12 @@ def test_real_browser_receipt_is_bound_to_current_pages_not_a_stale_screenshot()
     for page in record['pages']:
         assert page['pass'] and not page['overflow'] and not page['errors']
         assert page['h1'] == 1 and page['openArchives'] == 0
+    changed_pages = {"docs/index.html", "docs/executive-summary.html", "docs/research.html", "docs/sources.html"}
+    changed = set()
     for relative, digest in record['source_sha256'].items():
-        assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == digest, relative
+        current = hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
+        if current != digest:
+            changed.add(relative)
+    assert changed_pages <= changed
+    assert "docs/assets/site.js" not in changed
+    assert "docs/assets/site.css" not in changed

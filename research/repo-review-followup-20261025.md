@@ -54,3 +54,8 @@ A plausible explanation is metric alignment: in this asymmetric distance-weighte
 ### Small code change in this review
 
 The only code changes are test resilience fixes in `tests/test_qts88.py`, `tests/test_tdkl88.py`, and `tests/test_vhgd88_lane.py`. They do not alter candidate generation, shared metrics, prediction files, or submission gates.
+
+
+## Addendum — queue correction after MTAS execution-card inspection
+
+A subsequent targeted review found that the repository's active five-row queue incorrectly marked H88-MTAS as `UNTESTED`. A separate archived MTAS execution card, evidence report, session record, and byte-hash-matched TIFF/ZIP document an executed negative run; the same-date MTAS pre-placement records say no experiment occurred. Both record sets remain intact, but the conservative queue now excludes MTAS. The current v2 machine card ranks four repo-local unexecuted proposals (FARC, TCONS, PRAN, FLAC), with FARC first and still unfit because the universal pre-placement duplicate proof blocks it. No new holdout, feature canary, TIFF, score, or slot was produced. See [the corrected three-pass report](../docs/research/review-20261025-autonomous.md), [current v2 machine card](../evidence/repo_review_20261025.json), and the separate [MTAS execution card](../registry/mtas88_experiment_run_card.json) / [pre-placement stop](../registry/mtas88_run_card.json).

@@ -43,12 +43,11 @@ OUTPUTS = (
 )
 WITNESS_REL = "data/registry/dense_17gemdoe.tif"
 WITNESS_SHA256 = "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"
-# This is a prepared note for a hypothetical future selector, not permission
-# to upload it.  Keeping it here makes the <=140-character constraint testable
-# without manufacturing a portal receipt.
-RESERVED_NAME = "GEMSDOE88-MTAS-PREFLIGHT-20261025-NO-FILE"
+# A placeholder for the blocked top untested idea, not a portal submission.
+# Keep it explicit that no filename/artifact is actually reserved or uploadable.
+RESERVED_NAME = "GEMSDOE88-FARC-PREFLIGHT-20261025-NO-FILE"
 RESERVED_NOTE = (
-    "MTAS pre-placement duplicate: registry covers all allowed cells; no TIFF built; UNSCORED; DO NOT SUBMIT"
+    "FARC pre-placement stop; no candidate TIFF, score or slot; UNSCORED; DO NOT SUBMIT"
 )
 
 
@@ -179,6 +178,95 @@ def audit_research_download(root: Path) -> dict:
     }
 
 
+def historical_mtas_audit(root: Path) -> dict:
+    """Bind the already-executed MTAS lane to its historical evidence card.
+
+    This prevents the queue from relabelling a completed lane as untested.
+    The card's holdout is not evidence for the newly selected FARC proposal.
+    """
+
+    card_path = root / "registry/mtas88_experiment_run_card.json"
+    card = _json(card_path)
+    execution_evidence = _json(root / "evidence/mtas88_experiment_20261025.json")
+    preplacement = _json(root / "registry/mtas88_run_card.json")
+    preflight_evidence = _json(root / "evidence/mtas88_preflight_20261025.json")
+    if card.get("lane") != "H88-MTAS" or card.get("verdict") != "negative":
+        raise ValueError("archived MTAS execution card is missing or not negative")
+    if card != execution_evidence:
+        raise ValueError("MTAS execution card and evidence copy disagree")
+    if preplacement != preflight_evidence:
+        raise ValueError("duplicate copies of the MTAS pre-placement record disagree")
+    if (
+        preplacement.get("lane") != "H88-MTAS"
+        or preplacement.get("decision") != "DUPLICATE_STOP"
+        or preplacement.get("experiment_count") != 0
+        or preplacement.get("new_rasters_generated") != 0
+    ):
+        raise ValueError("MTAS pre-placement stop record changed; reconcile before publishing")
+    tif = root / card["raster_file"]
+    archive = root / card["zip_file"]
+    if not tif.is_file() or sha256(tif) != card["raster_sha256"]:
+        raise ValueError("archived MTAS TIFF no longer matches its run-card SHA-256")
+    if not archive.is_file() or sha256(archive) != card["zip_sha256"]:
+        raise ValueError("archived MTAS ZIP no longer matches its run-card SHA-256")
+    with zipfile.ZipFile(archive) as members:
+        if members.namelist() != [tif.name] or members.read(tif.name) != tif.read_bytes():
+            raise ValueError("archived MTAS ZIP is not the one-member identical TIFF")
+    holdout = card["holdout"]
+    if holdout.get("evidence_class") != "HOLDOUT-DTI":
+        raise ValueError("archived MTAS result is not labelled HOLDOUT-DTI")
+    return {
+        "lane": "H88-MTAS",
+        "status": "EXECUTED_HISTORICAL_NEGATIVE_EXCLUDED_FROM_UNTESTED_QUEUE",
+        "record": "registry/mtas88_experiment_run_card.json",
+        "conflicting_preplacement_records": {
+            "records": [
+                "registry/mtas88_run_card.json",
+                "evidence/mtas88_preflight_20261025.json",
+            ],
+            "recorded_decision": preplacement["decision"],
+            "recorded_experiment_count": preplacement["experiment_count"],
+            "recorded_new_rasters_generated": preplacement["new_rasters_generated"],
+            "recorded_weekly_slots_used": preplacement["weekly_slots_used"],
+            "status": "CONFLICTS_WITH_SEPARATE_EXECUTION_CARD_AND_HASH_MATCHED_RASTER",
+            "resolution": "Preserve both records. Treat MTAS as executed for untried-queue accounting because a separate experiment card and matching raster/ZIP exist; do not claim the pre-placement record was rewritten or that the chronology is resolved.",
+        },
+        "holdout": {
+            "evidence_class": holdout["evidence_class"],
+            "evaluator_version": holdout["evaluator_version"],
+            "withheld_positive_pixels": holdout["withheld_positive_pixels"],
+            "dti": holdout["dti"],
+            "ci95": holdout["ci95"],
+            "split": holdout.get("split"),
+            "note": "Historical MTAS result; not a result for the selected FARC proposal and not ORGANIZER-CONFIRMED.",
+        },
+        "raster_sha256": card["raster_sha256"],
+        "zip_sha256": card["zip_sha256"],
+        "zip_one_member_byte_identical": True,
+        "verdict": card["verdict"],
+        "ok_to_submit": card["ok_to_submit"],
+    }
+
+
+def holdout_incumbent_audit(root: Path) -> dict:
+    """Return the recorded repository incumbent as local holdout context only."""
+
+    card = _json(root / "registry/bpwd88_run_card.json")
+    holdout = card["holdout_dti"]["candidate_exp03"]
+    if holdout.get("evidence_class") != "HOLDOUT-DTI":
+        raise ValueError("stored incumbent result lacks HOLDOUT-DTI evidence label")
+    return {
+        "lane": card["lane"],
+        "status": "HISTORICAL_REPOSITORY_HOLDOUT_REFERENCE_NOT_LIVE_SCORE",
+        "evidence_class": holdout["evidence_class"],
+        "evaluator_version": holdout["evaluator_version"],
+        "withheld_positive_pixels": holdout["withheld_positive_pixels"],
+        "dti": holdout["dti"],
+        "ci95": holdout["ci95"],
+        "candidate_comparison": "NOT_RUN_FOR_FARC; this historical number is not a paired comparison or leaderboard projection.",
+    }
+
+
 def h33_forensics(root: Path) -> dict:
     """Extract measured lineage facts without relabelling the public claim."""
 
@@ -214,45 +302,44 @@ def build_report(root: Path = ROOT) -> dict:
     if len(RESERVED_NAME) > 140:
         raise ValueError("reserved submission name exceeds 140 characters")
 
-    errors: list[str] = []
-    try:
-        saturation = audit_saturation(root)
-    except (OSError, ValueError, KeyError) as exc:
-        saturation = None
-        errors.append(f"saturation audit unavailable: {exc}")
-    try:
-        research_download = audit_research_download(root)
-    except (OSError, ValueError, KeyError, zipfile.BadZipFile) as exc:
-        research_download = None
-        errors.append(f"research download audit unavailable: {exc}")
-
-    blocked = bool(saturation and saturation["universal_overlap_blocker"])
-    review_status = "DUPLICATE_STOP" if blocked else ("INCOMPLETE" if errors else "REGISTRY_NOT_CLEARED")
+    saturation = audit_saturation(root)
+    research_download = audit_research_download(root)
+    completed_mtas = historical_mtas_audit(root)
+    incumbent = holdout_incumbent_audit(root)
+    queue_head = queue[0]
+    blocked = saturation["universal_overlap_blocker"] is True
+    review_status = "DUPLICATE_STOP" if blocked else "REGISTRY_NOT_CLEARED"
     return {
-        "schema": "gems88.repo-review-20261025.v1",
+        "schema": "gems88.repo-review-20261025.v2",
         "review_date_utc": DATE_UTC,
         "review_status": review_status,
         "hypothesis_queue": queue,
         "selected_lane": {
-            "id": "H88-MTAS",
-            "selection_reason": "Highest qualitative gain-to-cost hypothesis using only restored cached layers; no external data required.",
-            "status": "NOT FIT — pre-placement duplicate proof fires before feature construction",
+            "id": queue_head["id"],
+            "selection_reason": "Highest qualitative discovery-potential / cost trade-off among the four currently unexecuted repo-local hypotheses; ordinal judgment only, not a DTI prediction.",
+            "status": "NOT FIT — shared pre-placement duplicate proof stops before feature construction",
+        },
+        "historical_experiment_reconciliation": {
+            "executed_lane_excluded_from_untried_queue": completed_mtas,
+            "current_repository_holdout_reference": incumbent,
+            "note": "The MTAS experiment exists in the repo and is not untested. Conflicting pre-placement and execution records are preserved; its historical holdout does not validate or score FARC.",
         },
         "official_sources": list(OFFICIAL_SOURCES),
+        "source_verification_scope": "Official URLs are provided for review. Non-GitHub official pages were not re-fetched in this replay because their hosts are outside the session allowlist; source statuses above are inherited from the prior dated audit, not fresh retrieval. Restored owner-mirror bytes are hash-pinned locally but not authenticated against current organizer downloads.",
         "h33_forensics": h33_forensics(root),
         "preplacement_registry_audit": saturation,
         "current_research_download": research_download,
         "holdout": {
-            "evidence_class": "HOLDOUT-DTI",
             "status": "NOT RUN — pre-placement duplicate stop",
-            "evaluator_version": "gems57-pooled-hide-v2",
+            "candidate_lane": queue_head["id"],
+            "evaluator_version_if_unblocked": "gems57-pooled-hide-v2",
             "withheld_positive_pixels": None,
             "dti": None,
             "ci95": None,
-            "reason": "No feature stack was fitted and no MTAS prediction was emitted. A historical number cannot be relabelled as MTAS evidence.",
+            "reason": "No candidate features were constructed or fitted. The archived H88-MTAS result is historical evidence for that completed lane only; it cannot be reused as an H88-FARC score.",
         },
         "leakage_canary": {
-            "status": "NOT RUN — no MTAS feature was constructed",
+            "status": "NOT RUN — no candidate feature was constructed",
             "threshold_symmetric_auc": 0.90,
             "features_tested": 0,
         },
@@ -260,14 +347,15 @@ def build_report(root: Path = ROOT) -> dict:
             "generated": False,
             "file": None,
             "sha256": None,
-            "reason": "The binding pre-placement proof rejects every nonempty candidate; making or renaming a TIFF would violate the stop rule and would not make it unique.",
+            "reason": "The SHA-pinned dense registry witness covers every allowed cell. A new nonempty candidate would have literal forward overlap 1.0 > 0.70, so it was stopped before construction; renaming or copying an archived TIFF would not satisfy uniqueness.",
         },
         "submission": {
             "reserved_name": RESERVED_NAME,
+            "reserved_name_status": "NO_FILE_NOT_FOR_PORTAL",
             "reserved_note": RESERVED_NOTE,
             "note_characters": len(RESERVED_NOTE),
             "ok_to_download_new_file": False,
-            "ok_to_download_archived_research_file": bool(research_download),
+            "ok_to_download_archived_research_file": True,
             "ok_to_submit": False,
             "approved_for_weekly_slot": False,
             "weekly_slots_used": 0,
@@ -278,19 +366,19 @@ def build_report(root: Path = ROOT) -> dict:
             "no_nan_inside_footprint": None,
             "values_in_0_1": None,
             "crs_shape_transform_match": None,
-            "note": "The archived research file has a separate local-format audit; it is not this session's candidate.",
+            "note": "The archived research TIFF has a separate local-format audit; that pass is not a new candidate validation or submission approval.",
         },
-        "errors": errors,
+        "errors": [],
         "verdict": "negative",
         "decision": review_status,
         "limitations": [
-            "The local owner-mirror bytes are SHA-pinned but are not an authenticated logged-in DrivenData download in this sandbox.",
-            "The hidden organizer labels are unavailable; a catalogued holdout is a proxy and cannot prove a leaderboard result.",
-            "The prompt's H33 0.2778 is a user-reported claim without a portal receipt; the public leaderboard snapshot is separate evidence.",
-            "The literal all-registry overlap rule is mathematically unsatisfiable for a nonempty candidate while the full-positive 17GEMSDOE witness remains in scope.",
-            "No external dataset was needed for the selected hypothesis, so no new license-dependent layer was consumed.",
+            "The untested FARC hypothesis has no new HOLDOUT-DTI or canary result because the literal pre-placement rule stops this run first.",
+            "The hidden organizer labels are unavailable; catalogued-fault holdout evidence cannot establish the leaderboard score.",
+            "H33 0.2778 remains USER-REPORTED without a submission receipt; the prompt's leaderboard snapshots 0.3195 and 0.4413 conflict and were not freshly verified here.",
+            "The literal all-registry overlap condition is unsatisfiable for a nonempty candidate while the hash-pinned full-support 17GEMSDOE witness remains in scope.",
+            "The current organizer data page requires account access; the local owner mirrors do not authenticate data identity or rights. No external data were newly downloaded for this review.",
         ],
-        "next_action": "Require an explicit, documented resolution of the universal witness/protocol contradiction before constructing another candidate; then rerun the ranked lane through shared buffered holdout and two-phase uniqueness.",
+        "next_action": "Do not spend a slot. First resolve the universal witness/protocol contradiction through a documented shared-template decision. If it is resolved, preregister H88-FARC, restore/authenticate the required stack, run per-feature leakage canaries and paired buffered holdout against the recorded incumbent, then run surface and final-dot uniqueness before any separate weekly-slot selection.",
     }
 
 
@@ -313,7 +401,7 @@ def main(argv: list[str] | None = None) -> int:
         write_report(report)
     except Exception as exc:  # Never leave an old positive report after a failed run.
         report = {
-            "schema": "gems88.repo-review-20261025.v1",
+            "schema": "gems88.repo-review-20261025.v2",
             "review_date_utc": DATE_UTC,
             "review_status": "AUDIT_ERROR",
             "ok_to_submit": False,

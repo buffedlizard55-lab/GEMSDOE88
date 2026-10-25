@@ -1,3 +1,5 @@
+> **Historical first-pass review:** this file predates the reconciliation of separate H88-MTAS pre-placement and execution records. Its five-hypothesis queue and “MTAS not fitted” statements are not current status. The corrected queue has four unexecuted proposals and excludes MTAS; see [current review](../docs/research/review-20261025-autonomous.md) and [v2 machine card](../evidence/repo_review_20261025.json).
+
 # GEMSDOE88 repository review — 2026-10-25
 
 ## Executive decision
@@ -12,7 +14,7 @@ The 0.2778 value attributed to H33 in the request is retained as a **USER-REPORT
 
 - Read `README.md`, `PROMPT.md`, `USER_PROMPT_20261025.md`, `AGENTS.md`, the current run card, and submission/download guidance.
 - Confirmed the workspace starts without the ignored `.venv/` and `data/` inputs. Installed the declared `requirements.txt` packages and restored the SHA-pinned validation-tier inputs using `scripts/restore_inputs.py --validation` (GitHub owner mirrors; not an authenticated DrivenData download).
-- Ran `scripts/review_repo_20261025.py`; the machine review returned `DUPLICATE_STOP`, with five ranked hypotheses and the selected MTAS lane explicitly not fitted.
+- Ran the first-pass `scripts/review_repo_20261025.py`; that historical machine review returned `DUPLICATE_STOP` and contained a five-row queue. A later reconciliation corrected its queue because the separate MTAS execution archive proves that lane was run.
 
 ### Pass 2 — Audit the code paths and actual artifacts
 

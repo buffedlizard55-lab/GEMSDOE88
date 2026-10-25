@@ -36,6 +36,12 @@ Independent repository recheck (2026-10-25): [review report](research/repo-revie
 
 [Detailed review, H33 explanation and next steps](research/session-d0c3adeb-review.md) · [Four ranked, untested geological proposals](research/session-d0c3adeb-hypotheses.md) · [Claim-level source ledger](knowledge/session-d0c3adeb-sources.md) · [Recorded user results (CSV)](docs/data/user_reported_results.csv) · [Session run card](registry/session_d0c3adeb_run_card.json) · [Three-pass completion appendix](research/session-d0c3adeb-completion.md)
 
+### Current review correction — MTAS is executed; FARC leads the untried queue
+
+The first queue/report incorrectly ranked `H88-MTAS` as `UNTESTED`. The repository also contains a separately archived MTAS execution card, result, and TIFF/ZIP; those artifacts record a negative `HOLDOUT-DTI` for MTAS, not for a new lane. We therefore preserve the conflicting same-date pre-placement and execution records but **exclude MTAS from untried hypotheses**. The corrected queue contains four unexecuted repo-local proposals: **FARC, TCONS, PRAN, FLAC**. FARC is the qualitative top choice but was stopped before feature construction by the universal duplicate witness. There is no FARC holdout score, new TIFF, or submission approval.
+
+[Corrected four-hypothesis review, H33 forensic explanation, three-pass checks, source limits, and next steps](docs/research/review-20261025-autonomous.md) · [Current v2 machine review](evidence/repo_review_20261025.json) · [Historical MTAS execution card](registry/mtas88_experiment_run_card.json) · [Separate MTAS pre-placement stop](registry/mtas88_run_card.json).
+
 ### Repository review follow-up — 2026-10-25
 
 A fresh three-pass review fixed three data-absent test-path defects, restored hash-pinned validation inputs, and confirmed **630 passed / 23 skipped**. It generated **no new TIFF**: the literal all-registry overlap stop remains binding. See the [review findings, H33 analysis, verification log, source-access limits and next steps](research/repo-review-followup-20261025.md) and the [machine-readable negative run card](evidence/repo_review_20261025.json).

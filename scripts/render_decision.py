@@ -17,10 +17,12 @@ START = "<!-- CANONICAL-DECISION:START -->"
 END = "<!-- CANONICAL-DECISION:END -->"
 
 
-def read_inputs(root: Path) -> tuple[dict, dict, dict]:
+def read_inputs(root: Path) -> tuple[dict, dict, dict, dict]:
     current = json.loads((root / "docs/data/current_release.json").read_text())
     stop = json.loads((root / "registry/mtas88_run_card.json").read_text())
     audit = json.loads((root / "docs/data/download_audit.json").read_text())
+    review = json.loads((root / "docs/data/repo_review_20261025.json").read_text())
+    executed_mtas = json.loads((root / "registry/mtas88_experiment_run_card.json").read_text())
     status = json.loads((root / "docs/status.json").read_text())
     if not (
         current["ok_to_submit"] is False and current["ok_to_download"] is True
@@ -29,6 +31,15 @@ def read_inputs(root: Path) -> tuple[dict, dict, dict]:
         and stop["preplacement_registry_proof"]["universal_overlap_blocker"] is True
         and audit["ok_to_submit"] is False and audit["canonical_sha256"] == current["file_sha256"]
         and audit["protocol_eligible_count"] == 0
+        and review["schema"] == "gems88.repo-review-20261025.v2"
+        and review["review_status"] == "DUPLICATE_STOP"
+        and review["selected_lane"]["id"] == review["hypothesis_queue"][0]["id"]
+        and 3 <= len(review["hypothesis_queue"]) <= 5
+        and all(row["status"] == "UNTESTED" for row in review["hypothesis_queue"])
+        and all(row["id"] != "H88-MTAS" for row in review["hypothesis_queue"])
+        and executed_mtas["lane"] == "H88-MTAS"
+        and executed_mtas["verdict"] == "negative"
+        and executed_mtas["holdout"]["evidence_class"] == "HOLDOUT-DTI"
     ):
         raise ValueError("canonical decision inputs disagree; never render a clearance")
     for key, digest_key in (("file", "file_sha256"), ("zip_file", "zip_sha256")):
@@ -38,7 +49,7 @@ def read_inputs(root: Path) -> tuple[dict, dict, dict]:
         with (root / relative).open("rb") as stream:
             if hashlib.file_digest(stream, "sha256").hexdigest() != current[digest_key]:
                 raise ValueError("canonical downloadable bytes disagree with release card")
-    return current, stop, audit
+    return current, stop, audit, review
 
 
 def inventory(audit: dict) -> str:
@@ -63,13 +74,15 @@ def inventory(audit: dict) -> str:
 
 
 def render(root: Path, kind: str) -> str:
-    current, stop, audit = read_inputs(root)
+    current, stop, audit, review = read_inputs(root)
     tif = escape(Path(current["file"]).relative_to("docs").as_posix())
     zipped = escape(Path(current["zip_file"]).relative_to("docs").as_posix())
     name, note = escape(current["submission_name"]), escape(current["submission_note"])
     digest = escape(current["file_sha256"])
     checked = escape(audit["checked_at_utc"])
     count = audit["tiff_count"]
+    top_lane = escape(review["selected_lane"]["id"])
+    queue_count = len(review["hypothesis_queue"])
     title = "Research download.<br>Not cleared to submit." if kind == "overview" else "How submission works.<br>Why it is blocked today."
     hero = f'''<section class="decision-hero" id="mtas-review" aria-labelledby="decision-title">
 <div class="wrap" id="autonomous-review">
@@ -79,7 +92,7 @@ def render(root: Path, kind: str) -> str:
 <p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule. No old prediction was copied or renamed as a new submission.</p>
 <p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_d0c3adeb_run_card.json">This review’s negative run card</a>.</p>
+<p class="micro">No competition slot used. No organizer-confirmed score. Local checks do not establish hidden-label performance or choose a weekly slot. <a href="data/repo_review_20261025.json">Current repository review and {queue_count} ranked untried proposals</a>.</p>
 </div><aside class="decision-download" aria-label="Canonical archived research download">
 <div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
 <h2>Download the audited TIFF</h2>
@@ -92,7 +105,7 @@ def render(root: Path, kind: str) -> str:
 <p class="micro">Audit performed <time datetime="{checked}">{checked}</time>. This is a saved local audit, not a live portal check.</p>
 </aside></div></div></section>
 <section class="decision-gates"><div class="wrap">
-<div class="section-heading"><div><div class="kicker">One decision, separate gates</div><h2>What is—and is not—validated</h2></div><a href="data/mtas88_run_card.json">Pre-placement proof JSON ↗</a></div>
+<div class="section-heading"><div><div class="kicker">One decision, separate gates</div><h2>What is—and is not—validated</h2></div><a href="data/repo_review_20261025.json">Current machine review ↗</a></div>
 <div class="gate-grid">
 <article class="gate-card"><span class="tag">LOCAL FORMAT PASS</span><h3>File correctness</h3><p>All {count} published TIFFs were reopened. The canonical TIFF has no NaN or infinity, is within [0, 1], and matches CRS, shape and transform. Its ZIP contains the same TIFF.</p></article>
 <article class="gate-card"><span class="tag bad">UNIQUENESS FAIL</span><h3>Duplicate stop</h3><p>Registry measurement: the 17GEMSDOE witness covers all 5,106,385 allowed cells. The overlap lower bound is 1.00; the limit is 0.70. No sparse-only exemption.</p></article>
@@ -100,16 +113,16 @@ def render(root: Path, kind: str) -> str:
 <article class="gate-card"><span class="tag bad">NO SLOT AUTHORIZED</span><h3>Competition eligibility</h3><p>A format pass cannot clear a duplicate, prove a leaderboard improvement, establish current quota, or authorize a submission. Slot selection remains separate.</p></article>
 </div></div></section>'''
     if kind == "overview":
-        content = '''<section class="decision-explainer"><div class="wrap split">
+        content = f'''<section class="decision-explainer"><div class="wrap split">
 <div><div class="kicker">H33 forensic answer</div><h2>Learn from the geometry.<br>Do not copy the submission.</h2>
 <p><strong>0.2778 is a user-reported claim, not an ORGANIZER-CONFIRMED receipt.</strong> Rechecked H33 support is a subset of D2.8: it removes near-catalogue dots rather than adding discoveries. Less redundant emission can improve the precision–coverage trade-off, but the hidden labels are needed to prove why a score changed.</p>
 <p>There is no defensible guarantee that this repository will beat that claim, the older 0.3195 claim, or the 0.4413 claim. A buffered, fold-matched improvement is a necessary project gate, not a leaderboard forecast.</p>
-<a href="research/session-d0c3adeb-review.md">Evidence, scientific corrections &amp; limitations →</a></div>
+<a href="research/review-20261025-autonomous.md">Evidence, scientific corrections &amp; limitations →</a></div>
 <div class="proof"><div class="kicker">Next scientific work</div><h3>Test displacement—not another edge map.</h3>
-<p>Four ranked, untested proposals are recorded before implementation. The leading proposal asks whether a coherent magnetic marker becomes continuous after a repeatable cross-boundary displacement. Intrusive contacts and depositional pinch-outs are explicit alternatives.</p>
-<p>It remains unrun: the universal duplicate stop comes first. No new external dataset is presented as obtainable without verification.</p>
-<a href="research/session-d0c3adeb-hypotheses.md">Read the four hypotheses and falsification plan →</a></div></div></section>
-<section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Data placement is no longer the blocker.</h2><p>The pinned core feature raster and shared external inputs have been restored; the existing preparation command successfully loads the shared feature planes on CPU. The remaining blocker is not a missing download: it is the unsatisfiable literal uniqueness condition, followed by scientific and organizer-access gates.</p>
+<p>{queue_count} ranked, unexecuted hypotheses are recorded with named layers, signatures, non-fault mimics and qualitative cost/value. The leading proposal, <strong>{top_lane}</strong>, tests replicated cross-catchment channel-profile breaks against a matched null.</p>
+<p>It remains unrun: the universal duplicate stop comes first. H88-MTAS is excluded because its separate archived run card records an executed, negative experiment. The same-date pre-placement stop conflicts; both records are retained. See the <a href="data/mtas88_experiment_run_card.json">historical execution card</a> and <a href="data/mtas88_run_card.json">pre-placement record</a>. No new external dataset is represented as obtainable without verification.</p>
+<a href="research/review-20261025-autonomous.md">Read the hypotheses, H33 analysis and three-pass review →</a></div></div></section>
+<section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>The duplicate gate blocks model work.</h2><p>The validation-tier owner mirrors are restored and hash-verified. Full training/external inputs were not restored, the organizer files are not authenticated here, and no model fitting was attempted because the pre-placement witness makes every nonempty candidate ineligible under the literal rule. Any future work still requires a documented shared-policy resolution plus data provenance and rights checks.</p>
 <div class="button-row"><a class="button button-primary" href="executive-summary.html">Open the submission guide →</a><a href="sources.html" class="button decision-outline">Sources &amp; verification limits</a></div>
 <p class="fine">Maximize P(Win): preserve scarce slots for evidence-backed, distinct candidates. Own the Outcome: report an unmet requirement instead of presenting a research TIFF as submission-ready.</p></div></section>'''
         return hero + content + inventory(audit)
@@ -117,6 +130,7 @@ def render(root: Path, kind: str) -> str:
         raise ValueError(f"unknown page kind: {kind}")
     guide = '''<section class="decision-explainer"><div class="wrap narrow"><div class="kicker">Executive summary</div><h2>Do not submit any current file.</h2>
 <p><strong>CURRENT DECISION 2026-10-25: NO NEW UNIQUE TIFF.</strong> The download above is an archived research artifact, not a newly selected competition candidate. There is no safe file to choose in the portal under the current project protocol.</p>
+<p>The current unexecuted queue has four proposals. <strong>H88-FARC</strong> is ranked first but was stopped before feature construction. <strong>H88-MTAS is executed historical evidence, not an untried candidate;</strong> its separate archived negative result does not score FARC. The saved pre-placement record conflicts and remains separately linked below. No new FARC holdout or slot approval exists.</p>
 <ol class="steps"><li><h3>Run the automated project checks</h3><p>Restore pinned inputs, reopen saved TIFF/ZIP bytes, validate finite [0,1], the exact sample grid and footprint, and check the pre-placement registry gate. No human inspector is required to decide these local checks.</p></li>
 <li><h3>Require scientific evidence for a genuinely new candidate</h3><p>Withhold whole fault segments with a buffer. Recompute catalogue-derived features from visible faults only; run every single-feature leakage canary; mask visible faults exactly. Use the shared pooled DTI evaluator, a paired confidence interval against the same-fold incumbent, then full surface/final-dot registry tests. Stop on a failed gate.</p></li>
 <li><h3>Keep slot selection separate</h3><p>Even if every local gate passes, the separate selector must authorize a slot within the current account limit. Current quota, competition timing and data-use terms are not verified from this sandbox. No guessed weekly allowance is used.</p></li>
@@ -130,7 +144,7 @@ python scripts/render_decision.py --check
 python scripts/check_site.py
 python scripts/preflight_mtas88.py --gate-generation
 # Expected final exit: 2 (DUPLICATE_STOP). Not a build failure to bypass.</code></pre>
-<p><a href="research/session-d0c3adeb-review.md">Current review and limitations</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/mtas88_run_card.json">Negative run card</a></p>
+<p><a href="research/review-20261025-autonomous.md">Current review, H33 analysis and limitations</a> · <a href="data/repo_review_20261025.json">Machine review</a> · <a href="data/mtas88_experiment_run_card.json">Historical executed MTAS card</a> · <a href="data/mtas88_run_card.json">Separate pre-placement stop record</a></p>
 </div></section>'''
     return hero + guide + inventory(audit)
 

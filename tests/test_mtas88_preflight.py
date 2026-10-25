@@ -75,7 +75,9 @@ def test_expected_generation_gate_exit_and_committed_report(recomputed_card):
 def test_site_leads_with_current_negative_and_never_falls_back_to_approval():
     for rel in ("docs/index.html", "docs/executive-summary.html"):
         text = (ROOT / rel).read_text()
-        assert "data/mtas88_run_card.json" in text
+        assert "data/repo_review_20261025.json" in text
+        assert "H88-FARC" in text
+        assert "H88-MTAS" in text
         assert "NO NEW TIFF" in text
         assert "DO NOT SUBMIT" in text
         assert "1.0" in text

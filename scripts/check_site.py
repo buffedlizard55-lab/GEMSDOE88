@@ -73,6 +73,27 @@ def main(root: Path = ROOT) -> None:
         (docs / "downloads" / f"{MVRD_NAME}.format-audit.json").read_text()
     )
     literal = json.loads((docs / "data/literal_protocol_audit.json").read_text())
+    repo_review = json.loads((root / "evidence/repo_review_20261025.json").read_text())
+    repo_review_web = json.loads((docs / "data/repo_review_20261025.json").read_text())
+    mtas_execution = json.loads((root / "registry/mtas88_experiment_run_card.json").read_text())
+    mtas_execution_web = json.loads((docs / "data/mtas88_experiment_run_card.json").read_text())
+    require(repo_review == repo_review_web, "current repository review copies disagree")
+    require(
+        repo_review["schema"] == "gems88.repo-review-20261025.v2"
+        and repo_review["review_status"] == "DUPLICATE_STOP"
+        and [row["id"] for row in repo_review["hypothesis_queue"]]
+            == ["H88-FARC", "H88-TCONS", "H88-PRAN", "H88-FLAC"]
+        and repo_review["selected_lane"]["id"] == "H88-FARC"
+        and repo_review["holdout"]["dti"] is None,
+        "current review queue/result status is stale or improperly scored",
+    )
+    require(
+        mtas_execution == mtas_execution_web
+        and mtas_execution["lane"] == "H88-MTAS"
+        and mtas_execution["holdout"]["evidence_class"] == "HOLDOUT-DTI"
+        and repo_review["historical_experiment_reconciliation"]["executed_lane_excluded_from_untried_queue"]["conflicting_preplacement_records"]["status"].startswith("CONFLICTS_WITH"),
+        "MTAS executed/pre-placement record conflict must be preserved and visible",
+    )
     mtas = json.loads((root / "registry/mtas88_run_card.json").read_text())
     mtas_web = json.loads((docs / "data/mtas88_run_card.json").read_text())
     mtas_evidence = json.loads((root / "evidence/mtas88_preflight_20261025.json").read_text())
@@ -630,9 +651,11 @@ def main(root: Path = ROOT) -> None:
         require(
             page_text.index('id="mtas-review"') < page_text.index('class="archive-lanes"')
             and 'NO NEW TIFF: DUPLICATE — STOP' in page_text
-            and 'data/mtas88_run_card.json' in page_text
+            and 'data/repo_review_20261025.json' in page_text
+            and 'H88-FARC' in page_text
+            and 'H88-MTAS' in page_text
             and mtas["archived_research_download"]["sha256"] in page_text,
-            "Pages must lead with the MTAS no-new-file stop and a marked historical download",
+            "Pages must lead with the current FARC stop, preserve MTAS historical status, and mark the download",
         )
     js = (docs / "assets/site.js").read_text()
     require(
@@ -954,7 +977,7 @@ def main(root: Path = ROOT) -> None:
     )
     require("fetch('data/vcaz88_run_card.json'" in js, "site.js must verify vcaz88_run_card.json")
     print(
-        "PASS: canonical decision first, H88-BPWD record, H88-VCAZ, research bytes, archived records, Pages links and negative gates agree"
+        "PASS: current decision, four-lane untried queue, MTAS reconciliation, H88-BPWD/H88-VCAZ records, research bytes and negative gates agree"
     )
 
 
