@@ -13,6 +13,8 @@ The highest-priority deliverable remains unmet: this repository does **not** cur
 
 All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant) are archived research files; **48** pass local research-format checks; **0** are protocol-eligible. None is an approved submission.
 
+**Archived adjacent-session evidence:** [session 21256734 review](research/session-21256734-review.md) · [ranked hypotheses](research/session-21256734-hypotheses.md) · [run card](registry/session_21256734_run_card.json) · [official leaderboard snapshot record](evidence/leaderboard_official_snapshot_21256734_20261025.json). These are dated records, not current clearance or a receipt for H33 `0.2778`; the present literal-support stop governs. Any historical equal-support discussion does not override this review's binding rule.
+
 ### Start here every session
 
 Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_PROMPT_20261025.md), and [AGENTS.md](AGENTS.md). The request is also embedded below. Do not append a competing “current candidate” banner or bypass the generation preflight.

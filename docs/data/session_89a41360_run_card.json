@@ -104,14 +104,14 @@
   },
   "verification": {
     "browser_evidence": "evidence/session_89a41360_browser_check.json",
-    "browser": "PASS_7_CASES at 2026-10-25T18:31:29.706Z; actual download bytes/hash, click, failed-fetch and no-JavaScript checks passed",
+    "browser": "PASS_7_CASES at 2026-10-25T18:57:06.173Z; actual download bytes/hash, click, failed-fetch and no-JavaScript checks passed",
     "download_audit": "PASS_RESEARCH_FORMAT_ONLY (48/48 archived TIFF packages; 0 protocol-eligible)",
     "research_queue_audit": "PASS_SOURCE_BOUND_METADATA; input_pins_checked=false (validation-tier restoration only)",
     "renderer": "PASS",
     "site_guard_normal": "PASS",
     "site_guard_optimized": "PASS",
     "preflight": "PASS_MEASURED_DUPLICATE_STOP_EXIT_2",
-    "full_pytest": "PASS: 877 passed, 23 skipped, 64 warnings",
+    "full_pytest": "PASS: 886 passed, 23 skipped, 64 warnings",
     "three_review_passes": "COMPLETE: baseline/blocker review, policy repair and regression review, final validation",
     "input_pin_audit": "INCOMPLETE: AUDIT_ERROR; missing data/external/dem10_chi_100m_u8.tif; only validation tier restored"
   },

@@ -13,6 +13,16 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.generation_guard import inspect
 
+
+def _load_canary_surface(path: Path):
+    """Load an optional historical canary, reporting a missing cache fail-closed."""
+    if not path.is_file():
+        print(json.dumps({"decision": "AUDIT_ERROR", "missing_prerequisite": str(path),
+                          "ok_to_submit": False}) + "\n", file=sys.stderr)
+        raise SystemExit(1)
+    import numpy as np
+    return np.load(path)
+
 def main() -> int:
     try:
         result = inspect(ROOT)
