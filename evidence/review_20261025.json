@@ -1,0 +1,72 @@
+{
+  "schema": "gems88.repository-review.run-card.v1",
+  "review_date_utc": "2026-10-25",
+  "lane": "protocol-integrity-only; no new geological experiment",
+  "hypothesis": "No nonempty emitted dot raster can satisfy the literal <=0.70 forward 3-pixel-overlap gate while the recorded dense registry witness covers every allowed prediction cell under the finite-value >0 support rule.",
+  "mechanism": "Review the pinned historical saturation certificate and current checkout; halt before surface construction or dot placement. Candidate queue is documented separately in research/next-hypotheses-20261025.md.",
+  "named_non_fault_process": "Saline playa brines and static lithologic density contacts can mimic deep conductivity/gravity/strain conjunctions without a permeable fault.",
+  "experiments_executed": 0,
+  "experiment_budget_max": 3,
+  "elapsed_time_limit_hours": 2,
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "HISTORICAL_ONLY_NOT_RECOMPUTED_2026-10-25",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "value": 0.1413781360066005,
+    "ci95": [
+      0.12768777369706202,
+      0.15611205556213584
+    ],
+    "withheld_positive_pixels": 22893,
+    "candidate": "H88-DHTC",
+    "source": "registry/dhtc88_run_card.json",
+    "interpretation": "Catalogue hide-and-recover evidence only; not an organizer score and not evidence of beating H33's user-reported public result."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT (historical records; not remeasured this review)",
+    "candidate": "H88-DHTC",
+    "preplacement_surface_spearman_max_abs": 0.178152,
+    "like_for_like_forward_overlap_3px": 0.523736150854795,
+    "like_for_like_registry_count": 238,
+    "dense_witness_forward_overlap_3px": 1.0,
+    "overlap_limit": 0.7,
+    "dense_witness_certificate": "evidence/protocol_review_43d08c7a.json",
+    "literal_uniqueness": false,
+    "decision": "DUPLICATE_STOP"
+  },
+  "raster_sha256": "bf42eb315bd2392b5748003ace2dd68cc96db0a945873513f8ff222e2fd1e1bd",
+  "raster_identity": "Existing H88-DHTC research artifact; no raster generated in this review.",
+  "validator_output": {
+    "status": "HISTORICAL_PROJECT_LOCAL_FORMAT_VALIDATION; NOT RERUN 2026-10-25",
+    "one_band_float32": true,
+    "no_nan_or_infinity": true,
+    "values_in_0_1": true,
+    "crs_epsg_32611": true,
+    "shape_3730x3292": true,
+    "transform_matches_sample": true,
+    "zip_contains_single_tiff": true,
+    "organizer_acceptance_confirmed": false,
+    "source": "registry/dhtc88_run_card.json"
+  },
+  "submission_name": "GEMSDOE88-DHTC88-CONDUIT-20261024",
+  "submission_note": "DHTC archived research TIFF; format check historical; literal overlap 1.0>0.70; DO NOT SUBMIT",
+  "submission_note_characters": 93,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "verdict": "negative",
+  "blocking_irregularities": [
+    "Dense witness saturation certificate is historical and was not re-opened because the data directory is absent.",
+    "The active environment lacks numpy, scipy, rasterio, scikit-learn and lightgbm, so the automated project audit could not execute.",
+    "The user asks for a specified single-method paragraph, but none is included; this review does not select a private method lane.",
+    "No current organizer receipt or live leaderboard fetch is available; H33 0.2778 remains an owner-reported claim in the repository."
+  ],
+  "limitations": [
+    "No competition data/ or cached feature stack is present in this checkout.",
+    "No fresh holdout or leakage-canary computation was possible.",
+    "No official sources were live-verified in this review; cited links are for manual review.",
+    "The recorded dense-prior rule mathematically blocks every nonempty candidate under its current support definition; only a shared protocol clarification can change this, not a private workaround."
+  ]
+}

@@ -46,10 +46,10 @@
           current.file_sha256 === tdkl.raster_sha256 && tdkl.ok_to_submit === false &&
           card.ok_to_submit === false;
       banner.textContent = consistent
-        ? 'H88-TDKL & H88-MVRD · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated decision)'
-        : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
+        ? 'RECORDED GATE SNAPSHOT (2026-10-24): NO CANDIDATE CLEARED · ARCHIVED TIFFS ARE RESEARCH ONLY · SUBMIT: NO — DO NOT SUBMIT'
+        : 'RECORDED GATE SNAPSHOT UNVERIFIED · DO NOT SUBMIT';
     } catch (_) {
-      banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';
+      banner.textContent = 'RECORDED GATE SNAPSHOT UNAVAILABLE · DO NOT SUBMIT';
     }
   }
   for (const button of document.querySelectorAll('[data-copy]')) {

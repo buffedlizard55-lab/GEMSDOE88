@@ -5,6 +5,8 @@
 **Primary Reference:** [GEMSDOE32 Submission Site](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html)  
 **Evaluated Artifact:** `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` (Owner-reported score: **0.2778**)  
 **Live Competition Benchmark:** Leaderboard #1 = **0.4413** (xiaofanhu), Round 1 Prize Cutoff (#5) = **0.3539**  
+**Evidence-status correction (2026-10-25):** The public score `0.2778` and leaderboard values shown above are owner-supplied historical claims in this repository; no submission-page receipt or live leaderboard capture was available to this review. On-disk raster lineage is a registry measurement, not a causal explanation of public score. The prior text's affirmative claim that this project can beat H33 and its numeric projected target range are withdrawn. The H88-DHTC holdout is not an organizer score.
+
 **Official Reference Links:**
 - DrivenData DOE GEMS Challenge: <https://www.drivendata.org/competitions/306/competition-doe-gems/>
 - DrivenData Problem Description & Metric: <https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/>
@@ -21,13 +23,12 @@ This paper presents a rigorous doctoral-level investigation into two central que
 1. **Why and how did GEMSDOE32 / H33 (`h33-h33-2-b2`) achieve the highest score (0.2778) among sibling sites?**
 2. **Are we able to generate a submission that scores higher than 0.2778, closing the gap toward 0.3539 (#5 cutoff) and 0.4413 (#1)?**
 
-Using pixel-exact binary decomposition of files on disk, closed-form algebraic derivation of the distance-weighted Tversky index (DTI), and structural-geological analysis of Great Basin geothermal plays, we prove:
-- H33 is **not** an independently trained deep network; it is a **pure subtractive subset** of earlier submissions `H19-5` (121,131 dots) $\to$ `D2.8` (44,090 dots) $\to$ `SOLO-D2.8` (40,199 dots) $\to$ `H33` (37,654 dots).
-- H33's gain from $0.1922 \to 0.2778$ (+856 bps) was driven by two exact metric-algebraic operations:
-  1. **Poisson-disk lattice decimation at $r \approx 2.83 - 3.0$ pixels (283–300 m):** Eliminating adjacent dots along linear ribbons cuts the DTI denominator penalty $\alpha = 0.2$ per dot without reducing the triangular kernel's peak true-positive credit ($T$).
-  2. **Catalogue 2-pixel (200 m) collar deletion:** Pruning 6,436 dots within $200\text{ m}$ of mapped faults, which fall into masked zones or fail to discover new faults, reducing denominator false-positive penalties.
-  3. **Preservation of unmapped basin dots:** Maintaining **41.7% of its dots at $> 2.5\text{ km}$ ($> 25\text{ px}$) from mapped faults**, mirroring the fact that 47.17% of the footprint lies in deep alluvium where blind faults reside.
-- **Can it be beaten?** Yes. H33 achieves only $\sim 10-15\%$ true-positive precision on undiscovered faults because its base candidate was derived from simple topographic/geophysical edge-detection filters that fire on non-tectonic mimics (lake shorelines, basalt flow fronts, alluvial fan terraces). To reach **0.3539–0.4413**, a submission must replace indiscriminate geomorphic edges with a **Deep Hydro-Tectonic Conduit (DHTC)** model that couples deep magnetotelluric electrical conductivity upwellings with basement gravity steps and geodetic shear-dilation strain.
+The prior on-disk audit reports pixel-exact relationships among the archived raster files, and the algebra below derives consequences of the stated DTI form. These facts do **not** prove the organizer score receipt, causal mechanism of a score change, or performance on hidden competition labels. The score `0.2778` is owner-reported in this repository; no ORGANIZER-CONFIRMED receipt is present here.
+
+- **Raster-lineage measurement (historical):** H33 is reported as a pure subtractive subset of `H19-5` (121,131 dots) → `D2.8` (44,090) → `SOLO-D2.8` (40,199) → `H33` (37,654). The exact array comparison is in `evidence/h33_forensics_20261024.json`; this supports the lineage claim, not why the organizer score changed.
+- **Mechanistic interpretation (plausible, not causally identified):** Poisson-like spacing can remove redundant nearby predictions, reducing false-positive denominator contributions if nearby predictions already receive the same maximum-kernel credit. A 2-pixel catalogue collar can remove support near known/masked faults. These mechanisms are consistent with the reported raster lineage and metric algebra, but the score effect depends on the hidden test labels and cannot be decomposed from prediction rasters alone.
+- **Preserved off-catalogue support (historical raster measurement):** H33's stored raster has many dots far from the mapped catalogue; that is a potential route to credit for unmapped labels, not evidence that those dots are true geothermal faults. Geological mimics include Lake Lahontan shorelines, basalt-flow margins and alluvial-fan terraces.
+- **Can it be beaten?** This repository cannot establish that. H88-DHTC's historical `HOLDOUT-DTI` is `0.141378 [0.127688, 0.156112]` (`gems57-pooled-hide-v2`, 22,893 withheld positives); that is a catalogue hide-and-recover result, not a competition score and not directly comparable to H33's owner-reported `0.2778`. No evidence here proves a new raster exceeds H33 or the current leaderboard. The claim that DHTC would reach `0.3539–0.4413` is unsupported and is withdrawn as a prediction; DHTC's own holdout does not justify it.
 
 ---
 

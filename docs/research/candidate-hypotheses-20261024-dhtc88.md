@@ -3,7 +3,7 @@
 **Project:** GEMSDOE88 (DOE GEMS Challenge, DrivenData Competition 306)  
 **Date:** 2026-10-24  
 **Preregistration Record:** `registry/preregistration_dhtc88.json`  
-**Official Data Sources Verified:**
+**Official source links cited (not live-verified in the 2026-10-25 review):**
 - USGS GeoDAWN Airborne Survey: <https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and>
 - INGENIOUS Geothermal Permeability Map: <https://gbcge.org/current-projects/ingenious/>
 - DrivenData Data Specification: <https://www.drivendata.org/competitions/306/competition-doe-gems/data/>
@@ -13,15 +13,17 @@
 
 ## Ranked Hypotheses Matrix
 
+> **Evidence correction (2026-10-25):** the numeric “expected DTI gain” ranges in the original matrix were unsupported projections, not measurements or validated forecasts. They are withdrawn. H88-DHTC's recorded result is historical `HOLDOUT-DTI` only; it cannot be treated as an organizer score or as evidence of beating H33's owner-reported score. The current checkout has no `data/` directory, and the official pages were not fetched during this review. Geological interpretations below are hypotheses, not verified field evidence; confirm their source literature, layer metadata, transferability and mimics before treating them as supported.
+
 $$\begin{array}{cllccc}
 \hline
-\textbf{Rank} & \textbf{ID} & \textbf{Geological Hypothesis} & \textbf{Expected DTI Gain} & \textbf{Implementation Cost} & \textbf{Selection Status} \\
+\textbf{Rank} & \textbf{ID} & \textbf{Geological Hypothesis} & \textbf{DTI evidence status} & \textbf{Implementation Cost} & \textbf{Selection Status} \\
 \hline
-\mathbf{1} & \textbf{H88-DHTC} & \textbf{Deep Hydro-Tectonic Conduit Conjunction} & \mathbf{+500\text{ to }+800\text{ bps}} & \textbf{Low / Moderate} & \textbf{SELECTED (Primary Lane)} \\
-2 & \text{H88-ASMR} & \text{Aeromagnetic Strike-Slip Transfer \& Relay} & +300\text{ to }+500\text{ bps} & \text{Low} & \text{Candidate Queue} \\
-3 & \text{H88-TEBL} & \text{Thermal-Elastic Boundary Layer \& Curvature} & +250\text{ to }+400\text{ bps} & \text{Low} & \text{Candidate Queue} \\
-4 & \text{H88-RADX} & \text{Radiometric Hydrothermal Alteration Redox} & +200\text{ to }+350\text{ bps} & \text{Low} & \text{Candidate Queue} \\
-5 & \text{H88-FLMV} & \text{Fluvial Knickpoint \& Chi-Gradient Deflection} & +150\text{ to }+300\text{ bps} & \text{High} & \text{Candidate Queue} \\
+\mathbf{1} & \textbf{H88-DHTC} & \textbf{Deep Hydro-Tectonic Conduit Conjunction} & \mathbf{\text{Not measured}} & \textbf{Low / Moderate} & \textbf{SELECTED (Primary Lane)} \\
+2 & \text{H88-ASMR} & \text{Aeromagnetic Strike-Slip Transfer \& Relay} & \text{Not measured} & \text{Low} & \text{Candidate Queue} \\
+3 & \text{H88-TEBL} & \text{Thermal-Elastic Boundary Layer \& Curvature} & \text{Not measured} & \text{Low} & \text{Candidate Queue} \\
+4 & \text{H88-RADX} & \text{Radiometric Hydrothermal Alteration Redox} & \text{Not measured} & \text{Low} & \text{Candidate Queue} \\
+5 & \text{H88-FLMV} & \text{Fluvial Knickpoint \& Chi-Gradient Deflection} & \text{Not measured} & \text{High} & \text{Previously tested / overlaps QTSK-88} \\
 \hline
 \end{array}$$
 
@@ -45,7 +47,7 @@ $$\begin{array}{cllccc}
 - **Named Non-Fault Mimic:**
   - Highly conductive shallow saline playa brines (e.g. Humboldt and Carson Sinks) and static non-tectonic lithological density contacts (e.g. Mesozoic granitic plutons juxtaposed against Paleozoic carbonates).
 - **Data Source Verification:**
-  - Free and official: DOE GDR, USGS GeoDAWN survey, and INGENIOUS project data, fully restored on disk in `data/`.
+  - Prior research cites DOE GDR, USGS GeoDAWN survey, and INGENIOUS project data. These links were not live-verified in the 2026-10-25 review; this checkout has no `data/` directory, and current provenance/permissions must be re-established before use.
 
 ---
 
