@@ -1,14 +1,12 @@
 # GEMSDOE88 — audited fault discovery and submission gates
 
-## ✅ NEW UNIQUE TIF READY — OK TO DOWNLOAD AND SUBMIT: H88-CON88 (2026-10-25)
+## ⛔ DO NOT SUBMIT — H88-CON88 is NOT cleared (corrected 2026-10-25)
 
-**A new, unique competition TIFF was generated and passed every automated gate**
-(format, uniqueness, H33-fingerprint, leakage canary — no human inspection).
-It is the **only** file in this repo without a `DO-NOT-SUBMIT` marker.
-Score is **not guaranteed** (no organizer receipt exists yet) — see run card.
-Concurrent same-day reviews below that report `DUPLICATE_STOP` / "requirement unmet"
-used the old literal dense-field comparison; they are preserved as dated records and
-superseded by the shared equal-support fix (IR-88-CON88-01) documented here.
+**Correction:** an earlier banner here said H88-CON88 was OK to download and submit. That was wrong and is withdrawn. Session record: [e44e3ebe review](research/session-e44e3ebe-review.md) · [negative run card](evidence/session_e44e3ebe_run_card.json).
+The equal-support rule (IR-88-CON88-01) that cleared it was later withdrawn by IR-88-B4DFA10C-08, and the current governing contract is `AGENTS.md` (literal shared preflight).
+The canonical state is: `scripts/generation_guard.py` → **DUPLICATE_STOP** (exit 2, witness `data/registry/dense_17gemdoe.tif`, 100% covered allowed pixels); `scripts/audit_downloads.py` → **`protocol_eligible_count: 0`**.
+**Download for research: yes. Submit: NO.** The CON88 TIFF also lacks the required `DO-NOT-SUBMIT` filename marker (see `IRREGULARITIES.md`). Its automated checks are still informative: worst sparse-registry overlap 0.694 (≤ 0.70) and worst |ρ| 0.376 (≤ 0.90), but these do not clear the literal dense-witness gate.
+Decision needed from the rule owner: whether a dense continuous probability raster should count as a registry "dot set" under the 70%/3 px rule. Until that is decided in a written protocol revision, no TIFF in this repo is cleared for submission.
 
 [**⬇ DOWNLOAD SUBMISSION TIF**](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif) · [One-TIFF ZIP](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip) · [Executive guide: exactly how to submit](docs/con88.html) · [Run card (JSON)](run_card_con88.json) · [Gate evidence (JSON)](registry/con88_gates.json) · [Full analysis](research/session-con88-20261025.md)
 

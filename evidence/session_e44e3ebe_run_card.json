@@ -1,0 +1,70 @@
+{
+  "schema": "gems88.run-card.v1",
+  "session": "e44e3ebe",
+  "branch": "arena/e44e3ebe-gemsdoe88",
+  "checked_at_utc": "2026-10-25T18:18:08.915461+00:00",
+  "verdict": "negative",
+  "decision": "DUPLICATE_STOP",
+  "hypothesis": "None executed this session. Existing queue (registry/hypothesis_queue.json) entries SPR, AWA, CBC are not authorized to run.",
+  "mechanism": "not applicable (no candidate generated)",
+  "named_non_fault_process": "not applicable (no candidate generated)",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP"
+  },
+  "single_feature_canaries": {
+    "status": "NOT_RUN_NO_NEW_FEATURES",
+    "auc": null
+  },
+  "correlation_overlap_vs_registry": {
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.7,
+    "rank_limit": 0.9
+  },
+  "raster_sha256_new": null,
+  "existing_tif_reviewed": {
+    "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "status": "NOT_CLEARED",
+    "sparse_worst_overlap": 0.6936314866946407,
+    "sparse_worst_spearman": 0.3762046278934762,
+    "blocked_by": "dense 17GEMSDOE witness (IR-88-CON88-02)"
+  },
+  "validator_output": {
+    "preflight_exit": 2,
+    "render_decision_check": "PASS",
+    "check_site": "PASS",
+    "audit_downloads_protocol_eligible_count": 0
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "weekly_slots_used": 0,
+  "new_rasters_generated": 0,
+  "experiments_run": 0,
+  "ok_to_submit": false,
+  "organizer_confirmed": null,
+  "leaderboard_check": {
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "fetched": "2026-10-25",
+    "rank_1": {
+      "participant": "xiaofanhu",
+      "score": 0.4413
+    },
+    "rank_2": {
+      "score": 0.3916
+    },
+    "note": "Public leaderboard figures are not ORGANIZER-CONFIRMED receipts for any GEMSDOE submission."
+  },
+  "pre_existing_test_failures_on_head": [
+    "tests/test_publication_guards.py::test_current_browser_evidence_binds_actual_download_bytes_and_legacy_pages",
+    "tests/test_session_78cfb743_fixes.py::test_site_guard_rejects_broken_or_escaping_docs_markdown_links",
+    "tests/test_session_d0c3adeb_record.py::test_historical_browser_receipt_remains_a_dated_negative_record"
+  ]
+}

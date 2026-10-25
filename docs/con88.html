@@ -1,33 +1,28 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>H88-CON88 — OK to download and submit | GEMSDOE88</title>
+<title>H88-CON88 — NOT cleared, DO NOT SUBMIT | GEMSDOE88</title>
 <link rel="stylesheet" href="style.css">
 <style>.big{display:inline-block;padding:1rem 1.6rem;font-size:1.25rem;font-weight:700;background:#067d2e;color:#fff;border-radius:.6rem;text-decoration:none}.warn{background:#fff3cd;padding:1rem;border-radius:.5rem}.mono{font-family:monospace;word-break:break-all}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:.4rem .6rem}</style>
 </head><body><main style="max-width:900px;margin:2rem auto;padding:0 1rem">
-<h1>✅ OK TO DOWNLOAD AND SUBMIT</h1>
-<p><strong>H88-CON88</strong> is a <strong>new, unique</strong> submission TIF generated 2026-10-25.
-It passed all automated gates (format, uniqueness, fingerprint, leakage canary) with
-<strong>no human inspection</strong>. It is the only file here without a <span class="mono">DO-NOT-SUBMIT</span> marker.
-Its competition score is <strong>unknown until submitted</strong> — no score above H33's user-reported
-0.2778 is claimed or guaranteed.</p>
+<h1>⛔ DO NOT SUBMIT — H88-CON88 is NOT cleared</h1>
+<p class="warn"><strong>Correction (2026-10-25):</strong> an earlier version of this page said this file was OK to download and submit. That statement is withdrawn. The canonical gate ( <span class="mono">scripts/generation_guard.py</span> ) returns <strong>DUPLICATE_STOP</strong> and <span class="mono">scripts/audit_downloads.py</span> reports <strong>protocol_eligible_count: 0</strong>. The clearance depended on an equal-support rule (IR-88-CON88-01) that was later withdrawn (IR-88-B4DFA10C-08). The file also lacks the required <span class="mono">DO-NOT-SUBMIT</span> filename marker (see IRREGULARITIES.md).</p>
+<p><strong>Download for research only: YES · Submit: NO.</strong> The file is a unique, format-valid GeoTIFF, but it is not cleared under the current protocol. Clearance requires a written rule-owner decision on whether a dense probability raster counts as a registry dot set (see the README).</p>
+<p><a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif" download>Research download: .tif</a>
+&nbsp;<a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip" download>or one-TIFF .zip</a>
+&nbsp;· <a href="executive-summary.html">Current submission decision</a></p>
 
-<p><a class="big" href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif" download>⬇ DOWNLOAD SUBMISSION .TIF</a>
-&nbsp;<a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip" download>or one-TIFF .ZIP</a></p>
-
-<h2>Exactly how to submit (2 minutes)</h2>
-<ol>
-<li>Download the <span class="mono">.tif</span> above (or the ZIP — it contains only that TIF).</li>
-<li>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData competition 306 submissions page</a> → <em>New submission</em>.</li>
-<li><strong>File to submit:</strong> choose <span class="mono">gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif</span></li>
-<li><strong>Note:</strong> paste exactly:<br><span class="mono">H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card</span> (107/140 chars)</li>
-<li>Submit, then <strong>save/screenshot the receipt and score</strong> — that receipt is the only ORGANIZER-CONFIRMED evidence. Respect the weekly cap shown on that page.</li>
-</ol>
-<p class="warn"><strong>“Predicted values must be in range [0, 1]” — fixed:</strong> this file has
+<h2>Submission status</h2>
+<ul>
+<li>No weekly slot has been used for this file.</li>
+<li>No organizer receipt exists. The DrivenData submission page has not been used for this file.</li>
+<li>Do not paste the note below into the portal unless the decision above changes.</li>
+</ul>
+<p>Draft note only (107/140 chars, not approved): <span class="mono">H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card</span></p>
+<p class="warn"><strong>Format note:</strong> the file has
 <strong>no NaN anywhere</strong> (zeros outside the footprint, suffix <span class="mono">-zeros</span>),
 min 0.0 / max 1.0, one band, EPSG:32611, 3730×3292, exact sample transform — all machine-verified
-in <a href="../registry/con88_gates.json">con88_gates.json</a>. If the portal still rejects it, save the
-exact error + receipt and file it as an irregularity; do not hand-edit the TIF.</p>
+in <a href="../registry/con88_gates.json">con88_gates.json</a>. Format checks do not clear the file for submission.</p>
 
 <h2>Why this could beat 0.2778 (and why nobody can promise it)</h2>
 <p>H33 (GEMSDOE32, user-reported 0.2778) is a pure <em>subtraction</em> chain from H19-5: deleting
