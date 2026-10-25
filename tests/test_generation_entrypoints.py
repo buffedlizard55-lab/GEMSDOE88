@@ -13,6 +13,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts import generation_guard  # noqa: E402
+from scripts import con88_preflight  # noqa: E402
 
 
 def entrypoints() -> list[Path]:
@@ -41,7 +42,10 @@ def test_guard_is_first_and_reached_before_historical_cli_body(path, monkeypatch
     assert isinstance(first, ast.If), f"{path.name} can execute before the preflight"
     assert ast.unparse(first.test) == "__name__ == '__main__'"
     assert isinstance(first.body[-1], ast.Expr)
-    assert ast.unparse(first.body[-1]) == 'enforce_generation_preflight()'
+    # CON88 runners use the equal-support preflight (IR-88-CON88-01); all
+    # historical lanes keep the original literal-stop guard.
+    expected = 'enforce_con88_preflight()' if path.name.startswith('run_con88') else 'enforce_generation_preflight()'
+    assert ast.unparse(first.body[-1]) == expected
 
     class PreflightReached(Exception):
         pass
@@ -50,6 +54,7 @@ def test_guard_is_first_and_reached_before_historical_cli_body(path, monkeypatch
         raise PreflightReached
 
     monkeypatch.setattr(generation_guard, "enforce_generation_preflight", stop)
+    monkeypatch.setattr(con88_preflight, "enforce_con88_preflight", stop)
     # Imports/functions remain usable by synthetic tests, but an actual CLI
     # dispatch must encounter the shared guard before any heavy model code.
     with pytest.raises(PreflightReached):

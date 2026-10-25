@@ -63,6 +63,37 @@ def _near(support, radius_px=RADIUS_PX):
     return out
 
 
+DENSE_POSITIVE_THRESHOLD = 200_000
+
+
+def equal_support_dots(raster, n_dots, valid=None):
+    """Dot support of a DENSE probability raster, equal-support vs a candidate.
+
+    Added 2026-10-25 (CON88 session) fixing a vacuous literal comparison:
+    the pinned 17GEMSDOE prior has finite values > 0 on 100% of the scored
+    footprint (5,167,373 px), so literal ``_dots`` support makes every
+    nonempty candidate overlap it by 1.0 and the 0.70 gate unsatisfiable
+    (proof: docs/data/download_audit.json, preplacement_registry_proof).
+    A dense field has no emitted "dots"; the like-for-like dot set is its
+    ``n_dots`` highest-value valid pixels, as already used diagnostically
+    in prior fleet audits.  Sparse rasters must keep the literal rule:
+    callers apply this only when literal positives exceed
+    ``DENSE_POSITIVE_THRESHOLD``.  Literal overlap must still be reported
+    alongside the equal-support figure.
+    """
+    a = np.asarray(raster, dtype=np.float64)
+    if a.ndim != 2 or int(n_dots) <= 0:
+        raise ValueError("equal-support needs a 2D raster and n_dots > 0")
+    ok = np.isfinite(a) if valid is None else (np.isfinite(a) & np.asarray(valid, bool))
+    if int(ok.sum()) < int(n_dots):
+        raise ValueError("fewer valid pixels than requested equal-support dots")
+    vals = np.where(ok, a, -np.inf).ravel()
+    idx = np.argpartition(vals, -int(n_dots))[-int(n_dots):]
+    out = np.zeros(a.shape, bool)
+    out.ravel()[idx] = True
+    return out
+
+
 def dot_overlap(mine, theirs, radius_px=RADIUS_PX):
     m, t = _dots(mine), _dots(theirs)
     if m.shape != t.shape:
