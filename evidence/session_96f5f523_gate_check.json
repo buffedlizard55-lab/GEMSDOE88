@@ -1,0 +1,223 @@
+{
+  "schema": "gems88.gate-check.v1",
+  "checked_at_utc": "2026-10-25T18:49:43.697066+00:00",
+  "interpreter": "/home/user/GEMSDOE88/.venv/bin/python",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "scripts/audit_downloads.py",
+        "--check"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "pass": true,
+      "seconds": 26.499,
+      "output_tail": "{\"tiff_count\": 47, \"research_download_pass_count\": 47, \"additional_research_tiff_count\": 1, \"total_published_tiff_count\": 48, \"total_research_download_pass_count\": 48, \"protocol_eligible_count\": 0, \"exact_decoded_duplicate_groups\": []}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/audit_research_state.py"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "pass": true,
+      "seconds": 0.08,
+      "output_tail": "{\n  \"schema\": \"gems88.research-state-audit.v1\",\n  \"status\": \"PASS\",\n  \"source_snapshot\": {\n    \"files\": 154,\n    \"sha256\": \"208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69\"\n  },\n  \"conditional_first_choice\": \"H88-SPR\",\n  \"untested_proposals\": [\n    \"H88-SPR\",\n    \"H88-AWA\",\n    \"H88-CBC\"\n  ],\n  \"already_evaluated\": [\n    \"H88-MMRX\",\n    \"H88-MTAS\",\n    \"H88-MFS\",\n    \"H88-PGTD\"\n  ],\n  \"input_pins_checked\": false,\n  \"legacy\": {\n    \"mirrors_identical\": true,\n    \"historical_only\": true,\n    \"organizer_confirmed_score\": null,\n    \"ok_to_submit\": false,\n    \"raster_sha256\": \"81e580f13b45e1e6aa554eaf5e8c54d1e0064769ba8e7193b6e7f53e3842308a\",\n    \"prediction_bytes_changed\": false\n  },\n  \"generation_authorized\": false,\n  \"ok_to_submit\": false,\n  \"verdict\": \"negative\"\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/audit_research_state.py",
+        "--require-submit"
+      ],
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "pass": true,
+      "seconds": 0.043,
+      "output_tail": "{\n  \"schema\": \"gems88.research-state-audit.v1\",\n  \"status\": \"PASS\",\n  \"source_snapshot\": {\n    \"files\": 154,\n    \"sha256\": \"208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69\"\n  },\n  \"conditional_first_choice\": \"H88-SPR\",\n  \"untested_proposals\": [\n    \"H88-SPR\",\n    \"H88-AWA\",\n    \"H88-CBC\"\n  ],\n  \"already_evaluated\": [\n    \"H88-MMRX\",\n    \"H88-MTAS\",\n    \"H88-MFS\",\n    \"H88-PGTD\"\n  ],\n  \"input_pins_checked\": false,\n  \"legacy\": {\n    \"mirrors_identical\": true,\n    \"historical_only\": true,\n    \"organizer_confirmed_score\": null,\n    \"ok_to_submit\": false,\n    \"raster_sha256\": \"81e580f13b45e1e6aa554eaf5e8c54d1e0064769ba8e7193b6e7f53e3842308a\",\n    \"prediction_bytes_changed\": false\n  },\n  \"generation_authorized\": false,\n  \"ok_to_submit\": false,\n  \"verdict\": \"negative\"\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/render_decision.py",
+        "--check"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "pass": true,
+      "seconds": 0.071,
+      "output_tail": "PASS: canonical overview, submission guide and legacy corrections match machine evidence\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/check_site.py"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "pass": true,
+      "seconds": 0.828,
+      "output_tail": "PASS: canonical decision first, H88-BPWD record, H88-VCAZ, research bytes, archived records, Pages links and negative gates agree\n"
+    },
+    {
+      "command": [
+        "python",
+        "-O",
+        "scripts/check_site.py"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "pass": true,
+      "seconds": 1.093,
+      "output_tail": "PASS: canonical decision first, H88-BPWD record, H88-VCAZ, research bytes, archived records, Pages links and negative gates agree\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/generation_guard.py"
+      ],
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "pass": true,
+      "seconds": 1.47,
+      "output_tail": "op BEFORE feature construction, fitting, placement and writing.\",\n  \"preplacement_registry_proof\": {\n    \"evidence_class\": \"REGISTRY-MEASUREMENT\",\n    \"witness_file\": \"data/registry/dense_17gemdoe.tif\",\n    \"witness_sha256\": \"ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be\",\n    \"positive_pixels\": 5167373,\n    \"allowed_pixels\": 5106385,\n    \"uncovered_allowed_pixels\": 0,\n    \"covered_allowed_fraction\": 1.0,\n    \"universal_overlap_blocker\": true,\n    \"overlap_limit\": 0.7,\n    \"support_definition\": \"finite prediction > 0 (inherited literal support rule)\",\n    \"implication\": \"Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.\",\n    \"directly_covered_allowed_pixels\": 5106385,\n    \"directly_saturated\": true,\n    \"source_url\": \"https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif\"\n  },\n  \"generation_allowed\": false,\n  \"ok_to_submit\": false,\n  \"new_rasters_generated\": 0,\n  \"experiments_run\": 0,\n  \"weekly_slots_used\": 0,\n  \"verdict\": \"negative\",\n  \"entrypoint\": \"generation_guard.py\"\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "-O",
+        "scripts/generation_guard.py"
+      ],
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "pass": true,
+      "seconds": 1.769,
+      "output_tail": "op BEFORE feature construction, fitting, placement and writing.\",\n  \"preplacement_registry_proof\": {\n    \"evidence_class\": \"REGISTRY-MEASUREMENT\",\n    \"witness_file\": \"data/registry/dense_17gemdoe.tif\",\n    \"witness_sha256\": \"ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be\",\n    \"positive_pixels\": 5167373,\n    \"allowed_pixels\": 5106385,\n    \"uncovered_allowed_pixels\": 0,\n    \"covered_allowed_fraction\": 1.0,\n    \"universal_overlap_blocker\": true,\n    \"overlap_limit\": 0.7,\n    \"support_definition\": \"finite prediction > 0 (inherited literal support rule)\",\n    \"implication\": \"Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.\",\n    \"directly_covered_allowed_pixels\": 5106385,\n    \"directly_saturated\": true,\n    \"source_url\": \"https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif\"\n  },\n  \"generation_allowed\": false,\n  \"ok_to_submit\": false,\n  \"new_rasters_generated\": 0,\n  \"experiments_run\": 0,\n  \"weekly_slots_used\": 0,\n  \"verdict\": \"negative\",\n  \"entrypoint\": \"generation_guard.py\"\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/con88_preflight.py"
+      ],
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "pass": true,
+      "seconds": 1.615,
+      "output_tail": "top BEFORE feature construction, fitting, placement and writing.\",\n  \"preplacement_registry_proof\": {\n    \"evidence_class\": \"REGISTRY-MEASUREMENT\",\n    \"witness_file\": \"data/registry/dense_17gemdoe.tif\",\n    \"witness_sha256\": \"ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be\",\n    \"positive_pixels\": 5167373,\n    \"allowed_pixels\": 5106385,\n    \"uncovered_allowed_pixels\": 0,\n    \"covered_allowed_fraction\": 1.0,\n    \"universal_overlap_blocker\": true,\n    \"overlap_limit\": 0.7,\n    \"support_definition\": \"finite prediction > 0 (inherited literal support rule)\",\n    \"implication\": \"Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.\",\n    \"directly_covered_allowed_pixels\": 5106385,\n    \"directly_saturated\": true,\n    \"source_url\": \"https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif\"\n  },\n  \"generation_allowed\": false,\n  \"ok_to_submit\": false,\n  \"new_rasters_generated\": 0,\n  \"experiments_run\": 0,\n  \"weekly_slots_used\": 0,\n  \"verdict\": \"negative\",\n  \"entrypoint\": \"con88_preflight.py\"\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/run_con88_experiment.py"
+      ],
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "pass": true,
+      "seconds": 1.479,
+      "output_tail": "EFORE feature construction, fitting, placement and writing.\",\n  \"preplacement_registry_proof\": {\n    \"evidence_class\": \"REGISTRY-MEASUREMENT\",\n    \"witness_file\": \"data/registry/dense_17gemdoe.tif\",\n    \"witness_sha256\": \"ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be\",\n    \"positive_pixels\": 5167373,\n    \"allowed_pixels\": 5106385,\n    \"uncovered_allowed_pixels\": 0,\n    \"covered_allowed_fraction\": 1.0,\n    \"universal_overlap_blocker\": true,\n    \"overlap_limit\": 0.7,\n    \"support_definition\": \"finite prediction > 0 (inherited literal support rule)\",\n    \"implication\": \"Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.\",\n    \"directly_covered_allowed_pixels\": 5106385,\n    \"directly_saturated\": true,\n    \"source_url\": \"https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif\"\n  },\n  \"generation_allowed\": false,\n  \"ok_to_submit\": false,\n  \"new_rasters_generated\": 0,\n  \"experiments_run\": 0,\n  \"weekly_slots_used\": 0,\n  \"verdict\": \"negative\",\n  \"entrypoint\": \"run_con88_experiment.py\"\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "-O",
+        "scripts/run_con88_exp3_margin.py"
+      ],
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "pass": true,
+      "seconds": 1.759,
+      "output_tail": "FORE feature construction, fitting, placement and writing.\",\n  \"preplacement_registry_proof\": {\n    \"evidence_class\": \"REGISTRY-MEASUREMENT\",\n    \"witness_file\": \"data/registry/dense_17gemdoe.tif\",\n    \"witness_sha256\": \"ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be\",\n    \"positive_pixels\": 5167373,\n    \"allowed_pixels\": 5106385,\n    \"uncovered_allowed_pixels\": 0,\n    \"covered_allowed_fraction\": 1.0,\n    \"universal_overlap_blocker\": true,\n    \"overlap_limit\": 0.7,\n    \"support_definition\": \"finite prediction > 0 (inherited literal support rule)\",\n    \"implication\": \"Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.\",\n    \"directly_covered_allowed_pixels\": 5106385,\n    \"directly_saturated\": true,\n    \"source_url\": \"https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif\"\n  },\n  \"generation_allowed\": false,\n  \"ok_to_submit\": false,\n  \"new_rasters_generated\": 0,\n  \"experiments_run\": 0,\n  \"weekly_slots_used\": 0,\n  \"verdict\": \"negative\",\n  \"entrypoint\": \"run_con88_exp3_margin.py\"\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/con88_collar_holdout.py"
+      ],
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "pass": true,
+      "seconds": 1.511,
+      "output_tail": "EFORE feature construction, fitting, placement and writing.\",\n  \"preplacement_registry_proof\": {\n    \"evidence_class\": \"REGISTRY-MEASUREMENT\",\n    \"witness_file\": \"data/registry/dense_17gemdoe.tif\",\n    \"witness_sha256\": \"ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be\",\n    \"positive_pixels\": 5167373,\n    \"allowed_pixels\": 5106385,\n    \"uncovered_allowed_pixels\": 0,\n    \"covered_allowed_fraction\": 1.0,\n    \"universal_overlap_blocker\": true,\n    \"overlap_limit\": 0.7,\n    \"support_definition\": \"finite prediction > 0 (inherited literal support rule)\",\n    \"implication\": \"Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.\",\n    \"directly_covered_allowed_pixels\": 5106385,\n    \"directly_saturated\": true,\n    \"source_url\": \"https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif\"\n  },\n  \"generation_allowed\": false,\n  \"ok_to_submit\": false,\n  \"new_rasters_generated\": 0,\n  \"experiments_run\": 0,\n  \"weekly_slots_used\": 0,\n  \"verdict\": \"negative\",\n  \"entrypoint\": \"con88_collar_holdout.py\"\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/validate_con88.py"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "pass": true,
+      "seconds": 1.936,
+      "output_tail": "f\": true,\n  \"decision\": \"DUPLICATE_STOP\",\n  \"preplacement_registry_proof\": {\n    \"evidence_class\": \"REGISTRY-MEASUREMENT\",\n    \"witness_file\": \"data/registry/dense_17gemdoe.tif\",\n    \"witness_sha256\": \"ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be\",\n    \"positive_pixels\": 5167373,\n    \"allowed_pixels\": 5106385,\n    \"uncovered_allowed_pixels\": 0,\n    \"covered_allowed_fraction\": 1.0,\n    \"universal_overlap_blocker\": true,\n    \"overlap_limit\": 0.7,\n    \"support_definition\": \"finite prediction > 0 (inherited literal support rule)\",\n    \"implication\": \"Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.\",\n    \"directly_covered_allowed_pixels\": 5106385,\n    \"directly_saturated\": true,\n    \"source_url\": \"https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif\"\n  },\n  \"research_download_ok\": true,\n  \"ok_to_submit\": false,\n  \"approved_for_weekly_slot\": false,\n  \"verdict\": \"negative\",\n  \"historical_holdout_valid_for_promotion\": false,\n  \"new_rasters_generated\": 0,\n  \"experiments_run\": 0\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "-O",
+        "scripts/validate_con88.py",
+        "--require-submit"
+      ],
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "pass": true,
+      "seconds": 1.958,
+      "output_tail": "f\": true,\n  \"decision\": \"DUPLICATE_STOP\",\n  \"preplacement_registry_proof\": {\n    \"evidence_class\": \"REGISTRY-MEASUREMENT\",\n    \"witness_file\": \"data/registry/dense_17gemdoe.tif\",\n    \"witness_sha256\": \"ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be\",\n    \"positive_pixels\": 5167373,\n    \"allowed_pixels\": 5106385,\n    \"uncovered_allowed_pixels\": 0,\n    \"covered_allowed_fraction\": 1.0,\n    \"universal_overlap_blocker\": true,\n    \"overlap_limit\": 0.7,\n    \"support_definition\": \"finite prediction > 0 (inherited literal support rule)\",\n    \"implication\": \"Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.\",\n    \"directly_covered_allowed_pixels\": 5106385,\n    \"directly_saturated\": true,\n    \"source_url\": \"https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif\"\n  },\n  \"research_download_ok\": true,\n  \"ok_to_submit\": false,\n  \"approved_for_weekly_slot\": false,\n  \"verdict\": \"negative\",\n  \"historical_holdout_valid_for_promotion\": false,\n  \"new_rasters_generated\": 0,\n  \"experiments_run\": 0\n}\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/validate_current.py",
+        "--require-submit"
+      ],
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "pass": true,
+      "seconds": 1.599,
+      "output_tail": "962369466280304,\n  \"holdout_candidate_ci95\": [\n    0.1796859280630384,\n    0.21172913396939536\n  ],\n  \"paired_delta_vs_incumbent\": 0.0058007170779074135,\n  \"paired_delta_ci95\": [\n    0.0011738138096503488,\n    0.01010925968630497\n  ],\n  \"canary_features_tested\": 56,\n  \"canary_max_symmetric_auc\": 0.59299,\n  \"preplacement_max_abs_spearman\": 0.411902,\n  \"like_for_like_max_overlap_3px\": 0.60316,\n  \"postmerge_max_concurrent_overlap_3px\": 0.76228,\n  \"literal_registry_overlap_3px\": 1.0,\n  \"literal_duplicate\": true,\n  \"duplicate\": true,\n  \"research_download_ok\": true,\n  \"ok_to_download\": true,\n  \"ok_to_submit\": false,\n  \"approved_for_weekly_slot\": false,\n  \"verdict\": \"negative\",\n  \"status\": \"OK TO DOWNLOAD FOR RESEARCH \\u2014 DO NOT SUBMIT\",\n  \"stop_reasons\": [\n    \"UNIQUENESS (literal rule): forward 3px overlap = 1.0000 > 0.70 against the full-footprint continuous 17GEMSDOE witness\",\n    \"UNIQUENESS (post-merge concurrent stratified lanes): forward 3px overlap = 0.762280 vs GTHC-88 and 0.752000 vs QTSK-88 (pre-merge 179-raster like-for-like max was 0.603160 <= 0.70)\"\n  ],\n  \"organizer_confirmed_score\": null,\n  \"weekly_slots_used\": 0\n}\nAUTOMATIC SUBMISSION GATE: FAIL. NO UPLOAD PERMITTED.\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/validate_release.py",
+        "--require-submit"
+      ],
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "pass": true,
+      "seconds": 1.528,
+      "output_tail": "rm_match\": true,\n  \"positive_pixels\": 33167,\n  \"zip_one_matching_tif\": true,\n  \"holdout_evaluator\": \"gems57-pooled-hide-v2\",\n  \"holdout_withheld_positive_pixels\": 22893,\n  \"holdout_candidate_dti\": 0.1973138593236377,\n  \"holdout_candidate_ci95\": [\n    0.18112122147312235,\n    0.21300840516209602\n  ],\n  \"paired_delta_vs_incumbent\": 0.009426217474048953,\n  \"paired_delta_ci95\": [\n    0.001961609327303062,\n    0.016993791623975997\n  ],\n  \"holdout_dti\": 0.1973138593236377,\n  \"incumbent_best_dti\": 0.18788764184958875,\n  \"registry_forward_overlap_3px\": 1.0,\n  \"literal_registry_overlap_3px\": 1.0,\n  \"literal_duplicate\": true,\n  \"duplicate\": true,\n  \"sparse_registry_ok\": true,\n  \"distance_fingerprint_ok\": false,\n  \"ok_to_download\": true,\n  \"research_download_ok\": true,\n  \"ok_to_submit\": false,\n  \"verdict\": \"negative\",\n  \"status\": \"OK TO DOWNLOAD FOR RESEARCH \\u2014 DO NOT SUBMIT\",\n  \"stop_reasons\": [\n    \"UNIQUENESS: literal registry overlap with full-footprint witness is 1.0 > 0.70\",\n    \"FINGERPRINT: only 2.87% of final dots are >25 catalogue pixels away; requires 35%\"\n  ],\n  \"organizer_confirmed_score\": null,\n  \"weekly_slots_used\": 0\n}\nAUTOMATIC SUBMISSION GATE: FAIL. No upload permitted.\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/audit_submissions_dir.py",
+        "--require-submit"
+      ],
+      "expected_exit": 2,
+      "actual_exit": 2,
+      "pass": true,
+      "seconds": 7.595,
+      "output_tail": "{\n  \"schema\": \"gems88.submissions-dir-audit.v1\",\n  \"directory\": \"submissions\",\n  \"tiff_count\": 20,\n  \"zip_count\": 20,\n  \"pass_count\": 20,\n  \"sample_inputs_verified\": true,\n  \"orphan_zips\": [],\n  \"top_level_errors\": [],\n  \"protocol_eligible_count\": 0,\n  \"all_packages_safe\": true\n}\nDO NOT SUBMIT: submissions/ contains only negative DO-NOT-SUBMIT research archives.\n"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/readiness.py"
+      ],
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "pass": true,
+      "seconds": 1.542,
+      "output_tail": "{\n  \"evidence_schema_complete\": true,\n  \"approved_for_weekly_slot\": false,\n  \"status\": \"BLOCKED\",\n  \"problems\": [\n    \"UNIQUENESS: literal registry overlap exceeds 0.70\",\n    \"UNIQUENESS: post-merge concurrent-lane overlap exceeds 0.70\"\n  ],\n  \"ok_to_download_for_research\": true,\n  \"ok_to_submit\": false,\n  \"raster_sha256\": \"db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf\",\n  \"policy\": \"binding-literal-all-registry-v1 + concurrent-lane overlap\",\n  \"run_card\": \"registry/tdkl88_run_card.json\",\n  \"current_review\": \"data/session_96f5f523_run_card.json\",\n  \"current_review_status\": \"DUPLICATE_STOP\",\n  \"research_queue\": \"data/hypothesis_queue.json\",\n  \"historical_review\": \"data/repo_review_20261025.json\",\n  \"new_tif_generated\": false,\n  \"new_tif_sha256\": null,\n  \"current_review_note\": \"No new TIFF can satisfy the literal 17GEMSDOE overlap gate; archived current-release file remains research-only.\"\n}\n"
+    }
+  ],
+  "status": "PASS",
+  "initial_harness_issue": "The audit harness resolved the venv interpreter symlink to system Python, bypassing the installed environment (ModuleNotFoundError: numpy/rasterio). No gate denial was interpreted as a pass.",
+  "ok_to_submit": false,
+  "new_rasters_generated": 0,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "integration_base": "f67fb31fa256e97e0c28eb9fcda5e16055dbf92f"
+}

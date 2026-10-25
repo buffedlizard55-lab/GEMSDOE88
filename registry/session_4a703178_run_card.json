@@ -52,10 +52,10 @@
     "status": "SAFE_TO_DOWNLOAD_FOR_RESEARCH_ONLY_DO_NOT_SUBMIT",
     "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
     "raster_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
-    "zip_sha256": "6d5dbf761a81d3ee2e3228da737ad1a2a76c732c5bec42867e00c50a364c864c",
+    "zip_sha256": "73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb",
     "literal_overlap": 1.0,
     "historical_equal_support_overlap": 0.6936314866946407,
-    "clearance_withdrawal": "evidence/con88_clearance_withdrawal_20261025.json"
+    "clearance_withdrawal": "evidence/con88_clearance_withdrawal_96f5f523.json"
   },
   "automated_validator_output": {
     "generation_guard": {
@@ -96,34 +96,41 @@
     "passes_completed": 3,
     "status": "PASS",
     "pass_1": {
-      "scope": "CON88 revocation, package audit, preflight, focused safety tests",
-      "result": "PASS after regenerating the 48-package audit"
+      "scope": "Independent literal-stop reproduction, CON88 exception trace, package quarantine and focused review before concurrent-main integration.",
+      "result": "PASS; no experiment, new raster or slot."
     },
     "pass_2": {
-      "scope": "Adversarial integrated review of isolated-site fixtures, immutable browser evidence, startup aliases, and strict validator exits",
-      "first_full_suite": "875 passed, 23 skipped, 7 failed; failures exposed readiness.py reverting the current status and therefore selecting stale browser evidence",
-      "fix": "Made readiness.py reproduce the current negative review pointer and reran a real seven-case browser audit; no historical receipt rewritten."
+      "scope": "Review and merge current main through PRs #181/#182; resolve overlapping correction in favor of canonical main evidence; retain additive startup-audit fix.",
+      "result": "PASS; duplicate correction receipt removed and canonical hashes adopted."
     },
     "pass_3": {
-      "scope": "Final full repository suite plus normal/optimized site guards and machine audits",
+      "scope": "Post-merge full suite, machine audits, expected-exit gates, normal/optimized site checks and fresh browser audit.",
       "full_test_result": {
-        "passed": 883,
+        "passed": 905,
         "skipped": 23,
         "failed": 0,
-        "warnings": 64,
-        "duration_seconds": 243.98
+        "warnings": 70,
+        "duration_seconds": 256.44
+      },
+      "focused_regression_result": {
+        "passed": 26,
+        "failed": 0
       },
       "download_audit": "48/48 research packages pass; 0 protocol eligible",
+      "research_state_with_input_pins": "PASS",
+      "renderer": "PASS",
+      "site_guard_normal": "PASS",
+      "site_guard_optimized": "PASS",
       "generation_guard_expected_exit": 2,
       "con88_require_submit_expected_exit": 2,
-      "site_guard_normal": "PASS",
-      "site_guard_optimized": "PASS"
+      "startup_audit": "STOP_NO_NEW_VARIANTS; current output in .cache only"
     },
     "browser_evidence": "evidence/session_4a703178_browser_check.json",
-    "browser_checked_at_utc": "2026-10-25T18:54:40.605Z",
+    "browser_checked_at_utc": "2026-10-25T19:07:06.437Z",
     "browser_status": "PASS",
     "browser_cases": 7,
-    "browser_receipt_sha256": "5c597036a3940de6b78daaf8862e429a88c645ea654e0829aa62c8640ba3df69",
+    "browser_receipt_sha256": "19192a13048f63c422ebfd04f58260a598284f2e16d4bdb1bc9f63c5de280fb0",
+    "historical_startup_receipt_sha256": "047ded080ae3e45932683a18fcd93216a945c0bd572c91d7b9c542471ff12798",
     "historical_startup_receipt_unchanged": true
   },
   "limitations": [
@@ -139,5 +146,11 @@
     "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
     "ok_to_download_for_research": true,
     "ok_to_submit": false
+  },
+  "integration": {
+    "origin_main_merged": "3635e1086837f12a642c0a6ffc2b12d4a876d9c0",
+    "canonical_con88_correction": "IR-88-96F5F523-01",
+    "canonical_public_review": "registry/session_96f5f523_run_card.json",
+    "relationship": "Additive post-merge audit; does not create a competing clearance or rerun CON88."
   }
 }

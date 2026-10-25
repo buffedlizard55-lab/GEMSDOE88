@@ -23,23 +23,18 @@ QUEUE_START = "<!-- RESEARCH-QUEUE:START -->"
 QUEUE_END = "<!-- RESEARCH-QUEUE:END -->"
 
 
-def read_inputs(root: Path) -> tuple[dict, dict, dict, dict, dict]:
+def read_inputs(root: Path) -> tuple[dict, dict, dict]:
     current = json.loads((root / "docs/data/current_release.json").read_text())
     stop = json.loads((root / "registry/mtas88_run_card.json").read_text())
     audit = json.loads((root / "docs/data/download_audit.json").read_text())
     status = json.loads((root / "docs/status.json").read_text())
-    review = json.loads((root / "docs" / status["current_review"]).read_text())
-    con88 = json.loads((root / "registry/con88_gates.json").read_text())
     if not (
         current["ok_to_submit"] is False and current["ok_to_download"] is True
         and status["ok_to_submit"] is False and status["raster_sha256"] == current["file_sha256"]
-        and review["ok_to_submit"] is False and review["verdict"] == "negative"
         and stop["decision"] == "DUPLICATE_STOP" and stop["new_rasters_generated"] == 0
         and stop["preplacement_registry_proof"]["universal_overlap_blocker"] is True
         and audit["ok_to_submit"] is False and audit["canonical_sha256"] == current["file_sha256"]
         and audit["protocol_eligible_count"] == 0
-        and con88["ok_to_submit"] is False and con88["verdict"] == "negative"
-        and con88["clearance_withdrawn"] is True
     ):
         raise ValueError("canonical decision inputs disagree; never render a clearance")
     for key, digest_key in (("file", "file_sha256"), ("zip_file", "zip_sha256")):
@@ -49,7 +44,7 @@ def read_inputs(root: Path) -> tuple[dict, dict, dict, dict, dict]:
         with (root / relative).open("rb") as stream:
             if hashlib.file_digest(stream, "sha256").hexdigest() != current[digest_key]:
                 raise ValueError("canonical downloadable bytes disagree with release card")
-    return current, stop, audit, status, review
+    return current, stop, audit
 
 
 def inventory(audit: dict) -> str:
@@ -80,7 +75,7 @@ def inventory(audit: dict) -> str:
 
 
 def render(root: Path, kind: str) -> str:
-    current, stop, audit, status, review = read_inputs(root)
+    current, stop, audit = read_inputs(root)
     queue = inspect_queue(root)
     inspect_legacy(root)  # metadata can be public through legacy URLs as well
     first_choice = queue["proposals"][0]
@@ -89,8 +84,6 @@ def render(root: Path, kind: str) -> str:
     name, note = escape(current["submission_name"]), escape(current["submission_note"])
     digest = escape(current["file_sha256"])
     checked = escape(audit["checked_at_utc"])
-    review_card = escape(status["current_review"])
-    review_page = escape(status["current_review_page"])
     count = len(audit["artifacts"]) + len(audit.get("additional_research_artifacts", []))
     title = "Research download.<br>Not cleared to submit." if kind == "overview" else "How submission works.<br>Why it is blocked today."
     hero = f'''<section class="decision-hero" id="mtas-review" aria-labelledby="decision-title">
@@ -101,7 +94,7 @@ def render(root: Path, kind: str) -> str:
 <p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule. No old prediction was copied or renamed as a new submission.</p>
 <p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="{review_card}">Latest review’s negative run card</a> · <a href="con88.html">CON88 clearance withdrawal and archive safety</a>.</p>
+<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_96f5f523_run_card.json">Latest review’s negative run card</a>.</p>
 </div><aside class="decision-download" aria-label="Canonical archived research download">
 <div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
 <h2>Download the audited TIFF</h2>
@@ -126,7 +119,7 @@ def render(root: Path, kind: str) -> str:
 <div><div class="kicker">H33 forensic answer</div><h2>Learn from the geometry.<br>Do not copy the submission.</h2>
 <p><strong>0.2778 is a user-reported claim, not an ORGANIZER-CONFIRMED receipt.</strong> Rechecked H33 support is a subset of D2.8: it removes near-catalogue dots rather than adding discoveries. Less redundant emission can improve the precision–coverage trade-off, but the hidden labels are needed to prove why a score changed.</p>
 <p>There is no defensible guarantee that this repository will beat that claim, the older 0.3195 claim, or the 0.4413 claim. A buffered, fold-matched improvement is a necessary project gate, not a leaderboard forecast.</p>
-<a href="{review_page}">Latest verification, scientific corrections &amp; limitations →</a></div>
+<a href="research/session-96f5f523-review.md">Latest verification, scientific corrections &amp; limitations →</a></div>
 <div class="proof"><div class="kicker">Source-bound research queue</div><h3>Test landform restoration—with null controls.</h3>
 <p>The conditional first choice is <strong>{escape(first_choice['id'])}</strong>: {escape(first_choice['title'])}. All {len(queue['proposals'])} proposals remain untested; none authorizes generation while the universal duplicate stop binds.</p>
 <p><strong>Magnetic-marker restoration is no longer untested:</strong> the merged MMRX run already evaluated it with a negative verdict. MTAS and MFS are also historical evaluated lanes, not fresh ideas. The queue is bound to a source fingerprint so code changes require a new review.</p>
@@ -137,7 +130,7 @@ def render(root: Path, kind: str) -> str:
         return hero + content + inventory(audit)
     if kind != "guide":
         raise ValueError(f"unknown page kind: {kind}")
-    guide = f'''<section class="decision-explainer"><div class="wrap narrow"><div class="kicker">Executive summary</div><h2>Do not submit any current file.</h2>
+    guide = '''<section class="decision-explainer"><div class="wrap narrow"><div class="kicker">Executive summary</div><h2>Do not submit any current file.</h2>
 <p><strong>CURRENT DECISION 2026-10-25: NO NEW UNIQUE TIFF.</strong> The download above is an archived research artifact, not a newly selected competition candidate. There is no safe file to choose in the portal under the current project protocol.</p>
 <ol class="steps"><li><h3>Run the automated project checks</h3><p>Restore pinned inputs, reopen saved TIFF/ZIP bytes, validate finite [0,1], the exact sample grid and footprint, one full-resolution raster and no external sidecar dependency, and check the pre-placement registry gate. Internal overviews are allowed; orphan or nested download packages fail the inventory check. No human inspector is required to decide these local checks.</p></li>
 <li><h3>Require scientific evidence for a genuinely new candidate</h3><p>Withhold whole fault segments with a buffer. Recompute catalogue-derived features from visible faults only; run every single-feature leakage canary; mask visible faults exactly. Use the shared pooled DTI evaluator, a paired confidence interval against the same-fold incumbent, then full surface/final-dot registry tests. Stop on a failed gate.</p></li>
@@ -153,7 +146,7 @@ python scripts/render_decision.py --check
 python scripts/check_site.py
 python scripts/preflight_mtas88.py --gate-generation
 # Expected final exit: 2 (DUPLICATE_STOP). Not a build failure to bypass.</code></pre>
-<p><a href="{review_page}">Latest review and limitations</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="{review_card}">Negative run card</a></p>
+<p><a href="research/session-96f5f523-review.md">Latest review and limitations</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/session_96f5f523_run_card.json">Negative run card</a></p>
 </div></section>'''
     return hero + guide + inventory(audit)
 

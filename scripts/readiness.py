@@ -128,18 +128,15 @@ def current_status(root=ROOT):
         'raster_sha256': report['file_sha256'],
         'policy': 'binding-literal-all-registry-v1 + concurrent-lane overlap',
         'run_card': 'registry/tdkl88_run_card.json',
-        'current_review': 'data/session_4a703178_run_card.json',
-        'current_review_page': 'research/session-4a703178-review.md',
+        'current_review': 'data/session_96f5f523_run_card.json',
         'current_review_status': 'DUPLICATE_STOP',
         'research_queue': 'data/hypothesis_queue.json',
         'historical_review': 'data/repo_review_20261025.json',
         'new_tif_generated': False,
         'new_tif_sha256': None,
-        'con88_clearance_withdrawn': True,
-        'protocol_eligible_packages': 0,
         'current_review_note': (
-            'CON88 equal-support clearance withdrawn; its unchanged TIFF is a visibly '
-            'negative research archive. No new TIFF, experiment, or slot.'
+            'No new TIFF can satisfy the literal 17GEMSDOE overlap gate; '
+            'archived current-release file remains research-only.'
         ),
     }
 

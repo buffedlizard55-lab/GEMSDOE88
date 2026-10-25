@@ -1,0 +1,53 @@
+{
+  "schema": "gems88.run-card.session-222254a5.v1",
+  "session": "arena/222254a5-gemsdoe88",
+  "date_utc": "2026-10-25",
+  "hypothesis": "The binding DUPLICATE_STOP is a definition artifact: a dense continuous prior (>0 on 100% of the footprint) has no emitted dots, so literal >0-support overlap is 1.0 for every candidate including the known scorer H33. Like-for-like equal-support top-N comparison is the operative duplication test, under which H88-CON88 is unique.",
+  "mechanism": "Recomputed with vendor/gems57/uniqueness.py exact functions: dot_overlap (literal), equal_support_dots (top-N), surface_rho, on SHA-pinned restored inputs; generation guard honoured (exit 2, no generation).",
+  "named_non_fault_mimic": "Not applicable to the measurement claim; falsification would be H33 literal overlap < 1.0 vs the dense witness (measured 1.0). For CON88's geology, the named mimic remains shared-input lithologic contacts / Lahontan shoreline benches corroborated across fleet surfaces (run_card_con88.json).",
+  "holdout_DTI": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "candidate_con88_per_fold_reemission": {"dti": 0.001713781485367719, "ci95": [0.00132506022049732, 0.0021425000587548364], "n_withheld": 60988, "source": "run_card_con88.json (stored, not rerun)"},
+    "repo_record_bpwd": {"dti": 0.2059906799008455, "ci95": [0.18810523423482492, 0.22334363824908246], "n_withheld": 22893, "source": "registry/bpwd88_run_card.json (stored, not rerun)"},
+    "beats_holdout_best": false,
+    "calibration_note": "Same evaluator scores fixed H33 TIF at 0.0067 (stored) despite USER-REPORTED public 0.2778; hide-and-recover of catalogued faults cannot rank blind-fault seekers. Disclosed, not used to claim a score."
+  },
+  "leakage_canary": {"source": "run_card_con88.json (stored)", "max_symmetric_auc": 0.6305887545500755, "limit": 0.9, "rerun_this_session": false, "rerun_blocker": "validate_con88.py canary surfaces live in uncommitted .cache/; validator now fails closed (exit 1 AUDIT_ERROR) instead of traceback — IR fix in scripts/validate_con88.py + tests/test_validate_con88_failclosed.py"},
+  "correlation_overlap_vs_registry": {
+    "con88_vs_h33_dot_overlap_3px_measured": 0.4874116959685558,
+    "con88_vs_dense17_equal_support_overlap_3px_measured": 0.052584054814893505,
+    "con88_vs_dense17_literal_overlap_3px_measured": 1.0,
+    "h33_vs_dense17_literal_overlap_3px_measured": 1.0,
+    "con88_vs_dense17_spearman_full_footprint_measured": 0.04795771736458876,
+    "worst_equal_support_stored": {"file": "data/registry/gems49_gate_ortho.tif", "overlap": 0.6936314866946407, "spearman": 0.3762046278934762, "flag": "0.006 below the 0.70 limit — thin margin"},
+    "limits": {"overlap": 0.7, "abs_rho": 0.9},
+    "evidence": "evidence/session_222254a5_measurements.json"
+  },
+  "raster_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "validator_output": {
+    "format_measured_this_session": "1 band float32, EPSG:32611, 3730x3292, transform exact vs sample, finite everywhere, values in [0,1] (subset {0,1}), 37654 dots, 0 outside footprint, 0 on catalogue",
+    "generation_guard": "exit 2 DUPLICATE_STOP (literal rule, witness covers 5106385/5106385 allowed px)",
+    "validate_con88_after_fix": "exit 1 AUDIT_ERROR on missing .cache/con88_consensus.npy; gates file not overwritten",
+    "audit_downloads_check": "47+1 TIFFs pass local research checks; protocol_eligible_count=0",
+    "render_decision_check": "PASS",
+    "check_site": "PASS"
+  },
+  "submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
+  "submission_note": "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card",
+  "submission_note_length": 107,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "new_tif_generated_this_session": false,
+  "experiments_run_this_session": 0,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "user_reported_reference_scores": {"h33_gemsdoe32": 0.2778, "leaderboard_top_stale": 0.4413},
+  "irregularities_flagged": [
+    "IR-88-222254A5-01: literal dense-support uniqueness is vacuous (rejects H33 itself); selector must adopt equal-support for dense priors to unblock any candidate",
+    "IR-88-222254A5-02: CON88 TIFF lacks the -DO-NOT-SUBMIT filename marker while submission is blocked; flagged, not renamed (hash/link integrity)",
+    "IR-88-222254A5-03: PROMPT.md top handoff still claims CON88 OK TO SUBMIT; superseded by README/docs/status.json"
+  ],
+  "next_action": "Selector decides IR-88-222254A5-01 (equal-support protocol revision) and the blind-seeker holdout exemption; only then may CON88 (already format- and uniqueness-validated) use a weekly slot. Otherwise run H88-SPR (registry/hypothesis_queue.json rank 1) after the preflight definition is fixed.",
+  "verdict": "negative"
+}

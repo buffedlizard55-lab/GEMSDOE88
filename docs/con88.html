@@ -1,36 +1,18 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>H88-CON88 archive — DO NOT SUBMIT | GEMSDOE88</title>
-<link rel="stylesheet" href="style.css">
-<style>.big{display:inline-block;padding:1rem 1.6rem;font-size:1.15rem;font-weight:700;background:#7a4b00;color:#fff;border-radius:.6rem;text-decoration:none}.warn{background:#fff3cd;border-left:.35rem solid #b76e00;padding:1rem;border-radius:.25rem}.mono{font-family:monospace;word-break:break-all}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:.45rem .6rem;text-align:left}.bad{color:#8b0000}</style>
-</head><body><main style="max-width:900px;margin:2rem auto;padding:0 1rem">
-<p><a href="index.html">← GEMSDOE88 decision</a></p>
-<h1>H88-CON88: research archive only</h1>
-<p class="warn"><strong class="bad">DO NOT SUBMIT.</strong> CON88's former equal-support clearance was withdrawn. The binding literal registry witness, <span class="mono">17GEMSDOE</span>, is positive on all <strong>5,106,385</strong> allowed pixels. Every nonempty candidate therefore has literal overlap <strong>1.0</strong>, above the required <strong>0.70</strong> stop threshold. The shared guard returns <code>DUPLICATE_STOP</code>.</p>
-<p>The TIFF is safe to download for research because its package is machine-checked, finite, in <code>[0,1]</code>, and visibly marked <code>DO-NOT-SUBMIT</code>. “Safe to download” is not permission to upload it to DrivenData. No organizer-confirmed score exists and no weekly slot was spent.</p>
-<p><a class="big" href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif" download>Download negative research TIFF</a>
-&nbsp;<a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip" download>one-TIFF ZIP</a></p>
-<p><strong>Archived TIFF SHA-256:</strong> <span class="mono">e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68</span>. Renaming did not alter the TIFF bytes. The ZIP was repacked only so extraction retains the negative filename.</p>
-
-<h2>Machine decision</h2>
-<table>
-<tr><th>Check</th><th>Result</th><th>Meaning</th></tr>
-<tr><td>Format: one band, EPSG:32611, 3730×3292, exact transform, finite values in [0,1]</td><td>PASS</td><td>Valid research raster format</td></tr>
-<tr><td>Literal support overlap vs pinned 17GEMSDOE witness</td><td class="bad"><strong>1.0000 &gt; 0.70 — STOP</strong></td><td>Binding duplicate gate fails</td></tr>
-<tr><td>Historical equal-support overlap</td><td>0.693631 vs GEMSDOE49</td><td>Diagnostic only; cannot override literal failure</td></tr>
-<tr><td>Historical worst |Spearman ρ|</td><td>0.376205</td><td>Diagnostic only</td></tr>
-<tr><td>Historical HOLDOUT-DTI</td><td>0.0017 [0.0013, 0.0021], <code>gems57-pooled-hide-v2</code>, n=60,988</td><td>Not a promotion; below the repository holdout best</td></tr>
-<tr><td>Organizer-confirmed score</td><td>None</td><td>No receipt, no score claim</td></tr>
-<tr><td>Submission verdict</td><td class="bad"><strong>negative / ok_to_submit=false</strong></td><td>Do not use a weekly slot</td></tr>
-</table>
-<p>Automated replay: <code>python scripts/validate_con88.py</code> validates the negative research archive; <code>python scripts/validate_con88.py --require-submit</code> exits nonzero. Candidate generation remains blocked before feature construction by <code>scripts/generation_guard.py</code>.</p>
-
-<h2>What H33's user-reported 0.2778 can—and cannot—tell us</h2>
-<p>The repository can verify H33's construction lineage, but it has no organizer receipt for 0.2778. H33 was formed by subtraction from an earlier raster: dots within two pixels of the visible catalogue were removed, leaving 37,654 positives and zero on-catalogue pixels. Under the asymmetric DTI objective, removing a true false-positive decreases the denominator's 0.2-weighted penalty without reducing triangular-kernel truth credit. Its roughly 300 m lattice spacing also limits redundant nearby predictions because truth credit takes a local maximum whereas false-positive mass accumulates. These mechanisms make the reported improvement geologically and metrically plausible.</p>
-<p>They do <strong>not</strong> prove causality, hidden-test transfer, or the 0.2778 value. The score remains user-reported; the 0.2747 value in H33's source record is explicitly a projection. Correlations across the historical fleet are observational and confounded by shared ancestry and inputs. Only an actual organizer receipt could establish an organizer-confirmed score.</p>
-
-<h2>Why the old clearance was irregular</h2>
-<p>The old validator replaced the literal support test with a top-N equal-support comparison for dense probability rasters. That can be useful as a sensitivity diagnostic, but the user's stated rule applies to <em>any</em> registry raster and did not authorize a dense-raster exemption. The correction preserves all scientific measurements while revoking only the unsupported policy conclusion. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/evidence/con88_clearance_withdrawal_20261025.json">withdrawal receipt</a>, <a href="https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/run_card_con88.json">negative run card</a>, <a href="data/download_audit.json">download audit</a>, and <a href="sources.html">source/provenance notes</a>.</p>
-<p class="warn"><strong>Executive action:</strong> download only for research review; do not rename, hand-edit, or submit this archive. Wait for a genuinely eligible candidate whose complete automated gate passes under an authorized protocol.</p>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CON88 archive — DO NOT SUBMIT | GEMSDOE88</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><main class="wrap"><h1>CON88 is archived research — DO NOT SUBMIT</h1>
+<p><strong>Research download: yes. Competition submission: no.</strong> The earlier equal-support clearance is withdrawn.
+The binding literal registry witness covers every allowed pixel. An automated format pass cannot authorize a competition slot.</p>
+<p><a href="index.html">Current decision</a> · <a href="executive-summary.html">Executive submission guide</a></p>
+<p><a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif" download>Download archived research TIFF — DO NOT SUBMIT</a> ·
+<a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip" download>Research ZIP</a></p>
+<h2>What changed</h2>
+<ul><li>IR-88-96F5F523-01 removes the CON88 generation and publication exemptions.</li>
+<li>The existing TIFF pixels and bytes are unchanged. Only the negative filename, ZIP member and metadata were repaired; this is not a new submission.</li>
+<li>The earlier fixed-prediction diagnostic used full-catalogue masking. It is not the required visible-only hide-and-recover evaluation and does not establish improvement.</li>
+<li>Shared preflight and saved-byte checks run without human inspection. Their result is negative; no weekly slot has been selected.</li></ul>
+<p>Archived TIFF SHA-256: <code style="overflow-wrap:anywhere">e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68</code>.</p>
+<p>Read-only verification: <code>python scripts/validate_con88.py</code>. The separate <code>--require-submit</code> gate must exit 2.</p>
+<p><a href="data/session_96f5f523_run_card.json">Negative review run card</a> · <a href="research/session-96f5f523-review.md">Review, sources and limitations</a></p>
 </main></body></html>

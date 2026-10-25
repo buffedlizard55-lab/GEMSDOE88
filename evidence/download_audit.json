@@ -1,6 +1,6 @@
 {
   "schema": "gems88.download-audit.v2",
-  "checked_at_utc": "2026-10-25T18:38:53.850624+00:00",
+  "checked_at_utc": "2026-10-25T18:31:23.399936+00:00",
   "scope": "Every TIFF in docs/downloads and docs/research-variants, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
   "preplacement_registry_proof": {
     "evidence_class": "REGISTRY-MEASUREMENT",
@@ -430,7 +430,7 @@
       "decoded_float32_sha256": "aadae21c87978ad5c4d3ff905aa3cc2c376cc3164d2a2c47030168abaa6f6572",
       "positive_support_sha256": "13f8f4e27f1162f6b2db5bc8e1304871ada0a274351abea064e0eed5116102d2",
       "zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
-      "zip_sha256": "6d5dbf761a81d3ee2e3228da737ad1a2a76c732c5bec42867e00c50a364c864c",
+      "zip_sha256": "73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
       "cleared_by_con88_gates": false,

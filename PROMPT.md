@@ -1,6 +1,6 @@
-## Current session handoff — 2026-10-25, literal stop restored
+## Current session handoff — 2026-10-25: CON88 clearance withdrawn
 
-> **CON88 CLEARANCE WITHDRAWN — DO NOT SUBMIT:** the archived TIFF is now `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif` (unchanged TIFF SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). Its historical equal-support overlap `0.693631` is diagnostic only. The binding literal `17GEMSDOE` witness covers all 5,106,385 allowed pixels, making overlap `1.0 > 0.70`; the shared guard returns `DUPLICATE_STOP`. The TIFF/ZIP are safe to download only as negative research archives and must not be uploaded to the competition. See `evidence/con88_clearance_withdrawal_20261025.json`, `run_card_con88.json`, and `docs/con88.html`. No experiment or weekly slot was used by this correction.
+**NO TIFF IS CLEARED TO SUBMIT.** IR-88-96F5F523-01 removes the CON88 equal-support generation, validator, and publication exceptions. Its TIFF bytes are unchanged; the archived TIFF/ZIP and ZIP member now carry `DO-NOT-SUBMIT`. See `evidence/con88_clearance_withdrawal_96f5f523.json`. Re-run the shared literal generation preflight before any feature work. The earlier CON88 promotion was invalid under the unchanged user protocol, and its fixed full-catalogue-masked diagnostic does not establish holdout improvement. No new TIFF or competition slot is produced by this repair.
 
 ## Current session handoff — 2026-10-25, 693b10af
 

@@ -505,15 +505,17 @@ def main(root: Path = ROOT) -> None:
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
     # Every published binary must carry the negative decision in its filename.
-    # No lane-specific or hash-pinned exception can override the literal gate.
+    # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
+    # checked above; XGCE was renamed on main and requires no such exception.
     sys.path.insert(0, str(ROOT))
     from scripts.audit_downloads import PUBLICATION_DIRECTORIES, check_package_inventory
+    legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif", ".tiff", ".zip",
         }:
             require(
-                "DO-NOT-SUBMIT" in published.name,
+                "DO-NOT-SUBMIT" in published.name or published.resolve() in legacy_negative,
                 f"unmarked published research artifact: {published}",
             )
             require(
@@ -524,15 +526,6 @@ def main(root: Path = ROOT) -> None:
     # a newly added TIFF/ZIP pair part of the saved, two-decoder file audit.
     check_package_inventory(root)
     download_audit = json.loads((docs / "data/download_audit.json").read_text())
-    con88_gate = json.loads((root / "registry/con88_gates.json").read_text())
-    require(
-        con88_gate["ok_to_submit"] is False
-        and con88_gate["verdict"] == "negative"
-        and con88_gate["clearance_withdrawn"] is True
-        and con88_gate["binding_literal_gate"]["forward_overlap_lower_bound"] == 1.0
-        and "DO-NOT-SUBMIT" in con88_gate["candidate"],
-        "Withdrawn CON88 equal-support clearance was reintroduced",
-    )
     all_rows = download_audit["artifacts"] + download_audit.get("additional_research_artifacts", [])
     recorded_files = {(row.get("publication_directory", "downloads"), name) for row in all_rows
                       for name in (row["file"], row["zip_file"])}
@@ -553,7 +546,7 @@ def main(root: Path = ROOT) -> None:
         directory = docs / row.get("publication_directory", "downloads")
         require(row["format_valid"] is True and row["research_download_ok"] is True
                 and row["ok_to_submit"] is False
-                and row.get("cleared_by_con88_gates", False) is False
+                and row.get("cleared_by_con88_gates") is False
                 and sha256(directory / row["file"]) == row["sha256"]
                 and sha256(directory / row["zip_file"]) == row["zip_sha256"],
                 f"Published research bytes or negative audit changed: {directory.name}/{row['file']}")

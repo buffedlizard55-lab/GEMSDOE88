@@ -130,7 +130,7 @@
       }
     ]
   },
-  "G2_ok": true,
+  "G2_ok": false,
   "G3_fingerprint": {
     "share_gt25": 0.4174058532957986,
     "share_le3": 0.0,
@@ -230,7 +230,8 @@
         "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
       }
     },
-    "caveat": "fixed predictions on label-blind quadrant whole-component folds; candidate collar used full-catalogue distance so holdout is conservative (underestimate)"
+    "caveat": "Fixed predictions and full-catalogue collar are not visible-only hide-and-recover; no causal lower-bound claim is justified.",
+    "usable_for_promotion": false
   },
   "leakage_canary": {
     "consensus": {
@@ -248,29 +249,17 @@
   },
   "canary_ok": true,
   "ok_to_submit": false,
-  "schema": "gems88.con88-gates.v2-withdrawn",
-  "historical_candidate_filename": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
-  "historical_equal_support_gate": {
-    "status": "DIAGNOSTIC_ONLY_NOT_BINDING_CLEARANCE",
-    "worst_overlap": 0.6936314866946407,
-    "worst_overlap_file": "data/registry/gems49_gate_ortho.tif",
-    "worst_abs_spearman": 0.3762046278934762,
-    "threshold_overlap": 0.7,
-    "threshold_abs_spearman": 0.9,
-    "historical_pass": true
-  },
-  "binding_literal_gate": {
-    "status": "FAIL_DUPLICATE_STOP",
-    "witness": "data/registry/dense_17gemdoe.tif",
-    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
-    "support_definition": "finite prediction > 0",
-    "allowed_pixels": 5106385,
-    "covered_allowed_pixels": 5106385,
-    "forward_overlap_lower_bound": 1.0,
-    "limit": 0.7
-  },
-  "clearance_withdrawn": true,
-  "withdrawal_record": "evidence/con88_clearance_withdrawal_20261025.json",
   "approved_for_weekly_slot": false,
-  "verdict": "negative"
+  "verdict": "negative",
+  "historical_only": true,
+  "literal_overlap_3px": 1.0,
+  "decision": "DUPLICATE_STOP",
+  "correction": {
+    "id": "IR-88-96F5F523-01",
+    "record": "evidence/con88_clearance_withdrawal_96f5f523.json",
+    "prediction_bytes_changed": false
+  },
+  "historical_holdout_valid_for_promotion": false,
+  "historical_holdout_limitation": "Fixed predictions and full-catalogue collar are not visible-only hide-and-recover; no causal lower-bound claim is justified.",
+  "submission_note": "Historical CON88 consensus artifact; literal duplicate; not valid hide-and-recover evidence; DO NOT SUBMIT"
 }

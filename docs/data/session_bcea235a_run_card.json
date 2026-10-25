@@ -1,0 +1,119 @@
+{
+  "schema": "gems88.session-review.v1",
+  "run_id": "GEMSDOE88-REVIEW-BCEA235A-20261025",
+  "branch": "arena/bcea235a-gemsdoe88",
+  "base_commit": "5b9397ba79be00164ab71e6145df777ffc607ea0",
+  "reviewed_at_utc": "2026-10-25T18:37:33Z",
+  "lane": "H88-CON88 verification + binding duplicate-stop review",
+  "hypothesis": "Dots corroborated by >=2 mutually independent high-scoring fleet surfaces (GEMSDOE49/GEMSDOE70/GEMSDOE88-BPWD), blended with a fresh label-blind magnetic/gravity/topographic ridge, emitted with H33 geometry (37,654 dots, >=2.83 px spacing, H33 distance profile) and a stricter >3 px catalogue collar, contain more true blind-fault credit per dot than H33's single-ancestry subtraction chain; consensus voting cancels independent FP processes.",
+  "mechanism": "Independent false-positive processes cancel under kernel consensus voting; the label-blind ridge adds dots no fleet raster contains; the >3 px collar removes the masked-catalogue pure-FP zone; 2.83-3 px kernel spacing avoids max-vs-sum DTI waste (vendor/gems57/metric.py algebra).",
+  "named_non_fault_mimic": "Shared GeoDAWN/DEM inputs make contributors partially dependent: unfaulted lithologic contacts, Lahontan shoreline benches and survey seams can be corroborated false positives. Ridge AUC vs catalogue is null (0.50), showing ridge alone does not locate mapped faults.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_BINDING_DUPLICATE_STOP",
+    "evaluator_version_if_unblocked": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "reason": "The shared preflight returns DUPLICATE_STOP before feature construction (17GEMSDOE witness covers all 5,106,385 allowed pixels), so no feature was fitted and no prediction was emitted this session. Recorded con88 fixed-TIF pooled DTI = 0.0 on identical folds does not beat the repo holdout record (H88-BPWD 0.205991 [0.188105, 0.223344]) and is not promoted as evidence of a leaderboard gain.",
+    "historical_reference_only": {
+      "h33_fixed_tif_same_folds": {"dti": 0.006697041784474405, "ci95": [0.005990353973258847, 0.0073682311241048135], "withheld_positive_pixels": 60988},
+      "con88_fixed_tif_same_folds": {"dti": 0.0, "ci95": [0.0, 0.0], "withheld_positive_pixels": 60988}
+    }
+  },
+  "single_feature_canaries": {
+    "status": "NOT_RUN_NO_NEW_FEATURES",
+    "features_tested": 0,
+    "max_symmetric_auc": null,
+    "stop_threshold": 0.9,
+    "historical_reference_only": {"con88_recorded_max_symmetric_auc": 0.6305887545500755, "con88_recorded_auc": {"consensus": 0.3694112454499246, "ridge": 0.49848922267495244, "exp2_blend": 0.4002451112308979}}
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE",
+    "surface_rank_correlation": null,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap_3px": null,
+    "equal_support_diagnostic_recorded": {
+      "rasters_checked": 77,
+      "worst_overlap": 0.6936314866946407,
+      "worst_overlap_file": "data/registry/gems49_gate_ortho.tif",
+      "worst_spearman": 0.3762046278934762,
+      "overlap_vs_h33": 0.4874116959685558,
+      "rule": "sparse:literal >0 support; dense(>200k pos):equal-support top-N (withdrawn clearance; diagnostic only)"
+    },
+    "binding_literal_proof": {
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; it cannot pass the 0.70 gate.",
+      "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+    }
+  },
+  "raster_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "raster_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "zip_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip",
+  "validator_output": {
+    "status": "INDEPENDENTLY_REVERIFIED_THIS_SESSION",
+    "no_nan_inside_footprint": true,
+    "no_nan_anywhere": true,
+    "values_in_0_1": true,
+    "min": 0.0,
+    "max": 1.0,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band_float32": true,
+    "n_dots": 37654,
+    "zero_dots_on_mapped_catalogue": true,
+    "zero_dots_outside_footprint": true,
+    "zip_single_tif_byte_identical": true,
+    "portal_range_error_precluded": true,
+    "method": "reopened TIFF and ZIP with rasterio; bytes re-hashed; matches registry/con88_gates.json"
+  },
+  "submission_name": "GEMSDOE88-CON88-E830B58E",
+  "submission_name_chars": 26,
+  "submission_note": "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card",
+  "submission_note_chars": 107,
+  "experiment_count": 0,
+  "new_rasters_generated_this_session": 0,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "decision": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "h33_assessment": "H33 (GEMSDOE32) reported 0.2778 is USER-REPORTED, not ORGANIZER-CONFIRMED; no submission-page receipt exists locally. On this repo's holdout the H33 fixed TIFF scores 0.0067 [0.0060, 0.0074]. Beating 0.2778/0.3195/0.4413 cannot be shown without an organizer receipt; the public leaderboard snapshot (0.4413) shows higher scores are achievable in principle.",
+  "ranked_untried_hypotheses": [
+    {"rank": 1, "id": "H88-SPR", "name": "Repeated scarp-profile restoration vs drainage/shoreline null", "layers": "training_features det_elev/det_elev_slope; lidar scarp step_max/coh100/strike/valid; dem10 chi bands", "transform": "cross-validated smooth-landform-plus-signed-step vs no-step profiles on held-out swaths", "why_off_catalogue": "cover-concealed or weakly expressed offsets leave no mapped trace to seed the surface", "mimic": "fluvial terrace risers and constant-elevation pluvial shoreline benches", "differs_from_repo": "LSC/TDKL/VESS/SHORE use scarp polarity/knickpoints; SPR fits a repeatable restoration likelihood, no trace seeding", "expected_potential": "first relative priority, moderate, highly uncertain, no numerical DTI projection", "cost": "medium, cached inputs only"},
+    {"rank": 2, "id": "H88-AWA", "name": "Terrain-matched radiometric alteration-width asymmetry", "layers": "GeoDAWN K/Th/U quantized indices; training_features rtp/depth_to_base_surf/det_elev_slope", "transform": "fitted cross-strike residual decay-width asymmetry on two flanks with local RTP depression", "why_off_catalogue": "covered permeable structure can alter one wall more broadly with no discrete scarp", "mimic": "differential weathering of adjacent units and K-rich transported alluvium", "differs_from_repo": "KTH/MVRD compare enrichment/redox levels or edges; AWA tests relative fitted decay width, not another radiometric high", "expected_potential": "second priority, low-to-moderate, uncertain", "cost": "medium; quantization and background fitting need care"},
+    {"rank": 3, "id": "H88-CBC", "name": "Conductive basin-breach connectivity vs paleochannel null", "layers": "training_features det_elev/iso_grav_anom/depth_to_base_surf/cond_surf; dem10 chi bands", "transform": "narrow cross-saddle conductivity connectivity with cross-boundary gravity discontinuity test", "why_off_catalogue": "buried cross-basin structural connection may have no mapped surface trace", "mimic": "unfaulted permeable alluvial paleochannels and saline groundwater plumes", "differs_from_repo": "CTRA/DHTC use conductivity curvature/thermal conjunctions; CBC tests topology-preserving cross-basin connectivity vs explicit drainage null", "expected_potential": "third priority, low, uncertain", "cost": "medium-high; coarse-field resolution limits"}
+  ],
+  "data_sources": [
+    "DrivenData problem & format: https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "NLR official rules: https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "Reference solution: https://github.com/drivendataorg/gems-prize-reference-solution",
+    "USGS GeoDAWN: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "GBCGE INGENIOUS: https://gbcge.org/current-projects/ingenious/",
+    "GDR 1391: https://gdr.openei.org/submissions/1391",
+    "EPSG:32611: https://epsg.io/32611"
+  ],
+  "limitations": [
+    "No DrivenData auth: organizer downloads, live leaderboard, weekly cap and submission receipts are unavailable in this sandbox; no ORGANIZER-CONFIRMED score exists.",
+    "Owner-mirror restorations are hash-verified but not organizer-authenticated; redistribution terms unchecked.",
+    "Binding literal duplicate stop blocks every nonempty allowed candidate; changing it requires a shared protocol revision by the rule owner, not a local edit.",
+    "No holdout fit, leakage canary or new experiment was run this session (budget: 0 of 3 experiments; 0 of 2 hours)."
+  ],
+  "next_steps": [
+    "Wait for rule-owner revision of the dense-witness rule or a candidate unique under the literal dots rule (currently impossible while the witness saturates the domain).",
+    "Once unblocked: freeze H88-SPR, run buffered whole-component hide-and-recover holdout, run each feature's leakage canary (stop if symmetric AUC > 0.90), require paired improvement over H88-BPWD on identical folds.",
+    "Then run registry uniqueness (surface + final dots), reopen TIFF+ZIP, and use the separate automated slot selector within the weekly cap.",
+    "Record any portal score as ORGANIZER-CONFIRMED only from the submission-page receipt."
+  ]
+}
