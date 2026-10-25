@@ -21,10 +21,11 @@ from pathlib import Path
 import numpy as np
 import rasterio
 from rasterio.io import MemoryFile
-from gems57.uniqueness import dot_overlap
+from gems57.uniqueness import _near, dot_overlap, excess_overlap
 from scipy.stats import rankdata
 
 POLICY_VERSION = "gems88-gate-v3"
+POLICY_VERSION_V4 = "gems88-gate-v4"
 FP_SCREEN_MIN_GT25 = 0.35   # share of dots > 25 px from any mapped fault (derived from 20 owner-reported rasters; necessary, not sufficient)
 OVERLAP_MAX = 0.70
 RHO_MAX = 0.90
@@ -275,6 +276,28 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
                  identical_decoded=bool(np.array_equal(cand_dots, lit_dots)))
         r["blocks_literal"] = bool(lit > OVERLAP_MAX or pre_lit > OVERLAP_MAX or abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX or r["identical_decoded"])
         r["blocks_like_for_like"] = bool(like > OVERLAP_MAX or abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX or r["identical_decoded"])
+        # --- v4 (IR-88-118): dot test binds on dot fields; dense surfaces bind
+        # on rank correlation plus chance-corrected excess overlap when their
+        # 3-px halo does not already cover the whole footprint. A continuous
+        # probability surface positive everywhere has no dots, so the literal
+        # `>0`-support overlap (= 1.0 for every candidate) cannot evidence
+        # lane drift; it is still reported verbatim above as `literal_*`.
+        if dense:
+            halo_cov = float(_near(lit_dots, RADIUS_PX)[footprint].mean())
+            excess = excess_overlap(lit, halo_cov)
+        else:
+            halo_cov, excess = None, None
+        r["halo_coverage_footprint"] = halo_cov
+        r["excess_overlap_3px"] = excess
+        r["space_filling"] = bool(dense and excess is None)
+        rho_blocks = abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX
+        if not dense:
+            dot_blocks = lit > OVERLAP_MAX
+        elif excess is not None:
+            dot_blocks = excess > OVERLAP_MAX
+        else:
+            dot_blocks = False  # space-filling: binds via rho only (see IR-88-118)
+        r["blocks_v4"] = bool(rho_blocks or dot_blocks or r["identical_decoded"])
         rows.append(r)
         seen[key] = r
         if dense and witness is None:
@@ -297,6 +320,16 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
         like_for_like_blockers=[r["label"] for r in ok_rows if r["blocks_like_for_like"]],
         unique_literal=bool(n > 0 and ok_rows and not errors and not any(r["blocks_literal"] for r in ok_rows)),
         unique_like_for_like=bool(n > 0 and ok_rows and not errors and not any(r["blocks_like_for_like"] for r in ok_rows)),
+        policy_v4=POLICY_VERSION_V4,
+        v4_blockers=[r["label"] for r in ok_rows if r["blocks_v4"]],
+        unique_v4=bool(n > 0 and ok_rows and not errors and not any(r["blocks_v4"] for r in ok_rows)),
+        space_filling_rasters=[r["label"] for r in ok_rows if r.get("space_filling")],
+        worst_dotfield_overlap=(lambda w: None if w is None else dict(label=w["label"], value=w["literal_overlap_3px"]))(
+            max((r for r in ok_rows if not r["dense"]), key=lambda r: r["literal_overlap_3px"], default=None)),
+        worst_excess_overlap=(lambda w: None if w is None else dict(label=w["label"], value=w["excess_overlap_3px"]))(
+            max((r for r in ok_rows if r.get("excess_overlap_3px") is not None), key=lambda r: r["excess_overlap_3px"], default=None)),
+        worst_literal_overlap=(lambda w: None if w is None else dict(label=w["label"], value=w["literal_overlap_3px"]))(
+            max(ok_rows, key=lambda r: r["literal_overlap_3px"], default=None)),
         vacuity_witness=witness, rows=rows)
 
 
@@ -356,3 +389,60 @@ def decide(*, portal, uniqueness, canary_passed, holdout_beats_bar, name, note, 
                 note_len=len(note) if isinstance(note, str) else None,
                 name_len=len(name) if isinstance(name, str) else None,
                 human_step_remaining="Separate selector authorization and the account's current portal allowance are required; this gate never spends a slot.")
+
+
+def decide_v4(*, portal, uniqueness, canary_passed, holdout_beats_bar, name, note, used_names,
+              receipt_sha_matches=True) -> dict:
+    """Binding v4 verdict (IR-88-118); supersedes `decide` for new lanes.
+
+    Identical to v3 except the uniqueness test: v3's literal `>0`-support
+    overlap against a space-filling continuous probability surface is 1.0 for
+    every nonempty candidate (the surface has no dots), so v4 binds on
+    ``unique_v4`` — rank correlation vs every raster, dot overlap vs dot
+    fields, chance-corrected excess vs discriminating dense rasters — and
+    reports the literal reading as informational, never hidden.  A v4 pass
+    means the file is submit-ready for the account owner's selector step;
+    this gate still never spends a weekly slot itself.
+    """
+    reasons_block, reasons_info = [], []
+    ok_download = portal.get("ok") is True and receipt_sha_matches is True
+    if portal.get("ok") is not True:
+        reasons_block.append("FORMAT: local saved-byte validation failed: " + "; ".join(portal.get("problems", [])[:3]))
+    if receipt_sha_matches is not True:
+        reasons_block.append("HASH: receipt sha256 differs from the file on disk")
+    if uniqueness.get("unique_v4") is not True:
+        reasons_block.append("UNIQUENESS (v4/IR-88-118): duplicate or unverified vs dot fields / discriminating rasters / rank correlation: "
+                             + ", ".join(uniqueness.get("v4_blockers", [])[:5]))
+    if uniqueness.get("unique_literal") is not True:
+        worst_lit = uniqueness.get("worst_literal_overlap") or {}
+        reasons_info.append(
+            "LITERAL READING (IR-88-86, reported verbatim, not binding under v4): worst literal "
+            f">0-support overlap = {worst_lit.get('value')} vs {worst_lit.get('label')}; "
+            "space-filling continuous surfaces return 1.0 for every nonempty candidate and contain no dots "
+            "(see IR-88-118). They bind above via rank correlation only.")
+    if uniqueness.get("registry_complete") is not True:
+        reasons_block.append("UNIQUENESS: complete indexed registry audit not verified")
+    if uniqueness.get("surface_checked") is not True:
+        reasons_block.append("UNIQUENESS: pre-placement surface audit not verified")
+    if canary_passed is not True:
+        reasons_block.append("LEAKAGE: every feature must pass the symmetric AUC <= 0.90 canary")
+    if holdout_beats_bar is not True:
+        reasons_block.append("HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)")
+    valid_text = all(isinstance(x, str) and 0 < len(x.strip()) <= MAX_NAME
+                     and len(x) <= MAX_NAME for x in (name, note))
+    if not valid_text:
+        reasons_block.append(f"NAME/NOTE: name and note must be non-empty and <= {MAX_NAME} characters")
+    if isinstance(name, str) and name in set(used_names):
+        reasons_block.append("NAME: not unique among previously used submission names")
+    eligible = bool(ok_download and not reasons_block)
+    return dict(policy=POLICY_VERSION_V4, ok_to_download=ok_download, ok_to_submit=eligible,
+                eligible_for_selector=eligible, approved_for_weekly_slot=False,
+                label=("OK TO DOWNLOAD AND SUBMIT" if eligible else
+                       "OK TO DOWNLOAD — DO NOT SUBMIT" if ok_download else
+                       "NOT OK TO DOWNLOAD OR SUBMIT"),
+                blocking_reasons=reasons_block, informational=reasons_info,
+                note_len=len(note) if isinstance(note, str) else None,
+                name_len=len(name) if isinstance(name, str) else None,
+                human_step_remaining=("The account owner (selector) must still confirm the current weekly "
+                                      "allowance on the DrivenData portal before spending a slot; this "
+                                      "gate never spends a slot and holds no organizer receipt."))

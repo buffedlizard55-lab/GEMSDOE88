@@ -1,0 +1,51 @@
+{
+  "schema": "gems88.preregistration-sepa88.v1",
+  "preregistration_id": "PREREG-20261025-SEPA88",
+  "date_utc": "2026-10-25",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "lane": "H88-SEPA",
+  "lane_title": "Seismic-Strain Partitioning & Potential-Field Persistence Anisotropy",
+  "candidate_ranking": "research/candidate-hypotheses-20261025-sepa.md",
+  "hypothesis": "Blind geothermal feeder faults missing from the USGS/INGENIOUS surface catalogue align microseismicity into anisotropic linear fabrics, localise geodetic strain with a characteristic shear-versus-dilatation partition, and offset magnetic/gravity basement so their potential-field edge persists under upward continuation and coarse-scale smoothing while shallow volcanic/lithologic edges decay.",
+  "named_non_fault_mimic": "Volcanic seismic swarms and magmatic centres (isotropic/blob-like seismicity with shallow magnetic edges) and regional Walker-Lane-scale strain gradients with no local structure.",
+  "features_new_zero_catalogue": [
+    "sepa_seis_aniso_s3", "sepa_seis_aniso_s8", "sepa_seis_ridge_s2", "sepa_seis_trough_s2",
+    "sepa_seis_local_excess", "sepa_seis_blob_mimic",
+    "sepa_strain_shear_frac", "sepa_strain_dilat_frac", "sepa_strain_grad_s3", "sepa_strain_aniso_s5",
+    "sepa_seis_strain_orient", "sepa_seis_x_straingrad",
+    "sepa_mag_persist_ratio", "sepa_mag_up150_ridge", "sepa_grav_persist_ratio",
+    "sepa_persist_orient", "sepa_mag_scale_decay", "sepa_strain_x_persist"
+  ],
+  "inputs": "SHA-pinned local files only: data/training_features.tif bands 4,7,8,10,13,14,16 (tags verified); data/external/geodawn_extensions_u8.tif band 4 TMI_up150. No new external download. existing_faults.tif is never read by the SEPA feature builder.",
+  "holdout": {
+    "split": "buffered-whole-components-loqo-v2",
+    "seeds": [20, 21],
+    "buffer_px": 3,
+    "boundary_px": 12,
+    "evaluator": "gems57-pooled-hide-v2",
+    "bootstrap_draws": 2000,
+    "metric": {"alpha": 0.2, "beta": 0.8, "triangular_radius_m": 300}
+  },
+  "experiments_max": 3,
+  "experiments": {
+    "exp01_sepa_zero_cat": "44 physics + 18 SEPA zero-catalogue PoE (tdkl_phys_only machinery)",
+    "exp02_sepa_single_joint": "single 44+18+23 ch joint model (tdkl_single_79 machinery)",
+    "exp03_sepa_poe": "dual-head log-odds PoE candidate (h88_tdkl machinery)"
+  },
+  "controls_same_folds": ["phys44_zero_cat", "h88_adhr_incumbent"],
+  "leakage_canary": "every input feature alone, symmetric AUC <= 0.90 on withheld positives, both seeds, before trusting any result",
+  "promotion_bar": {
+    "current_holdout_best": {"lane": "H88-HGVC", "evidence_class": "HOLDOUT-DTI", "evaluator": "gems57-pooled-hide-v2", "withheld_positive_pixels": 22893, "dti": 0.2029470713394289},
+    "rule": "Exp3 pooled HOLDOUT-DTI point estimate > 0.202947 AND paired delta vs H88-ADHR (same folds) 95% CI lower bound > 0 AND fingerprint share_le2 == 0 and share_gt25 >= 0.35 AND v4 uniqueness pass (IR-88-118). Otherwise verdict negative, file marked DO-NOT-SUBMIT."
+  },
+  "production_design": {
+    "total_dots": 37654,
+    "collar": "d_cat > 2.5 px; zero dots on existing_faults.tif; zero outside footprint",
+    "near_stratum": {"budget": 21500, "range_px": "2.5 < d_cat <= 25", "min_spacing_px": 2.85},
+    "far_stratum": {"budget": 16154, "range_px": "d_cat > 25", "min_spacing_px": 3.05},
+    "values": "binary {0.0, 1.0} float32, zeros outside footprint, nodata undeclared, sample-parity LZW layout"
+  },
+  "uniqueness_policy": "IR-88-118 v4: |Spearman| <= 0.90 vs every registry raster (surface pre-placement AND final); forward 3px dot overlap <= 0.70 vs every dot-field registry raster; chance-corrected excess overlap <= 0.70 vs every discriminating dense raster; literal overlap vs the space-filling continuous 17GEMSDOE proba surface is reported verbatim (expected 1.0 for any nonempty raster) and binds via rank correlation only, because that raster contains no dots. Both readings are published; nothing is hidden.",
+  "budget": {"max_experiments": 3, "max_hours": 2, "weekly_slots": 0},
+  "organizer_confirmed_score": null
+}
