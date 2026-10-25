@@ -1,0 +1,36 @@
+# Reproducible Python 3.11 / Linux x86_64 CPU audit environment (2026-10-25).
+# Rasterio 1.4.4 bundles GDAL 3.10.3: the archived byte-exact R0 rebuild
+# fails with Rasterio 1.4.3 even when decoded pixels match. Do not relax hashes.
+# Normal pip/PyPI artifact integrity verification remains enabled.
+# This is not a cross-platform native-library lock or a GPU training environment.
+affine==3.0.1
+attrs==26.1.0
+certifi==2026.10.23
+click-plugins==1.1.1.2
+click==8.5.0
+cligj==0.7.2
+cloudpickle==3.1.2
+contourpy==1.3.3
+cycler==0.12.1
+fonttools==4.67.0
+imagecodecs==2025.8.2
+iniconfig==2.3.1
+joblib==1.6.0
+kiwisolver==1.5.1
+lightgbm==4.6.0
+matplotlib==3.10.7
+numpy==2.3.4
+packaging==26.3
+pillow==11.3.0
+pluggy==1.7.0
+Pygments==2.21.0
+pyparsing==3.3.3
+pytest==8.4.2
+python-dateutil==3.0.0
+rasterio==1.4.4
+scikit-learn==1.7.2
+scipy==1.16.2
+six==1.17.0
+threadpoolctl==3.7.0
+tifffile==2025.10.16
+tzdata==2026.5

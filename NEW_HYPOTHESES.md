@@ -1,16 +1,20 @@
-# Current conditional hypotheses — five ranked post-`H88-MMRX` proposals, none executed (updated 2026-10-25, session `838cc402`)
+# Current source-reviewed hypotheses — three unrun variants, no generation authorized
 
-Read [session-838cc402-hypotheses.md](research/session-838cc402-hypotheses.md) for the current grep-verified 5-hypothesis post-`H88-MMRX` ranking (exact `training_features.tif` & `data/external/*` band tags, mathematical transforms, off-catalogue blind-fault mechanisms, named non-fault mimics, distinction from all 45 modules in `src/gems88/`, shared-allocator de-duplication design addressing `IR-88-127` / `IR-88-249E-02`, qualitative benefit/cost, and live-verified free official CC0/CC-BY-4.0 sources). See also concurrent/historical queues [session-db4a5e4b-hypotheses.md](research/session-db4a5e4b-hypotheses.md), [session-d0c3adeb-hypotheses.md](research/session-d0c3adeb-hypotheses.md), [session-b4dfa10c-hypotheses.md](research/session-b4dfa10c-hypotheses.md), [candidate-hypotheses-20261025-mmrx88.md](research/candidate-hypotheses-20261025-mmrx88.md), and [candidate-hypotheses-20261025-vcaz88.md](research/candidate-hypotheses-20261025-vcaz88.md).
+Read [session-693b10af-hypotheses.md](research/session-693b10af-hypotheses.md) and the [source-bound JSON queue](registry/hypothesis_queue.json) before proposing another experiment. Run `python scripts/audit_research_state.py` to detect source/run-card drift; use `--check-inputs` after the full shared restore. This metadata audit never grants a slot.
 
-> **Post-PR-#152 ledger update (`IR-88-838C-03`):** Former rank #1 (*Magnetic-marker restoration across candidate discontinuities*, `H88-MMRX`, `src/gems88/mmrx.py`) is **no longer untried** — PR #152 (`PREREG-20261025-MMRX88`, session `249e8cb3`) executed it end-to-end and recorded a **negative** verdict (`HOLDOUT-DTI = 0.188378 [0.170922, 0.204215]` vs `H88-BPWD` `0.205991 [0.188105, 0.223344]`, `0/8` folds won, and final 3-px dot overlap `0.797578 > 0.70` vs `H88-HGVC` due to shared-allocator crest re-selection).
+1. **H88-SPR** — repeated scarp-profile restoration against drainage, terrace and shoreline nulls (conditional first choice).
+2. **H88-AWA** — terrain-matched radiometric alteration-*width* asymmetry, not calibrated ratios of quantized codes.
+3. **H88-CBC** — conductive cross-basin breach connectivity against paleochannel/brine explanations.
 
-1. **`H88-SPRV`** — Cross-strike Hanks–Bucknam error-function scarp-profile restoration likelihood with drainage-incision (`chan_n`, `log10_area_m2_x1000`) and equipotential shoreline (`zmean_m`) vetoes + inflection-locus emission (elevated to #1 after `H88-MMRX` falsification).
-2. **`H88-PGTD`** — 3D Laplace-consistent Marussi/Pedersen–Rasmussen potential-field full-Hessian source dimensionality (`2D` dipping fault sheet vs `3D` pluton/plug eigen-invariants) + Reid Euler structural-index ($N \in [0, 0.5]$) filtering.
-3. **`H88-CBBC`** — Topological Morse–Smale conductive basin-breach saddle continuity (`cond_surf` transverse horst-crossing vs `depth_to_base_surf` / `iso_grav_anom`) against axial playa/paleochannel mimics.
-4. **`H88-TAWA`** — GeoDAWN `22°` drape-clearance-compensated cross-strike exponential alteration-width asymmetry ($\ln(w_{\text{HW}}/w_{\text{FW}})$ in `K/Th` & `U/Th` paired with `rtp` magnetite-destruction troughs) against unfaulted lithologic contacts.
-5. **`H88-MT3D-GDR`** — External official USGS/INGENIOUS 3D Magnetotelluric crustal conductance roots (`2–200 km`, Peacock & Bedrosian 2022, `doi:10.5066/P9TWT2LU`, CC0 / DOE GDR `#1391` CC-BY-4.0) + conductive heat-flow residuals (`doi:10.5066/P9BZPVUC`) coupled up-dip to shallow fault-valve steps (requires owner mirror staging into GitHub release assets).
+These precise variants remain **PROPOSED_UNTESTED** in the reviewed checkout. Expected benefit is qualitative and uncertain, never a DTI projection. All required inputs are already in the SHA-pinned shared owner-mirror tier; no new external dataset is assumed obtainable. This is source-reviewed local novelty, not proof of worldwide or fleet-wide originality.
 
-All five conditional proposals above remain **untested** (`grep`-verified zero matches across `src/` and `vendor/`). They propose geothermal-related fault evidence, not vent detection. Local source-code novelty is not proof of worldwide/fleet novelty. No numeric gain or leaderboard result is projected. The shared literal duplicate stop (`17GEMSDOE` covering `5,106,385 / 5,106,385` allowed cells) currently forbids execution; do not run any historical lane below to evade it.
+**Corrected stale recommendations:** magnetic-marker restoration (`src/gems88/mmrx.py`), cross-scale admittance (`mtas.py`) and Gaussian gradient-decay/scaling-break (`mfs88.py`) and the harmonic tensor family (`pgtd88.py`, parallel PR #168) have already been implemented and evaluated with historical negative run cards. They are **not untested ideas**. Their archived execution is not authorization to evade the unchanged duplicate-stop rule. The older records below are historical snapshots, not today's queue.
+
+The literal full-registry witness still blocks every nonempty candidate before feature construction, canaries, holdout or placement. **Zero new geological experiments, zero new candidate TIFFs, zero weekly slots in session 693b10af.** Conditional first choice is not a selected submission.
+
+Parallel proposal record: [session db4a5e4b](research/session-db4a5e4b-hypotheses.md) independently ranked GTD first. Its record is preserved, not represented as an experiment or a second current queue. This review conditionally favors SPR because its available-resolution landform-restoration null is more directly falsifiable; harmonic source-dimensionality inversion is nonunique and more sensitive to continuation/taper choices. That is uncertain scientific judgment, not an empirical improvement claim.
+
+Additional parallel proposal record: [session 838cc402](research/session-838cc402-hypotheses.md) retains its five alternatives and its own claimed source-access scope. Those records are preserved, not silently folded into this source-bound current queue. In particular, external-data access/permissions and ratios of quantized radiometric codes are not newly certified by this review. No duplicate-stop exception or independent experiment is authorized.
 
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>
@@ -155,3 +159,5 @@ Owner GitHub mirrors provide SHA-pinned inputs via `scripts/restore_inputs.py`; 
 
 
 </details>
+
+**Late-main correction (IR-88-693B10AF-04):** GTD is retired after the parallel PGTD execution; it is not an untried fourth lane. Three unrun variants remain. The peer CLI printed `DUPLICATE_STOP` but continued; the shared enforce-before-import guard is reinstated. No exception is authorized.

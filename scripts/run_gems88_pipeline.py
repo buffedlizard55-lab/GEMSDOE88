@@ -630,16 +630,23 @@ def main() -> None:
         "generated_utc": "2026-10-22T22:15:00Z",
         "lane": LANE_ID,
         "lane_title": "Geothermal Hydro-Mechanical De-Biased Fault Discovery & Exact Dual-Head Expected-DTI Allocation",
+        # Historical builder, not a current full-registry/selector contract.
+        # The entrypoint guard stops execution; never resurrect its old clearance.
         "historical_verdict": "promote",
         "verdict": "negative",
+        "historical_only": True,
         "ok_to_submit": False,
+        "approved_for_weekly_slot": False,
         "superseded_by": "docs/data/current_release.json",
         "evidence_status": {
             "score_label": "HOLDOUT-DTI",
             "organizer_confirmed_live_score": None,
             "incumbent_organizer_confirmed_live_score": None,
+            "incumbent_user_reported_claim": 0.2778,
             "incumbent_user_reported_live_score": 0.2778,
             "incumbent_score_provenance": "USER-REPORTED; no submission-page receipt",
+            "incumbent_evidence_class": "USER-REPORTED CLAIM — NOT ORGANIZER-CONFIRMED",
+            "leaderboard_values_status": "Historical unreceipted claims; not a live leaderboard or an artifact score",
             "incumbent_artifact": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
             "site_reported_high": 0.3195,
             "competition_leaderboard_high": 0.4413,
@@ -691,8 +698,12 @@ def main() -> None:
             "post_placement_worst_discriminating_3px_overlap": round(float(full_uniq_cert["worst_dot_overlap"]), 6),
             "post_placement_worst_overlap_submission": full_uniq_cert["worst_overlap_submission"],
             "post_placement_worst_jaccard": round(float(full_uniq_cert["worst_jaccard_dot_sets"]), 6),
-            "unique": bool(full_uniq_cert["unique"]),
-            "stop_required": bool(full_uniq_cert["stop_required"]),
+            "historical_discriminating_unique": bool(full_uniq_cert["unique"]),
+            "historical_discriminating_stop_required": bool(full_uniq_cert["stop_required"]),
+            "unique": False,
+            "stop_required": True,
+            "policy": "Discriminating-only scans cannot clear binding all-registry literal overlap",
+            "binding_literal_audit": "NOT_RUN_BY_THIS_LEGACY_BUILDER",
         },
         "submission": {
             "file": f"docs/downloads/{tif_out.name}",
@@ -719,7 +730,7 @@ def main() -> None:
     for out_p in (ROOT / "run_card.json", ev_dir / "run_card.json", docs_data / "run_card.json"):
         out_p.write_text(json.dumps(run_card, indent=2) + "\n")
 
-    print(f"\n=== ALL GATES PASSED IN {time.time() - t0:.1f}s! Primary deliverable: {tif_out} ===", flush=True)
+    print(f"\n=== HISTORICAL RESEARCH ONLY in {time.time() - t0:.1f}s: {tif_out}; DO NOT SUBMIT ===", flush=True)
 
 
 if __name__ == "__main__":

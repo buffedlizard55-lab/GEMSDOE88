@@ -111,8 +111,19 @@ def test_historical_browser_receipt_remains_a_dated_negative_record():
     for relative, digest in record['source_sha256'].items():
         assert relative.startswith('docs/') and len(digest) == 64
         int(digest, 16)
-    current_card = read('registry/session_b4dfa10c_run_card.json')
-    current = read(current_card['software_review']['browser_evidence'])
+    intermediate_card = read('registry/session_b4dfa10c_run_card.json')
+    intermediate = read(intermediate_card['software_review']['browser_evidence'])
+    assert intermediate['status'] == 'PASS' and intermediate['ok_to_submit'] is False
+    assert record['checked_at_utc'] < intermediate['checked_at_utc']
+    # b4dfa10c is now historical too. Do not re-hash its old receipt and pretend
+    # those pages were freshly viewed; the active status must point to a new one.
+    for relative, digest in intermediate['source_sha256'].items():
+        assert relative.startswith('docs/') and len(digest) == 64
+        int(digest, 16)
+    active_path = read('docs/status.json')['current_review']
+    current_card = read('docs/' + active_path)
+    current = read(current_card['verification']['browser_evidence'])
+    assert intermediate['checked_at_utc'] < current['checked_at_utc']
     assert current['status'] == 'PASS' and current['ok_to_submit'] is False
     assert record['checked_at_utc'] < current['checked_at_utc']
     assert current['failed_fetch_stays_negative'] is True

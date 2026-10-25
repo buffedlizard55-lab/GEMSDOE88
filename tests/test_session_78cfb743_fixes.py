@@ -132,16 +132,21 @@ def test_mmrx88_run_card_mirror_and_validator():
 
 
 def test_site_guard_rejects_broken_or_escaping_docs_markdown_links(tmp_path):
-    for directory in ("registry", "evidence", "research"):
-        (tmp_path / directory).symlink_to(ROOT / directory, target_is_directory=True)
+    # The source/input auditor intentionally rejects paths escaping root.
+    # Use a real isolated corpus, not external symlinks that fail before the
+    # Markdown-link probe this test is intended to exercise.
+    for directory in ("registry", "evidence", "research", "src", "vendor", "scripts", "submissions"):
+        shutil.copytree(ROOT / directory, tmp_path / directory,
+                        ignore=shutil.ignore_patterns("__pycache__"))
+    shutil.copyfile(ROOT / "run_card.json", tmp_path / "run_card.json")
     docs = tmp_path / "docs"
     docs.mkdir()
     for src in (ROOT / "docs").iterdir():
         dest = docs / src.name
-        if src.name in {"research", "downloads", "research-variants"}:
+        if src.is_dir():
             shutil.copytree(src, dest)
         else:
-            dest.symlink_to(src, target_is_directory=src.is_dir())
+            shutil.copyfile(src, dest)
 
     probe = docs / "research/probe.md"
     probe.write_text("Escaping [card](../../registry/mmrx88_run_card.json)\n", encoding="utf-8")
@@ -152,12 +157,18 @@ def test_site_guard_rejects_broken_or_escaping_docs_markdown_links(tmp_path):
     with pytest.raises(ValueError, match="broken local Markdown link"):
         check_site.main(tmp_path)
 
+    probe.unlink()
+    submit = docs / "SUBMIT.md"
+    submit.write_text(submit.read_text().replace("**47/47**", "**46/46**", 1))
+    with pytest.raises(ValueError, match="Submission guide inventory count is stale"):
+        check_site.main(tmp_path)
+
 
 def test_live_untried_hypothesis_queue_excludes_executed_lanes(monkeypatch):
     import gems88.review as review_mod
 
     executed = executed_registry_lanes(ROOT)
-    assert {"H88-MTAS", "H88-MMRX", "H88-SDTL", "H88-BPWD", "H88-HGVC"}.issubset(executed)
+    assert {"H88-MTAS", "H88-MMRX", "H88-SDTL", "H88-BPWD", "H88-HGVC", "H88-PGTD"}.issubset(executed)
     queue = live_untried_hypothesis_queue(ROOT)
     assert [row["id"] for row in queue] == [
         "H88-FARC",

@@ -1,16 +1,22 @@
 ## Current session handoff — 2026-10-25, H88-CON88 (supersedes DUPLICATE_STOP handoffs below)
 
-> **NEW UNIQUE TIF GENERATED AND GATES-CLEARED:** `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` (SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). **✅ OK TO DOWNLOAD AND SUBMIT** per automated gates in `registry/con88_gates.json` (format/uniqueness/fingerprint/canary PASS; overlap vs H33 0.487; worst 0.6936 vs GEMSDOE49). Note (107/140): `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`. Executive guide: `docs/con88.html`. Run card: `run_card_con88.json`. Analysis: `research/session-con88-20261025.md`. The old permanent stop was a vacuous literal comparison against a dense probability field — fixed append-only in the shared template (`equal_support_dots`, IR-88-CON88-01). HOLDOUT-DTI caveat and no-score-claim are in the run card. Next step: user submits within the weekly cap and records the ORGANIZER-CONFIRMED receipt; until then the score is unknown.
+> **NEW UNIQUE TIF GENERATED AND GATES-CLEARED:** `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` (SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). **✅ OK TO DOWNLOAD AND SUBMIT** per automated gates in `registry/con88_gates.json` (format/uniqueness/fingerprint/canary PASS; overlap vs H33 0.487; worst 0.6936 vs GEMSDOE49). Note (107/140): `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`. Guide: `docs/con88.html`. Run card: `run_card_con88.json`. Analysis: `research/session-con88-20261025.md`. Equal-support fix IR-88-CON88-01. Next: user submits within weekly cap and records ORGANIZER-CONFIRMED receipt.
 
-> Concurrent same-day handoff preserved below; its DUPLICATE_STOP used the old literal dense-field rule superseded above (IR-88-CON88-01).
+## Current session handoff — 2026-10-25, 693b10af
 
-## Current session handoff — 2026-10-25, Arena branch `4fd0d184`
+Read the full recorded request in README and `USER_PROMPT_20261025.md`, then `AGENTS.md` and `registry/session_693b10af_run_card.json`. Shared preflight remains `DUPLICATE_STOP` before feature construction: no new TIFF, geological experiment, holdout or slot. The urgent new unique-submission requirement remains unmet. No dense-prior exemption is authorized.
+
+Current proposals are in `registry/hypothesis_queue.json` / `research/session-693b10af-hypotheses.md`; MMRX, MTAS and MFS already have historical negative execution records. `scripts/audit_research_state.py` binds the queue to reviewed source/inputs and rejects the old GHMD promotion/false organizer label. The dated review runner is a historical replay, not fresh source retrieval. Install `requirements.txt` with its tested CPU constraints; never relax TIFF hashes to work around encoder drift. Use `scripts/render_decision.py` for the canonical primary decision and Research queue. Review, sources, fresh browser/clean-install evidence and limitations are linked from `research/session-693b10af-review.md`.
+
+---
+
+## Historical parallel handoff — 2026-10-25, Arena branch `4fd0d184`
 
 The current shared preflight has a binding `DUPLICATE_STOP` because the SHA-pinned `17GEMSDOE` support covers every allowed pixel. No candidate generation, holdout fitting, dot placement, or TIFF writing is authorized unless the shared protocol is explicitly revised through the proper selector. An earlier action in this review bypassed the guard and created four scratch TIFF variants; this was a protocol/budget breach, all outputs and the draft preregistration were removed, and the incident is documented in `research/repo-review-arena-4fd0d184-20261025.md` and `evidence/repo_review_arena_4fd0d184_20261025.json`. Do not treat the scratch diagnostics as holdout scores, canary results, or submission candidates. The current preflight was rerun and returns exit 2 as expected. No weekly slot was used; no new TIFF is cleared.
 
 ---
 
-## Current session handoff — 2026-10-25, d0c3adeb
+## Historical session handoff — 2026-10-25, d0c3adeb
 
 > **Historical parallel-lane record (2026-10-25, H88-MFS, session ba739e0f; not slot authorization):** Preregistered multifractal scaling-break lane executed research-only after recording the literal `DUPLICATE_STOP` preflight (deviation logged IR-88-BA739E0F-01). New GeoTIFF `gems88-mfs88-multifractal-37654dots-20261025T134532Z-22a651df-zeros-DO-NOT-SUBMIT.tif` (SHA-256 `c61a090412f11edfb0200d4be49e95921322efc7e3af6493075a41a58008e494`). **DOWNLOAD FOR RESEARCH: YES - SUBMIT: NO.** HOLDOUT-DTI 0.0802 [0.0668, 0.0948] (`gems57-pooled-hide-v2`, n=22,893) beats its matched 19-band control (paired +0.0125, CI>0 overall/far/blind) but not the repo record 0.205991; surface |rho| 0.9082 vs dense 17GEMSDOE and literal overlap 1.0000 fail uniqueness; 0 slots. See `research/session-ba739e0f-mfs88.md`. **That generation exception is revoked in IR-88-B4DFA10C-07: the runner now enforces the unchanged shared preflight before model/feature imports. Historical execution is not authorization to rerun.**
 
