@@ -1,7 +1,7 @@
 {
   "schema": "gems88.review-run-card.v2",
   "session": "b4dfa10c",
-  "checked_at_utc": "2026-10-25T14:31:55.862165+00:00",
+  "checked_at_utc": "2026-10-25T14:40:58.737317+00:00",
   "base_commit": "dcd60754749e1e5d88d535c0973245c889f8c15f",
   "status": "DUPLICATE_STOP",
   "hypothesis": "H88-MMR (conditional, unimplemented): repeatable magnetic-marker displacement restoration may reveal a covered fault missed by surface mapping.",
@@ -276,7 +276,7 @@
       "passed": 651,
       "skipped": 23
     },
-    "final_verification_status": "PENDING_POST_INTEGRATION_RECHECK",
+    "final_verification_status": "PASS",
     "format_validator_version": "gems88-format-audit-v2",
     "fixes": [
       "Reject additional full-resolution TIFF datasets while allowing internal overviews.",
@@ -317,21 +317,21 @@
       },
       {
         "pass": 3,
-        "status": "PENDING_POST_INTEGRATION_RECHECK",
+        "status": "PASS",
         "scope": "Full merged suite, saved-byte audit, render checks, browser receipt, normal/optimized guards and expected negative generation/slot checks.",
         "all_requested_deliverables_met": false
       }
     ],
-    "three_passes_completed": false,
+    "three_passes_completed": true,
     "final_gates": {
-      "checked_at_utc": "2026-10-25T14:22:20.787419+00:00",
+      "checked_at_utc": "2026-10-25T14:36:57.503479+00:00",
       "checks": [
         {
           "command": ".venv/bin/python scripts/audit_downloads.py --check",
           "expected_exit": 0,
           "actual_exit": 0,
           "pass": true,
-          "local_output_sha256": "42744eb3703c936a8973ec69822b03a51f5fa193054742a2a5251bc62c8b866c"
+          "local_output_sha256": "fcc2f27267c5803e0c6788582fd779c12d9388a539a439927873ead73bc05d76"
         },
         {
           "command": ".venv/bin/python scripts/render_decision.py --check",
@@ -359,7 +359,7 @@
           "expected_exit": 2,
           "actual_exit": 2,
           "pass": true,
-          "local_output_sha256": "e588c1af717ee272f7a17b9ca2ab67339e9e3afced4c9d52901c95ad108ccbf8"
+          "local_output_sha256": "3c2b34382af538747fe6ad3b0e913acd9e7837157c7c6da501b0ccf57627870d"
         },
         {
           "command": ".venv/bin/python scripts/preflight_mtas88.py --gate-generation",
@@ -367,6 +367,27 @@
           "actual_exit": 2,
           "pass": true,
           "local_output_sha256": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756"
+        },
+        {
+          "command": ".venv/bin/python scripts/run_mfs88_experiment.py",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "4e1d2491a0236acf0344dd78599ff0bf6015f6f1d458af5cc8439c44c35c58e1"
+        },
+        {
+          "command": ".venv/bin/python -O scripts/run_mfs88_experiment.py",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "ee2a62638726a7f4afbe4509d630138340c20c1d78cc06809fd199cc51c8f0f2"
+        },
+        {
+          "command": ".venv/bin/python -m scripts.run_mfs88_experiment",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "930375bb253583bb17d9b0291062cc4967f3c39d3a933faff33d2fc19ca6575e"
         },
         {
           "command": ".venv/bin/python scripts/validate_current.py --require-submit",
@@ -388,6 +409,20 @@
           "actual_exit": 2,
           "pass": true,
           "local_output_sha256": "f92a18d33f85102329c7926c690a55bf16eaac9b95b41e201568b6f3ab526122"
+        },
+        {
+          "command": ".venv/bin/python scripts/validate_mfs88.py",
+          "expected_exit": 0,
+          "actual_exit": 0,
+          "pass": true,
+          "local_output_sha256": "780c527a0b606cae0f81dd96e23c5721506a482c358378f54dd34b4391173983"
+        },
+        {
+          "command": ".venv/bin/python scripts/validate_mfs88.py --require-submit",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "1153496df69594805c69b6feab789082999a2cd1b876d1393bb296d2ad034a76"
         }
       ],
       "all_expected_exits": true,
@@ -421,7 +456,23 @@
       "local_output_sha256": "a230a36a7158606a841848a055cc92adc06ea00ef99618a31ed9f00e47bbccbd",
       "scope": "Restored shared-input tier after integration of current main; 23 optional historical/local-only artifact tests skipped, not certified passes. No geological model generation."
     },
-    "published_binary_scope": "No TIFF/ZIP generated or modified by this review; the concurrent MFS pair was imported byte-identically from origin/main, not generated here."
+    "published_binary_scope": "No TIFF/ZIP generated or modified by this review; the concurrent MFS pair was imported byte-identically from origin/main, not generated here.",
+    "final_pytest": {
+      "command": ".venv/bin/python -m pytest -q -ra",
+      "passed": 767,
+      "skipped": 23,
+      "warnings": 63,
+      "seconds": 254.85,
+      "local_output_sha256": "56569d847a41eda236893bca0327b51508fa1e58b8481248ea50442a6fed5573",
+      "scope": "Final integrated code, including MFS guard restoration. Shared-input tier restored; 23 optional historical/local-only tests skipped, not certified passes. No geological model generation."
+    },
+    "post_mfs_focused_pytest": {
+      "passed": 283,
+      "warnings": 46,
+      "seconds": 47.45,
+      "scope": "Shared pre-import guard and MFS normal/optimized/module denial tests; record/provenance, both inventories, container/sidecar and canonical/legacy UI regressions."
+    },
+    "generation_guard_entrypoint_count": 90
   },
   "organizer_confirmed_score": null,
   "verdict": "negative",
@@ -433,7 +484,8 @@
     "inventory_resolution": "One shared policy covers both publication directories, retains main publication_inventory API and symlink restrictions; no separate private inventory gate.",
     "prior_integrated_main_commit": "4e3e9f6721ef8eeb9319f93126d3895260100d1a",
     "mfs_historical_artifact_imported_unchanged": true,
-    "mfs_guard_exception_revoked": true
+    "mfs_guard_exception_revoked": true,
+    "post_mfs_local_merge_commit": "21b073836b791d03373a9d37d6667461d0b0e457"
   },
   "source_scope": {
     "all_92_sites_freshly_scraped": false,
