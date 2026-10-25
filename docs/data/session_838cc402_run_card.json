@@ -1,0 +1,185 @@
+{
+  "schema": "gems88.review-run-card.v2",
+  "session": "838cc402",
+  "branch": "arena/838cc402-gemsdoe88",
+  "checked_at_utc": "2026-10-25T16:40:00+00:00",
+  "base_commit": "d7f7502d93dc5e5d9685ba90d7374d71a2bc2a68",
+  "status": "DUPLICATE_STOP",
+  "decision": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "ok_to_download_new_tif": false,
+  "ok_to_download_existing_research_tifs": true,
+  "new_rasters_generated": 0,
+  "experiments_run": 0,
+  "experiment_budget_limit": 3,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "hypothesis": "H88-SPRV (Rank #1 conditional post-MMRX proposal, unexecuted under DUPLICATE_STOP): Cross-strike Hanks-Bucknam error-function scarp-profile restoration likelihood with drainage-incision and equipotential pluvial-shoreline vetoes, emitted on restored scarp inflection loci via a domain-isolated geomorphic specialist.",
+  "mechanism": "Along local structure-tensor strike, invert 1D cross-strike elevation profiles z(u) across [-800, +800] m for z(u) = a + b*u + (dH/2)*erf((u - u0)/sqrt(4*kappa*t)) against the linear landform null (dH=0), require 1.2 km along-strike persistence, veto channel corridors (chan_n, log10_area_m2_x1000) and horizontal shoreline contours (Var_t(zmean_m) <= tau_shore), and place dots on restored inflection curves u0(x) rather than shared HGVC/BPWD gradient crests (avoiding IR-88-127 / IR-88-249E-02 allocator re-selection).",
+  "named_non_fault_mimic": "Incised alluvial-fan channel margins / fluvial terrace risers and Pleistocene Lake Lahontan wave-cut shoreline benches along constant elevation contours with zero depth_to_base_surf basement offset.",
+  "named_non_fault_process": "Incised alluvial-fan channel margins / fluvial terrace risers and Pleistocene Lake Lahontan wave-cut shoreline benches along constant elevation contours with zero depth_to_base_surf basement offset.",
+  "hypothesis_queue": "research/session-838cc402-hypotheses.md",
+  "ranked_untried_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H88-SPRV",
+      "status": "UNTESTED",
+      "mimic": "Fluvial terrace risers and equipotential Lake Lahontan shoreline benches"
+    },
+    {
+      "rank": 2,
+      "id": "H88-PGTD",
+      "status": "UNTESTED",
+      "mimic": "Unfaulted 2D mafic dike swarms (Northern Nevada Rift) and linear paleochannels"
+    },
+    {
+      "rank": 3,
+      "id": "H88-CBBC",
+      "status": "UNTESTED",
+      "mimic": "Closed-basin evaporite playas and axial trunk paleochannels"
+    },
+    {
+      "rank": 4,
+      "id": "H88-TAWA",
+      "status": "UNTESTED",
+      "mimic": "Unfaulted rhyolite/basalt contacts and 22-deg climb-limited aircraft drape clearance dropouts"
+    },
+    {
+      "rank": 5,
+      "id": "H88-MT3D-GDR",
+      "status": "UNTESTED",
+      "mimic": "Paleozoic graphitic/carbonaceous black-shale thrust belts (Roberts Mountains / Golconda)"
+    }
+  ],
+  "lane_status": "Post-PR-#152 integrity audit, live primary-source verification, H33 & shared-allocator synthesis, and post-MMRX untried hypothesis ranking. Preflight returned DUPLICATE_STOP (exit 2) before any model import or raster construction.",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "reason": "Preflight stopped at exit 2 before feature construction or fitting. Historical repository benchmark context only (not generated in this session): H88-BPWD HOLDOUT-DTI = 0.205991 [0.188105, 0.223344] (gems57-pooled-hide-v2, n=22,893); H88-MMRX (PR #152) HOLDOUT-DTI = 0.188378 [0.170922, 0.204215] (0/8 folds won vs BPWD)."
+  },
+  "single_feature_canaries": {
+    "status": "NOT_RUN_NO_NEW_FEATURES",
+    "limit_symmetric_auc": 0.9,
+    "max_symmetric_auc": null
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE",
+    "surface_rank_correlation": null,
+    "surface_rank_correlation_limit": 0.9,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap_3px": null,
+    "universal_overlap_lower_bound_for_any_nonempty_allowed_candidate": 1.0,
+    "overlap_limit": 0.7,
+    "proof": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+      "directly_covered_allowed_pixels": 5106385,
+      "directly_saturated": true,
+      "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+    }
+  },
+  "raster_sha256": null,
+  "raster_file": null,
+  "submission_name": "GEMSDOE88-S838CC402-DUPLICATE",
+  "submission_name_length": 29,
+  "submission_note": "DO NOT SUBMIT: session 838cc402 DUPLICATE_STOP (17GEMSDOE 1.0000>0.70); 0 new TIFs; 46/46 Pages+20/20 repo audits pass.",
+  "submission_note_length": 119,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "new_raster_generated": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null,
+    "archived_canonical_tdkl_validator": {
+      "artifact": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+      "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+      "no_nan_inside_footprint": true,
+      "values_in_0_1": true,
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "single_band_float32": true,
+      "no_nodata_sentinel": true,
+      "no_mass_outside_footprint": true,
+      "no_positive_on_catalogue": true,
+      "independent_decoders_agree": true,
+      "ok_to_download_for_research": true,
+      "ok_to_submit": false
+    },
+    "pytest_full_suite": "811 passed, 22 skipped (0 failures)",
+    "compile_warnings_scripts_src_tests": 0,
+    "pinned_browser_check_files_exact": "13/13"
+  },
+  "package_audits": {
+    "pages_download_audit_sha256": "b98b0c9952d7f1396114a23da74d3116b3ceeb4feaece85d297c7ff83049065c",
+    "pages_main_downloads_pass": "45/45",
+    "pages_research_variants_pass": "1/1",
+    "pages_total_published_pass": "46/46",
+    "pages_protocol_eligible_count": 0,
+    "repo_submissions_directory_pass": "20/20",
+    "repo_submissions_protocol_eligible_count": 0,
+    "combined_audited_tiff_zip_pairs": 66,
+    "repaired_archive_receipt": "evidence/session_838cc402_archive_repair.json"
+  },
+  "h33_and_leaderboard_reconciliation": {
+    "h33_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "h33_positive_pixels": 37654,
+    "h33_min_d_cat_px": 2.23606797749979,
+    "h33_min_interdot_nn_px": 2.8284271247461903,
+    "h33_median_d_cat_px": 19.6468827043885,
+    "h33_user_reported_claim": 0.2778,
+    "h33_organizer_confirmed_score": null,
+    "stale_0_3195_claim_status": "2026-10-04 snapshot of DARD; on 2026-10-25 DARD is rank #9 with 0.3358 (OFFICIAL-PUBLIC)",
+    "public_rank_1_score": 0.4413,
+    "public_rank_1_participant": "xiaofanhu",
+    "public_rank_50_score": 0.2818,
+    "live_leaderboard_snapshot": "evidence/leaderboard_official_snapshot_838cc402_20261025.json",
+    "live_leaderboard_snapshot_sha256": "4969f6776c505a3ca8de3d5cde0d1fa2e1b1bf9d3ed70a521e33839d90718d58"
+  },
+  "irregularities_logged_and_repaired": [
+    {
+      "id": "IR-88-838C-01",
+      "status": "FIXED_WITH_REGRESSION_TEST",
+      "summary": "Repaired post-PR-#152 merge regression in docs/SUBMIT.md that falsely named withdrawn (lane H88-SDTL) as current decision and understated audited Pages packages as 45/45 instead of 46/46."
+    },
+    {
+      "id": "IR-88-838C-02",
+      "status": "FIXED_WITH_REGRESSION_TEST",
+      "summary": "Repaired overlooked submissions/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip internal member name (preserving unchanged TIFF SHA 3b26b61dc1...) so all 20/20 submissions/ pairs pass audit_downloads.audit_one."
+    },
+    {
+      "id": "IR-88-838C-03",
+      "status": "FIXED_WITH_REGRESSION_TEST",
+      "summary": "Updated NEW_HYPOTHESES.md so executed/falsified H88-MMRX (PR #152: HOLDOUT-DTI 0.188378, 0.797578 overlap vs HGVC) is no longer listed as untested, promoting 5 grep-verified untried post-MMRX hypotheses."
+    },
+    {
+      "id": "IR-88-838C-04",
+      "status": "FIXED_WITH_REGRESSION_TEST",
+      "summary": "Fixed Python invalid escape sequence '\\|' in scripts/publish_sdtl88.py while preserving its pre-import enforce_generation_preflight() guard."
+    },
+    {
+      "id": "IR-88-838C-05",
+      "status": "VERIFIED_AND_ARCHIVED",
+      "summary": "Live fetch_page verification of official DrivenData leaderboard (50 rows; anna_ms moved to #33 at 0.3004), problem page, NLR FY26 rules PDF, USGS GeoDAWN (CC0), and DOE GDR #1391 (CC-BY-4.0)."
+    }
+  ],
+  "review_document": "research/session-838cc402-review.md",
+  "unmet_requirement": "No new protocol-unique competition TIFF can be generated while pinned 17GEMSDOE covers 100% of allowed pixels under the unchanged literal 3-px dot-overlap rule (Owner Decision D1 required)."
+}
