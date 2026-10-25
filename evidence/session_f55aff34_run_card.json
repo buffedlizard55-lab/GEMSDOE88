@@ -30,47 +30,40 @@
   },
   "holdout_result": {
     "evidence_class": "HOLDOUT-DTI",
-    "candidate": "H88-CON88_ARCHIVED_RESEARCH",
+    "status": "NOT_RUN_BINDING_DUPLICATE_STOP",
+    "candidate": "H88-SPR_NOT_CONSTRUCTED",
     "evaluator_version": "gems57-pooled-hide-v2",
-    "withheld_positive_pixels": 60988,
-    "dti": 0.0017138,
-    "ci95": [
-      0.0013251,
-      0.0021425
-    ],
-    "repository_best_dti": 0.205991,
-    "beats_repository_best": false,
-    "new_holdout_run_this_session": false
-  },
-  "leakage_canaries": {
-    "status": "HISTORICAL_RECORDED_NOT_RERUN",
-    "feature_auc": [
-      0.630589,
-      0.501511,
-      0.599755
-    ],
-    "maximum_auc": 0.630589,
-    "stop_threshold": 0.9,
-    "all_pass": true,
-    "note": "Passing canaries cannot cure uniqueness, missing-surface, inventory or selector failures."
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "beats_repository_best": null,
+    "repository_best_dti": 0.205991
   },
   "registry_correlation_overlap": {
     "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_SCORE",
-    "preplacement_continuous_surface_spearman": null,
-    "preplacement_surface_gate_pass": false,
-    "final_dot_worst_spearman": 0.3762046,
-    "equal_support_worst_overlap_3px": 0.6936315,
-    "equal_support_overlap_vs_h33_3px": 0.4874117,
-    "binding_literal_overlap_3px": 1.0,
-    "literal_overlap_pass": false,
-    "inventory_rasters_originally_scanned": 77,
-    "complete_inventory_pass": false
+    "surface_rank_correlation": null,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap": null,
+    "universal_overlap_lower_bound": 1.0,
+    "overlap_limit": 0.7,
+    "status": "NOT_RUN_UNIVERSAL_LITERAL_COUNTEREXAMPLE",
+    "proof": {
+      "decision": "DUPLICATE_STOP",
+      "exit_code": 2,
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "allowed_pixels": 5106385,
+      "covered_allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "literal_overlap_lower_bound": 1.0,
+      "overlap_limit": 0.7
+    }
   },
   "archived_con88_artifact": {
     "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
     "raster_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
     "zip_file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
-    "zip_sha256": "e749e57107de0b75cf92bc2200fbf09927ec58a5ef82564f3ff2109dfc668fd3",
+    "zip_sha256": "73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb",
     "new_in_this_session": false,
     "ok_to_download_for_research": true,
     "ok_to_submit": false
@@ -140,20 +133,23 @@
     "id": "IR-88-F55AFF34-01",
     "evidence": "evidence/con88_clearance_withdrawal_20261025.json",
     "prediction_bytes_changed": false,
-    "old_clearance_withdrawn": true
+    "old_clearance_withdrawn": true,
+    "integrated_correction": "evidence/con88_clearance_withdrawal_96f5f523.json",
+    "integrated_main_pr": 181
   },
   "verification": {
     "three_passes_completed": true,
     "pass1": "REPRODUCED_DUPLICATE_STOP_AND_IDENTIFIED_UNSAFE_CON88_CLEARANCE",
-    "pass2": "REMOVED_BYPASS_RENAMED_ARTIFACTS_AND_CORRECTED_POLICY_SURFACES",
+    "pass2": "REMOVED_APPROVAL_BYPASSES_AND_INTEGRATED_READ_ONLY_VALIDATOR_WITH_GUARDED_COLLAR_CLI",
     "pass3": {
-      "status": "PASS_WITH_EXPLICIT_NEGATIVE_VERDICT",
+      "status": "PASS_AFTER_ORIGIN_MAIN_INTEGRATION_WITH_EXPLICIT_NEGATIVE_VERDICT",
+      "integration_base": "3635e1086837f12a642c0a6ffc2b12d4a876d9c0",
       "full_tests": {
-        "passed": 879,
+        "passed": 905,
         "failed": 0,
         "skipped": 23,
-        "warnings": 64,
-        "seconds": 241.44
+        "warnings": 70,
+        "seconds": 270.92
       },
       "download_audit": {
         "published_pairs": 48,
@@ -168,13 +164,13 @@
       "normal_and_optimized_site_guards": "PASS",
       "browser": "PASS_8_CASES_DESKTOP_MOBILE_CON88_NO_JS_FAILED_FETCH_AND_BYTE_DOWNLOAD",
       "research_state_input_pins": "PASS_FULL_OWNER_MIRROR_TIER",
-      "generation_entrypoints": "FOUR_CHECKED_ALL_EXIT_2_DUPLICATE_STOP",
-      "con88_revalidator": "EXPECTED_EXIT_1_FAIL_CLOSED_BECAUSE_PREPLACEMENT_SURFACES_ARE_ABSENT",
+      "generation_entrypoints": "CON88_SHARED_GUARD_AND_COLLAR_CLI_ALL_EXIT_2_DUPLICATE_STOP",
+      "con88_validator": "READ_ONLY_FORMAT_AUDIT_EXIT_0_REQUIRE_SUBMIT_EXIT_2",
       "git_diff_check": "PASS"
     },
     "browser_evidence": "evidence/session_f55aff34_browser_check.json",
-    "con88_revalidator": "EXPECTED_FAIL_CLOSED_MISSING_PREPLACEMENT_SURFACES",
-    "completed_at_utc": "2026-10-25T18:44:30Z"
+    "con88_revalidator": "READ_ONLY_FORMAT_AUDIT_EXPECTED_EXIT_0_REQUIRE_SUBMIT_EXPECTED_EXIT_2",
+    "completed_at_utc": "2026-10-25T19:08:00Z"
   },
   "status": "DUPLICATE_STOP",
   "ok_to_download_for_research": true,
@@ -200,11 +196,42 @@
     "Authenticate organizer data/quota and archive a receipt before using ORGANIZER-CONFIRMED."
   ],
   "review": "research/session-f55aff34-review.md",
-  "remote_scope": "Local evidence only. GitHub checks/merge and any organizer portal acceptance must be reported separately.",
+  "remote_scope": "Local evidence only. GitHub checks/merge and organizer acceptance are reported separately; no portal receipt exists.",
   "input_readiness": {
     "owner_mirror_full_tier_restored": true,
     "sha256_pins_checked": true,
     "organizer_authenticated": false,
     "top_three_hypotheses_require_new_external_data": false
-  }
+  },
+  "integration_base": "3635e1086837f12a642c0a6ffc2b12d4a876d9c0",
+  "single_feature_canaries": {
+    "status": "NOT_RUN_NO_NEW_FEATURES",
+    "features_tested": 0,
+    "maximum_symmetric_auc": null,
+    "stop_threshold": 0.9
+  },
+  "archived_con88_diagnostics": {
+    "historical_only": true,
+    "historical_holdout_valid_for_promotion": false,
+    "protocol_limitation": "Full-catalogue collar is not visible-only hide-and-recover; no causal lower-bound or selector claim is justified.",
+    "reported_reemission_dti": 0.0017138,
+    "reported_reemission_ci95": [
+      0.0013251,
+      0.0021425
+    ],
+    "reported_reemission_withheld_positive_pixels": 60988,
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "repository_best_dti": 0.205991,
+    "historical_canary_symmetric_auc": [
+      0.630589,
+      0.501511,
+      0.599755
+    ],
+    "equal_support_worst_overlap_3px": 0.6936315,
+    "equal_support_overlap_vs_h33_3px": 0.4874117,
+    "binding_literal_overlap_3px": 1.0,
+    "preplacement_continuous_surface_spearman": null,
+    "inventory_rasters_originally_scanned": 77
+  },
+  "raster_status": "ARCHIVED_RESEARCH_ARTIFACT_NOT_NEW_CANDIDATE"
 }

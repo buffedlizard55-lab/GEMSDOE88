@@ -40,11 +40,11 @@ def test_con88_machine_records_bind_every_failed_gate() -> None:
     assert card["verdict"] == gate["verdict"] == "negative"
     assert card["ok_to_submit"] is gate["ok_to_submit"] is False
     assert card["approved_for_weekly_slot"] is gate["approved_for_weekly_slot"] is False
-    assert gate["G2_uniqueness"]["binding_literal"]["ok"] is False
-    assert gate["G2_uniqueness"]["preplacement_surface"]["ok"] is False
-    assert gate["G2_uniqueness"]["inventory_complete"] is False
-    assert gate["holdout_ok"] is False
-    assert gate["G2_uniqueness"]["binding_literal"]["worst_overlap"] == 1.0
+    assert gate["G2_ok"] is False
+    assert gate["literal_overlap_3px"] == 1.0
+    assert gate["historical_holdout_valid_for_promotion"] is False
+    assert gate["decision"] == "DUPLICATE_STOP"
+    assert "visible-only hide-and-recover" in gate["historical_holdout_limitation"]
 
 
 def test_final_session_card_is_one_negative_record() -> None:
@@ -57,9 +57,10 @@ def test_final_session_card_is_one_negative_record() -> None:
     assert card["ok_to_submit"] is card["approved_for_weekly_slot"] is card["new_tif_generated"] is False
     assert card["budget"]["experiments_run"] == card["budget"]["weekly_slots_used"] == 0
     assert card["holdout_result"]["evidence_class"] == "HOLDOUT-DTI"
-    assert card["holdout_result"]["withheld_positive_pixels"] == 60988
-    assert card["holdout_result"]["beats_repository_best"] is False
-    assert card["registry_correlation_overlap"]["binding_literal_overlap_3px"] == 1.0
+    assert card["holdout_result"]["status"] == "NOT_RUN_BINDING_DUPLICATE_STOP"
+    assert card["holdout_result"]["dti"] is card["holdout_result"]["ci95"] is None
+    assert card["archived_con88_diagnostics"]["historical_holdout_valid_for_promotion"] is False
+    assert card["registry_correlation_overlap"]["universal_overlap_lower_bound"] == 1.0
     assert card["validator_output"]["values_in_0_1"] is True
     assert card["submission_name"] is None
     assert len(card["submission_note"]) == card["submission_note_characters"] <= 140
@@ -69,7 +70,7 @@ def test_final_session_card_is_one_negative_record() -> None:
 
 def test_public_con88_surface_is_unambiguously_negative() -> None:
     text = (ROOT / "docs/con88.html").read_text()
-    assert "DOWNLOAD FOR RESEARCH — DO NOT SUBMIT" in text
+    assert "archived research — DO NOT SUBMIT" in text
     assert "OK TO DOWNLOAD AND SUBMIT" not in text
-    assert "IR-88-F55AFF34-01" in text
+    assert "IR-88-F55AFF34-01" in text and "IR-88-96F5F523-01" in text
     assert "-DO-NOT-SUBMIT.tif" in text and "-DO-NOT-SUBMIT.zip" in text

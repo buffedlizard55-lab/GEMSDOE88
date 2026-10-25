@@ -2,9 +2,9 @@
   "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
   "bytes": 146769,
-  "submission_name": "GEMSDOE88-CON88-RESEARCH-ONLY",
-  "note": "H88-CON88 archived negative: literal overlap, surface audit, and holdout-superiority gates failed; DO NOT SUBMIT",
-  "note_chars": 112,
+  "submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT",
+  "note": "Historical CON88 consensus artifact; literal duplicate; not valid hide-and-recover evidence; DO NOT SUBMIT",
+  "note_chars": 106,
   "validator": {
     "file": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 146769,
@@ -111,11 +111,11 @@
     "validation_class": "local on-disk template/range check; not organizer upload acceptance"
   },
   "zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
-  "zip_sha256": "e749e57107de0b75cf92bc2200fbf09927ec58a5ef82564f3ff2109dfc668fd3",
+  "zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
   "approved_for_weekly_slot": false,
   "promoted": false,
   "submission_slots_used": 0,
-  "status": "local format PASS; scientific/uniqueness gates FAIL; DO NOT SUBMIT",
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
   "metadata": {
     "experiments": {
       "exp1_consensus_only": {
@@ -159,9 +159,17 @@
       "gems36_anderson_pinn (0.974 overlap with H33, measured)"
     ]
   },
-  "historical_file_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
-  "historical_submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
   "ok_to_submit": false,
   "verdict": "negative",
-  "clearance_withdrawn": "IR-88-F55AFF34-01"
+  "historical_only": true,
+  "literal_overlap_3px": 1.0,
+  "decision": "DUPLICATE_STOP",
+  "correction": {
+    "id": "IR-88-96F5F523-01",
+    "record": "evidence/con88_clearance_withdrawal_96f5f523.json",
+    "prediction_bytes_changed": false
+  },
+  "historical_holdout_valid_for_promotion": false,
+  "historical_holdout_limitation": "Fixed predictions and full-catalogue collar are not visible-only hide-and-recover; no causal lower-bound claim is justified.",
+  "submission_note": "Historical CON88 consensus artifact; literal duplicate; not valid hide-and-recover evidence; DO NOT SUBMIT"
 }

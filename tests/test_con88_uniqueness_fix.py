@@ -31,8 +31,8 @@ def test_equal_support_cannot_clear_con88():
     import json
     root = Path(__file__).resolve().parents[1]
     gate = json.loads((root / "registry/con88_gates.json").read_text())
-    assert gate["G2_uniqueness"]["equal_support_diagnostic_ok"] is True
-    assert gate["G2_uniqueness"]["binding_literal"]["ok"] is False
-    assert gate["G2_uniqueness"]["preplacement_surface"]["ok"] is False
-    assert gate["holdout_ok"] is False
+    assert gate["G2_uniqueness"]["worst_overlap"]["overlap_equal_support"] < 0.70
+    assert gate["literal_overlap_3px"] == 1.0
+    assert gate["G2_ok"] is False
+    assert gate["historical_holdout_valid_for_promotion"] is False
     assert gate["ok_to_submit"] is False

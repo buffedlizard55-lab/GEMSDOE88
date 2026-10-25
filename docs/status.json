@@ -17,5 +17,5 @@
   "historical_review": "data/repo_review_20261025.json",
   "new_tif_generated": false,
   "new_tif_sha256": null,
-  "current_review_note": "IR-88-F55AFF34-01 withdrew unsafe CON88 clearance; no file is authorized for submission and no weekly slot was used."
+  "current_review_note": "No new TIFF can satisfy the literal 17GEMSDOE overlap gate; archived current-release file remains research-only."
 }

@@ -135,8 +135,8 @@ def current_status(root=ROOT):
         'new_tif_generated': False,
         'new_tif_sha256': None,
         'current_review_note': (
-            'IR-88-F55AFF34-01 withdrew unsafe CON88 clearance; no file is '
-            'authorized for submission and no weekly slot was used.'
+            'No new TIFF can satisfy the literal 17GEMSDOE overlap gate; '
+            'archived current-release file remains research-only.'
         ),
     }
 

@@ -1,27 +1,20 @@
 #!/usr/bin/env python3
-"""Compatibility entry point for the shared candidate-generation preflight.
+"""Compatibility name for the shared literal preflight; no CON88 exemption.
 
-IR-88-F55AFF34-01 withdrew CON88's lane-specific equal-support bypass.  The
-request requires the overlap stop against any registry raster and requires the
-top candidate to beat the current HOLDOUT-DTI best before a slot can be used.
-CON88 satisfies neither condition.  Equal-support remains a diagnostic in
-``vendor/gems57/uniqueness.py``; it cannot authorize generation.
+Equal-support comparisons are research diagnostics, not authority to override
+this user's all-registry overlap rule. See IR-88-96F5F523-01.
 """
-from __future__ import annotations
-
 from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
-
-from scripts.generation_guard import enforce_generation_preflight  # noqa: E402
 
 
 def enforce_con88_preflight(root: Path = ROOT) -> None:
-    """Delegate to the one shared fail-closed generation guard."""
-    enforce_generation_preflight(Path(root))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight(root)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
+    sys.path.insert(0, str(ROOT))
     enforce_con88_preflight()

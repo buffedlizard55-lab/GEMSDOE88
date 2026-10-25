@@ -33,7 +33,7 @@ Can `0.2778` be beaten? **Yes in principle, but not demonstrated here.** The cur
 1. **Literal uniqueness fails.** REGISTRY-MEASUREMENT: the SHA-pinned `17GEMSDOE` raster has positive support covering every one of 5,106,385 allowed pixels. Every nonempty candidate therefore has literal 3-pixel forward overlap `1.0`, above the `0.70` stop limit.
 2. **The required pre-placement surface test is absent.** The old validator measured Spearman correlation on the final binary dot raster, not the continuous blend before placement. Missing evidence fails closed.
 3. **The inventory was incomplete.** The original CON88 validator scanned 77 distinct on-disk rasters. Later lanes used substantially larger restored sibling/fleet inventories. “All on-disk” was not evidence of all registry rasters listed by the request.
-4. **Scientific promotion fails.** HOLDOUT-DTI (`gems57-pooled-hide-v2`, 60,988 withheld positives): CON88 per-fold re-emission is `0.001714 [0.001325, 0.002143]`; the repository best is `0.205991`. The request explicitly says not to spend a slot unless the top candidate beats the current holdout best.
+4. **Scientific promotion fails.** The archived CON88 re-emission diagnostic is `0.001714 [0.001325, 0.002143]` (`gems57-pooled-hide-v2`, 60,988 withheld positives), below the repository best `0.205991`. More fundamentally, its full-catalogue collar is not the required visible-only hide-and-recover construction, so the integrated review marks it invalid for promotion. H88-SPR never reached holdout because the shared pre-placement guard stopped first.
 
 The equal-support diagnostic is still informative: REGISTRY-MEASUREMENT overlap vs H33 is `0.487`, and the worst equal-support overlap recorded by the old scan is `0.694` vs GEMSDOE49. It cannot replace the binding literal test or missing pre-placement test.
 
@@ -42,7 +42,7 @@ The equal-support diagnostic is still informative: REGISTRY-MEASUREMENT overlap 
 - Research TIFF: [`gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif`](../downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif)
 - TIFF SHA-256: `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68` (unchanged by rename)
 - Research ZIP: [`gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip`](../downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip)
-- ZIP SHA-256: `e749e57107de0b75cf92bc2200fbf09927ec58a5ef82564f3ff2109dfc668fd3`
+- ZIP SHA-256 after integration: `73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb`
 - LOCAL-VALIDATOR: one float32 band; EPSG:32611; shape 3730×3292; exact sample transform; `nodata=None`; no NaN/Inf; minimum `0.0`; maximum `1.0`; 37,654 positive pixels; zero outside footprint and on the catalogue; ZIP contains exactly the byte-identical, negatively named TIFF.
 - Competition submission name: none.
 - Research note (112/140): `H88-CON88 archived negative: literal overlap, surface audit, and holdout-superiority gates failed; DO NOT SUBMIT`
@@ -83,14 +83,14 @@ The shared pre-placement guard stopped before H88-SPR feature construction, cana
 ### Pass 2 — fix and regression-test
 
 - Removed CON88’s lane-specific generation bypass; all candidate runners now reach the shared guard before feature/model imports.
-- Changed `validate_con88.py` so literal overlap, pre-placement surface, holdout superiority and complete evidence are binding.
-- Removed the audit/site exceptions that could turn a lane-local boolean into submission approval.
+- Replaced `validate_con88.py` with a read-only saved-byte audit that delegates to the shared literal preflight, never loads feature caches, and denies `--require-submit`.
+- Removed the audit/site exceptions that could turn a lane-local boolean into submission approval; the integrated correction also guards the collar-holdout CLI before imports.
 - Renamed the TIFF/ZIP/receipt with `DO-NOT-SUBMIT`, preserving TIFF bytes and rebuilding the ZIP with one negatively named member.
 - Corrected README, root page, CON88 page, submission guide, run card, gate JSON and irregularity ledger.
 
 ### Pass 3 — final recheck
 
-The final command results are recorded in `registry/session_f55aff34_run_card.json`. The binding outcome remains `negative`; no new TIFF and no weekly slot were produced. Remote GitHub Actions and actual DrivenData upload acceptance are not asserted by local tests.
+After integrating `origin/main` through `3635e108…` (including the stronger read-only CON88 validator and guard hardening), the full suite passed **905 tests** with **23 skipped** and **70 warnings**. All 48 Pages packages and 20 repo-side archives pass local package checks with 0 eligible; normal/optimized site guards, full input pins, four generation stops, validator denial, and an eight-case browser audit pass. Exact results are in `registry/session_f55aff34_run_card.json`. The binding outcome remains `negative`; no new TIFF and no weekly slot were produced. Remote GitHub Actions and actual DrivenData upload acceptance are separate evidence.
 
 ## Remaining work and limitations
 
