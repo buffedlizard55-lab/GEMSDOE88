@@ -66,6 +66,14 @@ bash scripts/download_competition_data.sh
 
 [Three-pass review and parser reliability fix](research/session-7bf01824-review.md) · [Session run card](registry/session_7bf01824_run_card.json). Fresh preflight confirms `DUPLICATE_STOP`; no new TIFF or slot. Offline leaderboard parsing now rejects malformed scores and incomplete ranked evidence without replacing the previous snapshot.
 
+### Review supplement — session fd5f1d8b (2026-10-25)
+
+[Review, H33 arithmetic, leaderboard reconciliation, irregularities and decisions](research/session-fd5f1d8b-review.md) · [Run card (negative)](evidence/session_fd5f1d8b_run_card.json) · [Official public leaderboard snapshot, 50 rows](docs/data/leaderboard_official_snapshot_20261025.json).
+
+- **No new TIFF.** The literal duplicate stop still returns `DUPLICATE_STOP` (exit 2). The pinned dense `17GEMSDOE` witness is a continuous probability raster covering **100 %** of the 5,106,385 allowed cells, so every nonempty candidate fails the 0.70 limit. This rule also blocks sparse candidates. The decision to change it belongs to the rule owner (see the review, D1).
+- **Stale and misattributed figures.** `0.3195` matches a 2026-10-04 snapshot value. `0.4413` is the rank-1 public score of a non-GEMSDOE participant. `0.2778` (H33) has no organizer receipt. Public top-50 range (checked 2026-10-25): 0.4413 down to 0.2818.
+- **GitHub authentication failed** (`gh` token rejected), so the pull request and merge are pending a reconnect in Arena.
+
 ### Remaining limitations
 
 The literal uniqueness condition must become satisfiable under an explicitly authorized **shared** protocol before another candidate is constructed; no exemption is authorized here. New-model hide-and-recover and leakage tests are therefore not run. The current leaderboard, rules, weekly allowance, organizer input authentication and receipts cannot be verified through this session's permitted hosts. No credentials are requested. Full data caches are ignored, not committed; restore commands reconstruct them. Static Pages serves results, not account-authenticated uploads or training jobs.
