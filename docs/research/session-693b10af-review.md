@@ -125,6 +125,10 @@ The complete request was re-read; README’s normalized full-request embedding e
 | Three implementation/review passes | **COMPLETE**, local evidence above; negative scientific outcome retained |
 | Competition slot/upload | **Zero**, no authority inferred from file correctness |
 
+## Delivery
+
+Code/evidence delivery: [PR #164](https://github.com/buffedlizard55-lab/GEMSDOE88/pull/164) from the fixed Arena branch into `main`. The PR’s live checks and merge record are authoritative. This report and run card are a local verification snapshot, not a mutable remote-CI or organizer-acceptance claim.
+
 ## Next session priorities
 
 1. Resolve the shared literal-support contradiction explicitly **before** any candidate construction. No revised rule is approved here. The urgent new unique-TIFF deliverable remains unmet until the contract admits a nonempty candidate.

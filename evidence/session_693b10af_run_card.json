@@ -336,5 +336,11 @@
     "source_bound_queue_and_legacy_claim_corrections": "PASS",
     "three_software_review_passes": "COMPLETE"
   },
-  "integration_base": "15b1d00e444285de22700c741ef2babcd364f678"
+  "integration_base": "15b1d00e444285de22700c741ef2babcd364f678",
+  "delivery": {
+    "pull_request_url": "https://github.com/buffedlizard55-lab/GEMSDOE88/pull/164",
+    "base_branch": "main",
+    "head_branch": "arena/693b10af-gemsdoe88",
+    "record_scope": "Local verification snapshot. Live GitHub PR/check/merge state is authoritative; this card does not claim a remote CI result or organizer acceptance."
+  }
 }
