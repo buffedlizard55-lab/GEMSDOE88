@@ -1,8 +1,30 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
-# GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
+## ⛔ CURRENT DECISION · 2026-10-25 · H88-MTAS: DUPLICATE — STOP
 
-> ## ⛔ Latest session lane (2026-10-24): `H88-DHTC` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (like-for-like unique 0.5237 <= 0.70; canary pass 0.5903; held under literal `17GEMSDOE` dense witness; 0 slots spent)
+**NEW FILE TO DOWNLOAD: NO · PREVIOUS RESEARCH FILE TO DOWNLOAD: YES · COMPETITION SUBMISSION: NO — DO NOT SUBMIT.** We ranked [four specific geological hypotheses](research/candidate-hypotheses-20261025-mtas.md) and froze one method lane (multi-scale gravity/magnetic admittance). With the hash-pinned grid and registry restored, a pre-placement audit proved that the `17GEMSDOE` prior is directly positive on **all 5,106,385 allowed pixels**. Every possible nonempty candidate must overlap that raster within 3 px at **1.0 > 0.70**. The user's literal all-registry stop rule has no dense-prior exemption. We **did not** build the feature stack, fit/evaluate a model, place dots, generate/copy a new TIFF, spend a slot, or claim an MTAS `HOLDOUT-DTI`/`ORGANIZER-CONFIRMED` score. Renaming or formatting a TIFF would not make it unique for submission.
+
+**Automated evidence:** [one negative machine run card](registry/mtas88_run_card.json) ([Pages copy](docs/data/mtas88_run_card.json)) · [pre-placement proof and archived format check](scripts/preflight_mtas88.py) · [H33 forensics, source audit and limits](research/session-20261025-mtas-review.md) · [executive submission guide](docs/executive-summary.html). Restore and recheck without human approval:
+
+```sh
+python -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python scripts/restore_inputs.py --validation
+.venv/bin/python scripts/preflight_mtas88.py                 # Verifies proof; exits 0 and writes negative card
+.venv/bin/python scripts/preflight_mtas88.py --gate-generation # Intentionally exits 2: DUPLICATE_STOP
+.venv/bin/python scripts/check_site.py
+.venv/bin/python -m pytest -q
+```
+
+**Research-only archived download (not MTAS and not submit-cleared):** [H88-TDKL single-band GeoTIFF, `DO-NOT-SUBMIT`](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) · TIFF SHA-256 `db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf` · [one-file ZIP](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip). Saved TIFF and ZIP were rechecked against the pinned sample grid: single band, no NaNs, all values in `[0,1]`. This is a **local format** check, not a DrivenData receipt or permission to spend a weekly slot. H33's **0.2778 is USER-REPORTED**; the 0.2747 in the H33 owner build file is a **projection, not a score**. The archive's 0.4413 leaderboard figure is a dated 2026-10-24 snapshot, not a live result or proof of winning.
+
+**Read the operating prompt at every session start:** [PROMPT.md](PROMPT.md) and the [standing requirements below](#permanent-user-prompt-operational-requirements). **Maximize P(Win)** by protecting scarce slots; **Own the Outcome** by publishing negative results and the missing organizer/permission evidence. One method lane; rank 3–5 new hypotheses *before* computation; use the shared buffered whole-fault holdout, visible-only catalogue, pooled α=0.2/β=0.8 300 m triangular DTI, feature-alone AUC ≤0.90, pre-placement Spearman ≤0.90 and literal final-dot overlap ≤0.70 against **any** registry raster. Stop at 3 experiments or 2 hours. Validate the saved TIFF (single band, finite [0,1], exact sample grid), record SHA-256, note ≤140 chars, and separate slot selection from evaluation. A portal score requires an actual organizer receipt. The request's “single method paragraph below” was not supplied; do not invent it or silently revise the rule.
+
+---
+
+### Historical 2026-10-24 run records (research only; archived headings and like-for-like claims below do **not** override the current literal stop)
+
+> ## ⛔ Archived session lane (2026-10-24): `H88-DHTC` — DOWNLOAD FOR RESEARCH: **YES** · SUBMIT: **NO — DO NOT SUBMIT** (like-for-like unique 0.5237 <= 0.70; canary pass 0.5903; held under literal `17GEMSDOE` dense witness; 0 slots spent)
 > [⬇ **Download H88-DHTC GeoTIFF (`.tif`, 81 KB, portal-valid zeros)**](docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`, 32 KB)**](docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/dhtc88_run_card.json) · [5 Ranked Hypotheses](research/candidate-hypotheses-20261024-dhtc88.md) · [PhD Forensic Analysis of H33 0.2778](research/h33-forensics-and-dhtc-phd-analysis.md) · [Executive Submission Guide](docs/executive-summary.html). Validate: `python3 scripts/validate_dhtc88.py` (exit 0 research; `--require-submit` exit 2).
 >
 > | Gate / Field | Machine Result | Binding Evidence |
@@ -54,7 +76,7 @@
 > - **Verify without regenerating:** `.venv/bin/python scripts/validate_sarcsd88.py` (exits `0`); `.venv/bin/python scripts/validate_sarcsd88.py --require-submit` (deliberately exits `2`). Always begin every session from [`PROMPT.md`](PROMPT.md) (**Maximize P(Win) · Own the Outcome**).
 >
 > #### Summary: Why `GEMSDOE32` (`H33`, user-reported `0.2778`, `ORGANIZER-CONFIRMED: none`) Led Sibling Sites, Can We Beat `0.2778` (Leaderboard #1 = `0.4413`, #5 = `0.3539`), & 5 Ranked Hypotheses
-> - **Why `H33` reached `0.2778` (`research/h33-forensics-20261024.md`):** Strict pixel-subset decomposition `H19-5 (121,419d, 0.1922) ⊃ D2.8 (44,090d, 0.2600) ⊃ SOLO (38,440d) ⊃ H33 (37,654d, 0.2778)` proves two exact DTI denominator optimizations caused the `+856 bps` lift: **(1) ~2.83 px Poisson-disk ridge thinning** (`0.1922 → 0.2600`, removing redundant adjacent dots that pay `α=0.2` per-dot `FP_w` for zero extra max-kernel `TP_w`) and **(2) `≤200 m` (`≤2 px`) catalogue collar deletion** (`6,436` near-catalogue dots deleted, `0.2600 → 0.2778`), while preserving `41.7%` of dots in unmapped `>2.5 km` basins (`47.17%` of the footprint). Beating `0.2778` toward `0.3539–0.4413` is architecturally possible via higher precision in concealed piedmont/playa basins, but is **not proven** by `H88-SAR-CSD` under local `DTI_hide` (`IR-88-108`); spend `0` weekly slots here.
+> - **H33 measured lineage — correction on 2026-10-25:** the decoded supports are strictly nested, `H19-5 (121,131 dots) ⊃ D2.8 (44,090) ⊃ SOLO-D2.8 (40,199) ⊃ H33 (37,654)`. Exactly 6,436 D2.8 dots were removed by the H33 raster, all ≤2 pixels from the known catalogue. This is consistent with a better precision/coverage trade-off after thinning and collar removal, **but does not prove hidden-truth purity or the causal reason** for the user-reported scores. Earlier claims of 121,419/38,440 dots or an exact `+856 bps` causation are withdrawn. See the [recomputed forensic answer](research/session-20261025-mtas-review.md). Beating the user-reported 0.2778, or the 2026-10-24 archived top 0.4413, has not been demonstrated; spend 0 weekly slots.
 > - **5 Preregistered Geological Hypotheses (`registry/preregistration_sarcsd88.json` · [full table & official source links](research/candidate-hypotheses-20261024-sarcsd.md)):** **(1) `H88-SAR-CSD` (`Exp 03`, emitted):** Selected-At-Random `1 - c_hat(x)` unmapped-crest + relay fusion (`HOLDOUT-DTI 0.151589`, `gt25 = 38.72%`, `2.57×` `>2.5 km` `TP_w`); **(2) `H88-CSD-JOINT` (`Exp 02`):** 20-ch Kostrov strain / strike-steered Blakely gravity / Salem magnetic / chi-knickpoint PoE at `2.65 px` (**`HOLDOUT-DTI 0.192936`, `+505 bps` vs `ADHR`**); **(3) `H88-SAR-PHYS` (`Exp 01`):** 56-ch zero-catalogue differential SAR crest baseline (`HOLDOUT-DTI 0.093280`, `2.02×` `>2.5 km` `TP_w`); **(4) `H88-BGP-3D` (Reserve, 0 compute):** 3D Parker–Oldenburg basement-interface + deep MT suture; **(5) `H88-INSAR-COH` (Blocked — external Copernicus/ASF Sentinel-1 coherence unavailable in sandbox)**. Official sources verified: [NLR Rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) · [DrivenData Competition](https://www.drivendata.org/competitions/306/competition-doe-gems/) · [Format & Metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [Leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) · [Reference Repo](https://github.com/drivendataorg/gems-prize-reference-solution) · [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) · [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) · [USGS SGMC](https://pubs.usgs.gov/ds/1052/).
 
 > **Latest independent review (2026-10-24):** [review, fixes, verification scope and blockers](research/review-bff2fa68-20261024.md) · [fresh latest-download JSON audit](evidence/latest_download_review_20261024.json). **DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO.** No new TIFF generated: the verified literal duplicate-stop rule blocks every nonempty candidate. Start each session with [the standing user prompt](PROMPT.md); it is a condensed record, not a verbatim transcript.
@@ -437,14 +459,11 @@ python -m venv .venv
 
 **What H33 is.** H33 is `dotted-h19-5-d2-8` (44,090 dots spaced 2.8 px along the H19-5 topographic ridge network) with the 6,436 dots inside the 200 m catalogue collar deleted. That leaves 37,654 dots.
 
-**Why it scores well.** Three mechanisms work together:
+**Plausible mechanism, not established hidden-truth causality** (the earlier version of this paragraph overstated what the receipts establish):
 
-1. **Geology.** The H19-5 ridges coincide with the new expert-mapped faults. The receipt model puts about 95% of the public truth density within 3 px (300 m) of those ridges.
-2. **Metric.** Dotting keeps about 78% of line credit at 2.8 px spacing while cutting false-positive mass by 2.75×. The marginal-dot test is ΔTP/ΔFP > 0.2·D/(1−0.2·D), which is about 0.059 at D = 0.28.
-3. **Mask.** Known faults are removed pixel-exactly, and the receipts show the collar is empty of new truth:
-   - `gems79-tilt-ring` (100,000 dots, all within 2 px of the catalogue): **0.0005**.
-   - `gems81-cont-poisson-buf2` (84% of dots at 2–3 px): **0.0041**.
-   - The collar dots were therefore pure false positives, which is why the H19-5 lineage climbed 0.1922 → 0.2477 → 0.2600 → 0.2708 → 0.2778 (all USER-REPORTED).
+1. **Geology.** H19-5 ridge alignment with *hidden* expert faults is a hypothesis; a receipt-fit model **projects** high truth density nearby, but it is not an observed portal truth map or a verified score.
+2. **Metric.** Thinning could avoid redundant false-positive mass, but also could remove useful coverage. In the local 300 m triangular DTI implementation, a dot with marginal truth gain `dT` and self-credit `k` improves the score only if `dT > 0.2 · DTI · (dT + 1 − k)`; for a nonredundant dot (`dT = k`) the threshold is `k > 0.2 · DTI` (≈0.0556 when DTI=0.2778). Neither gain is directly measurable on unseen truth here.
+3. **Mask.** Pixel-subset forensics prove the 6,436 removed dots were ≤2 px from mapped faults, *not* that there were no new hidden faults nearby. `gems79-tilt-ring` 0.0005 and `gems81-cont-poisson-buf2` 0.0041 are user-reported scores for other rasters; they cannot identify H33's removed dots as pure false positives. The 0.1922 → 0.2477 → 0.2600 → 0.2708 → 0.2778 lineage numbers are also **USER-REPORTED** and not a causal experiment.
 
 **Metric algebra on the D2.8 → H33 pair** (assuming the deleted dots carried zero credit), per unit of public fraction:
 

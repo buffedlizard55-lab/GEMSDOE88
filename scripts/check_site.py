@@ -66,6 +66,37 @@ def main(root: Path = ROOT) -> None:
         (docs / "downloads" / f"{MVRD_NAME}.format-audit.json").read_text()
     )
     literal = json.loads((docs / "data/literal_protocol_audit.json").read_text())
+    mtas = json.loads((root / "registry/mtas88_run_card.json").read_text())
+    mtas_web = json.loads((docs / "data/mtas88_run_card.json").read_text())
+    mtas_evidence = json.loads((root / "evidence/mtas88_preflight_20261025.json").read_text())
+    require(mtas == mtas_web == mtas_evidence, "MTAS mirrored negative run cards disagree")
+    proof = mtas["preplacement_registry_proof"]
+    require(
+        mtas["decision"] == "DUPLICATE_STOP"
+        and mtas["verdict"] == "negative"
+        and mtas["ok_to_submit"] is False
+        and mtas["new_rasters_generated"] == 0
+        and mtas["raster_sha256"] is None
+        and mtas["holdout"]["dti"] is None
+        and mtas["validator_output"]["status"] == "NOT_RUN_NO_NEW_RASTER"
+        and proof["universal_overlap_blocker"] is True
+        and proof["directly_saturated"] is True
+        and proof["allowed_pixels"] == 5_106_385
+        and proof["uncovered_allowed_pixels"] == 0
+        and proof["overlap_limit"] == 0.7
+        and proof["witness_sha256"] == literal["saturation_certificate"]["witness_sha256"],
+        "MTAS negative stop missing, inconsistent or contradicted by literal audit",
+    )
+    require(
+        mtas["archived_research_download"]["validator_output"]["ok"] is True
+        and mtas["archived_research_download"]["ok_to_submit"] is False
+        and mtas["archived_research_download"]["sha256"] == current["file_sha256"],
+        "MTAS archived format-only download disagrees with canonical current release",
+    )
+    require(
+        len(mtas["submission_note"]) == mtas["submission_note_length"] <= 140,
+        "MTAS negative note exceeds 140 characters",
+    )
     ibl = json.loads((root / "registry/ibl88_run_card.json").read_text())
     ibl_web = json.loads((docs / "data/ibl88_run_card.json").read_text())
     qts = json.loads((root / "registry/qts88_run_card.json").read_text())
@@ -560,8 +591,22 @@ def main(root: Path = ROOT) -> None:
     require(dhtc_tif.name in index and dhtc_tif.name in executive, "DHTC tif in pages")
     require(dhtc["submission"]["submission_name"] in index and dhtc["submission"]["submission_name"] in executive, "DHTC name in pages")
     require(dhtc["raster_sha256"][:16] in index and dhtc["raster_sha256"][:16] in executive, "DHTC hash in pages")
+    for page_text in (index, executive):
+        require(
+            page_text.index('id="mtas-review"') < page_text.index('class="archive-lanes"')
+            and 'NO NEW TIFF: DUPLICATE — STOP' in page_text
+            and 'data/mtas88_run_card.json' in page_text
+            and mtas["archived_research_download"]["sha256"] in page_text,
+            "Pages must lead with the MTAS no-new-file stop and a marked historical download",
+        )
+    js = (docs / "assets/site.js").read_text()
+    require(
+        "fetch('data/mtas88_run_card.json'" in js
+        and "PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT" in js,
+        "Dynamic decision banner must fail closed on absent MTAS proof",
+    )
     print(
-        "PASS: canonical TDKL and concurrent negative research artifacts, hashes, Pages links, and status agree"
+        "PASS: MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
     )
 
 

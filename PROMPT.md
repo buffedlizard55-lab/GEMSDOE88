@@ -1,5 +1,7 @@
 # Standing prompt for GEMSDOE88 (DOE GEMS Prize, DrivenData competition 306)
 
+> **Current precedence note (2026-10-25):** The user's literal 3-pixel/70% overlap stop applies to *any* registry raster, including the pinned dense `17GEMSDOE` witness; there is no authorized dense-prior exemption. Its direct coverage of all 5,106,385 allowed pixels triggers a pre-placement stop for every nonempty candidate. See [README current decision](README.md) and [negative run card](registry/mtas88_run_card.json). Do not treat archived “like-for-like unique” passages, projections, or an old TIFF's local format pass as submission approval. H33's 0.2778 is owner/user-reported, not a verified organizer receipt. The requested separate single-method paragraph was absent.
+>
 > **Read this file at the start of every session.**  It is linked from the top of `README.md`.
 >
 > **Honesty note (IR-88-68).**  The owner's original prompt text is longer than what any one
