@@ -54,7 +54,7 @@
       "id": "H88-CON88",
       "status": "EVALUATED_NEGATIVE_HISTORICAL",
       "run_card": "registry/con88_run_card.json",
-      "run_card_sha256": "cf2802ec6de589fbb95ba44327013f9dcd082a2562138aa0ecd69387d457252d",
+      "run_card_sha256": "0e50c5e4a43ddd60a8f3e5ab3bebf441957e64f56020400b83402235337e9c5b",
       "reason": "Executed in PR #158 and withdrawn in IR-88-3C391D97-01: literal 3-pixel overlap 1.0 > 0.70 against dense_17gemdoe.tif, fixed-TIF HOLDOUT-DTI 0.0000 [0.0000, 0.0000] and per-fold collar re-emission HOLDOUT-DTI 0.001714 [0.001325, 0.002143] vs same-fold H33 0.006697 and repo holdout best H88-BPWD 0.205991; do not re-propose as an untested candidate."
     }
   ],

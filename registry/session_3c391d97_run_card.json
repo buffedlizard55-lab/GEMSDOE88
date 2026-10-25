@@ -346,7 +346,8 @@
     },
     "gate_evidence": "evidence/session_693b10af_gate_check.json",
     "completed_at_utc": "2026-10-25T18:52:00+00:00",
-    "remote_scope": "This is local verification evidence, not a claim of remote CI, current organizer access or submission acceptance. PR/check/merge status is authoritative on GitHub."
+    "remote_scope": "This is local verification evidence, not a claim of remote CI, current organizer access or submission acceptance. PR/check/merge status is authoritative on GitHub.",
+    "browser_evidence_sha256": "cfa43df774d2c6fea2b7ac13f7933bce1e943115e85c0e43f1fa32482cf948e5"
   },
   "unmet_requirements": [
     "New protocol-unique submission TIFF",
@@ -394,6 +395,7 @@
     "holdout_dti_fixed_tif": 0.0,
     "holdout_dti_collar_reemission": 0.001713781485367719,
     "ok_to_submit": false,
-    "verdict": "negative"
+    "verdict": "negative",
+    "new_zip_sha256": "73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb"
   }
 }

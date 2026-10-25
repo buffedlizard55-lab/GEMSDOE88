@@ -1,31 +1,20 @@
 #!/usr/bin/env python3
-"""Fail-closed preflight guard for H88-CON88 (IR-88-3C391D97-01).
+"""Compatibility name for the shared literal preflight; no CON88 exemption.
 
-Historical note: PR #158 introduced a lane-specific preflight wrapper that treated
-the equal-support helper `equal_support_dots` as a binding exemption to the
-literal 3-pixel registry overlap gate (`<= 0.70`) and returned
-`generation_allowed: True`. Under AGENTS.md Rules 2-3 and IR-88-D0C3ADEB-08 /
-IR-88-B4DFA10C-08 / IR-88-78CFB743-01 / IR-88-3C391D97-01, equal-support helpers
-are diagnostic only and run/build/publish entrypoints have no active-lane
-exemption. This module therefore delegates directly to the shared
-`enforce_generation_preflight()` guard.
+Equal-support comparisons are research diagnostics, not authority to override
+this user's all-registry overlap rule. See IR-88-96F5F523-01.
 """
-from __future__ import annotations
-
 from pathlib import Path
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
+
+
+def enforce_con88_preflight(root: Path = ROOT) -> None:
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight(root)
+
+
+if __name__ == '__main__':
     sys.path.insert(0, str(ROOT))
-
-from scripts.generation_guard import enforce_generation_preflight  # noqa: E402
-
-
-def enforce_con88_preflight(root: Path = ROOT) -> dict:
-    """Delegate unconditionally to the shared literal generation guard."""
-    return enforce_generation_preflight(root)
-
-
-if __name__ == "__main__":
     enforce_con88_preflight()
