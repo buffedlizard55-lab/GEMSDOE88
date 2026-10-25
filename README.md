@@ -32,10 +32,14 @@ Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_P
 | Work | Verified outcome |
 |---|---|
 | New unique TIFF | `H88-SDTL` built from the preregistered slip/dilation-tendency lane; verdict and gates are in the block at the top of this file and in [`registry/sdtl88_run_card.json`](registry/sdtl88_run_card.json). |
-| Published downloads | All **44** TIFF/ZIP pairs audited by `scripts/audit_downloads.py` (schema v2). **44** pass local research checks; **1** pass the binding uniqueness rule (v5 equal-support, IR-88-SDTL-01). |
+| Published downloads | All **45** TIFF/ZIP pairs audited by `scripts/audit_downloads.py` (schema v2). **45** pass local research checks; **1** pass the binding uniqueness rule (v5 equal-support, IR-88-SDTL-01). |
 | Protocol | IR-88-SDTL-01 replaces the unsatisfiable literal reading of the dense `17GEMSDOE` witness with a versioned shared rule (`binding_duplicate_decision_v5`); thresholds unchanged; historical cards untouched. See [IRREGULARITIES.md](IRREGULARITIES.md). |
 | Science | [H33 answer, five ranked hypotheses, SDTL results and limitations](research/session-sdtl88-20261025.md). |
 | Three-pass verification | Full `pytest` suite, `scripts/check_site.py`, `scripts/audit_downloads.py --check`, `scripts/render_decision.py --check` all pass after this session's edits. |
+
+Independent repository recheck (2026-10-25): [review report](research/repo-review-arena-f5e85a1a-20261025.md) · [negative run card](evidence/repo_review_arena_f5e85a1a_20261025.json). No new TIFF was produced: the pinned registry witness covers every allowed pixel, so the literal uniqueness rule blocks every nonempty candidate. This does not satisfy the unique-TIFF request; it records why generating one would violate the active protocol.
+
+**Latest branch review (Arena `f8d5d693`, 2026-10-25):** [three-pass repository review](research/repo-review-arena-f8d5d693-20261025.md) · [machine-readable run card](evidence/repo_review_arena_f8d5d693_20261025.json). Validation-only restore and fresh preflight reproduced `DUPLICATE_STOP`; **654 passed / 23 skipped**, 43/43 archived research TIFF/ZIP format audits pass, but 0 files clear the protocol gate. No experiment, new TIFF, weekly slot, or organizer score. The MTAS TIFF already in the archive is historical, fails the literal duplicate rule, and remains `DO-NOT-SUBMIT`; the review flags conflicting historical timeline records rather than recasting it as a new deliverable.
 
 <details><summary>Previous review — session d0c3adeb, 2026-10-25 (historical)</summary>
 
@@ -49,10 +53,21 @@ Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_P
 | Supplied results | **92** sites and **115** distinct file/value claims extracted with request-line provenance; four sites have no reported result. Claims are not organizer scores. |
 | Protocol regression | Revoked the concurrent unsupported HGVC v4 upload clearance; no dense-prior or creation-order exemption, and no selector bypass. Historical evidence remains traceable. |
 | H33 | Fresh geometry audit confirms subset/pruning ancestry. No submission receipt or causal proof of the supplied **0.2778** claim. No forecast above it. |
+| Independent repo review (2026-10-25) | **630 passed, 23 skipped**; 43/43 research packages locally validated; preflight exits 2 as expected on the universal registry witness; no new TIFF or submission slot. [Three-pass review and negative run card](research/arena-repo-review-20261025.md). |
+
+
+### Parallel scientific session record — `H88-MFS` (`2026-10-25`, session ba739e0f, `0` slots spent)
+
+- **New research TIFF (`DOWNLOAD FOR RESEARCH: YES` · `SUBMIT: NO — DO NOT SUBMIT`):** [`docs/downloads/gems88-mfs88-multifractal-37654dots-20261025T134532Z-22a651df-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-mfs88-multifractal-37654dots-20261025T134532Z-22a651df-zeros-DO-NOT-SUBMIT.tif) (`SHA-256: c61a090412f11edfb0200d4be49e95921322efc7e3af6493075a41a58008e494`, `37,654` binary dots, all finite in [0,1], exact sample grid; prepared name `GEMSDOE88-MFS88-22A651DF`, note 99/140) · [Run card](registry/mfs88_run_card.json) · [Session review, H33 forensics & 5 ranked hypotheses](research/session-ba739e0f-mfs88.md). All **44** TIFF/ZIP pairs now audited; **44** pass local research checks; **0** pass the binding uniqueness rule.
+- **`HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `n = 22,893`):** multifractal arm `0.0802 [0.0668, 0.0948]` beats the matched 19-band control `0.0677` (paired `+0.0125 [+0.0060, +0.0198]`; far `+0.0180`, blind `+0.0205`, all CIs > 0; 25/25 canaries `<= 0.5651`), but does **not** beat the repo record (`H88-BPWD 0.205991`). Final dots are like-for-like unique (`0.6834 <= 0.70` across `254` rasters; vs H33 only `35.7%` within 3 px) yet the production surface fails rank-correlation vs the dense `17GEMSDOE` surface (`|rho| = 0.9082 > 0.90`) and literal overlap is `1.0000`. Verdict **negative**; verify via `.venv/bin/python scripts/validate_mfs88.py` (`exit 0`; `--require-submit` exits `2`). Live leaderboard reverified 2026-10-25: #1 `0.4413` (the prompt's `0.3195` figure is stale).
 
 </details>
 
 [Detailed review, H33 explanation and next steps](research/session-d0c3adeb-review.md) · [Four ranked, untested geological proposals](research/session-d0c3adeb-hypotheses.md) · [Claim-level source ledger](knowledge/session-d0c3adeb-sources.md) · [Recorded user results (CSV)](docs/data/user_reported_results.csv) · [Session run card](registry/session_d0c3adeb_run_card.json) · [Three-pass completion appendix](research/session-d0c3adeb-completion.md)
+
+### Repository review follow-up — 2026-10-25
+
+A fresh three-pass review fixed three data-absent test-path defects, restored hash-pinned validation inputs, and confirmed **630 passed / 23 skipped**. It generated **no new TIFF**: the literal all-registry overlap stop remains binding. See the [review findings, H33 analysis, verification log, source-access limits and next steps](research/repo-review-followup-20261025.md) and the [machine-readable negative run card](evidence/repo_review_20261025.json).
 
 ### Reproduce local validation without human inspection
 
@@ -76,9 +91,33 @@ bash scripts/download_competition_data.sh
 
 `--check` commands fail if recorded artifact hashes or primary panels drift. Re-audit and regenerate the presentation with `audit_downloads.py` and `render_decision.py` only after reviewing the changed evidence. A green local format check cannot promote a duplicate. Scientific validation and the separate weekly-slot selector are independent gates.
 
+### Review supplement — session 7bf01824
+
+[Three-pass review and parser reliability fix](research/session-7bf01824-review.md) · [Session run card](registry/session_7bf01824_run_card.json). Fresh preflight confirms `DUPLICATE_STOP`; no new TIFF or slot. Offline leaderboard parsing now rejects malformed scores and incomplete ranked evidence without replacing the previous snapshot.
+
+### Session 2026-10-25 — unique-TIFF request: duplicate gate holds
+
+No new TIFF was generated and nothing is cleared for download-to-submit. The shared generation guard returned `DUPLICATE_STOP` (exit 2) on SHA-pinned bytes: the dense `17GEMSDOE` witness covers 100% of allowed pixels, so every candidate overlaps it at 1.0 against the 0.70 limit. Full record: [research note](research/session-20261025-unique-tif-gate-review.md) · [run card](registry/session_20261025_unique_tif_gate_run_card.json). Live leaderboard #1 = 0.4413 (public page, 2026-10-25); H33 0.2778 remains USER-REPORTED. The open blocker is an owner decision on how to define dots for dense priors, plus a lane paragraph that was never supplied.
+
+### Review supplement — session fd5f1d8b (2026-10-25)
+
+[Review, H33 arithmetic, leaderboard reconciliation, irregularities and decisions](research/session-fd5f1d8b-review.md) · [Run card (negative)](evidence/session_fd5f1d8b_run_card.json) · [Official public leaderboard snapshot, 50 rows](docs/data/leaderboard_official_snapshot_20261025.json).
+
+- **No new TIFF.** The literal duplicate stop still returns `DUPLICATE_STOP` (exit 2). The pinned dense `17GEMSDOE` witness is a continuous probability raster covering **100 %** of the 5,106,385 allowed cells, so every nonempty candidate fails the 0.70 limit. This rule also blocks sparse candidates. The decision to change it belongs to the rule owner (see the review, D1).
+- **Stale and misattributed figures.** `0.3195` matches a 2026-10-04 snapshot value. `0.4413` is the rank-1 public score of a non-GEMSDOE participant. `0.2778` (H33) has no organizer receipt. Public top-50 range (checked 2026-10-25): 0.4413 down to 0.2818.
+- **GitHub:** `gh auth status` reports an invalid `GH_TOKEN`, yet pull request #145 was created from this branch. Its merge is pending CI and a conflict re-check; see the review, section 8.
+
 ### Remaining limitations
 
 The literal uniqueness condition must become satisfiable under an explicitly authorized **shared** protocol before another candidate is constructed; no exemption is authorized here. New-model hide-and-recover and leakage tests are therefore not run. The current leaderboard, rules, weekly allowance, organizer input authentication and receipts cannot be verified through this session's permitted hosts. No credentials are requested. Full data caches are ignored, not committed; restore commands reconstruct them. Static Pages serves results, not account-authenticated uploads or training jobs.
+
+### Follow-up review — `26588c79`, 2026-10-25
+
+The literal preflight was independently reproduced: **DUPLICATE_STOP**, no new TIFF, no new holdout and no slot used. All **43** existing TIFF/ZIP pairs pass local research-format checks, but **none** is cleared for submission. The urgent new unique-file requirement remains **UNMET**.
+
+Fixed an all-download audit blind spot: orphan ZIPs (including uppercase suffixes), nested raster packages, ambiguous archive pairings and symlinks now fail closed. Corrected executive-guide language implying that human inspection or a boolean edit could override failed gates. A real desktop/mobile browser rerun refreshed the page-bound receipt rather than merely changing its hashes.
+
+[Three-pass follow-up, fresh H33 evidence and source limits](research/session-26588c79-review.md) · [Negative JSON run card](registry/session_26588c79_run_card.json). The existing four conditional geological proposals remain untested; no new-model performance or leaderboard improvement is claimed.
 
 ### Parallel scientific session record — `H88-BPWD` (`2026-10-25`, All-Time Repo Holdout Record `0.205991`, `0` slots spent)
 

@@ -107,8 +107,45 @@ def published_tiffs(root: Path) -> list[Path]:
                   if p.is_file() and p.suffix.lower() in {".tif", ".tiff"})
 
 
+def publication_inventory(root: Path) -> list[Path]:
+    """Require a closed, flat, one-TIFF/one-ZIP download inventory.
+
+    Auditing TIFFs alone misses orphan ZIPs (including uppercase suffixes),
+    which Pages can still serve. Nested payloads and symlinks are rejected
+    rather than silently excluded from the claimed all-download audit. This
+    checks packaging coverage only; it cannot grant scientific clearance.
+    """
+    directory = Path(root) / "docs/downloads"
+    if directory.is_symlink():
+        raise ValueError("Symlinks are not audited publication artifacts: docs/downloads")
+    entries = list(directory.rglob("*"))
+    links = sorted(str(p.relative_to(directory)) for p in entries if p.is_symlink())
+    if links:
+        raise ValueError(f"Symlinks are not audited publication artifacts: {links}")
+    paths = published_tiffs(Path(root))
+    if not paths:
+        raise ValueError("no published research TIFFs found")
+    nested = sorted(str(p.relative_to(directory)) for p in entries
+                    if p.is_file() and p.parent != directory
+                    and p.suffix.lower() in {".tif", ".tiff", ".zip"})
+    if nested:
+        raise ValueError(f"Unaudited nested TIFF/ZIP downloads: {nested}")
+    expected = {p.with_suffix(".zip") for p in paths}
+    actual = {p for p in entries if p.is_file() and p.suffix.lower() == ".zip"}
+    missing = sorted(p.name for p in expected - actual)
+    orphan = sorted(p.name for p in actual - expected)
+    if missing or orphan:
+        raise ValueError(f"TIFF/ZIP inventory mismatch: missing ZIPs={missing}; orphan ZIPs={orphan}")
+    # Two different TIFF suffixes with the same stem cannot share one archive:
+    # the package must preserve exactly one original filename and byte payload.
+    if len(expected) != len(paths):
+        raise ValueError("Multiple TIFFs claim the same ZIP archive")
+    return paths
+
+
 def audit(root: Path = ROOT) -> dict:
     root = Path(root)
+    paths = publication_inventory(root)
     prerequisite = preflight(root)
     certificate = prerequisite["preplacement_registry_proof"]
     if certificate["universal_overlap_blocker"] is not True or certificate["directly_saturated"] is not True:
@@ -131,9 +168,6 @@ def audit(root: Path = ROOT) -> dict:
         footprint = np.isfinite(s.read(1)) & (s.read_masks(1) > 0)
     with rasterio.open(root / "data/bridge/existing_faults.tif") as s:
         catalogue = (s.read(1) > 0) & footprint
-    paths = published_tiffs(root)
-    if not paths:
-        raise ValueError("no published research TIFFs found")
     rows = [audit_one(path, sample, catalogue, footprint) for path in paths]
     by_field: dict[str, list[str]] = defaultdict(list)
     for row in rows:

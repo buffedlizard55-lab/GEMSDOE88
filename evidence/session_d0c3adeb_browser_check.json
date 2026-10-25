@@ -1,6 +1,6 @@
 {
   "schema": "gems88.browser-review.v1",
-  "checked_at_utc": "2026-10-25T07:34:16.460Z",
+  "checked_at_utc": "2026-10-25T13:28:48.573Z",
   "browser": "153.0.8010.0",
   "pages": [
     {
@@ -73,7 +73,7 @@
   "failed_fetch_stays_negative": true,
   "source_sha256": {
     "docs/index.html": "13a40f1f93f6c52f20daa5f65d54c05a6e3f605e6a43c44099c855b3c11ee2ce",
-    "docs/executive-summary.html": "1bc741484aa5e69e23ab6ff448319064dcd1d14fb72d30631c517e1026f4eaa2",
+    "docs/executive-summary.html": "18cd61d9bd10bd963068b66db77ba26aac71847463a8bbd86bd753f9ed4905c2",
     "docs/research.html": "8ed5f6b321dd457043f07873da72464cc7db4950140e559bff07116e323cf15b",
     "docs/sources.html": "e1b2687cf1a8e5ad63974ba77c7e984140d9431b01364b527e983a09887cd0b8",
     "docs/assets/site.css": "afac9aae4627ec3053821e354b782f1fb6d0da902d1c27e4d6411db849f10949",

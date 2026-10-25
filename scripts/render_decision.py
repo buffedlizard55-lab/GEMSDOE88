@@ -148,6 +148,7 @@ def render(root: Path, kind: str) -> str:
 <li><h3>Open the DrivenData submission page</h3><p><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">competitions/306/competition-doe-gems/submissions</a> → “New submission”. The portal accepts a single-band GeoTIFF (.tif) or a .zip containing one GeoTIFF matching the sample's CRS, shape and geotransform.</p></li>
 <li><h3>Paste the name and note</h3><p>Name: <code>{name}</code><br>Note (≤140 chars): <code>{note}</code></p></li>
 <li><h3>Record the receipt</h3><p>Copy the portal score into <code>docs/data/user_reported_results.csv</code> with the file name; only a submission-page receipt may be labelled ORGANIZER-CONFIRMED.</p></li></ol>
+<p class="fine">The verdict is computed by code from the run card; changing a stored boolean is not clearance. Human inspection or a selector decision cannot override failed uniqueness or scientific gates. Weekly slot choice is the owner's — this site never picks one.</p>
 <div class="callout warn"><h3>About the earlier “Predicted values must be in range [0, 1]” error</h3><p>That portal message is a file check. Files published here are written with <code>nodata=None</code>, all-finite float32, zeros outside the footprint and values exactly in {{0, 1}}; the validator output is in the run card.</p></div>
 <h3 class="reproduce-heading">Reproduce without manual inspection</h3>
 <pre class="command-block"><code>bash scripts/download_competition_data.sh

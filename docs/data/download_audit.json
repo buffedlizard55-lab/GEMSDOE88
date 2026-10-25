@@ -1,6 +1,6 @@
 {
   "schema": "gems88.download-audit.v2",
-  "checked_at_utc": "2026-10-25T14:17:20.969527+00:00",
+  "checked_at_utc": "2026-10-25T14:26:34.426260+00:00",
   "scope": "Every TIFF in docs/downloads, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
   "preplacement_registry_proof": {
     "evidence_class": "REGISTRY-MEASUREMENT",
@@ -20,8 +20,8 @@
   },
   "canonical_file": "gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.tif",
   "canonical_sha256": "d58e8fd96bafb2e8fea10a3e5111ef95bcdd3768b864fe70711a415d26656d4e",
-  "tiff_count": 44,
-  "research_download_pass_count": 44,
+  "tiff_count": 45,
+  "research_download_pass_count": 45,
   "protocol_eligible_count": 1,
   "protocol_eligible_files": [
     "gems88-sdtl88-slipdilation-24799dots-20261025T140550Z-5ae83963-zeros.tif"
@@ -950,6 +950,64 @@
       "positive_support_sha256": "c6d2e74c55ff4c4820982a62ec9f39819dec6ff0ecb73f57cf0da41e5365b577",
       "zip_file": "gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip",
       "zip_sha256": "cd64e498a62175e833edbd9079e95bf8e0d296b89de63c03b6154d5a92d10606",
+      "zip_one_byte_identical_tif": true,
+      "negative_filename_markers": true,
+      "labels_consistent": true,
+      "literal_overlap_lower_bound": 1.0,
+      "decision": "DO_NOT_SUBMIT"
+    },
+    {
+      "file": "gems88-mfs88-multifractal-37654dots-20261025T134532Z-22a651df-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "c61a090412f11edfb0200d4be49e95921322efc7e3af6493075a41a58008e494",
+      "bytes": 139630,
+      "evidence_class": "LOCAL-FORMAT-AUDIT_NOT_ORGANIZER_ACCEPTANCE",
+      "format_valid": true,
+      "research_download_ok": true,
+      "ok_to_submit": false,
+      "errors": [],
+      "validator_output": {
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "single_band": true,
+        "geotiff": true,
+        "real_numeric_dtype": true,
+        "no_nan_inside": true,
+        "range_0_1": true,
+        "footprint_nonempty": true,
+        "no_mass_outside": true,
+        "footprint_not_masked": true,
+        "strict_audit": true,
+        "ok": true,
+        "raster_sha256": "c61a090412f11edfb0200d4be49e95921322efc7e3af6493075a41a58008e494",
+        "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+      },
+      "grid": {
+        "shape": [
+          3730,
+          3292
+        ],
+        "crs": "EPSG:32611",
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "bands": 1,
+        "dtype": "float32"
+      },
+      "independent_decoders_agree": true,
+      "positive_pixels": 37654,
+      "positive_on_catalogue": 0,
+      "positive_outside_footprint": 0,
+      "decoded_float32_sha256": "22a651df9f6d9f094164c8892bce1c360a7f98bd32cf165c2479ea5125dd6a24",
+      "positive_support_sha256": "9efc03b3c9439249102b50981c2f6fa39407931c401276f45745512d4db9d71b",
+      "zip_file": "gems88-mfs88-multifractal-37654dots-20261025T134532Z-22a651df-zeros-DO-NOT-SUBMIT.zip",
+      "zip_sha256": "68cedfcd6ab66ec0fda9abbdb6f14d3e6537cffefef5d3bb4c5ffce1e4157814",
       "zip_one_byte_identical_tif": true,
       "negative_filename_markers": true,
       "labels_consistent": true,
