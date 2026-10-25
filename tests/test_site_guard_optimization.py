@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.mark.parametrize("optimized", [False, True])
-@pytest.mark.parametrize("corruption", ["status", "download"])
+@pytest.mark.parametrize("corruption", ["status", "download", "unique-claim"])
 def test_guard_rejects_corruption_under_both_interpreters(
     tmp_path, optimized, corruption
 ):
@@ -27,6 +27,11 @@ def test_guard_rejects_corruption_under_both_interpreters(
             if corruption == "status":
                 status["ok_to_submit"] = True
             (docs / source.name).write_text(json.dumps(status))
+        elif source.name == "index.html" and corruption == "unique-claim":
+            index = source.read_text().replace(
+                "not unique under the binding all-registry rule", "genuinely unique"
+            )
+            (docs / source.name).write_text(index)
         elif source.name == "downloads" and corruption == "download":
             downloads = docs / source.name
             downloads.mkdir()
@@ -48,6 +53,8 @@ def test_guard_rejects_corruption_under_both_interpreters(
     assert "ValueError" in result.stderr
     if corruption == "download":
         assert "unmarked published research artifact" in result.stderr
+    elif corruption == "unique-claim":
+        assert "must not overstate sparse-screen uniqueness" in result.stderr
 
 
 @pytest.mark.parametrize("optimized", [False, True])
