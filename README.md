@@ -14,6 +14,8 @@ Automated audit (`scripts/audit_downloads.py`): All **48** TIFF/ZIP pairs (47 ma
 
 **H33 score context:** `0.2778` is recorded as a user-reported result, not an organizer-confirmed receipt. It must not be represented as HOLDOUT-DTI. See the dated forensic analysis and the current run card for evidence classes and limits.
 
+**Session 222254a5 (2026-10-25):** [three-pass review](research/session-222254a5-review.md) · [negative run card](registry/session_222254a5_run_card.json) · [measured evidence](evidence/session_222254a5_measurements.json). Recomputed with repo-exact functions: CON88 is format-valid and like-for-like unique (0.487 vs H33; 0.053 equal-support vs dense 17GEMSDOE), **and H33 itself has literal overlap 1.0 vs that dense witness** — the binding `DUPLICATE_STOP` is vacuous as defined (IR-88-222254A5-01, selector decision required). CON88 does not beat the HOLDOUT-DTI record (0.0017 vs 0.2060, disclosed with the H33 calibration caveat), so **no TIFF is cleared, no slot used, verdict negative**. Fixed `validate_con88.py` to fail closed (exit 1) instead of traceback on missing `.cache/` canary surfaces.
+
 ### Start here every session
 
 Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_PROMPT_20261025.md), and [AGENTS.md](AGENTS.md). The request is also embedded below. Do not append a competing “current candidate” banner or bypass the generation preflight.
