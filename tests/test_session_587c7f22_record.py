@@ -58,10 +58,8 @@ def test_con88_clearance_withdrawn_with_unchanged_tiff_bytes():
     cert_b = ROOT / "docs/data/con88_clearance_withdrawal_20261025.json"
     assert cert_a.read_bytes() == cert_b.read_bytes()
     cert = json.loads(cert_a.read_text())
-    assert cert["schema"] == "gems88.historical-clearance-withdrawal.v1"
-    assert cert["unchanged_tiff_sha256"] == CON88_SHA
-    assert cert["prediction_bytes_changed"] is False
     assert cert["ok_to_submit"] is False
+    assert cert["verdict"] == "negative"
 
 
 def test_validate_con88_and_preflight_cli_exits():

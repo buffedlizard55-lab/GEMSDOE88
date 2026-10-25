@@ -13,6 +13,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts import generation_guard  # noqa: E402
+from scripts import con88_preflight  # noqa: E402
 
 
 def entrypoints() -> list[Path]:
@@ -28,7 +29,7 @@ def entrypoints() -> list[Path]:
         "exp_provcrest_spacing.py", "publish_kdmc_site.py", "publish_sdtl88.py",
         "finalize_concentration.py", "write_concentration_receipts.py",
         "lbcal_build_stats.py", "lbcal_pixel.py", "lbcal_fit.py", "lbcal_extra_features.py",
-        "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py"))
+        "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py", "con88_collar_holdout.py"))
     return sorted(path for path in files if '__name__' in path.read_text())
 
 
@@ -42,7 +43,7 @@ def test_guard_is_first_and_reached_before_historical_cli_body(path, monkeypatch
     assert isinstance(first, ast.If), f"{path.name} can execute before the preflight"
     assert ast.unparse(first.test) == "__name__ == '__main__'"
     assert isinstance(first.body[-1], ast.Expr)
-    assert ast.unparse(first.body[-1]) == "enforce_generation_preflight()"
+    assert ast.unparse(first.body[-1]) == 'enforce_generation_preflight()'
 
     class PreflightReached(Exception):
         pass
@@ -94,6 +95,10 @@ def test_witness_removed_is_not_automatic_permission(monkeypatch):
     ["scripts/run_sdtl88_experiment.py"],
     ["-O", "scripts/build_sdtl88_submission.py"],
     ["-m", "scripts.publish_sdtl88"],
+    ["scripts/run_con88_experiment.py"],
+    ["scripts/run_con88_exp3_margin.py"],
+    ["scripts/con88_collar_holdout.py"],
+    ["scripts/con88_preflight.py"],
 ])
 def test_real_entrypoints_exit_two_without_writing_candidates(command):
     before = {p.name: p.stat().st_mtime_ns for p in (ROOT / "docs/downloads").iterdir()}

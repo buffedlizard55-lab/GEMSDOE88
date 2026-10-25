@@ -92,6 +92,8 @@ def spaced_topk(surface, allowed, quotas):
     return dots
 
 def main():
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     sample, prof = load("data/bridge/sample_submission.tif")
     foot = np.isfinite(sample)

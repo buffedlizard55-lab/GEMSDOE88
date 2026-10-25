@@ -2,7 +2,7 @@
   "schema": "gems88.session-review.v1",
   "run_id": "GEMSDOE88-REVIEW-587C7F22-20261025",
   "branch": "arena/587c7f22-gemsdoe88",
-  "base_commit": "3635e10",
+  "base_commit": "11eb63f",
   "initial_branch_commit": "3017fe7d9eaafe24054067cd69005913e6af93f1",
   "reviewed_at_utc": "2026-10-25T18:43:12.866619+00:00",
   "lane": "SOFTWARE_AND_EVIDENCE_REVIEW_ONLY",
@@ -206,7 +206,7 @@
     "manifest": "registry/hypothesis_queue.json",
     "source_snapshot": {
       "files": 154,
-      "sha256": "062d23ee578ea5488049870d51be30cd75802f8e4f762ed42e9c792a47b42042"
+      "sha256": "fb91e32d8d0939535b68ede0cd724bd90c1a491cdf37ff24c9a8f82519c7f125"
     },
     "conditional_first_choice": "H88-SPR",
     "proposals": [
@@ -271,7 +271,7 @@
     "browser_evidence": "evidence/session_587c7f22_browser_check.json",
     "browser_status": "PASS",
     "gate_evidence": "evidence/session_587c7f22_gate_check.json",
-    "completed_at_utc": "2026-10-25T19:14:18.386215+00:00",
+    "completed_at_utc": "2026-10-25T19:16:36.495056+00:00",
     "pass3_full_tests": {
       "passed": 900,
       "failed": 0,

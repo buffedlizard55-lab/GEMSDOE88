@@ -37,6 +37,7 @@ def test_pages_have_local_links_assets_and_clear_status():
     for page in pages.values():
         text = page.read_text()
         assert "DO NOT SUBMIT" in text
+        assert "OK TO DOWNLOAD AND SUBMIT" not in text
         assert "executive-summary.html" in text
         html = HTMLLinks()
         html.feed(text)

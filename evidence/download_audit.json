@@ -1,6 +1,6 @@
 {
   "schema": "gems88.download-audit.v2",
-  "checked_at_utc": "2026-10-25T19:06:04.758027+00:00",
+  "checked_at_utc": "2026-10-25T19:17:07.610334+00:00",
   "scope": "Every TIFF in docs/downloads and docs/research-variants, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
   "preplacement_registry_proof": {
     "evidence_class": "REGISTRY-MEASUREMENT",
