@@ -2,6 +2,7 @@
 """Validate H88-PRISM research TIFF (fail-closed even under python -O)."""
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -77,4 +78,7 @@ def main(require_submit: bool = False, root: Path = ROOT) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main(require_submit="--require-submit" in sys.argv))
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--require-submit", action="store_true")
+    args = ap.parse_args()
+    sys.exit(main(require_submit=args.require_submit))

@@ -1,12 +1,12 @@
 {
-  "file": "gems88-ibl88-basin-lattice-37654-20261024-zeros.tif",
+  "file": "gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
   "bytes": 114474,
   "submission_name": "GEMSDOE88-IBL88-BASIN-20261024",
   "note": "IBL-88 basin lattice 37654 dots b2 collar 2.83px 60% far-basin infill; HOLDOUT pending; UNSCORED",
   "note_chars": 96,
   "validator": {
-    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros.tif",
+    "file": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 114474,
     "sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
     "meta": {
@@ -62,7 +62,7 @@
     "footprint_fraction": 0.007286874781441169
   },
   "template_report": {
-    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros.tif",
+    "path": "docs/downloads/gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 114474,
     "sha256": "3b26b61dc1d4e959e003da977ab719013ed23a9f0163066b236e8c03d6e73ca5",
     "bands": 1,
@@ -110,7 +110,7 @@
     "ok": true,
     "validation_class": "local on-disk template/range check; not organizer upload acceptance"
   },
-  "zip_file": "gems88-ibl88-basin-lattice-37654-20261024-zeros.zip",
+  "zip_file": "gems88-ibl88-basin-lattice-37654-20261024-zeros-DO-NOT-SUBMIT.zip",
   "zip_sha256": "0917eec141a7d5813e15442c221739a2626c128b647977e40766fe94e0f1dc4e",
   "approved_for_weekly_slot": false,
   "promoted": false,

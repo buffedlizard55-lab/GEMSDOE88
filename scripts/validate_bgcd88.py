@@ -170,10 +170,14 @@ def validate_bgcd88(root: Path = ROOT) -> dict:
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = sys.argv[1:] if argv is None else argv
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--require-submit", action="store_true")
+    parsed = parser.parse_args(sys.argv[1:] if argv is None else argv)
     rep = validate_bgcd88(ROOT)
     print(json.dumps(rep, indent=2))
-    if "--require-submit" in args:
+    if parsed.require_submit:
         print(
             "AUTOMATIC SUBMISSION GATE: DO NOT SUBMIT "
             "(literal dense-witness overlap = 1.0 > 0.70 & selector gate required; exit 2).",

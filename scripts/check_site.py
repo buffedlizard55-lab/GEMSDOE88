@@ -198,6 +198,43 @@ def main(root: Path = ROOT) -> None:
         "SAR-CSD ZIP SHA-256 mismatch across file, card, and gate",
     )
 
+    ibl = json.loads((root / "registry/ibl88_run_card.json").read_text())
+    ibl_web = json.loads((docs / "data/ibl88_run_card.json").read_text())
+    require(ibl == ibl_web, "IBL88 run card mirrors differ between registry and docs/data")
+    if (root / "evidence/ibl88_run_card.json").is_file():
+        ibl_ev = json.loads((root / "evidence/ibl88_run_card.json").read_text())
+        require(ibl == ibl_ev, "IBL88 run card mirror differs in evidence/")
+    require(
+        ibl["evidence_status"]["incumbent_organizer_confirmed_live_score"] is None
+        and ibl["evidence_status"]["incumbent_user_reported_live_score"] == 0.2778,
+        "IBL88 run card must not label unreceipted 0.2778 as organizer-confirmed",
+    )
+    require(
+        (root / ibl["submission"]["file"]).is_file()
+        and (root / ibl["validator"]["file"]).is_file()
+        and ((not (root / "submissions").is_dir()) or (root / ibl["submission"]["repo_copy"]).is_file()),
+        "IBL88 run card file/repo_copy/validator paths must exist on disk",
+    )
+
+    for neg_stem in ("phys_near", "sgmc88"):
+        neg_rc = json.loads((root / f"registry/{neg_stem}_run_card.json").read_text())
+        neg_rc_web = json.loads((docs / f"data/{neg_stem}_run_card.json").read_text())
+        neg_gv = json.loads((root / f"registry/{neg_stem}_gate_verdict.json").read_text())
+        neg_gv_web = json.loads((docs / f"data/{neg_stem}_gate_verdict.json").read_text())
+        require(neg_rc == neg_rc_web, f"{neg_stem}_run_card.json differs between registry and docs/data")
+        require(neg_gv == neg_gv_web, f"{neg_stem}_gate_verdict.json differs between registry and docs/data")
+        require(
+            neg_rc["verdict"] == "negative"
+            and neg_gv["verdict"] == "negative"
+            and neg_rc["ok_to_submit"] is False
+            and neg_gv["ok_to_submit"] is False,
+            f"{neg_stem} card/gate must enforce protocol-canonical negative verdict",
+        )
+        require(
+            neg_rc["holdout_dti"]["ci95"] != [0.0, 0.0],
+            f"{neg_stem}_run_card.json must not carry placeholder [0.0, 0.0] CI",
+        )
+
     dhtc = json.loads((root / "registry/dhtc88_run_card.json").read_text())
     dhtc_web = json.loads((docs / "data/dhtc88_run_card.json").read_text())
     require(dhtc == dhtc_web, "Pages DHTC card differs from canonical registry card")

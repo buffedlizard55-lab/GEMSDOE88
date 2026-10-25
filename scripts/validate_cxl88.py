@@ -6,6 +6,7 @@ Exits 0 when the negative verdict is correctly recorded. --require-submit exits 
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -35,7 +36,9 @@ def _sha256(path: Path) -> str:
 
 def main(root: Path = ROOT, argv: list[str] | None = None) -> int:
     root = Path(root)
-    argv = sys.argv[1:] if argv is None else argv
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--require-submit", action="store_true")
+    args = ap.parse_args(sys.argv[1:] if argv is None else argv)
     ho = json.loads((root / "evidence/cxl88_holdout_20261025.json").read_text())
     card = json.loads((root / "registry/cxl88_run_card.json").read_text())
     cand = ho["pooled_overall"]["scores"]["exp02_cxl_poe_conduit"]
@@ -103,7 +106,7 @@ def main(root: Path = ROOT, argv: list[str] | None = None) -> int:
         f"phys44 control reproduced {phys['dti']:.6f}; canary max={ho['canary']['max_symmetric_auc']}; "
         "verdict=negative; NO new TIF; archived HGVC TIFF format [0,1]/finite/CRS-shape-transform PASS"
     )
-    if "--require-submit" in argv:
+    if args.require_submit:
         print("DO NOT SUBMIT: no CXL candidate passed the promotion gate", file=sys.stderr)
         return 2
     return 0

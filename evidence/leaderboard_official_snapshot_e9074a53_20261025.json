@@ -1,0 +1,94 @@
+{
+  "schema": "gems88.official-leaderboard-snapshot.v1",
+  "session_id": "e9074a53",
+  "fetched_date_utc": "2026-10-25",
+  "evidence_class": "OFFICIAL-PUBLIC",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "rules_pdf_url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+  "overview_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+  "metric": "DW-Tversky (alpha=0.2, beta=0.8, 300 m / 3 px linear decay)",
+  "ranked_teams_visible": 50,
+  "top_10": [
+    {
+      "rank": 1,
+      "team": "xiaofanhu",
+      "dti": 0.4413,
+      "submissions": 30
+    },
+    {
+      "rank": 2,
+      "team": "cfld__",
+      "dti": 0.3916,
+      "submissions": 17
+    },
+    {
+      "rank": 3,
+      "team": "Batik Shirt Brothers",
+      "dti": 0.3904,
+      "submissions": 51
+    },
+    {
+      "rank": 4,
+      "team": "BrandenKMurray",
+      "dti": 0.3724,
+      "submissions": 31
+    },
+    {
+      "rank": 5,
+      "team": "No Fault of Our Own",
+      "dti": 0.3539,
+      "submissions": 41
+    },
+    {
+      "rank": 6,
+      "team": "FaultFinders",
+      "dti": 0.349,
+      "submissions": 21
+    },
+    {
+      "rank": 7,
+      "team": "gleb",
+      "dti": 0.3446,
+      "submissions": 39
+    },
+    {
+      "rank": 8,
+      "team": "DARD",
+      "dti": 0.3398,
+      "submissions": 27,
+      "note": "Up from 0.3358 earlier on 2026-10-25 and from 0.3195 on 2026-10-04"
+    },
+    {
+      "rank": 9,
+      "team": "Fault Whisperers",
+      "dti": 0.3358,
+      "submissions": 36
+    },
+    {
+      "rank": 10,
+      "team": "faultier",
+      "dti": 0.3356,
+      "submissions": 42
+    }
+  ],
+  "selected_lower_ranks": [
+    {
+      "rank": 32,
+      "team": "sws-jonathan",
+      "dti": 0.3004,
+      "submissions": 29
+    },
+    {
+      "rank": 50,
+      "team": "moongrega",
+      "dti": 0.2818,
+      "submissions": 16
+    }
+  ],
+  "headline_reconciliation": {
+    "0.4413": "OFFICIAL-PUBLIC #1 (xiaofanhu, 30 submissions)",
+    "0.3195": "HISTORICAL-STALE-PUBLIC (DARD on 2026-10-04; now #8 at 0.3398 with 27 submissions on 2026-10-25; never a GEMSDOE fleet score)",
+    "0.2818": "OFFICIAL-PUBLIC #50 cutoff (moongrega, 16 submissions)",
+    "0.2778": "USER-REPORTED ONLY for GEMSDOE32 h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros (absent from public top-50 table >= 0.2818; zero DrivenData submission-page receipts in repository)"
+  }
+}

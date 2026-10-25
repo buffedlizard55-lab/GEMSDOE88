@@ -394,10 +394,12 @@
     "rasters_checked": 60,
     "worst_overlap": 0.52555,
     "worst_abs_spearman": 0.7283234977973867,
-    "passed": true
+    "passed": true,
+    "literal_dense_witness_overlap_3px": 1.0,
+    "literal_dense_witness_pass": false
   },
   "validator": {
-    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-lsc88-lidarstep-40000dots-20261025T044348Z-cbf6f408-zeros-DO-NOT-SUBMIT.tif",
+    "file": "docs/downloads/gems88-lsc88-lidarstep-40000dots-20261025T044348Z-cbf6f408-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 148672,
     "sha256": "85e4b9ae76a46f49b9f73b334ca52540bfc82e88f082bcb2de8272587030bab4",
     "meta": {

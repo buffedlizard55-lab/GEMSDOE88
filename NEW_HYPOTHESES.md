@@ -18,6 +18,16 @@ Additional parallel proposal record: [session 838cc402](research/session-838cc40
 
 Cross-fleet-screened parallel proposal record: [session 21256734](research/session-21256734-hypotheses.md) documents five complementary `0`-match geophysical inversions (`H88-ACDR` GeoDAWN `22°` drape/Beer–Lambert/Guspi continuation, `H88-POFD` Parker–Oldenburg 3D basement relief + flexural unloading, `H88-WDCS` complex Werner deconvolution + cepstral dike veto, `H88-OCST` `1915–1954` CNSB Okada Coulomb stress transfer, and `H88-OPERA-INSAR` NASA OPERA `DISP-S1` playa aquifer-baffle steps; `H88-ACDR..H88-WDCS` use SHA-pinned local inputs only) screened against live sibling fleets (`GEMSDOE86/91/92`) as well as all modules in `src/gems88/`. Preserved alongside the source-bound queue above; no duplicate-stop exception or experiment is authorized.
 
+### Additional five `grep`-verified untried hypotheses — session `e9074a53` (`2026-10-25`, none executed under `DUPLICATE_STOP`)
+
+Full mathematical transforms, band tags, named non-fault mimics, distinction from all `src/gems88/*.py` modules (`bpwd`, `psgv`, `hgvc`, `sdtl`, `mmrx`, `mtas`, `mfs`, `vhgd`, `vcaz`), and verified official CC0/CC-BY-4.0 DOIs/APIs: [research/session-e9074a53-hypotheses.md](research/session-e9074a53-hypotheses.md) ([mirror](docs/research/session-e9074a53-hypotheses.md)).
+
+1. **`H88-ANIS`** — *Anisotropic Cauchy Potential-Field Dip-Plane Surface-Trace Extrapolator* (2D directional Cauchy cross-wavelet phase-ridge regression across upward-continuation altitudes $z \in \{200, 400, 800, 1600, 3200\}\text{ m}$ on `B01/B10` gravity and `B02/B11` RTP magnetics + `B03` basement-step sign gate, projecting downdip hanging-wall worms back to the $z=0$ surface trace inside the `300 m` DTI kernel; `100%` cached local CPU stack).
+2. **`H88-FLDC`** — *GeoDAWN Raw `090°` Flight-Line Sub-Grid (`~3–8 m`) Fault-Gouge Matched Filter & Drape Continuation* (1D analytical-signal & oxidized magnetite-destruction notch filter on ungridded E–W fiducial `.csv` profiles with radar-altimeter clearance normalization; USGS `doi:10.5066/P93LGLVQ`, CC0).
+3. **`H88-FSTD`** — *Zero-Catalogue 3D Tensorial Mohr–Coulomb Slip & Dilation Tendency (`T_s`, `T_d`) on Potential-Field Fault Planes* (projects full GPS horizontal strain-rate eigenvectors from DOE GDR `#1391` `doi:10.15121/1881483` CC-BY-4.0 + ambient stress parameters `doi:10.5066/P9YL58W6` CC0 onto geophysical tilt-strike $\phi(x,y)$ and Salem dip $\delta(x,y)$ with `0` catalogue features, solving `sdtl.py`'s `9/12` visible-catalogue decay).
+4. **`H88-CHFR`** — *Convective Heat-Flow Departure & Péclet Upflow-Plume Adjoint Back-Tracing* (advective well residual $\Delta q_{\text{conv}} = q_{\text{well}} - q_{\text{LOESS}}$ from USGS `doi:10.5066/P9BZPVUC` CC0 back-traced up-hydraulic-gradient to `2–15 km` ModEM 3D MT conductance roots `doi:10.5066/P9TWT2LU` CC0).
+5. **`H88-NWIS-HB`** — *Piezometric Hydraulic-Head Step & Fault-Core Aquitard Baffle Detector* (multi-decade winter static water-table step modulus $|\nabla h_{\text{KED}}| / |\nabla z_{\text{DEM}}|$ across low-permeability clay-gouge barriers in flat agricultural/playa valleys; USGS Water Data OGC API v0 `https://api.waterdata.usgs.gov/ogcapi/v0/`, CC0).
+
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>
 

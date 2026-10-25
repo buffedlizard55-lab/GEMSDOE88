@@ -193,8 +193,24 @@ def fabric_release_report(root=ROOT):
         ('ibl88_run_card.json', lambda d: d['submission']['file'], lambda d: d['submission']['sha256'], ('negative',)),
         ('qtsk88_run_card.json', lambda d: d['raster']['tif_path'], lambda d: d['raster']['sha256'], ('negative',)),
         ('shore_hinge_run_card.json', lambda d: d['artifact'], lambda d: d['submission']['sha256'], ('negative',)),
-        ('phys_near_run_card.json', lambda d: d['artifact'], lambda d: d['raster_sha256'], ('promote-to-selector-only',)),
+        ('phys_near_run_card.json', lambda d: d['artifact'], lambda d: d['raster_sha256'], ('negative',)),
+        ('sgmc88_run_card.json', lambda d: d['artifact'], lambda d: d['raster_sha256'], ('negative',)),
         ('dhtc88_run_card.json', lambda d: d['submission']['file'], lambda d: d['raster_sha256'], ('negative',)),
+        ('xgce88_run_card.json', lambda d: d['submission']['file'], lambda d: d['submission']['raster_sha256'], ('negative',)),
+        ('ssa88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
+        ('sepa88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
+        ('mtas88_experiment_run_card.json', lambda d: d['raster_file'], lambda d: d['raster_sha256'], ('negative',)),
+        ('vcaz88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
+        ('prism88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
+        ('vhgd88_run_card.json', lambda d: d['submission']['file'], lambda d: d['raster_sha256'], ('negative',)),
+        ('lsc88_run_card.json', lambda d: f"docs/downloads/{d['submission_file']}", lambda d: d['sha256_tif'], ('negative',)),
+        ('gzzc88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
+        ('bpwd88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
+        ('psgv88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
+        ('mfs88_run_card.json', lambda d: f"docs/downloads/{d['submission_file']}", lambda d: d['sha256_tif'], ('negative',)),
+        ('pgtd88_run_card.json', lambda d: f"docs/downloads/{d['submission_file']}", lambda d: d['sha256_tif'], ('negative',)),
+        ('hgvc88_run_card.json', lambda d: d['download'], lambda d: d['raster_sha256'], ('negative',)),
+        ('sdtl88_run_card.json', lambda d: d['raster']['file'], lambda d: d['raster']['sha256'], ('negative',)),
     ):
         np_card = root / 'registry' / neg_rec
         if np_card.is_file():
@@ -207,6 +223,36 @@ def fabric_release_report(root=ROOT):
                 or sha(np_tif) != sha_fn(nd)):
                 raise ValueError(f'{neg_rec} research TIFF has no verified negative audit')
             expected_hashes.add(sha(np_tif))
+    mmrx_card = root / 'registry/mmrx88_run_card.json'
+    if mmrx_card.is_file():
+        md = json.loads(mmrx_card.read_text())
+        mmrx_tif = (root / md['repo_copy']).resolve()
+        if (not mmrx_tif.is_relative_to((root / 'submissions').resolve())
+            or md.get('verdict') != 'negative'
+            or md.get('ok_to_submit') is not False
+            or 'DO-NOT-SUBMIT' not in mmrx_tif.name
+            or sha(mmrx_tif) != md['raster_sha256']):
+            raise ValueError('mmrx88_run_card.json research TIFF has no verified negative audit')
+        expected_hashes.add(sha(mmrx_tif))
+    con88_gates = root / 'registry/con88_gates.json'
+    if con88_gates.is_file():
+        cg = json.loads(con88_gates.read_text())
+        con88_tif = (root / 'docs/downloads' / cg['candidate']).resolve()
+        if (con88_tif.is_file()
+            and con88_tif.is_relative_to((root / 'docs/downloads').resolve())
+            and sha(con88_tif) == cg.get('sha256')):
+            expected_hashes.add(sha(con88_tif))
+    relay_card = root / 'registry/relay88_run_card.json'
+    if relay_card.is_file():
+        rd = json.loads(relay_card.read_text())
+        relay_tif = (root / rd['submission']['file']).resolve()
+        if (not relay_tif.is_relative_to((root / 'docs/downloads').resolve())
+            or rd.get('verdict') != 'negative'
+            or rd.get('submission', {}).get('ok_to_submit') is not False
+            or 'DO-NOT-SUBMIT' not in relay_tif.name
+            or sha(relay_tif) != rd['submission']['sha256']):
+            raise ValueError('relay88_run_card.json research TIFF has no verified negative audit')
+        expected_hashes.add(sha(relay_tif))
     ctra_card = root / 'registry/ctra_run_card.json'
     if ctra_card.is_file():
         cd = json.loads(ctra_card.read_text())
@@ -328,15 +374,20 @@ def release_report(root=ROOT):
 
     return validate_tdkl88(root)
 
-def main():
+def main(argv: list[str] | None = None):
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Validate canonical current release report.')
+    parser.add_argument('--require-submit', action='store_true')
+    args = parser.parse_args([] if argv is None and __name__ != '__main__' else argv)
     report = release_report()
     (ROOT / 'docs/data/current_release.json').write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))
-    if '--require-submit' in sys.argv:
+    if args.require_submit:
         print('AUTOMATIC SUBMISSION GATE: FAIL. NO UPLOAD PERMITTED.', file=sys.stderr)
         return 2
     return 0
 
 
 if __name__ == '__main__':
-    raise SystemExit(main())
+    raise SystemExit(main(sys.argv[1:]))
