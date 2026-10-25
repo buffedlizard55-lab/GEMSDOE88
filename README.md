@@ -1,6 +1,9 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
-> ## ⛔ Current autonomous review (`2026-10-25`): **NO NEW UNIQUE TIFF — DUPLICATE STOP**
+> ## Current unique TIFF (`H88-SSA`, 2026-10-25): **DOWNLOAD YES · SUBMIT NO — DO NOT SUBMIT**
+> [⬇ **Download H88-SSA GeoTIFF**](docs/downloads/gems88-ssa88-azimuth-coherence-20261025-2a3bff3b-zeros-DO-NOT-SUBMIT.tif) · [ZIP](docs/downloads/gems88-ssa88-azimuth-coherence-20261025-2a3bff3b-zeros-DO-NOT-SUBMIT.zip) · name `GEMSDOE88-SSA88-2A3BFF3B` · SHA-256 `2a3bff3bd68259ecfb0bb3b25018e6ff7f8e1dd89e98faa71774d5d2078b1c1f` · 32,000 dots, all cells finite in [0,1]. Like-for-like uniqueness PASS (3-px overlap 0.2883 ≤ 0.70). Literal 17GEMSDOE overlap 1.0 > 0.70 so **do not upload**. HOLDOUT-DTI 0.0000 (`gems57-pooled-hide-v2`, 22,641 withheld). [run card](registry/ssa88_run_card.json) · [hypotheses](research/candidate-hypotheses-20261025-ssa88.md) · standing prompt [PROMPT.md](PROMPT.md).
+>
+> ## ⛔ Prior autonomous review (`2026-10-25`): **NO NEW UNIQUE TIFF — DUPLICATE STOP**
 > **Downloadable research TIFF: YES. Competition submission: NO — DO NOT SUBMIT.** The SHA-256-pinned `17GEMSDOE` registry witness is positive on all `5,106,385` allowed cells. Under the binding literal rule, every nonempty candidate has forward 3-pixel overlap `1.0 > 0.70`; therefore no new candidate can be both nonempty and protocol-unique. This session did not fit, place, copy, rename, or submit a raster, and used `0` weekly slots. [Machine review](evidence/repo_review_20261025.json) · [Pages copy](docs/data/repo_review_20261025.json) · [ranked hypotheses and source audit](docs/research/review-20261025-autonomous.md) · [official-source ledger](knowledge/official-sources-20261025.md).
 >
 > [⬇ **Download archived H88-TDKL GeoTIFF for research only — DO NOT SUBMIT**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP — research only**](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [Submission guide / exact portal procedure](docs/executive-summary.html) · [Standing prompt & core values](PROMPT.md).
