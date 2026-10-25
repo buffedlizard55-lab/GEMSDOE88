@@ -42,6 +42,7 @@ Previous comprehensive recheck (2026-10-25, session b4dfa10c): [three-pass revie
 | Supplied results | **92** sites and **115** distinct file/value claims extracted with request-line provenance; four sites have no reported result. Claims are not organizer scores. |
 | Protocol regression | Revoked the concurrent unsupported HGVC v4 upload clearance; no dense-prior or creation-order exemption, and no selector bypass. Historical evidence remains traceable. |
 | H33 | Fresh geometry audit confirms subset/pruning ancestry. No submission receipt or causal proof of the supplied **0.2778** claim. No forecast above it. |
+| Current session `arena/810e3aa2-gemsdoe88` (2026-10-25) | Binding preflight re-verified: `DUPLICATE_STOP` (exit 2), `17GEMSDOE` covers 5,106,385/5,106,385 allowed cells, overlap lower bound 1.00 > 0.70, `ok_to_submit = false`, 0 slots spent. No new TIFF generated; none presented as submission-ready. PhD H33 analysis, [0,1] portal-error answer, 5 ranked hypotheses, and negative run card: [`research/session-810e3aa2-20261025-determination.md`](research/session-810e3aa2-20261025-determination.md) · [`registry/session-810e3aa2_run_card.json`](registry/session-810e3aa2_run_card.json). |
 | Independent repo review (2026-10-25) | **630 passed, 23 skipped**; 43/43 research packages locally validated; preflight exits 2 as expected on the universal registry witness; no new TIFF or submission slot. [Three-pass review and negative run card](research/arena-repo-review-20261025.md). |
 
 
