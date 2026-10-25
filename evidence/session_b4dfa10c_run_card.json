@@ -1,7 +1,7 @@
 {
   "schema": "gems88.review-run-card.v2",
   "session": "b4dfa10c",
-  "checked_at_utc": "2026-10-25T13:58:26.300984+00:00",
+  "checked_at_utc": "2026-10-25T14:25:23.301322+00:00",
   "base_commit": "dcd60754749e1e5d88d535c0973245c889f8c15f",
   "status": "DUPLICATE_STOP",
   "hypothesis": "H88-MMR (conditional, unimplemented): repeatable magnetic-marker displacement restoration may reveal a covered fault missed by surface mapping.",
@@ -114,11 +114,20 @@
     }
   },
   "download_inventory": {
-    "checked_at_utc": "2026-10-25T13:58:24.651792+00:00",
+    "schema": "gems88.download-audit.v2",
+    "checked_at_utc": "2026-10-25T14:01:13.045369+00:00",
     "tiff_count": 43,
     "research_download_pass_count": 43,
+    "additional_research_tiff_count": 1,
+    "total_published_tiff_count": 44,
+    "total_research_download_pass_count": 44,
     "protocol_eligible_count": 0,
-    "exact_decoded_duplicate_groups": []
+    "exact_decoded_duplicate_groups": [],
+    "publication_directories": [
+      "downloads",
+      "research-variants"
+    ],
+    "saved_audit_sha256": "338a31367e858f2760c1e8d305dba83a669b375916dc1af32a160094e58da0df"
   },
   "fresh_h33_geometry_audit": {
     "schema": "gems88.h33-lineage-audit.v1",
@@ -234,7 +243,11 @@
     "owner_build_record_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/registry/submission_build.json",
     "status": "OWNER_BUILD_CONTENT_INSPECTED_VIA_GITHUB; NOT_A_PORTAL_RECEIPT",
     "causal_score_improvement_established": false,
-    "higher_leaderboard_result_established": false
+    "higher_leaderboard_result_established": false,
+    "owner_build_content_sha256": "0d7c5c3fb0079410e0d519fac45a36b37dc6136f2e42d5c6b2468a29397c478a",
+    "owner_build_blob_oid": "cebb70da37d219473b5fa13f96d744d3ccf30c13",
+    "rechecked_with": "GitHub GraphQL pinned-commit Blob after REST core rate limit; successful content retrieval, not a DrivenData receipt.",
+    "owner_projection_is_not_a_score": true
   },
   "live_organizer_access": {
     "data_authenticated": false,
@@ -263,20 +276,205 @@
       "passed": 651,
       "skipped": 23
     },
-    "final_verification_status": "PENDING_FULL_RECHECK",
+    "final_verification_status": "PASS",
     "format_validator_version": "gems88-format-audit-v2",
     "fixes": [
       "Reject additional full-resolution TIFF datasets while allowing internal overviews.",
       "Reject candidate/template datasets with external sidecar dependencies.",
       "Reject orphan, uppercase, missing, colliding and nested TIFF/ZIP inventory entries.",
-      "Reject unrecorded packages in the site guard; correct revoked README upload instructions."
+      "Reject unrecorded packages in the site guard; correct revoked README upload instructions.",
+      "Audit all 43 main packages plus the existing historical variant without moving it into the modeling registry.",
+      "Withdraw unsupported legacy MDC-88 upload instructions; check nested links and negative status.",
+      "Bind every published TIFF/ZIP hash and complete manifest inventory to the site guard under normal and optimized Python.",
+      "Preserve the imported historical browser receipt and record a fresh seven-case desktop/mobile check plus an actual exact-hash download."
     ],
     "shared_metric_and_writer_modified": false,
     "published_tif_or_zip_bytes_modified": false,
     "browser_evidence": "evidence/session_b4dfa10c_browser_check.json",
-    "historical_browser_receipt_preserved": "evidence/session_d0c3adeb_browser_check.json"
+    "historical_browser_receipt_preserved": "evidence/session_d0c3adeb_browser_check.json",
+    "pre_integration_full_pytest": {
+      "passed": 727,
+      "skipped": 23,
+      "warnings": 63,
+      "seconds": 250.05
+    },
+    "post_integration_focused_pytest": {
+      "passed": 172,
+      "warnings": 46,
+      "seconds": 34.98
+    },
+    "passes": [
+      {
+        "pass": 1,
+        "status": "PASS",
+        "scope": "Reproduce restored-input baseline and duplicate proof; preregister conditional proposals before fixes; reproduce hidden-page and sidecar format false positives."
+      },
+      {
+        "pass": 2,
+        "status": "PASS",
+        "scope": "Shared validator/inventory fixes, 44-file coverage and legacy negative corrections; edge cases under normal/optimized Python; reconcile concurrent main symlink checks and retain both regression sets."
+      },
+      {
+        "pass": 3,
+        "status": "PASS",
+        "scope": "Full merged suite, saved-byte audit, render checks, browser receipt, normal/optimized guards and expected negative generation/slot checks.",
+        "all_requested_deliverables_met": false
+      }
+    ],
+    "three_passes_completed": true,
+    "final_pytest": {
+      "command": ".venv/bin/python -m pytest -q -ra",
+      "passed": 757,
+      "skipped": 23,
+      "warnings": 63,
+      "seconds": 250.94,
+      "local_output_sha256": "a230a36a7158606a841848a055cc92adc06ea00ef99618a31ed9f00e47bbccbd",
+      "scope": "Restored shared-input tier after integration of current main; 23 optional historical/local-only artifact tests skipped, not certified passes. No geological model generation."
+    },
+    "final_gates": {
+      "checked_at_utc": "2026-10-25T14:22:20.787419+00:00",
+      "checks": [
+        {
+          "command": ".venv/bin/python scripts/audit_downloads.py --check",
+          "expected_exit": 0,
+          "actual_exit": 0,
+          "pass": true,
+          "local_output_sha256": "42744eb3703c936a8973ec69822b03a51f5fa193054742a2a5251bc62c8b866c"
+        },
+        {
+          "command": ".venv/bin/python scripts/render_decision.py --check",
+          "expected_exit": 0,
+          "actual_exit": 0,
+          "pass": true,
+          "local_output_sha256": "01fd3bb30f47af86b1ef66ec97af138d86e0fe346af7f2375ba6ef4c2d86695b"
+        },
+        {
+          "command": ".venv/bin/python scripts/check_site.py",
+          "expected_exit": 0,
+          "actual_exit": 0,
+          "pass": true,
+          "local_output_sha256": "9bfd25e80b49faa9af85a8353aba21cc42cabdbbb5cc6eff317278f890a54fb1"
+        },
+        {
+          "command": ".venv/bin/python -O scripts/check_site.py",
+          "expected_exit": 0,
+          "actual_exit": 0,
+          "pass": true,
+          "local_output_sha256": "9bfd25e80b49faa9af85a8353aba21cc42cabdbbb5cc6eff317278f890a54fb1"
+        },
+        {
+          "command": ".venv/bin/python scripts/generation_guard.py",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "e588c1af717ee272f7a17b9ca2ab67339e9e3afced4c9d52901c95ad108ccbf8"
+        },
+        {
+          "command": ".venv/bin/python scripts/preflight_mtas88.py --gate-generation",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756"
+        },
+        {
+          "command": ".venv/bin/python scripts/validate_current.py --require-submit",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "e65b5767fb151ecea4e1eb32071b0b4ca8885b28f9c653d2efd93cc0082d4012"
+        },
+        {
+          "command": ".venv/bin/python scripts/validate_release.py --require-submit",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "5a5df0337a1fc28a531de3e0f67e6bf18411440f15da06c10c04e7d20cd8dfc9"
+        },
+        {
+          "command": ".venv/bin/python scripts/review_repo_20261025.py --require-submit",
+          "expected_exit": 2,
+          "actual_exit": 2,
+          "pass": true,
+          "local_output_sha256": "f92a18d33f85102329c7926c690a55bf16eaac9b95b41e201568b6f3ab526122"
+        }
+      ],
+      "all_expected_exits": true,
+      "scope": "Software/file/negative-gate verification only; not a new holdout or slot approval. Raw logs are local ignored test artifacts."
+    },
+    "browser_summary": {
+      "status": "PASS",
+      "cases": 7,
+      "viewport_widths": [
+        390,
+        1440
+      ],
+      "failed_fetch_remains_negative": true,
+      "actual_research_download_matches_sha256": true,
+      "no_current_upload_clearance": true
+    },
+    "all_requested_deliverables_met": false,
+    "final_scientific_verdict": "NEGATIVE_NO_NEW_UNIQUE_TIFF_NO_NEW_HOLDOUT_NO_SLOT",
+    "post_metadata_focused_pytest": {
+      "passed": 183,
+      "warnings": 46,
+      "seconds": 36.0,
+      "scope": "Final run-card/mirror checks, request provenance, both inventories, container/sidecar regressions, canonical/legacy Pages and normal/optimized guard corruption tests after the final evidence update."
+    }
   },
   "organizer_confirmed_score": null,
   "verdict": "negative",
-  "unmet_requirement": "No new unique competition TIFF can be produced under the binding all-registry overlap rule."
+  "unmet_requirement": "No new unique competition TIFF can be produced under the binding all-registry overlap rule.",
+  "branch": "arena/b4dfa10c-gemsdoe88",
+  "integration": {
+    "incorporated_main_commit": "4e3e9f6721ef8eeb9319f93126d3895260100d1a",
+    "local_merge_commit": "8aa5f81c94c4c9d752eb597e9a65de5d8b2abc4b",
+    "inventory_resolution": "One shared policy covers both publication directories, retains main publication_inventory API and symlink restrictions; no separate private inventory gate."
+  },
+  "source_scope": {
+    "all_92_sites_freshly_scraped": false,
+    "existing_user_reported_site_inventory_count": 92,
+    "existing_user_reported_file_value_claim_count": 115,
+    "official_geological_datasets_added_this_session": 0,
+    "no_new_official_dataset_required_by_conditional_hypotheses": true,
+    "concurrent_archived_leaderboard_claim_is_not_session_verification": true
+  },
+  "acceptance": {
+    "unique_new_competition_tiff": "UNMET_BINDING_DUPLICATE_STOP",
+    "new_top_candidate_holdout": "NOT_RUN_BINDING_DUPLICATE_STOP",
+    "improvement_beyond_h33": "NOT_ESTABLISHED",
+    "automatic_local_saved_file_and_package_audit": "PASS_44_OF_44_RESEARCH_ONLY",
+    "organizer_or_slot_acceptance": "NOT_ESTABLISHED_DO_NOT_SUBMIT"
+  },
+  "irregularities": [
+    {
+      "id": "IR-88-B4DFA10C-01",
+      "status": "FIXED_WITH_REGRESSIONS",
+      "finding": "A valid first TIFF page concealed additional raster datasets; first-page decoder agreement and band count both falsely passed."
+    },
+    {
+      "id": "IR-88-B4DFA10C-02",
+      "status": "FIXED_WITH_REGRESSIONS",
+      "finding": "PAM sidecar supplied missing georeferencing that was absent from the one-TIFF ZIP; both candidate and template must now be self-contained."
+    },
+    {
+      "id": "IR-88-B4DFA10C-03",
+      "status": "FIXED_WITH_REGRESSIONS",
+      "finding": "Main-download-only inventory omitted the existing collar variant and could omit orphan/nested packages. Two declared flat directories now use one policy, preserving concurrent main symlink protections."
+    },
+    {
+      "id": "IR-88-B4DFA10C-04",
+      "status": "CLEARANCE_WITHDRAWN",
+      "finding": "Legacy MDC-88 HTML/status contradicted the negative binding gate. Historical measurements remain; direct legacy pages now point to the canonical negative decision."
+    },
+    {
+      "id": "IR-88-B4DFA10C-05",
+      "status": "FLAGGED_NOT_VERIFIED",
+      "finding": "Conflicting prompt leaderboard figures and a concurrently imported public-page claim are not this session's organizer verification. H33 user claim has no submission-page receipt; its owner projection is not a score."
+    },
+    {
+      "id": "IR-88-B4DFA10C-06",
+      "status": "BINDING_UNRESOLVED",
+      "finding": "Literal any-raster overlap makes every nonempty allowed candidate ineligible. No dense-prior/creation-order exemption, v4 override, private evaluator or relabeled earlier TIFF is authorized."
+    }
+  ]
 }
