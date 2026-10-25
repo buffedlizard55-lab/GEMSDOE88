@@ -8,7 +8,19 @@
 
 ---
 
-# Prior integrity, `-O` validator hardening & cross-fleet review — session 21256734, 2026-10-25
+# Parallel integrity & CON88 post-withdrawal hardening review — session 587c7f22, 2026-10-25
+
+**No new candidate TIFF or submission slot from this review (`DUPLICATE_STOP`, exit 2 on `17GEMSDOE`).** See [three-pass review & PhD H33 forensics](research/session-587c7f22-review.md), [five ranked untried geological hypotheses](research/session-587c7f22-hypotheses.md), [negative run card](registry/session_587c7f22_run_card.json), and [`H88-CON88` clearance withdrawal certificate](evidence/con88_clearance_withdrawal_20261025.json).
+
+- **IR-88-587C7F22-01 — Unauthorized `H88-CON88` promotion (`PR #158`) withdrawn & unguarded CON88 runners hardened (`97/97` CLIs enforced).** PR #158 bypassed `scripts/generation_guard.py`, resurrected equal-support promotion revoked in `AGENTS.md` / `IR-88-B4DFA10C-08`, omitted `161` sibling `GEMSDOE86..92` rasters (where `GEMSDOE87:gems87-bmtd` also produces literal 3-px overlap `0.891220 > 0.70` alongside `17GEMSDOE` `1.0000 > 0.70`), and claimed `ok_to_submit: true` despite failing buffered spatially-blocked holdout (`HOLDOUT-DTI = 0.001714 [0.001325, 0.002143]` vs repo best `H88-BPWD` `0.205991`). Following parallel PR #181 (`IR-88-96F5F523-01`), session `587c7f22` additionally routed `scripts/run_con88_experiment.py` and `scripts/run_con88_exp3_margin.py` directly through `scripts/generation_guard.enforce_generation_preflight()` before feature/model imports with `-DO-NOT-SUBMIT` emission suffixes, mirrored `registry/con88_run_card.json` and `docs/data/con88_{run_card,gates}.json`, and added `python scripts/validate_con88.py` + `--require-submit` exit `2` to `.github/workflows/ci.yml`.
+- **IR-88-587C7F22-02 — Repaired broken unmarked `CON88` download links in root `index.html` after PR #181/#182 merge.** Parallel PR #182 (`bcea235a`) rewrote root `index.html` with download links pointing to the unmarked `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.{tif,zip}` files deleted by PR #181 (`96f5f523`). Repaired root `index.html` to point to canonical educational download `H88-TDKL` (`-DO-NOT-SUBMIT.{tif,zip}`) and archived `H88-CON88` (`-DO-NOT-SUBMIT.{tif,zip}`) with consistent `DO NOT SUBMIT` framing.
+- **IR-88-587C7F22-03 — Synchronized fresh real-Chromium Playwright receipt across all `14` `docs/` targets without historical skip lists.** Bound `evidence/session_587c7f22_browser_check.json` (`Chromium 153.0.8010.0`, 7 desktop/mobile/legacy viewports + actual clicked `.tif` SHA-256 verification) to `docs/status.json` (`current_review: data/session_587c7f22_run_card.json`) while preserving historical `session_693b10af` and `session_96f5f523` browser receipts untouched.
+- **IR-88-587C7F22-04 — Repaired residual CON88 equal-support exception claims in `docs/SUBMIT.md`, `SLOT_PLAN.md`, and `docs/con88.html`.** Reconciled `docs/SUBMIT.md` and `SLOT_PLAN.md` so no top-level summary still refers to `H88-CON88` as an active equal-support exception (`protocol_eligible_count = 0` across all `48/48` Pages packages and `20/20` `submissions/` packages).
+- **IR-88-587C7F22-05 — Retired `H88-CON88` in `registry/hypothesis_queue.json`.** Added `H88-CON88` (`registry/con88_run_card.json`) to `already_evaluated` alongside `H88-MMRX`, `H88-MTAS`, `H88-MFS`, and `H88-PGTD`, and refreshed `source_snapshot` after reviewing all merged `src/`/`scripts/`/`vendor/` Python files.
+
+---
+
+# Parallel integrity, `-O` validator hardening & cross-fleet review — session 21256734, 2026-10-25
 
 **No new candidate TIFF or submission slot from this review (`DUPLICATE_STOP`, exit 2 on `17GEMSDOE`).** See [three-pass review, `-O` validator/forensics hardening, and PhD-level `H33` analysis](research/session-21256734-review.md), [five ranked cross-fleet-screened geological hypotheses](research/session-21256734-hypotheses.md), [negative run card](registry/session_21256734_run_card.json), and [live 50-row official leaderboard snapshot (`#8 DARD = 0.3398`)](evidence/leaderboard_official_snapshot_21256734_20261025.json).
 
@@ -23,15 +35,11 @@
 
 # Historical integrity & post-MMRX review — session 838cc402, 2026-10-25
 
-## IR-88-CON88-02 — "OK to download and submit" claim for H88-CON88 contradicted the canonical gate (session e44e3ebe, 2026-10-25)
+## IR-88-96F5F523-01 & IR-88-CON88-02 — H88-CON88 equal-support clearance withdrawn (sessions 96f5f523 & e44e3ebe, 2026-10-25)
 
 - **What was wrong:** `README.md` (top banner), `docs/con88.html` (title, H1, submit steps) and the top note of `docs/SUBMIT.md` told users H88-CON88 was OK to download and submit. The clearance rested on IR-88-CON88-01 (equal-support rule), which IR-88-B4DFA10C-08 withdrew. Under the literal shared preflight the state is `DUPLICATE_STOP` (exit 2) and `audit_downloads.py` reports `protocol_eligible_count: 0`.
-- **Action taken:** the three surfaces now state NOT cleared / DO NOT SUBMIT, with the withdrawal recorded. No TIFF was renamed, regenerated, or cleared. Existing registry and run-card records were not edited.
-- **Still open (needs rule owner):** whether a dense continuous probability raster (`data/registry/dense_17gemdoe.tif`, 5,167,373 positive pixels covering 100% of the 5,106,385 allowed pixels) counts as a "registry dot set" under the 70% / 3 px rule. CON88's sparse-registry worst overlap is 0.6936 (vs `gems49_gate_ortho`) and worst |ρ| is 0.3762, both under the limits, so the dense witness is the only blocker.
-- **Filename marker:** `gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` and its ZIP lack the `DO-NOT-SUBMIT` marker that AGENTS.md rule 6 requires for published research TIFFs. Not renamed in this session, because renaming a published artifact breaks its audit chain; flagged for review.
-- **Evidence:** `.venv/bin/python scripts/generation_guard.py` → exit 2 (`DUPLICATE_STOP`); `scripts/render_decision.py --check` → PASS; `scripts/audit_downloads.py` → `protocol_eligible_count: 0`.
-- **IR-88-CON88-03 — three pre-existing test failures on HEAD (not caused by this session).** `test_current_browser_evidence_binds_actual_download_bytes_and_legacy_pages`, `test_site_guard_rejects_broken_or_escaping_docs_markdown_links` (its mutation target `**47/47**` does not exist in `docs/SUBMIT.md`), and `test_historical_browser_receipt_remains_a_dated_negative_record` all fail on the untouched base commit. The browser-receipt tests pin source digests; this session's text corrections change those digests, so a real browser rerun (`scripts/browser_check.cjs`) is needed before the receipt is refreshed. Tests were not weakened. **Resolved after merging `main` (PRs #175/#176):** the full suite on this branch is now 882 passed / 22 skipped / 0 failed (3m43s).
-
+- **Action taken:** CON88 equal-support exemptions were removed (`evidence/con88_clearance_withdrawal_96f5f523.json`), its unchanged TIFF was renamed/repacked under `-DO-NOT-SUBMIT`, and all surfaces now state NOT cleared / DO NOT SUBMIT.
+- **IR-88-CON88-03 — three pre-existing test failures on earlier HEAD resolved.** Resolved with fresh real-Chromium Playwright verification and dynamic count checks.
 
 **No new candidate TIFF or submission slot from this review (`DUPLICATE_STOP`, exit 2 on `17GEMSDOE`).** See [three-pass review, live official source verification, H33 & shared-allocator synthesis](research/session-838cc402-review.md), [five ranked untried post-MMRX hypotheses](research/session-838cc402-hypotheses.md), [negative run card](registry/session_838cc402_run_card.json), and [live 50-row official leaderboard snapshot](evidence/leaderboard_official_snapshot_838cc402_20261025.json).
 

@@ -123,7 +123,7 @@ def render(root: Path, kind: str) -> str:
 <div class="proof"><div class="kicker">Source-bound research queue</div><h3>Test landform restoration—with null controls.</h3>
 <p>The conditional first choice is <strong>{escape(first_choice['id'])}</strong>: {escape(first_choice['title'])}. All {len(queue['proposals'])} proposals remain untested; none authorizes generation while the universal duplicate stop binds.</p>
 <p><strong>Magnetic-marker restoration and consensus ridge are no longer untested:</strong> MMRX, MTAS, MFS, PGTD, and CON88 already have historical negative execution records, not fresh ideas. Four additional untried geological contrasts (<code>H88-HRLC</code>, <code>H88-DFHB</code>, <code>H88-SBPV</code>, <code>H88-USMT-3D</code>) are ranked alongside the source-bound queue.</p>
-<a href="research/session-0df81d99-hypotheses.md">Latest ranked hypotheses (H88-HRLC..USMT-3D) →</a> · <a href="research/session-693b10af-hypotheses.md">Source queue notes (SPR/AWA/CBC)</a> · <a href="data/hypothesis_queue.json">Machine-readable queue</a></div></div></section>
+<a href="research/session-0df81d99-hypotheses.md">Latest ranked hypotheses (H88-HRLC..USMT-3D) →</a> · <a href="research/session-587c7f22-hypotheses.md">Parallel dossier (587c7f22)</a> · <a href="data/hypothesis_queue.json">Machine-readable queue</a></div></div></section>
 <section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Data placement is no longer the blocker.</h2><p>The pinned core feature raster and shared external inputs have been restored; the existing preparation command successfully loads the shared feature planes on CPU. The remaining blocker is not a missing download: it is the unsatisfiable literal uniqueness condition, followed by scientific and organizer-access gates.</p>
 <div class="button-row"><a class="button button-primary" href="executive-summary.html">Open the submission guide →</a><a href="sources.html" class="button decision-outline">Sources &amp; verification limits</a></div>
 <p class="fine">Maximize P(Win): preserve scarce slots for evidence-backed, distinct candidates. Own the Outcome: report an unmet requirement instead of presenting a research TIFF as submission-ready.</p></div></section>'''
@@ -206,6 +206,7 @@ def render_research_queue(root: Path) -> str:
             'existing pinned owner-mirror tier; no new external data availability is assumed. Every proposal is '
             'held before feature construction by the same literal witness.</p>'
             '<p><a href="research/session-0df81d99-hypotheses.md">Four new untried hypotheses (H88-HRLC..USMT-3D) →</a> · '
+            '<a href="research/session-587c7f22-hypotheses.md">Parallel dossier (587c7f22) →</a> · '
             '<a href="research/session-693b10af-hypotheses.md">Queue notes (SPR/AWA/CBC) →</a> · '
             '<a href="data/hypothesis_queue.json">Source-fingerprinted JSON queue</a></p></div></section>')
 

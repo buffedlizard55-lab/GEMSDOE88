@@ -1,6 +1,6 @@
 {
   "schema": "gems88.browser-review.v1",
-  "checked_at_utc": "2026-10-25T19:30:59.613Z",
+  "checked_at_utc": "2026-10-25T19:41:22.574Z",
   "browser": "153.0.8010.0",
   "pages": [
     {
@@ -96,17 +96,17 @@
   ],
   "failed_fetch_stays_negative": true,
   "source_sha256": {
-    "docs/index.html": "5b1e1e4f3f492081a9a7f2d3a11fd31886f6e5b7c91925477294c7b8672b222f",
-    "docs/executive-summary.html": "bdfd04851683e373e0cd4a1ddbdec1436d8e76286f8a8f0e3a32ead0ea111d35",
-    "docs/research.html": "155bad8a75675c9c07170dc52bacf8ee39994e37fff78f2508acc20ece5b2aa7",
+    "docs/index.html": "da6a04cf4bd1e73c6ec0ffdd92c085b7f1047c48d2b940b82f63f294075e03d2",
+    "docs/executive-summary.html": "30ba09d40c3c7c829d495fb9c3f07bfae576dfd016d4b27a1c2d35519c9a4050",
+    "docs/research.html": "8ec6d0e217e8f93eb09940f3542ff96abe4b6d8cd487b88ed93883fad1df30fd",
     "docs/sources.html": "d650a2c8951daafdcf89db23a0c014f1f46c8b48190842be9eb723ce67971a39",
     "docs/assets/site.css": "834256dce45ea5d350bea0942730f455e1c44edaa64e85f35527ad58c187c737",
     "docs/assets/site.js": "d27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41",
     "docs/data/current_release.json": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",
-    "docs/data/download_audit.json": "49e960e560357621b0ebb7047f8f39b5155aae78eb677cacc2b801ac7645142a",
+    "docs/data/download_audit.json": "5326c0a95d61d3179a1bf4ef4ee3882a4894293f7b4f0fd4edadb6e610079005",
     "docs/data/mtas88_run_card.json": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
-    "docs/data/hypothesis_queue.json": "f0b806b0cf379b398a704d740aaa51afa17e739f6354547d5d22a1a725058bb5",
-    "docs/status.json": "f856c4435562fac4c1b7e554800660d7fbd3a74b98e02eb74a73dc3956c621bc",
+    "docs/data/hypothesis_queue.json": "86ebe290108d577e9e72be9f110ac04cc6d3e3e42ed4a16fe3e38258f598c224",
+    "docs/status.json": "38b5f1a293d8c6f6d8bbf7970c0d6e77f099a178f2daa8632c27b62e2eed3caa",
     "docs/mdc88/index.html": "7968611af89256740904e40003e26bf49635d626a2f04b1e1943a1050d88ef1d",
     "docs/mdc88/executive-summary.html": "a224490fc994b54619d24275500ea6eba6670685be70bcda8f241ee4b25a8ae3",
     "docs/mdc88/status.json": "7d0223ff4f7b513ba5d3d68fd81ddc9b86f58955c9e3ffdf2e0131eff73033f9"

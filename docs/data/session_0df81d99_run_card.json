@@ -2,7 +2,7 @@
   "schema": "gems88.session-review.v1",
   "run_id": "GEMSDOE88-REVIEW-0DF81D99-20261025",
   "branch": "arena/0df81d99-gemsdoe88",
-  "base_commit": "11eb63f99e7b17b3b33a58ccbc9cea15c768b1f1",
+  "base_commit": "a8a83d629469005c59f3dafba1337b497c0022bd",
   "initial_branch_base_commit": "5b9397ba79be00164ab71e6145df777ffc607ea0",
   "reviewed_at_utc": "2026-10-25T19:18:00Z",
   "lane": "SOFTWARE_AND_EVIDENCE_REVIEW_ONLY",

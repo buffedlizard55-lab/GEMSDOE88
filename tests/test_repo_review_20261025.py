@@ -54,7 +54,7 @@ def test_published_review_is_fail_closed_and_copies_match() -> None:
     status = json.loads((ROOT / "docs/status.json").read_text())
     assert evidence["snapshot_scope"] == "HISTORICAL_HYPOTHESES_AND_SOURCE_ACCESS_NOT_REFRESHED_BY_REPLAY"
     assert status["current_review"] == "data/session_0df81d99_run_card.json"
-    assert status["previous_review"] == "data/session_3c391d97_run_card.json"
+    assert status["previous_review"] == "data/session_587c7f22_run_card.json"
     assert status["historical_review"] == "data/repo_review_20261025.json"
     assert status["research_queue"] == "data/hypothesis_queue.json"
     assert status["current_review_status"] == "DUPLICATE_STOP"
