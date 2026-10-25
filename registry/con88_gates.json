@@ -1,5 +1,5 @@
 {
-  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
   "G1_format": {
     "one_band": true,
@@ -247,5 +247,14 @@
     }
   },
   "canary_ok": true,
-  "ok_to_submit": true
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "decision": "DUPLICATE_STOP",
+  "withdrawal": {
+    "recorded_by": "IR-88-89A41360-01",
+    "status": "WITHDRAWN",
+    "reason": "The equal-support reinterpretation is not authorized by the user's literal rule. The SHA-pinned 17GEMSDOE witness has positive support on every allowed pixel; every nonempty candidate has literal overlap 1.0 > 0.70.",
+    "original_record": "evidence/con88_gates_prewithdrawal_20261025.json",
+    "format_and_holdout_metrics_are_historical_only": true
+  }
 }

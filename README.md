@@ -1,32 +1,17 @@
 # GEMSDOE88 — audited fault discovery and submission gates
 
-## ✅ NEW UNIQUE TIF READY — OK TO DOWNLOAD AND SUBMIT: H88-CON88 (2026-10-25)
+## Current submission decision: **NO FILE IS CLEARED — DO NOT SUBMIT**
 
-**A new, unique competition TIFF was generated and passed every automated gate**
-(format, uniqueness, H33-fingerprint, leakage canary — no human inspection).
-It is the **only** file in this repo without a `DO-NOT-SUBMIT` marker.
-Score is **not guaranteed** (no organizer receipt exists yet) — see run card.
-Concurrent same-day reviews below that report `DUPLICATE_STOP` / "requirement unmet"
-used the old literal dense-field comparison; they are preserved as dated records and
-superseded by the shared equal-support fix (IR-88-CON88-01) documented here.
+The highest-priority deliverable remains unmet: this repository does **not** currently have a new, protocol-unique TIFF authorized for competition upload. Do not use a historical TIFF, rename one, or treat a valid file format as submission clearance.
 
-[**⬇ DOWNLOAD SUBMISSION TIF**](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif) · [One-TIFF ZIP](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip) · [Executive guide: exactly how to submit](docs/con88.html) · [Run card (JSON)](run_card_con88.json) · [Gate evidence (JSON)](registry/con88_gates.json) · [Full analysis](research/session-con88-20261025.md)
+- **Current published decision and research download:** [Overview](docs/index.html). The existing TDKL TIFF is available **for research only**; its filename contains `DO-NOT-SUBMIT`.
+- **Automated upload guide:** [Executive submission guide](docs/executive-summary.html). It describes the machine checks and upload steps for a future cleared file; it does not clear a current file.
+- **Current fail-closed evidence:** [latest review](research/session-89a41360-review-20261025.md) · [run card](evidence/repo_review_arena_89a41360_20261025.json) · [literal preflight record](docs/data/mtas88_run_card.json).
+- **Registry blocker:** on restored SHA-pinned validation inputs, the 17GEMSDOE witness (SHA-256 `ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be`) has positive support on all **5,106,385 of 5,106,385 allowed pixels**. Under the supplied literal >0-support rule, every nonempty candidate has 3-pixel overlap 1.0, above the 0.70 limit. The current preflight exits `2` (`DUPLICATE_STOP`) before feature construction, fitting, placement, or writing.
+- **Score evidence:** H33 `0.2778` is a USER-REPORTED claim without a submission receipt. No new HOLDOUT-DTI or ORGANIZER-CONFIRMED score was generated in this review. The public leaderboard is not authenticated in this session.
+- **Historical CON88 correction:** an earlier equal-support exception incorrectly labelled CON88 eligible. That exception is withdrawn; its raster remains byte-identical but is now marked `DO-NOT-SUBMIT`. See `evidence/con88_clearance_withdrawal_89a41360.json` and the preserved pre-withdrawal record.
 
-- **Submission name:** `gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros`
-- **Note to paste (107/140):** `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`
-- **TIFF SHA-256:** `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68` · 37,654 dots
-- **Why it may beat H33's user-reported 0.2778:** H33 won by pure FP-subtraction + kernel spacing + non-hugging profile (verified, `research/session-con88-20261025.md`). CON88 keeps that geometry, tightens the collar to >3 px, and adds two independent levers H33 never had: ≥2-of-3 cross-fleet consensus (72% of dots) and a fresh label-blind ridge (new recall). Overlap vs H33 is only **0.487** — a different dot set, not a copy.
-- **Validation:** 1 band; EPSG:32611; 3730×3292; exact transform; finite, values in [0,1] (zeros outside — fixes the `[0,1]` upload error); uniqueness worst overlap 0.694 ≤0.70, worst |ρ| 0.376 ≤0.90 across all on-disk rasters. **Local validation is not organizer acceptance.**
-- **HOLDOUT-DTI (labelled, not a public-score forecast):** `gems57-pooled-hide-v2`, per-fold re-emission 0.0017 [0.0013, 0.0021], 60,988 withheld — hide-and-recover scores public-best H33 at 0.0067 on identical folds, so it cannot rank blind-fault seekers; details in run card.
-- All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant) audited; **48** pass local format checks; exactly **1** (CON88) is submission-eligible under the corrected equal-support gate.
-- **Blocker resolved:** prior `DUPLICATE_STOP` treated the dense 17GEMSDOE probability field (>0 on 100% of footprint) as dots, making uniqueness mathematically impossible. Shared fix `equal_support_dots()` in `vendor/gems57/uniqueness.py` compares dense priors top-N like-for-like; sparse rasters keep the literal rule.
-
-> All older TIFFs below remain research-only (`DO-NOT-SUBMIT`). Historical record:
-> TDKL88 `db9d1867…aaadf`, HOLDOUT-DTI 0.1962 [0.1797, 0.2117] (`gems57-pooled-hide-v2`, n=22,893).
-
-Review record: [Arena f81c34a4 three-pass review and audit repair](research/session-f81c34a4-review.md) · [negative run card](registry/session_f81c34a4_run_card.json). No new TIFF or slot; unchanged duplicate stop.
-
-Review follow-up: [dd90d368 three-pass evidence-label correction](research/session-dd90d368-review.md) · [negative run card](registry/session_dd90d368_run_card.json). Historical GHMD promotion is withdrawn; the supplied H33 result has no organizer receipt. No new TIFF or slot.
+All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant) are archived research files; **48** pass local research-format checks; **0** are protocol-eligible. None is an approved submission.
 
 ### Start here every session
 

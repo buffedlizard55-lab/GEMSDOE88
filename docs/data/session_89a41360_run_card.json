@@ -1,0 +1,125 @@
+{
+  "schema": "gems88.run-card.repo-review.v1",
+  "run_id": "GEMSDOE88-ARENA-89A41360-REPO-REVIEW-20261025",
+  "branch": "arena/89a41360-gemsdoe88",
+  "review_date_utc": "2026-10-25",
+  "lane": "REVIEW_ONLY_NO_GEOLOGICAL_EXPERIMENT",
+  "hypothesis": "No candidate hypothesis was fitted; conditional top queue entry is H88-SPR repeated scarp-profile restoration against drainage/shoreline nulls.",
+  "mechanism": "No mechanism tested this review. H88-SPR would compare held-out signed-step landform profile restoration with a no-step model on independent swaths, away from channel corridors; it remains blocked before feature construction.",
+  "named_non_fault_process": "Fluvial terrace risers and constant-elevation pluvial shoreline benches.",
+  "candidate_hypothesis_ranking": [
+    {
+      "rank": 1,
+      "id": "H88-SPR",
+      "expected_benefit": "highest ordinal potential; highly uncertain; no DTI projection",
+      "implementation_cost": "medium",
+      "external_data": "none for initial test; cached owner-mirror layers, provenance/rights not organizer-authenticated"
+    },
+    {
+      "rank": 2,
+      "id": "H88-AWA",
+      "expected_benefit": "second ordinal potential; uncertain; no DTI projection",
+      "implementation_cost": "medium",
+      "external_data": "none for initial test; cached owner-mirror layers, provenance/rights not organizer-authenticated"
+    },
+    {
+      "rank": 3,
+      "id": "H88-CBC",
+      "expected_benefit": "third ordinal potential; lower and uncertain; no DTI projection",
+      "implementation_cost": "medium-high",
+      "external_data": "none for initial test; cached owner-mirror layers, provenance/rights not organizer-authenticated"
+    }
+  ],
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI — NOT RUN (no candidate; pre-placement DUPLICATE_STOP)",
+    "evaluator_version": "gems57-pooled-hide-v2 (required shared evaluator; not invoked for a new candidate)",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "reason": "No new experiment or candidate was run; historical scores are not session results."
+  },
+  "historical_h33_claim": {
+    "evidence_class": "USER-REPORTED — NOT ORGANIZER-CONFIRMED",
+    "reported_dti": 0.2778,
+    "organizer_receipt": null,
+    "lineage_geometry_evidence": "REGISTRY-MEASUREMENT; docs/data/h33_lineage_recheck.json",
+    "causal_attribution": "not established"
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "candidate_surface_rank_correlation": null,
+    "final_candidate_dots_overlap_3px": null,
+    "reason": "No candidate surface or dot set exists.",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_cells": 5106385,
+    "positive_witness_on_allowed_cells": 5106385,
+    "literal_forward_overlap_lower_bound_for_any_nonempty_prediction": 1.0,
+    "literal_overlap_limit": 0.7,
+    "preflight_decision": "DUPLICATE_STOP",
+    "preflight_exit_code": 2,
+    "scope": "One pinned witness is sufficient to block. This is not a candidate-specific correlation or a complete new raster census."
+  },
+  "raster_sha256": null,
+  "new_submission_file": null,
+  "archived_research_file": {
+    "path": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "status": "existing research artifact only; not a new submission"
+  },
+  "validator_output": {
+    "new_candidate": "NOT_RUN_NO_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null,
+    "archived_research_artifact_local_format_only": {
+      "passed": true,
+      "no_nan_inside_footprint": true,
+      "range_0_1": true,
+      "crs_shape_transform_match": true,
+      "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL",
+      "raster_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf"
+    }
+  },
+  "submission_name": null,
+  "submission_name_status": "NO_NEW_FILE_NO_PORTAL_NAME_AUTHORIZED",
+  "submission_note": null,
+  "submission_note_max_characters": 140,
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "ok_to_download_new_file": false,
+  "ok_to_download_archived_research_for_education": true,
+  "organizer_confirmed_score": null,
+  "weekly_slots_used": 0,
+  "experiments_run": 0,
+  "experiment_budget_max": 3,
+  "wallclock_budget_max_seconds": 7200,
+  "source_access": {
+    "github_reference_repo_metadata": "queried through GitHub API this session",
+    "drivendata_rules_leaderboard_submission_page": "not retrieved/authenticated this session",
+    "usgs_doe_sources": "links retained for manual review; not freshly retrieved this session",
+    "owner_mirror_inputs": "SHA-pinned validation tier restored; not authenticated against organizer download"
+  },
+  "verification": {
+    "browser_evidence": "evidence/session_89a41360_browser_check.json",
+    "browser": "PASS_7_CASES at 2026-10-25T18:31:29.706Z; actual download bytes/hash, click, failed-fetch and no-JavaScript checks passed",
+    "download_audit": "PASS_RESEARCH_FORMAT_ONLY (48/48 archived TIFF packages; 0 protocol-eligible)",
+    "research_queue_audit": "PASS_SOURCE_BOUND_METADATA; input_pins_checked=false (validation-tier restoration only)",
+    "renderer": "PASS",
+    "site_guard_normal": "PASS",
+    "site_guard_optimized": "PASS",
+    "preflight": "PASS_MEASURED_DUPLICATE_STOP_EXIT_2",
+    "full_pytest": "PASS: 877 passed, 23 skipped, 64 warnings",
+    "three_review_passes": "COMPLETE: baseline/blocker review, policy repair and regression review, final validation",
+    "input_pin_audit": "INCOMPLETE: AUDIT_ERROR; missing data/external/dem10_chi_100m_u8.tif; only validation tier restored"
+  },
+  "irregularity": "Historical H88-CON88 gate used equal-support overlap in a field labelled literal; clearance withdrawn under IR-88-89A41360-01. Original gate preserved and TIFF bytes unchanged.",
+  "archived_research_download": {
+    "path": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_path": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "status": "existing research artifact only; not a new submission"
+  }
+}

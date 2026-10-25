@@ -1,6 +1,8 @@
-## Current session handoff — 2026-10-25, H88-CON88 (supersedes DUPLICATE_STOP handoffs below)
+## Current session handoff — 2026-10-25, Arena branch `89a41360`
 
-> **NEW UNIQUE TIF GENERATED AND GATES-CLEARED:** `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` (SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). **✅ OK TO DOWNLOAD AND SUBMIT** per automated gates in `registry/con88_gates.json` (format/uniqueness/fingerprint/canary PASS; overlap vs H33 0.487; worst 0.6936 vs GEMSDOE49). Note (107/140): `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`. Guide: `docs/con88.html`. Run card: `run_card_con88.json`. Analysis: `research/session-con88-20261025.md`. Equal-support fix IR-88-CON88-01. Next: user submits within weekly cap and records ORGANIZER-CONFIRMED receipt.
+Read README.md, the complete request in USER_PROMPT_20261025.md, this file, AGENTS.md, and the latest repository review before work. A fresh SHA-pinned preflight returned `DUPLICATE_STOP` (exit 2): the registered dense 17GEMSDOE witness covers all 5,106,385 allowed cells under the unchanged literal >0-support rule. No experiment, candidate TIFF, holdout fit, placement, or slot is authorized. The active queue is SPR/AWA/CBC; no candidate validation occurred.
+
+**Correction to the superseded CON88 banner:** its dense-raster equal-support exception did not satisfy the user's literal all-registry overlap rule. The approval is withdrawn; the unchanged artifact is renamed and marked `DO-NOT-SUBMIT`. Preserve the archived gate values only as historical evidence. See `evidence/con88_clearance_withdrawal_89a41360.json` and `research/session-89a41360-review-20261025.md`.
 
 ## Current session handoff — 2026-10-25, 693b10af
 
