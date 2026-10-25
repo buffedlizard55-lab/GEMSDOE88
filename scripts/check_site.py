@@ -762,8 +762,56 @@ def main(root: Path = ROOT) -> None:
         vhgd_card["raster_sha256"] in index and vhgd_card["raster_sha256"] in executive,
         "VHGD SHA-256 in pages",
     )
+
+    vcaz_card = json.loads((root / "registry/vcaz88_run_card.json").read_text())
+    vcaz_web = json.loads((docs / "data/vcaz88_run_card.json").read_text())
+    vcaz_gv = json.loads((root / "registry/vcaz88_gate_v3.json").read_text())
+    vcaz_gv_web = json.loads((docs / "data/vcaz88_gate_v3.json").read_text())
+    require(vcaz_card == vcaz_web, "Pages VCAZ card differs from canonical registry card")
+    require(vcaz_gv == vcaz_gv_web, "Pages VCAZ gate v3 differs from canonical registry gate")
+    require(
+        vcaz_card["verdict"] == "negative"
+        and vcaz_card["ok_to_download"] is True
+        and vcaz_card["ok_to_submit"] is False
+        and vcaz_gv["decision"]["ok_to_submit"] is False
+        and vcaz_card["correlation_overlap_vs_registry"]["unique_like_for_like"] is True
+        and vcaz_card["correlation_overlap_vs_registry"]["final_worst_like_for_like_overlap_3px"]["value"] <= 0.70,
+        "VCAZ run card verdict/gate flags inconsistent",
+    )
+    require(
+        0 < len(vcaz_card["submission_name"]) <= 140
+        and 0 < len(vcaz_card["submission_note"]) <= 140,
+        "VCAZ submission name/note must satisfy <=140 character cap",
+    )
+    vcaz_tif = root / vcaz_card["download"]
+    vcaz_zip = root / vcaz_card["zip_download"]
+    require(vcaz_tif.is_file() and vcaz_zip.is_file(), "VCAZ tif/zip files exist")
+    require(
+        sha256(vcaz_tif) == vcaz_card["raster_sha256"] == vcaz_gv["sha256"],
+        "VCAZ TIFF SHA-256 mismatch across file, card, and gate",
+    )
+    require(
+        sha256(vcaz_zip) == vcaz_card["zip_sha256"] == vcaz_gv["zip_sha256"],
+        "VCAZ ZIP SHA-256 mismatch across file, card, and gate",
+    )
+    with zipfile.ZipFile(vcaz_zip) as archive:
+        require(
+            archive.namelist() == [vcaz_tif.name]
+            and archive.read(vcaz_tif.name) == vcaz_tif.read_bytes(),
+            "VCAZ ZIP must contain the exact research TIFF",
+        )
+    require(vcaz_tif.name in index and vcaz_tif.name in executive, "VCAZ tif in pages")
+    require(
+        vcaz_card["submission_name"] in index and vcaz_card["submission_name"] in executive,
+        "VCAZ name in pages",
+    )
+    require(
+        vcaz_card["raster_sha256"] in index and vcaz_card["raster_sha256"] in executive,
+        "VCAZ SHA-256 in pages",
+    )
+    require("fetch('data/vcaz88_run_card.json'" in js, "site.js must verify vcaz88_run_card.json")
     print(
-        "PASS: H88-GZZC research TIFF, H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
+        "PASS: H88-VCAZ, H88-GZZC, H88-HGVC, MTAS pre-placement stop, canonical archived bytes, Pages links, and negative decisions agree"
     )
 
 

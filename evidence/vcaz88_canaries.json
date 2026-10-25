@@ -1,0 +1,387 @@
+{
+  "passed": true,
+  "threshold": 0.9,
+  "features_tested": 91,
+  "zero_catalogue_features_tested": 68,
+  "fold_visible_features_tested": 23,
+  "max_symmetric_auc": 0.771903,
+  "max_feature": "d2 (seed=20)",
+  "max_zero_catalogue_symmetric_auc": 0.590003,
+  "max_vcaz24_symmetric_auc": 0.563917,
+  "top15_all_features": [
+    {
+      "feature": "d2",
+      "group": "VIS-22",
+      "roc_auc": 0.228097,
+      "symmetric_auc": 0.771903
+    },
+    {
+      "feature": "d_perp",
+      "group": "VIS-22",
+      "roc_auc": 0.238875,
+      "symmetric_auc": 0.761125
+    },
+    {
+      "feature": "d",
+      "group": "VIS-22",
+      "roc_auc": 0.244995,
+      "symmetric_auc": 0.755005
+    },
+    {
+      "feature": "d_over_w",
+      "group": "VIS-22",
+      "roc_auc": 0.265119,
+      "symmetric_auc": 0.734881
+    },
+    {
+      "feature": "relay_facing",
+      "group": "VIS-22",
+      "roc_auc": 0.617721,
+      "symmetric_auc": 0.617721
+    },
+    {
+      "feature": "coherence",
+      "group": "VIS-22",
+      "roc_auc": 0.409239,
+      "symmetric_auc": 0.590761
+    },
+    {
+      "feature": "lidar_scarp_dipole",
+      "group": "PHYS-44",
+      "roc_auc": 0.590003,
+      "symmetric_auc": 0.590003
+    },
+    {
+      "feature": "relay_ratio",
+      "group": "VIS-22",
+      "roc_auc": 0.410259,
+      "symmetric_auc": 0.589741
+    },
+    {
+      "feature": "d_par_abs",
+      "group": "VIS-22",
+      "roc_auc": 0.410651,
+      "symmetric_auc": 0.589349
+    },
+    {
+      "feature": "log_len",
+      "group": "VIS-22",
+      "roc_auc": 0.41113,
+      "symmetric_auc": 0.58887
+    },
+    {
+      "feature": "topo10_curv_prof",
+      "group": "PHYS-44",
+      "roc_auc": 0.585311,
+      "symmetric_auc": 0.585311
+    },
+    {
+      "feature": "scarp_rel_cos2",
+      "group": "VIS-22",
+      "roc_auc": 0.583051,
+      "symmetric_auc": 0.583051
+    },
+    {
+      "feature": "cos2d",
+      "group": "VIS-22",
+      "roc_auc": 0.41706,
+      "symmetric_auc": 0.58294
+    },
+    {
+      "feature": "topo10_hs_lineament",
+      "group": "PHYS-44",
+      "roc_auc": 0.576171,
+      "symmetric_auc": 0.576171
+    },
+    {
+      "feature": "sin2d",
+      "group": "VIS-22",
+      "roc_auc": 0.430348,
+      "symmetric_auc": 0.569652
+    }
+  ],
+  "vcaz24_features": [
+    {
+      "feature": "vcaz_mimic_pluvial_tufa_shore",
+      "group": "VCAZ-24",
+      "roc_auc": 0.563917,
+      "symmetric_auc": 0.563917
+    },
+    {
+      "feature": "vcaz_lidar_orthog_relay_breach",
+      "group": "VCAZ-24",
+      "roc_auc": 0.543745,
+      "symmetric_auc": 0.543745
+    },
+    {
+      "feature": "vcaz_3dep_branch_piracy_div",
+      "group": "VCAZ-24",
+      "roc_auc": 0.542935,
+      "symmetric_auc": 0.542935
+    },
+    {
+      "feature": "vcaz_lidar_subsurface_strike_lock",
+      "group": "VCAZ-24",
+      "roc_auc": 0.54256,
+      "symmetric_auc": 0.54256
+    },
+    {
+      "feature": "vcaz_conduit_joint_poe_prior",
+      "group": "VCAZ-24",
+      "roc_auc": 0.459977,
+      "symmetric_auc": 0.540023
+    },
+    {
+      "feature": "vcaz_strike_mag_tc_ridge",
+      "group": "VCAZ-24",
+      "roc_auc": 0.468882,
+      "symmetric_auc": 0.531118
+    },
+    {
+      "feature": "vcaz_piedmont_burial_hinge",
+      "group": "VCAZ-24",
+      "roc_auc": 0.530023,
+      "symmetric_auc": 0.530023
+    },
+    {
+      "feature": "vcaz_strike_cond_smectite_gouge",
+      "group": "VCAZ-24",
+      "roc_auc": 0.52445,
+      "symmetric_auc": 0.52445
+    },
+    {
+      "feature": "vcaz_strike_grav_slope_ridge",
+      "group": "VCAZ-24",
+      "roc_auc": 0.521723,
+      "symmetric_auc": 0.521723
+    },
+    {
+      "feature": "vcaz_cat_chalc_outflow_updip",
+      "group": "VCAZ-24",
+      "roc_auc": 0.478635,
+      "symmetric_auc": 0.521365
+    },
+    {
+      "feature": "vcaz_mimic_shallow_volc_edge",
+      "group": "VCAZ-24",
+      "roc_auc": 0.518306,
+      "symmetric_auc": 0.518306
+    },
+    {
+      "feature": "vcaz_3dep_mound_sink_lineament",
+      "group": "VCAZ-24",
+      "roc_auc": 0.484753,
+      "symmetric_auc": 0.515247
+    },
+    {
+      "feature": "vcaz_vapor_over_carbonate_ratio",
+      "group": "VCAZ-24",
+      "roc_auc": 0.51402,
+      "symmetric_auc": 0.51402
+    },
+    {
+      "feature": "vcaz_probe_peclet_concavity",
+      "group": "VCAZ-24",
+      "roc_auc": 0.513207,
+      "symmetric_auc": 0.513207
+    },
+    {
+      "feature": "vcaz_spring_vs_well_plumbing",
+      "group": "VCAZ-24",
+      "roc_auc": 0.487832,
+      "symmetric_auc": 0.512168
+    },
+    {
+      "feature": "vcaz_probe_dtdz_norm",
+      "group": "VCAZ-24",
+      "roc_auc": 0.510122,
+      "symmetric_auc": 0.510122
+    },
+    {
+      "feature": "vcaz_qtz_chalc_boiling_idx",
+      "group": "VCAZ-24",
+      "roc_auc": 0.505194,
+      "symmetric_auc": 0.505194
+    },
+    {
+      "feature": "vcaz_alteration_f_param_uk",
+      "group": "VCAZ-24",
+      "roc_auc": 0.504345,
+      "symmetric_auc": 0.504345
+    },
+    {
+      "feature": "vcaz_vapor_chimney_kern",
+      "group": "VCAZ-24",
+      "roc_auc": 0.495659,
+      "symmetric_auc": 0.504341
+    },
+    {
+      "feature": "vcaz_euler_deep_fault_index",
+      "group": "VCAZ-24",
+      "roc_auc": 0.496406,
+      "symmetric_auc": 0.503594
+    },
+    {
+      "feature": "vcaz_sinter_boiling_kern",
+      "group": "VCAZ-24",
+      "roc_auc": 0.496465,
+      "symmetric_auc": 0.503535
+    },
+    {
+      "feature": "vcaz_trav_updip_feeder",
+      "group": "VCAZ-24",
+      "roc_auc": 0.497215,
+      "symmetric_auc": 0.502785
+    },
+    {
+      "feature": "vcaz_seismic_brittle_work_rate",
+      "group": "VCAZ-24",
+      "roc_auc": 0.50245,
+      "symmetric_auc": 0.50245
+    },
+    {
+      "feature": "vcaz_volc_vent_dike_ridge",
+      "group": "VCAZ-24",
+      "roc_auc": 0.499864,
+      "symmetric_auc": 0.500136
+    }
+  ],
+  "per_seed": {
+    "20": {
+      "n_withheld_pos": 11321,
+      "n_neg_sampled": 90568,
+      "max_symmetric_auc": 0.771903,
+      "top10": [
+        {
+          "feature": "d2",
+          "group": "VIS-22",
+          "roc_auc": 0.228097,
+          "symmetric_auc": 0.771903
+        },
+        {
+          "feature": "d_perp",
+          "group": "VIS-22",
+          "roc_auc": 0.238875,
+          "symmetric_auc": 0.761125
+        },
+        {
+          "feature": "d",
+          "group": "VIS-22",
+          "roc_auc": 0.244995,
+          "symmetric_auc": 0.755005
+        },
+        {
+          "feature": "d_over_w",
+          "group": "VIS-22",
+          "roc_auc": 0.265119,
+          "symmetric_auc": 0.734881
+        },
+        {
+          "feature": "relay_facing",
+          "group": "VIS-22",
+          "roc_auc": 0.617721,
+          "symmetric_auc": 0.617721
+        },
+        {
+          "feature": "coherence",
+          "group": "VIS-22",
+          "roc_auc": 0.409239,
+          "symmetric_auc": 0.590761
+        },
+        {
+          "feature": "lidar_scarp_dipole",
+          "group": "PHYS-44",
+          "roc_auc": 0.590003,
+          "symmetric_auc": 0.590003
+        },
+        {
+          "feature": "relay_ratio",
+          "group": "VIS-22",
+          "roc_auc": 0.410259,
+          "symmetric_auc": 0.589741
+        },
+        {
+          "feature": "d_par_abs",
+          "group": "VIS-22",
+          "roc_auc": 0.410651,
+          "symmetric_auc": 0.589349
+        },
+        {
+          "feature": "log_len",
+          "group": "VIS-22",
+          "roc_auc": 0.41113,
+          "symmetric_auc": 0.58887
+        }
+      ]
+    },
+    "21": {
+      "n_withheld_pos": 11572,
+      "n_neg_sampled": 92576,
+      "max_symmetric_auc": 0.745205,
+      "top10": [
+        {
+          "feature": "d2",
+          "group": "VIS-22",
+          "roc_auc": 0.254795,
+          "symmetric_auc": 0.745205
+        },
+        {
+          "feature": "d_perp",
+          "group": "VIS-22",
+          "roc_auc": 0.25935,
+          "symmetric_auc": 0.74065
+        },
+        {
+          "feature": "d",
+          "group": "VIS-22",
+          "roc_auc": 0.275067,
+          "symmetric_auc": 0.724933
+        },
+        {
+          "feature": "d_over_w",
+          "group": "VIS-22",
+          "roc_auc": 0.288802,
+          "symmetric_auc": 0.711198
+        },
+        {
+          "feature": "relay_facing",
+          "group": "VIS-22",
+          "roc_auc": 0.617962,
+          "symmetric_auc": 0.617962
+        },
+        {
+          "feature": "coherence",
+          "group": "VIS-22",
+          "roc_auc": 0.40001,
+          "symmetric_auc": 0.59999
+        },
+        {
+          "feature": "log_len",
+          "group": "VIS-22",
+          "roc_auc": 0.403377,
+          "symmetric_auc": 0.596623
+        },
+        {
+          "feature": "scarp_rel_cos2",
+          "group": "VIS-22",
+          "roc_auc": 0.590772,
+          "symmetric_auc": 0.590772
+        },
+        {
+          "feature": "relay_ratio",
+          "group": "VIS-22",
+          "roc_auc": 0.425372,
+          "symmetric_auc": 0.574628
+        },
+        {
+          "feature": "vcaz_strike_mag_tc_ridge",
+          "group": "VCAZ-24",
+          "roc_auc": 0.431397,
+          "symmetric_auc": 0.568603
+        }
+      ]
+    }
+  },
+  "zero_test_quadrant_leakage_scramble_equal": true,
+  "vcaz_schema_version": "vcaz88-v2"
+}

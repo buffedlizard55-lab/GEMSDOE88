@@ -14,20 +14,20 @@ NODE = shutil.which("node")
 def test_current_decision_precedes_archived_download_on_both_pages():
     for rel in ("docs/index.html", "docs/executive-summary.html"):
         html = (ROOT / rel).read_text()
-        # 2026-10-25 execution session: the executed MTAS experiment (new
-        # research TIFF, DO NOT SUBMIT) now leads; the earlier preflight
-        # "NO NEW TIFF" record is retained verbatim below it as history.
+        vcaz = html.index('id="vcaz-experiment"')
         experiment = html.index('id="mtas-experiment"')
         current = html.index('id="autonomous-review"')
         historical = html.index('id="hgvc-current"') if rel == "docs/index.html" else html.index("Archived H88-HGVC GeoTIFF")
-        assert experiment < current < historical, f"stale candidate appears before current decision in {rel}"
+        assert vcaz < experiment < current < historical, f"stale candidate appears before current decision in {rel}"
         assert "NO NEW TIFF" in html  # retained preflight history
         assert "NEW UNIQUE RESEARCH TIFF GENERATED" in html
         assert "DO NOT SUBMIT" in html
+        assert "0.200625" in html
         assert "0.049577" in html
         assert "H88-HGVC" in html
     guide = (ROOT / "docs/executive-summary.html").read_text()
     assert "CURRENT DECISION 2026-10-25" in guide
+    assert "GEMSDOE88-VCAZ88-34224A7C" in guide
     assert "GEMSDOE88-MTAS88-ADMITTANCE-20261025" in guide
 
 
@@ -48,7 +48,7 @@ const env = {
     querySelectorAll: () => [],
   },
   fetch: async url => {
-    if (fail && (url === 'data/mtas88_run_card.json' || url === 'data/mtas88_experiment_run_card.json' || url === 'data/gzzc88_run_card.json')) return {ok: false};
+    if (fail && (url === 'data/vcaz88_run_card.json' || url === 'data/mtas88_run_card.json' || url === 'data/mtas88_experiment_run_card.json' || url === 'data/gzzc88_run_card.json')) return {ok: false};
     const data = JSON.parse(fs.readFileSync(path.join('docs', url), 'utf8'));
     return {ok: true, json: async () => data};
   },
@@ -57,7 +57,7 @@ const env = {
 vm.runInNewContext(fs.readFileSync('docs/assets/site.js', 'utf8'), env);
 setImmediate(() => {
   const expected = fail ? 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT'
-    : 'H88-MTAS · NEW RESEARCH TIFF: DOWNLOAD YES · SUBMIT: NO — DO NOT SUBMIT (HOLDOUT-DTI 0.0496 below bar; literal duplicate stop)';
+    : 'H88-VCAZ · NEW RESEARCH TIFF: DOWNLOAD YES · SUBMIT: NO — DO NOT SUBMIT (HOLDOUT-DTI 0.2006 8/8 folds; literal witness 1.0 > 0.70; 0 slots)';
   if (banner.textContent !== expected) {
     console.error('Incorrect decision:', banner.textContent, 'expected:', expected);
     process.exitCode = 1;

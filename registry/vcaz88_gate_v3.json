@@ -1,0 +1,42 @@
+{
+  "schema_version": "gems88-gate-v3-vcaz88",
+  "generated_utc": "2026-10-25T06:40:01Z",
+  "lane": "H88-VCAZ",
+  "preregistration_id": "PREREG-20261025-VCAZ88",
+  "sha256": "34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12",
+  "zip_sha256": "b87b0d02c01d79be4a0ec61329191329d888d8ee3b36bc771eb3bc32a72ac670",
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null,
+  "candidate": {
+    "dots": 33200,
+    "regime_counts": {
+      "near_relay": 10956,
+      "piedmont_hinge": 8632,
+      "blind_conduit": 13612
+    },
+    "fingerprint": {
+      "n": 33200,
+      "median_d_cat_px": 18.384777069091797,
+      "share_le2": 0.0,
+      "share_gt10": 0.6730421686746988,
+      "share_gt25": 0.41
+    },
+    "fingerprint_screen_passed": true
+  },
+  "decision": {
+    "policy": "gems88-gate-v3",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "eligible_for_selector": false,
+    "approved_for_weekly_slot": false,
+    "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+    "blocking_reasons": [
+      "UNIQUENESS: literal registry rule failed or unverified; no dense-prior exemption: 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif, sibling_head_20261025:GEMSDOE86__b61eb029__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif",
+      "UNIQUENESS: complete indexed registry audit not verified"
+    ],
+    "informational": [],
+    "note_len": 93,
+    "name_len": 25,
+    "human_step_remaining": "Separate selector authorization and the account's current portal allowance are required; this gate never spends a slot."
+  }
+}

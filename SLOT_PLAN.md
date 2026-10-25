@@ -1,4 +1,17 @@
-# Latest addendum (2026-10-25): H88-VHGD — ALL-TIME BLIND-BASIN (`>25 px`) HOLDOUT RECORD (`0.092061`) & LIKE-FOR-LIKE UNIQUE (`0.6885 <= 0.70`) · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT (`0` slots spent)
+# Latest addendum (2026-10-25): H88-VCAZ — 8/8 FOLDS WON OVER H88-ADHR (`HOLDOUT-DTI = 0.200625`), HIGHEST EMITTED 3-REGIME HOLDOUT (`0.152829`), & 362-RASTER LIKE-FOR-LIKE UNIQUE (`0.6214 <= 0.70`) · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT (`0` slots spent)
+
+- **Candidate:** `docs/downloads/gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: 34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12`) and single-TIFF `.zip` (`SHA-256: b87b0d02c01d79be4a0ec61329191329d888d8ee3b36bc771eb3bc32a72ac670`).
+- **Prepared Submission Name (`25/140` chars):** `GEMSDOE88-VCAZ88-34224A7C`
+- **Prepared Submission Note (`93/140` chars):** `VCAZ88 91ch vapor-chimney+Peclet+strike PoE 33200d; HOLDOUT-DTI 0.2006 blind 0.0693; UNSCORED`
+- **8-Fold `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `seeds 20+21`, `n=22,893`):**
+  - **Exp01 (`exp01_vcaz_zerocat`):** `0.109732 [0.097766, 0.121948]` (Far `>10 px = 0.088475`, Blind `>25 px = 0.055981`).
+  - **Exp02 (`exp02_vcaz_crossfam_poe`):** **Overall `0.200625 [0.184176, 0.216992]`** (paired $\Delta$ vs clean `H88-ADHR` `0.194876` = **`+0.005749 [+0.001370, +0.009829]`**, **`8/8` folds won**; Far `>10 px = 0.130260`; Blind `>25 px = 0.069299`).
+  - **Exp03 (`exp03_vcaz_3regime_prod`, emitted `33,200` dots):** **`0.152829 [0.137764, 0.167441]`** (surpassing `HGVC Exp4` `0.148970`, `SAR-CSD Exp03` `0.151589`, and `VHGD Exp3` `0.138938`; Far `0.099305`, Blind `0.060274`).
+- **Gates:** `91/91` canaries `<= 0.771903 <= 0.90` (`max VCAZ-24 = 0.563917`, scramble invariance `True`); `33,200` dots (`share_le2 = 0.0%`, `share_gt25 = 41.00% >= 35%`, `median_d_cat = 18.38 px`); pre-placement & final `|Spearman rho| = 0.208020 <= 0.90`; post-placement like-for-like 3-px overlap **`0.621446 <= 0.70` (`0` blockers across all `362` pinned + live-HEAD `GEMSDOE86..92` + concurrent `GEMSDOE88` rasters)**; held fail-closed (`ok_to_download = true`, `ok_to_submit = false`, `verdict = "negative"`, `0` slots spent) under literal `17GEMSDOE` (`1.0000 > 0.70`) and repo holdout record (`0.200625 < 0.202947` `H88-HGVC`).
+
+---
+
+# Earlier addendum (2026-10-25): H88-VHGD — ALL-TIME BLIND-BASIN (`>25 px`) HOLDOUT RECORD (`0.092061`) & LIKE-FOR-LIKE UNIQUE (`0.6885 <= 0.70`) · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT (`0` slots spent)
 
 - **Candidate:** `docs/downloads/gems88-vhgd88-3strat-27821dots-20261025-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: 752dba748b55b855678f6447628d95bdabc43f785d2c72772004b429f9cb21ab`) and single-TIFF `.zip` (`SHA-256: dcba915381b57090cbb30fa5b28bc1fe03388ebeeea292c74b1d77f137191e05`).
 - **Prepared Submission Name (`32/140` chars):** `GEMSDOE88-VHGD88-3STRAT-20261025`

@@ -1,0 +1,128 @@
+{
+  "schema_version": "gems88-run-card-v3",
+  "generated_utc": "2026-10-25T06:40:01Z",
+  "lane": "H88-VCAZ",
+  "preregistration_id": "PREREG-20261025-VCAZ88",
+  "hypothesis": "Vapor-Chimney Acid-Sulfate / Phreatic-Vent Partitioning, Silica-Cation Boiling-Mixing Vector & Anisotropic Strike-Steered Subsurface Conduit Tensor",
+  "physical_mechanism": "Boiling extensional/transtensional geothermal conduits exsolve buoyant H2S + CO2 + steam vertically through unsaturated fault breccia (forming explosion craters, native sulfur, sulfate crusts, argillic alteration, silicified breccias, and >175 C opaline sinter directly on blind fault intersections), whereas bicarbonate travertine precipitates 0.8-3.5 km down-hydraulic-gradient and pluvial tufa precipitates along ~1,330 m / ~1,555 m Pleistocene lake shorelines. Coupling 4-facies paleo-vent partitioning, quartz-chalcedony-cation solute boiling vs up-dip outflow mixing, 2-m probe conductive dT/dz + 1D Peclet concavity (2*T1.5m - T2m - T1m), and subsurface-strike-steered ridges of gravity slope (B05), magnetic curvature (B06), Euler upward-continuation index, GeoDAWN Efimov F-ratio + UK, cross-modal 1 m LiDAR B11 subsurface-strike locking, seismic dilatational work rate (B07, B08, B10, B16), and 10 m 3DEP drainage-branch piracy (sig_i32) isolates concealed and piedmont geothermal fault conduits missed by air-photo scarps.",
+  "named_non_fault_mimic": "Pleistocene pluvial Lake Lahontan (~1,330 m) and Lake Bonneville (~1,555 m) wave-cut shoreline scarps and non-hydrothermal carbonate Tufa mounds (explicitly quarantined into vcaz_mimic_pluvial_tufa_shore; zero positive paleo weight on Tufa). | Unfaulted Neogene basalt/ash-flow tuff lava-flow margins and shallow boulder fans producing sharp surface magnetic gradients (tmi_hg, tc) that decay rapidly under 150 m upward continuation without basement gravity/depth steps (explicitly quarantined into vcaz_mimic_shallow_volc_edge).",
+  "experiments_executed": 3,
+  "experiment_budget_max": 3,
+  "wall_clock_seconds": 968.94,
+  "wall_clock_budget_seconds": 7200,
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null,
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "benchmark_arm": "exp02_vcaz_crossfam_poe",
+    "dti": 0.200625,
+    "ci95": [
+      0.184176,
+      0.216992
+    ],
+    "far_gt10px_dti": 0.13026,
+    "far_gt10px_ci95": [
+      0.111241,
+      0.150482
+    ],
+    "blind_gt25px_dti": 0.069299,
+    "blind_gt25px_ci95": [
+      0.039723,
+      0.103304
+    ],
+    "adhr_control_dti": 0.194876,
+    "paired_delta_vs_adhr": 0.005749,
+    "paired_delta_ci95": [
+      0.00137,
+      0.009829
+    ],
+    "folds_won_vs_adhr": "8/8",
+    "blind_folds_won_vs_adhr": "3/8",
+    "exp01_zerocat_overall_dti": 0.109732,
+    "exp01_zerocat_blind_dti": 0.055981,
+    "emitted_3regime_arm": "exp03_vcaz_3regime_prod",
+    "emitted_3regime_overall_dti": 0.152829,
+    "emitted_3regime_ci95": [
+      0.137764,
+      0.167441
+    ],
+    "emitted_3regime_far_dti": 0.099305,
+    "emitted_3regime_blind_dti": 0.060274,
+    "beats_recomputed_and_stored_adhr_bar": true,
+    "beats_all_time_repo_record_hgvc_0202947": false,
+    "beats_all_time_blind_record_vhgd_0092061": false
+  },
+  "leakage_canary": {
+    "passed": true,
+    "threshold": 0.9,
+    "features_tested": 91,
+    "max_symmetric_auc": 0.771903,
+    "max_feature": "d2 (seed=20)",
+    "max_vcaz24_symmetric_auc": 0.563917,
+    "zero_test_quadrant_leakage_scramble_equal": true
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "registry_rasters_checked": 362,
+    "distinct_dot_sets_checked": 234,
+    "surface_preplacement_max_abs_spearman": 0.20802,
+    "surface_preplacement_max_label": "17GEMSDOE:dense_17gemdoe.tif",
+    "final_max_abs_spearman": 0.20802,
+    "final_max_rho_label": "17GEMSDOE:dense_17gemdoe.tif",
+    "final_worst_like_for_like_overlap_3px": {
+      "label": "GEMSDOE88:gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+      "value": 0.6214457831325301
+    },
+    "unique_like_for_like": true,
+    "literal_all_positive_witness_overlap_3px": 1.0,
+    "literal_blockers": [
+      "17GEMSDOE:dense_17gemdoe.tif",
+      "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+      "sibling_head_20261025:GEMSDOE86__b61eb029__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
+    ],
+    "unique_literal": false
+  },
+  "fingerprint": {
+    "n": 33200,
+    "median_d_cat_px": 18.384777069091797,
+    "share_le2": 0.0,
+    "share_gt10": 0.6730421686746988,
+    "share_gt25": 0.41,
+    "regime_counts": {
+      "near_relay": 10956,
+      "piedmont_hinge": 8632,
+      "blind_conduit": 13612
+    },
+    "screen_passed": true
+  },
+  "raster_sha256": "34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12",
+  "zip_sha256": "b87b0d02c01d79be4a0ec61329191329d888d8ee3b36bc771eb3bc32a72ac670",
+  "download": "docs/downloads/gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.tif",
+  "zip_download": "docs/downloads/gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.zip",
+  "repo_copy": "submissions/gems88-vcaz88-vapor-conduit-33200-20261025-34224a7c-zeros-DO-NOT-SUBMIT.tif",
+  "validator_output": {
+    "all_checks_passed": true,
+    "portal_tif_ok": true,
+    "portal_zip_ok": true,
+    "layout_parity_with_sample": true,
+    "portal_range_check_nan_strict": true,
+    "second_decoder": {
+      "name": "tifffile",
+      "equal": true
+    },
+    "positive_dots": 33200,
+    "min_value": 0.0,
+    "max_value": 1.0,
+    "n_unique_values": 2
+  },
+  "submission_name": "GEMSDOE88-VCAZ88-34224A7C",
+  "submission_name_chars": 25,
+  "submission_note": "VCAZ88 91ch vapor-chimney+Peclet+strike PoE 33200d; HOLDOUT-DTI 0.2006 blind 0.0693; UNSCORED",
+  "submission_note_chars": 93,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "verdict_explanation": "PASSES all 5 discriminating screens (portal [0,1] sample-parity format, 91/91 leakage canaries + quadrant scramble invariance, 8-fold HOLDOUT-DTI benchmark win over H88-ADHR, H33-parity basin fingerprint share_gt25 >= 35% & share_le2 == 0%, and full 362-raster (234 distinct decoded dot-sets) like-for-like uniqueness <= 0.70 across pinned + live-HEAD GEMSDOE86..92 + concurrent GEMSDOE88 rasters), while held fail-closed (verdict='negative', ok_to_submit=false, -DO-NOT-SUBMIT filename; 0 slots spent) under both the binding literal all-raster rule (17GEMSDOE dense_17gemdoe.tif yields 1.0000 > 0.70) and the repo all-time holdout promotion bar (0.200625 vs H88-HGVC 0.202947)."
+}

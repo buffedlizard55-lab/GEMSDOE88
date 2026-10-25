@@ -33,8 +33,10 @@
       const mtasResponse = await fetch('data/mtas88_run_card.json', { cache: 'no-store' });
       const mtasExpResponse = await fetch('data/mtas88_experiment_run_card.json', { cache: 'no-store' });
       const gzzcResponse = await fetch('data/gzzc88_run_card.json', { cache: 'no-store' });
+      const vcazResponse = await fetch('data/vcaz88_run_card.json', { cache: 'no-store' });
       if (!response.ok || !currentResponse.ok || !cardResponse.ok ||
-          !tdklResponse.ok || !mtasResponse.ok || !mtasExpResponse.ok || !gzzcResponse.ok) {
+          !tdklResponse.ok || !mtasResponse.ok || !mtasExpResponse.ok ||
+          !gzzcResponse.ok || !vcazResponse.ok) {
         throw new Error('pre-flight audit unavailable');
       }
       const data = await response.json();
@@ -44,9 +46,9 @@
       const mtas = await mtasResponse.json();
       const mtasExp = await mtasExpResponse.json();
       const gzzc = await gzzcResponse.json();
-      // All feeds must agree. GZZC is a research TIFF only. TDKL remains the
-      // canonical archived current_release. MTAS generated no raster. Never
-      // silently exempt the dense witness.
+      const vcaz = await vcazResponse.json();
+      // All feeds must agree. VCAZ/GZZC/MTAS are research TIFFs only. TDKL remains the
+      // canonical archived current_release. Never silently exempt the dense witness.
       const proof = mtas.preplacement_registry_proof;
       const archived = mtas.archived_research_download;
       const consistent = data.ok_to_download_for_research === true && data.ok_to_submit === false &&
@@ -72,9 +74,15 @@
           mtasExp.raster_sha256 === '2cb828939e11cf07e12be7917722f73816550ed4e297e2409b8674ac131479cc' &&
           mtasExp.validator_output?.all_checks_passed === true &&
           mtasExp.holdout?.evidence_class === 'HOLDOUT-DTI' &&
-          mtasExp.organizer_confirmed_score === null;
+          mtasExp.organizer_confirmed_score === null &&
+          vcaz.lane === 'H88-VCAZ' && vcaz.verdict === 'negative' &&
+          vcaz.ok_to_download === true && vcaz.ok_to_submit === false &&
+          vcaz.raster_sha256 === '34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12' &&
+          vcaz.validator_output?.all_checks_passed === true &&
+          vcaz.holdout?.evidence_class === 'HOLDOUT-DTI' &&
+          vcaz.organizer_confirmed_score === null;
       banner.textContent = consistent
-        ? 'H88-MTAS · NEW RESEARCH TIFF: DOWNLOAD YES · SUBMIT: NO — DO NOT SUBMIT (HOLDOUT-DTI 0.0496 below bar; literal duplicate stop)'
+        ? 'H88-VCAZ · NEW RESEARCH TIFF: DOWNLOAD YES · SUBMIT: NO — DO NOT SUBMIT (HOLDOUT-DTI 0.2006 8/8 folds; literal witness 1.0 > 0.70; 0 slots)'
         : 'PRE-FLIGHT AUDIT UNAVAILABLE OR INCONSISTENT — DO NOT SUBMIT';
     } catch (_) {
       banner.textContent = 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT';
