@@ -497,9 +497,11 @@ def main(root: Path = ROOT) -> None:
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
     # Every published binary must carry the negative decision in its filename.
-    # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
-    # checked above; XGCE was renamed on main and requires no such exception.
-    legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
+    # Pre-existing CTRA and merged RELAY are allowed ONLY for their exact hash-pinned
+    # negative bytes bound to their negative run cards; XGCE was renamed on main.
+    relay_tif = docs / "downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros.tif"
+    relay_zip = docs / "downloads/gemsdoe88-relay-dilational-20261025T040124Z-fec0813c826b-zeros.zip"
+    legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve(), relay_tif.resolve(), relay_zip.resolve()}
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif", ".tiff", ".zip",
