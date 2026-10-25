@@ -445,7 +445,7 @@ def main():
     print(f"[XGCE] Submission name {out_name} ({len(out_name)}/140)")
     print(f"[XGCE] Note {note} ({len(note)}/140)")
 
-    out_tif = ROOT / "docs/downloads" / f"{out_stem}-zeros.tif"
+    out_tif = ROOT / "docs/downloads" / f"{out_stem}-zeros-DO-NOT-SUBMIT.tif"
     out_zip = out_tif.with_suffix(".zip")
     out_json = out_tif.with_suffix(".json")
 

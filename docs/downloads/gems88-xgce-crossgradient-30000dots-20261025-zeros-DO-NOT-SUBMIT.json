@@ -111,7 +111,7 @@
     "validation_class": "local on-disk template/range check; not organizer upload acceptance"
   },
   "zip_file": "gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.zip",
-  "zip_sha256": "8336ef9dd47822d61aa802cd6d2deac6daae5308577dabaaf345b2aeac823e3c",
+  "zip_sha256": "eba566f9f960017f98d9502ee5026b3a48b2b3b59a0d6e320471f2ddd6e0fb5f",
   "approved_for_weekly_slot": false,
   "promoted": false,
   "submission_slots_used": 0,

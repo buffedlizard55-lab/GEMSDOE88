@@ -3,9 +3,9 @@
   "run_id": "GEMSDOE88-XGCE-20261025-199e6f30",
   "generated_utc": "2026-10-25T02:03:24Z",
   "lane": "H88-XGCE",
-  "lane_title": "Cross-Gradient Orthogonal Conduit Extraction (gravity × magnetic intersections weighted by dilation)",
-  "hypothesis": "Orthogonal intersections where Basin-and-Range normal faults are cross-cut by Walker Lane transfer faults produce cross-gradient discordance between isostatic gravity and reduced-to-pole magnetic gradients (|sin Δθ| → 1) co-located with extensional dilational strain; these intersections host fracture-permeability sweet spots missed by air-photo catalogue mappers because surface expression is a broad alluvial fan confluence, not a sharp scarp.",
-  "mechanism": "Normalized cross-gradient |G_grav × G_mag|/(|G_grav||G_mag|+ε) = |sinΔθ| between gravity (iso_grav_anom_hg/vg) and magnetic (tmi_hg/tmi_vg) gradients, weighted by basement high-pass relief (|depth_to_base_surf - G25(depth)|), gravity slope ridge magnitude, dilatational strain gate (geod_dilaterate >0) and shear modulation, emitted via 3px catalogue collar and 2.83px Dinkelbach-style spacing to maximize expected pooled DTI under 300m triangular kernel.",
+  "lane_title": "Cross-Gradient Orthogonal Conduit Extraction (gravity \u00d7 magnetic intersections weighted by dilation)",
+  "hypothesis": "Orthogonal intersections where Basin-and-Range normal faults are cross-cut by Walker Lane transfer faults produce cross-gradient discordance between isostatic gravity and reduced-to-pole magnetic gradients (|sin \u0394\u03b8| \u2192 1) co-located with extensional dilational strain; these intersections host fracture-permeability sweet spots missed by air-photo catalogue mappers because surface expression is a broad alluvial fan confluence, not a sharp scarp.",
+  "mechanism": "Normalized cross-gradient |G_grav \u00d7 G_mag|/(|G_grav||G_mag|+\u03b5) = |sin\u0394\u03b8| between gravity (iso_grav_anom_hg/vg) and magnetic (tmi_hg/tmi_vg) gradients, weighted by basement high-pass relief (|depth_to_base_surf - G25(depth)|), gravity slope ridge magnitude, dilatational strain gate (geod_dilaterate >0) and shear modulation, emitted via 3px catalogue collar and 2.83px Dinkelbach-style spacing to maximize expected pooled DTI under 300m triangular kernel.",
   "named_non_fault_mimic": "Circular Mesozoic granitic pluton margins and Tertiary caldera ring faults (suppressed via high-pass basement relief and requiring geod_dilaterate >0; static contacts lack extensional strain).",
   "feature_bands": [
     "tmi_hg",
@@ -21,9 +21,9 @@
     "schema": "gems88.preregistration.v1",
     "preregistration_id": "H88-XGCE-20261025",
     "lane": "H88-XGCE",
-    "lane_title": "Cross-Gradient Orthogonal Conduit Extraction (gravity × magnetic intersections weighted by dilation)",
-    "hypothesis": "Orthogonal intersections where Basin-and-Range normal faults are cross-cut by Walker Lane transfer faults produce cross-gradient discordance between isostatic gravity and reduced-to-pole magnetic gradients (|sin Δθ| → 1) co-located with extensional dilational strain; these intersections host fracture-permeability sweet spots missed by air-photo catalogue mappers because surface expression is a broad alluvial fan confluence, not a sharp scarp.",
-    "mechanism": "Compute normalized cross-gradient between gravity (iso_grav_anom_hg/vg) and magnetic (tmi_hg/tmi_vg) gradient vectors: |G_grav × G_mag|/(|G_grav||G_mag|+ε) = |sinΔθ|. Weight by dilatational strain (geod_dilaterate) and basement-step ridge magnitude (iso_grav_anom_slope) with high-pass depth_to_base_surf to suppress pluton rims. Emit dots via probability-weighted sampling with 3-px catalogue collar and 2.8-px inter-dot spacing to maximize expected pooled DTI under 300m triangular kernel.",
+    "lane_title": "Cross-Gradient Orthogonal Conduit Extraction (gravity \u00d7 magnetic intersections weighted by dilation)",
+    "hypothesis": "Orthogonal intersections where Basin-and-Range normal faults are cross-cut by Walker Lane transfer faults produce cross-gradient discordance between isostatic gravity and reduced-to-pole magnetic gradients (|sin \u0394\u03b8| \u2192 1) co-located with extensional dilational strain; these intersections host fracture-permeability sweet spots missed by air-photo catalogue mappers because surface expression is a broad alluvial fan confluence, not a sharp scarp.",
+    "mechanism": "Compute normalized cross-gradient between gravity (iso_grav_anom_hg/vg) and magnetic (tmi_hg/tmi_vg) gradient vectors: |G_grav \u00d7 G_mag|/(|G_grav||G_mag|+\u03b5) = |sin\u0394\u03b8|. Weight by dilatational strain (geod_dilaterate) and basement-step ridge magnitude (iso_grav_anom_slope) with high-pass depth_to_base_surf to suppress pluton rims. Emit dots via probability-weighted sampling with 3-px catalogue collar and 2.8-px inter-dot spacing to maximize expected pooled DTI under 300m triangular kernel.",
     "named_non_fault_mimic": "Circular Mesozoic granitic pluton margins and Tertiary caldera ring faults (suppressed via high-pass basement relief and requiring geod_dilaterate > 0; static lithologic contacts lack extensional strain).",
     "ranked_candidates": [
       {
@@ -53,7 +53,7 @@
       }
     ],
     "expected_dti_gain_bps": "+450 to +700 vs ADHR baseline (physics-only 0.0618)",
-    "implementation_cost": "Low — uses only on-disk 19-band training_features.tif (no external download)",
+    "implementation_cost": "Low \u2014 uses only on-disk 19-band training_features.tif (no external download)",
     "holdout_evaluator": "gems57-pooled-hide-v2 (alpha 0.2 beta 0.8 300m triangular, 8-fold whole-component hide with 3-px feature buffer, 12-px boundary exclusion)",
     "leakage_canary_threshold": 0.9,
     "uniqueness_gates": {
@@ -88,9 +88,9 @@
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
     "evaluator_version": "gems57-pooled-hide-v2",
-    "status": "STRUCTURAL-ZERO REGIME — not ranked vs ADHR; UNSCORED",
+    "status": "STRUCTURAL-ZERO REGIME \u2014 not ranked vs ADHR; UNSCORED",
     "withheld_positive_pixels_overall": 22893,
-    "note": "This run card marks HOLDOUT-DTI UNSCORED for promotion: the recorded structural-zero regime is not a leaderboard estimate, no aggregate holdout estimate or 95% CI is supplied (overall=null, ci95=null), and no paired improvement is claimed. Do not use this diagnostic to rank against organizer scores; 0 weekly slots spent.",
+    "note": "Hide-and-recover H33 scores 0.0039 vs control 0.1085 (IR-88-20/35); any >3px raster scores 0.0000; SHORE-HINGE 0.0000 illustrates structural zero. HOLDOUT-DTI is reported for discipline but not used for slot ranking; off-catalogue SGMC proxy and fingerprint are informative. This lane is UNSCORED on organizer truth; 0 slots spent.",
     "overall": null,
     "ci95": null,
     "verdict": "negative (by construction for catalogue-avoiding geometry)"
@@ -176,10 +176,10 @@
     "zip_file": "docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.zip",
     "json_file": "docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.json",
     "raster_sha256": "199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c",
-    "zip_sha256": "8336ef9dd47822d61aa802cd6d2deac6daae5308577dabaaf345b2aeac823e3c",
+    "zip_sha256": "eba566f9f960017f98d9502ee5026b3a48b2b3b59a0d6e320471f2ddd6e0fb5f",
     "bytes": 84969,
     "submission_name": "GEMSDOE88-XGCE-30000-B4FFC782",
-    "submission_note": "H88-XGCE grav×mag cross-grad orthogonal conduit 30000 dots; fingerprint gt25 0.49 canary 0.568; UNSCORED",
+    "submission_note": "H88-XGCE grav\u00d7mag cross-grad orthogonal conduit 30000 dots; fingerprint gt25 0.49 canary 0.568; UNSCORED",
     "submission_note_chars": 104,
     "positive_pixels": 30000,
     "dtype": "float32",
