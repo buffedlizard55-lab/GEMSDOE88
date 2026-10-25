@@ -7,7 +7,7 @@ exact sample geotransform, undeclared nodata, all-finite values in [0, 1]
 (the exact portal sentence that previously failed: "Predicted values must
 be in range [0, 1]"), SHA-256 identity against the run card, single-member
 ZIP byte identity, frozen preregistration, leakage canary, holdout numbers
-cross-checked against the evidence ledger, v4 gate fields (IR-88-118), and
+cross-checked against the evidence ledger, v4 gate fields (IR-88-127), and
 naming consistency with the verdict (promote => no DO-NOT-SUBMIT marker;
 negative => DO-NOT-SUBMIT marker mandatory).
 

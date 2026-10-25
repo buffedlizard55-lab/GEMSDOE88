@@ -149,6 +149,8 @@ def test_tdkl_geotiff_and_zip_portal_parity_and_uniqueness_gates():
 
 
 def test_tdkl_independent_current_release_validator():
+    if not (ROOT / "data/bridge/existing_faults.tif").is_file():
+        pytest.skip("restore data/bridge via scripts/restore_inputs.py --validation")
     from scripts.validate_tdkl88 import validate_tdkl88
 
     report = validate_tdkl88(ROOT)

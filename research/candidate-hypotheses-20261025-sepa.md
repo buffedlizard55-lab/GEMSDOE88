@@ -59,7 +59,7 @@ Controls in the same folds: phys44 zero-cat and H88-ADHR incumbent. Every featur
 the symmetric-AUC ≤ 0.90 leakage canary before any holdout number is trusted.
 Promotion bar (pre-registered): Exp3 HOLDOUT-DTI point estimate **above the repo's current holdout
 best, H88-HGVC 0.202947** (`gems57-pooled-hide-v2`, n=22,893), paired Δ vs ADHR 95% CI > 0,
-fingerprint `share_le2 = 0`, `share_gt25 ≥ 0.35`, and the v4 uniqueness decision in IR-88-118
+fingerprint `share_le2 = 0`, `share_gt25 ≥ 0.35`, and the v4 uniqueness decision in IR-88-127
 (rank-correlation vs *every* registry raster; dot-overlap vs dot-field rasters; chance-corrected
 excess vs discriminating dense rasters; the literal space-filling reading reported, never hidden).
 0 weekly slots are spent by this session regardless of outcome; slot selection is a separate step.

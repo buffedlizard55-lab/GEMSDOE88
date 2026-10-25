@@ -1,0 +1,226 @@
+{
+  "evidence_class": "REGISTRY-MEASUREMENT",
+  "generated_utc": "2026-10-25T03:22:21Z",
+  "pre_placement_surface": {
+    "max_abs_spearman_rho": 0.667683,
+    "threshold": 0.9,
+    "rasters_checked": 326,
+    "passed": true
+  },
+  "post_placement_dots_pinned": {
+    "registry_rasters": 239,
+    "unique_like_for_like": true,
+    "unique_literal": false,
+    "worst_like_for_like_overlap": {
+      "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+      "value": 0.5433714285714286
+    },
+    "worst_abs_rho": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 0.6676831888867063
+    },
+    "literal_blockers": [
+      "17GEMSDOE:dense_17gemdoe.tif",
+      "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+    ]
+  },
+  "post_placement_dots_extended_live_siblings": {
+    "registry_rasters": 326,
+    "distinct_dot_sets": 207,
+    "missing": 0,
+    "unique_like_for_like": true,
+    "unique_literal": false,
+    "worst_like_for_like_overlap": {
+      "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+      "value": 0.5433714285714286
+    },
+    "worst_abs_rho": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 0.6676831888867063
+    },
+    "literal_blockers": [
+      "17GEMSDOE:dense_17gemdoe.tif",
+      "sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif",
+      "sibling_live:GEMSDOE86__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
+    ],
+    "like_for_like_blockers": [],
+    "vacuity_witness": {
+      "random_dots": 35000,
+      "seed": 88,
+      "literal_overlap": 1.0,
+      "like_for_like_overlap": 0.016542857142857144,
+      "literal_rule_vacuous": true,
+      "dense_label": "17GEMSDOE:dense_17gemdoe.tif"
+    },
+    "top20_by_like_for_like_overlap": [
+      {
+        "label": "GEMSDOE88:gems88-gthc-scrd-strat-46457dots-20261024-e3c0d9e0-DO-NOT-SUBMIT.tif",
+        "registry_dots": 46457,
+        "like_for_like_overlap_3px": 0.543371,
+        "literal_overlap_3px": 0.543371,
+        "rho_preplacement": 0.090367,
+        "rho_final": 0.042902
+      },
+      {
+        "label": "GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+        "registry_dots": 53876,
+        "like_for_like_overlap_3px": 0.539657,
+        "literal_overlap_3px": 0.539657,
+        "rho_preplacement": 0.078078,
+        "rho_final": 0.02618
+      },
+      {
+        "label": "fleet:GEMSDOE85__gems85-geopb-crest-90000dots-sep4-20261022T222707Z-a4e1f57c-zeros.tif",
+        "registry_dots": 90000,
+        "like_for_like_overlap_3px": 0.536371,
+        "literal_overlap_3px": 0.536371,
+        "rho_preplacement": 0.00842,
+        "rho_final": 0.003633
+      },
+      {
+        "label": "fleet:GEMSDOE63__gemsdoe63-cvarlw-thin-s3p17-54864-20261011T220606Z-c58f60c4-nan.tif",
+        "registry_dots": 54864,
+        "like_for_like_overlap_3px": 0.513286,
+        "literal_overlap_3px": 0.513286,
+        "rho_preplacement": 0.063992,
+        "rho_final": 0.015732
+      },
+      {
+        "label": "sibling_live:GEMSDOE91__gems91-spac-e3-20261024T183000Z-a2740c89-zeros.tif",
+        "registry_dots": 54000,
+        "like_for_like_overlap_3px": 0.481171,
+        "literal_overlap_3px": 0.481171,
+        "rho_preplacement": 0.088602,
+        "rho_final": 0.01699
+      },
+      {
+        "label": "GEMSDOE88:gems88-vess88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+        "registry_dots": 25000,
+        "like_for_like_overlap_3px": 0.478257,
+        "literal_overlap_3px": 0.478257,
+        "rho_preplacement": 0.081091,
+        "rho_final": 0.042221
+      },
+      {
+        "label": "GEMSDOE88:gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+        "registry_dots": 25000,
+        "like_for_like_overlap_3px": 0.477286,
+        "literal_overlap_3px": 0.477286,
+        "rho_preplacement": 0.081537,
+        "rho_final": 0.044499
+      },
+      {
+        "label": "sibling_live:GEMSDOE91__gems91-mhtr-e2-20261024T170000Z-9554f718-zeros.tif",
+        "registry_dots": 48000,
+        "like_for_like_overlap_3px": 0.409371,
+        "literal_overlap_3px": 0.409371,
+        "rho_preplacement": 0.087427,
+        "rho_final": 0.014188
+      },
+      {
+        "label": "sibling_live:GEMSDOE91__gems91-s14-lsrg-ff-20261025T004500Z-1fcf17ee-zeros.tif",
+        "registry_dots": 37654,
+        "like_for_like_overlap_3px": 0.405229,
+        "literal_overlap_3px": 0.405229,
+        "rho_preplacement": 0.084077,
+        "rho_final": 0.033926
+      },
+      {
+        "label": "sibling_live:GEMSDOE91__gems91-ccr91-e1-research-20261024T235900Z-53eab7eb-zeros.tif",
+        "registry_dots": 48000,
+        "like_for_like_overlap_3px": 0.4048,
+        "literal_overlap_3px": 0.4048,
+        "rho_preplacement": 0.087245,
+        "rho_final": 0.01377
+      },
+      {
+        "label": "registry:calib_h161_01855.tif",
+        "registry_dots": 123939,
+        "like_for_like_overlap_3px": 0.402771,
+        "literal_overlap_3px": 0.402771,
+        "rho_preplacement": 0.120979,
+        "rho_final": 0.024574
+      },
+      {
+        "label": "sibling_live:GEMSDOE91__gems91-spid-e3-20261024T190000Z-25a94861-zeros.tif",
+        "registry_dots": 47200,
+        "like_for_like_overlap_3px": 0.402343,
+        "literal_overlap_3px": 0.402343,
+        "rho_preplacement": 0.084922,
+        "rho_final": 0.011069
+      },
+      {
+        "label": "sibling_live:GEMSDOE91__gems91-s14-lsrg-e3-20261024T235900Z-e6540657-zeros.tif",
+        "registry_dots": 44000,
+        "like_for_like_overlap_3px": 0.392829,
+        "literal_overlap_3px": 0.392829,
+        "rho_preplacement": 0.09924,
+        "rho_final": 0.020054
+      },
+      {
+        "label": "registry:calib_h194_01894.tif",
+        "registry_dots": 123779,
+        "like_for_like_overlap_3px": 0.3906,
+        "literal_overlap_3px": 0.3906,
+        "rho_preplacement": 0.120857,
+        "rho_final": 0.024436
+      },
+      {
+        "label": "19GEMSDOE:gems19_h19_5.tif",
+        "registry_dots": 121131,
+        "like_for_like_overlap_3px": 0.381743,
+        "literal_overlap_3px": 0.381743,
+        "rho_preplacement": 0.121782,
+        "rho_final": 0.024725
+      },
+      {
+        "label": "fleet:GEMSDOE76__gems76_h76_3_geotherm_tilt_axial_submod_20261021_zeros.tif",
+        "registry_dots": 37654,
+        "like_for_like_overlap_3px": 0.380429,
+        "literal_overlap_3px": 0.380429,
+        "rho_preplacement": 0.088125,
+        "rho_final": 0.026159
+      },
+      {
+        "label": "GEMSDOE88:gems88-sarcsd-missingness-csd20-35998-20261024-07b74d36-zeros-DO-NOT-SUBMIT.tif",
+        "registry_dots": 35998,
+        "like_for_like_overlap_3px": 0.379,
+        "literal_overlap_3px": 0.379,
+        "rho_preplacement": 0.069281,
+        "rho_final": 0.019749
+      },
+      {
+        "label": "sibling_live:GEMSDOE91__gems91-bhar-e3-20261024T184500Z-a4b69ca7-zeros.tif",
+        "registry_dots": 48022,
+        "like_for_like_overlap_3px": 0.377057,
+        "literal_overlap_3px": 0.377057,
+        "rho_preplacement": 0.092842,
+        "rho_final": 0.013591
+      },
+      {
+        "label": "sibling_live:GEMSDOE91__gems91-s13-ptha-e3-20261024T201500Z-660d645d-zeros.tif",
+        "registry_dots": 44000,
+        "like_for_like_overlap_3px": 0.371714,
+        "literal_overlap_3px": 0.371714,
+        "rho_preplacement": 0.086777,
+        "rho_final": 0.014431
+      },
+      {
+        "label": "GEMSDOE88:gems88-shore-hinge-piedmont-20261024-42dc0afa-zeros-DO-NOT-SUBMIT.tif",
+        "registry_dots": 37654,
+        "like_for_like_overlap_3px": 0.367171,
+        "literal_overlap_3px": 0.367171,
+        "rho_preplacement": 0.051452,
+        "rho_final": 0.009625
+      }
+    ]
+  },
+  "fingerprint": {
+    "n": 35000,
+    "median_d_cat_px": 25.05992889404297,
+    "share_le2": 0.0,
+    "share_gt10": 0.7571428571428571,
+    "share_gt25": 0.5142857142857142
+  },
+  "fingerprint_screen_passed": true
+}

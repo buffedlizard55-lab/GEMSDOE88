@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Re-audit the frozen H88-HGVC artifact (2026-10-24) under gate v4 (IR-88-118).
+"""Re-audit the frozen H88-HGVC artifact (2026-10-24) under gate v4 (IR-88-127).
 
 This is a *gate re-evaluation only*: no model is fit, no raster is generated,
 moved, renamed or copied, and the historical v3 run card / gate verdict are
@@ -115,7 +115,7 @@ def main(argv=None) -> int:
                     "dots": rc["validator_output"]["positive_dots"],
                     "filename_marker_note": ("The 'DO-NOT-SUBMIT' suffix in the filename is the historical "
                                              "v3 (IR-88-86) marker from build day. It is retained byte-for-byte; "
-                                             "this v4 re-audit supersedes that policy reading (IR-88-118). The "
+                                             "this v4 re-audit supersedes that policy reading (IR-88-127). The "
                                              "DrivenData portal name/note are separate metadata below.")},
         "historical_v3_verdict_unchanged": {"verdict": rc["verdict"], "ok_to_submit": rc["ok_to_submit"],
                                             "gate": "registry/hgvc88_gate_v3.json (not modified)"},

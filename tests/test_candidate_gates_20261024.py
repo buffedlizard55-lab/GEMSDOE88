@@ -29,7 +29,7 @@ def test_no_record_claims_submit_true_after_correction():
         except ValueError:
             continue
         offenders += [f"{rec.relative_to(ROOT)}:{p}" for p in _true_flags(data)]
-    # IR-88-118 (2026-10-25): exactly ONE sanctioned exception exists — the v4
+    # IR-88-127 (2026-10-25): exactly ONE sanctioned exception exists — the v4
     # re-audit of the frozen HGVC artifact (both byte-identical copies). It may
     # claim ok_to_submit=true only because it re-verified, on the saved bytes:
     # portal format, stored canary + holdout-beats-bar evidence, and fresh

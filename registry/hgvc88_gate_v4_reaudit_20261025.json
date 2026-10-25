@@ -9,7 +9,7 @@
     "sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
     "zip_sha256": "5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409",
     "dots": 37654,
-    "filename_marker_note": "The 'DO-NOT-SUBMIT' suffix in the filename is the historical v3 (IR-88-86) marker from build day. It is retained byte-for-byte; this v4 re-audit supersedes that policy reading (IR-88-118). The DrivenData portal name/note are separate metadata below."
+    "filename_marker_note": "The 'DO-NOT-SUBMIT' suffix in the filename is the historical v3 (IR-88-86) marker from build day. It is retained byte-for-byte; this v4 re-audit supersedes that policy reading (IR-88-127). The DrivenData portal name/note are separate metadata below."
   },
   "historical_v3_verdict_unchanged": {
     "verdict": "negative",
@@ -22,7 +22,7 @@
   "label": "OK TO DOWNLOAD AND SUBMIT",
   "blocking_reasons": [],
   "informational": [
-    "LITERAL READING (IR-88-86, reported verbatim, not binding under v4): worst literal >0-support overlap = 1.0 vs 17GEMSDOE:dense_17gemdoe.tif; space-filling continuous surfaces return 1.0 for every nonempty candidate and contain no dots (see IR-88-118). They bind above via rank correlation only."
+    "LITERAL READING (IR-88-86, reported verbatim, not binding under v4): worst literal >0-support overlap = 1.0 vs 17GEMSDOE:dense_17gemdoe.tif; space-filling continuous surfaces return 1.0 for every nonempty candidate and contain no dots (see IR-88-127). They bind above via rank correlation only."
   ],
   "human_step_remaining": "The account owner (selector) must still confirm the current weekly allowance on the DrivenData portal before spending a slot; this gate never spends a slot and holds no organizer receipt.",
   "portal_revalidation": {

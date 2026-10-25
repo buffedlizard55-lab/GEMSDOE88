@@ -14,6 +14,15 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python scripts/restore_inputs.py --validation
+      - name: Re-run autonomous 2026-10-25 review and keep its machine card fail-closed
+        run: |
+          python scripts/review_repo_20261025.py
+          set +e
+          python scripts/review_repo_20261025.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+          git diff --exit-code evidence/repo_review_20261025.json docs/data/repo_review_20261025.json
       - name: Fresh dated review must reject submission clearance
         run: |
           python scripts/review_submission_status.py
@@ -112,6 +121,22 @@ jobs:
           python scripts/validate_qtsk88.py
           set +e
           python scripts/validate_qtsk88.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+      - name: Independently recheck H88-BGCD research deliverable and expected negative slot gate
+        run: |
+          python scripts/validate_bgcd88.py
+          set +e
+          python scripts/validate_bgcd88.py --require-submit
+          code=$?
+          set -e
+          test "$code" -eq 2
+      - name: Independently recheck H88-VHGD research deliverable and expected negative slot gate
+        run: |
+          python scripts/validate_vhgd88.py
+          set +e
+          python scripts/validate_vhgd88.py --require-submit
           code=$?
           set -e
           test "$code" -eq 2

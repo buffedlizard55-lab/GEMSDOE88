@@ -276,7 +276,7 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
                  identical_decoded=bool(np.array_equal(cand_dots, lit_dots)))
         r["blocks_literal"] = bool(lit > OVERLAP_MAX or pre_lit > OVERLAP_MAX or abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX or r["identical_decoded"])
         r["blocks_like_for_like"] = bool(like > OVERLAP_MAX or abs(rho_final) > RHO_MAX or abs(rho_pre) > RHO_MAX or r["identical_decoded"])
-        # --- v4 (IR-88-118): dot test binds on dot fields; dense surfaces bind
+        # --- v4 (IR-88-127): dot test binds on dot fields; dense surfaces bind
         # on rank correlation plus chance-corrected excess overlap when their
         # 3-px halo does not already cover the whole footprint. A continuous
         # probability surface positive everywhere has no dots, so the literal
@@ -296,7 +296,7 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
         elif excess is not None:
             dot_blocks = excess > OVERLAP_MAX
         else:
-            dot_blocks = False  # space-filling: binds via rho only (see IR-88-118)
+            dot_blocks = False  # space-filling: binds via rho only (see IR-88-127)
         r["blocks_v4"] = bool(rho_blocks or dot_blocks or r["identical_decoded"])
         rows.append(r)
         seen[key] = r
@@ -393,7 +393,7 @@ def decide(*, portal, uniqueness, canary_passed, holdout_beats_bar, name, note, 
 
 def decide_v4(*, portal, uniqueness, canary_passed, holdout_beats_bar, name, note, used_names,
               receipt_sha_matches=True) -> dict:
-    """Binding v4 verdict (IR-88-118); supersedes `decide` for new lanes.
+    """Binding v4 verdict (IR-88-127); supersedes `decide` for new lanes.
 
     Identical to v3 except the uniqueness test: v3's literal `>0`-support
     overlap against a space-filling continuous probability surface is 1.0 for
@@ -411,7 +411,7 @@ def decide_v4(*, portal, uniqueness, canary_passed, holdout_beats_bar, name, not
     if receipt_sha_matches is not True:
         reasons_block.append("HASH: receipt sha256 differs from the file on disk")
     if uniqueness.get("unique_v4") is not True:
-        reasons_block.append("UNIQUENESS (v4/IR-88-118): duplicate or unverified vs dot fields / discriminating rasters / rank correlation: "
+        reasons_block.append("UNIQUENESS (v4/IR-88-127): duplicate or unverified vs dot fields / discriminating rasters / rank correlation: "
                              + ", ".join(uniqueness.get("v4_blockers", [])[:5]))
     if uniqueness.get("unique_literal") is not True:
         worst_lit = uniqueness.get("worst_literal_overlap") or {}
@@ -419,7 +419,7 @@ def decide_v4(*, portal, uniqueness, canary_passed, holdout_beats_bar, name, not
             "LITERAL READING (IR-88-86, reported verbatim, not binding under v4): worst literal "
             f">0-support overlap = {worst_lit.get('value')} vs {worst_lit.get('label')}; "
             "space-filling continuous surfaces return 1.0 for every nonempty candidate and contain no dots "
-            "(see IR-88-118). They bind above via rank correlation only.")
+            "(see IR-88-127). They bind above via rank correlation only.")
     if uniqueness.get("registry_complete") is not True:
         reasons_block.append("UNIQUENESS: complete indexed registry audit not verified")
     if uniqueness.get("surface_checked") is not True:

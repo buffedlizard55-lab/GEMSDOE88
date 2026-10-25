@@ -3,7 +3,7 @@
 **Deliverables.** (1) A newly generated, unique GeoTIFF for a preregistered lane
 (`H88-SEPA`, 37,654 dots, SHA-256 `2ba2416809abf4c728e70142a12ef28199bdc154e89ea0cb153747788ee8329c`)
 with an automatic, unambiguous verdict: **download for research YES, submit NO** (it did not beat
-the holdout bar). (2) A correction of the shared uniqueness gate (**IR-88-118 / gate v4**) and a
+the holdout bar). (2) A correction of the shared uniqueness gate (**IR-88-127 / gate v4**) and a
 byte-exact re-audit of the frozen holdout-best artifact `H88-HGVC`, which under the corrected gate
 is **OK TO DOWNLOAD AND SUBMIT** for the account-owner/selector step. Zero weekly slots were spent
 by this session; neither file has an ORGANIZER-CONFIRMED score.
@@ -101,7 +101,7 @@ share_le2 = 0, share_gt25 = 0.4290, median d_cat = 12.37 px (nearer-catalogue th
 19.24 px despite identical strata budgets — a further reason it would likely transfer worse
 off-catalogue).
 
-## 4. The gate correction (IR-88-118) and the HGVC re-audit
+## 4. The gate correction (IR-88-127) and the HGVC re-audit
 
 The protocol's dot test blocks a candidate when ">70% of your dots fall within 3 px of one
 registry raster's **dots**". The pinned `17GEMSDOE` registry raster is a continuous probability
@@ -140,7 +140,7 @@ stated limitation), portal format re-validated ([0,1], CRS/shape/transform), sto
 3. Registry completeness = indexed accessible inventory in this checkout (365–367 rasters);
    unindexed/private/later rasters are a limitation, never a claim of absence.
 4. HGVC pre-placement surface ρ is a stored receipt (0.208144); final-dot ρ was recomputed fresh.
-5. IR-88-118 is a *policy correction*, explicitly superseding IR-88-86 for new lanes; prior
+5. IR-88-127 is a *policy correction*, explicitly superseding IR-88-86 for new lanes; prior
    sessions' negative verdicts stand as historical records under the rule then in force.
 6. SEPA's dot-field margin (0.6942 vs 0.70) is thin; had it won on holdout, emission would have
    needed de-correlation work before any slot.
@@ -155,3 +155,14 @@ stated limitation), portal format re-validated ([0,1], CRS/shape/transform), sto
 3. If HGVC scores: leaderboard-receipt calibration (LBCAL direction) becomes evidence-based
    rather than speculative; if it scores poorly, revisit emission geometry vs geology attribution
    with a real receipt in hand.
+
+## 7. Post-merge addendum (same day)
+
+While this session ran, nine further research rasters landed on `main` from concurrent lanes
+(BGCD, GZZC, LSC, MTAS-exp, PRISM, SGMC, SSA, VHGD, RELAY). Both candidates were re-checked
+against exactly those nine before merging (`evidence/merge_addendum_uniqueness_20261025.json`):
+HGVC worst dot-field overlap 0.4138, SEPA 0.6058, worst |ρ| ≤ 0.095 — both remain v4-unique, so
+the receipts above stand with registry scope extended by nine rasters. At merge, this session's
+irregularity number was renumbered **IR-88-118 → IR-88-127** because concurrent lanes had
+already used 118–126 on `main` (118 three times); content unchanged. VHGD's pooled best arm
+(0.198664, unconstrained) remains below HGVC's 0.202947, so the holdout-best statement stands.

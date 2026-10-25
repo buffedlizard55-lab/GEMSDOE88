@@ -1,0 +1,33 @@
+{
+  "file": "/home/user/GEMSDOE88/docs/downloads/gems88-prism88-piedmont-ridge-20261025-zeros.tif",
+  "sha256": "507d88611d081318b79512bd60b168d1870841ee384a95216a0109fb78dbb16c",
+  "zip_sha256": "9711cab2f9ba944b066c6b31898f4763ef83a9dd38e7a654dd03ceedf0cf093e",
+  "validator": {
+    "grid_shape": [
+      3730,
+      3292
+    ],
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "all_finite": true,
+    "values_in_0_1": true,
+    "nodata": null,
+    "n_pos": 37654,
+    "n_on_catalogue": 0,
+    "n_outside_footprint": 0,
+    "sha256_tif": "507d88611d081318b79512bd60b168d1870841ee384a95216a0109fb78dbb16c",
+    "sha256_zip": "9711cab2f9ba944b066c6b31898f4763ef83a9dd38e7a654dd03ceedf0cf093e",
+    "portal_range_check": "PASS \u2014 all 12,279,160 cells finite in [0,1], nodata=None, fixes 'Predicted values must be in range [0,1]' locally",
+    "second_decoder": "tifffile pixel-identical (verified on write)"
+  },
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "generated_utc": "2026-10-25T04:00:00Z"
+}

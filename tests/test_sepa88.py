@@ -1,4 +1,4 @@
-"""H88-SEPA lane: synthetic feature-transform checks + gate v4 (IR-88-118) semantics."""
+"""H88-SEPA lane: synthetic feature-transform checks + gate v4 (IR-88-127) semantics."""
 import sys
 from pathlib import Path
 
@@ -90,7 +90,7 @@ def test_sepa88_release_artifacts_if_present():
 
 
 def test_hgvc_v4_reaudit_receipt_if_present():
-    """The v4 re-audit (IR-88-118) must not have touched the frozen HGVC bytes/card."""
+    """The v4 re-audit (IR-88-127) must not have touched the frozen HGVC bytes/card."""
     import json
 
     reg = ROOT / "registry/hgvc88_gate_v4_reaudit_20261025.json"

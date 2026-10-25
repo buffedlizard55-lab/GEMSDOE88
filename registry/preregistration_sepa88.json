@@ -36,7 +36,7 @@
   "leakage_canary": "every input feature alone, symmetric AUC <= 0.90 on withheld positives, both seeds, before trusting any result",
   "promotion_bar": {
     "current_holdout_best": {"lane": "H88-HGVC", "evidence_class": "HOLDOUT-DTI", "evaluator": "gems57-pooled-hide-v2", "withheld_positive_pixels": 22893, "dti": 0.2029470713394289},
-    "rule": "Exp3 pooled HOLDOUT-DTI point estimate > 0.202947 AND paired delta vs H88-ADHR (same folds) 95% CI lower bound > 0 AND fingerprint share_le2 == 0 and share_gt25 >= 0.35 AND v4 uniqueness pass (IR-88-118). Otherwise verdict negative, file marked DO-NOT-SUBMIT."
+    "rule": "Exp3 pooled HOLDOUT-DTI point estimate > 0.202947 AND paired delta vs H88-ADHR (same folds) 95% CI lower bound > 0 AND fingerprint share_le2 == 0 and share_gt25 >= 0.35 AND v4 uniqueness pass (IR-88-127). Otherwise verdict negative, file marked DO-NOT-SUBMIT."
   },
   "production_design": {
     "total_dots": 37654,
@@ -45,7 +45,7 @@
     "far_stratum": {"budget": 16154, "range_px": "d_cat > 25", "min_spacing_px": 3.05},
     "values": "binary {0.0, 1.0} float32, zeros outside footprint, nodata undeclared, sample-parity LZW layout"
   },
-  "uniqueness_policy": "IR-88-118 v4: |Spearman| <= 0.90 vs every registry raster (surface pre-placement AND final); forward 3px dot overlap <= 0.70 vs every dot-field registry raster; chance-corrected excess overlap <= 0.70 vs every discriminating dense raster; literal overlap vs the space-filling continuous 17GEMSDOE proba surface is reported verbatim (expected 1.0 for any nonempty raster) and binds via rank correlation only, because that raster contains no dots. Both readings are published; nothing is hidden.",
+  "uniqueness_policy": "IR-88-127 v4: |Spearman| <= 0.90 vs every registry raster (surface pre-placement AND final); forward 3px dot overlap <= 0.70 vs every dot-field registry raster; chance-corrected excess overlap <= 0.70 vs every discriminating dense raster; literal overlap vs the space-filling continuous 17GEMSDOE proba surface is reported verbatim (expected 1.0 for any nonempty raster) and binds via rank correlation only, because that raster contains no dots. Both readings are published; nothing is hidden.",
   "budget": {"max_experiments": 3, "max_hours": 2, "weekly_slots": 0},
   "organizer_confirmed_score": null
 }

@@ -502,7 +502,7 @@
       "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)"
     ],
     "informational": [
-      "LITERAL READING (IR-88-86, reported verbatim, not binding under v4): worst literal >0-support overlap = 1.0 vs 17GEMSDOE:dense_17gemdoe.tif; space-filling continuous surfaces return 1.0 for every nonempty candidate and contain no dots (see IR-88-118). They bind above via rank correlation only."
+      "LITERAL READING (IR-88-86, reported verbatim, not binding under v4): worst literal >0-support overlap = 1.0 vs 17GEMSDOE:dense_17gemdoe.tif; space-filling continuous surfaces return 1.0 for every nonempty candidate and contain no dots (see IR-88-127). They bind above via rank correlation only."
     ],
     "note_len": 91,
     "name_len": 25,
@@ -515,7 +515,7 @@
     "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)"
   ],
   "informational": [
-    "LITERAL READING (IR-88-86, reported verbatim, not binding under v4): worst literal >0-support overlap = 1.0 vs 17GEMSDOE:dense_17gemdoe.tif; space-filling continuous surfaces return 1.0 for every nonempty candidate and contain no dots (see IR-88-118). They bind above via rank correlation only."
+    "LITERAL READING (IR-88-86, reported verbatim, not binding under v4): worst literal >0-support overlap = 1.0 vs 17GEMSDOE:dense_17gemdoe.tif; space-filling continuous surfaces return 1.0 for every nonempty candidate and contain no dots (see IR-88-127). They bind above via rank correlation only."
   ],
   "organizer_confirmed_score": null,
   "weekly_slots_spent": 0,

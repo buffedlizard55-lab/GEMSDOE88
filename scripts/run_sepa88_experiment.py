@@ -8,7 +8,7 @@ the shared 44-channel physics stack. Fold machinery is the shared
 incumbent; Exp1 zero-cat PoE, Exp2 single joint, Exp3 dual-head PoE) with a
 separate SEPA cache directory. Evaluator/writer/uniqueness are the shared
 ``vendor/gems57`` + ``src/gems88`` modules; the binding gate is
-``gate.decide_v4`` (IR-88-118). Preregistration:
+``gate.decide_v4`` (IR-88-127). Preregistration:
 ``registry/preregistration_sepa88.json``.
 """
 from __future__ import annotations
