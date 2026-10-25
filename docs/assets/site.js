@@ -66,7 +66,7 @@
           gzzc.uniqueness?.literal_dense_witness_overlap === 1.0 &&
           gzzc.uniqueness?.literal_dense_witness_pass === false;
       banner.textContent = consistent
-        ? 'H88-GZZC · NEW RESEARCH TIFF · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (literal duplicate stop)'
+        ? 'H88-MTAS · NO NEW TIFF · OLD FILE DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated duplicate stop)'
         : 'PRE-FLIGHT AUDIT UNAVAILABLE OR INCONSISTENT — DO NOT SUBMIT';
     } catch (_) {
       banner.textContent = 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT';

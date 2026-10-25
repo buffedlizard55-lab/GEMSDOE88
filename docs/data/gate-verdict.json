@@ -1,25 +1,20 @@
 {
-  "schema": "gems88.gate-v1",
-  "generated_utc": "2026-10-25T03:31:41Z",
-  "experiment_id": "H88-SGMC-DIST-CONJ-v2",
-  "name": "GEMSDOE88-SGMC-DIST-CONJ-V2-20261025",
-  "sha256": "d193daf57a0becdbbf48b5b9fdb6fbe59ed1e83a5ce357ad8b5e61a853726f49",
-  "zip_sha256": "986408450f566c4412c6bc743fd8d89742628e768fab96c037f4afa3a324baef",
-  "ok_to_download": true,
-  "ok_to_submit": false,
-  "format_passed": true,
-  "canary_passed": true,
-  "canary_max_auc": 0.6494,
-  "holdout_dti": 0.056081,
-  "sparse_uniqueness_passed": true,
-  "max_dot_overlap": 0.4393,
-  "max_abs_rho": 0.0351,
-  "literal_blocked": true,
-  "dense_overlap": 1.0,
-  "policy": "gems88-gate-v3",
-  "label": "OK TO DOWNLOAD — DO NOT SUBMIT",
-  "blocking_reasons": [
-    "UNIQUENESS: literal registry overlap with full-footprint witness 17GEMSDOE is 1.0000 > 0.70 — every nonempty candidate fails this gate; no authorized exemption"
-  ],
-  "verdict": "promote-to-selector-only"
+ "name": "gems88-phys44-halo3-dinkelbach-38680dots-20261024-b87030ec-DO-NOT-SUBMIT",
+ "sha256": "974b5d4b2009849c977ddb4210eb17d2fb93f8765011580931028d4fc707bada",
+ "zip_sha256": "ae80e61b0b06ba51429521c63991b9a13736ab48f771159e7dacae1c41613634",
+ "generated_utc": "2026-10-24T07:04:15Z",
+ "policy": "gems88-gate-v3",
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "label": "OK TO DOWNLOAD - NOT OK TO SUBMIT",
+ "blocking_reasons": [
+  "HOLDOUT: did not beat the pre-registered holdout bar (no slot is spent on an unproven idea)",
+  "FINGERPRINT: catalogue-hugging profile (owner-reported fleet screen)"
+ ],
+ "informational": [
+  "literal registry rule fails only vs dense rasters that no raster can pass (vacuity witness): 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif"
+ ],
+ "note_len": 131,
+ "name_len": 72,
+ "human_step_remaining": "Selecting the final submission and clicking Submit remain human decisions (rules s3.4/s3.5, <= 3 slots per week or the portal limit, whichever the website shows)."
 }
