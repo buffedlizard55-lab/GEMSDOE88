@@ -1,25 +1,28 @@
 # GEMSDOE88 — audited fault discovery and submission gates
 
-## ✅ NEW UNIQUE TIF READY — OK TO DOWNLOAD AND SUBMIT: H88-CON88 (2026-10-25)
+## ⚠ H88-CON88 TIFF EXISTS · FORMAT-VALID · DOWNLOADABLE · SUBMISSION BLOCKED (2026-10-25)
 
-**A new, unique competition TIFF was generated and passed every automated gate**
-(format, uniqueness, H33-fingerprint, leakage canary — no human inspection).
-It is the **only** file in this repo without a `DO-NOT-SUBMIT` marker.
-Score is **not guaranteed** (no organizer receipt exists yet) — see run card.
-Concurrent same-day reviews below that report `DUPLICATE_STOP` / "requirement unmet"
-used the old literal dense-field comparison; they are preserved as dated records and
-superseded by the shared equal-support fix (IR-88-CON88-01) documented here.
+**A new, unique competition TIFF was generated and passed local format, uniqueness,
+fingerprint, and leakage-canary checks under the equal-support rule** (no human inspection).
+It is the only file in this repo without a `DO-NOT-SUBMIT` filename marker.
+**However, the binding generation protocol returns `DUPLICATE_STOP`**: the pinned 17GEMSDOE
+dense witness covers 100% of the 5,106,385 allowed pixels, so every nonempty allowed candidate
+has literal overlap 1.0 > 0.70 and cannot be cleared for submission under the current protocol.
+Equal-support comparison was withdrawn under IR-88-B4DFA10C-08 / PR #151 (see AGENTS.md).
+**This file is OK to download for research/review, but NOT OK to submit to the competition today.**
+Score is unknown (no organizer receipt exists) — see run card.
 
-[**⬇ DOWNLOAD SUBMISSION TIF**](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif) · [One-TIFF ZIP](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip) · [Executive guide: exactly how to submit](docs/con88.html) · [Run card (JSON)](run_card_con88.json) · [Gate evidence (JSON)](registry/con88_gates.json) · [Full analysis](research/session-con88-20261025.md)
+[**⬇ DOWNLOAD RESEARCH TIF**](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif) · [One-TIFF ZIP](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip) · [Submission guide & gates](docs/con88.html) · [Run card (JSON)](run_card_con88.json) · [Gate evidence (JSON)](registry/con88_gates.json) · [Full analysis](research/session-con88-20261025.md)
 
-- **Submission name:** `gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros`
-- **Note to paste (107/140):** `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`
+- **File name:** `gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros` (research artifact — not a cleared submission name)
+- **Prepared note (107/140):** `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`
 - **TIFF SHA-256:** `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68` · 37,654 dots
-- **Why it may beat H33's user-reported 0.2778:** H33 won by pure FP-subtraction + kernel spacing + non-hugging profile (verified, `research/session-con88-20261025.md`). CON88 keeps that geometry, tightens the collar to >3 px, and adds two independent levers H33 never had: ≥2-of-3 cross-fleet consensus (72% of dots) and a fresh label-blind ridge (new recall). Overlap vs H33 is only **0.487** — a different dot set, not a copy.
-- **Validation:** 1 band; EPSG:32611; 3730×3292; exact transform; finite, values in [0,1] (zeros outside — fixes the `[0,1]` upload error); uniqueness worst overlap 0.694 ≤0.70, worst |ρ| 0.376 ≤0.90 across all on-disk rasters. **Local validation is not organizer acceptance.**
+- **H33 context (user-reported 0.2778, no organizer receipt):** H33 won by pure FP-subtraction + kernel spacing + non-hugging profile. CON88 keeps that geometry, tightens the collar to >3 px, and adds ≥2-of-3 cross-fleet consensus (72% of dots) plus a fresh label-blind ridge. Overlap vs H33 is **0.487** — a different dot set, not a copy. Whether this beats 0.2778 is knowable only from an organizer receipt; no score is claimed or projected.
+- **Format validation (independently re-verified 2026-10-25):** 1 band; EPSG:32611; 3730×3292; exact sample transform; finite, values in [0,1] (zeros outside footprint — fixes the `[0,1]` upload error). Uniqueness worst equal-support overlap 0.6936 ≤ 0.70 (thin margin vs GEMSDOE49), worst |ρ| 0.376 ≤ 0.90. Fingerprint: share >25px 0.4174 ≥ 0.35, share ≤3px 0.0, median distance 20.2px ≥ 15px, min NN spacing 3.0px ≥ 2.83px.
+- **Binding uniqueness (literal 17GEMSDOE witness):** overlap = 1.0000 > 0.70 — every allowed pixel is on the witness. **DUPLICATE_STOP under the binding protocol.** Equal-support gate (IR-88-CON88-01) was withdrawn per IR-88-B4DFA10C-08 / PR #151; see AGENTS.md.
 - **HOLDOUT-DTI (labelled, not a public-score forecast):** `gems57-pooled-hide-v2`, per-fold re-emission 0.0017 [0.0013, 0.0021], 60,988 withheld — hide-and-recover scores public-best H33 at 0.0067 on identical folds, so it cannot rank blind-fault seekers; details in run card.
-- All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant) audited; **48** pass local format checks; exactly **1** (CON88) is submission-eligible under the corrected equal-support gate.
-- **Blocker resolved:** prior `DUPLICATE_STOP` treated the dense 17GEMSDOE probability field (>0 on 100% of footprint) as dots, making uniqueness mathematically impossible. Shared fix `equal_support_dots()` in `vendor/gems57/uniqueness.py` compares dense priors top-N like-for-like; sparse rasters keep the literal rule.
+- **Submission eligibility:** **NOT ELIGIBLE** under the current binding protocol. `ok_to_submit = false`. No competition slot used. Zero slots spent.
+- All **48** TIFF/ZIP pairs audited; **48** pass local format checks; **0** are submission-eligible under the binding literal protocol.
 
 > All older TIFFs below remain research-only (`DO-NOT-SUBMIT`). Historical record:
 > TDKL88 `db9d1867…aaadf`, HOLDOUT-DTI 0.1962 [0.1797, 0.2117] (`gems57-pooled-hide-v2`, n=22,893).
