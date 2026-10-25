@@ -103,13 +103,14 @@ def test_historical_browser_receipt_remains_historical_not_a_current_page_claim(
     # edit must not rewrite its evidence or pretend it is a current screenshot.
     # Current-page checks are render_decision --check, check_site and Node DOM
     # tests; real browser review must be rerun if the runtime supports it.
-    # Pin the three primary historical source hashes without misrepresenting
-    # them as hashes of the *new* UI. A new Playwright receipt was not obtained.
+    # Pin the three source hashes in the merged upstream real-browser receipt
+    # (refreshed after its executive-guide edits). This session changed the UI
+    # again, so these hashes are intentionally not a current-page attestation.
     assert {k: record['source_sha256'][k] for k in (
         'docs/index.html', 'docs/executive-summary.html', 'docs/assets/site.js'
     )} == {
         'docs/index.html': '13a40f1f93f6c52f20daa5f65d54c05a6e3f605e6a43c44099c855b3c11ee2ce',
-        'docs/executive-summary.html': '1bc741484aa5e69e23ab6ff448319064dcd1d14fb72d30631c517e1026f4eaa2',
+        'docs/executive-summary.html': '18cd61d9bd10bd963068b66db77ba26aac71847463a8bbd86bd753f9ed4905c2',
         'docs/assets/site.js': 'd27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41',
     }
     for relative, digest in record['source_sha256'].items():
