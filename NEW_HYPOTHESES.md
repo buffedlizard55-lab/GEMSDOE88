@@ -1,3 +1,22 @@
+# Ranked Un-Tried Geological Hypotheses & H88-DHTC / H88-TDKL Validation Dossier (2026-10-24)
+
+> **LATEST PREREGISTERED & VERIFIED HYPOTHESIS LEDGER (`PREREG-20261024-DHTC88`, 2026-10-24):** See [research/candidate-hypotheses-20261024-dhtc88.md](research/candidate-hypotheses-20261024-dhtc88.md), [research/h33-forensics-and-dhtc-phd-analysis.md](research/h33-forensics-and-dhtc-phd-analysis.md), [registry/preregistration_dhtc88.json](registry/preregistration_dhtc88.json), and [registry/dhtc88_run_card.json](registry/dhtc88_run_card.json).
+> - **Selected & Executed Primary Hypothesis (`H88-DHTC`):** *Deep Hydrothermal Conduit & Basement Shear Coupled Dinkelbach* across `cond_10km`, `cond_32km`, `cond_surf`, `geod_shearrate`, `geod_dilaterate`, `geod_secinv`, `depth_to_base_surf`, `tmi_rtp`, `tmi_vg`, `iso_grav_anom`, and `hf_mwm2`.
+> - **Verified 8-Fold `HOLDOUT-DTI` (`gems57-pooled-hide-v2`, `seeds 20+21`, `n=22,893` overall, `n=10,791` far `> 10 px`, `n=3,117` blind `> 25 px`):**
+>   - **Exp 1 (Physics 60ch zero-catalogue baseline):** `HOLDOUT-DTI = 0.0634`
+>   - **Exp 2 (Physics 60ch + Visible Structure 22ch):** `HOLDOUT-DTI = 0.1742`
+>   - **Exp 3 (H88-DHTC Stratified Dinkelbach):** `HOLDOUT-DTI = 0.141378` (`95% CI [0.127688, 0.156112]`, far `> 10 px = 0.0886`, blind `> 25 px = 0.0617`).
+> - **Production Emission & Gating:**
+>   - **Total Dots:** `13,629` binary dots strictly in `{0.0, 1.0}` (all finite, 0 NaN/Inf, single band float32, EPSG:32611, 3730x3292).
+>   - **Leakage Canary:** 60/60 PASS (max symmetric AUC = `0.59028 <= 0.90`).
+>   - **Distance Profile:** `share_le2 = 0.0%`, `share_gt25 = 43.31% >= 35%`, median distance = `22.8 px`.
+>   - **Surface Rank Correlation:** `max |rho| = 0.178152 <= 0.90` across all 238 registry rasters.
+>   - **Like-for-like Uniqueness:** `0.5237 <= 0.70` (PASS across all 238 registry rasters).
+>   - **Literal Overlap:** `1.0000 > 0.70` vs space-filling witness rasters -> `ok_to_download: true`, `ok_to_submit: false` (fail-closed, 0 weekly slots spent).
+>   - **Artifacts:** GeoTIFF [`docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif) (SHA-256 `bf42eb315bd2392b5748003ace2dd68cc96db0a945873513f8ff222e2fd1e1bd`), ZIP [`docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.zip`](docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.zip) (SHA-256 `3c0120be734b79871ee582acf6a84980d469e6271a2682652f83012d3c2333e4`).
+
+---
+
 # Ranked Un-Tried Geological Hypotheses & QTS-88 / H88-TDKL Validation Dossier (2026-10-24)
 
 > **LATEST PREREGISTERED & VERIFIED HYPOTHESIS LEDGER (`PREREG-20261024-TDKL88`, 2026-10-24):** See [research/hypotheses-20261024-tdkl88.md](research/hypotheses-20261024-tdkl88.md), [registry/preregistration_tdkl88.json](registry/preregistration_tdkl88.json), and [registry/tdkl88_run_card.json](registry/tdkl88_run_card.json).

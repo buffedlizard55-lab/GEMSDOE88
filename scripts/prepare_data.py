@@ -1,0 +1,166 @@
+#!/usr/bin/env python3
+"""Prepare and verify competition data for training, inference, and validation.
+
+This script ensures all required datasets are present, matches official SHA-256
+checksums, verifies CRS/transform/shape parity, populates data/official and
+data/bridge references, and validates that feature planes load cleanly.
+
+Can be run with optional `--fetch` flag to invoke restore_inputs.py automatically.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+DATA_DIR = ROOT / "data"
+OFFICIAL_DIR = DATA_DIR / "official"
+BRIDGE_DIR = DATA_DIR / "bridge"
+
+sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor")]
+
+EXPECTED_HASHES = {
+    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+}
+
+EXPECTED_GRID = {
+    "crs": 32611,
+    "shape": (3730, 3292),
+    "transform": (100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0),
+}
+
+
+def sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def ensure_symlink(source: Path, target: Path) -> None:
+    target.parent.mkdir(parents=True, exist_ok=True)
+    if target.is_symlink() or target.exists():
+        if target.resolve() == source.resolve():
+            return
+        target.unlink()
+    try:
+        target.symlink_to(source)
+    except OSError:
+        import shutil
+        shutil.copy2(source, target)
+
+
+def prepare_data(fetch: bool = False) -> dict:
+    OFFICIAL_DIR.mkdir(parents=True, exist_ok=True)
+    BRIDGE_DIR.mkdir(parents=True, exist_ok=True)
+
+    if fetch:
+        print("[prepare_data] Invoking scripts/restore_inputs.py...")
+        subprocess.run([sys.executable, str(ROOT / "scripts/restore_inputs.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "scripts/restore_siblings.py")], check=True)
+
+    # Resolve core files across possible locations
+    resolved = {}
+    for fname in ("sample_submission.tif", "existing_faults.tif", "training_features.tif"):
+        candidates = [
+            DATA_DIR / fname,
+            BRIDGE_DIR / fname,
+            OFFICIAL_DIR / fname,
+        ]
+        found = None
+        for c in candidates:
+            if c.is_file():
+                found = c
+                break
+        resolved[fname] = found
+
+    # If any file is missing, attempt restore
+    missing = [k for k, v in resolved.items() if v is None]
+    if missing:
+        print(f"[prepare_data] Missing files: {missing}. Running restore_inputs.py...")
+        subprocess.run([sys.executable, str(ROOT / "scripts/restore_inputs.py")], check=True)
+        for fname in missing:
+            for c in (DATA_DIR / fname, BRIDGE_DIR / fname, OFFICIAL_DIR / fname):
+                if c.is_file():
+                    resolved[fname] = c
+                    break
+
+    # Verify SHA-256 checksums
+    print("[prepare_data] Verifying SHA-256 checksums...")
+    audit = {}
+    for fname, exp_hash in EXPECTED_HASHES.items():
+        fpath = resolved.get(fname)
+        if fpath is None or not fpath.is_file():
+            raise FileNotFoundError(f"Required competition file {fname} not found in data directories.")
+        h = sha256_file(fpath)
+        if h != exp_hash:
+            raise ValueError(f"Checksum mismatch for {fname}: expected {exp_hash}, got {h}")
+        audit[fname] = {"path": str(fpath), "sha256": h, "bytes": fpath.stat().st_size, "verified": True}
+        print(f"  [OK] {fname}: {h[:16]}... ({fpath.stat().st_size:,} bytes)")
+
+    # Establish canonical links in both official/ and bridge/
+    sample_src = resolved["sample_submission.tif"]
+    faults_src = resolved["existing_faults.tif"]
+    features_src = resolved["training_features.tif"]
+
+    ensure_symlink(sample_src, BRIDGE_DIR / "sample_submission.tif")
+    ensure_symlink(faults_src, BRIDGE_DIR / "existing_faults.tif")
+    ensure_symlink(sample_src, OFFICIAL_DIR / "sample_submission.tif")
+    ensure_symlink(faults_src, OFFICIAL_DIR / "existing_faults.tif")
+    ensure_symlink(features_src, OFFICIAL_DIR / "training_features.tif")
+    ensure_symlink(features_src, DATA_DIR / "training_features.tif")
+
+    # Grid check via rasterio
+    import rasterio
+    print("[prepare_data] Validating spatial grid and reference system...")
+    with rasterio.open(BRIDGE_DIR / "sample_submission.tif") as ds:
+        epsg = ds.crs.to_epsg() if ds.crs else None
+        shape = ds.shape
+        t = tuple(ds.transform)[:6]
+        if epsg != EXPECTED_GRID["crs"]:
+            raise ValueError(f"CRS mismatch: expected EPSG:32611, got {epsg}")
+        if shape != EXPECTED_GRID["shape"]:
+            raise ValueError(f"Shape mismatch: expected (3730, 3292), got {shape}")
+        if t != EXPECTED_GRID["transform"]:
+            raise ValueError(f"Transform mismatch: expected {EXPECTED_GRID['transform']}, got {t}")
+        print(f"  [OK] Spatial Grid: EPSG:{epsg}, {shape[0]}x{shape[1]}, Affine={t}")
+
+    # Verify planes load via vendor/gems57/geo.py
+    print("[prepare_data] Testing feature stack integration (vendor/gems57/geo.py)...")
+    from gems57 import geo, grid
+    g = grid.load_grid(BRIDGE_DIR)
+    planes = geo.load_planes(g.footprint)
+    print(f"  [OK] Successfully loaded {len(planes)} robust-z geophysical planes: {list(planes.keys())}")
+
+    manifest = {
+        "status": "ready",
+        "footprint_pixels": int(g.footprint.sum()),
+        "catalogue_pixels": int(g.catalogue.sum()),
+        "files": audit,
+        "planes": list(planes.keys()),
+    }
+    out_path = DATA_DIR / "prepared_data_manifest.json"
+    out_path.write_text(json.dumps(manifest, indent=2) + "\n")
+    print(f"\n[prepare_data] Data preparation complete. Manifest saved to {out_path}.")
+    print("Full train -> inference -> validate pipeline is ready to run.")
+    return manifest
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Prepare and verify competition data.")
+    parser.add_argument("--fetch", action="store_true", help="Fetch/restore inputs from bridges before verifying")
+    args = parser.parse_args()
+    prepare_data(fetch=args.fetch)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

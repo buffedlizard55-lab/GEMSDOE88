@@ -134,6 +134,31 @@ def main(root: Path = ROOT) -> None:
         "SAR-CSD ZIP SHA-256 mismatch across file, card, and gate",
     )
 
+    dhtc = json.loads((root / "registry/dhtc88_run_card.json").read_text())
+    dhtc_web = json.loads((docs / "data/dhtc88_run_card.json").read_text())
+    require(dhtc == dhtc_web, "Pages DHTC card differs from canonical registry card")
+    require(
+        dhtc["verdict"] == "negative"
+        and dhtc["ok_to_download"] is True
+        and dhtc["ok_to_submit"] is False,
+        "DHTC run card must enforce negative DO-NOT-SUBMIT verdict",
+    )
+    require(
+        0 < len(dhtc["submission"]["submission_name"]) <= 140
+        and 0 < len(dhtc["submission"]["submission_note"]) <= 140,
+        "DHTC submission name/note must satisfy <=140 character portal cap",
+    )
+    dhtc_tif = root / dhtc["submission"]["file"]
+    dhtc_zip = root / dhtc["submission"]["zip_file"]
+    require(
+        sha256(dhtc_tif) == dhtc["raster_sha256"],
+        "DHTC TIFF SHA-256 mismatch",
+    )
+    require(
+        sha256(dhtc_zip) == dhtc["zip_sha256"],
+        "DHTC ZIP SHA-256 mismatch",
+    )
+
     require(
         literal["decision"] == "DUPLICATE_STOP",
         'Site integrity check failed: literal["decision"] == "DUPLICATE_STOP"',
@@ -531,6 +556,10 @@ def main(root: Path = ROOT) -> None:
     require(shore_tif.name in index and shore_tif.name in executive, "SHORE tif in pages")
     require(shore["submission_name"] in index and shore["submission_name"] in executive, "SHORE name in pages")
     require(shore["validator"]["raster_sha256"][:16] in index and shore["validator"]["raster_sha256"][:16] in executive, "SHORE hash in pages")
+
+    require(dhtc_tif.name in index and dhtc_tif.name in executive, "DHTC tif in pages")
+    require(dhtc["submission"]["submission_name"] in index and dhtc["submission"]["submission_name"] in executive, "DHTC name in pages")
+    require(dhtc["raster_sha256"][:16] in index and dhtc["raster_sha256"][:16] in executive, "DHTC hash in pages")
     print(
         "PASS: canonical TDKL and concurrent negative research artifacts, hashes, Pages links, and status agree"
     )

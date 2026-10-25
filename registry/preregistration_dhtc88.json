@@ -1,0 +1,20 @@
+{
+  "schema_version": "gems88.preregistration.v1",
+  "preregistration_id": "PREREG-GEMSDOE88-DHTC-20261024",
+  "generated_utc": "2026-10-24T23:59:00Z",
+  "lane": "H88-DHTC",
+  "status": "active",
+  "hypothesis": "Deep Hydro-Tectonic Conduit Conjunction (DHTC): Magnetotelluric 10km/32km deep crustal electrical conductivity upwelling intersecting steep basement gravity steps, active dilatational shear strain, and heat flow anomalies isolates concealed high-permeability geothermal conduit fault zones in Great Basin pluvial valleys where surface fault scarps are obscured by lacustrine sedimentation.",
+  "mechanism": "Active geothermal fluid circulation in extensional and transtensional regimes originates from mid-to-lower crustal magmatic/metamorphic fluid reservoirs reflected in MT electrical conductivity anomalies. These fluids migrate upward along permeable normal and transfer fault systems characterized by basement density steps (BGMHG) and high dilational shear strain rates. Conjunction filtering suppresses non-fault mimics while capturing blind basin faults missed by aerial/LiDAR mapping.",
+  "named_non_fault_mimic": "Conductive shallow saline playa brines (e.g. Carson Sink) and static lithologic density contrasts (e.g. Mesozoic granitic plutons vs Paleozoic carbonates).",
+  "channels_tested": 16,
+  "canary_threshold": 0.90,
+  "experiments_budget": 3,
+  "target_candidate": "h88_dhtc",
+  "official_data_sources": [
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://gbcge.org/current-projects/ingenious/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf"
+  ]
+}
