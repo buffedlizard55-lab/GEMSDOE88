@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import numpy as np
+import pytest
 from scipy.ndimage import distance_transform_edt
 from scipy.spatial import cKDTree
 

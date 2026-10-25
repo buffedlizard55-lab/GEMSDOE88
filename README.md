@@ -36,6 +36,10 @@ Independent repository recheck (2026-10-25): [review report](research/repo-revie
 
 [Detailed review, H33 explanation and next steps](research/session-d0c3adeb-review.md) · [Four ranked, untested geological proposals](research/session-d0c3adeb-hypotheses.md) · [Claim-level source ledger](knowledge/session-d0c3adeb-sources.md) · [Recorded user results (CSV)](docs/data/user_reported_results.csv) · [Session run card](registry/session_d0c3adeb_run_card.json) · [Three-pass completion appendix](research/session-d0c3adeb-completion.md)
 
+### Repository review follow-up — 2026-10-25
+
+A fresh three-pass review fixed three data-absent test-path defects, restored hash-pinned validation inputs, and confirmed **630 passed / 23 skipped**. It generated **no new TIFF**: the literal all-registry overlap stop remains binding. See the [review findings, H33 analysis, verification log, source-access limits and next steps](research/repo-review-followup-20261025.md) and the [machine-readable negative run card](evidence/repo_review_20261025.json).
+
 ### Reproduce local validation without human inspection
 
 ```bash
