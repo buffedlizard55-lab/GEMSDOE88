@@ -1,0 +1,48 @@
+{
+  "schema": "gemsdoe88.repo-review.v1",
+  "review_date_utc": "2026-10-25",
+  "branch": "arena/6c66805c-gemsdoe88",
+  "review_scope": "documentation correction and fail-closed repository review; no scientific experiment",
+  "decision": "NO_FILE_CLEARED_DO_NOT_SUBMIT",
+  "hypothesis": "H88-SPR: repeated scarp-profile restoration against drainage and shoreline nulls; not run",
+  "mechanism": "Compare smooth-landform-plus-signed-step profile likelihood to no-step on independent along-strike swaths using cached elevation, slope, hillshade/DEM, LiDAR scarp and channel context.",
+  "named_non_fault_mimic": "Fluvial terrace risers and constant-elevation pluvial shoreline benches.",
+  "holdout_dti": null,
+  "holdout_dti_label": "NOT RUN — missing required restored inputs and generation preflight did not complete",
+  "holdout_evaluator": null,
+  "withheld_positive_count": null,
+  "holdout_ci95": null,
+  "registry_correlation": null,
+  "registry_overlap": null,
+  "registry_measurement_note": "No candidate surface or dots exist. A historical registry-witness measurement is cited in the linked prior review but was not remeasured in this session.",
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_raster_exists": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "note": "No new candidate was written. Existing manifest identifies the archived TDKL88 file as ok_to_submit=false; this review did not independently reopen it."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_max_chars": 140,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "generation_preflight": {
+    "result": "AUDIT_ERROR",
+    "missing": [
+      "data/bridge/sample_submission.tif",
+      "data/external/dem10_chi_100m_u8.tif"
+    ],
+    "generation_allowed": false,
+    "new_rasters_generated": 0
+  },
+  "reviewed_ranked_candidates": [
+    "H88-SPR",
+    "H88-AWA",
+    "H88-CBC"
+  ],
+  "verdict": "negative",
+  "official_receipt": null,
+  "submission_clearance": false
+}
