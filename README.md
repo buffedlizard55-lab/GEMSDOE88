@@ -1,5 +1,7 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> **Independent recheck:** [three-pass review and limitations](docs/research/review-20261025-recheck.md). The literal duplicate stop was reproduced from restored bytes; no new candidate was generated. Archived placeholder confidence intervals and local/portal wording are corrected in the site.
+>
 > ## ⛔ Current autonomous review (`2026-10-25`): **NO NEW UNIQUE TIFF — DUPLICATE STOP**
 > **Downloadable research TIFF: YES. Competition submission: NO — DO NOT SUBMIT.** The SHA-256-pinned `17GEMSDOE` registry witness is positive on all `5,106,385` allowed cells. Under the binding literal rule, every nonempty candidate has forward 3-pixel overlap `1.0 > 0.70`; therefore no new candidate can be both nonempty and protocol-unique. This session did not fit, place, copy, rename, or submit a raster, and used `0` weekly slots. [Machine review](evidence/repo_review_20261025.json) · [Pages copy](docs/data/repo_review_20261025.json) · [ranked hypotheses and source audit](docs/research/review-20261025-autonomous.md) · [official-source ledger](knowledge/official-sources-20261025.md).
 >
