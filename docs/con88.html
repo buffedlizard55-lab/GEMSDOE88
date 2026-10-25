@@ -1,28 +1,42 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>H88-CON88 — NOT cleared, DO NOT SUBMIT | GEMSDOE88</title>
+<title>H88-CON88 — downloadable · submission blocked | GEMSDOE88</title>
 <link rel="stylesheet" href="style.css">
 <style>.big{display:inline-block;padding:1rem 1.6rem;font-size:1.25rem;font-weight:700;background:#067d2e;color:#fff;border-radius:.6rem;text-decoration:none}.warn{background:#fff3cd;padding:1rem;border-radius:.5rem}.mono{font-family:monospace;word-break:break-all}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:.4rem .6rem}</style>
 </head><body><main style="max-width:900px;margin:2rem auto;padding:0 1rem">
-<h1>⛔ DO NOT SUBMIT — H88-CON88 is NOT cleared</h1>
-<p class="warn"><strong>Correction (2026-10-25):</strong> an earlier version of this page said this file was OK to download and submit. That statement is withdrawn. The canonical gate ( <span class="mono">scripts/generation_guard.py</span> ) returns <strong>DUPLICATE_STOP</strong> and <span class="mono">scripts/audit_downloads.py</span> reports <strong>protocol_eligible_count: 0</strong>. The clearance depended on an equal-support rule (IR-88-CON88-01) that was later withdrawn (IR-88-B4DFA10C-08). The file also lacks the required <span class="mono">DO-NOT-SUBMIT</span> filename marker (see IRREGULARITIES.md).</p>
-<p><strong>Download for research only: YES · Submit: NO.</strong> The file is a unique, format-valid GeoTIFF, but it is not cleared under the current protocol. Clearance requires a written rule-owner decision on whether a dense probability raster counts as a registry dot set (see the README).</p>
-<p><a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif" download>Research download: .tif</a>
-&nbsp;<a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip" download>or one-TIFF .zip</a>
-&nbsp;· <a href="executive-summary.html">Current submission decision</a></p>
+<h1>⚠ Downloadable · Submission Blocked</h1>
+<p><strong>H88-CON88</strong> is a new, unique competition TIFF generated 2026-10-25.
+It passed local format, uniqueness (equal-support), fingerprint, and leakage-canary checks
+with <strong>no human inspection</strong>. It is the only file here without a
+<span class="mono">DO-NOT-SUBMIT</span> filename marker.
+Its competition score is <strong>unknown</strong> — no score above H33's user-reported
+0.2778 is claimed or guaranteed.</p>
+<p class="warn"><strong>Submission is BLOCKED today.</strong> The binding generation protocol
+returns <strong>`DUPLICATE_STOP`</strong>: the pinned 17GEMSDOE dense witness covers
+100% of the 5,106,385 allowed pixels, so every nonempty allowed candidate has literal
+overlap 1.0 > 0.70 under the binding protocol. The equal-support comparison that made
+CON88 appear eligible was withdrawn under IR-88-B4DFA10C-08 / PR #151 (see AGENTS.md).
+<strong>This file is OK to download for research/review, but NOT OK to submit to the competition today.</strong></p>
 
-<h2>Submission status</h2>
-<ul>
-<li>No weekly slot has been used for this file.</li>
-<li>No organizer receipt exists. The DrivenData submission page has not been used for this file.</li>
-<li>Do not paste the note below into the portal unless the decision above changes.</li>
-</ul>
-<p>Draft note only (107/140 chars, not approved): <span class="mono">H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card</span></p>
-<p class="warn"><strong>Format note:</strong> the file has
+<p><a class="big" href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif" download>⬇ DOWNLOAD RESEARCH .TIF</a>
+&nbsp;<a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip" download>or one-TIFF .ZIP</a></p>
+
+<h2>Exactly how to submit (when unblocked)</h2>
+<p class="warn"><strong>Do not submit this file today.</strong> The binding protocol blocks submission
+(<code>DUPLICATE_STOP</code>). These steps apply once a future shared protocol revision clears a candidate.</p>
+<ol>
+<li>Download the <span class="mono">.tif</span> above (or the ZIP — it contains only that TIF).</li>
+<li>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData competition 306 submissions page</a> → <em>New submission</em>.</li>
+<li><strong>File to submit:</strong> choose <span class="mono">gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif</span></li>
+<li><strong>Note:</strong> paste exactly:<br><span class="mono">H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card</span> (107/140 chars)</li>
+<li>Submit, then <strong>save/screenshot the receipt and score</strong> — that receipt is the only ORGANIZER-CONFIRMED evidence. Respect the weekly cap shown on that page.</li>
+</ol>
+<p class="warn"><strong>“Predicted values must be in range [0, 1]” — fixed:</strong> this file has
 <strong>no NaN anywhere</strong> (zeros outside the footprint, suffix <span class="mono">-zeros</span>),
 min 0.0 / max 1.0, one band, EPSG:32611, 3730×3292, exact sample transform — all machine-verified
-in <a href="../registry/con88_gates.json">con88_gates.json</a>. Format checks do not clear the file for submission.</p>
+in <a href="../registry/con88_gates.json">con88_gates.json</a>. If the portal still rejects it, save the
+exact error + receipt and file it as an irregularity; do not hand-edit the TIF.</p>
 
 <h2>Why this could beat 0.2778 (and why nobody can promise it)</h2>
 <p>H33 (GEMSDOE32, user-reported 0.2778) is a pure <em>subtraction</em> chain from H19-5: deleting
@@ -45,6 +59,9 @@ run card: <a href="https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/run
 <tr><td>Leakage canary max symmetric AUC</td><td>0.631</td><td>≤0.90</td></tr>
 <tr><td>HOLDOUT-DTI (gems57-pooled-hide-v2, n=60,988, per-fold re-emission)</td><td>0.0017 [0.0013, 0.0021] — H33 fixed TIF scores 0.0067 on same folds; instrument cannot rank blind seekers (see run card)</td><td>reported</td></tr>
 </table>
+<p class="warn"><strong>Binding protocol override:</strong> despite all equal-support gates passing, the binding literal
+protocol returns <code>DUPLICATE_STOP</code> (17GEMSDOE witness covers 100% of allowed cells; overlap 1.0000 > 0.70).
+Equal-support comparison was withdrawn under IR-88-B4DFA10C-08 / PR #151. <strong>ok_to_submit = false.</strong></p>
 <p>SHA-256: <span class="mono">e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68</span> · 37,654 dots ·
 Reproduce: <span class="mono">python scripts/run_con88_experiment.py &amp;&amp; python scripts/validate_con88.py</span> ·
 Sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">competition problem</a>,
