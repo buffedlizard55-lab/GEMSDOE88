@@ -1,6 +1,6 @@
-## Current session handoff — 2026-10-25, H88-CON88 (supersedes DUPLICATE_STOP handoffs below)
+## Current session handoff — 2026-10-25: CON88 clearance withdrawn
 
-> **NEW UNIQUE TIF GENERATED AND GATES-CLEARED:** `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` (SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). **✅ OK TO DOWNLOAD AND SUBMIT** per automated gates in `registry/con88_gates.json` (format/uniqueness/fingerprint/canary PASS; overlap vs H33 0.487; worst 0.6936 vs GEMSDOE49). Note (107/140): `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`. Guide: `docs/con88.html`. Run card: `run_card_con88.json`. Analysis: `research/session-con88-20261025.md`. Equal-support fix IR-88-CON88-01. Next: user submits within weekly cap and records ORGANIZER-CONFIRMED receipt.
+**NO TIFF IS CLEARED TO SUBMIT.** IR-88-96F5F523-01 removes the CON88 equal-support generation, validator, and publication exceptions. Its TIFF bytes are unchanged; the archived TIFF/ZIP and ZIP member now carry `DO-NOT-SUBMIT`. See `evidence/con88_clearance_withdrawal_96f5f523.json`. Re-run the shared literal generation preflight before any feature work. The earlier CON88 promotion was invalid under the unchanged user protocol, and its fixed full-catalogue-masked diagnostic does not establish holdout improvement. No new TIFF or competition slot is produced by this repair.
 
 ## Current session handoff — 2026-10-25, 693b10af
 
