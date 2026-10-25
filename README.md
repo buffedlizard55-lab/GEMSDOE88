@@ -6,6 +6,10 @@
 
 Existing TIFFs (including the historically promoted CON88) are **research/archive artifacts only** unless a current run card explicitly authorizes submission. The dated CON88 promotion banner and its associated “OK TO SUBMIT” claims were superseded by later protocol audits and must not be relied on. This repository does not currently provide a TIFF that is both protocol-cleared and authorized for a weekly slot. Do not rename or relabel an archived TIFF to imply clearance.
 
+Session e44e3ebe (CON88 clearance-claim correction in `docs/con88.html`): [review](research/session-e44e3ebe-review.md) · [negative run card](evidence/session_e44e3ebe_run_card.json)
+
+Automated audit (`scripts/audit_downloads.py`): All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant) audited; **48** pass local research checks; **0** protocol-eligible.
+
 [Submission guide and current stop](docs/SUBMIT.md) · [Executive guide](docs/executive-summary.html) · [Latest repository review](research/session-693b10af-review.md) · [Source queue](registry/hypothesis_queue.json)
 
 **H33 score context:** `0.2778` is recorded as a user-reported result, not an organizer-confirmed receipt. It must not be represented as HOLDOUT-DTI. See the dated forensic analysis and the current run card for evidence classes and limits.
