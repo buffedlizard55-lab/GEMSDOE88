@@ -1,9 +1,9 @@
 """Bind this negative review to actual evidence, without inventing a candidate."""
 from __future__ import annotations
 
-import hashlib
 import json
 from pathlib import Path
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -92,7 +92,7 @@ def test_unmet_requirements_and_source_limits_stay_explicit():
     assert appendix == (ROOT / 'docs/research/session-d0c3adeb-completion.md').read_text()
 
 
-def test_real_browser_receipt_is_bound_to_current_pages_not_a_stale_screenshot():
+def test_historical_browser_receipt_remains_historical_not_a_current_page_claim():
     card = read('registry/session_d0c3adeb_run_card.json')
     record = read(card['software_review']['browser_evidence'])
     assert record['status'] == 'PASS'
@@ -103,13 +103,20 @@ def test_real_browser_receipt_is_bound_to_current_pages_not_a_stale_screenshot()
     for page in record['pages']:
         assert page['pass'] and not page['overflow'] and not page['errors']
         assert page['h1'] == 1 and page['openArchives'] == 0
-    # IR-88-BA739E0F-06 (session ba739e0f): the receipt froze page hashes at
-    # the d0c3adeb session. Binding them to current bytes forever would make
-    # any later evidence-rendered site update fail CI (the ba739e0f render
-    # changed the 43->44 inventory). Assert the receipt is well-formed;
-    # CURRENT pages are guarded by render_decision --check + check_site.
-    # A fresh browser receipt could not be regenerated in the ba739e0f
-    # sandbox (Chromium: libnspr4.so missing) - stated limitation.
+    # The receipt hashes the pages *as viewed in that earlier session*. A new
+    # edit must not rewrite its evidence or pretend it is a current screenshot.
+    # Current-page checks are render_decision --check, check_site and Node DOM
+    # tests; real browser review must be rerun if the runtime supports it.
+    # Pin the three source hashes in the merged upstream real-browser receipt
+    # (refreshed after its executive-guide edits). This session changed the UI
+    # again, so these hashes are intentionally not a current-page attestation.
+    assert {k: record['source_sha256'][k] for k in (
+        'docs/index.html', 'docs/executive-summary.html', 'docs/assets/site.js'
+    )} == {
+        'docs/index.html': '13a40f1f93f6c52f20daa5f65d54c05a6e3f605e6a43c44099c855b3c11ee2ce',
+        'docs/executive-summary.html': '18cd61d9bd10bd963068b66db77ba26aac71847463a8bbd86bd753f9ed4905c2',
+        'docs/assets/site.js': 'd27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41',
+    }
     for relative, digest in record['source_sha256'].items():
-        assert len(digest) == 64 and all(c in '0123456789abcdef' for c in digest), relative
-        assert (ROOT / relative).is_file(), relative
+        assert relative.startswith('docs/') and (ROOT / relative).is_file()
+        assert re.fullmatch(r'[0-9a-f]{64}', digest)

@@ -45,6 +45,30 @@ def test_both_pages_lead_with_exact_canonical_research_file_and_one_heading():
         assert text.index('id="mtas-review"') < text.index('class="archive-lanes"')
 
 
+def test_session_run_card_is_negative_and_not_an_archived_tiff_disguised_as_new():
+    session = json.loads((ROOT / 'registry/session_3b5fe259_run_card.json').read_text())
+    published = json.loads((ROOT / 'docs/data/session_3b5fe259_run_card.json').read_text())
+    preflight = json.loads((ROOT / 'registry/mtas88_run_card.json').read_text())
+    inventory = json.loads((ROOT / 'docs/data/download_audit.json').read_text())
+    assert session == published
+    assert session['decision'] == 'DUPLICATE_STOP' and session['verdict'] == 'negative'
+    assert session['experiments_run'] == session['weekly_slots_used'] == 0
+    assert session['holdout_dti']['dti'] is session['holdout_dti']['ci95'] is None
+    assert session['raster_file'] is session['raster_sha256'] is None
+    assert all(session['validator_output'][key] is None for key in
+               ('no_nan_inside', 'values_in_0_1', 'crs_match', 'shape_match', 'transform_match'))
+    assert session['ok_to_submit'] is session['approved_for_weekly_slot'] is False
+    assert session['correlation_overlap_vs_registry']['preplacement_registry_proof'] == preflight['preplacement_registry_proof']
+    assert session['correlation_overlap_vs_registry']['predicted_overlap_lower_bound_for_any_nonempty_allowed_candidate'] == 1.0
+    assert session['archived_research_download']['sha256'] == inventory['canonical_sha256']
+    assert session['archived_research_download']['validator_output']['ok'] is True
+    assert session['archived_research_download']['ok_to_submit'] is False
+    assert 0 < len(session['submission_note']) == session['submission_note_length'] <= 140
+    assert 'NO-FILE' in session['submission_name'] and 'DO NOT SUBMIT' in session['submission_note']
+    assert 'data/session_3b5fe259_run_card.json' in (ROOT / 'docs/index.html').read_text()
+    assert 'data/session_3b5fe259_run_card.json' in (ROOT / 'docs/executive-summary.html').read_text()
+
+
 @pytest.mark.parametrize('bad', ['', '<!-- CANONICAL-DECISION:START -->',
                                   '<!-- CANONICAL-DECISION:END --><!-- CANONICAL-DECISION:START -->',
                                   render_decision.START * 2 + render_decision.END])

@@ -214,7 +214,7 @@ setImmediate(() => {
   if (fail) {
     if (bpwdBanner.textContent !== 'BPWD PRE-FLIGHT UNAVAILABLE — DO NOT SUBMIT') process.exitCode = 1;
   } else {
-    if (!bpwdBanner.textContent.includes('H88-BPWD HOLDOUT-DTI 0.205991 RECORD') || !bpwdBanner.textContent.includes('DO NOT SUBMIT')) process.exitCode = 1;
+    if (bpwdBanner.textContent !== 'SAVED LOCAL H88-BPWD RESEARCH GATE · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT') process.exitCode = 1;
   }
 });
 """

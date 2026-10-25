@@ -19,6 +19,7 @@
       const vcazFile = Array.isArray(audit.artifacts)
         ? audit.artifacts.find(row => `docs/downloads/${row.file}` === vcaz.download) : null;
       const at = new Date(audit.checked_at_utc);
+      const auditAgeMs = Date.now() - at.getTime();
       const consistent = preflight.decision === 'DUPLICATE_STOP' &&
         preflight.ok_to_submit === false && preflight.new_rasters_generated === 0 &&
         preflight.raster_sha256 === null && preflight.holdout?.dti === null &&
@@ -43,10 +44,14 @@
         vcaz?.organizer_confirmed_score === null &&
         vcazFile?.sha256 === vcaz.raster_sha256 && vcazFile?.zip_sha256 === vcaz.zip_sha256 &&
         vcazFile?.research_download_ok === true && vcazFile?.ok_to_submit === false &&
-        !Number.isNaN(at.getTime()) && at.getTime() <= Date.now() + 3600_000;
-      banner.textContent = consistent
-        ? 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT'
-        : 'PRE-FLIGHT AUDIT UNAVAILABLE OR INCONSISTENT — DO NOT SUBMIT';
+        Number.isFinite(auditAgeMs) && auditAgeMs >= -3600_000;
+      // An old saved JSON is not a live audit. Passing format/registry checks
+      // stays research-only; the browser can never promote a weekly slot.
+      banner.textContent = !consistent
+        ? 'PRE-FLIGHT AUDIT UNAVAILABLE OR INCONSISTENT — DO NOT SUBMIT'
+        : auditAgeMs > 24 * 3600_000
+          ? 'SAVED LOCAL AUDIT STALE (>24H) · ARCHIVED RESEARCH DOWNLOAD ONLY · SUBMIT: NO — DO NOT SUBMIT'
+          : 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT';
     } catch (_) {
       banner.textContent = 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT';
     }
@@ -65,8 +70,8 @@
         bpwd.verdict === 'negative' && gv.ok_to_submit === false &&
         bpwd.raster_sha256 === gv.sha256;
       bpwdBanner.textContent = ok
-        ? `LIVE MACHINE GATE VERIFIED · ${bpwd.lane} HOLDOUT-DTI ${Number(bpwd.holdout_dti.candidate_exp03.dti).toFixed(6)} RECORD · 5/5 DISCRIMINATING GATES PASS · DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT`
-        : 'BPWD GATE INCONSISTENT — DO NOT SUBMIT';
+        ? `SAVED LOCAL ${bpwd.lane} RESEARCH GATE · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT`
+        : 'SAVED BPWD GATE INCONSISTENT — DO NOT SUBMIT';
     } catch (_) {
       bpwdBanner.textContent = 'BPWD PRE-FLIGHT UNAVAILABLE — DO NOT SUBMIT';
     }
