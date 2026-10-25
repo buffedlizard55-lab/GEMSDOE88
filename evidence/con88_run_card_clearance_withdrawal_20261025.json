@@ -1,0 +1,165 @@
+{
+  "schema": "gems88.run-card.con88.v1",
+  "hypothesis": "Dots corroborated by >=2 mutually independent high-scoring fleet surfaces, blended with a fresh label-blind magnetic/gravity/topographic ridge and emitted with H33 geometry (37,654 dots, >=2.83px spacing, H33 distance profile) but a stricter >3px catalogue collar, contain more true blind-fault credit per dot than H33's single-ancestry subtraction chain.",
+  "mechanism": "Independent FP processes cancel under consensus voting (kernel votes); label-blind ridge adds dots no fleet raster contains; collar>3px removes masked-catalogue pure-FP zone; kernel spacing avoids max-vs-sum DTI waste (vendor/gems57/metric.py algebra).",
+  "named_non_fault_mimic": "Shared GeoDAWN/DEM inputs make contributors partially dependent: unfaulted lithologic contacts, Lahontan shoreline benches and survey seams can be corroborated FPs. Ridge AUC vs catalogue = 0.50 (null) shows ridge alone does not locate mapped faults.",
+  "holdout_DTI": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "per_fold_reemission_collar3": {
+      "dti": 0.001713781485367719,
+      "ci95": [
+        0.00132506022049732,
+        0.0021425000587548364
+      ],
+      "n_withheld": 60988
+    },
+    "per_fold_reemission_collar2p236": {
+      "dti": 0.0017147968211450354,
+      "ci95": [
+        0.0013253417329271752,
+        0.002144795343739658
+      ]
+    },
+    "fixed_tif_con88": 0.0,
+    "fixed_tif_h33_same_folds": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.006697041784474405,
+      "ci95": [
+        0.005990353973258847,
+        0.0073682311241048135
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 377.3190358808101,
+      "fpw": 37376.43107272676,
+      "fnw": 60610.68096411921
+    },
+    "fixed_tif_bpwd_same_folds": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "dti": 0.00010357512604854356,
+      "ci95": [
+        7.134661896195258e-05,
+        0.00014111939472149262
+      ],
+      "withheld_positive_pixels": 60988,
+      "tpw": 5.833477758629524,
+      "fpw": 37648.280904158215,
+      "fnw": 60982.16652224138
+    },
+    "interpretation": "Hide-and-recover cannot rank blind-fault seekers: public-best H33 scores 0.0067 and BPWD shipped TIF 0.0001 on identical folds; collar>=kernel makes fixed-TIF credit identically 0. Candidate does NOT beat trained-model holdout record 0.205991 (BPWD per-fold models). Promotion rests on fleet distance fingerprint (Spearman +0.90, n=20, research/h33-forensics-20261024.md) + consensus corroboration, disclosed as inference."
+  },
+  "leakage_canary": {
+    "consensus": {
+      "auc": 0.3694112454499246,
+      "symmetric_auc": 0.6305887545500755
+    },
+    "ridge": {
+      "auc": 0.49848922267495244,
+      "symmetric_auc": 0.5015107773250476
+    },
+    "exp2_blend": {
+      "auc": 0.4002451112308979,
+      "symmetric_auc": 0.5997548887691021
+    }
+  },
+  "experiments": {
+    "exp1_consensus_only": {
+      "n_dots": 37654,
+      "share_gt25": 0.4174058532957986,
+      "share_le3": 0.0,
+      "median_dcat": 20.39607810974121,
+      "overlap_vs_h33": 0.5064003824294896,
+      "corroborated_ge2": 0.7956126839114038,
+      "mean_surface": 0.5017016530036926
+    },
+    "exp2_consensus_plus_ridge": {
+      "n_dots": 37654,
+      "share_gt25": 0.4174058532957986,
+      "share_le3": 0.0,
+      "median_dcat": 20.248456954956055,
+      "overlap_vs_h33": 0.4874116959685558,
+      "corroborated_ge2": 0.7227386200669251,
+      "mean_surface": 0.5296825766563416
+    },
+    "exp3_ridge_only": {
+      "n_dots": 37654,
+      "share_gt25": 0.4174058532957986,
+      "share_le3": 0.0,
+      "median_dcat": 20.59126091003418,
+      "overlap_vs_h33": 0.2037499336059914,
+      "corroborated_ge2": 0.15775216444468051,
+      "mean_surface": 0.7344204187393188
+    }
+  },
+  "exp3_margin_variant": "REJECTED: BPWD overlap 0.683 > 0.65 self-imposed buffer (registry via scripts/run_con88_exp3_margin.py output); exp2 retained. Budget 3/3 used.",
+  "correlation_overlap_vs_registry": {
+    "rasters_checked": 77,
+    "worst_overlap_equal_support": {
+      "file": "data/registry/gems49_gate_ortho.tif",
+      "sha256": "3722e26fbf9129874be1fb8c687825803952c57ef1154ed0a21029596bc412f1",
+      "their_dots": 40000,
+      "dense": false,
+      "overlap_equal_support": 0.6936314866946407,
+      "overlap_literal": 0.6936314866946407,
+      "spearman": 0.3762046278934762
+    },
+    "worst_spearman": {
+      "file": "data/registry/gems49_gate_ortho.tif",
+      "sha256": "3722e26fbf9129874be1fb8c687825803952c57ef1154ed0a21029596bc412f1",
+      "their_dots": 40000,
+      "dense": false,
+      "overlap_equal_support": 0.6936314866946407,
+      "overlap_literal": 0.6936314866946407,
+      "spearman": 0.3762046278934762
+    },
+    "overlap_vs_h33": 0.4874116959685558,
+    "near_boundary_flag": "Worst overlap 0.6936 vs GEMSDOE49 is 0.006 below 0.70 limit \u2014 passes, thin margin flagged.",
+    "dense_rule": "17GEMSDOE dense prior compared equal-support top-N (shared fix in vendor/gems57/uniqueness.py); literal overlap vs dense = 1.0 reported in gates rows."
+  },
+  "fingerprint_G3": {
+    "share_gt25": 0.4174058532957986,
+    "share_le3": 0.0,
+    "median_dcat": 20.248456731316587,
+    "nn_spacing_min": 3.0,
+    "nn_spacing_median": 3.1622776601683795,
+    "frac_nn_between_2_and_4": 0.7047325649333405
+  },
+  "raster_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "validator": {
+    "one_band": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "finite_everywhere": true,
+    "in_01": true,
+    "zero_outside_footprint": true,
+    "zero_on_catalogue": true,
+    "min": 0.0,
+    "max": 1.0,
+    "n_dots": 37654,
+    "zip_single_tif_byte_identical": true
+  },
+  "submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
+  "submission_note": "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card",
+  "ok_to_submit": false,
+  "organizer_confirmed_score": null,
+  "user_reported_reference_scores": {
+    "h33_gemsdoe32": 0.2778,
+    "leaderboard_top_prompt_stale": 0.4413,
+    "note": "owner/user reported, no organizer receipt in repo"
+  },
+  "verdict": "negative",
+  "expected_score_claim": "NONE. No number above 0.2778 is claimed or projected as a score. Beating 0.2778 requires +0% to reach parity and (forensics \u00a73) +27-29% credit for 0.3539; whether consensus delivers any gain is knowable only from an organizer receipt.",
+  "historical_clearance_claim": {
+    "ok_to_submit": true,
+    "verdict": "promote",
+    "decision": null
+  },
+  "decision": "DUPLICATE_STOP",
+  "clearance_withdrawal": {
+    "status": "WITHDRAWN",
+    "reason": "The historical equal-support interpretation cannot override the literal all-registry overlap gate."
+  }
+}

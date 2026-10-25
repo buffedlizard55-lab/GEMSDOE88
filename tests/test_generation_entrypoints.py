@@ -29,7 +29,7 @@ def entrypoints() -> list[Path]:
         "exp_provcrest_spacing.py", "publish_kdmc_site.py", "publish_sdtl88.py",
         "finalize_concentration.py", "write_concentration_receipts.py",
         "lbcal_build_stats.py", "lbcal_pixel.py", "lbcal_fit.py", "lbcal_extra_features.py",
-        "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py"))
+        "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py", "con88_collar_holdout.py"))
     return sorted(path for path in files if '__name__' in path.read_text())
 
 
@@ -43,9 +43,9 @@ def test_guard_is_first_and_reached_before_historical_cli_body(path, monkeypatch
     assert isinstance(first, ast.If), f"{path.name} can execute before the preflight"
     assert ast.unparse(first.test) == "__name__ == '__main__'"
     assert isinstance(first.body[-1], ast.Expr)
-    # CON88 runners use the equal-support preflight (IR-88-CON88-01); all
-    # historical lanes keep the original literal-stop guard.
-    expected = 'enforce_con88_preflight()' if path.name.startswith('run_con88') else 'enforce_generation_preflight()'
+    # All candidate generation CLIs, including retired CON88 aliases, delegate
+    # to the same literal all-registry preflight.
+    expected = 'enforce_generation_preflight()'
     assert ast.unparse(first.body[-1]) == expected
 
     class PreflightReached(Exception):
@@ -60,6 +60,15 @@ def test_guard_is_first_and_reached_before_historical_cli_body(path, monkeypatch
     # dispatch must encounter the shared guard before any heavy model code.
     with pytest.raises(PreflightReached):
         runpy.run_path(str(path), run_name="__main__")
+
+
+@pytest.mark.skipif(not (ROOT / "data/registry/dense_17gemdoe.tif").is_file(), reason="validation inputs not restored")
+def test_con88_compatibility_preflight_stops_via_shared_literal_gate():
+    result = subprocess.run([sys.executable, "scripts/con88_preflight.py"], cwd=ROOT,
+                            text=True, capture_output=True)
+    assert result.returncode == 2, result.stdout + result.stderr
+    assert '"decision": "DUPLICATE_STOP"' in result.stderr
+    assert '"generation_allowed": false' in result.stderr
 
 
 def test_absent_or_corrupt_input_is_error_and_invalidates_cached_success(tmp_path):

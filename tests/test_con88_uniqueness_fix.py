@@ -25,3 +25,23 @@ def test_dense_constant_field_no_longer_vacuous():
 
 def test_threshold_constant():
     assert DENSE_POSITIVE_THRESHOLD == 200_000
+
+
+def test_historical_equal_support_diagnostics_cannot_clear_literal_stop():
+    from scripts.validate_con88 import apply_literal_gate
+    out = {"G1_ok": True, "G2_equal_support_diagnostic_ok": True,
+           "G3_ok": True, "canary_ok": True, "ok_to_submit": True}
+    preflight = {"decision": "DUPLICATE_STOP", "preplacement_registry_proof": {
+        "evidence_class": "REGISTRY-MEASUREMENT",
+        "witness_sha256": "a" * 64,
+        "covered_allowed_fraction": 1.0,
+        "universal_lower_bound_on_any_nonempty_candidate_overlap_3px": 1.0,
+        "overlap_limit": 0.70,
+        "implication": "All allowed cells are directly covered.",
+    }}
+    result = apply_literal_gate(out, preflight)
+    assert result["literal_registry_gate"]["passes"] is False
+    assert result["literal_registry_gate"]["candidate_forward_overlap_lower_bound_3px"] == 1.0
+    assert result["ok_to_submit"] is False
+    assert result["decision"] == "DUPLICATE_STOP"
+    assert result["verdict"] == "negative"

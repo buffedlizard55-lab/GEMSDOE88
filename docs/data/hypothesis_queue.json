@@ -1,10 +1,10 @@
 {
   "schema": "gems88.hypothesis-queue.v1",
   "reviewed_at_utc": "2026-10-25",
-  "review_branch": "arena/693b10af-gemsdoe88",
+  "review_branch": "arena/e80f931e-gemsdoe88",
   "source_snapshot": {
     "files": 154,
-    "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+    "sha256": "91ecf7ca0d655d1efe9408888a62057f09440e98fb90633f9d76dbec113092a8"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -193,6 +193,20 @@
       },
       "reason": "Merged H88-CON88 (IR-88-CON88-01 equal-support append-only vendor addition + con88 runner scripts) and PGTD guard enforcement fix; proposals re-reviewed: none implements H88-SPR/EELG/PRAN queue items, CON88 is a consensus-emission lane with its own run card (run_card_con88.json), not a queue proposal.",
       "reviewed_at_utc": "2026-10-25T18:00:00Z"
+    },
+    {
+      "snapshot": {
+        "files": 154,
+        "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+      },
+      "reason": "Superseded after explicit source review: withdrawn CON88 CLI entrypoints now delegate to the shared literal generation guard; no candidate features, holdout tools, proposal methods, or experiment results changed."
+    },
+    {
+      "snapshot": {
+        "files": 154,
+        "sha256": "4a2a1c6984f97d1bd4b79d7eb5845a2b24f39a4dc50f42f0e64a22a7da95c29e"
+      },
+      "reason": "Superseded after review: retired CON88 experiment docstrings now explicitly withdraw equal-support instructions and the historical collar-holdout CLI receives the shared pre-import literal guard. No geological method implementation or proposed SPR/AWA/CBC mechanism changed."
     }
   ]
 }

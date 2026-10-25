@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
-"""Per-fold re-emission collar sweep for H88-CON88 (experiment 2 of 3).
+"""Historical H88-CON88 collar experiment; reruns are blocked by shared gate.
 
-Fixed-TIF holdout is 0 by construction when collar >= kernel radius.
-Here dots are re-emitted inside each fold using distance to VISIBLE faults
-only (withheld components hidden), shared evaluator, pooled terms.
-Surface = exp2 blend (contributor votes still fixed: conservative bias kept
-and disclosed). Collars: 2.236 (H33 parity) vs 3.0 (exp2 as built).
-Final collar = argmax pooled HOLDOUT-DTI (pre-registered rule).
+The saved results are historical. Do not rerun this experimental holdout or
+use its equal-support lane assumptions as submission clearance.
 """
 from __future__ import annotations
+
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 import json, sys
 from pathlib import Path
 import numpy as np

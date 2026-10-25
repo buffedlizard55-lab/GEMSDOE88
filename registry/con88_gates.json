@@ -1,5 +1,5 @@
 {
-  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
   "G1_format": {
     "one_band": true,
@@ -36,7 +36,7 @@
       "overlap_literal": 0.6936314866946407,
       "spearman": 0.3762046278934762
     },
-    "rule": "sparse:literal >0 support; dense(>200k pos):equal-support top-N",
+    "rule": "Historical equal-support diagnostic only; literal all-registry overlap binds.",
     "rows": [
       {
         "file": "data/registry/gems49_gate_ortho.tif",
@@ -130,7 +130,7 @@
       }
     ]
   },
-  "G2_ok": true,
+  "G2_ok": false,
   "G3_fingerprint": {
     "share_gt25": 0.4174058532957986,
     "share_le3": 0.0,
@@ -247,5 +247,24 @@
     }
   },
   "canary_ok": true,
-  "ok_to_submit": true
+  "ok_to_submit": false,
+  "G2_equal_support_diagnostic_ok": true,
+  "literal_registry_gate": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "covered_allowed_fraction": 1.0,
+    "candidate_forward_overlap_lower_bound_3px": 1.0,
+    "limit": 0.7,
+    "passes": false,
+    "decision": "DUPLICATE_STOP",
+    "reason": "The pinned witness is positive on every allowed pixel; any nonempty candidate has literal forward 3px overlap 1.0."
+  },
+  "decision": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "clearance_withdrawal": {
+    "status": "IR-88-CON88-01_WITHDRAWN",
+    "reason": "The lane-specific equal-support interpretation cannot override the literal 3px forward-overlap protocol; preserved diagnostics are not clearance."
+  },
+  "archive_name": "evidence/con88_gates_clearance_withdrawal_20261025.json"
 }

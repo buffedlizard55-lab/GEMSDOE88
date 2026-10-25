@@ -334,7 +334,7 @@
       },
       "historical_inventory_preserved": "b4dfa10c 46-package snapshot retained byte-for-byte under its original SHA; current inventory separately audits 47 packages."
     },
-    "browser_evidence": "evidence/session_693b10af_browser_check.json",
+    "browser_evidence": "evidence/session_e80f931e_browser_recheck_20261025.json",
     "browser_status": "PASS",
     "clean_cpu_install_evidence": "evidence/session_693b10af_cpu_reproduction.json",
     "pass2_initial_integrated_tests": {
@@ -346,7 +346,9 @@
     },
     "gate_evidence": "evidence/session_693b10af_gate_check.json",
     "completed_at_utc": "2026-10-25T17:52:39.900588+00:00",
-    "remote_scope": "This is local verification evidence, not a claim of remote CI, current organizer access or submission acceptance. PR/check/merge status is authoritative on GitHub."
+    "remote_scope": "This is local verification evidence, not a claim of remote CI, current organizer access or submission acceptance. PR/check/merge status is authoritative on GitHub.",
+    "browser_recheck_scope": "Fresh 7-case browser recheck after CON88 withdrawal and current page/data manifests; original earlier browser receipt remains preserved at evidence/session_693b10af_browser_check.json.",
+    "browser_recheck_checked_at_utc": "2026-10-25T18:52:52.194Z"
   },
   "unmet_requirements": [
     "New protocol-unique submission TIFF",

@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-"""CON88 experiment 3: uniqueness-margin blend. Adopted only if worst
-contributor/H33 overlap <=0.65 AND >=60% dots corroborated by >=2 contributors."""
+"""Retired H88-CON88 experiment-3 alias; shared preflight blocks execution.
+
+Its equal-support analysis is historical only. No overlap diagnostic from this
+lane authorizes a new candidate or competition submission.
+"""
 from __future__ import annotations
 
 if __name__ == "__main__":
     import sys as _guard_sys
     from pathlib import Path as _GuardPath
     _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
-    from scripts.con88_preflight import enforce_con88_preflight
-    enforce_con88_preflight()
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
 
 import json, sys
 from datetime import datetime, timezone

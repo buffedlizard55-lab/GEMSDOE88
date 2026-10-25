@@ -1,0 +1,106 @@
+{
+  "schema": "gems88.repository-review-run-card.v1",
+  "review_date_utc": "2026-10-25",
+  "branch": "arena/e80f931e-gemsdoe88",
+  "hypothesis": {
+    "id": "H88-SPR",
+    "statement": "A weak cover-softened fault may leave a repeatable signed elevation step across independent along-strike profiles even where the catalogue has no mapped trace.",
+    "status": "PREREGISTERED_BUT_NOT_RUN_DUE_TO_PREPLACEMENT_DUPLICATE_STOP"
+  },
+  "mechanism": "The proposed SPR mechanism fits smooth-landform-plus-signed-step profiles versus a no-step null, tests repeatability on held-out swaths, and excludes drainage corridors. No feature was constructed in this review.",
+  "named_non_fault_process": "Fluvial terrace risers and constant-elevation pluvial shoreline benches.",
+  "holdout_dti": {
+    "evidence_class": "NOT_RUN",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "reason": "The shared pre-placement registry stop fires before feature construction or fitting; there is no new experiment result."
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN",
+    "single_feature_auc": null,
+    "reason": "No candidate feature was constructed."
+  },
+  "registry_correlation_overlap": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "surface_rank_correlation_before_placement": null,
+    "final_candidate_dot_overlap": null,
+    "candidate_generated": false,
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "directly_covered_allowed_pixels": 5106385,
+    "covered_allowed_fraction": 1.0,
+    "literal_forward_3px_overlap_lower_bound_for_any_nonempty_candidate": 1.0,
+    "limit": 0.7,
+    "decision": "DUPLICATE_STOP"
+  },
+  "raster": {
+    "new_tiff_generated": false,
+    "reviewed_historical_artifact": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "tiff_bytes_changed": false
+  },
+  "validator_output": {
+    "evidence_class": "LOCAL-FORMAT-AUDIT",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "format_valid": true,
+    "research_download_ok": true,
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT",
+  "submission_note": "CON88 equal-support diagnostics only; literal registry overlap lower bound 1.0; UNSCORED; DO NOT SUBMIT",
+  "submission_note_characters": 103,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "organizer_confirmed_score": null,
+  "weekly_slots_used": 0,
+  "experiments_run": 0,
+  "verdict": "negative",
+  "review_verification": {
+    "pytest": {
+      "passed": 877,
+      "skipped": 23,
+      "warnings": 64,
+      "duration_seconds": 245.19
+    },
+    "site_guard_normal": "PASS",
+    "site_guard_optimized": "PASS",
+    "renderer_check": "PASS",
+    "download_audit": "48/48 local research packages pass; 0 protocol eligible",
+    "browser_cases": {
+      "passed": 7,
+      "total": 7
+    },
+    "expected_negative_gate_exit_codes": {
+      "generation_guard": 2,
+      "con88_preflight": 2,
+      "literal_protocol": 2,
+      "current_slot_gate": 2
+    },
+    "browser_checked_at_utc": "2026-10-25T18:52:52.194Z"
+  },
+  "official_sources_retrieved": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+    "https://gdr.openei.org/submissions/1391"
+  ],
+  "limitations": [
+    "No authenticated DrivenData data-page access or submission receipt.",
+    "No full training feature stack restoration in this session.",
+    "No new holdout, leakage canary, candidate surface, final-dot comparison, or competition score.",
+    "Current deadline and account quota not verified."
+  ],
+  "research_queue_source_snapshot": {
+    "files": 154,
+    "sha256": "91ecf7ca0d655d1efe9408888a62057f09440e98fb90633f9d76dbec113092a8"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schema": "gems88.download-audit.v2",
-  "checked_at_utc": "2026-10-25T17:56:36.440070+00:00",
+  "checked_at_utc": "2026-10-25T18:35:02.400027+00:00",
   "scope": "Every TIFF in docs/downloads and docs/research-variants, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
   "preplacement_registry_proof": {
     "evidence_class": "REGISTRY-MEASUREMENT",
@@ -380,13 +380,13 @@
       "decision": "DUPLICATE_STOP"
     },
     {
-      "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+      "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
       "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
       "bytes": 146769,
       "evidence_class": "LOCAL-FORMAT-AUDIT_NOT_ORGANIZER_ACCEPTANCE",
       "format_valid": true,
       "research_download_ok": true,
-      "ok_to_submit": true,
+      "ok_to_submit": false,
       "errors": [],
       "validator_output": {
         "crs_match": true,
@@ -429,11 +429,11 @@
       "positive_outside_footprint": 0,
       "decoded_float32_sha256": "aadae21c87978ad5c4d3ff905aa3cc2c376cc3164d2a2c47030168abaa6f6572",
       "positive_support_sha256": "13f8f4e27f1162f6b2db5bc8e1304871ada0a274351abea064e0eed5116102d2",
-      "zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip",
-      "zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+      "zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+      "zip_sha256": "0e724788bbcb3578a8beb8fd9f904cfebd0cf3f1e3f3afb08449fb1258295054",
       "zip_one_byte_identical_tif": true,
-      "negative_filename_markers": false,
-      "cleared_by_con88_gates": true,
+      "negative_filename_markers": true,
+      "cleared_by_con88_gates": false,
       "literal_overlap_lower_bound": 1.0,
       "decision": "DUPLICATE_STOP"
     },

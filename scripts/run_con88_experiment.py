@@ -1,23 +1,10 @@
 #!/usr/bin/env python3
-"""H88-CON88: cross-fleet consensus + label-blind ridge, H33-parity emission.
+"""Retired H88-CON88 experiment builder; execution is blocked by shared preflight.
 
-Lane (one method paragraph): dots are emitted only where (a) at least two
-mutually-independent high-scoring fleet surfaces agree within the 3 px DTI
-kernel OR a fresh label-blind multi-modal ridge (magnetic/gravity/topographic
-edge ranks from the 19-band GeoDAWN stack, computed with no catalogue labels)
-is locally extreme, (b) distance to the USGS/INGENIOUS catalogue is > 3 px
-(one full kernel radius; H33 used 2.236 px), (c) inter-dot spacing >= 2.83 px,
-and (d) the distance-to-catalogue histogram matches H33's measured profile.
-No catalogue-trained classifier is fitted; the catalogue is used only as an
-exclusion mask and distance field, exactly as the organiser masks it.
-
-Uniqueness fix (shared-tool defect, protocol rule 2): the pinned 17GEMSDOE
-registry raster is a DENSE probability field (5,167,373 finite >0 pixels =
-100% of the footprint).  Treating every >0 pixel as a "dot" makes the
->70%-within-3px rule unsatisfiable for ANY nonempty candidate (proof in
-docs/data/download_audit.json).  Dense rasters (>200k positives) are therefore
-compared equal-support: their top-N pixels by value, N = candidate dot count.
-Sparse dot rasters keep the literal rule.  Both numbers are reported.
+Historical equal-support handling of dense registry rasters was withdrawn.
+The equal-support routines remain only for historical diagnostics and cannot
+clear a candidate. Do not use this script to emit a new raster or run an
+experiment until the shared literal protocol is explicitly revised.
 """
 from __future__ import annotations
 
@@ -25,8 +12,8 @@ if __name__ == "__main__":
     import sys as _guard_sys
     from pathlib import Path as _GuardPath
     _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
-    from scripts.con88_preflight import enforce_con88_preflight
-    enforce_con88_preflight()
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
 
 import hashlib, json, sys
 from datetime import datetime, timezone

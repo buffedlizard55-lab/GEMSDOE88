@@ -1,0 +1,72 @@
+# Three-pass repository review — Arena branch `e80f931e`, 2026-10-25
+
+## Decision first
+
+**Competition submission: NO — DO NOT SUBMIT.** No new geological experiment, prediction surface, candidate TIFF, HOLDOUT-DTI, or weekly slot was produced. The urgent request for a new protocol-unique TIFF remains unmet. This is a deliberate fail-closed result, not a claim that the available TIFFs lack basic file-format validity.
+
+The shared pre-placement gate was run on SHA-pinned validation inputs before feature construction. It returned `DUPLICATE_STOP`: the registered 17GEMSDOE raster has positive support on all 5,106,385 allowed cells. Under the literal rule (`finite prediction > 0`; forward overlap within 3 px must be <= 0.70), every nonempty candidate has overlap lower bound 1.0. Running a builder, changing dense-prior semantics, or relabeling an artifact would evade—not satisfy—the supplied protocol. No new surface exists, so a pre-placement surface correlation is not measured; no new dots exist, so there is no final candidate overlap measurement beyond the mathematically sufficient lower bound.
+
+**Research-only download:** the existing TDKL file remains the canonical one-click download on the site and is explicitly `DO-NOT-SUBMIT`. The previously unmarked CON88 archive was relabeled with a negative filename marker; its TIFF bytes and SHA-256 were not changed. Neither artifact is cleared for a competition slot.
+
+## Critical review finding and corrective action
+
+The inherited CON88 path contradicted the README, `AGENTS.md`, and the parallel-run protocol: `scripts/con88_preflight.py` let its runners enter feature/model code under an equal-support exception, `scripts/validate_con88.py` could set `ok_to_submit=true` from that exception, and the published download audit/site guard treated the gate file as a special clearance. This could make a user believe an unmarked TIFF was uploadable even while the binding literal gate said `DUPLICATE_STOP`.
+
+I removed that lane-specific exception without changing the shared DTI evaluator, holdout implementation, or writer:
+
+- Both CON88 experiment CLIs now call the same `scripts/generation_guard.py` guard as every other candidate generator; the compatibility preflight delegates to it.
+- The CON88 validator retains equal-support values as historical diagnostics only and records the shared literal stop as a negative decision. A regression test proves a set of otherwise-true diagnostic flags cannot override the stop.
+- `scripts/audit_downloads.py` can no longer read a CON88 gate record as slot authorization; `scripts/check_site.py` no longer whitelists the artifact.
+- The prior CON88 machine records are preserved with the former approval nested and labeled as a withdrawn historical claim. Active records now say `ok_to_submit=false` / `DUPLICATE_STOP`.
+- The archived CON88 TIFF was renamed only to add `-DO-NOT-SUBMIT`; its SHA-256 remains `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`. The one-TIFF ZIP was rebuilt solely to contain the correspondingly labeled TIFF member. The site page now says research-only and gives no present-day upload instruction.
+
+This is a protocol/software correction, not a new scientific experiment and not a private evaluator fork.
+
+## H33: evidence-aware scientific interpretation
+
+The competition task is fault mapping relevant to geothermal resources—not direct prediction of surface vents. The organizer explicitly says the publicly available fault catalogue is incomplete and describes additional expert-labeled faults. The public metric rewards spatially weighted fault overlap and suppresses duplicate prediction credit: the published DTI uses a 300 m triangular kernel, alpha 0.2 on false positives, beta 0.8 on false negatives. A thinner, well-spaced probability field can therefore improve the precision/coverage tradeoff when it removes redundant mass without removing hidden truth.
+
+The H33 lineage preserved in this repository is consistent with a useful mechanism: an H19-5-derived surface was thinned and then catalogue-proximal dots were pruned, yielding a sparse 37,654-dot raster. Its geometry supports the hypothesis that reducing near-catalogue redundancy can help on an off-catalogue test set, but the hidden labels and score receipt are not available here. Removing near-catalogue mass could also remove a genuinely hidden, offset fault and worsen recall. Thus the lineage is a plausible explanation, **not a demonstrated causal account of a competition score**.
+
+**Evidence irregularity:** the prompt's `0.2778` is a **USER-REPORTED CLAIM**, not `HOLDOUT-DTI` and not `ORGANIZER-CONFIRMED` in this repository. The pinned GEMSDOE32 owner build record describes its estimate as projected/`UNSCORED` and says no organizer score exists in that repo. No submission-page receipt was supplied. I therefore cannot verify why an organizer awarded that value or whether a local estimate predicted it. The official public leaderboard page retrieved on 2026-10-25 displayed a leading public value of `0.4413`; that is an **OFFICIAL-PUBLIC-LEADERBOARD snapshot**, not an organizer receipt for H33 or a score for a GEMSDOE88 artifact. The user's `0.3195` reference is stale relative to that live public page.
+
+**Can this project show a new score higher than the claimed H33 value?** Not in this run. The pre-placement stop forbids a candidate under the literal lane contract, and there is no organizer receipt path in this sandbox. It is not scientifically honest to promise that another surface would beat the claim. A valid answer requires a candidate admitted by a shared protocol, fair buffered holdout superiority with leakage controls, and ultimately an organizer receipt; none is replaced by a projection or file-format audit.
+
+## Ranked hypotheses retained for a future authorized run
+
+The current source-bound queue already contains three unimplemented, cached-layer contrasts. Their ranks are qualitative priorities, **not DTI projections**. None was implemented or tested in this review because the pre-placement stop binds.
+
+| Rank / candidate | Layers and physical signature | Why it could reveal a missing fault; distinction from implemented work | Main non-fault mimic | Cost / data |
+|---|---|---|---|---|
+| 1 — **H88-SPR**, repeated scarp-profile restoration | `training_features.tif` bands 12/19 (detrended elevation/slope); decoded 10 m topography bands 8/9; LiDAR scarp bands 3/10/11/12; channel counts/validity bands 1/4. Fit smooth-landform-plus-signed-step versus no-step profiles across independent along-strike swaths, then require repeatability away from channels. | A weak or cover-softened offset may be below catalogue mapping confidence yet recur in profiles without seeding a surface from catalogue traces. Unlike scarp/knickpoint/ridge ranks, this tests out-of-sample restoration likelihood against a no-step profile. It does **not** claim sub-pixel fault detection at 100 m. | Fluvial terrace risers and constant-elevation pluvial shoreline benches. | Medium; pinned cached layers only, subject to input provenance/license checks. Qualitative expected potential: moderate/highest of the queue, highly uncertain. |
+| 2 — **H88-AWA**, terrain-matched radiometric alteration-width asymmetry | GeoDAWN quantized K/Th/U indices, RTP, depth-to-base, and detrended-elevation slope. Compare fitted relative cross-strike decay widths on opposite flanks, conditioned on terrain. | A covered permeable structure could have asymmetric alteration/soil redistribution without a mapped scarp. Unlike K-Th enrichment/redox levels, it tests fitted width asymmetry; quantized codes must not be misrepresented as calibrated concentration ratios. | Parent-material boundaries, differential weathering, K-rich transported alluvium. | Medium; cached inputs. Qualitative expected potential: low/moderate, uncertain. |
+| 3 — **H88-CBC**, conductive basin-breach connectivity | Conductivity surface, isostatic gravity anomaly, depth to conductive base, detrended elevation, and drainage channel/validity layers. Compare narrow cross-boundary conductivity connectivity with a smooth basin-fill null and require boundary-normal gravity change. | A buried cross-basin structure can lack a surface trace; this tests topology against a paleodrainage null rather than another local conductivity-curvature/thermal conjunction. | Unfaulted permeable alluvial paleochannels and saline groundwater. | Medium-high; cached inputs, coarse-field resolution is a limitation. Qualitative expected potential: low, uncertain. |
+
+No new external data is required for these specified queue candidates. The cached raster pins are owner mirrors, however, not authenticated downloads from the competition account. The official GDR INGENIOUS page was reachable during this review and identifies a public CC BY 4.0 dataset; that does not by itself establish redistribution or challenge-use permissions for each mirrored derivative. Because no candidate was built, no new external-data license was relied upon. If the future hypothesis requires a different outside layer, it must be named and license-checked before preregistration.
+
+## Three review passes
+
+1. **Pass 1 — inspect and reproduce:** read `README.md`, `PROMPT.md`, `USER_PROMPT_20261025.md`, `AGENTS.md`, the source-bound hypothesis queue, current status, and prior review. Restored validation-tier grids and registry rasters (27 files) and ran the mandatory preflight before any model/feature import. Identified the universal duplicate stop and the contradictory CON88 exemption. Initial local test run: 870 passed, 4 failed, 23 skipped; two failures exposed stale browser-source/inventory checks and two test fixtures asserted obsolete counts.
+2. **Pass 2 — fix and audit:** unified CON88 with the shared literal guard; disabled its validator/audit/site approval exception; preserved the old gate as withdrawn history; applied explicit negative labels to its archived TIFF/ZIP; updated the source fingerprint after reviewing the two changed CLI entrypoints and confirming no queued hypothesis implementation changed. Updated the current page and inventory, and captured a fresh seven-case browser recheck. Focused tests then passed (249 passed, 14 warnings).
+3. **Pass 3 — recheck against the request:** re-ran the pinned preflight, complete automated suite, site guard under normal and optimized Python, saved-byte download audit, canonical renderer check, and literal expected-negative slot gate. Verified that the complete recorded user request remains byte-identical to its README embedding. Final counts are in the attached JSON run card and in this review's verification addendum.
+
+## Current local measurements and limits
+
+- **REGISTRY-MEASUREMENT:** the 17GEMSDOE witness hash is `ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be`; its positive support directly covers 5,106,385/5,106,385 allowed cells. This is a sufficient pre-placement proof, not a score or a complete inventory of every registry raster.
+- **Saved-byte format audit:** 48 published TIFF/ZIP packages pass local research checks (47 in `docs/downloads/`, 1 historical variant); 0 are protocol eligible. Passing `[0,1]`, CRS, shape, transform, ZIP, and decoder checks does not imply organizer acceptance.
+- **Browser:** seven desktop/mobile/legacy-page cases passed; the fetched one-click research TIFF's actual downloaded bytes match the canonical SHA; failed JSON fetch and JavaScript-disabled pages remain negative.
+- **HOLDOUT-DTI this review:** not run; no new hypothesis was fit, no candidate feature was constructed, and no score/CI is claimed. **ORGANIZER-CONFIRMED:** none; no receipt was accessed or fabricated.
+- **Training access:** this review restored only the validation tier needed for the guard. It did not restore the full 19-band feature stack or authenticate competition data. No GPU, DrivenData credentials, or weekly slot were used. The data page/login, current deadline, and account quota remain unverified in this session.
+
+## Sources actually retrieved on 2026-10-25
+
+- DrivenData problem description and scoring/submission specification: <https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/> — target is faults indicative of geothermal resources; the known catalogue is incomplete; metric kernel and alpha/beta; one-band float32 EPSG:32611 100 m file with values in [0,1].
+- DrivenData public leaderboard: <https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/> — the page displayed #1 at 0.4413 at retrieval time; public snapshot only, not a submission-page receipt.
+- NLR official rules PDF: <https://docs.nlr.gov/docs/fy26osti/96647.pdf> — one 100 m single-layer GeoTIFF; up to three submissions per week as the website states; public scores may differ from private scoring; generative-AI use must be disclosed. Deadlines and current account allowance were not checked.
+- Official reference solution at pinned commit <https://github.com/drivendataorg/gems-prize-reference-solution/tree/aebe92f7c8a990f0e3443451b7a825d9afd6336b> — its README directs competitors to obtain data from the challenge website and documents CPU-only setup.
+- DOE/USGS GDR INGENIOUS #1391: <https://gdr.openei.org/submissions/1391> — publicly accessible page lists CC BY 4.0; we did not download/use any new external raster in this review.
+- GEMSDOE32 owner page and immutable owner build record (not an organizer source): <https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html> and <https://github.com/buffedlizard55-lab/GEMSDOE32/blob/012e17b2a115c3c0d5e7885bea625bf9657c99fc/registry/submission_build.json> — the latter labels its live estimate projected/UNSCORED; it is not a DrivenData receipt.
+
+### Verification addendum
+
+Final local verification: `pytest -q` **877 passed / 23 skipped / 64 warnings** (245.19 s); `scripts/check_site.py` and `python -O scripts/check_site.py` pass; `render_decision.py --check`, `audit_downloads.py --check`, and `audit_research_state.py` pass; browser audit passes 7/7; generation, CON88 compatibility, literal-protocol and current-slot gates each return expected exit 2. See [`evidence/review_e80f931e_run_card.json`](../evidence/review_e80f931e_run_card.json). Remote GitHub CI, Pages deployment, authenticated DrivenData uploads, final/private leaderboard performance, and account quota are not claimed by this local review.
