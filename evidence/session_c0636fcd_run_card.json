@@ -173,7 +173,7 @@
     "pytest": "PASS — 827 passed, 23 skipped, 0 failed (64 warnings), full suite after integration fixes",
     "git_diff_check": "PASS after final source and documentation edits",
     "browser_check": "BLOCKED_ENVIRONMENT — Chromium could not start because libnspr4.so is missing; no browser observations recorded.",
-    "remote_pr_checks": "PR #163 test and preflight failed at combined audit/render/optimized-site step; hosted log archive fetch returned EOF, exact remote failing command unconfirmed; local reruns pass"
+    "remote_pr_checks": "Latest pushed commit 3b6ca41: Evidence and software checks test PASS; no fresh preflight reported. PR #163 is CONFLICTING with updated origin/main; attempted merge exposed content conflicts including mainline equal-support policy/CON88 clearance, so merge was aborted to honor the standing literal duplicate-stop constraint. PR remains open and unmerged."
   },
   "limitations": [
     "The user prompt does not supply the single-method paragraph it references; this review does not invent an assigned lane.",
