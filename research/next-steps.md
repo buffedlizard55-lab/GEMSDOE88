@@ -1,3 +1,15 @@
+## Binding handoff — protocol-integrity review (2026-10-24)
+
+Read `PROMPT.md` and `research/review-43d08c7a-20261024.md` first. Recheck with `python scripts/restore_inputs.py --validation` then `python scripts/audit_protocol_integrity.py`. The `--require-submit` variant must return **2** while the literal dense witness binds. **Do not generate more cosmetic variants:** all nonempty allowed dot sets are duplicates under the current definition. Zero experiments and zero slots in this review.
+
+1. Preserve the binding literal policy unless the project specification is explicitly revised in the shared protocol. Do not silently exempt dense priors or use top-N diagnostics as authorization. The current specification and registry cannot produce a passing nonempty submission.
+2. Use one indexed, hash-bound registry audit for both real pre-placement surfaces and saved final dots; historical compatibility reports from curated lists cannot establish completeness. The compatibility decision now reports only selector eligibility, never permission to upload.
+3. Before a future scientific experiment, resolve the identity of the current comparable holdout incumbent with a hash and matched folds/seeds/masks. Historical best claims in this long-lived repo differ; do not compare a newly hidden-component model to the fixed H33 raster as if that were a fair control.
+4. Consider the ranked **conditional-null contrasts**, not recycled feature names, in the review dossier only after the stop is resolved. No positive DTI improvement has been demonstrated for them. Future outputs must retain single-feature symmetric leakage checks and paired CIs.
+5. Current rules, deadline, account allowance and organizer receipts are unverified in this network-restricted session. GitHub Pages is configured, but deployment success must be checked after merge. No credentials belong in chat; no DrivenData upload is attempted. CPU training is supported by the official reference; GPU is optional.
+
+Earlier handoffs below are historical, not overriding authorization.
+
 ## Current handoff — H88-MVRD integrated review, 2026-10-24
 
 Read `README.md`, `PROMPT.md`, `registry/mvrd_run_card.json`, `evidence/mvrd88_holdout.json`, and `research/candidate-hypotheses-20261024.md` first. H88-MVRD is the strongest stored overall hide-and-recover result: **HOLDOUT-DTI 0.197314 [0.181121,0.213008]**, `gems57-pooled-hide-v2`, 22,893 withheld positives, paired Δ vs ADHR `+0.009426 [0.001962,0.016994]`. It is still **DOWNLOAD FOR RESEARCH — DO NOT SUBMIT**: literal overlap is 1.0 against the continuous full-footprint 17GEMSDOE witness and the production distance fingerprint has only 2.87% of dots >25 px from the catalogue (35% gate). The far holdout diagnostics also trail ADHR. Zero slots used; no organizer receipt.
