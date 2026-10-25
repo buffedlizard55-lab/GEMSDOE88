@@ -128,11 +128,17 @@ def test_failed_fresh_audit_overwrites_success(tmp_path, monkeypatch):
 def test_published_inventory_covers_every_actual_tiff_and_zip():
     report = json.loads((ROOT / 'docs/data/download_audit.json').read_text())
     assert report == json.loads((ROOT / 'evidence/download_audit.json').read_text())
-    actual = {p.name for p in audit.published_tiffs(ROOT)}
-    assert {r['file'] for r in report['artifacts']} == actual
-    assert len(report['artifacts']) == report['tiff_count']
-    for row in report['artifacts']:
-        tif = ROOT / 'docs/downloads' / row['file']
+    audit.check_package_inventory(ROOT)
+    actual = {(directory, p.name) for directory in audit.PUBLICATION_DIRECTORIES
+              for p in audit.published_tiffs(ROOT, directory)}
+    all_rows = report['artifacts'] + report['additional_research_artifacts']
+    assert {(r.get('publication_directory', 'downloads'), r['file']) for r in all_rows} == actual
+    assert len(report['artifacts']) == report['tiff_count'] == report['research_download_pass_count']
+    assert len(report['additional_research_artifacts']) == report['additional_research_tiff_count']
+    assert len(all_rows) == report['total_published_tiff_count'] == report['total_research_download_pass_count']
+    assert all(r['publication_directory'] == 'research-variants' for r in report['additional_research_artifacts'])
+    for row in all_rows:
+        tif = ROOT / 'docs' / row.get('publication_directory', 'downloads') / row['file']
         zipped = tif.with_suffix('.zip')
         assert audit.sha(tif) == row['sha256']
         assert audit.sha(zipped) == row['zip_sha256']
@@ -188,3 +194,163 @@ def test_cli_rejects_even_a_noncanonical_bad_download(tmp_path, monkeypatch):
     assert stored['decision'] == 'AUDIT_ERROR'
     assert 'bad.tif' in stored['error']
     assert stored['ok_to_submit'] is False
+
+
+def test_complete_flat_package_inventory_passes(tmp_path):
+    directory = tmp_path / 'docs/downloads'
+    directory.mkdir(parents=True)
+    for name in ('one.tif', 'one.zip', 'two.TIFF', 'two.zip', 'metadata.json'):
+        (directory / name).touch()
+    audit.check_package_inventory(tmp_path)
+
+
+@pytest.mark.parametrize('name', ['orphan.zip', 'orphan.ZIP', 'one.ZIP'])
+def test_orphan_archive_is_not_silently_omitted(tmp_path, name):
+    directory = tmp_path / 'docs/downloads'
+    directory.mkdir(parents=True)
+    for path in ('one.tif', 'one.zip', name):
+        (directory / path).touch()
+    with pytest.raises(ValueError, match='orphan ZIPs'):
+        audit.check_package_inventory(tmp_path)
+
+
+def test_missing_archive_is_an_inventory_error(tmp_path):
+    directory = tmp_path / 'docs/downloads'
+    directory.mkdir(parents=True)
+    (directory / 'one.tif').touch()
+    with pytest.raises(ValueError, match='missing ZIPs'):
+        audit.check_package_inventory(tmp_path)
+
+
+def test_two_tiff_extensions_cannot_share_one_zip(tmp_path):
+    directory = tmp_path / 'docs/downloads'
+    directory.mkdir(parents=True)
+    for name in ('one.tif', 'one.tiff', 'one.zip'):
+        (directory / name).touch()
+    with pytest.raises(ValueError, match='share the same ZIP path'):
+        audit.check_package_inventory(tmp_path)
+
+
+@pytest.mark.parametrize('suffix', ['.tif', '.TIFF', '.zip', '.ZIP'])
+def test_nested_artifact_cannot_evade_flat_inventory(tmp_path, suffix):
+    directory = tmp_path / 'docs/downloads/hidden'
+    directory.mkdir(parents=True)
+    (directory / ('hidden' + suffix)).touch()
+    with pytest.raises(ValueError, match='Nested published artifacts'):
+        audit.check_package_inventory(tmp_path)
+
+
+def test_inventory_error_fails_before_stale_preflight_or_success_can_be_used(tmp_path, monkeypatch):
+    directory = tmp_path / 'docs/downloads'
+    directory.mkdir(parents=True)
+    (directory / 'orphan-DO-NOT-SUBMIT.zip').touch()
+    monkeypatch.setattr(audit, 'preflight', lambda _: pytest.fail('bad inventory must stop first'))
+    assert audit.main([], tmp_path) == 1
+    for relative in audit.OUTPUTS:
+        report = json.loads((tmp_path / relative).read_text())
+        assert report['decision'] == 'AUDIT_ERROR'
+        assert 'orphan ZIPs' in report['error']
+        assert report['ok_to_submit'] is False
+
+
+def test_both_declared_flat_publication_directories_are_audited(tmp_path):
+    assert set(audit.PUBLICATION_DIRECTORIES) == {'downloads', 'research-variants'}
+    for directory in audit.PUBLICATION_DIRECTORIES:
+        base = tmp_path / 'docs' / directory
+        base.mkdir(parents=True)
+        for name in ('one.tif', 'one.zip', 'two.TIFF', 'two.zip', 'metadata.json'):
+            (base / name).touch()
+        assert {p.name for p in audit.published_tiffs(tmp_path, directory)} == {'one.tif', 'two.TIFF'}
+    audit.check_package_inventory(tmp_path)
+
+
+@pytest.mark.parametrize('directory', audit.PUBLICATION_DIRECTORIES)
+@pytest.mark.parametrize('corruption,match', [
+    ('orphan.ZIP', 'orphan ZIPs'),
+    ('one.ZIP', 'orphan ZIPs'),
+    ('missing', 'missing ZIPs'),
+    ('collision', 'share the same ZIP path'),
+    ('nested', 'Nested published artifacts'),
+])
+def test_variant_directory_cannot_evade_package_checks(tmp_path, directory, corruption, match):
+    (tmp_path / 'docs/downloads').mkdir(parents=True)
+    base = tmp_path / 'docs' / directory
+    base.mkdir(exist_ok=True)
+    for name in ('one.tif', 'one.zip'):
+        (base / name).touch()
+    if corruption == 'missing':
+        (base / 'one.zip').unlink()
+    elif corruption == 'collision':
+        (base / 'one.TIFF').touch()
+    elif corruption == 'nested':
+        (base / 'hidden').mkdir()
+        (base / 'hidden/unrecorded.zip').touch()
+    else:
+        (base / corruption).touch()
+    with pytest.raises(ValueError, match=match):
+        audit.check_package_inventory(tmp_path)
+
+
+@pytest.mark.parametrize('suffix', ['.tif', '.TIFF', '.zip', '.ZIP'])
+def test_undeclared_publication_directory_is_not_silently_ignored(tmp_path, suffix):
+    (tmp_path / 'docs/downloads').mkdir(parents=True)
+    unknown = tmp_path / 'docs/another-lane'
+    unknown.mkdir()
+    (unknown / ('hidden' + suffix)).touch()
+    with pytest.raises(ValueError, match='outside the declared audited directories'):
+        audit.check_package_inventory(tmp_path)
+    with pytest.raises(ValueError, match='Unknown publication directory'):
+        audit.published_tiffs(tmp_path, 'another-lane')
+
+
+@pytest.fixture
+def saved_audit(tmp_path, monkeypatch):
+    # Exercise the actual --check comparison without reopening 44 large rasters
+    # for each JSON mutation. Separate integration tests hash the real packages.
+    report = json.loads((ROOT / 'docs/data/download_audit.json').read_text())
+    audit.write(tmp_path, report)
+    fresh = {**report, 'checked_at_utc': 'a different run timestamp'}
+    monkeypatch.setattr(audit, 'audit', lambda _: fresh)
+    return report
+
+
+def test_check_ignores_only_the_top_level_run_timestamp(tmp_path, saved_audit):
+    assert audit.main(['--check'], tmp_path) == 0
+    for relative in audit.OUTPUTS:
+        assert json.loads((tmp_path / relative).read_text()) == saved_audit
+
+
+@pytest.mark.parametrize('relative', audit.OUTPUTS)
+@pytest.mark.parametrize('corruption', ['variant-hash', 'variant-zip', 'variant-missing', 'total-count', 'witness', 'unknown-key'])
+def test_check_compares_complete_saved_manifest_not_only_main_rows(tmp_path, saved_audit, relative, corruption):
+    path = tmp_path / relative
+    stored = json.loads(path.read_text())
+    if corruption == 'variant-hash':
+        stored['additional_research_artifacts'][0]['sha256'] = '0' * 64
+    elif corruption == 'variant-zip':
+        stored['additional_research_artifacts'][0]['zip_sha256'] = '0' * 64
+    elif corruption == 'variant-missing':
+        stored['additional_research_artifacts'] = []
+    elif corruption == 'total-count':
+        stored['total_published_tiff_count'] -= 1
+    elif corruption == 'witness':
+        stored['preplacement_registry_proof']['witness_sha256'] = '0' * 64
+    else:
+        stored['unreviewed_extra_clearance'] = True
+    path.write_text(json.dumps(stored))
+    before = path.read_bytes()
+    assert audit.main(['--check'], tmp_path) == 1
+    # A check does not silently rewrite altered evidence into a pass.
+    assert path.read_bytes() == before
+
+
+def test_failed_variant_fresh_audit_invalidates_saved_success(tmp_path, monkeypatch):
+    report = json.loads((ROOT / 'docs/data/download_audit.json').read_text())
+    report['additional_research_artifacts'][0]['research_download_ok'] = False
+    monkeypatch.setattr(audit, 'audit', lambda _: report)
+    assert audit.main([], tmp_path) == 1
+    for relative in audit.OUTPUTS:
+        failed = json.loads((tmp_path / relative).read_text())
+        assert failed['decision'] == 'AUDIT_ERROR'
+        assert failed['ok_to_submit'] is False
+        assert report['additional_research_artifacts'][0]['file'] in failed['error']

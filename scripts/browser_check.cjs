@@ -24,7 +24,8 @@ const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · S
   const cases = [
     ['index.html', 1440, 1100], ['index.html', 390, 844],
     ['executive-summary.html', 390, 844], ['research.html', 390, 844],
-    ['sources.html', 390, 844],
+    ['sources.html', 390, 844], ['mdc88/index.html', 1440, 1100],
+    ['mdc88/executive-summary.html', 390, 844],
   ];
   const report = {schema: 'gems88.browser-review.v1', checked_at_utc: new Date().toISOString(),
     browser: browser.version(), pages: [], failed_fetch_stays_negative: false,
@@ -34,7 +35,12 @@ const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · S
     const page = await browser.newPage({viewport: {width, height}});
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
-    await page.goto(new URL(name, base).toString(), {waitUntil: 'networkidle'});
+    page.on('requestfailed', request => errors.push(`request failed: ${request.url()}`));
+    page.on('response', response => {
+      if (response.status() >= 400) errors.push(`HTTP ${response.status()}: ${response.url()}`);
+    });
+    const response = await page.goto(new URL(name, base).toString(), {waitUntil: 'networkidle'});
+    if (!response || response.status() !== 200) errors.push('Page did not return HTTP 200');
     const banners = await page.locator('[data-card-status]').allTextContents();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
     const h1 = await page.locator('h1:visible').count();
@@ -46,7 +52,7 @@ const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · S
     report.pages.push({page: name, width, height, banners, overflow, h1, openArchives,
       first_tiff: firstTiff, errors, pass});
     failed ||= !pass;
-    await page.screenshot({path: path.join(ROOT, '.cache', `${name.replace('.html', '')}-${width}.png`), fullPage: true});
+    await page.screenshot({path: path.join(ROOT, '.cache', `${name.replaceAll('/', '-').replace('.html', '')}-${width}.png`), fullPage: true});
     await page.close();
   }
   const unavailable = await browser.newPage();
@@ -56,10 +62,19 @@ const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · S
   report.failed_fetch_stays_negative = denied === 'PRE-FLIGHT AUDIT UNAVAILABLE — DO NOT SUBMIT';
   failed ||= !report.failed_fetch_stays_negative;
   await unavailable.close();
+  const download = await browser.newPage();
+  const response = await download.request.get(new URL(expectedTiff, base).toString());
+  const digest = crypto.createHash('sha256').update(await response.body()).digest('hex');
+  report.research_download = {file: expectedTiff, http_status: response.status(), sha256: digest,
+    matches_canonical_bytes: response.status() === 200 && digest === expected.file_sha256,
+    ok_to_submit: false};
+  failed ||= !report.research_download.matches_canonical_bytes;
+  await download.close();
   await browser.close();
   for (const relative of ['docs/index.html', 'docs/executive-summary.html', 'docs/research.html',
     'docs/sources.html', 'docs/assets/site.css', 'docs/assets/site.js', 'docs/data/current_release.json',
-    'docs/data/download_audit.json', 'docs/data/mtas88_run_card.json', 'docs/status.json']) {
+    'docs/data/download_audit.json', 'docs/data/mtas88_run_card.json', 'docs/status.json',
+    'docs/mdc88/index.html', 'docs/mdc88/executive-summary.html', 'docs/mdc88/status.json']) {
     report.source_sha256[relative] = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, relative))).digest('hex');
   }
   report.status = failed ? 'FAIL' : 'PASS';

@@ -54,6 +54,8 @@ def main(root: Path = ROOT) -> None:
             "executive-summary.html",
             "research.html",
             "sources.html",
+            "mdc88/index.html",
+            "mdc88/executive-summary.html",
         )
     ]
     card = json.loads((root / "registry/mvrd_run_card.json").read_text())
@@ -503,6 +505,8 @@ def main(root: Path = ROOT) -> None:
     # Every published binary must carry the negative decision in its filename.
     # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
     # checked above; XGCE was renamed on main and requires no such exception.
+    sys.path.insert(0, str(ROOT))
+    from scripts.audit_downloads import PUBLICATION_DIRECTORIES, check_package_inventory
     legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
@@ -512,6 +516,37 @@ def main(root: Path = ROOT) -> None:
                 "DO-NOT-SUBMIT" in published.name or published.resolve() in legacy_negative,
                 f"unmarked published research artifact: {published}",
             )
+            require(
+                published.parent in {docs / name for name in PUBLICATION_DIRECTORIES},
+                f"published artifact outside the declared audited directories: {published}",
+            )
+    # A negative filename is necessary but does not make an unrecorded ZIP or
+    # a newly added TIFF/ZIP pair part of the saved, two-decoder file audit.
+    check_package_inventory(root)
+    download_audit = json.loads((docs / "data/download_audit.json").read_text())
+    all_rows = download_audit["artifacts"] + download_audit.get("additional_research_artifacts", [])
+    recorded_files = {(row.get("publication_directory", "downloads"), name) for row in all_rows
+                      for name in (row["file"], row["zip_file"])}
+    actual_files = {(directory, p.name) for directory in PUBLICATION_DIRECTORIES
+                    for p in (docs / directory).glob("*")
+                    if p.is_file() and p.suffix.lower() in {".tif", ".tiff", ".zip"}}
+    require(actual_files == recorded_files and len(recorded_files) == 2 * len(all_rows),
+            "Published TIFF/ZIP inventory differs from the saved download audit")
+    require(download_audit["schema"] == "gems88.download-audit.v2"
+            and download_audit["tiff_count"] == len(download_audit["artifacts"])
+            and download_audit["research_download_pass_count"] == len(download_audit["artifacts"])
+            and download_audit["additional_research_tiff_count"] == len(download_audit["additional_research_artifacts"])
+            and download_audit["total_published_tiff_count"] == len(all_rows)
+            and download_audit["total_research_download_pass_count"] == len(all_rows)
+            and download_audit["protocol_eligible_count"] == 0,
+            "Saved download audit must cover both publication directories without granting submission clearance")
+    for row in all_rows:
+        directory = docs / row.get("publication_directory", "downloads")
+        require(row["format_valid"] is True and row["research_download_ok"] is True
+                and row["ok_to_submit"] is False
+                and sha256(directory / row["file"]) == row["sha256"]
+                and sha256(directory / row["zip_file"]) == row["zip_sha256"],
+                f"Published research bytes or negative audit changed: {directory.name}/{row['file']}")
 
     index = pages[0].read_text()
     executive = pages[1].read_text()
@@ -772,6 +807,14 @@ def main(root: Path = ROOT) -> None:
     # the expected negative words happen to appear much further down the page.
     sys.path.insert(0, str(ROOT))
     from scripts import render_decision
+    for page, kind in ((pages[4], "overview"), (pages[5], "guide")):
+        require(page.read_text() == render_decision.legacy_notice(kind),
+                "Legacy page must withdraw unsupported upload clearance and link the canonical decision")
+    legacy_status = json.loads((docs / "mdc88/status.json").read_text())
+    require(legacy_status["ok_to_submit"] is False
+            and legacy_status["status"] == "BLOCKED_HISTORICAL_RESEARCH"
+            and legacy_status["recommended_for_weekly_slot"] is False,
+            "Legacy status must not advertise a ready-to-submit file")
     for page, kind in ((pages[0], "overview"), (pages[1], "guide")):
         text = page.read_text()
         require(

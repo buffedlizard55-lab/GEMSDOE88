@@ -18,7 +18,7 @@ Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_P
 
 **Maximize P(Win):** reserve feedback for evidence-backed, genuinely distinct candidates. **Own the Outcome:** publish negative findings and unmet requirements instead of claiming a high score or unique file without evidence.
 
-Independent repository recheck (2026-10-25): [review report](research/repo-review-arena-f5e85a1a-20261025.md) · [negative run card](evidence/repo_review_arena_f5e85a1a_20261025.json). No new TIFF was produced: the pinned registry witness covers every allowed pixel, so the literal uniqueness rule blocks every nonempty candidate. This does not satisfy the unique-TIFF request; it records why generating one would violate the active protocol.
+Latest independent recheck (2026-10-25, session b4dfa10c): [three-pass review, H33 analysis and limitations](research/session-b4dfa10c-review.md) · [negative run card](registry/session_b4dfa10c_run_card.json) · [four ranked, untried proposals](research/session-b4dfa10c-hypotheses.md). The data downloader/preparation succeeded, but no new TIFF was produced: the pinned registry witness still blocks every nonempty candidate. Local format validation now rejects hidden second rasters and sidecar-dependent georeferencing; package inventory rejects orphan/nested archives. The unique-TIFF requirement remains unmet. [Previous review](research/repo-review-arena-f5e85a1a-20261025.md).
 
 ### Current review — session d0c3adeb, 2026-10-25
 
@@ -919,17 +919,17 @@ Go ahead and create a pull request and then merge the pull request onto the main
 
 ## Historical GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
-## ⭐ Current decision (`2026-10-25`) — read this first
+## Historical decisions (`2026-10-25`) — superseded; no upload authorization
 
-**Two files, two different answers. No human inspection is needed for either decision; every check below is a re-runnable script.**
+**The HGVC v4 upload clearance below was revoked. No current file is submission-ready.** Historical local measurements are retained for audit; they are not a selector decision.
 
-### ✅ File to submit (selector-ready): `H88-HGVC` — **OK TO DOWNLOAD AND SUBMIT**
+### Revoked HGVC clearance — **RESEARCH ONLY · DO NOT SUBMIT**
 
-> [⬇ **Download the submit-ready HGVC GeoTIFF (`.tif`, 37,654 dots)**](docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif) · [one-TIFF ZIP](docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.zip) · [v4 re-audit receipt](registry/hgvc88_gate_v4_reaudit_20261025.json) · [exact upload steps](docs/executive-summary.html)
+> [⬇ **Download the archived HGVC research GeoTIFF (`.tif`, 37,654 dots)**](docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif) · [one-TIFF ZIP](docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.zip) · [v4 re-audit receipt](registry/hgvc88_gate_v4_reaudit_20261025.json) · [exact upload steps](docs/executive-summary.html)
 
 Built `2026-10-24`, **never submitted** (`0` slots spent, `ORGANIZER-CONFIRMED: none`). Single-band float32, `EPSG:32611`, `3730×3292`, all values finite in `[0, 1]` (the portal's `"Predicted values must be in range [0, 1]"` check), `0` dots on the mapped catalogue. **HOLDOUT-DTI** (`gems57-pooled-hide-v2`, 22,893 withheld positives — a holdout, not a leaderboard score): **0.202947 [0.185869, 0.219790]**, 8/8 folds won. **Portal name:** `GEMSDOE88-HGVC88-D5329F31` · **Portal note (103/140):** `HGVC88 87ch hydrothermal up-dip+sinter PoE 37654d; HOLDOUT-DTI 0.2029 far 0.1328 blind 0.0790; UNSCORED` · **SHA-256 (.tif):** `d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef`.
 
-Its sole v3 blocker was the literal dot-overlap reading against the space-filling continuous `17GEMSDOE` *probability* surface (positive on all 5,167,373 footprint cells, minimum value 0.00046 — a surface with no dots, returning overlap 1.0000 for *every* possible candidate). That shared gate was fixed once in the template as **gate v4 / IR-88-127** (rank correlation vs every raster + dot-overlap vs dot fields + excess vs discriminating dense rasters; the literal reading is still published verbatim: `unique_literal = false`, worst literal `1.0000`). Re-audited 2026-10-25 on the saved bytes vs **365** registry rasters: worst dot-field overlap `0.6074 ≤ 0.70`, worst excess `0.1593`, worst final `|Spearman ρ| = 0.0661` (stored pre-placement surface receipt `0.208144`). The filename's `DO-NOT-SUBMIT` suffix is the frozen historical v3 marker — you may rename your local copy to `GEMSDOE88-HGVC88-D5329F31.tif` before upload (SHA-256 unchanged). Confirm your remaining weekly allowance on the portal (unseeable from here). Verify: `.venv/bin/python scripts/reaudit_hgvc88_v4.py --require-submit` (exit 0). **Posterior-copy disclosure:** later same-day `H88-PSGV` overlaps HGVC at `0.7899` (3-px) and was itself gated **DO NOT SUBMIT** as the duplicate — a later near-copy cannot retroactively disqualify the earlier artifact ([addendum](registry/hgvc88_gate_v4_addendum_psgv_20261025.json)).
+**Revocation:** the historical v4 path exempted a dense probability raster from the user's literal all-registry overlap rule and exempted a later near-copy by creation order. Neither exemption was authorized. The shared compatibility API now delegates to the binding literal gate; the corrected [v4 review](registry/hgvc88_gate_v4_reaudit_20261025.json) and [protocol correction](evidence/session_d0c3adeb_protocol_correction.json) are negative. The `DO-NOT-SUBMIT` marker is binding, not a cosmetic historical suffix: **do not rename it to imply clearance or upload it**. Re-run `.venv/bin/python scripts/reaudit_hgvc88_v4.py --require-submit`; the expected exit is **2**, not 0. Historical like-for-like diagnostics and holdout measurements remain evidence, but they neither clear literal overlap nor authorize a weekly slot.
 
 ### 🔬 New unique file generated today (`2026-10-25`): `H88-SEPA` — **DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT**
 

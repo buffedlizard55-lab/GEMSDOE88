@@ -27,6 +27,9 @@ from scripts.preflight_mtas88 import inspect as preflight  # noqa: E402
 from scripts.validate_artifact import validate_artifact  # noqa: E402
 
 OUTPUTS = ("evidence/download_audit.json", "docs/data/download_audit.json")
+# Two existing publication namespaces. A historical same-lane variant remains
+# outside the modeling registry, but must not be outside the file safety audit.
+PUBLICATION_DIRECTORIES = ("downloads", "research-variants")
 
 
 def sha(path: Path) -> str:
@@ -95,14 +98,54 @@ def audit_one(path: Path, sample: Path, catalogue: np.ndarray, footprint: np.nda
     return result
 
 
-def published_tiffs(root: Path) -> list[Path]:
+def published_tiffs(root: Path, directory: str = "downloads") -> list[Path]:
     """Do not silently ignore .tiff or uppercase filename suffixes."""
-    return sorted(p for p in (root / "docs/downloads").iterdir()
+    if directory not in PUBLICATION_DIRECTORIES:
+        raise ValueError(f"Unknown publication directory: {directory}")
+    base = root / "docs" / directory
+    if directory != "downloads" and not base.exists():
+        return []
+    return sorted(p for p in base.iterdir()
                   if p.is_file() and p.suffix.lower() in {".tif", ".tiff"})
+
+
+def check_package_inventory(root: Path) -> None:
+    """Every published ZIP must have exactly one audited TIFF partner.
+
+    Both existing publication namespaces are flat. Without this check an
+    orphan ZIP, uppercase .ZIP, nested artifact, or historical research variant
+    is silently omitted by a downloads-only audit even though Pages serves it.
+    Sidecars are rejected separately by the self-contained TIFF format check.
+    """
+    root = Path(root)
+    docs = root / "docs"
+    for name in PUBLICATION_DIRECTORIES:
+        directory = docs / name
+        artifacts = [p for p in directory.rglob("*")
+                     if p.is_file() and p.suffix.lower() in {".tif", ".tiff", ".zip"}]
+        nested = sorted(str(p.relative_to(directory)) for p in artifacts if p.parent != directory)
+        if nested:
+            raise ValueError(f"Nested published artifacts are outside the flat audited inventory: {nested}")
+        tiffs = published_tiffs(root, name)
+        expected = [p.with_suffix(".zip") for p in tiffs]
+        if len(expected) != len(set(expected)):
+            raise ValueError("Multiple published TIFFs share the same ZIP path")
+        actual = {p for p in artifacts if p.suffix.lower() == ".zip"}
+        missing = sorted(p.name for p in set(expected) - actual)
+        orphaned = sorted(p.name for p in actual - set(expected))
+        if missing or orphaned:
+            raise ValueError(f"Published TIFF/ZIP inventory mismatch in {name}: missing ZIPs={missing}; orphan ZIPs={orphaned}")
+    known = {docs / name for name in PUBLICATION_DIRECTORIES}
+    unknown = sorted(str(p.relative_to(docs)) for p in docs.rglob("*")
+                     if p.is_file() and p.suffix.lower() in {".tif", ".tiff", ".zip"}
+                     and p.parent not in known)
+    if unknown:
+        raise ValueError(f"Published artifacts outside the declared audited directories: {unknown}")
 
 
 def audit(root: Path = ROOT) -> dict:
     root = Path(root)
+    check_package_inventory(root)
     prerequisite = preflight(root)
     certificate = prerequisite["preplacement_registry_proof"]
     if certificate["universal_overlap_blocker"] is not True or certificate["directly_saturated"] is not True:
@@ -116,10 +159,17 @@ def audit(root: Path = ROOT) -> dict:
     if not paths:
         raise ValueError("no published research TIFFs found")
     rows = [audit_one(path, sample, catalogue, footprint) for path in paths]
+    additional = []
+    for directory in PUBLICATION_DIRECTORIES[1:]:
+        for path in published_tiffs(root, directory):
+            row = audit_one(path, sample, catalogue, footprint)
+            row["publication_directory"] = directory
+            additional.append(row)
     by_field: dict[str, list[str]] = defaultdict(list)
-    for row in rows:
+    for row in rows + additional:
         if row.get("decoded_float32_sha256"):
-            by_field[row["decoded_float32_sha256"]].append(row["file"])
+            identifier = row["file"] if "publication_directory" not in row else f'{row["publication_directory"]}/{row["file"]}'
+            by_field[row["decoded_float32_sha256"]].append(identifier)
         admissible = (row.get("positive_pixels", 0) > 0
                       and row.get("positive_on_catalogue") == 0
                       and row.get("positive_outside_footprint") == 0)
@@ -132,14 +182,18 @@ def audit(root: Path = ROOT) -> dict:
             or not current["research_download_ok"]):
         raise ValueError("canonical research TIFF/ZIP missing, changed or invalid")
     return {
-        "schema": "gems88.download-audit.v1",
+        "schema": "gems88.download-audit.v2",
         "checked_at_utc": datetime.now(timezone.utc).isoformat(),
-        "scope": "Every TIFF in docs/downloads, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
+        "scope": "Every TIFF in docs/downloads and docs/research-variants, paired ZIP, two decoders, exact-value duplicate groups; NOT full-fleet scientific uniqueness",
         "preplacement_registry_proof": certificate,
         "canonical_file": current["file"],
         "canonical_sha256": current["sha256"],
         "tiff_count": len(rows),
         "research_download_pass_count": sum(r["research_download_ok"] for r in rows),
+        "additional_research_tiff_count": len(additional),
+        "total_published_tiff_count": len(rows) + len(additional),
+        "total_research_download_pass_count": sum(r["research_download_ok"] for r in rows + additional),
+        "additional_research_artifacts": additional,
         "protocol_eligible_count": 0,
         "exact_decoded_duplicate_groups": [
             {"decoded_float32_sha256": digest, "files": names}
@@ -168,8 +222,10 @@ def main(argv=None, root: Path = ROOT) -> int:
     args = p.parse_args(argv)
     try:
         result = audit(root)
-        if result["research_download_pass_count"] != result["tiff_count"]:
-            bad = [r["file"] for r in result["artifacts"] if not r["research_download_ok"]]
+        all_rows = result["artifacts"] + result.get("additional_research_artifacts", [])
+        if (result["research_download_pass_count"] != result["tiff_count"]
+                or any(not r["research_download_ok"] for r in all_rows)):
+            bad = [r["file"] for r in all_rows if not r["research_download_ok"]]
             raise ValueError(f"Invalid published TIFF/ZIP pair(s): {bad}")
         if args.check:
             for relative in OUTPUTS:
@@ -180,10 +236,10 @@ def main(argv=None, root: Path = ROOT) -> int:
                     raise ValueError(f"Stale or altered download audit: {relative}")
         else:
             write(root, result)
-        print(json.dumps({k: result[k] for k in ("tiff_count", "research_download_pass_count", "protocol_eligible_count", "exact_decoded_duplicate_groups")}))
+        print(json.dumps({k: result[k] for k in ("tiff_count", "research_download_pass_count", "additional_research_tiff_count", "total_published_tiff_count", "total_research_download_pass_count", "protocol_eligible_count", "exact_decoded_duplicate_groups")}))
         return 0
     except Exception as exc:
-        failed = {"schema": "gems88.download-audit.v1", "decision": "AUDIT_ERROR",
+        failed = {"schema": "gems88.download-audit.v2", "decision": "AUDIT_ERROR",
                   "error": f"{type(exc).__name__}: {exc}", "ok_to_submit": False,
                   "verdict": "negative", "research_download_pass_count": 0}
         if not args.check:

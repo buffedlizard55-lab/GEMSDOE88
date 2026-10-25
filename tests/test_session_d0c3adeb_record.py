@@ -88,7 +88,7 @@ def test_unmet_requirements_and_source_limits_stay_explicit():
     assert appendix == (ROOT / 'docs/research/session-d0c3adeb-completion.md').read_text()
 
 
-def test_real_browser_receipt_is_bound_to_current_pages_not_a_stale_screenshot():
+def test_historical_browser_receipt_remains_a_dated_negative_record():
     card = read('registry/session_d0c3adeb_run_card.json')
     record = read(card['software_review']['browser_evidence'])
     assert record['status'] == 'PASS'
@@ -99,5 +99,19 @@ def test_real_browser_receipt_is_bound_to_current_pages_not_a_stale_screenshot()
     for page in record['pages']:
         assert page['pass'] and not page['overflow'] and not page['errors']
         assert page['h1'] == 1 and page['openArchives'] == 0
+    # This immutable historical receipt describes the earlier published bytes.
+    # Later UI corrections must have their own fresh browser receipt, rather
+    # than rewriting this measurement or representing it as current evidence.
+    assert record['checked_at_utc'] == '2026-10-25T07:34:16.460Z'
     for relative, digest in record['source_sha256'].items():
+        assert relative.startswith('docs/') and len(digest) == 64
+        int(digest, 16)
+    current_card = read('registry/session_b4dfa10c_run_card.json')
+    current = read(current_card['software_review']['browser_evidence'])
+    assert current['status'] == 'PASS' and current['ok_to_submit'] is False
+    assert current['failed_fetch_stays_negative'] is True
+    assert {p['width'] for p in current['pages']} == {390, 1440}
+    assert len(current['pages']) == 7 and all(p['pass'] for p in current['pages'])
+    assert set(record['source_sha256']) <= set(current['source_sha256'])
+    for relative, digest in current['source_sha256'].items():
         assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == digest, relative
