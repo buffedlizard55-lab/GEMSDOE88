@@ -50,5 +50,21 @@
     "rho_limit": 0.9,
     "overlap_limit": 0.7
   },
-  "portal_error_fix": "zeros encoding: nodata=None, all cells finite, values in [0,1], 0 outside footprint (no NaN)"
+  "portal_error_fix": "zeros encoding: nodata=None, all cells finite, values in [0,1], 0 outside footprint (no NaN)",
+  "verdict": "negative",
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "submission_status": "RESEARCH ONLY — DO NOT SUBMIT",
+  "literal_duplicate_gate": {
+    "evidence_class": "RECORDED-REGISTRY-MEASUREMENT",
+    "forward_overlap": 1.0,
+    "limit": 0.7,
+    "decision": "FAIL-CLOSED / DUPLICATE — STOP",
+    "note": "The incoming quick sample already records max_forward_3px_sample_20=1.0; the repository saturation certificate blocks every nonempty candidate support under the binding literal rule."
+  },
+  "holdout_status": {
+    "evidence_class": "UNSCORED",
+    "status": "The quick four-fold diagnostic is not a canonical pooled HOLDOUT-DTI result with evaluator version, withheld-positive count, and CI; no organizer score is recorded."
+  },
+  "review_scope": "Metadata/status clarification only; historical raster format checks not rerun in this review."
 }

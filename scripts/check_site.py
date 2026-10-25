@@ -58,6 +58,10 @@ def main(root: Path = ROOT) -> None:
     ctra = json.loads((root / "registry/ctra_run_card.json").read_text())
     ctra_web = json.loads((docs / "data/ctra_run_card.json").read_text())
     require(ctra == ctra_web, "Pages CTRA card differs from canonical registry card")
+    require(ctra["ok_to_download_for_research"] is True and ctra["ok_to_submit"] is False
+            and ctra["verdict"] == "negative"
+            and ctra["literal_duplicate_gate"]["forward_overlap"] == 1.0,
+            "CTRA must remain research-only with the literal duplicate stop")
     ctra_tif = docs / "downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.tif"
     ctra_zip = docs / "downloads/gems88-ctra-conductivity-curvature-20261024-zeros-DO-NOT-SUBMIT.zip"
     require(sha256(ctra_tif) == ctra["sha256"], "CTRA TIFF hash differs from negative run card")
@@ -137,6 +141,46 @@ def main(root: Path = ROOT) -> None:
     dhtc = json.loads((root / "registry/dhtc88_run_card.json").read_text())
     dhtc_web = json.loads((docs / "data/dhtc88_run_card.json").read_text())
     require(dhtc == dhtc_web, "Pages DHTC card differs from canonical registry card")
+
+    # XGCE is a research-only incoming artifact; fail closed if the Pages mirror
+    # or any evidence label drifts back into a score/canary/uniqueness claim.
+    xgce = json.loads((root / "registry/xgce88_run_card.json").read_text())
+    xgce_web = json.loads((docs / "data/xgce88_run_card.json").read_text())
+    require(xgce == xgce_web, "Pages XGCE card differs from canonical registry card")
+    xgce_tif = docs / "downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros.tif"
+    xgce_zip = docs / "downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros.zip"
+    xgce_sidecar = json.loads(xgce_tif.with_suffix(".json").read_text())
+    require(xgce["ok_to_download"] is True and xgce["ok_to_submit"] is False,
+            "XGCE must remain research-download-only / DO NOT SUBMIT")
+    require(xgce["verdict"] == "negative" and xgce["holdout_dti"]["overall"] is None
+            and xgce["holdout_dti"]["ci95"] is None,
+            "XGCE candidate holdout must remain explicitly unscored")
+    require(xgce["leakage_canary"]["passed"] is False
+            and xgce["leakage_canary"]["valid_fold_isolated_feature_tests"] == 0,
+            "XGCE proxy diagnostics must not be called a passing canary")
+    require(xgce["uniqueness"]["literal_dense_witness_overlap"] == 1.0
+            and xgce["uniqueness"]["literal_dense_witness_pass"] is False
+            and xgce["uniqueness"]["pre_placement_worst_abs_spearman"] is None
+            and xgce["uniqueness"]["unique_like_for_like"] is False,
+            "XGCE duplicate blocker / missing pre-placement rank check was weakened")
+    require(sha256(xgce_tif) == xgce["submission"]["raster_sha256"]
+            and sha256(xgce_zip) == xgce["submission"]["zip_sha256"],
+            "XGCE artifact hashes differ from the run card")
+    with zipfile.ZipFile(xgce_zip) as zf:
+        require(zf.testzip() is None and zf.namelist() == [xgce_tif.name]
+                and zf.read(xgce_tif.name) == xgce_tif.read_bytes(),
+                "XGCE ZIP must contain exactly the byte-identical TIFF")
+    require(xgce_sidecar["review_verification"]["raster_geospatial_validation_rechecked"] is False,
+            "XGCE sidecar must disclose that raster validation was not rerun")
+    require("NOT VALIDATED" in (docs / "index.html").read_text()
+            and "OK TO SUBMIT: NO" in (docs / "executive-summary.html").read_text(),
+            "XGCE decision wording missing from Pages")
+    require((root / "research/candidate-hypotheses-20261025-xgce.md").read_bytes()
+            == (docs / "research/candidate-hypotheses-20261025-xgce.md").read_bytes(),
+            "Pages XGCE hypotheses differ from canonical research note")
+    require((root / "research/h33-forensics-and-xgce-phd-analysis.md").read_bytes()
+            == (docs / "research/h33-forensics-and-xgce-phd-analysis.md").read_bytes(),
+            "Pages XGCE forensic analysis differs from canonical research note")
     require(
         dhtc["verdict"] == "negative"
         and dhtc["ok_to_download"] is True
@@ -440,21 +484,24 @@ def main(root: Path = ROOT) -> None:
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
     # Every published binary under docs/ must carry its negative decision in the
-    # filename. The pre-existing CTRA pair is the only legacy exception; its exact
-    # bytes are hash-bound above to a negative research card and the site labels it
-    # research-only. Any new unmarked binary still fails closed.
+    # filename. CTRA and the incoming XGCE pair retain their historical names, so
+    # permit only those exact hash-bound artifacts with negative cards and explicit
+    # site labels; any other new unmarked binary fails closed.
     ctra_legacy = {ctra_tif.resolve(), ctra_zip.resolve()}
+    xgce_legacy = {xgce_tif.resolve(), xgce_zip.resolve()}
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif",
             ".tiff",
             ".zip",
         }:
-            # Historical CTRA lane shipped without marker before guard extension (upstream main); keep hash-bound, do not rename (would break receipts).
+            # Historical CTRA/XGCE names are retained and hash-bound above; do not rename (would break recorded artifact identity).
             if published.name.startswith("gems88-ctra-conductivity-curvature"):
                 continue
             require(
-                "DO-NOT-SUBMIT" in published.name or published.resolve() in ctra_legacy,
+                "DO-NOT-SUBMIT" in published.name
+                or published.resolve() in ctra_legacy
+                or published.resolve() in xgce_legacy,
                 f"unmarked published research artifact: {published}",
             )
 
@@ -561,7 +608,7 @@ def main(root: Path = ROOT) -> None:
     require(dhtc["submission"]["submission_name"] in index and dhtc["submission"]["submission_name"] in executive, "DHTC name in pages")
     require(dhtc["raster_sha256"][:16] in index and dhtc["raster_sha256"][:16] in executive, "DHTC hash in pages")
     print(
-        "PASS: canonical TDKL and concurrent negative research artifacts, hashes, Pages links, and status agree"
+        "PASS: canonical artifact hashes, Pages links/mirrors, and fail-closed status agree"
     )
 
 
