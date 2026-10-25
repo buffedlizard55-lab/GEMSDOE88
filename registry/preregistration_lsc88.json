@@ -1,0 +1,47 @@
+{
+  "lane": "H88-LSC",
+  "title": "Lidar step-coherence off-catalogue scarp carpet (3DEP 1 m lidar couplet + shoreline/channel mimic features, hide-and-recover GBM, 3 px catalogue collar, 2.8 px Poisson-disc carpet)",
+  "frozen_utc": "2026-10-25T04:45:00Z",
+  "frozen_before_feature_canary_holdout_or_production_build": true,
+  "session_branch": "arena/3341202b-gemsdoe88",
+  "hypothesis": "Expert-mapped new faults in the GeoDAWN region are predominantly subtle topographic steps (piedmont scarps, bedrock lineaments, splays and continuations) visible in the 1 m 3DEP lidar but absent from the USGS/INGENIOUS catalogue. At 100 m they manifest as pixels with high lidar step amplitude (step_max), a paired convex/concave Laplacian couplet (lappos_max/lapneg_max = scarp crest and base), and along-strike coherence (coh100, oriented persistence). A gradient-boosted classifier trained to recover WITHHELD catalogue strands from these lidar signatures plus regional context ranks off-catalogue pixels; dots are emitted as a >= 2.8 px Poisson-disc carpet outside a 3 px catalogue collar (the dot economics of the DTI metric: alpha = 0.2 makes a non-redundant dot pay whenever its expected kernel credit exceeds 0.2 x DTI ~ 0.06).",
+  "mechanism": "Quaternary normal faulting in alluvium produces metre-scale steps that persist along strike; the lidar step_max / Laplacian crest-base couplet captures the scarp cross-section, coherence and oriented persistence suppress isolated noise; the catalogue collar removes near-trace dots that the portal evidence (GEMSDOE81 cont_asb, 44,090 dots at median 2.2 px -> 0.0041 USER-REPORTED) shows are nearly worthless.",
+  "named_non_fault_mimics": [
+    "Pluvial Lake Lahontan shorelines and recessional benches (level steps at <= ~1,340 m): discriminated by dem_mean elevation, local slope and relief context",
+    "Stream terrace risers and channel banks: discriminated by 10 m channel density (chan_n) and knickpoint counts (knick_n)",
+    "Roads, canals, railroad grades: straight low-relief steps; partially captured by strike/persistence features (residual risk, flagged)",
+    "Bedrock-alluvium range-front contacts without active faulting"
+  ],
+  "layers": {
+    "lidar_scarp_features_u8.tif (3DEP 1 m lidar derived, 706/716 tiles)": ["ex_max", "ex_mean", "step_max", "lapneg_max", "lappos_max", "downface_max", "upface_max", "cross_max", "relief", "coh100", "strike", "valid"],
+    "derived_from_lidar": ["step_coh = step_max*coh100", "couplet = min(lapneg_max, lappos_max)", "persist = max over 4 orientations of 5 px line mean of step_max", "strike_sin2/strike_cos2"],
+    "topo_10m_derived_100m_u8.tif (3DEP 1/3 arc-second)": ["slope_p90", "slope_max", "steep_frac", "slope_std", "relief_local", "curv_prof_absmax", "aspect_coherence", "hs_lineament", "dem_mean"],
+    "dem10_chi_100m_u8.tif": ["chan_n", "knick_n"],
+    "training_features.tif (organizer 19-band)": ["B12 det_elev", "B19 det_slope", "B6 tilt", "B15 depth_to_base", "B17 cond_surf", "B2 rtp", "B18 grav_hg", "B3 tmi_hg"]
+  },
+  "catalogue_features": "NONE (zero-catalogue feature set). The catalogue enters only the emission mask (collar) and the training labels.",
+  "difference_from_repo_lanes": "ADHR/TDKL/HGVC/VHGD used lidar bands inside 44-107-channel PoE stacks dominated by geophysical conduit framing; no lane isolated the lidar step couplet with a lidar-vs-no-lidar ablation as the decision variable, nor used shoreline-elevation and channel-density mimic features. H88-RELAY used catalogue geometry only; MTAS/XGCE/GZZC used potential fields only.",
+  "difference_from_sibling_sites": "7GEMSDOE lidarscarp-ridge-top2pct (0.1461), GEMSDOE64 h64-lidar-scarp-cv (0.0383), GEMSDOE47 h60-lidarscarp-s2p0 (0.0430), GEMSDOE66 lidar03-cvretrain-reliefdecile (0.1152) emitted ridge-percentile / threshold maps; none combined hide-and-recover GBM ranking with the 3 px collar + 2.8 px carpet economics and explicit mimic features.",
+  "evaluator": {
+    "name": "gems57-pooled-hide-v2",
+    "folds": "holdout.buffered_component_draw(seed in {20, 21}, hide_frac=0.20, buffer_px=3, boundary_px=12); leave-one-quadrant-out training on the visible catalogue of the other three quadrants",
+    "scoring": "pooled DTI alpha=0.2 beta=0.8 300 m triangular; visible catalogue pixel-exactly masked; subsets far (>10 px from visible) and blind (>25 px)",
+    "bootstrap": "paired physical 20 km block percentile, 1000 draws, seed 520810"
+  },
+  "experiments_max": 3,
+  "experiments": [
+    {"id": "EXP1", "what": "single-feature leakage canary (symmetric AUC <= 0.90 per feature) + 8-cell holdout of arm A (LSC-36 features) vs arm B (organizer 19-band subset only, identical emitter) at fold-proportional budget 40,000 x region_cells / 5,167,373", "decision": "promote the lane only if arm A beats arm B on pooled overall AND far>10 px with a paired 95% CI excluding 0"},
+    {"id": "EXP2", "what": "spacing policy on the same surfaces: uniform 2.8 px vs adaptive (2.8 px for the top half of the budget, 4.0 px for the rest)", "decision": "choose the policy with the higher pooled overall DTI"},
+    {"id": "EXP3", "what": "production build: fit on the whole visible catalogue, 40,000 dots, 3 px collar; registry uniqueness; format validation; TIFF + ZIP + run card", "decision": "ok_to_submit requires: validator all checks pass, pre-placement |Spearman| <= 0.90 and like-for-like 3 px forward overlap <= 0.70 against every registry raster, share_le2 == 0, share_gt25 >= 0.35"}
+  ],
+  "budget_dots": 40000,
+  "collar_px": 3.0,
+  "spacing_px": 2.8,
+  "uniqueness_rule": {
+    "rho_limit": 0.90,
+    "overlap_limit": 0.70,
+    "registry_dots_definition": "binary/sparse registry rasters: their positive cells; dense/continuous registry rasters (positive on > 10% of the footprint): their top-k cells with k = our dot count AND their top-2% cells (the emission rate the 17GEMSDOE site itself used for its scored file); the worse of the two is binding",
+    "rationale": "The protocol rule is a lane-drift detector phrased for dot rasters. A probability raster positive on every footprint cell has no dots; reading every positive cell as a dot gives the test a 100% false-positive rate (it flags every possible raster, including every already-scored submission) and so carries no information about lane drift. Resolution of IR-88-86/113/114 is logged in IRREGULARITIES.md and flagged for review."
+  },
+  "labels": "HOLDOUT-DTI numbers carry evaluator version, withheld positive count and 95% CI; ORGANIZER-CONFIRMED only from a submission-page receipt (none exists for this lane); H33 0.2778 and leaderboard 0.4413 are USER-REPORTED / public-page snapshot."
+}

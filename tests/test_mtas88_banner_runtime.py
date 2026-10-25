@@ -12,15 +12,20 @@ NODE = shutil.which("node")
 
 
 def test_current_decision_precedes_archived_download_on_both_pages():
-    for rel in ("docs/index.html", "docs/executive-summary.html"):
-        html = (ROOT / rel).read_text()
-        current = html.index('id="autonomous-review"')
-        historical = html.index('id="hgvc-current"') if rel == "docs/index.html" else html.index("Archived H88-HGVC GeoTIFF")
-        assert current < historical, f"stale candidate appears before current decision in {rel}"
-        assert "NO NEW TIFF" in html
-        assert "H88-HGVC" in html
+    # 2026-10-25 (H88-LSC): the newest machine verdict must be the first thing
+    # on both pages, ahead of the historical (all DO-NOT-SUBMIT) lane banners.
+    index = (ROOT / "docs/index.html").read_text()
+    decision = index.index('id="decision"')
+    autonomous = index.index('id="autonomous-review"')
+    historical = index.index('id="hgvc-current"')
+    assert decision < autonomous < historical, "stale candidate appears before current decision in docs/index.html"
+    assert "OK TO DOWNLOAD: <span" in index and "DO NOT SUBMIT" in index[decision:autonomous]
+    assert "H88-HGVC" in index
     guide = (ROOT / "docs/executive-summary.html").read_text()
-    assert "CURRENT DECISION 2026-10-25: NO NEW UNIQUE TIFF" in guide
+    strip = guide.index("CURRENT DECISION 2026-10-25 (H88-LSC")
+    assert strip < guide.index("Archived H88-HGVC GeoTIFF")
+    assert "OK TO SUBMIT NO" in guide[strip:strip + 400]
+    assert "H88-HGVC" in guide
 
 
 @pytest.mark.skipif(NODE is None, reason="Node.js runtime unavailable")

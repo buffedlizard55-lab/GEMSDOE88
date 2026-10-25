@@ -1,9 +1,35 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c2436"><meta name="description" content="GEMSDOE88 research downloads and automated gates. No candidate is cleared for competition submission."><title>GEMSDOE88 · H88-SSA unique research TIFF · DO NOT SUBMIT</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c2436"><meta name="description" content="GEMSDOE88 research downloads and automated gates. No candidate is cleared for competition submission."><title>GEMSDOE88 · H88-LSC unique research TIFF · DOWNLOAD YES · SUBMIT NO</title><link rel="stylesheet" href="assets/site.css"><script src="assets/site.js" defer></script></head>
 <body><a href="#main" class="sr-only">Skip to content</a>
 <header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html" aria-current="page">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html">Sources</a></nav></div></header>
-<div class="alert-strip" role="status"><div class="wrap"><span class="alert-icon" aria-hidden="true">!</span><span data-card-status><strong>H88-SSA · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT</strong></span></div></div>
+<div class="alert-strip" role="status"><div class="wrap"><span class="alert-icon" aria-hidden="true">!</span><span data-card-status><strong>CURRENT (2026-10-25, H88-LSC): OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SUBMIT (fingerprint gate failed; 0 slots spent)</strong></span></div></div>
 <main id="main">
+<section id="decision" style="background:#13263a;color:#fff;padding:36px 0;border-bottom:6px solid #ffb703" aria-labelledby="decision-heading">
+  <div class="wrap">
+    <div class="kicker" style="color:#ffb703">CURRENT DECISION · 2026-10-25 · LANE H88-LSC (lidar step-couplet, zero-catalogue GBM) · 0 WEEKLY SLOTS SPENT</div>
+    <h1 id="decision-heading" style="color:#fff;margin:8px 0;font-size:1.9em">OK TO DOWNLOAD: <span style="color:#76ddca">YES</span> &nbsp;·&nbsp; OK TO SUBMIT: <span style="color:#ffb3ab">NO — DO NOT SUBMIT</span></h1>
+    <p style="font-size:1.05em;margin:6px 0 14px">Automated verdict from <code>registry/lsc88_run_card.json</code> (re-checked by <code>scripts/validate_lsc88.py</code>): leakage canary PASS (max AUC 0.5883), holdout lane gate PASS, uniqueness PASS (worst 3-px overlap 0.5255 ≤ 0.70, |ρ| 0.728 ≤ 0.90), format PASS — but the preregistered <strong>H33-parity fingerprint gate FAILED</strong>: only 16.3 % of dots lie &gt; 25 px from mapped faults (gate ≥ 35 %; median 8 px). Verdict: <strong>negative</strong>. Nothing on this site is ORGANIZER-CONFIRMED.</p>
+    <div class="button-row">
+      <a class="button button-primary" href="downloads/gems88-lsc88-lidarstep-40000dots-20261025T044348Z-cbf6f408-zeros-DO-NOT-SUBMIT.tif" download>⬇ Download H88-LSC GeoTIFF (149 KB LZW) — RESEARCH ONLY / DO NOT SUBMIT</a>
+      <a class="button button-ghost" href="downloads/gems88-lsc88-lidarstep-40000dots-20261025T044348Z-cbf6f408-zeros-DO-NOT-SUBMIT.zip" download>⬇ One-TIFF ZIP</a>
+      <a class="button button-ghost" href="data/lsc88_run_card.json">JSON run card</a>
+      <a class="button button-ghost" href="research/lsc88-20261025.md">PhD answer: why H33 = 0.2778 &amp; can we beat it</a>
+      <a class="button button-ghost" href="executive-summary.html">Exact portal procedure (when a file is cleared)</a>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px;background:#0b1a29;border-radius:10px;padding:16px;border:1px solid #2b4a66;font-size:0.93em">
+      <div>
+        <p><strong>File:</strong> <code>gems88-lsc88-lidarstep-40000dots-20261025T044348Z-cbf6f408-zeros-DO-NOT-SUBMIT.tif</code><br><strong>SHA-256 (TIF):</strong> <code>85e4b9ae76a46f49b9f73b334ca52540bfc82e88f082bcb2de8272587030bab4</code><br><strong>SHA-256 (ZIP):</strong> <code>6ca1de8addd4f3e88e245d597da655ed39fc34398a010ad2c30d11d04df26cd1</code></p>
+        <p><strong>Format:</strong> 1 band float32 · EPSG:32611 · 3730×3292 · exact sample transform · nodata None · all 12,279,160 cells finite in [0,1] · zeros outside footprint · 40,000 binary dots · 0 on catalogue (fixes <em>"Predicted values must be in range [0, 1]"</em>).</p>
+        <p><strong>Prepared name (24/140):</strong> <code>GEMSDOE88-LSC88-CBF6F408</code><br><strong>Prepared note (108/140):</strong> <code>H88-LSC lidar step-couplet GBM, 3px collar, adaptive carpet, 40000d; HOLDOUT-DTI 0.1086 far 0.0860; UNSCORED</code></p>
+      </div>
+      <div>
+        <p><strong>HOLDOUT-DTI</strong> (<code>gems57-pooled-hide-v2</code>, 22,893 withheld catalogue positives, 95 % paired block-bootstrap CI; zero-catalogue features, 3 px collar): lidar arm <strong>0.1086 [0.0940, 0.1239]</strong> (adaptive spacing) · 0.0997 [0.0841, 0.1153] (uniform) vs organizer-only ablation 0.0809 [0.0682, 0.0938]; paired Δ(lidar − organizer) <strong>+0.0188 [+0.0093, +0.0284]</strong>, far &gt; 10 px +0.0123 [+0.0038, +0.0203], blind &gt; 25 px +0.0013 [−0.0073, +0.0101] (n.s.).</p>
+        <p><strong>Why not submit:</strong> the carpet sits in the near-catalogue regime (median 8 px) that USER-REPORTED portal scores penalise (GEMSDOE81 at 2.2 px → 0.0041; H33 gained by pruning ≤ 2 px dots). The lineage reference <code>h33-h33-2-b2</code> (0.2778 USER-REPORTED) has 41.7 % of dots &gt; 25 px. Not comparable to earlier lanes' 0.19–0.20 holdout numbers, which used fold-visible catalogue features (IR-88-125).</p>
+        <p><strong>Next preregistered step:</strong> same surface, stratified ≥ 35 % far budget (LSC-STRAT), then a continuous-field candidate aimed at the 0.33 public plateau — see the research note §7.</p>
+      </div>
+    </div>
+  </div>
+</section>
 <p class="wrap"><a href="research/review-20261025-recheck.md">Independent repository recheck: evidence limits, corrections, and next steps</a></p>
 <section style="background:#06402b;color:#fff;padding:34px 0;border-bottom:4px solid #76ddca" aria-labelledby="relay-unique">
   <div class="wrap">
