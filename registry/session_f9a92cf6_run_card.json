@@ -142,7 +142,7 @@
   "verification": {
     "full_pytest": {
       "status": "PASS",
-      "passed": 875,
+      "passed": 882,
       "skipped": 23,
       "warnings": 64
     },
@@ -180,6 +180,17 @@
     "h33_lineage_audit": {
       "status": "PASS",
       "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE"
+    },
+    "post_merge_targeted_regressions": {
+      "status": "PASS",
+      "passed": 40,
+      "skipped": 1,
+      "tests": [
+        "test_session4_release.py",
+        "test_session_78cfb743_fixes.py",
+        "test_session_838cc402_record.py",
+        "test_site_guard_optimization.py"
+      ]
     }
   }
 }

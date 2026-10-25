@@ -1,15 +1,16 @@
 # Submission decision — NO FILE APPROVED · DO NOT SUBMIT
 
-> **Current gate:** `DUPLICATE_STOP`, `ok_to_submit: false`, `verdict: negative`. The prior H88-CON88 clearance was withdrawn under IR-88-B4DFA10C-08 because equal-support top-N was used as an unauthorized exception for the dense 17GEMSDOE raster. The binding literal positive-support overlap lower bound is `1.0 > 0.70`. See [withdrawal record](data/con88_withdrawal.json) and [current executive guide](executive-summary.html).
+> **Current gate:** `DUPLICATE_STOP`, `ok_to_submit: false`, `verdict: negative`. The prior H88-CON88 clearance was withdrawn under IR-88-B4DFA10C-08 because equal-support top-N was used as an unauthorized exception for the dense 17GEMSDOE raster. The binding literal positive-support overlap lower bound is `1.0 > 0.70`. See the [withdrawal record](data/con88_withdrawal.json), [negative gate record](data/con88_gates.json), and [current executive guide](executive-summary.html).
 
-**There is no current submission TIFF to upload.** Existing files are archived research downloads, each marked `DO-NOT-SUBMIT`; local format checks do not authorize a slot or establish a competition score. No slot was used in this review. The user-reported H33 value has no organizer receipt in this repository.
+**There is no current submission TIFF to upload.** Do not submit any artifact from this repository. Existing files are archived research downloads, each marked `DO-NOT-SUBMIT`; local format checks do not authorize a slot or establish a competition score. No slot was used in this review. The user-reported H33 value has no organizer receipt in this repository.
 
-- Automated saved-byte audit: **48/48** published TIFF/ZIP pairs pass local research-package checks; **0/48** are protocol-eligible. Counts refer only to files under GitHub Pages download directories. [Full audit](data/download_audit.json).
-- Historical CON88: [archive page](con88.html); it is no longer upload-cleared. Its TIFF payload hash is unchanged; only the filename/ZIP member is marked `DO-NOT-SUBMIT`.
-- Validation-tier data was restored from SHA-pinned owner mirrors for this review; the full feature stack is absent, and these mirrors are not organizer-authenticated downloads.
-- Reproduce the current checks: `python scripts/restore_inputs.py --validation`, `python scripts/generation_guard.py` (expected exit `2`), `python scripts/audit_downloads.py --check`, `python scripts/render_decision.py --check`, and `python -O scripts/check_site.py`.
+- Automated saved-byte audit: **48/48** published TIFF/ZIP pairs pass local research-package checks; **0/48** are protocol-eligible. Counts cover 47 files in `docs/downloads/` and 1 historical variant in `docs/research-variants/`. [Full audit](data/download_audit.json).
+- Historical CON88: [archive page](con88.html). Its TIFF payload hash is unchanged; only the filename and ZIP member were marked `DO-NOT-SUBMIT`.
+- Validation-tier inputs were restored from SHA-pinned owner mirrors for this review; the full feature stack is absent, and these mirrors are not organizer-authenticated downloads.
+- Reproduce current checks: `python scripts/restore_inputs.py --validation`, `python scripts/generation_guard.py` (expected exit `2`), `python scripts/audit_downloads.py --check`, `python scripts/render_decision.py --check`, and `python -O scripts/check_site.py`.
+- **Unique new submission requirement: UNMET.** The top-level decision and [executive summary](executive-summary.html) intentionally provide no active upload button until the binding gate can be satisfied.
 
-**Unique new submission requirement: UNMET.** The site’s top-level decision and [executive summary](executive-summary.html) intentionally provide no active upload button until the binding gate can be satisfied.
+> **Archive safety:** Do not upload any legacy `releases/*.tif` files. Earlier review records flagged six `HOLD` MASS artifacts, including three non-`-zeros` files with exterior NaNs and no filename marker. This is a preserved historical warning, not a fresh audit performed in this review. Likewise, earlier session 21256734 / 838cc402 source and leaderboard checks are dated records, not fresh external verification here. The current session's source-access boundary and ranked hypotheses are documented in its [review](research/session-arena-f9a92cf6-review-20261025.md).
 
 <details>
 <summary>Historical instructions and lane records — not current authorization</summary>
