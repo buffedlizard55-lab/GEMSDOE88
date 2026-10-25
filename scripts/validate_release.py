@@ -32,15 +32,18 @@ def digest(path: Path) -> str:
 
 def mrr_release_report(root=ROOT):
     root = Path(root)
+    # The unversioned four-way run-card locations now contain the current
+    # 2026-10-25 protocol-review card. The frozen MRR artifact remains audited
+    # through its explicit versioned mirrors.
     card_paths = (
-        root / "registry/run_card.json",
-        root / "docs/data/run-card.json",
-        root / "docs/run_card.json",
-        root / "evidence/run-card.json",
+        root / "registry/run_card_mrr88.json",
+        root / "docs/data/run-card-mrr88.json",
+        root / "docs/run_card_mrr88.json",
+        root / "evidence/run-card-mrr88.json",
     )
     card_texts = [p.read_text(encoding="utf-8") for p in card_paths]
     if len(set(card_texts)) != 1:
-        raise ValueError("canonical run-card copies are not byte-identical")
+        raise ValueError("versioned MRR run-card copies are not byte-identical")
     card = json.loads(card_texts[0])
 
     holdout = json.loads((root / "evidence/mrr88_holdout.json").read_text())

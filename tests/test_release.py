@@ -20,10 +20,10 @@ def test_published_card_and_tif_fail_closed():
     assert report["values_0_1"] and report["inside_no_nan"]
     assert report["literal_duplicate"] and report["registry_forward_overlap_3px"] == 1
     assert report["ok_to_download"] and not report["ok_to_submit"]
-    card = json.loads((ROOT / "docs/data/run-card.json").read_text())
+    card = json.loads((ROOT / "docs/data/run-card-mrr88.json").read_text())
     assert (
         card["submission_note"]
-        == json.loads((ROOT / "registry/run_card.json").read_text())["submission_note"]
+        == json.loads((ROOT / "registry/run_card_mrr88.json").read_text())["submission_note"]
     )
     assert len(card["submission_note"]) <= 140 and card["verdict"] == "negative"
 

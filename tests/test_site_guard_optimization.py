@@ -18,6 +18,7 @@ def test_guard_rejects_corruption_under_both_interpreters(
 ):
     # Share immutable large artifacts; isolate only the file being corrupted.
     (tmp_path / "registry").symlink_to(ROOT / "registry", target_is_directory=True)
+    (tmp_path / "evidence").symlink_to(ROOT / "evidence", target_is_directory=True)
     docs = tmp_path / "docs"
     docs.mkdir()
     for source in (ROOT / "docs").iterdir():

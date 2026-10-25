@@ -125,9 +125,12 @@ def test_zero_test_quadrant_truth_leakage_bit_identical_under_scrambling(tmp_pat
 
 
 def test_h88_adhr_candidate_artifact_zip_and_19_raster_receipts():
-    rc = json.loads((ROOT / "registry/run_card.json").read_text())
-    assert rc == json.loads((ROOT / "docs/run_card.json").read_text())
-    assert rc == json.loads((ROOT / "docs/data/run-card.json").read_text())
+    # This remains an immutable MRR artifact test; the four unversioned run-card
+    # paths now identify the 2026-10-25 protocol review, not this historic run.
+    rc = json.loads((ROOT / "registry/run_card_mrr88.json").read_text())
+    assert rc == json.loads((ROOT / "docs/run_card_mrr88.json").read_text())
+    assert rc == json.loads((ROOT / "docs/data/run-card-mrr88.json").read_text())
+    assert rc == json.loads((ROOT / "evidence/run-card-mrr88.json").read_text())
 
     tif = ROOT / rc["artifact"]
     zpath = ROOT / rc["zip_artifact"]

@@ -1,22 +1,72 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c2436"><meta name="description" content="Official sources, hash-pinned owner mirrors, and verification limits for GEMSDOE88 H88-MVRD."><title>Sources &amp; provenance · GEMSDOE88</title><link rel="stylesheet" href="assets/site.css"></head>
-<body><a href="#main" class="sr-only">Skip to content</a><header class="header"><div class="wrap"><a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a><nav class="nav" aria-label="Main navigation"><a href="index.html">Overview</a><a href="executive-summary.html">Submission guide</a><a href="research.html">Research</a><a href="sources.html" aria-current="page">Sources</a></nav></div></header><div class="alert-strip"><div class="wrap"><span class="alert-icon">!</span><strong>Source verification does not override the verdict: DO NOT SUBMIT.</strong></div></div>
-<main id="main"><section class="subhero"><div class="wrap"><p class="crumb"><a href="index.html">Overview</a> / Sources</p><div class="eyebrow">Official references · local hash receipts · explicit limits</div><h1>Sources and provenance</h1><p>The experiment uses competition inputs and official-source derivatives restored from SHA-pinned owner GitHub mirrors. Network policy allowed GitHub and package registries, not direct live retrieval from DrivenData, USGS, DOE GDR, or NLR. The links below are manual review targets; live availability was not reasserted from this sandbox.</p></div></section>
-<section><div class="wrap"><div class="kicker">Competition definition</div><h2>Organizer and rules</h2><ul>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData problem description and submission format</a></li>
-<li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData competition data page</a> — authenticated access required</li>
-<li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution on GitHub</a></li>
-<li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR official rules PDF</a></li>
-<li><a href="https://epsg.io/32611">EPSG:32611 reference</a></li>
-</ul><p>The project restores <code>sample_submission.tif</code>, <code>existing_faults.tif</code>, and the 19-band feature stack from pinned owner repositories and verifies their SHA-256 values. An independently authenticated byte comparison to a logged-in organizer download remains outstanding.</p></div></section>
-<section style="background:#e9f2f1"><div class="wrap"><div class="kicker">H88-MVRD inputs</div><h2>Official/free source families</h2><div class="table-scroll"><table><thead><tr><th>Source</th><th>Layers / role</th><th>Local verification</th></tr></thead><tbody>
-<tr><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN airborne magnetic and radiometric surveys</a></td><td>TMI-upward continuation and K/Th/U-derived redox indices</td><td>Owner-mirrored derivatives restored by hash; source is official, but derivative pixels were not independently re-downloaded here</td></tr>
-<tr><td><a href="https://www.usgs.gov/3d-elevation-program">USGS 3D Elevation Program</a></td><td>1 m LiDAR scarp polarity/strike; 10 m slope, relief, aspect coherence; χ/ksn/area derivatives</td><td>Output rasters and manifests hash-pinned; manifests list official tile URLs and source hashes</td></tr>
-<tr><td><a href="https://gdr.openei.org/submissions/1391">DOE Geothermal Data Repository submission 1391</a></td><td>Temperature probes, springs, wells and paleo-geothermal context already used by the shared 44-channel stack</td><td>Restored owner-mirror files hash-verified</td></tr>
-<tr><td><a href="https://mrdata.usgs.gov/sgmc/">USGS State Geologic Map Compilation</a></td><td>Off-catalogue diagnostic only; not a candidate score</td><td>Derived aligned raster hash-verified</td></tr>
-<tr><td><a href="https://gbcge.org/current-projects/ingenious/">Great Basin Center for Geothermal Energy / INGENIOUS</a></td><td>Regional geothermal and blind-system scientific context</td><td>Manual-review source; not live-fetched in this sandbox</td></tr>
-</tbody></table></div></div></section>
-<section><div class="wrap"><div class="kicker">Pinned local files</div><h2>Reproducibility receipts</h2><ul><li><code>data/training_features.tif</code> — SHA-256 <code>4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5</code>; 19 band names checked at runtime.</li><li><code>data/bridge/sample_submission.tif</code> — SHA-256 <code>2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc</code>.</li><li><code>data/bridge/existing_faults.tif</code> — SHA-256 <code>7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093</code>.</li><li><a href="data/mvrd_run_card.json">MVRD run card</a>, <a href="data/mvrd-gate-v3.json">gate v3 record</a>, and <a href="downloads/gems88-mvrd-monoclinal-redox-strand-20261024-v1-DO-NOT-SUBMIT.format-audit.json">saved-byte format audit</a>; <a href="data/qtsk88_run_card.json">H88-QTSK run card</a>, <a href="research/candidate-hypotheses-20261024-qtsk.md">H88-QTSK 5-hypothesis dossier</a>, and <a href="data/leaderboard.json">2026-10-24 leaderboard snapshot</a>; <a href="data/gthc88_run_card.json">GTHC-88 run card</a>, <a href="data/gthc88_validation.json">GTHC-88 validation</a>, and <a href="research/candidate-hypotheses-20261024-gthc88.md">GTHC-88 4-hypothesis dossier</a>.</li><li><a href="research/candidate-hypotheses-20261024.md">Pre-implementation candidate ranking and method record</a>.</li></ul></div></section>
-<section style="background:#e9f2f1"><div class="wrap"><div class="kicker">Shared code</div><h2>No private metric fork</h2><ul><li><code>vendor/gems57/holdout.py</code>: buffered whole-component split.</li><li><code>vendor/gems57/evaluate_holdout.py</code>: pooled DTI and paired physical-block bootstrap.</li><li><code>vendor/gems57/submission_writer.py</code>: all-finite [0,1] TIFF and one-member ZIP writer.</li><li><code>vendor/gems57/uniqueness.py</code>: pre-placement correlation and final overlap measurements.</li></ul></div></section>
-<section><div class="wrap"><div class="notice"><strong>Not independently verified here</strong><p>No DrivenData login or submission-page receipt was available. H33's 0.2778, the prompt's 0.3195/0.4413 maxima, weekly quota, portal acceptance, and leaderboard outcome for H88-MVRD are not organizer-confirmed by this repository. The candidate used zero slots.</p></div></div></section>
-</main><footer class="footer"><div class="wrap"><p>GEMSDOE88 · Hash-pinned locally, explicit about authentication limits.</p><a href="index.html">Back to overview →</a></div></footer></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0c2436">
+  <meta name="description" content="Official data source links, access status, and provenance limits for GEMSDOE88 geothermal fault research.">
+  <title>Sources and provenance · GEMSDOE88</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a href="#main" class="sr-only">Skip to content</a>
+<header class="header"><div class="wrap">
+  <a class="brand" href="index.html">GEMSDOE<span style="color:#76ddca">88</span><small>auditable research</small></a>
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html">Overview</a><a href="executive-summary.html">Submission guide</a>
+    <a href="research.html">Research</a><a href="sources.html" aria-current="page">Sources</a>
+  </nav>
+</div></header>
+<div class="alert-strip"><div class="wrap"><span class="alert-icon" aria-hidden="true">!</span><strong>Source availability, current competition rules, and data-use terms were not verified in this review. DO NOT SUBMIT.</strong></div></div>
+<main id="main">
+<section class="subhero"><div class="wrap">
+  <p class="crumb"><a href="index.html">Overview</a> / Sources and provenance</p>
+  <div class="eyebrow">Primary-source links · access and provenance limits</div>
+  <h1>Sources and provenance</h1>
+  <p>These links identify the official or public source families referenced by this repository; they are not represented as fetched or currently accessible. This sandbox's network allowlist did not include DrivenData, USGS, NASA ASF, or AWS Open Data. The validation-tier restore used SHA-pinned owner GitHub mirrors only. Those mirrors are not organizer authentication and do not establish source redistribution permission.</p>
+  <p><strong>Competition training feature stack:</strong> absent from this checkout. Only validation-grid/label files and the pinned registry witness were restored for local checks. Do not infer source coverage or holdout performance for any external-data hypothesis.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kicker">Competition definition</div><h2>Organizer and rules links</h2>
+  <ul>
+    <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">DrivenData competition problem, metric, and submission format</a> — not fetched this review.</li>
+    <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">DrivenData competition data page</a> — not fetched; authentication/access may be required.</li>
+    <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">DrivenData live leaderboard</a> — not fetched; the prompt values 0.3195 and 0.4413 remain unverified snapshots.</li>
+    <li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData submission page / receipt</a> — no login or submission was attempted.</li>
+    <li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution repository</a> — link retained for later review.</li>
+    <li><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR official rules PDF</a> — not fetched; no current quota/rules claim is made.</li>
+  </ul>
+</div></section>
+
+<section style="background:#e9f2f1"><div class="wrap">
+  <div class="kicker">Candidate source families</div><h2>Availability is unverified—not assumed</h2>
+  <div class="table-scroll"><table><thead><tr><th>Research layer</th><th>Official/public starting point</th><th>What is and is not established</th></tr></thead><tbody>
+    <tr><td>Airborne magnetic and radiometric surveys</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a></td><td>Prior repository cards describe owner-mirrored derivatives. Exact source-to-derivative lineage, Great Basin AOI coverage, current host availability, and reuse terms were not independently re-downloaded or verified in this review.</td></tr>
+    <tr><td>Terrain, LiDAR, and drainage structure</td><td><a href="https://www.usgs.gov/3d-elevation-program">USGS 3D Elevation Program (3DEP)</a></td><td>USGS is the official starting point; exact tile coverage/licensing and the missing derived `dem10_chi` rasters were not checked. Existing methods already use terrain/χ/knickpoint channels.</td></tr>
+    <tr><td>Multi-year surface-temperature persistence</td><td><a href="https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature">USGS Landsat Collection 2 surface temperature</a></td><td>Hypothesis source only. Scene completeness, cloud/season matching, usable resolution, and data terms are unverified; no Landsat time series is in the feature stack.</td></tr>
+    <tr><td>Interferometric displacement and coherence</td><td><a href="https://asf.alaska.edu/">NASA Alaska Satellite Facility DAAC</a></td><td>Hypothesis source only. Scene coverage, processing access, coherence/time-series quality, and redistribution terms are unverified; no InSAR stack is present.</td></tr>
+    <tr><td>Seasonal optical moisture/vegetation</td><td><a href="https://registry.opendata.aws/sentinel-2-l2a-cogs/">AWS Open Data Sentinel-2 L2A COG registry</a></td><td>Hypothesis source only. Registry, AOI/season completeness, public-access conditions, and derived-data terms were not fetched or checked; no optical time series is present.</td></tr>
+    <tr><td>Geothermal wells, springs, and temperature observations</td><td><a href="https://gdr.openei.org/">DOE Geothermal Data Repository (GDR)</a></td><td>Existing repository cards cite GDR-derived inputs, but the source pages and underlying files were not independently accessed in this review. No new external records were downloaded.</td></tr>
+  </tbody></table></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="kicker">Local provenance</div><h2>What was actually restored and checked</h2>
+  <ul>
+    <li><code>data/bridge/sample_submission.tif</code> — SHA-256 <code>2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc</code>, restored through the validation tier.</li>
+    <li><code>data/bridge/existing_faults.tif</code> — SHA-256 <code>7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093</code>, restored through the validation tier.</li>
+    <li><code>data/registry/dense_17gemdoe.tif</code> — SHA-256 <code>ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be</code>; owner mirror, not authenticated by the organizer. Its saturation proof blocks every non-empty candidate under the current literal rule.</li>
+    <li>The full competition training raster <code>training_features.tif</code> and external derived feature stack are not available in this checkout; prior run cards are historical evidence, not a current retrain.</li>
+    <li><a href="data/session_20261025_run_card.json">2026-10-25 session run card</a> · <a href="data/protocol_review_43d08c7a.json">automated protocol review</a> · <a href="data/literal_protocol_audit.json">literal duplicate audit</a>.</li>
+  </ul>
+</div></section>
+
+<section style="background:#e9f2f1"><div class="wrap">
+  <div class="kicker">Evidence status</div><h2>Do not conflate source, holdout, and public-score evidence</h2>
+  <p>H33 <code>0.2778</code> is USER-REPORTED in repository notes; no organizer receipt was found. The conflicting <code>0.3195</code>/<code>0.4413</code> snapshots were not fetched. Historical local values must be labeled <strong>HOLDOUT-DTI</strong> with evaluator, withheld-positive count, and 95% confidence interval; only a submission receipt supports <strong>ORGANIZER-CONFIRMED</strong>.</p>
+  <p>Read the <a href="research/session-20261025-review.md">current four-hypothesis review</a>, <a href="research/h33-forensics-and-dhtc-phd-analysis.md">H33 evidence analysis</a>, and <a href="executive-summary.html">submission guide</a>. All candidate TIFFs remain DO NOT SUBMIT.</p>
+</div></section>
+</main>
+<footer class="footer"><div class="wrap"><p>GEMSDOE88 · Owner-mirrored bytes are not organizer-authenticated sources.</p><a href="executive-summary.html">Executive submission guide →</a></div></footer>
+</body></html>

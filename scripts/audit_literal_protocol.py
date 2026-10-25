@@ -97,7 +97,7 @@ def inspect(root=ROOT):
         raise ValueError("invalid submission note")
     return {
         "schema": "gems88.literal-protocol-audit.v1",
-        "date_utc": "2026-10-24",
+        "date_utc": "2026-10-25",
         "hypothesis": card["hypothesis"],
         "mechanism": card["mechanism"],
         "named_non_fault_process": card["named_non_fault_process"],
@@ -142,7 +142,7 @@ def main():
                   "ok_to_download_for_research": False, "ok_to_submit": False,
                   "verdict": "negative", "error": str(exc)}
     text = json.dumps(result, indent=2, allow_nan=False) + "\n"
-    for output in (ROOT / "evidence/literal_protocol_audit_20261024.json",
+    for output in (ROOT / "evidence/literal_protocol_audit_20261025.json",
                    ROOT / "docs/data/literal_protocol_audit.json"):
         output.write_text(text)
     print(text, end="")

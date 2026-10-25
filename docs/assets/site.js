@@ -26,30 +26,45 @@
   const banner = document.querySelector('[data-card-status]');
   if (banner) {
     try {
-      const response = await fetch('data/literal_protocol_audit.json', { cache: 'no-store' });
-      const currentResponse = await fetch('data/current_release.json', { cache: 'no-store' });
-      const cardResponse = await fetch('data/mvrd_run_card.json', { cache: 'no-store' });
-      const tdklResponse = await fetch('data/tdkl88_run_card.json', { cache: 'no-store' });
-      if (!response.ok || !currentResponse.ok || !cardResponse.ok || !tdklResponse.ok) {
-        throw new Error('latest run validation unavailable');
+      const [currentResponse, tdklResponse, literalResponse, reviewResponse, dhtcResponse] = await Promise.all([
+        fetch('data/current_release.json', { cache: 'no-store' }),
+        fetch('data/tdkl88_run_card.json', { cache: 'no-store' }),
+        fetch('data/literal_protocol_audit.json', { cache: 'no-store' }),
+        fetch('data/session_20261025_run_card.json', { cache: 'no-store' }),
+        fetch('data/dhtc88_run_card.json', { cache: 'no-store' }),
+      ]);
+      if (![currentResponse, tdklResponse, literalResponse, reviewResponse, dhtcResponse].every(r => r.ok)) {
+        throw new Error('current review validation unavailable');
       }
-      const data = await response.json();
-      const current = await currentResponse.json();
-      const card = await cardResponse.json();
-      const tdkl = await tdklResponse.json();
-      // Fail closed. The literal audit proves the universal dense-witness stop;
-      // the current TDKL feed and archived MVRD card independently bind displayed bytes.
-      const consistent = data.ok_to_download_for_research === true && data.ok_to_submit === false &&
-          data.decision === 'DUPLICATE_STOP' && data.validator_output?.ok === true &&
-          current.candidate === 'H88-TDKL' && current.ok_to_download === true &&
-          current.ok_to_submit === false && current.literal_duplicate === true &&
-          current.file_sha256 === tdkl.raster_sha256 && tdkl.ok_to_submit === false &&
-          card.ok_to_submit === false;
+      const [current, tdkl, literal, review, dhtc] = await Promise.all([
+        currentResponse.json(), tdklResponse.json(), literalResponse.json(),
+        reviewResponse.json(), dhtcResponse.json(),
+      ]);
+      // The session card proves the fresh review's no-generation decision; the
+      // current-release and TDKL cards bind the existing research-download bytes.
+      const consistent = current.candidate === 'H88-TDKL' &&
+          current.file === tdkl.raster?.file &&
+          current.file_sha256 === tdkl.raster_sha256 &&
+          current.ok_to_download === true && current.ok_to_submit === false &&
+          current.literal_duplicate === true && current.duplicate === true &&
+          tdkl.verdict === 'negative' && tdkl.ok_to_download === true &&
+          tdkl.ok_to_submit === false &&
+          literal.decision === 'DUPLICATE_STOP' &&
+          literal.saturation_certificate?.universal_overlap_blocker === true &&
+          literal.validator_output?.ok === true &&
+          review.decision === 'DUPLICATE_STOP' &&
+          review.ok_to_download_for_research === true && review.ok_to_submit === false &&
+          review.experiment_budget?.new_rasters_generated === 0 &&
+          review.experiment_budget?.experiments_run_this_session === 0 &&
+          review.correlation_overlap_vs_registry?.universal_nonempty_candidate_blocker === true &&
+          review.existing_research_artifact?.sha256 === dhtc.raster_sha256 &&
+          dhtc.ok_to_download === true && dhtc.ok_to_submit === false &&
+          dhtc.verdict === 'negative';
       banner.textContent = consistent
-        ? 'H88-TDKL & H88-MVRD · DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (automated decision)'
-        : 'DO NOT SUBMIT · latest release status is inconsistent or unverified';
+        ? 'NO CANDIDATE CLEARED · H88-TDKL DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT (DUPLICATE_STOP)'
+        : 'DO NOT SUBMIT · current review status is inconsistent or unverified';
     } catch (_) {
-      banner.textContent = 'DO NOT SUBMIT · machine release status unavailable';
+      banner.textContent = 'DO NOT SUBMIT · machine review status unavailable';
     }
   }
   for (const button of document.querySelectorAll('[data-copy]')) {

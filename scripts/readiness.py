@@ -105,10 +105,36 @@ def verify_template(root=ROOT):
 
 
 def current_status(root=ROOT):
-    """Represent canonical H88-TDKL. A format PASS is not slot approval."""
+    """Reconcile the current TDKL research release with the current review stop."""
     from scripts.validate_current import release_report
 
+    root = Path(root)
     report = release_report(root)
+    mirror_paths = [
+        root / 'registry/session_20261025_run_card.json',
+        root / 'docs/data/session_20261025_run_card.json',
+        root / 'registry/run_card.json',
+        root / 'docs/data/run-card.json',
+        root / 'docs/run_card.json',
+        root / 'evidence/run-card.json',
+    ]
+    texts = [path.read_text(encoding='utf-8') for path in mirror_paths]
+    if len(set(texts)) != 1:
+        raise ValueError('2026-10-25 session run-card mirrors are not byte-identical')
+    review = json.loads(texts[0])
+    overlap = review.get('correlation_overlap_vs_registry') or {}
+    budget = review.get('experiment_budget') or {}
+    if (review.get('schema') != 'gems88.session-review-card.v1'
+            or review.get('verdict') != 'negative'
+            or review.get('ok_to_submit') is not False
+            or overlap.get('decision') != 'DUPLICATE_STOP'
+            or overlap.get('universal_nonempty_candidate_blocker') is not True
+            or overlap.get('uncovered_allowed_pixels') != 0
+            or budget.get('experiments_run_this_session') != 0
+            or budget.get('new_rasters_generated') != 0
+            or budget.get('weekly_slots_used') != 0):
+        raise ValueError('current session review card does not prove the binding no-submit decision')
+
     problems = []
     if report['paired_delta_ci95'][0] <= 0:
         problems.append('HOLDOUT: paired improvement is not positive at 95% confidence')
@@ -128,6 +154,9 @@ def current_status(root=ROOT):
         'raster_sha256': report['file_sha256'],
         'policy': 'binding-literal-all-registry-v1 + concurrent-lane overlap',
         'run_card': 'registry/tdkl88_run_card.json',
+        'review_card': 'registry/session_20261025_run_card.json',
+        'review_date_utc': review['review_date_utc'],
+        'review_decision': overlap['decision'],
     }
 
 

@@ -140,10 +140,10 @@ def fabric_release_report(root=ROOT):
         # outside the accessible registry (same lane as the primary, IR-88-76/74).
         if (root / 'docs' / 'downloads' / Path(data['candidate']['tif']).name).is_file():
             expected_hashes.add(data['candidate']['sha256'])
-    # IR-88-82 (2026-10-24, LBCAL session): the canonical negative run card's own TIFF (MRR-BPR-88, PRs #56/#57)
-    # was published without being whitelisted here, so main failed this check on its own bytes. Accept it only
-    # via its own run card hash with verdict negative / ok_to_submit false; any other unreviewed TIFF still fails.
-    canon = json.loads((root / 'registry' / 'run_card.json').read_text())
+    # IR-88-82 (2026-10-24, LBCAL session): the versioned negative MRR-BPR-88 run
+    # card binds its own TIFF. The unversioned four-way run_card.json mirrors now
+    # describe the 2026-10-25 protocol review, so do not use them as artifact records.
+    canon = json.loads((root / 'registry' / 'run_card_mrr88.json').read_text())
     if canon.get('verdict') == 'negative' and canon.get('ok_to_submit') is False and canon.get('raster_sha256'):
         expected_hashes.add(canon['raster_sha256'])
     # IR-88-KTH-02: independently audited KTH research file is a negative
@@ -287,10 +287,35 @@ def phase_release_report(root=ROOT):
 
 
 def release_report(root=ROOT):
-    """Return the canonical current H88-TDKL report."""
+    """Validate the current TDKL research release and the 2026-10-25 global stop."""
+    root = Path(root)
     from scripts.validate_tdkl88 import validate_tdkl88
 
-    return validate_tdkl88(root)
+    report = validate_tdkl88(root)
+    mirror_paths = [
+        root / 'registry/session_20261025_run_card.json',
+        root / 'docs/data/session_20261025_run_card.json',
+        root / 'registry/run_card.json',
+        root / 'docs/data/run-card.json',
+        root / 'docs/run_card.json',
+        root / 'evidence/run-card.json',
+    ]
+    texts = [path.read_text(encoding='utf-8') for path in mirror_paths]
+    if len(set(texts)) != 1:
+        raise ValueError('current protocol-review run-card mirrors are not byte-identical')
+    review = json.loads(texts[0])
+    uniqueness_state = review.get('correlation_overlap_vs_registry') or {}
+    budget = review.get('experiment_budget') or {}
+    if (review.get('schema') != 'gems88.session-review-card.v1'
+            or review.get('verdict') != 'negative'
+            or review.get('ok_to_submit') is not False
+            or uniqueness_state.get('decision') != 'DUPLICATE_STOP'
+            or uniqueness_state.get('universal_nonempty_candidate_blocker') is not True
+            or uniqueness_state.get('uncovered_allowed_pixels') != 0
+            or budget.get('new_rasters_generated') != 0
+            or budget.get('weekly_slots_used') != 0):
+        raise ValueError('current protocol-review card does not prove the binding no-submit decision')
+    return report
 
 def main():
     report = release_report()

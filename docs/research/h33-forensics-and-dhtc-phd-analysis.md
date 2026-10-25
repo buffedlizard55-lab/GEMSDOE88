@@ -1,140 +1,81 @@
-# PhD Forensic Analysis: Mathematical Decomposition of GEMSDOE32 / H33 (0.2778), Metric Mechanics, and Architectural Roadmap to Surpass It
+# H33 on-disk forensics: evidence, limits, and what would be needed to beat it
 
-**Author:** Geothermal Geophysical & Structural Permeability Working Group (GEMSDOE88)  
-**Date:** 2026-10-24  
-**Primary Reference:** [GEMSDOE32 Submission Site](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html)  
-**Evaluated Artifact:** `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` (Owner-reported score: **0.2778**)  
-**Live Competition Benchmark:** Leaderboard #1 = **0.4413** (xiaofanhu), Round 1 Prize Cutoff (#5) = **0.3539**  
-**Official Reference Links:**
-- DrivenData DOE GEMS Challenge: <https://www.drivendata.org/competitions/306/competition-doe-gems/>
-- DrivenData Problem Description & Metric: <https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/>
-- DrivenData Leaderboard: <https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/>
-- NLR GEMS Prize Official Rules: <https://docs.nlr.gov/docs/fy26osti/96647.pdf>
-- USGS GeoDAWN Airborne Geophysical Survey: <https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and>
-- INGENIOUS Geothermal Project: <https://gbcge.org/current-projects/ingenious/>
+**Review date:** 2026-10-25 UTC
+**Artifact reviewed:** `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` (`data/registry/h33_education.tif`)
+**Evidence status:** local raster measurements are reproducible; public score and leaderboard values below are not organizer-confirmed receipts.
 
----
+## Direct answers
 
-## Executive Summary & Core Questions Answered
+- **Why did H33 score 0.2778?** The repository cannot establish the causal reason. The value is **USER-REPORTED**, not copied from a submission receipt. On-disk geometry shows H33 is a subtractive subset of an earlier prediction lineage, with sparse spacing and removal of catalogue-near pixels. That is *consistent with* lower redundant false-positive mass under the local distance-weighted Tversky metric, but it does not prove that explanation or reveal the hidden test labels.
+- **Can a new method beat it?** It is possible in principle, but **this review cannot show that any candidate will beat H33**. No new method was trained or tested. No organizer-confirmed score for H33 or a GEMSDOE88 artifact is present here. The current dense-witness rule blocks every non-empty prediction before placement; that is a protocol stop, not evidence that all geological methods are incapable of improving.
+- **Which public benchmark is current?** User-provided values conflict (`0.3195` and `0.4413` are both cited in the request). Neither was independently checked in this review. Treat both as dated/USER-REPORTED context until verified on the official page; neither is a candidate score.
 
-This paper presents a rigorous doctoral-level investigation into two central questions:
-1. **Why and how did GEMSDOE32 / H33 (`h33-h33-2-b2`) achieve the highest score (0.2778) among sibling sites?**
-2. **Are we able to generate a submission that scores higher than 0.2778, closing the gap toward 0.3539 (#5 cutoff) and 0.4413 (#1)?**
+## Evidence classes and score ledger
 
-Using pixel-exact binary decomposition of files on disk, closed-form algebraic derivation of the distance-weighted Tversky index (DTI), and structural-geological analysis of Great Basin geothermal plays, we prove:
-- H33 is **not** an independently trained deep network; it is a **pure subtractive subset** of earlier submissions `H19-5` (121,131 dots) $\to$ `D2.8` (44,090 dots) $\to$ `SOLO-D2.8` (40,199 dots) $\to$ `H33` (37,654 dots).
-- H33's gain from $0.1922 \to 0.2778$ (+856 bps) was driven by two exact metric-algebraic operations:
-  1. **Poisson-disk lattice decimation at $r \approx 2.83 - 3.0$ pixels (283–300 m):** Eliminating adjacent dots along linear ribbons cuts the DTI denominator penalty $\alpha = 0.2$ per dot without reducing the triangular kernel's peak true-positive credit ($T$).
-  2. **Catalogue 2-pixel (200 m) collar deletion:** Pruning 6,436 dots within $200\text{ m}$ of mapped faults, which fall into masked zones or fail to discover new faults, reducing denominator false-positive penalties.
-  3. **Preservation of unmapped basin dots:** Maintaining **41.7% of its dots at $> 2.5\text{ km}$ ($> 25\text{ px}$) from mapped faults**, mirroring the fact that 47.17% of the footprint lies in deep alluvium where blind faults reside.
-- **Can it be beaten?** Yes. H33 achieves only $\sim 10-15\%$ true-positive precision on undiscovered faults because its base candidate was derived from simple topographic/geophysical edge-detection filters that fire on non-tectonic mimics (lake shorelines, basalt flow fronts, alluvial fan terraces). To reach **0.3539–0.4413**, a submission must replace indiscriminate geomorphic edges with a **Deep Hydro-Tectonic Conduit (DHTC)** model that couples deep magnetotelluric electrical conductivity upwellings with basement gravity steps and geodetic shear-dilation strain.
+| Value | Label and source | What it does and does not mean |
+|---|---|---|
+| `0.2778` for H33 | **USER-REPORTED** in repository notes; no submission-page receipt is stored | A public-score claim, not an independently confirmed organizer score. |
+| `0.3195`, `0.4413` | **USER-PROVIDED / UNVERIFIED** conflicting leaderboard snapshots | Not freshly fetched; date, round, and public/private status are unresolved. |
+| `HOLDOUT-DTI 0.0038851763`, 95% CI `[0.0033163453, 0.0044778909]`, `22,893` withheld positives, evaluator `gems57-pooled-hide-v2` | Stored fixed-raster H33 diagnostic in `registry/mdps88_run_card.json` / `docs/data/protocol_review_43d08c7a.json` | A historical **fold-unfair fixed-raster catalogue hide-and-recover diagnostic**, not a fair retraining comparison and not a leaderboard estimate. It cannot explain or refute the reported public value. |
+| `HOLDOUT-DTI 0.1413781360`, 95% CI `[0.1276877737, 0.1561120556]`, `22,893` withheld positives, evaluator `gems57-pooled-hide-v2` | Stored H88-DHTC run card and holdout ledger | A prior local holdout result for an existing artifact; not a public score, not a new run in this review, and not evidence of beating H33. |
+| `HOLDOUT-DTI 0.1962369466`, 95% CI `[0.1796859281, 0.2117291340]`, `22,893` withheld positives, evaluator `gems57-pooled-hide-v2` | Stored H88-TDKL run card | A historical local result on the repository's blocked-catalogue holdout; not an organizer score and not evidence about private leaderboard performance. |
+| Organizer-confirmed scores | **None found** for H33 or the reviewed GEMSDOE88 artifacts | Only a copied submission-page receipt would qualify. |
 
----
+The local evaluator hides whole catalogue components and scores recovery of withheld catalogue pixels. The competition's undiscovered-fault population may differ. Therefore, local holdout results, owner reports, and public leaderboard snapshots must not be compared as if they were measurements of the same target.
 
-## 1. Mathematical Anatomy of the Competition DTI Metric
+## What the SHA-pinned rasters establish
 
-The competition evaluation metric (DrivenData / DOE GEMS) is a distance-weighted Tversky Index evaluated on the active study footprint, excluding known mapped USGS/INGENIOUS faults:
+The fresh geometry review reopened the aligned registry rasters. These are **REGISTRY-MEASUREMENTS**, not performance scores:
 
-$$\text{DTI} = \frac{T}{T + \alpha \cdot \text{FP}_w + \beta \cdot \text{FN}_w}$$
+| Raster | Positive pixels | SHA-256 | Relationship to H33 |
+|---|---:|---|---|
+| H19-5 | 121,131 | `ef2ae808eb7179861b9f1ff753fd3ded625ace7b7c158e29cec45bbd8fa3cfaa` | Ancestor support. |
+| D2.8 | 44,090 | `3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30` | Strict subset of H19-5; no added pixels. |
+| SOLO-D2.8 | 40,199 | `2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8` | Strict subset of D2.8; no added pixels. |
+| H33 | 37,654 | `c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9` | Strict subset of SOLO-D2.8; no added pixels. |
 
-With competition parameters:
-- $\alpha = 0.20$ (weight on false positives)
-- $\beta = 0.80$ (weight on false negatives / missed truth)
-- Kernel: $k(d) = \max\left(0, 1 - \frac{d}{3\text{ px}}\right)$ where $1\text{ px} = 100\text{ m}$ ($R = 300\text{ m}$).
+All four grids align. The measured inclusion chain is `H33 ⊂ SOLO-D2.8 ⊂ D2.8 ⊂ H19-5`. The D2.8-to-H33 difference removes `6,436` pixels; each removed pixel is `1–2` pixels from the mapped catalogue in the local distance transform. In H33, minimum catalogue distance is `2.2361` pixels, median is `19.6469` pixels, `41.74%` of dots lie more than `25` pixels away, and nearest-neighbour spacing has a `3.0`-pixel median (`81.46%` between `2` and `4` pixels). The raster audit is recorded in [`h33_forensics_20261024.json`](../../evidence/h33_forensics_20261024.json) and the follow-up catalogue-distance measurement in the 2026-10-25 session record.
 
-Let $G$ be the set of withheld ground-truth fault pixels, and $P$ be the set of predicted positive pixels (dots, $n = |P|$):
-- True positive credit:
-  $$T = \sum_{g \in G} \max_{p \in P} k(\|g - p\|)$$
-- False negative deficit:
-  $$\text{FN}_w = |G| - T$$
-- False positive penalty:
-  $$\text{FP}_w = \sum_{p \in P} \left(1 - \max_{g \in G} k(\|p - g\|)\right) = n - M$$
-  where $M = \sum_{p \in P} \max_{g \in G} k(\|p - g\|)$ is the self-credit of predicted dots.
+These observations establish **subtractive lineage and spatial geometry only**. They do not establish that removed pixels were false positives, that H33 was generated by any particular model, or that thinning caused the reported score increase. The H33 file contains no hidden truth. The old forensic prose that asserted zero truth credit, a measured `10–15%` precision, a score-correlation law, or a guaranteed path to `0.3539–0.4413` exceeded the available evidence and is withdrawn here.
 
-Substituting $\text{FN}_w = |G| - T$ and $\text{FP}_w = n - M$:
+## Why thinning is a plausible explanation—but remains a hypothesis
 
-$$\text{DTI} = \frac{T}{T + 0.2(n - M) + 0.8(|G| - T)} = \frac{T}{0.8 |G| + 0.2 T + 0.2 (n - M)}$$
+The pinned local metric implementation is `vendor/gems57/metric.py`. It computes weighted true-positive credit `T` from truth pixels, weighted prediction self-credit `M` from prediction pixels, `FP_w = n - M`, and `FN_w = |G| - T`, then
 
-### Mathematical Implications:
-1. **Saturation of True Positive Credit ($T$):**  
-   Because $T$ takes the $\max_{p \in P} k(\|g - p\|)$ over all predicted points for each ground-truth pixel $g$, placing multiple points near the same fault pixel yields **zero additional numerator credit**.
-2. **Linear Denominator Penalization of Redundant Points:**  
-   Each redundant point $p$ adds $+0.2$ directly into the denominator $0.2(n - M)$.
-3. **Marginal Break-Even Condition:**  
-   Consider adding or removing a single dot $p$ with marginal true-positive credit $\Delta T$ and self-credit $q = \max_{g \in G} k(\|p - g\|) \in [0, 1]$:
-   $$\frac{\partial \text{DTI}}{\partial p} > 0 \iff \Delta T > 0.2 \cdot \text{DTI} \cdot (\Delta T + 1 - q)$$
-   For a non-redundant isolated dot where $\Delta T \approx q$:
-   $$\Delta T > \frac{0.2 \cdot \text{DTI}}{1 - 0.2 \cdot \text{DTI} + 0.2} \approx 0.2 \cdot \text{DTI}$$
-   At $\text{DTI} = 0.2778$, the break-even credit per dot is:
-   $$k^\star = 0.2 \times 0.2778 = \mathbf{0.0556}$$
-   - Any dot that contributes less than $0.0556$ kernel credit lowers the global score.
-   - Any pure false positive ($\Delta T = 0, q = 0$) unconditionally reduces DTI. Removing $m$ pure false positives increases DTI by reducing the denominator by $0.2 \cdot m$.
+\[
+\mathrm{DTI}=\frac{T}{T+0.2\,FP_w+0.8\,FN_w}.
+\]
 
----
+With the binary-dot form this can be rearranged as
 
-## 2. On-Disk Forensic Proof of GEMSDOE32 / H33
+\[
+\mathrm{DTI}=\frac{T}{0.8|G|+0.2T+0.2(n-M)}.
+\]
 
-By inspecting the exact binary arrays of H33 and its ancestors restored from the competition registry:
+Because truth credit uses a maximum within the triangular kernel, a second nearby dot can add little or no new `T` while still adding prediction-side mass. Removing a genuinely low-marginal-credit dot can therefore help. For an added isolated dot with marginal truth credit `ΔT` and self-credit `q`, the local break-even condition under this formula is `ΔT > 0.2 × DTI × (ΔT + 1 - q)`; if `ΔT ≈ q = k`, this reduces to `k > 0.2 × DTI`. At the **USER-REPORTED** H33 value, that conditional threshold is about `0.0556` kernel credit. This algebra is a *mechanism hypothesis*, not a measurement of any H33 pixel's credit: the hidden truth needed to compute `ΔT` and `q` is unavailable.
 
-$$\begin{array}{lcccc}
-\hline
-\textbf{Submission ID} & \textbf{Dot Count} & \textbf{Public Score} & \textbf{Lineage Operation} & \textbf{Added Px} \\
-\hline
-\text{H19-5} & 121,131 & 0.1922 & \text{Continuous multi-scale ridge} & - \\
-\text{D1.5} & 60,069 & 0.2477 & \text{Poisson-disk decimation } (r=1.5\text{ px}) & 0 \\
-\text{D2.8} & 44,090 & 0.2600 & \text{Poisson-disk decimation } (r=2.83\text{ px}) & 0 \\
-\text{SOLO-D2.8} & 40,199 & 0.2708 & \text{Pruning isolated low-confidence dots} & 0 \\
-\textbf{H33} & \textbf{37,654} & \textbf{0.2778} & \textbf{2-pixel catalogue collar deletion} & \textbf{0} \\
-\hline
-\end{array}$$
+Potential non-fault mimics for any lineament-based H33-like method include Pleistocene shoreline benches, alluvial-fan terrace risers, lithologic contacts, volcanic flow margins, and geophysical survey seams. The repository does not establish which of these H33's original method used or how often they occur in its hidden-test detections.
 
-### Exact Verification:
-- **Set inclusion:** $\text{H33} \subset \text{SOLO-D2.8} \subset \text{D2.8} \subset \text{H19-5}$.
-- **Zero additions:** At every single step, $\text{added\_pixels} = 0$.
-- **Collar deletion:** The 2,545 dots removed between `SOLO-D2.8` and `H33` lie strictly at $d_{\text{cat}} \in \{1.0, 2.0\}\text{ px}$. In H33, the minimum distance to mapped faults is exactly $2.236\text{ px}$ ($\sqrt{5}\text{ px} \approx 224\text{ m}$).
-- **Spatial spacing:** The nearest-neighbor distance distribution of H33 has a minimum of $2.828\text{ px}$ ($\sqrt{8}\text{ px}$), median $3.00\text{ px}$, with $81.4\%$ of dots falling between $2.8$ and $4.0\text{ px}$. This matches the kernel radius $R = 3.0\text{ px}$ ($300\text{ m}$).
+## Candidate directions: status, not promises
 
----
+The ranked, evidence-qualified shortlist is maintained in [`session-20261025-review.md`](session-20261025-review.md). It separates methods that are unimplemented but previously proposed from genuinely untested code, assigns only qualitative potential/cost, and records external-source/access blockers. None was implemented in this review; no numeric DTI lift is projected.
 
-## 3. The Distance-to-Catalogue Fingerprint & The Holdout Paradox
+## Current GEMSDOE88 decision
 
-Analysis of 20 historical submissions with reported scores revealed a striking empirical law:
-- **Correlation with Score:** The proportion of dots located $> 2.5\text{ km}$ ($> 25\text{ px}$) from mapped catalogue faults ($\text{share\_gt25}$) has a **Spearman $\rho = +0.90$** with the reported public competition score.
-- **Footprint Baseline:** In the official competition study area (5,167,373 active pixels), **47.17% of the area is $> 2.5\text{ km}$ from any mapped fault**.
-- H33 places **41.7% of its dots at $> 2.5\text{ km}$**, closely matching the geographic footprint.
-- In contrast, low-scoring submissions (e.g. GEMSDOE81: 0.0041, GEMSDOE80: 0.0943) concentrated $> 88\%$ of their dots within $10\text{ px}$ ($1\text{ km}$) of existing faults. Because known faults are masked in scoring, hugging known faults generates massive false-positive penalties on buffer pixels without discovering new structures.
+The existing H88-DHTC TIFF is locally format/grid-valid for **research download only**: single-band float32, finite values in `[0,1]`, aligned EPSG:32611 grid, matching shape/transform, and no mass outside the footprint. Its recorded **HOLDOUT-DTI** remains `0.1413781360 [0.1276877737, 0.1561120556]` (`gems57-pooled-hide-v2`, `22,893` withheld positives). However, its freshly rechecked forward 3-pixel overlap with `data/registry/dense_17gemdoe.tif` is `1.0`, above the binding `0.70` ceiling. The registry witness is positive throughout every allowed cell. **Do not submit it; do not generate another non-empty candidate under this rule.**
 
-### The Holdout Paradox:
-In standard spatial holdout validation (`gems57-pooled-hide-v2`), ground-truth positive pixels are withheld from the known catalogue. By definition, **all 22,893 withheld positives lie on the existing catalogue** ($d_{\text{cat}} = 0$).  
-Consequently:
-- In local holdout testing, predicting faults in the deep basins ($d > 2.5\text{ km}$) receives **0 true-positive credit** and pays full false-positive penalties!
-- Models that optimize purely for local holdout DTI will naturally learn to hug visible faults ($d_{\text{vis}} \le 10\text{ px}$), reaching local holdout scores of $\sim 0.19 - 0.20$, but will score near zero ($\sim 0.01 - 0.05$) on the real competition leaderboard.
-- Therefore, a winning methodology must employ **two-stratum completeness-stratified allocation**: optimizing near-fault relay and step-over precision while reserving $\ge 35\%$ of the budget for deep basin conduits that discover blind geothermal systems.
+No raster, model experiment, weekly slot, or organizer submission was created or used in the 2026-10-25 review. `DOWNLOAD FOR RESEARCH: YES` describes existing, hash-verified research files only; it is not a submission authorization or organizer-acceptance claim.
 
----
+## Official sources and verification boundary
 
-## 4. Architectural Strategy to Surpass 0.2778
+Links retained for manual primary-source verification:
 
-To advance beyond 0.2778 toward the top tier ($0.3539 - 0.4413$), we must address H33's primary weakness: **low precision on undiscovered faults ($\sim 10-15\%$)**.
+- [DrivenData problem, metric, and data page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) and [competition data page](https://www.drivendata.org/competitions/306/competition-doe-gems/data/)
+- [DrivenData live leaderboard](https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/) and [submission receipts](https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/)
+- [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
+- [USGS 3DEP](https://www.usgs.gov/3d-elevation-program)
+- [USGS Landsat Collection 2 surface temperature](https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature)
+- [NASA Alaska Satellite Facility DAAC](https://asf.alaska.edu/)
+- [AWS Open Data Sentinel-2 L2A COG registry](https://registry.opendata.aws/sentinel-2-l2a-cogs/)
 
-H33's dots were generated by thresholding a simple multi-band topographic/magnetic edge filter. In the Great Basin, linear edge filters are heavily contaminated by non-tectonic geomorphic features:
-1. **Pluvial lake shorelines:** Lake Lahontan highstand shorelines at $\sim 1,330\text{ m}$ (Sehoo highstand) and $\sim 1,555\text{ m}$ (EET highstand) form horizontal wave-cut terraces with steep slope breaks mimicking fault scarps.
-2. **Basalt flow margins & caprocks:** Neogene volcanic tablelands terminate in steep linear rimrocks.
-3. **Alluvial fan incised channels & bajada edges:** Desert wash incised drainage channels mimic normal fault scarps.
-
-### The Deep Hydro-Tectonic Conduit (DHTC) Solution:
-Instead of relying on surficial slope breaks, the **H88-DHTC** architecture demands simultaneous multi-physics corroboration:
-1. **Deep Electrical Conductivity Upwelling:** Magnetotelluric (MT) conductivity at 10 km (`B18: cond_10km`) and 32 km (`B19: cond_32km`) depth. High electrical conductivity in the mid-to-lower crust marks active hydrothermal fluid circulation, partial melt, and saline fluids.
-2. **Basement Density Discontinuity:** Horizontal gradient of isostatic gravity anomaly (`B04`, `B05`) and depth to basement (`B15 zbase`), isolating true tectonic basement steps beneath Quaternary basin fill.
-3. **Active Tectonic Strain Tensor:** Geodetic second invariant of strain rate (`B09`) and dilational shear rate (`B07`, `B08`), confirming ongoing crustal extension.
-4. **Crustal Heat Flow & Alteration Redox:** Elevated heat flow (`B10 hf_mwm2`) and radiometric $U/\text{Th}$ redox alteration (`geodawn_rad_u8.tif`).
-
-By enforcing multi-physics conjunction, DHTC filters out surficial shorelines and terraces while pinpointing high-permeability geothermal conduit fault zones.
-
----
-
-## 5. Verification & Compliance Standards
-
-- **Strict Value Range:** All predicted raster values are verified to lie strictly within $[0.0, 1.0]$ with zero NaN, zero Inf, and zero nodata sentinels, completely eliminating the DrivenData portal error `"Predicted values must be in range [0, 1]"`.
-- **Portal Parity:** Single-band GeoTIFF, EPSG:32611, dimensions $3730 \times 3292$, exact transform `(100, 0, 243350, 0, -100, 4508550)`.
-- **Fail-Closed Gate:** Zero weekly submission slots are spent unless all leakage canaries, uniqueness thresholds ($|\rho| \le 0.90$, 3-px overlap $\le 0.70$), and holdout gates pass without human intervention.
+These pages were **not fetched in this session**: the sandbox's permitted outbound hosts do not include DrivenData, USGS, NASA ASF, or the AWS Open Data Registry. The competition feature stack is absent from this checkout, and the validation restore fetched only hash-pinned owner-mirror validation inputs. Source availability, exact-area coverage, current competition rules, redistribution permission, and current standings remain unverified. Owner mirrors are not organizer authentication.

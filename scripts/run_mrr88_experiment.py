@@ -500,15 +500,13 @@ def main() -> int:
             "mrr_feature_cache_metadata": mrr_meta,
         },
     }
+    # Keep this historical lane's versioned evidence isolated from the current
+    # four-way protocol-review run-card pointers.
     for out in (
         ROOT / "registry/run_card_mrr88.json",
         ROOT / "evidence/run-card-mrr88.json",
         ROOT / "docs/data/run-card-mrr88.json",
         ROOT / "docs/run_card_mrr88.json",
-        ROOT / "registry/run_card.json",
-        ROOT / "evidence/run-card.json",
-        ROOT / "docs/data/run-card.json",
-        ROOT / "docs/run_card.json",
     ):
         write_json(out, run_card)
     write_json(

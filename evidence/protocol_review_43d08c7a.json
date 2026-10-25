@@ -1,6 +1,6 @@
 {
   "schema": "gems88.protocol-integrity-review.v1",
-  "date_utc": "2026-10-24",
+  "date_utc": "2026-10-25",
   "lane": "protocol-integrity-only",
   "hypothesis": "Local eligibility must not authorize literal duplicates or inverted leakage features.",
   "mechanism": "Shared pinned-byte saturation/overlap and format audits plus synthetic negative gate probes; no geological model fitted.",

@@ -181,3 +181,19 @@ unique submission, a higher score or full official-source verification where imp
 The current request also requires three review passes and a PR followed by merge; this
 review implements automated audit, source-status disclosure and fail-closed site claims.
 This remains a condensed operational record, not a verbatim copy of the long user prompt.
+
+## Current-session binding clarification (2026-10-25)
+
+The validation-tier restore and fresh geometry audit reproduce the saturation certificate:
+all allowed cells are positive in the pinned `17GEMSDOE` witness. Every non-empty raster
+therefore has literal 3-pixel forward overlap `1.0`, above the `0.70` stop. Do not generate
+or submit a non-empty candidate under this rule; a byte-distinct file cannot cure it.
+
+The existing H88-DHTC TIFF remains **DOWNLOAD FOR RESEARCH: YES; SUBMIT: NO**. Its local
+format/grid checks pass, but its literal witness overlap is `1.0`. No new model, TIFF,
+holdout experiment, weekly slot, or organizer submission was used in this review. The
+H33 `0.2778` value is USER-REPORTED; the conflicting supplied leaderboard snapshots are
+unverified. Existing HOLDOUT-DTI values are not leaderboard scores and do not prove that
+another method can beat H33. Read `research/session-20261025-review.md` and the current
+run card before any future work; this section is a condensed operational record, not a
+verbatim copy of the full user prompt.

@@ -10,5 +10,8 @@
   "ok_to_submit": false,
   "raster_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
   "policy": "binding-literal-all-registry-v1 + concurrent-lane overlap",
-  "run_card": "registry/tdkl88_run_card.json"
+  "run_card": "registry/tdkl88_run_card.json",
+  "review_card": "registry/session_20261025_run_card.json",
+  "review_date_utc": "2026-10-25",
+  "review_decision": "DUPLICATE_STOP"
 }

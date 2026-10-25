@@ -1,6 +1,6 @@
 {
   "schema": "gems88.literal-protocol-audit.v1",
-  "date_utc": "2026-10-24",
+  "date_utc": "2026-10-25",
   "hypothesis": "Unmapped basin faults are missed by range-front-trained rankers (covariate shift); a physics ranker trained only on isolated mapped strands vs far-basin background, allocated in matched distance regimes (far d>8 px + capped physics-snapped near tranche 2-8 px), kernel-matched 2.83 px spacing and b2 collar, recovers far withheld faults better than all-positive training and adds low-relief support the H19-5 lineage lacks.",
   "mechanism": "44 label-blind physics columns (GeoDAWN magnetics/gravity/radiometrics, 1 m LiDAR scarps, 10 m topo/chi, strain, seismicity, GDR geothermal points) -> per-fold HGB PU rankers (isolated-component positives vs far background) -> Dinkelbach expected-DTI allocation; final: full-catalogue fit, 37,654-class live budget, lane-capped vs registry priors.",
   "named_non_fault_process": "Pleistocene pluvial (Lake Lahontan) shoreline benches and fluvial terrace risers: constant-elevation scarps with the same LiDAR dipole/curvature signature as young fault scarps but no brittle offset.",

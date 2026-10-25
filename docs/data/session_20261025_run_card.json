@@ -1,0 +1,114 @@
+{
+  "schema": "gems88.session-review-card.v1",
+  "run_id": "GEMSDOE88-PROTOCOL-REVIEW-20261025",
+  "review_date_utc": "2026-10-25",
+  "lane": "protocol-integrity-only; no geological model run",
+  "hypothesis": "H33's USER-REPORTED public score may be consistent with reduced redundant prediction mass after sparse decimation and catalogue-near pruning, but the available on-disk evidence cannot establish causality or show that a new approach beats H33.",
+  "mechanism": "The pinned local DTI metric awards truth credit by a maximum within the 300 m triangular kernel and separately charges prediction-side false-positive mass. Removing a low-marginal-credit dot can improve DTI, conditional on hidden truth; no H33 dot-level credit was measurable here.",
+  "named_non_fault_mimic": "Pleistocene shoreline benches and fluvial/alluvial-fan terrace risers are plausible lineament mimics for H33-like predictions; H33's original method and mimic rates are not established by the checked-in evidence.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "HISTORICAL_ONLY_NOT_RUN_OR_RECOMPUTED_IN_THIS_REVIEW",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "dti": 0.1413781360066005,
+    "ci95": [
+      0.12768777369706202,
+      0.15611205556213584
+    ],
+    "candidate": "H88-DHTC existing artifact",
+    "source": "registry/dhtc88_run_card.json and evidence/dhtc88_holdout_20261024.json",
+    "limitation": "Catalogue hide-and-recover is not an estimate of private leaderboard performance. No new experiment was run."
+  },
+  "h33_local_diagnostic": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "HISTORICAL_FOLD_UNFAIR_FIXED_RASTER_DIAGNOSTIC",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22893,
+    "dti": 0.0038851762665228526,
+    "ci95": [
+      0.0033163452898184367,
+      0.004477890943922922
+    ],
+    "source": "registry/mdps88_run_card.json",
+    "limitation": "Fixed submitted raster on catalogue hide-and-recover folds; not retrained, not a fair model comparison, not a public score."
+  },
+  "public_score_claims": {
+    "h33_0_2778": "USER-REPORTED; no organizer receipt in repository",
+    "leaderboard_values_0_3195_and_0_4413": "USER-PROVIDED_CONFLICTING_SNAPSHOTS; not independently fetched",
+    "organizer_confirmed_score": null
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_candidate_created_this_session": false,
+    "surface_rank_correlation_status": "NOT_APPLICABLE_NO_NEW_SURFACE",
+    "historical_h88_dhtc_max_abs_spearman": 0.178152,
+    "historical_h88_dhtc_surface_scan_recomputed_this_session": false,
+    "historical_h88_dhtc_like_for_like_max_forward_overlap_3px": 0.523736150854795,
+    "historical_h88_dhtc_sparse_registry_scan_recomputed_this_session": false,
+    "existing_h88_dhtc_literal_forward_dot_overlap_3px_remeasured": 1.0,
+    "literal_overlap_limit": 0.7,
+    "dense_witness": "data/registry/dense_17gemdoe.tif",
+    "dense_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "dense_witness_positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "support_coverage": 1.0,
+    "universal_nonempty_candidate_blocker": true,
+    "full_registry_scan_for_new_candidate": false,
+    "decision": "DUPLICATE_STOP"
+  },
+  "existing_research_artifact": {
+    "candidate": "H88-DHTC",
+    "path": "docs/downloads/gems88-dhtc88-conduit-13629dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "bf42eb315bd2392b5748003ace2dd68cc96db0a945873513f8ff222e2fd1e1bd",
+    "positive_pixels": 13629,
+    "generated_this_session": false,
+    "download_for_research": true,
+    "submit": false
+  },
+  "raster_sha256": "bf42eb315bd2392b5748003ace2dd68cc96db0a945873513f8ff222e2fd1e1bd",
+  "validator_output": {
+    "status": "EXISTING_ARTIFACT_REOPENED; LOCAL_FORMAT_AND_GRID_CHECKS_PASS",
+    "single_band_float32": true,
+    "all_values_finite": true,
+    "value_range_0_1": true,
+    "crs_epsg_32611": true,
+    "shape_matches_sample": true,
+    "transform_matches_sample": true,
+    "zero_outside_footprint": true,
+    "zero_on_visible_catalogue": true,
+    "rasterio_and_tifffile_decoders_agree": true,
+    "layout_parity_with_sample": false,
+    "local_research_validation_ok": true,
+    "organizer_portal_acceptance_verified": false,
+    "submission_gate_ok": false
+  },
+  "submission_name": null,
+  "submission_note": "No new submission candidate; DUPLICATE_STOP before placement. DO NOT SUBMIT.",
+  "existing_artifact_submission_metadata_NOT_AUTHORIZED": {
+    "submission_name": "GEMSDOE88-DHTC88-CONDUIT-20261024",
+    "submission_note": "H88-DHTC 60ch deep conduit+basement shear Dinkelbach (13629 dots); HOLDOUT-DTI 0.1414 far 0.0851 blind 0.0651; UNSCORED",
+    "note_characters": 119,
+    "authorized_for_upload": false
+  },
+  "candidate_hypotheses_reference": "research/session-20261025-review.md",
+  "source_access": {
+    "competition_data_stack_present": false,
+    "validation_inputs_restored_from_owner_mirrors": true,
+    "owner_mirror_is_organizer_authenticated": false,
+    "official_drivendata_usgs_nasa_aws_sources_fetched_this_session": false,
+    "external_data_license_and_redistribution_verified": false
+  },
+  "experiment_budget": {
+    "maximum_experiments": 3,
+    "experiments_run_this_session": 0,
+    "hours_cap": 2,
+    "new_rasters_generated": 0,
+    "weekly_slots_used": 0,
+    "stop_reason": "The literal positive-everywhere dense witness blocks every non-empty candidate; stop before surface scoring or dot placement."
+  },
+  "verdict": "negative",
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false
+}

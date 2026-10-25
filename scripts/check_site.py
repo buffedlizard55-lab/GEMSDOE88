@@ -55,6 +55,27 @@ def main(root: Path = ROOT) -> None:
     web_gate = json.loads((docs / "data/mvrd-gate-v3.json").read_text())
     current = json.loads((docs / "data/current_release.json").read_text())
     status = json.loads((docs / "status.json").read_text())
+    review_paths = [
+        root / "registry/session_20261025_run_card.json",
+        docs / "data/session_20261025_run_card.json",
+        root / "registry/run_card.json",
+        docs / "data/run-card.json",
+        docs / "run_card.json",
+        root / "evidence/run-card.json",
+    ]
+    review_texts = [p.read_text(encoding="utf-8") for p in review_paths]
+    require(len(set(review_texts)) == 1, "2026-10-25 session run-card copies are not byte-identical")
+    session_review = json.loads(review_texts[0])
+    require(
+        session_review["schema"] == "gems88.session-review-card.v1"
+        and session_review["verdict"] == "negative"
+        and session_review["ok_to_submit"] is False
+        and session_review["correlation_overlap_vs_registry"]["decision"] == "DUPLICATE_STOP"
+        and session_review["correlation_overlap_vs_registry"]["universal_nonempty_candidate_blocker"] is True
+        and session_review["experiment_budget"]["new_rasters_generated"] == 0
+        and session_review["experiment_budget"]["weekly_slots_used"] == 0,
+        "session review card does not encode the current fail-closed decision",
+    )
     ctra = json.loads((root / "registry/ctra_run_card.json").read_text())
     ctra_web = json.loads((docs / "data/ctra_run_card.json").read_text())
     require(ctra == ctra_web, "Pages CTRA card differs from canonical registry card")
@@ -418,6 +439,12 @@ def main(root: Path = ROOT) -> None:
         status["raster_sha256"] == tdkl["raster_sha256"]
         and status["run_card"] == "registry/tdkl88_run_card.json",
         'Site integrity check failed: status does not bind canonical TDKL bytes/card',
+    )
+    require(
+        status["review_card"] == "registry/session_20261025_run_card.json"
+        and status["review_date_utc"] == session_review["review_date_utc"]
+        and status["review_decision"] == "DUPLICATE_STOP",
+        "Site status feed is missing the current protocol-review blocker",
     )
     require(
         status["ok_to_download_for_research"] is True

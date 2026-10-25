@@ -38,16 +38,20 @@ def test_current_bytes_fail_literal_rule():
     assert report == json.loads((ROOT / "docs/data/literal_protocol_audit.json").read_text())
 
 
-def test_public_status_uses_literal_audit():
+def test_public_status_uses_current_and_literal_audits():
     js = (ROOT / "docs/assets/site.js").read_text()
     assert "fetch('data/literal_protocol_audit.json'" in js
-    assert "data.validator_output?.ok === true" in js
+    assert "literal.validator_output?.ok === true" in js
+    assert "fetch('data/session_20261025_run_card.json'" in js
+    assert "fetch('data/current_release.json'" in js
+    assert "current.candidate === 'H88-TDKL'" in js
     for name in ("index.html", "executive-summary.html"):
         html = (ROOT / "docs" / name).read_text()
         assert "Literal protocol audit: DUPLICATE — STOP" in html
         assert "no dense-prior exemption" in html
         assert "newest unique GeoTIFF" not in html
         assert "New unique GeoTIFF generated" not in html
+        assert "0.2778" in html
 
 
 def test_audit_does_not_create_a_prediction():

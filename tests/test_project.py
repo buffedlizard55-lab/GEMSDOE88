@@ -24,17 +24,25 @@ def test_template_bytes_unchanged():
 def test_real_card_stays_blocked():
     if not (ROOT / "data/bridge/existing_faults.tif").is_file():
         pytest.skip("full release recomputation requires ignored data/bridge inputs; restore inputs first")
-    assert json.loads((ROOT / "docs/run_card.json").read_text()) == json.loads(
-        (ROOT / "registry/run_card.json").read_text()
-    )
+    card_text = (ROOT / "registry/run_card.json").read_text()
+    assert card_text == (ROOT / "docs/run_card.json").read_text()
+    assert card_text == (ROOT / "docs/data/run-card.json").read_text()
+    assert card_text == (ROOT / "evidence/run-card.json").read_text()
+    session = json.loads(card_text)
+    assert session["schema"] == "gems88.session-review-card.v1"
+    assert session["correlation_overlap_vs_registry"]["decision"] == "DUPLICATE_STOP"
+    assert session["ok_to_submit"] is False
+
     result = current_status()
     assert result["status"] == "BLOCKED"
     assert not result["approved_for_weekly_slot"]
     assert not result["ok_to_submit"]
     assert result["ok_to_download_for_research"]
-    # The current feed must follow latest H88-TDKL, not historical MVRD/PHASE/MRR runs.
+    # The current local release is the integrated TDKL artifact; the fresh session
+    # review independently records the universal blocker and no-generation decision.
     assert result["problems"] and any(p.split(":")[0] in {"HOLDOUT", "UNIQUENESS", "FINGERPRINT", "FORMAT"} for p in result["problems"])
     assert "binding-literal-all-registry-v1" in result["policy"]
+    assert result["review_card"] == "registry/session_20261025_run_card.json"
     current = json.loads((ROOT / "docs/data/current_release.json").read_text())
     card = json.loads((ROOT / "registry/tdkl88_run_card.json").read_text())
     assert result["raster_sha256"] == current["file_sha256"] == card["raster_sha256"]
