@@ -1,6 +1,6 @@
 # PhD Forensic Analysis: Why H33 (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`) Leads the 84 GEMSDOE Sibling Sites at Reported 0.2778 — and Whether H88-XGCE Can Be Shown to Beat It
 
-**Date:** 2026-10-25 (Lane H88-XGCE, arena/4240f867-gemsdoe88)  
+**Date:** 2026-10-25 (Lane H88-XGCE, arena/4240f867-gemsdoe88)
 **Analyst framing:** PhD-level structural geology + geophysics + statistical scoring for DOE GEMS (DrivenData 306). All pixel facts are machine-verified on `data/bridge` SHA-256 pins; reported sibling scores are *user-supplied, not ORGANIZER-CONFIRMED*; organizer truth (hidden geothermal faults) is never observed locally. No slot was spent.
 
 **Official sources read line-by-line (links for manual review):**
@@ -64,7 +64,7 @@ The visible `0.4413` (>0.2778 by `+1635 bps`) implies either (i) even more aggre
 ## 4. H88-XGCE: a genuinely new, contrarian but grounded hypothesis
 
 **Layer(s) & transform (zero new downloads, 19-band only):**
-`B03 tmi_hg`, `B09 tmi_vg`, `B18 iso_grav_anom_hg`, `B11 iso_grav_anom_vg`, `B15 depth_to_base_surf`, `B08 geod_dilaterate`, `B07 geod_shearrate`, `B05 iso_grav_anom_slope`.  
+`B03 tmi_hg`, `B09 tmi_vg`, `B18 iso_grav_anom_hg`, `B11 iso_grav_anom_vg`, `B15 depth_to_base_surf`, `B08 geod_dilaterate`, `B07 geod_shearrate`, `B05 iso_grav_anom_slope`.
 Compute normalized cross-gradient `|sinΔθ| = |G_grav × G_mag|/(|G_grav||G_mag|+ε)` (gravity vs magnetic gradient discordance), modulated by `depth_to_base_surf` high-pass (`depth - G25(depth)`) basement-step magnitude, `geod_dilaterate>0` extensional gate, and `iso_grav_anom_slope` ridge. Emit 30,000 dots with `3-px` catalogue collar and `2.83-px` spacing.
 
 **Why it should catch faults missing from USGS/INGENIOUS (and not those already in it):**
@@ -86,7 +86,7 @@ Preregistered `+450–700 bps` vs ADHR physics-only `0.0618` (conservative: inte
 **HOLDOUT-DTI cannot rank it (structural-zero regime).** On `gems57-pooled-hide-v2` every `>3 px` raster (H33, XGCE, SHORE-HINGE) scores `~0.0000` vs control `0.1085`; we report XGCE HOLDOUT-DTI as `STRUCTURAL-ZERO UNSCORED` (`IR-88-20/35`), not a win. This does not imply H33 is worse live — the instrument’s withheld positives are on catalogue traces, while live hidden truth is off-catalogue.
 
 **What *can* be shown on-disk (no projection as score):**
-- **Portal validity:** XGCE TIFF `gems88-xgce-crossgradient-30000dots-20261025-zeros.tif` SHA-256 `199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c` is `float32`, `EPSG:32611`, `3730×3292`, exact sample transform, `0` NaN/Inf, all 12,279,160 values in `[0,1]` (`{0,1}` binary), `nodata=None`, `30,000` positives, `0` on `existing_faults.tif` (`min d_cat=3.00 px`), `outside_footprint=0`, LZW `256×256` tiles. Passes `portal_range_check_nan_strict` and `nanmin/nanmax` (fixes prior “Predicted values must be in range [0, 1]” zeros-vs-NaN error). ZIP `f92fe721152ce04a...` is byte-identical single-member.
+- **Portal validity:** XGCE TIFF `gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif` SHA-256 `199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c` is `float32`, `EPSG:32611`, `3730×3292`, exact sample transform, `0` NaN/Inf, all 12,279,160 values in `[0,1]` (`{0,1}` binary), `nodata=None`, `30,000` positives, `0` on `existing_faults.tif` (`min d_cat=3.00 px`), `outside_footprint=0`, LZW `256×256` tiles. Passes `portal_range_check_nan_strict` and `nanmin/nanmax` (fixes prior “Predicted values must be in range [0, 1]” zeros-vs-NaN error). ZIP `f92fe721152ce04a...` is byte-identical single-member.
 - **Fingerprint:** `share_gt25=49.5% ≥35%` (exceeds H33 `41.7%`, footprint `47.2%`), `share_le2=0.0%`, median `24.7 px` — more off-catalogue than H33, matching the `+0.90` distance-vs-score prior.
 - **Leakage canary:** 5 raw features `cross_norm, grav_slope_norm, depth_hp_norm, dilate_gate, shear_norm` all `sym AUC ≤0.568 ≤0.90` PASS; diagnostic masked surface `sym 0.964` excluded (catalogue-avoiding by construction, not leakage).
 - **Like-for-like uniqueness:** vs 17 discriminating registry rasters, `max 3-px overlap 0.2037 ≤0.70` (worst `gems80_h80_dpvc`), `max |ρ| 0.0092 ≤0.90` — **UNIQUE**. This is the binding discriminating check; sibling sites’ median overlap vs R0 is `0.98–1.00` (`evidence/sibling_overlap_vs_R0_20261024.json`).
@@ -117,4 +117,3 @@ Preregistered `+450–700 bps` vs ADHR physics-only `0.0618` (conservative: inte
 - **External χ + LiDAR scarp fusion (H88-CHIK + H88-RADM):** 10 m DEM derivatives already restored (`dem10_chi_100m_u8.tif d580bb8b…`) for fluvial knickpoint + radiometric alteration PoE.
 
 **Bottom line:** H33’s `0.2778` is the best *sparsity + distance* baseline among listed siblings; XGCE is a *geologically distinct orthogonal-intersection* baseline that is more off-catalogue (`49.5%` vs `41.7%`) and like-for-like unique (`0.204 ≤0.70`), but cannot be declared >0.2778 without an organizer receipt. It is published as an auditable research download, not a slot submission.
-

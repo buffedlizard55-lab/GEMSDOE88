@@ -1,9 +1,9 @@
 # 5 Candidate Geological Hypotheses for Geothermal-Indicative Fault Discovery — Lane H88-XGCE (2026-10-25)
 
-**Project:** GEMSDOE88 (DOE GEMS Challenge, DrivenData Competition 306)  
-**Lane:** H88-XGCE — Cross-Gradient Orthogonal Conduit Extraction  
-**Date:** 2026-10-25  
-**Preregistration:** `registry/preregistration_xgce88.json` (frozen before any holdout access)  
+**Project:** GEMSDOE88 (DOE GEMS Challenge, DrivenData Competition 306)
+**Lane:** H88-XGCE — Cross-Gradient Orthogonal Conduit Extraction
+**Date:** 2026-10-25
+**Preregistration:** `registry/preregistration_xgce88.json` (frozen before any holdout access)
 **Official Data Sources Verified (no new external download, all on disk):**
 - USGS GeoDAWN airborne magnetic & radiometric: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
 - INGENIOUS Great Basin Permeability: https://gbcge.org/current-projects/ingenious/
@@ -73,4 +73,3 @@
 XGCE ranked first because: (a) orthogonal fault intersections are first-order geothermal loci (Faulds et al., GRC 2021: >70% of Nevada geothermal systems at stepovers/intersections); (b) uses only on-disk 19-band stack, no external DEM tiling (low cost, deterministic); (c) directly addresses the catalogue bias (mappers under-represent cross-cutting transfers); (d) cross-gradient `|sinΔθ|` is invariant to absolute amplitude, suppressing pluton rims via dilation gate; (e) prior holdout proxies show gravity/magnetic lineament density correlates with SGMC-off-catalogue recall (ρ≈0.52 in 19GEMSDOE early rasters).
 
 All five are implementable without new login-gated downloads; external options (CHIK) require only already-restored 10 m DEM derivatives.
-

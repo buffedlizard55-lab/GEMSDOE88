@@ -1,9 +1,19 @@
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
+> ## Current review — 2026-10-25: research download YES · submission NO
+> **Unique competition TIFF not delivered:** the freshly verified registry witness saturates the allowed domain. The literal overlap rule forbids every nonempty candidate. No new TIFF generated, renamed or copied; no experiments or slots used.
+>
+> [Download existing research TIFF — DO NOT SUBMIT](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.tif) · [One-TIFF ZIP](docs/downloads/gems88-mdps88-mix-29742dots-20261024-zeros-DO-NOT-SUBMIT.zip) · [Fresh JSON card](docs/data/submission_review_latest.json) · [Review and ranked conditional hypotheses](research/review-20261025.md) · [Executive submission guide](docs/executive-summary.html).
+>
+> Read [the standing user prompt](PROMPT.md) before each session. The latest request repeats its unique-TIFF, literal duplicate-stop, shared-tool, canary, three-experiment/two-hour, automatic-gating and separate-selector requirements. No missing method paragraph or dense-witness exemption is assumed. **Maximize P(Win) · Own the Outcome.** H33 causal/precision overclaims are corrected in the review; user-reported scores are not organizer receipts.
+>
+> Reproduce: `python scripts/restore_inputs.py --validation && python scripts/review_submission_status.py`. `--require-submit` returns **2** for blocked; missing/corrupt evidence returns **1**. Unflagged exit 0 is research-audit completion only.
+
+
 # GEMSDOE88 — geothermal-indicative **fault** discovery, with automatic submission gates
 
 > ## ✅ Latest session lane (2026-10-25): `H88-XGCE` — **DOWNLOAD FOR RESEARCH: YES — ONE-CLICK PORTAL-VALID ZEROS [0,1]** · SUBMIT: **NO — DO NOT SUBMIT (literal dense-witness FAIL-CLOSED, 0 slots spent; like-for-like UNIQUE 0.204 ≤0.70)**
-> [⬇ **Download H88-XGCE GeoTIFF (`.tif`, 85 KB, portal-valid zeros — ONE CLICK)**](docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros.tif) · [⬇ **One-file ZIP (`.zip`, 37 KB)**](docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros.zip) · [JSON Run Card](registry/xgce88_run_card.json) · [5 Ranked Hypotheses](research/candidate-hypotheses-20261025-xgce.md) · [PhD Forensic Analysis of H33 0.2778 & Can XGCE Beat It?](research/h33-forensics-and-xgce-phd-analysis.md) · [Executive Submission Guide](docs/executive-summary.html). Validate: `python3 scripts/validate_xgce88.py` (exit 0 research; `--require-submit` exit 2).
+> [⬇ **Download H88-XGCE GeoTIFF (`.tif`, 85 KB, portal-valid zeros — ONE CLICK)**](docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif) · [⬇ **One-file ZIP (`.zip`, 37 KB)**](docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.zip) · [JSON Run Card](registry/xgce88_run_card.json) · [5 Ranked Hypotheses](research/candidate-hypotheses-20261025-xgce.md) · [PhD Forensic Analysis of H33 0.2778 & Can XGCE Beat It?](research/h33-forensics-and-xgce-phd-analysis.md) · [Executive Submission Guide](docs/executive-summary.html). Validate: `python3 scripts/validate_xgce88.py` (exit 0 research; `--require-submit` exit 2).
 >
 > | Gate / Field | Machine Result | Binding Evidence |
 > | :--- | :--- | :--- |
@@ -12,7 +22,7 @@
 > | **OK to submit to competition?** | **NO — `DO NOT SUBMIT` (`ok_to_submit = false`)** | Binding literal dense-witness rule `1.0>0.70` enforces FAIL-CLOSED (IR-88-113); verdict `negative`. `0` weekly slots spent. Like-for-like UNIQUE is reported separately. |
 > | **Prepared Submission Name (`29/140` chars)** | `GEMSDOE88-XGCE-30000-B4FFC782` | Byte-unique (max discriminating overlap `0.204 ≤0.70`). |
 > | **Prepared Submission Note (`104/140` chars)** | `H88-XGCE grav×mag cross-grad orthogonal conduit 30000 dots; fingerprint gt25 0.49 canary 0.568; UNSCORED` | `≤140` chars; labels fingerprint + canary + UNSCORED. |
-> | **SHA-256 (`.tif` / `.zip`)** | `199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c` | ZIP: `f92fe721152ce04a0739a08c4c91314c76d144c91a7e7d7dac77d9e0e3040876` |
+> | **SHA-256 (`.tif` / `.zip`)** | `199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c` | ZIP: `eba566f9f960017f98d9502ee5026b3a48b2b3b59a0d6e320471f2ddd6e0fb5f` |
 > | **Live Portal Status** | **`UNSCORED` (`0` weekly slots spent by agents)** | No `ORGANIZER-CONFIRMED` score exists for `H88-XGCE`; `H33 0.2778` remains `[OWNER]` unverified, leaderboard top `0.4413` snapshot 2026-10-24. See forensic analysis for why sparsity+dilation explains H33 lead. |
 >
 

@@ -172,11 +172,11 @@
     "n_dots_on_catalogue": 0
   },
   "submission": {
-    "file": "docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros.tif",
-    "zip_file": "docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros.zip",
-    "json_file": "docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros.json",
+    "file": "docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif",
+    "zip_file": "docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.zip",
+    "json_file": "docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.json",
     "raster_sha256": "199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c",
-    "zip_sha256": "f92fe721152ce04a0739a08c4c91314c76d144c91a7e7d7dac77d9e0e3040876",
+    "zip_sha256": "eba566f9f960017f98d9502ee5026b3a48b2b3b59a0d6e320471f2ddd6e0fb5f",
     "bytes": 84969,
     "submission_name": "GEMSDOE88-XGCE-30000-B4FFC782",
     "submission_note": "H88-XGCE grav\u00d7mag cross-grad orthogonal conduit 30000 dots; fingerprint gt25 0.49 canary 0.568; UNSCORED",
