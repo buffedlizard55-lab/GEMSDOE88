@@ -1,0 +1,16 @@
+{
+  "file": "gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.zip",
+  "sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
+  "zip_sha256": "5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409",
+  "submission_name": "GEMSDOE88-HGVC88-D5329F31",
+  "submission_note": "HGVC88 87ch hydrothermal up-dip+sinter PoE 37654d; HOLDOUT-DTI 0.2029 far 0.1328 blind 0.0790; UNSCORED",
+  "note_length": 103,
+  "positive_pixels": 37654,
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "all_5_discriminating_gates_pass": true,
+  "verdict": "negative",
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null
+}

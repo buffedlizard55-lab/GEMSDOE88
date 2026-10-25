@@ -1,0 +1,13 @@
+{
+  "schema": "gems88.preregistration-mtas88.v1",
+  "date_utc": "2026-10-25",
+  "frozen_before_computation": true,
+  "lane": "H88-MTAS",
+  "candidate_ranking": "research/candidate-hypotheses-20261025-mtas.md",
+  "selected": "cross-scale gravity-minus-magnetic admittance residual under buried cover",
+  "features": ["rtp_grad_200m", "rtp_grad_800m", "grav_grad_200m", "grav_grad_800m", "depth_to_base_log", "det_elev_slope", "geod_transtension"],
+  "inputs": "src/gems88/physics.py shared 44-channel cached feature stack; no new external datasets",
+  "holdout": {"split": "buffered-whole-components-loqo-v2", "seeds": [20, 21], "buffer_px": 3, "boundary_px": 12, "evaluator": "gems57-pooled-hide-v2", "bootstrap_draws": 1000, "bootstrap_seed": 882025, "dot_cap": 37654, "max_filter_size": 5, "metric": {"alpha": 0.2, "beta": 0.8, "triangular_radius_m": 300}},
+  "stop": "Any surface correlation > 0.90 or any final 3-pixel forward overlap > 0.70 with one registry raster => DUPLICATE_STOP; no slot authorized. Pinned dense witness already mathematically blocks all nonempty predictions under the literal definition.",
+  "budget": {"max_experiments": 1, "weekly_slots": 0}
+}

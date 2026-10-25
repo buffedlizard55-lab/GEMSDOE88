@@ -3,17 +3,35 @@
 - **Candidate:** `docs/downloads/gems88-bgcd88-hydro-slip-35000d-20261025-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: fa17d9da6afae33298bc9e3cba83f26f6aefaffc357ce3b4c57827e11af2e8cb`) and single-TIFF `.zip` (`SHA-256: 1d44161d500e671cd6e7c29c326e1791ee531aa62e9f8bddcb32a5d635428df7`).
 - **Submission Name (`36` chars `<= 140`):** `GEMSDOE88-BGCD88-HYDRO-SLIP-20261025`
 - **Submission Note (`101` chars `<= 140`):** `H88-BGCD blind geotherm diseq+slip PoE (35000d); HOLDOUT-DTI 0.1934 far 0.1163 blind 0.0643; UNSCORED`
-- **Scientific Gate (`HOLDOUT-DTI`, evaluator `gems57-pooled-hide-v2`, 8 folds across `seeds 20+21`):** **MIXED / HELD (`5/8` folds won vs `B12` control; strictly beats `Exp 02` & stored `ADHR`, trails `VESS`/`TDKL`)**
-  - **Overall (`n=22,893`):** **`0.193384`** (`95% CI [0.176011, 0.210509]`), beating `Exp 02` (`0.189604`) by **`+0.003780`** (`95% CI [+0.001804, +0.005774]`), beating stored `H88-ADHR` (`0.189634`), and winning `5/8` folds against in-run `h88_adhr_b12_ctrl` (`0.192945`, paired $\Delta = +0.000439$ `[-0.003808, +0.004728]`), while trailing `H88-VESS` (`0.200941`) and `H88-TDKL` (`0.196237`).
+- **Scientific Gate (`HOLDOUT-DTI`, evaluator `gems57-pooled-hide-v2`, 8 folds across `seeds 20+21`):** **MIXED / HELD (`5/8` folds won vs `B12` control; strictly beats `Exp 02` & stored `ADHR`, trails `HGVC`/`VESS`/`TDKL`)**
+  - **Overall (`n=22,893`):** **`0.193384`** (`95% CI [0.176011, 0.210509]`), beating `Exp 02` (`0.189604`) by **`+0.003780`** (`95% CI [+0.001804, +0.005774]`), beating stored `H88-ADHR` (`0.189634`), and winning `5/8` folds against in-run `h88_adhr_b12_ctrl` (`0.192945`, paired $\Delta = +0.000439$ `[-0.003808, +0.004728]`), while trailing `H88-HGVC` (`0.202947`), `H88-VESS` (`0.200941`), and `H88-TDKL` (`0.196237`).
   - **Far `> 10 px` (`n=10,791`):** **`0.116300`** (`95% CI [0.099496, 0.136386]`) vs `h88_adhr_b12_ctrl` `0.116028`.
   - **Blind-Basin `> 25 px` (`n=3,117`):** **`0.064326`** (`95% CI [0.036045, 0.095468]`) vs `h88_adhr_b12_ctrl` `0.063343`.
   - **Zero-Catalogue `Exp 01` (`bgcd_blind_phys57`):** **`0.100109`** (`95% CI [0.087835, 0.112522]`), `+0.038350` (`+62.1%`) over `DHTC` `0.061759`.
 - **Single-Feature Leakage Canary (`60` channels):** **PASS** (`0/60 > 0.90`, `max_symmetric_auc = 0.66343`).
 - **Fingerprint Screen (`gems88-gate-v3`):** **PASS** (`35,000` dots; `share_le2 = 0.0000`; `share_gt10 = 0.7571`; `share_gt25 = 0.5143 >= 0.35`; `min_spacing = 3.20 px`).
-- **Registry Uniqueness Gate (`326` distinct rasters = `239` pinned + `87` live `HEAD` siblings):**
+- **Registry Uniqueness Gate (`330` distinct rasters = `326` pre-merge + `4` newly merged concurrent `GEMSDOE88` rasters):**
   - Pre-placement continuous surface max `|Spearman rho| = 0.667683 <= 0.90` (**PASS**).
-  - Like-for-like 3-px dot overlap across **all `326` rasters**: max `= 0.543371 <= 0.70` vs `GEMSDOE88:GTHC` (**PASS**, `0` like-for-like blockers — including `0.3863` vs `TDKL`, `0.3849` vs `VESS`, `0.4090` vs `H33`, `0.1753` vs `GEMSDOE90`).
+  - Like-for-like 3-px dot overlap across **all `330` rasters**: max `= 0.543371 <= 0.70` vs `GEMSDOE88:GTHC` (**PASS**, `0` like-for-like blockers — including `0.4220` vs `HGVC`, `0.3863` vs `TDKL`, `0.3849` vs `VESS`, `0.4090` vs `H33`, `0.1753` vs `GEMSDOE90`, `0.1501` vs `GZZC`, `0.1425` vs `SGMC-DIST-CONJ-v2`, `0.0650` vs `XGCE`).
   - Literal dense witness stop: `1.0000 > 0.70` vs `17GEMSDOE` (`dense_17gemdoe.tif`). Therefore `ok_to_download = true`, `ok_to_submit = false`, `verdict = "negative"` (`0` weekly slots spent; `.venv/bin/python scripts/validate_bgcd88.py --require-submit` exits `2`).
+
+---
+
+# Parallel addendum (2026-10-24): H88-HGVC — FIRST RASTER TO CLEAR ALL 5 DISCRIMINATING GATES · DOWNLOAD FOR RESEARCH: YES · DO NOT SUBMIT under literal `17GEMSDOE` witness (`0` slots spent)
+
+- **Candidate:** `docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif` (`SHA-256: d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef`) and single-TIFF `.zip` (`SHA-256: 5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409`).
+- **Prepared Submission Name (`25/140` chars):** `GEMSDOE88-HGVC88-D5329F31`
+- **Prepared Submission Note (`103/140` chars):** `HGVC88 87ch hydrothermal up-dip+sinter PoE 37654d; HOLDOUT-DTI 0.2029 far 0.1328 blind 0.0790; UNSCORED`
+- **Scientific Gate (`HOLDOUT-DTI`, evaluator `gems57-pooled-hide-v2`, 8 folds across `seeds 20+21`):** **PASS (8/8 folds won — new all-time repository record)**
+  - **Overall (`n=22,893`):** **`0.202947`** (`95% CI [0.185869, 0.219790]`), paired $\Delta$ vs `H88-ADHR` incumbent (`0.194876`, stored bar `0.189634`) = **`+0.008071`** (`95% CI [+0.003163, +0.012773]`, **wins 8/8 folds**, surpassing `TDKL` `0.196237`, `MVRD` `0.197314`, and `VESS` `0.200941`).
+  - **Far `> 10 px` (`n=10,791`):** **`0.132800`** (`95% CI [0.113369, 0.154040]`), paired $\Delta$ vs `H88-ADHR` (`0.123481`) = **`+0.009320`** (`95% CI [+0.002054, +0.016876]`).
+  - **Blind-Basin `> 25 px` (`n=3,117`):** **`0.078959`** (`95% CI [0.050407, 0.112276]`), paired $\Delta$ vs `H88-ADHR` (`0.074122`, stored bar `0.065263`) = **`+0.004837`** (`+0.013696` vs stored bar).
+- **Single-Feature Leakage Canary & Scramble Gate (`87` features):** **PASS** (`87/87 <= 0.90`, `max = 0.770155`, `max zero-cat = 0.590284`, `max HGVC-20 = 0.58654`; quadrant scramble bit-identical `True`).
+- **H33-Parity Fingerprint Screen (`gems88-gate-v3`):** **PASS** (`37,654` dots; `share_le2 = 0.0000`; `share_gt25 = 0.4290 >= 0.35`; `median_d_cat = 19.24 px`).
+- **326-Raster Uniqueness Gate (`240` pinned/concurrent + `86` live-HEAD `2026-10-24` `GEMSDOE86..92` rasters):**
+  - Pre-placement continuous surface max `|Spearman rho| = 0.208144 <= 0.90` (**PASS**).
+  - Final binary like-for-like 3-px forward overlap across all `326` rasters (`200` distinct dot sets): **`max = 0.607426 <= 0.70` (`0` blockers — PASS!)** (vs `TDKL` `0.3831`, vs `VESS` `0.3851`, vs `GTHC` `0.5976`, vs `QTSK` `0.6074`, vs `H33` `0.4442`, vs `GEMSDOE89` `0.3087`, vs `GEMSDOE90` `0.0722`).
+  - Binding literal stop (`IR-88-86` / `IR-88-114`): literal `17GEMSDOE` space-filling witness is `1.0000 > 0.70` (`5,167,373/5,167,373` footprint cells `> 0`), and weekly slot promotion requires an explicit human selector decision. Therefore `ok_to_download = true`, `ok_to_submit = false`, `all_5_discriminating_gates_pass = true`, `verdict = "negative"` (`0` weekly slots spent; `validate_hgvc88.py --require-submit` exits `2`).
 
 ---
 

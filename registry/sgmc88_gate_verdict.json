@@ -1,0 +1,17 @@
+{
+  "schema": "gems88.gate-v1",
+  "generated_utc": "2026-10-25T03:31:41Z",
+  "experiment_id": "H88-SGMC-DIST-CONJ-v2",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "format_passed": true,
+  "canary_passed": true,
+  "canary_max_auc": 0.649386,
+  "holdout_dti": 0.056081,
+  "sparse_uniqueness_passed": true,
+  "max_dot_overlap": 0.439289,
+  "max_abs_rho": 0.035089,
+  "literal_blocked": true,
+  "dense_overlap": 1.0,
+  "verdict": "promote-to-selector-only"
+}

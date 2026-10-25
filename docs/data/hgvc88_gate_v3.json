@@ -1,0 +1,88 @@
+{
+  "schema": "gems88.hgvc88.gate_v3.v1",
+  "policy": "gems88-gate-v3",
+  "binding_literal_policy": "IR-88-86-literal-all-registry-v1",
+  "name": "gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT",
+  "submission_name": "GEMSDOE88-HGVC88-D5329F31",
+  "submission_note": "HGVC88 87ch hydrothermal up-dip+sinter PoE 37654d; HOLDOUT-DTI 0.2029 far 0.1328 blind 0.0790; UNSCORED",
+  "candidate": {
+    "tif": "docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.zip",
+    "sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
+    "zip_sha256": "5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409",
+    "dots": 37654
+  },
+  "sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
+  "zip_sha256": "5ef9ebf2ff386fc75bd2e5018c2c680f3ac083cb0dea3a08f0140e5c85d9e409",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "all_5_discriminating_gates_pass": true,
+  "verdict": "negative",
+  "label": "OK TO DOWNLOAD FOR RESEARCH \u2014 DO NOT SUBMIT (held only by literal 17GEMSDOE dense witness + human selector)",
+  "blocking_reasons": [
+    "UNIQUENESS: literal registry rule failed or unverified; no dense-prior exemption: 17GEMSDOE:dense_17gemdoe.tif, sibling:GEMSDOE87__docs__downloads__gems87-bmtd-20261022-50041440adba-RESEARCH-DO-NOT-SUBMIT.tif, sibling_head_20261024:GEMSDOE86__docs__downloads__gems86-faulthalo-4210938px-20261024T181838Z-219b3357-zeros.tif"
+  ],
+  "portal_values_and_grid_ok": true,
+  "portal_layout_parity_with_sample": true,
+  "leakage_canary_pass": true,
+  "fingerprint": {
+    "n": 37654,
+    "median_d_cat_px": 19.235383987426758,
+    "share_le2": 0.0,
+    "share_gt10": 0.6648696021671004,
+    "share_gt25": 0.4290115259998938
+  },
+  "fingerprint_screen_pass": true,
+  "holdout_comparison": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positives": 22893,
+    "candidate_dti": 0.2029470713394289,
+    "candidate_ci95": [
+      0.185868859876156,
+      0.21979007541452142
+    ],
+    "far_gt10px_dti": 0.1328004004705083,
+    "far_gt10px_ci95": [
+      0.11336922153918828,
+      0.15403971543376227
+    ],
+    "blind_gt25px_dti": 0.07895921444556538,
+    "blind_gt25px_ci95": [
+      0.0504068938226493,
+      0.11227649422250327
+    ],
+    "adhr_incumbent_recomputed_dti": 0.19487581335786947,
+    "adhr_incumbent_stored_dti": 0.189634,
+    "paired_delta_vs_adhr": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "delta": 0.008071257981559443,
+      "ci95": [
+        0.0031629410161225003,
+        0.01277306522939559
+      ],
+      "withheld_positive_pixels": 22893
+    },
+    "folds_won_vs_adhr": 8,
+    "beats_both_bars_with_positive_ci95": true
+  },
+  "uniqueness": {
+    "registry_rasters_checked": 326,
+    "distinct_dot_sets_checked": 200,
+    "surface_preplacement_max_abs_spearman": 0.208144,
+    "worst_like_for_like_overlap": {
+      "label": "GEMSDOE88:gems88-qtsk-coverstep-knickwave-20261024-798e3c54-DO-NOT-SUBMIT.tif",
+      "value": 0.6074255059223456
+    },
+    "worst_abs_rho": {
+      "label": "17GEMSDOE:dense_17gemdoe.tif",
+      "value": 0.20814359540776092
+    },
+    "unique_like_for_like": true,
+    "literal_all_positive_witness_overlap_3px": 1.0,
+    "unique_literal": false
+  },
+  "weekly_slots_spent": 0,
+  "organizer_confirmed_score": null
+}
