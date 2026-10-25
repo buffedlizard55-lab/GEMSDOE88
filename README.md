@@ -55,6 +55,10 @@ bash scripts/download_competition_data.sh
 
 `--check` commands fail if recorded artifact hashes or primary panels drift. Re-audit and regenerate the presentation with `audit_downloads.py` and `render_decision.py` only after reviewing the changed evidence. A green local format check cannot promote a duplicate. Scientific validation and the separate weekly-slot selector are independent gates.
 
+### Review supplement — session 7bf01824
+
+[Three-pass review and parser reliability fix](research/session-7bf01824-review.md) · [Session run card](registry/session_7bf01824_run_card.json). Fresh preflight confirms `DUPLICATE_STOP`; no new TIFF or slot. Offline leaderboard parsing now rejects malformed scores and incomplete ranked evidence without replacing the previous snapshot.
+
 ### Remaining limitations
 
 The literal uniqueness condition must become satisfiable under an explicitly authorized **shared** protocol before another candidate is constructed; no exemption is authorized here. New-model hide-and-recover and leakage tests are therefore not run. The current leaderboard, rules, weekly allowance, organizer input authentication and receipts cannot be verified through this session's permitted hosts. No credentials are requested. Full data caches are ignored, not committed; restore commands reconstruct them. Static Pages serves results, not account-authenticated uploads or training jobs.
