@@ -560,8 +560,50 @@ def main(root: Path = ROOT) -> None:
     require(dhtc_tif.name in index and dhtc_tif.name in executive, "DHTC tif in pages")
     require(dhtc["submission"]["submission_name"] in index and dhtc["submission"]["submission_name"] in executive, "DHTC name in pages")
     require(dhtc["raster_sha256"][:16] in index and dhtc["raster_sha256"][:16] in executive, "DHTC hash in pages")
+
+    bgcd = json.loads((root / "registry/bgcd88_run_card.json").read_text())
+    bgcd_web = json.loads((docs / "data/bgcd88_run_card.json").read_text())
+    bgcd_gate = json.loads((root / "registry/bgcd88_gate_verdict.json").read_text())
+    bgcd_gate_web = json.loads((docs / "data/bgcd88_gate_verdict.json").read_text())
+    require(bgcd == bgcd_web, "Pages BGCD card differs from canonical registry card")
+    require(bgcd_gate == bgcd_gate_web, "Pages BGCD gate verdict differs from registry")
+    require(
+        bgcd["verdict"] == "negative"
+        and bgcd["ok_to_download"] is True
+        and bgcd["ok_to_submit"] is False
+        and bgcd_gate["ok_to_submit"] is False,
+        "BGCD fail-closed status invariant failed",
+    )
+    bgcd_tif = root / bgcd["submission"]["file"]
+    bgcd_zip = root / bgcd["submission"]["zip_file"]
+    require(sha256(bgcd_tif) == bgcd["raster_sha256"], "BGCD TIFF SHA256 mismatch")
+    require(sha256(bgcd_zip) == bgcd["zip_sha256"], "BGCD ZIP SHA256 mismatch")
+    with zipfile.ZipFile(bgcd_zip) as zf:
+        require(
+            zf.namelist() == [bgcd_tif.name] and zf.read(bgcd_tif.name) == bgcd_tif.read_bytes(),
+            "BGCD ZIP does not contain byte-identical single TIFF",
+        )
+    require(
+        (root / "research/bgcd88-forensics-and-phd-synthesis-20261025.md").read_bytes()
+        == (docs / "research/bgcd88-forensics-and-phd-synthesis-20261025.md").read_bytes(),
+        "BGCD PhD synthesis markdown differs between research/ and docs/research/",
+    )
+    sources = (docs / "sources.html").read_text()
+    for page_name, page_txt in (
+        ("index.html", index),
+        ("executive-summary.html", executive),
+        ("research.html", research),
+        ("sources.html", sources),
+    ):
+        require(bgcd_tif.name in page_txt, f"BGCD tif missing in {page_name}")
+        require(bgcd["submission"]["submission_name"] in page_txt, f"BGCD submission_name missing in {page_name}")
+        require(bgcd["raster_sha256"] in page_txt, f"BGCD raster_sha256 missing in {page_name}")
+    require(
+        bgcd["zip_sha256"] in index and bgcd["zip_sha256"] in executive,
+        "BGCD zip_sha256 missing in index/executive",
+    )
     print(
-        "PASS: canonical TDKL and concurrent negative research artifacts, hashes, Pages links, and status agree"
+        "PASS: canonical TDKL, latest BGCD, and concurrent negative research artifacts, hashes, Pages links, and status agree"
     )
 
 
