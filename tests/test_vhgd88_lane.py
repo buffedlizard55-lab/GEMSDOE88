@@ -5,6 +5,7 @@ import zipfile
 from pathlib import Path
 
 import numpy as np
+import pytest
 import scipy.spatial as sps
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +14,14 @@ sys.path[:0] = [str(ROOT / "src"), str(ROOT / "vendor")]
 from gems88 import vhgd  # noqa: E402
 
 
+@pytest.mark.skipif(
+    not all((ROOT / path).is_file() for path in (
+        "data/bridge/sample_submission.tif",
+        "data/bridge/existing_faults.tif",
+        "data/registry/dense_17gemdoe.tif",
+    )),
+    reason="restore SHA-pinned validation rasters before running the data-backed validator",
+)
 def test_vhgd88_validator_script_passes():
     proc = subprocess.run(
         [sys.executable, str(ROOT / "scripts/validate_vhgd88.py")],
