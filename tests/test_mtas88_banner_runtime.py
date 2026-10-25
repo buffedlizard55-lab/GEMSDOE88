@@ -17,10 +17,10 @@ def test_current_decision_precedes_archived_download_on_both_pages():
         current = html.index('id="autonomous-review"')
         historical = html.index('id="hgvc-current"') if rel == "docs/index.html" else html.index("Archived H88-HGVC GeoTIFF")
         assert current < historical, f"stale candidate appears before current decision in {rel}"
-        assert "NO NEW TIFF" in html
+        assert "NEW TIFF: H88-VVENT" in html
         assert "H88-HGVC" in html
     guide = (ROOT / "docs/executive-summary.html").read_text()
-    assert "CURRENT DECISION 2026-10-25: NO NEW UNIQUE TIFF" in guide
+    assert "CURRENT DECISION 2026-10-25: a new unique research TIFF (H88-VVENT) exists but is NOT cleared to submit" in guide
 
 
 @pytest.mark.skipif(NODE is None, reason="Node.js runtime unavailable")

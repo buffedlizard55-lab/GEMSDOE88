@@ -1,0 +1,84 @@
+{
+  "schema": "gems88.vvent.run-card.v1",
+  "created_at_utc": "2026-10-25T18:00:00+00:00",
+  "lane": "H88-VVENT",
+  "verdict": "negative_for_submission_promote_for_research_download",
+  "hypothesis": "Young volcanic vents and high-temperature springs mark concealed geothermal faults missing from the USGS/INGENIOUS Quaternary fault catalogue.",
+  "mechanism": "Volcanic vent / hot spring co-located with magnetic demagnetisation low, conductive clay cap, and basement-depth gradient indicates a concealed fault controlling geothermal upflow; dots emitted off-catalogue (not on existing_faults).",
+  "named_non_fault_mimic": "Young volcanic centres without fault control; fumaroles on unfaulted volcanic rock; shallow warm-spring (non-fault) circulation; playa clay conductivity.",
+  "why_catches_missing_faults": "Vents and hot springs are direct geothermal surface expressions; most lie far from any mapped Quaternary trace, so they point at concealed faults absent from the USGS/INGENIOUS catalogue.",
+  "differs_from_repo": "Uses point volcanic/geothermal surface expressions (volcanic vents unused by any existing lane) as the primary prior, combined with edge/conductivity/basement evidence, and off-catalogue emission. Prior lanes use fault-adjacent geophysics (ridge/knickpoint, scalar magnetic/gravity gradients, updip sinter).",
+  "layers": [
+    "DOE GDR #1391 gdr_volcanic_vents_in_footprint.csv (21 basalt vents; none on mapped faults; 10/21 > 2.5 km from any mapped fault)",
+    "DOE GDR #1391 gdr_wellspring_in_footprint.csv (2,343 springs > 60 C; 842 > 2.5 km from any mapped fault)",
+    "Competition training_features bands via gems57.geo: rtp/mag, cond_surf, depth_to_base_surf"
+  ],
+  "physical_signature": "volcanic vent / hot spring + geophysical edge (mag low, conductivity high, basement gradient)",
+  "holdout": {
+    "status": "MEASURED",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 22641,
+    "seeds": [20, 21],
+    "folds": 8,
+    "dti": 0.010070285716963907,
+    "ci95": [0.008074134531761123, 0.012601292730113409],
+    "mean_fold_dti": 0.01034,
+    "note": "Buffered whole-component hide-and-recover; alpha=0.2, beta=0.8, 300 m triangular kernel. Low by design: this off-catalogue candidate targets concealed faults, while the holdout truth is withheld CATALOGUE segments. Does not beat the current holdout best (0.205991), so per the budget rule no weekly slot may be spent on it."
+  },
+  "canary": {
+    "status": "PASS",
+    "note": "Each component feature (vent proximity, spring proximity, geology edge) is catalogue-independent; none encodes the holdout truth. Single-feature holdout DTI when binarized: 0.0078-0.0106 (no leakage). AUC could not be finalised due to held-out-truth pixel collection geometry; features are not derived from catalogue truth so AUC > 0.90 leakage is not plausible."
+  },
+  "leakage_canary_pass": true,
+  "uniqueness": {
+    "registry_inventory": "registry/inventory.json",
+    "rasters_checked": 21,
+    "complete_accessible_scan": true,
+    "vs_20_dot_field_rasters": {
+      "max_abs_spearman": 0.006062662404718783,
+      "rho_limit": 0.9,
+      "rho_pass": true,
+      "max_3px_overlap": 0.2544218409730706,
+      "overlap_limit": 0.7,
+      "overlap_pass": true,
+      "duplicate_count": 0
+    },
+    "vs_17gemdoe_dense_witness": {
+      "spearman": -0.004194987679608084,
+      "rho_limit": 0.9,
+      "rho_pass": true,
+      "literal_forward_overlap": 1.0,
+      "overlap_limit": 0.7,
+      "literal_overlap_pass": false,
+      "note": "Dense 17GEMSDOE witness is positive on every footprint cell, so literal all-raster forward overlap is 1.0 > 0.70. This is the BINDING submission blocker under the repo's literal duplicate rule. Rank correlation (-0.0042) passes condition #1."
+    }
+  },
+  "raster_sha256": "83b1aad1531ea17512ea365481a4c93119e97eacfd2af1c0983aa48bdcc160c1",
+  "raster_bytes": 96815,
+  "validator": {
+    "format_ok": true,
+    "no_nan": true,
+    "values_in_0_1": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "no_positive_outside_footprint": true,
+    "no_positive_on_catalogue": true,
+    "note": "Single-band float32 GeoTIFF, EPSG:32611, 3730x3292, exact sample_submission.tif transform, all values finite in [0,1], zeros outside footprint and on the mapped catalogue. Fixes the portal \"Predicted values must be in range [0, 1]\" error."
+  },
+  "raster_file": "gems88-vvent88-volcanic-vent-hotspring-20261025T171252Z-20a4974f868d-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "gems88-vvent88-volcanic-vent-hotspring-20261025T171252Z-20a4974f868d-zeros-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "ef350760b517d76bc52a7d09c97fe742ce632c7f9fbf2b0397bfada9d5ac3249",
+  "submission_name": "GEMSDOE88-VVENT88-VOLCANIC-VENT-HOTSPRING-20261025",
+  "submission_name_chars": 52,
+  "submission_note": "H88-VVENT volcanic-vent+hot-spring+geology concealed-fault PoE 37654 dots; HOLDOUT-DTI 0.0101; values in [0,1]; UNSCORED",
+  "submission_note_chars": 113,
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "data_provenance": "SHA-pinned owner GitHub mirrors; DOE GDR #1391 CC BY 4.0; USGS GeoDAWN/3DEP CC0; not organizer-authenticated",
+  "download_for_research": true,
+  "ok_to_submit_under_binding_literal_rule": false,
+  "submit_blocker": "literal all-raster forward overlap with the space-filling 17GEMSDOE witness is 1.0 > 0.70; holdout DTI 0.0101 also does not beat the current holdout best 0.205991"
+}

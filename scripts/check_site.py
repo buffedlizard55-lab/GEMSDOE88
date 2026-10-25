@@ -624,14 +624,15 @@ def main(root: Path = ROOT) -> None:
     require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
     require(
         "Current review · 2026-10-25" in index
-        and "NO FILE APPROVED" in index
-        and "every nonempty dot set fails the literal overlap limit" in index,
-        "Overview must present the current fail-closed decision before archived candidates",
+        and "Current review · 2026-10-25" in executive
+        and "VVENT lane — verified unique, not cleared to submit" in index
+        and "VVENT lane — verified unique, not cleared to submit" in executive,
+        "Overview and guide must present the current VVENT decision before archived candidates",
     )
     require(
         "genuinely unique" not in index.lower()
-        and "not unique under the binding all-registry rule" in index,
-        "Overview must not overstate sparse-screen uniqueness as global uniqueness",
+        and "Literal forward overlap vs the 17GEMSDOE witness = 1.00 &gt; 0.70" in index,
+        "Overview must not overstate sparse-screen uniqueness: state the binding blocker plainly",
     )
     require(
         card["raster_sha256"] in index,
@@ -664,10 +665,10 @@ def main(root: Path = ROOT) -> None:
     for page_text in (index, executive):
         require(
             page_text.index('id="mtas-review"') < page_text.index('class="archive-lanes"')
-            and 'NO NEW TIFF: DUPLICATE — STOP' in page_text
+            and 'NEW TIFF: H88-VVENT' in page_text
             and 'data/mtas88_run_card.json' in page_text
             and mtas["archived_research_download"]["sha256"] in page_text,
-            "Pages must lead with the MTAS no-new-file stop and a marked historical download",
+            "Pages must lead with the current VVENT decision and keep the pre-placement stop proof linked",
         )
     js = (docs / "assets/site.js").read_text()
     require(

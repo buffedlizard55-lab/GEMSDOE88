@@ -37,9 +37,15 @@ def test_session_audit_counts_main_and_variant_without_rewriting_history():
     assert inventory['additional_research_tiff_count'] == 1
     assert inventory['total_published_tiff_count'] == inventory['total_research_download_pass_count'] == 46
     assert inventory['protocol_eligible_count'] == 0
-    for key in ('tiff_count', 'additional_research_tiff_count', 'total_published_tiff_count', 'exact_decoded_duplicate_groups'):
-        assert inventory[key] == audit[key]
-    assert inventory['saved_audit_sha256'] == hashlib.sha256((ROOT / 'docs/data/download_audit.json').read_bytes()).hexdigest()
+    # inventory is the immutable b4dfa10c snapshot (46); audit is current
+    # (47: this session added the H88-VVENT research TIFF). History is not
+    # rewritten; the inventory simply grew.
+    assert audit['tiff_count'] == audit['research_download_pass_count'] == 46
+    assert audit['additional_research_tiff_count'] == 1
+    assert audit['total_published_tiff_count'] == audit['total_research_download_pass_count'] == 47
+    assert audit['protocol_eligible_count'] == 0
+    assert audit['exact_decoded_duplicate_groups'] == inventory['exact_decoded_duplicate_groups']
+    assert any(r['file'].startswith('gems88-vvent88-') for r in audit['artifacts'])
     archive = card['archived_research_download']
     assert hashlib.sha256((ROOT / archive['download']).read_bytes()).hexdigest() == archive['sha256']
     assert archive['ok_to_download_for_research_only'] is True and archive['ok_to_submit'] is False

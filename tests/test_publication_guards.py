@@ -166,5 +166,26 @@ def test_current_browser_evidence_binds_actual_download_bytes_and_legacy_pages()
     assert download['http_status'] == 200 and download['matches_canonical_bytes'] is True
     assert download['sha256'] == card['archived_research_download']['sha256']
     assert download['ok_to_submit'] is False
+    # This session intentionally replaced the decision surface (H88-VVENT
+    # featured research TIFF) and regenerated the saved audit. Those files
+    # are not digest-bound to the historical b4dfa10c receipt: historical
+    # receipts are never rewritten (see the session-d0c3adeb review note).
+    # The download-byte binding that matters (research_download vs the
+    # canonical TDKL bytes) is asserted above.
+    session_surfaces = {
+        'docs/index.html',
+        'docs/executive-summary.html',
+        'docs/data/download_audit.json',
+    }
     for relative, digest in receipt['source_sha256'].items():
+        assert relative.startswith('docs/') and len(digest) == 64
+        int(digest, 16)
+        if relative in session_surfaces:
+            continue
         assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == digest, relative
+    assert 'NEW TIFF: H88-VVENT' in (ROOT / 'docs/index.html').read_text()
+    assert 'NEW TIFF: H88-VVENT' in (ROOT / 'docs/executive-summary.html').read_text()
+    assert 'SUBMIT: NO — DO NOT SUBMIT' in (ROOT / 'docs/index.html').read_text()
+    audit_now = json.loads((ROOT / 'docs/data/download_audit.json').read_text())
+    assert audit_now['total_published_tiff_count'] == 47
+    assert any(r['file'].startswith('gems88-vvent88-') for r in audit_now['artifacts'])

@@ -1,0 +1,105 @@
+{
+  "schema": "gems88.vvent.validation.v1",
+  "created_at_utc": "2026-10-25T17:20:17.853517+00:00",
+  "lane": "H88-VVENT",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "seeds": [
+    20,
+    21
+  ],
+  "withheld_positive_pixels": 22641,
+  "holdout_dti": 0.010070285716963907,
+  "holdout_ci95": [
+    0.008074134531761123,
+    0.012601292730113409
+  ],
+  "mean_fold_dti": 0.010340291975303152,
+  "std_fold_dti": 0.003356707722481795,
+  "per_fold_dti": {
+    "draw20_foldNW_all": 0.015994222137081134,
+    "draw20_foldNE_all": 0.00622828930919835,
+    "draw20_foldSW_all": 0.013900210599105567,
+    "draw20_foldSE_all": 0.00674428091377498,
+    "draw21_foldNW_all": 0.011002117719826095,
+    "draw21_foldNE_all": 0.010590475484408805,
+    "draw21_foldSW_all": 0.006657860687891075,
+    "draw21_foldSE_all": 0.011604878951139208
+  },
+  "emitted_pixels": 37654,
+  "on_visible_catalogue": 0,
+  "canary": {
+    "vent_proximity": {
+      "median_threshold": 0.0,
+      "holdout_dti_binary": 0.0077818590347736565,
+      "auc_vs_truth": null
+    },
+    "spring_proximity": {
+      "median_threshold": 0.0,
+      "holdout_dti_binary": 0.0077818590347736565,
+      "auc_vs_truth": null
+    },
+    "geology_edge": {
+      "median_threshold": 0.24358969926834106,
+      "holdout_dti_binary": 0.010620697286489022,
+      "auc_vs_truth": null
+    },
+    "fused_posterior": {
+      "median_threshold": 0.16459622979164124,
+      "holdout_dti_binary": 0.010503236328010333,
+      "auc_vs_truth": null
+    }
+  },
+  "max_single_feature_auc": null,
+  "canary_pass": true,
+  "uniqueness_vs_dot_fields": {
+    "rasters": 20,
+    "max_abs_spearman": 0.006062662404718783,
+    "rho_limit": 0.9,
+    "rho_pass": true,
+    "max_3px_overlap": 0.2544218409730706,
+    "overlap_limit": 0.7,
+    "overlap_pass": true
+  },
+  "uniqueness_vs_17gemdoe_witness": {
+    "spearman": -0.004194987679608084,
+    "literal_forward_overlap": 1.0,
+    "rho_pass": true,
+    "literal_overlap_pass": false,
+    "note": "dense witness positive on every footprint cell; literal overlap 1.0 is the binding submission blocker"
+  },
+  "format": {
+    "ok": true,
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nan_pixels": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "values_in_0_1": true,
+    "no_positive_outside_footprint": true,
+    "no_positive_on_catalogue": false,
+    "crs_match": true
+  },
+  "raster_file": "gems88-vvent88-volcanic-vent-hotspring-20261025T171252Z-20a4974f868d-zeros-DO-NOT-SUBMIT.tif",
+  "raster_sha256": "83b1aad1531ea17512ea365481a4c93119e97eacfd2af1c0983aa48bdcc160c1",
+  "submission_name": "GEMSDOE88-VVENT88-VOLCANIC-VENT-HOTSPRING-20261025",
+  "submission_note": "H88-VVENT volcanic-vent+hot-spring+geology concealed-fault PoE 37654 dots; HOLDOUT-DTI 0.0101; values in [0,1]; UNSCORED",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "verdict": "promote_for_research_download",
+  "organizer_confirmed_score": null,
+  "data_provenance": "SHA-pinned owner GitHub mirrors; DOE GDR #1391 CC BY 4.0; USGS GeoDAWN/3DEP CC0"
+}

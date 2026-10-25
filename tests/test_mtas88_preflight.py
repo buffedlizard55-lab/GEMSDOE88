@@ -76,8 +76,9 @@ def test_site_leads_with_current_negative_and_never_falls_back_to_approval():
     for rel in ("docs/index.html", "docs/executive-summary.html"):
         text = (ROOT / rel).read_text()
         assert "data/mtas88_run_card.json" in text
-        assert "NO NEW TIFF" in text
-        assert "DO NOT SUBMIT" in text
+        assert "NEW TIFF: H88-VVENT" in text
+        assert "SUBMIT: NO — DO NOT SUBMIT" in text
+        assert "OK TO SUBMIT: YES" not in text
         assert "1.0" in text
         assert "0.70" in text
     js = (ROOT / "docs/assets/site.js").read_text()

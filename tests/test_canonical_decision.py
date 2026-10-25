@@ -31,13 +31,14 @@ class Page(HTMLParser):
         self.h1s += tag == 'h1'
 
 
-def test_both_pages_lead_with_exact_canonical_research_file_and_one_heading():
-    current = json.loads((ROOT / 'docs/data/current_release.json').read_text())
+def test_both_pages_lead_with_exact_featured_research_file_and_one_heading():
+    vvent = json.loads((ROOT / 'registry/vvent88_run_card.json').read_text())
+    featured = f"downloads/{vvent['raster_file']}"
     for name, kind in [('index.html', 'overview'), ('executive-summary.html', 'guide')]:
         text = (ROOT / 'docs' / name).read_text()
         parsed = Page()
         parsed.feed(text)
-        assert parsed.downloads[0] == str(Path(current['file']).relative_to('docs'))
+        assert parsed.downloads[0] == featured, f"{name}: first download is {parsed.downloads[0]!r}, expected {featured!r}"
         assert parsed.h1s == 1
         assert len(parsed.ids) == len(set(parsed.ids)), 'duplicate anchors break navigation and audit targeting'
         assert text.split('<main id="main">')[1].split(render_decision.START)[0].strip() == ''

@@ -30,7 +30,8 @@ def test_guard_rejects_corruption_under_both_interpreters(
             (docs / source.name).write_text(json.dumps(status))
         elif source.name == "index.html" and corruption == "unique-claim":
             index = source.read_text().replace(
-                "not unique under the binding all-registry rule", "genuinely unique"
+                "Literal forward overlap vs the 17GEMSDOE witness = 1.00 &gt; 0.70",
+                "Literal forward overlap vs the 17GEMSDOE witness = 0.10 &lt; 0.70",
             )
             (docs / source.name).write_text(index)
         elif source.name == "downloads" and corruption == "download":

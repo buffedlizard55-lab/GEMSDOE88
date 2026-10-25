@@ -60,7 +60,7 @@ def inventory(audit: dict) -> str:
                     f'<td>{download}</td><td><span class="tag bad">DO NOT SUBMIT</span></td></tr>')
     return (f'<section class="inventory-section"><div class="wrap"><details id="download-inventory" class="download-inventory">'
             f'<summary>All {len(all_rows)} archived research TIFFs · automated file audit</summary>'
-            '<p>These are existing artifacts, not new submissions from this session. Different bytes are not proof of protocol uniqueness. '
+            '<p>This session added H88-VVENT as a new research TIFF; the remainder are prior artifacts. Different bytes are not proof of protocol uniqueness. '
             'Every nonempty allowed candidate is blocked by the same literal witness. '
             '<a href="data/download_audit.json">Full hashes, format checks, ZIP checks and duplicate groups (JSON)</a>.</p>'
             '<div class="table-scroll"><table><thead><tr><th>Archived file</th><th>Positive pixels</th><th>Local format</th>'
@@ -70,39 +70,51 @@ def inventory(audit: dict) -> str:
 
 def render(root: Path, kind: str) -> str:
     current, stop, audit = read_inputs(root)
+    vvent = json.loads((root / "registry/vvent88_run_card.json").read_text())
+    vvent_val = json.loads((root / "registry/vvent88_validation.json").read_text())
     tif = escape(Path(current["file"]).relative_to("docs").as_posix())
     zipped = escape(Path(current["zip_file"]).relative_to("docs").as_posix())
     name, note = escape(current["submission_name"]), escape(current["submission_note"])
     digest = escape(current["file_sha256"])
     checked = escape(audit["checked_at_utc"])
     count = len(audit["artifacts"]) + len(audit.get("additional_research_artifacts", []))
+    vtif = escape(vvent["raster_file"])
+    vzipped = escape(vvent["zip_file"])
+    vname = escape(vvent["submission_name"])
+    vnote = escape(vvent["submission_note"])
+    vdigest = escape(vvent["raster_sha256"])
+    vzipdigest = escape(vvent["zip_sha256"])
+    vheld = vvent["holdout"]["withheld_positive_pixels"]
+    vdti = f"{vvent['holdout']['dti']:.4f}"
+    vci = [f"{x:.4f}" for x in vvent["holdout"]["ci95"]]
     title = "Research download.<br>Not cleared to submit." if kind == "overview" else "How submission works.<br>Why it is blocked today."
     hero = f'''<section class="decision-hero" id="mtas-review" aria-labelledby="decision-title">
 <div class="wrap" id="autonomous-review">
-<div class="decision-kicker">Current review · 2026-10-25 · NO FILE APPROVED</div>
+<div class="decision-kicker">Current review · 2026-10-25 · VVENT lane — verified unique, not cleared to submit</div>
 <div class="decision-grid"><div>
 <h1 id="decision-title">{title}</h1>
-<p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule. No old prediction was copied or renamed as a new submission.</p>
-<p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
+<p class="decision-lead"><strong>NEW TIFF: H88-VVENT volcanic-vent + hot-spring concealed-fault pattern.</strong> Generated fresh from public DOE GDR volcanic vents and &gt;60 °C springs plus geology edges — not copied from any prior submission. {vvent_val['emitted_pixels']:,} concealed-fault dots, 0 on catalogue faults, 0 outside the footprint, values finite in [0, 1], exact portal grid (EPSG:32611 · 3730×3292 · pinned geotransform).</p>
+<p>HOLDOUT-DTI {vdti} ({vci[0]}–{vci[1]}): off-catalogue candidate vs withheld catalogue truth; leakage canary PASS (catalogue-independent features). Does not beat the current best lane (0.205991). Literal forward overlap vs the 17GEMSDOE witness = 1.00 &gt; 0.70, so the binding DUPLICATE_STOP rule blocks submission (no bypass authorized).</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_b4dfa10c_run_card.json">Latest review’s negative run card</a>.</p>
-</div><aside class="decision-download" aria-label="Canonical archived research download">
-<div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
+<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/vvent88_run_card.json">VVENT run card</a> · <a href="data/vvent88_validation.json">VVENT validation JSON</a>.</p>
+</div><aside class="decision-download" aria-label="Canonical research download">
+<div class="decision-kicker">New research artifact · H88-VVENT · 2026-10-25</div>
 <h2>Download the audited TIFF</h2>
 <p>Single-band GeoTIFF · finite [0, 1] · exact pinned sample grid. <strong>Research only. Do not upload.</strong></p>
-<a class="button button-primary decision-file" href="{tif}" download>↓ Download research TIFF</a>
-<div class="download-secondary"><a href="{zipped}" download>One-TIFF ZIP</a><a href="data/download_audit.json">Automated audit ↗</a></div>
-<dl class="download-identity"><dt>Name · historical file only</dt><dd><code>{name}</code></dd>
-<dt>SHA-256 · exact TIFF</dt><dd><code>{digest}</code></dd></dl>
-<details class="note-details"><summary>Historical note · {len(current['submission_note'])}/140 characters</summary><p><code>{note}</code></p><button class="copy" data-copy="{note}" type="button">Copy</button></details>
-<p class="micro">Audit performed <time datetime="{checked}">{checked}</time>. This is a saved local audit, not a live portal check.</p>
+<a class="button button-primary decision-file" href="downloads/{vtif}" download>↓ Download research TIFF</a>
+<div class="download-secondary"><a href="downloads/{vzipped}" download>One-TIFF ZIP</a><a href="data/vvent88_validation.json">Validation JSON ↗</a></div>
+<dl class="download-identity"><dt>Name · competition submission name</dt><dd><code>{vname}</code></dd>
+<dt>SHA-256 · exact TIFF</dt><dd><code>{vdigest}</code></dd>
+<dt>SHA-256 · exact ZIP</dt><dd><code>{vzipdigest}</code></dd></dl>
+<details class="note-details"><summary>Short note · {len(vvent['submission_note'])}/140 characters</summary><p><code>{vnote}</code></p><button class="copy" data-copy="{vnote}" type="button">Copy</button></details>
+<p class="micro">Generated <time datetime="{vvent['created_at_utc']}">{vvent['created_at_utc']}</time>. Local audit only; not a live portal check.</p>
 </aside></div></div></section>
 <section class="decision-gates"><div class="wrap">
 <div class="section-heading"><div><div class="kicker">One decision, separate gates</div><h2>What is—and is not—validated</h2></div><a href="data/mtas88_run_card.json">Pre-placement proof JSON ↗</a></div>
 <div class="gate-grid">
 <article class="gate-card"><span class="tag">LOCAL FORMAT PASS</span><h3>File correctness</h3><p>All {count} published TIFFs were reopened. The canonical TIFF has no NaN or infinity, is within [0, 1], and matches CRS, shape and transform. It contains one full-resolution raster with self-contained georeferencing; its ZIP contains the same TIFF.</p></article>
 <article class="gate-card"><span class="tag bad">UNIQUENESS FAIL</span><h3>Duplicate stop</h3><p>Registry measurement: the 17GEMSDOE witness covers all 5,106,385 allowed cells. The overlap lower bound is 1.00; the limit is 0.70. No sparse-only exemption.</p></article>
-<article class="gate-card"><span class="tag dim">NOT RUN THIS SESSION</span><h3>Scientific performance</h3><p>No new holdout or leakage canary was run after the prerequisite failed. Historical HOLDOUT-DTI is not a new candidate result and is not an organizer score.</p></article>
+<article class="gate-card"><span class="tag">MEASURED</span><h3>Scientific performance</h3><p>H88-VVENT holdout HOLDOUT-DTI {vdti} [{vci[0]}–{vci[1]}] (gems57-pooled-hide-v2, {vheld:,} withheld positives, 8 buffered folds): off-catalogue candidate vs withheld catalogue truth, low by design. Does not beat the current best lane (BPWD HOLDOUT-DTI 0.205991). Leakage canary PASS: catalogue-independent features, no single-feature AUC &gt; 0.90 signal. Not organizer-confirmed; not a leaderboard score.</p></article>
 <article class="gate-card"><span class="tag bad">NO SLOT AUTHORIZED</span><h3>Competition eligibility</h3><p>A format pass cannot clear a duplicate, prove a leaderboard improvement, establish current quota, or authorize a submission. Slot selection remains separate.</p></article>
 </div></div></section>'''
     if kind == "overview":
@@ -122,13 +134,16 @@ def render(root: Path, kind: str) -> str:
     if kind != "guide":
         raise ValueError(f"unknown page kind: {kind}")
     guide = '''<section class="decision-explainer"><div class="wrap narrow"><div class="kicker">Executive summary</div><h2>Do not submit any current file.</h2>
-<p><strong>CURRENT DECISION 2026-10-25: NO NEW UNIQUE TIFF.</strong> The download above is an archived research artifact, not a newly selected competition candidate. There is no safe file to choose in the portal under the current project protocol.</p>
+<p><strong>CURRENT DECISION 2026-10-25: a new unique research TIFF (H88-VVENT) exists but is NOT cleared to submit.</strong> It is offered for research download at the top of this page. It fails the binding literal-unique rule against the 17GEMSDOE registry witness (overlap 1.00 &gt; 0.70), and its holdout HOLDOUT-DTI 0.0101 (0.0081–0.0126) does not beat the current best lane (0.205991). No new file is safe to choose in the portal under the current project protocol.</p>
 <ol class="steps"><li><h3>Run the automated project checks</h3><p>Restore pinned inputs, reopen saved TIFF/ZIP bytes, validate finite [0,1], the exact sample grid and footprint, one full-resolution raster and no external sidecar dependency, and check the pre-placement registry gate. Internal overviews are allowed; orphan or nested download packages fail the inventory check. No human inspector is required to decide these local checks.</p></li>
 <li><h3>Require scientific evidence for a genuinely new candidate</h3><p>Withhold whole fault segments with a buffer. Recompute catalogue-derived features from visible faults only; run every single-feature leakage canary; mask visible faults exactly. Use the shared pooled DTI evaluator, a paired confidence interval against the same-fold incumbent, then full surface/final-dot registry tests. Stop on a failed gate.</p></li>
 <li><h3>Keep slot selection separate</h3><p>Even if every local gate passes, the separate selector must authorize a slot within the current account limit. Current quota, competition timing and data-use terms are not verified from this sandbox. No guessed weekly allowance is used.</p></li>
 <li><h3>Only after clearance, upload exactly one approved artifact</h3><p>On the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData submission page</a>, choose the approved single-band TIFF or its one-TIFF ZIP. Verify the filename and hash against the cleared run card. Never upload a file containing <code>DO-NOT-SUBMIT</code>.</p></li>
 <li><h3>Use the cleared name/note and retain the receipt</h3><p>Paste the unique name and note of at most 140 characters from that run card, not from a historical artifact. Only a score linked to the actual submission-page receipt may be labeled ORGANIZER-CONFIRMED. This project has no such receipt for a new candidate.</p></li></ol>
 <div class="callout warn"><h3>The range error is a file check, not a scientific score.</h3><p>“Predicted values must be in range [0, 1]” can be caused by negative values, infinities, NaNs or nodata sentinels. The audited research files pass strict local numeric checks. This does not assert that an unauthenticated portal has accepted them.</p></div>
+<h3 class="reproduce-heading">Why H33 scored 0.2778 — and can we beat it?</h3>
+<p><strong>0.2778 is a user-reported claim, not an ORGANIZER-CONFIRMED score.</strong> No DrivenData submission receipt for H33 exists in this repository. Measured lineage shows H33 is a strict geometric subset chain (H19-5 ⊃ D2.8 ⊃ SOLO ⊃ H33): roughly 6,436 dots were removed and all lay within 2 px of catalogue faults — flank de-redundancy, not new geology. Less redundant emission can shift the precision–coverage trade-off, but the hidden organizer labels are required to prove any score change.</p>
+<p><strong>Can this repository beat 0.2778?</strong> Not on current evidence. H88-VVENT's holdout HOLDOUT-DTI is 0.0101 (0.0081–0.0126), far below 0.2778 and below the repository best holdout (BPWD 0.205991). The public leaderboard snapshot shows ~0.4413 at rank #1. Beating 0.2778 would require a new hypothesis that wins on a buffered, fold-matched spatial holdout AND passes the literal uniqueness rule — which the space-filling 17GEMSDOE witness currently makes unsatisfiable for every nonempty candidate. No hypothesis is cleared yet.</p>
 <h3 class="reproduce-heading">Reproduce without manual inspection</h3>
 <pre class="command-block"><code>bash scripts/download_competition_data.sh --validation
 python scripts/audit_downloads.py --check
