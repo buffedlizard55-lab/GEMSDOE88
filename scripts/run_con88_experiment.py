@@ -180,9 +180,9 @@ def main():
     assert not (dots & cat).any() and not (dots & ~foot).any()
     assert (dcat[dots] > COLLAR_PX).all()
 
-    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros"
+    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros-DO-NOT-SUBMIT"
     out = ROOT / "docs/downloads" / f"{name}.tif"
-    note = "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card"
+    note = "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; DO NOT SUBMIT"
     assert len(note) <= 140, len(note)
     from gems57.submission_writer import write_submission
     receipt = write_submission(out, pred, ROOT / "data/bridge/sample_submission.tif",

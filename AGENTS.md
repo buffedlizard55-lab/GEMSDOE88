@@ -30,4 +30,4 @@ and ZIP member. `con88_preflight` is only a shared-literal-guard compatibility
 alias. `validate_con88.py` is read-only, not a fitting or clearance path. Never
 restore the historical `G1 && G2 && G3 && canary` approval: it omitted holdout
 improvement and used a withdrawn registry exception. Current review evidence is
-`registry/session_96f5f523_run_card.json`; old browser receipts remain historical.
+`registry/session_587c7f22_run_card.json` (integrating `session_96f5f523`, `session_21256734`, and `IR-88-587C7F22-01..05`); earlier browser receipts remain historical.

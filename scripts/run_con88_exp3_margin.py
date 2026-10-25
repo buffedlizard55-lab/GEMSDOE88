@@ -55,8 +55,8 @@ def main():
         print("REJECT exp3, keep exp2"); return 1
     pred = np.zeros(sample.shape, np.float32); pred[dots] = 1.0
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros"
-    note = "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card"
+    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros-DO-NOT-SUBMIT"
+    note = "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; DO NOT SUBMIT"
     from gems57.submission_writer import write_submission
     r = write_submission(ROOT / "docs/downloads" / f"{name}.tif", pred,
                          ROOT / "data/bridge/sample_submission.tif", foot,
