@@ -1,6 +1,6 @@
 # Submission decision — DO NOT SUBMIT (2026-10-25, updated session 838cc402)
 
-> **⚠ SUPERSEDED FOR ONE FILE (2026-10-25, H88-CON88):** new unique TIFF `gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` (SHA-256 `e830b58e…e8d68`) passed all automated gates under the corrected equal-support rule and **is OK TO DOWNLOAD AND SUBMIT** — see **[con88.html](con88.html)**. Below remains the accurate dated record for historical lanes.
+> **Historical CON88 clearance is withdrawn.** The binding current preflight is `DUPLICATE_STOP`; no TIFF is currently cleared to submit. CON88 is an archived research artifact, not a submission recommendation. See [`docs/status.json`](status.json) and the latest negative run card [`data/session_693b10af_run_card.json`](data/session_693b10af_run_card.json).
 
 > Historical decision record for the lanes listed here. This repository's **current**
 > decision is **`DUPLICATE_STOP` (`ok_to_submit: false`, `verdict: "negative"`, `0` protocol-eligible packages)**,
