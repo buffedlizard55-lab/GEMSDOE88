@@ -1,13 +1,16 @@
-# Current conditional hypotheses — four ranked, none executed (plus archived `H88-VCAZ` 5-hypothesis ledger below)
+# Current conditional hypotheses — five ranked post-`H88-MMRX` proposals, none executed (updated 2026-10-25, session `838cc402`)
 
-Read [session-d0c3adeb-hypotheses.md](research/session-d0c3adeb-hypotheses.md) for exact layers/transforms, off-catalogue rationale, prior-work distinctions, qualitative expected benefit/cost, named non-fault mimics and source limitations, and [candidate-hypotheses-20261025-vcaz88.md](research/candidate-hypotheses-20261025-vcaz88.md) for the `PREREG-20261025-VCAZ88` 5-hypothesis ranking and `H88-VCAZ` empirical evaluation.
+Read [session-838cc402-hypotheses.md](research/session-838cc402-hypotheses.md) for the current grep-verified 5-hypothesis post-`H88-MMRX` ranking (exact `training_features.tif` & `data/external/*` band tags, mathematical transforms, off-catalogue blind-fault mechanisms, named non-fault mimics, distinction from all 45 modules in `src/gems88/`, shared-allocator de-duplication design addressing `IR-88-127` / `IR-88-249E-02`, qualitative benefit/cost, and live-verified free official CC0/CC-BY-4.0 sources). See also historical queues [session-d0c3adeb-hypotheses.md](research/session-d0c3adeb-hypotheses.md), [session-b4dfa10c-hypotheses.md](research/session-b4dfa10c-hypotheses.md), [candidate-hypotheses-20261025-mmrx88.md](research/candidate-hypotheses-20261025-mmrx88.md), and [candidate-hypotheses-20261025-vcaz88.md](research/candidate-hypotheses-20261025-vcaz88.md).
 
-1. Magnetic-marker restoration across candidate discontinuities (first choice only after prerequisites are satisfiable).
-2. Scarp-profile restoration with a drainage-erosion veto.
-3. Alteration-width asymmetry against a lithologic-contact null.
-4. Conductive basin-breach continuity against a permeable paleochannel null.
+> **Post-PR-#152 ledger update (`IR-88-838C-03`):** Former rank #1 (*Magnetic-marker restoration across candidate discontinuities*, `H88-MMRX`, `src/gems88/mmrx.py`) is **no longer untried** — PR #152 (`PREREG-20261025-MMRX88`, session `249e8cb3`) executed it end-to-end and recorded a **negative** verdict (`HOLDOUT-DTI = 0.188378 [0.170922, 0.204215]` vs `H88-BPWD` `0.205991 [0.188105, 0.223344]`, `0/8` folds won, and final 3-px dot overlap `0.797578 > 0.70` vs `H88-HGVC` due to shared-allocator crest re-selection).
 
-All four conditional proposals above remain **untested**. They propose geothermal-related fault evidence, not vent detection. Local source-code novelty is not proof of worldwide/fleet novelty. No numeric gain or leaderboard result is projected. The shared literal duplicate stop currently forbids execution; do not run any historical lane below to evade it.
+1. **`H88-SPRV`** — Cross-strike Hanks–Bucknam error-function scarp-profile restoration likelihood with drainage-incision (`chan_n`, `log10_area_m2_x1000`) and equipotential shoreline (`zmean_m`) vetoes + inflection-locus emission (elevated to #1 after `H88-MMRX` falsification).
+2. **`H88-PGTD`** — 3D Laplace-consistent Marussi/Pedersen–Rasmussen potential-field full-Hessian source dimensionality (`2D` dipping fault sheet vs `3D` pluton/plug eigen-invariants) + Reid Euler structural-index ($N \in [0, 0.5]$) filtering.
+3. **`H88-CBBC`** — Topological Morse–Smale conductive basin-breach saddle continuity (`cond_surf` transverse horst-crossing vs `depth_to_base_surf` / `iso_grav_anom`) against axial playa/paleochannel mimics.
+4. **`H88-TAWA`** — GeoDAWN `22°` drape-clearance-compensated cross-strike exponential alteration-width asymmetry ($\ln(w_{\text{HW}}/w_{\text{FW}})$ in `K/Th` & `U/Th` paired with `rtp` magnetite-destruction troughs) against unfaulted lithologic contacts.
+5. **`H88-MT3D-GDR`** — External official USGS/INGENIOUS 3D Magnetotelluric crustal conductance roots (`2–200 km`, Peacock & Bedrosian 2022, `doi:10.5066/P9TWT2LU`, CC0 / DOE GDR `#1391` CC-BY-4.0) + conductive heat-flow residuals (`doi:10.5066/P9BZPVUC`) coupled up-dip to shallow fault-valve steps (requires owner mirror staging into GitHub release assets).
+
+All five conditional proposals above remain **untested** (`grep`-verified zero matches across `src/` and `vendor/`). They propose geothermal-related fault evidence, not vent detection. Local source-code novelty is not proof of worldwide/fleet novelty. No numeric gain or leaderboard result is projected. The shared literal duplicate stop (`17GEMSDOE` covering `5,106,385 / 5,106,385` allowed cells) currently forbids execution; do not run any historical lane below to evade it.
 
 <details>
 <summary>Earlier session records — historical, not current authorization</summary>
