@@ -1,17 +1,17 @@
 {
   "schema": "gems88.hypothesis-queue.v1",
-  "reviewed_at_utc": "2026-10-25",
-  "review_branch": "arena/693b10af-gemsdoe88",
+  "reviewed_at_utc": "2026-10-25T18:31:28Z",
+  "review_branch": "arena/0af455f9-gemsdoe88",
   "source_snapshot": {
     "files": 154,
-    "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+    "sha256": "86af024f4a89090db9ff4b8390d1b6f41b00883792ec21da04ea0f65db9d4cf5"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
   "selection_status": "NOT STARTED \u2014 shared DUPLICATE_STOP takes precedence",
   "generation_authorized": false,
   "ok_to_submit": false,
-  "input_provenance": "SHA-pinned owner mirrors restored in this session; no authenticated organizer download or fresh primary-source license verification.",
+  "input_provenance": "Input paths and SHA pins are inherited owner-mirror metadata; this review restored validation-tier inputs only and did not restore or hash-check the complete training/external/sibling feature stack, authenticate organizer downloads, or freshly verify derivative licenses/shareability.",
   "input_pins": {
     "data/external/dem10_chi_100m_u8.tif": "e8830ba6f0bb99f525266b1b3a483b0722d25cd4758c2bbccc6e7f54eb6b1b6a",
     "data/external/geodawn_rad_u8.tif": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
@@ -193,6 +193,18 @@
       },
       "reason": "Merged H88-CON88 (IR-88-CON88-01 equal-support append-only vendor addition + con88 runner scripts) and PGTD guard enforcement fix; proposals re-reviewed: none implements H88-SPR/EELG/PRAN queue items, CON88 is a consensus-emission lane with its own run card (run_card_con88.json), not a queue proposal.",
       "reviewed_at_utc": "2026-10-25T18:00:00Z"
+    },
+    {
+      "superseded_snapshot": {
+        "files": 154,
+        "sha256": "208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69"
+      },
+      "snapshot": {
+        "files": 154,
+        "sha256": "86af024f4a89090db9ff4b8390d1b6f41b00883792ec21da04ea0f65db9d4cf5"
+      },
+      "reason": "Retired the unauthorized CON88 equal-support exception: its experiment, margin, collar-holdout and validator CLIs now stop at the shared pre-import generation guard; the private promotion validator is retired. Reviewed source diffs: CLI guard/docstring and fail-closed status changes only; no model features, evaluator, metric or writer were changed. Re-reviewed the three queue candidates; all remain untested and unauthorized under DUPLICATE_STOP.",
+      "reviewed_at_utc": "2026-10-25T18:31:28Z"
     }
   ]
 }

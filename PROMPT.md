@@ -1,8 +1,14 @@
-## Current session handoff — 2026-10-25, H88-CON88 (supersedes DUPLICATE_STOP handoffs below)
+## Current session handoff — 2026-10-25, Arena branch `arena/0af455f9-gemsdoe88`
 
-> **NEW UNIQUE TIF GENERATED AND GATES-CLEARED:** `docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif` (SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). **✅ OK TO DOWNLOAD AND SUBMIT** per automated gates in `registry/con88_gates.json` (format/uniqueness/fingerprint/canary PASS; overlap vs H33 0.487; worst 0.6936 vs GEMSDOE49). Note (107/140): `H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card`. Guide: `docs/con88.html`. Run card: `run_card_con88.json`. Analysis: `research/session-con88-20261025.md`. Equal-support fix IR-88-CON88-01. Next: user submits within weekly cap and records ORGANIZER-CONFIRMED receipt.
+> **CURRENT DECISION: NO FILE IS CLEARED TO SUBMIT.** `.venv/bin/python scripts/generation_guard.py` returns exit `2`, `DUPLICATE_STOP`: the pinned `17GEMSDOE` witness covers all `5,106,385` allowed pixels, forcing literal 3-pixel overlap `1.0 > 0.70` for every nonempty candidate. Stop before features, fitting, placement, or writing. This session ran `0` experiments, generated `0` TIFFs, ran no holdout/canaries, and used `0` weekly slots.
+>
+> **CON88's earlier positive clearance is withdrawn.** Its historical TIFF is now explicitly named `gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif` (unchanged TIFF SHA-256 `e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`). It is available for research only; **DO NOT SUBMIT**. Its former dense-prior equal-support exception bypassed the shared literal gate. The historical collar sweep re-emitted with visible-fault distance inside folds, but used fixed precomputed consensus/ridge surfaces and lacks the complete fold-local/per-feature-canary record required for current selection; its number is not accepted as a current result.
+>
+> Review: `research/review-arena-0af455f9-20261025.md` · run card: `evidence/repo_review_arena_0af455f9_20261025.json` · official public leaderboard snapshot: `evidence/leaderboard_official_snapshot_arena_0af455f9_20261025.json`. H33 `0.2778` remains USER-REPORTED (no organizer receipt); the public page's `0.4413` rank-1 entry belongs to xiaofanhu, not this project. The queue's H88-SPR/AWA/CBC proposals remain untested and unauthorized; do not invent an assigned method lane.
 
-## Current session handoff — 2026-10-25, 693b10af
+Read README.md, USER_PROMPT_20261025.md, and AGENTS.md at each session start. Preserve the user's explicit hide/recover, visible-only catalogue features, exact masking, pooled shared DTI evaluator, per-feature leakage canaries, complete JSON card, and three-experiment/two-hour ceiling. The shared stop takes precedence; do not run a private validator, model, holdout, writer, or slot selector to evade it. See the current review for unresolved data, source, and policy limitations.
+
+## Previous handoff — 2026-10-25, 693b10af (superseded)
 
 Read the full recorded request in README and `USER_PROMPT_20261025.md`, then `AGENTS.md` and `registry/session_693b10af_run_card.json`. Shared preflight remains `DUPLICATE_STOP` before feature construction: no new TIFF, geological experiment, holdout or slot. The urgent new unique-submission requirement remains unmet. No dense-prior exemption is authorized.
 

@@ -53,3 +53,9 @@ def test_pages_have_local_links_assets_and_clear_status():
     assert (
         docs / "downloads/gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif"
     ).is_file()
+    root_index = (ROOT / "index.html").read_text()
+    assert "DUPLICATE_STOP" in root_index and "DO NOT SUBMIT" in root_index
+    assert "OK TO DOWNLOAD AND SUBMIT" not in root_index
+    con88 = (docs / "con88.html").read_text()
+    assert "HISTORICAL ARTIFACT" in con88 and "DO NOT SUBMIT" in con88
+    assert "OK TO DOWNLOAD AND SUBMIT" not in con88

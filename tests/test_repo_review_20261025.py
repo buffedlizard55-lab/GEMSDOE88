@@ -53,11 +53,16 @@ def test_published_review_is_fail_closed_and_copies_match() -> None:
     assert evidence["preplacement_registry_audit"]["covered_allowed_fraction"] == 1.0
     status = json.loads((ROOT / "docs/status.json").read_text())
     assert evidence["snapshot_scope"] == "HISTORICAL_HYPOTHESES_AND_SOURCE_ACCESS_NOT_REFRESHED_BY_REPLAY"
-    assert status["current_review"] == "data/session_693b10af_run_card.json"
-    assert status["historical_review"] == "data/repo_review_20261025.json"
+    assert status["current_review"] == "data/repo_review_arena_0af455f9_run_card.json"
+    assert status["historical_review"] == "data/session_693b10af_run_card.json"
     assert status["research_queue"] == "data/hypothesis_queue.json"
     assert status["current_review_status"] == "DUPLICATE_STOP"
     assert status["new_tif_generated"] is False
+    current = json.loads((ROOT / "docs" / status["current_review"]).read_text())
+    assert current["review_id"] == "arena/0af455f9-gemsdoe88"
+    assert current["verdict"] == "negative"
+    assert current["ok_to_submit"] is False
+    assert current["new_rasters_generated"] == 0
 
 
 @pytest.mark.skipif(

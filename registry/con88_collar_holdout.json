@@ -64,5 +64,9 @@
       "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
       "spatial.py": "fad7b09db9efc512247b9a176a7e7ce8631e287592b4e07902d0b9c38bed00f8"
     }
-  }
+  },
+  "historical_only": true,
+  "valid_for_current_protocol": false,
+  "current_use": "Do not use as a current protocol selection result. The historical sweep re-emitted its collar from visible faults within each fold, but used fixed precomputed consensus/ridge surfaces and lacks a complete per-feature canary/fold-local rebuild record.",
+  "current_holdout_DTI": null
 }

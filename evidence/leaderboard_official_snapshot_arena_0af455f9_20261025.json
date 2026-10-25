@@ -1,0 +1,292 @@
+{
+  "schema": "gems88.official-leaderboard-snapshot.v1",
+  "snapshot_id": "arena/0af455f9-gemsdoe88",
+  "snapshot_date": "2026-10-25",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "checked_utc": "2026-10-25T18:31:28Z",
+  "source_class": "OFFICIAL-PUBLIC-LEADERBOARD",
+  "score_label": "Public-split DW-Tversky shown by DrivenData; not a private-split result or an organizer submission receipt for GEMSDOE88.",
+  "live": false,
+  "stale_after_hours": 24,
+  "retrieval_method": "Direct official-page review using Arena fetch_page chunks 0\u20132 on 2026-10-25; all 50 displayed rows transcribed and checked for rank order. This is a dated snapshot, not a live account feed.",
+  "rows_1_to_50": [
+    {
+      "rank": 1,
+      "participant": "xiaofanhu",
+      "public_dti": 0.4413
+    },
+    {
+      "rank": 2,
+      "participant": "cfld__",
+      "public_dti": 0.3916
+    },
+    {
+      "rank": 3,
+      "participant": "Batik Shirt Brothers",
+      "public_dti": 0.3904
+    },
+    {
+      "rank": 4,
+      "participant": "BrandenKMurray",
+      "public_dti": 0.3724
+    },
+    {
+      "rank": 5,
+      "participant": "No Fault of Our Own",
+      "public_dti": 0.3539
+    },
+    {
+      "rank": 6,
+      "participant": "JerryDataWorks",
+      "public_dti": 0.3418
+    },
+    {
+      "rank": 7,
+      "participant": "alexoktaba",
+      "public_dti": 0.3416
+    },
+    {
+      "rank": 8,
+      "participant": "DARD",
+      "public_dti": 0.3398
+    },
+    {
+      "rank": 9,
+      "participant": "joeyfezster",
+      "public_dti": 0.3375
+    },
+    {
+      "rank": 10,
+      "participant": "yifanxu",
+      "public_dti": 0.3335
+    },
+    {
+      "rank": 11,
+      "participant": "notmyfault",
+      "public_dti": 0.3334
+    },
+    {
+      "rank": 12,
+      "participant": "newway",
+      "public_dti": 0.3328
+    },
+    {
+      "rank": 13,
+      "participant": "ohyeah",
+      "public_dti": 0.3318
+    },
+    {
+      "rank": 14,
+      "participant": "ruping",
+      "public_dti": 0.3314
+    },
+    {
+      "rank": 15,
+      "participant": "giles",
+      "public_dti": 0.3313
+    },
+    {
+      "rank": 16,
+      "participant": "li002666",
+      "public_dti": 0.3312
+    },
+    {
+      "rank": 17,
+      "participant": "baobao",
+      "public_dti": 0.3308
+    },
+    {
+      "rank": 18,
+      "participant": "mzoorob",
+      "public_dti": 0.3304
+    },
+    {
+      "rank": 19,
+      "participant": "Azazel",
+      "public_dti": 0.3289
+    },
+    {
+      "rank": 20,
+      "participant": "shixing",
+      "public_dti": 0.3273
+    },
+    {
+      "rank": 21,
+      "participant": "nchuzhoy",
+      "public_dti": 0.3262
+    },
+    {
+      "rank": 22,
+      "participant": "kinghorton42",
+      "public_dti": 0.3261
+    },
+    {
+      "rank": 23,
+      "participant": "like60986",
+      "public_dti": 0.3217
+    },
+    {
+      "rank": 24,
+      "participant": "twang",
+      "public_dti": 0.3169
+    },
+    {
+      "rank": 25,
+      "participant": "kinneso_outlook",
+      "public_dti": 0.3167
+    },
+    {
+      "rank": 26,
+      "participant": "like2",
+      "public_dti": 0.316
+    },
+    {
+      "rank": 27,
+      "participant": "drjy",
+      "public_dti": 0.3113
+    },
+    {
+      "rank": 28,
+      "participant": "nsabaj",
+      "public_dti": 0.3111
+    },
+    {
+      "rank": 29,
+      "participant": "ndavis7",
+      "public_dti": 0.3093
+    },
+    {
+      "rank": 30,
+      "participant": "kpomazi",
+      "public_dti": 0.3051
+    },
+    {
+      "rank": 31,
+      "participant": "Gibbous",
+      "public_dti": 0.3033
+    },
+    {
+      "rank": 32,
+      "participant": "sws-jonathan",
+      "public_dti": 0.3004
+    },
+    {
+      "rank": 33,
+      "participant": "anna_ms",
+      "public_dti": 0.3004
+    },
+    {
+      "rank": 34,
+      "participant": "faultsofthy",
+      "public_dti": 0.2987
+    },
+    {
+      "rank": 35,
+      "participant": "pberlizov",
+      "public_dti": 0.2967
+    },
+    {
+      "rank": 36,
+      "participant": "doublebigmac",
+      "public_dti": 0.2964
+    },
+    {
+      "rank": 37,
+      "participant": "dmitry_v",
+      "public_dti": 0.2963
+    },
+    {
+      "rank": 38,
+      "participant": "Financialanalyst",
+      "public_dti": 0.2949
+    },
+    {
+      "rank": 39,
+      "participant": "Crescent",
+      "public_dti": 0.2935
+    },
+    {
+      "rank": 40,
+      "participant": "haiderz",
+      "public_dti": 0.293
+    },
+    {
+      "rank": 41,
+      "participant": "raboush2",
+      "public_dti": 0.2927
+    },
+    {
+      "rank": 42,
+      "participant": "NoahNault",
+      "public_dti": 0.2899
+    },
+    {
+      "rank": 43,
+      "participant": "GrigorSargsyan",
+      "public_dti": 0.2892
+    },
+    {
+      "rank": 44,
+      "participant": "strikeslipfault",
+      "public_dti": 0.2874
+    },
+    {
+      "rank": 45,
+      "participant": "HardcoreTechGod",
+      "public_dti": 0.2854
+    },
+    {
+      "rank": 46,
+      "participant": "lonerganpierce",
+      "public_dti": 0.2843
+    },
+    {
+      "rank": 47,
+      "participant": "jfper21",
+      "public_dti": 0.2833
+    },
+    {
+      "rank": 48,
+      "participant": "jorgeschmidt",
+      "public_dti": 0.2826
+    },
+    {
+      "rank": 49,
+      "participant": "jgaines",
+      "public_dti": 0.282
+    },
+    {
+      "rank": 50,
+      "participant": "moongrega",
+      "public_dti": 0.2818
+    }
+  ],
+  "checks": {
+    "rows_present": 50,
+    "ranks_contiguous_1_to_50": true,
+    "scores_monotone_non_increasing": true,
+    "max_public_dw_tversky": 0.4413,
+    "min_public_dw_tversky_in_rows": 0.2818,
+    "rank_1": {
+      "participant": "xiaofanhu",
+      "public_dw_tversky": 0.4413
+    },
+    "rank_5": {
+      "participant": "No Fault of Our Own",
+      "public_dw_tversky": 0.3539
+    },
+    "rank_50": {
+      "participant": "moongrega",
+      "public_dw_tversky": 0.2818
+    },
+    "prompt_claim_0_3195_rows": 0,
+    "h33_user_claim_0_2778_rows": 0,
+    "rows_with_GEMS_or_buffedlizard55_handle": 0
+  },
+  "irregularities": [
+    "The user-provided 0.3195 is not shown in the current 50-row public snapshot; it is a stale historical figure.",
+    "The rank-1 0.4413 row belongs to xiaofanhu and is not attributable to GEMSDOE88 from this page.",
+    "H33 0.2778 is USER-REPORTED and is not shown in the current visible 50 rows; no organizer receipt was found in this repository.",
+    "This public page does not reveal a private score, confirm any artifact upload, or authorize a weekly slot."
+  ]
+}

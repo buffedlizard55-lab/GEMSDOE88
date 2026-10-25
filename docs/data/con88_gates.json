@@ -1,0 +1,36 @@
+{
+  "schema": "gems88.con88-withdrawal-gate.v1",
+  "candidate": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+  "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+  "historical_gate_record": {
+    "source_record_sha256_before_withdrawal": "99c26d9d2bea8b55720f3180dff43aaf1ef751341e4fb5afc9a4c66d1daa0286",
+    "former_policy": "Unauthorized equal-support top-N comparison for dense registry rasters; this did not satisfy the binding literal all-registry rule.",
+    "former_decision": "promote (WITHDRAWN)",
+    "format_diagnostic_passed": true,
+    "equal_support_diagnostic_passed": true,
+    "fingerprint_diagnostic_passed": true,
+    "leakage_diagnostic_passed": true,
+    "former_worst_equal_support_overlap": 0.6936314866946407,
+    "former_worst_equal_support_reference": "data/registry/gems49_gate_ortho.tif",
+    "literal_overlap_against_dense_witness_was_reported": 1.0,
+    "classification": "HISTORICAL_DIAGNOSTIC_ONLY_NOT_CLEARANCE"
+  },
+  "current_protocol": {
+    "policy": "binding-literal-all-registry-v1",
+    "decision": "DUPLICATE_STOP",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "universal_overlap_blocker": true,
+    "literal_forward_overlap_3px_lower_bound": 1.0,
+    "overlap_limit": 0.70,
+    "reason": "Every nonempty prediction support lies within the witness's positive 3-pixel neighborhood; the literal overlap exceeds the binding 0.70 limit. No dense-prior or equal-support exception is authorized."
+  },
+  "withdrawn_at_utc": "2026-10-25T18:31:28Z",
+  "withdrawal_reason": "The private CON88 preflight/validator bypassed the shared generation guard and substituted an unauthorized equal-support gate. The historical artifact remains available for research only, with unchanged TIFF bytes and an explicit DO-NOT-SUBMIT filename.",
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative"
+}

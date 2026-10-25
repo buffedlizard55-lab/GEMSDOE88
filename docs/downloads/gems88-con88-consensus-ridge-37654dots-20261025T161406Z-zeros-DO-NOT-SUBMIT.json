@@ -1,12 +1,12 @@
 {
-  "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+  "file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
   "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
   "bytes": 146769,
-  "submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
-  "note": "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card",
-  "note_chars": 107,
+  "submission_name": null,
+  "note": "Historical CON88 artifact; literal 17GEMSDOE overlap 1.0 > 0.70; DO NOT SUBMIT",
+  "note_chars": 78,
   "validator": {
-    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 146769,
     "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
     "meta": {
@@ -62,7 +62,7 @@
     "footprint_fraction": 0.007286874781441169
   },
   "template_report": {
-    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif",
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
     "bytes": 146769,
     "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
     "bands": 1,
@@ -110,12 +110,12 @@
     "ok": true,
     "validation_class": "local on-disk template/range check; not organizer upload acceptance"
   },
-  "zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip",
-  "zip_sha256": "6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08",
+  "zip_file": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "23a5c62dee02b4b226d5d11bb0c1e16fe81781c4b9cb005b0820863726e55d1c",
   "approved_for_weekly_slot": false,
   "promoted": false,
   "submission_slots_used": 0,
-  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "status": "HISTORICAL RESEARCH ONLY \u2014 format checks do not establish protocol clearance; DO NOT SUBMIT",
   "metadata": {
     "experiments": {
       "exp1_consensus_only": {
@@ -158,5 +158,10 @@
       "gems28_h27_4",
       "gems36_anderson_pinn (0.974 overlap with H33, measured)"
     ]
-  }
+  },
+  "historical_submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "historical_clearance_withdrawn": true,
+  "current_protocol_decision": "DUPLICATE_STOP"
 }

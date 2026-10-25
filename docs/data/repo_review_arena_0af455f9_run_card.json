@@ -1,0 +1,190 @@
+{
+  "schema": "gems88.run-card.repository-review.v1",
+  "review_id": "arena/0af455f9-gemsdoe88",
+  "checked_at_utc": "2026-10-25T19:06:02Z",
+  "scope": "Three-pass source/status review and safety correction only; no geological experiment or candidate generation.",
+  "hypothesis": "No new hypothesis was tested. The source queue's conditional first choice is H88-SPR, but no method lane was assigned by this task and the shared gate blocks all candidate work.",
+  "mechanism": "Not tested. Conditional H88-SPR would compare repeated signed scarp-step restoration against a smooth-profile null; no features were constructed in this review.",
+  "named_non_fault_mimic": "Fluvial terrace risers and constant-elevation pluvial shoreline benches (H88-SPR queue entry; not tested).",
+  "holdout_DTI": {
+    "evidence_class": "NOT_RUN",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_kernel_radius_m": 300.0,
+    "reason": "Shared preflight DUPLICATE_STOP occurred before features, fitting, placement, writing, holdout, or canaries."
+  },
+  "per_feature_leakage_canaries": {
+    "status": "NOT_RUN",
+    "auc_stop_threshold": 0.9,
+    "reason": "No feature construction or candidate validation was authorized."
+  },
+  "registry_correlation_overlap": {
+    "decision": "DUPLICATE_STOP",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "support_definition": "finite prediction > 0 under the binding literal rule",
+    "literal_forward_overlap_3px_lower_bound": 1.0,
+    "overlap_threshold": 0.7,
+    "candidate_pairwise_overlap": null,
+    "candidate_spearman_correlation": null,
+    "reason": "The universal lower-bound proof is sufficient to stop; no candidate was made for a pairwise registry scan."
+  },
+  "raster_sha256": null,
+  "new_raster_generated": false,
+  "new_rasters_generated": 0,
+  "historical_CON88_artifact": {
+    "status": "RESEARCH DOWNLOAD ONLY \u2014 DO NOT SUBMIT",
+    "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "raster_sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "tiff_bytes_changed": false,
+    "zip_sha256": "23a5c62dee02b4b226d5d11bb0c1e16fe81781c4b9cb005b0820863726e55d1c",
+    "previous_equal_support_clearance": "WITHDRAWN",
+    "historical_experiments": 3,
+    "historical_holdout_DTI": {
+      "evidence_class": "HOLDOUT-DTI (HISTORICAL; NOT ACCEPTED AS CURRENT PROTOCOL RESULT)",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 60988,
+      "dti": 0.001713781485367719,
+      "ci95": [
+        0.00132506022049732,
+        0.0021425000587548364
+      ],
+      "limitation": "Historical re-emission used visible-fault distance within folds, but precomputed consensus/ridge inputs were not fully rebuilt per fold and the required complete per-feature canary evidence is absent. Excluded from current selection."
+    }
+  },
+  "validator_results": {
+    "new_candidate": "NOT_RUN_NO_NEW_RASTER",
+    "historical_CON88_local_format_only": {
+      "classification": "HISTORICAL_LOCAL_FORMAT_AUDIT_NOT_PROTOCOL_CLEARANCE",
+      "single_band_float32": true,
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nan_pixels": 0,
+      "infinite_pixels": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "zip_contains_exact_byte_identical_tiff": true
+    }
+  },
+  "submission_name": null,
+  "submission_note": "Historical CON88 research artifact; literal 17GEMSDOE overlap 1.0 > 0.70; DO NOT SUBMIT",
+  "submission_note_length": 87,
+  "organizer_confirmed_score": null,
+  "reference_scores": {
+    "H33": {
+      "value": 0.2778,
+      "evidence_class": "USER-REPORTED",
+      "organizer_receipt": null
+    },
+    "public_leaderboard_rank_1": {
+      "value": 0.4413,
+      "participant": "xiaofanhu",
+      "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-SNAPSHOT",
+      "score_not_our_submission": true
+    }
+  },
+  "leaderboard_snapshot": {
+    "path": "evidence/leaderboard_official_snapshot_arena_0af455f9_20261025.json",
+    "retrieval_date": "2026-10-25",
+    "rows": 50,
+    "live": false
+  },
+  "training_external_sibling_stack": {
+    "restored": false,
+    "hash_checked_this_review": false,
+    "status": "Only validation-tier pins were restored; full feature work was blocked before restoration/feature construction."
+  },
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "generation_allowed": false,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "promote": false,
+  "verdict": "negative",
+  "archived_research_download": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "status": "RESEARCH DOWNLOAD ONLY \u2014 DO NOT SUBMIT",
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false,
+    "note": "Existing archived TDKL bytes; no new raster was generated or cleared by this review."
+  },
+  "verification": {
+    "browser_evidence": "evidence/review_arena_0af455f9_browser_check.json",
+    "browser_status": "PASS",
+    "browser_checked_at_utc": "2026-10-25T18:57:35.160Z",
+    "browser_cases": 7,
+    "http_download_sha256_matches": true,
+    "clicked_download_sha256_matches": true,
+    "failed_fetch_stays_negative": true,
+    "no_javascript_stays_negative": true,
+    "scope": "Local Chromium check of 7 responsive page cases, current featured research-download HTTP/click byte identity, fail-closed missing audit, and no-JavaScript banner; not organizer acceptance or scientific clearance."
+  },
+  "automated_review_checks": {
+    "generation_guard": {
+      "checked_at_utc": "2026-10-25T19:06:02.259669+00:00",
+      "decision": "DUPLICATE_STOP",
+      "exit_code": 2,
+      "generation_allowed": false,
+      "new_rasters_generated": 0,
+      "experiments_run": 0,
+      "weekly_slots_used": 0,
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "overlap_lower_bound": 1.0,
+      "overlap_threshold": 0.7
+    },
+    "download_audit": {
+      "status": "PASS",
+      "main_tiffs": 47,
+      "additional_research_tiffs": 1,
+      "total_published_tiffs": 48,
+      "research_download_passes": 48,
+      "protocol_eligible": 0,
+      "exact_decoded_duplicate_groups": 0
+    },
+    "research_state_audit": {
+      "status": "PASS",
+      "source_snapshot_files": 154,
+      "source_snapshot_sha256": "86af024f4a89090db9ff4b8390d1b6f41b00883792ec21da04ea0f65db9d4cf5",
+      "input_pins_checked": false,
+      "generation_authorized": false
+    },
+    "decision_renderer": "PASS",
+    "site_guard_normal": "PASS",
+    "site_guard_optimized": "PASS",
+    "pytest": {
+      "command": ".venv/bin/python -m pytest -q",
+      "passed": 887,
+      "failed": 0,
+      "skipped": 23,
+      "warnings": 64,
+      "duration_seconds": 233.22,
+      "status": "PASS"
+    }
+  }
+}

@@ -103,7 +103,7 @@ def parse_leaderboard(html):
                     for i in range(len(results) - 1)
                 )
             ):
-                return results[:10]
+                return results
     raise ValueError(
         "no rank-ordered organizer DW-Tversky table; login/markup change? previous snapshot preserved"
     )
@@ -128,7 +128,7 @@ def update(path, html=None):
         stale_after_hours=24,
         top_public_dti=rows[0]['public_dti'],
         rows=rows,
-        observed_top10=rows,  # compatibility with earlier offline parser tests
+        observed_top10=rows[:10],  # compatibility with earlier offline parser tests
         score_not_our_submission=True,
     )
     path = Path(path)

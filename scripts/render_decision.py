@@ -47,6 +47,31 @@ def read_inputs(root: Path) -> tuple[dict, dict, dict]:
     return current, stop, audit
 
 
+
+def leaderboard_panel(root: Path) -> str:
+    """Render a dated public leaderboard snapshot, never a live/user score."""
+    snapshot = json.loads((root / "docs/data/leaderboard.json").read_text())
+    rows = snapshot.get("rows")
+    if not (
+        snapshot.get("schema") == "gems88.public-leaderboard-snapshot.v2"
+        and snapshot.get("live") is False
+        and snapshot.get("score_not_our_submission") is True
+        and snapshot.get("source_url") == "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/"
+        and isinstance(rows, list) and len(rows) >= 5
+        and all(row.get("rank") == i for i, row in enumerate(rows, 1))
+    ):
+        raise ValueError("saved public-leaderboard snapshot is missing, live-claimed, or malformed")
+    top, cutoff, last = rows[0], rows[4], rows[-1]
+    checked = escape(str(snapshot.get("checked_utc", "date unavailable")))
+    source = escape(str(snapshot["source_url"]))
+    return f'''<section class="decision-actions" id="public-leaderboard-snapshot"><div class="wrap">
+<div class="kicker">Official public leaderboard · dated snapshot · not live</div>
+<h2>Public context: #{top['rank']} {escape(str(top['participant']))} · {float(top['public_dti']):.4f}</h2>
+<p>Snapshot observed <time datetime="{checked}">{checked}</time>. Rank #{cutoff['rank']} (top-five cutoff) is {escape(str(cutoff['participant']))} at {float(cutoff['public_dti']):.4f}; the lowest of the {len(rows)} displayed rows is #{last['rank']} {escape(str(last['participant']))} at {float(last['public_dti']):.4f}. These are public-split DW-Tversky values, not private scores or a GEMSDOE88 submission receipt. H33's 0.2778 remains USER-REPORTED and has no receipt here.</p>
+<p><a href="data/leaderboard.json">Saved public snapshot JSON ↗</a> · <a href="{source}">Official leaderboard ↗</a></p>
+<p class="micro">Snapshot only, not an automatically refreshed live feed. External polling/scraping is intentionally disabled; refresh requires a separately reviewed official page capture. Do not attribute another participant's public score to this project.</p>
+</div></section>'''
+
 def inventory(audit: dict) -> str:
     rows = []
     all_rows = audit["artifacts"] + audit.get("additional_research_artifacts", [])
@@ -94,7 +119,7 @@ def render(root: Path, kind: str) -> str:
 <p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule. No old prediction was copied or renamed as a new submission.</p>
 <p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_693b10af_run_card.json">Latest review’s negative run card</a>.</p>
+<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/repo_review_arena_0af455f9_run_card.json">Latest review’s negative run card</a>.</p>
 </div><aside class="decision-download" aria-label="Canonical archived research download">
 <div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
 <h2>Download the audited TIFF</h2>
@@ -119,15 +144,15 @@ def render(root: Path, kind: str) -> str:
 <div><div class="kicker">H33 forensic answer</div><h2>Learn from the geometry.<br>Do not copy the submission.</h2>
 <p><strong>0.2778 is a user-reported claim, not an ORGANIZER-CONFIRMED receipt.</strong> Rechecked H33 support is a subset of D2.8: it removes near-catalogue dots rather than adding discoveries. Less redundant emission can improve the precision–coverage trade-off, but the hidden labels are needed to prove why a score changed.</p>
 <p>There is no defensible guarantee that this repository will beat that claim, the older 0.3195 claim, or the 0.4413 claim. A buffered, fold-matched improvement is a necessary project gate, not a leaderboard forecast.</p>
-<a href="research/session-693b10af-review.md">Latest verification, scientific corrections &amp; limitations →</a></div>
+<a href="research/review-arena-0af455f9-20261025.md">Latest verification, scientific corrections &amp; limitations →</a></div>
 <div class="proof"><div class="kicker">Source-bound research queue</div><h3>Test landform restoration—with null controls.</h3>
 <p>The conditional first choice is <strong>{escape(first_choice['id'])}</strong>: {escape(first_choice['title'])}. All {len(queue['proposals'])} proposals remain untested; none authorizes generation while the universal duplicate stop binds.</p>
 <p><strong>Magnetic-marker restoration is no longer untested:</strong> the merged MMRX run already evaluated it with a negative verdict. MTAS and MFS are also historical evaluated lanes, not fresh ideas. The queue is bound to a source fingerprint so code changes require a new review.</p>
-<a href="research/session-693b10af-hypotheses.md">Ranked hypotheses, exact layers &amp; falsification plan →</a> · <a href="data/hypothesis_queue.json">Machine-readable queue</a></div></div></section>
-<section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Data placement is no longer the blocker.</h2><p>The pinned core feature raster and shared external inputs have been restored; the existing preparation command successfully loads the shared feature planes on CPU. The remaining blocker is not a missing download: it is the unsatisfiable literal uniqueness condition, followed by scientific and organizer-access gates.</p>
+<a href="research/review-arena-0af455f9-20261025.md#ranked-untested-scientific-hypotheses">Ranked hypotheses, exact layers &amp; falsification plan →</a> · <a href="data/hypothesis_queue.json">Machine-readable queue</a></div></div></section>
+<section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Shared preflight stops before feature work.</h2><p>Validation-tier pins were restored for the fail-closed preflight and read-only file audits. The complete training/external/sibling feature stack was not restored or hash-checked in this review; the generation guard blocks before feature construction, so input readiness is unverified. The immediate blocker is the literal uniqueness condition, followed by scientific, provenance/licensing, and organizer-access gates.</p>
 <div class="button-row"><a class="button button-primary" href="executive-summary.html">Open the submission guide →</a><a href="sources.html" class="button decision-outline">Sources &amp; verification limits</a></div>
 <p class="fine">Maximize P(Win): preserve scarce slots for evidence-backed, distinct candidates. Own the Outcome: report an unmet requirement instead of presenting a research TIFF as submission-ready.</p></div></section>'''
-        return hero + content + inventory(audit)
+        return hero + leaderboard_panel(root) + content + inventory(audit)
     if kind != "guide":
         raise ValueError(f"unknown page kind: {kind}")
     guide = '''<section class="decision-explainer"><div class="wrap narrow"><div class="kicker">Executive summary</div><h2>Do not submit any current file.</h2>
@@ -146,9 +171,9 @@ python scripts/render_decision.py --check
 python scripts/check_site.py
 python scripts/preflight_mtas88.py --gate-generation
 # Expected final exit: 2 (DUPLICATE_STOP). Not a build failure to bypass.</code></pre>
-<p><a href="research/session-693b10af-review.md">Latest review and limitations</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/session_693b10af_run_card.json">Negative run card</a></p>
+<p><a href="research/review-arena-0af455f9-20261025.md">Latest review and limitations</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/repo_review_arena_0af455f9_run_card.json">Negative run card</a></p>
 </div></section>'''
-    return hero + guide + inventory(audit)
+    return hero + leaderboard_panel(root) + guide + inventory(audit)
 
 
 def legacy_notice(kind: str) -> str:
@@ -205,7 +230,7 @@ def render_research_queue(root: Path) -> str:
             'still-unimplemented variants in this checkout, not proof of worldwide novelty. All inputs are in the '
             'existing pinned owner-mirror tier; no new external data availability is assumed. Every proposal is '
             'held before feature construction by the same literal witness.</p>'
-            '<p><a href="research/session-693b10af-hypotheses.md">Exact layers, contrasts and falsification plan →</a> · '
+            '<p><a href="research/review-arena-0af455f9-20261025.md#ranked-untested-scientific-hypotheses">Exact layers, contrasts and falsification plan →</a> · '
             '<a href="data/hypothesis_queue.json">Source-fingerprinted JSON queue</a></p></div></section>')
 
 

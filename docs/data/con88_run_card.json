@@ -1,0 +1,117 @@
+{
+  "schema": "gems88.run-card.con88-withdrawal.v2",
+  "lane": "H88-CON88",
+  "record_class": "HISTORICAL_ARTIFACT_WITHDRAWAL",
+  "hypothesis": "Historical CON88 proposed combining cross-fleet consensus with a label-blind magnetic/gravity/topographic ridge, then emitting a sparse H33-shaped dot carpet.",
+  "mechanism": "The retired proposal assumed partially independent false-positive processes would cancel under consensus, while a label-blind ridge could add off-catalogue recall. This is an unvalidated mechanism claim, not evidence of geological success.",
+  "named_non_fault_mimic": "Shared-input lithologic contacts, pluvial shoreline benches, and survey seams could be corroborated false positives.",
+  "current_holdout_DTI": {
+    "evidence_class": "NOT_RUN",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "reason": "The shared preflight returned DUPLICATE_STOP before feature construction, fitting, placement, or writing. No current holdout or canary was run."
+  },
+  "historical_holdout_DTI": {
+    "evidence_class": "HOLDOUT-DTI (HISTORICAL; NOT VALID FOR CURRENT PROTOCOL)",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": 60988,
+    "dti": 0.001713781485367719,
+    "ci95": [
+      0.00132506022049732,
+      0.0021425000587548364
+    ],
+    "limitation": "The historical re-emission sweep used visible-fault distance within each fold, but its precomputed consensus/ridge surfaces were not fully rebuilt per fold and the complete required per-feature canary evidence is absent. The final fixed TIFF used a full-catalogue collar. Excluded from current protocol selection; not an organizer score."
+  },
+  "current_feature_leakage_canaries": {
+    "status": "NOT_RUN",
+    "per_feature_auc_threshold": 0.9,
+    "reason": "No current feature construction or candidate validation was authorized after the shared duplicate stop."
+  },
+  "historical_leakage_diagnostic": {
+    "classification": "HISTORICAL_ONLY",
+    "auc_by_surface": {
+      "consensus": 0.3694112454499246,
+      "ridge": 0.49848922267495244,
+      "exp2_blend": 0.4002451112308979
+    },
+    "limitation": "Not a substitute for the required per-feature canary suite under visible-only catalogue features."
+  },
+  "registry_correlation_overlap": {
+    "decision": "DUPLICATE_STOP",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "literal_forward_overlap_3px_lower_bound": 1.0,
+    "overlap_limit": 0.7,
+    "spearman_correlation": null,
+    "candidate_pairwise_overlap_scan": "NOT_RUN: the shared universal lower-bound proof is sufficient to stop before candidate work",
+    "historical_equal_support_worst_overlap": 0.6936314866946407,
+    "historical_equal_support_reference": "data/registry/gems49_gate_ortho.tif",
+    "historical_literal_dense_witness_overlap": 1.0
+  },
+  "raster_sha256": null,
+  "new_raster_generated": false,
+  "archived_research_artifact": {
+    "file": "docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68",
+    "historical_positive_pixels": 37654,
+    "tiff_bytes_changed": false,
+    "download_status": "OK FOR RESEARCH ONLY",
+    "submission_status": "DO NOT SUBMIT"
+  },
+  "validator_results": {
+    "current_candidate": "NOT_RUN_NO_NEW_RASTER",
+    "historical_format_audit": {
+      "classification": "LOCAL_FORMAT_ONLY_NOT_PROTOCOL_CLEARANCE",
+      "single_band_float32": true,
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "nan_pixels": 0,
+      "infinite_pixels": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "zip_contains_byte_identical_tiff": true
+    }
+  },
+  "submission_name": null,
+  "historical_submission_name": "gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros",
+  "submission_note": "Historical CON88 research artifact; literal 17GEMSDOE overlap 1.0 > 0.70; DO NOT SUBMIT",
+  "submission_note_length": 87,
+  "organizer_confirmed_score": null,
+  "user_reported_reference_scores": {
+    "h33": {
+      "score": 0.2778,
+      "evidence_class": "USER-REPORTED",
+      "organizer_receipt": null
+    },
+    "public_leaderboard_top": {
+      "score": 0.4413,
+      "participant": "xiaofanhu",
+      "rank": 1,
+      "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-SNAPSHOT",
+      "organizer_receipt_for_this_project": null
+    }
+  },
+  "historical_experiments_in_prior_CON88_session": 3,
+  "experiments_run_this_review": 0,
+  "weekly_slots_used": 0,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative"
+}

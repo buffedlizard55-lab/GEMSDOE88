@@ -56,6 +56,7 @@ def main(root: Path = ROOT) -> None:
             "executive-summary.html",
             "research.html",
             "sources.html",
+            "con88.html",
             "mdc88/index.html",
             "mdc88/executive-summary.html",
         )
@@ -492,7 +493,7 @@ def main(root: Path = ROOT) -> None:
     for page in pages:
         text = page.read_text()
         require("DO NOT SUBMIT" in text, page)
-        require("executive-summary.html" in text, page)
+        require("executive-summary.html" in text or page.name == "con88.html", page)
         require("OK TO SUBMIT: YES" not in text, page)
         parser = Links()
         parser.feed(text)
@@ -505,24 +506,33 @@ def main(root: Path = ROOT) -> None:
             require(target.is_file(), f"broken local link: {page.name}: {ref}")
 
     # Every published binary must carry the negative decision in its filename.
-    # Pre-existing CTRA is allowed ONLY for the exact hash-pinned negative bytes
-    # checked above; XGCE was renamed on main and requires no such exception.
+    # Every publication must carry the same negative decision; there is no
+    # legacy or CON88 gate exception for exact bytes or historical policy.
     sys.path.insert(0, str(ROOT))
     from scripts.audit_downloads import PUBLICATION_DIRECTORIES, check_package_inventory
-    legacy_negative = {ctra_tif.resolve(), ctra_zip.resolve()}
-    # CON88 cleared exception (IR-88-CON88-01): exact gates-cleared bytes only.
-    _con88 = docs / "downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif"
-    _gates = json.loads((ROOT / "registry/con88_gates.json").read_text())
-    require(_gates.get("ok_to_submit") is True and _gates.get("candidate") == _con88.name
-            and hashlib.sha256(_con88.read_bytes()).hexdigest() == _gates.get("sha256"),
-            "CON88 cleared bytes disagree with gates record")
-    legacy_negative |= {_con88.resolve(), _con88.with_suffix(".zip").resolve()}
+    con88_gate = json.loads((ROOT / "registry/con88_gates.json").read_text())
+    con88_tif = docs / "downloads" / con88_gate["candidate"]
+    con88_zip = con88_tif.with_suffix(".zip")
+    require(
+        con88_gate["ok_to_submit"] is False
+        and con88_gate["approved_for_weekly_slot"] is False
+        and con88_gate["verdict"] == "negative"
+        and con88_gate["current_protocol"]["decision"] == "DUPLICATE_STOP"
+        and con88_gate["current_protocol"]["literal_forward_overlap_3px_lower_bound"] == 1.0
+        and "DO-NOT-SUBMIT" in con88_tif.name
+        and hashlib.sha256(con88_tif.read_bytes()).hexdigest() == con88_gate["sha256"],
+        "CON88 historical artifact must remain negative and hash-bound",
+    )
+    with zipfile.ZipFile(con88_zip) as archive:
+        require(archive.namelist() == [con88_tif.name]
+                and archive.read(con88_tif.name) == con88_tif.read_bytes(),
+                "CON88 negative ZIP must contain the exact marked TIFF")
     for published in sorted(docs.rglob("*")):
         if published.is_file() and published.suffix.lower() in {
             ".tif", ".tiff", ".zip",
         }:
             require(
-                "DO-NOT-SUBMIT" in published.name or published.resolve() in legacy_negative,
+                "DO-NOT-SUBMIT" in published.name,
                 f"unmarked published research artifact: {published}",
             )
             require(
@@ -552,10 +562,42 @@ def main(root: Path = ROOT) -> None:
     for row in all_rows:
         directory = docs / row.get("publication_directory", "downloads")
         require(row["format_valid"] is True and row["research_download_ok"] is True
-                and row["ok_to_submit"] is (True if row.get("cleared_by_con88_gates") else False)
+                and row["ok_to_submit"] is False
+                and row["negative_filename_markers"] is True
+                and "cleared_by_con88_gates" not in row
                 and sha256(directory / row["file"]) == row["sha256"]
                 and sha256(directory / row["zip_file"]) == row["zip_sha256"],
                 f"Published research bytes or negative audit changed: {directory.name}/{row['file']}")
+
+    con88_page = (docs / "con88.html").read_text()
+    require(
+        "HISTORICAL ARTIFACT" in con88_page
+        and "RESEARCH DOWNLOAD ONLY" in con88_page
+        and "DO NOT SUBMIT" in con88_page
+        and "DUPLICATE_STOP" in con88_page
+        and "OK TO DOWNLOAD AND SUBMIT" not in con88_page
+        and "Exactly how to submit" not in con88_page,
+        "CON88 archive page must show research-only / do-not-submit status and no upload instructions",
+    )
+    root_index_path = root / "index.html"
+    # Some isolated publication-namespace tests deliberately supply only docs/.
+    # The repository's optional root landing page is checked when present; the
+    # GitHub Pages site itself is always checked through docs/index.html below.
+    if root_index_path.exists():
+        root_index = root_index_path.read_text()
+        require(
+            "DUPLICATE_STOP" in root_index
+            and "DO NOT SUBMIT" in root_index
+            and "OK TO DOWNLOAD AND SUBMIT" not in root_index,
+            "repository landing page must not advertise an eligible TIFF",
+        )
+    submit_guide = (docs / "SUBMIT.md").read_text()
+    require(
+        "DUPLICATE_STOP" in submit_guide
+        and "0** are protocol-eligible" in submit_guide
+        and "CON88 clearance is withdrawn" in submit_guide,
+        "submission guide must reflect the current negative CON88 decision",
+    )
 
     index = pages[0].read_text()
     executive = pages[1].read_text()
@@ -816,7 +858,8 @@ def main(root: Path = ROOT) -> None:
     # the expected negative words happen to appear much further down the page.
     sys.path.insert(0, str(ROOT))
     from scripts import render_decision
-    for page, kind in ((pages[4], "overview"), (pages[5], "guide")):
+    for page, kind in ((docs / "mdc88/index.html", "overview"),
+                       (docs / "mdc88/executive-summary.html", "guide")):
         require(page.read_text() == render_decision.legacy_notice(kind),
                 "Legacy page must withdraw unsupported upload clearance and link the canonical decision")
     legacy_status = json.loads((docs / "mdc88/status.json").read_text())

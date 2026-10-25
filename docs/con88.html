@@ -1,72 +1,60 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>H88-CON88 — downloadable · submission blocked | GEMSDOE88</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Historical CON88 research artifact only. It is not cleared for competition submission.">
+<title>H88-CON88 · HISTORICAL RESEARCH ONLY · DO NOT SUBMIT</title>
 <link rel="stylesheet" href="style.css">
-<style>.big{display:inline-block;padding:1rem 1.6rem;font-size:1.25rem;font-weight:700;background:#067d2e;color:#fff;border-radius:.6rem;text-decoration:none}.warn{background:#fff3cd;padding:1rem;border-radius:.5rem}.mono{font-family:monospace;word-break:break-all}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:.4rem .6rem}</style>
-</head><body><main style="max-width:900px;margin:2rem auto;padding:0 1rem">
-<h1>⚠ Downloadable · Submission Blocked</h1>
-<p><strong>H88-CON88</strong> is a new, unique competition TIFF generated 2026-10-25.
-It passed local format, uniqueness (equal-support), fingerprint, and leakage-canary checks
-with <strong>no human inspection</strong>. It is the only file here without a
-<span class="mono">DO-NOT-SUBMIT</span> filename marker.
-Its competition score is <strong>unknown</strong> — no score above H33's user-reported
-0.2778 is claimed or guaranteed.</p>
-<p class="warn"><strong>Submission is BLOCKED today.</strong> The binding generation protocol
-returns <strong>`DUPLICATE_STOP`</strong>: the pinned 17GEMSDOE dense witness covers
-100% of the 5,106,385 allowed pixels, so every nonempty allowed candidate has literal
-overlap 1.0 > 0.70 under the binding protocol. The equal-support comparison that made
-CON88 appear eligible was withdrawn under IR-88-B4DFA10C-08 / PR #151 (see AGENTS.md).
-<strong>This file is OK to download for research/review, but NOT OK to submit to the competition today.</strong></p>
+<style>
+main{font-family:system-ui;max-width:900px;margin:2rem auto;padding:0 1rem;line-height:1.55}
+.badge{display:inline-block;background:#9a2019;color:#fff;padding:.5rem .8rem;border-radius:.35rem;font-weight:800;letter-spacing:.03em}
+.research{display:inline-block;background:#164d6b;color:#fff;padding:.9rem 1.2rem;border-radius:.5rem;font-weight:700;text-decoration:none}
+.warn{background:#fff0d4;border-left:5px solid #a30;padding:1rem;border-radius:.35rem}
+.mono{font-family:ui-monospace,monospace;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<main>
+<p><a href="index.html">← Current repository decision</a></p>
+<p class="badge">HISTORICAL ARTIFACT · RESEARCH DOWNLOAD ONLY · DO NOT SUBMIT</p>
+<h1>H88-CON88: clearance withdrawn</h1>
+<p><strong>Research download: YES.</strong> The archived TIFF is available for reproducibility and review. <strong>Competition submission: NO — DO NOT SUBMIT.</strong> This page is an archive record, not an upload guide or a current candidate recommendation.</p>
 
-<p><a class="big" href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif" download>⬇ DOWNLOAD RESEARCH .TIF</a>
-&nbsp;<a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.zip" download>or one-TIFF .ZIP</a></p>
+<section class="warn" aria-label="Current binding decision">
+<h2>Current protocol decision: DUPLICATE_STOP</h2>
+<p>The shared preflight proves that the SHA-pinned <code>17GEMSDOE</code> raster covers all <strong>5,106,385</strong> allowed pixels. Under the literal finite-<code>&gt;0</code> support rule, every nonempty allowed prediction has a 3-pixel forward-overlap lower bound of <strong>1.000 &gt; 0.70</strong>. Generation must stop before feature construction, fitting, placement, or writing. No dense-prior exception is authorized.</p>
+<p>The earlier CON88 exception compared the dense raster's top-N pixels with an equal-support diagnostic, then treated that diagnostic as uniqueness clearance. That contradicted the binding literal rule. The exception, positive gate, and submit-ready banner have been withdrawn; the shared guard now applies to CON88's experiment, collar-holdout, and validator commands.</p>
+</section>
 
-<h2>Exactly how to submit (when unblocked)</h2>
-<p class="warn"><strong>Do not submit this file today.</strong> The binding protocol blocks submission
-(<code>DUPLICATE_STOP</code>). These steps apply once a future shared protocol revision clears a candidate.</p>
-<ol>
-<li>Download the <span class="mono">.tif</span> above (or the ZIP — it contains only that TIF).</li>
-<li>Go to the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData competition 306 submissions page</a> → <em>New submission</em>.</li>
-<li><strong>File to submit:</strong> choose <span class="mono">gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros.tif</span></li>
-<li><strong>Note:</strong> paste exactly:<br><span class="mono">H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card</span> (107/140 chars)</li>
-<li>Submit, then <strong>save/screenshot the receipt and score</strong> — that receipt is the only ORGANIZER-CONFIRMED evidence. Respect the weekly cap shown on that page.</li>
-</ol>
-<p class="warn"><strong>“Predicted values must be in range [0, 1]” — fixed:</strong> this file has
-<strong>no NaN anywhere</strong> (zeros outside the footprint, suffix <span class="mono">-zeros</span>),
-min 0.0 / max 1.0, one band, EPSG:32611, 3730×3292, exact sample transform — all machine-verified
-in <a href="../registry/con88_gates.json">con88_gates.json</a>. If the portal still rejects it, save the
-exact error + receipt and file it as an irregularity; do not hand-edit the TIF.</p>
+<h2>Archived files</h2>
+<p>The TIFF bytes have not changed; only the archive filename now carries an explicit safety marker. The ZIP was rebuilt so its one member has the same <code>DO-NOT-SUBMIT</code> name and contains the exact TIFF bytes.</p>
+<p><a class="research" href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif" download>Download historical research TIFF</a>
+&nbsp; <a href="downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip" download>One-TIFF ZIP</a></p>
+<ul>
+<li>TIFF SHA-256: <code class="mono">e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68</code> (146,769 bytes; 37,654 positive pixels).</li>
+<li>ZIP SHA-256: <code class="mono">23a5c62dee02b4b226d5d11bb0c1e16fe81781c4b9cb005b0820863726e55d1c</code>.</li>
+<li>Historical local format checks: one float32 band; EPSG:32611; shape 3730×3292; exact sample transform; no NaN or infinity; values in [0,1]; ZIP member byte-identical to the TIFF. These checks establish file format only, not uniqueness, scientific merit, organizer acceptance, or slot authorization.</li>
+</ul>
 
-<h2>Why this could beat 0.2778 (and why nobody can promise it)</h2>
-<p>H33 (GEMSDOE32, user-reported 0.2778) is a pure <em>subtraction</em> chain from H19-5: deleting
-≤2 px catalogue-collar dots (pure false positives under DTI algebra), 2.83–3 px kernel spacing, and a
-non-hugging distance profile (41.7% of dots &gt;25 px from any mapped fault; fleet Spearman +0.90 with score).
-CON88 preserves that exact geometry, tightens the collar to &gt;3 px, and adds (1) cross-fleet consensus —
-72% of dots corroborated by ≥2 of GEMSDOE49/GEMSDOE70/GEMSDOE88-BPWD — and (2) a fresh label-blind
-magnetic/gravity/topographic ridge for recall no fleet raster contains. Overlap vs H33: <strong>0.487</strong>
-(limit 0.70). Full line-by-line analysis: <a href="https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/research/session-con88-20261025.md">research/session-con88-20261025.md</a>,
-run card: <a href="https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/run_card_con88.json">run_card_con88.json</a>.</p>
+<h2>What the historical measurements do—and do not—say</h2>
+<p>The former equal-support screen recorded a worst overlap of 0.693631 against <code>GEMSDOE49</code> and H33 overlap of 0.487411, but the literal dense-witness overlap was 1.0. The former gate is not a current uniqueness result.</p>
+<p>The historical collar sweep reported <strong>HOLDOUT-DTI (historical; not accepted as a current protocol selection result)</strong>: evaluator <code>gems57-pooled-hide-v2</code>, 60,988 withheld positives, 0.001714 [0.001325, 0.002143]. Its re-emission code used visible-fault distance within each fold, but the consensus/ridge surfaces were precomputed rather than fully rebuilt fold-by-fold and the complete required per-feature canary evidence is absent. The fixed TIFF itself was made with a full-catalogue collar. Do not use this diagnostic as a current candidate result or leaderboard score. No current holdout or per-feature canaries were run after the preflight stop.</p>
+<p>H33's <code>0.2778</code> remains <strong>USER-REPORTED</strong>, with no organizer receipt in this repository. The dated official public leaderboard snapshot currently shows <code>xiaofanhu</code> at rank 1 with <code>0.4413</code>; that is a different participant's public-split score, not a GEMSDOE88 score or private-split result. See the <a href="data/leaderboard.json">dated snapshot</a> and the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">official leaderboard</a>.</p>
 
-<h2>Automated gates (all PASS)</h2>
-<table>
-<tr><th>Gate</th><th>Measured</th><th>Limit</th></tr>
-<tr><td>Format G1 (CRS/shape/transform/[0,1]/finite/ZIP)</td><td>all true</td><td>exact</td></tr>
-<tr><td>Uniqueness G2 worst overlap (all on-disk rasters)</td><td>0.6936 vs GEMSDOE49 ⚠ thin margin</td><td>≤0.70</td></tr>
-<tr><td>Uniqueness worst |Spearman ρ|</td><td>0.376</td><td>≤0.90</td></tr>
-<tr><td>Overlap vs H33</td><td>0.487</td><td>≤0.70</td></tr>
-<tr><td>Fingerprint G3: share &gt;25 px / median distance</td><td>41.7% / 20.2 px</td><td>≥35% / ≥15 px</td></tr>
-<tr><td>Leakage canary max symmetric AUC</td><td>0.631</td><td>≤0.90</td></tr>
-<tr><td>HOLDOUT-DTI (gems57-pooled-hide-v2, n=60,988, per-fold re-emission)</td><td>0.0017 [0.0013, 0.0021] — H33 fixed TIF scores 0.0067 on same folds; instrument cannot rank blind seekers (see run card)</td><td>reported</td></tr>
-</table>
-<p class="warn"><strong>Binding protocol override:</strong> despite all equal-support gates passing, the binding literal
-protocol returns <code>DUPLICATE_STOP</code> (17GEMSDOE witness covers 100% of allowed cells; overlap 1.0000 > 0.70).
-Equal-support comparison was withdrawn under IR-88-B4DFA10C-08 / PR #151. <strong>ok_to_submit = false.</strong></p>
-<p>SHA-256: <span class="mono">e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68</span> · 37,654 dots ·
-Reproduce: <span class="mono">python scripts/run_con88_experiment.py &amp;&amp; python scripts/validate_con88.py</span> ·
-Sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">competition problem</a>,
-<a href="https://github.com/drivendataorg/gems-prize-reference-solution">official reference solution</a>,
-<a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a>,
-<a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR rules PDF</a>,
-<a href="https://epsg.io/32611">EPSG:32611</a>. All other TIFFs on this site remain DO NOT SUBMIT.</p>
-</main></body></html>
+<h2>Research rationale, with the causal caveat</h2>
+<p>Repository forensics describe H33 as a 37,654-dot strict subset of SOLO-D2.8 (40,199), D2.8 (44,090), and H19-5 (121,131), with no dots added along that lineage. The measured H33 lattice is spaced near the 3-pixel scoring-kernel radius, and reported pruning removed catalogue-near dots. Given the distance-weighted Tversky metric, removing a dot that earns negligible hidden-truth credit can lower false-positive cost with little recall loss. That is a plausible mechanism—not a proven causal explanation—because the hidden truth and a trusted H33 receipt are unavailable here.</p>
+<p>The archived CON88 idea combined fleet consensus and a label-blind geophysical/topographic ridge. Shared inputs can create correlated false positives (lithologic contacts, shoreline benches, and survey seams), and the historical re-emission used visible-fault distance within folds but fixed precomputed consensus/ridge surfaces, so the full fold-local/per-feature-canary protocol record is incomplete. No claim that CON88 beats H33 or the public leaderboard is supported.</p>
+
+<h2>Machine records and current review</h2>
+<ul>
+<li><a href="data/con88_gates.json">Withdrawn gate record</a> — historical equal-support diagnostics nested separately from the current <code>DUPLICATE_STOP</code>.</li>
+<li><a href="data/con88_run_card.json">CON88 withdrawal run card</a> — current verdict negative; no new TIFF, holdout, experiment, or slot.</li>
+<li><a href="research/session-con88-20261025.md">Original CON88 research memo</a> — retained as historical research with a correction notice.</li>
+<li><a href="research/review-arena-0af455f9-20261025.md">Latest repository review</a> — H33 evidence, ranked untested hypotheses, public-source snapshot, guard fixes, and limitations.</li>
+</ul>
+<p><strong>No submission steps are provided.</strong> A new protocol decision and a separate slot selector would be required before any future artifact could be considered. The historical CON88 file must not be uploaded or renamed to imply clearance.</p>
+</main>
+</body>
+</html>
