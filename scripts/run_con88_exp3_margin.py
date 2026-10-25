@@ -7,8 +7,8 @@ if __name__ == "__main__":
     import sys as _guard_sys
     from pathlib import Path as _GuardPath
     _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
-    from scripts.con88_preflight import enforce_con88_preflight
-    enforce_con88_preflight()
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
 
 import json, sys
 from datetime import datetime, timezone
@@ -55,8 +55,8 @@ def main():
         print("REJECT exp3, keep exp2"); return 1
     pred = np.zeros(sample.shape, np.float32); pred[dots] = 1.0
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros"
-    note = "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; gates in run card"
+    name = f"gems88-con88-consensus-ridge-{int(dots.sum())}dots-{stamp}-zeros-DO-NOT-SUBMIT"
+    note = "H88-CON88 consensus(49,70,BPWD)+label-blind ridge; 3px collar 2.83px spacing H33-profile; DO NOT SUBMIT"
     from gems57.submission_writer import write_submission
     r = write_submission(ROOT / "docs/downloads" / f"{name}.tif", pred,
                          ROOT / "data/bridge/sample_submission.tif", foot,

@@ -13,9 +13,10 @@ import pytest
 import rasterio
 from rasterio.transform import from_origin
 
-from scripts.audit_downloads import audit_one, sha
-
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from scripts.audit_downloads import audit_one, sha
 
 
 def make_package(root, *, marked=True, extra_member=False):

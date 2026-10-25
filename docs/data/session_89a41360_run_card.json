@@ -123,11 +123,11 @@
     "status": "existing research artifact only; not a new submission"
   },
   "integration_followup": {
-    "scope": "Validation after integrating subsequent main safety updates; status source is later session 96f5f523, while this card remains a dated session 89a41360 review.",
-    "full_pytest": "PASS: 903 passed, 23 skipped, 70 warnings",
-    "active_browser_receipt": "evidence/session_96f5f523_browser_check.json",
-    "active_browser": "PASS_7_CASES at 2026-10-25T19:20:01.695Z",
-    "research_queue_audit": "PASS; source snapshot 154 files, SHA-256 208202406ae0a0e6a5b6ef3070ef16e58b37655438ad9aed94adc9aa291a9b69",
+    "scope": "Validation after integrating subsequent main safety updates through PR #190; canonical status is later session 587c7f22, while this card remains a dated session 89a41360 review.",
+    "full_pytest": "PASS: 911 passed, 23 skipped, 70 warnings",
+    "active_browser_receipt": "evidence/session_587c7f22_browser_check.json",
+    "active_browser": "PASS_7_CASES at 2026-10-25T19:50:05.676Z",
+    "research_queue_audit": "PASS; source snapshot 154 files, SHA-256 fb91e32d8d0939535b68ede0cd724bd90c1a491cdf37ff24c9a8f82519c7f125",
     "input_pin_check": "INCOMPLETE: data/external/dem10_chi_100m_u8.tif missing; validation tier only",
     "submission_decision": "UNCHANGED_NEGATIVE_NO_FILE_CLEARED"
   }
