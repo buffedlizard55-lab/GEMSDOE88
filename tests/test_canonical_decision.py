@@ -42,7 +42,7 @@ def test_both_pages_lead_with_exact_canonical_research_file_and_one_heading():
         assert len(parsed.ids) == len(set(parsed.ids)), 'duplicate anchors break navigation and audit targeting'
         assert text.split('<main id="main">')[1].split(render_decision.START)[0].strip() == ''
         assert render_decision.replace_block(text, render_decision.render(ROOT, kind)) == text
-        assert text.index('id="current-decision"') < text.index('class="archive-lanes"')
+        assert text.index('id="mtas-review"') < text.index('class="archive-lanes"')
 
 
 @pytest.mark.parametrize('bad', ['', '<!-- CANONICAL-DECISION:START -->',
@@ -61,7 +61,9 @@ def test_site_guard_rejects_visible_status_regressions(tmp_path, corruption, opt
     docs = tmp_path / 'docs'
     docs.mkdir()
     for source in (ROOT / 'docs').iterdir():
-        if source.name == 'index.html':
+        if source.name in {'downloads', 'research-variants'}:
+            shutil.copytree(source, docs / source.name)
+        elif source.name == 'index.html':
             text = source.read_text()
             if corruption == 'prepend':
                 text = text.replace('<main id="main">', '<main id="main"><section>NEW UNIQUE TIFF READY TO SUBMIT</section>', 1)
@@ -83,7 +85,7 @@ NODE = shutil.which('node')
 
 
 @pytest.mark.skipif(NODE is None, reason='Node unavailable')
-@pytest.mark.parametrize('mutation', ['approve', 'hash', 'missing', 'zip', 'future', 'negative-card'])
+@pytest.mark.parametrize('mutation', ['approve', 'hash', 'missing', 'zip', 'future', 'empty-proof'])
 def test_runtime_cannot_upgrade_an_inconsistent_audit(mutation):
     script = r"""
 const fs = require('node:fs'), vm = require('node:vm'), path = require('node:path');
@@ -95,14 +97,14 @@ const env = {
   if(mutation==='missing' && url==='data/download_audit.json') return {ok:false};
   let d=JSON.parse(fs.readFileSync(path.join('docs',url),'utf8'));
   if(url==='data/current_release.json'){
-   if(mutation==='approve') d.ok_to_submit=!d.ok_to_submit;
+   if(mutation==='approve') d.ok_to_submit=true;
    if(mutation==='hash') d.file_sha256='a'.repeat(64);
   }
   if(url==='data/download_audit.json'){
    if(mutation==='zip') d.artifacts.forEach(r=>r.zip_one_byte_identical_tif=false);
    if(mutation==='future') d.checked_at_utc='2999-01-01T00:00:00Z';
   }
-  if(mutation==='negative-card' && url==='data/sdtl88_run_card.json'){ d.verdict='negative'; d.ok_to_submit=false; }
+  if(mutation==='empty-proof' && url==='data/mtas88_run_card.json') d.preplacement_registry_proof={};
   return {ok:true,json:async()=>d};
  }, Date, console, setTimeout,
 };

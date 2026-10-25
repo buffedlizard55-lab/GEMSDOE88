@@ -1,4 +1,4 @@
-"""IR-88-SDTL-01: equal-support dot definition for continuous registry surfaces."""
+"""Equal-support diagnostics are preserved, but never replace the literal gate."""
 import sys
 from pathlib import Path
 
@@ -51,7 +51,7 @@ def test_candidate_thresholded_from_dense_surface_still_fails():
     assert ov > 0.70
 
 
-def test_candidate_from_different_physics_passes_dense_surface():
+def test_equal_support_difference_does_not_imply_literal_uniqueness():
     allowed = _grid()
     rng = np.random.default_rng(2)
     theirs = rng.uniform(0.01, 0.5, allowed.shape).astype(np.float32)

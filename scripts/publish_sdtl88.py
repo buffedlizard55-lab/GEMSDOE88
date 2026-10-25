@@ -6,6 +6,13 @@ verdict. Exits nonzero if any input is missing or inconsistent.
 """
 from __future__ import annotations
 
+if __name__ == "__main__":
+    import sys as _guard_sys
+    from pathlib import Path as _GuardPath
+    _guard_sys.path.insert(0, str(_GuardPath(__file__).resolve().parents[1]))
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight()
+
 import json
 import subprocess
 import sys
@@ -15,6 +22,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> int:
+    # Direct API invocation must not republish the withdrawn clearance either.
+    from scripts.generation_guard import enforce_generation_preflight
+    enforce_generation_preflight(ROOT)
     card = json.loads((ROOT / "registry/sdtl88_run_card.json").read_text())
     if card.get("schema") != "gems88.run_card.v2":
         raise ValueError("unexpected run card schema")

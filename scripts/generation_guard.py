@@ -15,55 +15,38 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Only entrypoints of the CURRENT preregistered lane may construct features or
-# dots. Historical/superseded builders remain importable for tests and
-# education but exit 2 when dispatched as a CLI (SUPERSEDED_ENTRYPOINT_STOP).
-ACTIVE_LANE_ENTRYPOINTS = frozenset({
-    "run_sdtl88_experiment.py",
-    "build_sdtl88_submission.py",
-})
-
 
 def inspect(root: Path = ROOT) -> dict:
-    """Shared preflight under the corrected equal-support protocol (IR-88-SDTL-01).
-
-    The pinned inputs and the dense 17GEMSDOE witness are still re-verified from
-    bytes.  A continuous probability surface binds through rank correlation and
-    through its equal-support top-n dots at placement time
-    (``gems57.uniqueness.binding_duplicate_decision_v5``); it is no longer read
-    as a universal dot-overlap stop, because that reading fires on every
-    nonempty candidate and therefore cannot be the protocol.  Missing or corrupt
-    prerequisites remain an audit error (exit 1).
-    """
+    # Lazy import: an environment/import failure is a failed preflight, never
+    # an excuse to continue into a builder with a stale stored approval.
     from scripts.preflight_mtas88 import inspect as existing_preflight
 
     prior = existing_preflight(Path(root))
     proof = prior["preplacement_registry_proof"]
-    literal_blocked = proof["universal_overlap_blocker"] is True
+    blocked = proof["universal_overlap_blocker"] is True
     return {
-        "schema": "gems88.generation-preflight.v2",
+        "schema": "gems88.generation-preflight.v1",
         "checked_at_utc": datetime.now(timezone.utc).isoformat(),
-        "decision": "GENERATION_ALLOWED_PENDING_UNIQUENESS",
+        "decision": "DUPLICATE_STOP" if blocked else "INCOMPLETE_REGISTRY_GATE",
         "reason": (
-            "Pinned grid, catalogue and witness verified. The dense witness is a continuous "
-            "surface positive on every allowed cell; under the shared equal-support rule "
-            "(IR-88-SDTL-01) it binds via rank correlation and top-n dots, checked by the builder "
-            "on the surface before placement and on the final dots. This is not submit clearance."
+            "Every nonempty allowed prediction overlaps the pinned registry witness; "
+            "stop BEFORE feature construction, fitting, placement and writing."
+            if blocked else
+            "No universal witness is not a complete surface/final-dot uniqueness pass. "
+            "A newly validated shared protocol and complete experiment gate are required."
         ),
-        "literal_reading_would_block": literal_blocked,
-        "protocol_correction": "IR-88-SDTL-01",
         "preplacement_registry_proof": proof,
-        "generation_allowed": True,
+        "generation_allowed": False,
         "ok_to_submit": False,
         "new_rasters_generated": 0,
         "experiments_run": 0,
         "weekly_slots_used": 0,
-        "verdict": "pending",
+        "verdict": "negative",
     }
 
 
 def enforce_generation_preflight(root: Path = ROOT) -> None:
-    """Return on GENERATION_ALLOWED_PENDING_UNIQUENESS; exit 2 for a measured stop; 1 for missing/corrupt prerequisites.
+    """Exit 2 for a measured stop; 1 for missing/corrupt prerequisites.
 
     This guard intentionally has no bypass switch. It does not grant clearance
     if a witness is removed or a boolean in a historical run card is edited.
@@ -71,21 +54,9 @@ def enforce_generation_preflight(root: Path = ROOT) -> None:
     of a TIFF or a filename change.
     """
     root = Path(root)
-    entrypoint = Path(sys.argv[0]).name
     try:
         result = inspect(root)
-        code = 0 if result.get("generation_allowed") is True else 2
-        if code == 0 and entrypoint not in ACTIVE_LANE_ENTRYPOINTS:
-            result.update(
-                decision="SUPERSEDED_ENTRYPOINT_STOP",
-                reason=(
-                    f"{entrypoint} is a historical lane builder. Only the current preregistered "
-                    "lane entrypoints may generate: " + ", ".join(sorted(ACTIVE_LANE_ENTRYPOINTS))
-                ),
-                generation_allowed=False,
-                verdict="negative",
-            )
-            code = 2
+        code = 2
     except Exception as exc:  # fail-closed CLI boundary, including dependency failures
         result = {
             "schema": "gems88.generation-preflight.v1",
@@ -110,8 +81,7 @@ def enforce_generation_preflight(root: Path = ROOT) -> None:
     except OSError:
         pass
     print(payload, end="", file=sys.stderr)
-    if code != 0:
-        raise SystemExit(code)
+    raise SystemExit(code)
 
 
 if __name__ == "__main__":

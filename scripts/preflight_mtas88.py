@@ -48,12 +48,8 @@ def sha(path: Path) -> str:
 
 def archive_for_research(root: Path, sample: Path) -> dict:
     """Reopen the prior research TIFF/ZIP; never call it a NEW candidate."""
-    # IR-88-SDTL-01: the canonical current release is no longer TDKL; the archived
-    # research artifact is pinned by its own historical run card and constants.
-    tdkl = json.loads((root / "registry/tdkl88_run_card.json").read_text())
-    card = dict(candidate="H88-TDKL", file=tdkl["raster"]["file"], file_sha256=tdkl["raster"]["sha256"],
-                zip_file=tdkl["raster"]["zip_file"], zip_sha256=tdkl["raster"]["zip_sha256"])
-    if card["file"] != ARCHIVED_TIF or card["file_sha256"] != ARCHIVED_SHA:
+    card = json.loads((root / "docs/data/current_release.json").read_text())
+    if card["candidate"] != "H88-TDKL" or card["file"] != ARCHIVED_TIF or card["file_sha256"] != ARCHIVED_SHA:
         raise ValueError("archived research download no longer matches pinned H88-TDKL release")
     relative = card["file"]
     tif = (root / relative).resolve()

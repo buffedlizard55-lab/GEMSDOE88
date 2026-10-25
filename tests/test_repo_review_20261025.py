@@ -51,10 +51,10 @@ def test_published_review_is_fail_closed_and_copies_match() -> None:
     assert evidence["holdout"]["status"].startswith("NOT RUN")
     assert evidence["preplacement_registry_audit"]["universal_overlap_blocker"] is True
     assert evidence["preplacement_registry_audit"]["covered_allowed_fraction"] == 1.0
-    # The d0c3adeb review record is historical; status.json now follows the SDTL card (IR-88-SDTL-01).
     status = json.loads((ROOT / "docs/status.json").read_text())
-    assert status["current_review"] == "data/sdtl88_run_card.json"
-    assert status["run_card"] == "registry/sdtl88_run_card.json"
+    assert status["current_review"] == "data/repo_review_20261025.json"
+    assert status["current_review_status"] == "DUPLICATE_STOP"
+    assert status["new_tif_generated"] is False
 
 
 @pytest.mark.skipif(

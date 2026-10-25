@@ -75,11 +75,12 @@ def test_expected_generation_gate_exit_and_committed_report(recomputed_card):
 def test_site_leads_with_current_negative_and_never_falls_back_to_approval():
     for rel in ("docs/index.html", "docs/executive-summary.html"):
         text = (ROOT / rel).read_text()
-        assert "data/sdtl88_run_card.json" in text
-        assert "data/mtas88_run_card.json" in text or "mtas88" in text
-        assert "DO NOT SUBMIT" in text  # archived lanes remain marked
+        assert "data/mtas88_run_card.json" in text
+        assert "NO NEW TIFF" in text
+        assert "DO NOT SUBMIT" in text
         assert "1.0" in text
         assert "0.70" in text
     js = (ROOT / "docs/assets/site.js").read_text()
-    assert "fetch('data/sdtl88_run_card.json'" in js
+    assert "fetch('data/mtas88_run_card.json'" in js
+    assert "DUPLICATE_STOP" in js
     assert "PRE-FLIGHT AUDIT UNAVAILABLE" in js

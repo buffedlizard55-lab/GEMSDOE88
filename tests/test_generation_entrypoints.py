@@ -21,16 +21,11 @@ def entrypoints() -> list[Path]:
         files.update((ROOT / "scripts").glob(glob))
     files.difference_update(ROOT / "scripts" / name for name in (
         "build_candidate_matrix.py", "generate_figures.py"))
-    # IR-88-BA739E0F-01 (session ba739e0f): ONE disclosed exception. The
-    # H88-MFS runner records generation_guard.inspect() (DUPLICATE_STOP)
-    # before any feature code and proceeds research-only under that
-    # session's explicit user instruction; it can never set ok_to_submit
-    # while the literal gate fails. Its behaviour is pinned by
-    # tests/test_mfs88.py::test_mfs_runner_records_stop_and_cannot_submit.
-    files.difference_update({ROOT / "scripts/run_mfs88_experiment.py"})
+    # No research-only exception: MFS is included in the same mandatory
+    # pre-import guard contract as every other candidate runner.
     files.update(ROOT / "scripts" / name for name in (
         "make_concentration_variants.py", "evaluate_cgo88.py", "eval_concentration_proxy.py",
-        "exp_provcrest_spacing.py", "publish_kdmc_site.py", "finalize_concentration.py",
+        "exp_provcrest_spacing.py", "publish_kdmc_site.py", "publish_sdtl88.py", "finalize_concentration.py",
         "lbcal_build_stats.py", "lbcal_pixel.py", "lbcal_fit.py", "lbcal_extra_features.py",
         "mass_r0_ranking_control.py", "reaudit_hgvc88_v4.py"))
     return sorted(path for path in files if '__name__' in path.read_text())
@@ -79,10 +74,8 @@ def test_witness_removed_is_not_automatic_permission(monkeypatch):
     monkeypatch.setattr(preflight_mtas88, "inspect", lambda _: {
         "preplacement_registry_proof": {"universal_overlap_blocker": False}})
     result = generation_guard.inspect(ROOT)
-    # IR-88-SDTL-01: generation may proceed under the equal-support rule, but
-    # a preflight is never submit clearance.
-    assert result["decision"] == "GENERATION_ALLOWED_PENDING_UNIQUENESS"
-    assert result["ok_to_submit"] is False
+    assert result["decision"] == "INCOMPLETE_REGISTRY_GATE"
+    assert result["generation_allowed"] is False
 
 
 @pytest.mark.skipif(not (ROOT / "data/registry/dense_17gemdoe.tif").is_file(), reason="validation inputs not restored")
@@ -91,6 +84,12 @@ def test_witness_removed_is_not_automatic_permission(monkeypatch):
     ["-O", "scripts/run_gems88_pipeline.py"],
     ["-m", "scripts.build_ssa88_submission"],
     ["scripts/publish_kdmc_site.py"],
+    ["scripts/run_mfs88_experiment.py"],
+    ["-O", "scripts/run_mfs88_experiment.py"],
+    ["-m", "scripts.run_mfs88_experiment"],
+    ["scripts/run_sdtl88_experiment.py"],
+    ["-O", "scripts/build_sdtl88_submission.py"],
+    ["-m", "scripts.publish_sdtl88"],
 ])
 def test_real_entrypoints_exit_two_without_writing_candidates(command):
     before = {p.name: p.stat().st_mtime_ns for p in (ROOT / "docs/downloads").iterdir()}
@@ -98,7 +97,7 @@ def test_real_entrypoints_exit_two_without_writing_candidates(command):
     result = subprocess.run([sys.executable, *command], cwd=ROOT, text=True, capture_output=True, timeout=30)
     assert result.returncode == 2, result.stdout + result.stderr
     report = json.loads(result.stderr)
-    assert report["decision"] == "SUPERSEDED_ENTRYPOINT_STOP"
+    assert report["decision"] == "DUPLICATE_STOP"
     assert report["new_rasters_generated"] == report["experiments_run"] == 0
     assert result.stdout == ""  # historical builder did not start
     assert before == {p.name: p.stat().st_mtime_ns for p in (ROOT / "docs/downloads").iterdir()}

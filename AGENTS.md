@@ -9,10 +9,13 @@
 7. Cite immutable sources and state which were actually retrieved. Network/auth limitations do not justify calling user-provided Dropbox links official or calling local checks organizer acceptance. Only a submission-page receipt can establish ORGANIZER-CONFIRMED evidence.
 8. Complete three review passes; run tests, normal and optimized site guards, and the expected negative generation/slot gate. Preserve negative results and explicit limitations. Keep raw data, feature caches and browser/test artifacts out of Git.
 
-## Protocol status after IR-88-SDTL-01 (2026-10-25)
-
-Item 2 above is superseded in one respect: the dense `17GEMSDOE` witness is no longer a universal DUPLICATE_STOP. The shared rule is `gems57.uniqueness.binding_duplicate_decision_v5` (equal-support top-n dots for continuous surfaces; rank correlation for every raster; thresholds unchanged). Only the entrypoints listed in `scripts/generation_guard.py::ACTIVE_LANE_ENTRYPOINTS` may generate; every new lane must (a) freeze a preregistration, (b) add its two entrypoints there and remove the previous lane's, (c) pass holdout rule + canary + v5 uniqueness + validator before `ok_to_submit` can be true, and (d) publish through `scripts/publish_sdtl88.py`-style machine rendering. Never hand-edit a verdict.
-
 ## Policy-regression warning
 
 The imported `decide_v4` API is compatibility-only and delegates to the original literal gate. Its dense/creation-order exceptions and automatic HGVC upload clearance were revoked in IR-88-D0C3ADEB-08. Never resurrect them or whitelist an `ok_to_submit: true` record while the literal gate/selector fails.
+
+
+**PR #151 / IR-88-B4DFA10C-08:** PR #148's equal-support promotion is withdrawn under
+this user's unchanged literal protocol. Dense/saturated priors still bind. Equal-support
+helpers are diagnostic only; public v5 delegates to the shared literal v3 decision.
+SDTL is preserved historical research, never the currently cleared release. Run, build
+and publish entrypoints have no active-lane exemption. See the corrective evidence card.

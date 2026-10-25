@@ -157,7 +157,7 @@ def test_validate_qtsk88_and_current_release_cli():
     cur = validate_current.release_report(ROOT)
     saved_cur = json.loads((ROOT / "docs/data/current_release.json").read_text())
     assert cur == saved_cur
-    assert cur["candidate"] == "H88-SDTL" and cur["ok_to_submit"] is (cur["verdict"] == "promote")
+    assert cur["ok_to_submit"] is False
 
     proc_ok = subprocess.run([sys.executable, str(ROOT / "scripts/validate_qtsk88.py")], capture_output=True, text=True)
     assert proc_ok.returncode == 0
