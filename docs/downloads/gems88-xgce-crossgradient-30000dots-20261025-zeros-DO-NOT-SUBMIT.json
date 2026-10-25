@@ -1,0 +1,123 @@
+{
+  "file": "gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif",
+  "sha256": "199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c",
+  "bytes": 84969,
+  "submission_name": "GEMSDOE88-XGCE-30000-B4FFC782",
+  "note": "H88-XGCE grav\u00d7mag cross-grad orthogonal conduit 30000 dots; fingerprint gt25 0.49 canary 0.568; UNSCORED",
+  "note_chars": 104,
+  "validator": {
+    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif",
+    "bytes": 84969,
+    "sha256": "199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.002443163888528943,
+    "emitted_positive_pixels": 30000,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 30000,
+    "footprint_fraction": 0.005805657923281327
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif",
+    "bytes": 84969,
+    "sha256": "199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.002443163888528943,
+    "n_nonzero": 30000,
+    "mass": 30000.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "8336ef9dd47822d61aa802cd6d2deac6daae5308577dabaaf345b2aeac823e3c",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "lane": "H88-XGCE",
+    "slot_authorized": false
+  }
+}

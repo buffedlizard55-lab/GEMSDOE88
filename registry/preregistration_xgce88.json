@@ -1,0 +1,27 @@
+{
+  "schema": "gems88.preregistration.v1",
+  "preregistration_id": "H88-XGCE-20261025",
+  "lane": "H88-XGCE",
+  "lane_title": "Cross-Gradient Orthogonal Conduit Extraction (gravity × magnetic intersections weighted by dilation)",
+  "hypothesis": "Orthogonal intersections where Basin-and-Range normal faults are cross-cut by Walker Lane transfer faults produce cross-gradient discordance between isostatic gravity and reduced-to-pole magnetic gradients (|sin Δθ| → 1) co-located with extensional dilational strain; these intersections host fracture-permeability sweet spots missed by air-photo catalogue mappers because surface expression is a broad alluvial fan confluence, not a sharp scarp.",
+  "mechanism": "Compute normalized cross-gradient between gravity (iso_grav_anom_hg/vg) and magnetic (tmi_hg/tmi_vg) gradient vectors: |G_grav × G_mag|/(|G_grav||G_mag|+ε) = |sinΔθ|. Weight by dilatational strain (geod_dilaterate) and basement-step ridge magnitude (iso_grav_anom_slope) with high-pass depth_to_base_surf to suppress pluton rims. Emit dots via probability-weighted sampling with 3-px catalogue collar and 2.8-px inter-dot spacing to maximize expected pooled DTI under 300m triangular kernel.",
+  "named_non_fault_mimic": "Circular Mesozoic granitic pluton margins and Tertiary caldera ring faults (suppressed via high-pass basement relief and requiring geod_dilaterate > 0; static lithologic contacts lack extensional strain).",
+  "ranked_candidates": [
+    {"rank": 1, "id": "H88-XGCE", "status": "SELECTED"},
+    {"rank": 2, "id": "H88-RADM", "status": "QUEUE"},
+    {"rank": 3, "id": "H88-SLIP", "status": "QUEUE"},
+    {"rank": 4, "id": "H88-THCL", "status": "QUEUE"},
+    {"rank": 5, "id": "H88-CHIK", "status": "QUEUE"}
+  ],
+  "expected_dti_gain_bps": "+450 to +700 vs ADHR baseline (physics-only 0.0618)",
+  "implementation_cost": "Low — uses only on-disk 19-band training_features.tif (no external download)",
+  "holdout_evaluator": "gems57-pooled-hide-v2 (alpha 0.2 beta 0.8 300m triangular, 8-fold whole-component hide with 3-px feature buffer, 12-px boundary exclusion)",
+  "leakage_canary_threshold": 0.9,
+  "uniqueness_gates": {"max_abs_spearman": 0.9, "max_3px_overlap": 0.7},
+  "fingerprint_gate": {"share_gt25_min": 0.35, "share_le2_max": 0.02},
+  "portal_policy": "zeros (all-finite [0,1], nodata=None, EPSG:32611 3730x3292 transform 100,0,243350,0,-100,4508550)",
+  "feature_bands": ["tmi_hg", "tmi_vg", "iso_grav_anom_hg", "iso_grav_anom_vg", "depth_to_base_surf", "geod_dilaterate", "geod_shearrate", "iso_grav_anom_slope", "det_elev"],
+  "generated_utc": "2026-10-25T02:00:00Z",
+  "author_lane": "arena/4240f867-gemsdoe88",
+  "pre_holdout_beats_bar_required": true
+}

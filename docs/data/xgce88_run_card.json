@@ -1,0 +1,208 @@
+{
+  "schema": "gems88.xgce88.run_card.v1",
+  "run_id": "GEMSDOE88-XGCE-20261025-199e6f30",
+  "generated_utc": "2026-10-25T02:03:24Z",
+  "lane": "H88-XGCE",
+  "lane_title": "Cross-Gradient Orthogonal Conduit Extraction (gravity × magnetic intersections weighted by dilation)",
+  "hypothesis": "Orthogonal intersections where Basin-and-Range normal faults are cross-cut by Walker Lane transfer faults produce cross-gradient discordance between isostatic gravity and reduced-to-pole magnetic gradients (|sin Δθ| → 1) co-located with extensional dilational strain; these intersections host fracture-permeability sweet spots missed by air-photo catalogue mappers because surface expression is a broad alluvial fan confluence, not a sharp scarp.",
+  "mechanism": "Normalized cross-gradient |G_grav × G_mag|/(|G_grav||G_mag|+ε) = |sinΔθ| between gravity (iso_grav_anom_hg/vg) and magnetic (tmi_hg/tmi_vg) gradients, weighted by basement high-pass relief (|depth_to_base_surf - G25(depth)|), gravity slope ridge magnitude, dilatational strain gate (geod_dilaterate >0) and shear modulation, emitted via 3px catalogue collar and 2.83px Dinkelbach-style spacing to maximize expected pooled DTI under 300m triangular kernel.",
+  "named_non_fault_mimic": "Circular Mesozoic granitic pluton margins and Tertiary caldera ring faults (suppressed via high-pass basement relief and requiring geod_dilaterate >0; static contacts lack extensional strain).",
+  "feature_bands": [
+    "tmi_hg",
+    "tmi_vg",
+    "iso_grav_anom_hg",
+    "iso_grav_anom_vg",
+    "depth_to_base_surf",
+    "geod_dilaterate",
+    "geod_shearrate",
+    "iso_grav_anom_slope"
+  ],
+  "preregistration": {
+    "schema": "gems88.preregistration.v1",
+    "preregistration_id": "H88-XGCE-20261025",
+    "lane": "H88-XGCE",
+    "lane_title": "Cross-Gradient Orthogonal Conduit Extraction (gravity × magnetic intersections weighted by dilation)",
+    "hypothesis": "Orthogonal intersections where Basin-and-Range normal faults are cross-cut by Walker Lane transfer faults produce cross-gradient discordance between isostatic gravity and reduced-to-pole magnetic gradients (|sin Δθ| → 1) co-located with extensional dilational strain; these intersections host fracture-permeability sweet spots missed by air-photo catalogue mappers because surface expression is a broad alluvial fan confluence, not a sharp scarp.",
+    "mechanism": "Compute normalized cross-gradient between gravity (iso_grav_anom_hg/vg) and magnetic (tmi_hg/tmi_vg) gradient vectors: |G_grav × G_mag|/(|G_grav||G_mag|+ε) = |sinΔθ|. Weight by dilatational strain (geod_dilaterate) and basement-step ridge magnitude (iso_grav_anom_slope) with high-pass depth_to_base_surf to suppress pluton rims. Emit dots via probability-weighted sampling with 3-px catalogue collar and 2.8-px inter-dot spacing to maximize expected pooled DTI under 300m triangular kernel.",
+    "named_non_fault_mimic": "Circular Mesozoic granitic pluton margins and Tertiary caldera ring faults (suppressed via high-pass basement relief and requiring geod_dilaterate > 0; static lithologic contacts lack extensional strain).",
+    "ranked_candidates": [
+      {
+        "rank": 1,
+        "id": "H88-XGCE",
+        "status": "SELECTED"
+      },
+      {
+        "rank": 2,
+        "id": "H88-RADM",
+        "status": "QUEUE"
+      },
+      {
+        "rank": 3,
+        "id": "H88-SLIP",
+        "status": "QUEUE"
+      },
+      {
+        "rank": 4,
+        "id": "H88-THCL",
+        "status": "QUEUE"
+      },
+      {
+        "rank": 5,
+        "id": "H88-CHIK",
+        "status": "QUEUE"
+      }
+    ],
+    "expected_dti_gain_bps": "+450 to +700 vs ADHR baseline (physics-only 0.0618)",
+    "implementation_cost": "Low — uses only on-disk 19-band training_features.tif (no external download)",
+    "holdout_evaluator": "gems57-pooled-hide-v2 (alpha 0.2 beta 0.8 300m triangular, 8-fold whole-component hide with 3-px feature buffer, 12-px boundary exclusion)",
+    "leakage_canary_threshold": 0.9,
+    "uniqueness_gates": {
+      "max_abs_spearman": 0.9,
+      "max_3px_overlap": 0.7
+    },
+    "fingerprint_gate": {
+      "share_gt25_min": 0.35,
+      "share_le2_max": 0.02
+    },
+    "portal_policy": "zeros (all-finite [0,1], nodata=None, EPSG:32611 3730x3292 transform 100,0,243350,0,-100,4508550)",
+    "feature_bands": [
+      "tmi_hg",
+      "tmi_vg",
+      "iso_grav_anom_hg",
+      "iso_grav_anom_vg",
+      "depth_to_base_surf",
+      "geod_dilaterate",
+      "geod_shearrate",
+      "iso_grav_anom_slope",
+      "det_elev"
+    ],
+    "generated_utc": "2026-10-25T02:00:00Z",
+    "author_lane": "arena/4240f867-gemsdoe88",
+    "pre_holdout_beats_bar_required": true
+  },
+  "eligible_inputs_verified": {
+    "sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "training_features.tif": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "status": "STRUCTURAL-ZERO REGIME — not ranked vs ADHR; UNSCORED",
+    "withheld_positive_pixels_overall": 22893,
+    "note": "This run card marks HOLDOUT-DTI UNSCORED for promotion: the recorded structural-zero regime is not a leaderboard estimate, no aggregate holdout estimate or 95% CI is supplied (overall=null, ci95=null), and no paired improvement is claimed. Do not use this diagnostic to rank against organizer scores; 0 weekly slots spent.",
+    "overall": null,
+    "ci95": null,
+    "verdict": "negative (by construction for catalogue-avoiding geometry)"
+  },
+  "leakage_canary": {
+    "threshold": 0.9,
+    "features_tested": 6,
+    "max_symmetric_auc": 0.56809,
+    "max_feature": "shear_norm",
+    "all_features": [
+      {
+        "feature": "shear_norm",
+        "auc": 0.56809,
+        "symmetric_auc": 0.56809
+      },
+      {
+        "feature": "grav_slope_norm",
+        "auc": 0.53074,
+        "symmetric_auc": 0.53074
+      },
+      {
+        "feature": "dilate_gate",
+        "auc": 0.52737,
+        "symmetric_auc": 0.52737
+      },
+      {
+        "feature": "depth_hp_norm",
+        "auc": 0.52236,
+        "symmetric_auc": 0.52236
+      },
+      {
+        "feature": "cross_norm",
+        "auc": 0.48631,
+        "symmetric_auc": 0.51369
+      }
+    ],
+    "passed": true
+  },
+  "fingerprint": {
+    "n_dots": 30000,
+    "share_gt25": 0.4949,
+    "share_le2": 0.0,
+    "median_dist_px": 24.7,
+    "share_gt25_pass": true,
+    "share_le2_pass": true,
+    "min_d_cat_px": 3.0
+  },
+  "uniqueness": {
+    "registry_rasters_checked_disc": 17,
+    "registry_rasters_checked_all": 18,
+    "pre_placement_worst_abs_spearman": 0.0092,
+    "pre_placement_worst_file_rho": "data/registry/gems80_h80_dpvc.tif",
+    "post_placement_worst_3px_overlap_disc": 0.2037,
+    "post_placement_worst_file_overlap_disc": "data/registry/gems80_h80_dpvc.tif",
+    "post_placement_worst_3px_overlap_all": 1.0,
+    "post_placement_worst_file_overlap_all": "data/registry/dense_17gemdoe.tif",
+    "max_3px_overlap_disc_pass": true,
+    "max_3px_overlap_all_pass": false,
+    "max_rho_pass": true,
+    "unique_like_for_like": true,
+    "unique_like_for_like_note": "PASS vs 17 discriminating GEMSDOE rasters (0.2037 <=0.70); like-for-like |rho| 0.0092 <=0.90",
+    "literal_dense_witness_overlap": 1.0,
+    "literal_dense_witness_file": "data/registry/dense_17gemdoe.tif",
+    "literal_dense_witness_pass": false,
+    "literal_dense_witness_note": "Dense 17GEMSDOE witness covers every footprint cell; literal 1.0>0.70 blocks slot under binding literal audit; like-for-like PASS is reported separately. Registry total including dense = 18.",
+    "binding_verdict": "FAIL-CLOSED (literal witness) but LIKE-FOR-LIKE UNIQUE"
+  },
+  "validator": {
+    "portal_tif_ok": true,
+    "portal_zip_ok": true,
+    "independent_ok": true,
+    "all_finite": true,
+    "portal_range_check_nan_strict": true,
+    "portal_range_check_nanmin_nanmax": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "outside_footprint_zero": true,
+    "n_dots_on_catalogue": 0
+  },
+  "submission": {
+    "file": "docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.tif",
+    "zip_file": "docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.zip",
+    "json_file": "docs/downloads/gems88-xgce-crossgradient-30000dots-20261025-zeros-DO-NOT-SUBMIT.json",
+    "raster_sha256": "199e6f30e2fc68bddae69e21ac5ea04823ec5d3f0b6239d3f32cb136c8a32c4c",
+    "zip_sha256": "8336ef9dd47822d61aa802cd6d2deac6daae5308577dabaaf345b2aeac823e3c",
+    "bytes": 84969,
+    "submission_name": "GEMSDOE88-XGCE-30000-B4FFC782",
+    "submission_note": "H88-XGCE grav×mag cross-grad orthogonal conduit 30000 dots; fingerprint gt25 0.49 canary 0.568; UNSCORED",
+    "submission_note_chars": 104,
+    "positive_pixels": 30000,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "values_in_0_1": true,
+    "all_finite": true
+  },
+  "verdict": "negative",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "reason_not_submit": "Binding literal dense-witness overlap 1.0>0.70 enforces FAIL-CLOSED (IR-88-113); like-for-like UNIQUE (0.2037<=0.70, |rho|=0.0092) and portal-valid [0,1] zeros (no NaN) PASS; HOLDOUT-DTI structural-zero UNSCORED; no weekly slot spent; research download only.",
+  "elapsed_seconds": 58.13
+}
