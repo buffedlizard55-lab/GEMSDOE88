@@ -21,6 +21,8 @@ def entrypoints() -> list[Path]:
         files.update((ROOT / "scripts").glob(glob))
     files.difference_update(ROOT / "scripts" / name for name in (
         "build_candidate_matrix.py", "generate_figures.py"))
+    # No research-only exception: MFS is included in the same mandatory
+    # pre-import guard contract as every other candidate runner.
     files.update(ROOT / "scripts" / name for name in (
         "make_concentration_variants.py", "evaluate_cgo88.py", "eval_concentration_proxy.py",
         "exp_provcrest_spacing.py", "publish_kdmc_site.py", "finalize_concentration.py",
@@ -82,6 +84,9 @@ def test_witness_removed_is_not_automatic_permission(monkeypatch):
     ["-O", "scripts/run_gems88_pipeline.py"],
     ["-m", "scripts.build_ssa88_submission"],
     ["scripts/publish_kdmc_site.py"],
+    ["scripts/run_mfs88_experiment.py"],
+    ["-O", "scripts/run_mfs88_experiment.py"],
+    ["-m", "scripts.run_mfs88_experiment"],
 ])
 def test_real_entrypoints_exit_two_without_writing_candidates(command):
     before = {p.name: p.stat().st_mtime_ns for p in (ROOT / "docs/downloads").iterdir()}

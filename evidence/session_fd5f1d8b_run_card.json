@@ -1,0 +1,92 @@
+{
+  "schema": "gems88.run-card.v1",
+  "session": "fd5f1d8b",
+  "branch": "arena/fd5f1d8b-gemsdoe88",
+  "date_utc": "2026-10-25",
+  "review_document": "research/session-fd5f1d8b-review.md",
+  "lane": "NOT ASSIGNED. The request contains no single method paragraph; the literal all-registry duplicate stop was applied to the whole registry, as AGENTS.md requires.",
+  "hypothesis": "None tested. The request asked for a unique competition TIFF. No new hypothesis was implemented because the duplicate stop binds before feature construction.",
+  "mechanism": "Not applicable: no candidate was constructed.",
+  "named_non_fault_mimic": "Not applicable: no candidate was constructed. Candidate mimics are recorded in research/session-d0c3adeb-hypotheses.md (untested).",
+  "holdout_dti": {
+    "value": null,
+    "status": "NOT RUN",
+    "reason": "DUPLICATE_STOP precedes feature construction and holdout fitting.",
+    "evaluator_version": "gems57-pooled-hide-v2 (not executed this session)",
+    "withheld_positives": null,
+    "ci_95": null
+  },
+  "organizer_confirmed_score": {
+    "value": null,
+    "status": "NONE. No submission-page receipt exists in this repository or session."
+  },
+  "user_reported_scores_unverified": {
+    "H33_GEMSDOE32_0.2778": "USER-REPORTED. No receipt. Lowest visible public row is 0.2818 (rank 50); not on visible rows.",
+    "0.3195": "STALE. Equals the DARD value in the GEMSDOE32 2026-10-04 snapshot; official 2026-10-25 DARD is rank 9, 0.3358.",
+    "0.4413": "OFFICIAL-PUBLIC rank 1, participant xiaofanhu; not attributable to a GEMSDOE entry."
+  },
+  "correlation_overlap_vs_registry": {
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_cells": 5106385,
+    "witness_positive_share_of_allowed": 1.0,
+    "literal_overlap_lower_bound": 1.0,
+    "overlap_limit": 0.7,
+    "rank_correlation": "NOT COMPUTED (stop precedes surface construction)",
+    "verdict_on_overlap": "FAIL (DUPLICATE_STOP)"
+  },
+  "raster": {
+    "generated": false,
+    "sha256": null,
+    "path": null
+  },
+  "validator_output": {
+    "new_raster_validated": false,
+    "existing_research_files": "scripts/audit_downloads.py --check exit 0: 43 TIFF/ZIP pairs reopened, 43 research-pass, 0 protocol-eligible, 0 exact-decoded duplicate groups.",
+    "guard": "scripts/generation_guard.py exit 2 DUPLICATE_STOP; new_rasters_generated 0; experiments_run 0; weekly_slots_used 0."
+  },
+  "submission": {
+    "name": null,
+    "note": null,
+    "note_chars": null,
+    "submit_decision": "DO NOT SUBMIT (no candidate exists)",
+    "ok_to_submit": false
+  },
+  "verdict": "negative",
+  "budget": {
+    "experiments_run": 0,
+    "experiment_limit": 3,
+    "wall_clock_limit_hours": 2,
+    "weekly_slots_used": 0
+  },
+  "tests": {
+    "command": ".venv/bin/python -m pytest tests -q",
+    "result_final_merged_tree": "671 passed, 23 skipped, 0 failed",
+    "result_pre_merge": "651 passed, 23 skipped, 0 failed"
+  },
+  "github": {
+    "gh_auth_status": "reports GH_TOKEN invalid (warning), yet gh pr create and gh pr view succeeded",
+    "pull_request": "https://github.com/buffedlizard55-lab/GEMSDOE88/pull/145",
+    "pr_initial_mergeable": "CONFLICTING with main (main advanced via PRs 141-143); resolved by merging origin/main into the branch",
+    "merge_status": "PENDING (requires CI and mergeable re-check)",
+    "git_push": "succeeded"
+  },
+  "irregularities": [
+    "I-1 literal overlap rule blocks all candidates when a dense continuous registry member exists",
+    "I-2 owner-mirror sample_submission.tif marks exactly the 60,988 catalogue cells as 1.0; official page says the sample predicts total absence",
+    "I-3 0.4413 belongs to a non-GEMSDOE participant",
+    "I-4 0.3195 is a stale 2026-10-04 value",
+    "I-5 H33 0.2778 has no receipt",
+    "I-6 machine hypothesis queue rank 1 (H88-MTAS, already run) disagrees with markdown queue (MMR)",
+    "I-7 AI_USE.md cites rules section 3.6; the NLR rules place the disclosure in section 3.2",
+    "I-8 gh auth status reports an invalid token while PR create/view succeeded; treat as a warning to re-verify before merge",
+    "I-9 full 19-band stack not restored in this session"
+  ],
+  "sources": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html",
+    "https://buffedlizard55-lab.github.io/GEMSDOE32/docs/leaderboard.html"
+  ]
+}

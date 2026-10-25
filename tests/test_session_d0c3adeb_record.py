@@ -54,7 +54,9 @@ def test_existing_downloads_are_not_passed_off_as_new_rasters():
     assert old['file'] == current['file']
     assert old['sha256'] == current['file_sha256'] == audit['canonical_sha256']
     assert old['zip_sha256'] == current['zip_sha256']
-    assert old['tiff_zip_pairs'] == old['local_research_passes'] == audit['tiff_count'] == audit['research_download_pass_count']
+    # Historical counts are frozen; new concurrent research does not rewrite them.
+    assert old['tiff_zip_pairs'] == old['local_research_passes'] == 43
+    assert audit['tiff_count'] == audit['research_download_pass_count'] >= 43
     assert old['protocol_eligible_count'] == 0
     assert card['ok_to_download_new_file'] is False
     assert old['ok_to_download_for_research'] is True
@@ -65,8 +67,12 @@ def test_recorded_guard_inventory_matches_the_code():
     card = read('registry/session_d0c3adeb_run_card.json')
     actual = sorted(p.name for p in (ROOT / 'scripts').glob('*.py')
                     if p.name != 'generation_guard.py' and 'enforce_generation_preflight()' in p.read_text())
-    assert card['generation_guard']['entrypoints'] == actual
-    assert card['generation_guard']['count'] == len(actual)
+    # Preserve the historical snapshot; later guarded CLIs may be added,
+    # but none of the previously guarded entrypoints may lose protection.
+    recorded = card['generation_guard']['entrypoints']
+    assert set(recorded) <= set(actual)
+    assert card['generation_guard']['count'] == len(recorded) == 89
+    assert 'run_mfs88_experiment.py' in actual
     assert card['generation_guard']['shared_evaluator_writer_changed'] is False
     assert card['generation_guard']['cli_entrypoints_only_not_a_security_sandbox'] is True
 

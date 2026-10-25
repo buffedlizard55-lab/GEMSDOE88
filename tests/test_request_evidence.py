@@ -104,5 +104,6 @@ def test_published_csv_matches_every_json_claim_without_upgrading_evidence():
 def test_current_readme_counts_match_full_download_inventory():
     text = (ROOT / 'README.md').read_text().split('<!-- USER-REQUEST:START -->', 1)[0]
     report = json.loads((ROOT / 'docs/data/download_audit.json').read_text())
-    assert f"All **{report['tiff_count']}** TIFF/ZIP pairs" in text
-    assert f"**{report['research_download_pass_count']}** pass" in text
+    assert f"All **{report['total_published_tiff_count']}** TIFF/ZIP pairs" in text
+    assert f"**{report['total_research_download_pass_count']}** pass" in text
+    assert f"({report['tiff_count']} main downloads + {report['additional_research_tiff_count']} historical variant)" in text

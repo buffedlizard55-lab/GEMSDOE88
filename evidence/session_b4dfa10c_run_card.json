@@ -1,7 +1,7 @@
 {
   "schema": "gems88.review-run-card.v2",
   "session": "b4dfa10c",
-  "checked_at_utc": "2026-10-25T14:25:23.301322+00:00",
+  "checked_at_utc": "2026-10-25T14:31:55.862165+00:00",
   "base_commit": "dcd60754749e1e5d88d535c0973245c889f8c15f",
   "status": "DUPLICATE_STOP",
   "hypothesis": "H88-MMR (conditional, unimplemented): repeatable magnetic-marker displacement restoration may reveal a covered fault missed by surface mapping.",
@@ -115,19 +115,19 @@
   },
   "download_inventory": {
     "schema": "gems88.download-audit.v2",
-    "checked_at_utc": "2026-10-25T14:01:13.045369+00:00",
-    "tiff_count": 43,
-    "research_download_pass_count": 43,
+    "checked_at_utc": "2026-10-25T14:30:18.146627+00:00",
+    "tiff_count": 44,
+    "research_download_pass_count": 44,
     "additional_research_tiff_count": 1,
-    "total_published_tiff_count": 44,
-    "total_research_download_pass_count": 44,
+    "total_published_tiff_count": 45,
+    "total_research_download_pass_count": 45,
     "protocol_eligible_count": 0,
     "exact_decoded_duplicate_groups": [],
     "publication_directories": [
       "downloads",
       "research-variants"
     ],
-    "saved_audit_sha256": "338a31367e858f2760c1e8d305dba83a669b375916dc1af32a160094e58da0df"
+    "saved_audit_sha256": "380fb46397d19925bad59d470ba896b2cef26964a76f06216f2401154b14ff04"
   },
   "fresh_h33_geometry_audit": {
     "schema": "gems88.h33-lineage-audit.v1",
@@ -276,7 +276,7 @@
       "passed": 651,
       "skipped": 23
     },
-    "final_verification_status": "PASS",
+    "final_verification_status": "PENDING_POST_INTEGRATION_RECHECK",
     "format_validator_version": "gems88-format-audit-v2",
     "fixes": [
       "Reject additional full-resolution TIFF datasets while allowing internal overviews.",
@@ -286,7 +286,8 @@
       "Audit all 43 main packages plus the existing historical variant without moving it into the modeling registry.",
       "Withdraw unsupported legacy MDC-88 upload instructions; check nested links and negative status.",
       "Bind every published TIFF/ZIP hash and complete manifest inventory to the site guard under normal and optimized Python.",
-      "Preserve the imported historical browser receipt and record a fresh seven-case desktop/mobile check plus an actual exact-hash download."
+      "Preserve the imported historical browser receipt and record a fresh seven-case desktop/mobile check plus an actual exact-hash download.",
+      "Revoke the concurrently added MFS research-generation exception; restore standard pre-import guard and three real CLI-denial regressions. Its read-only validator delegates to the shared saved-file audit."
     ],
     "shared_metric_and_writer_modified": false,
     "published_tif_or_zip_bytes_modified": false,
@@ -316,21 +317,12 @@
       },
       {
         "pass": 3,
-        "status": "PASS",
+        "status": "PENDING_POST_INTEGRATION_RECHECK",
         "scope": "Full merged suite, saved-byte audit, render checks, browser receipt, normal/optimized guards and expected negative generation/slot checks.",
         "all_requested_deliverables_met": false
       }
     ],
-    "three_passes_completed": true,
-    "final_pytest": {
-      "command": ".venv/bin/python -m pytest -q -ra",
-      "passed": 757,
-      "skipped": 23,
-      "warnings": 63,
-      "seconds": 250.94,
-      "local_output_sha256": "a230a36a7158606a841848a055cc92adc06ea00ef99618a31ed9f00e47bbccbd",
-      "scope": "Restored shared-input tier after integration of current main; 23 optional historical/local-only artifact tests skipped, not certified passes. No geological model generation."
-    },
+    "three_passes_completed": false,
     "final_gates": {
       "checked_at_utc": "2026-10-25T14:22:20.787419+00:00",
       "checks": [
@@ -419,16 +411,29 @@
       "warnings": 46,
       "seconds": 36.0,
       "scope": "Final run-card/mirror checks, request provenance, both inventories, container/sidecar regressions, canonical/legacy Pages and normal/optimized guard corruption tests after the final evidence update."
-    }
+    },
+    "pre_mfs_integration_full_pytest": {
+      "command": ".venv/bin/python -m pytest -q -ra",
+      "passed": 757,
+      "skipped": 23,
+      "warnings": 63,
+      "seconds": 250.94,
+      "local_output_sha256": "a230a36a7158606a841848a055cc92adc06ea00ef99618a31ed9f00e47bbccbd",
+      "scope": "Restored shared-input tier after integration of current main; 23 optional historical/local-only artifact tests skipped, not certified passes. No geological model generation."
+    },
+    "published_binary_scope": "No TIFF/ZIP generated or modified by this review; the concurrent MFS pair was imported byte-identically from origin/main, not generated here."
   },
   "organizer_confirmed_score": null,
   "verdict": "negative",
   "unmet_requirement": "No new unique competition TIFF can be produced under the binding all-registry overlap rule.",
   "branch": "arena/b4dfa10c-gemsdoe88",
   "integration": {
-    "incorporated_main_commit": "4e3e9f6721ef8eeb9319f93126d3895260100d1a",
+    "incorporated_main_commit": "f0cb2d85c4bcc5343bb9858ea40e77190907c985",
     "local_merge_commit": "8aa5f81c94c4c9d752eb597e9a65de5d8b2abc4b",
-    "inventory_resolution": "One shared policy covers both publication directories, retains main publication_inventory API and symlink restrictions; no separate private inventory gate."
+    "inventory_resolution": "One shared policy covers both publication directories, retains main publication_inventory API and symlink restrictions; no separate private inventory gate.",
+    "prior_integrated_main_commit": "4e3e9f6721ef8eeb9319f93126d3895260100d1a",
+    "mfs_historical_artifact_imported_unchanged": true,
+    "mfs_guard_exception_revoked": true
   },
   "source_scope": {
     "all_92_sites_freshly_scraped": false,
@@ -442,7 +447,7 @@
     "unique_new_competition_tiff": "UNMET_BINDING_DUPLICATE_STOP",
     "new_top_candidate_holdout": "NOT_RUN_BINDING_DUPLICATE_STOP",
     "improvement_beyond_h33": "NOT_ESTABLISHED",
-    "automatic_local_saved_file_and_package_audit": "PASS_44_OF_44_RESEARCH_ONLY",
+    "automatic_local_saved_file_and_package_audit": "PASS_45_OF_45_RESEARCH_ONLY",
     "organizer_or_slot_acceptance": "NOT_ESTABLISHED_DO_NOT_SUBMIT"
   },
   "irregularities": [
@@ -475,6 +480,11 @@
       "id": "IR-88-B4DFA10C-06",
       "status": "BINDING_UNRESOLVED",
       "finding": "Literal any-raster overlap makes every nonempty allowed candidate ineligible. No dense-prior/creation-order exemption, v4 override, private evaluator or relabeled earlier TIFF is authorized."
+    },
+    {
+      "id": "IR-88-B4DFA10C-07",
+      "status": "BYPASS_REVOKED_REGRESSIONS_ADDED",
+      "finding": "PR #146 exempted MFS from the mandatory generation test and continued after recording DUPLICATE_STOP. Restored the shared pre-import guard, removed the exemption, preserved negative historical bytes/measurements, and added normal/optimized/module denial tests."
     }
   ]
 }
