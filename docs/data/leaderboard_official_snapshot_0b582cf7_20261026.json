@@ -1,0 +1,29 @@
+{
+  "schema": "gems88.leaderboard-observed-public.v1",
+  "retrieved_utc_date": "2026-10-26",
+  "session_branch": "arena/0b582cf7-gemsdoe88",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "retrieval_method": "fetch_page tool (public page, no DrivenData authentication) in session 0b582cf7",
+  "evidence_class": "OBSERVED-PUBLIC — public leaderboard display at retrieval time; NOT HOLDOUT-DTI and NOT an ORGANIZER-CONFIRMED score for any GEMSDOE88 or focus-site file",
+  "metric_label_on_page": "Best public DW-Tversky (in descending order)",
+  "top_rows_transcribed": [
+    {"rank": 1, "participant": "xiaofanhu", "best_public_dw_tversky": 0.4437, "submissions_shown": 31},
+    {"rank": 2, "participant": "cfld__", "best_public_dw_tversky": 0.3916, "submissions_shown": 17},
+    {"rank": 3, "participant": "Batik Shirt Brothers", "best_public_dw_tversky": 0.3904, "submissions_shown": 51},
+    {"rank": 4, "participant": "BrandenKMurray", "best_public_dw_tversky": 0.3724, "submissions_shown": 32},
+    {"rank": 5, "participant": "No Fault of Our Own", "best_public_dw_tversky": 0.3553, "submissions_shown": 43},
+    {"rank": 6, "participant": "JerryDataWorks", "best_public_dw_tversky": 0.3418, "submissions_shown": 22},
+    {"rank": 7, "participant": "alexoktaba", "best_public_dw_tversky": 0.3416, "submissions_shown": 34},
+    {"rank": 8, "participant": "joeyfezster", "best_public_dw_tversky": 0.3413, "submissions_shown": 39},
+    {"rank": 9, "participant": "DARD", "best_public_dw_tversky": 0.3398, "submissions_shown": 27},
+    {"rank": 10, "participant": "Azazel", "best_public_dw_tversky": 0.3379, "submissions_shown": 8},
+    {"rank": 24, "participant": "twang", "best_public_dw_tversky": 0.3169, "submissions_shown": 6},
+    {"rank": 25, "participant": "kinneso_outlook", "best_public_dw_tversky": 0.3167, "submissions_shown": 4}
+  ],
+  "reconciliation_with_prompt_figures": {
+    "prompt_0.4413": "SUPERSEDED — the rank-1 public value observed in this session is 0.4437 (same participant, xiaofanhu)",
+    "prompt_0.3195": "STALE HISTORICAL CLAIM — no rank-1 row at 0.3195 in this snapshot; DARD is shown at rank 9 with 0.3398",
+    "prompt_0.2778_gemsdoe32": "USER-REPORTED CLAIM — not identifiable on the public leaderboard page and no submission-page receipt is held in this repository"
+  },
+  "limitations": "Public split only; private/final standings, account quota and per-file receipts are not visible without organizer authentication, which this sandbox does not use."
+}
