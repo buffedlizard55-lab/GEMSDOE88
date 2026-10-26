@@ -1,0 +1,104 @@
+{
+  "schema": "gems88.run-card.v1",
+  "reviewed_at_utc": "2026-10-26T00:29:23.456570+00:00",
+  "lane": "H88-GEORAD",
+  "hypothesis": "Blind hydrothermal upflow under young piedmont alluvial cover produces radiometric potassium alteration and drainage control but no resolvable scarp and no mapped USGS/INGENIOUS trace; an off-catalogue radiometric-on-young-cover target missed by scarp-, magnetic-, gravity- and sinter-hunting lanes.",
+  "mechanism": "eK (GeoDAWN) x young-cover (low topo slope) x drainage control (DEM chi + knickpoints) x off-catalogue distance; deterministic top-N binary emission; zeros on catalogue and outside footprint.",
+  "layers": [
+    {
+      "file": "data/external/geodawn_rad_u8.tif",
+      "bands": [
+        1
+      ],
+      "description": "eK"
+    },
+    {
+      "file": "data/external/geodawn_extensions_u8.tif",
+      "bands": [
+        1
+      ],
+      "description": "ThK contrast"
+    },
+    {
+      "file": "data/external/topo_10m_derived_100m_u8.tif",
+      "bands": [
+        1
+      ],
+      "description": "slope_p90 (young-cover proxy)"
+    },
+    {
+      "file": "data/external/dem10_chi_100m_u8.tif",
+      "bands": [
+        1,
+        2
+      ],
+      "description": "chan_n, knick_n (drainage control)"
+    }
+  ],
+  "off_catalogue_rationale": "Young alluvium buries scarps, so USGS/INGENIOUS did not map these traces; the hunt is deliberately outside the catalogue to target missing faults.",
+  "named_non_fault_mimic": "K-rich transported alluvium, unfaulted lithologic K source, drainage concentration",
+  "difference_from_implemented": "XGCE uses grav x mag cross-gradient; BPWD uses Baranov pseudogravity + Poisson + worm; TDKL/LSC/SSA need scarps; HGVC needs surface sinter. This lane uses radiometric K + young cover + drainage on off-catalogue cells.",
+  "expected_potential": "Unquantified; no numerical DTI projection (protocol forbids writing a projection as a score).",
+  "implementation_cost": "Low; cached pinned inputs only, deterministic, no training.",
+  "falsification": "Reject if a K-rich alluvium / lithology / drainage null reproduces the pattern, or the signal vanishes when the catalogue collar is widened.",
+  "evidence_class": "RESEARCH ARTIFACT; NOT AN ORGANIZER SCORE",
+  "evaluator_version": "gems57-pooled-hide-v2 (not run -- pre-placement duplicate stop)",
+  "withheld_positive_pixels": null,
+  "holdout_dti": null,
+  "ci95": null,
+  "holdout_reason": "Pre-placement DUPLICATE_STOP precedes holdout; off-catalogue target is not measurable by catalogue-segment recovery, so no HOLDOUT-DTI is claimed.",
+  "leakage_canary": {
+    "status": "NOT_RUN_PREPLACEMENT_STOP",
+    "auc": null,
+    "threshold": 0.9,
+    "reason": "No feature was fitted; canary requires a fitted candidate."
+  },
+  "correlation_overlap_vs_registry": {
+    "registry_rasters_checked": 25,
+    "worst_spearman_full_footprint": 0.0005399164447873588,
+    "worst_spearman_submission": "gems60_h68_piedmont.tif",
+    "worst_forward_overlap_3px": 1.0,
+    "worst_overlap_submission": "dense_17gemdoe.tif",
+    "literal_overlap_vs_17GEMSDOE": 1.0,
+    "literal_limit": 0.7,
+    "duplicate": true,
+    "stop_required": true
+  },
+  "raster_sha256": "3860b91883a4c654db8c12ee7c2aacedce2825d9056a9a8b973bca26c8aeab37",
+  "zip_sha256": "741a2a3b862ee8aaa8f73a24988f3d2722d11a64ece1e76710253dae078264a4",
+  "bytes": 92368,
+  "tif_file": "docs/downloads/gems88-georad-youngcover-offcatalogue-20261026-zeros-DO-NOT-SUBMIT.tif",
+  "zip_file": "docs/downloads/gems88-georad-youngcover-offcatalogue-20261026-zeros-DO-NOT-SUBMIT.zip",
+  "receipt_file": "docs/downloads/gems88-georad-youngcover-offcatalogue-20261026-zeros-DO-NOT-SUBMIT.receipt.json",
+  "validator_output": {
+    "all_checks_passed": true,
+    "no_nan_inside": true,
+    "no_inf_anywhere": true,
+    "values_in_0_1": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "no_mass_outside_footprint": true,
+    "zero_dots_on_catalogue": true,
+    "emitted_positive_pixels": 20000,
+    "min": 0.0,
+    "max": 1.0,
+    "format_report_ok": true,
+    "format_report_problems": []
+  },
+  "submission_name": "GEMSDOE88-GEORAD-YOUNGCOVER-20261026",
+  "submission_name_chars": 36,
+  "submission_note": "GEORAD88 radiometric K + young cover + drainage, off USGS catalogue; 20000 dots; blocked by 17GEMSDOE witness; UNSCORED; DO NOT SUBMIT",
+  "submission_note_chars": 134,
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "stop_reasons": [
+    "UNIQUENESS (literal all-registry rule): forward 3-px overlap = 1.0000 > 0.70 against the pinned 17GEMSDOE dense witness (positive on all 5,106,385 allowed cells); every nonempty candidate fails, so this file is NOT submission-cleared."
+  ],
+  "organizer_confirmed_score": null,
+  "weekly_slots_used": 0,
+  "next_step": "Do not spend a weekly submission slot. Unblocking requires a separately authorized revision of the shared duplicate rule plus new buffered holdout evidence that beats the current holdout bar, then a separate selector decision."
+}

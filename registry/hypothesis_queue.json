@@ -3,8 +3,8 @@
   "reviewed_at_utc": "2026-10-25",
   "review_branch": "arena/693b10af-gemsdoe88",
   "source_snapshot": {
-    "files": 154,
-    "sha256": "fb91e32d8d0939535b68ede0cd724bd90c1a491cdf37ff24c9a8f82519c7f125"
+    "files": 155,
+    "sha256": "6e872dc008462b5ae3e58611b4f2301eea9c669dc93b0f99698abbbc161df07b"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
