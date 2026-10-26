@@ -1,0 +1,130 @@
+{
+  "file": "gems88-mshi-multiscale-halo-blind-fa5622ee-zeros-DO-NOT-SUBMIT.tif",
+  "sha256": "f20bec09e5678a93f45dec0022c71f26714c70fd75d8a1b940c685e3c9e41dbc",
+  "bytes": 136268,
+  "submission_name": "GEMSDOE88-MSHI-MULTISCALE-HALO-BLIND-20261026",
+  "note": "MSHI multi-scale halo+blind 37654d; near3-10 mid10-25 blind>26px; HOLDOUT-DTI pending; UNSCORED; DO-NOT-SUBMIT",
+  "note_chars": 110,
+  "validator": {
+    "file": "/home/user/GEMSDOE88/docs/downloads/gems88-mshi-multiscale-halo-blind-fa5622ee-zeros-DO-NOT-SUBMIT.tif",
+    "bytes": 136268,
+    "sha256": "f20bec09e5678a93f45dec0022c71f26714c70fd75d8a1b940c685e3c9e41dbc",
+    "meta": {
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "dtype": "float32",
+      "count": 1,
+      "nodata": null,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "profile_compress": "deflate"
+    },
+    "band_description": [
+      null
+    ],
+    "n_finite": 12279160,
+    "n_nan": 0,
+    "n_infinite": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "emitted_positive_pixels": 37654,
+    "checks": {
+      "single_band": true,
+      "dtype_float32": true,
+      "dimensions_3730x3292": true,
+      "crs_epsg_32611": true,
+      "transform_matches_sample_submission": true,
+      "no_nan_anywhere": true,
+      "no_inf_anywhere": true,
+      "no_sentinel_values": true,
+      "range_0_1_guaranteed": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "in_footprint_all_finite": true,
+      "in_footprint_range_0_1": true,
+      "outside_footprint_zero": true,
+      "zero_dots_on_mapped_catalogue": true
+    },
+    "all_checks_passed": true,
+    "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+    "on_catalogue_positive_pixels": 0,
+    "in_footprint_positive_pixels": 37654,
+    "footprint_fraction": 0.007286874781441169
+  },
+  "template_report": {
+    "path": "/home/user/GEMSDOE88/docs/downloads/gems88-mshi-multiscale-halo-blind-fa5622ee-zeros-DO-NOT-SUBMIT.tif",
+    "bytes": 136268,
+    "sha256": "f20bec09e5678a93f45dec0022c71f26714c70fd75d8a1b940c685e3c9e41dbc",
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "width": 3292,
+    "height": 3730,
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "ref_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": null,
+    "blocksize": [
+      256,
+      256
+    ],
+    "fixture_grid": false,
+    "has_validity_mask": false,
+    "nan_pixels": 0,
+    "infinity_pixels": 0,
+    "n_nan": 0,
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.0030664964579045773,
+    "n_nonzero": 37654,
+    "mass": 37654.0,
+    "mass_outside_footprint": 0,
+    "problems": [],
+    "ok": true,
+    "validation_class": "local on-disk template/range check; not organizer upload acceptance"
+  },
+  "zip_file": "gems88-mshi-multiscale-halo-blind-fa5622ee-zeros-DO-NOT-SUBMIT.zip",
+  "zip_sha256": "f0d26ed9e5c10abe395617c1bdd1894ea3667a51e181737f08da133a89835f61",
+  "approved_for_weekly_slot": false,
+  "promoted": false,
+  "submission_slots_used": 0,
+  "status": "locally validated within separately recorded inventory scope; not organizer acceptance or slot approval",
+  "metadata": {
+    "hypothesis_id": "H88-MSHI",
+    "lane": "H88-MSHI",
+    "zone_near_dots": 15061,
+    "zone_mid_dots": 13178,
+    "zone_blind_dots": 9415,
+    "total_dots": 37654,
+    "min_spacing_px": 2.83,
+    "collar_px": 2,
+    "features_from": "visible_catalogue_only"
+  }
+}

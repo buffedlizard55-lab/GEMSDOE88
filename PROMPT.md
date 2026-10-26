@@ -1,3 +1,9 @@
+## Current session handoff — 2026-10-26, `d498c1ca`
+
+**SUBMIT: NO. New unique TIFF: NO.** `generation_guard.py` → `DUPLICATE_STOP` (17GEMSDOE covers every allowed pixel). Read [research/session-d498c1ca-review.md](research/session-d498c1ca-review.md) and [research/session-d498c1ca-hypotheses.md](research/session-d498c1ca-hypotheses.md). Ranked unrun: `H88-CURPD`, `H88-AIRYFX`, `H88-THAZ`, `H88-RADPER`, `H88-USMT`. Do not copy H33. Portal error “Predicted values must be in range [0, 1]” is a format gate; archived TIFFs already pass it locally. Pages: `docs/index.html` + `docs/executive-summary.html`.
+
+---
+
 ## Current session handoff — 2026-10-25, 587c7f22, 3c391d97 & 96f5f523 (CON88 clearance withdrawn; DUPLICATE_STOP remains binding)
 
 **NO TIFF IS CLEARED TO SUBMIT (`ok_to_submit: false`, `protocol_eligible_count: 0`, `0` weekly slots spent).** Read the full recorded request in `README.md` and `USER_PROMPT_20261025.md`, then `AGENTS.md` and `registry/session_587c7f22_run_card.json`. Shared preflight remains `DUPLICATE_STOP` (exit `2`) before feature construction (`17GEMSDOE` covers `5,106,385 / 5,106,385` allowed cells, literal overlap `1.0000 > 0.70`): **no new TIFF, geological experiment, holdout fit, or weekly slot was produced in session `587c7f22`.**

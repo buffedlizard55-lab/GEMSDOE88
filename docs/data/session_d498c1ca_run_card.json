@@ -1,0 +1,49 @@
+{
+  "schema": "gems88.session-review.v1",
+  "run_id": "GEMSDOE88-REVIEW-D498C1CA-20261026",
+  "branch": "arena/d498c1ca-gemsdoe88",
+  "reviewed_at_utc": "2026-10-26T00:30:00Z",
+  "lane": "SOFTWARE_AND_EVIDENCE_REVIEW_ONLY",
+  "hypothesis": "H88-CURPD: Spector-Grant Curie-point depth undulation from RTP radially averaged power spectrum (NOT EXECUTED)",
+  "mechanism": "Windowed 2D FFT of B02 rtp; slope of radially averaged log power vs wavenumber maps Curie isotherm relief; target hydrothermal heat in basins without Qfaults scarps.",
+  "named_non_fault_mimic": "Remanently magnetized volcanic Curie artifacts and unfaulted crustal heat-flow provinces",
+  "geological_hypothesis_status": "CONDITIONAL_PROPOSAL_NOT_EXECUTED",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_BINDING_DUPLICATE_STOP",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null
+  },
+  "single_feature_canaries": {
+    "status": "NOT_RUN_NO_NEW_FEATURES",
+    "features_tested": 0,
+    "max_symmetric_auc": null,
+    "stop_threshold": 0.9
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE",
+    "universal_overlap_lower_bound": 1.0,
+    "overlap_limit": 0.7,
+    "rho_limit": 0.9,
+    "witness": "17GEMSDOE dense prior covers 5106385/5106385 allowed pixels"
+  },
+  "validator_output": {
+    "new_tif": false,
+    "nan_inside_footprint": "n/a",
+    "values_in_0_1": "n/a archived files previously audited",
+    "crs_shape_transform": "n/a no new raster"
+  },
+  "raster_sha256": null,
+  "submission_name": null,
+  "submission_note": null,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "generation_allowed": false,
+  "new_rasters_generated": 0,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "verdict": "negative",
+  "note_140": "d498c1ca review; DUPLICATE_STOP; 0 new TIF; DO NOT SUBMIT; CURPD unrun"
+}
