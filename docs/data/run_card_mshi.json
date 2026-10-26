@@ -267,7 +267,7 @@
   "submission_name": "GEMSDOE88-MSHI-MULTISCALE-HALO-BLIND-20261026",
   "submission_note": "MSHI multi-scale halo+blind 37654d; near3-10 mid10-25 blind>26px; HOLDOUT-DTI pending; UNSCORED; DO-NOT-SUBMIT",
   "submission_note_length": 110,
-  "verdict": "promote-to-selector-only",
+  "verdict": "negative",
   "ok_to_download": true,
   "ok_to_submit": false,
   "stop_reason": "MSHI passes format, canary (max AUC=0.8455), and sparse uniqueness (max dot overlap=0.2049 <= 0.70, max |rho|=0.0075 <= 0.90). HOLDOUT-DTI=0.035682. Literally blocked by 17GEMSDOE dense witness (overlap=1.0000 > 0.70). Download for research only; NOT submitted.",

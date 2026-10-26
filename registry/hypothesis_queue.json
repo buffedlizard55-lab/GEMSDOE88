@@ -4,7 +4,7 @@
   "review_branch": "arena/693b10af-gemsdoe88",
   "source_snapshot": {
     "files": 156,
-    "sha256": "c39e58ac2aad0ff0716c1310f7b5d91550b458ee47e176abe359e8e05170c38a"
+    "sha256": "a05cd182a2057898e53e4bab103c1958ca439ce9a0827cd372f10047ec20be05"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -56,6 +56,20 @@
       "run_card": "registry/con88_run_card.json",
       "run_card_sha256": "0e50c5e4a43ddd60a8f3e5ab3bebf441957e64f56020400b83402235337e9c5b",
       "reason": "Executed in PR #158 and withdrawn in IR-88-3C391D97-01: literal 3-pixel overlap 1.0 > 0.70 against dense_17gemdoe.tif, fixed-TIF HOLDOUT-DTI 0.0000 [0.0000, 0.0000] and per-fold collar re-emission HOLDOUT-DTI 0.001714 [0.001325, 0.002143] vs same-fold H33 0.006697 and repo holdout best H88-BPWD 0.205991; do not re-propose as an untested candidate."
+    },
+    {
+      "id": "H88-MSHI",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/run_card_mshi.json",
+      "run_card_sha256": "5c18ca5ee376754d951c94ce1f9185f4c49ef62a3c59a0ed77599704f7475bb3",
+      "reason": "Multi-scale proximal halo + blind-zone infill executed in PR #195 (HOLDOUT-DTI 0.0357 < 0.2060 BPWD; literal 17GEMSDOE overlap 1.0 > 0.70); normalized to negative verdict and preflight-guarded."
+    },
+    {
+      "id": "H88-GEORAD",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/georad88_run_card.json",
+      "run_card_sha256": "8cb47ee4a41b127556efc01dde0f063b87920fd8a41b16499dd56879ff81b3a5",
+      "reason": "GeoDAWN eK + chi young-cover heuristic executed in PR #196 (untrained research surface; literal 17GEMSDOE overlap 1.0 > 0.70); preflight-guarded."
     }
   ],
   "proposals": [

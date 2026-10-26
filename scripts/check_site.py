@@ -634,7 +634,7 @@ def main(root: Path = ROOT) -> None:
     )
     require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
     require(
-        "Current review · 2026-10-25" in index
+        "Current review · 2026-10-26" in index
         and "NO FILE APPROVED" in index
         and "every nonempty dot set fails the literal overlap limit" in index,
         "Overview must present the current fail-closed decision before archived candidates",
@@ -1025,6 +1025,51 @@ def main(root: Path = ROOT) -> None:
     inventory_fraction = f"**{download_audit['total_research_download_pass_count']}/{download_audit['total_published_tiff_count']}**"
     require(inventory_fraction in submit_top,
             "Submission guide inventory count is stale against saved-byte audit")
+
+    focus_web = docs / "data/focus_sites_20261026.json"
+    focus_csv = docs / "data/focus_sites_20261026.csv"
+    focus_ev = root / "evidence/focus_sites_20261026_audit.json"
+    require(focus_web.is_file() and focus_csv.is_file(), "9-focus-site audit JSON/CSV missing under docs/data/")
+    focus_payload = json.loads(focus_web.read_text(encoding="utf-8"))
+    if focus_ev.is_file():
+        require(focus_web.read_bytes() == focus_ev.read_bytes(), "9-focus-site audit JSON differs between evidence/ and docs/data/")
+    require(
+        focus_payload["summary_verdict"]["focus_site_count"] == 9
+        and focus_payload["summary_verdict"]["unique_historical_champions_count"] == 0
+        and focus_payload["summary_verdict"]["cleared_for_submission_count"] == 0
+        and focus_payload["summary_verdict"]["ok_to_submit"] is False,
+        "9-focus-site audit must stay fail-closed (0/9 unique, 0/9 cleared)",
+    )
+    for focus_site in ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30", "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"):
+        require(
+            focus_site in index and focus_site in executive,
+            f"Focus site {focus_site} missing from canonical overview/executive summary",
+        )
+
+    c59_web = docs / "data/session_c59db412_run_card.json"
+    c59_reg = root / "registry/session_c59db412_run_card.json"
+    c59_ev = root / "evidence/session_c59db412_run_card.json"
+    require(c59_web.is_file(), "session_c59db412_run_card.json missing under docs/data/")
+    c59_payload = json.loads(c59_web.read_text(encoding="utf-8"))
+    require(
+        c59_payload["ok_to_submit"] is False
+        and c59_payload["verdict"] == "negative"
+        and c59_payload["status"] == "DUPLICATE_STOP"
+        and 0 < len(c59_payload["submission_note"]) <= 140,
+        "session_c59db412_run_card.json must remain negative and fail-closed",
+    )
+    if c59_reg.is_file() and c59_ev.is_file():
+        require(
+            c59_web.read_bytes() == c59_reg.read_bytes() == c59_ev.read_bytes(),
+            "session_c59db412_run_card.json mirrors disagree across registry/, evidence/, and docs/data/",
+        )
+
+    for md_stem in ("session-c59db412-review.md", "session-c59db412-hypotheses.md"):
+        doc_md = docs / "research" / md_stem
+        require(doc_md.is_file(), f"{md_stem} missing under docs/research/")
+        root_md = root / "research" / md_stem
+        if root_md.is_file():
+            require(root_md.read_bytes() == doc_md.read_bytes(), f"{md_stem} differs between research/ and docs/research/")
 
     # Every JSON file served under docs/ must be strict RFC-8259 JSON (no NaN/Infinity that breaks browser JSON.parse).
     for docs_json in sorted(docs.rglob("*.json")):

@@ -90,6 +90,8 @@ jobs:
         run: |
           python -O scripts/validate_con88.py
           if python -O scripts/validate_con88.py --require-submit; then echo 'Withdrawn CON88 unexpectedly cleared'; exit 1; else test "$?" -eq 2; fi
+          python -O scripts/audit_focus_sites_20261026.py
+          if python -O scripts/audit_focus_sites_20261026.py --require-submit; then echo 'Focus-site audit unexpectedly cleared'; exit 1; else test "$?" -eq 2; fi
       - name: Independently validate H88-SAR-CSD TIFF and ZIP; reject competition slot
         run: |
           python scripts/validate_sarcsd88.py

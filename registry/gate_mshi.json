@@ -13,5 +13,5 @@
   "max_abs_rho": 0.007534,
   "literal_blocked": true,
   "dense_overlap": 1.0,
-  "verdict": "promote-to-selector-only"
+  "verdict": "negative"
 }

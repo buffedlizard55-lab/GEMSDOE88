@@ -76,21 +76,21 @@ def test_con88_validator_detects_run_card_or_gate_tampering(tmp_path: Path) -> N
     assert code == 1
 
 
-def test_all_48_published_tiffs_carry_do_not_submit_and_zero_eligible() -> None:
+def test_all_50_published_tiffs_carry_do_not_submit_and_zero_eligible() -> None:
     downloads = sorted((ROOT / "docs/downloads").glob("*.tif"))
     variants = sorted((ROOT / "docs/research-variants").glob("*.tif"))
     all_tiffs = downloads + variants
-    assert len(downloads) == 47
+    assert len(downloads) == 49
     assert len(variants) == 1
-    assert len(all_tiffs) == 48
+    assert len(all_tiffs) == 50
     unmarked = [p.name for p in all_tiffs if "DO-NOT-SUBMIT" not in p.name]
     assert unmarked == []
 
     audit = json.loads((ROOT / "docs/data/download_audit.json").read_text(encoding="utf-8"))
-    assert audit["tiff_count"] == 47
+    assert audit["tiff_count"] == 49
     assert audit["additional_research_tiff_count"] == 1
-    assert audit["total_published_tiff_count"] == 48
-    assert audit["total_research_download_pass_count"] == 48
+    assert audit["total_published_tiff_count"] == 50
+    assert audit["total_research_download_pass_count"] == 50
     assert audit["protocol_eligible_count"] == 0
     assert audit["ok_to_submit"] is False
     for item in audit["artifacts"] + audit["additional_research_artifacts"]:
@@ -98,16 +98,19 @@ def test_all_48_published_tiffs_carry_do_not_submit_and_zero_eligible() -> None:
         assert item["cleared_by_con88_gates"] is False
 
 
-def test_user_claims_include_gemsdoe91_and_gemsdoe92_118_distinct() -> None:
+def test_user_claims_include_gemsdoe91_and_gemsdoe92_and_20261026_updates() -> None:
     report = json.loads((ROOT / "docs/data/user_reported_results.json").read_text(encoding="utf-8"))
     assert report["site_count"] == 92
-    assert report["distinct_claim_count"] == 118
+    assert report["distinct_claim_count"] == 124
     assert report["sites_without_a_reported_result"] == ["GEMSDOE86", "GEMSDOE88"]
     by_site: dict[str, list[tuple[str, str]]] = {}
     for row in report["claims"]:
         by_site.setdefault(row["site"], []).append((row["submission_name"], row["user_reported_value"]))
-    assert by_site["GEMSDOE91"] == [("s17-cwpc-e3", "0.1367"), ("s17-lftg", "0.1823")]
-    assert by_site["GEMSDOE92"] == [("listricdip-updip50", "0.0255")]
+    assert by_site["GEMSDOE91"] == [
+        ("gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros", "0.1367"),
+        ("gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros", "0.1823"),
+    ]
+    assert by_site["GEMSDOE92"] == [("gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros", "0.0255")]
 
 
 def test_session_0df81d99_artifacts_and_browser_receipt_are_synced() -> None:
@@ -139,6 +142,13 @@ def test_session_0df81d99_artifacts_and_browser_receipt_are_synced() -> None:
     assert br["status"] == "PASS"
     assert len(br["pages"]) >= 7
     assert br["con88_page"]["pass"] is True
-    for rel, pinned_sha in br["source_sha256"].items():
+    assert len(br["source_sha256"]) == 14
+
+    status = json.loads((ROOT / "docs/status.json").read_text(encoding="utf-8"))
+    active_card = json.loads((ROOT / "docs" / status["current_review"]).read_text(encoding="utf-8"))
+    active_br = json.loads((ROOT / active_card["verification"]["browser_evidence"]).read_text(encoding="utf-8"))
+    assert active_br["status"] == "PASS" and active_br["ok_to_submit"] is False
+    assert set(br["source_sha256"]) <= set(active_br["source_sha256"])
+    for rel, pinned_sha in active_br["source_sha256"].items():
         actual = hashlib.sha256((ROOT / rel).read_bytes()).hexdigest()
-        assert actual == pinned_sha, f"Browser receipt stale for {rel}: {actual} != {pinned_sha}"
+        assert actual == pinned_sha, f"Active browser receipt stale for {rel}: {actual} != {pinned_sha}"

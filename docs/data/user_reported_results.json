@@ -127,12 +127,12 @@
     {
       "site": "GEMSDOE24",
       "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE24/",
-      "reported_entries": 1
+      "reported_entries": 2
     },
     {
       "site": "GEMSDOE25",
       "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE25/",
-      "reported_entries": 1
+      "reported_entries": 2
     },
     {
       "site": "GEMSDOE26",
@@ -142,12 +142,12 @@
     {
       "site": "GEMSDOE27",
       "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE27/",
-      "reported_entries": 1
+      "reported_entries": 2
     },
     {
       "site": "GEMSDOE30",
       "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE30/",
-      "reported_entries": 1
+      "reported_entries": 2
     },
     {
       "site": "GEMSDOE31",
@@ -207,7 +207,7 @@
     {
       "site": "GEMSDOE28",
       "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
-      "reported_entries": 4
+      "reported_entries": 6
     },
     {
       "site": "GEMSDOE29",
@@ -474,9 +474,10 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        37,
-        51,
-        319
+        39,
+        53,
+        321,
+        729
       ]
     },
     {
@@ -487,7 +488,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        63
+        65
       ]
     },
     {
@@ -498,7 +499,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        69
+        71
       ]
     },
     {
@@ -509,7 +510,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        75
+        77
       ]
     },
     {
@@ -520,7 +521,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        77
+        79
       ]
     },
     {
@@ -531,7 +532,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        79
+        81
       ]
     },
     {
@@ -542,7 +543,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        85
+        87
       ]
     },
     {
@@ -553,7 +554,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        91
+        93
       ]
     },
     {
@@ -564,7 +565,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        97
+        99
       ]
     },
     {
@@ -575,7 +576,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        103
+        105
       ]
     },
     {
@@ -586,7 +587,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        109
+        111
       ]
     },
     {
@@ -597,7 +598,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        115
+        117
       ]
     },
     {
@@ -608,7 +609,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        121
+        123
       ]
     },
     {
@@ -619,7 +620,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        127
+        129
       ]
     },
     {
@@ -630,7 +631,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        129
+        131
       ]
     },
     {
@@ -641,7 +642,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        135
+        137
       ]
     },
     {
@@ -652,7 +653,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        141
+        143
       ]
     },
     {
@@ -663,7 +664,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        147
+        149
       ]
     },
     {
@@ -674,7 +675,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        153
+        155
       ]
     },
     {
@@ -685,7 +686,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        159
+        161
       ]
     },
     {
@@ -696,7 +697,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        161
+        163
       ]
     },
     {
@@ -707,7 +708,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        167
+        169
       ]
     },
     {
@@ -718,7 +719,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        169
+        171
       ]
     },
     {
@@ -729,7 +730,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        171
+        173
       ]
     },
     {
@@ -740,7 +741,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        173
+        175
       ]
     },
     {
@@ -751,7 +752,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        179
+        181
       ]
     },
     {
@@ -762,7 +763,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        185
+        187
       ]
     },
     {
@@ -773,7 +774,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        187
+        189
       ]
     },
     {
@@ -784,7 +785,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        189
+        191
       ]
     },
     {
@@ -795,7 +796,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        195
+        197
       ]
     },
     {
@@ -806,7 +807,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        201
+        203
       ]
     },
     {
@@ -817,7 +818,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        203
+        205
       ]
     },
     {
@@ -828,7 +829,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        209
+        211
       ]
     },
     {
@@ -839,7 +840,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        211
+        213
       ]
     },
     {
@@ -850,7 +851,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        217
+        219
       ]
     },
     {
@@ -861,7 +862,8 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        223
+        225,
+        675
       ]
     },
     {
@@ -872,7 +874,8 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        229
+        231,
+        683
       ]
     },
     {
@@ -883,7 +886,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        235
+        237
       ]
     },
     {
@@ -894,7 +897,8 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        241
+        243,
+        691
       ]
     },
     {
@@ -905,7 +909,8 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        247
+        249,
+        715
       ]
     },
     {
@@ -916,7 +921,8 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        253
+        255,
+        723
       ]
     },
     {
@@ -927,7 +933,8 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        259
+        261,
+        735
       ]
     },
     {
@@ -938,7 +945,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        265
+        267
       ]
     },
     {
@@ -949,7 +956,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        271
+        273
       ]
     },
     {
@@ -960,7 +967,8 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        277
+        279,
+        741
       ]
     },
     {
@@ -971,7 +979,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        283
+        285
       ]
     },
     {
@@ -982,7 +990,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        289
+        291
       ]
     },
     {
@@ -993,7 +1001,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        295
+        297
       ]
     },
     {
@@ -1004,7 +1012,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        301
+        303
       ]
     },
     {
@@ -1015,7 +1023,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        307
+        309
       ]
     },
     {
@@ -1026,7 +1034,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        313
+        315
       ]
     },
     {
@@ -1037,7 +1045,8 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        325
+        327,
+        701
       ]
     },
     {
@@ -1048,7 +1057,8 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        327
+        329,
+        703
       ]
     },
     {
@@ -1059,7 +1069,8 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        329
+        331,
+        705
       ]
     },
     {
@@ -1070,7 +1081,8 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        331
+        333,
+        707
       ]
     },
     {
@@ -1081,7 +1093,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        337
+        339
       ]
     },
     {
@@ -1092,7 +1104,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        339
+        341
       ]
     },
     {
@@ -1103,7 +1115,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        341
+        343
       ]
     },
     {
@@ -1114,7 +1126,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        343
+        345
       ]
     },
     {
@@ -1125,7 +1137,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        345
+        347
       ]
     },
     {
@@ -1136,7 +1148,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        347
+        349
       ]
     },
     {
@@ -1147,7 +1159,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        349
+        351
       ]
     },
     {
@@ -1158,7 +1170,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        355
+        357
       ]
     },
     {
@@ -1169,7 +1181,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        357
+        359
       ]
     },
     {
@@ -1180,7 +1192,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        363
+        365
       ]
     },
     {
@@ -1191,7 +1203,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        369
+        371
       ]
     },
     {
@@ -1202,7 +1214,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        371
+        373
       ]
     },
     {
@@ -1213,7 +1225,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        373
+        375
       ]
     },
     {
@@ -1224,7 +1236,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        379
+        381
       ]
     },
     {
@@ -1235,7 +1247,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        385
+        387
       ]
     },
     {
@@ -1246,7 +1258,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        391
+        393
       ]
     },
     {
@@ -1257,7 +1269,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        397
+        399
       ]
     },
     {
@@ -1268,7 +1280,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        403
+        405
       ]
     },
     {
@@ -1279,7 +1291,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        409
+        411
       ]
     },
     {
@@ -1290,7 +1302,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        415
+        417
       ]
     },
     {
@@ -1301,7 +1313,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        421
+        423
       ]
     },
     {
@@ -1312,7 +1324,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        427
+        429
       ]
     },
     {
@@ -1323,7 +1335,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        433
+        435
       ]
     },
     {
@@ -1334,7 +1346,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        439
+        441
       ]
     },
     {
@@ -1345,7 +1357,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        445
+        447
       ]
     },
     {
@@ -1356,7 +1368,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        451
+        453
       ]
     },
     {
@@ -1367,7 +1379,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        457
+        459
       ]
     },
     {
@@ -1378,7 +1390,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        463
+        465
       ]
     },
     {
@@ -1389,7 +1401,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        469
+        471
       ]
     },
     {
@@ -1400,7 +1412,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        471
+        473
       ]
     },
     {
@@ -1411,7 +1423,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        477
+        479
       ]
     },
     {
@@ -1422,7 +1434,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        483
+        485
       ]
     },
     {
@@ -1433,7 +1445,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        489
+        491
       ]
     },
     {
@@ -1444,7 +1456,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        495
+        497
       ]
     },
     {
@@ -1455,7 +1467,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        501
+        503
       ]
     },
     {
@@ -1466,7 +1478,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        507
+        509
       ]
     },
     {
@@ -1477,7 +1489,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        509
+        511
       ]
     },
     {
@@ -1488,7 +1500,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        515
+        517
       ]
     },
     {
@@ -1499,7 +1511,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        517
+        519
       ]
     },
     {
@@ -1510,7 +1522,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        523
+        525
       ]
     },
     {
@@ -1521,7 +1533,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        529
+        531
       ]
     },
     {
@@ -1532,7 +1544,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        535
+        537
       ]
     },
     {
@@ -1543,7 +1555,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        541
+        543
       ]
     },
     {
@@ -1554,7 +1566,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        547
+        549
       ]
     },
     {
@@ -1565,7 +1577,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        553
+        555
       ]
     },
     {
@@ -1576,7 +1588,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        559
+        561
       ]
     },
     {
@@ -1587,7 +1599,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        565
+        567
       ]
     },
     {
@@ -1598,7 +1610,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        567
+        569
       ]
     },
     {
@@ -1609,7 +1621,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        573
+        575
       ]
     },
     {
@@ -1620,7 +1632,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        579
+        581
       ]
     },
     {
@@ -1631,7 +1643,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        585
+        587
       ]
     },
     {
@@ -1642,7 +1654,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        591
+        593
       ]
     },
     {
@@ -1653,7 +1665,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        597
+        599
       ]
     },
     {
@@ -1664,7 +1676,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        603
+        605
       ]
     },
     {
@@ -1675,7 +1687,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        609
+        611
       ]
     },
     {
@@ -1686,7 +1698,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        615
+        617
       ]
     },
     {
@@ -1697,7 +1709,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        621
+        623
       ]
     },
     {
@@ -1708,7 +1720,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        633
+        635
       ]
     },
     {
@@ -1719,7 +1731,7 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        645
+        647
       ]
     },
     {
@@ -1730,25 +1742,14 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        651
+        653
       ]
     },
     {
       "site": "GEMSDOE91",
       "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE91/",
-      "submission_name": "s17-cwpc-e3",
+      "submission_name": "gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros",
       "user_reported_value": "0.1367",
-      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
-      "organizer_receipt": null,
-      "request_line_numbers": [
-        657
-      ]
-    },
-    {
-      "site": "GEMSDOE91",
-      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE91/",
-      "submission_name": "s17-lftg",
-      "user_reported_value": "0.1823",
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
@@ -1756,23 +1757,100 @@
       ]
     },
     {
+      "site": "GEMSDOE91",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE91/",
+      "submission_name": "gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros",
+      "user_reported_value": "0.1823",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        661
+      ]
+    },
+    {
       "site": "GEMSDOE92",
       "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE92/",
-      "submission_name": "listricdip-updip50",
+      "submission_name": "gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros",
       "user_reported_value": "0.0255",
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        665
+        669
+      ]
+    },
+    {
+      "site": "GEMSDOE24",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE24/",
+      "submission_name": "gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros",
+      "user_reported_value": "0.0859",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        677
+      ]
+    },
+    {
+      "site": "GEMSDOE25",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE25/",
+      "submission_name": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros",
+      "user_reported_value": "0.0742",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        685
+      ]
+    },
+    {
+      "site": "GEMSDOE27",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE27/",
+      "submission_name": "gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite",
+      "user_reported_value": "0.2190",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        693
+      ]
+    },
+    {
+      "site": "GEMSDOE28",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+      "submission_name": "gems28-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+      "user_reported_value": "0.2715",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        699
+      ]
+    },
+    {
+      "site": "GEMSDOE28",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+      "submission_name": "gems28-s18-mxtp-20261025-3e95505c011a-allfinite",
+      "user_reported_value": "0.0217",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        709
+      ]
+    },
+    {
+      "site": "GEMSDOE30",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE30/",
+      "submission_name": "gems30-MSDB1-edge44090-20261025-e7856ec3f14a",
+      "user_reported_value": "0.1462",
+      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "organizer_receipt": null,
+      "request_line_numbers": [
+        717
       ]
     }
   ],
   "site_count": 92,
-  "distinct_claim_count": 118,
+  "distinct_claim_count": 124,
   "sites_without_a_reported_result": [
     "GEMSDOE86",
     "GEMSDOE88"
   ],
-  "request_file": "USER_PROMPT_20261025.md",
-  "request_sha256": "d4cffa6b22c44b46801594ddc0d493226ec16671ffa10e1abbb86ccefb0f7555"
+  "request_file": "USER_PROMPT_20261026.md",
+  "request_sha256": "22b772b7931059fda79672be675fc7c6ce2af19c67ff7ba4a238e8388692ec3d"
 }

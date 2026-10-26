@@ -46,7 +46,7 @@ def test_submissions_directory_archive_integrity_unconditional() -> None:
 
     tifs = sorted(sub_dir.glob("*.tif"))
     zips = sorted(sub_dir.glob("*.zip"))
-    assert len(tifs) == 20
+    assert len(tifs) == 21
     assert {p.stem for p in tifs} == {p.stem for p in zips}
 
     for tif in tifs:
@@ -81,7 +81,7 @@ def test_submissions_directory_dual_decoder_format_audit() -> None:
         catalogue = cds.read(1) > 0
 
     tifs = sorted((ROOT / "submissions").glob("*.tif"))
-    assert len(tifs) == 20
+    assert len(tifs) == 21
     for tif in tifs:
         row = audit_one(tif, sample, catalogue, footprint)
         assert row["research_download_ok"] is True, (tif.name, row)
