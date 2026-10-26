@@ -10,11 +10,37 @@
   "named_non_fault_mimic": "Unfaulted tilted ash-flow tuff stratigraphic pinchouts and concentric Miocene caldera ring-fracture margins",
   "geological_hypothesis_status": "PREREGISTERED_NOT_EXECUTED",
   "ranked_untried_hypotheses": [
-    {"rank": 1, "id": "H88-PTGM", "requires_new_external_data": false, "preregistration": "registry/preregistration_h88_ptgm_20261026.json"},
-    {"rank": 2, "id": "H88-BFRK", "requires_new_external_data": false},
-    {"rank": 3, "id": "H88-DRMC", "requires_new_external_data": false},
-    {"rank": 4, "id": "H88-VVRD", "requires_new_external_data": false},
-    {"rank": 5, "id": "H88-3DEP-SCARP", "requires_new_external_data": true, "official_free_sources": ["https://www.usgs.gov/3d-elevation-program", "https://prd-tnm.s3.amazonaws.com/"], "sandbox_directly_fetchable": false}
+    {
+      "rank": 1,
+      "id": "H88-PTGM",
+      "requires_new_external_data": false,
+      "preregistration": "registry/preregistration_h88_ptgm_20261026.json"
+    },
+    {
+      "rank": 2,
+      "id": "H88-BFRK",
+      "requires_new_external_data": false
+    },
+    {
+      "rank": 3,
+      "id": "H88-DRMC",
+      "requires_new_external_data": false
+    },
+    {
+      "rank": 4,
+      "id": "H88-VVRD",
+      "requires_new_external_data": false
+    },
+    {
+      "rank": 5,
+      "id": "H88-3DEP-SCARP",
+      "requires_new_external_data": true,
+      "official_free_sources": [
+        "https://www.usgs.gov/3d-elevation-program",
+        "https://prd-tnm.s3.amazonaws.com/"
+      ],
+      "sandbox_directly_fetchable": false
+    }
   ],
   "holdout_dti": {
     "evidence_class": "HOLDOUT-DTI",
@@ -54,7 +80,9 @@
     "heads_advanced_since_prior_audit": 9,
     "latest_candidates_portal_safe_full_grid": 9,
     "latest_candidates_dense_overlap_exactly_1": 9,
-    "sibling_sites_claiming_ok_to_submit": ["GEMSDOE27"],
+    "sibling_sites_claiming_ok_to_submit": [
+      "GEMSDOE27"
+    ],
     "cleared_under_literal_protocol_count": 0,
     "auditor": "scripts/audit_focus_latest_20261026b.py"
   },
@@ -80,7 +108,7 @@
   },
   "archived_research_downloads_reaudited": {
     "evidence_class": "LOCAL-FORMAT-AUDIT_NOT_A_SCORE",
-    "pages_tiff_zip_pairs_pass": "50/50",
+    "pages_tiff_zip_pairs_pass": "51/51 (50/50 at pre-merge commit 3ab5025; +1 VVRD research-only pair integrated from merged PR #200)",
     "submissions_dir_pairs_pass": "21/21",
     "protocol_eligible_count": 0,
     "canonical_educational_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
@@ -107,6 +135,55 @@
     "IR-88-0B582CF7-01",
     "IR-88-0B582CF7-02",
     "IR-88-0B582CF7-03",
-    "IR-88-0B582CF7-04"
-  ]
+    "IR-88-0B582CF7-04",
+    "IR-88-0B582CF7-05"
+  ],
+  "archived_research_download": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+    "new_in_this_session": false,
+    "local_format_audit": {
+      "schema_version": 1,
+      "validator": "gems88-format-audit-v2",
+      "artifact": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+      "checks": {
+        "geotiff": true,
+        "single_band": true,
+        "single_raster_dataset": true,
+        "self_contained_dataset": true,
+        "real_numeric_dtype": true,
+        "template_single_band": true,
+        "template_single_raster_dataset": true,
+        "template_self_contained_dataset": true,
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "no_nodata_sentinel": true,
+        "all_finite": true,
+        "values_in_0_1": true,
+        "all_pixels_unmasked": true
+      },
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "format_valid": true,
+      "submission_ready": false,
+      "note": "Format only. Holdout, leakage, registry and selector approval are separate."
+    },
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false
+  },
+  "verification": {
+    "browser_evidence": "evidence/session_0b582cf7_browser_check.json",
+    "browser_status": "PASS",
+    "vvrd88_withdrawal_evidence": "evidence/vvrd88_clearance_withdrawal_20261026.json",
+    "post_merge_integration": "Integrated origin/main b62d1a35 (PR #199/#200) into PR #201; repaired IR-88-0B582CF7-05 bypass/overwrite defects; regenerated download audit (51/51), status and decision pages; succeeded session c59db412 as docs/status.json current_review.",
+    "pytest_pre_merge_commit_3ab5025": "928 passed, 23 skipped",
+    "pytest_post_merge": "see PR #201 checks (live GitHub state authoritative)",
+    "completed_at_utc": "2026-10-26",
+    "remote_scope": "Local full suite, optimized guards, late-focus float64 audit, headless Chromium receipt; live GitHub PR/check/merge state is authoritative."
+  },
+  "post_merge_lane_status": "H88-VVRD in ranked_untried_hypotheses was independently executed by concurrent merged PR #200 via a guard bypass and is now retired negative (IR-88-0B582CF7-05); the ranking above is the pre-merge frozen record. H88-PTGM preregistration amended per PR #199 scientific correction (Euler homogeneity from spatial derivatives; no Gaussian scale-slope index)."
 }

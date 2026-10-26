@@ -1,0 +1,140 @@
+{
+  "schema": "gems88.browser-review.v1",
+  "checked_at_utc": "2026-10-26T05:07:09.323Z",
+  "browser": "153.0.8010.0",
+  "pages": [
+    {
+      "page": "index.html",
+      "width": 1440,
+      "height": 1100,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "index.html",
+      "width": 390,
+      "height": 844,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "banners": [
+        "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+      ],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "research.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "sources.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/index.html",
+      "width": 1440,
+      "height": 1100,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    },
+    {
+      "page": "mdc88/executive-summary.html",
+      "width": 390,
+      "height": 844,
+      "banners": [],
+      "overflow": false,
+      "h1": 1,
+      "openArchives": 0,
+      "first_tiff": null,
+      "errors": [],
+      "pass": true
+    }
+  ],
+  "failed_fetch_stays_negative": true,
+  "source_sha256": {
+    "docs/index.html": "fa371d78841050d7f02bd7eb93f1a28742b932c382938b81140d5fd247d93fe5",
+    "docs/executive-summary.html": "b03a0d169a100c0936f9073c8f6d38929ae2c60dc3d4dd45935b81d06aeaf7f2",
+    "docs/research.html": "c7d78fbeafafc122389701d59f059692dd7ec2cfb870e30778cd4cd25b7c37ee",
+    "docs/sources.html": "b0aaa6e0ab70fbaca093193326ce633ce7e5564f6601a642f3d46cb117736907",
+    "docs/assets/site.css": "834256dce45ea5d350bea0942730f455e1c44edaa64e85f35527ad58c187c737",
+    "docs/assets/site.js": "d27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41",
+    "docs/data/current_release.json": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",
+    "docs/data/download_audit.json": "c4575092cf64d3e2a0ff4258fd1c9915cf40f90674c9fb51b7b5b27bfcf5b035",
+    "docs/data/mtas88_run_card.json": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
+    "docs/data/hypothesis_queue.json": "a543c90eb54776196fc2b14b32ea7667f310cdeb3a670e03211b5282b3f5bc47",
+    "docs/status.json": "ecbbee48b6d8171ac28237c0a9b847d910f8810de13cbbe76bc83432e8140f7c",
+    "docs/mdc88/index.html": "7968611af89256740904e40003e26bf49635d626a2f04b1e1943a1050d88ef1d",
+    "docs/mdc88/executive-summary.html": "a224490fc994b54619d24275500ea6eba6670685be70bcda8f241ee4b25a8ae3",
+    "docs/mdc88/status.json": "7d0223ff4f7b513ba5d3d68fd81ddc9b86f58955c9e3ffdf2e0131eff73033f9"
+  },
+  "ok_to_submit": false,
+  "con88_page": {
+    "page": "con88.html",
+    "banners": [
+      "\n    NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT\n    H88-CON88 Upload Clearance Withdrawn (IR-88-3C391D97-01) — DO NOT SUBMIT\n    \n      Submission status: DUPLICATE_STOP · ok_to_submit: false · verdict: negative · Weekly competition slots used: 0 / 3.\n      PR #158's upload clearance for H88-CON88 is withdrawn under IR-88-3C391D97-01 because (1) literal 3-pixel forward overlap against the pinned registry witness data/registry/dense_17gemdoe.tif (ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be) is 1.0000 > 0.70, and (2) buffered holdout validation fails both on the fixed GeoTIFF (HOLDOUT-DTI = 0.0000 [0.0000, 0.0000] vs same-fold H33 0.006697 [0.005990, 0.007368], gems57-pooled-hide-v2, n = 60,988) and on per-fold collar re-emission (HOLDOUT-DTI = 0.001714 [0.001325, 0.002143] vs repository fold-fair holdout best H88-BPWD 0.205991 [0.188105, 0.223344], n = 22,893).\n    \n    \n      Archived research download only (DO NOT UPLOAD TO DRIVENDATA):\n      GeoTIFF: gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif\n      (13,530,278 B · SHA-256 e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68)\n      ZIP: gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.zip\n      (SHA-256 73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb; historical unmarked ZIP SHA-256 6b61c6d1bf3c8657de4ad4699c91285c767de9859fe88e0deaf71db65a0b2f08)\n      Audit identifier (not for portal upload): GEMSDOE88-CON88-CONSENSUS-RIDGE-20261025-DO-NOT-SUBMIT\n      Audit note (110 / 140 chars): H88-CON88 archived research: literal overlap 1.0 vs 17GEMSDOE, HOLDOUT-DTI 0.001714 vs 0.205991; DO NOT SUBMIT\n    \n    \n      Return to the Canonical Overview or Executive Summary.\n    \n  ",
+      "NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT"
+    ],
+    "overflow": false,
+    "first_tiff": "downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif",
+    "errors": [],
+    "sha256": "5d7b4d7924d95457baa7455f55f802df609e58501c56d1f4d2eaa37b00cb36b8",
+    "pass": true
+  },
+  "research_download": {
+    "file": "downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "http_status": 200,
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "matches_canonical_bytes": true,
+    "ok_to_submit": false,
+    "click_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "suggested_filename": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "click_matches_canonical_bytes": true
+  },
+  "no_javascript_banner": "NO NEW TIFF · RESEARCH DOWNLOAD ONLY · DO NOT SUBMIT",
+  "no_javascript_stays_negative": true,
+  "status": "PASS"
+}

@@ -1,10 +1,10 @@
 {
   "schema": "gems88.hypothesis-queue.v1",
-  "reviewed_at_utc": "2026-10-25",
-  "review_branch": "arena/693b10af-gemsdoe88",
+  "reviewed_at_utc": "2026-10-26",
+  "review_branch": "arena/0b582cf7-gemsdoe88",
   "source_snapshot": {
-    "files": 156,
-    "sha256": "a05cd182a2057898e53e4bab103c1958ca439ce9a0827cd372f10047ec20be05"
+    "files": 157,
+    "sha256": "332df75d7787038cabfe62781632ae045eaa167030d1aed9216aa6991a5cf137"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -70,6 +70,13 @@
       "run_card": "registry/georad88_run_card.json",
       "run_card_sha256": "8cb47ee4a41b127556efc01dde0f063b87920fd8a41b16499dd56879ff81b3a5",
       "reason": "GeoDAWN eK + chi young-cover heuristic executed in PR #196 (untrained research surface; literal 17GEMSDOE overlap 1.0 > 0.70); preflight-guarded."
+    },
+    {
+      "id": "H88-VVRD",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/vvrd88_run_card.json",
+      "run_card_sha256": "7e72ec68a5e28a500b16e1a6dfde62befdfd4bd1ff15b4bf645ffc2603a98f7f",
+      "reason": "Volcanic-vent drainage proximity/blind-zone emission executed in merged PR #200 by bypassing the generation guard (IR-88-0B582CF7-05); pooled holdout and leakage canary never ran (0 withheld positives, 0 features), 20-raster uniqueness screen only, literal 17GEMSDOE overlap 1.0 > 0.70; promote-to-selector-only verdict withdrawn in evidence/vvrd88_clearance_withdrawal_20261026.json; entrypoint now preflight-guarded. Do not re-propose as untried."
     }
   ],
   "proposals": [

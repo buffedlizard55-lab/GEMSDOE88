@@ -1,0 +1,16 @@
+{
+  "schema": "gems88.gate-v1",
+  "generated_utc": "2026-10-26T04:45:21Z",
+  "experiment_id": "H88-VVRD-v1",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "format_passed": true,
+  "sparse_uniqueness_passed": true,
+  "max_dot_overlap": 0.28232,
+  "max_abs_rho": 0.005963,
+  "literal_blocked": true,
+  "dense_overlap": 1.0,
+  "verdict": "negative",
+  "original_verdict_in_pr200": "promote-to-selector-only",
+  "clearance_withdrawal_record": "evidence/vvrd88_clearance_withdrawal_20261026.json"
+}

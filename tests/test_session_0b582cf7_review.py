@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import ast
 import csv
+import hashlib
 import json
 import subprocess
 import sys
@@ -153,3 +154,38 @@ def test_session_0b582cf7_run_card_and_review_mirror() -> None:
         assert site in text
     # The earlier same-day decision on the site itself is unchanged.
     assert "DO NOT SUBMIT" in (ROOT / "docs/index.html").read_text(encoding="utf-8")
+
+
+def test_post_merge_vvrd_withdrawal_and_active_browser_receipt() -> None:
+    vvrd = json.loads((ROOT / "registry/vvrd88_run_card.json").read_text(encoding="utf-8"))
+    assert vvrd["verdict"] == "negative"
+    assert vvrd["ok_to_submit"] is False
+    assert vvrd["original_verdict_in_pr200"] == "promote-to-selector-only"
+    gate = json.loads((ROOT / "registry/vvrd88_gate_verdict.json").read_text(encoding="utf-8"))
+    assert gate["verdict"] == "negative" and gate["ok_to_submit"] is False
+    withdrawal_ev = (ROOT / "evidence/vvrd88_clearance_withdrawal_20261026.json").read_bytes()
+    assert withdrawal_ev == (ROOT / "docs/data/vvrd88_clearance_withdrawal_20261026.json").read_bytes()
+    # Canonical run card/gate restored (not the VVRD overwrites).
+    canonical = json.loads((ROOT / "registry/gate_verdict.json").read_text(encoding="utf-8"))
+    assert canonical["name"].startswith("gems88-phys44")
+    # The bypass entrypoint is now guarded before heavy imports.
+    src = (ROOT / "scripts/generate_unique_submission.py").read_text(encoding="utf-8")
+    assert src.index("enforce_generation_preflight()") < src.index("import numpy")
+    # Queue retires VVRD and still authorizes nothing.
+    queue = json.loads((ROOT / "registry/hypothesis_queue.json").read_text(encoding="utf-8"))
+    assert "H88-VVRD" in {r["id"] for r in queue["already_evaluated"]}
+    assert queue["generation_authorized"] is False and queue["ok_to_submit"] is False
+    # Active-review succession + browser receipt pins current bytes.
+    status = json.loads((ROOT / "docs/status.json").read_text(encoding="utf-8"))
+    assert status["current_review"] == "data/session_0b582cf7_run_card.json"
+    br_ev = (ROOT / "evidence/session_0b582cf7_browser_check.json").read_bytes()
+    assert br_ev == (ROOT / "docs/data/session_0b582cf7_browser_check.json").read_bytes()
+    br = json.loads(br_ev)
+    assert br["status"] == "PASS" and br["ok_to_submit"] is False
+    assert len(br["pages"]) == 7 and all(p["pass"] and not p["overflow"] for p in br["pages"])
+    for rel, expected_sha in br["source_sha256"].items():
+        actual = hashlib.sha256((ROOT / rel).read_bytes()).hexdigest()
+        assert actual == expected_sha, f"Browser pin mismatch on {rel}"
+    # PTGM preregistration carries the PR #199 scientific correction.
+    prereg = json.loads((ROOT / "registry/preregistration_h88_ptgm_20261026.json").read_text(encoding="utf-8"))
+    assert "Gaussian" in prereg["amendments"][0]["corrected_operator"]

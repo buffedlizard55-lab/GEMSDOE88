@@ -28,9 +28,18 @@
   "mimic_veto_frozen": "Suppress pixels within 2.5 km of a listed volcanic vent when aspect_coherence is in its lowest quartile (non-linear strike) or relief_local is in its highest quartile with B15 < 50 m (exposed unfaulted bedrock).",
   "difference_from_repo": "H88-BPWD uses global FFT Baranov pseudogravity + fixed 60-degree worms; H88-PGTD uses single-field harmonic gravity tensor invariants; no executed lane computes the cross-field (N_m, N_g) doublet across an oriented +grad(B15) vector with up-dip slot placement.",
   "experiments_frozen": [
-    {"id": "EXP1", "design": "Zero-catalogue PTGM channels only (no catalogue-derived feature), same folds/budget as incumbent control"},
-    {"id": "EXP2", "design": "PTGM channels + frozen base physical stack (the incumbent control feature set), single joint model"},
-    {"id": "EXP3", "design": "Only if EXP2 beats the same-fold incumbent: fixed 37,654-dot emission from the EXP2 surface with operator-native up-dip placement; no threshold search on the holdout"}
+    {
+      "id": "EXP1",
+      "design": "Zero-catalogue PTGM channels only (no catalogue-derived feature), same folds/budget as incumbent control"
+    },
+    {
+      "id": "EXP2",
+      "design": "PTGM channels + frozen base physical stack (the incumbent control feature set), single joint model"
+    },
+    {
+      "id": "EXP3",
+      "design": "Only if EXP2 beats the same-fold incumbent: fixed 37,654-dot emission from the EXP2 surface with operator-native up-dip placement; no threshold search on the holdout"
+    }
   ],
   "max_experiments": 3,
   "max_hours": 2,
@@ -50,5 +59,15 @@
   "experiments_run": 0,
   "rasters_generated": 0,
   "ok_to_submit": false,
-  "verdict": "negative"
+  "verdict": "negative",
+  "amendments": [
+    {
+      "date": "2026-10-26",
+      "session": "0b582cf7 post-merge integration of PR #199/#200",
+      "reason": "Concurrent merged review (research/session-f34477d2-review.md, PR #199) correctly states that Gaussian smoothing is not physical upward continuation (Fourier multipliers exp(-sigma^2|k|^2/2) vs exp(-|k|h)) and that a Gaussian scale-slope is not generally an Euler structural index. The originating session-c59db412 hypothesis text used that loose language; this preregistration must not inherit it.",
+      "corrected_operator": "Structural index N is estimated only by windowed least-squares solution of the Euler homogeneity equation from spatial derivatives (dx, dy, dz) of gravity/magnetic grids. If continuation is used at all, it is physical FFT upward continuation with multiplier exp(-|k|h) at frozen heights. Gaussian blur scale-slopes are prohibited as an index estimator.",
+      "additional_frozen_gate": "Before any holdout run, the estimator must pass a synthetic forward-model validation: recover known N and depth within preregistered tolerances for isolated synthetic sheet/contact/dike/sphere sources at multiple depths with realistic noise and interfering sources. Failure retires the lane as negative without consuming a holdout experiment.",
+      "status_unchanged": "NOT_EXECUTED_BLOCKED_BY_GENERATION_GUARD; no experiment budget consumed; queue conditional first choice remains H88-SPR (registry/hypothesis_queue.json), so PTGM also requires explicit selector lane assignment."
+    }
+  ]
 }
