@@ -1,0 +1,72 @@
+{
+  "schema": "gems88.session-review.v1",
+  "session": "f34477d2",
+  "date_utc": "2026-10-26",
+  "hypothesis": "H88-SPR (conditional existing queue; not implemented)",
+  "mechanism": "Cross-validated smooth-landform versus repeated signed-step restoration",
+  "non_fault_mimic": "Fluvial terrace risers and pluvial shoreline benches",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "value": null,
+    "ci95": null,
+    "withheld_positives": null,
+    "evaluator": "gems57-pooled-hide-v2 (not run this session)",
+    "reason": "Shared pre-placement stop precedes feature construction"
+  },
+  "correlation_overlap_vs_registry": {
+    "spearman": null,
+    "overlap_3px": 1.0,
+    "scope": "Universal allowed-domain bound, not generated candidate measurement",
+    "proof": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+      "directly_covered_allowed_pixels": 5106385,
+      "directly_saturated": true,
+      "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+    }
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "new_candidate": "NOT GENERATED; not validated",
+    "existing_research_archive": {
+      "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+      "no_nan": true,
+      "values_0_1": true,
+      "crs_shape_transform_match": true,
+      "ok_to_submit": false
+    }
+  },
+  "submission_name": "GEMSDOE88-F34477D2-REVIEW-NO-FILE",
+  "submission_note": "SPR conditional queue; dense registry makes literal uniqueness impossible; no new TIFF or slot; DO NOT SUBMIT",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "review_passes_completed": 3,
+  "verification": {
+    "full_suite_initial": "919 passed, 23 skipped, 4 failed (documentation mirrors diverged during edit)",
+    "fix": "Synchronized research and Pages hypothesis correction; replaced correction link with absolute repository URL",
+    "affected_modules_after_fix": "23 passed",
+    "site_guard": "PASS normal and optimized",
+    "render_check": "PASS",
+    "download_audit": "50/50 research TIFFs pass; 0 eligible",
+    "generation_guard_exit": 2,
+    "current_slot_gate_exit": 2
+  },
+  "limitations": [
+    "No current leaderboard or organizer receipt verification",
+    "Only validation-tier inputs restored",
+    "No newly validated hypothesis or unique TIFF; literal duplicate rule unsatisfiable",
+    "No full-suite rerun after mirror fix; all affected modules rerun successfully"
+  ]
+}
