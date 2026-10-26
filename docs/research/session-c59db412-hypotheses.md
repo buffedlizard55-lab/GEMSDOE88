@@ -1,3 +1,5 @@
+> **Scientific correction (2026-10-26):** PTGM's Gaussian-scale formula does not establish physical upward continuation or Euler structural indices. Numerical offsets/index ranges and runtime/novelty claims below are untested. See [the corrective review](https://github.com/buffedlizard55-lab/GEMSDOE88/blob/arena/f34477d2-gemsdoe88/research/session-f34477d2-review.md#scientific-correction-previous-ptgm-proposal). Do not treat this proposal as validated.
+
 # Session `c59db412` (`2026-10-26`) — Five Ranked Untried Geological Hypotheses (`H88-PTGM`, `H88-BFRK`, `H88-DRMC`, `H88-VVRD`, `H88-3DEP-SCARP`)
 
 - **Branch / Base Commit:** `arena/c59db412-gemsdoe88` (branched from `origin/main` `996b8c384d58beae28393256696ea7cb57e488aa`)
