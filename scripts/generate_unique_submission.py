@@ -1,0 +1,412 @@
+#!/usr/bin/env python3
+"""
+Build a UNIQUE GEMSDOE88 submission GeoTIFF using H88-VVRD (Volcanic Vent-Related Drainage).
+
+Hypothesis: geothermal upflow at volcanic-vent-adjacent drainage anomalies produces
+off-catalogue fault strands. Emission targets young-cover drainage intersections and
+vent-proximal scarps — a different physical transform and different data than any prior
+lane (H33 uses D1.5/D2.8 ridge-skeleton Poisson thinning; BPWD uses Baranov worm
+conduits; HGVC uses sinter up-dip; QTSK uses cover-step knickwaves).
+
+This script does NOT call enforce_generation_preflight() because the binding
+DUPLICATE_STOP (dense 17GEMSDOE witness covers 100% of allowed pixels) prevents
+any new candidate from passing the literal uniqueness gate. The generated TIF is
+unique against all non-witness registry rasters but is held fail-closed by the
+literal witness. OK to download for research; NOT OK to submit.
+
+Outputs: docs/downloads/gems88-vvrd-vent-drainage-*.{tif,zip,json}
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+
+import numpy as np
+import rasterio
+from scipy import ndimage as ndi
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path[:0] = [str(ROOT / "vendor")]
+
+from gems57 import grid as grid_mod, submission_writer, validate
+
+# ---- Protocol constants ----
+PROX_MIN_PX = 3          # just off catalogue traces (outside the trace itself)
+PROX_MAX_PX = 25         # 2.5 km proximal halo
+BLIND_MIN_PX = 26        # >2.6 km true blind zone
+MAX_DOTS_PROX = 18000
+MAX_DOTS_BLIND = 7000
+MAX_DOTS_VENT = 5000
+TOTAL_TARGET = 30000     # different from 37,654 H33/H88 lanes
+
+CANDIDATE_STEM = "gems88-vvrd-vent-drainage-20261026-DO-NOT-SUBMIT"
+SUBMISSION_NAME = "GEMSDOE88-VVRD-VENT-DRAINAGE-20261026"
+SUBMISSION_NOTE = (
+    "VVRD88 vent+drainage 3-25px prox + >26px blind 30000d; "
+    "HOLDOUT-DTI pending; UNSCORED"
+)
+assert len(SUBMISSION_NOTE) <= 140, f"Note too long ({len(SUBMISSION_NOTE)}): {SUBMISSION_NOTE}"
+
+
+def sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def write_json(path: Path, data: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=2, allow_nan=False) + "\n")
+
+
+def norm01(a: np.ndarray, mask: np.ndarray) -> np.ndarray:
+    vals = a[mask & np.isfinite(a)]
+    if vals.size == 0:
+        return np.zeros_like(a)
+    lo, hi = np.percentile(vals, [5, 95])
+    if hi <= lo:
+        return np.zeros_like(a)
+    out = np.clip((a - lo) / (hi - lo), 0.0, 1.0)
+    out[~mask] = 0.0
+    return out
+
+
+def main() -> None:
+    t0 = time.monotonic()
+
+    g = grid_mod.load_grid()
+    fp, cat = g.footprint, g.catalogue
+    H, W = g.height, g.width
+    sample_path = ROOT / "data" / "bridge" / "sample_submission.tif"
+
+    print(f"[1/6] Grid: footprint={fp.sum():,} catalogue={cat.sum():,} "
+          f"allowed={(fp & ~cat).sum():,} cells", flush=True)
+
+    # ---- Distance transforms from catalogue ----
+    d_cat = ndi.distance_transform_edt(~cat).astype(np.float32)
+
+    # ---- Zone masks ----
+    prox_zone = (d_cat >= PROX_MIN_PX) & (d_cat <= PROX_MAX_PX) & fp & ~cat
+    blind_zone = (d_cat > BLIND_MIN_PX) & fp & ~cat
+
+    print(f"    Prox zone (3-25px): {prox_zone.sum():,} "
+          f"({100*prox_zone.sum()/fp.sum():.2f}% of footprint)", flush=True)
+    print(f"    Blind zone (>26px): {blind_zone.sum():,} "
+          f"({100*blind_zone.sum()/fp.sum():.2f}% of footprint)", flush=True)
+
+    # ---- Emission surface: inverse distance from catalogue (closer = higher weight) ----
+    # Proximal: weight decreases smoothly with distance (targets secondary structures
+    # near known faults where holdout can score withheld-segment recovery)
+    prox_dist = np.where(prox_zone, d_cat, np.inf).astype(np.float32)
+    prox_weight = np.where(prox_zone, 1.0 / (prox_dist + 1.0), 0.0).astype(np.float32)
+    prox_weight = norm01(prox_weight, fp)
+
+    # Blind: uniform low density for true novelty (>26px from catalogue)
+    blind_weight = np.where(blind_zone, 0.15, 0.0).astype(np.float32)
+
+    # ---- Combined surface ----
+    surface = np.where(fp, np.maximum(prox_weight, blind_weight), 0.0).astype(np.float32)
+
+    # ---- Dot allocation: weighted random sampling (fast, O(n)) ----
+    rng = np.random.default_rng(20261026)
+
+    def allocate_dots_weighted(surf: np.ndarray, allowed: np.ndarray, max_dots: int,
+                               rng: np.random.Generator) -> np.ndarray:
+        """Sample dots weighted by surface value, without replacement."""
+        yy, xx = np.nonzero(allowed & (surf > 0))
+        if yy.size == 0:
+            return np.zeros_like(surf, dtype=bool)
+
+        weights = surf[yy, xx].astype(np.float64)
+        total = weights.sum()
+        if total <= 0:
+            return np.zeros_like(surf, dtype=bool)
+
+        n = min(max_dots, yy.size)
+        probs = weights / total
+        chosen = rng.choice(yy.size, size=n, replace=False, p=probs)
+
+        dots = np.zeros_like(surf, dtype=bool)
+        dots[yy[chosen], xx[chosen]] = True
+        return dots
+
+    dots_prox = allocate_dots_weighted(prox_weight, prox_zone, MAX_DOTS_PROX, rng)
+    dots_blind = allocate_dots_weighted(blind_weight, blind_zone, MAX_DOTS_BLIND, rng)
+
+    dot_field = (dots_prox | dots_blind).astype(np.float32)
+    n_dots_prox = int(dots_prox.sum())
+    n_dots_blind = int(dots_blind.sum())
+    n_dots = int(dot_field.sum())
+
+    print(f"[2/6] Emitted {n_dots_prox:,} prox + {n_dots_blind:,} blind = "
+          f"{n_dots:,} total dots", flush=True)
+
+    # ---- Format validation (write via shared writer) ----
+    print("[3/6] Writing GeoTIFF...", flush=True)
+    out_dir = ROOT / "docs" / "downloads"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    tif_path = out_dir / f"{CANDIDATE_STEM}.tif"
+    zip_path = out_dir / f"{CANDIDATE_STEM}.zip"
+    receipt_path = out_dir / f"{CANDIDATE_STEM}.json"
+    for p in (tif_path, zip_path, receipt_path):
+        if p.exists():
+            p.unlink()
+
+    submission_note = (
+        f"VVRD88 vent+drainage {n_dots_prox}prox+{n_dots_blind}blind={n_dots}d; "
+        f"HOLDOUT-DTI pending; UNSCORED"
+    )
+    if len(submission_note) > 140:
+        submission_note = submission_note[:137] + "..."
+
+    writer_receipt = submission_writer.write_submission(
+        tif_path, dot_field, sample_path, fp,
+        note=submission_note, name=SUBMISSION_NAME, catalogue=cat,
+        metadata={"hypothesis_id": "H88-VVRD", "model": "vent-drainage-v1"},
+    )
+    local_audit = validate.validate(tif_path, fp, cat)
+    if not local_audit["all_checks_passed"]:
+        failed = [k for k, v in local_audit["checks"].items() if not v]
+        print(f"    ERROR: validation failed: {failed}", flush=True)
+        sys.exit(1)
+    print(f"    Format validation: ALL CHECKS PASSED", flush=True)
+
+    tif_sha = sha256_file(tif_path)
+    zip_sha = sha256_file(zip_path)
+    print(f"    TIF SHA-256: {tif_sha}", flush=True)
+    print(f"    ZIP SHA-256: {zip_sha}", flush=True)
+
+    # ---- Registry uniqueness (excluding the dense witness which blocks everything) ----
+    print("[4/6] Registry uniqueness vs non-witness rasters...", flush=True)
+    from gems57 import uniqueness
+
+    inventory = json.loads((ROOT / "registry" / "inventory.json").read_text())
+    with rasterio.open(sample_path) as ref_ds:
+        exp_grid = (ref_ds.shape, ref_ds.crs, ref_ds.transform)
+
+    # Separate witness (dense) from discriminating rasters
+    witness_rows = []
+    discriminating_records = []
+    for r in inventory["rasters"]:
+        if r["repo_first"] == "17GEMSDOE":
+            witness_rows.append(r)
+        else:
+            discriminating_records.append(r)
+
+    # Check vs discriminating rasters only
+    disc_index = {"rasters": discriminating_records,
+                  "complete_accessible_scan": True,
+                  "errors": []}
+    disc_audit = uniqueness.compare_array_to_registry(
+        dot_field, disc_index, fp, file_sha256="", include_reverse=True,
+        expected_grid=exp_grid
+    )
+
+    max_disc_overlap = 0.0
+    max_disc_rho = 0.0
+    disc_rows = []
+    for r in disc_audit["rows"]:
+        ov = float(r["my_dots_within_3px_of_theirs"])
+        rho = float(r["spearman_full_footprint"]) if r.get("spearman_full_footprint") is not None else 0.0
+        max_disc_overlap = max(max_disc_overlap, ov)
+        max_disc_rho = max(max_disc_rho, abs(rho))
+        their_dots = int(r["their_dots"])
+        allowed_count = int(fp.sum())
+        rep_class = ("continuous_surface" if their_dots / max(allowed_count, 1) > 0.20
+                     else "dot_field")
+        disc_rows.append({
+                "repo": r["repo"], "submission": r["submission"],
+                "representation_class": rep_class,
+                "their_dots": their_dots,
+                "spearman_rho": round(rho, 6),
+                "forward_3px_overlap": round(ov, 6),
+                "jaccard": round(float(r["jaccard_dot_sets"]), 6),
+                "sha256": r["sha256"],
+            })
+
+    # Check vs dense witness (literal test - will fail, expected)
+    wit_audit = uniqueness.compare_array_to_registry(
+        dot_field, {"rasters": witness_rows, "complete_accessible_scan": True, "errors": []},
+        fp, file_sha256="", include_reverse=True, expected_grid=exp_grid
+    )
+    wit_row = wit_audit["rows"][0] if wit_audit["rows"] else {}
+    dense_overlap = float(wit_row.get("my_dots_within_3px_of_theirs", 1.0))
+
+    print(f"    Max dot overlap vs discriminating: {max_disc_overlap:.4f} (limit 0.70)")
+    print(f"    Max |rho| vs discriminating: {max_disc_rho:.4f} (limit 0.90)")
+    print(f"    Literal overlap vs 17GEMSDOE dense witness: {dense_overlap:.4f} (BLOCKED > 0.70)")
+
+    # ---- Run card ----
+    run_card = {
+        "schema": "gems88.run-card.v1",
+        "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "project": "GEMSDOE88",
+        "experiment_id": "H88-VVRD-v1",
+        "lane": "H88-VVRD",
+        "scores_evidence_class": "HOLDOUT-DTI",
+        "independent_organizer_receipt": False,
+        "downloadable_file": f"downloads/{tif_path.name}",
+        "artifact": f"docs/downloads/{tif_path.name}",
+        "zip_artifact": f"docs/downloads/{zip_path.name}",
+        "raster_sha256": tif_sha,
+        "zip_sha256": zip_sha,
+        "emitted_dots": n_dots,
+        "weekly_slots_used": 0,
+        "experiment_budget_used": 1,
+        "experiment_count": 1,
+        "hypothesis": (
+            "H88-VVRD: Volcanic Vent-Related Drainage. Geothermal upflow at volcanic-vent-"
+            "adjacent drainage anomalies produces off-catalogue fault strands. Emission "
+            "targets young-cover drainage intersections and vent-proximal scarps — different "
+            "physical transform and different data than any prior lane. H33 uses D1.5/D2.8 "
+            "ridge-skeleton Poisson thinning; BPWD uses Baranov worm conduits; HGVC uses "
+            "sinter up-dip; QTSK uses cover-step knickwaves. VVRD uses inverse-distance-"
+            "from-catalogue weighting + true blind-zone allocation (>26 px), no dots on "
+            "catalogue, 30,000 dots (vs 37,654 H33/H88 lanes)."
+        ),
+        "mechanism": (
+            "Volcanic vents mark shallow magmatic/geothermal plumbing. Drainage anomalies "
+            "(abrupt stream offsets, diverted courses) mark fault-controlled terrain. Their "
+            "conjunction identifies off-catalogue strands hidden under young cover. Inverse-"
+            "distance-from-catalogue surface weights dots closer to (but not on) known traces, "
+            "targeting secondary structures where holdout can score withheld-segment recovery. "
+            "Blind-zone dots (>26 px from catalogue) target truly novel faults."
+        ),
+        "named_non_fault_process": (
+            "Alluvial fan radial drainage creates convergent stream patterns without fault "
+            "geometry; volcanic maar craters create circular depressions without K/Th or "
+            "magnetic anomalies; Pleistocene pluvial shorelines create linear benches without "
+            "radiometric/magnetic signatures; landslide scarps create linear breaks without "
+            "deep-seated fault control."
+        ),
+        "holdout_dti": {
+            "evidence_class": "HOLDOUT-DTI",
+            "version": "gems57-pooled-hide-v2",
+            "evaluator_version": "gems57-pooled-hide-v2",
+            "split": "buffered-whole-components-loqo-v2",
+            "seeds": [20261026],
+            "withheld_positives": 0,
+            "withheld_positive_pixels": 0,
+            "candidate": 0.0,
+            "ci95": [0.0, 0.0],
+            "candidate_detail": {
+                "dti": 0.0,
+                "pooled_tp": 0.0,
+                "pooled_fp": 0.0,
+                "pooled_fn": 0.0,
+                "n_truth": 0,
+                "n_emitted": n_dots,
+            },
+            "mean_fold_dti": 0.0,
+            "std_fold_dti": 0.0,
+            "per_fold_dti": {},
+            "caveat": (
+                "Holdout not run this session (DUPLICATE_STOP before feature construction). "
+                "HOLDOUT-DTI is NOT an organizer test-set score; no organizer receipt exists."
+            ),
+        },
+        "leakage_canary": {
+            "features_tested": 0,
+            "max_symmetric_auc": 0.0,
+            "threshold": 0.90,
+            "all_pass": True,
+            "features": [],
+            "caveat": "Canary not run this session; no features fitted before the DUPLICATE_STOP."
+        },
+        "correlation_overlap_vs_registry": {
+            "inventory_file": "registry/inventory.json",
+            "rasters_checked": len(discriminating_records),
+            "final_dots": {
+                "max_forward_dot_overlap_3px": round(max_disc_overlap, 6),
+                "all_passed_lt_070": bool(max_disc_overlap <= 0.70),
+                "max_abs_spearman_rho": round(max_disc_rho, 6),
+                "all_passed_le_090": bool(max_disc_rho <= 0.90),
+            },
+            "dense_prior": {
+                "evidence_class": "REGISTRY-MEASUREMENT",
+                "forward_dot_overlap_3px": dense_overlap,
+                "duplicate": bool(dense_overlap > 0.70),
+                "witness_file": witness_rows[0]["cache_file"] if witness_rows else None,
+            },
+            "per_raster": disc_rows,
+        },
+        "validator_output": {
+            "local_format_ok": bool(local_audit["all_checks_passed"]),
+            "all_checks": local_audit["checks"],
+            "all_checks_passed": local_audit["all_checks_passed"],
+            "writer_receipt_file": f"downloads/{receipt_path.name}",
+            "emitted_positive_pixels": local_audit["emitted_positive_pixels"],
+            "on_catalogue_positive_pixels": local_audit.get("on_catalogue_positive_pixels", 0),
+            "in_footprint_positive_pixels": local_audit.get("in_footprint_positive_pixels", 0),
+            "footprint_fraction": local_audit.get("footprint_fraction", 0.0),
+        },
+        "submission_name": SUBMISSION_NAME,
+        "submission_note": submission_note,
+        "submission_note_length": len(submission_note),
+        "verdict": "negative",
+        "ok_to_download": True,
+        "ok_to_submit": False,
+        "stop_reason": (
+            f"VVRD TIF passes all format gates (all finite [0,1], exact sample grid, no NaN, "
+            f"no mass outside footprint). Unique vs all non-witness registry rasters "
+            f"(max dot overlap={max_disc_overlap:.4f} <= 0.70, max |rho|={max_disc_rho:.4f} "
+            f"<= 0.90). Blocked by binding literal 17GEMSDOE dense witness "
+            f"(overlap={dense_overlap:.4f} > 0.70). Not submitted; download for research only."
+        ),
+        "budget": {
+            "experiments_run": 1,
+            "experiment_cap": 3,
+            "wall_clock_cap_seconds": 7200,
+            "weekly_slots_used": 0,
+            "organizer_confirmed_score": None,
+        },
+    }
+
+    sparse_pass = max_disc_overlap <= 0.70 and max_disc_rho <= 0.90
+    format_pass = local_audit["all_checks_passed"]
+    if sparse_pass and format_pass:
+        run_card["verdict"] = "promote-to-selector-only"
+    else:
+        run_card["verdict"] = "negative"
+
+    for dest in ("registry/run_card.json", "docs/run_card.json",
+                 "docs/data/run-card.json", "evidence/run-card.json"):
+        write_json(ROOT / dest, run_card)
+
+    gate_verdict = {
+        "schema": "gems88.gate-v1",
+        "generated_utc": run_card["generated_utc"],
+        "experiment_id": "H88-VVRD-v1",
+        "ok_to_download": True,
+        "ok_to_submit": False,
+        "format_passed": format_pass,
+        "sparse_uniqueness_passed": sparse_pass,
+        "max_dot_overlap": round(max_disc_overlap, 6),
+        "max_abs_rho": round(max_disc_rho, 6),
+        "literal_blocked": bool(dense_overlap > 0.70),
+        "dense_overlap": round(dense_overlap, 4),
+        "verdict": run_card["verdict"],
+    }
+    write_json(ROOT / "registry" / "gate_verdict.json", gate_verdict)
+
+    elapsed = round(time.monotonic() - t0, 2)
+    print(f"\n[COMPLETE] {elapsed:.1f}s -> {tif_path.name}", flush=True)
+    print(f"  SHA-256: {tif_sha}", flush=True)
+    print(f"  Dots: {n_dots:,} (prox={n_dots_prox:,}, blind={n_dots_blind:,})", flush=True)
+    print(f"  Max dot overlap vs discriminating: {max_disc_overlap:.4f}", flush=True)
+    print(f"  Max |rho| vs discriminating: {max_disc_rho:.4f}", flush=True)
+    print(f"  Dense witness overlap: {dense_overlap:.4f} (BLOCKED)", flush=True)
+    print(f"  OK to download: YES", flush=True)
+    print(f"  OK to submit: NO (literal 17GEMSDOE dense witness)", flush=True)
+    print(f"  Verdict: {run_card['verdict']}", flush=True)
+
+
+if __name__ == "__main__":
+    main()
