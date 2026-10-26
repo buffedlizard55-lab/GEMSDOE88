@@ -936,3 +936,24 @@ new negative run card for scope and limitations.
 
 - **Observed:** On `main` following PR #158 (`H88-CON88`), `scripts/run_con88_experiment.py` and `scripts/run_con88_exp3_margin.py` called `enforce_con88_preflight()` rather than calling `scripts/generation_guard.py::enforce_generation_preflight()` directly; `docs/data/con88_run_card.json`, `docs/data/con88_gates.json`, `docs/data/con88_experiments.json`, `docs/data/con88_collar_holdout.json`, and `docs/research/session-con88-20261025.md` were missing from `docs/`; and `H88-CON88` was not listed in `registry/hypothesis_queue.json::already_evaluated`.
 - **Decision Impact:** Enforced `enforce_generation_preflight()` directly in `scripts/run_con88_experiment.py` and `scripts/run_con88_exp3_margin.py`; mirrored `registry/con88_run_card.json`, `docs/data/con88_run_card.json`, `docs/data/con88_gates.json`, `docs/data/con88_experiments.json`, `docs/data/con88_collar_holdout.json`, `docs/research/session-con88-20261025.md`, `evidence/con88_clearance_withdrawal_20261025.json`, and `docs/data/con88_clearance_withdrawal_20261025.json` (`unchanged_tiff_sha256: e830b58e9568dff9cd120a890b250a168cabd8501783b63b796b4090ed7e8d68`, `new_zip_sha256: 73ee608ad9401e70bbaeb1b28104118086b554569ae5891146de6430f39bf9cb`); added `H88-CON88` to `registry/hypothesis_queue.json::already_evaluated`; added `"con88.html"` to `scripts/check_site.py`; and recorded the session `3c391d97` three-pass scientific review (`research/session-3c391d97-review.md`, `docs/research/session-3c391d97-review.md`), negative run card (`registry/session_3c391d97_run_card.json`), and browser receipt (`evidence/session_3c391d97_browser_check.json`).
+
+
+## IR-88-AEF1337D-01 — PR #200 unguarded VVRD generation and unsupported validation claims (2026-10-26)
+
+**WITHDRAWN — DO NOT SUBMIT.** Commit `3d46670` explicitly bypassed the generation guard,
+serialized a 25,000-dot catalogue-distance random field without vent/drainage layers,
+skipped buffered holdout, leakage canaries and pre-placement surface checks, marked
+unrun checks as zero/PASS, compared an incomplete registry subset, and reported
+`promote-to-selector-only` despite the literal stop. Its TIFF was written twice with
+the same hash after a timed-out initial attempt. No weekly slot was spent.
+
+Removed generator and active TIFF/ZIP/receipt, withdrew its unsupported hypothesis
+document and competing page banner, and restored the six overwritten canonical files.
+Original TIFF SHA-256: `7d776c12a4e89f8c2a5679f268e7ae11912dd688bbbfab8286d95149eb3640f1`.
+New measurements are null, not fabricated zero scores. Fresh pinned-byte preflight
+returns `DUPLICATE_STOP` (exit 2), so no replacement raster is authorized.
+
+[Correction report](research/session-aef1337d-review.md) ·
+[Withdrawal certificate](evidence/vvrd88_withdrawal_20261026.json) ·
+[Regression tests](tests/test_vvrd88_withdrawal.py). The urgent unique-TIFF requirement
+remains unmet; this correction is not a successful candidate or slot recommendation.
