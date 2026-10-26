@@ -175,17 +175,22 @@ def test_post_merge_vvrd_withdrawal_and_active_browser_receipt() -> None:
     queue = json.loads((ROOT / "registry/hypothesis_queue.json").read_text(encoding="utf-8"))
     assert "H88-VVRD" in {r["id"] for r in queue["already_evaluated"]}
     assert queue["generation_authorized"] is False and queue["ok_to_submit"] is False
-    # Active-review succession + browser receipt pins current bytes.
+    # Active-review succession went to session d634de37 (PR #203 merged first);
+    # this session's browser receipt is retained as a historical PASS record.
     status = json.loads((ROOT / "docs/status.json").read_text(encoding="utf-8"))
-    assert status["current_review"] == "data/session_0b582cf7_run_card.json"
+    assert status["current_review"] == "data/session_d634de37_run_card.json"
     br_ev = (ROOT / "evidence/session_0b582cf7_browser_check.json").read_bytes()
     assert br_ev == (ROOT / "docs/data/session_0b582cf7_browser_check.json").read_bytes()
     br = json.loads(br_ev)
     assert br["status"] == "PASS" and br["ok_to_submit"] is False
     assert len(br["pages"]) == 7 and all(p["pass"] and not p["overflow"] for p in br["pages"])
-    for rel, expected_sha in br["source_sha256"].items():
+    active_card = json.loads((ROOT / "docs" / status["current_review"]).read_text(encoding="utf-8"))
+    active_br = json.loads((ROOT / active_card["verification"]["browser_evidence"]).read_text(encoding="utf-8"))
+    assert active_br["status"] == "PASS" and active_br["ok_to_submit"] is False
+    assert set(br["source_sha256"]) <= set(active_br["source_sha256"])
+    for rel, expected_sha in active_br["source_sha256"].items():
         actual = hashlib.sha256((ROOT / rel).read_bytes()).hexdigest()
-        assert actual == expected_sha, f"Browser pin mismatch on {rel}"
+        assert actual == expected_sha, f"Active browser pin mismatch on {rel}"
     # PTGM preregistration carries the PR #199 scientific correction.
     prereg = json.loads((ROOT / "registry/preregistration_h88_ptgm_20261026.json").read_text(encoding="utf-8"))
     assert "Gaussian" in prereg["amendments"][0]["corrected_operator"]

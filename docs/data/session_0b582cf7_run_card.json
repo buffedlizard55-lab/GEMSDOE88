@@ -179,7 +179,7 @@
     "browser_evidence": "evidence/session_0b582cf7_browser_check.json",
     "browser_status": "PASS",
     "vvrd88_withdrawal_evidence": "evidence/vvrd88_clearance_withdrawal_20261026.json",
-    "post_merge_integration": "Integrated origin/main through PR #202 (7d15485): PR #199 PTGM correction adopted; PR #200 VVRD bypass withdrawn and removed by originating session (IR-88-AEF1337D-01) with canonical cards restored; this session retired H88-VVRD in the queue (IR-88-0B582CF7-05), regenerated the 50/50 download audit, status and decision pages, and succeeded session c59db412 as docs/status.json current_review.",
+    "post_merge_integration": "Integrated origin/main through PR #203 (12b4ce3): PR #199 PTGM correction adopted; PR #200 VVRD bypass withdrawn and removed by originating session (IR-88-AEF1337D-01) with canonical cards restored; this session retired H88-VVRD in the queue (IR-88-0B582CF7-05) and kept the 50/50 audit/pages canonical. Active-review succession deferred to session d634de37 (PR #203 merged first); this session's browser receipt is a historical PASS record and the active receipt was refreshed after the queue update.",
     "pytest_pre_merge_commit_3ab5025": "928 passed, 23 skipped",
     "pytest_post_merge": "see PR #201 checks (live GitHub state authoritative)",
     "completed_at_utc": "2026-10-26",
