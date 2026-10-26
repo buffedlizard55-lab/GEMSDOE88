@@ -60,7 +60,7 @@ def test_second_full_resolution_raster_is_rejected(tmp_path, extra_shape, extra_
         assert src.count == 1
         assert len(src.subdatasets) == 2
     result = validate(candidate, sample)
-    assert result["validator"] == "gems88-format-audit-v2"
+    assert result["validator"] == "gems88-format-audit-v3"
     assert result["checks"]["values_in_0_1"] is True  # first page only
     assert result["checks"]["single_raster_dataset"] is False
     assert result["format_valid"] is False

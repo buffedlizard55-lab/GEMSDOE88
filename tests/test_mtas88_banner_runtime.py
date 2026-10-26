@@ -20,7 +20,9 @@ def test_current_decision_precedes_archived_download_on_both_pages():
         assert "NO NEW TIFF" in html
         assert "H88-HGVC" in html
     guide = (ROOT / "docs/executive-summary.html").read_text()
-    assert "CURRENT DECISION 2026-10-26: NO NEW UNIQUE TIFF" in guide
+    assert "NO NEW UNIQUE TIFF; NO FILE APPROVED" in guide
+    assert "pinned historical audit, not a current census" in guide
+    assert "All {count} archived" not in guide
 
 
 @pytest.mark.skipif(NODE is None, reason="Node.js runtime unavailable")

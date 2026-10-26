@@ -634,8 +634,9 @@ def main(root: Path = ROOT) -> None:
     )
     require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
     require(
-        "Current review · 2026-10-26" in index
+        "Review · 2026-10-26" in index
         and "NO FILE APPROVED" in index
+        and "0/9 CLEARED IN HISTORICAL AUDIT" in index
         and "every nonempty dot set fails the literal overlap limit" in index,
         "Overview must present the current fail-closed decision before archived candidates",
     )
@@ -955,9 +956,11 @@ def main(root: Path = ROOT) -> None:
         require(bpwd_card["submission_name"] in page_txt, f"BPWD submission_name missing in {page_name}")
         require(bpwd_card["raster_sha256"] in page_txt, f"BPWD raster_sha256 missing in {page_name}")
     require(
-        index.index('id="mtas-review"') < index.index('id="bpwd-hero"') < index.index('class="archive-lanes"')
-        and executive.index('id="mtas-review"') < executive.index('id="bpwd-hero"') < executive.index('class="archive-lanes"'),
-        "BPWD hero must appear between canonical decision and archive-lanes",
+        index.index('id="mtas-review"') < index.index('id="bpwd-historical"') < index.index('id="bpwd-hero"')
+        and executive.index('id="mtas-review"') < executive.index('id="bpwd-historical"') < executive.index('id="bpwd-hero"')
+        and 'Historical H88-BPWD research — not a current candidate' in index
+        and 'Historical H88-BPWD research — not a current candidate' in executive,
+        "Historical BPWD must remain in a closed archive after the canonical decision",
     )
 
     vcaz_card = json.loads((root / "registry/vcaz88_run_card.json").read_text())

@@ -46,7 +46,18 @@ def test_unguarded_generator_and_unvalidated_download_are_removed():
     assert card["ok_to_submit"] is False
 
 
-def test_overwritten_canonical_records_are_restored_exactly():
+def test_restored_records_and_successor_guide_preserve_provenance():
     card = json.loads((ROOT / "registry/session_aef1337d_run_card.json").read_text())
+    # The corrected guide may evolve; its prior restored hash is historical,
+    # while a fresh browser receipt must bind the actual successor page bytes.
+    status = json.loads((ROOT / "docs/status.json").read_text())
+    current = json.loads((ROOT / "docs" / status["current_review"]).read_text())
+    browser = json.loads((ROOT / current["verification"]["browser_evidence"]).read_text())
+    assert browser["status"] == "PASS" and browser["ok_to_submit"] is False
     for relative, digest in card["restored_files"].items():
-        assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == digest, relative
+        actual = hashlib.sha256((ROOT / relative).read_bytes()).hexdigest()
+        if relative == "docs/executive-summary.html":
+            assert digest == "c5d17e21cb40472d5db9e2f147d9f22ccddf459e99450df9849fe824192447bf"
+            assert browser["source_sha256"][relative] == actual
+        else:
+            assert actual == digest, relative

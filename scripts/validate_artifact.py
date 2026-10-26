@@ -26,6 +26,10 @@ def validate(candidate, template):
                       single_raster_dataset=not src.subdatasets,
                       self_contained_dataset={Path(p).resolve() for p in src.files} == {Path(candidate).resolve()},
                       real_numeric_dtype=np.dtype(src.dtypes[0]).kind in 'uif',
+                      # The organizer specifies float32, not merely numeric [0,1].
+                      # The shared gems57 validator/writer already enforce this;
+                      # the independent container audit must not be weaker.
+                      dtype_float32=np.dtype(src.dtypes[0]) == np.dtype('float32'),
                       template_single_band=ref.count == 1,
                       template_single_raster_dataset=not ref.subdatasets,
                       template_self_contained_dataset={Path(p).resolve() for p in ref.files} == {Path(template).resolve()},
@@ -51,7 +55,7 @@ def validate(candidate, template):
         checks.update(all_finite=finite, values_in_0_1=bounded, all_pixels_unmasked=unmasked)
     with Path(candidate).open('rb') as f:
         digest = hashlib.file_digest(f, 'sha256').hexdigest()
-    return {'schema_version': 1, 'validator': 'gems88-format-audit-v2',
+    return {'schema_version': 2, 'validator': 'gems88-format-audit-v3',
             'artifact': Path(candidate).name, 'sha256': digest,
             'checks': checks, 'minimum': minimum, 'maximum': maximum,
             'format_valid': all(checks.values()), 'submission_ready': False,

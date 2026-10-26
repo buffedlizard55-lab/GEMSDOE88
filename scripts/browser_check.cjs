@@ -16,6 +16,7 @@ const {chromium: playwright} = require(path.join(modules, 'playwright-core'));
 const chromiumPackage = require(path.join(modules, '@sparticuz/chromium/build/index.js'));
 const chromium = chromiumPackage.default;
 const expected = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/data/current_release.json'), 'utf8'));
+const focusSnapshot = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/data/focus-freshness.json'), 'utf8'));
 const expectedTiff = expected.file.replace(/^docs\//, '');
 const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT';
 
@@ -208,6 +209,79 @@ function startEphemeralDocsServer() {
     failed ||= !report.research_download.click_matches_canonical_bytes;
     await download.close();
 
+    // Exercise the HEAD-only feed in Chromium, with a deterministic clock so
+    // a stored snapshot can be tested after its real-world 12-hour expiry.
+    const observedTime = Date.parse(focusSnapshot.checked_at_utc);
+    // A deployed snapshot may itself be PARTIAL. Complete a test-only fixture
+    // rather than treating unknown repositories as a product failure or a real
+    // GitHub observation; the partial scenario below remains separately tested.
+    const freshReport = JSON.parse(JSON.stringify(focusSnapshot));
+    let usedSimulatedHeads = false;
+    for (const row of freshReport.sites) {
+      if (row.state === 'UNKNOWN') {
+        const syntheticHead = row.audited_head === 'f'.repeat(40) ? 'e'.repeat(40) : 'f'.repeat(40);
+        Object.assign(row, {state: 'CHANGED', current_head: syntheticHead,
+          current_commit_utc: freshReport.checked_at_utc, error: null});
+        usedSimulatedHeads = true;
+      }
+    }
+    freshReport.counts = {changed: freshReport.sites.filter(row => row.state === 'CHANGED').length,
+      unchanged: freshReport.sites.filter(row => row.state === 'UNCHANGED').length, unknown: 0};
+    freshReport.status = 'COMPLETE';
+    const freshFocus = await browser.newPage();
+    await freshFocus.addInitScript(time => { Date.now = () => time; }, observedTime + 60000);
+    await freshFocus.route('**/data/focus-freshness.json', route => route.fulfill({
+      status: 200, contentType: 'application/json', body: JSON.stringify(freshReport),
+    }));
+    await freshFocus.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+    const freshText = await freshFocus.locator('[data-focus-feed-status]').innerText();
+    const freshRows = await freshFocus.locator('[data-focus-freshness]').allTextContents();
+    const freshPass = freshText.includes(`${freshReport.counts.changed} of 9 repositories changed`)
+      && freshText.includes('not a score or approval') && freshRows.length === 9;
+    await freshFocus.close();
+
+    const missingFocus = await browser.newPage();
+    await missingFocus.route('**/data/focus-freshness.json', route => route.abort());
+    await missingFocus.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+    const missingText = await missingFocus.locator('[data-focus-feed-status]').innerText();
+    const missingRows = await missingFocus.locator('[data-focus-freshness]').allTextContents();
+    const missingPass = missingText.includes('unavailable or inconsistent')
+      && missingRows.length === 9 && missingRows.every(row => row === 'Current revision unknown');
+    await missingFocus.close();
+
+    const partialReport = JSON.parse(JSON.stringify(freshReport));
+    const previousState = partialReport.sites[0].state.toLowerCase();
+    partialReport.counts[previousState]--;
+    partialReport.counts.unknown++;
+    partialReport.status = 'PARTIAL';
+    Object.assign(partialReport.sites[0], {state: 'UNKNOWN', current_head: null,
+      current_commit_utc: null, error: 'GitHub HTTP 403'});
+    const partialFocus = await browser.newPage();
+    await partialFocus.addInitScript(time => { Date.now = () => time; }, observedTime + 60000);
+    await partialFocus.route('**/data/focus-freshness.json', route => route.fulfill({
+      status: 200, contentType: 'application/json', body: JSON.stringify(partialReport),
+    }));
+    await partialFocus.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+    const partialText = await partialFocus.locator('[data-focus-feed-status]').innerText();
+    const partialFirst = await partialFocus.locator('[data-focus-freshness]').first().innerText();
+    const partialPass = partialText.includes('Incomplete revision check')
+      && partialText.includes('No submission approved') && partialFirst === 'Revision unavailable';
+    await partialFocus.close();
+
+    const expiredFocus = await browser.newPage();
+    await expiredFocus.addInitScript(time => { Date.now = () => time; }, observedTime + 12 * 3600 * 1000 + 1000);
+    await expiredFocus.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+    const expiredText = await expiredFocus.locator('[data-focus-feed-status]').innerText();
+    const expiredRows = await expiredFocus.locator('[data-focus-freshness]').allTextContents();
+    const expiredPass = expiredText.includes('snapshot expired') && expiredText.includes('DO NOT SUBMIT')
+      && expiredRows.length === 9 && expiredRows.every(row => row.includes('expired'));
+    await expiredFocus.close();
+    report.focus_freshness = {fresh_snapshot_pass: freshPass, missing_feed_fail_closed: missingPass,
+      partial_feed_fail_closed: partialPass, expired_feed_fail_closed: expiredPass,
+      checked_snapshot: focusSnapshot.checked_at_utc, fresh_fixture_used_simulated_heads: usedSimulatedHeads,
+      fresh_text: freshText, missing_text: missingText, partial_text: partialText, expired_text: expiredText};
+    failed ||= !freshPass || !missingPass || !partialPass || !expiredPass;
+
     const noScript = await browser.newPage({javaScriptEnabled: false});
     await noScript.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
     report.no_javascript_banner = await noScript.locator('[data-card-status]').innerText();
@@ -218,6 +292,8 @@ function startEphemeralDocsServer() {
     for (const relative of ['docs/index.html', 'docs/executive-summary.html', 'docs/research.html',
       'docs/sources.html', 'docs/assets/site.css', 'docs/assets/site.js', 'docs/data/current_release.json',
       'docs/data/download_audit.json', 'docs/data/mtas88_run_card.json', 'docs/data/hypothesis_queue.json', 'docs/status.json',
+      'docs/assets/focus-freshness.js', 'docs/data/focus-freshness.json',
+      'docs/data/focus_sample_2b5a8383.json', 'docs/data/focus_sites_20261026.json',
       'docs/mdc88/index.html', 'docs/mdc88/executive-summary.html', 'docs/mdc88/status.json']) {
       report.source_sha256[relative] = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, relative))).digest('hex');
     }
