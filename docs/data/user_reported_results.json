@@ -201,13 +201,13 @@
     },
     {
       "site": "GEMSDOE49",
-      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE49/docs/index.html",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE49/",
       "reported_entries": 1
     },
     {
       "site": "GEMSDOE28",
       "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
-      "reported_entries": 6
+      "reported_entries": 5
     },
     {
       "site": "GEMSDOE29",
@@ -231,7 +231,7 @@
     },
     {
       "site": "GEMSDOE41",
-      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE41/",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE41/docs/index.html",
       "reported_entries": 1
     },
     {
@@ -477,7 +477,7 @@
         39,
         53,
         321,
-        729
+        727
       ]
     },
     {
@@ -910,7 +910,7 @@
       "organizer_receipt": null,
       "request_line_numbers": [
         249,
-        715
+        713
       ]
     },
     {
@@ -922,7 +922,7 @@
       "organizer_receipt": null,
       "request_line_numbers": [
         255,
-        723
+        721
       ]
     },
     {
@@ -934,7 +934,7 @@
       "organizer_receipt": null,
       "request_line_numbers": [
         261,
-        735
+        733
       ]
     },
     {
@@ -968,7 +968,7 @@
       "organizer_receipt": null,
       "request_line_numbers": [
         279,
-        741
+        739
       ]
     },
     {
@@ -1028,7 +1028,7 @@
     },
     {
       "site": "GEMSDOE49",
-      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE49/docs/index.html",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE49/",
       "submission_name": "gate_ortho_w0.25-40k-20261006T213721Z-nan",
       "user_reported_value": "0.2376",
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
@@ -1046,7 +1046,7 @@
       "organizer_receipt": null,
       "request_line_numbers": [
         327,
-        701
+        699
       ]
     },
     {
@@ -1058,7 +1058,7 @@
       "organizer_receipt": null,
       "request_line_numbers": [
         329,
-        703
+        701
       ]
     },
     {
@@ -1070,7 +1070,7 @@
       "organizer_receipt": null,
       "request_line_numbers": [
         331,
-        705
+        703
       ]
     },
     {
@@ -1082,7 +1082,7 @@
       "organizer_receipt": null,
       "request_line_numbers": [
         333,
-        707
+        705
       ]
     },
     {
@@ -1230,7 +1230,7 @@
     },
     {
       "site": "GEMSDOE41",
-      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE41/",
+      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE41/docs/index.html",
       "submission_name": "h42-submission-primary",
       "user_reported_value": "0.0245",
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
@@ -1814,23 +1814,12 @@
     {
       "site": "GEMSDOE28",
       "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
-      "submission_name": "gems28-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
-      "user_reported_value": "0.2715",
-      "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
-      "organizer_receipt": null,
-      "request_line_numbers": [
-        699
-      ]
-    },
-    {
-      "site": "GEMSDOE28",
-      "source_url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
       "submission_name": "gems28-s18-mxtp-20261025-3e95505c011a-allfinite",
       "user_reported_value": "0.0217",
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        709
+        707
       ]
     },
     {
@@ -1841,16 +1830,16 @@
       "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
       "organizer_receipt": null,
       "request_line_numbers": [
-        717
+        715
       ]
     }
   ],
   "site_count": 92,
-  "distinct_claim_count": 124,
+  "distinct_claim_count": 123,
   "sites_without_a_reported_result": [
     "GEMSDOE86",
     "GEMSDOE88"
   ],
   "request_file": "USER_PROMPT_20261026.md",
-  "request_sha256": "22b772b7931059fda79672be675fc7c6ce2af19c67ff7ba4a238e8388692ec3d"
+  "request_sha256": "782df5dcfff74b461909118b3cf70b9908fec1f9d7330c078c1a132e53276503"
 }

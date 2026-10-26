@@ -1046,25 +1046,31 @@ def main(root: Path = ROOT) -> None:
             f"Focus site {focus_site} missing from canonical overview/executive summary",
         )
 
-    c59_web = docs / "data/session_c59db412_run_card.json"
-    c59_reg = root / "registry/session_c59db412_run_card.json"
-    c59_ev = root / "evidence/session_c59db412_run_card.json"
-    require(c59_web.is_file(), "session_c59db412_run_card.json missing under docs/data/")
-    c59_payload = json.loads(c59_web.read_text(encoding="utf-8"))
-    require(
-        c59_payload["ok_to_submit"] is False
-        and c59_payload["verdict"] == "negative"
-        and c59_payload["status"] == "DUPLICATE_STOP"
-        and 0 < len(c59_payload["submission_note"]) <= 140,
-        "session_c59db412_run_card.json must remain negative and fail-closed",
-    )
-    if c59_reg.is_file() and c59_ev.is_file():
+    for sid in ("c59db412", "d634de37"):
+        s_web = docs / f"data/session_{sid}_run_card.json"
+        s_reg = root / f"registry/session_{sid}_run_card.json"
+        s_ev = root / f"evidence/session_{sid}_run_card.json"
+        require(s_web.is_file(), f"session_{sid}_run_card.json missing under docs/data/")
+        s_payload = json.loads(s_web.read_text(encoding="utf-8"))
         require(
-            c59_web.read_bytes() == c59_reg.read_bytes() == c59_ev.read_bytes(),
-            "session_c59db412_run_card.json mirrors disagree across registry/, evidence/, and docs/data/",
+            s_payload["ok_to_submit"] is False
+            and s_payload["verdict"] == "negative"
+            and s_payload["status"] == "DUPLICATE_STOP"
+            and 0 < len(s_payload["submission_note"]) <= 140,
+            f"session_{sid}_run_card.json must remain negative and fail-closed",
         )
+        if s_reg.is_file() and s_ev.is_file():
+            require(
+                s_web.read_bytes() == s_reg.read_bytes() == s_ev.read_bytes(),
+                f"session_{sid}_run_card.json mirrors disagree across registry/, evidence/, and docs/data/",
+            )
 
-    for md_stem in ("session-c59db412-review.md", "session-c59db412-hypotheses.md"):
+    for md_stem in (
+        "session-c59db412-review.md",
+        "session-c59db412-hypotheses.md",
+        "session-d634de37-review.md",
+        "session-d634de37-hypotheses.md",
+    ):
         doc_md = docs / "research" / md_stem
         require(doc_md.is_file(), f"{md_stem} missing under docs/research/")
         root_md = root / "research" / md_stem

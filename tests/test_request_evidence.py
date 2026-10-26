@@ -46,7 +46,7 @@ def test_full_list_is_reproducible_and_not_promoted_to_receipts():
         assert report[k] == v
     assert report['request_sha256'] == hashlib.sha256(request.encode()).hexdigest()
     assert report['site_count'] == 92
-    assert report['distinct_claim_count'] == 124
+    assert report['distinct_claim_count'] == 123
     assert report['sites_without_a_reported_result'] == ['GEMSDOE86', 'GEMSDOE88']
     for row in report['claims']:
         assert row['evidence_class'] == LABEL
