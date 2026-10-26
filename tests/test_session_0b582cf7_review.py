@@ -168,9 +168,9 @@ def test_post_merge_vvrd_withdrawal_and_active_browser_receipt() -> None:
     # Canonical run card/gate restored (not the VVRD overwrites).
     canonical = json.loads((ROOT / "registry/gate_verdict.json").read_text(encoding="utf-8"))
     assert canonical["name"].startswith("gems88-phys44")
-    # The bypass entrypoint is now guarded before heavy imports.
-    src = (ROOT / "scripts/generate_unique_submission.py").read_text(encoding="utf-8")
-    assert src.index("enforce_generation_preflight()") < src.index("import numpy")
+    # The bypass entrypoint and artifact were removed entirely in PR #202.
+    assert not (ROOT / "scripts/generate_unique_submission.py").exists()
+    assert not list((ROOT / "docs/downloads").glob("*vvrd*"))
     # Queue retires VVRD and still authorizes nothing.
     queue = json.loads((ROOT / "registry/hypothesis_queue.json").read_text(encoding="utf-8"))
     assert "H88-VVRD" in {r["id"] for r in queue["already_evaluated"]}

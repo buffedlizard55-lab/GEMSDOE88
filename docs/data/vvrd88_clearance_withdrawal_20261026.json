@@ -19,7 +19,7 @@
     "Downloadable TIFF/ZIP were added without regenerating evidence/download_audit.json and the executive summary was hand-edited with a broken registry/gate_verdict.json link; both regenerated with the canonical scripts in this integration."
   ],
   "mechanism_concern": "Emission is materially a catalogue inverse-distance/proximity field plus blind-zone infill with fixed 18000/7000 allocation; no trained model, no geological feature stack, no holdout evidence. It is not evidence that a unique high-scoring submission exists.",
-  "disposition": "Bytes retained as a research-only negative record in the download inventory (DO NOT SUBMIT). H88-VVRD retired in registry/hypothesis_queue.json already_evaluated. Not eligible for a weekly slot; not a selector candidate.",
+  "disposition": "Superseded in part by PR #202 (IR-88-AEF1337D-01): bytes, sidecar, hypothesis document and generator script were removed from the tree by the originating session (evidence/vvrd88_withdrawal_20261026.json). Only negative metadata records remain. H88-VVRD retired in registry/hypothesis_queue.json. Not eligible for a weekly slot; not a selector candidate.",
   "ok_to_submit": false,
   "weekly_slots_used_by_this_session": 0
 }

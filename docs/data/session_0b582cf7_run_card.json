@@ -108,7 +108,7 @@
   },
   "archived_research_downloads_reaudited": {
     "evidence_class": "LOCAL-FORMAT-AUDIT_NOT_A_SCORE",
-    "pages_tiff_zip_pairs_pass": "51/51 (50/50 at pre-merge commit 3ab5025; +1 VVRD research-only pair integrated from merged PR #200)",
+    "pages_tiff_zip_pairs_pass": "50/50 (PR #200's bypass pair withdrawn and removed in PR #202)",
     "submissions_dir_pairs_pass": "21/21",
     "protocol_eligible_count": 0,
     "canonical_educational_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
@@ -179,7 +179,7 @@
     "browser_evidence": "evidence/session_0b582cf7_browser_check.json",
     "browser_status": "PASS",
     "vvrd88_withdrawal_evidence": "evidence/vvrd88_clearance_withdrawal_20261026.json",
-    "post_merge_integration": "Integrated origin/main b62d1a35 (PR #199/#200) into PR #201; repaired IR-88-0B582CF7-05 bypass/overwrite defects; regenerated download audit (51/51), status and decision pages; succeeded session c59db412 as docs/status.json current_review.",
+    "post_merge_integration": "Integrated origin/main through PR #202 (7d15485): PR #199 PTGM correction adopted; PR #200 VVRD bypass withdrawn and removed by originating session (IR-88-AEF1337D-01) with canonical cards restored; this session retired H88-VVRD in the queue (IR-88-0B582CF7-05), regenerated the 50/50 download audit, status and decision pages, and succeeded session c59db412 as docs/status.json current_review.",
     "pytest_pre_merge_commit_3ab5025": "928 passed, 23 skipped",
     "pytest_post_merge": "see PR #201 checks (live GitHub state authoritative)",
     "completed_at_utc": "2026-10-26",

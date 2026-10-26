@@ -317,5 +317,9 @@
   "record": "evidence/vvrd88_clearance_withdrawal_20261026.json",
   "irregularity": "IR-88-0B582CF7-05",
   "note": "Generated in merged PR #200 by explicitly bypassing scripts/generation_guard.enforce_generation_preflight; holdout and leakage canary were not run (0 withheld positives, 0 features tested), so the promote-to-selector-only verdict and HOLDOUT-DTI evidence class are withdrawn. Bytes kept as research-only negative record; ok_to_submit was and remains false."
+ },
+ "artifact_removed": {
+  "by": "PR #202 (IR-88-AEF1337D-01)",
+  "note": "TIFF/ZIP/sidecar and generator script deleted from the tree by the originating session's withdrawal; this card remains only as a negative metadata record. Original TIFF SHA-256 preserved in raster_sha256."
  }
 }

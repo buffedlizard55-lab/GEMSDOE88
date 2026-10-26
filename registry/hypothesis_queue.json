@@ -3,8 +3,8 @@
   "reviewed_at_utc": "2026-10-26",
   "review_branch": "arena/0b582cf7-gemsdoe88",
   "source_snapshot": {
-    "files": 157,
-    "sha256": "332df75d7787038cabfe62781632ae045eaa167030d1aed9216aa6991a5cf137"
+    "files": 156,
+    "sha256": "a05cd182a2057898e53e4bab103c1958ca439ce9a0827cd372f10047ec20be05"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -75,8 +75,8 @@
       "id": "H88-VVRD",
       "status": "EVALUATED_NEGATIVE_HISTORICAL",
       "run_card": "registry/vvrd88_run_card.json",
-      "run_card_sha256": "7e72ec68a5e28a500b16e1a6dfde62befdfd4bd1ff15b4bf645ffc2603a98f7f",
-      "reason": "Volcanic-vent drainage proximity/blind-zone emission executed in merged PR #200 by bypassing the generation guard (IR-88-0B582CF7-05); pooled holdout and leakage canary never ran (0 withheld positives, 0 features), 20-raster uniqueness screen only, literal 17GEMSDOE overlap 1.0 > 0.70; promote-to-selector-only verdict withdrawn in evidence/vvrd88_clearance_withdrawal_20261026.json; entrypoint now preflight-guarded. Do not re-propose as untried."
+      "run_card_sha256": "71f4f9eb704f4ed15d43a76676c4b816413ef6ca08413db64edcd6fa9e2a21e0",
+      "reason": "Volcanic-vent drainage proximity/blind-zone emission executed in merged PR #200 by bypassing the generation guard; withdrawn by originating session in PR #202 (IR-88-AEF1337D-01, evidence/vvrd88_withdrawal_20261026.json) with generator, hypothesis doc and TIFF/ZIP removed from the tree; pooled holdout and leakage canary never ran, 20-raster screen only, literal 17GEMSDOE overlap 1.0 > 0.70 (IR-88-0B582CF7-05). Do not re-propose as untried."
     }
   ],
   "proposals": [
