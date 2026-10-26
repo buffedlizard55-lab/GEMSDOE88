@@ -948,4 +948,24 @@ new negative run card for scope and limitations.
 
 - Date: 2026-10-26 (flagged during PR #201 integration; `main` advanced `34066f4 → b62d1a35` via PR #199/#200 while PR #201 was in flight, and the new `main` was itself failing both workflows at step 6).
 - Evidence: `scripts/generate_unique_submission.py` as merged stated it did **not** call `enforce_generation_preflight()` because of the binding dense-witness stop; its run card records pooled holdout **not run** (0 withheld positives, `holdout_dti 0.0`), leakage canary **0 features tested**, uniqueness screened against only **20** registry rasters, dense-witness overlap **1.0**, yet `registry/gate_verdict.json` said `promote-to-selector-only`. Canonical `registry/run_card.json`, `registry/gate_verdict.json`, `docs/data/run-card.json`, `docs/run_card.json`, `evidence/run-card.json` were overwritten (breaking schema consumers, e.g. pytest collection `KeyError: 'name'`); the executive summary was hand-edited with a broken `registry/gate_verdict.json` link; downloadable TIFF/ZIP were added without regenerating `evidence/download_audit.json`.
-- Disposition: FAIL-CLOSED. Guard call inserted before any numpy/rasterio import (script now exits 2 and writes nothing); canonical cards restored byte-identical from `34066f4`; VVRD records preserved under `registry/vvrd88_run_card.json` / `registry/vvrd88_gate_verdict.json` with verdict normalized to `negative` and withdrawal in `evidence/vvrd88_clearance_withdrawal_20261026.json`; `H88-VVRD` retired in `registry/hypothesis_queue.json` with refreshed source snapshot; download audit (51/51 research-valid, 0 eligible), status and decision pages regenerated with canonical scripts. VVRD bytes (TIFF SHA-256 `7d776c12…`) remain research-only `DO NOT SUBMIT`; emission was materially catalogue inverse-distance/proximity + blind-zone infill with no trained model or holdout evidence, so they are not a unique-submission solution and not selector evidence.
+- Disposition: FAIL-CLOSED. This session first inserted the guard call, restored canonical cards byte-identical from `34066f4`, normalized the VVRD verdict to `negative` (`registry/vvrd88_run_card.json` / `registry/vvrd88_gate_verdict.json`, `evidence/vvrd88_clearance_withdrawal_20261026.json`) and retired `H88-VVRD` in `registry/hypothesis_queue.json`. The originating session's own PR #202 (`IR-88-AEF1337D-01`) then applied the stronger withdrawal adopted here: generator script, hypothesis document and TIFF/ZIP/sidecar (TIFF SHA-256 `7d776c12…`) **removed from the tree entirely**; only negative metadata records remain. Emission was materially catalogue inverse-distance/proximity + blind-zone infill with no trained model or holdout evidence — not a unique-submission solution and not selector evidence. Inventory is back to 50/50 research-valid, 0 eligible.
+
+## IR-88-AEF1337D-01 — PR #200 unguarded VVRD generation and unsupported validation claims (2026-10-26)
+
+**WITHDRAWN — DO NOT SUBMIT.** Commit `3d46670` explicitly bypassed the generation guard,
+serialized a 25,000-dot catalogue-distance random field without vent/drainage layers,
+skipped buffered holdout, leakage canaries and pre-placement surface checks, marked
+unrun checks as zero/PASS, compared an incomplete registry subset, and reported
+`promote-to-selector-only` despite the literal stop. Its TIFF was written twice with
+the same hash after a timed-out initial attempt. No weekly slot was spent.
+
+Removed generator and active TIFF/ZIP/receipt, withdrew its unsupported hypothesis
+document and competing page banner, and restored the six overwritten canonical files.
+Original TIFF SHA-256: `7d776c12a4e89f8c2a5679f268e7ae11912dd688bbbfab8286d95149eb3640f1`.
+New measurements are null, not fabricated zero scores. Fresh pinned-byte preflight
+returns `DUPLICATE_STOP` (exit 2), so no replacement raster is authorized.
+
+[Correction report](research/session-aef1337d-review.md) ·
+[Withdrawal certificate](evidence/vvrd88_withdrawal_20261026.json) ·
+[Regression tests](tests/test_vvrd88_withdrawal.py). The urgent unique-TIFF requirement
+remains unmet; this correction is not a successful candidate or slot recommendation.
