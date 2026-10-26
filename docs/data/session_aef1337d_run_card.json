@@ -99,7 +99,7 @@
     "evidence/run-card.json": "96f8893f4d1a362982ec06b6781a9c8ee4c7045521542cd0c8f52ce002d93af5",
     "registry/run_card.json": "96f8893f4d1a362982ec06b6781a9c8ee4c7045521542cd0c8f52ce002d93af5",
     "registry/gate_verdict.json": "2b0a2c778ca9550a7841f48b4d92b4135ade97d008a5c8b942046fb8faa62fe4",
-    "docs/executive-summary.html": "9c27587be9718e73549f07b607c38c2993674bbd8c36807ae1c581253f29c7eb"
+    "docs/executive-summary.html": "c5d17e21cb40472d5db9e2f147d9f22ccddf459e99450df9849fe824192447bf"
   },
   "official_source": {
     "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",

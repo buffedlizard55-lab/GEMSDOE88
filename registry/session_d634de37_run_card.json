@@ -1,0 +1,194 @@
+{
+  "schema": "gems88.session-run-card.v1",
+  "run_id": "GEMSDOE88-D634DE37-FOCUS-SITES-AUDIT-20261026",
+  "session_branch": "arena/d634de37-gemsdoe88",
+  "date_utc": "2026-10-26",
+  "status": "DUPLICATE_STOP",
+  "lane": "H88-LGOF (conditional first choice alongside source-bound H88-SPR; pre-placement DUPLICATE_STOP triggered before model fitting)",
+  "hypothesis": "H88-LGOF: LiDAR-Gap Monotone Quantile-Calibrated Subsurface Expert + Hydraulic-Head Outflow-to-Upflow Back-Tracking with B2-Pruned (d_cat > 2 px) min_sep=2.8 px 300 m CELF Allocation (ranked #1 of 5 untried 2026-10-26 hypotheses H88-LGOF, H88-SEMD, H88-PHCT, H88-CFRS, H88-3DEP-INSAR alongside the source-bound queue H88-SPR, H88-AWA, H88-CBC).",
+  "mechanism": "Trains a dedicated LiDAR-blind potential-field/hydrothermal/seismogenic expert (M_sub) across the 24.63% 1 m 3DEP LiDAR coverage gap and a full morphotectonic+subsurface expert (M_full) on the 75.37% LiDAR-covered footprint, stitched via out-of-fold monotone isotonic quantile calibration on a 4-pixel (400 m) tile-boundary collar; back-projects cooled chemical-geothermometer disequilibrium outflow wells 1.5-3.5 km up hydraulic head onto 60-degree up-dip B11=0/B18 basement steps after 400 m E-W flight-line notch filtering; and allocates 37,654 B2 (d_cat > 2 px) binary dots via min_sep=2.8 px 300 m triangular-kernel CELF.",
+  "named_non_fault_mimic": "USGS 1 m 3DEP project-boundary seam lines and Pleistocene Lake Lahontan (~1,330 m) contour-parallel wave-cut benches and carbonate Tufa mounds (158 records in Paleo_geothermal_final.csv), plus flat closed-basin playa evaporite brines (high B17 cond_surf, zero B15 basement throw).",
+  "holdout_dti": {
+    "status": "NOT_RUN_IN_THIS_SESSION_PREPLACEMENT_DUPLICATE_STOP",
+    "reason": "Mandatory pre-placement gate scripts/preflight_mtas88.py --gate-generation exited with code 2 (DUPLICATE_STOP) before feature extraction or model fitting because data/registry/dense_17gemdoe.tif covers 100.00% (5,106,385 / 5,106,385) of allowed off-catalogue footprint cells.",
+    "historical_repo_reference_not_new_run": {
+      "H88-CON_con88_consensus": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-holdout-v1",
+        "withheld_positives": 45863,
+        "folds": 5,
+        "buffer_px": 5.0,
+        "pooled_dti": 0.172665,
+        "ci95": [
+          0.144965,
+          0.194503
+        ]
+      },
+      "H88-BPWD_bpwd88_worm_conduit": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-holdout-v1",
+        "withheld_positives": 45863,
+        "folds": 5,
+        "buffer_px": 5.0,
+        "pooled_dti": 0.205991,
+        "ci95": [
+          0.177928,
+          0.227928
+        ]
+      },
+      "H88-TDKL_canonical_research_artifact": {
+        "label": "HOLDOUT-DTI",
+        "evaluator_version": "gems57-pooled-hide-v2",
+        "withheld_positives": 22893,
+        "folds": 8,
+        "pooled_dti": 0.196237,
+        "ci95": [
+          0.179465,
+          0.212751
+        ]
+      }
+    },
+    "organizer_confirmed_score": null
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "threshold_auc": 0.9,
+    "historical_con88_max_single_feature_auc": 0.614905,
+    "historical_con88_max_feature_name": "f22_tilt_grad_mag"
+  },
+  "correlation_and_overlap_vs_registry": {
+    "gate_script": "scripts/preflight_mtas88.py --gate-generation",
+    "gate_exit_code": 2,
+    "decision": "DUPLICATE_STOP",
+    "new_rasters_generated": 0,
+    "universal_witness_file": "data/registry/dense_17gemdoe.tif",
+    "universal_witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_off_catalogue_footprint_pixels": 5106385,
+    "witness_positive_allowed_pixels": 5106385,
+    "witness_3px_disk_coverage_fraction": 1.0,
+    "literal_3px_overlap_threshold": 0.7,
+    "literal_spearman_threshold": 0.9,
+    "focus_sites_audit_summary": {
+      "audit_file": "evidence/focus_sites_20261026_audit.json",
+      "focus_sites_inspected": 9,
+      "cached_tiffs_inspected": 44,
+      "unique_historical_champions_count": 0,
+      "cleared_for_submission_count": 0,
+      "historical_champion_3px_overlap_vs_gems19_h19_5_range": [
+        0.977505,
+        1.0
+      ],
+      "historical_champion_3px_overlap_vs_dense_17gemdoe": 1.0,
+      "flagged_irregularities_20261026": [
+        "IR-88-D634DE37-01: GEMSDOE27 (commit 426426b) headlines H31-1 DRCG-WL (SHA-256 2c002b02...) as OK TO SUBMIT with HOLDOUT-DTI = 0.047302 (buffered) / 0.115636 (unbuffered), while screening against only 27-30 rasters (omitting dense_17gemdoe 1.0000 > 0.70 and calib_h161 0.6200), covering 88.79% (33,434/37,654 > 70%) of H29-S's dots within 3 px, printing stale README stats (0.0568/39.77% vs run-card 0.1645/62.80%), and violating Rule 6 selector separation.",
+        "IR-88-D634DE37-02: GEMSDOE33 (commit 40f9b86 / fded538) headlines A33-R2-HMDT (SHA-256 8d144302...) as FORMAT PASS (10/10) and OK TO SUBMIT: EXPERIMENTAL, but generated it without sample_submission.tif (footprint_cells=12,279,160), placing 33,616/42,000 (80.04%) dots OUTSIDE the valid study footprint and 108 dots on existing_faults.tif in contiguous row-major scanlines (row 0 cols 713..858, nn_min_px=1.0), with Holdout: NOT MEASURED.",
+        "IR-88-C59DB412-02 (confirmed by GEMSDOE32 commit 9e55d5d): GEMSDOE32 self-demoted R6-1-stepprofile (SHA-256 c7f094c1...) to DO NOT SUBMIT after confirming buffered catalogue holdout loss (0.00338 < 0.00452) and lattice/dense overlap.",
+        "IR-88-C59DB412-01 (resolved in d634de37 prompt): 'gems28-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan:0.2715' was removed from the GEMSDOE28 prompt block after confirming byte-identity (33003374...) with GEMSDOE27's 0.2449 file."
+      ]
+    }
+  },
+  "raster_sha256": null,
+  "canonical_research_only_artifact": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+    "positive_pixels": 25000,
+    "status": "ARCHIVED_RESEARCH_ONLY_DO_NOT_SUBMIT"
+  },
+  "archived_research_download": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+    "new_in_this_session": false,
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false
+  },
+  "validator_output": {
+    "new_raster_generated": false,
+    "published_research_tiffs_audited": 50,
+    "all_published_tiffs_format_valid": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "in_footprint_nan_count": 0,
+    "full_grid_nan_count": 0,
+    "full_grid_inf_count": 0,
+    "value_range": [
+      0.0,
+      1.0
+    ]
+  },
+  "ranked_untried_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H88-LGOF",
+      "name": "Listric Growth-Strata Overburden Flexure & Up-Dip Hanging-Wall Relay",
+      "expected_gain_tier": "Highest",
+      "cost": "Low"
+    },
+    {
+      "rank": 2,
+      "id": "H88-SEMD",
+      "name": "Structural-Entropy Multi-Modal Dislocation & Poisson-Ratio / Curie Step",
+      "expected_gain_tier": "High",
+      "cost": "Low-Medium"
+    },
+    {
+      "rank": 3,
+      "id": "H88-PHCT",
+      "name": "Poroelastic Hydro-Mechanical Coupled Tensor & Up-Dip Convective Plume",
+      "expected_gain_tier": "Medium-High",
+      "cost": "Low-Medium"
+    },
+    {
+      "rank": 4,
+      "id": "H88-CFRS",
+      "name": "Cross-Fan Alluvial-Apex Offset & Play-Fairway Relay Step",
+      "expected_gain_tier": "Medium",
+      "cost": "Low"
+    },
+    {
+      "rank": 5,
+      "id": "H88-3DEP-INSAR",
+      "name": "3DEP 1-m Micro-Scarp Curvature + OPERA DInSAR Vertical-Velocity Step",
+      "expected_gain_tier": "High (once external rasters cached)",
+      "cost": "High"
+    }
+  ],
+  "budget": {
+    "geological_experiments_run": 0,
+    "max_experiments": 3,
+    "max_hours": 2.0
+  },
+  "submission_name": "NO-NEW-SUBMISSION-D634DE37-DUPLICATE-STOP-DO-NOT-SUBMIT",
+  "submission_note": "GEMS88 d634de37: DUPLICATE_STOP (17GEMSDOE 100%>70%; 0/9 focus sites unique or cleared). 0 new TIFs; 0 slots spent. DO NOT SUBMIT.",
+  "submission_note_length": 130,
+  "submission_note_characters": 130,
+  "ok_to_download_research_archive": true,
+  "ok_to_submit": false,
+  "weekly_slots_spent": 0,
+  "weekly_slots_used": 0,
+  "experiments_run_in_session": 0,
+  "browser_evidence": "evidence/session_d634de37_browser_check.json",
+  "verification": {
+    "browser_evidence": "evidence/session_d634de37_browser_check.json",
+    "browser_status": "PASS",
+    "con88_withdrawal_evidence": "evidence/con88_clearance_withdrawal_20261025.json",
+    "con88_validator_optimized_pass": true,
+    "focus_sites_audit_optimized_pass": true,
+    "completed_at_utc": "2026-10-26T05:05:00Z"
+  },
+  "verdict": "negative"
+}
