@@ -206,7 +206,7 @@
     "browser_status": "PASS",
     "generation_guard_exit": 2,
     "optimized_preflight_exit": 2,
-    "full_suite": "PENDING_FINAL_RECHECK",
+    "full_suite": "PASS",
     "browser_checked_at_utc": "2026-10-26T22:17:08.805Z",
     "browser_focus_freshness": {
       "fresh_snapshot_pass": true,
@@ -237,7 +237,8 @@
     },
     "browser_scope": "Chromium receipt measures the pinned checkout at browser_checked_at_utc; the six-hour deployment freshness snapshot may subsequently change.",
     "github_actions": "NOT_RUN_LOCALLY; check PR workflow results separately",
-    "browser_partial_disk_snapshot": "PASS; test-only simulated HEADs explicitly marked"
+    "browser_partial_disk_snapshot": "PASS; test-only simulated HEADs explicitly marked",
+    "full_suite_recorded_at_utc": "2026-10-26T22:31:49.078609+00:00"
   },
   "limitations": [
     "No new surface, holdout, canary or candidate raster exists.",

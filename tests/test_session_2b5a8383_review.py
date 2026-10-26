@@ -28,6 +28,9 @@ def test_negative_session_card_is_mirrored_and_distinguishes_no_candidate():
     assert card['validator_output']['status'] == 'NOT_RUN_NO_NEW_RASTER'
     assert card['budget']['geological_experiments_run'] == 0
     assert card['budget']['weekly_slots_used'] == 0
+    assert card['verification']['full_suite'] == card['verification']['full_pytest_status'] == 'PASS'
+    assert '971 passed, 23 skipped' in card['verification']['full_pytest']
+    assert 'PENDING' not in json.dumps(card['verification'])
     assert 0 < len(card['submission_note']) == card['submission_note_characters'] <= 140
     assert [p['id'] for p in card['conditional_ranked_hypotheses']] == ['H88-SPR', 'H88-AWA', 'H88-CBC']
     archive = card['archived_research_download']
