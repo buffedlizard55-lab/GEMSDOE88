@@ -10,7 +10,7 @@
 | Weekly slot | **0** |
 | Organizer-confirmed score | **none** |
 
-Canonical research download remains [H88-BPWD](../docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif) (SHA-256 `b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777`) or educational [H88-TDKL](../docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif). **Do not upload any file whose name contains `DO-NOT-SUBMIT`.**
+Canonical research download remains [H88-BPWD](../downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif) (SHA-256 `b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777`) or educational [H88-TDKL](../downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif). **Do not upload any file whose name contains `DO-NOT-SUBMIT`.**
 
 ## Why H33 (`0.2778`) is not a target we can copy
 
