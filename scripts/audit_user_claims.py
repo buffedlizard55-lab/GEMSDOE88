@@ -49,7 +49,7 @@ def extract(text: str) -> dict:
 
 
 def main(root: Path = ROOT) -> None:
-    source = root / "USER_PROMPT_20261025.md"
+    source = root / "USER_PROMPT_20261026.md"
     report = extract(source.read_text())
     report["request_file"] = source.name
     report["request_sha256"] = hashlib.sha256(source.read_bytes()).hexdigest()

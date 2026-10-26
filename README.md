@@ -1,12 +1,31 @@
 # GEMSDOE88 — audited fault discovery and submission gates
 
-## ⛔ CURRENT DECISION: NO TIFF IS CLEARED TO SUBMIT
+## ⛔ CURRENT DECISION (`2026-10-26`, Session `c59db412`): DOWNLOAD FOR RESEARCH: `YES` · SUBMIT TO COMPETITION: `NO — DO NOT SUBMIT`
 
-**Do not submit any artifact from this repository at this time (`ok_to_submit: false`, `protocol_eligible_count: 0`, `0` weekly slots spent).** The shared protocol preflight (`python scripts/preflight_mtas88.py --gate-generation` / `python scripts/generation_guard.py`) returns a binding `DUPLICATE_STOP` (exit `2`): the SHA-pinned `17GEMSDOE` dense registry witness (`ab0a0a62…`) covers every one of the `5,106,385` allowed footprint pixels, so every nonempty candidate has 3-pixel forward overlap `1.0000 > 0.70` (and sibling `GEMSDOE87:gems87-bmtd` also produces `0.8912 > 0.70`). The authoritative current status is [`docs/status.json`](docs/status.json), with supporting negative run card [`docs/data/session_0df81d99_run_card.json`](docs/data/session_0df81d99_run_card.json) (integrating [`session_587c7f22`](docs/data/session_587c7f22_run_card.json), [`session_3c391d97`](docs/data/session_3c391d97_run_card.json), and [`session_96f5f523`](docs/data/session_96f5f523_run_card.json)). No new TIFF was produced in session `0df81d99`; no score is established by a projection or local validation.
+**Do not submit any artifact from `GEMSDOE88` or any of the 9 focus repositories at this time (`ok_to_submit: false`, `protocol_eligible_count: 0`, `0` weekly slots spent, `0/9` focus sites unique or cleared).**
+- **Canonical educational download (learning/research only — DO NOT SUBMIT):** [`docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) (`SHA-256: db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf`, strict finite `[0, 1]`, `0` NaN/Inf, `EPSG:32611`, `3730×3292`, exact sample geotransform `(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)`).
+- **Prepared audit identifier & `<= 140`-char note (record only — NOT upload clearance):** `GEMSDOE88-FOCUS9-AUDIT-20261026-NO-NEW-FILE` — `Focus9 audit 20261026: 0/9 unique (H19-5/D2.8 family) & 17GEMSDOE overlap 1.0>0.70; 0 new TIF; 0 slots; DO NOT SUBMIT` (`116/140` chars).
+- **Binding `DUPLICATE_STOP` (exit `2`):** The shared protocol preflight (`python scripts/preflight_mtas88.py --gate-generation` / `python scripts/generation_guard.py`) returns `DUPLICATE_STOP` (exit `2`): the SHA-pinned `17GEMSDOE` dense registry witness (`ab0a0a62…`) covers every one of the `5,106,385` allowed footprint pixels, so every nonempty candidate has literal 3-pixel forward overlap `1.0000 > 0.70` (and sibling `GEMSDOE87:gems87-bmtd` also produces `0.8912 > 0.70`). The authoritative current status is [`docs/status.json`](docs/status.json), with supporting negative run card [`docs/data/session_c59db412_run_card.json`](docs/data/session_c59db412_run_card.json) (preserving [`session_0df81d99`](docs/data/session_0df81d99_run_card.json), [`session_587c7f22`](docs/data/session_587c7f22_run_card.json), [`session_3c391d97`](docs/data/session_3c391d97_run_card.json), and [`session_96f5f523`](docs/data/session_96f5f523_run_card.json)). No new TIFF was produced in session `c59db412`; no score is established by a projection or local validation.
+
+### Executive Summary: Nine Focus Sites (`GEMSDOE24`, `25`, `27`, `28`, `30`, `31`, `32`, `33`, `36`) — `0/9` Unique · `0/9` Cleared to Submit
+
+Machine-verified in IEEE-754 `float64` via `python -O scripts/audit_focus_sites_20261026.py` ([audit JSON](evidence/focus_sites_20261026_audit.json) · [published JSON](docs/data/focus_sites_20261026.json) · [executive CSV](docs/data/focus_sites_20261026.csv) · [full 3-pass PhD review](research/session-c59db412-review.md) · [5 ranked untried hypotheses (`H88-PTGM..H88-3DEP-SCARP`)](research/session-c59db412-hypotheses.md)). All user-supplied scores below are **`USER-REPORTED CLAIMS` (`0` organizer receipts)**.
+
+| Focus Site | Highest-Scoring Candidate (`USER-REPORTED`) | TIFF SHA-256 · Emitted Dots · `[0,1]` Safe | 3-px Overlap (`H19-5` / `17GEMSDOE`) | Uniqueness & Exact Set Relationship | Recent `2026-10-25/26` Run Audit | Submit? |
+|---|---|---|---|---|---|:---:|
+| **[GEMSDOE24](https://buffedlizard55-lab.github.io/GEMSDOE24/)** | `h25-1-dotted-h19-5-d1-5-…-989f59505db1-nan`: **`0.2477`** | `68d0e2e4…` · `60,069` · `-nan`: No (twin `3e0730e8…`: Yes) | **`1.0000` / `1.0000`** | **DUPLICATE (`D1.5` parent):** `1.5 px` thin of `H19-5`; `0`-px subset of `GEMSDOE27`. | `GVC1` `0.0859` (`5.63% >25 px`); `RSHG-1` `SUBMIT: NO` (`0.1290 < 0.1300`). | **NO** |
+| **[GEMSDOE25](https://buffedlizard55-lab.github.io/GEMSDOE25/)** | `dotted-h19-5-d2-8-…-e56ea318af89-nan`: **`0.2600`** | `91eae1ca…` · `44,090` · `-nan`: No (twin `3e78737f…`: Yes) | **`1.0000` / `1.0000`** | **DUPLICATE (`D2.8` trunk):** `2.8 px` thin of `H19-5`; **`100%` pixel-identical to `GEMSDOE30`**. | `H66` `0.0742` (`1.18% >25 px`, 21-peer lattice duplicate). | **NO** |
+| **[GEMSDOE27](https://buffedlizard55-lab.github.io/GEMSDOE27/)** | `topo-gap-closure-t-v2-on-d1-5-…-5512495c6bd1-nan`: **`0.2449`** | `33003374…` · `61,328` · `-nan`: No (twin `9d3d7a31…`: Yes) | **`0.9806` / `1.0000`** | **DUPLICATE (`D1.5 + 1,259` `T-v2` links):** `-0.0028` drag vs `D1.5`. | `H29` **`0.2190`** (`37.87% >25 px`, best off-`H19-5` claim, already scored); `H30` `DO NOT SUBMIT`. | **NO** |
+| **[GEMSDOE28](https://buffedlizard55-lab.github.io/GEMSDOE28/)** | Verified distinct: `h36-1-rung30-blind-r1-…-b531dae0a36f-nan`: **`0.2710`** *(prompt `0.2715` = `IR-88-C59DB412-01`)* | `5556aa14…` · `37,660` · `-nan`: No (twin `7c74270a…`: Yes) | **`1.0000` / `1.0000`** | **DUPLICATE:** `99.88%` 3-px vs `H33-2-B2`; `5512495c6bd1` in `GEMSDOE28` is byte-identical (`33003374…`) to `GEMSDOE27` `0.2449`. | `S18-MXTP` `0.0217` (`11,082` px); `S19-ASCP` & `H39-1` `DO NOT SUBMIT`. | **NO** |
+| **[GEMSDOE30](https://buffedlizard55-lab.github.io/GEMSDOE30/)** | `d28-poisson300m-offcat-44090-…-91eae1ca`: **`0.2600`** | `8cf893ea…` · `44,090` · **Yes** | **`1.0000` / `1.0000`** | **EXACT PIXEL DUPLICATE of `GEMSDOE25`:** `44,090/44,090` (`100%`) identical dots. | `MSDB1` `0.1462` (`7,111,787` NaNs); `nearslay` flagged `IR-88-C59DB412-04` (`NaN`s, `0% >25 px`). | **NO** |
+| **[GEMSDOE31](https://buffedlizard55-lab.github.io/GEMSDOE31/docs/)** | `h27-4-solo-d28-…-8acb75e1-nan`: **`0.2708`** | `07b6db44…` · `40,199` · `-nan`: No (twin `acd85393…`: Yes) | **`1.0000` / `1.0000`** | **EXACT SUBSET (`SOLO-D2.8`, `B=1`):** `D2.8` minus `3,891` `d_cat==1` dots; `100%` == `GEMSDOE28` `solo`. | `H31M` & `TGJ31` (`0.00828`) marked `DO NOT SUBMIT`. | **NO** |
+| **[GEMSDOE32](https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html)** | `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`: **`0.2778`** (#1 of 92 sites) | `c55bafc4…` · `37,654` · **Yes** (`le2=0`, `gt25=41.74%`) | **`1.0000` / `1.0000`** | **EXACT SUBSET (`H33-2-B2`, `B=2`):** `SOLO-D2.8` minus `2,545` `1<d<=2` dots; in `data/registry/h33_education.tif`. | `R6-1-stepprofile` (`c7f094c1…`) **rejected (`IR-88-C59DB412-02`)**: fails catalogue holdout (`0.00338 < 0.00452`) & lattice (`0.9782 > 0.70`). | **NO** |
+| **[GEMSDOE33](https://buffedlizard55-lab.github.io/GEMSDOE33/)** | `h33d-analog-tip-stepover-r30-…-cb490425926e`: **`0.2632`** | `87f857d5…` · `41,865` · **Yes** | **`0.9971` / `1.0000`** | **DUPLICATE:** `99.71%` 3-px vs `H19-5`, `83.25%` 0-px in `D2.8` (`IR-88-C59DB412-03`). | `A33-L1` (`2bbbf7e3…`) `NOT OK TO SUBMIT` (`Δ = -0.00487`, `0/4` folds). | **NO** |
+| **[GEMSDOE36](https://buffedlizard55-lab.github.io/GEMSDOE36/docs/)** | `anderson-geothermal-pinn-38854-…-9b9ea4e6-zeros`: **`0.2750`** (#2 of 92 sites) | `e1589102…` · `38,854` · **Yes** | **`0.9775` / `1.0000`** | **EXACT SUPERSET of `H33-2-B2`:** `100%` of `H33-2-B2` (`37,654`) + `1,200` PINN dots (`-0.0028` drag). | Negative run card (`0` new TIFFs). | **NO** |
 
 All **48** TIFF/ZIP pairs (47 main downloads + 1 historical variant) are audited; **48** pass local research checks; **0** are submission-eligible (including canonical educational download [`H88-TDKL`](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) and archived [`H88-CON88`](docs/downloads/gems88-con88-consensus-ridge-37654dots-20261025T161406Z-zeros-DO-NOT-SUBMIT.tif)), plus **20/20** repo-side `submissions/` archives — **research/education artifacts only (`DOWNLOAD FOR RESEARCH: YES · SUBMIT: NO — DO NOT SUBMIT`)**, validated automatically without human intervention across two independent TIFF decoders (`rasterio` + `tifffile`, strict finite `[0, 1]`, `0` NaN/Inf, `EPSG:32611`, `3730×3292`, exact sample geotransform). PR #158's unauthorized `H88-CON88` equal-support promotion (`HOLDOUT-DTI = 0.0017` vs `H88-BPWD` `0.205991`, guard bypass, unmarked filename) was formally withdrawn (`IR-88-96F5F523-01` / `IR-88-3C391D97-01` / `IR-88-587C7F22-01` / `IR-88-0DF81D99-02`; [withdrawal certificate](evidence/con88_clearance_withdrawal_20261025.json)) with unchanged GeoTIFF bytes (`SHA-256: e830b58e…`), restoring `97/97` enforced candidate entrypoints.
 
-[Executive submission guide](docs/executive-summary.html) · [Submission stop summary](docs/SUBMIT.md) · [Latest three-pass review & PhD H33 forensics (`0df81d99`)](research/session-0df81d99-review.md) · [Four ranked untried hypotheses (`0df81d99`)](research/session-0df81d99-hypotheses.md) · [Parallel review (`587c7f22`)](research/session-587c7f22-review.md) · [Parallel review (`3c391d97`)](research/session-3c391d97-review.md) · [Source-bound JSON queue](registry/hypothesis_queue.json)
+[Executive submission guide](docs/executive-summary.html) · [Submission stop summary](docs/SUBMIT.md) · [Latest 9-focus-site review & PhD `0.2778` forensics (`c59db412`)](research/session-c59db412-review.md) · [Five ranked untried hypotheses (`c59db412`)](research/session-c59db412-hypotheses.md) · [9-focus-site audit JSON](evidence/focus_sites_20261026_audit.json) · [Prior review (`0df81d99`)](research/session-0df81d99-review.md) · [Source-bound JSON queue](registry/hypothesis_queue.json)
 
 **H33 score context:** `0.2778` (`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`, SHA-256 `c55bafc4…`, `37,654` dots) is **`USER-REPORTED`**, not an `ORGANIZER-CONFIRMED` receipt (`GEMSDOE32/registry/submission_build.json` explicitly records `"NO ORGANISER SCORE EXISTS"`). Never represent user-reported claims or projections as `HOLDOUT-DTI` or `ORGANIZER-CONFIRMED`.
 
@@ -28,7 +47,7 @@ Session e44e3ebe (CON88 clearance-claim correction in `docs/con88.html`): [revie
 
 ### Start here every session
 
-Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_PROMPT_20261025.md), and [AGENTS.md](AGENTS.md). The request is also embedded below. Do not append a competing “current candidate” banner or bypass the generation preflight.
+Read this README, [PROMPT.md](PROMPT.md), the [complete recorded request](USER_PROMPT_20261026.md) (and historical [USER_PROMPT_20261025.md](USER_PROMPT_20261025.md)), and [AGENTS.md](AGENTS.md). The request is also embedded below. Do not append a competing “current candidate” banner or bypass the generation preflight.
 
 Current branch's audit-only review: [three-pass repository review](research/review-arena-89f65d48-20261025.md) · [machine-readable negative run card](evidence/repo_review_arena_89f65d48_20261025.json). Full suite: 805 passed / 23 skipped; preflight: `DUPLICATE_STOP`; no new TIFF or slot. This adds no upload clearance and does not change the research-only download decision.
 
@@ -161,13 +180,15 @@ Fixed an all-download audit blind spot: orphan ZIPs (including uppercase suffixe
 <summary>Complete recorded user request — read at the beginning of every session</summary>
 
 <!-- USER-REQUEST:START -->
-# User request recorded for future sessions — 2026-10-25
+# User request recorded for future sessions — 2026-10-26
 
 Human request below. Markdown link formatting is normalized; the repeated instructions and supplied result list are retained. User-supplied performance figures are claims, not verified organizer receipts. This request does not override the binding duplicate-stop rule. Read README.md and PROMPT.md first on every session.
 
 ---
 
 Review the repo.
+
+I want to focus on the highest scoring submissions from the following sites, GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36.
 
 THE FOLLOWING IS THE HIGHEST URGENCY AND MUST BE FOLLOWED!
 
@@ -817,15 +838,89 @@ gems90-cnc-35000dots-20261024T084324Z:0.0749
 
 https://buffedlizard55-lab.github.io/GEMSDOE91/
 
-s17-cwpc-e3:0.1367
+gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros:0.1367
 
-s17-lftg:0.1823
+gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros:0.1823
+
+gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405:
 
 ....
 
 https://buffedlizard55-lab.github.io/GEMSDOE92/
 
-listricdip-updip50:0.0255
+gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros:0.0255
+
+....
+
+https://buffedlizard55-lab.github.io/GEMSDOE24/
+
+h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan: 0.2477
+
+gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros:0.0859
+
+....
+
+https://buffedlizard55-lab.github.io/GEMSDOE25/
+
+dotted-h19-5-d2-8-20261002-e56ea318af89-nan: 0.2600
+
+gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros:0.0742
+
+....
+
+https://buffedlizard55-lab.github.io/GEMSDOE27/
+
+topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan: 0.2449
+
+gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite:0.2190
+
+....
+
+https://buffedlizard55-lab.github.io/GEMSDOE28/
+
+gems28-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan:0.2715
+
+h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan: 0.2708
+
+h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan: 0.2649
+
+h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan: 0.2710
+
+h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan: 0.2707
+
+gems28-s18-mxtp-20261025-3e95505c011a-allfinite:0.0217
+
+....
+
+https://buffedlizard55-lab.github.io/GEMSDOE30/
+
+d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca: 0.2600
+
+gems30-MSDB1-edge44090-20261025-e7856ec3f14a:0.1462
+
+....
+
+https://buffedlizard55-lab.github.io/GEMSDOE31/docs/
+
+h27-4-solo-d28-20261004-8acb75e1-nan:0.2708
+
+....
+
+https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html
+
+h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros: 0.2778
+
+....
+
+https://buffedlizard55-lab.github.io/GEMSDOE33/
+
+h33d-analog-tip-stepover-r30-20261004-cb490425926e: 0.2632
+
+....
+
+https://buffedlizard55-lab.github.io/GEMSDOE36/docs/
+
+anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros: 0.2750
 
 ....
 
