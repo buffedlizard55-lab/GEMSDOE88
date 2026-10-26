@@ -1,0 +1,79 @@
+{
+  "schema": "gems88.run_card.v1",
+  "run_id": "GEMSDOE88-AB1E8D18-20261026",
+  "branch": "arena/ab1e8d18-gemsdoe88",
+  "generated_utc": "2026-10-26T16:08:00Z",
+  "lane": "protocol-gated review only",
+  "lane_status": "STOPPED at shared pre-placement generation guard; prompt supplied no unambiguous single-method paragraph",
+  "hypothesis": "No new candidate hypothesis was tested. Conditional first proposal in the existing queue is H88-SPR: repeated, signed scarp-profile restoration against matched drainage and shoreline controls.",
+  "mechanism": "If later authorized, fit cross-validated smooth-landform-plus-step versus no-step profiles in independent swaths using cached elevation, LiDAR scarp and DEM chi layers. No feature construction, fitting, placement or writing occurred in this run.",
+  "named_non_fault_process": "Fluvial terrace risers and constant-elevation pluvial shoreline benches can mimic scarp profiles.",
+  "holdout": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT RUN — pre-placement duplicate stop",
+    "evaluator_version": "gems57-pooled-hide-v2 (not invoked)",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "reason": "No candidate was fit or emitted; no fresh holdout score exists."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "surface_rank_correlation": null,
+    "surface_created": false,
+    "final_dot_overlap_3px": null,
+    "final_dots_created": false,
+    "universal_lower_bound_overlap_3px_for_any_nonempty_allowed_dot_set": 1.0,
+    "maximum_allowed_overlap": 0.70,
+    "coverage_fraction_of_allowed_pixels": 1.0,
+    "uncovered_allowed_pixels": 0,
+    "verdict": "DUPLICATE_STOP before surface and placement"
+  },
+  "raster_sha256": null,
+  "raster_file": null,
+  "validator_output": {
+    "status": "NOT RUN — no new raster",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null,
+    "reason": "No new TIFF was written; historical artifact format validation is not new-candidate clearance."
+  },
+  "submission_name": null,
+  "submission_note": "GEMSDOE88: DUPLICATE_STOP; no unique TIFF built; no new holdout or organizer score; DO NOT SUBMIT.",
+  "submission_note_characters": 98,
+  "new_rasters_generated": 0,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "evidence": {
+    "organizer_receipts_verified": 0,
+    "user_reported_h33_score": 0.2778,
+    "user_reported_h33_score_status": "USER-REPORTED CLAIM — not ORGANIZER-CONFIRMED",
+    "current_leaderboard_verified": false,
+    "focus_site_audit": "DUPLICATE_STOP; 0/9 historical champions cleared",
+    "checks": {
+      "pytest": "932 passed, 23 skipped",
+      "render_decision_check": "PASS",
+      "check_site_normal": "PASS",
+      "check_site_optimized": "PASS",
+      "audit_research_state": "PASS; generation unauthorized",
+      "audit_downloads": "PASS; 0 protocol-eligible artifacts",
+      "validate_current": "PASS as expected negative; do not submit"
+    }
+  },
+  "verdict": "negative",
+  "decision": "DUPLICATE_STOP",
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "limitations": [
+    "No new GeoTIFF exists; no filename or candidate score is available.",
+    "No holdout was run in this session because the universal overlap stop precedes candidate construction.",
+    "The full R0 startup audit requires pinned training and bridge inputs not included in validation-tier restore.",
+    "The site scores 0.2477 through 0.2778 and leaderboard references 0.3195 / 0.4413 remain user-reported claims without receipts.",
+    "Competition portal, current leaderboard, weekly quota, license terms and official USGS pages were not freshly verified from this network."
+  ]
+}
