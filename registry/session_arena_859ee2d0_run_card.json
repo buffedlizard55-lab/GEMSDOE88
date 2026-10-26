@@ -1,0 +1,84 @@
+{
+  "schema": "gems88.session-run-card.v1",
+  "run_id": "GEMSDOE88-ARENA-859EE2D0-REPOSITORY-REVIEW-20261026",
+  "date_utc": "2026-10-26",
+  "session_branch": "arena/859ee2d0-gemsdoe88",
+  "hypothesis": "H88-SPR is the source-bound conditional first-choice research hypothesis: repeated topographic scarp-profile restoration may identify weak or cover-softened fault-related steps not catalogued. It was not tested in this review because the mandatory pre-placement uniqueness gate stopped the run.",
+  "mechanism": "If separately authorized, compare smooth-landform-plus-signed-step profile fits against no-step controls across independent along-strike swaths, exclude drainage-adjacent samples, and measure repeatability; use the shared cached features and shared holdout/evaluator, not a private metric.",
+  "named_non_fault_process": "Fluvial terrace risers and constant-elevation pluvial shoreline benches can mimic fault-scarp profile steps.",
+  "holdout_dti": {
+    "evidence_class": "NOT_RUN",
+    "evaluator_version": "vendor/gems57/evaluate_holdout.py (gems57-pooled-hide-v2)",
+    "withheld_positives": null,
+    "ci95": null,
+    "reason": "Mandatory shared pre-placement preflight returned DUPLICATE_STOP before feature construction; no candidate or holdout prediction was produced."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "surface_status": "NOT_MEASURED_NO_CANDIDATE_SURFACE",
+    "final_dots_rank_correlation": null,
+    "final_dots_overlap_3px": null,
+    "final_dots_status": "NOT_MEASURED_NO_CANDIDATE_DOTS",
+    "threshold_rank_correlation": 0.9,
+    "threshold_3px_overlap": 0.7,
+    "literal_registry_witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_footprint_pixels": 5106385,
+    "witness_directly_covered_allowed_pixels": 5106385,
+    "universal_nonempty_candidate_overlap_lower_bound": 1.0,
+    "gate_decision": "DUPLICATE_STOP"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "candidate_raster": "NOT_CREATED",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_matches_sample": null,
+    "shape_matches_sample": null,
+    "transform_matches_sample": null,
+    "status": "NOT_RUN_NO_CANDIDATE",
+    "existing_archive_format_audit": {
+      "status": "HISTORICAL_EVIDENCE_ONLY_NOT_A_NEW_VALIDATION",
+      "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+      "historical_local_format_result": "PASS",
+      "submit_approval": false
+    }
+  },
+  "submission_name": "NO-NEW-SUBMISSION-ARENA859EE2-DUPLICATE-STOP-DO-NOT-SUBMIT",
+  "submission_note": "859ee2d0 review: universal registry overlap 1.0 > 0.70; no candidate TIFF, holdout, or slot. DO NOT SUBMIT.",
+  "submission_note_length": 107,
+  "submission_note_status": "AUDIT_IDENTIFIER_ONLY_NOT_FOR_PORTAL",
+  "experiments_run": 0,
+  "experiment_budget_max": 3,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "focus_site_claims": {
+    "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+    "organizer_receipts": 0,
+    "focus_sites": 9,
+    "unique_historical_champions": 0,
+    "cleared_for_submission": 0,
+    "source_audit": "evidence/focus_sites_20261026_audit.json"
+  },
+  "preflight": {
+    "script": "scripts/preflight_mtas88.py --gate-generation",
+    "exit_code": 2,
+    "decision": "DUPLICATE_STOP",
+    "generation_allowed": false,
+    "new_rasters_generated": 0,
+    "source": "SHA-pinned validation-tier restore; see research/session-arena-859ee2d0-review.md"
+  },
+  "verification": {
+    "full_pytest": "932 passed, 23 skipped",
+    "render_decision_check_normal": "PASS",
+    "render_decision_check_optimized": "PASS",
+    "focus_sites_audit_optimized": "PASS committed evidence integrity/schema/witness checks; raw 44-TIFF cache absent",
+    "research_state_check_inputs": "INCOMPLETE: full-stack data/external/dem10_chi_100m_u8.tif absent",
+    "live_leaderboard_or_submission_receipt": "NOT_VERIFIED"
+  },
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative"
+}
