@@ -175,10 +175,11 @@ def test_post_merge_vvrd_withdrawal_and_active_browser_receipt() -> None:
     queue = json.loads((ROOT / "registry/hypothesis_queue.json").read_text(encoding="utf-8"))
     assert "H88-VVRD" in {r["id"] for r in queue["already_evaluated"]}
     assert queue["generation_authorized"] is False and queue["ok_to_submit"] is False
-    # Active-review succession went to session d634de37 (PR #203 merged first);
-    # this session's browser receipt is retained as a historical PASS record.
+    # The prior receipts remain historical; the current review must bind a
+    # fresh browser receipt instead of re-labelling old page hashes as current.
     status = json.loads((ROOT / "docs/status.json").read_text(encoding="utf-8"))
-    assert status["current_review"] == "data/session_d634de37_run_card.json"
+    assert status["current_review"] == "data/session_2b5a8383_run_card.json"
+    assert status["previous_review"] == "data/session_d634de37_run_card.json"
     br_ev = (ROOT / "evidence/session_0b582cf7_browser_check.json").read_bytes()
     assert br_ev == (ROOT / "docs/data/session_0b582cf7_browser_check.json").read_bytes()
     br = json.loads(br_ev)

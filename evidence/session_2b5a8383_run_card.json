@@ -1,0 +1,249 @@
+{
+  "schema": "gems88.session-run-card.v1",
+  "run_id": "GEMSDOE88-2B5A8383-REVIEW-20261026",
+  "session_branch": "arena/2b5a8383-gemsdoe88",
+  "date_utc": "2026-10-26",
+  "created_at_utc": "2026-10-26T21:59:12.617267+00:00",
+  "status": "DUPLICATE_STOP",
+  "hypothesis": "H88-SPR: Repeated scarp-profile restoration against a drainage/shoreline null (conditional, untested; no experiment started)",
+  "mechanism": "On independent along-strike swaths, fit smooth-landform-plus-signed-step versus no-step profiles; score restoration on held-out profile samples and require a repeatable step away from channel corridors. Use the manifest to decode topographic indices and mask invalid/saturated values.",
+  "named_non_fault_mimic": "Fluvial terrace risers and constant-elevation pluvial shoreline benches",
+  "conditional_ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H88-SPR",
+      "status": "PROPOSED_UNTESTED",
+      "non_fault_mimic": "Fluvial terrace risers and constant-elevation pluvial shoreline benches",
+      "cost": "Medium; cached inputs only"
+    },
+    {
+      "rank": 2,
+      "id": "H88-AWA",
+      "status": "PROPOSED_UNTESTED",
+      "non_fault_mimic": "Differential weathering of adjacent rock units and K-rich transported alluvium",
+      "cost": "Medium; quantization and background fitting need care"
+    },
+    {
+      "rank": 3,
+      "id": "H88-CBC",
+      "status": "PROPOSED_UNTESTED",
+      "non_fault_mimic": "Unfaulted permeable alluvial paleochannels and saline groundwater plumes",
+      "cost": "Medium-high; coarse-field resolution is a major limitation"
+    }
+  ],
+  "holdout_dti": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "dti": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "paired_incumbent_delta": null,
+    "reason": "No candidate surface was constructed or fitted."
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "max_auc": null,
+    "threshold_auc": 0.9
+  },
+  "registry_comparison": {
+    "surface_rank_correlation": null,
+    "surface_rank_correlation_status": "NOT_RUN_NO_SURFACE",
+    "final_dot_overlap": null,
+    "final_dot_overlap_status": "NOT_RUN_NO_NEW_DOTS",
+    "proof_of_any_nonempty_allowed_dot_overlap": 1.0,
+    "threshold_overlap": 0.7,
+    "threshold_spearman": 0.9,
+    "proof": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+      "directly_covered_allowed_pixels": 5106385,
+      "directly_saturated": true,
+      "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+    },
+    "sampled_historical_files_audit": "evidence/focus_sample_2b5a8383.json"
+  },
+  "raster_file": null,
+  "raster_sha256": null,
+  "new_tif_generated": false,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "dtype_float32": null,
+    "crs_shape_transform_match": null,
+    "organizer_acceptance": null
+  },
+  "submission_name": "GEMSDOE88-2B5A8383-NEGATIVE-NO-SUBMISSION",
+  "submission_note": "H88-SPR unrun: dense registry overlap 1.0 > 0.70; no new TIFF or score. DO NOT SUBMIT.",
+  "submission_note_characters": 86,
+  "identifier_scope": "Audit-only identifier and note; not a portal submission.",
+  "archived_research_download": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+    "new_in_this_session": false,
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false,
+    "local_format_audit": {
+      "schema_version": 2,
+      "validator": "gems88-format-audit-v3",
+      "artifact": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+      "checks": {
+        "geotiff": true,
+        "single_band": true,
+        "single_raster_dataset": true,
+        "self_contained_dataset": true,
+        "real_numeric_dtype": true,
+        "dtype_float32": true,
+        "template_single_band": true,
+        "template_single_raster_dataset": true,
+        "template_self_contained_dataset": true,
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "no_nodata_sentinel": true,
+        "all_finite": true,
+        "values_in_0_1": true,
+        "all_pixels_unmasked": true
+      },
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "format_valid": true,
+      "submission_ready": false,
+      "note": "Format only. Holdout, leakage, registry and selector approval are separate.",
+      "footprint_audit": {
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "single_band": true,
+        "geotiff": true,
+        "real_numeric_dtype": true,
+        "no_nan_inside": true,
+        "range_0_1": true,
+        "footprint_nonempty": true,
+        "no_mass_outside": true,
+        "footprint_not_masked": true,
+        "strict_audit": true,
+        "ok": true,
+        "raster_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+        "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+      }
+    }
+  },
+  "h33_geometry_crosscheck": {
+    "schema": "gems88.h33-collar-crosscheck.v1",
+    "checked_at_utc": "2026-10-26T21:45:33.923569+00:00",
+    "method": "Read-only Euclidean binary disk dilation of mapped catalogue; no new prediction",
+    "sha256_inputs": {
+      "data/bridge/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "data/bridge/existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "data/registry/gems25_d28.tif": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+      "data/registry/gems28_h27_4.tif": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "data/registry/h33_education.tif": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    "counts": {
+      "d28": 44090,
+      "solo": 40199,
+      "h33": 37654,
+      "d28_minus_h33": 6436,
+      "d28_minus_h33_at_most_1px": 3891,
+      "d28_minus_h33_gt1_at_most_2px": 2545,
+      "d28_minus_h33_over_2px": 0,
+      "d28_minus_solo": 3891,
+      "solo_minus_h33": 2545,
+      "h33_at_most_2px": 0
+    },
+    "h33_subset_of_d28": true,
+    "h33_subset_of_solo": true,
+    "solo_subset_of_d28": true,
+    "organizer_confirmed_score": null,
+    "limitations": "Geometry of owner-mirror bytes only; user-reported scores have no receipt and causality is unproven."
+  },
+  "focus_sites": {
+    "historical_audit": "evidence/focus_sites_20261026_audit.json",
+    "revision_snapshot": "docs/data/focus-freshness.json",
+    "github_heads_checked_at_utc": "2026-10-26T21:38:08Z",
+    "changed_since_historical_audit": 9,
+    "later_readme_cited_samples": "evidence/focus_sample_2b5a8383.json",
+    "sample_count": 9,
+    "samples_duplicate_stopped": 9,
+    "siblings_claiming_submit_ready_at_pinned_heads": [
+      "GEMSDOE27",
+      "GEMSDOE31"
+    ],
+    "scope": "One sampled file per site at pinned revisions; not an exhaustive or live census."
+  },
+  "data_provenance": {
+    "status": "SHA_PINNED_OWNER_MIRRORS_RESTORED_NOT_ORGANIZER_AUTHENTICATED",
+    "feature_preparation_and_fitting": "NOT_RUN_AFTER_DUPLICATE_STOP",
+    "external_licenses": "Official source pages reviewed where accessible; mirror identity and full task-specific rights not independently certified."
+  },
+  "portal_format_caveat": "Official instructions describe NaN/null outside the footprint; local strict all-finite check uses zeros. Authenticated template, portal acceptance and exact cause of user range error remain unverified.",
+  "budget": {
+    "max_geological_experiments": 3,
+    "max_seconds": 7200,
+    "geological_experiments_run": 0,
+    "weekly_slots_used": 0
+  },
+  "organizer_confirmed_score": null,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "verification": {
+    "browser_evidence": "evidence/session_2b5a8383_browser_check.json",
+    "browser_status": "PASS",
+    "generation_guard_exit": 2,
+    "optimized_preflight_exit": 2,
+    "full_suite": "PENDING_FINAL_RECHECK",
+    "browser_checked_at_utc": "2026-10-26T22:17:08.805Z",
+    "browser_focus_freshness": {
+      "fresh_snapshot_pass": true,
+      "missing_feed_fail_closed": true,
+      "partial_feed_fail_closed": true,
+      "expired_feed_fail_closed": true,
+      "checked_snapshot": "2026-10-26T21:38:08Z",
+      "fresh_fixture_used_simulated_heads": false,
+      "fresh_text": "Checked 2026-10-26T21:38:08Z: 9 of 9 repositories changed since the audited snapshot. This is not a score or approval.",
+      "missing_text": "Revision check unavailable or inconsistent. The table is historical; DO NOT SUBMIT.",
+      "partial_text": "Incomplete revision check at 2026-10-26T21:38:08Z: 8 changed, 1 unavailable. No submission approved.",
+      "expired_text": "Revision snapshot expired (last checked 2026-10-26T21:38:08Z); current state unknown. DO NOT SUBMIT."
+    },
+    "full_pytest": "971 passed, 23 skipped, 84 warnings in 252.17s",
+    "full_pytest_status": "PASS",
+    "node_ui_tests": "6 passed; also passed with a deliberately all-UNKNOWN on-disk snapshot",
+    "site_checks": "normal and optimized PASS",
+    "download_audit": "50 research TIFFs passed local checks; 0 protocol eligible",
+    "sample_audit": "9 sampled, 9 DUPLICATE_STOP, 8 strict local format passes",
+    "expected_negative_gates": {
+      "generation_guard_normal": 2,
+      "generation_guard_optimized": 2,
+      "preflight_gate_generation_optimized": 2,
+      "research_require_submit": 2,
+      "current_require_submit": 2,
+      "release_require_submit": 2,
+      "literal_protocol_require_submit": 2
+    },
+    "browser_scope": "Chromium receipt measures the pinned checkout at browser_checked_at_utc; the six-hour deployment freshness snapshot may subsequently change.",
+    "github_actions": "NOT_RUN_LOCALLY; check PR workflow results separately",
+    "browser_partial_disk_snapshot": "PASS; test-only simulated HEADs explicitly marked"
+  },
+  "limitations": [
+    "No new surface, holdout, canary or candidate raster exists.",
+    "A repository HEAD check and nine-file sample are not complete fleet scientific audits.",
+    "User-reported scores have no individual submission-page receipt; hidden-label causality is not observed.",
+    "Weekly slot selection is separate and was not performed."
+  ],
+  "completed_at_utc": "2026-10-26T22:17:56.582022+00:00"
+}

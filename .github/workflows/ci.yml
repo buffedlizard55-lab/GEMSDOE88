@@ -31,6 +31,8 @@ jobs:
           else
             test "$?" -eq 2
           fi
+          python -O scripts/audit_focus_sample_20261026.py --check
+          python scripts/focus_freshness.py --check
           python scripts/render_decision.py --check
           python -O scripts/check_site.py
       - name: Re-run autonomous 2026-10-25 review and keep its machine card fail-closed

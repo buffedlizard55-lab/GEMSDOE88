@@ -65,7 +65,7 @@
         bpwd.verdict === 'negative' && gv.ok_to_submit === false &&
         bpwd.raster_sha256 === gv.sha256;
       bpwdBanner.textContent = ok
-        ? `LIVE MACHINE GATE VERIFIED · ${bpwd.lane} HOLDOUT-DTI ${Number(bpwd.holdout_dti.candidate_exp03.dti).toFixed(6)} RECORD · 5/5 DISCRIMINATING GATES PASS · DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT`
+        ? `HISTORICAL RESEARCH RECORD · ${bpwd.lane} HOLDOUT-DTI ${Number(bpwd.holdout_dti.candidate_exp03.dti).toFixed(6)} RECORD · NOT A NEW SCORE · DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT`
         : 'BPWD GATE INCONSISTENT — DO NOT SUBMIT';
     } catch (_) {
       bpwdBanner.textContent = 'BPWD PRE-FLIGHT UNAVAILABLE — DO NOT SUBMIT';

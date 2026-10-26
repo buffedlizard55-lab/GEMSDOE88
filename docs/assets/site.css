@@ -36,3 +36,11 @@ main>section{padding:68px 0}.section-intro{color:var(--muted);margin-bottom:27px
 .gate-card .tag.ok{background:#c5f0cf;color:#0f5a2a}
 .gate-reasons{margin:10px 0 0 18px;padding:0;font-size:.9rem;line-height:1.5}
 .download-inventory .tag.ok{color:#0f5a2a;font-weight:800}
+
+/* Focus-site HEAD drift is a dated monitoring aid, never a release decision. */
+.focus-freshness{border:1px solid #d6bd8d;border-left:4px solid #ad722d;border-radius:8px;background:#fffaf0;padding:16px 20px;margin:20px 0;color:#553e21}
+.focus-freshness strong{font-size:.86rem;text-transform:uppercase;letter-spacing:.06em}
+.focus-freshness p{max-width:none;margin:6px 0;font-size:.86rem;line-height:1.5}
+.focus-freshness .focus-freshness-explainer{font-size:.78rem;color:#655747}
+.focus-freshness-label{display:inline-block;margin-top:7px;font-size:.73rem;line-height:1.35;font-weight:600;color:#805329;text-transform:none;letter-spacing:normal}
+.focus-freshness-label a{overflow-wrap:anywhere}
