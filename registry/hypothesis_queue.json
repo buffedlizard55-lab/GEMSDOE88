@@ -1,7 +1,7 @@
 {
   "schema": "gems88.hypothesis-queue.v1",
-  "reviewed_at_utc": "2026-10-25",
-  "review_branch": "arena/693b10af-gemsdoe88",
+  "reviewed_at_utc": "2026-10-26",
+  "review_branch": "arena/0b582cf7-gemsdoe88",
   "source_snapshot": {
     "files": 156,
     "sha256": "a05cd182a2057898e53e4bab103c1958ca439ce9a0827cd372f10047ec20be05"
@@ -70,6 +70,13 @@
       "run_card": "registry/georad88_run_card.json",
       "run_card_sha256": "8cb47ee4a41b127556efc01dde0f063b87920fd8a41b16499dd56879ff81b3a5",
       "reason": "GeoDAWN eK + chi young-cover heuristic executed in PR #196 (untrained research surface; literal 17GEMSDOE overlap 1.0 > 0.70); preflight-guarded."
+    },
+    {
+      "id": "H88-VVRD",
+      "status": "EVALUATED_NEGATIVE_HISTORICAL",
+      "run_card": "registry/vvrd88_run_card.json",
+      "run_card_sha256": "71f4f9eb704f4ed15d43a76676c4b816413ef6ca08413db64edcd6fa9e2a21e0",
+      "reason": "Volcanic-vent drainage proximity/blind-zone emission executed in merged PR #200 by bypassing the generation guard; withdrawn by originating session in PR #202 (IR-88-AEF1337D-01, evidence/vvrd88_withdrawal_20261026.json) with generator, hypothesis doc and TIFF/ZIP removed from the tree; pooled holdout and leakage canary never ran, 20-raster screen only, literal 17GEMSDOE overlap 1.0 > 0.70 (IR-88-0B582CF7-05). Do not re-propose as untried."
     }
   ],
   "proposals": [

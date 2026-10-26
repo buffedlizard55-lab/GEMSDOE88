@@ -177,9 +177,19 @@ def test_session_c59db412_and_d634de37_run_cards_markdown_and_browser_receipt() 
     assert br["ok_to_submit"] is False
     assert len(br["pages"]) == 7 and all(p["pass"] and not p["overflow"] for p in br["pages"])
     assert br["con88_page"]["pass"] is True
-    for rel, expected_sha in br["source_sha256"].items():
+    # Superseded as active review by session 0b582cf7 (PR #201 post-merge
+    # integration regenerated the pages): this receipt is now historical.
+    # Its pins must be a subset of the active receipt, whose pins must match
+    # the current files (same succession pattern as session 0df81d99).
+    assert len(br["source_sha256"]) == 14
+    status = json.loads((ROOT / "docs/status.json").read_text(encoding="utf-8"))
+    active_card = json.loads((ROOT / "docs" / status["current_review"]).read_text(encoding="utf-8"))
+    active_br = json.loads((ROOT / active_card["verification"]["browser_evidence"]).read_text(encoding="utf-8"))
+    assert active_br["status"] == "PASS" and active_br["ok_to_submit"] is False
+    assert set(br["source_sha256"]) <= set(active_br["source_sha256"])
+    for rel, expected_sha in active_br["source_sha256"].items():
         actual_sha = hashlib.sha256((ROOT / rel).read_bytes()).hexdigest()
-        assert actual_sha == expected_sha, f"Browser pin mismatch on {rel}"
+        assert actual_sha == expected_sha, f"Active browser pin mismatch on {rel}"
 
     audit = json.loads((ROOT / "evidence/focus_sites_20261026_audit.json").read_text(encoding="utf-8"))
     assert audit["cached_tiff_inventory_count"] == 44

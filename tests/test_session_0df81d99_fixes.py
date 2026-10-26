@@ -77,6 +77,8 @@ def test_con88_validator_detects_run_card_or_gate_tampering(tmp_path: Path) -> N
 
 
 def test_all_50_published_tiffs_carry_do_not_submit_and_zero_eligible() -> None:
+    # PR #200's bypass pair was withdrawn and removed in PR #202, so the
+    # published inventory is 50 (IR-88-AEF1337D-01).
     downloads = sorted((ROOT / "docs/downloads").glob("*.tif"))
     variants = sorted((ROOT / "docs/research-variants").glob("*.tif"))
     all_tiffs = downloads + variants

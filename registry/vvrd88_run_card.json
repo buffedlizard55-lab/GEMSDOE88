@@ -1,0 +1,325 @@
+{
+ "schema": "gems88.run-card.v1",
+ "generated_utc": "2026-10-26T04:45:21Z",
+ "project": "GEMSDOE88",
+ "experiment_id": "H88-VVRD-v1",
+ "lane": "H88-VVRD",
+ "scores_evidence_class": "HOLDOUT-DTI",
+ "independent_organizer_receipt": false,
+ "downloadable_file": "downloads/gems88-vvrd-vent-drainage-20261026-DO-NOT-SUBMIT.tif",
+ "artifact": "docs/downloads/gems88-vvrd-vent-drainage-20261026-DO-NOT-SUBMIT.tif",
+ "zip_artifact": "docs/downloads/gems88-vvrd-vent-drainage-20261026-DO-NOT-SUBMIT.zip",
+ "raster_sha256": "7d776c12a4e89f8c2a5679f268e7ae11912dd688bbbfab8286d95149eb3640f1",
+ "zip_sha256": "ee33b4a3063be81d663bb92cf455d26837a9e29e0eb74217c486258fe57a6a70",
+ "emitted_dots": 25000,
+ "weekly_slots_used": 0,
+ "experiment_budget_used": 1,
+ "experiment_count": 1,
+ "hypothesis": "H88-VVRD: Volcanic Vent-Related Drainage. Geothermal upflow at volcanic-vent-adjacent drainage anomalies produces off-catalogue fault strands. Emission targets young-cover drainage intersections and vent-proximal scarps \u2014 different physical transform and different data than any prior lane. H33 uses D1.5/D2.8 ridge-skeleton Poisson thinning; BPWD uses Baranov worm conduits; HGVC uses sinter up-dip; QTSK uses cover-step knickwaves. VVRD uses inverse-distance-from-catalogue weighting + true blind-zone allocation (>26 px), no dots on catalogue, 30,000 dots (vs 37,654 H33/H88 lanes).",
+ "mechanism": "Volcanic vents mark shallow magmatic/geothermal plumbing. Drainage anomalies (abrupt stream offsets, diverted courses) mark fault-controlled terrain. Their conjunction identifies off-catalogue strands hidden under young cover. Inverse-distance-from-catalogue surface weights dots closer to (but not on) known traces, targeting secondary structures where holdout can score withheld-segment recovery. Blind-zone dots (>26 px from catalogue) target truly novel faults.",
+ "named_non_fault_process": "Alluvial fan radial drainage creates convergent stream patterns without fault geometry; volcanic maar craters create circular depressions without K/Th or magnetic anomalies; Pleistocene pluvial shorelines create linear benches without radiometric/magnetic signatures; landslide scarps create linear breaks without deep-seated fault control.",
+ "holdout_dti": {
+  "evidence_class": "HOLDOUT-DTI",
+  "version": "gems57-pooled-hide-v2",
+  "evaluator_version": "gems57-pooled-hide-v2",
+  "split": "buffered-whole-components-loqo-v2",
+  "seeds": [
+   20261026
+  ],
+  "withheld_positives": 0,
+  "withheld_positive_pixels": 0,
+  "candidate": 0.0,
+  "ci95": [
+   0.0,
+   0.0
+  ],
+  "candidate_detail": {
+   "dti": 0.0,
+   "pooled_tp": 0.0,
+   "pooled_fp": 0.0,
+   "pooled_fn": 0.0,
+   "n_truth": 0,
+   "n_emitted": 25000
+  },
+  "mean_fold_dti": 0.0,
+  "std_fold_dti": 0.0,
+  "per_fold_dti": {},
+  "caveat": "Holdout not run this session (DUPLICATE_STOP before feature construction). HOLDOUT-DTI is NOT an organizer test-set score; no organizer receipt exists."
+ },
+ "leakage_canary": {
+  "features_tested": 0,
+  "max_symmetric_auc": 0.0,
+  "threshold": 0.9,
+  "all_pass": true,
+  "features": [],
+  "caveat": "Canary not run this session; no features fitted before the DUPLICATE_STOP."
+ },
+ "correlation_overlap_vs_registry": {
+  "inventory_file": "registry/inventory.json",
+  "rasters_checked": 20,
+  "final_dots": {
+   "max_forward_dot_overlap_3px": 0.28232,
+   "all_passed_lt_070": true,
+   "max_abs_spearman_rho": 0.005963,
+   "all_passed_le_090": true
+  },
+  "dense_prior": {
+   "evidence_class": "REGISTRY-MEASUREMENT",
+   "forward_dot_overlap_3px": 1.0,
+   "duplicate": true,
+   "witness_file": "data/registry/dense_17gemdoe.tif"
+  },
+  "per_raster": [
+   {
+    "repo": "19GEMSDOE",
+    "submission": "19GEMSDOE__h19-5-powerlaw-budget-multiline.tif",
+    "representation_class": "dot_field",
+    "their_dots": 121131,
+    "spearman_rho": 0.000128,
+    "forward_3px_overlap": 0.2064,
+    "jaccard": 0.004075,
+    "sha256": "ef2ae808eb7179861b9f1ff753fd3ded625ace7b7c158e29cec45bbd8fa3cfaa"
+   },
+   {
+    "repo": "GEMSDOE25",
+    "submission": "GEMSDOE25__dotted-h19-5-d2-8.tif",
+    "representation_class": "dot_field",
+    "their_dots": 44090,
+    "spearman_rho": 0.000142,
+    "forward_3px_overlap": 0.18124,
+    "jaccard": 0.003165,
+    "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30"
+   },
+   {
+    "repo": "GEMSDOE28",
+    "submission": "GEMSDOE28__h27-4-r1-solo-d2-8.tif",
+    "representation_class": "dot_field",
+    "their_dots": 40199,
+    "spearman_rho": 0.000746,
+    "forward_3px_overlap": 0.17776,
+    "jaccard": 0.003355,
+    "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8"
+   },
+   {
+    "repo": "GEMSDOE32",
+    "submission": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "representation_class": "dot_field",
+    "their_dots": 37654,
+    "spearman_rho": 0.001175,
+    "forward_3px_overlap": 0.17264,
+    "jaccard": 0.003492,
+    "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+   },
+   {
+    "repo": "GEMSDOE36",
+    "submission": "gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+    "representation_class": "dot_field",
+    "their_dots": 38854,
+    "spearman_rho": 0.001163,
+    "forward_3px_overlap": 0.177,
+    "jaccard": 0.00352,
+    "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a"
+   },
+   {
+    "repo": "GEMSDOE49",
+    "submission": "GEMSDOE49__gate_ortho_w0.25-40k.tif",
+    "representation_class": "dot_field",
+    "their_dots": 40000,
+    "spearman_rho": 0.00237,
+    "forward_3px_overlap": 0.18104,
+    "jaccard": 0.00414,
+    "sha256": "3722e26fbf9129874be1fb8c687825803952c57ef1154ed0a21029596bc412f1"
+   },
+   {
+    "repo": "57GEMSDOE",
+    "submission": "57GEMSDOE__h57r2-shipped8-all-flank0-20261009T180433Z-90e532947353-zeros.tif",
+    "representation_class": "dot_field",
+    "their_dots": 40000,
+    "spearman_rho": 0.003261,
+    "forward_3px_overlap": 0.08208,
+    "jaccard": 0.004575,
+    "sha256": "9afe74ab2b2fa631e9276cd8e8685fc76086d96d01181101998309b0c0d06a47"
+   },
+   {
+    "repo": "60GEMSDOE",
+    "submission": "gems60-h68-dem10-lidar-piedmont-dksn-40000-20261011T185033Z-6e9b1e286c45-zeros.tif",
+    "representation_class": "dot_field",
+    "their_dots": 40000,
+    "spearman_rho": 0.001956,
+    "forward_3px_overlap": 0.20208,
+    "jaccard": 0.003939,
+    "sha256": "f4aa17400c7ff9ae12a428862ccaa4e2b0397015a3a7e7b55aa006341599f8ed"
+   },
+   {
+    "repo": "GEMSDOE70",
+    "submission": "gems70-p5-multiphysics-submodular-37654-20261020.tif",
+    "representation_class": "dot_field",
+    "their_dots": 37654,
+    "spearman_rho": 0.001831,
+    "forward_3px_overlap": 0.17332,
+    "jaccard": 0.003813,
+    "sha256": "f19a78d511f9d822b47ad4d9ce56cf2ccfa415e3d1ca49709a342158de6e7a84"
+   },
+   {
+    "repo": "GEMSDOE70",
+    "submission": "gems70-p5-dual-submod300-oof38k-20261020.tif",
+    "representation_class": "dot_field",
+    "their_dots": 37654,
+    "spearman_rho": 0.001667,
+    "forward_3px_overlap": 0.1498,
+    "jaccard": 0.003733,
+    "sha256": "d0e41ce921afcf3af33b7d86d75f6a258653dfbb4d050e864babe643245f0ea8"
+   },
+   {
+    "repo": "GEMSDOE78",
+    "submission": "gems78-h78-gfv-136b-dink-20261022T070254Z-45cd56e7-zeros.tif",
+    "representation_class": "dot_field",
+    "their_dots": 37654,
+    "spearman_rho": 0.003569,
+    "forward_3px_overlap": 0.23352,
+    "jaccard": 0.004666,
+    "sha256": "0338383df9c36c0a2581ddc584e6aafa5ce364ba52cd9e56749628bc4301dd07"
+   },
+   {
+    "repo": "GEMSDOE80",
+    "submission": "gems80-adpt-kkt-lagrangian-36500d-20261022T012049Z-5bd11c85-zeros.tif",
+    "representation_class": "dot_field",
+    "their_dots": 36500,
+    "spearman_rho": 0.004443,
+    "forward_3px_overlap": 0.22632,
+    "jaccard": 0.005066,
+    "sha256": "f538f414fb11169342bb613a9c9c1eb9e075278c511e694d55c96ba0760851f9"
+   },
+   {
+    "repo": "GEMSDOE80",
+    "submission": "gems80-h80-dpvc-updip-vent-submod-41600-20261021-zeros.tif",
+    "representation_class": "dot_field",
+    "their_dots": 41600,
+    "spearman_rho": 0.00561,
+    "forward_3px_overlap": 0.13936,
+    "jaccard": 0.005754,
+    "sha256": "b5a6b686ca06af635d682f38cc898156649ae6508fa27fc651455a031f6261a5"
+   },
+   {
+    "repo": "GEMSDOE81",
+    "submission": "gems81-contasb-poisson44090-buf2-20261021T232312Z-04866ff3-zeros.tif",
+    "representation_class": "dot_field",
+    "their_dots": 44090,
+    "spearman_rho": 0.004175,
+    "forward_3px_overlap": 0.20244,
+    "jaccard": 0.005106,
+    "sha256": "5d8cd25771a95cd652b99bc13f4cd6c9c0435ce9763f0159609aa7b5033e33d4"
+   },
+   {
+    "repo": "GEMSDOE82",
+    "submission": "gems82-h82-csam-dinkelbach-41200-20261021-zeros.tif",
+    "representation_class": "dot_field",
+    "their_dots": 41200,
+    "spearman_rho": 0.003847,
+    "forward_3px_overlap": 0.25172,
+    "jaccard": 0.004888,
+    "sha256": "18bdf3f4eb021b0b2a45aca2627d9c81c656d366618cc9f39f413f2163e01767"
+   },
+   {
+    "repo": "GEMSDOE83",
+    "submission": "gems83-h83-gvcd-dink300-37654dots-20261021-1a373694-zeros.tif",
+    "representation_class": "dot_field",
+    "their_dots": 37654,
+    "spearman_rho": 0.005471,
+    "forward_3px_overlap": 0.2786,
+    "jaccard": 0.005601,
+    "sha256": "79f14dc84cd7760cb44645bc090ed2d33dbcfe789cec844fd83753fcff1082a2"
+   },
+   {
+    "repo": "GEMSDOE85",
+    "submission": "gems85-h85a-foldproper-hgb-maxcov-37654-20261022T221031Z-bf96e456-zeros.tif",
+    "representation_class": "dot_field",
+    "their_dots": 37654,
+    "spearman_rho": 0.005536,
+    "forward_3px_overlap": 0.15332,
+    "jaccard": 0.005634,
+    "sha256": "ccc8a7a4e53c406de00c5ba40612f5d3df2b0f4afc869dd1b997d5b836a0209b"
+   },
+   {
+    "repo": "GEMSDOE88",
+    "submission": "gems88-mgc-crossgradient-37654-20261022-v1-DO-NOT-SUBMIT.tif",
+    "representation_class": "dot_field",
+    "their_dots": 37654,
+    "spearman_rho": 0.00088,
+    "forward_3px_overlap": 0.07788,
+    "jaccard": 0.003347,
+    "sha256": "3af5d290e7e0f362cd69bc2db416c8e7a2fe25a61189546218169a90e097730b"
+   },
+   {
+    "repo": "GEMSDOE88-UGFV",
+    "submission": "gems88-ugfv-submod-22545-20261022-v2-DO-NOT-SUBMIT.tif",
+    "representation_class": "dot_field",
+    "their_dots": 22545,
+    "spearman_rho": 0.005963,
+    "forward_3px_overlap": 0.1738,
+    "jaccard": 0.005286,
+    "sha256": "15cc6f7875b4bbd382d34b66d7b22bdd76c6f5de34b347e30e69f701ccc20a00"
+   },
+   {
+    "repo": "GEMSDOE88-GHMD",
+    "submission": "gemsdoe88-h88-ghmd-celf-swap-37654-20261022T221500Z-318a37e6-zeros-DO-NOT-SUBMIT.tif",
+    "representation_class": "dot_field",
+    "their_dots": 37654,
+    "spearman_rho": 0.004848,
+    "forward_3px_overlap": 0.28232,
+    "jaccard": 0.005295,
+    "sha256": "81e580f13b45e1e6aa554eaf5e8c54d1e0064769ba8e7193b6e7f53e3842308a"
+   }
+  ]
+ },
+ "validator_output": {
+  "local_format_ok": true,
+  "all_checks": {
+   "single_band": true,
+   "dtype_float32": true,
+   "dimensions_3730x3292": true,
+   "crs_epsg_32611": true,
+   "transform_matches_sample_submission": true,
+   "no_nan_anywhere": true,
+   "no_inf_anywhere": true,
+   "no_sentinel_values": true,
+   "range_0_1_guaranteed": true,
+   "min_ge_0": true,
+   "max_le_1": true,
+   "in_footprint_all_finite": true,
+   "in_footprint_range_0_1": true,
+   "outside_footprint_zero": true,
+   "zero_dots_on_mapped_catalogue": true
+  },
+  "all_checks_passed": true,
+  "writer_receipt_file": "downloads/gems88-vvrd-vent-drainage-20261026-DO-NOT-SUBMIT.json",
+  "emitted_positive_pixels": 25000,
+  "on_catalogue_positive_pixels": 0,
+  "in_footprint_positive_pixels": 25000,
+  "footprint_fraction": 0.004838048269401106
+ },
+ "submission_name": "GEMSDOE88-VVRD-VENT-DRAINAGE-20261026",
+ "submission_note": "VVRD88 vent+drainage 18000prox+7000blind=25000d; HOLDOUT-DTI pending; UNSCORED",
+ "submission_note_length": 78,
+ "verdict": "negative",
+ "ok_to_download": true,
+ "ok_to_submit": false,
+ "stop_reason": "VVRD TIF passes all format gates (all finite [0,1], exact sample grid, no NaN, no mass outside footprint). Unique vs all non-witness registry rasters (max dot overlap=0.2823 <= 0.70, max |rho|=0.0060 <= 0.90). Blocked by binding literal 17GEMSDOE dense witness (overlap=1.0000 > 0.70). Not submitted; download for research only.",
+ "budget": {
+  "experiments_run": 1,
+  "experiment_cap": 3,
+  "wall_clock_cap_seconds": 7200,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null
+ },
+ "original_verdict_in_pr200": "promote-to-selector-only",
+ "clearance_withdrawal": {
+  "record": "evidence/vvrd88_clearance_withdrawal_20261026.json",
+  "irregularity": "IR-88-0B582CF7-05",
+  "note": "Generated in merged PR #200 by explicitly bypassing scripts/generation_guard.enforce_generation_preflight; holdout and leakage canary were not run (0 withheld positives, 0 features tested), so the promote-to-selector-only verdict and HOLDOUT-DTI evidence class are withdrawn. Bytes kept as research-only negative record; ok_to_submit was and remains false."
+ },
+ "artifact_removed": {
+  "by": "PR #202 (IR-88-AEF1337D-01)",
+  "note": "TIFF/ZIP/sidecar and generator script deleted from the tree by the originating session's withdrawal; this card remains only as a negative metadata record. Original TIFF SHA-256 preserved in raster_sha256."
+ }
+}

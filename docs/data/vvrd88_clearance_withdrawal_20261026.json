@@ -1,0 +1,25 @@
+{
+  "schema": "gems88.clearance-withdrawal.v1",
+  "recorded_utc": "2026-10-26",
+  "session": "0b582cf7",
+  "irregularity": "IR-88-0B582CF7-05",
+  "lane": "H88-VVRD",
+  "origin": "Merged PR #200 (main b62d1a35) while PR #201 was in flight; contributed by concurrent session, not by session 0b582cf7.",
+  "artifact": "docs/downloads/gems88-vvrd-vent-drainage-20261026-DO-NOT-SUBMIT.tif",
+  "raster_sha256": "7d776c12a4e89f8c2a5679f268e7ae11912dd688bbbfab8286d95149eb3640f1",
+  "zip_sha256": "ee33b4a3063be81d663bb92cf455d26837a9e29e0eb74217c486258fe57a6a70",
+  "withdrawn_claims": [
+    "verdict promote-to-selector-only (registry/run_card.json and registry/gate_verdict.json as merged) is withdrawn; normalized verdict is negative in registry/vvrd88_run_card.json and registry/vvrd88_gate_verdict.json.",
+    "scores_evidence_class HOLDOUT-DTI is withdrawn: the card itself records 0 withheld positives and holdout_dti 0.0 because the pooled holdout was not run; leakage canary tested 0 features.",
+    "Uniqueness was screened against only 20 registry rasters, not the full pinned registry plus concurrent lanes; the literal dense 17GEMSDOE overlap is 1.0 > 0.70."
+  ],
+  "process_defects": [
+    "scripts/generate_unique_submission.py as merged explicitly did not call scripts.generation_guard.enforce_generation_preflight, bypassing the binding DUPLICATE_STOP; the guard call has now been inserted before any numpy/rasterio import.",
+    "Canonical registry/run_card.json, registry/gate_verdict.json, docs/data/run-card.json, docs/run_card.json and evidence/run-card.json were overwritten, breaking downstream schema consumers; canonical bytes restored from base 34066f4 and VVRD records moved to lane-specific names.",
+    "Downloadable TIFF/ZIP were added without regenerating evidence/download_audit.json and the executive summary was hand-edited with a broken registry/gate_verdict.json link; both regenerated with the canonical scripts in this integration."
+  ],
+  "mechanism_concern": "Emission is materially a catalogue inverse-distance/proximity field plus blind-zone infill with fixed 18000/7000 allocation; no trained model, no geological feature stack, no holdout evidence. It is not evidence that a unique high-scoring submission exists.",
+  "disposition": "Superseded in part by PR #202 (IR-88-AEF1337D-01): bytes, sidecar, hypothesis document and generator script were removed from the tree by the originating session (evidence/vvrd88_withdrawal_20261026.json). Only negative metadata records remain. H88-VVRD retired in registry/hypothesis_queue.json. Not eligible for a weekly slot; not a selector candidate.",
+  "ok_to_submit": false,
+  "weekly_slots_used_by_this_session": 0
+}

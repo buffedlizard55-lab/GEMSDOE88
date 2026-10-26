@@ -1,0 +1,112 @@
+{
+  "schema": "gems88.selector-scoping-packet.v1",
+  "packet_date_utc": "2026-10-26",
+  "session_branch": "arena/0b582cf7-gemsdoe88",
+  "status": "DECISION_NOT_MADE",
+  "decision_maker": "Separate human/selector step (Parallel-Run Protocol rule 6). This packet is evidence and options only; it changes no gate, clears no file and spends no slot.",
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "problem_proved_in_this_session": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_positive_pixels": 5167373,
+    "footprint_pixels": 5167373,
+    "allowed_off_catalogue_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "literal_rule": "Duplicate if >70% of candidate dots lie within 3 px of one registry raster's dots (support = finite > 0)",
+    "consequence": "Every nonempty candidate inside the allowed domain has forward overlap exactly 1.0000 with this witness (each allowed pixel is itself witness-positive). Independently re-measured in this session on all nine latest focus-site headline candidates: overlap_3px_vs_dense_17gemdoe = 1.0 for 9/9 (evidence/focus_latest_20261026b_audit.json). The literal rule is therefore unsatisfiable, including for the historical 0.2778 champion itself.",
+    "guard_reproduction": ".venv/bin/python scripts/generation_guard.py -> exit 2 DUPLICATE_STOP (session 0b582cf7, after full pinned restore + prepare_data PASS)"
+  },
+  "options_for_selector": [
+    {
+      "id": "A_KEEP_LITERAL",
+      "definition": "Keep binding-literal-all-registry-v1 exactly as implemented (vendor/gems57/uniqueness.py binding_duplicate_decision_v3 literal wrapper, IR-88-86).",
+      "consequence": "Zero candidates can ever be generated or promoted from this fleet. All research stays download-only. This is the current state and needs no action.",
+      "risk": "The competition objective (a unique submittable TIFF) is unreachable by construction; weekly slots can never be used."
+    },
+    {
+      "id": "B_SCOPE_BLANKETING_PRIORS_EQUAL_SUPPORT",
+      "definition": "For registry rasters whose 3-px halo covers the whole allowed domain (halo_coverage = 1.0, i.e. non-discriminating for the dot test), replace only the dot-overlap reading with the already-implemented shared equal-support definition (vendor/gems57/uniqueness.py: registry_dots / equal_support_overlap; top-K allowed cells at the candidate's dot budget, deterministic row-major ties) and/or the chance-corrected excess_overlap diagnostic, while KEEPING (a) surface Spearman |rho| <= 0.90 against every raster including dense ones, (b) literal 3-px overlap <= 0.70 against every discriminating (sparse/dot) raster, (c) all holdout/canary/format gates unchanged.",
+      "consequence": "Candidates become testable again. A candidate thresholded from the dense surface itself still fails (its dots coincide with the surface's top-K). Blanketing sparse lattices (e.g. spacing-5 calibration lattice reported by GEMSDOE24/31/32) must be classified by the same halo_coverage test, not by file type.",
+      "risk": "Weaker than literal against dense priors by design; mitigated by retaining the Spearman surface test on every raster and by re-screening the final candidate against the complete current fleet registry (including all concurrent lanes) at promotion time."
+    },
+    {
+      "id": "C_NARROW_REGISTRY_TO_FOCUS_PEERS",
+      "definition": "Restrict the duplicate screen to a short peer list (the approach GEMSDOE27 records for its H31 promotion: 12 pinned peers + own-repo rasters, 27 total).",
+      "consequence": "Promotion becomes easy but incomparable across the fleet and blind to known blanketing/duplicate rasters outside the short list.",
+      "risk": "Highest false-uniqueness risk. GEMSDOE88 does not recommend C. It is included only because one focus site has already adopted it unilaterally (IR-88-0B582CF7-01)."
+    }
+  ],
+  "recommendation": "B, recorded prospectively (never retroactively to an already-built file), with the safeguards below. Recommendation is not adoption.",
+  "safeguards_required_under_option_b": [
+    "Preregister the exact registry inventory (file list + SHA-256 of the concatenated sorted list) before the candidate is screened; post-merge concurrent lanes must be added and the screen re-run before any slot decision.",
+    "Report literal, equal-support/excess and Spearman readings side by side for every registry raster (no silent dropping).",
+    "Keep the leakage canary (single-feature symmetric AUC <= 0.90), buffered whole-segment hide-and-recover holdout (gems57-pooled-hide-v2) with strictly-positive paired 95% CI vs the same-fold incumbent, and strict full-grid [0,1] format validation as independent gates.",
+    "Require an authenticated quota/receipt check on the DrivenData submission page at slot time; this sandbox cannot verify quota.",
+    "One candidate per lane; no threshold/budget search on the holdout after seeing results (max 3 experiments / 2 hours per Protocol rule 6 budget)."
+  ],
+  "conditional_consequences_not_clearance": {
+    "evidence_class_note": "HOLDOUT-DTI values below are from stored GEMSDOE88 run cards (gems57-pooled-hide-v2, 22,893 withheld positives). They are conditional screen readings under option B using each card's own registry snapshot; every candidate would still need a fresh full-fleet re-screen (including the nine 2026-10-26-late sibling candidates) before any promotion. Nothing here is ORGANIZER-CONFIRMED.",
+    "gemsdoe88_archived_top_candidates": [
+      {
+        "candidate": "H88-BPWD",
+        "raster_sha256": "b8543782dde52b42253d15b9d6db04b09a1351574ff54077581345c904d7d777",
+        "holdout_dti": 0.205991,
+        "holdout_ci95": [0.188105, 0.223344],
+        "paired_delta_vs_hgvc": 0.003044,
+        "paired_delta_vs_hgvc_ci95": [0.000313, 0.005537],
+        "blind_stratum_note": "Blind (>25 px) paired delta vs HGVC is -0.006227 with CI crossing 0 — overall win is not a blind-discovery win",
+        "canary_max_symmetric_auc": 0.769268,
+        "recorded_like_for_like_readings": "concurrent GEMSDOE88 max 3-px overlap 0.649997; live-head sibling max 0.524566 (223 distinct dot sets at build time)",
+        "conditional_status_under_b": "RE-SCREEN REQUIRED (registry snapshot predates 2026-10-26-late fleet)"
+      },
+      {
+        "candidate": "H88-HGVC",
+        "raster_sha256": "d5329f317682ba3ea15eba32aebe9a2000fc0e42cedfd20a36caae03ef3012ef",
+        "holdout_dti": 0.202947,
+        "holdout_ci95": [0.185869, 0.21979],
+        "paired_delta_vs_adhr": 0.008071,
+        "paired_delta_vs_adhr_ci95": [0.003163, 0.012773],
+        "blind_stratum_note": "Highest recorded blind (>25 px) DTI of the three (0.078959)",
+        "canary_max_symmetric_auc": 0.770155,
+        "recorded_like_for_like_readings": "concurrent max 0.607426; sibling max 0.516917 (200 distinct dot sets at build time)",
+        "conditional_status_under_b": "RE-SCREEN REQUIRED"
+      },
+      {
+        "candidate": "H88-VCAZ",
+        "raster_sha256": "34224a7c2163758196d0a6de8708f99943c77745172a278bdb11333ece6a6b12",
+        "holdout_dti": 0.200625,
+        "holdout_ci95": [0.184176, 0.216992],
+        "paired_delta_vs_adhr": 0.005749,
+        "paired_delta_vs_adhr_ci95": [0.00137, 0.009829],
+        "canary_max_symmetric_auc": 0.771903,
+        "recorded_like_for_like_readings": "Run card records all 5 discriminating screens PASS including like-for-like <= 0.70 across 362 rasters / 234 distinct dot sets at build time",
+        "conditional_status_under_b": "RE-SCREEN REQUIRED; also below the BPWD holdout bar"
+      },
+      {
+        "candidate": "H88-TDKL (canonical research download)",
+        "raster_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+        "holdout_dti": 0.196237,
+        "holdout_ci95": [0.179686, 0.211729],
+        "paired_delta_vs_incumbent": 0.005801,
+        "paired_delta_ci95": [0.001174, 0.010109],
+        "canary_max_symmetric_auc": 0.59299,
+        "recorded_like_for_like_readings": "Pre-merge max 0.60316 but POST-merge concurrent max 0.76228 vs GTHC-88 and 0.752 vs QTSK-88 — FAILS even a like-for-like screen against concurrent lanes",
+        "conditional_status_under_b": "WOULD STILL FAIL (concurrent-lane overlap) — canonical download is an educational artifact, not the conditional front-runner"
+      }
+    ],
+    "latest_sibling_candidates_20261026_late": "All nine measured headline candidates have 3-px overlap < 0.70 vs the sparse champions H19-5 / D2.8 / H33-2-B2 (max 0.6666, GEMSDOE32 vs H19-5) and exactly 1.0 vs the dense witness. Their holdouts use mutually incompatible private evaluators, so no fleet ranking or clearance can be derived from those numbers in this packet. Full measurements: evidence/focus_latest_20261026b_audit.json."
+  },
+  "decision_record_template": {
+    "selector_name_or_role": null,
+    "decision_date_utc": null,
+    "option_adopted": null,
+    "registry_inventory_sha256": null,
+    "quota_receipt_reference": null,
+    "signature_or_commit_reference": null
+  },
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "verdict": "negative"
+}

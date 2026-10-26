@@ -50,7 +50,7 @@ def test_current_queue_is_source_bound_and_does_not_recommend_evaluated_lanes():
     queue = audit.inspect_queue(ROOT)
     assert queue["conditional_first_choice"] == "H88-SPR"
     assert {p["id"] for p in queue["proposals"]} == {"H88-SPR", "H88-AWA", "H88-CBC"}
-    assert {p["id"] for p in queue["already_evaluated"]} == {"H88-MMRX", "H88-MTAS", "H88-MFS", "H88-PGTD", "H88-CON88", "H88-MSHI", "H88-GEORAD"}
+    assert {p["id"] for p in queue["already_evaluated"]} == {"H88-MMRX", "H88-MTAS", "H88-MFS", "H88-PGTD", "H88-CON88", "H88-MSHI", "H88-GEORAD", "H88-VVRD"}
     assert queue["ok_to_submit"] is queue["generation_authorized"] is False
 
 
