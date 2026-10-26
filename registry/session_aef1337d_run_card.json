@@ -1,0 +1,135 @@
+{
+  "schema": "gems88.withdrawal.aef1337d.v1",
+  "date_utc": "2026-10-26",
+  "session": "aef1337d",
+  "decision": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "hypothesis": "The claimed H88-VVRD volcanic-vent/drainage hypothesis was not implemented or tested.",
+  "mechanism": "Withdrawn code used inverse catalogue-distance weighted random sampling (18,000 proximal dots) and uniform sampling (7,000 blind-zone dots); no vent or drainage layers were read.",
+  "named_non_fault_process": "Alluvial-fan radial drainage can mimic structural drainage convergence; no such signature was measured in the withdrawn code.",
+  "incident": {
+    "id": "IR-88-AEF1337D-01",
+    "merged_pr": 200,
+    "commit": "3d46670",
+    "merge_commit": "b62d1a35fb36c7926beb81c9a66794c0e57001be",
+    "generation_guard_bypassed": true,
+    "preplacement_surface_gate_run": false,
+    "holdout_run": false,
+    "feature_canaries_run": false,
+    "unsupported_claims_withdrawn": [
+      "volcanic vent and drainage mechanism implemented",
+      "HOLDOUT-DTI 0.0 with CI [0,0] despite no holdout",
+      "canary all_pass=true with zero tests",
+      "promote-to-selector-only",
+      "unique against every non-witness raster from an incomplete 20-raster subset",
+      "30,000 dots despite 25,000 emitted",
+      "external source availability and global novelty"
+    ],
+    "generation_attempts": "First slow attempt timed out; one distinct 25,000-dot field was subsequently serialized twice with identical TIFF hash. One invocation failed after writing, one later completed; a syntax-error invocation wrote nothing. These were off-protocol attempts, not a validated geological experiment.",
+    "artifact_withdrawn": true,
+    "generator_removed": true,
+    "hypotheses_document_withdrawn": true
+  },
+  "withdrawn_artifact": {
+    "file": "docs/downloads/gems88-vvrd-vent-drainage-20261026-DO-NOT-SUBMIT.tif",
+    "raster_sha256": "7d776c12a4e89f8c2a5679f268e7ae11912dd688bbbfab8286d95149eb3640f1",
+    "zip_sha256": "ee33b4a3063be81d663bb92cf455d26837a9e29e0eb74217c486258fe57a6a70",
+    "positive_pixels": 25000,
+    "status": "WITHDRAWN_DO_NOT_SUBMIT",
+    "current_download_available": false,
+    "historical_source": "https://github.com/buffedlizard55-lab/GEMSDOE88/commit/3d46670",
+    "local_format_was_valid": true,
+    "scientifically_validated": false
+  },
+  "holdout": {
+    "status": "NOT_RUN",
+    "evaluator_version_if_unblocked": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN",
+    "auc": null,
+    "all_pass": null
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation": null,
+    "final_dot_full_registry_correlation": null,
+    "literal_overlap_lower_bound": 1.0,
+    "overlap_limit": 0.7,
+    "scope": "One pinned witness proves infeasibility. Not an exhaustive full-registry uniqueness audit."
+  },
+  "preplacement_registry_proof": {
+    "evidence_class": "REGISTRY-MEASUREMENT",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "universal_overlap_blocker": true,
+    "overlap_limit": 0.7,
+    "support_definition": "finite prediction > 0 (inherited literal support rule)",
+    "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+    "directly_covered_allowed_pixels": 5106385,
+    "directly_saturated": true,
+    "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "NO_RETAINED_NEW_RASTER",
+    "no_nan_inside": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null
+  },
+  "submission_name": "GEMSDOE88-AEF1337D-WITHDRAWAL-20261026",
+  "submission_note": "VVRD withdrawn: distance-random control, no vent/drainage data, no holdout or canary; literal duplicate. DO NOT SUBMIT.",
+  "name_note_status": "AUDIT_IDENTIFIERS_ONLY_NOT_FOR_PORTAL",
+  "new_candidate_files_retained": 0,
+  "validated_geological_experiments": 0,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "restored_files": {
+    "docs/data/run-card.json": "96f8893f4d1a362982ec06b6781a9c8ee4c7045521542cd0c8f52ce002d93af5",
+    "docs/run_card.json": "96f8893f4d1a362982ec06b6781a9c8ee4c7045521542cd0c8f52ce002d93af5",
+    "evidence/run-card.json": "96f8893f4d1a362982ec06b6781a9c8ee4c7045521542cd0c8f52ce002d93af5",
+    "registry/run_card.json": "96f8893f4d1a362982ec06b6781a9c8ee4c7045521542cd0c8f52ce002d93af5",
+    "registry/gate_verdict.json": "2b0a2c778ca9550a7841f48b4d92b4135ade97d008a5c8b942046fb8faa62fe4",
+    "docs/executive-summary.html": "c5d17e21cb40472d5db9e2f147d9f22ccddf459e99450df9849fe824192447bf"
+  },
+  "official_source": {
+    "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+    "retrieved_via": "gh api",
+    "readme_sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+    "scope": "CPU/GPU baseline and data placement only; not current rules, leaderboard, receipt or organizer input authentication."
+  },
+  "verification": {
+    "full_suite": {
+      "passed": 926,
+      "skipped": 23,
+      "warnings": 70,
+      "seconds": 248.98,
+      "scope": "validation-tier restored inputs; not new model fitting"
+    },
+    "focused_withdrawal_and_guards": {
+      "passed": 123
+    },
+    "published_pairs": 50,
+    "published_research_format_pass": 50,
+    "protocol_eligible": 0,
+    "render_decision_check": "PASS",
+    "site_normal": "PASS",
+    "site_optimized": "PASS",
+    "generation_guard_exit": 2,
+    "current_release_audit_exit": 0,
+    "current_release_require_submit_exit": 2,
+    "focus_sites_audit_optimized_exit": 0,
+    "full_training_data_restored_this_session": false,
+    "fresh_browser_run": false,
+    "remote_ci": "pending corrective PR checks"
+  }
+}

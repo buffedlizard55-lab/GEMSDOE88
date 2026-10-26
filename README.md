@@ -1,5 +1,7 @@
 # GEMSDOE88 — audited fault discovery and submission gates
 
+**Correction to PR #200 (session `aef1337d`, 2026-10-26):** its VVRD TIFF, unguarded generator and unsupported volcanic-vent/drainage claims are withdrawn. The implementation was catalogue-distance random sampling, with no holdout or canary; it did not satisfy the unique-submission protocol. **DO NOT SUBMIT** any copy downloaded from that PR. Canonical decision records are restored. [Three-pass correction and next steps](research/session-aef1337d-review.md) · [negative run card / withdrawal certificate](registry/session_aef1337d_run_card.json).
+
 ## ⛔ CURRENT DECISION (`2026-10-26`, Session `d634de37`): DOWNLOAD FOR RESEARCH: `YES` · SUBMIT TO COMPETITION: `NO — DO NOT SUBMIT`
 
 > **Parallel session `d498c1ca` (2026-10-26) standing record:** Maximize P(Win). Own the Outcome. Generate a **unique** GeoTIFF only if `scripts/generation_guard.py` allows it. **DOWNLOAD FOR RESEARCH: YES** on archived `*-DO-NOT-SUBMIT*` files (`50/50` Pages pairs + `21/21` `submissions/` pairs). **SUBMIT: NO.** Values must be in `[0, 1]`. Do not copy H33 (`USER-REPORTED 0.2778`) or any sibling site raster. Holdout = hide-and-recover; label numbers `HOLDOUT-DTI` or `ORGANIZER-CONFIRMED` only. Budget 3 experiments / 2 hours. Full prompt: [PROMPT.md](PROMPT.md) · [USER_PROMPT_20261026.md](USER_PROMPT_20261026.md) · [USER_PROMPT_20261025.md](USER_PROMPT_20261025.md). Parallel `d498c1ca` record: [review](research/session-d498c1ca-review.md) · [hypotheses](research/session-d498c1ca-hypotheses.md) · [run card](registry/session_d498c1ca_run_card.json).
@@ -1783,3 +1785,7 @@ A concurrent change briefly published `gems88-hyp-psg-submission.tif` as ready t
 Owner GitHub mirrors restore hash-pinned input bytes via `scripts/restore_inputs.py`, but **an authenticated organizer download is still needed to verify their official identity**. External Dropbox/USGS download domains are not reachable from this sandbox. The official [competition format and metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) and [USGS GeoDAWN](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) pages were checked directly; this does not authenticate owner mirrors or prove a leaderboard score.
 
 </details>
+
+### Reproducible review — session f34477d2
+
+[Three-pass review and scientific correction](research/session-f34477d2-review.md) · [negative run card](registry/session_f34477d2_run_card.json). Shared generation preflight rerun on restored validation inputs; no new TIFF or slot. Existing DO NOT SUBMIT decision unchanged.
