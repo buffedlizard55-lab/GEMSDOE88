@@ -101,7 +101,7 @@ def test_all_50_published_tiffs_carry_do_not_submit_and_zero_eligible() -> None:
 def test_user_claims_include_gemsdoe91_and_gemsdoe92_and_20261026_updates() -> None:
     report = json.loads((ROOT / "docs/data/user_reported_results.json").read_text(encoding="utf-8"))
     assert report["site_count"] == 92
-    assert report["distinct_claim_count"] == 124
+    assert report["distinct_claim_count"] == 123
     assert report["sites_without_a_reported_result"] == ["GEMSDOE86", "GEMSDOE88"]
     by_site: dict[str, list[tuple[str, str]]] = {}
     for row in report["claims"]:

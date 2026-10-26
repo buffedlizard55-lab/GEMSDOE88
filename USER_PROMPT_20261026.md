@@ -6,7 +6,7 @@ Human request below. Markdown link formatting is normalized; the repeated instru
 
 Review the repo.
 
-I want to focus on the highest scoring submissions from the following sites, GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36.
+I want to focus on the highest scoring submissions from the following sites, GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36. I want an executive summary on every site that is clear and obvious which is the best submission to submit to obtain a high score on the leaderboard. It should also be unique and not an exact duplicate of any previous submission that is the same as below.
 
 THE FOLLOWING IS THE HIGHEST URGENCY AND MUST BE FOLLOWED!
 
@@ -310,7 +310,7 @@ h51-km-faultzone-20261006-zeros: 0.0106
 
 ....
 
-https://buffedlizard55-lab.github.io/GEMSDOE49/docs/index.html
+https://buffedlizard55-lab.github.io/GEMSDOE49/
 
 gate_ortho_w0.25-40k-20261006T213721Z-nan: 0.2376
 
@@ -376,7 +376,7 @@ h45-eulerdepthreadcluster-20261006-f28e5cff6826-zeros: 0.0984
 
 ....
 
-https://buffedlizard55-lab.github.io/GEMSDOE41/
+https://buffedlizard55-lab.github.io/GEMSDOE41/docs/index.html
 
 h42-submission-primary: 0.0245
 
@@ -695,8 +695,6 @@ gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite:0.2190
 ....
 
 https://buffedlizard55-lab.github.io/GEMSDOE28/
-
-gems28-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan:0.2715
 
 h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan: 0.2708
 

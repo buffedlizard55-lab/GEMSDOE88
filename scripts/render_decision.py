@@ -82,10 +82,10 @@ def focus_sites_panel(focus: dict) -> str:
             f'<tr><th scope="row"><a href="{url}">{site}</a></th>'
             f'<td style="overflow-wrap:anywhere"><code>{champ}</code><br><strong>{score}</strong> <span class="micro">(user-reported)</span></td>'
             f'<td><code>{sha_short}…</code><br>{dots} px</td>'
-            f'<td><code>{ov_h19}</code> / <code>{ov_17}</code></td>'
+            f'<td><strong>UNIQUE: NO (DUPLICATE)</strong><br><code>{ov_h19}</code> / <code>{ov_17}</code></td>'
             f'<td>{lineage}</td>'
             f'<td>{recent}</td>'
-            f'<td><span class="tag bad">NO — DO NOT SUBMIT</span></td></tr>'
+            f'<td><span class="tag bad">DOWNLOAD: YES (RESEARCH)<br>SUBMIT: NO — DO NOT SUBMIT</span></td></tr>'
         )
     return (
         '<section class="focus-sites-section" id="focus-sites-executive-summary"><div class="wrap">'
@@ -94,15 +94,19 @@ def focus_sites_panel(focus: dict) -> str:
         '<a href="data/focus_sites_20261026.json">Machine JSON ↗</a></div>'
         '<p>Every historical champion across all 9 focus sites (<code>0.2449</code>–<code>0.2778</code>, all unreceipted user-reported claims) '
         'has <code>0.9775–1.0000</code> 3-pixel forward overlap with <code>19GEMSDOE</code> <code>H19-5</code> and <code>1.0000</code> with '
-        '<code>dense_17gemdoe.tif</code>: one nested <code>D1.5</code>/<code>D2.8</code>/<code>SOLO</code>/<code>H33-2-B2</code> ridge-pruning family. '
-        'Zero historical or <code>2026-10-25/26</code> candidates clear protocol gates (including <code>GEMSDOE32</code> <code>R6-1-stepprofile</code>, '
-        'which loses buffered catalogue holdout <code>0.00338 &lt; 0.00452</code> and fails lattice overlap <code>0.9782 &gt; 0.70</code>, and '
-        '<code>GEMSDOE28</code>’s prompt <code>0.2715</code> line, byte-identical <code>33003374…</code> to <code>GEMSDOE27</code> <code>0.2449</code>). '
+        '<code>dense_17gemdoe.tif</code>: one nested <code>D1.5</code>/<code>D2.8</code>/<code>SOLO</code>/<code>H33-2-B2</code> ridge-pruning family (<strong>0/9 unique</strong>). '
+        'Zero historical or <code>2026-10-25/26</code> candidates clear protocol gates—including <code>GEMSDOE27</code> <code>H31-1 DRCG-WL</code> '
+        '(<code>IR-88-D634DE37-01</code>: <code>HOLDOUT-DTI = 0.047302</code> buffered / <code>0.115636</code> unbuffered, <code>88.79% &gt; 70%</code> 3-px coverage of <code>H29-S</code>, '
+        'and <code>100%</code> <code>dense_17gemdoe</code> overlap), <code>GEMSDOE33</code> <code>A33-R2-HMDT</code> '
+        '(<code>IR-88-D634DE37-02</code>: <code>33,616 / 42,000</code> (<code>80.04%</code>) positive pixels outside the study footprint, <code>108</code> on catalogue faults, '
+        '<code>nn_min_px = 1.0</code> scanlines, and <code>Holdout: NOT MEASURED</code>), and <code>GEMSDOE32</code> <code>R6-1-stepprofile</code> '
+        '(<code>IR-88-C59DB412-02</code>, now self-demoted to <code>DO NOT SUBMIT</code> in commit <code>9e55d5d</code>). '
         '<a href="data/focus_sites_20261026.csv" download>Download 9-site CSV</a> · '
-        '<a href="research/session-c59db412-review.md">Full PhD forensic review →</a></p>'
-        '<div class="table-scroll"><table><thead><tr><th>Focus site</th><th>Highest candidate &amp; claim</th>'
-        '<th>SHA-256 &amp; dots</th><th>3-px overlap (H19-5 / 17GEMSDOE)</th><th>Uniqueness &amp; lineage</th>'
-        '<th>2026-10-25/26 candidates</th><th>Cleared?</th></tr></thead><tbody>'
+        '<a href="research/session-d634de37-review.md">Full PhD forensic review (d634de37) →</a> · '
+        '<a href="research/session-c59db412-review.md">Prior review (c59db412)</a></p>'
+        '<div class="table-scroll"><table><thead><tr><th>Focus site</th><th>Best leaderboard submission &amp; claim</th>'
+        '<th>SHA-256 &amp; dots</th><th>Unique? (3-px overlap H19-5 / 17GEMSDOE)</th><th>Why best scored &amp; lineage</th>'
+        '<th>2026-10-25/26 candidates</th><th>OK to download / submit?</th></tr></thead><tbody>'
         + "".join(rows)
         + "</tbody></table></div></div></section>"
     )
@@ -155,7 +159,7 @@ def render(root: Path, kind: str) -> str:
 <p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule, and <strong>0/9</strong> inspected focus sites (<code>GEMSDOE24..36</code>) hold an unsubmitted protocol-unique candidate. No old prediction was copied or renamed as a new submission.</p>
 <p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_c59db412_run_card.json">Latest review’s negative run card</a> · <a href="data/focus_sites_20261026.json">9-focus-site audit JSON</a>.</p>
+<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_d634de37_run_card.json">Latest review’s negative run card (d634de37)</a> · <a href="data/focus_sites_20261026.json">9-focus-site audit JSON</a>.</p>
 </div><aside class="decision-download" aria-label="Canonical archived research download">
 <div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
 <h2>Download the audited TIFF</h2>
@@ -180,11 +184,11 @@ def render(root: Path, kind: str) -> str:
 <div><div class="kicker">H33 &amp; 9-focus-site forensic answer</div><h2>Learn from the geometry.<br>Do not copy the submission.</h2>
 <p><strong>0.2778 is a user-reported claim, not an ORGANIZER-CONFIRMED receipt.</strong> Byte-exact float64 auditing shows H33-2-B2 (<code>37,654</code> px) is an exact subset of SOLO-D2.8 (<code>40,199</code> px, <code>0.2708</code>) and D2.8 (<code>44,090</code> px, <code>0.2600</code>): under DTI (<code>α = 0.2</code> on FP, <code>β = 0.8</code> on FN), stripping <code>6,436</code> <code>d &lt;= 2 px</code> digitization-shadow dots removed denominator drag while preserving <code>41.74%</code> blind-basin (<code>&gt; 25 px</code>) discovery—matching our 5-site <code>2026-10-25</code> monotonic far-field law (<code>1.18% → 0.0742</code> up to <code>37.87% → 0.2190</code>).</p>
 <p>There is no defensible guarantee that this repository will beat that claim, the older 0.3195 claim, or the 0.4413 claim without higher-precision subsurface/1-m 3DEP features and selector scoping of the dense prior.</p>
-<a href="research/session-c59db412-review.md">Latest 9-focus-site audit, PhD 0.2778 analysis &amp; limitations →</a></div>
+<a href="research/session-d634de37-review.md">Latest 9-focus-site audit, PhD 0.2778 analysis &amp; limitations (d634de37) →</a></div>
 <div class="proof"><div class="kicker">Source-bound research queue</div><h3>Test physical deconvolution—with null controls.</h3>
-<p>The conditional source-bound first choice is <strong>{escape(first_choice['id'])}</strong>: {escape(first_choice['title'])}. Five new 2026-10-26 untried hypotheses (<code>H88-PTGM</code> up-dip structural-index doublet, <code>H88-BFRK</code> radiogenic-deconfounded advective accommodation twist, <code>H88-DRMC</code> Hanks–Andrews diffusion dipole, <code>H88-VVRD</code> volcanic-vent radial veto, and external 1-m 3DEP <code>H88-3DEP-SCARP</code>) are ranked alongside the queue; none authorizes generation while the duplicate stop binds.</p>
+<p>The conditional source-bound first choice is <strong>{escape(first_choice['id'])}</strong>: {escape(first_choice['title'])}. Five new 2026-10-26 untried hypotheses (<code>H88-LGOF</code> LiDAR-gap isotonic subsurface expert + hydraulic outflow back-tracking, <code>H88-SEMD</code> signed magnetite-destruction × clay-cap cross-gradient dipole, <code>H88-PHCT</code> multi-height phase migration, <code>H88-CFRS</code> conjugate Reidel &amp; graben-pair filter, and external 1-m 3DEP/InSAR <code>H88-3DEP-INSAR</code>) are ranked alongside the queue; none authorizes generation while the duplicate stop binds.</p>
 <p><strong>Evaluated mechanisms are retired, never recycled:</strong> MMRX, MTAS, MFS, PGTD, and CON88 already have historical negative execution records.</p>
-<a href="research/session-c59db412-hypotheses.md">Latest 5 ranked hypotheses (H88-PTGM..3DEP-SCARP) →</a> · <a href="research/session-0df81d99-hypotheses.md">Prior dossier (0df81d99)</a> · <a href="data/hypothesis_queue.json">Machine-readable queue</a></div></div></section>
+<a href="research/session-d634de37-hypotheses.md">Latest 5 ranked hypotheses (H88-LGOF..3DEP-INSAR) →</a> · <a href="research/session-c59db412-hypotheses.md">Prior 2026-10-26 dossier (c59db412)</a> · <a href="data/hypothesis_queue.json">Machine-readable queue</a></div></div></section>
 <section class="decision-actions"><div class="wrap"><div class="kicker">Operational handoff</div><h2>Data placement is no longer the blocker.</h2><p>The pinned core feature raster and shared external inputs have been restored; the existing preparation command successfully loads the shared feature planes on CPU. The remaining blocker is not a missing download: it is the unsatisfiable literal uniqueness condition, followed by scientific and organizer-access gates.</p>
 <div class="button-row"><a class="button button-primary" href="executive-summary.html">Open the submission guide →</a><a href="sources.html" class="button decision-outline">Sources &amp; verification limits</a></div>
 <p class="fine">Maximize P(Win): preserve scarce slots for evidence-backed, distinct candidates. Own the Outcome: report an unmet requirement instead of presenting a research TIFF as submission-ready.</p></div></section>'''
@@ -208,7 +212,7 @@ python scripts/render_decision.py --check
 python -O scripts/check_site.py
 python scripts/preflight_mtas88.py --gate-generation
 # Expected final exit: 2 (DUPLICATE_STOP). Not a build failure to bypass.</code></pre>
-<p><a href="research/session-c59db412-review.md">Latest 9-focus-site review and limitations</a> · <a href="data/focus_sites_20261026.json">9-site audit JSON</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/session_c59db412_run_card.json">Negative run card</a> · <a href="data/con88_clearance_withdrawal_20261025.json">CON88 withdrawal receipt</a></p>
+<p><a href="research/session-d634de37-review.md">Latest 9-focus-site review and limitations (d634de37)</a> · <a href="data/focus_sites_20261026.json">9-site audit JSON</a> · <a href="data/literal_protocol_audit.json">Literal audit</a> · <a href="data/session_d634de37_run_card.json">Negative run card (d634de37)</a> · <a href="data/con88_clearance_withdrawal_20261025.json">CON88 withdrawal receipt</a></p>
 </div></section>'''
     return hero + guide + inventory(audit)
 
@@ -267,9 +271,9 @@ def render_research_queue(root: Path) -> str:
             'still-unimplemented variants in this checkout, not proof of worldwide novelty. All inputs are in the '
             'existing pinned owner-mirror tier; no new external data availability is assumed. Every proposal is '
             'held before feature construction by the same literal witness.</p>'
-            '<p><a href="research/session-c59db412-hypotheses.md">Five 2026-10-26 untried hypotheses (H88-PTGM..3DEP-SCARP) →</a> · '
+            '<p><a href="research/session-d634de37-hypotheses.md">Five 2026-10-26 untried hypotheses (H88-LGOF..3DEP-INSAR) →</a> · '
+            '<a href="research/session-c59db412-hypotheses.md">Prior 2026-10-26 dossier (H88-PTGM..3DEP-SCARP) →</a> · '
             '<a href="research/session-0df81d99-hypotheses.md">Prior dossier (H88-HRLC..USMT-3D) →</a> · '
-            '<a href="research/session-587c7f22-hypotheses.md">Parallel dossier (587c7f22) →</a> · '
             '<a href="research/session-693b10af-hypotheses.md">Queue notes (SPR/AWA/CBC) →</a> · '
             '<a href="data/hypothesis_queue.json">Source-fingerprinted JSON queue</a></p></div></section>')
 

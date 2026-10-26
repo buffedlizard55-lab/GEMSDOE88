@@ -66,6 +66,20 @@ FOCUS_SPECS: list[dict] = [
         "lineage_role": "D1.5 parent: priority-ordered Poisson thinning (min_dist=1.5 px) of 19GEMSDOE H19-5 ridge skeleton (60,069 dots, including 8,769 inside d_cat<=2 px).",
         "recent_candidates": [
             {
+                "name": "gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif",
+                "cache_file": "GEMSDOE24__gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "HOLDOUT-DTI gems-segment-pooled-v1 = 0.16379 [0.15045, 0.17739] (n=60,988; +0.01503 vs GVC1 0.14876); Selector v2 = DO_NOT_SUBMIT due to 99.87% > 70% r13-lattice-s5 overlap and literal dense_17gemdoe 1.0000 > 0.70.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
+            {
+                "name": "gems24-trsg1-tworegime-seismic-geo-oof-20261026-7f301fc433f0-zeros.tif",
+                "cache_file": "GEMSDOE24__gems24-trsg1-tworegime-seismic-geo-oof-20261026-7f301fc433f0-zeros.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "HOLDOUT-DTI gems-segment-pooled-v1 = 0.14644 [0.13250, 0.15971] (trails GVC1 0.14876 by -0.00232); Selector v2 = DO_NOT_SUBMIT.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
+            {
                 "name": "gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros.tif",
                 "cache_file": "GEMSDOE24__gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros.tif",
                 "user_reported_value": "0.0859",
@@ -92,6 +106,13 @@ FOCUS_SPECS: list[dict] = [
         "lineage_role": "D2.8 trunk: priority-ordered Poisson thinning (min_dist=2.8 px) of H19-5 ridge skeleton (44,090 dots; pixel-for-pixel identical to GEMSDOE30 d28-poisson300m-offcat-44090).",
         "recent_candidates": [
             {
+                "name": "gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif",
+                "cache_file": "GEMSDOE25__gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "2026-10-26 H71 HGPC-BLIND (59,472 dots): failed GEMSDOE25 holdout gate vs H35 baseline and literal dense_17gemdoe overlap 1.0000 > 0.70.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
+            {
                 "name": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif",
                 "cache_file": "GEMSDOE25__gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif",
                 "user_reported_value": "0.0742",
@@ -110,6 +131,13 @@ FOCUS_SPECS: list[dict] = [
         "champion_user_reported_value": "0.2449",
         "lineage_role": "D1.5 superset: exact 60,069 D1.5 dots + 1,259 straight-line T-v2 catalogue-tip gap-closure dots (61,328 total; -0.0028 user-reported drag vs D1.5).",
         "recent_candidates": [
+            {
+                "name": "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+                "cache_file": "GEMSDOE27__gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "Flagged IR-88-D634DE37-01: GEMSDOE27 (426426b) headlines OK TO SUBMIT with HOLDOUT-DTI = 0.047302 [0.044527, 0.049619] on gems27.metric v1 + holdout-blind-buffered-v2 (unbuffered 0.115636 << 0.2778), while screening uniqueness against only 27-30 local/focus rasters (omitting dense_17gemdoe 1.0000 > 0.70 and calib_h161 0.6200), covering 88.79% (33,434/37,654 > 70%) of H29-S's dots within 3 px, printing stale README stats (0.0568/39.77% vs run-card 0.1645/62.80%), and violating Rule 6 selector separation.",
+                "repo_verdict": "PROTOCOL-CONFLICTING PROMOTION / DO NOT SUBMIT",
+            },
             {
                 "name": "gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite.tif",
                 "cache_file": "GEMSDOE27__gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite.tif",
@@ -135,8 +163,15 @@ FOCUS_SPECS: list[dict] = [
         "champion_prompt_name": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
         "champion_user_reported_value": "0.2710",
         "prompt_anomaly_line": "gems28-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan:0.2715",
-        "lineage_role": "Near-H33 D2.8/SOLO prune (37,660 dots; 99.88% 3-px overlap with H33-2-B2 and 100.00% with H19-5). Prompt's 0.2715 line names content ID 5512495c6bd1, which in GEMSDOE28 is byte-identical to GEMSDOE27's 0.2449 file (SHA-256 33003374...) and recorded in GEMSDOE28:README.md L389 as GEMSDOE27 0.2449.",
+        "lineage_role": "Near-H33 D2.8/SOLO prune (37,660 dots; 99.88% 3-px overlap with H33-2-B2 and 100.00% with H19-5). Prompt removed the earlier erroneous 0.2715 line (which named GEMSDOE27's 5512495c6bd1 0.2449 file, SHA-256 33003374...), confirming h36-1-rung30-blind-r1 (0.2710) as GEMSDOE28's top listed claim.",
         "recent_candidates": [
+            {
+                "name": "gems28-s20-nchc-20261026-d432a1d5d6ee-allfinite.tif",
+                "cache_file": "GEMSDOE28__gems28-s20-nchc-20261026-d432a1d5d6ee-allfinite.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "2026-10-26 S20-NCHC (40,071 dots): HOLDOUT-DTI = 0.131263 [0.119067, 0.143832] vs H19-5+CELF baseline 0.144433 (delta -0.013171, 0/4 folds positive); literal dense_17gemdoe overlap 1.0000 > 0.70.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
             {
                 "name": "gems28-s18-mxtp-20261025-3e95505c011a-allfinite.tif",
                 "cache_file": "GEMSDOE28__gems28-s18-mxtp-20261025-3e95505c011a-allfinite.tif",
@@ -156,6 +191,20 @@ FOCUS_SPECS: list[dict] = [
         "champion_user_reported_value": "0.2600",
         "lineage_role": "Exact pixel-for-pixel duplicate of GEMSDOE25 D2.8 (44,090/44,090 identical positive pixels; filename embeds prefix 91eae1ca of GEMSDOE25's NaN-outside SHA-256).",
         "recent_candidates": [
+            {
+                "name": "gems30-FFL1-fusion_edge-44090-20261026-eacd73e854a3.tif",
+                "cache_file": "GEMSDOE30__gems30-FFL1-fusion_edge-44090-20261026-eacd73e854a3.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "2026-10-26 FFL-1 (44,090 dots): HOLDOUT-DTI = 0.123344 [0.111270, 0.136190] vs MSDB-1v2 0.117737 (+0.005607), blocked by 78.28% > 70% 3-px overlap vs MSDB-1v2 and 100.00% > 70% vs dense_17gemdoe.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
+            {
+                "name": "gems30-TAD24-decensored-38000-20261025-ea3669f488ea-zeros.tif",
+                "cache_file": "GEMSDOE30__gems30-TAD24-decensored-38000-20261025-ea3669f488ea-zeros.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "2026-10-26 G30-TAD (38,000 dots): HOLDOUT-DTI = 0.120561 [0.109133, 0.132920] (+0.002824 vs MSDB-1v2, 95% CI [-0.000557, +0.006300] crosses zero); literal dense_17gemdoe overlap 1.0000 > 0.70.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
             {
                 "name": "gems30-MSDB1-edge44090-20261025-e7856ec3f14a.tif",
                 "cache_file": "GEMSDOE30__gems30-MSDB1-edge44090-20261025-e7856ec3f14a.tif",
@@ -183,6 +232,20 @@ FOCUS_SPECS: list[dict] = [
         "lineage_role": "SOLO-D2.8 (B=1 collar prune): exact 40,199-dot subset of D2.8 removing 3,891 d_cat==1 px flank dots; pixel-for-pixel identical to GEMSDOE28 h27-4-r1-solo-d2-8 (0.2708).",
         "recent_candidates": [
             {
+                "name": "gemsdoe31-h31s-udap-sslic-37654-20261026-9355f21d9f-zeros.tif",
+                "cache_file": "GEMSDOE31__gemsdoe31-h31s-udap-sslic-37654-20261026-9355f21d9f-zeros.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "2026-10-26 H31-S UDAP-SSLIC (37,654 dots): HOLDOUT-DTI = 0.011066 [0.009184, 0.012872], blocked by 72.5% > 70% surface overlap on RBU31, 99.93% lattice stop, and 100.00% dense_17gemdoe overlap.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
+            {
+                "name": "gems31-xfcoh31-xfield-coherence-37654-20261026-zeros.tif",
+                "cache_file": "GEMSDOE31__gems31-xfcoh31-xfield-coherence-37654-20261026-zeros.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "2026-10-26 XFCOH31 (37,654 dots): HOLDOUT-DTI = 0.04588 < 0.04812 baseline (delta -0.00224) and 100.00% dense_17gemdoe overlap.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
+            {
                 "name": "gemsdoe31-h31m-bstep-xmod-submod-20261025-37654-allfinite.tif",
                 "cache_file": "GEMSDOE31__gemsdoe31-h31m-bstep-xmod-submod-20261025-37654-allfinite.tif",
                 "user_reported_value": None,
@@ -202,11 +265,25 @@ FOCUS_SPECS: list[dict] = [
         "lineage_role": "H33-2-B2 (#1 user-reported across all 92 sites): exact 37,654-dot subset of SOLO-D2.8 (-2,545 dots in 1<d_cat<=2 px) and D2.8 (-6,436 dots in d_cat<=2 px); 100.00% 3-px overlap with H19-5 and dense_17gemdoe.",
         "recent_candidates": [
             {
+                "name": "gemsdoe32-h38g1-lidar-geodawn-gdr-celf37654-20261026T013500Z-35859e28-zeros.tif",
+                "cache_file": "GEMSDOE32__gemsdoe32-h38g1-lidar-geodawn-gdr-celf37654-20261026T013500Z-35859e28-zeros.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "2026-10-26 EXP3_H38_G1_CORROB (37,654 dots): HOLDOUT-DTI = 0.008074 (+0.00355 vs H33-2-B2 on buffered catalogue), blocked by 77.56% > 70% overlap vs hcvf2, 99.91% vs r13-lattice, 100.00% vs dense_17gemdoe, and SGMC holdout loss (0.0504 < 0.0641).",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
+            {
+                "name": "gemsdoe32-h36-1c-tdr-pds-steger-37654-20261026T012000Z-9ff9d6e2-zeros.tif",
+                "cache_file": "GEMSDOE32__gemsdoe32-h36-1c-tdr-pds-steger-37654-20261026T012000Z-9ff9d6e2-zeros.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "2026-10-26 H36-1C-TDR-PDS (37,654 dots): HOLDOUT-DTI = 0.1303 < B0_ridge 0.1338 (negative delta -0.0035) and 100.00% dense_17gemdoe overlap.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
+            {
                 "name": "gemsdoe32-r6-stepprofile-b2-37654-20261026T002502Z-23fbbb51-zeros.tif",
                 "cache_file": "GEMSDOE32__gemsdoe32-r6-stepprofile-b2-37654-20261026T002502Z-23fbbb51-zeros.tif",
                 "user_reported_value": None,
-                "repo_holdout_summary": "Flagged IR-88-C59DB412-02: GEMSDOE32 headlines OK TO SUBMIT using non-protocol pre-Quaternary SGMC DTI (0.1413 vs 0.0961; 5 km N-S shift null retains 0.1207), while LOSING buffered catalogue hide-and-recover (0.00338 vs champion 0.00452; AUC 0.5250) and failing literal calibration-lattice (0.9782 > 0.70) & dense_17gemdoe (1.0000 > 0.70) uniqueness.",
-                "repo_verdict": "PROTOCOL-INVALID PROMOTION / DO NOT SUBMIT",
+                "repo_holdout_summary": "Flagged IR-88-C59DB412-02 (and self-demoted to DO NOT SUBMIT by GEMSDOE32 commit 9e55d5d): loses buffered catalogue hide-and-recover (0.00338 < 0.00452; AUC 0.5250) and fails calibration-lattice (0.9782 > 0.70) & dense_17gemdoe (1.0000 > 0.70) uniqueness.",
+                "repo_verdict": "SELF-DEMOTED / DO NOT SUBMIT",
             },
         ],
     },
@@ -220,6 +297,20 @@ FOCUS_SPECS: list[dict] = [
         "champion_user_reported_value": "0.2632",
         "lineage_role": "H19-5/D2.8 analog-tip/stepover perturbation (41,865 dots): 99.71% (41,743/41,865) within 3 px of H19-5 and 99.70% within 3 px of D2.8 (refuting GEMSDOE32's unverified 'genuinely different geometry' note).",
         "recent_candidates": [
+            {
+                "name": "gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif",
+                "cache_file": "GEMSDOE33__gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "2026-10-26 A33-R2-CSHT (37,654 dots): HOLDOUT-DTI = 0.136716 screen / 0.131169 confirm (+0.016049 vs B1_regional 0.115120), blocked by pre-placement surface duplicate vs G30-MSDB1 and 100.00% dense_17gemdoe overlap.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
+            {
+                "name": "gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros.tif",
+                "cache_file": "GEMSDOE33__gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "Flagged IR-88-D634DE37-02: GEMSDOE33 (40f9b86) generated 42,000 dots without sample_submission.tif (treating all 12,279,160 grid cells as footprint), placing 33,616/42,000 (80.04%) dots OUTSIDE the valid study footprint and 108 dots on known existing_faults.tif in contiguous row-major scanlines (row 0 cols 713..858, nn_min_px=1.0), with zero holdout evaluation (NOT MEASURED) and 100.00% dense_17gemdoe overlap on its 8,384 in-footprint dots.",
+                "repo_verdict": "CORRUPTED FOOTPRINT / UNMEASURED / DO NOT SUBMIT",
+            },
             {
                 "name": "gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34-zeros.tif",
                 "cache_file": "GEMSDOE33__gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34-zeros.tif",
@@ -238,7 +329,22 @@ FOCUS_SPECS: list[dict] = [
         "champion_prompt_name": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
         "champion_user_reported_value": "0.2750",
         "lineage_role": "Exact H33-2-B2 superset (#2 user-reported): contains 100.00% (37,654/37,654) of H33-2-B2 dots + 1,200 off-ridge/flank PINN additions (-0.0028 user-reported drag vs 0.2778; 97.75% 3-px overlap with H19-5 & 100.00% with gems36_anderson_pinn.tif).",
-        "recent_candidates": [],
+        "recent_candidates": [
+            {
+                "name": "gemsdoe36-atvr36-20261026.tif",
+                "cache_file": "GEMSDOE36__gemsdoe36-atvr36-20261026.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "2026-10-26 ATVR-36 EXP-2 (37,654 dots): HOLDOUT-DTI = 0.114502 (4-fold) / 0.117925 (6-fold) vs B0_ridge 0.13375 (delta -0.0158, 0/6 folds positive); literal dense_17gemdoe overlap 1.0000 > 0.70.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
+            {
+                "name": "gemsdoe36-h36-gps-graben-pair-20261026-bb29ce2a4bb4-zeros.tif",
+                "cache_file": "GEMSDOE36__gemsdoe36-h36-gps-graben-pair-20261026-bb29ce2a4bb4-zeros.tif",
+                "user_reported_value": None,
+                "repo_holdout_summary": "2026-10-26 H36-GPS (37,654 dots): HOLDOUT-DTI = 0.131999 [0.114959, 0.151492] vs B0_ridge 0.13375 (delta -0.001751, 3/6 folds positive); literal dense_17gemdoe overlap 1.0000 > 0.70.",
+                "repo_verdict": "DO NOT SUBMIT",
+            },
+        ],
     },
 ]
 
@@ -367,7 +473,11 @@ def rebuild_from_cache(root: Path = ROOT) -> dict:
         in_fp_finite = np.isfinite(in_fp)
         in_fp_range_ok = bool(in_fp_finite.all() and (in_fp >= 0.0).all() and (in_fp <= 1.0).all())
         full_grid_range_ok = bool(finite.all() and (arr >= 0.0).all() and (arr <= 1.0).all())
-        pos = finite & (arr > 0.0) & footprint
+        pos_all = finite & (arr > 0.0)
+        n_pos_total = int(pos_all.sum())
+        n_pos_outside_fp = int((pos_all & ~footprint).sum())
+        n_pos_on_cat = int((pos_all & cat_mask).sum())
+        pos = pos_all & footprint
         n_pos = int(pos.sum())
         flat_pos = np.flatnonzero(pos).astype(np.int64)
         allowed_pos_idx = full_to_allowed[flat_pos]
@@ -444,6 +554,9 @@ def rebuild_from_cache(root: Path = ROOT) -> dict:
             "in_footprint_range_0_1": in_fp_range_ok,
             "full_grid_strict_0_1_portal_safe": full_grid_range_ok,
             "positive_pixels": n_pos,
+            "positive_pixels_total": n_pos_total,
+            "positive_pixels_outside_footprint": n_pos_outside_fp,
+            "positive_pixels_on_catalogue": n_pos_on_cat,
             "is_binary_0_1": is_bin,
             "nn_min_px": round(nn_min, 6),
             "nn_median_px": round(nn_med, 6),
@@ -581,6 +694,10 @@ def rebuild_from_cache(root: Path = ROOT) -> dict:
                 "sha256": rc_raw["sha256"],
                 "size_bytes": rc_raw["size_bytes"],
                 "positive_pixels": rc_raw["positive_pixels"],
+                "positive_pixels_total": rc_raw["positive_pixels_total"],
+                "positive_pixels_outside_footprint": rc_raw["positive_pixels_outside_footprint"],
+                "positive_pixels_on_catalogue": rc_raw["positive_pixels_on_catalogue"],
+                "nn_min_px": rc_raw["nn_min_px"],
                 "full_grid_strict_0_1_portal_safe": rc_raw["full_grid_strict_0_1_portal_safe"],
                 "full_grid_nan_pixels": rc_raw["full_grid_nan_pixels"],
                 "d_cat_le2_px": rc_raw["d_cat_strata"]["le2_total_px"],
@@ -636,7 +753,7 @@ def rebuild_from_cache(root: Path = ROOT) -> dict:
     report = {
         "schema": "gems88.focus-sites-audit-20261026.v1",
         "audit_date_utc": "2026-10-26",
-        "session_branch": "arena/c59db412-gemsdoe88",
+        "session_branch": "arena/d634de37-gemsdoe88",
         "evidence_policy": {
             "user_reported_scores": CLAIM_LABEL,
             "organizer_receipts_present": 0,
@@ -669,9 +786,11 @@ def rebuild_from_cache(root: Path = ROOT) -> dict:
                 "GEMSDOE32 (h33-h33-2-b2, 0.2778) is an exact 0-px subset of SOLO-D2.8 (-2,545 dots in 1<d_cat<=2 px) and D2.8 (-6,436 dots in d_cat<=2 px), emitting 37,654 binary dots with zero dots inside 200 m of existing_faults.tif.",
                 "GEMSDOE36 (anderson-geothermal-pinn-38854, 0.2750) contains 100.00% (37,654/37,654) of H33-2-B2's dots plus 1,200 near-collar/flank additions (-0.0028 user-reported DTI drag).",
                 "GEMSDOE33 (h33d-analog-tip-stepover-r30, 0.2632, 41,865 px) has 0.9971 (41,743/41,865) forward 3-px overlap with gems19_h19_5.tif and 0.9970 with D2.8, refuting GEMSDOE32's unverified claim of 'genuinely different geometry'.",
-                "Prompt irregularity IR-88-C59DB412-01: 'gems28-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan:0.2715' does not exist under a gems28-* prefix; GEMSDOE28 stores docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif (SHA-256 33003374...), byte-identical to GEMSDOE27's 0.2449 file and tabulated as GEMSDOE27 0.2449 in GEMSDOE28:README.md L389.",
-                "Protocol irregularity IR-88-C59DB412-02: GEMSDOE32 Round-6 R6-1-stepprofile (SHA-256 c7f094c1...) headlines 'OK TO SUBMIT' on a private pre-Quaternary SGMC metric (0.1413; 5 km N-S shift null retains 0.1207) while losing buffered catalogue hide-and-recover (0.00338 < 0.00452; AUC 0.5250) and failing literal calibration-lattice (0.9782 > 0.70) & dense_17gemdoe (1.0000 > 0.70) uniqueness.",
+                "Prompt irregularity IR-88-C59DB412-01 (resolved in d634de37 prompt): 'gems28-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan:0.2715' was removed from the GEMSDOE28 prompt block after confirming GEMSDOE28 stores docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif (SHA-256 33003374...), byte-identical to GEMSDOE27's 0.2449 file.",
+                "Protocol irregularity IR-88-C59DB412-02 (confirmed by GEMSDOE32 commit 9e55d5d): GEMSDOE32 Round-6 R6-1-stepprofile (SHA-256 c7f094c1...) was self-demoted to 'DO NOT SUBMIT — audit artifact only' after confirming buffered catalogue holdout loss (0.00338 < 0.00452; AUC 0.5250) and calibration-lattice (0.9782 > 0.70) & dense_17gemdoe (1.0000 > 0.70) overlap.",
                 "Protocol irregularity IR-88-C59DB412-04: GEMSDOE30 nearslay (SHA-256 f877c278...) is an unapproved geometric d_cat collar annulus (0% >25 px blind discovery, 7,111,787 NaNs outside footprint, screened against only 21 files).",
+                "Protocol irregularity IR-88-D634DE37-01: GEMSDOE27 (commit 426426b) headlines H31-1 DRCG-WL (SHA-256 2c002b02...) as 'OK TO DOWNLOAD AND SUBMIT' with HOLDOUT-DTI = 0.047302 (buffered) / 0.115636 (unbuffered), while screening uniqueness against only 27-30 local/focus rasters (omitting dense_17gemdoe 1.0000 > 0.70 and calib_h161 0.6200), covering 88.79% (33,434/37,654 > 70%) of H29-S's dots within 3 px, printing stale README stats (0.0568/39.77% vs run-card 0.1645/62.80%), and violating Rule 6 selector separation.",
+                "Protocol irregularity IR-88-D634DE37-02: GEMSDOE33 (commit 40f9b86 / fded538) headlines A33-R2-HMDT (SHA-256 8d144302...) as 'FORMAT PASS (10/10)' and 'OK TO SUBMIT: EXPERIMENTAL', but generated it without sample_submission.tif (treating all 12,279,160 grid cells as footprint), placing 33,616/42,000 (80.04%) of its dots OUTSIDE the valid study footprint and 108 dots directly on existing_faults.tif in contiguous row-major scanlines (row 0 cols 713..858, nn_min_px=1.0), with zero holdout evaluation (NOT MEASURED).",
             ],
         },
         "gemsdoe28_02715_forensic_proof": {
@@ -806,6 +925,17 @@ def verify_committed(root: Path = ROOT) -> dict:
 
     if not report["gemsdoe28_02715_forensic_proof"]["byte_identical_to_gemsdoe27_02449"]:
         raise ValueError("Expected byte-identity proof for GEMSDOE28 5512495c6bd1")
+
+    by_site = {r["site"]: r for r in report["focus_sites"]}
+    g33_cands = {c["submission_filename"]: c for c in by_site["GEMSDOE33"]["recent_20261025_20261026_candidates"]}
+    hmdt = g33_cands.get("gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros.tif")
+    if (
+        not hmdt
+        or hmdt.get("positive_pixels_outside_footprint") != 33616
+        or hmdt.get("positive_pixels_on_catalogue") != 108
+        or hmdt.get("positive_pixels") != 8384
+    ):
+        raise ValueError("Expected GEMSDOE33 A33-R2-HMDT outside-footprint/on-catalogue audit proof")
     return report
 
 

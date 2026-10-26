@@ -235,7 +235,7 @@ def build_report(root: Path = ROOT) -> dict:
         "review_date_utc": DATE_UTC,
         "snapshot_scope": "HISTORICAL_HYPOTHESES_AND_SOURCE_ACCESS_NOT_REFRESHED_BY_REPLAY",
         "current_research_queue": "registry/hypothesis_queue.json",
-        "current_review_addendum": "docs/data/session_c59db412_run_card.json",
+        "current_review_addendum": "docs/data/session_d634de37_run_card.json",
         "review_status": review_status,
         "hypothesis_queue": queue,
         "selected_lane": {
