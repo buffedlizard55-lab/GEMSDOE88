@@ -1,6 +1,6 @@
 {
   "schema": "gems88.browser-review.v1",
-  "checked_at_utc": "2026-10-26T01:17:43.926Z",
+  "checked_at_utc": "2026-10-26T01:48:26.483Z",
   "browser": "153.0.8010.0",
   "pages": [
     {
@@ -96,16 +96,16 @@
   ],
   "failed_fetch_stays_negative": true,
   "source_sha256": {
-    "docs/index.html": "c09c56429dd655e299e76b5b08c8c8659b63fa26da0fe8ab45df7ddd806970c2",
-    "docs/executive-summary.html": "36c034ab449ef8eece22b89fe883d4f78f1d7c5366b1868096d10558b40596ae",
+    "docs/index.html": "10a3d406592a9054d55e94b88e04113e95e8c732598b7be0ae4ba9db9c8a404d",
+    "docs/executive-summary.html": "9c27587be9718e73549f07b607c38c2993674bbd8c36807ae1c581253f29c7eb",
     "docs/research.html": "c7d78fbeafafc122389701d59f059692dd7ec2cfb870e30778cd4cd25b7c37ee",
-    "docs/sources.html": "4b3474fcd0f8c3e7e1314b4d48e1a6f5448bdd006af7057f7aa57a052e4b94ec",
+    "docs/sources.html": "b0aaa6e0ab70fbaca093193326ce633ce7e5564f6601a642f3d46cb117736907",
     "docs/assets/site.css": "834256dce45ea5d350bea0942730f455e1c44edaa64e85f35527ad58c187c737",
     "docs/assets/site.js": "d27092bb290b5df56cb1a511f9f5e5362eaa90ed74a737d3fef288d9460cba41",
     "docs/data/current_release.json": "d9f69ff143f57e6c909a260c0b4c346a919ef94dbfe14e52b0c784d1069ed7de",
-    "docs/data/download_audit.json": "5326c0a95d61d3179a1bf4ef4ee3882a4894293f7b4f0fd4edadb6e610079005",
+    "docs/data/download_audit.json": "a7e48c0b89382897f0069630e7ee3444c736f94153781763da6aa36ea375418b",
     "docs/data/mtas88_run_card.json": "ec09124b1f8283134442f3e7446b4fa8a107f22b14f35e0e717e7c60011b9756",
-    "docs/data/hypothesis_queue.json": "86ebe290108d577e9e72be9f110ac04cc6d3e3e42ed4a16fe3e38258f598c224",
+    "docs/data/hypothesis_queue.json": "82e92ad08d29bf4bd4bfd220efacd8910399eb8da5a5e4969545db0066d13517",
     "docs/status.json": "09d83195d62657b794846e144d134ad4012ccdd5ee52d3e0011fef7115e876af",
     "docs/mdc88/index.html": "7968611af89256740904e40003e26bf49635d626a2f04b1e1943a1050d88ef1d",
     "docs/mdc88/executive-summary.html": "a224490fc994b54619d24275500ea6eba6670685be70bcda8f241ee4b25a8ae3",

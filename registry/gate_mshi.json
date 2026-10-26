@@ -1,0 +1,17 @@
+{
+  "schema": "gems88.gate-v1",
+  "generated_utc": "2026-10-26T00:29:31Z",
+  "experiment_id": "H88-MSHI-v1",
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "format_passed": true,
+  "canary_passed": true,
+  "canary_max_auc": 0.845454,
+  "holdout_dti": 0.035682,
+  "sparse_uniqueness_passed": true,
+  "max_dot_overlap": 0.204918,
+  "max_abs_rho": 0.007534,
+  "literal_blocked": true,
+  "dense_overlap": 1.0,
+  "verdict": "negative"
+}

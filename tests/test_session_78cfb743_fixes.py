@@ -78,7 +78,7 @@ def test_submissions_ibl_zip_member_preserves_do_not_submit_and_dir_audit_passes
 
     report = audit_submissions_dir.audit_submissions_directory(ROOT)
     assert report["all_packages_safe"] is True
-    assert report["tiff_count"] == report["zip_count"] == report["pass_count"] == 20
+    assert report["tiff_count"] == report["zip_count"] == report["pass_count"] == 21
     assert report["protocol_eligible_count"] == 0
 
     # Verify audit_submissions_dir rejects an unmarked inner ZIP member.

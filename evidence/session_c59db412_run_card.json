@@ -2,7 +2,7 @@
   "schema": "gems88.session-review.v1",
   "run_id": "GEMSDOE88-REVIEW-C59DB412-20261026",
   "branch": "arena/c59db412-gemsdoe88",
-  "base_commit": "996b8c384d58beae28393256696ea7cb57e488aa",
+  "base_commit": "d892d393cbaab632659f1455f28ed597950cc091",
   "initial_branch_base_commit": "996b8c384d58beae28393256696ea7cb57e488aa",
   "reviewed_at_utc": "2026-10-26T00:58:00Z",
   "lane": "SOFTWARE_AND_FOCUS9_FORENSIC_REVIEW_ONLY",
@@ -160,6 +160,11 @@
       "id": "IR-88-C59DB412-06",
       "summary": "Synchronized USER_PROMPT_20261026.md, README.md, audit_user_claims.py, and docs/data/user_reported_results.{json,csv} to 124 distinct claims across 92 sites (2 blank: GEMSDOE86, GEMSDOE88) plus unrated GEMSDOE91 S18.",
       "evidence": "docs/data/user_reported_results.json"
+    },
+    {
+      "id": "IR-88-C59DB412-07",
+      "summary": "Remediated parallel PRs #195/#196/#197 (H88-MSHI & H88-GEORAD): added mandatory pre-import enforce_generation_preflight() to build_h88_mshi_submission.py and build_unique_research_submission.py (120/120 guard checks PASS), normalized MSHI verdict from promote-to-selector-only to negative, retired H88-MSHI & H88-GEORAD in hypothesis_queue.json, and regenerated download_audit.json across all 50/50 Pages pairs and 21/21 submissions/ pairs.",
+      "evidence": "evidence/download_audit.json"
     }
   ],
   "archived_research_download": {
@@ -374,6 +379,10 @@
     "focus_sites_audit_optimized_pass": true,
     "completed_at_utc": "2026-10-26T01:05:00Z",
     "remote_scope": "Local full suite, -O guards, 9-focus-site float64 audit, and headless Chromium 153 receipts; live GitHub PR/check/merge state is authoritative.",
-    "pytest": "922 passed, 22 skipped"
+    "pytest": "924 passed, 22 skipped"
+  },
+  "source_snapshot": {
+    "files": 156,
+    "sha256": "a05cd182a2057898e53e4bab103c1958ca439ce9a0827cd372f10047ec20be05"
   }
 }

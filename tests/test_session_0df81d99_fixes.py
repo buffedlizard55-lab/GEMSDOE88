@@ -76,21 +76,21 @@ def test_con88_validator_detects_run_card_or_gate_tampering(tmp_path: Path) -> N
     assert code == 1
 
 
-def test_all_48_published_tiffs_carry_do_not_submit_and_zero_eligible() -> None:
+def test_all_50_published_tiffs_carry_do_not_submit_and_zero_eligible() -> None:
     downloads = sorted((ROOT / "docs/downloads").glob("*.tif"))
     variants = sorted((ROOT / "docs/research-variants").glob("*.tif"))
     all_tiffs = downloads + variants
-    assert len(downloads) == 47
+    assert len(downloads) == 49
     assert len(variants) == 1
-    assert len(all_tiffs) == 48
+    assert len(all_tiffs) == 50
     unmarked = [p.name for p in all_tiffs if "DO-NOT-SUBMIT" not in p.name]
     assert unmarked == []
 
     audit = json.loads((ROOT / "docs/data/download_audit.json").read_text(encoding="utf-8"))
-    assert audit["tiff_count"] == 47
+    assert audit["tiff_count"] == 49
     assert audit["additional_research_tiff_count"] == 1
-    assert audit["total_published_tiff_count"] == 48
-    assert audit["total_research_download_pass_count"] == 48
+    assert audit["total_published_tiff_count"] == 50
+    assert audit["total_research_download_pass_count"] == 50
     assert audit["protocol_eligible_count"] == 0
     assert audit["ok_to_submit"] is False
     for item in audit["artifacts"] + audit["additional_research_artifacts"]:
