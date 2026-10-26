@@ -1,0 +1,1207 @@
+{
+  "schema": "gems88.focus-sites-current-head-recheck.v1",
+  "reviewed_date_utc": "2026-10-26",
+  "review_branch": "arena/75aeb674-gemsdoe88",
+  "purpose": "Read-only reconciliation of the nine historical focus-site champion artifacts and current main HEAD inventories after the prior pixel audit snapshot. This does not authorize a submission.",
+  "prior_pixel_audit": {
+    "path": "docs/data/focus_sites_20261026.json",
+    "evidence_path": "evidence/focus_sites_20261026_audit.json",
+    "prior_session_branch": "arena/c59db412-gemsdoe88",
+    "prior_site_heads_are_stale": true,
+    "note": "The prior pixel-level champion measurements remain applicable only where exact champion bytes match current main; new current-head rasters are inventoried below but not all pairwise rescanned."
+  },
+  "focus_sites": [
+    {
+      "site": "GEMSDOE24",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE24",
+      "prior_audited_main_sha": "758af9ffb6ac5e3f82af6bd472f82d246dce55f0",
+      "current_main_sha": "17496743a9695974370512db64d8140ea1ccfd2f",
+      "current_commit_date_utc": "2026-10-26T02:52:55Z",
+      "current_commit_message": "Merge pull request #33 from buffedlizard55-lab/arena/6a7c2974-gemsdoe24",
+      "prior_to_current_compare": {
+        "status": "ahead",
+        "commits_ahead": 28,
+        "commits_behind": 0,
+        "changed_files": 150
+      },
+      "historical_champion": {
+        "artifact_name": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+        "reported_value": "0.2477",
+        "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+        "prior_audit_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+        "prior_audit_positive_pixels": 60069,
+        "prior_pixel_verdict": false,
+        "current_main_file_matches": [
+          {
+            "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-allfinite.tif",
+            "git_blob_sha": "6b6d31807e501af4749bbaeb43702450893fd720",
+            "sha256": "3e0730e8d4f7db095dd80246a98cba3bc0fc9a28f436b91db27ca34df4d0d1ce",
+            "size_bytes": 863902,
+            "matches_prior_audit_sha256": false
+          },
+          {
+            "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+            "git_blob_sha": "cc1752f2ea48b23bd41232c1fdcdceb5f439e401",
+            "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+            "size_bytes": 1632732,
+            "matches_prior_audit_sha256": true
+          }
+        ],
+        "organizer_receipt_in_prior_audit": null
+      },
+      "changed_download_or_research_rasters": [
+        {
+          "path": "docs/downloads/gems24-crp1-compfront-xdepth-saddle-20261026-c679a967f700-nan.tif",
+          "change": "added",
+          "git_blob_sha": "b23c836c5871407800e5e967f494a5e4b4b1fa76"
+        },
+        {
+          "path": "docs/downloads/gems24-crp1-compfront-xdepth-saddle-20261026-c679a967f700-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "b72a500486afdca327206f9ebc2dc32542f62f98"
+        },
+        {
+          "path": "docs/downloads/gems24-cup1-negative-compfront-upcont-submod-20261026-35a808f4514a-nan.tif",
+          "change": "added",
+          "git_blob_sha": "b3214fdec6e69f04c5e7acbf823431144152acbf"
+        },
+        {
+          "path": "docs/downloads/gems24-cup1-negative-compfront-upcont-submod-20261026-35a808f4514a-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "f14da4da0aff04e1eabc48d1d50cb9735a6572c0"
+        },
+        {
+          "path": "docs/downloads/gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-nan.tif",
+          "change": "added",
+          "git_blob_sha": "ac12f0fe66c653dfa1ad5e58b988b1eda280fc52"
+        },
+        {
+          "path": "docs/downloads/gems24-dprf1-stitched-oof-tworegime-20261026-81849d67c8bf-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "508313d9da99e2035e14918168c8791b7257d865"
+        },
+        {
+          "path": "docs/downloads/gems24-tnr1-56dfd14b88db-20261026-RESEARCH-NOT-SUBMISSION-nan.tif",
+          "change": "added",
+          "git_blob_sha": "3f06dd2c652bcfec0825b85d7e0628c76b00bde9"
+        },
+        {
+          "path": "docs/downloads/gems24-tnr1-56dfd14b88db-20261026-RESEARCH-NOT-SUBMISSION-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "04173362a88dae1413a9f0fbfd927752be87399b"
+        },
+        {
+          "path": "docs/downloads/gems24-trsg1-tworegime-seismic-geo-oof-20261026-7f301fc433f0-nan.tif",
+          "change": "added",
+          "git_blob_sha": "87bc835e15003acb90723225b81da9bf1a419f04"
+        },
+        {
+          "path": "docs/downloads/gems24-trsg1-tworegime-seismic-geo-oof-20261026-7f301fc433f0-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "acbfed186c7dd78b5f2b22eecae4adbb9fb606b9"
+        }
+      ],
+      "changed_run_card_files": [
+        {
+          "path": "docs/data/crp1_run_card.json",
+          "change": "added",
+          "git_blob_sha": "3a9191da1726f2c960bf349bd30ab37a3751a0e7"
+        },
+        {
+          "path": "docs/data/dprf1_run_card.json",
+          "change": "added",
+          "git_blob_sha": "b38673d7ce7045704e20a43a71b0d23a816aed5a"
+        },
+        {
+          "path": "docs/data/dprf1_run_card_20261026.json",
+          "change": "added",
+          "git_blob_sha": "b38673d7ce7045704e20a43a71b0d23a816aed5a"
+        },
+        {
+          "path": "docs/data/tnr1_run_card.json",
+          "change": "added",
+          "git_blob_sha": "30cafa4e1f9f91164dd224ab809feed1992281fe"
+        },
+        {
+          "path": "docs/data/trsg1_run_card.json",
+          "change": "added",
+          "git_blob_sha": "ddd7d3707bc4ac3921f359898145c0d595c7cf7f"
+        },
+        {
+          "path": "docs/data/trsg1_run_card_20261026.json",
+          "change": "added",
+          "git_blob_sha": "ddd7d3707bc4ac3921f359898145c0d595c7cf7f"
+        },
+        {
+          "path": "evidence/2026-10-26_crp1_review_run_card.json",
+          "change": "added",
+          "git_blob_sha": "36317099b270e20a851dc5fdacd4ac2b6c45807c"
+        },
+        {
+          "path": "evidence/crp1_run_card_20261026.json",
+          "change": "added",
+          "git_blob_sha": "3a9191da1726f2c960bf349bd30ab37a3751a0e7"
+        },
+        {
+          "path": "evidence/cup1_run_card_20261026.json",
+          "change": "added",
+          "git_blob_sha": "1153bbf1c973a6ea40d5eb2ce5d774a5836f576f"
+        },
+        {
+          "path": "evidence/dprf1_run_card_20261026.json",
+          "change": "added",
+          "git_blob_sha": "b38673d7ce7045704e20a43a71b0d23a816aed5a"
+        },
+        {
+          "path": "evidence/tnr1_run_card_20261026.json",
+          "change": "added",
+          "git_blob_sha": "30cafa4e1f9f91164dd224ab809feed1992281fe"
+        },
+        {
+          "path": "evidence/trsg1_run_card_20261026.json",
+          "change": "added",
+          "git_blob_sha": "ddd7d3707bc4ac3921f359898145c0d595c7cf7f"
+        }
+      ],
+      "changed_score_or_registry_files": [
+        {
+          "path": "registry/live_scores.json",
+          "change": "modified",
+          "git_blob_sha": "b903e93797cc3b638ed5f0917e97b67e7ead7254"
+        },
+        {
+          "path": "registry/owner_reported_scores_2026-10-26.json",
+          "change": "added",
+          "git_blob_sha": "8317dcaa817bbf46f9a6c960eec3832b5855afb2"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE25",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE25",
+      "prior_audited_main_sha": "0a45b3ca6403f7e8d4deac5d8b208797d5e8f477",
+      "current_main_sha": "88a29e094989b0e23916136e593474875d067656",
+      "current_commit_date_utc": "2026-10-26T01:19:09Z",
+      "current_commit_message": "Merge pull request #39 from buffedlizard55-lab/arena/71b61fac-gemsdoe25",
+      "prior_to_current_compare": {
+        "status": "ahead",
+        "commits_ahead": 29,
+        "commits_behind": 0,
+        "changed_files": 112
+      },
+      "historical_champion": {
+        "artifact_name": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+        "reported_value": "0.2600",
+        "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+        "prior_audit_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "prior_audit_positive_pixels": 44090,
+        "prior_pixel_verdict": false,
+        "current_main_file_matches": [
+          {
+            "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+            "git_blob_sha": "c8d3a46481152bbdfd61b113484be979fde9d4c6",
+            "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+            "size_bytes": 1603424,
+            "matches_prior_audit_sha256": true
+          },
+          {
+            "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-zeros.tif",
+            "git_blob_sha": "bfb7e86d046dd178c3d6ab60522861b5464dd420",
+            "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+            "size_bytes": 836982,
+            "matches_prior_audit_sha256": false
+          }
+        ],
+        "organizer_receipt_in_prior_audit": null
+      },
+      "changed_download_or_research_rasters": [
+        {
+          "path": "docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-nan.tif",
+          "change": "added",
+          "git_blob_sha": "aac01caec97a5b05bb13bd5abff32fb3e91dea2c"
+        },
+        {
+          "path": "docs/downloads/gems25-apfl-piedmont-flexure-s3p0-k3p5-20261026-8aebdab87158-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "7838f64d2f3e8c74c603da8fddc166fec79a20d6"
+        },
+        {
+          "path": "docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-nan.tif",
+          "change": "added",
+          "git_blob_sha": "affb866bb20ce21eab4eb2f459571d0493cb8402"
+        },
+        {
+          "path": "docs/downloads/gems25-h71-hgpc-blind-b2-sapd3-k3p5-20261026-9eb0c31e5149-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "ccd781e9c8a6122530e7b87f6e94477847710733"
+        }
+      ],
+      "changed_run_card_files": [
+        {
+          "path": "evidence/rod_2026-10-26/run_card.json",
+          "change": "added",
+          "git_blob_sha": "87576ef74730990ac5aca2a204291ccf488e7887"
+        },
+        {
+          "path": "registry/run_card_apfl_2026-10-26.json",
+          "change": "added",
+          "git_blob_sha": "80f3acd1f80d2c2d80650e285e51c084c5edcfb7"
+        },
+        {
+          "path": "registry/run_card_h71_2026-10-26.json",
+          "change": "added",
+          "git_blob_sha": "495364aeb7d773d2d8024d463e3f33d451a61d15"
+        },
+        {
+          "path": "registry/run_card_pol3_screen_2026-10-26.json",
+          "change": "added",
+          "git_blob_sha": "e3ca5fd024f9ba3d4ca4d2493b64036eb645a964"
+        },
+        {
+          "path": "registry/run_card_repo_review_2026-10-26.json",
+          "change": "added",
+          "git_blob_sha": "eda820f648d1ebaa3d193a9e109cafdbf7c29c3d"
+        }
+      ],
+      "changed_score_or_registry_files": [
+        {
+          "path": "docs/data/live_scores.json",
+          "change": "modified",
+          "git_blob_sha": "93ba7631a657b47404ce575b5d04904407b747fc"
+        },
+        {
+          "path": "registry/live_scores.json",
+          "change": "modified",
+          "git_blob_sha": "93ba7631a657b47404ce575b5d04904407b747fc"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE27",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE27",
+      "prior_audited_main_sha": "927322eadbde56be42ae129ccdfb9b37540d8e60",
+      "current_main_sha": "426426b402f90f4e0786990b4edd261d9dd48085",
+      "current_commit_date_utc": "2026-10-26T03:30:20Z",
+      "current_commit_message": "site: rebuild from registries",
+      "prior_to_current_compare": {
+        "status": "ahead",
+        "commits_ahead": 19,
+        "commits_behind": 0,
+        "changed_files": 92
+      },
+      "historical_champion": {
+        "artifact_name": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+        "reported_value": "0.2449",
+        "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+        "prior_audit_sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+        "prior_audit_positive_pixels": 61328,
+        "prior_pixel_verdict": false,
+        "current_main_file_matches": [
+          {
+            "path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-allfinite.tif",
+            "git_blob_sha": "49ad427035b2267dcd3e8acee10bdc85d5dbe322",
+            "sha256": "a9bf76b57453a5b3af74c8eef837df53c29a0931162aa540b8763220b36ba3bb",
+            "size_bytes": 866160,
+            "matches_prior_audit_sha256": false
+          },
+          {
+            "path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+            "git_blob_sha": "c64e48b8bece14391fb59c1969c42c7efd718d39",
+            "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+            "size_bytes": 1635084,
+            "matches_prior_audit_sha256": true
+          }
+        ],
+        "organizer_receipt_in_prior_audit": null
+      },
+      "changed_download_or_research_rasters": [
+        {
+          "path": "docs/downloads/gems27-h30-1-updip-hydrothermal-b2-35k-20261025-801dff07541d-allfinite.tif",
+          "change": "added",
+          "git_blob_sha": "737a0aba8029f0746edb08eb164ef87e29321b2a"
+        },
+        {
+          "path": "docs/downloads/gems27-h30-1-updip-hydrothermal-b2-35k-20261025-801dff07541d-nan.tif",
+          "change": "added",
+          "git_blob_sha": "ae78de5b4e544344114325f202e5cc0ea9045f01"
+        },
+        {
+          "path": "docs/downloads/gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite.tif",
+          "change": "added",
+          "git_blob_sha": "b6d4e55739b982d2a2486b97886637b61b141767"
+        },
+        {
+          "path": "docs/downloads/gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-nan.tif",
+          "change": "added",
+          "git_blob_sha": "7a7bda790910756f0a7e9002f39880d15f49dbb1"
+        },
+        {
+          "path": "docs/downloads/gems27-unique-20261026-20261026-6c2790d67dc6-allfinite.tif",
+          "change": "added",
+          "git_blob_sha": "b3fd643893f74f89e1c9f2d9b89134e1c2b71f0d"
+        },
+        {
+          "path": "docs/downloads/research/gems27-h31-rankens-celf-b2-20261026-93c8af046660-allfinite.tif",
+          "change": "added",
+          "git_blob_sha": "4032fd705d10fd21d1a5b1f7a9dde2fd6bf068c9"
+        },
+        {
+          "path": "docs/downloads/research/gems27-h31-rankens-celf-b2-20261026-93c8af046660-nan.tif",
+          "change": "added",
+          "git_blob_sha": "0ec6dfb85493267039fa3c6d352438e5bb434ab7"
+        }
+      ],
+      "changed_run_card_files": [
+        {
+          "path": "evidence/h30_1_run_card.json",
+          "change": "added",
+          "git_blob_sha": "3b96729caf7f1c3874070718b3aa524f751ef794"
+        },
+        {
+          "path": "evidence/h31_run_card.json",
+          "change": "added",
+          "git_blob_sha": "b519490508cfa0cb507000491dbddb7d94951b81"
+        },
+        {
+          "path": "evidence/h31_s10_run_card_2026-10-26.json",
+          "change": "added",
+          "git_blob_sha": "ac6af1c7622cdc55675dfae89b18bec152384653"
+        },
+        {
+          "path": "evidence/run_card_unique_20261026.json",
+          "change": "added",
+          "git_blob_sha": "6a5182e69146ceb3addcda484d81a33d07c232b0"
+        }
+      ],
+      "changed_score_or_registry_files": [
+        {
+          "path": "docs/data/submission_readiness_audit.json",
+          "change": "modified",
+          "git_blob_sha": "40a191cc24e2f8510e19176a4194f50e50d17448"
+        },
+        {
+          "path": "registry/live_scores.json",
+          "change": "modified",
+          "git_blob_sha": "f5f93d5ecbaec03de458c05dcfd4f757ef17dab3"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE28",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE28",
+      "prior_audited_main_sha": "7066e7e9b546027e0cccf835af906e05384cba60",
+      "current_main_sha": "348ff086e29b9c48bb7104daacb647af31a184bf",
+      "current_commit_date_utc": "2026-10-26T01:54:14Z",
+      "current_commit_message": "feed: refresh source metadata and dated pages",
+      "prior_to_current_compare": {
+        "status": "ahead",
+        "commits_ahead": 28,
+        "commits_behind": 0,
+        "changed_files": 120
+      },
+      "historical_champion": {
+        "artifact_name": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+        "reported_value": "0.2710",
+        "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+        "prior_audit_sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+        "prior_audit_positive_pixels": 37660,
+        "prior_pixel_verdict": false,
+        "current_main_file_matches": [
+          {
+            "path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-allfinite.tif",
+            "git_blob_sha": "10b2354d4ac8af863419284f1e694a02db180711",
+            "sha256": "7c74270ad48fa0b865163853046a6d3815967c5bf37bbda5b74ca7fa22583a32",
+            "size_bytes": 825430,
+            "matches_prior_audit_sha256": false
+          },
+          {
+            "path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+            "git_blob_sha": "d0fc9ebbda0b15c31208022dbd124d4b9b112108",
+            "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+            "size_bytes": 1590848,
+            "matches_prior_audit_sha256": true
+          }
+        ],
+        "organizer_receipt_in_prior_audit": null
+      },
+      "changed_download_or_research_rasters": [
+        {
+          "path": "docs/downloads/gems28-h43-1-tpb2gkc-20261026-76737f19814e-allfinite.tif",
+          "change": "added",
+          "git_blob_sha": "bb7b5d9c96b232f62abd837ac1951ac3ec6eb359"
+        },
+        {
+          "path": "docs/downloads/gems28-h43-1-tpb2gkc-20261026-76737f19814e-nan.tif",
+          "change": "added",
+          "git_blob_sha": "66dc5b4c6c831669fbf4ecd5881d5c2ec03730e0"
+        },
+        {
+          "path": "docs/downloads/gems28-s19-radlin-cover-20261026-6fa38f9d317b-allfinite.tif",
+          "change": "added",
+          "git_blob_sha": "3daad7c32c2ed6ffbdb55427d34f568947424a8f"
+        },
+        {
+          "path": "docs/downloads/gems28-s19-radlin-cover-20261026-6fa38f9d317b-nan.tif",
+          "change": "added",
+          "git_blob_sha": "6ee5f26516de74774583693fda40e15cd2dad8d0"
+        },
+        {
+          "path": "docs/downloads/gems28-s20-nchc-20261026-d432a1d5d6ee-allfinite.tif",
+          "change": "added",
+          "git_blob_sha": "3a90e4bfe045bff95964b7e11607994f6a8aafeb"
+        },
+        {
+          "path": "docs/downloads/gems28-s20-nchc-20261026-d432a1d5d6ee-nan.tif",
+          "change": "added",
+          "git_blob_sha": "3bc36d27b4eff669b909c0679159f00f66476192"
+        },
+        {
+          "path": "docs/downloads/gems28-s20-vesselness-lidarstep-20261026-7a7c5e449fe0-allfinite.tif",
+          "change": "added",
+          "git_blob_sha": "2206558c453ee86490d191903716fa0e1afcaf72"
+        },
+        {
+          "path": "docs/downloads/gems28-s20-vesselness-lidarstep-20261026-7a7c5e449fe0-nan.tif",
+          "change": "added",
+          "git_blob_sha": "cfdfb41be6b577914c74712c8bfd0073bc8ed416"
+        }
+      ],
+      "changed_run_card_files": [
+        {
+          "path": "docs/data/run_card_s19b_radlin.json",
+          "change": "added",
+          "git_blob_sha": "cf6bf39d78c9307d2ff3efadeb5c300558bf4b8b"
+        },
+        {
+          "path": "docs/data/run_card_s20_2026-10-26.json",
+          "change": "added",
+          "git_blob_sha": "ea69501fa70637a9784c05567d8b97152325b4ab"
+        },
+        {
+          "path": "docs/data/run_card_s20_nchc.json",
+          "change": "added",
+          "git_blob_sha": "6a21178396b04b35437edafdbc2f5a96f06e164d"
+        },
+        {
+          "path": "docs/data/run_card_s20v.json",
+          "change": "added",
+          "git_blob_sha": "2b61f968058b5aa23e792fde1e280c1b0063a699"
+        },
+        {
+          "path": "evidence/s19b_radlin_run_card.json",
+          "change": "added",
+          "git_blob_sha": "cf6bf39d78c9307d2ff3efadeb5c300558bf4b8b"
+        },
+        {
+          "path": "evidence/s20_nchc_run_card.json",
+          "change": "added",
+          "git_blob_sha": "6a21178396b04b35437edafdbc2f5a96f06e164d"
+        },
+        {
+          "path": "evidence/s20v_run_card.json",
+          "change": "added",
+          "git_blob_sha": "2b61f968058b5aa23e792fde1e280c1b0063a699"
+        },
+        {
+          "path": "evidence/session19_run_card.json",
+          "change": "modified",
+          "git_blob_sha": "7d7c9f19e48d93bb2a1bd1bfcb646396fab5fe50"
+        },
+        {
+          "path": "evidence/session20_h43_run_card.json",
+          "change": "added",
+          "git_blob_sha": "838754176f938b957325023f84433d1c2fbc946d"
+        },
+        {
+          "path": "evidence/session20_run_card.json",
+          "change": "added",
+          "git_blob_sha": "67fceeea5f338a2c9b9ed7a57eb2f5bc6258e436"
+        }
+      ],
+      "changed_score_or_registry_files": []
+    },
+    {
+      "site": "GEMSDOE30",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE30",
+      "prior_audited_main_sha": "78ae70817af861c077ce1655c3f9115c5b0f537a",
+      "current_main_sha": "73db382d3c990d0aa0b5126997a67213cc56dee4",
+      "current_commit_date_utc": "2026-10-26T01:25:10Z",
+      "current_commit_message": "status feed: regenerate from artifacts [skip ci]",
+      "prior_to_current_compare": {
+        "status": "ahead",
+        "commits_ahead": 21,
+        "commits_behind": 0,
+        "changed_files": 136
+      },
+      "historical_champion": {
+        "artifact_name": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+        "reported_value": "0.2600",
+        "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+        "prior_audit_sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+        "prior_audit_positive_pixels": 44090,
+        "prior_pixel_verdict": false,
+        "current_main_file_matches": [
+          {
+            "path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside.tif",
+            "git_blob_sha": "e2c01413650468bc444507ba44018d6f22f07a92",
+            "sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+            "size_bytes": 1573188,
+            "matches_prior_audit_sha256": false
+          },
+          {
+            "path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+            "git_blob_sha": "a59665a7fad659dcc6a45e5e7e71059586c3247a",
+            "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+            "size_bytes": 806758,
+            "matches_prior_audit_sha256": true
+          }
+        ],
+        "organizer_receipt_in_prior_audit": null
+      },
+      "changed_download_or_research_rasters": [
+        {
+          "path": "docs/downloads/gems30-PTA1-44090-20261025-9a3f7f9535a4.tif",
+          "change": "added",
+          "git_blob_sha": "4db525db17a8c3da3ae87a8aaf09f60beeb9d8fe"
+        },
+        {
+          "path": "docs/downloads/gems30-TAD24-decensored-38000-20261025-ea3669f488ea-nan.tif",
+          "change": "added",
+          "git_blob_sha": "6685e5b7a199c6a6e792a226e2b4e7099cceb49a"
+        },
+        {
+          "path": "docs/downloads/gems30-TAD24-decensored-38000-20261025-ea3669f488ea-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "8620e9b47cbb09f1a93591d40c800a52a8698539"
+        },
+        {
+          "path": "docs/research/2026-10-26-fflidar/gems30-FFL1-fusion_edge-44090-20261026-eacd73e854a3.tif",
+          "change": "added",
+          "git_blob_sha": "99e3f4dc50cdc770776a2fb35971856562aa1321"
+        }
+      ],
+      "changed_run_card_files": [
+        {
+          "path": "docs/research/2026-10-26-fflidar/run-card.json",
+          "change": "added",
+          "git_blob_sha": "fe9c0e0ded898cbe1328ca753cdecff778e95b13"
+        },
+        {
+          "path": "docs/research/msdb-piedmont/run-card.json",
+          "change": "modified",
+          "git_blob_sha": "c3b7eaa867f3f120121a9b4679ea564ae53412e9"
+        },
+        {
+          "path": "docs/research/phase-tilt-asymmetry/run-card.json",
+          "change": "added",
+          "git_blob_sha": "74fde2e3cbe1bf458eed39cb7fbbfa0b0e3931f4"
+        },
+        {
+          "path": "docs/research/review-2026-10-26/run-card.json",
+          "change": "added",
+          "git_blob_sha": "5209e516a9dd0a3513c598de28517eeda796cbc8"
+        },
+        {
+          "path": "docs/research/texture-controls/run-card.json",
+          "change": "modified",
+          "git_blob_sha": "be1a0976cdd29923a1a7b6324618a80e81973806"
+        },
+        {
+          "path": "docs/research/texture-displacement/run-card.json",
+          "change": "modified",
+          "git_blob_sha": "ac6751308c14a5dd8ecee10fea9d3cc9e0af2bcb"
+        },
+        {
+          "path": "docs/research/tilt-alteration-discontinuity/run-card.json",
+          "change": "added",
+          "git_blob_sha": "6e53f5d2b6ba879616f0c0840c6ef189e678d781"
+        }
+      ],
+      "changed_score_or_registry_files": [
+        {
+          "path": "docs/score-ledger.csv",
+          "change": "modified",
+          "git_blob_sha": "9ad8aa9de613f95ea76327af9464ed62d6fbceec"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE31",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE31",
+      "prior_audited_main_sha": "3c1be4993a059fa0af8b6782d86882efddd0f489",
+      "current_main_sha": "e6e85b357914068b3ba57ace0f899dde13f110a6",
+      "current_commit_date_utc": "2026-10-26T03:03:48Z",
+      "current_commit_message": "Merge pull request #33 from buffedlizard55-lab/arena/34f326b4-gemsdoe31",
+      "prior_to_current_compare": {
+        "status": "ahead",
+        "commits_ahead": 18,
+        "commits_behind": 0,
+        "changed_files": 127
+      },
+      "historical_champion": {
+        "artifact_name": "h27-4-solo-d28-20261004-8acb75e1-nan",
+        "reported_value": "0.2708",
+        "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+        "prior_audit_sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+        "prior_audit_positive_pixels": 40199,
+        "prior_pixel_verdict": false,
+        "current_main_file_matches": [
+          {
+            "path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-allfinite.tif",
+            "git_blob_sha": "40df0d6d854542aefc00f1fed87d4e9c7719fa63",
+            "sha256": "acd853936e5a7170b207f23411b1844caa0e7cfdfc303c600e520ccfe75159e6",
+            "size_bytes": 154580,
+            "matches_prior_audit_sha256": false
+          },
+          {
+            "path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+            "git_blob_sha": "36c2aa32e0bba3d976d1ba76f3fb14903199262d",
+            "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+            "size_bytes": 199214,
+            "matches_prior_audit_sha256": true
+          }
+        ],
+        "organizer_receipt_in_prior_audit": null
+      },
+      "changed_download_or_research_rasters": [
+        {
+          "path": "docs/downloads/gems31-xfcoh31-xfield-coherence-37654-20261026-nan.tif",
+          "change": "added",
+          "git_blob_sha": "6dd5d43cf4c6251e92143c0eeb1ef0d9321b97c1"
+        },
+        {
+          "path": "docs/downloads/gems31-xfcoh31-xfield-coherence-37654-20261026-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "ed73a24726cc60c3fceb7be9f51a0024fb58eae8"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-concord31-minbd-concordance-28115-20261026-allfinite.tif",
+          "change": "added",
+          "git_blob_sha": "5b83217fd50b977824018695dcc1025c784f504d"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-concord31-minbd-concordance-28115-20261026-nan.tif",
+          "change": "added",
+          "git_blob_sha": "d37787f408b2b758e637bb605b72055dfc516a0e"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-h31s-udap-sslic-37654-20261026-9355f21d9f-nan.tif",
+          "change": "added",
+          "git_blob_sha": "47ee67cdb30186c39d1005a4dbea5873e93c4653"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-h31s-udap-sslic-37654-20261026-9355f21d9f-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "b6f6fd66ea70252242f520ca1a881feea3ef2aae"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-h31t-transtension-dinkelbach-20261025-b37654-nan.tif",
+          "change": "added",
+          "git_blob_sha": "1cb3d9ca995917b21f45f2629138d52c7ff68dae"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-h31t-transtension-dinkelbach-20261025-b37654-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "ed12630917650001bf69fbb28654175ff7a3e70e"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-tgtd-submod-37654-20261025-ab35d4e8-nan.tif",
+          "change": "added",
+          "git_blob_sha": "45b656b5c230c0faef510a47bca9b2a95bfbec98"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-tgtd-submod-37654-20261025-ab35d4e8-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "d6dcc39512692dc8012a4a9b4f88f8105712137a"
+        }
+      ],
+      "changed_run_card_files": [
+        {
+          "path": "docs/downloads/gems31-xfcoh31-xfield-coherence-37654-20261026-run-card.json",
+          "change": "added",
+          "git_blob_sha": "2e345cc24eb4c6fbc26e9c158720ca168c5ac292"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-h31t-transtension-dinkelbach-20261025-b37654-run-card.json",
+          "change": "added",
+          "git_blob_sha": "a4f2c99b035173752562ca3fa3651a65a77eaf99"
+        },
+        {
+          "path": "docs/downloads/gemsdoe31-tgtd-submod-37654-20261025-ab35d4e8-run-card.json",
+          "change": "added",
+          "git_blob_sha": "811deb82f4a5a244a3a54aa60a5a7940526241f5"
+        },
+        {
+          "path": "docs/downloads/h31j-run-card.json",
+          "change": "added",
+          "git_blob_sha": "811deb82f4a5a244a3a54aa60a5a7940526241f5"
+        },
+        {
+          "path": "docs/downloads/h31s-run-card.json",
+          "change": "added",
+          "git_blob_sha": "b3d75fdda868ff6c2a7de34ef53fbac8fb5f246c"
+        },
+        {
+          "path": "evidence/concord31/run_card.json",
+          "change": "added",
+          "git_blob_sha": "d5d786fb6348628b81bebe881187fd84a0167aae"
+        },
+        {
+          "path": "evidence/h31j/run_card.json",
+          "change": "added",
+          "git_blob_sha": "811deb82f4a5a244a3a54aa60a5a7940526241f5"
+        },
+        {
+          "path": "evidence/h31s/run_card.json",
+          "change": "added",
+          "git_blob_sha": "b3d75fdda868ff6c2a7de34ef53fbac8fb5f246c"
+        },
+        {
+          "path": "evidence/h31t/run_card.json",
+          "change": "added",
+          "git_blob_sha": "a4f2c99b035173752562ca3fa3651a65a77eaf99"
+        },
+        {
+          "path": "evidence/xfcoh31_run_card.json",
+          "change": "added",
+          "git_blob_sha": "2e345cc24eb4c6fbc26e9c158720ca168c5ac292"
+        }
+      ],
+      "changed_score_or_registry_files": [
+        {
+          "path": "registry/h31s_current_run.json",
+          "change": "added",
+          "git_blob_sha": "b3d75fdda868ff6c2a7de34ef53fbac8fb5f246c"
+        }
+      ],
+      "score_ledger_review": {
+        "paths_checked": [
+          "registry/score_claims.json",
+          "registry/user_reported_scores.json",
+          "registry/current_run.json",
+          "registry/h31s_current_run.json",
+          "docs/data/submissions.json",
+          "evidence/h31j/run_card.json",
+          "evidence/h31s/run_card.json"
+        ],
+        "score_claims_git_blob_sha": "38b602cf75882130cddfdc9cd94c123dbae6f0aa",
+        "user_reported_scores_git_blob_sha": "ff4590918422fa40e33743289d591183950d5908",
+        "official_score_receipts_count": 0,
+        "claim_0_2708_status": "USER-REPORTED; current GEMSDOE28 README repeats 0.2708 for the H27-4 SOLO file, but no organizer receipt exists. GEMSDOE31's imported owner-mirror note cites an older GEMSDOE28 snapshot that called the artifact UNSCORED; the current README and older snapshot therefore conflict by version, not by receipt evidence.",
+        "current_run_card_irregularities": [
+          "H31-J card has a local promote/scientific-promotion wording while its own literal shared-registry check fails and ok_to_submit is false.",
+          "Current H31-S card is negative and reports literal/discrete uniqueness failures."
+        ]
+      }
+    },
+    {
+      "site": "GEMSDOE32",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+      "prior_audited_main_sha": "15a5fce9494da62a2d8e41943669a7e645c06f75",
+      "current_main_sha": "174c1c3f3db3f23136d70b16781cab2097cb1643",
+      "current_commit_date_utc": "2026-10-26T04:52:40Z",
+      "current_commit_message": "Merge pull request #27 from buffedlizard55-lab/arena/86bfb49e-gemsdoe32",
+      "prior_to_current_compare": {
+        "status": "ahead",
+        "commits_ahead": 35,
+        "commits_behind": 0,
+        "changed_files": 156
+      },
+      "historical_champion": {
+        "artifact_name": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+        "reported_value": "0.2778",
+        "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+        "prior_audit_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "prior_audit_positive_pixels": 37654,
+        "prior_pixel_verdict": false,
+        "current_main_file_matches": [
+          {
+            "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+            "git_blob_sha": "17a76895f68174cc93f3cb1597d25686f6d6bc67",
+            "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+            "size_bytes": 219065,
+            "matches_prior_audit_sha256": true
+          }
+        ],
+        "organizer_receipt_in_prior_audit": null
+      },
+      "changed_download_or_research_rasters": [
+        {
+          "path": "docs/downloads/gemsdoe32-arena8a-mdrc-crestbar-b2-44090-20261026T011955Z-ce1abd39-nan.tif",
+          "change": "added",
+          "git_blob_sha": "ccb36d1452902a0e36a128eab2ad8783c094d7ee"
+        },
+        {
+          "path": "docs/downloads/gemsdoe32-arena8a-mdrc-crestbar-b2-44090-20261026T011955Z-ce1abd39-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "a02bbe7466e855c5f19a877900323ce6ef210c89"
+        },
+        {
+          "path": "docs/downloads/gemsdoe32-h36-1c-tdr-pds-steger-37654-20261026T012000Z-9ff9d6e2-nan.tif",
+          "change": "added",
+          "git_blob_sha": "d7fa0a2d592bf4a5280cdb3ac6a3d0576a1f5a7f"
+        },
+        {
+          "path": "docs/downloads/gemsdoe32-h36-1c-tdr-pds-steger-37654-20261026T012000Z-9ff9d6e2-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "491cdbd71662a0e87a5d97ccf4ff5d365a0c002c"
+        },
+        {
+          "path": "docs/downloads/gemsdoe32-h38g1-lidar-geodawn-gdr-celf37654-20261026T013500Z-35859e28-nan.tif",
+          "change": "added",
+          "git_blob_sha": "2804b831848e5a28a164db66eee4d4423c4bde29"
+        },
+        {
+          "path": "docs/downloads/gemsdoe32-h38g1-lidar-geodawn-gdr-celf37654-20261026T013500Z-35859e28-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "fcb40b3779e4f4f70edf48177a6b3de485e67d77"
+        },
+        {
+          "path": "docs/downloads/gemsdoe32-h42-hwci-37654-20261026T001226Z-b91008fa-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "976c70624eb41b6dbabc64706546206042d75687"
+        }
+      ],
+      "changed_run_card_files": [
+        {
+          "path": "docs/data/arena8a_run_card.json",
+          "change": "added",
+          "git_blob_sha": "f508e53172d6e88937bef02737739ba3a6f61034"
+        },
+        {
+          "path": "docs/data/latest-run-card.json",
+          "change": "added",
+          "git_blob_sha": "6bb6327673c517663dc9669684b6f204c61a2402"
+        },
+        {
+          "path": "evidence/arena8a_run_card.json",
+          "change": "added",
+          "git_blob_sha": "f508e53172d6e88937bef02737739ba3a6f61034"
+        },
+        {
+          "path": "evidence/gate_hardening_review_run_card.json",
+          "change": "added",
+          "git_blob_sha": "c1852f98425d3cda943ed4681e6adcb7328c7681"
+        },
+        {
+          "path": "evidence/h36_tdr_pds_run_card.json",
+          "change": "added",
+          "git_blob_sha": "6bb6327673c517663dc9669684b6f204c61a2402"
+        },
+        {
+          "path": "evidence/h38_run_card.json",
+          "change": "added",
+          "git_blob_sha": "c47e97a4ba080cf85db31d6c7897dd43190ff8c5"
+        },
+        {
+          "path": "evidence/h42_run_card.json",
+          "change": "added",
+          "git_blob_sha": "0c29ec89ad8fca37e5a389bbc890ac8498c8f3cd"
+        },
+        {
+          "path": "evidence/review_run_card_20261026.json",
+          "change": "added",
+          "git_blob_sha": "1f75bfe0313234284b12c83738fe7110136d3e1b"
+        },
+        {
+          "path": "evidence/round6_run_card.json",
+          "change": "modified",
+          "git_blob_sha": "06b8022fb4d0f882bc922ffe68474d09b6d9129f"
+        }
+      ],
+      "changed_score_or_registry_files": [
+        {
+          "path": "docs/research/score-ceiling-analysis.md",
+          "change": "modified",
+          "git_blob_sha": "e5a7f7be8bc6884adbc261bb0b5744197a28d449"
+        },
+        {
+          "path": "docs/score-ledger.csv",
+          "change": "modified",
+          "git_blob_sha": "0ee5eae6dad7cd39d36c47101e776a2536bb9f01"
+        },
+        {
+          "path": "evidence/current_release_review.json",
+          "change": "added",
+          "git_blob_sha": "99827690042115407e9e5df6bedc56c0d6c84315"
+        },
+        {
+          "path": "evidence/live_leaderboard_snapshot_20261026.json",
+          "change": "added",
+          "git_blob_sha": "c26f8a78d26a78d4ffd871f880a94194d973ad15"
+        },
+        {
+          "path": "registry/submission_build.json",
+          "change": "modified",
+          "git_blob_sha": "d71aa2c6699ba2e116ff71f675d02c726cf837a7"
+        },
+        {
+          "path": "registry/submission_build_geo_conduit_superseded.json",
+          "change": "modified",
+          "git_blob_sha": "0620411847d2c94300e2b6848b491590870ff201"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE33",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE33",
+      "prior_audited_main_sha": "b542e5ce4186b54dbd07a6a6e8756be676a3f088",
+      "current_main_sha": "fded538406627b8d154a2fef5b5331f656d7e0f2",
+      "current_commit_date_utc": "2026-10-26T04:34:25Z",
+      "current_commit_message": "Merge pull request #19 from buffedlizard55-lab/arena/67079e7d-gemsdoe33",
+      "prior_to_current_compare": {
+        "status": "ahead",
+        "commits_ahead": 15,
+        "commits_behind": 0,
+        "changed_files": 130
+      },
+      "historical_champion": {
+        "artifact_name": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+        "reported_value": "0.2632",
+        "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+        "prior_audit_sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+        "prior_audit_positive_pixels": 41865,
+        "prior_pixel_verdict": false,
+        "current_main_file_matches": [
+          {
+            "path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+            "git_blob_sha": "c6e73d35a5ee8a36abdd06b7314bf79646c5d7f9",
+            "sha256": "bc3af2a5fcb4b49bc5845a2d7dc3da23daf41ce75e4c64da3337c0c8c93cc12c",
+            "size_bytes": 966684,
+            "matches_prior_audit_sha256": false
+          },
+          {
+            "path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+            "git_blob_sha": "901d9db3f008f0f5c3be9c314524ccc8e95fb43e",
+            "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+            "size_bytes": 917544,
+            "matches_prior_audit_sha256": true
+          }
+        ],
+        "organizer_receipt_in_prior_audit": null
+      },
+      "changed_download_or_research_rasters": [
+        {
+          "path": "docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-nan.tif",
+          "change": "added",
+          "git_blob_sha": "f184ae457497b3ef91b8c832b361521d49daecf1"
+        },
+        {
+          "path": "docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "59e22cce68a93ad747d4d145f4c443d48ed03a4a"
+        },
+        {
+          "path": "docs/downloads/gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "14c9e799fca7f01a0a91746ca31f742a4605fa70"
+        },
+        {
+          "path": "docs/downloads/gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif",
+          "change": "added",
+          "git_blob_sha": "439739b9028dcf46c2da1a28790b751191b852b0"
+        },
+        {
+          "path": "docs/downloads/gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "82d2870a0cdb09f8535087076b809f32b38ca470"
+        },
+        {
+          "path": "docs/downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-nan.tif",
+          "change": "added",
+          "git_blob_sha": "2c257b1d990e83a7d089a2643036c421c9eec966"
+        },
+        {
+          "path": "docs/downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "2d821d339859b5fc0e77a98a15c6c2c68808f85e"
+        },
+        {
+          "path": "docs/downloads/research/gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-nan.tif",
+          "change": "added",
+          "git_blob_sha": "0509dcf005e0001210aa14b43f35ab3a4cccc658"
+        },
+        {
+          "path": "docs/downloads/research/gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "14c9e799fca7f01a0a91746ca31f742a4605fa70"
+        },
+        {
+          "path": "docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "ca6b9deb8dd2785cea0942b6504c50b14da50200"
+        }
+      ],
+      "changed_run_card_files": [
+        {
+          "path": "docs/data/a33_r2_run_card_20261026.json",
+          "change": "added",
+          "git_blob_sha": "fc1a4643235e385255faec70b0129607c28cb1dd"
+        },
+        {
+          "path": "docs/research/current-run-card.json",
+          "change": "modified",
+          "git_blob_sha": "e93be5b2f0aa5ae85914daf059bb8fb721d22670"
+        },
+        {
+          "path": "docs/research/round3-da-hgcm-run-card.json",
+          "change": "added",
+          "git_blob_sha": "59ba8c317669e8dd7810599c3c77b206abd0ce5e"
+        },
+        {
+          "path": "docs/research/round3-run-card.json",
+          "change": "added",
+          "git_blob_sha": "d2da8e770aed777bb81d95fc71136670fd82d6b8"
+        },
+        {
+          "path": "evidence/a33_r2_run_card_20261026.json",
+          "change": "added",
+          "git_blob_sha": "fc1a4643235e385255faec70b0129607c28cb1dd"
+        },
+        {
+          "path": "evidence/round3_da_hgcm_run_card_20261025.json",
+          "change": "added",
+          "git_blob_sha": "59ba8c317669e8dd7810599c3c77b206abd0ce5e"
+        },
+        {
+          "path": "evidence/round3_run_card_20261025.json",
+          "change": "added",
+          "git_blob_sha": "d2da8e770aed777bb81d95fc71136670fd82d6b8"
+        },
+        {
+          "path": "evidence/run_card_g33_20261026.json",
+          "change": "added",
+          "git_blob_sha": "e93be5b2f0aa5ae85914daf059bb8fb721d22670"
+        }
+      ],
+      "changed_score_or_registry_files": [
+        {
+          "path": "evidence/g33_submission_build.json",
+          "change": "added",
+          "git_blob_sha": "1469482903fd09d5b13733416402e9e569cc20cc"
+        }
+      ]
+    },
+    {
+      "site": "GEMSDOE36",
+      "repository": "https://github.com/buffedlizard55-lab/GEMSDOE36",
+      "prior_audited_main_sha": "1f92ee9c685db3f079b5995bffc71dda53e23497",
+      "current_main_sha": "4938a123133b4747079cc1c1c93a11e50c1376a7",
+      "current_commit_date_utc": "2026-10-26T03:29:55Z",
+      "current_commit_message": "Merge pull request #16 from buffedlizard55-lab/arena/62b9a92c-gemsdoe36",
+      "prior_to_current_compare": {
+        "status": "ahead",
+        "commits_ahead": 15,
+        "commits_behind": 0,
+        "changed_files": 115
+      },
+      "historical_champion": {
+        "artifact_name": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+        "reported_value": "0.2750",
+        "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+        "prior_audit_sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+        "prior_audit_positive_pixels": 38854,
+        "prior_pixel_verdict": false,
+        "current_main_file_matches": [
+          {
+            "path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+            "git_blob_sha": "e79b7bdb633369c724628e30efba6de60c1d25d9",
+            "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+            "size_bytes": 318190,
+            "matches_prior_audit_sha256": true
+          }
+        ],
+        "organizer_receipt_in_prior_audit": null
+      },
+      "changed_download_or_research_rasters": [
+        {
+          "path": "docs/downloads/gemsdoe36-atvr36-20261026.tif",
+          "change": "added",
+          "git_blob_sha": "2fb41b2b256dd60f7ba074e615cd833818eb3f60"
+        },
+        {
+          "path": "docs/downloads/gemsdoe36-h36-ctrb-submod-36800-20261025T000000Z-a1d85443-nan.tif",
+          "change": "added",
+          "git_blob_sha": "55b94820762fb24a58df2225d64f8679d9862095"
+        },
+        {
+          "path": "docs/downloads/gemsdoe36-h36-ctrb-submod-36800-20261025T000000Z-a1d85443-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "d351755b379efb5e68ef32add9b181ac5ac3a930"
+        },
+        {
+          "path": "docs/downloads/gemsdoe36-h36-gps-graben-pair-20261026-bb29ce2a4bb4-nan.tif",
+          "change": "added",
+          "git_blob_sha": "4fce5b1699b515aeebfc7d7d6a14ea06982a31f1"
+        },
+        {
+          "path": "docs/downloads/gemsdoe36-h36-gps-graben-pair-20261026-bb29ce2a4bb4-zeros.tif",
+          "change": "added",
+          "git_blob_sha": "9e99f5eb438e388d36214da7a0467e086a29934a"
+        }
+      ],
+      "changed_run_card_files": [
+        {
+          "path": "docs/downloads/gemsdoe36-h36-gps-graben-pair-20261026-bb29ce2a4bb4-run-card.json",
+          "change": "added",
+          "git_blob_sha": "14da0ae8ab24ea28f34c3727cc8ac8d3d38475bf"
+        },
+        {
+          "path": "docs/downloads/run_card.json",
+          "change": "added",
+          "git_blob_sha": "e1d1adb211d23641a7ecf48fbf140956877d30a0"
+        },
+        {
+          "path": "evidence/atvr36_run_card_20261026.json",
+          "change": "added",
+          "git_blob_sha": "428854ac1727dd4e6f9f1131da594d2e57657d0b"
+        },
+        {
+          "path": "evidence/h36_ctrb_run_card_20261025.json",
+          "change": "added",
+          "git_blob_sha": "e1d1adb211d23641a7ecf48fbf140956877d30a0"
+        },
+        {
+          "path": "evidence/h36_run_card.json",
+          "change": "added",
+          "git_blob_sha": "14da0ae8ab24ea28f34c3727cc8ac8d3d38475bf"
+        }
+      ],
+      "changed_score_or_registry_files": [
+        {
+          "path": "docs/research/leaderboard.md",
+          "change": "modified",
+          "git_blob_sha": "10c3a3d943166bcb02f5eedcd30a562c8c4faef6"
+        },
+        {
+          "path": "evidence/scored_registry_analysis.json",
+          "change": "added",
+          "git_blob_sha": "cbb501ae5690f330a61ff72a170849a2e236ef2a"
+        },
+        {
+          "path": "registry/scored_registry.json",
+          "change": "added",
+          "git_blob_sha": "354062d4ed910d6401b77e40410b520744b6715a"
+        },
+        {
+          "path": "registry/submission_build.json",
+          "change": "modified",
+          "git_blob_sha": "78e1393dc81ee66e0df416e8b2acd8d316804852"
+        }
+      ]
+    }
+  ],
+  "scope_limits": [
+    "Current site main trees and GitHub compare metadata were queried read-only through GitHub API on 2026-10-26.",
+    "For each historical champion, the current main TIFF bytes were fetched from its current Git blob and SHA-256 checked against the prior audit. All nine exact champion files still match.",
+    "Newly changed TIFF paths and run-card/score-ledger paths are inventoried, but this is not a full all-to-all spatial correlation scan of every newly added TIFF.",
+    "The local GEMSDOE88 pre-placement rule remains binding: every permitted nonempty off-catalogue candidate intersects the pinned dense witness over the full allowed domain, so no new model, candidate, or upload was attempted."
+  ],
+  "summary": {
+    "site_count": 9,
+    "historical_champion_exact_sha_matches_current_main": 9,
+    "historical_champion_artifacts_missing_or_changed": [],
+    "changed_tiff_count": 65,
+    "note": "Historical champion pixel-level lineage measurements remain byte-grounded at current main. Newer raster artifacts exist across the current main heads; their local card verdicts and limitations are discussed in research/session-75aeb674-review.md. No current-head candidate was generated in this GEMSDOE88 session."
+  }
+}

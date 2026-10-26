@@ -1,0 +1,24 @@
+{
+  "schema": "gems88.official-public-leaderboard-observation.v1",
+  "observed_date_utc": "2026-10-26",
+  "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "page_title": "Competition: The Geologic Enhanced Mapping System (GEMS) Prize Challenge — Leaderboard",
+  "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION",
+  "top_public_row": {
+    "rank": 1,
+    "participant": "xiaofanhu",
+    "public_best_dw_tversky": 0.4437,
+    "submission_count_shown": 31,
+    "page_relative_activity_text": "1h 39min ago"
+  },
+  "interpretation": "This is a dated observation of the official public leaderboard, not a HOLDOUT-DTI measurement and not an artifact-linked DrivenData submission-page receipt for GEMSDOE88 or any focus-site TIFF.",
+  "prior_prompt_values": {
+    "0.4413": "USER-SUPPLIED historical/current-top claim; below the public top observed on 2026-10-26.",
+    "0.3195": "USER-SUPPLIED older public-top claim; not the public top on the observed page."
+  },
+  "limitations": [
+    "The leaderboard is live and can change after retrieval.",
+    "The public standings page does not establish which local TIFF bytes, if any, correspond to a participant's row.",
+    "No submission receipt for the GEMSDOE32 H33 file or a GEMSDOE88 artifact was obtained."
+  ]
+}

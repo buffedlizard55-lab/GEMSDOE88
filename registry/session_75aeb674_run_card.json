@@ -1,0 +1,151 @@
+{
+  "schema": "gems88.session-review.v1",
+  "run_id": "GEMSDOE88-REVIEW-75AEB674-20261026",
+  "branch": "arena/75aeb674-gemsdoe88",
+  "reviewed_at_utc_date": "2026-10-26",
+  "lane": "RESEARCH_AND_SOURCE_AUDIT_ONLY",
+  "hypothesis": "No method lane was supplied and no candidate was run. H88-SPR remains the conditional first research proposal in registry/hypothesis_queue.json, not an executed hypothesis.",
+  "mechanism": "No feature/model construction, fitting, dot placement or TIFF writing. Pre-placement inspection of the SHA-pinned dense registry witness proves every nonempty candidate in the required allowed domain exceeds the literal 3-pixel overlap gate.",
+  "named_non_fault_mimic": "For the conditional H88-SPR proposal: fluvial terrace risers and constant-elevation pluvial shoreline benches; neither was fitted or scored in this session.",
+  "geological_hypothesis_status": "NOT_EXECUTED_BINDING_DUPLICATE_STOP",
+  "source_snapshot": {
+    "source_files": 156,
+    "sha256": "a05cd182a2057898e53e4bab103c1958ca439ce9a0827cd372f10047ec20be05",
+    "queue": "registry/hypothesis_queue.json"
+  },
+  "inputs": {
+    "restore_command": "python scripts/restore_inputs.py",
+    "full_training_and_external_inputs_restored": true,
+    "input_pin_audit": "PASS",
+    "audit_command": "python scripts/audit_research_state.py --check-inputs",
+    "provenance_limit": "SHA-pinned owner GitHub mirrors; not authenticated against current organizer downloads; derived-input licensing/redistribution was not independently verified."
+  },
+  "preplacement_registry_proof": {
+    "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE",
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_pixels": 5167373,
+    "allowed_pixels": 5106385,
+    "uncovered_allowed_pixels": 0,
+    "covered_allowed_fraction": 1.0,
+    "forward_overlap_lower_bound_for_any_permitted_nonempty_candidate": 1.0,
+    "overlap_limit": 0.7,
+    "support_definition": "finite prediction > 0",
+    "decision": "DUPLICATE_STOP",
+    "scope_note": "One SHA-pinned witness is sufficient to fail the frozen literal gate. This is not a full inventory-wide pairwise novelty scan and no exemption is authorized."
+  },
+  "correlation_overlap_vs_registry": {
+    "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE",
+    "candidate_surface_rank_correlation": null,
+    "candidate_final_dot_rank_correlation": null,
+    "candidate_final_dot_overlap_3px": null,
+    "reason": "No candidate surface or dot set was constructed; pre-placement universal overlap proof blocks generation."
+  },
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "evaluator_version_if_unblocked": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "reason": "No prediction was emitted. A sibling-repository holdout or user-reported leaderboard claim is not this session's HOLDOUT-DTI."
+  },
+  "single_feature_canaries": {
+    "status": "NOT_RUN_NO_FEATURES_CONSTRUCTED",
+    "features_tested": 0,
+    "symmetric_auc": null,
+    "stop_threshold": 0.9
+  },
+  "current_head_reconciliation": {
+    "evidence_file": "evidence/focus_sites_current_head_recheck_20261026.json",
+    "focus_sites_checked": 9,
+    "current_main_heads_advanced_since_prior_audit": 9,
+    "historical_champion_sha256_matches_at_current_main": 9,
+    "changed_download_or_research_tiff_paths_in_compare": 65,
+    "all_new_current_head_tiffs_pairwise_scanned": false,
+    "limitation": "The prior champion pixel analysis remains byte-grounded for the same nine files. Newer TIFF paths were inventoried but not all-to-all rescanned; no GEMSDOE88 candidate was made."
+  },
+  "focus_site_score_claims": {
+    "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+    "highest_focus_site_claim": {
+      "site": "GEMSDOE32",
+      "artifact": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "reported_value": 0.2778,
+      "evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "source_status": "Current Round-6 card labels this OWNER-REPORT with no receipt; the R6 artifact was never submitted and no organizer score exists for that candidate."
+    },
+    "artifact_linked_organizer_receipts_for_historical_focus_champions_found": 0,
+    "gemsdoe31_ledger": {
+      "path": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/e6e85b357914068b3ba57ace0f899dde13f110a6/registry/score_claims.json",
+      "official_score_receipts": 0,
+      "0.2708_claim_status": "USER-REPORTED; current GEMSDOE28 README repeats the claim for H27-4 SOLO, but no organizer receipt exists. GEMSDOE31's imported owner-mirror note cites an older GEMSDOE28 snapshot that called the artifact UNSCORED; the versioned owner records differ."
+    }
+  },
+  "official_public_leaderboard_observation": {
+    "evidence_class": "OFFICIAL-PUBLIC-LEADERBOARD-OBSERVATION_NOT_ARTIFACT_RECEIPT",
+    "snapshot_file": "evidence/official_public_leaderboard_20261026.json",
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "observed_date_utc": "2026-10-26",
+    "top_public_score": 0.4437,
+    "participant": "xiaofanhu",
+    "artifact_linked_to_this_repository": false
+  },
+  "validator_output": {
+    "new_candidate_raster_created": false,
+    "validator_run_for_new_candidate": false,
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null,
+    "archived_H88_TDKL_format_only": {
+      "path": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+      "format_valid": true,
+      "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL",
+      "ok_to_download_for_research": true,
+      "ok_to_submit": false
+    }
+  },
+  "raster_sha256": null,
+  "raster_file": null,
+  "submission_name": "GEMSDOE88-75AEB674-NO-FILE",
+  "submission_name_status": "INTERNAL_AUDIT_IDENTIFIER_ONLY; NOT FOR PORTAL",
+  "submission_note": "No TIF built: DUPLICATE_STOP (registry covers allowed grid); no HOLDOUT-DTI; UNSCORED; DO NOT SUBMIT",
+  "submission_note_length": 100,
+  "review_passes": 3,
+  "verification": {
+    "pytest": "923 passed, 23 skipped, 70 warnings",
+    "audit_research_state_check_inputs": "PASS",
+    "preflight": "DUPLICATE_STOP (expected exit 2)",
+    "generation_guard_normal_and_optimized": "DUPLICATE_STOP (expected exit 2)",
+    "audit_downloads": "50 TIFFs audited; 0 protocol-eligible",
+    "audit_submissions_dir": "21 packages format/package checks passed; 0 protocol-eligible",
+    "audit_literal_protocol": "PASS",
+    "render_decision_check": "PASS",
+    "check_site_normal_and_optimized": "PASS",
+    "browser_evidence": "evidence/session_75aeb674_browser_check.json",
+    "browser_evidence_status": "PASS (7 page viewports, fail-closed fetch, no-JavaScript banner, TIFF request and click hashes)",
+    "browser_evidence_sha256": "4aede441227eccf314f0682b675aa1cbb711f26095e6750402a91c26176ec5c3"
+  },
+  "experiments_run": 0,
+  "new_rasters_generated": 0,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "ok_to_download_for_research": true,
+  "ok_to_download_new_file": false,
+  "ok_to_submit": false,
+  "generation_allowed": false,
+  "decision": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "note_140": "75aeb674 review: DUPLICATE_STOP; no new TIFF or score; current source heads reconciled; DO NOT SUBMIT",
+  "archived_research_download": {
+    "path": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "format_valid": true,
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL",
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false
+  }
+}

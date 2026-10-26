@@ -173,9 +173,18 @@ def test_session_c59db412_run_card_markdown_and_browser_receipt() -> None:
     assert br["ok_to_submit"] is False
     assert len(br["pages"]) == 7 and all(p["pass"] and not p["overflow"] for p in br["pages"])
     assert br["con88_page"]["pass"] is True
-    for rel, expected_sha in br["source_sha256"].items():
-        actual_sha = hashlib.sha256((ROOT / rel).read_bytes()).hexdigest()
-        assert actual_sha == expected_sha, f"Browser pin mismatch on {rel}"
+    status = json.loads((ROOT / "docs/status.json").read_text())
+    if status["current_review"] == "data/session_c59db412_run_card.json":
+        for rel, expected_sha in br["source_sha256"].items():
+            actual_sha = hashlib.sha256((ROOT / rel).read_bytes()).hexdigest()
+            assert actual_sha == expected_sha, f"Browser pin mismatch on {rel}"
+    else:
+        # This receipt remains valid historical evidence, but its source hashes
+        # are no longer expected to pin the refreshed 75aeb674 publication.
+        assert status["current_review"] == "data/session_75aeb674_run_card.json"
+        current_card = json.loads((ROOT / "docs/data/session_75aeb674_run_card.json").read_text())
+        current_browser = json.loads((ROOT / current_card["verification"]["browser_evidence"]).read_text())
+        assert current_browser["status"] == "PASS" and current_browser["ok_to_submit"] is False
 
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     index_html = (ROOT / "docs/index.html").read_text(encoding="utf-8")

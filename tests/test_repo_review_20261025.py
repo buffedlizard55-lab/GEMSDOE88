@@ -53,8 +53,12 @@ def test_published_review_is_fail_closed_and_copies_match() -> None:
     assert evidence["preplacement_registry_audit"]["covered_allowed_fraction"] == 1.0
     status = json.loads((ROOT / "docs/status.json").read_text())
     assert evidence["snapshot_scope"] == "HISTORICAL_HYPOTHESES_AND_SOURCE_ACCESS_NOT_REFRESHED_BY_REPLAY"
-    assert status["current_review"] == "data/session_c59db412_run_card.json"
-    assert status["previous_review"] == "data/session_0df81d99_run_card.json"
+    assert status["current_review"] == "data/session_75aeb674_run_card.json"
+    assert status["previous_review"] == "data/session_c59db412_run_card.json"
+    current_card = json.loads((ROOT / "docs" / status["current_review"]).read_text())
+    assert current_card["run_id"] == "GEMSDOE88-REVIEW-75AEB674-20261026"
+    assert current_card["decision"] == "DUPLICATE_STOP"
+    assert current_card["ok_to_submit"] is False
     assert status["historical_review"] == "data/repo_review_20261025.json"
     assert status["research_queue"] == "data/hypothesis_queue.json"
     assert status["current_review_status"] == "DUPLICATE_STOP"
