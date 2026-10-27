@@ -102,8 +102,32 @@ def validate(path: Path, footprint: np.ndarray | None = None,
     return receipt
 
 
+# These checks are always emitted by validate(); footprint and catalogue checks
+# are additional when their masks were supplied. A partial or hand-constructed
+# receipt cannot prove the mandatory local checks happened.
+REQUIRED_LOCAL_CHECKS = frozenset({
+    "single_band", "dtype_float32", f"dimensions_{HEIGHT}x{WIDTH}",
+    f"crs_epsg_{EPSG}", "transform_matches_sample_submission",
+    "no_nan_anywhere", "no_inf_anywhere", "no_sentinel_values",
+    "range_0_1_guaranteed", "min_ge_0", "max_le_1",
+})
+
+
 def assert_submittable(receipt: dict) -> None:
-    """Raise unless every local format/range check passed (not organizer acceptance)."""
-    bad = [k for k, v in receipt["checks"].items() if not v]
-    if bad:
-        raise AssertionError(f"submission fails the local format/range preflight: {bad}")
+    """Require a complete, explicitly passing local format/range receipt.
+
+    This checks receipt structure, not its authenticity: the caller must obtain
+    it directly from validate() on the same file. It never grants uniqueness,
+    organizer acceptance, or permission to spend a slot.
+    """
+    if not isinstance(receipt, dict) or not isinstance(receipt.get("checks"), dict):
+        raise AssertionError("submission has no valid local format/range checks")
+    checks = receipt["checks"]
+    missing = sorted(REQUIRED_LOCAL_CHECKS - checks.keys())
+    bad = sorted(str(k) for k, v in checks.items() if v is not True)
+    if missing or bad or receipt.get("all_checks_passed") is not True:
+        raise AssertionError(
+            f"submission fails the local format/range preflight: "
+            f"missing={missing}, failed_or_invalid={bad}, "
+            f"all_checks_passed={receipt.get('all_checks_passed')!r}"
+        )

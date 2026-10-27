@@ -13,11 +13,12 @@
   };
 
   // Pure validator: callable by Node tests without a browser or network.
-  function assess(report, expected, now) {
+  function assess(report, expected, now, expectedDigest) {
     if (!report || report.schema !== 'gems88.focus-freshness.v1' ||
         report.ok_to_submit !== false || report.approved_for_weekly_slot !== false ||
         report.audited_snapshot !== 'docs/data/focus_sites_20261026.json' ||
-        !/^[0-9a-f]{64}$/.test(report.audited_snapshot_sha256) ||
+        typeof expectedDigest !== 'string' || !/^[0-9a-f]{64}$/.test(expectedDigest) ||
+        report.audited_snapshot_sha256 !== expectedDigest ||
         report.stale_after_hours !== LIMIT_HOURS || !validUtc(report.checked_at_utc) ||
         !Array.isArray(report.sites) || report.sites.length !== SITES.length ||
         !Array.isArray(expected) || expected.length !== SITES.length ||
@@ -65,7 +66,7 @@
   fetch('data/focus-freshness.json', {cache: 'no-store'})
     .then(response => { if (!response.ok) throw new Error('unavailable'); return response.json(); })
     .then(report => {
-      const view = assess(report, expected, Date.now());
+      const view = assess(report, expected, Date.now(), banner.dataset.auditedSnapshotSha256);
       if (view.expired) {
         banner.textContent = `Revision snapshot expired (last checked ${view.checkedAt}); current state unknown. DO NOT SUBMIT.`;
       } else if (view.counts.unknown) {

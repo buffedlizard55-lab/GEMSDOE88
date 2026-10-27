@@ -2,6 +2,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const crypto = require('node:crypto');
 const path = require('node:path');
 const vm = require('node:vm');
 const {assess, SITES} = require('../docs/assets/focus-freshness.js');
@@ -9,7 +10,9 @@ const {assess, SITES} = require('../docs/assets/focus-freshness.js');
 const root = path.join(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'docs/assets/focus-freshness.js'), 'utf8');
 const snapshot = JSON.parse(fs.readFileSync(path.join(root, 'docs/data/focus-freshness.json'), 'utf8'));
-const audit = JSON.parse(fs.readFileSync(path.join(root, 'docs/data/focus_sites_20261026.json'), 'utf8'));
+const auditBytes = fs.readFileSync(path.join(root, 'docs/data/focus_sites_20261026.json'));
+const audit = JSON.parse(auditBytes.toString('utf8'));
+const expectedDigest = crypto.createHash('sha256').update(auditBytes).digest('hex');
 const expected = audit.focus_sites.map(row => ({site: row.site, head: row.inspected_repo_head_sha}));
 const copy = value => JSON.parse(JSON.stringify(value));
 // Build a deterministic complete test-only report even when a later legitimate
@@ -37,6 +40,7 @@ class FakeElement {
 
 async function render(report, {now = checked + 60000, fail = false} = {}) {
   const banner = new FakeElement();
+  banner.dataset.auditedSnapshotSha256 = expectedDigest;
   const labels = expected.map(row => {
     const label = new FakeElement();
     label.dataset.focusFreshness = row.site;
@@ -115,6 +119,7 @@ test('unsafe, inconsistent, forged or future reports are rejected', async () => 
     r => { r.ok_to_submit = true; },
     r => { r.approved_for_weekly_slot = true; },
     r => { r.audited_snapshot_sha256 = 'not-a-sha'; },
+    r => { r.audited_snapshot_sha256 = expectedDigest === 'f'.repeat(64) ? 'e'.repeat(64) : 'f'.repeat(64); },
     r => { r.checked_at_utc = '2026-02-31T00:00:00Z'; },
     r => { r.checked_at_utc = new Date(checked + 3600000).toISOString().replace('.000Z', 'Z'); },
     r => { r.sites[0].current_head = 'javascript:alert(1)'; },
@@ -128,7 +133,7 @@ test('unsafe, inconsistent, forged or future reports are rejected', async () => 
   for (const mutate of mutations) {
     const report = copy(stored);
     mutate(report);
-    assert.throws(() => assess(report, expected, checked + 60000));
+    assert.throws(() => assess(report, expected, checked + 60000, expectedDigest));
     const {banner, labels} = await render(report);
     assert.match(banner.textContent, /unavailable or inconsistent/);
     assert.ok(labels.every(label => label.textContent === 'Current revision unknown'));

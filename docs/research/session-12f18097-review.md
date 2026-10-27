@@ -1,3 +1,5 @@
+> **Correction (2026-10-27, IR-88-CEF4B835-04):** The BPWD blind `>25 px` value `0.090449` attributed below is incorrect; that value is a stored **VESS** baseline, not BPWD. The preserved [BPWD run card](https://github.com/buffedlizard55-lab/GEMSDOE88/blob/main/registry/bpwd88_run_card.json) records **HOLDOUT-DTI 0.072733 [0.045432, 0.103127]**, `gems57-pooled-hide-v2`, `n=3,117` withheld positives for the blind stratum. The overall BPWD value `0.205991 [0.188105, 0.223344]` (`n=22,893`) is unchanged. Neither was rerun or is an organizer score. The original text below is retained for audit.
+
 # Session `12f18097` (`2026-10-27`): Post-Merge Remediation (`PR #209` & `PR #210`), `104`-Site / `128`-Claim Fleet Audit, Executive Score-Estimate & Uniqueness Table, and PhD `0.2778` Synthesis
 
 **Canonical Decision (`2026-10-27`, Session `12f18097`): NO NEW SUBMISSION TIFF CLEARED · `DOWNLOAD FOR RESEARCH: YES` (archived `-DO-NOT-SUBMIT` artifacts) · `SUBMIT TO COMPETITION: NO — DO NOT SUBMIT` (`ok_to_submit: false`, `verdict: "negative"`, `weekly_slots_used: 0`).**

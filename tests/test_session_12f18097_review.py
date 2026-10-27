@@ -115,6 +115,15 @@ def test_session_12f18097_run_card_dossiers_fleet_audit_and_browser_receipt() ->
     br = json.loads(br_ev)
     assert br["status"] == "PASS" and br["ok_to_submit"] is False
     assert len(br["pages"]) == 7 and all(p["pass"] and not p["overflow"] for p in br["pages"])
+    # Keep this receipt as a historical observation, not a claim that later
+    # page bytes still match. The current status must bind a fresh receipt.
     for rel, expected_sha in br["source_sha256"].items():
-        actual_sha = hashlib.sha256((ROOT / rel).read_bytes()).hexdigest()
-        assert actual_sha == expected_sha, f"Stale pin on {rel}"
+        assert rel.startswith("docs/") and len(expected_sha) == 64
+        int(expected_sha, 16)
+    status = json.loads((ROOT / "docs/status.json").read_text())
+    current = json.loads((ROOT / "docs" / status["current_review"]).read_text())
+    active = json.loads((ROOT / current["verification"]["browser_evidence"]).read_text())
+    assert active["status"] == "PASS" and active["ok_to_submit"] is False
+    assert br["checked_at_utc"] < active["checked_at_utc"]
+    for rel, expected_sha in active["source_sha256"].items():
+        assert hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() == expected_sha, rel

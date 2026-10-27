@@ -36,17 +36,19 @@ when ``T == M`` (a near-bijection between dots and truth cells) -- an error
 carried by the shared template's prose and corrected here; the template's own
 :func:`dti_algebra` keeps ``T``, ``S`` and ``M`` separate and is right.
 
-Adding one dot with self-credit ``k = max_g k(d(x,g))`` and marginal truth credit
-``dT`` (``dT <= k``, with equality when the dot covers only truth cells no
-earlier dot already covered) gives ``dD = alpha*(dT + 1 - k)`` and, writing
-``DTI = T / D``,
+For the competition weights (``alpha + beta == 1``), adding one dot with
+self-credit ``k = max_g k(d(x,g))`` and marginal truth credit ``dT`` gives
+``dD = alpha*(dT + 1 - k)`` and, writing ``DTI = T / D``,
 
     new DTI = (T + dT) / (D + alpha*(dT + 1 - k))
     dDTI > 0  <=>  (T + dT)*D > T*(D + alpha*(dT + 1 - k))
               <=>  dT > alpha * DTI * (dT + 1 - k)
 
-For a non-redundant dot (``dT == k``) this reduces to the simple bar
-``k > alpha * DTI``, which is the form quoted in the competition literature.
+There is no general bound ``dT <= k``: a single dot may add credit to several
+truth cells, whereas ``k`` concerns its nearest truth cell. Conversely, an
+already-covered truth neighbourhood can leave ``dT`` far below ``k``. The
+simple bar ``k > alpha * DTI`` holds in the special case ``dT == k``; it is not
+a general criterion for non-redundant dots.
 
 .. warning:: an earlier revision of this module tested ``dT * D > DTI * alpha *
    (dT + 1 - k)``, which is the same inequality multiplied through by ``D`` on
@@ -96,11 +98,11 @@ OFF_DY, OFF_DX, OFF_K = offsets()
 
 
 def marginal_inclusion_threshold(current_dti: float, alpha: float = ALPHA) -> float:
-    """Minimum realised kernel credit ``k`` for one more **non-redundant** dot.
+    """Special-case threshold when marginal truth credit equals self-credit.
 
-    ``dDTI > 0 <=> k > alpha * DTI`` when the dot's marginal truth credit equals
-    its self-credit.  For a redundant dot use :func:`marginal_accept`, which
-    applies the exact two-sided test.
+    With the competition weights summing to one, ``dDTI > 0`` iff
+    ``k > alpha * DTI`` only when ``dT == k``. Non-redundancy alone does not
+    establish that equality; use :func:`marginal_accept` for the general case.
     """
     return alpha * float(current_dti)
 
@@ -112,8 +114,10 @@ def marginal_accept(dT: float, k_self: float, T: float, M: float, n: int,
     ``dT`` is the increase in ``TP_w``; ``k_self`` is the dot's own
     ``max_g k(d(x,g))``; ``T``/``M``/``n`` are the current totals; ``K = |G|``.
 
-    Implemented by recomputing DTI before and after rather than by algebra, so
-    the test cannot drift from the metric.
+    The denominators are the DTI denominators for the competition weights,
+    which sum to one. With other non-negative weights their shared difference
+    from the DTI denominators is proportional to truth credit and cancels in
+    the strict before/after comparison (apart from numerical roundoff).
     """
     D0 = alpha * (T + n - M) + beta * K + EPS
     D1 = alpha * (T + dT + (n + 1) - (M + k_self)) + beta * K + EPS

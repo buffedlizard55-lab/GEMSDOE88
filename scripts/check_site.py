@@ -634,10 +634,11 @@ def main(root: Path = ROOT) -> None:
     )
     require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
     require(
-        "Review · 2026-10-26" in index
+        re.search(r"Review · \d{4}-\d{2}-\d{2}", index) is not None
         and "NO FILE APPROVED" in index
         and "0/9 CLEARED IN HISTORICAL AUDIT" in index
-        and "every nonempty dot set fails the literal overlap limit" in index,
+        and "every nonempty dot set fails the literal overlap limit" in index
+        and index.find("Review · ") < index.find('<details class="archive-lanes"'),
         "Overview must present the current fail-closed decision before archived candidates",
     )
     require(

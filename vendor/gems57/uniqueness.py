@@ -9,6 +9,8 @@ comparison and summary functions already implement the literal user rule.
 from __future__ import annotations
 import hashlib
 import json
+import math
+import numbers
 from pathlib import Path
 import numpy as np
 import rasterio
@@ -119,45 +121,109 @@ def summarize_registry_rows(rows, *, registry_rasters_expected, complete_accessi
     """
     rows = list(rows)
     source_errors = list(source_errors or [])
+    if (isinstance(registry_rasters_expected, (bool, np.bool_))
+            or not isinstance(registry_rasters_expected, numbers.Integral)):
+        raise ValueError('registry_rasters_expected must be an integer')
     expected = int(registry_rasters_expected)
-    checked = [r for r in rows if 'error' not in r]
-    errors = [r for r in rows if 'error' in r]
-    complete = bool(complete_accessible_scan and expected == len(rows)
-                    and not errors and not source_errors)
-    # The inherited stop gate is literal: only Spearman > 0.90 or forward
-    # 3-pixel overlap > 0.70 (plus byte/pixel identity safeguards) can block.
-    # Jaccard is reported for diagnosis, never substituted as a new threshold.
-    flags = [r for r in checked if any(r.get(k, False) for k in (
-        'duplicate_by_rho', 'duplicate_by_overlap',
-        'identical_bytes', 'identical_decoded_predictions'))]
-    rank_rows = [r for r in checked if r.get('spearman_full_footprint') is not None]
-    worst_rho = max(rank_rows, key=lambda r: r['spearman_full_footprint'], default=None)
+    if not isinstance(candidate_meta, dict):
+        raise ValueError('candidate metadata must be a dictionary')
+
+    def valid_sha(value):
+        return (isinstance(value, str) and len(value) == 64
+                and all(c in '0123456789abcdef' for c in value))
+
+    def valid_number(value, lo, hi):
+        return (isinstance(value, numbers.Real) and not isinstance(value, (bool, np.bool_))
+                and math.isfinite(value) and lo <= value <= hi)
+
+    file_sha = candidate_meta.get('candidate_file_sha256')
+    decoded_sha = candidate_meta.get('candidate_decoded_sha256')
+    identity_ok = valid_sha(decoded_sha) and (file_sha is None or valid_sha(file_sha))
+    raw_count = candidate_meta.get('my_dots')
+    my_dot_count = (int(raw_count) if isinstance(raw_count, numbers.Integral)
+                    and not isinstance(raw_count, (bool, np.bool_)) and raw_count > 0 else 0)
+    raw_variation = candidate_meta.get('candidate_rank_variation')
+    norm = isinstance(raw_variation, (bool, np.bool_)) and bool(raw_variation)
+
+    checked, errors, validation_errors = [], [], []
+    for index, row in enumerate(rows):
+        if not isinstance(row, dict):
+            errors.append(row)
+            validation_errors.append(f'row {index}: not a dictionary')
+            continue
+        if 'error' in row:
+            errors.append(row)
+            validation_errors.append(f'row {index}: source error')
+            continue
+        problems = []
+        if not isinstance(row.get('submission'), str) or not row['submission']:
+            problems.append('submission')
+        for key in ('sha256', 'decoded_sha256'):
+            if not valid_sha(row.get(key)):
+                problems.append(key)
+        for key, lo, hi in (
+            ('spearman_full_footprint', -1.000000000001, 1.000000000001),
+            ('my_dots_within_3px_of_theirs', 0.0, 1.0),
+            ('jaccard_dot_sets', 0.0, 1.0),
+        ):
+            if not valid_number(row.get(key), lo, hi):
+                problems.append(key)
+        for key in ('duplicate_by_rho', 'duplicate_by_overlap',
+                    'identical_bytes', 'identical_decoded_predictions'):
+            if not isinstance(row.get(key), (bool, np.bool_)):
+                problems.append(key)
+        if problems:
+            errors.append(row)
+            validation_errors.append(f'row {index}: invalid or missing {", ".join(problems)}')
+        else:
+            checked.append(row)
+
+    # An empty "complete" scan cannot certify novelty. Undefined correlations,
+    # malformed rows, and source errors also fail closed. Callers remain
+    # responsible for hashing the actual candidate/registry bytes and proving
+    # that the indexed inventory is complete; row validation is not a signature.
+    complete = bool(complete_accessible_scan is True and expected > 0
+                    and expected == len(rows) and not errors and not source_errors)
+
+    def byte_match(row):
+        return bool(row['identical_bytes'] or (file_sha is not None and row['sha256'] == file_sha))
+
+    def pixel_match(row):
+        return bool(row['identical_decoded_predictions'] or row['decoded_sha256'] == decoded_sha)
+
+    # Derive stops from the measurements, not solely from caller-supplied flags.
+    # A supplied positive flag remains a stop even if its measurement differs.
+    # Jaccard remains diagnostic only and never replaces literal 3-px overlap.
+    flags = [r for r in checked if (
+        r['duplicate_by_rho'] or abs(r['spearman_full_footprint']) > RHO_LIMIT
+        or r['duplicate_by_overlap'] or r['my_dots_within_3px_of_theirs'] > OVERLAP_LIMIT
+        or byte_match(r) or pixel_match(r))]
+    worst_rho = max(checked, key=lambda r: abs(r['spearman_full_footprint']), default=None)
     worst_ov = max(checked, key=lambda r: r['my_dots_within_3px_of_theirs'], default=None)
     worst_jac = max(checked, key=lambda r: r['jaccard_dot_sets'], default=None)
-    my_dot_count = int(candidate_meta['my_dots'])
-    norm = bool(candidate_meta['candidate_rank_variation'])
-    unique = complete and my_dot_count > 0 and norm and not flags
+    unique = complete and identity_ok and my_dot_count > 0 and norm and not flags
     return dict(
         my_file=candidate_meta.get('my_file'), evidence_class='REGISTRY-MEASUREMENT',
         my_dots=my_dot_count,
-        candidate_decoded_sha256=candidate_meta.get('candidate_decoded_sha256'),
-        candidate_file_sha256=candidate_meta.get('candidate_file_sha256'),
+        candidate_decoded_sha256=decoded_sha,
+        candidate_file_sha256=file_sha,
+        candidate_identity_fields_valid=bool(identity_ok),
         rho_limit=RHO_LIMIT, overlap_limit=OVERLAP_LIMIT, jaccard_limit=JACCARD_LIMIT,
         registry_rasters_expected=expected, registry_rasters_checked=len(checked),
         complete_accessible_scan=complete, missing_or_invalid=len(errors),
-        source_errors=source_errors,
+        source_errors=source_errors, validation_errors=validation_errors,
         worst_spearman_full_footprint=(worst_rho['spearman_full_footprint'] if worst_rho else None),
         worst_rho_submission=(worst_rho['submission'] if worst_rho else None),
         worst_dot_overlap=(worst_ov['my_dots_within_3px_of_theirs'] if worst_ov else None),
         worst_overlap_submission=(worst_ov['submission'] if worst_ov else None),
         worst_jaccard_dot_sets=(worst_jac['jaccard_dot_sets'] if worst_jac else None),
         worst_jaccard_submission=(worst_jac['submission'] if worst_jac else None),
-        byte_unique_among_checked=bool(checked) and not any(r.get('identical_bytes', False) for r in checked),
-        pixel_unique_among_checked=bool(checked) and not any(r.get('identical_decoded_predictions', False) for r in checked),
+        byte_unique_among_checked=bool(checked) and not any(byte_match(r) for r in checked),
+        pixel_unique_among_checked=bool(checked) and not any(pixel_match(r) for r in checked),
         duplicate_count=len(flags), unique=bool(unique), rows=rows,
         jaccard_diagnostic_only=True,
         verdict='promote-to-selector-only' if unique else 'negative',
-        stop_required=bool(flags or not complete or not my_dot_count or not norm),
+        stop_required=not bool(unique),
         candidate_rank_variation=norm,
         scope=scope)
 
@@ -178,10 +244,10 @@ def merge_registry_audits(previous, extension, *, registry_rasters_expected,
     if any(previous.get(key) != extension.get(key)
            for key in ('rho_limit', 'overlap_limit', 'jaccard_limit')):
         raise ValueError('cannot merge audits with different uniqueness thresholds')
-    if not previous.get('complete_accessible_scan'):
-        raise ValueError('base audit is not a complete accessible registry scan')
-    if not extension.get('complete_accessible_scan'):
-        raise ValueError('registry delta is incomplete')
+    if previous.get('complete_accessible_scan') is not True or not previous.get('rows'):
+        raise ValueError('base audit is not a nonempty complete accessible registry scan')
+    if extension.get('complete_accessible_scan') is not True or not extension.get('rows'):
+        raise ValueError('registry delta is empty or incomplete')
     if previous.get('missing_or_invalid') or extension.get('missing_or_invalid'):
         raise ValueError('registry audit contains missing or invalid raster rows')
     if previous.get('source_errors') or extension.get('source_errors'):
@@ -217,8 +283,11 @@ def merge_registry_audits(previous, extension, *, registry_rasters_expected,
     rows = sorted(merged.values(), key=lambda r: (r.get('repo', ''), r.get('submission', ''), r['sha256']))
     meta = {k: previous.get(k) for k in identity_keys}
     meta['my_file'] = previous.get('my_file')
+    if (isinstance(registry_rasters_expected, (bool, np.bool_))
+            or not isinstance(registry_rasters_expected, numbers.Integral)):
+        raise ValueError('registry_rasters_expected must be an integer')
     expected = int(registry_rasters_expected)
-    complete = bool(complete_accessible_scan and len(rows) == expected)
+    complete = bool(complete_accessible_scan is True and len(rows) == expected)
     result = summarize_registry_rows(
         rows, registry_rasters_expected=expected,
         complete_accessible_scan=complete,
@@ -267,7 +336,7 @@ def records_from_index(index):
     # Historical /tmp inventory never had a completeness certificate; file checks
     # below still prevent it from passing when all ephemeral caches disappear.
     complete = index.get('complete_accessible_scan', False)
-    return records, bool(complete), index.get('errors', [])
+    return records, complete is True, index.get('errors', [])
 
 
 def compare_array_to_registry(mine, registry_index, footprint, *, file_sha256=None,
@@ -312,6 +381,9 @@ def compare_array_to_registry(mine, registry_index, footprint, *, file_sha256=No
                     if src.crs is None or src.crs.to_epsg()!=32611 or src.transform != TRANSFORM:
                         raise ValueError('registry CRS/transform mismatch')
                 theirs = src.read(1).astype(np.float32)
+            if (not np.isfinite(theirs[fp]).all() or (theirs[fp] < 0).any()
+                    or (theirs[fp] > 1).any()):
+                raise ValueError('registry prediction is non-finite or outside [0,1] inside footprint')
             theirs = np.where(np.isfinite(theirs), theirs, 0.0)
             # Outside-footprint values are ignored for support and pixel identity.
             theirs[~fp] = 0

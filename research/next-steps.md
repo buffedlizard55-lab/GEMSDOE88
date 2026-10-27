@@ -1,3 +1,13 @@
+## Current handoff — `cef4b835` (2026-10-27)
+
+Read `AGENTS.md`, `PROMPT.md`, the permanent prompt in `README.md`, `research/session-cef4b835-review.md` and `registry/session_cef4b835_run_card.json` first. The restored, SHA-pinned dense witness still covers every allowed cell: `--gate-generation` exits 2. No geological experiment, candidate TIFF or slot was used.
+
+1. Keep literal uniqueness binding. An explicit shared protocol decision is needed before a nonempty candidate can proceed; a selector cannot override a failed gate. No dense-prior exception or sampled-screen clearance is authorized.
+2. The conditional first lane is **H88-SPR only**; review the three source-bound hypotheses, mirrored input provenance and named confounders before fitting. Reread the active user's precise method assignment; it was ambiguous in this session.
+3. If the shared rule is explicitly resolved, refresh and authenticate the complete registry, restore pinned inputs, preregister one lane and use buffered whole-segment visible-only paired holdout, all leakage canaries, full surface/final uniqueness and strict saved-byte checks. Do not spend a slot without a separate eligible selector and current account cap.
+4. BPWD's historical blind result is **HOLDOUT-DTI 0.072733 [0.045432, 0.103127]**, `gems57-pooled-hide-v2`, `n=3,117` — not the VESS value `0.090449`. Preserve prior evaluator hashes and old browser receipts. Current README-only GitHub observations are not a new raster/score audit.
+5. Current DrivenData terms restrict automated site monitoring and manual monitoring without prior written consent. Do not enable a scraper; verify any future access, source licenses, account allowance and organizer receipts through an authorized channel.
+
 ## Current handoff — software/evidence review 693b10af (2026-10-25)
 
 Read `README.md`, `PROMPT.md`, `USER_PROMPT_20261025.md`, `AGENTS.md`, `registry/session_693b10af_run_card.json` and `research/session-693b10af-review.md`. No candidate construction, new TIFF, geological holdout or weekly slot was run. Data placement/preparation succeeds; the literal dense-witness contradiction, not missing data, stops every nonempty candidate.

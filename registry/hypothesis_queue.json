@@ -1,14 +1,14 @@
 {
   "schema": "gems88.hypothesis-queue.v1",
-  "reviewed_at_utc": "2026-10-26",
-  "review_branch": "arena/0b582cf7-gemsdoe88",
+  "reviewed_at_utc": "2026-10-27T19:02:51.557580+00:00",
+  "review_branch": "arena/cef4b835-gemsdoe88",
   "source_snapshot": {
     "files": 156,
-    "sha256": "a05cd182a2057898e53e4bab103c1958ca439ce9a0827cd372f10047ec20be05"
+    "sha256": "8e548e23a02d44a4030fa32e105ac63c1b161c99704ca208867d19cfc02ba1a8"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
-  "selection_status": "NOT STARTED \u2014 shared DUPLICATE_STOP takes precedence",
+  "selection_status": "NOT STARTED — shared DUPLICATE_STOP takes precedence",
   "generation_authorized": false,
   "ok_to_submit": false,
   "input_provenance": "SHA-pinned owner mirrors restored in this session; no authenticated organizer download or fresh primary-source license verification.",
@@ -125,7 +125,7 @@
       "signature": "On independent along-strike swaths, fit smooth-landform-plus-signed-step versus no-step profiles; score restoration on held-out profile samples and require a repeatable step away from channel corridors. Use the manifest to decode topographic indices and mask invalid/saturated values.",
       "off_catalogue_rationale": "A weak or cover-softened offset repeated across an otherwise smooth piedmont could escape catalogue mapping while retaining a resolvable profile signal. No mapped trace seeds the surface. Sub-pixel scarps are not claimed detectable from this 100 m cache.",
       "non_fault_mimic": "Fluvial terrace risers and constant-elevation pluvial shoreline benches",
-      "difference_from_implemented": "LSC/TDKL/VESS/SHORE use scarp responses, polarity, knickpoint or shoreline context; they do not fit a cross-validated landform-restoration likelihood. MMRX restores magnetic texture, not landform profiles.",
+      "difference_from_implemented": "LSC/TDKL/VESS/SHORE use scarp responses, polarity, knickpoint or shoreline context; they do not fit a cross-validated landform-restoration likelihood. MMRX restores magnetic texture, not landform profiles. GEMSDOE32 R6-1 already used a directional smoothed elevation step-vs-ramp filter; independent held-out profile restoration and explicit drainage/shoreline nulls are the proposed untested contrast, not wholly new step-scarp geology.",
       "expected_potential": "First relative priority; moderate but highly uncertain; no numerical DTI projection",
       "implementation_cost": "Medium; cached inputs only",
       "falsification": "Reject if sign/step evidence disappears across adjacent withheld swaths, depends on drainage pixels, or is equally explained by contour-following shoreline/terrace controls."
@@ -229,6 +229,22 @@
       },
       "reason": "Withdrew H88-CON88 upload clearance (IR-88-3C391D97-01), enforced enforce_generation_preflight() on scripts/run_con88_experiment.py and scripts/run_con88_exp3_margin.py, and recorded H88-CON88 in already_evaluated; remaining untested proposals (H88-SPR, H88-AWA, H88-CBC) remain distinct.",
       "reviewed_at_utc": "2026-10-25T18:30:00Z"
+    },
+    {
+      "superseded_snapshot": {
+        "files": 156,
+        "sha256": "a05cd182a2057898e53e4bab103c1958ca439ce9a0827cd372f10047ec20be05"
+      },
+      "reason": "Reviewed four changed source files in session cef4b835: shared uniqueness and validation now fail closed on incomplete or inconsistent evidence; shared metric changes only docstrings; the GHMD fast portfolio screen is explicitly diagnostic and checks literal dense overlap. No geological feature, fit or candidate generation was implemented, so the three source-bound hypotheses remain proposed and untested.",
+      "reviewed_at_utc": "2026-10-27T19:02:51.557557+00:00"
     }
-  ]
+  ],
+  "reviewed_near_prior": {
+    "repository": "GEMSDOE32",
+    "commit": "6a28a39a2bca6bbb49cd8a56292c78d474c9ef91",
+    "file": "scripts/run_round6.py",
+    "sha256": "f5a3174c96e74e7a01197e00839dcdf3cd261cabe93226ac18c972a5b353dda9",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/6a28a39a2bca6bbb49cd8a56292c78d474c9ef91/scripts/run_round6.py#L51-L78",
+    "limitation": "The broader scarp-step geology was already attempted; SPR is only an untested contrast under the inspected scope."
+  }
 }

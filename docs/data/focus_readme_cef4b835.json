@@ -1,0 +1,93 @@
+{
+  "schema": "gems88.focus-readme-snapshot.cef4b835.v1",
+  "checked_at_utc": "2026-10-27T18:58:41.805102+00:00",
+  "github_head_snapshot_utc": "2026-10-27T18:58:01Z",
+  "scope": "One pinned README per focus site. Captures text only; no sibling raster, score, quota or full inventory was revalidated. Later commits may differ.",
+  "rows": [
+    {
+      "site": "GEMSDOE24",
+      "repo_head": "4ac957757f8494439e2dc51b58ca62c380550e44",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/4ac957757f8494439e2dc51b58ca62c380550e44/README.md",
+      "readme_sha256": "e4f1dc00dfcd7d905c6a0472a53b21fc1933233f8bb89a20d32737f46ab44160",
+      "excerpt_line": 43,
+      "excerpt": "## Current decision — 2026-10-27: research downloads only; **DO NOT SUBMIT**",
+      "excerpt_truncated": false
+    },
+    {
+      "site": "GEMSDOE25",
+      "repo_head": "3a1d548c6a187d50899095e29f5c022101edefc5",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/3a1d548c6a187d50899095e29f5c022101edefc5/README.md",
+      "readme_sha256": "bbccd6902f25459b0e680526d884ae28da7a6e311f456e48d7ba90a20ebfa740",
+      "excerpt_line": 4,
+      "excerpt": "## Current Decision — 2026-10-27: NO ELIGIBLE SUBMISSION",
+      "excerpt_truncated": false
+    },
+    {
+      "site": "GEMSDOE27",
+      "repo_head": "59246f662cd6492976599597cd754a7c730d92f0",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/59246f662cd6492976599597cd754a7c730d92f0/README.md",
+      "readme_sha256": "046f59103c42c22be1ca795d6606c30e25fb26a41f336fb5cad7c519ded426f7",
+      "excerpt_line": 3,
+      "excerpt": "**DO NOT SUBMIT — no file is currently approved or authorized for a weekly slot.** The user reports that H31-1 content ID `cf8e1bbef244` was already submitted and received **0.2250 OWNER-REPORTED**. There is no organizer receipt in this repository. Do not upload, rename or re-thin that raster as a new submission. A valid GeoTIFF and a local holdout pass are not slot authorization.",
+      "excerpt_truncated": false
+    },
+    {
+      "site": "GEMSDOE28",
+      "repo_head": "191a5608af3fc2a7412853d5642e7494a3238f05",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/191a5608af3fc2a7412853d5642e7494a3238f05/README.md",
+      "readme_sha256": "327bd9edc6a7981c4e1a0a1b85b4e81207797ef517459674f64ee053accbcad6",
+      "excerpt_line": 3,
+      "excerpt": "## NO NEW FILE APPROVED · OK TO DOWNLOAD: NO · OK TO SUBMIT: NO",
+      "excerpt_truncated": false
+    },
+    {
+      "site": "GEMSDOE30",
+      "repo_head": "d21ddd9502f3c3911e8d77b8f1e6abfaadffc876",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/d21ddd9502f3c3911e8d77b8f1e6abfaadffc876/README.md",
+      "readme_sha256": "76b96fcb9bc57c835f64ca5c68c8930480cfd1621e16ef389c03252a8e1f409e",
+      "excerpt_line": 5,
+      "excerpt": "## Current decision · 2026-10-27: **DUPLICATE-STOP · DO NOT SUBMIT**",
+      "excerpt_truncated": false
+    },
+    {
+      "site": "GEMSDOE31",
+      "repo_head": "88ec212955353f7590e94b8ef2a9763ffa035d45",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/88ec212955353f7590e94b8ef2a9763ffa035d45/README.md",
+      "readme_sha256": "37b55e46831812c43eeb77173132e756f284a2ff09376293edaf568cebaac925",
+      "excerpt_line": 3,
+      "excerpt": "> **No current artifact is approved. DO NOT SUBMIT (`slot_approved = false`, `ok_to_submit = false`, `verdict = \"negative\"`).** No human sign-off can override a failed literal registry gate under `literal-registry-20261026-9883b598`.",
+      "excerpt_truncated": false
+    },
+    {
+      "site": "GEMSDOE32",
+      "repo_head": "6a28a39a2bca6bbb49cd8a56292c78d474c9ef91",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/6a28a39a2bca6bbb49cd8a56292c78d474c9ef91/README.md",
+      "readme_sha256": "cb47790a4373c022c5a2002da4f4a309a89df3c3f34becb8c0f545c286739d10",
+      "excerpt_line": 6,
+      "excerpt": "# 🔴 DO NOT SUBMIT — no upload is authorized (`DOWNLOAD FOR RESEARCH / AUDIT: YES · SUBMIT TO LIVE PORTAL: NO`)",
+      "excerpt_truncated": false
+    },
+    {
+      "site": "GEMSDOE33",
+      "repo_head": "844f514819041c7be9efd345a24cf5cd70263f00",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/844f514819041c7be9efd345a24cf5cd70263f00/README.md",
+      "readme_sha256": "afbc2441e604e4cbb0d44eecc35386d1f8a9578e02f6225135c3fc05a8d45614",
+      "excerpt_line": 8,
+      "excerpt": "## 🔴 Current decision (2026-10-27, after A33-R5-THKCOND): **NO raster is OK TO SUBMIT** · newest unique TIF is **OK TO DOWNLOAD for research only**",
+      "excerpt_truncated": false
+    },
+    {
+      "site": "GEMSDOE36",
+      "repo_head": "6306b61ba11339d534e9356c5b8ec78b65ac4d3a",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/6306b61ba11339d534e9356c5b8ec78b65ac4d3a/README.md",
+      "readme_sha256": "1929e019109178713bb3b6a2ae574922b38608e529ae3454bcdfb5a4006fde3b",
+      "excerpt_line": 4,
+      "excerpt": "> **27 October 2026 superseding decision: DO NOT SUBMIT.** KPL is a literal-protocol duplicate: 99.17% 3-px overlap with reg-052. The owner reports KPL **0.1647 USER-REPORTED**, not organizer-confirmed. The prior forecast is uncalibrated and withdrawn. No new TIFF, training experiment or submission slot was authorized. See [executive review](docs/research/review-20261027.md) and [reproduced run card](evidence/literal_release_review_20261027.json)",
+      "excerpt_truncated": true
+    }
+  ],
+  "new_tiffs_generated": 0,
+  "weekly_slots_used": 0,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false
+}

@@ -2,7 +2,7 @@
   "repository": "https://github.com/buffedlizard55-lab/GEMSDOE78",
   "commit": "30f1ab9400f92036b0bc613425f1b5b6046f3897",
   "source_path": "vendor/gems57/",
-  "upstream_source": "buffedlizard55-lab/GEMSDOE78 vendor/gems57 (unmodified canonical template)",
+  "upstream_source": "buffedlizard55-lab/GEMSDOE78 vendor/gems57 canonical template plus documented shared corrections",
   "files": {
     "__init__.py": "bd7f12b45caf67b7b4d0da4656c7c3895513bec524ec0b7f251227ecbdd39d26",
     "anatomy.py": "f47103ae0f615a0f04ef0427ea83ad2dd11ecd4af34e53b99f2e20e557025cf9",
@@ -17,7 +17,7 @@
     "geo.py": "4320d4fb718a66a794b21c35af28cc1f2ce7b6e49649b17e86b3e9eb34235ff8",
     "grid.py": "b96df7ec0f33658a61b0baa5db85fcd19be2cd8b1873f99699bd26bddae8cd8d",
     "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
-    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "metric.py": "42c00fd807382e200d8f39c911b1f0e55193fce6a9ef08652d8b96ec9817bb53",
     "network.py": "d5e53d7df182e69bb22a6e39ac16f43d3f5b730e503d86538d5f8f7360020943",
     "offcatalogue.py": "5c1937dda9f16563d8679446bb60e66c8c878e7440c522c44afa0e7879b7b6e8",
     "relay_bend_anatomy.py": "cb9b79b9b61feaaaf6305009f571b6222c1ec390d1f94a1b05a91e05e7eb5dcb",
@@ -25,22 +25,20 @@
     "strand_orientation.py": "c1dd6d8bc39c48c4cda11321c116e600b59b18cf1764e23ce3d5438bea9dd0bc",
     "strike_zone.py": "eaf5b1030b731ec743650568d28598d3b6104e641a089dd6cca196e05be4e9c4",
     "submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
-    "uniqueness.py": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb",
-    "validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd"
+    "uniqueness.py": "dcab50977bdcf765e3a39f51412b074f52b91d561f795f781165b9c4c8663eab",
+    "validate.py": "1d43224b4989c4e8bd4c433d2c50073a577bfea2b0099b9df719c2c8dfcba104"
   },
   "core_modules_unmodified": {
     "vendor/gems57/grid.py": "b96df7ec0f33658a61b0baa5db85fcd19be2cd8b1873f99699bd26bddae8cd8d",
-    "vendor/gems57/metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
     "vendor/gems57/holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
     "vendor/gems57/evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
-    "vendor/gems57/validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd",
     "vendor/gems57/submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565"
   },
   "patched_modules": [
     {
       "file": "vendor/gems57/uniqueness.py",
       "upstream_sha256": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
-      "patched_sha256": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb",
+      "patched_sha256": "dcab50977bdcf765e3a39f51412b074f52b91d561f795f781165b9c4c8663eab",
       "patch": "append-only: excess_overlap() + binding_duplicate_decision_v3(); IR-88-86 shared literal-policy wrapper; session 249e8cb3 appended binding_duplicate_decision_v4() (IR-88-249E-01)",
       "reason": "IR-88-76: added excess_overlap() and binding_duplicate_decision_v3(). The literal 3 px dot-overlap rule returns 1.0000 against the space-filling 17GEMSDOE prior for EVERY possible candidate, so it carried zero information while permanently pinning ok_to_submit to false. The addition is append-only: no existing function, constant or code path was altered, so every previously recorded uniqueness number is reproducible byte-for-byte. The brief requires shared defects to be fixed once in the template rather than forked. IR-88-86 restores literal overlap as the binding decision for every caller, retaining chance correction only for diagnosis. Session 249e8cb3 (IR-88-249E-01) appended binding_duplicate_decision_v4() (representation-aware proposal per IR-88-128) for reproducibility of the H88-MMRX run card; v4 grants no clearance and that candidate failed it (0.798 dot overlap vs HGVC).",
       "irregularity": "IR-88-76",
@@ -51,7 +49,7 @@
     {
       "file": "vendor/gems57/uniqueness.py",
       "upstream_sha256": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
-      "patched_sha256": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb",
+      "patched_sha256": "dcab50977bdcf765e3a39f51412b074f52b91d561f795f781165b9c4c8663eab",
       "patch": "append-only: registry_dots() + equal_support_overlap() + binding_duplicate_decision_v5(); IR-88-SDTL-01 equal-support rule for continuous registry surfaces; session 249e8cb3 appended binding_duplicate_decision_v4() (IR-88-249E-01)",
       "reason": "IR-88-SDTL-01: a continuous registry surface positive on every allowed cell makes the literal 3 px dot test unsatisfiable for every candidate. v5 compares a candidate's dots with the top-n cells of such a surface at the candidate's own dot count (the emission that surface would itself make), keeps the 0.70/0.90 thresholds, keeps rank correlation against every raster, and still reports the literal reading. Append-only: no existing function, constant or code path altered; v3/v4 remain callable. Session 249e8cb3 (IR-88-249E-01) appended binding_duplicate_decision_v4() (representation-aware proposal per IR-88-128) for reproducibility of the H88-MMRX run card; v4 grants no clearance and that candidate failed it (0.798 dot overlap vs HGVC).",
       "irregularity": "IR-88-SDTL-01",
@@ -64,13 +62,43 @@
       "file": "vendor/gems57/uniqueness.py",
       "upstream_sha256": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
       "previous_patched_sha256": "544781a2dc0c35615a890394d2537092442f5e657d9acd303f9c4a66fdfc3355",
-      "patched_sha256": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb",
+      "patched_sha256": "dcab50977bdcf765e3a39f51412b074f52b91d561f795f781165b9c4c8663eab",
       "append_only": true,
       "reason": "IR-88-B4DFA10C-08: restore the standing literal >0.70 / 3 px stop for every public v5 caller by delegating to the existing shared v3 literal decision. Equal-support measurements and original SDTL code are preserved as historical diagnostics, not submission clearance. Empty or invalid measurements fail closed. Core metric, evaluator and writer are unchanged. Session 249e8cb3 (IR-88-249E-01) appended binding_duplicate_decision_v4() (representation-aware proposal per IR-88-128) for reproducibility of the H88-MMRX run card; v4 grants no clearance and that candidate failed it (0.798 dot overlap vs HGVC).",
       "patch": "append-only shared literal-policy compatibility wrapper for v5; session 249e8cb3 appended binding_duplicate_decision_v4() (IR-88-249E-01)",
       "irregularity": "IR-88-B4DFA10C-08",
       "pull_request": 151
+    },
+    {
+      "file": "vendor/gems57/uniqueness.py",
+      "upstream_sha256": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
+      "previous_patched_sha256": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb",
+      "patched_sha256": "dcab50977bdcf765e3a39f51412b074f52b91d561f795f781165b9c4c8663eab",
+      "append_only": false,
+      "change_class": "fail-closed correction",
+      "irregularity": "IR-88-CEF4B835-01",
+      "reason": "The shared summary could call an empty supposedly complete registry unique, trusted inconsistent caller flags, and reported signed instead of absolute worst correlation. It now rejects empty, invalid or undefined evidence, derives stops from raw metrics and hashes, and never sanitizes non-finite in-footprint priors. Caller-proven inventory completeness and byte authentication remain necessary. Historical measurements and the literal dense-witness stop are unchanged."
+    },
+    {
+      "file": "vendor/gems57/validate.py",
+      "upstream_sha256": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd",
+      "previous_patched_sha256": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd",
+      "patched_sha256": "1d43224b4989c4e8bd4c433d2c50073a577bfea2b0099b9df719c2c8dfcba104",
+      "append_only": false,
+      "change_class": "fail-closed correction",
+      "irregularity": "IR-88-CEF4B835-02",
+      "reason": "assert_submittable accepted an empty or partial checks map as passing. It now requires all mandatory keys, literal boolean True values, and the all_checks_passed flag; the normal writer already built its own receipt and also applies independent format checks. Receipt structure is not cryptographic authentication or uniqueness clearance."
+    },
+    {
+      "file": "vendor/gems57/metric.py",
+      "upstream_sha256": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "previous_patched_sha256": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "patched_sha256": "42c00fd807382e200d8f39c911b1f0e55193fce6a9ef08652d8b96ec9817bb53",
+      "append_only": false,
+      "change_class": "documentation-only",
+      "irregularity": "IR-88-CEF4B835-03",
+      "reason": "Correct false prose that a dot cannot add more truth credit than its own nearest-truth credit: one dot can cover multiple truth cells. The dT=k threshold is a special case, not all non-redundant dots. Only docstrings change; the documentation-stripped syntax-tree hash and synthetic brute-force scoring tests verify that numeric evaluation is unchanged."
     }
   ],
-  "policy": "Core evaluator/writer unchanged. Shared uniqueness v3 and v5 bind on literal overlap; chance-corrected and equal-support values remain diagnostics only (IR-88-86, IR-88-B4DFA10C-08)."
+  "policy": "Literal all-registry overlap remains binding. Shared uniqueness and local receipt validation fail closed; metric numeric implementation, holdout evaluator, and writer are unchanged. Historic cards retain their original implementation hashes."
 }

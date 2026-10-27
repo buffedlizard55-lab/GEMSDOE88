@@ -294,6 +294,7 @@ function startEphemeralDocsServer() {
       'docs/data/download_audit.json', 'docs/data/mtas88_run_card.json', 'docs/data/hypothesis_queue.json', 'docs/status.json',
       'docs/assets/focus-freshness.js', 'docs/data/focus-freshness.json',
       'docs/data/focus_sample_2b5a8383.json', 'docs/data/focus_sites_20261026.json',
+      'docs/data/focus_readme_cef4b835.json',
       'docs/mdc88/index.html', 'docs/mdc88/executive-summary.html', 'docs/mdc88/status.json']) {
       report.source_sha256[relative] = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, relative))).digest('hex');
     }
