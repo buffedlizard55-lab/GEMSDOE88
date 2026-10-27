@@ -1,0 +1,33 @@
+{
+  "schema": "gems88.f159c61c.research-artifact.v1",
+  "file": "docs/downloads/gems88-f159c61c-spaced-blind-37654dots-20261027-zeros-DO-NOT-SUBMIT.tif",
+  "sha256": "535e61ed319e72511805b442cbb89f58c6abf7640e888ce165ca2b630fd4c519",
+  "dots": 37654,
+  "dist_catalogue_min_px": 25,
+  "min_dist_px": 2.8,
+  "seed": 15961,
+  "validator": {
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "single_band": true,
+    "geotiff": true,
+    "real_numeric_dtype": true,
+    "no_nan_inside": true,
+    "range_0_1": true,
+    "footprint_nonempty": true,
+    "no_mass_outside": true,
+    "footprint_not_masked": true,
+    "strict_audit": true,
+    "ok": true,
+    "raster_sha256": "535e61ed319e72511805b442cbb89f58c6abf7640e888ce165ca2b630fd4c519",
+    "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+  },
+  "created_at_utc": "2026-10-27T17:21:28.607028+00:00",
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "note": "F159C61C blind-spaced 37k prototype; DUPLICATE_STOP dense 1.0>0.70; HOLDOUT NOT RUN; DO NOT SUBMIT",
+  "blind_pixels_available": 2437434,
+  "allowed_pixels": 5106385
+}
