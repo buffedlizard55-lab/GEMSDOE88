@@ -3,8 +3,8 @@
   "reviewed_at_utc": "2026-10-26",
   "review_branch": "arena/0b582cf7-gemsdoe88",
   "source_snapshot": {
-    "files": 157,
-    "sha256": "0b7cc18ca71cbecbb4265f37baad0184876704a5d8e970be886f62dae73d0268"
+    "files": 156,
+    "sha256": "a05cd182a2057898e53e4bab103c1958ca439ce9a0827cd372f10047ec20be05"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -229,14 +229,6 @@
       },
       "reason": "Withdrew H88-CON88 upload clearance (IR-88-3C391D97-01), enforced enforce_generation_preflight() on scripts/run_con88_experiment.py and scripts/run_con88_exp3_margin.py, and recorded H88-CON88 in already_evaluated; remaining untested proposals (H88-SPR, H88-AWA, H88-CBC) remain distinct.",
       "reviewed_at_utc": "2026-10-25T18:30:00Z"
-    },
-    {
-      "snapshot": {
-        "files": 157,
-        "sha256": "0b7cc18ca71cbecbb4265f37baad0184876704a5d8e970be886f62dae73d0268"
-      },
-      "reason": "Session f159c61c: added spaced-blind research generator (no model change, research artifact only, DO-NOT-SUBMIT, hypothesis dossier f159c61c-hypotheses.md)",
-      "reviewed_at_utc": "2026-10-27T17:21:00Z"
     }
   ]
 }

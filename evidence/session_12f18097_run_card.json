@@ -1,0 +1,313 @@
+{
+  "schema": "gems88.session-run-card.v1",
+  "run_id": "GEMSDOE88-12F18097-REVIEW-20261027",
+  "session_branch": "arena/12f18097-gemsdoe88",
+  "date_utc": "2026-10-27",
+  "created_at_utc": "2026-10-27T18:02:00+00:00",
+  "status": "DUPLICATE_STOP",
+  "hypothesis": "H88-SPR (source-pinned queue rank 1) & H88-BFLX (2026-10-27 Vening Meinesz broken-plate flexural biharmonic residual; conditional, untested; stopped before generation)",
+  "mechanism": "Pre-placement gate stopped before feature construction or fitting because data/registry/dense_17gemdoe.tif covers all 5,106,385/5,106,385 allowed cells (3-px overlap 1.0000 > 0.70). Conditional top mechanisms pair repeated scarp-profile restoration (H88-SPR) and 8-18 km broken-plate flexural footwall-uplift / hanging-wall-moat antisymmetry on B15/B13/B12 (H88-BFLX).",
+  "named_non_fault_mimic": "Fluvial terrace risers / constant-elevation pluvial shoreline benches (H88-SPR) and symmetric differential compaction paleovalleys / caldera ring moats (H88-BFLX)",
+  "conditional_ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H88-SPR",
+      "status": "PROPOSED_UNTESTED",
+      "non_fault_mimic": "Fluvial terrace risers and constant-elevation pluvial shoreline benches",
+      "cost": "Medium; cached inputs only"
+    },
+    {
+      "rank": 2,
+      "id": "H88-AWA",
+      "status": "PROPOSED_UNTESTED",
+      "non_fault_mimic": "Differential weathering of adjacent rock units and K-rich transported alluvium",
+      "cost": "Medium; quantization and background fitting need care"
+    },
+    {
+      "rank": 3,
+      "id": "H88-CBC",
+      "status": "PROPOSED_UNTESTED",
+      "non_fault_mimic": "Unfaulted permeable alluvial paleochannels and saline groundwater plumes",
+      "cost": "Medium-high; coarse-field resolution is a major limitation"
+    }
+  ],
+  "ranked_untried_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H88-BFLX",
+      "title": "Broken-Plate Flexural Footwall Unloading & Hanging-Wall Moat Biharmonic Residual (Vening Meinesz)",
+      "layers": [
+        "B15 depth_to_base_surf",
+        "B13 iso_grav_anom",
+        "B12 det_elev",
+        "B18 iso_grav_anom_hg"
+      ],
+      "named_non_fault_mimic": "Symmetric paleovalley differential compaction and caldera ring moats",
+      "expected_blind_fault_dti_potential": "High (qualitative; zero numerical score projection)",
+      "implementation_cost": "Low (~10 min cached 2D FFT)",
+      "external_download_needed": false
+    },
+    {
+      "rank": 2,
+      "id": "H88-PCBW",
+      "title": "Piedmont Coalescing-Bajada Contour-Inflection Waveguide (5-12 km Plan-Curvature Zero-Locus)",
+      "layers": [
+        "geodawn_dem_a2_100m.tif",
+        "topo_10m_derived_100m_u8.tif (B06/B07)",
+        "hydro_3dep_100m_u8.tif (B01/B05)",
+        "B15 depth_to_base_surf"
+      ],
+      "named_non_fault_mimic": "Constant-elevation Pleistocene pluvial shorelines and axial river terrace risers",
+      "expected_blind_fault_dti_potential": "High (qualitative; zero numerical score projection)",
+      "implementation_cost": "Low-Medium (~20 min contour coherence)",
+      "external_download_needed": false
+    },
+    {
+      "rank": 3,
+      "id": "H88-STDD",
+      "title": "Salem Magnetic Tilt-Depth (|grad B06|^-1 on B06=0) vs Gravity Basement-Depth (B15) Discordance",
+      "layers": [
+        "B06 tc",
+        "B02 rtp",
+        "B03 tmi_hg",
+        "B15 depth_to_base_surf",
+        "B18 iso_grav_anom_hg",
+        "gdr_volcanic_vents_in_footprint.csv"
+      ],
+      "named_non_fault_mimic": "Intra-sedimentary basalt flow edges, Miocene mafic dike swarms, and volcanic necks",
+      "expected_blind_fault_dti_potential": "Medium-High (qualitative; zero numerical score projection)",
+      "implementation_cost": "Low (~15 min zero-contour gradient inversion)",
+      "external_download_needed": false
+    },
+    {
+      "rank": 4,
+      "id": "H88-ZBOF",
+      "title": "Ziagos-Blackwell Lateral Geothermal Outflow Plume Back-Projection up Hydraulic Gradient to B17 Root",
+      "layers": [
+        "nv_heatflow_wells_idw_100m.tif",
+        "nv_springs_kernel_100m.tif",
+        "geodawn_dem_a2_100m.tif",
+        "B17 cond_surf",
+        "B15 depth_to_base_surf"
+      ],
+      "named_non_fault_mimic": "Radiogenic granitoid pluton heat-flow highs and closed playa evaporite brines",
+      "expected_blind_fault_dti_potential": "Medium (qualitative; zero numerical score projection)",
+      "implementation_cost": "Medium (~25 min streamline decay inversion)",
+      "external_download_needed": false
+    },
+    {
+      "rank": 5,
+      "id": "H88-OPERA-SBAS",
+      "title": "OPERA_L3_DISP-S1_V1 (30 m C-Band InSAR Short-Wavelength Velocity Gradient) x Geodetic Strain (B07/B08)",
+      "layers": [
+        "OPERA_L3_DISP-S1_V1 (NASA ASF DAAC CC0)",
+        "B07 geod_shearrate",
+        "B08 geod_dilaterate",
+        "B15 depth_to_base_surf",
+        "hydro_3dep_100m_u8.tif"
+      ],
+      "named_non_fault_mimic": "Agricultural/mining groundwater pumping subsidence bowls and playa evaporite heave",
+      "expected_blind_fault_dti_potential": "Medium-High (qualitative; zero numerical score projection)",
+      "implementation_cost": "High (~60-90 min mosaicking + seasonal detrending; external host blocked in sandbox)",
+      "external_download_needed": true
+    }
+  ],
+  "holdout_dti": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "dti": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "paired_incumbent_delta": null,
+    "reason": "No candidate surface was constructed or fitted."
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "max_auc": null,
+    "threshold_auc": 0.9
+  },
+  "registry_comparison": {
+    "surface_rank_correlation": null,
+    "surface_rank_correlation_status": "NOT_RUN_NO_SURFACE",
+    "final_dot_overlap": null,
+    "final_dot_overlap_status": "NOT_RUN_NO_NEW_DOTS",
+    "proof_of_any_nonempty_allowed_dot_overlap": 1.0,
+    "threshold_overlap": 0.7,
+    "threshold_spearman": 0.9,
+    "proof": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+      "directly_covered_allowed_pixels": 5106385,
+      "directly_saturated": true,
+      "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+    },
+    "sampled_historical_files_audit": "evidence/focus_sample_2b5a8383.json"
+  },
+  "raster_file": null,
+  "raster_sha256": null,
+  "new_tif_generated": false,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "dtype_float32": null,
+    "crs_shape_transform_match": null,
+    "organizer_acceptance": null
+  },
+  "submission_name": "GEMSDOE88-12F18097-NEGATIVE-NO-SUBMISSION",
+  "submission_note": "H88-SPR/BFLX unrun: 17GEMSDOE dense overlap 1.0000>0.70; PR209/210 withdrawn; 0/104 sites cleared. DO NOT SUBMIT.",
+  "submission_note_characters": 113,
+  "identifier_scope": "Audit-only identifier and note; not a portal submission.",
+  "archived_research_download": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+    "new_in_this_session": false,
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false,
+    "local_format_audit": {
+      "schema_version": 2,
+      "validator": "gems88-format-audit-v3",
+      "artifact": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+      "checks": {
+        "geotiff": true,
+        "single_band": true,
+        "single_raster_dataset": true,
+        "self_contained_dataset": true,
+        "real_numeric_dtype": true,
+        "dtype_float32": true,
+        "template_single_band": true,
+        "template_single_raster_dataset": true,
+        "template_self_contained_dataset": true,
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "no_nodata_sentinel": true,
+        "all_finite": true,
+        "values_in_0_1": true,
+        "all_pixels_unmasked": true
+      },
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "format_valid": true,
+      "submission_ready": false,
+      "note": "Format only. Holdout, leakage, registry and selector approval are separate.",
+      "footprint_audit": {
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "single_band": true,
+        "geotiff": true,
+        "real_numeric_dtype": true,
+        "no_nan_inside": true,
+        "range_0_1": true,
+        "footprint_nonempty": true,
+        "no_mass_outside": true,
+        "footprint_not_masked": true,
+        "strict_audit": true,
+        "ok": true,
+        "raster_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+        "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+      }
+    }
+  },
+  "h33_geometry_crosscheck": {
+    "schema": "gems88.h33-collar-crosscheck.v1",
+    "checked_at_utc": "2026-10-26T21:45:33.923569+00:00",
+    "method": "Read-only Euclidean binary disk dilation of mapped catalogue; no new prediction",
+    "sha256_inputs": {
+      "data/bridge/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "data/bridge/existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "data/registry/gems25_d28.tif": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+      "data/registry/gems28_h27_4.tif": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "data/registry/h33_education.tif": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    "counts": {
+      "d28": 44090,
+      "solo": 40199,
+      "h33": 37654,
+      "d28_minus_h33": 6436,
+      "d28_minus_h33_at_most_1px": 3891,
+      "d28_minus_h33_gt1_at_most_2px": 2545,
+      "d28_minus_h33_over_2px": 0,
+      "d28_minus_solo": 3891,
+      "solo_minus_h33": 2545,
+      "h33_at_most_2px": 0
+    },
+    "h33_subset_of_d28": true,
+    "h33_subset_of_solo": true,
+    "solo_subset_of_d28": true,
+    "organizer_confirmed_score": null,
+    "limitations": "Geometry of owner-mirror bytes only; user-reported scores have no receipt and causality is unproven."
+  },
+  "post_merge_withdrawals_20261027": "evidence/pr209_pr210_withdrawal_20261027.json",
+  "focus_and_crossorg_audit_20261027": "evidence/focus_and_crossorg_20261027_audit.json",
+  "focus_sites": {
+    "historical_audit": "evidence/focus_sites_20261026_audit.json",
+    "revision_snapshot": "docs/data/focus-freshness.json",
+    "github_heads_checked_at_utc": "2026-10-27T17:49:20Z",
+    "changed_since_historical_audit": 9,
+    "later_readme_cited_samples": "evidence/focus_sample_2b5a8383.json",
+    "live_20261027_focus_and_crossorg_audit": "evidence/focus_and_crossorg_20261027_audit.json",
+    "focus_sites_authorizing_submission_live_20261027": 0,
+    "cross_org_sites_authorizing_submission_live_20261027": 0,
+    "prompt_sites_total": 104,
+    "prompt_distinct_numeric_claims": 128,
+    "prompt_blank_sites": 14
+  },
+  "data_provenance": {
+    "status": "SHA_PINNED_OWNER_MIRRORS_RESTORED_AND_PREPARED_NOT_ORGANIZER_AUTHENTICATED",
+    "prepared_manifest": "data/prepared_data_manifest.json",
+    "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "new_candidate_fitting_and_placement": "NOT_RUN_AFTER_DUPLICATE_STOP"
+  },
+  "portal_format_caveat": "Official instructions describe NaN/null outside the footprint; local strict all-finite check uses zeros. Authenticated template, portal acceptance and exact cause of user range error remain unverified.",
+  "budget": {
+    "max_geological_experiments": 3,
+    "max_seconds": 7200,
+    "geological_experiments_run": 0,
+    "weekly_slots_used": 0
+  },
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "verification": {
+    "browser_evidence": "evidence/session_12f18097_browser_check.json",
+    "browser_status": "PASS",
+    "generation_guard_exit": 2,
+    "optimized_preflight_exit": 2,
+    "full_suite": "PASS",
+    "site_checks": "normal and optimized PASS",
+    "download_audit": "50 research TIFFs passed local checks; 0 protocol eligible",
+    "expected_negative_gates": {
+      "generation_guard_normal": 2,
+      "generation_guard_optimized": 2,
+      "preflight_gate_generation_optimized": 2,
+      "research_require_submit": 2,
+      "current_require_submit": 2,
+      "release_require_submit": 2,
+      "literal_protocol_require_submit": 2
+    }
+  },
+  "limitations": [
+    "No new candidate surface, holdout model, leakage canary, or submission raster was generated because dense_17gemdoe.tif saturates all 5,106,385 allowed cells (3-px overlap 1.0000 > 0.70).",
+    "User-reported scores in USER_PROMPT_20261027.md (104 sites, 128 distinct claims) have no submission-page receipts and hidden organizer ground truth is unobserved.",
+    "Outbound sandbox access is limited to GitHub, PyPI, and npm; DrivenData, USGS, DOE GDR, and NASA ASF DAAC OPERA DISP-S1 hosts were not directly queried from this sandbox.",
+    "Weekly competition slot selection remains a separate human/selector step; 0 slots were used."
+  ],
+  "completed_at_utc": "2026-10-27T18:02:00+00:00"
+}

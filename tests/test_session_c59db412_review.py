@@ -123,10 +123,16 @@ def test_nine_focus_sites_audit_invariants_and_forensic_proofs() -> None:
 
 
 def test_20261026_prompt_diff_and_123_claims_recorded() -> None:
+    from scripts.audit_user_claims import extract
+    prior = extract((ROOT / "USER_PROMPT_20261026.md").read_text(encoding="utf-8"))
+    assert prior["site_count"] == 92
+    assert prior["distinct_claim_count"] == 123
+    assert prior["sites_without_a_reported_result"] == ["GEMSDOE86", "GEMSDOE88"]
+
     report = json.loads((ROOT / "docs/data/user_reported_results.json").read_text(encoding="utf-8"))
-    assert report["site_count"] == 92
-    assert report["distinct_claim_count"] == 123
-    assert report["sites_without_a_reported_result"] == ["GEMSDOE86", "GEMSDOE88"]
+    assert report["site_count"] == 104
+    assert report["distinct_claim_count"] == 128
+    assert {"GEMSDOE86", "GEMSDOE88"} <= set(report["sites_without_a_reported_result"])
 
     claims = {(r["site"], r["submission_name"]): r["user_reported_value"] for r in report["claims"]}
     expected_new = {

@@ -102,15 +102,16 @@ def test_all_50_published_tiffs_carry_do_not_submit_and_zero_eligible() -> None:
 
 def test_user_claims_include_gemsdoe91_and_gemsdoe92_and_20261026_updates() -> None:
     report = json.loads((ROOT / "docs/data/user_reported_results.json").read_text(encoding="utf-8"))
-    assert report["site_count"] == 92
-    assert report["distinct_claim_count"] == 123
-    assert report["sites_without_a_reported_result"] == ["GEMSDOE86", "GEMSDOE88"]
+    assert report["site_count"] == 104
+    assert report["distinct_claim_count"] == 128
+    assert {"GEMSDOE86", "GEMSDOE88"} <= set(report["sites_without_a_reported_result"])
     by_site: dict[str, list[tuple[str, str]]] = {}
     for row in report["claims"]:
         by_site.setdefault(row["site"], []).append((row["submission_name"], row["user_reported_value"]))
     assert by_site["GEMSDOE91"] == [
         ("gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros", "0.1367"),
         ("gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros", "0.1823"),
+        ("gems91-s22-omtj-e1-20261026-a99b8923f0-zeros", "0.0298"),
     ]
     assert by_site["GEMSDOE92"] == [("gemsdoe92-listricdip-updip50-37654-20261025T190000Z-zeros", "0.0255")]
 

@@ -1,6 +1,6 @@
 # Start-of-session contract
 
-1. Read `README.md`, `PROMPT.md`, `USER_PROMPT_20261026.md` (plus historical `USER_PROMPT_20261025.md`), and the latest machine review before doing work. The full recorded human request is embedded in README; figures supplied by the user are not organizer receipts.
+1. Read `README.md`, `PROMPT.md`, `USER_PROMPT_20261027.md`, `USER_PROMPT_20261026.md` (plus historical `USER_PROMPT_20261025.md`), and the latest machine review before doing work. The full recorded human request is embedded in README; figures supplied by the user are not organizer receipts.
 2. Follow the literal parallel-run protocol. Re-run the existing preflight on SHA-pinned inputs **before** feature construction, holdout fitting, placement, or writing. A saturated registry witness means DUPLICATE_STOP for every nonempty allowed candidate. Do not evade this by importing a builder, discarding a dense prior, changing thresholds, renaming a TIFF, or treating sparse-only diagnostics as clearance.
 3. Candidate CLI entrypoints call `scripts/generation_guard.py` before feature/model imports. New candidate CLIs must use the same guard. It delegates to the shared preflight; it does not implement a private metric. Read-only audits and synthetic unit tests are still allowed.
 4. Keep the shared cached stack, `vendor/gems57/evaluate_holdout.py`, `holdout.py`, `submission_writer.py`, and `uniqueness.py`. Do not introduce private metric/writer forks. If a shared defect is established, document and fix it in the shared template once with provenance and tests.
@@ -31,3 +31,6 @@ alias. `validate_con88.py` is read-only, not a fitting or clearance path. Never
 restore the historical `G1 && G2 && G3 && canary` approval: it omitted holdout
 improvement and used a withdrawn registry exception. Current review evidence is
 `registry/session_587c7f22_run_card.json` (integrating `session_96f5f523`, `session_21256734`, and `IR-88-587C7F22-01..05`); earlier browser receipts remain historical.
+
+**Session 12f18097 / IR-88-12F18097-01–05 (`2026-10-27`):** Both unguarded 2026-10-27 candidate generators merged in PR #209 (`scripts/build_unique_submission_20261027.py`, `fc858df`/`4000737`) and PR #210 (`scripts/generate_f159c61c_spaced_blind.py`, `4daee81`/`7ba7204`) bypassed `enforce_generation_preflight()`, used zero geophysical bands, ran zero hide-and-recover holdouts or leakage canaries, and broke all three CI workflows; following `IR-88-AEF1337D-01`, both generators and their unvalidated artifacts are withdrawn (`{registry,evidence,docs/data}/pr209_pr210_withdrawal_20261027.json`), keeping the 50/50 `-DO-NOT-SUBMIT` research inventory and 156-file guarded source snapshot clean. `scripts/audit_user_claims.py` now parses all `https://<owner>.github.io/<repo>/...` lines in `USER_PROMPT_20261027.md` (`104` sites, `128` distinct claims, `14` blank sites). Current review evidence is `registry/session_12f18097_run_card.json`.
+

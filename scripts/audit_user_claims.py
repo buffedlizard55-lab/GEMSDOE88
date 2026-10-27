@@ -23,9 +23,9 @@ def extract(text: str) -> dict:
     claims = {}
     site = None
     for number, line in enumerate(text.splitlines(), start=1):
-        source = re.fullmatch(r"https://buffedlizard55-lab\.github\.io/([^/]+)/(.*)", line.strip())
+        source = re.fullmatch(r"https://([a-z0-9-]+)\.github\.io/([^/]+)/(.*)", line.strip())
         if source:
-            site = source[1]
+            site = source[2]
             sites.setdefault(site, {"site": site, "source_url": line.strip(), "reported_entries": 0})
             continue
         result = re.fullmatch(r"([^\s].*?):\s*(0\.\d+)\s*", line)
@@ -49,7 +49,7 @@ def extract(text: str) -> dict:
 
 
 def main(root: Path = ROOT) -> None:
-    source = root / "USER_PROMPT_20261026.md"
+    source = root / "USER_PROMPT_20261027.md"
     report = extract(source.read_text())
     report["request_file"] = source.name
     report["request_sha256"] = hashlib.sha256(source.read_bytes()).hexdigest()
