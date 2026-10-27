@@ -151,6 +151,28 @@ function startEphemeralDocsServer() {
       await page.close();
     }
 
+    // The condensed comparison must retain accessible, expandable lineage and
+    // later-sample details on a narrow screen without widening the page itself.
+    const comparison = await browser.newPage({viewport: {width: 390, height: 844}});
+    await comparison.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+    const focusRows = comparison.locator('#focus-sites-executive-summary tbody tr');
+    const details = comparison.locator('#focus-sites-executive-summary details.focus-row-details');
+    const rowCount = await focusRows.count();
+    const detailsCount = await details.count();
+    const initiallyClosed = await comparison.locator('#focus-sites-executive-summary details.focus-row-details[open]').count() === 0;
+    await details.first().locator('summary').click();
+    const expands = await details.first().evaluate(el => el.open);
+    const detailText = await details.first().innerText();
+    const includesEvidence = detailText.includes('Historical file:') && detailText.includes('Later sampled file')
+      && detailText.includes('DO NOT SUBMIT');
+    const pageFits = await comparison.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+    const comparisonPass = rowCount === 9 && detailsCount === 9 && initiallyClosed && expands && includesEvidence && pageFits;
+    report.focus_comparison = {row_count: rowCount, expandable_details: detailsCount,
+      initially_closed: initiallyClosed, expands, includes_evidence: includesEvidence,
+      page_fits_mobile: pageFits, pass: comparisonPass};
+    failed ||= !comparisonPass;
+    await comparison.close();
+
     const con88Page = await browser.newPage({viewport: {width: 1440, height: 1100}});
     const con88Errors = [];
     con88Page.on('pageerror', error => con88Errors.push(error.message));

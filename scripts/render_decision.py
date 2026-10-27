@@ -16,6 +16,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from scripts.audit_research_state import inspect_legacy, inspect_queue  # noqa: E402
+from scripts.audit_executive_metrics import inspect as inspect_executive_metrics  # noqa: E402
 from scripts.audit_focus_sample_20261026 import check as check_sample_audit  # noqa: E402
 
 START = "<!-- CANONICAL-DECISION:START -->"
@@ -100,12 +101,13 @@ def focus_sites_panel(focus: dict, sampled: dict) -> str:
         rows.append(
             f'<tr><th scope="row"><a href="{url}">{site}</a><br>'
             f'<span class="focus-freshness-label" data-focus-freshness="{site}" data-audited-head="{audited_head}">Revision not checked</span></th>'
-            f'<td style="overflow-wrap:anywhere"><a href="{champ_source}"><code>{champ}</code></a><br><strong>{score}</strong> <span class="micro">(user-reported; no receipt)</span></td>'
-            f'<td><code>{sha_short}…</code><br>{dots} px</td>'
-            f'<td><strong>UNIQUE: NO (DUPLICATE)</strong><br><code>{ov_h19}</code> / <code>{ov_17}</code></td>'
-            f'<td>{lineage}</td>'
-            f'<td>{recent}</td>'
-            f'<td><span class="tag bad">DOWNLOAD: YES (RESEARCH)<br>SUBMIT: NO — DO NOT SUBMIT</span></td></tr>'
+            f'<td class="focus-file"><a href="{champ_source}"><code>{champ}</code></a><br>'
+            f'<strong>{score}</strong> <span class="micro">user-reported; no receipt</span>'
+            f'<details class="focus-row-details"><summary>Hash, lineage &amp; later sample</summary>'
+            f'<p><strong>Historical file:</strong> SHA-256 <code>{sha_short}…</code> · {dots} positive pixels.<br>{lineage}</p>'
+            f'<p><strong>Later sampled file · 2026-10-26 21:38 UTC:</strong><br>{recent}</p></details></td>'
+            f'<td><strong>UNIQUE: NO</strong><br><span class="micro">3-px overlap<br>H19-5: {ov_h19}<br>17GEMSDOE: {ov_17}</span></td>'
+            f'<td><strong class="focus-stop">DO NOT SUBMIT</strong><br><span class="micro">Pinned file link for research only</span></td></tr>'
         )
     return (
         '<section class="focus-sites-section" id="focus-sites-executive-summary"><div class="wrap">'
@@ -137,9 +139,9 @@ def focus_sites_panel(focus: dict, sampled: dict) -> str:
         '<a href="research/session-c59db412-review.md">Prior review (c59db412)</a></p>'
         '<p><strong>No current leaderboard estimate:</strong> these are reported historical results, not organizer receipts or fresh comparable holdout scores. '
         'The listed files are for identification and research, not recommended submissions.</p>'
-        '<div class="table-scroll"><table><thead><tr><th>Focus site &amp; revision</th><th>Historical file &amp; reported claim</th>'
-        '<th>SHA-256 &amp; dots</th><th>Unique? (3-px overlap H19-5 / 17GEMSDOE)</th><th>Measured lineage</th>'
-        '<th>One later sampled file · 21:38 UTC pin</th><th>OK to download / submit?</th></tr></thead><tbody>'
+        '<p class="table-hint">Expand each row for lineage and the later sample; scroll horizontally on a small screen.</p>'
+        '<div class="table-scroll"><table><thead><tr><th scope="col">Focus site &amp; revision</th><th scope="col">Historical file &amp; reported claim</th>'
+        '<th scope="col">Uniqueness check</th><th scope="col">Decision</th></tr></thead><tbody>'
         + "".join(rows)
         + "</tbody></table></div></div></section>"
     )
@@ -186,13 +188,13 @@ def render(root: Path, kind: str) -> str:
     title = "Research download.<br>Not cleared to submit." if kind == "overview" else "How submission works.<br>Why it is blocked today."
     hero = f'''<section class="decision-hero" id="mtas-review" aria-labelledby="decision-title">
 <div class="wrap" id="autonomous-review">
-<div class="decision-kicker">Review · 2026-10-26 · NO FILE APPROVED · 0/9 CLEARED IN HISTORICAL AUDIT</div>
+<div class="decision-kicker">Review · 2026-10-27 · NO FILE APPROVED · 0/9 CLEARED IN HISTORICAL AUDIT</div>
 <div class="decision-grid"><div>
 <h1 id="decision-title">{title}</h1>
 <p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule. The pinned nine-site audit found no qualifying candidate; it is not a current census. No old prediction was copied or renamed as a new submission.</p>
 <p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_12f18097_run_card.json">Session 12f18097 negative run card</a> · <a href="data/session_2b5a8383_run_card.json">Prior 2b5a8383 run card</a> · <a href="data/pr209_pr210_withdrawal_20261027.json">PR #209/#210 withdrawal</a> · <a href="data/focus_sites_20261026.json">Historical 9-site audit JSON</a>.</p>
+<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="data/session_92002f70_run_card.json">Session 92002f70 negative run card</a> · <a href="data/session_12f18097_run_card.json">Prior 12f18097 run card</a> · <a href="data/session_2b5a8383_run_card.json">Prior 2b5a8383 run card</a> · <a href="data/pr209_pr210_withdrawal_20261027.json">PR #209/#210 withdrawal</a> · <a href="data/focus_sites_20261026.json">Historical 9-site audit JSON</a>.</p>
 </div><aside class="decision-download" aria-label="Canonical archived research download">
 <div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
 <h2>Download the audited TIFF</h2>
@@ -211,7 +213,7 @@ def render(root: Path, kind: str) -> str:
 <article class="gate-card"><span class="tag bad">UNIQUENESS FAIL</span><h3>Duplicate stop</h3><p>Registry measurement: the 17GEMSDOE witness covers all 5,106,385 allowed cells (overlap 1.00 &gt; 0.70), and all 9 focus-site champions overlap H19-5 at 0.9775–1.0000.</p></article>
 <article class="gate-card"><span class="tag dim">NOT RUN THIS SESSION</span><h3>Scientific performance</h3><p>No new holdout or leakage canary was run after the prerequisite failed. Historical HOLDOUT-DTI is not a new candidate result and is not an organizer score.</p></article>
 <article class="gate-card"><span class="tag bad">NO SLOT AUTHORIZED</span><h3>Competition eligibility</h3><p>A format pass cannot clear a duplicate, prove a leaderboard improvement, establish current quota, or authorize a submission. Slot selection remains separate.</p></article>
-</div></div></section>''' + focus_sites_panel(focus, sampled) + submission_summary_table(tif)
+</div></div></section>''' + focus_sites_panel(focus, sampled) + submission_summary_table(root, tif)
     if kind == "overview":
         content = f'''<section class="decision-explainer"><div class="wrap split">
 <div><div class="kicker">H33 &amp; 9-focus-site forensic answer</div><h2>Learn from the geometry.<br>Do not copy the submission.</h2>
@@ -254,38 +256,57 @@ python scripts/preflight_mtas88.py --gate-generation
     return hero + guide + inventory(audit)
 
 
-def submission_summary_table(tif: str) -> str:
-    return f'''<section class="decision-focus" id="submission-summary-table"><div class="wrap">
-<div class="section-heading"><div><div class="kicker">Executive submission &amp; uniqueness summary · 104 listed sites</div><h2>File to download, labeled empirical score, uniqueness &amp; submit verdict</h2></div><a href="data/focus_and_crossorg_20261027_audit.json">2026-10-27 104-site &amp; cross-org audit JSON ↗</a></div>
-<p class="focus-intro">Per Parallel-Run Protocol Rule 3, every numerical score is strictly labeled as <strong>HOLDOUT-DTI</strong> (<code>gems57-pooled-hide-v2</code>, <code>n = 22,893</code> withheld positives, 95% CI), <strong>ORGANIZER-CONFIRMED</strong> (receipt-verified; <code>none</code> in this checkout), or <strong>USER-REPORTED</strong> (unreceipted prompt claim). Uncalibrated leaderboard projections are never written as scores (empirically validated by 2026-10-26 sibling returns: <code>GEMSDOE27 H31-1</code> <code>0.2250</code>, <code>GEMSDOE36 KPL-36</code> <code>0.1647</code>, <code>GEMSDOE33 S33-SEISDIL</code> <code>0.0963</code>, <code>GEMSDOE91 S22-OMTJ-E1</code> <code>0.0298</code>, <code>GEMSDOE28 S21-PUHGB</code> <code>0.0206</code>).</p>
+def format_holdout(metric: dict) -> str:
+    """Every displayed metric carries its own evaluator, sample size and CI."""
+    score = metric["dti"]
+    low, high = metric["ci95"]
+    n = metric["withheld_positive_pixels"]
+    version = escape(metric["evaluator_version"])
+    return (f'<strong>HOLDOUT-DTI:</strong> <code>{score:.6f} [{low:.6f}, {high:.6f}]</code>'
+            f'<br><span class="micro">{version} · {n:,} withheld positives · 95% CI</span>')
+
+
+def submission_summary_table(root: Path, tif: str) -> str:
+    metrics = inspect_executive_metrics(root)
+    if Path(metrics["TDKL"]["research_tiff"]).relative_to("docs").as_posix() != tif:
+        raise ValueError("executive research file differs from the canonical release")
+    descriptions = {
+        "TDKL": "Canonical educational download",
+        "BPWD": "Highest overall method holdout among these four; still blocked",
+        "HGVC": "Geothermal up-dip conduit research",
+        "QTS": "Cover-thickness research; matching hybrid holdout is Exp3",
+    }
+    rows = []
+    for lane in ("TDKL", "BPWD", "HGVC", "QTS"):
+        record = metrics[lane]
+        path = Path(record["research_tiff"])
+        href = escape(path.relative_to("docs").as_posix(), quote=True)
+        title = escape(path.name)
+        score = format_holdout(record["overall"])
+        if record["blind_gt25px"] is not None:
+            score += '<br><br><span class="micro">Blind &gt;25 px subset</span><br>' + format_holdout(record["blind_gt25px"])
+        card = escape('data/' + Path(record["run_card"]).name, quote=True)
+        evidence = record["holdout_evidence"]
+        source = (f' · <a href="evidence/{escape(Path(evidence).name, quote=True)}">holdout evidence</a>'
+                  if evidence else ' · no separate holdout file')
+        rows.append(
+            f'<tr data-executive-lane="{lane}"><td><a href="{href}" download><code>{title}</code></a><br>'
+            f'<span class="micro">{escape(descriptions[lane])} · SHA-256 <code>{record["raster_sha256"][:12]}…</code>'
+            f'<br><a href="{card}">Run card</a>{source}</span></td>'
+            f'<td>{score}<br><span class="micro">ORGANIZER-CONFIRMED: none</span></td>'
+            '<td><span class="tag bad">NO — 1.0000 &gt; 0.70</span><br><span class="micro">'
+            'vs the 17GEMSDOE dense witness; one failed comparison is sufficient to reject.</span></td>'
+            '<td><span class="tag bad">SUBMIT: NO — DO NOT SUBMIT</span><br>'
+            '<span class="micro">Download for research: YES</span></td></tr>'
+        )
+    return ('''<section class="decision-focus" id="submission-summary-table"><div class="wrap">
+<div class="section-heading"><div><div class="kicker">Executive submission &amp; uniqueness summary</div><h2>Files, recorded holdout evidence and submission verdict</h2></div><a href="data/session_92002f70_run_card.json">Current negative run card ↗</a></div>
+<p class="focus-intro"><strong>No file is approved for submission.</strong> These are historical, fold-specific <strong>HOLDOUT-DTI</strong> measurements of a method, not a score of the downloaded TIFF on hidden labels or a predicted leaderboard result. Confidence intervals are conditional on the catalogue and fitted folds. The user-reported historical values have no submission receipt. The universal witness alone rejects these files; it is not a complete raster census of all 104 sites.</p>
 <div class="table-scroll"><table class="focus-table"><thead><tr>
-<th>File to download (research only)</th><th>Empirical score (labeled; no projections)</th><th>Unique vs all 104 listed GEMSDOE sites?</th><th>OK to download / submit?</th>
-</tr></thead><tbody>
-<tr><td><a href="{tif}" download><code>gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif</code></a><br><span class="micro">Canonical top-of-page educational artifact · <code>db9d186749a7…</code> · 25,000 dots</span></td>
-<td><strong>HOLDOUT-DTI:</strong> <code>0.196237 [0.179686, 0.211729]</code> (Blind &gt;25 px: <code>0.076881</code>)<br><span class="micro">ORGANIZER-CONFIRMED: none</span></td>
-<td><span class="tag bad">NO — 1.0000 &gt; 0.70</span><br><span class="micro">vs <code>17GEMSDOE</code> dense witness (<code>0.6032</code> vs 179 sparse peers)</span></td>
-<td><span class="tag bad">SUBMIT: NO — DO NOT SUBMIT</span><br><span class="micro">Download for research: YES</span></td></tr>
-<tr><td><a href="downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif" download><code>gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif</code></a><br><span class="micro">Repository fold-fair holdout best · <code>b8543782dde5…</code> · 37,654 dots</span></td>
-<td><strong>HOLDOUT-DTI:</strong> <code>0.205991 [0.188105, 0.223344]</code> (Blind &gt;25 px: <code>0.090449</code>)<br><span class="micro">ORGANIZER-CONFIRMED: none</span></td>
-<td><span class="tag bad">NO — 1.0000 &gt; 0.70</span><br><span class="micro">vs <code>17GEMSDOE</code> dense witness (<code>0.6698</code> vs 350 sparse peers)</span></td>
-<td><span class="tag bad">SUBMIT: NO — DO NOT SUBMIT</span><br><span class="micro">Download for research: YES</span></td></tr>
-<tr><td><a href="downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif" download><code>gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif</code></a><br><span class="micro">Geothermal up-dip conduit · <code>d5329f317682…</code> · 37,654 dots</span></td>
-<td><strong>HOLDOUT-DTI:</strong> <code>0.202947 [0.185869, 0.219790]</code> (Blind &gt;25 px: <code>0.078959</code>)<br><span class="micro">ORGANIZER-CONFIRMED: none</span></td>
-<td><span class="tag bad">NO — 1.0000 &gt; 0.70</span><br><span class="micro">vs <code>17GEMSDOE</code> dense witness (<code>0.7899</code> vs later PSGV/MMRX)</span></td>
-<td><span class="tag bad">SUBMIT: NO — DO NOT SUBMIT</span><br><span class="micro">Download for research: YES</span></td></tr>
-<tr><td><a href="downloads/gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif" download><code>gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif</code></a><br><span class="micro">Zero-catalogue cover-thickness lane · <code>4cafa7758c3a…</code> · 37,654 dots</span></td>
-<td><strong>HOLDOUT-DTI:</strong> <code>0.098210 [0.084216, 0.112545]</code> (Exp2 zero-cat)<br><span class="micro">ORGANIZER-CONFIRMED: none</span></td>
-<td><span class="tag bad">NO — 1.0000 &gt; 0.70</span><br><span class="micro">vs <code>17GEMSDOE</code> dense witness (<code>0.5373</code> vs 223 sparse peers)</span></td>
-<td><span class="tag bad">SUBMIT: NO — DO NOT SUBMIT</span><br><span class="micro">Download for research: YES</span></td></tr>
-<tr><td><strong>9 Focus Sites (<code>GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36</code>)</strong><br><span class="micro">See full 9-row byte-audit table above · live 2026-10-27 HEADs checked</span></td>
-<td><strong>USER-REPORTED:</strong> historical <code>0.2449–0.2778</code>; 2026-10-26 claims <code>0.0206–0.2250</code><br><span class="micro">ORGANIZER-CONFIRMED: none</span></td>
-<td><span class="tag bad">NO — 0.9775–1.0000</span><br><span class="micro">champions vs <code>H19-5</code>; <code>1.0000</code> vs <code>17GEMSDOE</code></span></td>
-<td><span class="tag bad">0 / 9 APPROVED TO SUBMIT</span><br><span class="micro">27, 31 &amp; 36 retracted prior badges</span></td></tr>
-<tr><td><strong>12 Cross-Org Siblings (<code>KANLER1..3</code>, <code>EUG1..3</code>, <code>WBG1..3</code>, <code>GINNY1..3</code>)</strong><br><span class="micro">6 active research repos (<code>DO NOT SUBMIT</code>) · 6 initial-commit stubs</span></td>
-<td><strong>USER-REPORTED:</strong> none (0 numeric claims in prompt)<br><span class="micro"><code>KANLER1 concord5</code> HOLDOUT-DTI <code>0.0518</code></span></td>
-<td><span class="tag bad">NO — 1.0000 &gt; 0.70</span><br><span class="micro">all non-stub rasters vs <code>17GEMSDOE</code></span></td>
-<td><span class="tag bad">0 / 12 APPROVED TO SUBMIT</span><br><span class="micro"><code>KANLER2</code> retracted prior promotion</span></td></tr>
-</tbody></table></div></div></section>'''
+<th>File to download (research only)</th><th>Recorded method holdout (not a leaderboard estimate)</th><th>Unique vs all 104 listed GEMSDOE sites?</th><th>OK to download / submit?</th>
+</tr></thead><tbody>''' + ''.join(rows) + '''</tbody></table></div>
+<p class="micro">The nine focus-site winners and their unreceipted user-reported results are listed above. The GitHub revision feed monitors drift, not scores, full uniqueness, or weekly-slot eligibility. No current leaderboard or quota is verified.</p>
+</div></section>''')
 
 
 def legacy_notice(kind: str) -> str:

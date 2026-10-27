@@ -35,6 +35,7 @@ jobs:
       - name: Reopen every research TIFF/ZIP and verify the canonical negative UI
         run: |
           python scripts/audit_downloads.py --check
+          python scripts/audit_executive_metrics.py
           python scripts/audit_research_state.py
           if python scripts/audit_research_state.py --require-submit; then
             echo "Research metadata must never grant slot approval"

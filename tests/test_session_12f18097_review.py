@@ -5,6 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 import sys
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -115,6 +116,16 @@ def test_session_12f18097_run_card_dossiers_fleet_audit_and_browser_receipt() ->
     br = json.loads(br_ev)
     assert br["status"] == "PASS" and br["ok_to_submit"] is False
     assert len(br["pages"]) == 7 and all(p["pass"] and not p["overflow"] for p in br["pages"])
+    # This receipt belongs to the previous review. It must not be relabeled as
+    # a fresh browser run when the site evolves. If the immutable baseline tree
+    # is present, verify its historical bytes; shallow CI checkouts may not have
+    # that parent object. The active browser receipt is checked separately.
+    baseline = "a9f928241cf690dfc3d4c4ee7b05e6d166605ebd"
+    has_baseline = subprocess.run(["git", "cat-file", "-e", baseline + "^{commit}"],
+                                  cwd=ROOT, capture_output=True).returncode == 0
     for rel, expected_sha in br["source_sha256"].items():
-        actual_sha = hashlib.sha256((ROOT / rel).read_bytes()).hexdigest()
-        assert actual_sha == expected_sha, f"Stale pin on {rel}"
+        assert rel.startswith("docs/") and len(expected_sha) == 64
+        int(expected_sha, 16)
+        if has_baseline:
+            historical = subprocess.check_output(["git", "show", f"{baseline}:{rel}"], cwd=ROOT)
+            assert hashlib.sha256(historical).hexdigest() == expected_sha, rel
