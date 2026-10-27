@@ -1,0 +1,157 @@
+{
+  "schema": "gems88.session-run-card.v1",
+  "run_id": "GEMSDOE88-F159C61C-REVIEW-20261027",
+  "session_branch": "arena/f159c61c-gemsdoe88",
+  "date_utc": "2026-10-27",
+  "created_at_utc": "2026-10-27T17:22:00+00:00",
+  "status": "DUPLICATE_STOP",
+  "hypothesis": "H88-KPSF: Knickpoint Polarity-Sum Fault vs Fluvial Autogenic Null (conditional, untested; no experiment started)",
+  "mechanism": "On chi-ordered channel profiles, fit concave equilibrium elevation versus no-fault null; score paired positive-negative knickpoint polarity-sum weighted by k_sn anomaly, requiring repeat across ≥2 independent tributaries draining same interfluve; mask to LSC-valid + drainage-masked null.",
+  "named_non_fault_mimic": "Lithologic bedrock sills and constant-elevation Lake Lahontan shoreline benches producing single-polarity knickpoints",
+  "conditional_ranked_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H88-KPSF",
+      "title": "Knickpoint Polarity-Sum Fault vs Fluvial Autogenic Null",
+      "status": "PROPOSED_UNTESTED",
+      "non_fault_mimic": "Lithologic sills and Lake Lahontan shoreline benches",
+      "cost": "Medium; cached inputs only",
+      "expected_potential": "Medium (uncertain); chi network covers 68% footprint"
+    },
+    {
+      "rank": 2,
+      "id": "H88-BASS",
+      "title": "Basement Antithetic Strain-Softening Corridor",
+      "status": "PROPOSED_UNTESTED",
+      "non_fault_mimic": "Paleochannel incised-valley fill and caldera ring-fractures",
+      "cost": "Medium-High; 2D curvature tensor",
+      "expected_potential": "Medium-Large (uncertain)"
+    },
+    {
+      "rank": 3,
+      "id": "H88-CURV",
+      "title": "Cross-Scale Magnetic Curvature Tensor Fault Node",
+      "status": "PROPOSED_UNTESTED",
+      "non_fault_mimic": "Dike swarms and cultural magnetic noise",
+      "cost": "Medium; FFT derivatives",
+      "expected_potential": "Small-Medium (uncertain)"
+    },
+    {
+      "rank": 4,
+      "id": "H88-LGOF",
+      "title": "LiDAR-Gap Geothermal Outflow Fingerprint (Isotonic Transfer)",
+      "status": "PROPOSED_UNTESTED",
+      "non_fault_mimic": "Unfaulted permeable alluvial fans and groundwater plumes",
+      "cost": "Medium-High; flow routing + isotonic",
+      "expected_potential": "Medium (uncertain); addresses 24.63% LiDAR gap"
+    },
+    {
+      "rank": 5,
+      "id": "H88-3DEP-INSAR",
+      "title": "USGS 3DEP 1m DEM + NASA OPERA InSAR Joint Graben Doublet",
+      "status": "PROPOSED_UNTESTED",
+      "non_fault_mimic": "Fluvial terrace risers and InSAR atmospheric artifacts",
+      "cost": "High; external 3DEP + OPERA tiling",
+      "expected_potential": "Large (uncertain); external data required BLOCKED"
+    }
+  ],
+  "holdout_dti": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "dti": null,
+    "ci95": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "paired_incumbent_delta": null,
+    "reason": "No candidate surface was constructed or fitted; research artifact generated after DUPLICATE_STOP for format audit only."
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "max_auc": null,
+    "threshold_auc": 0.9
+  },
+  "registry_comparison": {
+    "surface_rank_correlation": null,
+    "surface_rank_correlation_status": "NOT_RUN_NO_SURFACE",
+    "final_dot_overlap": null,
+    "final_dot_overlap_status": "NOT_RUN_NO_NEW_DOTS_CLEARED",
+    "proof_of_any_nonempty_allowed_dot_overlap": 1.0,
+    "threshold_overlap": 0.7,
+    "threshold_spearman": 0.9,
+    "proof": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+      "directly_covered_allowed_pixels": 5106385,
+      "directly_saturated": true,
+      "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+    },
+    "research_spaced_blind_measurement": {
+      "file": "docs/downloads/gems88-f159c61c-spaced-blind-37654dots-20261027-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "535e61ed319e72511805b442cbb89f58c6abf7640e888ce165ca2b630fd4c519",
+      "dots": 37654,
+      "overlap_vs_gems19_h19_5_3px": 0.15010357465342328,
+      "overlap_vs_h33_education_3px": 0.13180538588197802,
+      "overlap_vs_dense_17gemdoe_3px": 1.0,
+      "literal_blocked": true,
+      "like_for_like_sparse_pass": true
+    },
+    "sampled_historical_files_audit": "evidence/focus_sample_2b5a8383.json"
+  },
+  "raster_file": "docs/downloads/gems88-f159c61c-spaced-blind-37654dots-20261027-zeros-DO-NOT-SUBMIT.tif",
+  "raster_sha256": "535e61ed319e72511805b442cbb89f58c6abf7640e888ce165ca2b630fd4c519",
+  "new_tif_generated": true,
+  "validator_output": {
+    "status": "PASS_RESEARCH_ONLY",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "dtype_float32": true,
+    "crs_shape_transform_match": true,
+    "all_finite": true,
+    "single_band": true,
+    "geotiff": true,
+    "ok": true,
+    "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL",
+    "organizer_acceptance": null
+  },
+  "submission_name": "GEMSDOE88-F159C61C-SPACEBLIND-20261027",
+  "submission_note": "F159C61C blind-spaced 37k chi-knickpoint prototype; DUPLICATE_STOP dense 1.0>0.70; HOLDOUT NOT RUN; DO NOT SUBMIT",
+  "submission_note_characters": 115,
+  "identifier_scope": "Research-only identifier and note; not a portal submission. Archive artifact is DO-NOT-SUBMIT.",
+  "archived_research_download": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+    "new_in_this_session": false,
+    "ok_to_download_for_research": true,
+    "ok_to_submit": false,
+    "local_format_audit": {
+      "schema_version": 2,
+      "validator": "gems88-format-audit-v3",
+      "artifact": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "ok": true
+    }
+  },
+  "budget": {
+    "experiments_allowed": 3,
+    "experiments_run": 0,
+    "hours_allowed": 2,
+    "hours_used": 0.5,
+    "weekly_slots_used": 0,
+    "weekly_slots_spent": 0
+  },
+  "verdict": "negative",
+  "decision": "DUPLICATE_STOP",
+  "ok_to_download_new_file": true,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "next_step": "Validate H88-KPSF on buffered hide-and-recover holdout (gems57-pooled-hide-v2) before any slot; literal dense witness still requires selector-level representation fix."
+}
