@@ -14,11 +14,11 @@ from scripts.audit_user_claims import extract, LABEL  # noqa: E402
 
 
 def test_request_is_embedded_completely_and_read_at_session_start():
-    request = (ROOT / 'USER_PROMPT_20261026.md').read_text()
+    request = (ROOT / 'USER_PROMPT_20261027.md').read_text()
     readme = (ROOT / 'README.md').read_text()
     embedded = readme.split('<!-- USER-REQUEST:START -->\n', 1)[1].split('\n<!-- USER-REQUEST:END -->', 1)[0]
     assert embedded == request
-    assert all(name in (ROOT / 'AGENTS.md').read_text() for name in ('README.md', 'PROMPT.md', 'USER_PROMPT_20261026.md'))
+    assert all(name in (ROOT / 'AGENTS.md').read_text() for name in ('README.md', 'PROMPT.md', 'USER_PROMPT_20261026.md', 'USER_PROMPT_20261027.md'))
     assert 'MUST GENERATE A UNIQUE TIF SUBMISSION' in request
 
 
@@ -39,15 +39,21 @@ https://buffedlizard55-lab.github.io/GEMSDOE2/
 
 
 def test_full_list_is_reproducible_and_not_promoted_to_receipts():
-    request = (ROOT / 'USER_PROMPT_20261026.md').read_text()
+    prior = extract((ROOT / 'USER_PROMPT_20261026.md').read_text())
+    assert prior['site_count'] == 92
+    assert prior['distinct_claim_count'] == 123
+    assert prior['sites_without_a_reported_result'] == ['GEMSDOE86', 'GEMSDOE88']
+
+    request = (ROOT / 'USER_PROMPT_20261027.md').read_text()
     report = json.loads((ROOT / 'docs/data/user_reported_results.json').read_text())
     actual = extract(request)
     for k, v in actual.items():
         assert report[k] == v
     assert report['request_sha256'] == hashlib.sha256(request.encode()).hexdigest()
-    assert report['site_count'] == 92
-    assert report['distinct_claim_count'] == 123
-    assert report['sites_without_a_reported_result'] == ['GEMSDOE86', 'GEMSDOE88']
+    assert report['site_count'] == 104
+    assert report['distinct_claim_count'] == 128
+    assert {'GEMSDOE86', 'GEMSDOE88'} <= set(report['sites_without_a_reported_result'])
+    assert len(report['sites_without_a_reported_result']) == 14
     for row in report['claims']:
         assert row['evidence_class'] == LABEL
         assert row['organizer_receipt'] is None

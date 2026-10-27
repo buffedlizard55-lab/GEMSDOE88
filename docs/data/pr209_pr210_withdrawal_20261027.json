@@ -1,0 +1,139 @@
+{
+  "schema": "gems88.withdrawal.12f18097.v1",
+  "date_utc": "2026-10-27",
+  "session": "12f18097",
+  "decision": "DUPLICATE_STOP",
+  "verdict": "negative",
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "incidents": [
+    {
+      "id": "IR-88-12F18097-01",
+      "merged_pr": 209,
+      "branch": "arena/2ebdfb7b-gemsdoe88",
+      "commit": "fc858dfeac6e2d96fc6160c319b47305e88717f8",
+      "merge_commit": "4000737da279a144b8e1c9b571694f9c9b2ebf72",
+      "failed_ci_runs": [
+        40549714758,
+        40549714600
+      ],
+      "generation_guard_bypassed": true,
+      "holdout_run": false,
+      "feature_canaries_run": false,
+      "geophysical_bands_used": 0,
+      "defects": [
+        "scripts/build_unique_submission_20261027.py omitted enforce_generation_preflight() before imports (failing tests/test_generation_entrypoints.py)",
+        "build_relay_propensity(cat, fp) operated solely on unmasked existing_faults.tif with zero geophysical/topographic bands, zero hide-and-recover holdout, and zero leakage canaries",
+        "emitted unmarked docs/downloads/gemsdoe88-relay-dilational-20261027T171403Z-fec0813c826b-zeros.{tif,zip} without -DO-NOT-SUBMIT (failing audit_downloads.py --check)",
+        "hand-edited index.html, docs/index.html, and docs/executive-summary.html destroying canonical render_decision.py markers and introducing broken link research/hypotheses-20261027-new.md",
+        "research/hypotheses-20261027-new.md published uncalibrated numerical DTI lift projections for 5 features already implemented in src/gems88/"
+      ]
+    },
+    {
+      "id": "IR-88-12F18097-02",
+      "merged_pr": 210,
+      "branch": "arena/f159c61c-gemsdoe88",
+      "commits": [
+        "4daee81a31b7ae5f2605652ef363e0f2f0ff3957",
+        "d83caa9",
+        "a69f389"
+      ],
+      "merge_commit": "7ba7204",
+      "failed_ci_runs": [
+        40550724172,
+        40551419258,
+        40551432660,
+        40551433732,
+        40551433774,
+        40551433942
+      ],
+      "generation_guard_bypassed": true,
+      "holdout_run": false,
+      "feature_canaries_run": false,
+      "geophysical_bands_used": 0,
+      "defects": [
+        "scripts/generate_f159c61c_spaced_blind.py omitted enforce_generation_preflight() before imports (failing tests/test_generation_entrypoints.py)",
+        "emitted 37,654 uniformly random Poisson-spaced dots (np.random.default_rng(15961).permutation) in d_cat > 25 px with zero geological features, zero holdout, and zero canaries",
+        "left registry/hypothesis_queue.json source_snapshot stale after merging PR #209 (157 vs 158 files, failing audit_research_state.py)",
+        "repointed docs/status.json current_review without browser_evidence or docs/research mirrors, breaking test_publication_guards.py and check_site.py"
+      ]
+    }
+  ],
+  "withdrawn_files": {
+    "scripts/build_unique_submission_20261027.py": {
+      "sha256": "ba5b779d7c811eac6eae194572c529d78ea351e36df235a0985349bd4248ac48",
+      "bytes": 16787
+    },
+    "scripts/generate_f159c61c_spaced_blind.py": {
+      "sha256": "5a4ffc16d93cb4cc4d721fd86bd7a837a4fc40a720307b0455cc6f4941b27204",
+      "bytes": 7919
+    },
+    "docs/downloads/gemsdoe88-relay-dilational-20261027T171403Z-fec0813c826b-zeros-DO-NOT-SUBMIT.tif": {
+      "sha256": "eb86d73d0fa20a7bd17d76a71a51ab527b5ace4594bcbcbdf9ab71898eb33825",
+      "bytes": 69585
+    },
+    "docs/downloads/gemsdoe88-relay-dilational-20261027T171403Z-fec0813c826b-zeros-DO-NOT-SUBMIT.zip": {
+      "sha256": "af76d4fa4335c86ebb5f4173d20f990b99336414892be7f1c97d0e1c9f867b4e",
+      "bytes": 25219
+    },
+    "docs/downloads/gemsdoe88-relay-dilational-20261027T171403Z-fec0813c826b-zeros-DO-NOT-SUBMIT.json": {
+      "sha256": "09460f5a2c9b2499b25864275838c6980b5326edd5a0ba27b3c72ab9a3425c64",
+      "bytes": 4262
+    },
+    "docs/downloads/gemsdoe88-relay-dilational-20261027T171403Z-fec0813c826b-zeros-DO-NOT-SUBMIT.run_card.json": {
+      "sha256": "33e68f64228e3108cb65f15bf252a107528ebc1842e114cef27561bf3f8b4b19",
+      "bytes": 2598
+    },
+    "docs/downloads/gems88-f159c61c-spaced-blind-37654dots-20261027-zeros-DO-NOT-SUBMIT.tif": {
+      "sha256": "535e61ed319e72511805b442cbb89f58c6abf7640e888ce165ca2b630fd4c519",
+      "bytes": 824646
+    },
+    "docs/downloads/gems88-f159c61c-spaced-blind-37654dots-20261027-zeros-DO-NOT-SUBMIT.zip": {
+      "sha256": "494791f133d907a7dd09b0e9664b3586cee64272fdb718f240328a8f628d7f32",
+      "bytes": 187081
+    },
+    "docs/downloads/gems88-f159c61c-spaced-blind-37654dots-20261027-zeros-DO-NOT-SUBMIT.json": {
+      "sha256": "fa9b5c7cc1ca41815fac4656270a251946731e77f1e7c979f77589dca25bcabc",
+      "bytes": 1210
+    },
+    "research/hypotheses-20261027-new.md": {
+      "sha256": "8e05d70522d1c01bbd99e47d115e7dc091a5f829769d3673f8c3381c455141ef",
+      "bytes": 10904
+    },
+    "docs/research/hypotheses-20261027-new.md": {
+      "sha256": "8e05d70522d1c01bbd99e47d115e7dc091a5f829769d3673f8c3381c455141ef",
+      "bytes": 10904
+    },
+    "research/session-f159c61c-review.md": {
+      "sha256": "6f08a772d42e7e9a3e759270df3b7322228bc6a50cfa23591343eb2edd6884db",
+      "bytes": 16871
+    },
+    "research/session-f159c61c-hypotheses.md": {
+      "sha256": "1672cbd084660393518fb9582b238c68c425197b80a490632988b405e9634bc4",
+      "bytes": 15764
+    },
+    "registry/session_f159c61c_run_card.json": {
+      "sha256": "548f2cd48dd793168571deb5818b3e497f442fb989c41c80db7dc6accb611cc6",
+      "bytes": 7181
+    },
+    "docs/data/session_f159c61c_run_card.json": {
+      "sha256": "548f2cd48dd793168571deb5818b3e497f442fb989c41c80db7dc6accb611cc6",
+      "bytes": 7181
+    },
+    "docs/downloads/gemsdoe88-relay-dilational-20261027T171403Z-fec0813c826b-zeros.tif": {
+      "sha256": "eb86d73d0fa20a7bd17d76a71a51ab527b5ace4594bcbcbdf9ab71898eb33825",
+      "bytes": 69585
+    },
+    "docs/downloads/gemsdoe88-relay-dilational-20261027T171403Z-fec0813c826b-zeros.zip": {
+      "sha256": "af76d4fa4335c86ebb5f4173d20f990b99336414892be7f1c97d0e1c9f867b4e",
+      "bytes": 25219
+    }
+  },
+  "canonical_release_preserved": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "published_inventory_pairs": 50,
+    "ok_to_submit": false
+  }
+}

@@ -1,5 +1,22 @@
 # GEMSDOE88 — audited fault discovery and submission gates
 
+> ### CURRENT DECISION (`2026-10-27`, Session `12f18097`): `DOWNLOAD FOR RESEARCH: YES` · **`SUBMIT TO COMPETITION: NO — DO NOT SUBMIT`** (`ok_to_submit: false`, `verdict: "negative"`, `weekly_slots_used: 0`)
+>
+> - **Pre-placement duplicate stop binds universally:** `scripts/preflight_mtas88.py --gate-generation` exits `2` (`DUPLICATE_STOP`) because `data/registry/dense_17gemdoe.tif` (`ab0a0a62…`) covers all **`5,106,385 / 5,106,385`** allowed cells (`3-px overlap = 1.0000 > 0.70` for every nonempty allowed candidate).
+> - **Post-merge withdrawal (`IR-88-12F18097-01..02`):** Off-protocol unguarded generators merged in `PR #209` (`build_unique_submission_20261027.py`, `fc858df`/`4000737`) and `PR #210` (`generate_f159c61c_spaced_blind.py`, `4daee81`/`7ba7204`) — which ran `0` geophysical bands, `0` holdouts, and `0` leakage canaries and broke all 3 CI workflows — are withdrawn in [`docs/data/pr209_pr210_withdrawal_20261027.json`](docs/data/pr209_pr210_withdrawal_20261027.json), restoring the clean `50/50` `-DO-NOT-SUBMIT` research inventory.
+> - **Primary portals & 2026-10-27 dossiers:** [Live Overview (`docs/index.html`)](https://buffedlizard55-lab.github.io/GEMSDOE88/) · [Executive Submission Subpage (`docs/executive-summary.html`)](https://buffedlizard55-lab.github.io/GEMSDOE88/executive-summary.html) · [`docs/SUBMIT.md`](docs/SUBMIT.md) · [`research/session-12f18097-review.md`](research/session-12f18097-review.md) · [`research/session-12f18097-hypotheses.md`](research/session-12f18097-hypotheses.md) · [`docs/data/session_12f18097_run_card.json`](docs/data/session_12f18097_run_card.json) · [`docs/data/focus_and_crossorg_20261027_audit.json`](docs/data/focus_and_crossorg_20261027_audit.json) · [`USER_PROMPT_20261027.md`](USER_PROMPT_20261027.md) (`104` sites, `128` distinct user-reported claims, `14` blank sites).
+
+### `2026-10-27` Executive Submission, Labeled Score-Estimate & Uniqueness Summary (`0` Projections Written as Scores)
+
+| File to Download (`docs/downloads/`, Research Only) | Labeled Empirical Score (`gems57-pooled-hide-v2`, `n = 22,893`, 95% CI) | Unique vs All `104` Listed GEMSDOE Sites? | OK to Download / Submit? |
+| :--- | :--- | :--- | :--- |
+| [`gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif) (`db9d1867…`, `25,000` px) | **`HOLDOUT-DTI = 0.196237 [0.179686, 0.211729]`** (Blind `>25 px`: `0.076881`) · `ORGANIZER-CONFIRMED`: none | **NO** (`1.0000 > 0.70` vs `17GEMSDOE`; `0.6032` vs `179` sparse peers) | **Download (research): YES · SUBMIT: NO — DO NOT SUBMIT** |
+| [`gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT.tif) (`b8543782…`, `37,654` px) | **`HOLDOUT-DTI = 0.205991 [0.188105, 0.223344]`** *(repo holdout best; Blind `>25 px`: `0.090449`)* · `ORGANIZER-CONFIRMED`: none | **NO** (`1.0000 > 0.70` vs `17GEMSDOE`; `0.6698` vs `350` sparse peers) | **Download (research): YES · SUBMIT: NO — DO NOT SUBMIT** |
+| [`gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-hgvc88-updip-sinter-conduit-37654-20261024-d5329f31-zeros-DO-NOT-SUBMIT.tif) (`d5329f31…`, `37,654` px) | **`HOLDOUT-DTI = 0.202947 [0.185869, 0.219790]`** · `ORGANIZER-CONFIRMED`: none | **NO** (`1.0000 > 0.70` vs `17GEMSDOE`; `0.7899` vs later `PSGV`/`MMRX`) | **Download (research): YES · SUBMIT: NO — DO NOT SUBMIT** |
+| [`gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif`](docs/downloads/gems88-qts88-decoupled-thickness-submod-20261024-b5d178b3-DO-NOT-SUBMIT.tif) (`4cafa775…`, `37,654` px) | **`HOLDOUT-DTI = 0.098210 [0.084216, 0.112545]`** *(zero-catalogue)* · `ORGANIZER-CONFIRMED`: none | **NO** (`1.0000 > 0.70` vs `17GEMSDOE`; `0.5373` vs `223` sparse peers) | **Download (research): YES · SUBMIT: NO — DO NOT SUBMIT** |
+| **9 Focus Sites (`GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36`)** — live `2026-10-27` HEADs checked | **`USER-REPORTED`**: historical `0.2449–0.2778`; new `2026-10-26` claims: `27 h31-drcg` **`0.2250`**, `36 kpl36-exp3` **`0.1647`**, `33 s33-seisdil` **`0.0963`**, `28 s21-puhgb` **`0.0206`** (`91 s22-omtj-e1` **`0.0298`**) | **NO** (`0.9775–1.0000` vs `H19-5`; `1.0000` vs `17GEMSDOE`) | **`0 / 9` Approved — DO NOT SUBMIT** (`27`, `31` & `36` retracted prior badges) |
+| **12 Cross-Org Siblings (`KANLER1..3`, `EUG1..3`, `WBG1..3`, `GINNY1..3`)** | **`USER-REPORTED`**: none (`0` numeric claims; `6` active `DO NOT SUBMIT` repos + `6` `Initial commit` stubs) | **NO** (`1.0000 > 0.70` vs `17GEMSDOE` on all non-stub rasters) | **`0 / 12` Approved — DO NOT SUBMIT** |
+
 **Correction to PR #200 (session `aef1337d`, 2026-10-26):** its VVRD TIFF, unguarded generator and unsupported volcanic-vent/drainage claims are withdrawn. The implementation was catalogue-distance random sampling, with no holdout or canary; it did not satisfy the unique-submission protocol. **DO NOT SUBMIT** any copy downloaded from that PR. Canonical decision records are restored. [Three-pass correction and next steps](research/session-aef1337d-review.md) · [negative run card / withdrawal certificate](registry/session_aef1337d_run_card.json).
 
 ## ⛔ CURRENT DECISION (`2026-10-26`, Session `2b5a8383`): DOWNLOAD FOR RESEARCH: `YES` · SUBMIT TO COMPETITION: `NO — DO NOT SUBMIT`
@@ -190,21 +207,23 @@ Fixed an all-download audit blind spot: orphan ZIPs (including uppercase suffixe
 <summary>Complete recorded user request — read at the beginning of every session</summary>
 
 <!-- USER-REQUEST:START -->
-# User request recorded for future sessions — 2026-10-26
+# User request recorded for future sessions — 2026-10-27
 
 Human request below. Markdown link formatting is normalized; the repeated instructions and supplied result list are retained. User-supplied performance figures are claims, not verified organizer receipts. This request does not override the binding duplicate-stop rule. Read README.md and PROMPT.md first on every session.
 
 ---
 
-Review the repo.
+Review the repo. 
 
-I want to focus on the highest scoring submissions from the following sites, GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36. I want an executive summary on every site that is clear and obvious which is the best submission to submit to obtain a high score on the leaderboard. It should also be unique and not an exact duplicate of any previous submission that is the same as below.
+I want to focus on  the highest scoring submissions from the following sites, GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33, GEMSDOE36.  I want an executive summary on every site that is clear and obvious which is the best submission to submit to obtain a high score on the leaderboard.  It should also be unique and not an exact duplicate of any previous submission that is the same as below.  Keep iterating and testing until we have the highest scoring submission to download and submit.
+
+We should be able to estimate the score for a submission.  I want a table in the executive summary that clearly lists what file to download, what the estimate score is, and whether it is a unique submission unlike any of the other GEMDOE sites listed below.
 
 THE FOLLOWING IS THE HIGHEST URGENCY AND MUST BE FOLLOWED!
 
-MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
+MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION.  DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION.  BUT WE MUST GENERATE A UNIQUE TIF SUBMISSION.  IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.
 
-There should be an easy to download submission tif file as described by the prompt. Read the entire prompt. A lot of sites mention inspection only and a human inspector, but the inspection needs to be done through the project and needs to be validated for submission without human intervention.
+There should be an easy to download submission tif file as described by the prompt.  Read the entire prompt.  A lot of sites mention inspection only and a human inspector, but the inspection needs to be done through the project and needs to be validated for submission without human intervention.
 
 PARALLEL-RUN PROTOCOL — read first. This session is one of several running from this same prompt.
 
@@ -220,7 +239,7 @@ PARALLEL-RUN PROTOCOL — read first. This session is one of several running fro
 
 6. BUDGET. Stop after [3] experiments or [2] hours. Do not pick submissions: promotion to a real slot is a separate selector step, within the weekly cap shown on the submission page.
 
-The following sites should serve as a starting point for understanding how to generate TIF submissions. These websites are researched, and tested and have generated TIF submissions. But we need to generate high scoring submissions.
+The following sites should serve as a starting point for understanding how to generate TIF submissions.  These websites are researched, and tested and have generated TIF submissions.  But we need to generate high scoring submissions.
 
 Here are the results from submissions into the competition, separated by ....:
 
@@ -232,11 +251,11 @@ h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros: 0.2778
 
 Why and how did this get the highest score and are we able to generate a submission that scores higher than 0.2778?
 
-Answer the question using Phd level experience, knowledge, and judgement. Then use the answer to generate a unique TIF submission into the competition. Must be unique submission unlike any within the GEMSDOE sites above. Verify working line by line no hallucinations.
+Answer the question using Phd level experience, knowledge, and judgement. Then use the answer to generate a unique TIF submission into the competition.  Must be unique submission unlike any within the GEMSDOE sites above.  Verify working line by line no hallucinations.
 
 Current competition leaderboard GEMSDOE high score:
 
-0.4413
+0.4413		
 
 WE NEED TO STUDY, ANALYZE, AND UNDERSTAND THE HIGHEST SCORE FROM THE GEMDOE SITE WHERE THE SUBMISSION TIF IS DOWNLOADED FROM WHICH IS THE FOLLOWING:
 
@@ -246,11 +265,11 @@ h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros: 0.2778
 
 Why and how did this get the highest score and are we able to generate a submission that scores higher than 0.2778?
 
-Answer the question using Phd level experience, knowledge, and judgement. Then use the answer to generate a unique TIF submission into the competition. Must be unique submission unlike any within the GEMSDOE sites above. Verify working line by line no hallucinations.
+Answer the question using Phd level experience, knowledge, and judgement. Then use the answer to generate a unique TIF submission into the competition.  Must be unique submission unlike any within the GEMSDOE sites above.  Verify working line by line no hallucinations.
 
 Current competition leaderboard GEMSDOE high score:
 
-0.4413
+0.4413		
 
 https://buffedlizard55-lab.github.io/GEMSDOE/docs/index.html
 
@@ -830,7 +849,7 @@ h87-h87-cmgep-20261022T060000Z-8f394f43:0.0500
 
 https://buffedlizard55-lab.github.io/GEMSDOE88/
 
-:
+gems88-bpwd88-baranov-worm-conduit-37654-20261025-b8543782-zeros-DO-NOT-SUBMIT:
 
 ....
 
@@ -853,6 +872,8 @@ gems91-s17-cwpc-e3-37654dots-20261025T150000Z-4d124f1d-zeros:0.1367
 gems91-s17-lftg-20261025T160014Z-7b6bf90844-zeros:0.1823
 
 gems91-S18-UNIQUE-curvtilt-20000dots-20261025T182858Z-29db2405:
+
+gems91-s22-omtj-e1-20261026-a99b8923f0-zeros:0.0298
 
 ....
 
@@ -884,6 +905,8 @@ topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan: 0.2449
 
 gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite:0.2190
 
+gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite:0.2250
+
 ....
 
 https://buffedlizard55-lab.github.io/GEMSDOE28/
@@ -897,6 +920,8 @@ h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan: 0.2710
 h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan: 0.2707
 
 gems28-s18-mxtp-20261025-3e95505c011a-allfinite:0.0217
+
+gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite:0.0206
 
 ....
 
@@ -924,11 +949,87 @@ https://buffedlizard55-lab.github.io/GEMSDOE33/
 
 h33d-analog-tip-stepover-r30-20261004-cb490425926e: 0.2632
 
+gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros:0.0963
+
 ....
 
 https://buffedlizard55-lab.github.io/GEMSDOE36/docs/
 
 anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros: 0.2750
+
+gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros: 0.1647 
+
+....
+
+https://kanlerxz87-cyber.github.io/KANLERGEMSDOE3/docs/index.html
+
+:
+
+....
+
+https://kanlerxz87-cyber.github.io/KANLERGEMSDOE1/
+
+:
+
+....
+
+https://kanlerxz87-cyber.github.io/KANLERGEMSDOE2/
+
+kanlergems2-htcads-exp-2-37654dots-20261026T235227Z-11a2f251-zeros:
+
+....
+
+https://eugboogieman123-ops.github.io/EUGGEMSDOE3/
+
+:
+
+....
+
+https://eugboogieman123-ops.github.io/EUGGEMSDOE2/
+
+:
+
+....
+
+https://eugboogieman123-ops.github.io/EUGGEMSDOE1/
+
+:
+
+....
+
+https://wingbangboozle1-lang.github.io/WBGGEMSDOE3/docs/index.html
+
+:
+
+....
+
+https://wingbangboozle1-lang.github.io/WBGGEMSDOE2/docs/
+
+:
+
+....
+
+https://wingbangboozle1-lang.github.io/WBGGEMSDOE1/docs/index.html
+
+:
+
+....
+
+https://ginnymcfiner23-ux.github.io/GINNYGEMSDOE3/
+
+:
+
+....
+
+https://ginnymcfiner23-ux.github.io/GINNYGEMSDOE2/
+
+:
+
+....
+
+https://ginnymcfiner23-ux.github.io/GINNYGEMSDOE1/
+
+:
 
 ....
 
@@ -954,19 +1055,19 @@ We need to quickly look at the results and results from the GEMSDOE websites abo
 
 Before implementing, generate 3–5 candidate geological hypotheses we haven't tried yet, each naming: the specific layer(s) involved, the physical signature being targeted (e.g., an edge-detection or curvature transform), why it should catch a fault missing from the USGS/INGENIOUS catalogue rather than one already in it, and how it differs from anything already implemented in this repo. Rank them by expected DTI improvement and implementation cost. Validate the top candidate on our spatially-blocked holdout set before touching a weekly submission slot — do not spend a submission slot on an idea that hasn't beaten the current holdout best. If a candidate can't be validated without new external data, name the specific free, official source needed and check it's obtainable before proposing the idea as viable.
 
-Work line by line verifying from official verified trusted sources, provide links for manual review. There should be no manual input, work on your own to complete tasks. Flag any irregularities for review. No hallucinations.
+Work line by line verifying from official verified trusted sources, provide links for manual review.  There should be no manual input, work on your own to complete tasks.  Flag any irregularities for review.  No hallucinations.                      
 
-Verify no hallucinations.
+Verify no hallucinations.    
 
-The goal of this project is to get a full list that follow our requirements. No hallucinations. Verify line by line.
+The goal of this project is to get a full list that follow our requirements.  No hallucinations.  Verify line by line.
 
-We have a good understanding of how our hypothesis, methodology, calculations, analysis are done so we should be able to figure out a way to score higher on the leaderboard using previous results and scoring that we have across the sites listed above. We need to come up with distinct and unique strategies to score higher in this competition leaderboard. We need to start doing heavy and deep research into the part of the project that matters the most, which is the scientific discovery of geothermal vents. We should store all of our information and knowledge that we can gather from official verified sources. This will serve as a starting point for other projects as well. We need to think outside the box but still be grounded in proper scientific research, we are ultimately aiming for a top prize that many others are competing for. So it's important to be contrarian but be smart about it. We need to find sources of data that others are over looking or areas of the project when it comes to geothermal vents. We need to do deep research and critical thinking and come up with new hypothesis to test.
+We have a good understanding of how our hypothesis, methodology, calculations, analysis are done so we should be able to figure out a way to score higher on the leaderboard using previous results and scoring that we have across the sites listed above.  We need to come up with distinct and unique strategies to score higher in this competition leaderboard.  We need to start doing heavy and deep research into the part of the project that matters the most, which is the scientific discovery of geothermal vents.  We should store all of our information and knowledge that we can gather from official verified sources.  This will serve as a starting point for other projects as well.  We need to think outside the box but still be grounded in proper scientific research, we are ultimately aiming for a top prize that many others are competing for.  So it's important to be contrarian but be smart about it.  We need to find sources of data that others are over looking or areas of the project when it comes to geothermal vents.  We need to do deep research and critical thinking and come up with new hypothesis to test.
 
-0.3195 is the highest score right now so we need to design a new strategy, research, testing, analyzing, and generating submission system than the current website. It should be unique, take unique approaches to generating a submission that can score higher than 0.3195.
+0.3195	is the highest score right now so we need to design a new strategy, research, testing, analyzing, and generating submission system than the current website.  It should be unique, take unique approaches to generating a submission that can score higher than 0.3195.  
 
-Put this prompt into the repo readme and read it everytime we work on the project as a starting point to make sure we are building what we are aiming for and have a strong base to continue building and improving on making something useful for everyday use. It should solve the problem of having to manually check everything ourselves and having an up to date current feed.
+Put this prompt into the repo readme and read it everytime we work on the project as a starting point to make sure we are building what we are aiming for and have a strong base to continue building and improving on making something useful for everyday use.  It should solve the problem of having to manually check everything ourselves and having an up to date current feed.
 
-Review the repo.
+Review the repo. 
 
 The following is taken from the Arena AI team and I think it makes a good point on building a successful project, so let's keep the Core Values and Own the Outcome as a focal point when building, developing, researching, suggesting upgrades, and implementing the work.
 
@@ -980,15 +1081,17 @@ Own the Outcome
 
 We own results end to end — not just our individual slice of the work. When problems arise and we have the means to act, we do so without waiting for permission or assignment. We treat failure and success as signals and use them to improve. At Arena, we stay accountable to the final outcome.
 
-Work line by line verifying from official verified trusted sources, provide links for manual review. There should be no manual input, work on your own to complete tasks. Flag any irregularities for review. No hallucinations.
+Work line by line verifying from official verified trusted sources, provide links for manual review.  There should be no manual input, work on your own to complete tasks.  Flag any irregularities for review.  No hallucinations.                      
 
-Verify no hallucinations.
+  
 
-The goal of this project is to get a full list that follow our requirements. No hallucinations. Verify line by line.
+Verify no hallucinations.    
 
-We need to focus on being able to generate a submission into the competition.
+The goal of this project is to get a full list that follow our requirements.  No hallucinations.  Verify line by line.
 
-The site should be able to generate a TIF file that is required for submission. It should be as easy as download to click a File to submit into the competition. This needs to be in the executive summary or the very beginning of the site. it should be obvious when you visit the site.
+We need to focus on being able to generate a submission into the competition.  
+
+The site should be able to generate a TIF file that is required for submission.  It should be as easy as download to click a File to submit into the competition.  This needs to be in the executive summary or the very beginning of the site.  it should be obvious when you visit the site.
 
 I tried to submit the document that i downloaded from the site but it returned this error on the submission form:
 
@@ -1012,33 +1115,33 @@ Create a executive summary subpage that explains exactly how to make a submissio
 
 Work on the next steps from the previous sessions first.
 
-The goal of this project is to place top of the leaderboard in this competition. The following is the competition:
+The goal of this project is to place top of the leaderboard in this competition.  The following is the competition:
 
 https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
 
-We need to create a project that can compete and place top of the leaderboard. We need to understand the problem, collect all the data and organize it into a clean easily auditable table with official verified links for manual verification.
+We need to create a project that can compete and place top of the leaderboard.  We need to understand the problem, collect all the data and organize it into a clean easily auditable table with official verified links for manual verification.  
 
-This is the guidelines we need to follow. https://www.drivendata.org/competitions/306/competition-doe-gems/
+This is the guidelines we need to follow.https://www.drivendata.org/competitions/306/competition-doe-gems/
 
-Get familiar with the problem through the overview and problem description, https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/. You might also want to reference additional resources available on the about page, https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/.
+Get familiar with the problem through the overview and problem description,https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/. You might also want to reference additional resources available on the about page,https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/.
 
-Download the data from the data, https://www.drivendata.org/competitions/306/competition-doe-gems/data/, tab.
+Download the data from the data,https://www.drivendata.org/competitions/306/competition-doe-gems/data/, tab.  
 
-Create and train your own model. This reference solution, https://github.com/drivendataorg/gems-prize-reference-solution implements a simple approach.
+Create and train your own model. This reference solution,https://github.com/drivendataorg/gems-prize-reference-solution implements a simple approach.
 
 Use your model to generate predictions that match the submission format.
 
-Tell me what are you limitations and what you need access to during this project. We will need to find free publicly available sources and data from official and verified sources if we are to use 3rd party or external data.
+Tell me what are you limitations and what you need access to during this project.  We will need to find free publicly available sources and data from official and verified sources if we are to use 3rd party or external data.  
 
-this pdf outlines how submissions must be entered into the competition.
+this pdf outlines how submissions must be entered into the competition.  
 
 https://docs.nlr.gov/docs/fy26osti/96647.pdf
 
-You must be able to do your own research, deep research, scientific literature research and organize the knowledge so that we can critically think through the problem and generate a solution through scientific and free publicly available information. this must be done autonomously and must be constantly reviewed and improved upon. Provide suggestions and improvements and implement them.
+You must be able to do your own research, deep research, scientific literature research and organize the knowledge so that we can critically think through the problem and generate a solution through scientific and free publicly available information.  this must be done autonomously and must be constantly reviewed and improved upon.  Provide suggestions and improvements and implement them.
 
 ❌ No DrivenData auth → cannot auto-download training_features.tif, labels.tif, sample_submission.tif, 1m_DEM_links.csv from https://www.drivendata.org/competitions/306/competition-doe-gems/data/ (verified redirect to login)
 
-See below for links from the above site. See attached files for links from the above site.
+See below for links from the above site.  See attached files for links from the above site.
 
 https://gdr.openei.org/submissions/1391
 
@@ -1056,25 +1159,25 @@ https://www.dropbox.com/scl/fi/3vz9o0wwavi26xaeoxlwr/gems-geodawn-numerical-feat
 
 https://www.dropbox.com/scl/fi/ig0mban712ns1atphgphe/Digital-elevation-model-links-JSON.pdf?rlkey=zm77f1vbtt2if8hlruymptnu3&st=srhhir10&dl=0
 
-Work line by line verifying from official verified trusted sources, provide links for manual review. There should be no manual input, work on your own to complete tasks. Flag any irregularities for review. No hallucinations.
+Work line by line verifying from official verified trusted sources, provide links for manual review.  There should be no manual input, work on your own to complete tasks.  Flag any irregularities for review.  No hallucinations.                      
 
-Verify no hallucinations.
+Verify no hallucinations.    
 
-The goal of this project is to get a full list that follow our requirements. No hallucinations. Verify line by line.
+The goal of this project is to get a full list that follow our requirements.  No hallucinations.  Verify line by line.
 
 Site creation
 
-Create a github page for this repo that has clean ui, user friendly, simple and easy to use. It should be organized and clean.
+Create a github page for this repo that has clean ui, user friendly, simple and easy to use.  It should be organized and clean.  
 
-It should include all relevant information in an easy to read format with official verified links as sources for review. Work line by line verify everything no hallucinations.
+It should include all relevant information in an easy to read format with official verified links as sources for review.  Work line by line verify everything no hallucinations.
 
 **The single remaining blocker to training is data placement**: run `bash scripts/download_competition_data.sh` on any unrestricted machine into `data/`, then `python scripts/prepare_data.py` — after that the full train→inference→validate pipeline is ready to run (GPU needed for training; metric/losses/validation all verified working here on CPU).
 
-you need to complete the above task by yourself. Work line by line verifying from official verified trusted sources, provide links for manual review. There should be no manual input, work on your own to complete tasks. Flag any irregularities for review. No hallucinations.
+you need to complete the above task by yourself.  Work line by line verifying from official verified trusted sources, provide links for manual review.  There should be no manual input, work on your own to complete tasks.  Flag any irregularities for review.  No hallucinations.                      
 
-Verify no hallucinations.
+Verify no hallucinations.    
 
-The goal of this project is to get a full list that follow our requirements. No hallucinations. Verify line by line.
+The goal of this project is to get a full list that follow our requirements.  No hallucinations.  Verify line by line.
 
 Run this task through multiple passes.
 
@@ -1084,9 +1187,9 @@ Pass 2: Review your work for bugs, missing requirements, incorrect assumptions, 
 
 Pass 3: Re-check the entire implementation against the original request. Improve accuracy, reliability, completeness, and code quality. Fix any remaining issues.
 
-Do not stop after the first pass. Each pass must build on the previous one. Before finishing, verify that the final result fully satisfies the original request. Work line by line verify everything no hallucinations.
+Do not stop after the first pass. Each pass must build on the previous one. Before finishing, verify that the final result fully satisfies the original request.  Work line by line verify everything no hallucinations.
 
-Go ahead and create a pull request and then merge the pull request onto the main. Make suggestions for what work still needs to be done and any limitations that is in the way of a successful project. It should be worked on in this next session or the next session. Work line by line verify everything no hallucinations.
+Go ahead and create a pull request and then merge the pull request onto the main. Make suggestions for what work still needs to be done and any limitations that is in the way of a successful project.  It should be worked on in this next session or the next session.  Work line by line verify everything no hallucinations.
 
 <!-- USER-REQUEST:END -->
 </details>

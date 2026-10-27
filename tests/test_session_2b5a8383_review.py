@@ -47,8 +47,12 @@ def test_negative_session_card_is_mirrored_and_distinguishes_no_candidate():
 
 
 def test_real_browser_receipt_is_fresh_and_every_feed_failure_remains_negative():
+    hist_br = read('evidence/session_2b5a8383_browser_check.json')
+    assert hist_br == read('docs/data/session_2b5a8383_browser_check.json')
+    assert hist_br['status'] == 'PASS' and hist_br['ok_to_submit'] is False
+
     status = read('docs/status.json')
-    assert status['current_review'] == 'data/session_2b5a8383_run_card.json'
+    assert status['previous_review'] == 'data/session_2b5a8383_run_card.json'
     card = read('docs/' + status['current_review'])
     evidence = Path(card['verification']['browser_evidence'])
     assert (ROOT / evidence).read_bytes() == (ROOT / 'docs/data' / evidence.name).read_bytes()
@@ -60,6 +64,7 @@ def test_real_browser_receipt_is_fresh_and_every_feed_failure_remains_negative()
     focus = report['focus_freshness']
     assert focus['fresh_snapshot_pass'] and focus['missing_feed_fail_closed']
     assert focus['partial_feed_fail_closed'] and focus['expired_feed_fail_closed']
+    assert set(hist_br['source_sha256']) <= set(report['source_sha256'])
     for path, digest in report['source_sha256'].items():
         assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest, path
     assert 'docs/assets/focus-freshness.js' in report['source_sha256']
