@@ -633,8 +633,17 @@ def main(root: Path = ROOT) -> None:
         'Site integrity check failed: "DOWNLOAD FOR RESEARCH: YES" in index',
     )
     require("SUBMIT: NO" in index, 'Site integrity check failed: "SUBMIT: NO" in index')
+    # Bind the visible date to the active review rather than freezing a prior
+    # session's date. Refuse escaped or missing review cards, including under -O.
+    review_ref = status.get("current_review")
+    require(isinstance(review_ref, str) and Path(review_ref).parent == Path("data"),
+            "Current review must point to a public data card")
+    review = json.loads((docs / review_ref).read_text())
+    created = review.get("created_at_utc")
+    require(isinstance(created, str) and re.match(r"^\d{4}-\d{2}-\d{2}T", created),
+            "Current review card must contain an ISO creation time")
     require(
-        "Review · 2026-10-26" in index
+        f"Review · {created[:10]}" in index
         and "NO FILE APPROVED" in index
         and "0/9 CLEARED IN HISTORICAL AUDIT" in index
         and "every nonempty dot set fails the literal overlap limit" in index,

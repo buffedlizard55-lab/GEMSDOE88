@@ -44,3 +44,16 @@ main>section{padding:68px 0}.section-intro{color:var(--muted);margin-bottom:27px
 .focus-freshness .focus-freshness-explainer{font-size:.78rem;color:#655747}
 .focus-freshness-label{display:inline-block;margin-top:7px;font-size:.73rem;line-height:1.35;font-weight:600;color:#805329;text-transform:none;letter-spacing:normal}
 .focus-freshness-label a{overflow-wrap:anywhere}
+
+/* Keep the nine-site comparison legible; detailed lineage remains expandable. */
+.focus-sites-section .table-scroll table{min-width:780px;table-layout:fixed}
+.focus-sites-section .table-scroll th:first-child{width:18%}
+.focus-sites-section .table-scroll th:nth-child(2){width:44%}
+.focus-sites-section .table-scroll th:nth-child(3){width:18%}
+.focus-sites-section .table-scroll th:nth-child(4){width:20%}
+.focus-sites-section .focus-file,.focus-row-details{overflow-wrap:anywhere}
+.focus-row-details{margin-top:10px;font-size:.82rem}
+.focus-row-details summary{color:#21675b;cursor:pointer;font-weight:700}
+.focus-row-details p{margin:10px 0;font-size:.82rem}
+.focus-stop{color:#a73339;font-size:.8rem}
+.table-hint{font-size:.8rem;color:#5c7180}
