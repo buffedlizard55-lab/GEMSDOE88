@@ -1,0 +1,128 @@
+{
+  "schema": "gems88.focus-winner-source-hashes.v1",
+  "checked_at_utc": "2026-10-28T11:49:06Z",
+  "retrieval": "GitHub API immutable git tree and blob objects at the historical winner-audit commit; raw bytes base64-decoded and SHA-256 recomputed in this session.",
+  "source_audit": "docs/data/focus_sites_20261026.json",
+  "evidence_class": "OWNER_REPOSITORY_BYTE_HASH_VERIFICATION_NOT_SCORE_OR_ORGANIZER_RECEIPT",
+  "summary": {
+    "files_checked": 9,
+    "sha256_matches": 9,
+    "organizer_receipts": 0,
+    "leaderboard_values_verified": 0
+  },
+  "rows": [
+    {
+      "site": "GEMSDOE24",
+      "historical_commit": "17496743a9695974370512db64d8140ea1ccfd2f",
+      "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/17496743a9695974370512db64d8140ea1ccfd2f/docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
+      "bytes": 1632732,
+      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "expected_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+      "sha256_match": true,
+      "historical_user_reported_score": "0.2477",
+      "score_evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED"
+    },
+    {
+      "site": "GEMSDOE25",
+      "historical_commit": "88a29e094989b0e23916136e593474875d067656",
+      "path": "docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/88a29e094989b0e23916136e593474875d067656/docs/downloads/gems25-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+      "bytes": 1603424,
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "expected_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "sha256_match": true,
+      "historical_user_reported_score": "0.2600",
+      "score_evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED"
+    },
+    {
+      "site": "GEMSDOE27",
+      "historical_commit": "426426b402f90f4e0786990b4edd261d9dd48085",
+      "path": "docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/426426b402f90f4e0786990b4edd261d9dd48085/docs/downloads/gems27-topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan.tif",
+      "bytes": 1635084,
+      "sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "expected_sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+      "sha256_match": true,
+      "historical_user_reported_score": "0.2449",
+      "score_evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED"
+    },
+    {
+      "site": "GEMSDOE28",
+      "historical_commit": "348ff086e29b9c48bb7104daacb647af31a184bf",
+      "path": "docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/348ff086e29b9c48bb7104daacb647af31a184bf/docs/downloads/gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "bytes": 1590848,
+      "sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "expected_sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+      "sha256_match": true,
+      "historical_user_reported_score": "0.2710",
+      "score_evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED"
+    },
+    {
+      "site": "GEMSDOE30",
+      "historical_commit": "73db382d3c990d0aa0b5126997a67213cc56dee4",
+      "path": "docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/73db382d3c990d0aa0b5126997a67213cc56dee4/docs/downloads/gemsdoe30-d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca.tif",
+      "bytes": 806758,
+      "sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "expected_sha256": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+      "sha256_match": true,
+      "historical_user_reported_score": "0.2600",
+      "score_evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED"
+    },
+    {
+      "site": "GEMSDOE31",
+      "historical_commit": "e6e85b357914068b3ba57ace0f899dde13f110a6",
+      "path": "docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/e6e85b357914068b3ba57ace0f899dde13f110a6/docs/downloads/gemsdoe31-h27-4-solo-d28-20261004-8acb75e1-nan.tif",
+      "bytes": 199214,
+      "sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "expected_sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+      "sha256_match": true,
+      "historical_user_reported_score": "0.2708",
+      "score_evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED"
+    },
+    {
+      "site": "GEMSDOE32",
+      "historical_commit": "9e55d5d61cb748533691ed183b1b2f2e04643add",
+      "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/9e55d5d61cb748533691ed183b1b2f2e04643add/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+      "bytes": 219065,
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "expected_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "sha256_match": true,
+      "historical_user_reported_score": "0.2778",
+      "score_evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED"
+    },
+    {
+      "site": "GEMSDOE33",
+      "historical_commit": "fded538406627b8d154a2fef5b5331f656d7e0f2",
+      "path": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/fded538406627b8d154a2fef5b5331f656d7e0f2/docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+      "bytes": 917544,
+      "sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "expected_sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+      "sha256_match": true,
+      "historical_user_reported_score": "0.2632",
+      "score_evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED"
+    },
+    {
+      "site": "GEMSDOE36",
+      "historical_commit": "4938a123133b4747079cc1c1c93a11e50c1376a7",
+      "path": "docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/4938a123133b4747079cc1c1c93a11e50c1376a7/docs/downloads/gemsdoe36-anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros.tif",
+      "bytes": 318190,
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "expected_sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "sha256_match": true,
+      "historical_user_reported_score": "0.2750",
+      "score_evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED"
+    }
+  ],
+  "limitations": [
+    "A source-byte hash confirms the pinned owner-repository artifact only.",
+    "It does not validate the claimed leaderboard score, identify the current best file, establish organizer acceptance, or confer submission clearance.",
+    "All nine historical artifacts fail the binding uniqueness gate in the repository audit."
+  ]
+}

@@ -1,0 +1,285 @@
+{
+  "schema": "gems88.session-run-card.v1",
+  "run_id": "GEMSDOE88-A896E29E-REVIEW-20261028",
+  "session_branch": "arena/a896e29e-gemsdoe88",
+  "created_at_utc": "2026-10-28T11:47:47+00:00",
+  "status": "DUPLICATE_STOP",
+  "review_scope": "Read-only repository and historical-claim review; no model, feature, placement, candidate raster, or portal operation.",
+  "hypothesis": "No assigned lane: the requested single method paragraph is absent. H88-SPR is a conditional first-ranked queue proposal only; nothing was fitted.",
+  "mechanism": "Not run. The 2026-10-28 generation preflight stopped before feature construction or placement.",
+  "named_non_fault_mimic": "Not assigned to an implemented experiment; each conditional candidate and its mimic is documented in research/session-a896e29e-review.md.",
+  "candidate_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H88-SPR",
+      "title": "Repeated scarp-profile restoration against a drainage/shoreline null",
+      "status": "PROPOSED_UNTESTED",
+      "expected_potential": "First relative priority; moderate but highly uncertain; no numerical DTI projection",
+      "implementation_cost": "Medium; cached inputs only",
+      "new_external_data_required": false
+    },
+    {
+      "rank": 2,
+      "id": "H88-AWA",
+      "title": "Terrain-matched radiometric alteration-width asymmetry",
+      "status": "PROPOSED_UNTESTED",
+      "expected_potential": "Second priority; low-to-moderate, uncertain; no numerical DTI projection",
+      "implementation_cost": "Medium; quantization and background fitting need care",
+      "new_external_data_required": false
+    },
+    {
+      "rank": 3,
+      "id": "H88-CBC",
+      "title": "Conductive basin-breach connectivity against a paleochannel null",
+      "status": "PROPOSED_UNTESTED",
+      "expected_potential": "Third remaining priority; low, uncertain; no numerical DTI projection",
+      "implementation_cost": "Medium-high; coarse-field resolution is a major limitation",
+      "new_external_data_required": false
+    }
+  ],
+  "holdout_dti": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "evidence_class": null,
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "score_estimate": null,
+    "reason": "No hypothesis was fitted and no prediction was emitted; historical HOLDOUT-DTI is not a fixed-file leaderboard forecast."
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_NO_FEATURES_CONSTRUCTED",
+    "max_auc": null,
+    "threshold_auc": 0.9
+  },
+  "registry_comparison": {
+    "surface_rank_correlation": null,
+    "surface_rank_correlation_status": "NOT_RUN_NO_SURFACE",
+    "final_dot_overlap": null,
+    "final_dot_overlap_status": "NOT_RUN_NO_NEW_DOTS",
+    "universal_overlap_for_nonempty_allowed_candidate": 1.0,
+    "overlap_limit": 0.7,
+    "rank_correlation_limit": 0.9,
+    "proof": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "directly_covered_allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "support_definition": "finite prediction > 0; literal forward overlap after 3-px neighbourhood test",
+      "implication": "Every nonempty candidate on the allowed support has forward overlap 1.0, above 0.70; generation is blocked.",
+      "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif",
+      "preflight_record": "registry/mtas88_run_card.json",
+      "preflight_exit_code": 2
+    }
+  },
+  "raster_file": null,
+  "raster_sha256": null,
+  "new_tif_generated": false,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "organizer_acceptance": null,
+    "note": "Archived-format validation is reported separately and is not slot or score approval."
+  },
+  "historical_best_files": {
+    "source_snapshot": "docs/data/focus_sites_20261026.json",
+    "source_snapshot_sha256": "5afe2d385a491cf482a2788b61f2e85b637090299458e0800df32631cc9a89f2",
+    "evidence_class": "USER-REPORTED CLAIM \u2014 NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+    "organizer_receipts_found": 0,
+    "scores_by_site": {
+      "GEMSDOE24": "0.2477",
+      "GEMSDOE25": "0.2600",
+      "GEMSDOE27": "0.2449",
+      "GEMSDOE28": "0.2710",
+      "GEMSDOE30": "0.2600",
+      "GEMSDOE31": "0.2708",
+      "GEMSDOE32": "0.2778",
+      "GEMSDOE33": "0.2632",
+      "GEMSDOE36": "0.2750"
+    },
+    "all_unique_for_new_submission": false,
+    "complete_current_winner_census": false,
+    "source_byte_verification": {
+      "status": "PASS",
+      "method": "GitHub API immutable git tree and blob objects at the historical winner-audit commit; raw bytes base64-decoded and SHA-256 recomputed in this session.",
+      "evidence": "evidence/focus_winner_sources_20261028_a896e29e.json",
+      "evidence_sha256": "ff207607b7d5fc3b27b5e6060d9c4266bf2bc6e2ee6d0bdf13d0fb1fa2ebdfac",
+      "files_checked": 9,
+      "sha256_matches": 9,
+      "organizer_receipts": 0,
+      "limitation": "Only immutable owner-repository bytes verified; scores and organizer acceptance remain unverified."
+    }
+  },
+  "focus_revision_snapshot": {
+    "checked_at_utc": "2026-10-28T11:30:24Z",
+    "source": "GitHub API repository HEAD only; no organizer request",
+    "counts": {
+      "changed": 9,
+      "unchanged": 0,
+      "unknown": 0
+    },
+    "sha256": "e690aac64e34197c415dcca6a82ec93e6eb6b772c17e718d05c02f155e162312",
+    "evidence": "evidence/focus_freshness_20261028_a896e29e.json",
+    "limitations": "All 9 HEADs changed relative to the historical 2026-10-26 audit; does not identify current winners, scores, quota or receipts."
+  },
+  "focus_readme_byte_sample": {
+    "checked_at_utc": "2026-10-28T11:30:26Z",
+    "counts": {
+      "DUPLICATE_STOP": 8,
+      "NOT_CLEARED": 0,
+      "INVALID_RASTER": 0,
+      "NOT_DISCOVERED": 1,
+      "UNKNOWN": 0
+    },
+    "sha256": "9ef681f61666baebe721608521b3875fd61edf9fbcd5438e79ec240ce22636d9",
+    "evidence": "evidence/focus_current_samples_20261028_a896e29e.json",
+    "scope": "First bare docs/downloads/ or docs/research/ TIFF path in the first 16384 README bytes at each pinned HEAD; excludes other paths/URLs and is not a winner search or complete inventory.",
+    "notable_irregularity": "GEMSDOE30 format_pass=false and overlap_3px=1.0; GEMSDOE28 no matching bounded README path was discovered.",
+    "scores": "NOT MEASURED; no holdout rerun, organizer receipt, or leaderboard estimate."
+  },
+  "h33_geometry": {
+    "lineage_evidence": "evidence/h33_lineage_20261028_a896e29e.json",
+    "lineage_sha256": "260247b41d80d262aeca5ca26ef1095aaa5b3d9ce80fd0b64015c1aa7697380b",
+    "independent_collar_evidence": "evidence/h33_collar_20261028_a896e29e.json",
+    "collar_sha256": "34e261c1fed281e11f60e5d9ffa33519f1dafb4778ae5fd2ca822eb0efd00ccb",
+    "d28_pixels": 44090,
+    "solo_pixels": 40199,
+    "h33_pixels": 37654,
+    "d28_to_h33_removed_pixels": 6436,
+    "removed_at_most_1px": 3891,
+    "removed_between_1_and_2px": 2545,
+    "removed_over_2px": 0,
+    "h33_within_2px": 0,
+    "organizer_confirmed_score": null,
+    "causal_mechanism": "Plausible but unproven: removing low-credit near-catalogue points may reduce false-positive mass while the metric max-kernel has diminishing credit for redundant dots; hidden-label effects are unknown."
+  },
+  "archived_research_download": {
+    "status": "EXISTING_RESEARCH_ARTIFACT_NOT_A_NEW_SUBMISSION",
+    "download": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "format_validator_status": "PASS_LOCAL_FORMAT_ONLY",
+    "holdout_dti": {
+      "evidence_class": "HOLDOUT-DTI",
+      "evaluator_version": "gems57-pooled-hide-v2",
+      "withheld_positive_pixels": 22893,
+      "dti": 0.1962369466280304,
+      "ci95": [
+        0.1796859280630384,
+        0.21172913396939536
+      ]
+    },
+    "ok_to_download_for_research_only": true,
+    "ok_to_submit": false
+  },
+  "submission_name": "GEMSDOE88-A896E29E-NO-NEW-SUBMISSION",
+  "submission_note": "A896E29E: DUPLICATE_STOP; dense witness covers all allowed cells. No new TIFF, experiment, or slot. DO NOT SUBMIT.",
+  "submission_note_characters": 114,
+  "identifier_scope": "Audit-only; there is no generated file or slot approval.",
+  "budget": {
+    "geological_experiments_run": 0,
+    "maximum_experiments": 3,
+    "weekly_slots_used": 0,
+    "hours_used_on_experiments": 0
+  },
+  "organizer_confirmed_score": null,
+  "official_source_retrieval": {
+    "freshly_retrieved_this_session": [
+      "GitHub API HEAD and blob endpoints used by the two dated focus evidence snapshots."
+    ],
+    "not_freshly_retrieved_this_session": [
+      "DrivenData problem/leaderboard/data pages",
+      "NLR rules PDF",
+      "USGS GeoDAWN/3DEP",
+      "DOE GDR 1391"
+    ],
+    "historical_source_audit": "knowledge/official-sources-20261025.md; links remain references, not a fresh verification on 2026-10-28."
+  },
+  "input_readiness": {
+    "validation_tier": "RESTORED_AND_HASH_VERIFIED",
+    "research_state_audit": "PASS; 156 source files; input_pins_checked=false",
+    "check_inputs_status": "AUDIT_ERROR",
+    "missing_file": "data/external/dem10_chi_100m_u8.tif",
+    "full_feature_stack_ready": false
+  },
+  "publication": {
+    "active_docs_status": "UNCHANGED; still points to session_92a5fb8c_run_card.json",
+    "canonical_feed_sha256_preserved": {
+      "docs/data/focus-freshness.json": "ade8e611172c136fa3642d136dbb416b931a7874d8a3864f5c6c7db0f1561048",
+      "docs/data/focus-current-samples.json": "71d297ffca8655a58bd45093b790cc92f072020732c9bcf142aaea2dad3c6c85"
+    },
+    "why_preserved": "The active browser receipt pins these historic public feed bytes. The 2026-10-28 snapshots are separate dated artifacts; canonical docs/data was not silently refreshed.",
+    "browser_check_this_session": "NOT_RUN; no rendered site, JS, active status, or canonical feed was changed. Existing active browser receipt remains byte-bound and is verified by pytest.",
+    "scheduled_feed": "Existing Pages workflow refreshes GitHub-only HEAD/sample snapshots for each deployment; no DrivenData scrape."
+  },
+  "submission_name_status": "RESERVED_FOR_AUDIT_ONLY_NOT_FOR_PORTAL",
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "verification": {
+    "review_passes": 3,
+    "preflight_exit_code": 2,
+    "download_audit": "50 published TIFFs; all 50 local research-download checks pass; protocol-eligible=0; decoded exact-duplicate groups=0.",
+    "audits": {
+      "render_decision_check": "PASS",
+      "check_site_normal": "PASS",
+      "check_site_optimized": "PASS",
+      "audit_literal_protocol": "PASS",
+      "audit_executive_metrics": "PASS",
+      "validate_current": "PASS_FORMAT_ONLY_NOT_SLOT_APPROVAL",
+      "validate_release": "PASS_FORMAT_ONLY_NOT_SLOT_APPROVAL",
+      "research_state": "PASS_METADATA_ONLY",
+      "research_state_check_inputs": "AUDIT_ERROR_MISSING_DEM",
+      "dated_focus_freshness_check": "PASS",
+      "dated_focus_current_samples_check": "PASS"
+    },
+    "full_pytest": {
+      "passed": 1065,
+      "skipped": 23,
+      "warnings": 90,
+      "duration_seconds": 280.75,
+      "status": "PASS"
+    },
+    "browser_receipt": "Existing session_92a5fb8c receipt matched current site hashes; no new browser check generated.",
+    "site_guard": "PASS in normal and optimized Python (-O) modes",
+    "source_snapshot": {
+      "file_count": 156,
+      "sha256": "ca587fd21f24305646c8b790c0c4dabed9027114e7d393b827690b7295c9e701"
+    },
+    "historical_winner_source_hashes": "9/9 immutable GitHub artifacts reproduced exact SHA-256 from the pinned 2026-10-26 winner audit."
+  },
+  "review_passes": [
+    {
+      "pass": 1,
+      "focus": "Request, evidence provenance, geology, source access",
+      "result": "Historic champions are user claims, not receipts or valid score estimates; current HEAD observations are bounded; assigned method paragraph absent; official pages were not freshly re-fetched."
+    },
+    {
+      "pass": 2,
+      "focus": "H33 geometry, shared metric, uniqueness and stop conditions",
+      "result": "Two independent pinned-byte geometry methods reproduce the D2.8\u2192SOLO\u2192H33 collar counts; dense 17GEMSDOE witness saturates the allowed domain, so no nonempty candidate can pass the literal 0.70 gate."
+    },
+    {
+      "pass": 3,
+      "focus": "Reproducibility, docs, downloads, negative paths",
+      "result": "Full suite and validation/site guards pass after canonical feeds were restored; 50 research TIFFs pass local format checks but none is protocol eligible; new dated evidence is mirrored; no new site UI receipt claimed."
+    }
+  ],
+  "limitations": [
+    "No new unique TIFF, score, holdout, leakage canary, or competition slot was produced; this is blocked by the binding preflight rather than omitted opportunistically.",
+    "The nine historical scores are unreceipted claims, and 0.3195 versus 0.4413 leaderboard figures supplied in the prompt are not reconciled against a live organizer page.",
+    "All nine site HEADs changed after the historical champion audit; the bounded sample checks only the first cited local TIFF path and is not a current winner search or complete inventory.",
+    "GEMSDOE28 was not discovered by that bounded rule; the GEMSDOE30 sampled file additionally failed local format validation.",
+    "Official organizer pages, rule PDF, current leaderboard, account quota, and source licenses were not freshly checked on 2026-10-28.",
+    "The training feature stack is incomplete; data/external/dem10_chi_100m_u8.tif is absent. No feature/canary/holdout construction was attempted.",
+    "Owner-mirror bytes are hash-pinned but not authenticated against current organizer downloads; no claim is made about organizer acceptance or hidden-label performance.",
+    "Current canonical Pages feed JSON and active review pointer remain historically pinned to preserve the existing browser receipt; the fresh 2026-10-28 snapshots are published as dated evidence."
+  ],
+  "next_step": "Do not generate or submit a TIFF. First resolve the binding dense-witness rule and supply the missing assigned method paragraph; if authorized later, verify sources/permissions, restore all pinned features, preregister one lane, then run visible-only buffered whole-segment holdout and per-feature leakage tests before any candidate placement."
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "gems88.h33-collar-crosscheck.v1",
+  "checked_at_utc": "2026-10-28T11:47:08.861453+00:00",
+  "method": "Read-only Euclidean binary disk dilation of mapped catalogue; no new prediction",
+  "sha256_inputs": {
+    "data/bridge/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+    "data/bridge/existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "data/registry/gems25_d28.tif": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+    "data/registry/gems28_h27_4.tif": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+    "data/registry/h33_education.tif": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+  },
+  "counts": {
+    "d28": 44090,
+    "solo": 40199,
+    "h33": 37654,
+    "d28_minus_h33": 6436,
+    "d28_minus_h33_at_most_1px": 3891,
+    "d28_minus_h33_gt1_at_most_2px": 2545,
+    "d28_minus_h33_over_2px": 0,
+    "d28_minus_solo": 3891,
+    "solo_minus_h33": 2545,
+    "h33_at_most_2px": 0
+  },
+  "h33_subset_of_d28": true,
+  "h33_subset_of_solo": true,
+  "solo_subset_of_d28": true,
+  "organizer_confirmed_score": null,
+  "limitations": "Geometry of owner-mirror bytes only; user-reported scores have no receipt and causality is unproven."
+}
