@@ -1,0 +1,62 @@
+{
+  "schema": "gems88.source-access-audit.v1",
+  "checked_at_utc": "2026-10-28T16:39:26Z",
+  "network_scope": "GitHub API only; DrivenData, NLR, USGS, DOE GDR, and GitHub Pages hosts were not queried in this review.",
+  "fresh_official_source_retrieved": {
+    "organization": "drivendataorg",
+    "repository": "gems-prize-reference-solution",
+    "branch_head_sha": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+    "readme_path": "README.md",
+    "readme_sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+    "immutable_url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+    "verified_statements": [
+      "The reference solution instructs users to download challenge data from the GEMS Prize Challenge website.",
+      "The documented environment offers CPU-only as well as GPU-capable options; the README says GPU training is faster, not mandatory.",
+      "The README recommends trying CUDA, then Apple MPS, then CPU where applicable."
+    ],
+    "not_established": [
+      "The local owner-mirror data bytes are identical to a current authenticated DrivenData download.",
+      "Any local TIFF's organizer acceptance, leaderboard score, or submission-slot eligibility.",
+      "The current public/private leaderboard, competition status, or weekly quota."
+    ]
+  },
+  "manual_review_sources_not_fetched_this_session": [
+    {
+      "purpose": "Official problem, metric, data and submission specification",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "reason": "Host outside the permitted network allowlist; cite as a manual-review link only."
+    },
+    {
+      "purpose": "Current public leaderboard",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "reason": "Host outside the permitted network allowlist; user-provided maxima remain unreconciled."
+    },
+    {
+      "purpose": "Submission quota, receipts and authenticated data",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "reason": "No authenticated competition session; the local restoration script uses owner mirrors."
+    },
+    {
+      "purpose": "Official competition rules",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "reason": "Host outside the permitted network allowlist; earlier local notes are dated 2026-10-25, not a fresh verification."
+    },
+    {
+      "purpose": "Official GeoDAWN data provenance",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "reason": "Host outside the permitted network allowlist; not freshly checked for availability or license terms."
+    },
+    {
+      "purpose": "Official 3DEP data provenance",
+      "url": "https://www.usgs.gov/3d-elevation-program",
+      "reason": "Host outside the permitted network allowlist; not freshly checked for availability."
+    },
+    {
+      "purpose": "DOE GDR INGENIOUS resources",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "reason": "Host outside the permitted network allowlist; not freshly checked for availability or component-level licensing."
+    }
+  ],
+  "official_sources_reference": "knowledge/official-sources-20261025.md records earlier page reads but is not fresh evidence for this review.",
+  "verdict": "LIMITED_SOURCE_VERIFICATION"
+}

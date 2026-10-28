@@ -1,0 +1,198 @@
+{
+  "schema": "gems88.session-run-card.v1",
+  "run_id": "GEMSDOE88-3AD2104F-REVIEW-20261028",
+  "session_branch": "arena/3ad2104f-gemsdoe88",
+  "created_at_utc": "2026-10-28T16:54:45Z",
+  "status": "DUPLICATE_STOP",
+  "review_scope": "Three-pass read-only repository, source, historical-score-claim and current-focus-sample audit. No fitting, candidate placement, submission, or organizer operation.",
+  "hypothesis": "Conditional queue candidate H88-SPR: repeated signed scarp-profile restoration along strike may recover a weak off-catalogue fault better than a no-step model; not assigned or tested.",
+  "mechanism": "No new mechanism was measured. The shared pre-placement gate stopped before feature construction or prediction; H88-SPR remains a conditional hypothesis only.",
+  "named_non_fault_mimic": "Fluvial terrace risers and constant-elevation pluvial shoreline benches.",
+  "candidate_hypotheses": [
+    {
+      "rank": 1,
+      "id": "H88-SPR",
+      "status": "PROPOSED_UNTESTED_NOT_RUN",
+      "expected_potential": "First relative priority; moderate but highly uncertain; no numerical DTI estimate.",
+      "implementation_cost": "Medium; cached layers required, some missing locally.",
+      "new_external_data_required_by_queue": false
+    },
+    {
+      "rank": 2,
+      "id": "H88-AWA",
+      "status": "PROPOSED_UNTESTED_NOT_RUN",
+      "expected_potential": "Second relative priority; low-to-moderate and uncertain; no numerical DTI estimate.",
+      "implementation_cost": "Medium; quantization and matched-background fitting.",
+      "new_external_data_required_by_queue": false
+    },
+    {
+      "rank": 3,
+      "id": "H88-CBC",
+      "status": "PROPOSED_UNTESTED_NOT_RUN",
+      "expected_potential": "Third relative priority; low and uncertain; no numerical DTI estimate.",
+      "implementation_cost": "Medium-high; coarse fields limit physical resolution.",
+      "new_external_data_required_by_queue": false
+    }
+  ],
+  "holdout_dti": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "evidence_class": null,
+    "evaluator_version_if_unblocked": "gems57-pooled-hide-v2",
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "score_estimate": null,
+    "organizer_confirmed_score": null,
+    "reason": "The shared preflight stopped before feature construction; no holdout result or fixed-file score estimate was produced."
+  },
+  "leakage_canaries": {
+    "status": "NOT_RUN_NO_FEATURES_CONSTRUCTED",
+    "features_tested": 0,
+    "maximum_auc": null,
+    "leakage_threshold_auc": 0.90
+  },
+  "registry_comparison": {
+    "surface_rank_correlation": null,
+    "surface_rank_correlation_status": "NOT_RUN_NO_CANDIDATE_SURFACE",
+    "final_dot_overlap_3px": null,
+    "final_dot_overlap_status": "NOT_RUN_NO_NEW_DOTS",
+    "universal_lower_bound_overlap_3px_for_any_nonempty_allowed_candidate": 1.0,
+    "overlap_limit": 0.70,
+    "rank_correlation_limit": 0.90,
+    "preflight": {
+      "script": "scripts/preflight_mtas88.py --gate-generation",
+      "exit_code": 2,
+      "decision": "DUPLICATE_STOP",
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "witness_positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "directly_covered_allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+    },
+    "current_focus_sample": {
+      "head_snapshot": "evidence/focus_freshness_20261028_3ad2104f.json",
+      "artifact_sample": "evidence/focus_current_samples_20261028_3ad2104f.json",
+      "sites_sampled": 9,
+      "duplicate_stop_count": 9,
+      "strict_local_format_fail_count": 2,
+      "scope": "One README-cited raster per site; not an exhaustive inventory, winner search, score audit or organizer check."
+    }
+  },
+  "raster_file": null,
+  "raster_sha256": null,
+  "new_tif_generated": false,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null,
+    "organizer_acceptance": null,
+    "reason": "No new TIFF was written; format results for separately sampled historical artifacts are not candidate validation or submission approval."
+  },
+  "historical_focus_claims": {
+    "evidence_class": "USER-REPORTED CLAIMS; not HOLDOUT-DTI or ORGANIZER-CONFIRMED",
+    "claims_by_site": {
+      "GEMSDOE24": ["0.2477", "0.0859"],
+      "GEMSDOE25": ["0.2600", "0.0742"],
+      "GEMSDOE27": ["0.2449", "0.2190", "0.2250"],
+      "GEMSDOE28": ["0.2710", "0.2649", "0.2707", "0.2708", "0.0217", "0.0206"],
+      "GEMSDOE30": ["0.2600", "0.1462"],
+      "GEMSDOE31": ["0.2708"],
+      "GEMSDOE32": ["0.2778"],
+      "GEMSDOE33": ["0.2632", "0.0963"],
+      "GEMSDOE36": ["0.2750", "0.1647"]
+    },
+    "highest_focus_claim": "0.2778",
+    "organizer_receipts_found": 0,
+    "valid_fixed_file_estimate": null,
+    "leaderboard_maxima_in_user_message": ["0.3195", "0.4413"],
+    "leaderboard_status": "UNRECONCILED_NOT_FRESHLY_RETRIEVED"
+  },
+  "h33_forensics": {
+    "evidence_class": "REGISTRY-MEASUREMENT_NOT_PERFORMANCE",
+    "artifact_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "positive_pixels": 37654,
+    "subset_of_d2_8_and_solo": true,
+    "d2_8_pixels_removed": 6436,
+    "removed_within_2px_of_mapped_catalogue": true,
+    "removed_at_most_1px": 3891,
+    "removed_between_1_and_2px": 2545,
+    "removed_over_2px": 0,
+    "h33_positive_within_2px_of_catalogue": 0,
+    "minimum_nearest_neighbour_px": 2.8284271247461903,
+    "median_catalogue_distance_px": 19.6468827043885,
+    "organizer_confirmed_score": null,
+    "causal_score_explanation": "UNPROVEN; collar pruning/thinning may reduce redundant or low-value false-positive mass, but hidden-label credit and recall effects are unknown."
+  },
+  "data_readiness": {
+    "validation_restore": "PASS; SHA-pinned owner-mirror grid/catalogue/registry inputs present",
+    "training_features_present": false,
+    "dem10_chi_100m_u8_present": false,
+    "research_state_check_inputs": "AUDIT_ERROR: missing data/external/dem10_chi_100m_u8.tif",
+    "owner_mirrors_authenticated_by_organizer": false,
+    "official_terms_freshly_checked": false
+  },
+  "official_source_retrieval": {
+    "freshly_retrieved": [
+      "drivendataorg/gems-prize-reference-solution README at aebe92f7c8a990f0e3443451b7a825d9afd6336b; SHA-256 cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239"
+    ],
+    "not_freshly_retrieved": [
+      "DrivenData competition pages, leaderboard, data page and submission quota",
+      "NLR rules PDF",
+      "USGS GeoDAWN and 3DEP pages",
+      "DOE GDR 1391"
+    ],
+    "evidence_file": "evidence/session_3ad2104f_source_access.json"
+  },
+  "submission_name": "GEMSDOE88-3AD2104F-NO-FILE-DUPLICATE-STOP",
+  "submission_name_status": "RESERVED_ONLY_NO_FILE_NOT_FOR_PORTAL",
+  "submission_note": "3AD2104F: dense witness blocks every nonempty candidate; no score, TIFF, experiment or slot. DO NOT SUBMIT.",
+  "submission_note_characters": 107,
+  "verdict": "negative",
+  "decision": "DUPLICATE_STOP",
+  "ok_to_download_new_file": false,
+  "ok_to_download_research_artifacts": true,
+  "download_scope": "Existing, independently audited artifacts may be downloaded for research only; this session produced no candidate file.",
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "weekly_slots_used": 0,
+  "experiments_run": 0,
+  "experiment_budget_max": 3,
+  "experiment_hours_used": 0,
+  "organizer_confirmed_score": null,
+  "verification": {
+    "pytest": {
+      "command": ".venv/bin/python -m pytest -q",
+      "status": "PASS",
+      "passed": 1108,
+      "skipped": 23,
+      "warnings": 115,
+      "duration_seconds": 265.47
+    },
+    "site_guard_normal": "PASS",
+    "site_guard_optimized": "PASS",
+    "render_decision_check": "PASS",
+    "research_download_audit": {
+      "status": "PASS",
+      "published_tiffs": 50,
+      "local_research_format_passes": 50,
+      "protocol_eligible": 0
+    },
+    "executive_metrics_audit": "PASS",
+    "freshness_snapshot_offline_check": "PASS",
+    "current_sample_offline_check": "PASS",
+    "research_state_metadata_audit": "PASS; input bytes not fully checked",
+    "research_state_check_inputs": "EXPECTED_FAIL_CLOSED: missing data/external/dem10_chi_100m_u8.tif",
+    "generation_preflight": "EXPECTED_EXIT_2_DUPLICATE_STOP",
+    "require_submit_gates": {
+      "research_state": "EXPECTED_EXIT_2",
+      "validate_current": "EXPECTED_EXIT_2",
+      "validate_release": "EXPECTED_EXIT_2"
+    }
+  },
+  "next_step": "Do not build or submit until the shared protocol resolves the full-support dense-witness contradiction; then use one assigned lane, authenticated data, buffered holdout and single-feature canaries before a separate selector decision."
+}
