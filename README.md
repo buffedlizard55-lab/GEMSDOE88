@@ -192,6 +192,18 @@ No new TIFF was generated and nothing is cleared for download-to-submit. The sha
 - **Stale and misattributed figures.** `0.3195` matches a 2026-10-04 snapshot value. `0.4413` is the rank-1 public score of a non-GEMSDOE participant. `0.2778` (H33) has no organizer receipt. Public top-50 range (checked 2026-10-25): 0.4413 down to 0.2818.
 - **Historical access report:** that review reported a GitHub token-status warning. PR #145 is now merged and this session's GitHub operations work; no credential request is needed. Its original access note remains in the dated review, section 8.
 
+### Session focus9 — focus-site review, 2026-10-28 (branch `arena/557d884e-gemsdoe88`)
+
+**Standing request:** the 2026-10-28 instructions are recorded (condensed, operative text) in [`USER_PROMPT_20261028.md`](USER_PROMPT_20261028.md). Read it, with `PROMPT.md` and `AGENTS.md`, at the start of each session.
+
+- **Result:** no file is cleared to submit. `ok_to_submit: false`, `DOWNLOAD FOR RESEARCH` only, `0` slots, `0` experiments, no new TIFF. The shared generation gate returns `DUPLICATE_STOP` (exit 2).
+- **Why the gate blocks everything:** the dense `17GEMSDOE` witness is positive on all `5,106,385` allowed cells, so every nonempty candidate scores `1.0000` against the `0.70` limit. This was re-measured in [`scripts/audit_gate_vacuity_20261028.py`](scripts/audit_gate_vacuity_20261028.py). Changing the gate is an owner decision.
+- **Highest user-reported focus file:** GEMSDOE32 `h33-…-e5eb6e7e-zeros`, **0.2778 (USER-REPORTED)**. Its bytes match the pinned H33 raster. It is an exact subset of the D2.8 lineage with 2,545 near-catalogue dots removed. No HOLDOUT-DTI exists for it.
+- **Exact metric identity:** `DTI = TP_w / (0.2·TP_w + 0.2·FP_w + 0.8·|G|)`, so a dot is worth keeping iff its credit share exceeds `0.2·DTI`. Verified against the vendored metric in [`tests/test_focus9_metric_identity_20261028.py`](tests/test_focus9_metric_identity_20261028.py).
+- **Live leaderboard (2026-10-28):** rank 1 is `0.4544`. The prompt's `0.4413` is absent from the top 50, and `0.3195` is rank 26. See [`evidence/leaderboard_snapshot_20261028.json`](evidence/leaderboard_snapshot_20261028.json).
+- **Full review, executive table and irregularities:** [`research/session-focus9-20261028-review.md`](research/session-focus9-20261028-review.md) · run card [`registry/session_focus9_20261028_run_card.json`](registry/session_focus9_20261028_run_card.json) · live file audit [`evidence/focus_top_files_20261028.json`](evidence/focus_top_files_20261028.json) · official sources [`knowledge/official-sources-20261028.md`](knowledge/official-sources-20261028.md).
+- **Decisions requested:** (1) how to read the dense witness in the gate; (2) the lane paragraph the protocol refers to.
+
 ### Remaining limitations
 
 The literal uniqueness condition must become satisfiable under an explicitly authorized **shared** protocol before another candidate is constructed; no exemption is authorized here. New-model hide-and-recover and leakage tests are therefore not run. The current leaderboard, rules, weekly allowance, organizer input authentication and receipts cannot be verified through this session's permitted hosts. No credentials are requested. Full data caches are ignored, not committed; restore commands reconstruct them. Static Pages serves results, not account-authenticated uploads or training jobs.
