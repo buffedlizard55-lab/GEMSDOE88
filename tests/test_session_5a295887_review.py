@@ -32,6 +32,9 @@ def test_negative_run_card_mirrors_and_current_measurements():
     assert proof['directly_covered_allowed_pixels'] == proof['allowed_pixels'] == 5_106_385
     assert proof['uncovered_allowed_pixels'] == 0 and proof['directly_saturated'] is True
     assert card['budget']['geological_experiments_run'] == card['budget']['weekly_slots_used'] == 0
+    assert card['verification']['review_passes'] == 3
+    assert card['verification']['full_pytest']['passed'] >= 1
+    assert card['verification']['browser_status'].startswith('PASS')
     assert len(card['submission_note']) == card['submission_note_characters'] <= 140
     assert [r['id'] for r in card['ranked_conditional_hypotheses']] == ['H88-SPR', 'H88-AWA', 'H88-CBC']
     assert card['focus_readme_byte_sample']['counts']['DUPLICATE_STOP'] == 9

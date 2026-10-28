@@ -166,12 +166,22 @@
     "unresolved_hash_fields": 0
   },
   "verification": {
-    "review_passes": "IN_PROGRESS",
+    "review_passes": 3,
     "guard_exit_code": 2,
     "browser_evidence": "evidence/session_5a295887_browser_check.json",
-    "full_pytest": null,
-    "browser_status": "PENDING",
-    "normal_and_optimized_site_guard": "PENDING"
+    "full_pytest": {
+      "passed": 1079,
+      "skipped": 23,
+      "warnings": 90,
+      "duration_seconds": 303.21,
+      "scope": "integrated branch after main PR #218"
+    },
+    "browser_status": "PASS: Chromium desktop/mobile, snapshot mismatch/expiry and clicked research TIFF SHA",
+    "normal_and_optimized_site_guard": "PASS",
+    "download_audit": "50 archived research TIFFs pass local checks; 0 protocol eligible",
+    "node_freshness_tests": "6 passed",
+    "integrated_main": "50ebf244499e349ec144062366fe8773ea9e02b1",
+    "skipped_tests_note": "23 skipped tests require unavailable optional or historical inputs; none is a scientific experiment in this session."
   },
   "limitations": [
     "No new unique TIFF, scientific holdout, leakage canary or competition slot was produced.",
