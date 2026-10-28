@@ -7,6 +7,7 @@ primary panels. Historical HTML remains in a closed, explicitly marked archive.
 from __future__ import annotations
 
 import argparse
+from datetime import datetime
 import hashlib
 from html import escape
 import json
@@ -25,7 +26,7 @@ QUEUE_START = "<!-- RESEARCH-QUEUE:START -->"
 QUEUE_END = "<!-- RESEARCH-QUEUE:END -->"
 
 
-def read_inputs(root: Path) -> tuple[dict, dict, dict, dict, dict]:
+def read_inputs(root: Path) -> tuple[dict, dict, dict, dict, dict, dict, dict]:
     current = json.loads((root / "docs/data/current_release.json").read_text())
     stop = json.loads((root / "registry/mtas88_run_card.json").read_text())
     audit = json.loads((root / "docs/data/download_audit.json").read_text())
@@ -36,6 +37,26 @@ def read_inputs(root: Path) -> tuple[dict, dict, dict, dict, dict]:
         raise ValueError("sampled audit evidence and public copy differ")
     sampled = json.loads(sampled_bytes)
     check_sample_audit(sampled)
+    review_ref = Path(status.get("current_review", ""))
+    previous_ref = Path(status.get("previous_review", ""))
+    if (review_ref.parent != Path("data") or review_ref.suffix != ".json"
+            or previous_ref.parent != Path("data") or previous_ref.suffix != ".json"
+            or not (root / "docs" / previous_ref).is_file()):
+        raise ValueError("review references must be public data cards")
+    review = json.loads((root / "docs" / review_ref).read_text())
+    review_document = Path(review.get("review_document", ""))
+    if (review_document.parent != Path("research") or review_document.suffix != ".md"
+            or not (root / "docs" / review_document).is_file()
+            or review.get("status") != "DUPLICATE_STOP" or review.get("verdict") != "negative"
+            or review.get("ok_to_submit") is not False or review.get("new_tif_generated") is not False
+            or not isinstance(review.get("created_at_utc"), str)):
+        raise ValueError("current review is missing or contradicts the negative decision")
+    try:
+        created = datetime.fromisoformat(review["created_at_utc"].replace("Z", "+00:00"))
+        if created.utcoffset() is None or review["created_at_utc"][10:11] != "T":
+            raise ValueError("review timestamp must have an explicit timezone")
+    except ValueError as exc:
+        raise ValueError("current review has an invalid ISO timestamp") from exc
     verdict = focus["summary_verdict"]
     if not (
         current["ok_to_submit"] is False and current["ok_to_download"] is True
@@ -57,7 +78,7 @@ def read_inputs(root: Path) -> tuple[dict, dict, dict, dict, dict]:
         with (root / relative).open("rb") as stream:
             if hashlib.file_digest(stream, "sha256").hexdigest() != current[digest_key]:
                 raise ValueError("canonical downloadable bytes disagree with release card")
-    return current, stop, audit, focus, sampled
+    return current, stop, audit, focus, sampled, status, review
 
 
 def focus_sites_panel(focus: dict, sampled: dict) -> str:
@@ -151,6 +172,8 @@ def focus_sites_panel(focus: dict, sampled: dict) -> str:
         'This is a limited sample, not necessarily the latest file, the highest scorer, a full registry check or a leaderboard estimate. '
         '<strong>No file below is approved for submission.</strong> '
         '<a href="data/focus-current-samples.json">Dated machine evidence ↗</a></p>'
+        '<p>The local check counts nonfinite pixels inside and outside the footprint separately from finite values outside [0, 1]. '
+        'An exterior NaN, local failure or duplicate is <strong>not</strong> proof of a portal rejection; the originally uploaded bytes and receipt are unavailable.</p>'
         '<p data-current-samples-status role="status" aria-live="polite">Sample audit unavailable until the dated snapshot loads. DO NOT SUBMIT.</p>'
         '<div class="table-scroll"><table><thead><tr><th scope="col">Site / revision</th>'
         '<th scope="col">README-cited file · research only</th><th scope="col">Local format</th>'
@@ -188,7 +211,11 @@ def inventory(audit: dict) -> str:
 
 
 def render(root: Path, kind: str) -> str:
-    current, stop, audit, focus, sampled = read_inputs(root)
+    current, stop, audit, focus, sampled, status, review = read_inputs(root)
+    review_date = escape(review["created_at_utc"][:10])
+    review_path = escape(review["review_document"], quote=True)
+    review_card = escape(status["current_review"], quote=True)
+    previous_card = escape(status["previous_review"], quote=True)
     queue = inspect_queue(root)
     inspect_legacy(root)  # metadata can be public through legacy URLs as well
     first_choice = queue["proposals"][0]
@@ -201,13 +228,13 @@ def render(root: Path, kind: str) -> str:
     title = "Research download.<br>Not cleared to submit." if kind == "overview" else "How submission works.<br>Why it is blocked today."
     hero = f'''<section class="decision-hero" id="mtas-review" aria-labelledby="decision-title">
 <div class="wrap" id="autonomous-review">
-<div class="decision-kicker">Review · 2026-10-27 · NO FILE APPROVED · 0/9 CLEARED IN HISTORICAL AUDIT</div>
+<div class="decision-kicker">Review · {review_date} · NO FILE APPROVED · 0/9 CLEARED IN HISTORICAL AUDIT</div>
 <div class="decision-grid"><div>
 <h1 id="decision-title">{title}</h1>
 <p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule. The pinned nine-site audit found no qualifying candidate; it is not a current census. No old prediction was copied or renamed as a new submission.</p>
 <p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="research/session-92a5fb8c-review.md">Current three-pass review</a> · <a href="data/session_92a5fb8c_run_card.json">Session 92a5fb8c negative run card</a> · <a href="data/session_92002f70_run_card.json">Prior 92002f70 run card</a> · <a href="data/session_12f18097_run_card.json">Prior 12f18097 run card</a> · <a href="data/session_2b5a8383_run_card.json">Prior 2b5a8383 run card</a> · <a href="data/pr209_pr210_withdrawal_20261027.json">PR #209/#210 withdrawal</a> · <a href="data/focus_sites_20261026.json">Historical 9-site audit JSON</a>.</p>
+<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="{review_path}">Current three-pass review</a> · <a href="{review_card}">Current negative run card</a> · <a href="{previous_card}">Previous run card</a> · <a href="data/session_92002f70_run_card.json">Prior 92002f70 run card</a> · <a href="data/session_12f18097_run_card.json">Prior 12f18097 run card</a> · <a href="data/session_2b5a8383_run_card.json">Prior 2b5a8383 run card</a> · <a href="data/pr209_pr210_withdrawal_20261027.json">PR #209/#210 withdrawal</a> · <a href="data/focus_sites_20261026.json">Historical 9-site audit JSON</a>.</p>
 </div><aside class="decision-download" aria-label="Canonical archived research download">
 <div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
 <h2>Download the audited TIFF</h2>
@@ -312,8 +339,9 @@ def submission_summary_table(root: Path, tif: str) -> str:
             '<td><span class="tag bad">SUBMIT: NO — DO NOT SUBMIT</span><br>'
             '<span class="micro">Download for research: YES</span></td></tr>'
         )
-    return ('''<section class="decision-focus" id="submission-summary-table"><div class="wrap">
-<div class="section-heading"><div><div class="kicker">Executive submission &amp; uniqueness summary</div><h2>Files, recorded holdout evidence and submission verdict</h2></div><a href="data/session_92a5fb8c_run_card.json">Current negative run card ↗</a></div>
+    review_card = escape(json.loads((root / "docs/status.json").read_text())["current_review"], quote=True)
+    return (f'''<section class="decision-focus" id="submission-summary-table"><div class="wrap">
+<div class="section-heading"><div><div class="kicker">Executive submission &amp; uniqueness summary</div><h2>Files, recorded holdout evidence and submission verdict</h2></div><a href="{review_card}">Current negative run card ↗</a></div>
 <p class="focus-intro"><strong>No file is approved for submission.</strong> These are historical, fold-specific <strong>HOLDOUT-DTI</strong> measurements of a method, not a score of the downloaded TIFF on hidden labels or a predicted leaderboard result. Confidence intervals are conditional on the catalogue and fitted folds. The user-reported historical values have no submission receipt. The universal witness alone rejects these files; it is not a complete raster census of all 104 sites.</p>
 <div class="table-scroll"><table class="focus-table"><thead><tr>
 <th>File to download (research only)</th><th>Recorded method holdout (not a leaderboard estimate)</th><th>Unique vs all 104 listed GEMSDOE sites?</th><th>OK to download / submit?</th>

@@ -1,8 +1,13 @@
 """Fail-closed GeoTIFF packaging for a potential GEMS submission.
 
-The writer never clips, fills, or otherwise repairs model output.  It validates
+The writer never clips, fills, or otherwise repairs model output. It validates
 in memory, writes to private temporary paths, validates the on-disk TIFF and ZIP,
-and only then atomically replaces the requested outputs.  Local format validity
+and then publishes each output with an atomic no-replace operation. The TIFF is
+published last; this writer never silently overwrites an existing output at publication.
+Multiple file names cannot be published as one atomic transaction. On failure,
+already-published auxiliary links are left in place, never unlinked by name: this
+avoids deleting another writer's replacement during a rollback race. Incomplete
+outputs require reconciliation before reusing that name. Local format validity
 is not a uniqueness clearance or organizer acceptance.
 """
 from __future__ import annotations
@@ -115,23 +120,30 @@ def write_submission(path, prediction, sample, footprint, *, note, name,
             approved_for_weekly_slot=False,
             promoted=False,
             submission_slots_used=0,
+            publication='individual no-replace links; verify TIFF and ZIP hashes together before use',
             status='locally validated within separately recorded inventory scope; not organizer acceptance or slot approval',
             metadata=metadata or {},
         )
         tmp_receipt.write_text(json.dumps(receipt, indent=2, allow_nan=False) + '\n', encoding='utf-8')
 
-        # Stage auxiliary files first and commit the TIFF last as the primary artifact.
+        # All temporary files live beside their destinations. A hard link is an
+        # atomic create-if-absent on the same filesystem; unlike os.replace(),
+        # it cannot clobber a file created after the earlier existence check.
+        # Publish auxiliaries first and the primary TIFF last. If hard links are
+        # unsupported, fail closed rather than fall back to a racy replacement.
         for source, destination in ((tmp_zip, zip_path), (tmp_receipt, receipt_path), (tmp_tif, path)):
-            os.replace(source, destination)
+            os.link(source, destination, follow_symlinks=False)
             committed.append(destination)
         return receipt
-    except Exception:
-        # A failed validation or serialization must never leave a new partial deliverable.
-        for destination in committed:
-            try:
-                destination.unlink()
-            except FileNotFoundError:
-                pass
+    except Exception as exc:
+        # POSIX has no portable unlink-if-inode-matches operation. Even checking
+        # st_dev/st_ino immediately before unlinking a public name has a race:
+        # another writer can replace that name between the two syscalls. Keep
+        # any published auxiliaries instead of potentially deleting its file.
+        # This is not an atomic three-file transaction; a failed attempt may
+        # leave an orphan ZIP/receipt that must be reconciled before reuse.
+        if committed and hasattr(exc, 'add_note'):
+            exc.add_note('Publication incomplete; auxiliary paths may remain. Do not use or retry this name until reconciled.')
         raise
     finally:
         for temporary in (tmp_tif, tmp_zip, tmp_receipt):

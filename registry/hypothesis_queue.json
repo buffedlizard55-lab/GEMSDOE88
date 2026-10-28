@@ -4,7 +4,7 @@
   "review_branch": "arena/0b582cf7-gemsdoe88",
   "source_snapshot": {
     "files": 156,
-    "sha256": "ca587fd21f24305646c8b790c0c4dabed9027114e7d393b827690b7295c9e701"
+    "sha256": "a71a03cbe235a9a4803679c7b9eef9036cfd6df4e4c808944a40aa3abbab3367"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -248,5 +248,17 @@
       "sha256": "79d5d8605b2df39d345c1fc5a40682d6f69c2c1946c4bc337441901fcf0f5d3b"
     }
   },
-  "source_review_note": "In-place shared uniqueness/validator integrity fixes, metric prose-only correction, and local sampled-portfolio fail-closed fix reviewed in session 92a5fb8c; no lane generated. Targeted parallel PR #214 fixes attributed in vendor pins."
+  "source_review_note": "In-place shared uniqueness/validator integrity fixes, metric prose-only correction, and local sampled-portfolio fail-closed fix reviewed in session 92a5fb8c; no lane generated. Targeted parallel PR #214 fixes attributed in vendor pins.",
+  "source_snapshot_review_20261028_60f326dc": {
+    "prior_snapshot": {
+      "files": 156,
+      "sha256": "ca587fd21f24305646c8b790c0c4dabed9027114e7d393b827690b7295c9e701"
+    },
+    "change": "Reviewed the sole model-source diff: shared submission_writer per-path atomic no-replace publication, TIFF last, and no unsafe unlink of public names on failure. The three-file set is not atomic and partial auxiliaries may remain. No features, hypotheses, metric, evaluator or gate changed.",
+    "irregularity": "IR-88-60F326DC-01",
+    "new_snapshot": {
+      "files": 156,
+      "sha256": "a71a03cbe235a9a4803679c7b9eef9036cfd6df4e4c808944a40aa3abbab3367"
+    }
+  }
 }
