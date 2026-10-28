@@ -1908,3 +1908,7 @@ Owner GitHub mirrors restore hash-pinned input bytes via `scripts/restore_inputs
 ### Reproducible review — session f34477d2
 
 [Three-pass review and scientific correction](research/session-f34477d2-review.md) · [negative run card](registry/session_f34477d2_run_card.json). Shared generation preflight rerun on restored validation inputs; no new TIFF or slot. Existing DO NOT SUBMIT decision unchanged.
+
+### 2026-10-28 independent preflight review
+
+The literal dense-witness stop was reproduced; no new file or submission is approved. See the [three-pass review](research/session-7967c036-review.md) and [negative run card](registry/session_7967c036_run_card.json).
