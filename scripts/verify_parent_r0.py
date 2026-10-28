@@ -22,7 +22,9 @@ OUT = ROOT / "registry" / "r0_verification.json"
 PARENT_ID = "h33-h33-2-b2"
 
 
-def main() -> int:
+def main(out: Path = OUT) -> int:
+    """Verify the historical lineage; callers may redirect the derived report."""
+    out = Path(out)
     verified = bpv.verify_manifest(MANIFEST)
     lineage = bpv.rebuild_r0_from_lineage(verified)
 
@@ -91,14 +93,15 @@ def main() -> int:
         and report["parent_geometry"]["zero_catalogue_mass"]
         and report["parent_geometry"]["n_within_2px"] == 0
     )
-    OUT.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(report, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     summary = {
         "ok": report["ok"],
         "verified_inputs": len(pins),
         "parent_dots": int(r0.sum()),
         "zeros_sha256": lineage["rebuilt_zeros_sha256"],
         "nan_sha256": lineage["rebuilt_nan_sha256"],
-        "report": str(OUT.relative_to(ROOT)),
+        "report": str(out.relative_to(ROOT) if out.is_relative_to(ROOT) else out),
     }
     print(json.dumps(summary, indent=2))
     return 0 if report["ok"] else 1

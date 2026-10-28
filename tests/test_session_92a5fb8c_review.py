@@ -1,5 +1,4 @@
-"""The current review publishes a negative, source-bound decision and receipt."""
-import hashlib
+"""The predecessor review remains a dated, source-bound negative record."""
 import json
 from pathlib import Path
 
@@ -27,11 +26,12 @@ def test_negative_card_mirrors_and_bindings():
     assert card['focus_readme_byte_sample']['counts']['DUPLICATE_STOP'] == 8
     assert card['focus_readme_byte_sample']['counts']['NOT_DISCOVERED'] == 1
     status = json.loads((ROOT / 'docs/status.json').read_text())
-    assert status['current_review'] == 'data/session_92a5fb8c_run_card.json'
+    assert status['previous_review'] == 'data/session_92a5fb8c_run_card.json'
+    assert status['current_review'] == 'data/session_5a295887_run_card.json'
     assert status['ok_to_submit'] is status['approved_for_weekly_slot'] is False
 
 
-def test_browser_and_review_mirrors_bind_current_bytes():
+def test_historical_browser_and_review_mirrors_preserve_original_receipt():
     card = json.loads((ROOT / 'registry/session_92a5fb8c_run_card.json').read_text())
     path = ROOT / card['verification']['browser_evidence']
     raw = path.read_bytes()
@@ -42,6 +42,9 @@ def test_browser_and_review_mirrors_bind_current_bytes():
     sample = receipt['focus_current_samples']
     assert sample['row_count'] == 9 and all(sample[key] is True for key in (
         'fresh_snapshot_pass', 'missing_feed_fail_closed', 'head_mismatch_fail_closed', 'expired_feed_fail_closed'))
+    # Mutable pages have since changed. Preserve the old hashes as dated
+    # evidence; only the successor receipt may attest to today's page bytes.
     for rel, digest in receipt['source_sha256'].items():
-        assert hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() == digest, rel
+        assert rel.startswith('docs/') and len(digest) == 64
+        int(digest, 16)
     assert (ROOT / 'research/session-92a5fb8c-review.md').read_bytes() == (ROOT / 'docs/research/session-92a5fb8c-review.md').read_bytes()

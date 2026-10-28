@@ -193,8 +193,8 @@ def test_current_run_card_and_fresh_browser_receipt_match_their_mirrors_and_byte
     assert proof['covered_allowed_fraction'] == 1.0 and proof['overlap_limit'] == 0.7
     assert len(card['submission_note']) == card['submission_note_characters'] <= 140
     status = json.loads((ROOT / 'docs/status.json').read_text())
-    assert status['current_review'] == 'data/session_92a5fb8c_run_card.json'
-    assert status['previous_review'] == 'data/session_92002f70_run_card.json'
+    assert status['current_review'] == 'data/session_5a295887_run_card.json'
+    assert status['previous_review'] == 'data/session_92a5fb8c_run_card.json'
     receipt_path = Path(card['verification']['browser_evidence'])
     receipt_bytes = (ROOT / receipt_path).read_bytes()
     assert receipt_bytes == (ROOT / 'docs/data' / receipt_path.name).read_bytes()
@@ -228,7 +228,7 @@ def test_site_guard_rejects_stale_review_or_unsafe_review_path(tmp_path, optimiz
     for source in (ROOT / 'docs').iterdir():
         if source.name == 'index.html' and corruption == 'stale-date':
             original = source.read_text()
-            changed = original.replace('Review · 2026-10-27', 'Review · 2026-10-26')
+            changed = original.replace('Review · 2026-10-28', 'Review · 2026-10-27')
             assert changed != original
             (docs / source.name).write_text(changed)
         elif source.name == 'status.json' and corruption == 'escaped-review':

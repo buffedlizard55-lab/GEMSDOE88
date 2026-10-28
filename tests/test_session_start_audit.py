@@ -2,8 +2,11 @@
 from decimal import Decimal
 import json
 from pathlib import Path
+import subprocess
+import sys
 
-from audit_session_start import prune_coverage, radius
+import audit_session_start as startup
+from audit_session_start import hash_relationships, prune_coverage, radius
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -30,6 +33,62 @@ def test_existing_alias_covers_arm_without_hash_or_overlap_thresholds():
     coverage = prune_coverage([row("p1px"), row("3")])
     assert all(c["do_not_build"] for c in coverage.values())
     assert coverage["3"]["existing_ids"] == ["arm-3"]
+
+
+def test_help_never_runs_or_overwrites_the_historical_audit():
+    historical = ROOT / 'evidence/session_20261023_prune_stop.json'
+    before = historical.read_bytes()
+    result = subprocess.run([sys.executable, str(ROOT / 'scripts/audit_session_start.py'), '--help'],
+                            cwd=ROOT, capture_output=True, text=True)
+    assert result.returncode == 0 and 'usage:' in result.stdout
+    assert historical.read_bytes() == before
+
+
+def test_failed_startup_clears_any_stale_cached_pass(monkeypatch, tmp_path):
+    cache = tmp_path / '.cache'
+    cache.mkdir()
+    report = cache / 'session-start-audit-current.json'
+    report.write_text('{"status":"old PASS"}')
+    monkeypatch.setattr(startup, 'ROOT', tmp_path)
+    monkeypatch.setattr(startup.verify_parent_r0, 'main', lambda output: 1)
+    assert startup.main([]) == 1
+    assert not report.exists()
+
+
+def test_hash_alias_within_one_record_is_not_a_cross_record_duplicate():
+    rows = [
+        {"id": "same-file", "sha256": "a" * 64, "sha256_zeros": "a" * 64},
+        {"id": "different-files", "sha256": "b" * 64, "sha256_zeros": "c" * 64},
+    ]
+    audit = hash_relationships(rows)
+    assert audit["all_hash_values_distinct"] is False
+    assert audit["different_rows_have_distinct_hashes"] is True
+    assert [row["id"] for row in audit["same_row_primary_fallback_aliases"]] == ["same-file"]
+    assert audit["cross_row_duplicates"] == []
+
+
+def test_primary_reference_must_match_the_full_hash_and_bad_fields_fail_closed():
+    primary = 'a' * 64
+    good = hash_relationships([{'id': 'ref', 'sha256': primary,
+                                'sha256_zeros': 'zeros-variant-is-primary:' + 'a' * 16}])
+    assert good['all_hash_fields_resolved'] is True
+    assert good['different_rows_have_distinct_hashes'] is True
+    assert good['same_row_primary_fallback_aliases'][0]['representation'] == 'primary-reference'
+    for value in ('zeros-variant-is-primary:' + 'b' * 16, 'not-a-hash'):
+        bad = hash_relationships([{'id': 'bad', 'sha256': primary, 'sha256_zeros': value}])
+        assert bad['all_hash_fields_resolved'] is False
+        assert bad['different_rows_have_distinct_hashes'] is False
+        assert bad['unresolved_hash_fields'][0]['field'] == 'sha256_zeros'
+
+
+def test_hash_reuse_across_rows_still_fails_even_with_duplicate_ids_or_swapped_columns():
+    rows = [
+        {"id": "reused-id", "sha256": "a" * 64, "sha256_zeros": ""},
+        {"id": "reused-id", "sha256": "b" * 64, "sha256_zeros": "a" * 64},
+    ]
+    audit = hash_relationships(rows)
+    assert audit["different_rows_have_distinct_hashes"] is False
+    assert audit["cross_row_duplicates"][0]["row_indices"] == [0, 1]
 
 
 def test_recorded_session_stop_is_not_a_submission_receipt():
