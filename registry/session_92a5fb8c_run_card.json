@@ -141,7 +141,13 @@
     "browser_status": "PASS: local Chromium desktop/mobile, historical comparison, current sample feed, fail-closed states and clicked research TIFF SHA",
     "node_freshness_tests": "6 passed",
     "normal_and_optimized_site_guard": "PASS",
-    "skipped_tests_note": "23 skipped tests depend on unavailable optional or historical inputs; no scientific experiment was run."
+    "skipped_tests_note": "23 skipped tests depend on unavailable optional or historical inputs; no scientific experiment was run.",
+    "post_main_integration_tests": {
+      "passed": 115,
+      "warnings": 6,
+      "upstream_main": "2c2a81419737b3f125a0cff2899a2014288524ba",
+      "upstream_pull_request": 215
+    }
   },
   "limitations": [
     "No new unique TIFF, holdout, canary, or competition slot was produced.",
