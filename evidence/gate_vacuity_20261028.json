@@ -1,0 +1,101 @@
+{
+  "schema": "gems88.gate-vacuity.v1",
+  "captured_utc": "2026-10-28T16:36:59+00:00",
+  "evidence_class": "REGISTRY-MEASUREMENT (local SHA-pinned rasters); no score, no generation",
+  "footprint_cells": 5167373,
+  "catalogue_fault_cells": 60988,
+  "allowed_cells": 5106385,
+  "witness": {
+    "path": "data/registry/dense_17gemdoe.tif",
+    "sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "positive_fraction_on_allowed_cells": 1.0,
+    "min_on_allowed_cells": 0.0004625781439244747,
+    "max_on_allowed_cells": 0.984115719795227,
+    "reading": "every allowed cell is positive, so 'dots within 3 px of any nonzero cell' = 1.0 for any nonempty dot set"
+  },
+  "lineage": {
+    "H33_GEMSDOE32": {
+      "path": "data/registry/h33_education.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "dots_in_footprint": 37654,
+      "dots_outside_footprint": 0,
+      "min_distance_to_catalogue_px": 2.23606797749979,
+      "dots_within_2px_of_catalogue": 0,
+      "subset_check_H33_in_this": null,
+      "H33_within_3px_of_this": null,
+      "this_within_3px_of_H19_5": 1.0
+    },
+    "SOLO_D2_8_GEMSDOE28": {
+      "path": "data/registry/gems28_h27_4.tif",
+      "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "dots_in_footprint": 40199,
+      "dots_outside_footprint": 0,
+      "min_distance_to_catalogue_px": 1.4142135623730951,
+      "dots_within_2px_of_catalogue": 2545,
+      "subset_check_H33_in_this": {
+        "H33_dots_inside": 37654,
+        "H33_dots_total": 37654
+      },
+      "H33_within_3px_of_this": 1.0,
+      "this_within_3px_of_H19_5": 1.0
+    },
+    "D2_8_GEMSDOE25": {
+      "path": "data/registry/gems25_d28.tif",
+      "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+      "dots_in_footprint": 44090,
+      "dots_outside_footprint": 0,
+      "min_distance_to_catalogue_px": 1.0,
+      "dots_within_2px_of_catalogue": 6436,
+      "subset_check_H33_in_this": {
+        "H33_dots_inside": 37654,
+        "H33_dots_total": 37654
+      },
+      "H33_within_3px_of_this": 1.0,
+      "this_within_3px_of_H19_5": 1.0
+    },
+    "H19_5_GEMSDOE19": {
+      "path": "data/registry/gems19_h19_5.tif",
+      "sha256": "ef2ae808eb7179861b9f1ff753fd3ded625ace7b7c158e29cec45bbd8fa3cfaa",
+      "dots_in_footprint": 121131,
+      "dots_outside_footprint": 0,
+      "min_distance_to_catalogue_px": 1.0,
+      "dots_within_2px_of_catalogue": 17326,
+      "subset_check_H33_in_this": {
+        "H33_dots_inside": 37654,
+        "H33_dots_total": 37654
+      },
+      "H33_within_3px_of_this": 1.0,
+      "this_within_3px_of_H19_5": null
+    },
+    "GEMSDOE36_ANDERSON_PINN": {
+      "path": "data/registry/gems36_anderson_pinn.tif",
+      "sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+      "dots_in_footprint": 38854,
+      "dots_outside_footprint": 0,
+      "min_distance_to_catalogue_px": 2.23606797749979,
+      "dots_within_2px_of_catalogue": 0,
+      "subset_check_H33_in_this": {
+        "H33_dots_inside": 37654,
+        "H33_dots_total": 37654
+      },
+      "H33_within_3px_of_this": 1.0,
+      "this_within_3px_of_H19_5": 0.9775055335358007
+    }
+  },
+  "shadow_topK_probe": {
+    "status": "SHADOW DIAGNOSTIC - NOT THE REPO GATE, NOT CLEARANCE",
+    "rows": {
+      "H33_GEMSDOE32": 0.33858288628034205,
+      "SOLO_D2_8_GEMSDOE28": 0.4706804058001806,
+      "D2_8_GEMSDOE25": 0.6567429755138896,
+      "H19_5_GEMSDOE19": 0.7107611409146438,
+      "GEMSDOE36_ANDERSON_PINN": 0.3402294576937377,
+      "H33_GEMSDOE32_as_candidate_vs_topK": 0.04121740054177511
+    },
+    "K": 37654,
+    "min_witness_value_selected": 0.8322225213050842,
+    "reading": "Under a top-K reading the witness is no longer vacuous, but the probe overlap against H19-5 is above 0.70, so a top-K candidate of the same size would still fail the stated limit."
+  },
+  "verdict": "negative",
+  "ok_to_submit": false
+}

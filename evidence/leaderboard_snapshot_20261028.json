@@ -1,0 +1,318 @@
+{
+  "schema": "gems88.leaderboard-snapshot.v1",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "retrieved_via": "fetch_page tool, 3 chunks, 2026-10-28",
+  "retrieved_utc_date": "2026-10-28",
+  "column": "Best public DW-Tversky (public leaderboard, not the private/final score)",
+  "rank_1_score": 0.4544,
+  "rank_26_score": 0.3195,
+  "rank_50_score": 0.2874,
+  "user_cited_values_checked": {
+    "0.4413_user_cited_as_GEMSDOE_high": "NOT PRESENT in the top 50 rows captured; rank 1 is 0.4544",
+    "0.3195_user_cited_as_current_highest": "matches rank 26 (kpomazi) exactly; not the highest on this page",
+    "0.2778_GEMSDOE32_user_reported": "would sit below rank 50 (0.2874); no GEMSDOE-named participant is visible on this page"
+  },
+  "organizer_confirmed_scores_from_this_page": 0,
+  "rows": [
+    {
+      "rank": 1,
+      "participant": "xiaofanhu",
+      "best_public_dw_tversky": 0.4544,
+      "submissions": 33
+    },
+    {
+      "rank": 2,
+      "participant": "cfld__",
+      "best_public_dw_tversky": 0.3916,
+      "submissions": 20
+    },
+    {
+      "rank": 3,
+      "participant": "Batik Shirt Brothers",
+      "best_public_dw_tversky": 0.3911,
+      "submissions": 57
+    },
+    {
+      "rank": 4,
+      "participant": "BrandenKMurray",
+      "best_public_dw_tversky": 0.3724,
+      "submissions": 34
+    },
+    {
+      "rank": 5,
+      "participant": "No Fault of Our Own",
+      "best_public_dw_tversky": 0.357,
+      "submissions": 47
+    },
+    {
+      "rank": 6,
+      "participant": "joeyfezster",
+      "best_public_dw_tversky": 0.3447,
+      "submissions": 41
+    },
+    {
+      "rank": 7,
+      "participant": "JerryDataWorks",
+      "best_public_dw_tversky": 0.3418,
+      "submissions": 22
+    },
+    {
+      "rank": 8,
+      "participant": "alexoktaba",
+      "best_public_dw_tversky": 0.3416,
+      "submissions": 35
+    },
+    {
+      "rank": 9,
+      "participant": "DARD",
+      "best_public_dw_tversky": 0.3398,
+      "submissions": 29
+    },
+    {
+      "rank": 10,
+      "participant": "Azazel",
+      "best_public_dw_tversky": 0.3379,
+      "submissions": 10
+    },
+    {
+      "rank": 11,
+      "participant": "yifanxu",
+      "best_public_dw_tversky": 0.3335,
+      "submissions": 11
+    },
+    {
+      "rank": 12,
+      "participant": "baobao",
+      "best_public_dw_tversky": 0.3334,
+      "submissions": 15
+    },
+    {
+      "rank": 13,
+      "participant": "notmyfault",
+      "best_public_dw_tversky": 0.3334,
+      "submissions": 40
+    },
+    {
+      "rank": 14,
+      "participant": "newway",
+      "best_public_dw_tversky": 0.3328,
+      "submissions": 15
+    },
+    {
+      "rank": 15,
+      "participant": "ohyeah",
+      "best_public_dw_tversky": 0.3318,
+      "submissions": 12
+    },
+    {
+      "rank": 16,
+      "participant": "ruping",
+      "best_public_dw_tversky": 0.3314,
+      "submissions": 13
+    },
+    {
+      "rank": 17,
+      "participant": "giles",
+      "best_public_dw_tversky": 0.3313,
+      "submissions": 11
+    },
+    {
+      "rank": 18,
+      "participant": "li002666",
+      "best_public_dw_tversky": 0.3312,
+      "submissions": 11
+    },
+    {
+      "rank": 19,
+      "participant": "mzoorob",
+      "best_public_dw_tversky": 0.3304,
+      "submissions": 47
+    },
+    {
+      "rank": 20,
+      "participant": "shixing",
+      "best_public_dw_tversky": 0.3273,
+      "submissions": 12
+    },
+    {
+      "rank": 21,
+      "participant": "nchuzhoy",
+      "best_public_dw_tversky": 0.3262,
+      "submissions": 7
+    },
+    {
+      "rank": 22,
+      "participant": "kinghorton42",
+      "best_public_dw_tversky": 0.3261,
+      "submissions": 11
+    },
+    {
+      "rank": 23,
+      "participant": "joano",
+      "best_public_dw_tversky": 0.3252,
+      "submissions": 10
+    },
+    {
+      "rank": 24,
+      "participant": "zeaal",
+      "best_public_dw_tversky": 0.3222,
+      "submissions": 17
+    },
+    {
+      "rank": 25,
+      "participant": "like60986",
+      "best_public_dw_tversky": 0.3217,
+      "submissions": 7
+    },
+    {
+      "rank": 26,
+      "participant": "kpomazi",
+      "best_public_dw_tversky": 0.3195,
+      "submissions": 34
+    },
+    {
+      "rank": 27,
+      "participant": "twang",
+      "best_public_dw_tversky": 0.3169,
+      "submissions": 6
+    },
+    {
+      "rank": 28,
+      "participant": "kinneso_outlook",
+      "best_public_dw_tversky": 0.3167,
+      "submissions": 4
+    },
+    {
+      "rank": 29,
+      "participant": "like2",
+      "best_public_dw_tversky": 0.316,
+      "submissions": 6
+    },
+    {
+      "rank": 30,
+      "participant": "drjy",
+      "best_public_dw_tversky": 0.3113,
+      "submissions": 21
+    },
+    {
+      "rank": 31,
+      "participant": "nsabaj",
+      "best_public_dw_tversky": 0.3111,
+      "submissions": 28
+    },
+    {
+      "rank": 32,
+      "participant": "ndavis7",
+      "best_public_dw_tversky": 0.3093,
+      "submissions": 17
+    },
+    {
+      "rank": 33,
+      "participant": "anna_ms",
+      "best_public_dw_tversky": 0.3041,
+      "submissions": 22
+    },
+    {
+      "rank": 34,
+      "participant": "Gibbous",
+      "best_public_dw_tversky": 0.3033,
+      "submissions": 8
+    },
+    {
+      "rank": 35,
+      "participant": "dams",
+      "best_public_dw_tversky": 0.3017,
+      "submissions": 24
+    },
+    {
+      "rank": 36,
+      "participant": "sws-jonathan",
+      "best_public_dw_tversky": 0.3004,
+      "submissions": 14
+    },
+    {
+      "rank": 37,
+      "participant": "faultsofthy",
+      "best_public_dw_tversky": 0.2987,
+      "submissions": 5
+    },
+    {
+      "rank": 38,
+      "participant": "pberlizov",
+      "best_public_dw_tversky": 0.2967,
+      "submissions": 18
+    },
+    {
+      "rank": 39,
+      "participant": "doublebigmac",
+      "best_public_dw_tversky": 0.2964,
+      "submissions": 8
+    },
+    {
+      "rank": 40,
+      "participant": "dmitry_v",
+      "best_public_dw_tversky": 0.2963,
+      "submissions": 31
+    },
+    {
+      "rank": 41,
+      "participant": "Financialanalyst",
+      "best_public_dw_tversky": 0.2949,
+      "submissions": 6
+    },
+    {
+      "rank": 42,
+      "participant": "Crescent",
+      "best_public_dw_tversky": 0.2935,
+      "submissions": 7
+    },
+    {
+      "rank": 43,
+      "participant": "haiderz",
+      "best_public_dw_tversky": 0.293,
+      "submissions": 3
+    },
+    {
+      "rank": 44,
+      "participant": "raboush2",
+      "best_public_dw_tversky": 0.2927,
+      "submissions": 13
+    },
+    {
+      "rank": 45,
+      "participant": "g789",
+      "best_public_dw_tversky": 0.2921,
+      "submissions": 2
+    },
+    {
+      "rank": 46,
+      "participant": "NoahNault",
+      "best_public_dw_tversky": 0.2899,
+      "submissions": 29
+    },
+    {
+      "rank": 47,
+      "participant": "roison",
+      "best_public_dw_tversky": 0.2897,
+      "submissions": 17
+    },
+    {
+      "rank": 48,
+      "participant": "jfper21",
+      "best_public_dw_tversky": 0.2895,
+      "submissions": 30
+    },
+    {
+      "rank": 49,
+      "participant": "GrigorSargsyan",
+      "best_public_dw_tversky": 0.2892,
+      "submissions": 16
+    },
+    {
+      "rank": 50,
+      "participant": "strikeslipfault",
+      "best_public_dw_tversky": 0.2874,
+      "submissions": 2
+    }
+  ]
+}

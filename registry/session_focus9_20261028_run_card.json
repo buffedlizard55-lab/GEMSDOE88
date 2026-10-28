@@ -1,0 +1,78 @@
+{
+  "schema": "gems88.session-run-card.v1",
+  "run_id": "GEMSDOE88-FOCUS9-REVIEW-20261028",
+  "session_branch": "arena/557d884e-gemsdoe88",
+  "created_at_utc": "2026-10-28T16:45:00+00:00",
+  "status": "DUPLICATE_STOP",
+  "review_document": "research/session-focus9-20261028-review.md",
+  "scope": "GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36 (top user-reported file per site)",
+  "hypothesis": "H33 (GEMSDOE32) scored highest because it is a catalogue-collar-pruned subset of the D2.8 lineage; a visible-only collar prune might beat 0.2778 under hide-and-recover.",
+  "hypothesis_status": "UNTESTED - no holdout run; blocked on lane definition (owner decision 2).",
+  "mechanism": "Under the exact identity DTI = TP/(0.2TP+0.2FP+0.8|G|), a dot is kept iff t/(t+f) > 0.2*DTI. Near-catalogue dots help only if their hit rate is low. Measured: H33 = SOLO-D2.8 minus 2,545 dots within 2 px of mapped faults (0 remain).",
+  "named_non_fault_mimic": "Catalogue-digitisation and mapping-density effects: pruning near densely digitised traces may track label geometry of the public split rather than a physical rule.",
+  "holdout_dti": {
+    "status": "NOT_RUN",
+    "reason": "H33-lineage pruning uses the full catalogue; a fixed prediction masked with the full catalogue is not the hide-and-recover protocol (AGENTS.md rule 5).",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_NO_NEW_FEATURE",
+    "max_auc": null,
+    "threshold_auc": 0.9
+  },
+  "registry_comparison": {
+    "witness": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "witness_positive_fraction_on_allowed_cells": 1.0,
+    "universal_overlap_for_nonempty_candidate": 1.0,
+    "overlap_limit": 0.7,
+    "rank_correlation_limit": 0.9,
+    "nine_top_files_overlap_vs_H19_5": {
+      "GEMSDOE24": 1.0,
+      "GEMSDOE25": 1.0,
+      "GEMSDOE27": 0.9806,
+      "GEMSDOE28": 1.0,
+      "GEMSDOE30": 1.0,
+      "GEMSDOE31": 1.0,
+      "GEMSDOE32": 1.0,
+      "GEMSDOE33": 0.9971,
+      "GEMSDOE36": 0.9775
+    },
+    "unique_under_0_70_vs_H19_5": false,
+    "evidence": "evidence/gate_vacuity_20261028.json; evidence/focus_top_files_20261028.json"
+  },
+  "raster_sha256": {
+    "GEMSDOE32_zeros_as_pinned_H33": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "GEMSDOE36_zeros_pinned": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+    "GEMSDOE25_zeros_pinned_D2_8": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30"
+  },
+  "validator_output": {
+    "format_checks_on_9_live_top_files_18_variants": "PASS: float32, one band, EPSG:32611, shape 3730x3292, transform (100,0,243350,0,-100,4508550); values exactly {0,1}; in [0,1]; NaN inside footprint = 0. NaN-outside encoding: 7,111,787 NaN; zeros-outside encoding: 0 outside the footprint.",
+    "portal_error_reproduced": false,
+    "portal_error_cause": "unknown",
+    "gate_result": "DUPLICATE_STOP (scripts/preflight_mtas88.py --gate-generation, exit 2)"
+  },
+  "submission": {
+    "name": "NONE",
+    "note": "No TIFF generated: duplicate gate and owner decision pending. Not for submission.",
+    "note_length": 81
+  },
+  "organizer_confirmed_score": null,
+  "weekly_slots_used": 0,
+  "experiment_count": 0,
+  "generation_authorized": false,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "decisions_required": [
+    "gate definition for dense witness (owner)",
+    "lane paragraph (owner)"
+  ],
+  "evidence_hashes": {
+    "evidence/focus_top_files_20261028.json": "5e2f1848e9c0aaaec8427c18e6c35173239ab5bd68ebfe5c106b24d4950fd178",
+    "evidence/gate_vacuity_20261028.json": "655688d7ac2acde85e34f568de65b3bf14b5f4d3cf06f5488513f1bce26a6cad",
+    "evidence/leaderboard_snapshot_20261028.json": "ec671f208e9716e6478437a5519dcb788b7a2b61e5e274627fdf972070a0fa6a"
+  }
+}
