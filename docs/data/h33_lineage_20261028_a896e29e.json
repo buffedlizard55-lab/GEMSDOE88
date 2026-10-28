@@ -1,0 +1,46 @@
+{
+  "schema": "gems88.h33-lineage-audit.v1",
+  "checked_at_utc": "2026-10-28T11:47:08.242512+00:00",
+  "evidence_class": "REGISTRY-MEASUREMENT_NOT_A_PERFORMANCE_SCORE",
+  "inputs": [
+    {
+      "label": "H19-5 (19GEMSDOE)",
+      "file": "data/registry/gems19_h19_5.tif",
+      "sha256": "ef2ae808eb7179861b9f1ff753fd3ded625ace7b7c158e29cec45bbd8fa3cfaa",
+      "positive_pixels": 121131
+    },
+    {
+      "label": "D2.8 (GEMSDOE25)",
+      "file": "data/registry/gems25_d28.tif",
+      "sha256": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+      "positive_pixels": 44090
+    },
+    {
+      "label": "SOLO-D2.8 B=1 (GEMSDOE28)",
+      "file": "data/registry/gems28_h27_4.tif",
+      "sha256": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "positive_pixels": 40199
+    },
+    {
+      "label": "H33 b2 (GEMSDOE32) = R0",
+      "file": "data/registry/h33_education.tif",
+      "sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+      "positive_pixels": 37654
+    }
+  ],
+  "h33_subset_of_d28": true,
+  "h33_subset_of_solo": true,
+  "h33_subset_of_h19": true,
+  "d28_to_h33_removed_pixels": 6436,
+  "removed_pixels_all_within_2px_catalogue": true,
+  "h33_positive_within_2px_catalogue": 0,
+  "h33_minimum_nearest_neighbour_px": 2.8284271247461903,
+  "h33_median_catalogue_distance_px": 19.6468827043885,
+  "organizer_confirmed_score": null,
+  "new_rasters_generated": 0,
+  "limitations": [
+    "Geometry is measured from owner-mirror bytes, not hidden organizer truth.",
+    "The supplied 0.2778 is an unverified claim; no portal receipt is present.",
+    "A nested thinning/collar-removal lineage is not proof of causal score improvement."
+  ]
+}
