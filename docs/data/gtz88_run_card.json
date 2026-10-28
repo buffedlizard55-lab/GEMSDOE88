@@ -1,0 +1,121 @@
+{
+  "schema": "gems.run_card.v1",
+  "run_id": "GEMSDOE88-GTZ-20261028",
+  "branch": "arena/0a8fa1e5-gemsdoe88",
+  "generated_utc": "2026-10-28T16:34:20Z",
+  "lane": "H88-GTZ",
+  "lane_title": "Geothermal damage-zone Gaussian (150 m) off-catalogue potential surface — unique vs H19-5 ridge-pruning lineage, blocked by literal registry witness",
+  "verdict": "negative",
+  "evidence_status": {
+    "score_label": "NONE — HOLDOUT-DTI not run (DUPLICATE_STOP)",
+    "organizer_confirmed_live_score": null,
+    "incumbent_organizer_confirmed_live_score": null,
+    "incumbent_artifact": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif",
+    "site_reported_high": 0.2778,
+    "competition_leaderboard_high": 0.4413,
+    "incumbent_user_reported_claim": 0.2778,
+    "incumbent_evidence_class": "USER-REPORTED CLAIM — NOT HOLDOUT-DTI OR ORGANIZER-CONFIRMED",
+    "leaderboard_values_status": "Historical unreceipted claims; not a live leaderboard or an artifact score",
+    "incumbent_user_reported_live_score": 0.2778,
+    "incumbent_score_provenance": "USER-REPORTED; no submission-page receipt"
+  },
+  "evaluator": {
+    "module": "vendor/gems57/evaluate_holdout.py",
+    "module_sha256": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
+    "version": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_m": 300.0,
+    "seed20_withheld_positives_K": 11321,
+    "seed30_withheld_positives_K": 11342,
+    "bootstrap_block_m": 20000,
+    "bootstrap_draws": 2000
+  },
+  "holdout_progression": {
+    "note": "Holdout not run — DUPLICATE_STOP prevents feature construction and scoring. No HOLDEOUT-DTI value exists for GTZ-88."
+  },
+  "leakage_canaries": {
+    "note": "Not run — DUPLICATE_STOP prevents evaluation. No feature-alone AUC computed."
+  },
+  "preplacement_registry_proof": {
+    "universal_overlap_blocker": true,
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_off_catalogue_footprint_pixels": 5106385,
+    "directly_covered_allowed_pixels": 5106385,
+    "directly_saturated": true,
+    "witness_positive_coverage_of_allowed": 1.0,
+    "blocking_threshold": 0.70
+  },
+  "uniqueness_vs_focus_sites": {
+    "focus_sites": [
+      {"site": "GEMSDOE24", "file": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan", "user_reported": 0.2477, "unique": false},
+      {"site": "GEMSDOE25", "file": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan", "user_reported": 0.2600, "unique": false},
+      {"site": "GEMSDOE27", "file": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan", "user_reported": 0.2449, "unique": false},
+      {"site": "GEMSDOE28", "file": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan", "user_reported": 0.2710, "unique": false},
+      {"site": "GEMSDOE30", "file": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca", "user_reported": 0.2600, "unique": false},
+      {"site": "GEMSDOE31", "file": "h27-4-solo-d28-20261004-8acb75e1-nan", "user_reported": 0.2708, "unique": false},
+      {"site": "GEMSDOE32", "file": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros", "user_reported": 0.2778, "unique": false},
+      {"site": "GEMSDOE33", "file": "h33d-analog-tip-stepover-r30-20261004-cb490425926e", "user_reported": 0.2632, "unique": false},
+      {"site": "GEMSDOE36", "file": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros", "user_reported": 0.2750, "unique": false}
+    ],
+    "all_focus_unique": false,
+    "all_focus_cleared": false,
+    "gtz_h195_overlap": 0.0293,
+    "gtz_unique_vs_h195_lineage": true,
+    "gtz_blocked_by_registry": true
+  },
+  "validator_output": {
+    "schema_version": 2,
+    "validator": "gems88-format-audit-v3",
+    "artifact": "gems88-gtz-damagezone-gauss-150m-20261028T163420Z-zeros-DO-NOT-SUBMIT.tif",
+    "sha256": "1547a37a48cbfd74909243706e9ec84c70907351077a49e715aa3753e6c7a676",
+    "zip_sha256": "29de67d5199080831b17857e61d087aa2dc2fdc21774725f8de77ed64f6e5153",
+    "checks": {
+      "geotiff": true,
+      "single_band": true,
+      "single_raster_dataset": true,
+      "self_contained": true,
+      "dtype_float32": true,
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "no_nodata_sentinel": true,
+      "real_numeric_dtype": true,
+      "no_nan_inside": true,
+      "range_0_1": true
+    },
+    "minimum": 0.0,
+    "maximum": 0.998366,
+    "format_valid": true,
+    "submission_ready": false,
+    "note": "Format only. Holdout, leakage, registry and selector approval are separate. DUPLICATE_STOP blocks submission."
+  },
+  "hypothesis": "Off-catalogue geothermal damage zones around catalogue faults produce a continuous potential surface (Gaussian kernel, sigma=150 m, peak at 150 m) that is distinct from the H19-5/D1.5/D2.8 ridge-pruning lineage of all nine focus-site champions.",
+  "mechanism": "Geothermal fluids migrate along fault damage zones; proximity-to-fault decay (not on-catalogue traces) targets off-catalogue permeability structures not already in the USGS/INGENIOUS catalogue.",
+  "named_non_fault_process": "Unfaulted lithologic or volcanic contact with density/magnetic contrast; erosional drainage patterns; sedimentary facies changes.",
+  "correlation_overlap_vs_registry": {
+    "surface_rank_correlation_vs_dense_witness": null,
+    "final_dot_rank_correlation_vs_dense_witness": null,
+    "final_dot_overlap_3px_vs_dense_witness": 1.0,
+    "h19_5_overlap": 0.0293
+  },
+  "raster_sha256": "1547a37a48cbfd74909243706e9ec84c70907351077a49e715aa3753e6c7a676",
+  "grid": {"crs": 32611, "shape": [3730, 3292], "transform": [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0]},
+  "submission_name": "GEMSDOE88-GTZ-DAMAGEZONE-150M",
+  "submission_note": "GTZ88 geothermal damage-zone Gaussian 150m off-catalogue PoE; HOLDOUT-DTI not run (DUPLICATE_STOP); UNSCORED",
+  "note_length_chars": 107,
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "new_rasters_generated": 1,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "verdict": "negative",
+  "next_steps": [
+    "Unblock the DUPLICATE_STOP preflight through a valid shared experiment contract",
+    "Run holdout-DTI on GTZ-88 against withheld faults",
+    "Run leakage canaries on each feature",
+    "Obtain selector authorization for a weekly slot",
+    "Submit only after ok_to_submit: true and validate_release.py --require-submit exits 0"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "gems88.unique-research-tif.v1",
+  "generated_utc": "2026-10-28T16:34:21.034195+00:00",
+  "method": "off-catalogue geothermal damage-zone Gaussian kernel (sigma=150m, peak at 150m), NOT derived from H19-5 ridge skeleton",
+  "file": "gems88-gtz-damagezone-gauss-150m-20261028T163420Z-zeros-DO-NOT-SUBMIT.tif",
+  "sha256": "1547a37a48cbfd74909243706e9ec84c70907351077a49e715aa3753e6c7a676",
+  "size_bytes": 7429550,
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ]
+  },
+  "dtype": "float32",
+  "bands": 1,
+  "nodata": null,
+  "values": {
+    "min": 0.0,
+    "max": 0.9983659386634827,
+    "all_finite": true,
+    "all_in_0_1": true
+  },
+  "footprint_zero_outside": true,
+  "catalogue_zero_on_faults": true,
+  "positive_pixels": 2680990,
+  "allowed_pixels": 5106385,
+  "dense_witness_overlap_allowed": 1.0,
+  "h19_5_overlap_dots": 0.029307830316412965,
+  "unique_vs_h195_lineage": true,
+  "protocol_status": "DUPLICATE_STOP \u2014 dense_17gemdoe covers 100% of allowed cells (overlap 1.0000 > 0.70)",
+  "ok_to_download_for_research": true,
+  "ok_to_submit": false,
+  "note_prefix": "GEMSDOE88-GTZ",
+  "note": "GTZ88 geothermal damage-zone Gaussian 150m off-catalogue PoE; HOLDOUT-DTI not run (DUPLICATE_STOP); UNSCORED"
+}
