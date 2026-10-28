@@ -1,0 +1,15 @@
+{
+  "hypothesis": "H88-SPR: repeated scarp-profile restoration against drainage and shoreline nulls; conditional proposal only",
+  "mechanism": "Cross-validated signed steps in terrain profiles away from drainage corridors may indicate a weak unmapped scarp.",
+  "named_non_fault_process": "Fluvial terrace risers and pluvial shoreline benches",
+  "holdout": {"class": "HOLDOUT-DTI", "status": "not run: preplacement duplicate stop", "evaluator": "gems57-pooled-hide-v2", "withheld_positives": null, "dti": null, "ci95": null},
+  "correlation_overlap_vs_registry": {"surface_rank_correlation": null, "final_dot_overlap": null, "registry_measurement": "Dense 17GEMSDOE witness directly covers every allowed pixel; any nonempty allowed dot set necessarily overlaps it at 3 px by 1.0", "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be"},
+  "raster_sha256": null,
+  "validator_output": {"status": "not run: no new raster", "no_nan_inside_footprint": null, "values_in_0_1": null, "crs_shape_transform_match": null},
+  "submission_name": null,
+  "submission_note": null,
+  "experiments_run": 0,
+  "weekly_slots_used": 0,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}

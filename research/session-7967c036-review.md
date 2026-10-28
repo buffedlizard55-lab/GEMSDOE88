@@ -1,0 +1,30 @@
+# Session review — 2026-10-28
+
+## Decision: DO NOT SUBMIT
+
+No new TIFF, estimated leaderboard score, holdout, leakage canary, or submission slot was produced. The protocol requires stopping before feature construction when a registry witness forces dot overlap above the limit. The SHA-pinned [17GEMSDOE continuous raster](https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif) has positive values on every allowed pixel. The restored inputs and shared preflight reproduced this: any nonempty allowed dot set necessarily has 100% overlap even at zero distance. This is a **registry measurement**, not a holdout or leaderboard score. The witness is a continuous probability surface; counting all its positive cells as dots follows the existing literal support interpretation. It makes the requested uniqueness protocol infeasible unless the protocol is explicitly revised. Do not silently exclude it or change the threshold.
+
+The [existing executive table](../README.md#historical-executive-summary-nine-focus-sites--pinned-audit-only-09-historical-champions-unique) and [submission guide](../docs/executive-summary.html) are historical, bounded audits, not a live exhaustive winner census. The user-reported H33 result is not a receipt we independently verified. H33's documented thinning and exclusion of catalogue-near pixels are plausible reasons for its reported relative performance, but do not prove causation or predict a higher hidden score. The differing user-supplied leaderboard values are unverified and cannot establish the current leader. No estimate exceeding any of them is justified.
+
+## Three passes
+
+1. **Inputs and feasibility:** installed the pinned CPU requirements in an ignored virtual environment and restored validation inputs using `scripts/restore_inputs.py --validation` from pinned GitHub mirrors. `scripts/generation_guard.py` returned `DUPLICATE_STOP` and exit 2. The mirrors are not a newly authenticated organizer download. The training stack was not restored; no new experiment was attempted after the stop.
+2. **Review and regression:** `pytest -q`: 1061 passed, 23 skipped, 90 warnings. Skips mean not all data-dependent paths were exercised. `audit_downloads.py --check` reopened the published research inventory: 50 research TIFFs passed its local checks, none eligible under the protocol. A local check is not organizer acceptance. `audit_research_state.py` passed its metadata audit without checking input pins. `--require-submit` returned the expected exit 2.
+3. **Publication checks:** `render_decision.py --check` passed under both normal and optimized Python. Existing canonical overview and submission guide remain unchanged; this session does not assert a newly audited live result for the nine sites. The requested cross-repository edits, complete current feed and new file were not performed. This report and its negative run card preserve the result without weakening the gate.
+
+## Research queue (conditional, not experiments)
+
+The [source-bound queue](../registry/hypothesis_queue.json) already ranks three candidate mechanisms, without numerical projections or worldwide novelty claims. Each is conditional on resolving the protocol and restoring/checking the required inputs:
+
+1. **SPR**, medium cost: detrended elevation and slope, 10 m-derived terrain, LiDAR scarp and drainage cache; repeat signed cross-scarp profile fits on held-out swaths and test terrace/shoreline alternatives. Repeated offsets could reveal an unmapped weak scarp. The narrower contrast is cross-validated restoration with explicit nulls; a related directional step/ramp detector exists in GEMSDOE32.
+2. **AWA**, medium cost: quantized K/Th/U, RTP, basement depth and slope; terrain-matched cross-strike alteration-width asymmetry. Weathering and alluvial lithology can mimic it. Differs from pointwise enrichment/edge methods; encoded values are not physical concentration ratios.
+3. **CBC**, medium-high cost: detrended elevation, gravity, basement depth, conductivity and drainage; test conductivity connectivity across a basin boundary against smooth basin fill and drainage. Saline groundwater or paleochannels can mimic it. This is a topology test, not direct vent detection, and coarse layers limit resolution.
+
+These are proposals only; no hidden-fault recovery or improvement has been established. The queue says no new external data are required, but the named cached data are missing in this checkout and their provenance/availability has not been freshly verified in this session. Before any authorized experiment, check pins and source licenses, perform visible-only catalogue feature derivation, buffered whole-segment holdouts, single-feature canaries and same-fold comparisons. Separately, the selector must determine slot eligibility; a format pass or promising holdout does not select a submission.
+
+## Sources and limitations
+
+* [DrivenData reference solution](https://github.com/drivendataorg/gems-prize-reference-solution) and [competition description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) are primary starting points; their current pages were not fetched in this session.
+* [USGS GeoDAWN data](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) is a primary source to check for data and terms; not fetched in this session.
+* Outbound network in this workspace is limited to GitHub and package registries. DrivenData receipts, current weekly cap, current leaderboard, external data pages and the claimed organizer scores were not verified. Do not send credentials in chat.
+* The user asks for a unique ready-to-submit file but also mandates a stop on the measured overlap. These cannot simultaneously be satisfied under the literal support definition and current registry. A protocol decision is needed before proceeding, not a renamed or perturbed prior raster.
