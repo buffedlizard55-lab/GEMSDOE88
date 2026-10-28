@@ -76,23 +76,24 @@ def test_con88_validator_detects_run_card_or_gate_tampering(tmp_path: Path) -> N
     assert code == 1
 
 
-def test_all_50_published_tiffs_carry_do_not_submit_and_zero_eligible() -> None:
-    # PR #200's bypass pair was withdrawn and removed in PR #202, so the
-    # published inventory is 50 (IR-88-AEF1337D-01).
+def test_all_51_published_tiffs_carry_do_not_submit_and_zero_eligible() -> None:
+    # PR #200's bypass pair was withdrawn and removed in PR #202. Merged PR #222
+    # later added one explicitly DO-NOT-SUBMIT GTZ research artifact, giving 50
+    # main downloads plus one historical variant (51 packages total).
     downloads = sorted((ROOT / "docs/downloads").glob("*.tif"))
     variants = sorted((ROOT / "docs/research-variants").glob("*.tif"))
     all_tiffs = downloads + variants
-    assert len(downloads) == 49
+    assert len(downloads) == 50
     assert len(variants) == 1
-    assert len(all_tiffs) == 50
+    assert len(all_tiffs) == 51
     unmarked = [p.name for p in all_tiffs if "DO-NOT-SUBMIT" not in p.name]
     assert unmarked == []
 
     audit = json.loads((ROOT / "docs/data/download_audit.json").read_text(encoding="utf-8"))
-    assert audit["tiff_count"] == 49
+    assert audit["tiff_count"] == 50
     assert audit["additional_research_tiff_count"] == 1
-    assert audit["total_published_tiff_count"] == 50
-    assert audit["total_research_download_pass_count"] == 50
+    assert audit["total_published_tiff_count"] == 51
+    assert audit["total_research_download_pass_count"] == 51
     assert audit["protocol_eligible_count"] == 0
     assert audit["ok_to_submit"] is False
     for item in audit["artifacts"] + audit["additional_research_artifacts"]:
