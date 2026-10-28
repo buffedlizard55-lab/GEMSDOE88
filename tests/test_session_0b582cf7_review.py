@@ -178,8 +178,8 @@ def test_post_merge_vvrd_withdrawal_and_active_browser_receipt() -> None:
     # The prior receipts remain historical; the current review must bind a
     # fresh browser receipt instead of re-labelling old page hashes as current.
     status = json.loads((ROOT / "docs/status.json").read_text(encoding="utf-8"))
-    assert status["current_review"] == "data/session_60f326dc_run_card.json"
-    assert status["previous_review"] == "data/session_92a5fb8c_run_card.json"
+    assert status["current_review"] == "data/session_3ad2104f_run_card.json"
+    assert status["previous_review"] == "data/session_60f326dc_run_card.json"
     br_ev = (ROOT / "evidence/session_0b582cf7_browser_check.json").read_bytes()
     assert br_ev == (ROOT / "docs/data/session_0b582cf7_browser_check.json").read_bytes()
     br = json.loads(br_ev)

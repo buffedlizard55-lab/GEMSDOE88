@@ -1,3 +1,4 @@
+import hashlib
 import json
 from pathlib import Path
 
@@ -18,6 +19,16 @@ def test_negative_run_card_is_mirrored_and_fails_closed():
     assert canonical == (ROOT / "docs/data/session_3ad2104f_run_card.json").read_bytes()
     card = json.loads(canonical)
     assert card["session_branch"] == "arena/3ad2104f-gemsdoe88"
+    assert card["review_document"] == "research/session-3ad2104f-review.md"
+    assert card["mainline_artifact_context"]["pr"] == 222
+    assert card["mainline_artifact_context"]["sha256"] == "1547a37a48cbfd74909243706e9ec84c70907351077a49e715aa3753e6c7a676"
+    assert card["mainline_artifact_context"]["disposition"].endswith("DO NOT SUBMIT.")
+    download_audit = card["verification"]["research_download_audit"]
+    assert download_audit["published_download_tiffs"] == 50
+    assert download_audit["published_research_variant_tiffs"] == 1
+    assert download_audit["total_published_tiffs"] == 51
+    assert download_audit["local_research_format_passes"] == 51
+    assert download_audit["protocol_eligible"] == 0
     assert card["verdict"] == "negative"
     assert card["decision"] == "DUPLICATE_STOP"
     assert card["ok_to_submit"] is False
@@ -27,7 +38,6 @@ def test_negative_run_card_is_mirrored_and_fails_closed():
     assert card["new_tif_generated"] is False
     assert card["ok_to_download_new_file"] is False
     assert card["ok_to_download_research_artifacts"] is True
-    assert card["ok_to_submit"] is False
     assert card["raster_file"] is None
     assert card["raster_sha256"] is None
     assert card["holdout_dti"]["dti"] is None
@@ -65,6 +75,32 @@ def test_fresh_focus_sample_is_bound_to_current_snapshot_and_fail_closed():
         counts = row.get("format_pixel_counts")
         assert counts["inside_nonfinite"] == 0
         assert counts["inside_finite_out_of_range"] == 0
+
+
+def test_current_site_status_and_inventory_include_post_snapshot_mainline_artifact():
+    status = read_json("docs/status.json")
+    assert status["current_review"] == "data/session_3ad2104f_run_card.json"
+    assert status["previous_review"] == "data/session_60f326dc_run_card.json"
+    assert status["ok_to_submit"] is False
+    assert (ROOT / "docs/research/session-3ad2104f-review.md").is_file()
+    assert read_json("docs/data/focus_freshness_20261028_3ad2104f.json") == read_json(
+        "evidence/focus_freshness_20261028_3ad2104f.json"
+    )
+    assert read_json("docs/data/focus_current_samples_20261028_3ad2104f.json") == read_json(
+        "evidence/focus_current_samples_20261028_3ad2104f.json"
+    )
+    audit = read_json("docs/data/download_audit.json")
+    assert audit["tiff_count"] == 50
+    assert audit["additional_research_tiff_count"] == 1
+    assert audit["total_published_tiff_count"] == 51
+    assert audit["total_research_download_pass_count"] == 51
+    assert audit["protocol_eligible_count"] == 0
+    gtz = next(row for row in audit["artifacts"]
+               if row["file"] == "gems88-gtz-damagezone-gauss-150m-20261028T163420Z-zeros-DO-NOT-SUBMIT.tif")
+    assert gtz["sha256"] == "1547a37a48cbfd74909243706e9ec84c70907351077a49e715aa3753e6c7a676"
+    assert gtz["research_download_ok"] is True
+    assert gtz["ok_to_submit"] is False
+    assert gtz["decision"] == "DUPLICATE_STOP"
 
 
 def test_preplacement_witness_proof_and_h33_geometry_are_evidence_only():
@@ -117,3 +153,36 @@ def test_prompt_and_readme_record_the_current_session_without_overclaiming():
     assert source["fresh_official_source_retrieved"]["branch_head_sha"] == "aebe92f7c8a990f0e3443451b7a825d9afd6336b"
     assert source["fresh_official_source_retrieved"]["readme_sha256"] == "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239"
     assert source["verdict"] == "LIMITED_SOURCE_VERIFICATION"
+
+
+def test_public_review_mirror_uses_valid_site_relative_links():
+    original = (ROOT / "research/session-3ad2104f-review.md").read_text(encoding="utf-8")
+    public = (ROOT / "docs/research/session-3ad2104f-review.md").read_text(encoding="utf-8")
+    expected = original
+    for old, new in (("../docs/data/", "../data/"), ("../evidence/", "../data/"),
+                     ("../registry/", "../data/")):
+        expected = expected.replace(old, new)
+    for script in ("download_competition_data.sh", "prepare_data.py"):
+        expected = expected.replace(
+            f"../scripts/{script}",
+            f"https://github.com/buffedlizard55-lab/GEMSDOE88/blob/arena/3ad2104f-gemsdoe88/scripts/{script}",
+        )
+    assert public == expected
+
+
+def test_active_browser_receipt_binds_current_site_and_research_download():
+    card = read_json("docs/data/session_3ad2104f_run_card.json")
+    receipt_path = card["verification"]["browser_evidence"]
+    receipt_bytes = (ROOT / receipt_path).read_bytes()
+    assert receipt_bytes == (ROOT / "docs/data" / Path(receipt_path).name).read_bytes()
+    receipt = json.loads(receipt_bytes)
+    assert receipt["status"] == "PASS"
+    assert receipt["ok_to_submit"] is False
+    assert receipt["research_download"]["click_matches_canonical_bytes"] is True
+    archived = card["archived_research_download"]
+    assert receipt["research_download"]["sha256"] == archived["sha256"]
+    assert receipt["research_download"]["ok_to_submit"] is False
+    assert archived["ok_to_submit"] is False
+    assert hashlib.sha256((ROOT / archived["file"]).read_bytes()).hexdigest() == archived["sha256"]
+    for relative, expected in receipt["source_sha256"].items():
+        assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == expected, relative

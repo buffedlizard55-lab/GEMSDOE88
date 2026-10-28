@@ -269,7 +269,14 @@ def test_readiness_direct_cli_without_pytest_path_injection():
     import subprocess
     if not (ROOT / "data/registry/dense_17gemdoe.tif").exists():
         pytest.skip("restore_inputs.py --validation required")
-    result = subprocess.run([sys.executable, "scripts/readiness.py"], cwd=ROOT,
-                            capture_output=True, text=True, check=True)
-    status = json.loads(result.stdout)
-    assert status["status"] == "BLOCKED" and status["ok_to_submit"] is False
+    # The direct CLI writes docs/status.json as part of its behavior. Keep the
+    # test hermetic so it cannot reset a newer active review to its legacy card.
+    status_path = ROOT / "docs/status.json"
+    original_status = status_path.read_bytes()
+    try:
+        result = subprocess.run([sys.executable, "scripts/readiness.py"], cwd=ROOT,
+                                capture_output=True, text=True, check=True)
+        status = json.loads(result.stdout)
+        assert status["status"] == "BLOCKED" and status["ok_to_submit"] is False
+    finally:
+        status_path.write_bytes(original_status)

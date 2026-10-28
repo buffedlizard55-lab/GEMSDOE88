@@ -36,8 +36,8 @@ def test_current_run_card_is_single_negative_result_with_explicit_unknowns():
     assert len(card['submission_note']) == card['submission_note_characters'] <= 140
     assert card['organizer_confirmed_score'] is None
     status = read('docs/status.json')
-    assert status['current_review'] == 'data/session_60f326dc_run_card.json'
-    assert status['previous_review'] == 'data/session_92a5fb8c_run_card.json'
+    assert status['current_review'] == 'data/session_3ad2104f_run_card.json'
+    assert status['previous_review'] == 'data/session_60f326dc_run_card.json'
     assert status['new_tif_generated'] is status['ok_to_submit'] is False
 
 
@@ -48,6 +48,8 @@ def test_sample_counts_are_pinned_and_not_called_a_portal_receipt():
     assert card['focus_readme_byte_sample']['counts'] == sample['counts']
     assert sample['counts']['DUPLICATE_STOP'] == 8
     assert sample['counts']['NOT_DISCOVERED'] == 1
+    sample_mirror = ROOT / 'docs/data' / Path(card['focus_readme_byte_sample']['evidence']).name
+    assert json.loads(sample_mirror.read_text()) == sample
     row = next(row for row in sample['rows'] if row['site'] == 'GEMSDOE30')
     diagnosis = card['format_irregularity']
     assert diagnosis['sha256'] == row['sha256']
@@ -59,7 +61,6 @@ def test_sample_counts_are_pinned_and_not_called_a_portal_receipt():
     assert diagnosis['cause_of_user_portal_error'].startswith('Unknown')
     assert diagnosis['organizer_nodata_acceptance'] == 'Unknown'
     assert row['format_pass'] is False and row['decision'] == 'DUPLICATE_STOP'
-    assert sample == read('docs/data/focus-current-samples.json')
     assert card['h33_geometry_crosscheck']['counts']['d28_minus_h33'] == 6436
     assert card['h33_geometry_crosscheck']['counts']['d28_minus_h33_over_2px'] == 0
 
@@ -77,7 +78,16 @@ def test_fresh_browser_receipt_binds_current_pages_and_v2_diagnostics():
     sample = receipt['focus_current_samples']
     assert sample['diagnostic_site'] == 'GEMSDOE30'
     assert sample['diagnostic_dom_pass'] and sample['tampered_diagnostic_fails_closed']
-    for path, expected in receipt['source_sha256'].items():
+    # The session-60 receipt is a historical snapshot. Current mutable pages
+    # are pinned by the active session's separately generated receipt below.
+    status = read('docs/status.json')
+    active_card = read('docs/' + status['current_review'])
+    active_path = Path(active_card['verification']['browser_evidence'])
+    active_bytes = (ROOT / active_path).read_bytes()
+    assert active_bytes == (ROOT / 'docs/data' / active_path.name).read_bytes()
+    active_receipt = json.loads(active_bytes)
+    assert active_receipt['status'] == 'PASS' and active_receipt['ok_to_submit'] is False
+    for path, expected in active_receipt['source_sha256'].items():
         assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == expected, path
     assert (ROOT / 'research/session-60f326dc-review.md').read_bytes() == (
         ROOT / 'docs/research/session-60f326dc-review.md').read_bytes()
@@ -100,7 +110,7 @@ def rendering_workspace(tmp_path):
             data = docs / 'data'
             data.mkdir()
             for item in entry.iterdir():
-                if item.name == 'session_60f326dc_run_card.json':
+                if item.name == 'session_3ad2104f_run_card.json':
                     (data / item.name).write_bytes(item.read_bytes())
                 else:
                     (data / item.name).symlink_to(item, target_is_directory=item.is_dir())
@@ -121,7 +131,7 @@ def rendering_workspace(tmp_path):
 ])
 def test_renderer_fails_closed_for_bad_current_or_previous_review(rendering_workspace, target, key, value):
     path = rendering_workspace / ('docs/status.json' if target == 'status'
-                                   else 'docs/data/session_60f326dc_run_card.json')
+                                   else 'docs/data/session_3ad2104f_run_card.json')
     data = json.loads(path.read_text())
     data[key] = value
     path.write_text(json.dumps(data))

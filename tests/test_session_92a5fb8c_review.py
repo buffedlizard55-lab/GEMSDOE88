@@ -28,7 +28,7 @@ def test_negative_card_mirrors_and_bindings():
     assert card['focus_readme_byte_sample']['counts']['DUPLICATE_STOP'] == 8
     assert card['focus_readme_byte_sample']['counts']['NOT_DISCOVERED'] == 1
     status = json.loads((ROOT / 'docs/status.json').read_text())
-    assert status['previous_review'] == 'data/session_92a5fb8c_run_card.json'
+    assert status['previous_review'] == 'data/session_60f326dc_run_card.json'
     assert status['ok_to_submit'] is status['approved_for_weekly_slot'] is False
 
 

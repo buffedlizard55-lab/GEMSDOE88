@@ -163,7 +163,7 @@ def test_site_guard_rejects_broken_or_escaping_docs_markdown_links(tmp_path):
     original = submit.read_text()
     needle = f"**{count}/{count}**"
     assert needle in original
-    submit.write_text(original.replace(needle, "**0/0**", 1))
+    submit.write_text(original.replace(needle, "**0/0**"))
     with pytest.raises(ValueError, match="Submission guide inventory count is stale"):
         check_site.main(tmp_path)
 
