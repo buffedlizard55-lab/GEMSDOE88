@@ -1,0 +1,266 @@
+{
+  "schema": "gems88.public-leaderboard-snapshot.v1",
+  "fetched_utc": "2026-10-28",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "split": "PUBLIC test split only; private/final scores are not shown",
+  "rows": [
+    {
+      "rank": 1,
+      "participant": "xiaofanhu",
+      "public_dw_tversky": 0.4544
+    },
+    {
+      "rank": 2,
+      "participant": "cfld__",
+      "public_dw_tversky": 0.3916
+    },
+    {
+      "rank": 3,
+      "participant": "Batik Shirt Brothers",
+      "public_dw_tversky": 0.3911
+    },
+    {
+      "rank": 4,
+      "participant": "BrandenKMurray",
+      "public_dw_tversky": 0.3724
+    },
+    {
+      "rank": 5,
+      "participant": "No Fault of Our Own",
+      "public_dw_tversky": 0.357
+    },
+    {
+      "rank": 6,
+      "participant": "joeyfezster",
+      "public_dw_tversky": 0.3447
+    },
+    {
+      "rank": 7,
+      "participant": "JerryDataWorks",
+      "public_dw_tversky": 0.3418
+    },
+    {
+      "rank": 8,
+      "participant": "alexoktaba",
+      "public_dw_tversky": 0.3416
+    },
+    {
+      "rank": 9,
+      "participant": "DARD",
+      "public_dw_tversky": 0.3398
+    },
+    {
+      "rank": 10,
+      "participant": "Azazel",
+      "public_dw_tversky": 0.3379
+    },
+    {
+      "rank": 11,
+      "participant": "yifanxu",
+      "public_dw_tversky": 0.3335
+    },
+    {
+      "rank": 12,
+      "participant": "baobao",
+      "public_dw_tversky": 0.3334
+    },
+    {
+      "rank": 13,
+      "participant": "notmyfault",
+      "public_dw_tversky": 0.3334
+    },
+    {
+      "rank": 14,
+      "participant": "newway",
+      "public_dw_tversky": 0.3328
+    },
+    {
+      "rank": 15,
+      "participant": "ohyeah",
+      "public_dw_tversky": 0.3318
+    },
+    {
+      "rank": 16,
+      "participant": "ruping",
+      "public_dw_tversky": 0.3314
+    },
+    {
+      "rank": 17,
+      "participant": "giles",
+      "public_dw_tversky": 0.3313
+    },
+    {
+      "rank": 18,
+      "participant": "li002666",
+      "public_dw_tversky": 0.3312
+    },
+    {
+      "rank": 19,
+      "participant": "mzoorob",
+      "public_dw_tversky": 0.3304
+    },
+    {
+      "rank": 20,
+      "participant": "shixing",
+      "public_dw_tversky": 0.3273
+    },
+    {
+      "rank": 21,
+      "participant": "nchuzhoy",
+      "public_dw_tversky": 0.3262
+    },
+    {
+      "rank": 22,
+      "participant": "kinghorton42",
+      "public_dw_tversky": 0.3261
+    },
+    {
+      "rank": 23,
+      "participant": "joano",
+      "public_dw_tversky": 0.3252
+    },
+    {
+      "rank": 24,
+      "participant": "zeaal",
+      "public_dw_tversky": 0.3222
+    },
+    {
+      "rank": 25,
+      "participant": "like60986",
+      "public_dw_tversky": 0.3217
+    },
+    {
+      "rank": 26,
+      "participant": "kpomazi",
+      "public_dw_tversky": 0.3195
+    },
+    {
+      "rank": 27,
+      "participant": "twang",
+      "public_dw_tversky": 0.3169
+    },
+    {
+      "rank": 28,
+      "participant": "kinneso_outlook",
+      "public_dw_tversky": 0.3167
+    },
+    {
+      "rank": 29,
+      "participant": "like2",
+      "public_dw_tversky": 0.316
+    },
+    {
+      "rank": 30,
+      "participant": "drjy",
+      "public_dw_tversky": 0.3113
+    },
+    {
+      "rank": 31,
+      "participant": "nsabaj",
+      "public_dw_tversky": 0.3111
+    },
+    {
+      "rank": 32,
+      "participant": "ndavis7",
+      "public_dw_tversky": 0.3093
+    },
+    {
+      "rank": 33,
+      "participant": "anna_ms",
+      "public_dw_tversky": 0.3041
+    },
+    {
+      "rank": 34,
+      "participant": "Gibbous",
+      "public_dw_tversky": 0.3033
+    },
+    {
+      "rank": 35,
+      "participant": "dams",
+      "public_dw_tversky": 0.3017
+    },
+    {
+      "rank": 36,
+      "participant": "sws-jonathan",
+      "public_dw_tversky": 0.3004
+    },
+    {
+      "rank": 37,
+      "participant": "faultsofthy",
+      "public_dw_tversky": 0.2987
+    },
+    {
+      "rank": 38,
+      "participant": "pberlizov",
+      "public_dw_tversky": 0.2967
+    },
+    {
+      "rank": 39,
+      "participant": "doublebigmac",
+      "public_dw_tversky": 0.2964
+    },
+    {
+      "rank": 40,
+      "participant": "dmitry_v",
+      "public_dw_tversky": 0.2963
+    },
+    {
+      "rank": 41,
+      "participant": "Financialanalyst",
+      "public_dw_tversky": 0.2949
+    },
+    {
+      "rank": 42,
+      "participant": "Crescent",
+      "public_dw_tversky": 0.2935
+    },
+    {
+      "rank": 43,
+      "participant": "haiderz",
+      "public_dw_tversky": 0.293
+    },
+    {
+      "rank": 44,
+      "participant": "raboush2",
+      "public_dw_tversky": 0.2927
+    },
+    {
+      "rank": 45,
+      "participant": "g789",
+      "public_dw_tversky": 0.2921
+    },
+    {
+      "rank": 46,
+      "participant": "NoahNault",
+      "public_dw_tversky": 0.2899
+    },
+    {
+      "rank": 47,
+      "participant": "roison",
+      "public_dw_tversky": 0.2897
+    },
+    {
+      "rank": 48,
+      "participant": "jfper21",
+      "public_dw_tversky": 0.2895
+    },
+    {
+      "rank": 49,
+      "participant": "GrigorSargsyan",
+      "public_dw_tversky": 0.2892
+    },
+    {
+      "rank": 50,
+      "participant": "strikeslipfault",
+      "public_dw_tversky": 0.2874
+    }
+  ],
+  "checks": {
+    "rank1_score": 0.4544,
+    "user_claim_0_4413_present_in_top50": false,
+    "user_claim_0_3195_rank": 26,
+    "user_claim_0_2778_present_in_top50": false,
+    "top50_min": 0.2874
+  },
+  "note": "Rows were transcribed from the fetched page text. Participant names are DrivenData handles, not GitHub site owners; no site-to-handle mapping is established."
+}

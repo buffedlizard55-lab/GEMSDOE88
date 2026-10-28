@@ -1,0 +1,65 @@
+{
+  "schema": "gems88.run-card.nine-site-20261028.v1",
+  "session": "nine-site-20261028",
+  "date_utc": "2026-10-28",
+  "lane": "nine-site executive audit (read-only); no new candidate",
+  "hypothesis": "None new this session. Audit whether the pinned winner files of GEMSDOE24/25/27/28/30/31/32/33/36 are format-valid, mutually distinct under the parallel-run protocol, and whether the GEMSDOE32 H33 advantage over D2.8 has a measured mechanism.",
+  "mechanism": "Not applicable: no new prediction. H33 is a strict subset of D2.8 with 6,436 dots removed within 2 px of the catalogue.",
+  "named_non_fault_process": "Rasterization off-by-one and catalogue misalignment along mapped traces (named in the official metric text) would place dots near known traces that score as false positives or as spurious hits on the public split.",
+  "holdout_dti": {
+    "value": null,
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "reason": "NOT RUN: fixed files cannot be re-emitted under hide-and-recover; no new candidate exists. The only collar holdout (registry/con88_collar_holdout.json) gives paired delta +1.0e-6 with CI [-7.9e-9, +3.2e-6]."
+  },
+  "ci95": null,
+  "correlation_overlap_vs_registry": {
+    "max_forward_overlap_among_nine": 1.0,
+    "min_forward_overlap_among_nine": 0.86719,
+    "forward_overlap_vs_witness_17GEMSDOE": {
+      "GEMSDOE24": 1.0,
+      "GEMSDOE25": 1.0,
+      "GEMSDOE27": 1.0,
+      "GEMSDOE28": 1.0,
+      "GEMSDOE30": 1.0,
+      "GEMSDOE31": 1.0,
+      "GEMSDOE32": 1.0,
+      "GEMSDOE33": 1.0,
+      "GEMSDOE36": 1.0
+    },
+    "surface_rank_correlation": "NOT COMPUTED: winners are binary {0,1} dot sets",
+    "threshold": 0.7
+  },
+  "raster_sha256": null,
+  "winner_sha256": {
+    "GEMSDOE24": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+    "GEMSDOE25": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+    "GEMSDOE27": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+    "GEMSDOE28": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+    "GEMSDOE30": "8cf893ead5667df21d3288a9968c35fd5385c425b029d82ee71d311715b129fd",
+    "GEMSDOE31": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+    "GEMSDOE32": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "GEMSDOE33": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+    "GEMSDOE36": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a"
+  },
+  "validator_output": {
+    "scope": "Nine pinned owner-repo winner files, not a new raster",
+    "no_nan_inside_footprint": true,
+    "values_in_0_1_where_finite": true,
+    "crs_shape_transform_match": true,
+    "float32_single_band": true,
+    "official_format_pass_all_nine": true
+  },
+  "submission_name": "NONE-NINE-SITE-20261028-NO-FILE",
+  "submission_name_status": "RESERVED - NO FILE",
+  "submission_note": "No file generated: duplicate gate DUPLICATE_STOP; nine winners overlap 0.87-1.00; DO NOT SUBMIT.",
+  "submission_note_length": 96,
+  "experiments_run": 0,
+  "new_rasters_generated": 0,
+  "weekly_slots_used": 0,
+  "organizer_confirmed_score": null,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "decision": "DUPLICATE_STOP",
+  "next_step": "Owner decision on the dense-prior uniqueness rule (options A-D in research/session-nine-site-20261028-review.md section 9). No candidate until it is made and a shared protocol is authorized."
+}
