@@ -193,8 +193,8 @@ def test_current_run_card_and_fresh_browser_receipt_match_their_mirrors_and_byte
     assert proof['covered_allowed_fraction'] == 1.0 and proof['overlap_limit'] == 0.7
     assert len(card['submission_note']) == card['submission_note_characters'] <= 140
     status = json.loads((ROOT / 'docs/status.json').read_text())
-    assert status['current_review'] == 'data/session_60f326dc_run_card.json'
-    assert status['previous_review'] == 'data/session_92a5fb8c_run_card.json'
+    assert status['current_review'] == 'data/session_a1612614_run_card.json'
+    assert status['previous_review'] == 'data/session_60f326dc_run_card.json'
     receipt_path = Path(card['verification']['browser_evidence'])
     receipt_bytes = (ROOT / receipt_path).read_bytes()
     assert receipt_bytes == (ROOT / 'docs/data' / receipt_path.name).read_bytes()

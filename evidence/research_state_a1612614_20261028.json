@@ -1,0 +1,36 @@
+{
+  "schema": "gems88.research-state-audit.v1",
+  "status": "PASS",
+  "source_snapshot": {
+    "files": 156,
+    "sha256": "a71a03cbe235a9a4803679c7b9eef9036cfd6df4e4c808944a40aa3abbab3367"
+  },
+  "conditional_first_choice": "H88-SPR",
+  "untested_proposals": [
+    "H88-SPR",
+    "H88-AWA",
+    "H88-CBC"
+  ],
+  "already_evaluated": [
+    "H88-MMRX",
+    "H88-MTAS",
+    "H88-MFS",
+    "H88-PGTD",
+    "H88-CON88",
+    "H88-MSHI",
+    "H88-GEORAD",
+    "H88-VVRD"
+  ],
+  "input_pins_checked": true,
+  "legacy": {
+    "mirrors_identical": true,
+    "historical_only": true,
+    "organizer_confirmed_score": null,
+    "ok_to_submit": false,
+    "raster_sha256": "81e580f13b45e1e6aa554eaf5e8c54d1e0064769ba8e7193b6e7f53e3842308a",
+    "prediction_bytes_changed": false
+  },
+  "generation_authorized": false,
+  "ok_to_submit": false,
+  "verdict": "negative"
+}

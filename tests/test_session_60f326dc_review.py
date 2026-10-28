@@ -1,7 +1,8 @@
-"""Current negative record, historical provenance and canonical UI stay bound."""
+"""Preserve the 60f historical negative record and validate its new successor."""
 import hashlib
 import json
 from pathlib import Path
+import subprocess
 
 import pytest
 
@@ -36,8 +37,8 @@ def test_current_run_card_is_single_negative_result_with_explicit_unknowns():
     assert len(card['submission_note']) == card['submission_note_characters'] <= 140
     assert card['organizer_confirmed_score'] is None
     status = read('docs/status.json')
-    assert status['current_review'] == 'data/session_60f326dc_run_card.json'
-    assert status['previous_review'] == 'data/session_92a5fb8c_run_card.json'
+    assert status['current_review'] == 'data/session_a1612614_run_card.json'
+    assert status['previous_review'] == 'data/session_60f326dc_run_card.json'
     assert status['new_tif_generated'] is status['ok_to_submit'] is False
 
 
@@ -64,7 +65,7 @@ def test_sample_counts_are_pinned_and_not_called_a_portal_receipt():
     assert card['h33_geometry_crosscheck']['counts']['d28_minus_h33_over_2px'] == 0
 
 
-def test_fresh_browser_receipt_binds_current_pages_and_v2_diagnostics():
+def test_historical_browser_receipt_and_fresh_successor_are_separately_bound():
     card = read('registry/session_60f326dc_run_card.json')
     path = Path(card['verification']['browser_evidence'])
     raw = (ROOT / path).read_bytes()
@@ -77,7 +78,23 @@ def test_fresh_browser_receipt_binds_current_pages_and_v2_diagnostics():
     sample = receipt['focus_current_samples']
     assert sample['diagnostic_site'] == 'GEMSDOE30'
     assert sample['diagnostic_dom_pass'] and sample['tampered_diagnostic_fails_closed']
+    # The 60f receipt remains an immutable observation of the pre-PR-222 Pages
+    # bytes. Its old hashes must not be presented as a receipt for today's pages.
+    baseline = '7cbe8801e39ac06f410062870c53821b6c7729b0'
+    available = subprocess.run(['git', 'cat-file', '-e', baseline + '^{commit}'],
+                               cwd=ROOT, capture_output=True).returncode == 0
     for path, expected in receipt['source_sha256'].items():
+        assert path.startswith('docs/') and len(expected) == 64
+        int(expected, 16)
+        if available:
+            historical = subprocess.run(['git', 'show', f'{baseline}:{path}'], cwd=ROOT,
+                                        check=True, capture_output=True).stdout
+            assert hashlib.sha256(historical).hexdigest() == expected, path
+    status = read('docs/status.json')
+    active = read('docs/' + status['current_review'])
+    fresh = read(active['verification']['browser_evidence'])
+    assert fresh['status'] == 'PASS' and fresh['ok_to_submit'] is False
+    for path, expected in fresh['source_sha256'].items():
         assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == expected, path
     assert (ROOT / 'research/session-60f326dc-review.md').read_bytes() == (
         ROOT / 'docs/research/session-60f326dc-review.md').read_bytes()
@@ -100,7 +117,7 @@ def rendering_workspace(tmp_path):
             data = docs / 'data'
             data.mkdir()
             for item in entry.iterdir():
-                if item.name == 'session_60f326dc_run_card.json':
+                if item.name in ('session_60f326dc_run_card.json', 'session_a1612614_run_card.json'):
                     (data / item.name).write_bytes(item.read_bytes())
                 else:
                     (data / item.name).symlink_to(item, target_is_directory=item.is_dir())
@@ -110,8 +127,8 @@ def rendering_workspace(tmp_path):
 
 
 @pytest.mark.parametrize('target,key,value', [
-    ('status', 'current_review', '../registry/session_60f326dc_run_card.json'),
-    ('status', 'previous_review', '../registry/session_92a5fb8c_run_card.json'),
+    ('status', 'current_review', '../registry/session_a1612614_run_card.json'),
+    ('status', 'previous_review', '../registry/session_60f326dc_run_card.json'),
     ('card', 'review_document', '../status.json'),
     ('card', 'verdict', 'promote'),
     ('card', 'ok_to_submit', True),
@@ -121,7 +138,7 @@ def rendering_workspace(tmp_path):
 ])
 def test_renderer_fails_closed_for_bad_current_or_previous_review(rendering_workspace, target, key, value):
     path = rendering_workspace / ('docs/status.json' if target == 'status'
-                                   else 'docs/data/session_60f326dc_run_card.json')
+                                   else 'docs/data/session_a1612614_run_card.json')
     data = json.loads(path.read_text())
     data[key] = value
     path.write_text(json.dumps(data))
