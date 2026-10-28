@@ -1,0 +1,291 @@
+{
+  "schema": "gems88.session-run-card.v1",
+  "run_id": "GEMSDOE88-60F326DC-REVIEW-20261028",
+  "session_branch": "arena/60f326dc-gemsdoe88",
+  "created_at_utc": "2026-10-28T11:40:13.876800+00:00",
+  "status": "DUPLICATE_STOP",
+  "review_document": "research/session-60f326dc-review.md",
+  "hypothesis": "H88-SPR: repeat signed scarp-profile restoration on independent swaths (conditional, untested; no lane paragraph was supplied).",
+  "mechanism": "Compare held-out smooth and signed-step cross-strike profiles, requiring repeated responses outside drainage; GEMSDOE32 previously used a related step-vs-ramp filter.",
+  "named_non_fault_mimic": "Fluvial terrace risers or constant-elevation pluvial shoreline benches.",
+  "holdout_dti": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "evaluator_version": null,
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null
+  },
+  "leakage_canary": {
+    "status": "NOT_RUN_NO_FEATURES_CONSTRUCTED",
+    "max_auc": null,
+    "threshold_auc": 0.9
+  },
+  "registry_comparison": {
+    "surface_rank_correlation": null,
+    "surface_rank_correlation_status": "NOT_RUN_NO_SURFACE",
+    "final_dot_overlap": null,
+    "final_dot_overlap_status": "NOT_RUN_NO_NEW_DOTS",
+    "universal_overlap_for_nonempty_allowed_candidate": 1.0,
+    "overlap_limit": 0.7,
+    "rank_correlation_limit": 0.9,
+    "proof": {
+      "evidence_class": "REGISTRY-MEASUREMENT",
+      "witness_file": "data/registry/dense_17gemdoe.tif",
+      "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+      "positive_pixels": 5167373,
+      "allowed_pixels": 5106385,
+      "uncovered_allowed_pixels": 0,
+      "covered_allowed_fraction": 1.0,
+      "universal_overlap_blocker": true,
+      "overlap_limit": 0.7,
+      "support_definition": "finite prediction > 0 (inherited literal support rule)",
+      "implication": "Every nonempty candidate dot set in the allowed domain has forward overlap 1.0 with this prior; therefore it cannot pass the 0.70 gate.",
+      "directly_covered_allowed_pixels": 5106385,
+      "directly_saturated": true,
+      "source_url": "https://github.com/buffedlizard55-lab/17GEMSDOE/blob/6fc71d19d49dca4960d5434bd81b6dd06fcc030a/docs/downloads/17GEMSDOE_E-proba-multiscale_20260930T044527Z.tif"
+    }
+  },
+  "raster_file": null,
+  "raster_sha256": null,
+  "new_tif_generated": false,
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_shape_transform_match": null,
+    "organizer_acceptance": null
+  },
+  "archived_research_download": {
+    "status": "EXISTING_2026-10-24_RESEARCH_ARTIFACT_NOT_A_NEW_SUBMISSION",
+    "download": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "zip_download": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "zip_sha256": "af9945ee27532576c150760f0b30830934c30f67071d0d10f3d1eb9feb51c4a5",
+    "validator_output": {
+      "crs_match": true,
+      "shape_match": true,
+      "transform_match": true,
+      "single_band": true,
+      "geotiff": true,
+      "real_numeric_dtype": true,
+      "no_nan_inside": true,
+      "range_0_1": true,
+      "footprint_nonempty": true,
+      "no_mass_outside": true,
+      "footprint_not_masked": true,
+      "strict_audit": true,
+      "ok": true,
+      "raster_sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+      "sample_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "approval": "FORMAT_ONLY_NOT_SLOT_APPROVAL"
+    },
+    "ok_to_download_for_research_only": true,
+    "ok_to_submit": false,
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "new_in_this_session": false,
+    "local_format_audit": {
+      "schema_version": 2,
+      "validator": "gems88-format-audit-v3",
+      "artifact": "gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+      "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+      "checks": {
+        "geotiff": true,
+        "single_band": true,
+        "single_raster_dataset": true,
+        "self_contained_dataset": true,
+        "real_numeric_dtype": true,
+        "dtype_float32": true,
+        "template_single_band": true,
+        "template_single_raster_dataset": true,
+        "template_self_contained_dataset": true,
+        "crs_match": true,
+        "shape_match": true,
+        "transform_match": true,
+        "no_nodata_sentinel": true,
+        "all_finite": true,
+        "values_in_0_1": true,
+        "all_pixels_unmasked": true
+      },
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "format_valid": true,
+      "submission_ready": false,
+      "note": "Format only. Holdout, leakage, registry and selector approval are separate."
+    }
+  },
+  "submission_name": "GEMSDOE88-60F326DC-NO-NEW-SUBMISSION",
+  "submission_note": "H88-SPR not run: the dense witness blocks all nonempty candidates; no slot used. DO NOT SUBMIT.",
+  "submission_note_characters": 95,
+  "identifier_scope": "Audit-only; there is no file approved for a competition submission.",
+  "budget": {
+    "geological_experiments_run": 0,
+    "maximum_experiments": 3,
+    "weekly_slots_used": 0
+  },
+  "organizer_confirmed_score": null,
+  "ok_to_submit": false,
+  "approved_for_weekly_slot": false,
+  "verdict": "negative",
+  "focus_revision_snapshot": {
+    "checked_at_utc": "2026-10-28T11:38:46Z",
+    "counts": {
+      "changed": 9,
+      "unchanged": 0,
+      "unknown": 0
+    },
+    "evidence": "evidence/focus_freshness_60f326dc.json",
+    "scope": "GitHub HEAD drift only; may change after observation."
+  },
+  "focus_readme_byte_sample": {
+    "checked_at_utc": "2026-10-28T11:38:48Z",
+    "counts": {
+      "DUPLICATE_STOP": 8,
+      "NOT_CLEARED": 0,
+      "INVALID_RASTER": 0,
+      "NOT_DISCOVERED": 1,
+      "UNKNOWN": 0
+    },
+    "evidence": "evidence/focus_current_samples_60f326dc.json",
+    "scope": "First bare docs/downloads/ or docs/research/ TIFF path in the first 16384 README bytes at each pinned HEAD; excludes other paths/URLs and is not a winner search or complete inventory.",
+    "scores": "Not measured; source claims are not organizer receipts."
+  },
+  "format_irregularity": {
+    "site": "GEMSDOE30",
+    "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/b76762ec345c8da0a9546896d3bb28ddfd641c5f/docs/downloads/GEMSDOE30-geothermal-corridor-offcat-d3-20261027T233111Z.tif",
+    "head": "b76762ec345c8da0a9546896d3bb28ddfd641c5f",
+    "sha256": "0ed2670200159cab23436a5033a90d7582accc63811756d3393441c6bbdac564",
+    "format_failures": [
+      "footprint.no_mass_outside",
+      "footprint.range_0_1",
+      "footprint.strict_audit",
+      "strict.all_finite",
+      "strict.all_pixels_unmasked",
+      "strict.no_nodata_sentinel",
+      "strict.values_in_0_1"
+    ],
+    "pixel_counts": {
+      "inside_pixels": 5167373,
+      "outside_pixels": 7111787,
+      "inside_nonfinite": 0,
+      "outside_nonfinite": 7111787,
+      "inside_finite_out_of_range": 0,
+      "outside_finite_out_of_range": 0,
+      "outside_finite_nonzero": 0
+    },
+    "exterior_nonfinite_verified_as_nan": true,
+    "cause_of_user_portal_error": "Unknown; original uploaded bytes and portal receipt unavailable.",
+    "organizer_nodata_acceptance": "Unknown"
+  },
+  "h33_geometry_crosscheck": {
+    "schema": "gems88.h33-collar-crosscheck.v1",
+    "checked_at_utc": "2026-10-28T11:40:13.722723+00:00",
+    "method": "Read-only Euclidean binary disk dilation of mapped catalogue; no new prediction",
+    "sha256_inputs": {
+      "data/bridge/sample_submission.tif": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "data/bridge/existing_faults.tif": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "data/registry/gems25_d28.tif": "3e78737f0da8dd2ca66cc6caac0ce8eeefcd6715707f8d1bd3091845cd9bcc30",
+      "data/registry/gems28_h27_4.tif": "2fc94a38d77f74d4f4ed1a97a83e7bb71a1ceea090515ec641e6681cc47c44c8",
+      "data/registry/h33_education.tif": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9"
+    },
+    "counts": {
+      "d28": 44090,
+      "solo": 40199,
+      "h33": 37654,
+      "d28_minus_h33": 6436,
+      "d28_minus_h33_at_most_1px": 3891,
+      "d28_minus_h33_gt1_at_most_2px": 2545,
+      "d28_minus_h33_over_2px": 0,
+      "d28_minus_solo": 3891,
+      "solo_minus_h33": 2545,
+      "h33_at_most_2px": 0
+    },
+    "h33_subset_of_d28": true,
+    "h33_subset_of_solo": true,
+    "solo_subset_of_d28": true,
+    "organizer_confirmed_score": null,
+    "limitations": "Geometry of owner-mirror bytes only; user-reported scores have no receipt and causality is unproven."
+  },
+  "conditional_ranked_hypotheses": [
+    {
+      "id": "H88-SPR",
+      "rank": 1,
+      "status": "PROPOSED_UNTESTED",
+      "implementation_cost": "Medium; cached inputs only"
+    },
+    {
+      "id": "H88-AWA",
+      "rank": 2,
+      "status": "PROPOSED_UNTESTED",
+      "implementation_cost": "Medium; quantization and background fitting need care"
+    },
+    {
+      "id": "H88-CBC",
+      "rank": 3,
+      "status": "PROPOSED_UNTESTED",
+      "implementation_cost": "Medium-high; coarse-field resolution is a major limitation"
+    }
+  ],
+  "input_restoration": {
+    "validation_tier_restored": true,
+    "feature_stack_restored": false,
+    "organizer_authenticated": false,
+    "prepare_data_py_run": false,
+    "scope": "SHA-pinned owner mirrors for sample, catalogue and registry; full feature stack not downloaded under pre-placement stop."
+  },
+  "shared_repairs": {
+    "irregularity": "IR-88-60F326DC-01",
+    "file": "vendor/gems57/submission_writer.py",
+    "source_before_sha256": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
+    "source_after_sha256": "bf6682a168ca1dc7b30df80baee4650fbcc7aa44d201c855beb080065d6d074f",
+    "baseline_race_reproduced": true,
+    "tests": [
+      "tests/test_shared_submission_writer_atomicity.py"
+    ],
+    "thresholds_changed": false,
+    "publication_guarantee": "Per-path atomic no-replace hard links; TIFF last. Failed publication never unlinks public names, so partial ZIP/receipt links may remain and require reconciliation; the three-file set is not atomic."
+  },
+  "verification": {
+    "review_passes": 3,
+    "guard_exit_code": 2,
+    "browser_evidence": "evidence/session_60f326dc_browser_check.json",
+    "baseline_pytest": {
+      "passed": 1061,
+      "skipped": 23
+    },
+    "final_pytest": {
+      "passed": 1099,
+      "skipped": 23,
+      "warnings": 115,
+      "seconds": 240.47,
+      "command": ".venv/bin/python -m pytest -q"
+    },
+    "browser_status": "PASS",
+    "browser_version": "153.0.8010.0",
+    "browser_scenarios": "7 pages; responsive layouts, download bytes and click, offline and disabled-script failure, v2 DOM diagnostics and tampering",
+    "site_guards": {
+      "normal": "PASS",
+      "optimized": "PASS",
+      "canonical_renderer": "PASS",
+      "read_only_inventory": "PASS; 50 research TIFFs, 0 eligible",
+      "executive_metrics": "PASS",
+      "research_state": "PASS; --require-submit exit 2",
+      "generation_guard": "DUPLICATE_STOP; exit 2"
+    },
+    "javascript_tests": {
+      "passed": 6,
+      "failed": 0
+    },
+    "browser_checked_at_utc": "2026-10-28T11:48:45.736Z"
+  },
+  "limitations": [
+    "No new unique TIFF, holdout, leakage canary, or competition slot was produced.",
+    "The user did not supply an explicit single method paragraph; H88-SPR is conditional, not an assigned lane.",
+    "H33 0.2778 and other reported values lack submission-page receipts; current leaderboard and quota are unknown.",
+    "The nine README-prefix samples are not a winner search or complete registry census.",
+    "Owner-mirrored competition data are SHA-pinned but not authenticated against current organizer data.",
+    "Official competition, USGS and NLR hosts could not be reached from the permitted sandbox network; official reference GitHub README was retrieved.",
+    "Synthetic writer tests are software tests, not geological holdout experiments.",
+    "Writer hard links prevent create-time clobbering, not modification by non-cooperating processes; a failed publication can leave orphan auxiliaries requiring reconciliation."
+  ],
+  "next_step": "Obtain an explicit shared rule for continuous registry surfaces and an assigned lane, then run the preregistered visible-only buffered holdout and all scientific, uniqueness and format gates before a separate slot selector."
+}

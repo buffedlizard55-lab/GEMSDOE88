@@ -110,14 +110,23 @@ def test_h33_geometry_cross_checks_and_score_labels_remain_cautious() -> None:
     assert "No new TIFF or zip is offered" in text
 
 
-def test_historical_browser_pins_and_active_site_pointer_were_preserved() -> None:
+def test_active_site_receipt_stays_bound_after_upstream_base_refresh() -> None:
     status = read_json("docs/status.json")
-    assert status["current_review"] == "data/session_92a5fb8c_run_card.json"
-    assert digest("docs/data/focus-freshness.json") == (
-        "ade8e611172c136fa3642d136dbb416b931a7874d8a3864f5c6c7db0f1561048")
-    assert digest("docs/data/focus-current-samples.json") == (
-        "71d297ffca8655a58bd45093b790cc92f072020732c9bcf142aaea2dad3c6c85")
+    assert status["ok_to_submit"] is False
+    active = read_json("docs/" + status["current_review"])
+    assert active["ok_to_submit"] is False
+    receipt = read_json(active["verification"]["browser_evidence"])
+    assert receipt["status"] == "PASS" and receipt["ok_to_submit"] is False
+    for relative, expected in receipt["source_sha256"].items():
+        assert digest(relative) == expected, relative
+
+    # A896E29E's point-in-time 11:30 UTC observations are separate from the
+    # newer canonical feed refreshed by upstream PR #219 while this PR was open.
+    for name in ("focus_freshness_20261028_a896e29e.json",
+                 "focus_current_samples_20261028_a896e29e.json"):
+        assert (ROOT / "evidence" / name).read_bytes() == (ROOT / "docs/data" / name).read_bytes()
     card = read_json("registry/session_a896e29e_run_card.json")
     assert card["publication"]["browser_check_this_session"].startswith("NOT_RUN")
-    assert card["publication"]["canonical_feed_sha256_preserved"]["docs/data/focus-freshness.json"] == digest(
-        "docs/data/focus-freshness.json")
+    assert card["code_revision_at_capture"] == "866db73e8f3ac600baceb6e9e903225d835374f8"
+    assert card["publication"]["canonical_feed_observation_time_utc"] == "2026-10-28T11:47:47+00:00"
+    assert card["publication"]["upstream_after_capture"]["session"] == "60f326dc"

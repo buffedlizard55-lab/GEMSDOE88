@@ -317,6 +317,20 @@ function startEphemeralDocsServer() {
     const samplePass = sampleRows === 9 && sampleText.includes(sampleSnapshot.checked_at_utc)
       && sampleText.includes('DO NOT SUBMIT') && sampleDecisionText.includes('DO NOT SUBMIT')
       && await sampleFresh.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+    // When a v2 failure is available, check the numbers in the rendered DOM,
+    // not merely the Node helper or a screenshot. Empty/partial feeds may have
+    // no measurable failure and are still checked by the negative-state tests.
+    const diagnostic = sampleSnapshot.schema === 'gems88.focus-current-samples.v2'
+      ? sampleSnapshot.rows.find(row => row.format_pass === false && row.format_pixel_counts) : null;
+    let diagnosticPass = null;
+    if (diagnostic) {
+      const counts = diagnostic.format_pixel_counts;
+      const diagnosticText = (await sampleFresh.locator('[data-current-samples-body] tr')
+        .filter({hasText: diagnostic.site}).innerText()).replaceAll(',', '');
+      diagnosticPass = diagnosticText.includes(`non-finite inside/outside: ${counts.inside_nonfinite}/${counts.outside_nonfinite}`)
+        && diagnosticText.includes(`finite out-of-range inside/outside: ${counts.inside_finite_out_of_range}/${counts.outside_finite_out_of_range}`)
+        && diagnosticText.includes('DO NOT SUBMIT');
+    }
     await sampleFresh.close();
 
     const sampleMissing = await browser.newPage();
@@ -338,6 +352,21 @@ function startEphemeralDocsServer() {
     const sampleMismatchPass = sampleMismatchText.includes('unavailable or inconsistent') && sampleMismatchText.includes('DO NOT SUBMIT');
     await sampleMismatch.close();
 
+    let tamperedDiagnosticPass = null;
+    if (diagnostic) {
+      const tampered = JSON.parse(JSON.stringify(sampleSnapshot));
+      tampered.rows.find(row => row.site === diagnostic.site).format_pixel_counts.outside_nonfinite = -1;
+      const sampleTampered = await browser.newPage();
+      await sampleTampered.addInitScript(time => { Date.now = () => time; }, sampleTime + 60000);
+      await sampleTampered.route('**/data/focus-current-samples.json', route => route.fulfill({
+        status: 200, contentType: 'application/json', body: JSON.stringify(tampered),
+      }));
+      await sampleTampered.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+      const tamperedText = await sampleTampered.locator('[data-current-samples-status]').innerText();
+      tamperedDiagnosticPass = tamperedText.includes('unavailable or inconsistent') && tamperedText.includes('DO NOT SUBMIT');
+      await sampleTampered.close();
+    }
+
     const sampleExpired = await browser.newPage();
     await sampleExpired.addInitScript(time => { Date.now = () => time; }, sampleTime + 13 * 3600 * 1000);
     await sampleExpired.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
@@ -347,9 +376,12 @@ function startEphemeralDocsServer() {
     report.focus_current_samples = {fresh_snapshot_pass: samplePass, row_count: sampleRows,
       missing_feed_fail_closed: sampleMissingPass, head_mismatch_fail_closed: sampleMismatchPass,
       expired_feed_fail_closed: sampleExpiredPass, checked_snapshot: sampleSnapshot.checked_at_utc,
+      diagnostic_site: diagnostic ? diagnostic.site : null, diagnostic_dom_pass: diagnosticPass,
+      tampered_diagnostic_fails_closed: tamperedDiagnosticPass,
       fresh_text: sampleText, missing_text: sampleMissingText, mismatch_text: sampleMismatchText,
       expired_text: sampleExpiredText};
-    failed ||= !samplePass || !sampleMissingPass || !sampleMismatchPass || !sampleExpiredPass;
+    failed ||= !samplePass || !sampleMissingPass || !sampleMismatchPass || !sampleExpiredPass
+      || diagnosticPass === false || tamperedDiagnosticPass === false;
 
     const noScript = await browser.newPage({javaScriptEnabled: false});
     await noScript.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});

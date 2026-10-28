@@ -33,9 +33,10 @@ from gems57 import grid, uniqueness  # noqa: E402
 from scripts import focus_freshness as freshness  # noqa: E402
 from scripts.audit_literal_protocol import pinned  # noqa: E402
 from scripts.preflight_mtas88 import WITNESS_REL, WITNESS_SHA  # noqa: E402
-from scripts.validate_artifact import validate_artifact  # noqa: E402
+from scripts.validate_artifact import validate, validate_artifact  # noqa: E402
 
-SCHEMA = "gems88.focus-current-samples.v1"
+LEGACY_SCHEMA = "gems88.focus-current-samples.v1"
+SCHEMA = "gems88.focus-current-samples.v2"
 DEFAULT_OUTPUT = Path("docs/data/focus-current-samples.json")
 README_PREFIX_BYTES = 16_384
 README_LIMIT = 2_000_000
@@ -43,6 +44,61 @@ RASTER_LIMIT = 30_000_000
 HEX64 = re.compile(r"[a-f0-9]{64}\Z")
 # Do not match a path inside another repository's https://.../docs/ URL.
 LOCAL_TIF = re.compile(r"(?<![A-Za-z0-9_./-])(docs/(?:downloads|research)/(?:[A-Za-z0-9_.-]+/)*[A-Za-z0-9_.-]+\.tiff?)(?![A-Za-z0-9_.-])", re.IGNORECASE)
+
+# Published diagnostics are a small, explicit vocabulary, not arbitrary upstream
+# strings. The strict all-finite policy includes the exterior and is NOT proof of
+# what the organizer accepts; finite values outside [0,1] are counted separately.
+FOOTPRINT_CHECKS = frozenset({
+    "crs_match", "shape_match", "transform_match", "single_band", "geotiff",
+    "real_numeric_dtype", "no_nan_inside", "range_0_1", "footprint_nonempty",
+    "no_mass_outside", "footprint_not_masked", "strict_audit",
+})
+STRICT_CHECKS = frozenset({
+    "geotiff", "single_band", "single_raster_dataset", "self_contained_dataset",
+    "real_numeric_dtype", "dtype_float32", "template_single_band",
+    "template_single_raster_dataset", "template_self_contained_dataset", "crs_match",
+    "shape_match", "transform_match", "no_nodata_sentinel", "all_finite",
+    "values_in_0_1", "all_pixels_unmasked",
+})
+FORMAT_CODES = frozenset({*(f"footprint.{key}" for key in FOOTPRINT_CHECKS),
+                          *(f"strict.{key}" for key in STRICT_CHECKS)})
+PIXEL_COUNT_FIELDS = frozenset({
+    "inside_pixels", "outside_pixels", "inside_nonfinite", "outside_nonfinite",
+    "inside_finite_out_of_range", "outside_finite_out_of_range", "outside_finite_nonzero",
+})
+
+
+def failure_codes(fmt: dict, strict: dict | None) -> list[str]:
+    """Return deterministic local check failures; no free-form exception text."""
+    if any(type(fmt.get(key)) is not bool for key in FOOTPRINT_CHECKS):
+        raise ValueError("incomplete footprint format result")
+    codes = [f"footprint.{key}" for key in FOOTPRINT_CHECKS if fmt[key] is False]
+    if strict is not None:
+        checks = strict.get("checks")
+        if not isinstance(checks, dict) or any(type(checks.get(key)) is not bool for key in STRICT_CHECKS):
+            raise ValueError("incomplete strict format result")
+        codes.extend(f"strict.{key}" for key in STRICT_CHECKS if checks[key] is False)
+    if bool(codes) == bool(fmt.get("ok")):
+        raise ValueError("format verdict contradicts failed checks")
+    return sorted(codes)
+
+
+def pixel_counts(values: np.ndarray, footprint: np.ndarray) -> dict:
+    """Separate non-finite pixels from finite out-of-range values and exterior mass."""
+    fp = np.asarray(footprint, dtype=bool)
+    if values.shape != fp.shape or np.iscomplexobj(values):
+        raise ValueError("cannot compute pixel counts on this grid or dtype")
+    finite = np.isfinite(values)
+    invalid_finite = finite & ((values < 0) | (values > 1))
+    return {
+        "inside_pixels": int(fp.sum()),
+        "outside_pixels": int((~fp).sum()),
+        "inside_nonfinite": int((~finite & fp).sum()),
+        "outside_nonfinite": int((~finite & ~fp).sum()),
+        "inside_finite_out_of_range": int((invalid_finite & fp).sum()),
+        "outside_finite_out_of_range": int((invalid_finite & ~fp).sum()),
+        "outside_finite_nonzero": int((finite & (values != 0) & ~fp).sum()),
+    }
 
 
 def first_local_tiff(readme: bytes) -> str | None:
@@ -113,6 +169,7 @@ def collect(root: Path = ROOT, *, snapshot: Path | None = None, fetch=fetch_blob
             site, head = revision["site"], revision["current_head"]
             row = {"site": site, "head": head, "readme_url": None, "path": None,
                    "source_url": None, "sha256": None, "format_pass": None,
+                   "format_failures": None, "format_pixel_counts": None,
                    "positive_inside_footprint": None, "overlap_3px": None,
                    "decision": "UNKNOWN", "reason": None, "ok_to_submit": False}
             if head is None:
@@ -132,10 +189,20 @@ def collect(root: Path = ROOT, *, snapshot: Path | None = None, fetch=fetch_blob
                 raw = fetch(site, head, path, RASTER_LIMIT)
                 temporary = Path(directory) / f"{site}.tif"
                 temporary.write_bytes(raw)
-                fmt = validate_artifact(temporary, root / "data/bridge/sample_submission.tif")
-                row.update(sha256=hashlib.sha256(raw).hexdigest(), format_pass=bool(fmt["ok"]))
+                template = root / "data/bridge/sample_submission.tif"
+                fmt = validate_artifact(temporary, template)
+                strict = validate(temporary, template) if not fmt["ok"] else None
+                failures = failure_codes(fmt, strict)
+                row.update(sha256=hashlib.sha256(raw).hexdigest(), format_pass=bool(fmt["ok"]),
+                           format_failures=failures)
                 with rasterio.open(temporary) as ds:
-                    if (ds.count != 1 or (ds.shape, ds.crs, ds.transform) != (g.shape, g.crs, g.transform)):
+                    # Counts describe saved values before any sanitization. The
+                    # footprint has no meaning for a multi-band or misregistered
+                    # raster, even if its array shape happens to match.
+                    aligned = ds.count == 1 and (ds.shape, ds.crs, ds.transform) == (g.shape, g.crs, g.transform)
+                    if aligned and np.dtype(ds.dtypes[0]).kind in "uif":
+                        row["format_pixel_counts"] = pixel_counts(ds.read(1), g.footprint)
+                    if not aligned:
                         raise ValueError("sample grid mismatch")
                     values = uniqueness._read_registry_values(ds, g.footprint,
                                                                expected_grid=(g.shape, g.crs, g.transform))
@@ -170,8 +237,47 @@ def collect(root: Path = ROOT, *, snapshot: Path | None = None, fetch=fetch_blob
     return report
 
 
+def validate_format_details(row: dict) -> None:
+    """Reject malformed or contradictory v2 diagnostics without using asserts."""
+    if "format_failures" not in row or "format_pixel_counts" not in row:
+        raise ValueError("missing format diagnostics")
+    failures, counts = row["format_failures"], row["format_pixel_counts"]
+    if row.get("sha256") is None:
+        if failures is not None or counts is not None:
+            raise ValueError("unmeasured file cannot have format diagnostics")
+        return
+    if (not isinstance(failures, list) or any(not isinstance(code, str) for code in failures)
+            or failures != sorted(set(failures)) or not set(failures).issubset(FORMAT_CODES)
+            or (row.get("format_pass") is True) != (not failures)):
+        raise ValueError("invalid or contradictory format failures")
+    if counts is None:
+        if row.get("format_pass") is True:
+            raise ValueError("passing raster lacks aligned pixel diagnostics")
+        return  # e.g. mismatched grid or non-real dtype
+    if (not isinstance(counts, dict) or set(counts) != PIXEL_COUNT_FIELDS
+            or any(type(value) is not int or not 0 <= value <= 2**53 - 1 for value in counts.values())):
+        raise ValueError("invalid format pixel counts")
+    inside, outside = counts["inside_pixels"], counts["outside_pixels"]
+    if (inside + outside <= 0
+            or counts["inside_nonfinite"] + counts["inside_finite_out_of_range"] > inside
+            or counts["outside_nonfinite"] + counts["outside_finite_out_of_range"] > outside
+            or counts["outside_finite_nonzero"] > outside - counts["outside_nonfinite"]
+            or counts["outside_finite_out_of_range"] > counts["outside_finite_nonzero"]):
+        raise ValueError("format pixel counts exceed their regions")
+    codes = set(failures)
+    if (counts["inside_nonfinite"] and "footprint.no_nan_inside" not in codes
+            or (counts["inside_nonfinite"] or counts["outside_nonfinite"]
+                or counts["inside_finite_out_of_range"] or counts["outside_finite_out_of_range"])
+                and not {"footprint.range_0_1", "strict.values_in_0_1"}.issubset(codes)
+            or (counts["inside_nonfinite"] or counts["outside_nonfinite"])
+                and "strict.all_finite" not in codes
+            or (counts["outside_nonfinite"] or counts["outside_finite_nonzero"])
+                and "footprint.no_mass_outside" not in codes):
+        raise ValueError("pixel counts contradict recorded format failures")
+
+
 def validate_report(report: dict, observed: dict, snapshot_sha: str) -> None:
-    if (not isinstance(report, dict) or report.get("schema") != SCHEMA
+    if (not isinstance(report, dict) or report.get("schema") not in (LEGACY_SCHEMA, SCHEMA)
             or not freshness.timestamp(report.get("checked_at_utc"))
             or report.get("head_snapshot_checked_at_utc") != observed.get("checked_at_utc")
             or report.get("head_snapshot_sha256") != snapshot_sha
@@ -205,6 +311,8 @@ def validate_report(report: dict, observed: dict, snapshot_sha: str) -> None:
             raise ValueError("invalid format flag")
         if (sha is None) != (row.get("format_pass") is None):
             raise ValueError("format result is not bound to a raster digest")
+        if report["schema"] == SCHEMA:
+            validate_format_details(row)
         if head is None and (row["decision"] != "UNKNOWN" or path is not None or sha is not None):
             raise ValueError("unobserved HEAD cannot have a path or measured decision")
         if row["decision"] == "UNKNOWN" and sha is not None:

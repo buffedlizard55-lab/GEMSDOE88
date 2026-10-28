@@ -52,7 +52,7 @@ def test_real_browser_receipt_is_fresh_and_every_feed_failure_remains_negative()
     assert hist_br['status'] == 'PASS' and hist_br['ok_to_submit'] is False
 
     status = read('docs/status.json')
-    assert status['previous_review'] == 'data/session_92002f70_run_card.json'
+    assert status['previous_review'] == 'data/session_92a5fb8c_run_card.json'
     card = read('docs/' + status['current_review'])
     evidence = Path(card['verification']['browser_evidence'])
     assert (ROOT / evidence).read_bytes() == (ROOT / 'docs/data' / evidence.name).read_bytes()
