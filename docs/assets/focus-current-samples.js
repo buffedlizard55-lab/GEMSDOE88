@@ -7,11 +7,60 @@
   const SHA40 = /^[a-f0-9]{40}$/;
   const SHA64 = /^[a-f0-9]{64}$/;
   const TIF = /^docs\/(?:downloads|research)\/(?:[A-Za-z0-9_.-]+\/)*[A-Za-z0-9_.-]+\.tiff?$/i;
+  const V1 = 'gems88.focus-current-samples.v1', V2 = 'gems88.focus-current-samples.v2';
+  const footprintChecks = ['crs_match', 'shape_match', 'transform_match', 'single_band', 'geotiff',
+    'real_numeric_dtype', 'no_nan_inside', 'range_0_1', 'footprint_nonempty', 'no_mass_outside',
+    'footprint_not_masked', 'strict_audit'];
+  const strictChecks = ['geotiff', 'single_band', 'single_raster_dataset', 'self_contained_dataset',
+    'real_numeric_dtype', 'dtype_float32', 'template_single_band', 'template_single_raster_dataset',
+    'template_self_contained_dataset', 'crs_match', 'shape_match', 'transform_match',
+    'no_nodata_sentinel', 'all_finite', 'values_in_0_1', 'all_pixels_unmasked'];
+  const formatCodes = new Set([...footprintChecks.map(k => `footprint.${k}`), ...strictChecks.map(k => `strict.${k}`)]);
+  const countFields = ['inside_pixels', 'outside_pixels', 'inside_nonfinite', 'outside_nonfinite',
+    'inside_finite_out_of_range', 'outside_finite_out_of_range', 'outside_finite_nonzero'];
   const utc = s => typeof s === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(s) &&
     Number.isFinite(Date.parse(s)) && new Date(s).toISOString() === s.replace('Z', '.000Z');
 
+  function validateFormat(row) {
+    const failures = row.format_failures, counts = row.format_pixel_counts;
+    if (!Object.hasOwn(row, 'format_failures') || !Object.hasOwn(row, 'format_pixel_counts')) throw new Error('missing format details');
+    if (row.sha256 === null) {
+      if (failures !== null || counts !== null) throw new Error('unmeasured format details');
+      return;
+    }
+    if (!Array.isArray(failures) || failures.some(code => typeof code !== 'string' || !formatCodes.has(code)) ||
+        new Set(failures).size !== failures.length || failures.some((code, i) => i > 0 && failures[i - 1] >= code) ||
+        ((row.format_pass === true) !== (failures.length === 0))) throw new Error('invalid format failures');
+    if (counts === null) {
+      if (row.format_pass === true) throw new Error('missing passing raster counts');
+      return;
+    }
+    if (!counts || typeof counts !== 'object' || Array.isArray(counts) ||
+        Object.keys(counts).sort().join('|') !== [...countFields].sort().join('|') ||
+        countFields.some(key => !Number.isSafeInteger(counts[key]) || counts[key] < 0)) throw new Error('invalid pixel counts');
+    const {inside_pixels: inside, outside_pixels: outside, inside_nonfinite: inNF,
+      outside_nonfinite: outNF, inside_finite_out_of_range: inBad, outside_finite_out_of_range: outBad,
+      outside_finite_nonzero: outMass} = counts;
+    const codes = new Set(failures);
+    if (inside + outside <= 0 || inNF + inBad > inside || outNF + outBad > outside ||
+        outMass > outside - outNF || outBad > outMass ||
+        (inNF > 0 && !codes.has('footprint.no_nan_inside')) ||
+        ((inNF || outNF || inBad || outBad) && (!codes.has('footprint.range_0_1') || !codes.has('strict.values_in_0_1'))) ||
+        ((inNF || outNF) && !codes.has('strict.all_finite')) ||
+        ((outNF || outMass) && !codes.has('footprint.no_mass_outside'))) throw new Error('contradictory pixel diagnostics');
+  }
+
+  function describeFormat(row, schema) {
+    if (row.format_pass === true) return 'PASS (local only)';
+    if (row.format_pass !== false) return 'Unknown';
+    if (schema !== V2 || row.format_pixel_counts === null) return 'FAIL (local only; see evidence)';
+    const c = row.format_pixel_counts;
+    return `FAIL (local only) · non-finite inside/outside: ${c.inside_nonfinite.toLocaleString()}/${c.outside_nonfinite.toLocaleString()}; ` +
+      `finite out-of-range inside/outside: ${c.inside_finite_out_of_range.toLocaleString()}/${c.outside_finite_out_of_range.toLocaleString()}`;
+  }
+
   function assess(report, revisions, now) {
-    if (!report || report.schema !== 'gems88.focus-current-samples.v1' ||
+    if (!report || ![V1, V2].includes(report.schema) ||
         report.ok_to_submit !== false || report.approved_for_weekly_slot !== false ||
         report.new_tiffs_generated !== 0 || report.weekly_slots_used !== 0 ||
         !utc(report.checked_at_utc) || !SHA64.test(report.head_snapshot_sha256 || '') ||
@@ -44,6 +93,7 @@
           (row.head === null && (row.decision !== 'UNKNOWN' || row.path !== null || row.sha256 !== null)) ||
           (row.decision === 'UNKNOWN' && row.sha256 !== null) ||
           (row.decision === 'NOT_DISCOVERED' && (row.path !== null || row.sha256 !== null))) throw new Error('unbound sample');
+      if (report.schema === V2) validateFormat(row);
       if (row.decision === 'DUPLICATE_STOP' || row.decision === 'NOT_CLEARED') {
         if (!row.path || !SHA64.test(row.sha256 || '') || typeof row.format_pass !== 'boolean' ||
             !Number.isSafeInteger(row.positive_inside_footprint) || row.positive_inside_footprint <= 0 ||
@@ -58,7 +108,7 @@
       expired: now - headTime > 12 * 3600000 || now - sampleTime > 12 * 3600000 };
   }
 
-  if (typeof module !== 'undefined' && module.exports) module.exports = { assess, SITES };
+  if (typeof module !== 'undefined' && module.exports) module.exports = { assess, describeFormat, SITES };
   if (typeof document === 'undefined') return;
   const status = document.querySelector('[data-current-samples-status]');
   const body = document.querySelector('[data-current-samples-body]');
@@ -82,8 +132,8 @@
           link.href = row.source_url;
           link.textContent = row.path.split('/').pop();
           file.append(link);
-        } else file.textContent = 'No matching path in README prefix';
-        cell('td', row.format_pass === true ? 'PASS (local only)' : row.format_pass === false ? 'FAIL' : 'Unknown');
+        } else file.textContent = row.decision === 'NOT_DISCOVERED' ? 'No matching path in README prefix' : 'File unavailable';
+        cell('td', describeFormat(row, report.schema));
         cell('td', typeof row.overlap_3px === 'number' ? row.overlap_3px.toFixed(4) : 'Not measured');
         cell('td', row.decision === 'DUPLICATE_STOP' ? 'DUPLICATE · DO NOT SUBMIT' : 'NOT CLEARED · DO NOT SUBMIT');
         body.append(tr);
