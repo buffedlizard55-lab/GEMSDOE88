@@ -2,7 +2,7 @@
   "repository": "https://github.com/buffedlizard55-lab/GEMSDOE78",
   "commit": "30f1ab9400f92036b0bc613425f1b5b6046f3897",
   "source_path": "vendor/gems57/",
-  "upstream_source": "buffedlizard55-lab/GEMSDOE78 vendor/gems57 (unmodified canonical template)",
+  "upstream_source": "buffedlizard55-lab/GEMSDOE78 vendor/gems57 at the pinned commit; local patches listed below",
   "files": {
     "__init__.py": "bd7f12b45caf67b7b4d0da4656c7c3895513bec524ec0b7f251227ecbdd39d26",
     "anatomy.py": "f47103ae0f615a0f04ef0427ea83ad2dd11ecd4af34e53b99f2e20e557025cf9",
@@ -17,7 +17,7 @@
     "geo.py": "4320d4fb718a66a794b21c35af28cc1f2ce7b6e49649b17e86b3e9eb34235ff8",
     "grid.py": "b96df7ec0f33658a61b0baa5db85fcd19be2cd8b1873f99699bd26bddae8cd8d",
     "holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
-    "metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+    "metric.py": "763f386f854f09017f770b7004828ff511dcb5cbe3dd30bd573ef517514566af",
     "network.py": "d5e53d7df182e69bb22a6e39ac16f43d3f5b730e503d86538d5f8f7360020943",
     "offcatalogue.py": "5c1937dda9f16563d8679446bb60e66c8c878e7440c522c44afa0e7879b7b6e8",
     "relay_bend_anatomy.py": "cb9b79b9b61feaaaf6305009f571b6222c1ec390d1f94a1b05a91e05e7eb5dcb",
@@ -25,15 +25,13 @@
     "strand_orientation.py": "c1dd6d8bc39c48c4cda11321c116e600b59b18cf1764e23ce3d5438bea9dd0bc",
     "strike_zone.py": "eaf5b1030b731ec743650568d28598d3b6104e641a089dd6cca196e05be4e9c4",
     "submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565",
-    "uniqueness.py": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb",
-    "validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd"
+    "uniqueness.py": "901c838410cb47290fbb912c4ba09a27814f79633493f605ed2fb234ed1a0c68",
+    "validate.py": "1d43224b4989c4e8bd4c433d2c50073a577bfea2b0099b9df719c2c8dfcba104"
   },
   "core_modules_unmodified": {
     "vendor/gems57/grid.py": "b96df7ec0f33658a61b0baa5db85fcd19be2cd8b1873f99699bd26bddae8cd8d",
-    "vendor/gems57/metric.py": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
     "vendor/gems57/holdout.py": "7a0a84176986190b527aa9c6a84216c2dab4b599f25b1143db5f420e85020ab1",
     "vendor/gems57/evaluate_holdout.py": "ad86640b46f3c5fc6b1aceec4c4bfc82d03e35008b37ab2a8ad6076e6810ff3a",
-    "vendor/gems57/validate.py": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd",
     "vendor/gems57/submission_writer.py": "41220185ac2823fe5358603d38f2a915ea3e5f1ab1f94f0b237295b38b4a2565"
   },
   "patched_modules": [
@@ -70,7 +68,48 @@
       "patch": "append-only shared literal-policy compatibility wrapper for v5; session 249e8cb3 appended binding_duplicate_decision_v4() (IR-88-249E-01)",
       "irregularity": "IR-88-B4DFA10C-08",
       "pull_request": 151
+    },
+    {
+      "file": "vendor/gems57/uniqueness.py",
+      "upstream_sha256": "9b3b9863dd8b74a2e3a338604aba7e26631a2cfbf7428d45595088d7260e5eef",
+      "previous_patched_sha256": "1fab2169c029e3b56d9dd60213204ccf0cdf253e7c1666b71bb6b330bf61aacb",
+      "patched_sha256": "901c838410cb47290fbb912c4ba09a27814f79633493f605ed2fb234ed1a0c68",
+      "append_only": false,
+      "reason": "IR-88-92A5FB8C-01: the shared indexed comparator treated masked or nonfinite in-footprint registry cells as zero, accepted undefined Spearman values, and trusted duplicate flags even when they contradicted measured overlaps. Directly repair the existing shared functions once so all callers fail closed; rederive flags, validate input grids, and preserve exterior NaN support. Existing historical measurements remain records, not automatically recertified. Candidate/registry identities and literal booleans are also validated, with digest matches treated as duplicates (parallel PR #214 independently identified related defects).",
+      "irregularity": "IR-88-92A5FB8C-01",
+      "verification_tests": [
+        "tests/test_shared_uniqueness_integrity_92a5fb8c.py",
+        "tests/test_gate_compatibility_integrity_92a5fb8c.py",
+        "tests/test_shared_additional_failclosed_92a5fb8c.py"
+      ],
+      "provenance": "In-place shared-template integrity correction; pre-change bytes and hash remain in git history. No private metric or writer fork was added."
+    },
+    {
+      "file": "vendor/gems57/validate.py",
+      "upstream_sha256": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd",
+      "previous_patched_sha256": "e7849554b47f6a2b66aeb2f7cfd5db06267412f049f52a73f1c41f934a2c34dd",
+      "patched_sha256": "1d43224b4989c4e8bd4c433d2c50073a577bfea2b0099b9df719c2c8dfcba104",
+      "append_only": false,
+      "reason": "IR-88-92A5FB8C-02: Reject incomplete or contradictory local validation receipts, retaining format-only semantics and requiring all mandatory checks to be explicitly true. Targeted fix incorporated from open PR #214 (cef4b835), which independently reported the issue.",
+      "irregularity": "IR-88-92A5FB8C-02",
+      "verification_tests": [
+        "tests/test_shared_additional_failclosed_92a5fb8c.py"
+      ],
+      "provenance": "In-place shared-template repair; upstream bytes retained at pinned commit. Source: https://github.com/buffedlizard55-lab/GEMSDOE88/pull/214; PR remains unmerged at time of review."
+    },
+    {
+      "file": "vendor/gems57/metric.py",
+      "upstream_sha256": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "previous_patched_sha256": "4afe10cbaa229948520c75194b1ebc32676e72544f05582f0725092b097b4d7f",
+      "patched_sha256": "763f386f854f09017f770b7004828ff511dcb5cbe3dd30bd573ef517514566af",
+      "append_only": false,
+      "reason": "IR-88-92A5FB8C-02: Correct mathematical documentation: a single dot can cover multiple truth cells, and the marginal shortcut requires dT=k; numerical functions and evaluator are unchanged. Targeted fix incorporated from open PR #214 (cef4b835), which independently reported the issue.",
+      "irregularity": "IR-88-92A5FB8C-02",
+      "verification_tests": [
+        "tests/test_shared_additional_failclosed_92a5fb8c.py"
+      ],
+      "provenance": "In-place shared-template repair; upstream bytes retained at pinned commit. Source: https://github.com/buffedlizard55-lab/GEMSDOE88/pull/214; PR remains unmerged at time of review."
     }
   ],
-  "policy": "Core evaluator/writer unchanged. Shared uniqueness v3 and v5 bind on literal overlap; chance-corrected and equal-support values remain diagnostics only (IR-88-86, IR-88-B4DFA10C-08)."
+  "policy": "Evaluator and writer unchanged; numeric metric unchanged (prose corrected). Shared uniqueness v3/v5 bind literal overlap; equal-support remains diagnostic. Integrity repairs are hash-linked; historical measurements were not re-certified."
 }

@@ -4,7 +4,7 @@
   "review_branch": "arena/0b582cf7-gemsdoe88",
   "source_snapshot": {
     "files": 156,
-    "sha256": "a05cd182a2057898e53e4bab103c1958ca439ce9a0827cd372f10047ec20be05"
+    "sha256": "ca587fd21f24305646c8b790c0c4dabed9027114e7d393b827690b7295c9e701"
   },
   "novelty_scope": "Source-reviewed, still-unimplemented variants in this checkout. Not a claim of worldwide/fleet-wide novelty; a source fingerprint detects drift, not semantic novelty.",
   "conditional_first_choice": "H88-SPR",
@@ -125,10 +125,15 @@
       "signature": "On independent along-strike swaths, fit smooth-landform-plus-signed-step versus no-step profiles; score restoration on held-out profile samples and require a repeatable step away from channel corridors. Use the manifest to decode topographic indices and mask invalid/saturated values.",
       "off_catalogue_rationale": "A weak or cover-softened offset repeated across an otherwise smooth piedmont could escape catalogue mapping while retaining a resolvable profile signal. No mapped trace seeds the surface. Sub-pixel scarps are not claimed detectable from this 100 m cache.",
       "non_fault_mimic": "Fluvial terrace risers and constant-elevation pluvial shoreline benches",
-      "difference_from_implemented": "LSC/TDKL/VESS/SHORE use scarp responses, polarity, knickpoint or shoreline context; they do not fit a cross-validated landform-restoration likelihood. MMRX restores magnetic texture, not landform profiles.",
+      "difference_from_implemented": "LSC/TDKL/VESS/SHORE use scarp responses, polarity, knickpoint or shoreline context; they do not fit a cross-validated landform-restoration likelihood. MMRX restores magnetic texture, not landform profiles. GEMSDOE32 R6-1 already used directional step-vs-ramp topography: the held-out profile restoration and explicit drainage/shoreline nulls are the proposed narrower contrast, not a wholly untried geological mechanism.",
       "expected_potential": "First relative priority; moderate but highly uncertain; no numerical DTI projection",
       "implementation_cost": "Medium; cached inputs only",
-      "falsification": "Reject if sign/step evidence disappears across adjacent withheld swaths, depends on drainage pixels, or is equally explained by contour-following shoreline/terrace controls."
+      "falsification": "Reject if sign/step evidence disappears across adjacent withheld swaths, depends on drainage pixels, or is equally explained by contour-following shoreline/terrace controls.",
+      "near_prior": {
+        "source_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/6a28a39a2bca6bbb49cd8a56292c78d474c9ef91/scripts/run_round6.py#L51-L78",
+        "sha256": "f5a3174c96e74e7a01197e00839dcdf3cd261cabe93226ac18c972a5b353dda9",
+        "status": "A related step-vs-ramp detector was implemented; the exact proposed contrast has not been tested here."
+      }
     },
     {
       "rank": 2,
@@ -230,5 +235,18 @@
       "reason": "Withdrew H88-CON88 upload clearance (IR-88-3C391D97-01), enforced enforce_generation_preflight() on scripts/run_con88_experiment.py and scripts/run_con88_exp3_margin.py, and recorded H88-CON88 in already_evaluated; remaining untested proposals (H88-SPR, H88-AWA, H88-CBC) remain distinct.",
       "reviewed_at_utc": "2026-10-25T18:30:00Z"
     }
-  ]
+  ],
+  "source_snapshot_review_20261027_92a5fb8c": {
+    "prior_snapshot": {
+      "files": 156,
+      "sha256": "a05cd182a2057898e53e4bab103c1958ca439ce9a0827cd372f10047ec20be05"
+    },
+    "change": "Reviewed in-place shared uniqueness integrity repair and compatibility delegation only; geological proposals and rankings unchanged.",
+    "irregularity": "IR-88-92A5FB8C-01",
+    "new_snapshot": {
+      "files": 156,
+      "sha256": "79d5d8605b2df39d345c1fc5a40682d6f69c2c1946c4bc337441901fcf0f5d3b"
+    }
+  },
+  "source_review_note": "In-place shared uniqueness/validator integrity fixes, metric prose-only correction, and local sampled-portfolio fail-closed fix reviewed in session 92a5fb8c; no lane generated. Targeted parallel PR #214 fixes attributed in vendor pins."
 }

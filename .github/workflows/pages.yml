@@ -36,6 +36,7 @@ jobs:
         run: |
           python scripts/audit_downloads.py --check
           python scripts/audit_executive_metrics.py
+          python scripts/focus_current_samples.py --check
           python scripts/audit_research_state.py
           if python scripts/audit_research_state.py --require-submit; then
             echo "Research metadata must never grant slot approval"
@@ -114,6 +115,8 @@ jobs:
         run: |
           python scripts/focus_freshness.py --refresh
           python scripts/focus_freshness.py --check
+          python scripts/focus_current_samples.py --refresh
+          python scripts/focus_current_samples.py --check
       - name: Stage the root landing and canonical /docs/ paths
         run: python scripts/stage_pages.py
       - uses: actions/configure-pages@v5

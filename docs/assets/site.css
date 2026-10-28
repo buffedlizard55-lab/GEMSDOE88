@@ -57,3 +57,12 @@ main>section{padding:68px 0}.section-intro{color:var(--muted);margin-bottom:27px
 .focus-row-details p{margin:10px 0;font-size:.82rem}
 .focus-stop{color:#a73339;font-size:.8rem}
 .table-hint{font-size:.8rem;color:#5c7180}
+
+/* Scheduled README-byte samples are separate from the historical winner table. */
+.current-samples{margin-top:32px;padding-top:22px;border-top:1px solid #d1dfdb}
+.current-samples h3{font-size:1.35rem;margin-bottom:10px}
+.current-samples p{font-size:.86rem;line-height:1.5}
+.current-samples .table-scroll table{min-width:940px;table-layout:auto}
+.current-samples .table-scroll th:first-child,.current-samples .table-scroll th:nth-child(2),
+.current-samples .table-scroll th:nth-child(3),.current-samples .table-scroll th:nth-child(4){width:auto}
+.current-samples td{overflow-wrap:anywhere;font-size:.79rem}

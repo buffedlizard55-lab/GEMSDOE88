@@ -223,6 +223,9 @@ def write_atomic(path: Path, report: dict) -> None:
     payload = json.dumps(report, indent=2, allow_nan=False) + "\n"
     fd, name = tempfile.mkstemp(prefix=".focus-freshness-", suffix=".tmp", dir=path.parent)
     try:
+        # mkstemp defaults to 0600. These are deliberately public Pages data;
+        # the deployment artifact preserves file modes, so publish them as 0644.
+        os.fchmod(fd, 0o644)
         with os.fdopen(fd, "w", encoding="utf-8") as stream:
             stream.write(payload)
         os.replace(name, path)

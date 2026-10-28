@@ -21,7 +21,7 @@ from pathlib import Path
 import numpy as np
 import rasterio
 from rasterio.io import MemoryFile
-from gems57.uniqueness import _near, dot_overlap, excess_overlap
+from gems57.uniqueness import _near, _read_registry_values, dot_overlap, excess_overlap
 from scipy.stats import rankdata
 
 POLICY_VERSION = "gems88-gate-v3"
@@ -161,11 +161,9 @@ def portal_validate(path, sample_path, footprint=None) -> dict:
 
 # ----------------------------------------------------------------------------- uniqueness
 def read_values(path, footprint):
+    """Use the shared literal gate's footprint validation; never fill bad interior data."""
     with rasterio.open(path) as ds:
-        a = ds.read(1).astype(np.float32)
-    a = np.nan_to_num(a, nan=0.0, posinf=0.0, neginf=0.0)
-    a[~footprint] = 0.0
-    return a
+        return _read_registry_values(ds, footprint)
 
 
 def is_dense(values, footprint) -> bool:
@@ -204,7 +202,7 @@ def rank_vec(a, footprint):
 
 def _pearson(u, v) -> float:
     if u.std() == 0 or v.std() == 0:
-        return 0.0
+        raise ValueError("Spearman correlation is undefined for a constant rank vector")
     u = u - u.mean()
     v = v - v.mean()
     return float((u @ v) / np.sqrt((u @ u) * (v @ v)))
@@ -254,7 +252,15 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
         if not path.is_file():
             rows.append(dict(label=label, path=str(path), error="missing"))
             continue
-        vals = read_values(path, footprint)
+        try:
+            vals = read_values(path, footprint)
+            # Validate both phases even if this prior's decoded values are cached.
+            rk_v = rank_vec(vals, footprint)
+            rho_final = _pearson(rk_final, rk_v)
+            rho_pre = rho_final if surface is None else _pearson(rk_pre, rk_v)
+        except (OSError, ValueError, rasterio.errors.RasterioError) as exc:
+            rows.append(dict(label=label, path=str(path), error=f"{type(exc).__name__}: {exc}"))
+            continue
         key = sha256_bytes(np.ascontiguousarray(vals).tobytes())
         if key in seen:  # identical decoded VALUES (not merely support)
             r = dict(seen[key])
@@ -267,9 +273,6 @@ def uniqueness_report(candidate_path, registry, footprint, surface=None) -> dict
         lit = forward_overlap(cand_dots, lit_dots)
         pre_lit = forward_overlap(surf_dots, lit_dots)
         like = lit if not dense else forward_overlap(cand_dots, eff_dots)
-        rk_v = rank_vec(vals, footprint)
-        rho_final = _pearson(rk_final, rk_v)
-        rho_pre = rho_final if surface is None else _pearson(rk_pre, rk_v)
         r = dict(label=label, path=str(path), dense=dense, registry_dots=int(lit_dots.sum()),
                  literal_overlap_3px=lit, surface_literal_overlap_3px=pre_lit, like_for_like_overlap_3px=like,
                  rho_final=rho_final, rho_preplacement=rho_pre,

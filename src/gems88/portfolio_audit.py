@@ -1,4 +1,7 @@
-"""Fast exact 1,167-raster uniqueness audit + full-footprint vendor/gems57 verification."""
+"""Fast diagnostic screening plus separate full-footprint shared verification.
+
+Sampled rank checks cannot clear either phase of the literal uniqueness gate.
+"""
 from __future__ import annotations
 
 import hashlib
@@ -39,6 +42,8 @@ class PortfolioUniquenessAuditor:
         """Audit continuous pre-placement surface (`sub_idx` flat grid indices, `halos_packed` on `live_active`)."""
         vals_act = np.asarray(surface_2d[active_mask], dtype=np.float64)
         sub_vals = np.asarray(surface_2d.ravel()[self.sub_idx], dtype=np.float64)
+        if not vals_act.size or not np.isfinite(vals_act).all() or not np.isfinite(sub_vals).all():
+            raise ValueError('empty or non-finite surface cannot be screened')
         r = rankdata(sub_vals).astype(np.float64)
         r -= r.mean()
         nrm = float(np.linalg.norm(r))
@@ -59,11 +64,16 @@ class PortfolioUniquenessAuditor:
         wi_rho = int(np.argmax(abs_rhos))
         disc_ov = np.where(self.is_discriminating, ov, -1.0)
         wi_ov = int(np.argmax(disc_ov))
+        wi_raw = int(np.argmax(ov))
 
         dup_rho = int((abs_rhos > RHO_LIMIT).sum())
-        dup_ov = int((disc_ov > OVERLAP_LIMIT).sum())
-        passed = (dup_rho == 0) and (dup_ov == 0)
+        # Dense priors are binding too. Discriminating-only values below are
+        # retained as diagnostics, never as the all-registry decision.
+        dup_ov = int((ov > OVERLAP_LIMIT).sum())
         err_n = len(self.index_meta["errors"]) if isinstance(self.index_meta["errors"], list) else int(self.index_meta["errors"])
+        screening_passed = (dup_rho == 0 and dup_ov == 0 and err_n == 0
+                            and nrm > 0 and np.isfinite(rhos).all() and not self.is_const.any()
+                            and self.index_meta.get("complete_accessible_scan") is True)
         return {
             "stage": "pre_placement_surface",
             "label": label,
@@ -75,12 +85,20 @@ class PortfolioUniquenessAuditor:
             "worst_abs_spearman": round(float(abs_rhos[wi_rho]), 6),
             "worst_signed_spearman": round(float(rhos[wi_rho]), 6),
             "worst_spearman_raster": f"{self.rasters[wi_rho]['repo_first']}:{self.rasters[wi_rho]['submission']}",
-            "worst_top37654_discriminating_3px_overlap": round(float(disc_ov[wi_ov]), 6),
-            "worst_overlap_raster": f"{self.rasters[wi_ov]['repo_first']}:{self.rasters[wi_ov]['submission']}",
+            "worst_top37654_discriminating_3px_overlap": (round(float(disc_ov[wi_ov]), 6)
+                                                            if self.is_discriminating.any() else None),
+            "worst_overlap_raster": (f"{self.rasters[wi_ov]['repo_first']}:{self.rasters[wi_ov]['submission']}"
+                                      if self.is_discriminating.any() else None),
+            "worst_raw_overlap_including_spacefill": round(float(ov[wi_raw]), 6),
+            "worst_literal_overlap_raster": f"{self.rasters[wi_raw]['repo_first']}:{self.rasters[wi_raw]['submission']}",
             "duplicate_by_rho_count": dup_rho,
             "duplicate_by_overlap_count": dup_ov,
-            "passed": bool(passed),
-            "stop_required": not bool(passed),
+            "screening_passed": bool(screening_passed),
+            "screening_only": True,
+            "decision": "DUPLICATE_STOP" if dup_rho or dup_ov else "FULL_CHECK_REQUIRED",
+            # A sampled-Spearman screen cannot authorize dot placement.
+            "passed": False,
+            "stop_required": True,
         }
 
     def audit_dots(
@@ -88,6 +106,8 @@ class PortfolioUniquenessAuditor:
     ) -> dict[str, Any]:
         """Exact bit-unpacked 3-px forward overlap (`live_active`) + Spearman (`sub_idx` flat grid) across all 1,167 rasters."""
         vals_act = np.asarray(pred_2d[active_mask], dtype=np.float32)
+        if not np.isfinite(vals_act).all():
+            raise ValueError("non-finite candidate cannot be screened")
         dot_idx = np.flatnonzero(vals_act > 0)
         n_dots = int(dot_idx.size)
         if n_dots == 0:
@@ -99,6 +119,8 @@ class PortfolioUniquenessAuditor:
         ov = hits.astype(np.float64) / float(n_dots)
 
         sub_vals = np.asarray(pred_2d.ravel()[self.sub_idx], dtype=np.float64)
+        if not np.isfinite(sub_vals).all():
+            raise ValueError("non-finite candidate cannot be screened")
         r = rankdata(sub_vals).astype(np.float64)
         r -= r.mean()
         nrm = float(np.linalg.norm(r))
@@ -114,10 +136,11 @@ class PortfolioUniquenessAuditor:
         wi_raw = int(np.argmax(ov))
 
         dup_rho = int((abs_rhos > RHO_LIMIT).sum())
-        dup_ov = int((disc_ov > OVERLAP_LIMIT).sum())
+        dup_ov = int((ov > OVERLAP_LIMIT).sum())
 
         top5 = []
-        for idx in np.argsort(-disc_ov)[:8]:
+        discriminating_indices = np.flatnonzero(self.is_discriminating)
+        for idx in discriminating_indices[np.argsort(-ov[discriminating_indices])[:8]]:
             idx = int(idx)
             top5.append({
                 "repo": self.rasters[idx]["repo_first"],
@@ -128,8 +151,10 @@ class PortfolioUniquenessAuditor:
                 "spearman_rho": round(float(rhos[idx]), 6),
             })
 
-        passed = (dup_rho == 0) and (dup_ov == 0)
         err_n = len(self.index_meta["errors"]) if isinstance(self.index_meta["errors"], list) else int(self.index_meta["errors"])
+        screening_passed = (dup_rho == 0 and dup_ov == 0 and err_n == 0
+                            and nrm > 0 and np.isfinite(rhos).all() and not self.is_const.any()
+                            and self.index_meta.get("complete_accessible_scan") is True)
         return {
             "stage": "post_placement_dots",
             "label": label,
@@ -142,14 +167,21 @@ class PortfolioUniquenessAuditor:
             "worst_abs_spearman": round(float(abs_rhos[wi_rho]), 6),
             "worst_signed_spearman": round(float(rhos[wi_rho]), 6),
             "worst_spearman_raster": f"{self.rasters[wi_rho]['repo_first']}:{self.rasters[wi_rho]['submission']}",
-            "worst_discriminating_3px_overlap": round(float(disc_ov[wi_ov]), 6),
-            "worst_overlap_raster": f"{self.rasters[wi_ov]['repo_first']}:{self.rasters[wi_ov]['submission']}",
+            "worst_discriminating_3px_overlap": (round(float(disc_ov[wi_ov]), 6)
+                                                    if self.is_discriminating.any() else None),
+            "worst_overlap_raster": (f"{self.rasters[wi_ov]['repo_first']}:{self.rasters[wi_ov]['submission']}"
+                                      if self.is_discriminating.any() else None),
             "worst_raw_overlap_including_spacefill": round(float(ov[wi_raw]), 6),
+            "worst_literal_overlap_raster": f"{self.rasters[wi_raw]['repo_first']}:{self.rasters[wi_raw]['submission']}",
             "duplicate_by_rho_count": dup_rho,
             "duplicate_by_overlap_count": dup_ov,
             "top_nearest_discriminating_priors": top5,
-            "passed": bool(passed),
-            "stop_required": not bool(passed),
+            "screening_passed": bool(screening_passed),
+            "screening_only": True,
+            "decision": "DUPLICATE_STOP" if dup_rho or dup_ov else "FULL_CHECK_REQUIRED",
+            # A sampled rank check cannot approve the final raster.
+            "passed": False,
+            "stop_required": True,
         }
 
 

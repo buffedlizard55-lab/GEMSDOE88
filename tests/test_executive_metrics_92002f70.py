@@ -193,8 +193,8 @@ def test_current_run_card_and_fresh_browser_receipt_match_their_mirrors_and_byte
     assert proof['covered_allowed_fraction'] == 1.0 and proof['overlap_limit'] == 0.7
     assert len(card['submission_note']) == card['submission_note_characters'] <= 140
     status = json.loads((ROOT / 'docs/status.json').read_text())
-    assert status['current_review'] == 'data/session_92002f70_run_card.json'
-    assert status['previous_review'] == 'data/session_12f18097_run_card.json'
+    assert status['current_review'] == 'data/session_92a5fb8c_run_card.json'
+    assert status['previous_review'] == 'data/session_92002f70_run_card.json'
     receipt_path = Path(card['verification']['browser_evidence'])
     receipt_bytes = (ROOT / receipt_path).read_bytes()
     assert receipt_bytes == (ROOT / 'docs/data' / receipt_path.name).read_bytes()
@@ -203,7 +203,15 @@ def test_current_run_card_and_fresh_browser_receipt_match_their_mirrors_and_byte
     assert receipt['focus_comparison']['pass'] is True
     assert receipt['research_download']['click_matches_canonical_bytes'] is True
     assert receipt['research_download']['click_sha256'] == card['archived_research_download']['sha256']
+    # This receipt describes the prior pages, not the current mutable files.
+    # The active review has a separate fresh receipt binding today's bytes.
     for rel, expected in receipt['source_sha256'].items():
+        assert rel.startswith('docs/') and len(expected) == 64
+        int(expected, 16)
+    active = json.loads((ROOT / 'docs' / status['current_review']).read_text())
+    fresh = json.loads((ROOT / active['verification']['browser_evidence']).read_text())
+    assert fresh['status'] == 'PASS' and set(receipt['source_sha256']) <= set(fresh['source_sha256'])
+    for rel, expected in fresh['source_sha256'].items():
         assert hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() == expected, rel
 
 

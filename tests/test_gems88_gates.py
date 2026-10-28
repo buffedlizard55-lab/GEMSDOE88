@@ -43,8 +43,14 @@ def test_01_template_pins_match_disk():
     pin = json.loads((ROOT / "registry" / "template_pin.json").read_text())
     for rel, expected_sha in pin["core_modules_unmodified"].items():
         assert _sha256(ROOT / rel) == expected_sha, f"Tampered unmodified vendor module: {rel}"
+    last = {}
     for info in pin["patched_modules"]:
-        assert _sha256(ROOT / info["file"]) == info["patched_sha256"], f"Patched vendor hash mismatch: {info['file']}"
+        prior = last.get(info["file"])
+        if prior and info["patched_sha256"] != prior:
+            assert info["previous_patched_sha256"] == prior
+        last[info["file"]] = info["patched_sha256"]
+    for file, digest in last.items():
+        assert _sha256(ROOT / file) == digest, f"Patched vendor hash mismatch: {file}"
 
 
 def test_02_run_card_schema_and_strict_score_labels():

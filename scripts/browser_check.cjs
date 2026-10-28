@@ -17,6 +17,7 @@ const chromiumPackage = require(path.join(modules, '@sparticuz/chromium/build/in
 const chromium = chromiumPackage.default;
 const expected = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/data/current_release.json'), 'utf8'));
 const focusSnapshot = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/data/focus-freshness.json'), 'utf8'));
+const sampleSnapshot = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/data/focus-current-samples.json'), 'utf8'));
 const expectedTiff = expected.file.replace(/^docs\//, '');
 const requiredBanner = 'NO FILE APPROVED · ARCHIVED RESEARCH DOWNLOAD: YES · SUBMIT: NO — DO NOT SUBMIT';
 
@@ -155,7 +156,7 @@ function startEphemeralDocsServer() {
     // later-sample details on a narrow screen without widening the page itself.
     const comparison = await browser.newPage({viewport: {width: 390, height: 844}});
     await comparison.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
-    const focusRows = comparison.locator('#focus-sites-executive-summary tbody tr');
+    const focusRows = comparison.locator('#focus-sites-executive-summary .table-scroll').first().locator('tbody tr');
     const details = comparison.locator('#focus-sites-executive-summary details.focus-row-details');
     const rowCount = await focusRows.count();
     const detailsCount = await details.count();
@@ -304,6 +305,52 @@ function startEphemeralDocsServer() {
       fresh_text: freshText, missing_text: missingText, partial_text: partialText, expired_text: expiredText};
     failed ||= !freshPass || !missingPass || !partialPass || !expiredPass;
 
+    // Reopened README-cited samples must be tied to the same HEAD snapshot,
+    // expire, and stay negative if the report is missing or inconsistent.
+    const sampleTime = Date.parse(sampleSnapshot.checked_at_utc);
+    const sampleFresh = await browser.newPage({viewport: {width: 390, height: 844}});
+    await sampleFresh.addInitScript(time => { Date.now = () => time; }, sampleTime + 60000);
+    await sampleFresh.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+    const sampleText = await sampleFresh.locator('[data-current-samples-status]').innerText();
+    const sampleRows = await sampleFresh.locator('[data-current-samples-body] tr').count();
+    const sampleDecisionText = await sampleFresh.locator('[data-current-samples-body]').innerText();
+    const samplePass = sampleRows === 9 && sampleText.includes(sampleSnapshot.checked_at_utc)
+      && sampleText.includes('DO NOT SUBMIT') && sampleDecisionText.includes('DO NOT SUBMIT')
+      && await sampleFresh.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+    await sampleFresh.close();
+
+    const sampleMissing = await browser.newPage();
+    await sampleMissing.route('**/data/focus-current-samples.json', route => route.abort());
+    await sampleMissing.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+    const sampleMissingText = await sampleMissing.locator('[data-current-samples-status]').innerText();
+    const sampleMissingPass = sampleMissingText.includes('unavailable or inconsistent') && sampleMissingText.includes('DO NOT SUBMIT');
+    await sampleMissing.close();
+
+    const altered = JSON.parse(JSON.stringify(sampleSnapshot));
+    altered.rows[0].head = altered.rows[0].head === 'a'.repeat(40) ? 'b'.repeat(40) : 'a'.repeat(40);
+    const sampleMismatch = await browser.newPage();
+    await sampleMismatch.addInitScript(time => { Date.now = () => time; }, sampleTime + 60000);
+    await sampleMismatch.route('**/data/focus-current-samples.json', route => route.fulfill({
+      status: 200, contentType: 'application/json', body: JSON.stringify(altered),
+    }));
+    await sampleMismatch.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+    const sampleMismatchText = await sampleMismatch.locator('[data-current-samples-status]').innerText();
+    const sampleMismatchPass = sampleMismatchText.includes('unavailable or inconsistent') && sampleMismatchText.includes('DO NOT SUBMIT');
+    await sampleMismatch.close();
+
+    const sampleExpired = await browser.newPage();
+    await sampleExpired.addInitScript(time => { Date.now = () => time; }, sampleTime + 13 * 3600 * 1000);
+    await sampleExpired.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+    const sampleExpiredText = await sampleExpired.locator('[data-current-samples-status]').innerText();
+    const sampleExpiredPass = sampleExpiredText.includes('snapshot expired') && sampleExpiredText.includes('DO NOT SUBMIT');
+    await sampleExpired.close();
+    report.focus_current_samples = {fresh_snapshot_pass: samplePass, row_count: sampleRows,
+      missing_feed_fail_closed: sampleMissingPass, head_mismatch_fail_closed: sampleMismatchPass,
+      expired_feed_fail_closed: sampleExpiredPass, checked_snapshot: sampleSnapshot.checked_at_utc,
+      fresh_text: sampleText, missing_text: sampleMissingText, mismatch_text: sampleMismatchText,
+      expired_text: sampleExpiredText};
+    failed ||= !samplePass || !sampleMissingPass || !sampleMismatchPass || !sampleExpiredPass;
+
     const noScript = await browser.newPage({javaScriptEnabled: false});
     await noScript.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
     report.no_javascript_banner = await noScript.locator('[data-card-status]').innerText();
@@ -315,6 +362,7 @@ function startEphemeralDocsServer() {
       'docs/sources.html', 'docs/assets/site.css', 'docs/assets/site.js', 'docs/data/current_release.json',
       'docs/data/download_audit.json', 'docs/data/mtas88_run_card.json', 'docs/data/hypothesis_queue.json', 'docs/status.json',
       'docs/assets/focus-freshness.js', 'docs/data/focus-freshness.json',
+      'docs/assets/focus-current-samples.js', 'docs/data/focus-current-samples.json',
       'docs/data/focus_sample_2b5a8383.json', 'docs/data/focus_sites_20261026.json',
       'docs/mdc88/index.html', 'docs/mdc88/executive-summary.html', 'docs/mdc88/status.json']) {
       report.source_sha256[relative] = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, relative))).digest('hex');
