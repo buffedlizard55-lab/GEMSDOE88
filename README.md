@@ -192,6 +192,15 @@ No new TIFF was generated and nothing is cleared for download-to-submit. The sha
 - **Stale and misattributed figures.** `0.3195` matches a 2026-10-04 snapshot value. `0.4413` is the rank-1 public score of a non-GEMSDOE participant. `0.2778` (H33) has no organizer receipt. Public top-50 range (checked 2026-10-25): 0.4413 down to 0.2818.
 - **Historical access report:** that review reported a GitHub token-status warning. PR #145 is now merged and this session's GitHub operations work; no credential request is needed. Its original access note remains in the dated review, section 8.
 
+### Nine-site executive summary — 2026-10-28 (session `nine-site-20261028`)
+
+**Decision: no file from these nine sites is cleared to download or submit.** [Executive page](docs/nine-sites/index.html) · [Review](research/session-nine-site-20261028-review.md) · [Run card](registry/nine_site_20261028_run_card.json) · [Machine record](docs/data/nine_sites_20261028.json) · [Leaderboard snapshot](docs/data/leaderboard_public_snapshot_20261028.json)
+
+- All nine pinned winner files pass the official format check locally. They overlap one another at **0.867–1.000** and the dense 17GEMSDOE witness at **1.000**, so each is a duplicate under the parallel-run protocol. GEMSDOE25 and GEMSDOE30 hold identical dot sets (44,090 dots, both user-reported 0.2600).
+- H33 (GEMSDOE32, user-reported **0.2778**, USER-REPORTED) is a strict subset of D2.8 with 6,436 dots removed, all within 2 px of the catalogue. The repo's collar holdout shows a paired effect of +1.0e-6 with a CI that spans zero, so the advantage is **unexplained**.
+- Official public leaderboard (fetched 2026-10-28): rank 1 is **0.4544**; **0.3195** is rank 26; **0.2778** is outside the top 50 (minimum 0.2874).
+- No TIFF was generated. The generation guard exits 2 (`DUPLICATE_STOP`). The rule owner must decide how the uniqueness rule applies to dense priors (options in review §9).
+
 ### Remaining limitations
 
 The literal uniqueness condition must become satisfiable under an explicitly authorized **shared** protocol before another candidate is constructed; no exemption is authorized here. New-model hide-and-recover and leakage tests are therefore not run. The current leaderboard, rules, weekly allowance, organizer input authentication and receipts cannot be verified through this session's permitted hosts. No credentials are requested. Full data caches are ignored, not committed; restore commands reconstruct them. Static Pages serves results, not account-authenticated uploads or training jobs.
