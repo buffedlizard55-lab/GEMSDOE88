@@ -1,0 +1,101 @@
+{
+  "schema": "gems88.session-run-card.v1",
+  "session_date_utc": "2026-10-25",
+  "session_branch": "arena/37203d63-gemsdoe88",
+  "evidence_class": "SESSION-RUN-CARD",
+  "verdict": "negative",
+  "budget": { "experiments_run": 0, "max_experiments": 3, "hours_used": null, "max_hours": 2 },
+  "summary": "No unique competition TIFF was generated this session. The binding pre-placement gate returned DUPLICATE_STOP (exit 2): the SHA-pinned 17GEMSDOE witness covers every allowed pixel, so any nonempty candidate has forward 3-px overlap 1.0 > 0.70 and must stop before feature construction, holdout, placement or writing. No old prediction was copied, renamed, or passed off as a new submission.",
+  "hypothesis": "Queued for a future unblocked session: H1 radiometric (GeoDAWN Th/K/U) + DEM curvature concordance; H2 multi-aspect DEM lineament density; H3 geodetic strain concentration; H4 Landsat Collection 2 LST/NDVI thermal-vegetation proxy; H5 cross-scale magnetic admittance residual. Ranked by expected DTI gain vs implementation cost in research/candidate-hypotheses-20261025-session.md.",
+  "mechanism": "H1/H2: joint occurrence of alteration-chemistry or direction-agnostic lineament fabric away from mapped catalogue faults marks missing splays/relays. H3: present-day strain ridges mark blind structures. H4: bias-corrected surface-temperature/vegetation anomalies mark concealed conduits. H5: difference-of-scales magnetic residual marks narrow demagnetized edges.",
+  "named_non_fault_process": "H1: unfaulted intrusive/volcanic contact with density but weak magnetic contrast; unfaulted lithologic chemical variation. H2: depositional or volcanic lineation unrelated to slip. H3: regional plate-scale strain not localized on a fault. H4: aspect-driven insolation, irrigation, or lake-effect temperature/vegetation patterns. H5: broad lithologic magnetic layering.",
+  "holdout": {
+    "status": "NOT_RUN_PREPLACEMENT_DUPLICATE_STOP",
+    "evaluator_version_if_unblocked": "gems57-pooled-hide-v2",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "triangular_kernel_m": 300,
+    "withheld_positive_pixels": null,
+    "dti": null,
+    "ci95": null,
+    "reason": "No hypothesis was fitted and no prediction was emitted; historical HOLDOUT-DTI is not a new candidate result and is not an organizer score."
+  },
+  "leakage_canaries": {
+    "status": "NOT_RUN_NO_FEATURES_FITTED",
+    "rule": "single-feature AUC must be <= 0.90 before any score is trusted; AUC above 0.90 is leakage until proven otherwise",
+    "result": null
+  },
+  "correlation_overlap_vs_registry": {
+    "witness_file": "data/registry/dense_17gemdoe.tif",
+    "witness_sha256": "ab0a0a62eecf066a82713b09dd49f0f638a91fa3dd81f54cc34ae89afa3872be",
+    "allowed_pixels": 5106385,
+    "covered_allowed_fraction": 1.0,
+    "universal_lower_bound_on_any_nonempty_candidate_overlap_3px": 1.0,
+    "overlap_limit": 0.70,
+    "rank_correlation_limit": 0.90,
+    "surface_rank_correlation": null,
+    "final_dot_rank_correlation": null,
+    "final_dot_overlap_3px": null,
+    "duplicate_logged": true,
+    "scope": "One SHA-pinned counterexample suffices to reject. NOT an inventory-wide uniqueness clearance."
+  },
+  "raster": {
+    "raster_file": null,
+    "raster_sha256": null,
+    "new_rasters_generated": 0,
+    "reason": "Generation blocked by DUPLICATE_STOP; no raster bytes exist to hash."
+  },
+  "validator_output": {
+    "status": "NOT_RUN_NO_NEW_RASTER",
+    "no_nan_inside": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null,
+    "approval": null
+  },
+  "archived_research_download_only": {
+    "file": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.tif",
+    "zip": "docs/downloads/gems88-tdkl88-poe-25000dots-20261024-zeros-DO-NOT-SUBMIT.zip",
+    "sha256": "db9d186749a7095579559b5942cfecaa1c03fc019b87dd609512ce78769aaadf",
+    "ok_to_download_for_research_only": true,
+    "ok_to_submit": false,
+    "note": "Historical artifact only; not unique under the binding all-registry rule."
+  },
+  "submission": {
+    "name": "GEMSDOE88-MTAS-PREFLIGHT-20261025-NO-FILE",
+    "name_length": 42,
+    "name_status": "RESERVED_ONLY_NO_FILE_NOT_FOR_PORTAL",
+    "note": "MTAS pre-placement duplicate: registry covers all allowed cells; no TIFF built; UNSCORED; DO NOT SUBMIT",
+    "note_length": 103,
+    "note_limit": 140,
+    "ok_to_download_new_file": false,
+    "ok_to_submit": false,
+    "approved_for_weekly_slot": false,
+    "weekly_slots_used": 0,
+    "organizer_confirmed_score": null,
+    "score_label_rule": "Only a score copied from an actual submission-page receipt may be labeled ORGANIZER-CONFIRMED; this project has no such receipt for a new candidate."
+  },
+  "data_provenance": "Pinned owner GitHub mirrors (restored via scripts/restore_inputs.py --validation); not authenticated against logged-in organizer downloads; redistribution terms unchecked. User-supplied Dropbox links are not treated as official sources.",
+  "official_reference_urls": {
+    "competition_rules": "https://www.drivendata.org/competitions/306/competition-doe-gems/",
+    "problem_page": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "about_page": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/",
+    "submissions_page": "https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/",
+    "leaderboard": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "rules_pdf": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+    "reference_solution": "https://github.com/drivendataorg/gems-prize-reference-solution",
+    "usgs_geodawn": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "usgs_3dep": "https://www.usgs.gov/3d-elevation-program",
+    "gdr_1391": "https://gdr.openei.org/submissions/1391",
+    "epsg_32611": "https://epsg.io/32611",
+    "tversky_index": "https://en.wikipedia.org/wiki/Tversky_index"
+  },
+  "next_steps": [
+    "Obtain a separately authorized, representation-aware protocol revision that makes the literal uniqueness condition satisfiable (the 17GEMSDOE witness currently saturates the allowed domain).",
+    "After unblocking: preregister H1 (then H2) in one lane, run buffered whole-segment hide-and-recover holdout, run single-feature leakage canaries, compare paired CI against same-fold incumbent H88-BPWD (0.205991).",
+    "Only promote a candidate beating the incumbent holdout; then complete full surface/final-dot registry checks and a separate selector within the actual weekly cap.",
+    "Only after clearance, upload one approved single-band GeoTIFF or one-TIFF ZIP at the DrivenData submission page and paste the cleared name and <=140 character note.",
+    "Do not download-and-submit any current file: every archived TIFF is marked DO-NOT-SUBMIT and fails the binding uniqueness rule."
+  ]
+}
