@@ -1,6 +1,6 @@
 {
   "schema": "gems88.focus-freshness.v1",
-  "checked_at_utc": "2026-10-27T23:36:47Z",
+  "checked_at_utc": "2026-10-28T11:29:19Z",
   "status": "COMPLETE",
   "source": "GitHub API repository HEAD only; no organizer request",
   "audited_snapshot": "docs/data/focus_sites_20261026.json",
@@ -24,8 +24,8 @@
     {
       "site": "GEMSDOE25",
       "audited_head": "88a29e094989b0e23916136e593474875d067656",
-      "current_head": "6c21aafe403b62ae4d8bcb0d98e309ac9b72a604",
-      "current_commit_utc": "2026-10-27T22:22:46Z",
+      "current_head": "5ea719115f6e15a2b957062b5637b85a8f21c26f",
+      "current_commit_utc": "2026-10-28T05:52:52Z",
       "state": "CHANGED",
       "source_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE25/commits/HEAD",
       "error": null
@@ -51,8 +51,8 @@
     {
       "site": "GEMSDOE30",
       "audited_head": "73db382d3c990d0aa0b5126997a67213cc56dee4",
-      "current_head": "3ba3bbb962f39f6cbb8ce6e365e0005f41046e81",
-      "current_commit_utc": "2026-10-27T23:35:49Z",
+      "current_head": "b76762ec345c8da0a9546896d3bb28ddfd641c5f",
+      "current_commit_utc": "2026-10-28T00:16:52Z",
       "state": "CHANGED",
       "source_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE30/commits/HEAD",
       "error": null
@@ -60,8 +60,8 @@
     {
       "site": "GEMSDOE31",
       "audited_head": "e6e85b357914068b3ba57ace0f899dde13f110a6",
-      "current_head": "f41e0ddb91d7e39c941f81b591ba3a8db7df62b1",
-      "current_commit_utc": "2026-10-27T23:36:13Z",
+      "current_head": "eae0500c0550b1e0d59b14765c7cc23cce9a4856",
+      "current_commit_utc": "2026-10-27T23:45:20Z",
       "state": "CHANGED",
       "source_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE31/commits/HEAD",
       "error": null
@@ -69,8 +69,8 @@
     {
       "site": "GEMSDOE32",
       "audited_head": "9e55d5d61cb748533691ed183b1b2f2e04643add",
-      "current_head": "5871b14fbc477032c6e4b339c3d41cae7243f4fe",
-      "current_commit_utc": "2026-10-27T23:36:27Z",
+      "current_head": "2973f580e2e14fef63dcc9ed556e6dde28d16c4f",
+      "current_commit_utc": "2026-10-28T11:27:41Z",
       "state": "CHANGED",
       "source_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE32/commits/HEAD",
       "error": null
@@ -78,8 +78,8 @@
     {
       "site": "GEMSDOE33",
       "audited_head": "fded538406627b8d154a2fef5b5331f656d7e0f2",
-      "current_head": "844f514819041c7be9efd345a24cf5cd70263f00",
-      "current_commit_utc": "2026-10-27T17:58:11Z",
+      "current_head": "7b422fa37a516543aa27012e82bb4ded3f00a770",
+      "current_commit_utc": "2026-10-27T23:49:43Z",
       "state": "CHANGED",
       "source_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE33/commits/HEAD",
       "error": null
@@ -87,8 +87,8 @@
     {
       "site": "GEMSDOE36",
       "audited_head": "4938a123133b4747079cc1c1c93a11e50c1376a7",
-      "current_head": "63ba988b8e7e15da4d6938fae167933d8f697b4c",
-      "current_commit_utc": "2026-10-27T21:49:34Z",
+      "current_head": "41ff1edd3f97fa2b82de5b4ba8ef51f0e6531d9d",
+      "current_commit_utc": "2026-10-27T23:43:28Z",
       "state": "CHANGED",
       "source_url": "https://api.github.com/repos/buffedlizard55-lab/GEMSDOE36/commits/HEAD",
       "error": null

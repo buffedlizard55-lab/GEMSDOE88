@@ -314,8 +314,10 @@ function startEphemeralDocsServer() {
     const sampleText = await sampleFresh.locator('[data-current-samples-status]').innerText();
     const sampleRows = await sampleFresh.locator('[data-current-samples-body] tr').count();
     const sampleDecisionText = await sampleFresh.locator('[data-current-samples-body]').innerText();
+    const failedSample = sampleSnapshot.rows.find(row => row.format_pass === false && row.format_failures.length);
+    const diagnosticsPass = !failedSample || failedSample.format_failures.every(name => sampleDecisionText.includes(name));
     const samplePass = sampleRows === 9 && sampleText.includes(sampleSnapshot.checked_at_utc)
-      && sampleText.includes('DO NOT SUBMIT') && sampleDecisionText.includes('DO NOT SUBMIT')
+      && sampleText.includes('DO NOT SUBMIT') && sampleDecisionText.includes('DO NOT SUBMIT') && diagnosticsPass
       && await sampleFresh.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
     await sampleFresh.close();
 
@@ -338,6 +340,20 @@ function startEphemeralDocsServer() {
     const sampleMismatchPass = sampleMismatchText.includes('unavailable or inconsistent') && sampleMismatchText.includes('DO NOT SUBMIT');
     await sampleMismatch.close();
 
+    // Semantically identical JSON with different bytes must not match the
+    // recorded SHA-256. Checking only the parsed HEADs misses this race.
+    const sampleByteMismatch = await browser.newPage();
+    await sampleByteMismatch.addInitScript(time => { Date.now = () => time; }, sampleTime + 60000);
+    const changedHeadBytes = fs.readFileSync(path.join(ROOT, 'docs/data/focus-freshness.json'), 'utf8') + '\n';
+    await sampleByteMismatch.route('**/data/focus-freshness.json', route => route.fulfill({
+      status: 200, contentType: 'application/json', body: changedHeadBytes,
+    }));
+    await sampleByteMismatch.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
+    const sampleByteMismatchText = await sampleByteMismatch.locator('[data-current-samples-status]').innerText();
+    const sampleByteMismatchPass = sampleByteMismatchText.includes('unavailable or inconsistent')
+      && sampleByteMismatchText.includes('DO NOT SUBMIT');
+    await sampleByteMismatch.close();
+
     const sampleExpired = await browser.newPage();
     await sampleExpired.addInitScript(time => { Date.now = () => time; }, sampleTime + 13 * 3600 * 1000);
     await sampleExpired.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});
@@ -345,11 +361,12 @@ function startEphemeralDocsServer() {
     const sampleExpiredPass = sampleExpiredText.includes('snapshot expired') && sampleExpiredText.includes('DO NOT SUBMIT');
     await sampleExpired.close();
     report.focus_current_samples = {fresh_snapshot_pass: samplePass, row_count: sampleRows,
-      missing_feed_fail_closed: sampleMissingPass, head_mismatch_fail_closed: sampleMismatchPass,
+      format_diagnostics_rendered: diagnosticsPass, missing_feed_fail_closed: sampleMissingPass,
+      head_mismatch_fail_closed: sampleMismatchPass, snapshot_bytes_mismatch_fail_closed: sampleByteMismatchPass,
       expired_feed_fail_closed: sampleExpiredPass, checked_snapshot: sampleSnapshot.checked_at_utc,
       fresh_text: sampleText, missing_text: sampleMissingText, mismatch_text: sampleMismatchText,
-      expired_text: sampleExpiredText};
-    failed ||= !samplePass || !sampleMissingPass || !sampleMismatchPass || !sampleExpiredPass;
+      byte_mismatch_text: sampleByteMismatchText, expired_text: sampleExpiredText};
+    failed ||= !samplePass || !sampleMissingPass || !sampleMismatchPass || !sampleByteMismatchPass || !sampleExpiredPass;
 
     const noScript = await browser.newPage({javaScriptEnabled: false});
     await noScript.goto(new URL('index.html', base).toString(), {waitUntil: 'networkidle'});

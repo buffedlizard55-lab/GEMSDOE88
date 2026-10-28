@@ -147,8 +147,9 @@ def focus_sites_panel(focus: dict, sampled: dict) -> str:
         + '<section class="current-samples" aria-labelledby="current-samples-title">'
         '<h3 id="current-samples-title">Recent README-cited TIFF samples</h3>'
         '<p>At each observed GitHub revision, the first bare <code>docs/downloads/</code> or <code>docs/research/</code> TIFF path '
-        'in the first 16 KiB of README is reopened. Other paths and URLs are excluded. '
+        'in the complete README (up to 2,000,000 bytes) is reopened. Other paths and URLs are excluded; unavailable or oversized files remain unknown. '
         'This is a limited sample, not necessarily the latest file, the highest scorer, a full registry check or a leaderboard estimate. '
+        'Local format failures are shown separately from the duplicate check and are not an organizer acceptance test. '
         '<strong>No file below is approved for submission.</strong> '
         '<a href="data/focus-current-samples.json">Dated machine evidence ↗</a></p>'
         '<p data-current-samples-status role="status" aria-live="polite">Sample audit unavailable until the dated snapshot loads. DO NOT SUBMIT.</p>'
@@ -201,13 +202,13 @@ def render(root: Path, kind: str) -> str:
     title = "Research download.<br>Not cleared to submit." if kind == "overview" else "How submission works.<br>Why it is blocked today."
     hero = f'''<section class="decision-hero" id="mtas-review" aria-labelledby="decision-title">
 <div class="wrap" id="autonomous-review">
-<div class="decision-kicker">Review · 2026-10-27 · NO FILE APPROVED · 0/9 CLEARED IN HISTORICAL AUDIT</div>
+<div class="decision-kicker">Review · 2026-10-28 · NO FILE APPROVED · 0/9 CLEARED IN HISTORICAL AUDIT</div>
 <div class="decision-grid"><div>
 <h1 id="decision-title">{title}</h1>
 <p class="decision-lead"><strong>NO NEW TIFF: DUPLICATE — STOP.</strong> A freshly generated, protocol-unique competition TIFF could not be produced under the binding rule. The pinned nine-site audit found no qualifying candidate; it is not a current census. No old prediction was copied or renamed as a new submission.</p>
 <p>The pinned registry witness covers every allowed pixel: every nonempty dot set fails the literal overlap limit. These archived files are <strong>not unique under the binding all-registry rule</strong>.</p>
 <div class="decision-pills"><span>DOWNLOAD FOR RESEARCH: YES</span><span class="blocked-pill">SUBMIT: NO — DO NOT SUBMIT</span></div>
-<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="research/session-92a5fb8c-review.md">Current three-pass review</a> · <a href="data/session_92a5fb8c_run_card.json">Session 92a5fb8c negative run card</a> · <a href="data/session_92002f70_run_card.json">Prior 92002f70 run card</a> · <a href="data/session_12f18097_run_card.json">Prior 12f18097 run card</a> · <a href="data/session_2b5a8383_run_card.json">Prior 2b5a8383 run card</a> · <a href="data/pr209_pr210_withdrawal_20261027.json">PR #209/#210 withdrawal</a> · <a href="data/focus_sites_20261026.json">Historical 9-site audit JSON</a>.</p>
+<p class="micro">No competition slot used in this session. No organizer-confirmed score. Local validation does not require human inspection; it cannot establish hidden-label performance or choose a weekly slot. <a href="research/session-5a295887-review.md">Current three-pass review</a> · <a href="data/session_5a295887_run_card.json">Session 5a295887 negative run card</a> · <a href="data/session_92a5fb8c_run_card.json">Prior 92a5fb8c run card</a> · <a href="data/session_92002f70_run_card.json">Prior 92002f70 run card</a> · <a href="data/session_12f18097_run_card.json">Prior 12f18097 run card</a> · <a href="data/session_2b5a8383_run_card.json">Prior 2b5a8383 run card</a> · <a href="data/pr209_pr210_withdrawal_20261027.json">PR #209/#210 withdrawal</a> · <a href="data/focus_sites_20261026.json">Historical 9-site audit JSON</a>.</p>
 </div><aside class="decision-download" aria-label="Canonical archived research download">
 <div class="decision-kicker">Existing research artifact · H88-TDKL · 2026-10-24</div>
 <h2>Download the audited TIFF</h2>
@@ -313,7 +314,7 @@ def submission_summary_table(root: Path, tif: str) -> str:
             '<span class="micro">Download for research: YES</span></td></tr>'
         )
     return ('''<section class="decision-focus" id="submission-summary-table"><div class="wrap">
-<div class="section-heading"><div><div class="kicker">Executive submission &amp; uniqueness summary</div><h2>Files, recorded holdout evidence and submission verdict</h2></div><a href="data/session_92a5fb8c_run_card.json">Current negative run card ↗</a></div>
+<div class="section-heading"><div><div class="kicker">Executive submission &amp; uniqueness summary</div><h2>Files, recorded holdout evidence and submission verdict</h2></div><a href="data/session_5a295887_run_card.json">Current negative run card ↗</a></div>
 <p class="focus-intro"><strong>No file is approved for submission.</strong> These are historical, fold-specific <strong>HOLDOUT-DTI</strong> measurements of a method, not a score of the downloaded TIFF on hidden labels or a predicted leaderboard result. Confidence intervals are conditional on the catalogue and fitted folds. The user-reported historical values have no submission receipt. The universal witness alone rejects these files; it is not a complete raster census of all 104 sites.</p>
 <div class="table-scroll"><table class="focus-table"><thead><tr>
 <th>File to download (research only)</th><th>Recorded method holdout (not a leaderboard estimate)</th><th>Unique vs all 104 listed GEMSDOE sites?</th><th>OK to download / submit?</th>
