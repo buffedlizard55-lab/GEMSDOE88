@@ -21,6 +21,7 @@ jobs:
         run: |
           python scripts/audit_downloads.py --check
           python scripts/audit_executive_metrics.py
+          python scripts/focus_current_samples.py --check
           python scripts/audit_research_state.py
           if python scripts/audit_research_state.py --require-submit; then
             echo "Research metadata must never grant slot approval"

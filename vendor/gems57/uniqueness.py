@@ -9,6 +9,8 @@ comparison and summary functions already implement the literal user rule.
 from __future__ import annotations
 import hashlib
 import json
+import re
+from numbers import Integral, Real
 from pathlib import Path
 import numpy as np
 import rasterio
@@ -110,56 +112,114 @@ def _jaccard(a, b):
 
 def summarize_registry_rows(rows, *, registry_rasters_expected, complete_accessible_scan,
                             source_errors, candidate_meta, scope):
-    """Apply the same literal thresholds to already hash-verified comparison rows.
+    """Summarize the literal gate without trusting stale or contradictory flags.
 
-    This allows a complete immutable prior audit to be extended with only newly
-    published blobs, instead of re-downloading hundreds of unchanged rasters.
-    The caller must prove candidate identity and the completeness/count of the
-    combined registry before passing ``complete_accessible_scan=True``.
+    A comparison is incomplete if any required measurement is missing,
+    nonfinite, out of range, or inconsistent with its saved flags. Counts and
+    identity are checked separately; an empty inventory cannot certify novelty.
+    A duplicate remains a duplicate even if its saved boolean incorrectly says
+    otherwise. This is a selector-eligibility measurement, not slot approval.
     """
     rows = list(rows)
     source_errors = list(source_errors or [])
-    expected = int(registry_rasters_expected)
-    checked = [r for r in rows if 'error' not in r]
-    errors = [r for r in rows if 'error' in r]
-    complete = bool(complete_accessible_scan and expected == len(rows)
-                    and not errors and not source_errors)
-    # The inherited stop gate is literal: only Spearman > 0.90 or forward
-    # 3-pixel overlap > 0.70 (plus byte/pixel identity safeguards) can block.
-    # Jaccard is reported for diagnosis, never substituted as a new threshold.
-    flags = [r for r in checked if any(r.get(k, False) for k in (
+    if not isinstance(candidate_meta, dict):
+        raise ValueError('candidate metadata must be a dictionary')
+    valid_sha = lambda value: isinstance(value, str) and re.fullmatch(r'[a-f0-9]{64}', value) is not None
+    file_sha = candidate_meta.get('candidate_file_sha256')
+    decoded_sha = candidate_meta.get('candidate_decoded_sha256')
+    identity_ok = valid_sha(decoded_sha) and (file_sha is None or valid_sha(file_sha))
+    valid_expected = (isinstance(registry_rasters_expected, Integral)
+                      and not isinstance(registry_rasters_expected, (bool, np.bool_))
+                      and registry_rasters_expected > 0)
+    expected = int(registry_rasters_expected) if valid_expected else 0
+    count = candidate_meta.get('my_dots')
+    valid_count = (isinstance(count, Integral) and not isinstance(count, (bool, np.bool_))
+                   and count > 0)
+    my_dot_count = int(count) if valid_count else 0
+    norm = candidate_meta.get('candidate_rank_variation') is True
+
+    def metric(value, low, high):
+        return (isinstance(value, Real) and not isinstance(value, (bool, np.bool_))
+                and np.isfinite(value) and low <= value <= high)
+
+    checked, errors, normalized = [], [], []
+    for row in rows:
+        if not isinstance(row, dict):
+            bad = {'error': 'registry row is not an object'}
+            errors.append(bad)
+            normalized.append(bad)
+            continue
+        if 'error' in row:
+            errors.append(row)
+            normalized.append(row)
+            continue
+        rho = row.get('spearman_full_footprint')
+        overlap = row.get('my_dots_within_3px_of_theirs')
+        jaccard = row.get('jaccard_dot_sets')
+        alias = row.get('forward_overlap', overlap)
+        bool_keys = ('duplicate_by_rho', 'duplicate_by_overlap',
+                     'identical_bytes', 'identical_decoded_predictions')
+        if (not isinstance(row.get('submission'), str) or not row['submission']
+                or not valid_sha(row.get('sha256')) or not valid_sha(row.get('decoded_sha256'))
+                or not metric(rho, -1, 1) or not metric(overlap, 0, 1)
+                or not metric(jaccard, 0, 1) or not metric(alias, 0, 1)
+                or alias != overlap or any(type(row.get(k)) is not bool for k in bool_keys)):
+            # Keep only safe identifying text: do not serialize NaN/Inf as JSON.
+            bad = {k: row[k] for k in ('repo', 'submission', 'file', 'sha256')
+                   if isinstance(row.get(k), str)}
+            bad['error'] = 'missing, nonfinite, out-of-range or inconsistent registry measurement'
+            errors.append(bad)
+            normalized.append(bad)
+            continue
+        measured_rho = bool(abs(float(rho)) > RHO_LIMIT)
+        measured_overlap = bool(float(overlap) > OVERLAP_LIMIT)
+        copy = dict(row)
+        byte_match = bool(row['identical_bytes'] or (file_sha is not None and row['sha256'] == file_sha))
+        decoded_match = bool(row['identical_decoded_predictions'] or row['decoded_sha256'] == decoded_sha)
+        contradictory = (row['duplicate_by_rho'] != measured_rho
+                         or row['duplicate_by_overlap'] != measured_overlap
+                         or row['identical_bytes'] != byte_match
+                         or row['identical_decoded_predictions'] != decoded_match)
+        if contradictory:
+            # Preserve and count measured/hash-identical duplicates, but fail
+            # completeness: a contradictory stored row is not a verified audit.
+            copy.update(duplicate_by_rho=measured_rho, duplicate_by_overlap=measured_overlap,
+                        identical_bytes=byte_match, identical_decoded_predictions=decoded_match,
+                        measurement_integrity_error='saved flags contradict measurements or digests')
+            errors.append(copy)
+        checked.append(copy)
+        normalized.append(copy)
+    complete = bool(complete_accessible_scan is True and valid_expected
+                    and expected == len(rows) and not errors and not source_errors)
+    flags = [r for r in checked if any(r[k] for k in (
         'duplicate_by_rho', 'duplicate_by_overlap',
         'identical_bytes', 'identical_decoded_predictions'))]
-    rank_rows = [r for r in checked if r.get('spearman_full_footprint') is not None]
-    worst_rho = max(rank_rows, key=lambda r: r['spearman_full_footprint'], default=None)
+    worst_rho = max(checked, key=lambda r: abs(r['spearman_full_footprint']), default=None)
     worst_ov = max(checked, key=lambda r: r['my_dots_within_3px_of_theirs'], default=None)
     worst_jac = max(checked, key=lambda r: r['jaccard_dot_sets'], default=None)
-    my_dot_count = int(candidate_meta['my_dots'])
-    norm = bool(candidate_meta['candidate_rank_variation'])
-    unique = complete and my_dot_count > 0 and norm and not flags
+    unique = bool(complete and identity_ok and valid_count and norm and not flags)
     return dict(
         my_file=candidate_meta.get('my_file'), evidence_class='REGISTRY-MEASUREMENT',
         my_dots=my_dot_count,
         candidate_decoded_sha256=candidate_meta.get('candidate_decoded_sha256'),
         candidate_file_sha256=candidate_meta.get('candidate_file_sha256'),
+        candidate_identity_fields_valid=bool(identity_ok),
         rho_limit=RHO_LIMIT, overlap_limit=OVERLAP_LIMIT, jaccard_limit=JACCARD_LIMIT,
         registry_rasters_expected=expected, registry_rasters_checked=len(checked),
         complete_accessible_scan=complete, missing_or_invalid=len(errors),
         source_errors=source_errors,
         worst_spearman_full_footprint=(worst_rho['spearman_full_footprint'] if worst_rho else None),
-        worst_rho_submission=(worst_rho['submission'] if worst_rho else None),
+        worst_rho_submission=(worst_rho.get('submission') if worst_rho else None),
         worst_dot_overlap=(worst_ov['my_dots_within_3px_of_theirs'] if worst_ov else None),
-        worst_overlap_submission=(worst_ov['submission'] if worst_ov else None),
+        worst_overlap_submission=(worst_ov.get('submission') if worst_ov else None),
         worst_jaccard_dot_sets=(worst_jac['jaccard_dot_sets'] if worst_jac else None),
-        worst_jaccard_submission=(worst_jac['submission'] if worst_jac else None),
-        byte_unique_among_checked=bool(checked) and not any(r.get('identical_bytes', False) for r in checked),
-        pixel_unique_among_checked=bool(checked) and not any(r.get('identical_decoded_predictions', False) for r in checked),
-        duplicate_count=len(flags), unique=bool(unique), rows=rows,
+        worst_jaccard_submission=(worst_jac.get('submission') if worst_jac else None),
+        byte_unique_among_checked=bool(checked) and not any(r['identical_bytes'] for r in checked),
+        pixel_unique_among_checked=bool(checked) and not any(r['identical_decoded_predictions'] for r in checked),
+        duplicate_count=len(flags), unique=unique, rows=normalized,
         jaccard_diagnostic_only=True,
         verdict='promote-to-selector-only' if unique else 'negative',
-        stop_required=bool(flags or not complete or not my_dot_count or not norm),
-        candidate_rank_variation=norm,
-        scope=scope)
+        stop_required=not unique, candidate_rank_variation=norm, scope=scope)
 
 
 def merge_registry_audits(previous, extension, *, registry_rasters_expected,
@@ -178,10 +238,10 @@ def merge_registry_audits(previous, extension, *, registry_rasters_expected,
     if any(previous.get(key) != extension.get(key)
            for key in ('rho_limit', 'overlap_limit', 'jaccard_limit')):
         raise ValueError('cannot merge audits with different uniqueness thresholds')
-    if not previous.get('complete_accessible_scan'):
-        raise ValueError('base audit is not a complete accessible registry scan')
-    if not extension.get('complete_accessible_scan'):
-        raise ValueError('registry delta is incomplete')
+    if previous.get('complete_accessible_scan') is not True or not previous.get('rows'):
+        raise ValueError('base audit is not a nonempty complete accessible registry scan')
+    if extension.get('complete_accessible_scan') is not True or not extension.get('rows'):
+        raise ValueError('registry delta is empty or incomplete')
     if previous.get('missing_or_invalid') or extension.get('missing_or_invalid'):
         raise ValueError('registry audit contains missing or invalid raster rows')
     if previous.get('source_errors') or extension.get('source_errors'):
@@ -217,8 +277,11 @@ def merge_registry_audits(previous, extension, *, registry_rasters_expected,
     rows = sorted(merged.values(), key=lambda r: (r.get('repo', ''), r.get('submission', ''), r['sha256']))
     meta = {k: previous.get(k) for k in identity_keys}
     meta['my_file'] = previous.get('my_file')
+    if (not isinstance(registry_rasters_expected, Integral)
+            or isinstance(registry_rasters_expected, (bool, np.bool_)) or registry_rasters_expected <= 0):
+        raise ValueError('registry expected count must be a positive integer')
     expected = int(registry_rasters_expected)
-    complete = bool(complete_accessible_scan and len(rows) == expected)
+    complete = bool(complete_accessible_scan is True and len(rows) == expected)
     result = summarize_registry_rows(
         rows, registry_rasters_expected=expected,
         complete_accessible_scan=complete,
@@ -267,7 +330,28 @@ def records_from_index(index):
     # Historical /tmp inventory never had a completeness certificate; file checks
     # below still prevent it from passing when all ephemeral caches disappear.
     complete = index.get('complete_accessible_scan', False)
-    return records, bool(complete), index.get('errors', [])
+    return records, complete is True, index.get('errors', [])
+
+
+def _read_registry_values(src, footprint, *, expected_grid=None):
+    """Read a prior without turning invalid scored cells into zero evidence.
+
+    Exterior NaN/nodata are allowed. Interior masks, nonfinite or out-of-range
+    values invalidate the comparison; silently filling them could clear a lane.
+    """
+    fp = np.asarray(footprint, bool)
+    if src.count != 1 or src.shape != fp.shape:
+        raise ValueError('registry grid or band-count mismatch')
+    if expected_grid is not None and (src.shape, src.crs, src.transform) != expected_grid:
+        raise ValueError('registry CRS/transform differs from reference')
+    dtype = np.dtype(src.dtypes[0])
+    if not np.issubdtype(dtype, np.number) or np.issubdtype(dtype, np.complexfloating):
+        raise ValueError('registry raster must use a real numeric dtype')
+    values = src.read(1)
+    if (not np.all(src.read_masks(1)[fp] != 0) or not np.isfinite(values[fp]).all()
+            or (values[fp] < 0).any() or (values[fp] > 1).any()):
+        raise ValueError('registry has masked, nonfinite or out-of-range values inside footprint')
+    return np.where(fp, values, 0).astype(np.float32)
 
 
 def compare_array_to_registry(mine, registry_index, footprint, *, file_sha256=None,
@@ -303,24 +387,19 @@ def compare_array_to_registry(mine, registry_index, footprint, *, file_sha256=No
             if rec.get('sha256') and digest != rec['sha256']:
                 raise ValueError('registry SHA256 pin mismatch')
             with rasterio.open(p) as src:
-                if src.count != 1 or src.shape != mine.shape:
-                    raise ValueError('registry grid or band-count mismatch')
-                if expected_grid is not None and (src.shape, src.crs, src.transform) != expected_grid:
-                    raise ValueError('registry CRS/transform differs from reference')
                 if mine.shape == (3730,3292):
                     from .grid import TRANSFORM
                     if src.crs is None or src.crs.to_epsg()!=32611 or src.transform != TRANSFORM:
                         raise ValueError('registry CRS/transform mismatch')
-                theirs = src.read(1).astype(np.float32)
-            theirs = np.where(np.isfinite(theirs), theirs, 0.0)
-            # Outside-footprint values are ignored for support and pixel identity.
-            theirs[~fp] = 0
+                theirs = _read_registry_values(src, fp, expected_grid=expected_grid)
+            if _sha(p) != digest:
+                raise ValueError('registry changed while being read')
             tv = theirs[fp]
             support = (theirs > 0) & fp
             tb = support[fp]
             # Exact Spearman with tied ranks; candidate ranks are reused for all priors.
             if norm == 0 or np.ptp(tv) == 0:
-                rho = None
+                raise ValueError('undefined Spearman correlation for a constant candidate or prior')
             elif np.all((tv == 0) | (tv == 1)):
                 nt = int(tb.sum()); n = len(tv)
                 rho = float(ranks[tb].sum() / (norm * np.sqrt(nt*(n-nt)/n)))
@@ -328,6 +407,7 @@ def compare_array_to_registry(mine, registry_index, footprint, *, file_sha256=No
                 tr = rankdata(tv).astype(np.float64)
                 tr -= tr.mean()
                 rho = float(np.dot(ranks,tr)/(norm*np.linalg.norm(tr)))
+            rho = float(np.clip(rho, -1.0, 1.0))  # floating-point roundoff only
             near_sup = _near(support)
             ov = float(near_sup[my_support].mean()) if my_dot_count else 0.0
             halo_cov = float(near_sup[fp].mean())
@@ -369,8 +449,12 @@ def compare_array_to_registry(mine, registry_index, footprint, *, file_sha256=No
 def compare_to_registry(mine_path, registry_index, footprint, **kwargs):
     mine_path = Path(mine_path)
     with rasterio.open(mine_path) as src:
-        if src.count != 1:
-            raise ValueError('candidate must be single band')
+        if src.count != 1 or src.shape != np.asarray(footprint).shape:
+            raise ValueError('candidate grid or band count differs from footprint')
+        if kwargs.get('expected_grid') is not None and (src.shape, src.crs, src.transform) != kwargs['expected_grid']:
+            raise ValueError('candidate CRS/transform differs from reference grid')
+        if not np.all(src.read_masks(1)[np.asarray(footprint, bool)] != 0):
+            raise ValueError('candidate has masked cells inside footprint')
         mine = src.read(1)
     result = compare_array_to_registry(mine, registry_index, footprint,
         file_sha256=_sha(mine_path), **kwargs)
@@ -394,11 +478,7 @@ def saturation_certificate(registry_path, footprint, catalogue=None, *, expected
     if not allowed.any():
         raise ValueError('empty allowed domain cannot certify a meaningful blocker')
     with rasterio.open(registry_path) as src:
-        if src.shape != fp.shape or src.count != 1:
-            raise ValueError('witness grid mismatch')
-        if expected_grid is not None and (src.shape, src.crs, src.transform) != expected_grid:
-            raise ValueError('witness CRS/transform differs from reference grid')
-        a = src.read(1)
+        a = _read_registry_values(src, fp, expected_grid=expected_grid)
     positive = _dots(a) & fp
     covered = _near(positive)
     uncovered = int((allowed & ~covered).sum())
@@ -819,17 +899,17 @@ def binding_duplicate_decision_v5(mine, registry_paths, allowed, valid, *, rho_l
     mine = np.asarray(mine, np.float32)
     alw = np.asarray(allowed, bool)
     val = np.asarray(valid, bool)
+    if (mine.ndim != 2 or alw.shape != mine.shape or val.shape != mine.shape
+            or not val.any() or (alw & ~val).any()
+            or not np.isfinite(mine[val]).all() or (mine[val] < 0).any()
+            or (mine[val] > 1).any()):
+        raise ValueError('invalid candidate, allowed domain or valid footprint')
     my_dots = int((_dots(mine) & alw).sum())
     rows, errors = [], []
     for label, path in registry_paths:
         try:
             with rasterio.open(path) as src:
-                if src.count != 1 or src.shape != mine.shape:
-                    raise ValueError('grid mismatch')
-                if expected_grid is not None and (src.shape, src.crs, src.transform) != expected_grid:
-                    raise ValueError('CRS/transform mismatch')
-                theirs = src.read(1)
-            theirs = np.where(np.isfinite(theirs), theirs, 0.0).astype(np.float32)
+                theirs = _read_registry_values(src, val, expected_grid=expected_grid)
             ov, info = equal_support_overlap(mine, theirs, alw)
             lit = dot_overlap(np.where(alw, mine, 0), theirs)
             rho = surface_rho(mine, theirs, val)['spearman_full_footprint']

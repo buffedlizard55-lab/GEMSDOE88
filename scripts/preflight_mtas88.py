@@ -79,6 +79,25 @@ def archive_for_research(root: Path, sample: Path) -> dict:
     }
 
 
+def add_direct_coverage(certificate: dict, prior: np.ndarray, allowed: np.ndarray) -> dict:
+    """Record the stronger exact-cell proof without confusing it with halo coverage.
+
+    Direct saturation implies halo saturation, but the converse need not hold.
+    A witness covering every allowed cell within 3 px still blocks even when
+    some cells do not lie directly on positive witness pixels.
+    """
+    if prior.shape != allowed.shape:
+        raise ValueError("direct coverage grid mismatch")
+    direct = np.isfinite(prior) & (prior > 0)
+    direct_count = int((direct & allowed).sum())
+    directly_saturated = direct_count == int(allowed.sum())
+    if directly_saturated and certificate["universal_overlap_blocker"] is not True:
+        raise ValueError("direct saturation cannot occur without halo saturation")
+    certificate["directly_covered_allowed_pixels"] = direct_count
+    certificate["directly_saturated"] = directly_saturated
+    return certificate
+
+
 def inspect(root: Path = ROOT) -> dict:
     """Recompute the universal bound from pinned bytes, not old card claims."""
     root = Path(root)
@@ -109,13 +128,7 @@ def inspect(root: Path = ROOT) -> dict:
     # witness's positive support. Compare exact pixels, not only rounded stats.
     with rasterio.open(witness) as src:
         prior = src.read(1)
-    direct = np.isfinite(prior) & (prior > 0)
-    direct_count = int((direct & allowed).sum())
-    directly_saturated = direct_count == int(allowed.sum())
-    if certificate["universal_overlap_blocker"] != directly_saturated:
-        raise ValueError("unexpected disagreement between direct and halo proof")
-    certificate["directly_covered_allowed_pixels"] = direct_count
-    certificate["directly_saturated"] = directly_saturated
+    add_direct_coverage(certificate, prior, allowed)
     certificate["witness_file"] = witness_rel  # stable across checkout paths/CI
     certificate["source_url"] = (
         f"{group[1].removesuffix('.git')}/blob/{group[2]}/{path}"
