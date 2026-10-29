@@ -107,6 +107,10 @@ def focus_sites_panel(focus: dict, sampled: dict) -> str:
         lineage = lineage.replace("(#2 user-reported)", "(user-reported)")
         lineage = lineage.replace("-0.0028 user-reported drag vs D1.5", "reported difference -0.0028; causality unproven")
         lineage = lineage.replace("-0.0028 user-reported drag vs 0.2778", "reported difference -0.0028; causality unproven")
+        lineage = lineage.replace(
+            "99.88% 3-px overlap with H33-2-B2",
+            "0.998752 reverse H33-to-H28 overlap; forward H28-to-H33 fraction 0.954727",
+        )
         lineage = escape(lineage)
         row = later[item["site"]]
         sample_name = escape(Path(row["path"]).name)
@@ -123,7 +127,9 @@ def focus_sites_panel(focus: dict, sampled: dict) -> str:
             f'<tr><th scope="row"><a href="{url}">{site}</a><br>'
             f'<span class="focus-freshness-label" data-focus-freshness="{site}" data-audited-head="{audited_head}">Revision not checked</span></th>'
             f'<td class="focus-file"><a href="{champ_source}"><code>{champ}</code></a><br>'
-            f'<strong>{score}</strong> <span class="micro">user-reported; no receipt</span>'
+            f'<strong>{score}</strong> <span class="micro">user-reported historical claim; no receipt</span><br>'
+            f'<strong class="focus-stop">NEW SCORE ESTIMATE: NOT ESTIMABLE</strong> '
+            f'<span class="micro">no comparable candidate holdout or organizer receipt</span>'
             f'<details class="focus-row-details"><summary>Hash, lineage &amp; later sample</summary>'
             f'<p><strong>Historical file:</strong> SHA-256 <code>{sha_short}…</code> · {dots} positive pixels.<br>{lineage}</p>'
             f'<p><strong>Later sampled file · 2026-10-26 21:38 UTC:</strong><br>{recent}</p></details></td>'
@@ -156,13 +162,14 @@ def focus_sites_panel(focus: dict, sampled: dict) -> str:
         '<code>nn_min_px = 1.0</code> scanlines, and <code>Holdout: NOT MEASURED</code>), and <code>GEMSDOE32</code> <code>R6-1-stepprofile</code> '
         '(<code>IR-88-C59DB412-02</code>, now self-demoted to <code>DO NOT SUBMIT</code> in commit <code>9e55d5d</code>). '
         '<a href="data/focus_sites_20261026.csv" download>Download 9-site CSV</a> · '
-        '<a href="research/session-d634de37-review.md">Full PhD forensic review (d634de37) →</a> · '
+        '<a href="research/session-arena-2921f3de-review-20261029.md">Current three-pass review (2026-10-29) →</a> · '
+        '<a href="research/session-d634de37-review.md">Historical PhD forensic review (d634de37) →</a> · '
         '<a href="research/session-c59db412-review.md">Prior review (c59db412)</a></p>'
         '<p><strong>No current leaderboard estimate:</strong> these are reported historical results, not organizer receipts or fresh comparable holdout scores. '
         'The listed files are for identification and research, not recommended submissions.</p>'
         '<p class="table-hint">Expand each row for lineage and the later sample; scroll horizontally on a small screen.</p>'
-        '<div class="table-scroll"><table><thead><tr><th scope="col">Focus site &amp; revision</th><th scope="col">Historical file &amp; reported claim</th>'
-        '<th scope="col">Uniqueness check</th><th scope="col">Decision</th></tr></thead><tbody>'
+        '<div class="table-scroll"><table><thead><tr><th scope="col">Focus site &amp; revision</th><th scope="col">Historical research file &amp; user claim · new score estimate</th>'
+        '<th scope="col">Uniqueness check</th><th scope="col">Download / submit decision</th></tr></thead><tbody>'
         + "".join(rows)
         + "</tbody></table></div>"
         + '<section class="current-samples" aria-labelledby="current-samples-title">'

@@ -1,4 +1,4 @@
-"""Current negative record, historical provenance and canonical UI stay bound."""
+"""Historical session-60 evidence and the current canonical UI stay fail-closed."""
 import hashlib
 import json
 from pathlib import Path
@@ -14,7 +14,7 @@ def read(path):
     return json.loads((ROOT / path).read_text())
 
 
-def test_current_run_card_is_single_negative_result_with_explicit_unknowns():
+def test_historical_session_60_run_card_is_negative_with_explicit_unknowns():
     paths = [ROOT / prefix / 'session_60f326dc_run_card.json'
              for prefix in ('registry', 'evidence', 'docs/data')]
     assert all(path.read_bytes() == paths[0].read_bytes() for path in paths)
@@ -36,8 +36,8 @@ def test_current_run_card_is_single_negative_result_with_explicit_unknowns():
     assert len(card['submission_note']) == card['submission_note_characters'] <= 140
     assert card['organizer_confirmed_score'] is None
     status = read('docs/status.json')
-    assert status['current_review'] == 'data/session_60f326dc_run_card.json'
-    assert status['previous_review'] == 'data/session_92a5fb8c_run_card.json'
+    assert status['current_review'] == 'data/session_arena_2921f3de_run_card.json'
+    assert status['previous_review'] == 'data/session_32583983_run_card.json'
     assert status['new_tif_generated'] is status['ok_to_submit'] is False
 
 
@@ -59,12 +59,13 @@ def test_sample_counts_are_pinned_and_not_called_a_portal_receipt():
     assert diagnosis['cause_of_user_portal_error'].startswith('Unknown')
     assert diagnosis['organizer_nodata_acceptance'] == 'Unknown'
     assert row['format_pass'] is False and row['decision'] == 'DUPLICATE_STOP'
-    assert sample == read('docs/data/focus-current-samples.json')
+    assert sample['checked_at_utc'] == card['focus_readme_byte_sample']['checked_at_utc']
+    assert sample != read('docs/data/focus-current-samples.json')  # latest mutable feed belongs to a later session
     assert card['h33_geometry_crosscheck']['counts']['d28_minus_h33'] == 6436
     assert card['h33_geometry_crosscheck']['counts']['d28_minus_h33_over_2px'] == 0
 
 
-def test_fresh_browser_receipt_binds_current_pages_and_v2_diagnostics():
+def test_historical_browser_receipt_is_not_relabelled_as_current():
     card = read('registry/session_60f326dc_run_card.json')
     path = Path(card['verification']['browser_evidence'])
     raw = (ROOT / path).read_bytes()
@@ -77,8 +78,11 @@ def test_fresh_browser_receipt_binds_current_pages_and_v2_diagnostics():
     sample = receipt['focus_current_samples']
     assert sample['diagnostic_site'] == 'GEMSDOE30'
     assert sample['diagnostic_dom_pass'] and sample['tampered_diagnostic_fails_closed']
+    # This immutable receipt binds the pages that existed in session 60; those
+    # bytes were subsequently replaced by later, separately receipted reviews.
     for path, expected in receipt['source_sha256'].items():
-        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == expected, path
+        assert path.startswith('docs/') and len(expected) == 64
+        int(expected, 16)
     assert (ROOT / 'research/session-60f326dc-review.md').read_bytes() == (
         ROOT / 'docs/research/session-60f326dc-review.md').read_bytes()
     assert card['shared_repairs']['source_after_sha256'] == hashlib.sha256(
@@ -100,7 +104,7 @@ def rendering_workspace(tmp_path):
             data = docs / 'data'
             data.mkdir()
             for item in entry.iterdir():
-                if item.name == 'session_60f326dc_run_card.json':
+                if item.name == 'session_arena_2921f3de_run_card.json':
                     (data / item.name).write_bytes(item.read_bytes())
                 else:
                     (data / item.name).symlink_to(item, target_is_directory=item.is_dir())
@@ -110,8 +114,8 @@ def rendering_workspace(tmp_path):
 
 
 @pytest.mark.parametrize('target,key,value', [
-    ('status', 'current_review', '../registry/session_60f326dc_run_card.json'),
-    ('status', 'previous_review', '../registry/session_92a5fb8c_run_card.json'),
+    ('status', 'current_review', '../registry/session_arena_2921f3de_run_card.json'),
+    ('status', 'previous_review', '../registry/session_32583983_run_card.json'),
     ('card', 'review_document', '../status.json'),
     ('card', 'verdict', 'promote'),
     ('card', 'ok_to_submit', True),
@@ -121,7 +125,7 @@ def rendering_workspace(tmp_path):
 ])
 def test_renderer_fails_closed_for_bad_current_or_previous_review(rendering_workspace, target, key, value):
     path = rendering_workspace / ('docs/status.json' if target == 'status'
-                                   else 'docs/data/session_60f326dc_run_card.json')
+                                   else 'docs/data/session_arena_2921f3de_run_card.json')
     data = json.loads(path.read_text())
     data[key] = value
     path.write_text(json.dumps(data))

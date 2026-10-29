@@ -128,16 +128,16 @@ def current_status(root=ROOT):
         'raster_sha256': report['file_sha256'],
         'policy': 'binding-literal-all-registry-v1 + concurrent-lane overlap',
         'run_card': 'registry/tdkl88_run_card.json',
-        'current_review': 'data/session_60f326dc_run_card.json',
-        'previous_review': 'data/session_92a5fb8c_run_card.json',
+        'current_review': 'data/session_arena_2921f3de_run_card.json',
+        'previous_review': 'data/session_32583983_run_card.json',
         'current_review_status': 'DUPLICATE_STOP',
         'research_queue': 'data/hypothesis_queue.json',
         'historical_review': 'data/repo_review_20261025.json',
         'new_tif_generated': False,
         'new_tif_sha256': None,
         'current_review_note': (
-            'No new TIFF can satisfy the literal 17GEMSDOE overlap gate; '
-            'archived current-release file remains research-only.'
+            'Fresh 2026-10-29 preflight and generation guard both return DUPLICATE_STOP: '
+            'the pinned witness covers every allowed cell; archived releases remain research-only.'
         ),
     }
 
