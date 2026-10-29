@@ -12,6 +12,12 @@
 >
 > - **Start every session by rereading this README:** include the complete “User request recorded for future sessions” section embedded below, [`PROMPT.md`](PROMPT.md), and [`AGENTS.md`](AGENTS.md). The request, lane/safety protocol, evidence classes, 3-experiment/2-hour cap, three-pass review and separate slot selector remain binding. **Maximize P(Win) · Own the Outcome.** Session `5aeeb70b` did not meet the unique-TIFF requirement; that remains an explicit blocker.
 
+### SESSION `1babc312` (`2026-10-29`): NO NEW TIFF · DO NOT SUBMIT · one policy decision needed
+
+> - Restored the SHA-pinned validation tier and reproduced `DUPLICATE_STOP` (exit `2`). Verified from the bytes that the "dense witness" `data/registry/dense_17gemdoe.tif` is a **continuous probability surface** (5,167,373 cells all `> 0`, range `0.00046`–`0.98`), so the literal `> 0` dot rule makes every candidate overlap it at `1.0000`.
+> - The organizer's `sample_submission.tif` has NaN outside its footprint (7,111,787 cells), which the local strict format check rejects. The `[0, 1]` portal error is still unexplained.
+> - **Decision needed:** (A) keep the literal rule — no TIFF possible; (B) authorize a dense-surface dot definition (top-`n` cells, as IR-88-SDTL-01 once proposed) with the rank-correlation and sparse-raster tests kept binding; (C) ask DrivenData whether exterior NaN and the dot format are accepted. Details, evidence and links: [`research/session-1babc312-gate-review.md`](research/session-1babc312-gate-review.md). Scores remain USER-REPORTED CLAIMS; no slot spent.
+
 ### PREVIOUS SESSION DECISION (`2026-10-28`, Session `32583983`): `DOWNLOAD FOR RESEARCH: YES` · **`SUBMIT TO COMPETITION: NO — DO NOT SUBMIT`** (`ok_to_submit: false`, `verdict: "negative"`, `weekly_slots_used: 0`)
 
 > Historical decision; its dated GitHub feed and browser receipt are not current. See [review](research/session-32583983-review.md), [run card](registry/session_32583983_run_card.json), and [dated samples](docs/data/focus_current_samples_20261028_32583983.json).
