@@ -1,5 +1,7 @@
 # GEMSDOE88 — audited fault discovery and submission gates
 
+> Repository review, three-pass verification, and current local gate result (2026-10-30): [research/session-arena-review-20261030.md](research/session-arena-review-20261030.md). This is a negative review record, not a replacement submission approval.
+
 > ### CURRENT DECISION (`2026-10-29`, Session `5aeeb70b`): **NO NEW TIFF · SUBMIT: NO — DO NOT SUBMIT** (`DUPLICATE_STOP`, `ok_to_submit: false`, `weekly_slots_used: 0`)
 >
 > - **No candidate or TIFF was generated.** `generation_guard.py` and `preflight_mtas88.py --gate-generation` returned the expected exit `2` before feature construction. The SHA-pinned dense witness directly covers `5,106,385 / 5,106,385` allowed cells; under the literal support rule every nonempty candidate has `REGISTRY-MEASUREMENT: 3-px overlap = 1.0000 > 0.70`. No experiment, holdout, canary, estimate, or weekly slot was spent. Do not evade this stop with a zero-only raster, renamed copy, or private sparse-prior rule.
