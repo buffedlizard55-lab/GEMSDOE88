@@ -36,8 +36,8 @@ def test_current_run_card_is_single_negative_result_with_explicit_unknowns():
     assert len(card['submission_note']) == card['submission_note_characters'] <= 140
     assert card['organizer_confirmed_score'] is None
     status = read('docs/status.json')
-    assert status['current_review'] == 'data/session_5aeeb70b_run_card.json'
-    assert status['previous_review'] == 'data/session_32583983_run_card.json'
+    assert status['current_review'] == 'data/session_1cea5a72_run_card.json'
+    assert status['previous_review'] == 'data/session_5aeeb70b_run_card.json'
     assert status['new_tif_generated'] is status['ok_to_submit'] is False
 
 
@@ -107,7 +107,7 @@ def rendering_workspace(tmp_path):
             data = docs / 'data'
             data.mkdir()
             for item in entry.iterdir():
-                if item.name == 'session_5aeeb70b_run_card.json':
+                if item.name == 'session_1cea5a72_run_card.json':
                     (data / item.name).write_bytes(item.read_bytes())
                 else:
                     (data / item.name).symlink_to(item, target_is_directory=item.is_dir())
@@ -128,7 +128,7 @@ def rendering_workspace(tmp_path):
 ])
 def test_renderer_fails_closed_for_bad_current_or_previous_review(rendering_workspace, target, key, value):
     path = rendering_workspace / ('docs/status.json' if target == 'status'
-                                   else 'docs/data/session_5aeeb70b_run_card.json')
+                                   else 'docs/data/session_1cea5a72_run_card.json')
     data = json.loads(path.read_text())
     data[key] = value
     path.write_text(json.dumps(data))

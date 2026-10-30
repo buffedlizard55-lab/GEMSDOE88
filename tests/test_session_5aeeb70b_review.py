@@ -58,8 +58,8 @@ def test_active_negative_card_and_session_feed_are_hash_pinned_and_mirrored():
     assert not any(card["data_access"]["queue_feature_inputs_present"].values())
 
     status = read("docs/status.json")
-    assert status["current_review"] == "data/session_5aeeb70b_run_card.json"
-    assert status["previous_review"] == "data/session_32583983_run_card.json"
+    assert status["current_review"] == "data/session_1cea5a72_run_card.json"
+    assert status["previous_review"] == "data/session_5aeeb70b_run_card.json"
     assert status["current_review_status"] == "DUPLICATE_STOP"
     assert status["ok_to_submit"] is False and status["new_tif_generated"] is False
     assert (ROOT / "docs/data/session_32583983_run_card.json").read_bytes() == (
@@ -75,8 +75,14 @@ def test_active_negative_card_and_session_feed_are_hash_pinned_and_mirrored():
         assert docs_copy.read_bytes() == evidence_copy.read_bytes()
     sample_path = ROOT / "docs/data" / dated["focus_current_samples"]
     freshness_path = ROOT / "docs/data" / dated["focus_freshness"]
-    assert sample_path.read_bytes() == (ROOT / "docs/data/focus-current-samples.json").read_bytes()
-    assert freshness_path.read_bytes() == (ROOT / "docs/data/focus-freshness.json").read_bytes()
+    # The 5ae card is immutable historical evidence. The mutable defaults now
+    # point to the separately pinned 2026-10-30 refresh and must not be
+    # retroactively substituted into this older card.
+    current_sample_path = ROOT / "docs/data/focus_current_samples_20261030_1cea5a72.json"
+    current_freshness_path = ROOT / "docs/data/focus_freshness_20261030_1cea5a72.json"
+    assert (ROOT / "docs/data/focus-current-samples.json").read_bytes() == current_sample_path.read_bytes()
+    assert (ROOT / "docs/data/focus-freshness.json").read_bytes() == current_freshness_path.read_bytes()
+    assert sample_path.read_bytes() != current_sample_path.read_bytes()
     feed = card["current_focus_feed"]
     assert hashlib.sha256(sample_path.read_bytes()).hexdigest() == feed["sample_sha256"]
     assert hashlib.sha256(freshness_path.read_bytes()).hexdigest() == feed["head_snapshot_sha256"]
@@ -160,10 +166,11 @@ def test_three_pass_review_hypotheses_and_prompt_mirrors_are_complete():
             assert (relative_doc.parent / target).resolve().is_file(), (relative_doc, target)
 
     research_page = (ROOT / "docs/research.html").read_text()
-    assert "Current review · 5aeeb70b · 2026-10-29" in research_page
-    assert "9 UNKNOWN" in research_page
-    assert "9/9 then-observed" in research_page
-    assert "research/session-5aeeb70b-review.md" in research_page
+    assert "Current review · 1cea5a72 · 2026-10-30" in research_page
+    assert "7 bounded README-cited TIFF samples returned DUPLICATE_STOP" in research_page
+    assert "2 were not discovered" in research_page
+    assert "research/session-1cea5a72-review.md" in research_page
+    assert "Automated Chromium receipt" in research_page
 
 
 def test_current_renderer_and_browser_receipt_bind_the_new_review():
@@ -172,11 +179,11 @@ def test_current_renderer_and_browser_receipt_bind_the_new_review():
     render_decision.read_inputs(ROOT)
     overview = (ROOT / "docs/index.html").read_text(encoding="utf-8")
     guide = (ROOT / "docs/executive-summary.html").read_text(encoding="utf-8")
-    assert "Review · 2026-10-29 · NO FILE APPROVED" in overview
-    assert "session_5aeeb70b_run_card.json" in overview
+    assert "Review · 2026-10-30 · NO FILE APPROVED" in overview
+    assert "session_1cea5a72_run_card.json" in overview
     assert "NO NEW TIFF: DUPLICATE — STOP" in overview
     assert "SUBMIT: NO — DO NOT SUBMIT" in guide
-    card = read("registry/session_5aeeb70b_run_card.json")
+    card = read("registry/session_1cea5a72_run_card.json")
     browser_path = Path(card["verification"]["browser_evidence"])
     raw = (ROOT / browser_path).read_bytes()
     assert raw == (ROOT / "docs/data" / browser_path.name).read_bytes()
@@ -186,8 +193,9 @@ def test_current_renderer_and_browser_receipt_bind_the_new_review():
     assert receipt["focus_comparison"]["pass"] is True
     assert receipt["research_download"]["click_matches_canonical_bytes"] is True
     assert receipt["focus_current_samples"]["row_count"] == 9
-    assert receipt["focus_current_samples"]["diagnostic_site"] is None
-    assert receipt["focus_current_samples"]["diagnostic_dom_pass"] is None
+    assert receipt["focus_current_samples"]["diagnostic_site"] == "GEMSDOE30"
+    assert receipt["focus_current_samples"]["diagnostic_dom_pass"] is True
+    assert receipt["focus_current_samples"]["tampered_diagnostic_fails_closed"] is True
     assert receipt["focus_current_samples"]["fresh_snapshot_pass"] is True
     assert receipt["focus_freshness"]["partial_feed_fail_closed"] is True
     for path, digest in receipt["source_sha256"].items():
