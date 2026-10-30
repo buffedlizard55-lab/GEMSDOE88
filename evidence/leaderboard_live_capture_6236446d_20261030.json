@@ -1,0 +1,33 @@
+{
+  "schema": "gems88.official-leaderboard-capture.v1",
+  "session": "6236446d",
+  "branch": "arena/6236446d-gemsdoe88",
+  "captured_utc": "2026-10-30",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "source_class": "OFFICIAL-PUBLIC-LEADERBOARD",
+  "score_label": "OFFICIAL-PUBLIC (public-split DW-Tversky, best public score per participant). NOT an ORGANIZER-CONFIRMED submission receipt and NOT a private-split score.",
+  "retrieval_method": "fetch_page of the leaderboard URL, chunks 0-2 (3 chunks). Only the rows listed below were transcribed; the full 50-row table is at the source URL.",
+  "rows_transcribed": [
+    {"rank": 1, "participant": "xiaofanhu", "public_dw_tversky": 0.4544, "submissions": 35},
+    {"rank": 2, "participant": "cfld__", "public_dw_tversky": 0.3925, "submissions": 22},
+    {"rank": 3, "participant": "Batik Shirt Brothers", "public_dw_tversky": 0.3915, "submissions": 60},
+    {"rank": 4, "participant": "BrandenKMurray", "public_dw_tversky": 0.3860, "submissions": 36},
+    {"rank": 5, "participant": "op01", "public_dw_tversky": 0.3642, "submissions": 16},
+    {"rank": 50, "participant": "kpomazi", "public_dw_tversky": 0.3195, "submissions": 36}
+  ],
+  "reconciliation": {
+    "top_score_now": 0.4544,
+    "top_score_in_user_prompt": 0.4413,
+    "top_score_in_repo_snapshot_20261025": 0.4413,
+    "explanation": "The #1 public score moved from 0.4413 (2026-10-25 snapshot, 30 submissions) to 0.4544 (35 submissions) on this capture. The repo's 2026-10-25 snapshot is therefore stale for #1.",
+    "user_cited_0_3195_is_rank_50_cutoff": true,
+    "user_cited_0_3195_is_top_score": false,
+    "gems_site_scores_vs_rank50_cutoff": "All nine user-listed site scores (0.2449 to 0.2778) are below the rank-50 public cutoff of 0.3195 on this capture. A participant at those values would not appear in the top 50 on this board."
+  },
+  "irregularities_for_review": [
+    "The user prompt labels 0.3195 as the highest score; on this capture it is the rank-50 cutoff.",
+    "The user prompt labels 0.4413 as the leaderboard high; on this capture the leader is 0.4544.",
+    "No leaderboard row is labelled with a GEMSDOE site name; the user-listed site scores cannot be matched to participants from this page."
+  ],
+  "submission_clearance": false
+}
