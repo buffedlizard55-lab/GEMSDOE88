@@ -1,5 +1,7 @@
 # GEMSDOE88 — audited fault discovery and submission gates
 
+> Repository review, three-pass verification, and current local gate result (2026-10-30): [latest review](research/session-1cea5a72-review.md) and [earlier main review](research/session-arena-review-20261030.md). These are negative review records, not submission approvals.
+
 > ### CURRENT DECISION (`2026-10-30`, Session `1cea5a72`): **NO NEW TIFF · SUBMIT: NO — DO NOT SUBMIT** (`DUPLICATE_STOP`, `ok_to_submit: false`, `weekly_slots_used: 0`)
 >
 > - **No candidate TIFF was generated.** Restored SHA-pinned validation inputs; `preflight_mtas88.py --gate-generation` and `generation_guard.py` both returned expected exit `2` before features. The dense witness directly covers `5,106,385 / 5,106,385` allowed cells, forcing literal `REGISTRY-MEASUREMENT` overlap `1.0000 > 0.70` for every nonempty candidate. No experiment, holdout, leakage canary, score estimate, or weekly slot was spent.
@@ -9,6 +11,13 @@
 > - **Scores:** H33 `0.2778` and all supplied focus-site values remain `USER-REPORTED CLAIMS`, not `HOLDOUT-DTI` or `ORGANIZER-CONFIRMED`. No new submission-score estimate is supported. Current leaderboard, DrivenData receipt, and account quota were not fetched. No file is cleared to submit. The existing H88-TDKL download remains research-only.
 >
 > - **Machine record and page:** [negative run card](registry/session_1cea5a72_run_card.json) · [card evidence mirror](evidence/session_1cea5a72_run_card.json) · [Automated Chromium receipt](evidence/session_1cea5a72_browser_check.json) · [mirror JSON](docs/data/session_1cea5a72_run_card.json) · [current overview](docs/index.html) · [submission stop guide](docs/SUBMIT.md). The full recorded user request remains below. **Start every session by rereading this complete `README.md`, [`PROMPT.md`](PROMPT.md), and [`AGENTS.md`](AGENTS.md).** **Maximize P(Win) · Own the Outcome.** The urgent unique-TIFF requirement remains unmet.
+
+### SESSION `6236446d` (`2026-10-30`): NO NEW TIFF · DO NOT SUBMIT · one policy decision needed
+
+> - **Answer for the user:** no file is cleared to download or submit. The guard reproduces `DUPLICATE_STOP` (exit `2`) on restored inputs. No candidate, holdout, canary, score estimate, or slot was produced.
+> - **Leaderboard correction (OFFICIAL-PUBLIC, captured 2026-10-30):** the top public score is **0.4544** (#1 xiaofanhu), not 0.4413. The value 0.3195 is the **rank-50** cutoff, not the highest score. Evidence: [`evidence/leaderboard_live_capture_6236446d_20261030.json`](evidence/leaderboard_live_capture_6236446d_20261030.json).
+> - **Cross-site duplicates (GITHUB-API-LISTING):** of 504 TIFFs in the nine named sites, 478 distinct blobs and 20 duplicate groups. GEMSDOE32 hosts byte copies of files from 8 other sites. Evidence: [`evidence/site_blob_duplicates_20261030.json`](evidence/site_blob_duplicates_20261030.json) (script `scripts/audit_site_blob_duplicates.py`).
+> - Full review and executive table: [`research/session-6236446d-review.md`](research/session-6236446d-review.md) · [run card](registry/session_6236446d_run_card.json) · [preflight receipt](evidence/session_6236446d_generation_preflight.json). Tests: `1109 passed, 23 skipped`.
 
 ### SESSION `1babc312` (`2026-10-29`): NO NEW TIFF · DO NOT SUBMIT · one policy decision needed
 
