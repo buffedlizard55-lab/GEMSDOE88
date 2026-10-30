@@ -14,6 +14,13 @@
 >
 > - **Start every session by rereading this README:** include the complete “User request recorded for future sessions” section embedded below, [`PROMPT.md`](PROMPT.md), and [`AGENTS.md`](AGENTS.md). The request, lane/safety protocol, evidence classes, 3-experiment/2-hour cap, three-pass review and separate slot selector remain binding. **Maximize P(Win) · Own the Outcome.** Session `5aeeb70b` did not meet the unique-TIFF requirement; that remains an explicit blocker.
 
+### SESSION `6236446d` (`2026-10-30`): NO NEW TIFF · DO NOT SUBMIT · one policy decision needed
+
+> - **Answer for the user:** no file is cleared to download or submit. The guard reproduces `DUPLICATE_STOP` (exit `2`) on restored inputs. No candidate, holdout, canary, score estimate, or slot was produced.
+> - **Leaderboard correction (OFFICIAL-PUBLIC, captured 2026-10-30):** the top public score is **0.4544** (#1 xiaofanhu), not 0.4413. The value 0.3195 is the **rank-50** cutoff, not the highest score. Evidence: [`evidence/leaderboard_live_capture_6236446d_20261030.json`](evidence/leaderboard_live_capture_6236446d_20261030.json).
+> - **Cross-site duplicates (GITHUB-API-LISTING):** of 504 TIFFs in the nine named sites, 478 distinct blobs and 20 duplicate groups. GEMSDOE32 hosts byte copies of files from 8 other sites. Evidence: [`evidence/site_blob_duplicates_20261030.json`](evidence/site_blob_duplicates_20261030.json) (script `scripts/audit_site_blob_duplicates.py`).
+> - Full review and executive table: [`research/session-6236446d-review.md`](research/session-6236446d-review.md) · [run card](registry/session_6236446d_run_card.json) · [preflight receipt](evidence/session_6236446d_generation_preflight.json). Tests: `1109 passed, 23 skipped`.
+
 ### SESSION `1babc312` (`2026-10-29`): NO NEW TIFF · DO NOT SUBMIT · one policy decision needed
 
 > - Restored the SHA-pinned validation tier and reproduced `DUPLICATE_STOP` (exit `2`). Verified from the bytes that the "dense witness" `data/registry/dense_17gemdoe.tif` is a **continuous probability surface** (5,167,373 cells all `> 0`, range `0.00046`–`0.98`), so the literal `> 0` dot rule makes every candidate overlap it at `1.0000`.
