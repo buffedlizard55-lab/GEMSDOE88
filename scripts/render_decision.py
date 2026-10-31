@@ -24,6 +24,10 @@ START = "<!-- CANONICAL-DECISION:START -->"
 END = "<!-- CANONICAL-DECISION:END -->"
 QUEUE_START = "<!-- RESEARCH-QUEUE:START -->"
 QUEUE_END = "<!-- RESEARCH-QUEUE:END -->"
+REVIEW_START = "<!-- CURRENT-REVIEW:START -->"
+REVIEW_END = "<!-- CURRENT-REVIEW:END -->"
+H33_LINK_START = "<!-- CURRENT-H33-LINK:START -->"
+H33_LINK_END = "<!-- CURRENT-H33-LINK:END -->"
 
 
 def read_inputs(root: Path) -> tuple[dict, dict, dict, dict, dict, dict, dict]:
@@ -383,6 +387,92 @@ def legacy_notice(kind: str) -> str:
 '''
 
 
+def render_current_review_hero(root: Path) -> str:
+    """Render the active negative review from status, card and current feeds."""
+    status = json.loads((root / "docs/status.json").read_text())
+    review_ref = Path(status["current_review"])
+    review = json.loads((root / "docs" / review_ref).read_text())
+    if review.get("status") != "DUPLICATE_STOP" or review.get("ok_to_submit") is not False:
+        raise ValueError("research hero requires an active fail-closed review")
+    feed = review.get("focus_feed", {})
+    sample_rel = Path(feed.get("sample_evidence", "docs/data/focus-current-samples.json"))
+    freshness_rel = Path(feed.get("freshness_evidence", "docs/data/focus-freshness.json"))
+    sample = json.loads((root / sample_rel).read_text())
+    freshness = json.loads((root / freshness_rel).read_text())
+    counts = sample["counts"]
+    freshness_counts = freshness["counts"]
+    changed = freshness_counts.get("changed", 0)
+    unknown_heads = freshness_counts.get("unknown", 0)
+    stopped = counts.get("DUPLICATE_STOP", 0)
+    undiscovered = counts.get("NOT_DISCOVERED", 0)
+    unknown_samples = counts.get("UNKNOWN", 0)
+    created = review["created_at_utc"]
+    short = str(review.get("run_id", review_ref.stem)).split("-")[1].lower()
+    report_ref = Path(review["review_document"])
+    report_href = report_ref.as_posix()
+    sample_href = sample_rel.relative_to("docs").as_posix() if sample_rel.is_relative_to("docs") else sample_rel.as_posix()
+    freshness_href = freshness_rel.relative_to("docs").as_posix() if freshness_rel.is_relative_to("docs") else freshness_rel.as_posix()
+    note = escape(str(review.get("submission_note", "DO NOT SUBMIT")))
+    browser = review.get("verification", {})
+    browser_href = ""
+    if browser.get("browser_evidence") and browser.get("status") == "PASS":
+        browser_href = (' · <a href="data/' + escape(Path(browser["browser_evidence"]).name, quote=True)
+                        + '">Automated Chromium receipt</a>')
+    leaderboard = review.get("leaderboard_reference", {})
+    leaderboard_summary = ""
+    public_mirror = leaderboard.get("public_mirror")
+    if leaderboard.get("rank_1_value") is not None and leaderboard.get("rank_50_value") is not None:
+        capture_href = Path(public_mirror).relative_to("docs").as_posix() if public_mirror else ""
+        capture_link = (f' <a href="{escape(capture_href, quote=True)}">capture</a>' if capture_href else "")
+        source_url = leaderboard.get("source_url")
+        live_link = (f' · <a href="{escape(source_url, quote=True)}">public leaderboard</a>' if source_url else "")
+        leaderboard_summary = (
+            ' Separate <strong>OFFICIAL-PUBLIC</strong> capture (2026-10-30): #1 '
+            f'<code>{float(leaderboard["rank_1_value"]):.4f}</code>; rank 50 '
+            f'<code>{float(leaderboard["rank_50_value"]):.4f}</code>—public split only, '
+            'not a focus-site identity match, private score, or organizer receipt.'
+            + capture_link + live_link + '. '
+        )
+    focus_summary = (
+        f"{changed} of 9 repositories changed since the audited snapshot; "
+        f"{stopped} bounded README-cited TIFF samples returned DUPLICATE_STOP, "
+        f"{undiscovered} were not discovered, {unknown_samples} remain unknown. "
+        if unknown_heads == 0 else
+        f"{changed} changed, {unknown_heads} repository revisions are unavailable; "
+        "the current sample is incomplete. "
+    )
+    return (
+        '<section class="subhero"><div class="wrap">'
+        f'<div class="eyebrow">Current review · {escape(short)} · {escape(created[:10])}</div>'
+        '<h1>Evidence before another experiment.</h1>'
+        '<p><strong>NO NEW TIFF — SUBMIT: NO — DO NOT SUBMIT.</strong> '
+        'The pre-placement guard returned <code>DUPLICATE_STOP</code> before features; '
+        'the dense witness covers all <code>5,106,385</code> allowed cells, giving every '
+        'nonempty candidate a literal <code>REGISTRY-MEASUREMENT</code> overlap of '
+        '<code>1.0000 &gt; 0.70</code>. No experiment, holdout, leakage canary, score estimate, '
+        'or weekly slot was used. '
+        + escape(focus_summary)
+        + 'This bounded README-path sample is not a winner search, complete inventory, score check, '
+        'or organizer receipt. H33 <code>0.2778</code> and all supplied site values remain '
+        '<strong>USER-REPORTED CLAIMS</strong>. '
+        + leaderboard_summary
+        + 'No file is cleared to submit. '
+        + f'<a href="{escape(report_href, quote=True)}">Three-pass review and per-site executive table</a> · '
+        f'<a href="{escape(review_ref.as_posix(), quote=True)}">Negative run card</a> · '
+        f'<a href="{escape(sample_href, quote=True)}">Dated current sample</a> · '
+        f'<a href="{escape(freshness_href, quote=True)}">Dated HEAD snapshot</a>'
+        + browser_href
+        + f'. <span class="micro">Decision note: {note}</span></p></div></section>'
+    )
+
+
+def render_current_h33_review_link(root: Path) -> str:
+    status = json.loads((root / "docs/status.json").read_text())
+    review = json.loads((root / "docs" / status["current_review"]).read_text())
+    report = Path(review["review_document"]).as_posix()
+    return f'<a href="{escape(report, quote=True)}">Current H33 analysis and nine-site table</a>'
+
+
 def render_research_queue(root: Path) -> str:
     queue = inspect_queue(root)
     rows = []
@@ -439,7 +529,9 @@ def main(argv=None, root: Path = ROOT) -> int:
                 path.write_text(new, encoding="utf-8")
         research = root / "docs/research.html"
         old = research.read_text()
-        expected = replace_block(old, render_research_queue(root), QUEUE_START, QUEUE_END)
+        expected = replace_block(old, render_current_review_hero(root), REVIEW_START, REVIEW_END)
+        expected = replace_block(expected, render_current_h33_review_link(root), H33_LINK_START, H33_LINK_END)
+        expected = replace_block(expected, render_research_queue(root), QUEUE_START, QUEUE_END)
         if args.check:
             if expected != old:
                 raise ValueError("stale research queue: research.html; run scripts/render_decision.py")

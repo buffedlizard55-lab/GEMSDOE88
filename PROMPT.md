@@ -1,4 +1,14 @@
-## Current session handoff — 2026-10-29, session `5aeeb70b`
+## Current session handoff — 2026-10-30, session `1cea5a72`
+
+**NO NEW TIFF — SUBMIT: NO.** Restored SHA-pinned validation inputs and reran the shared pre-placement gate; `preflight_mtas88.py --gate-generation` and `generation_guard.py` both exited `2` (`DUPLICATE_STOP`). The witness covers all `5,106,385 / 5,106,385` allowed cells, so every nonempty candidate has literal `REGISTRY-MEASUREMENT` overlap `1.0000 > 0.70`. No feature surface, holdout, canary, TIFF, score estimate, experiment, or weekly slot was produced.
+
+The final GitHub-only focus refresh (2026-10-30 23:55 UTC) found 9 changed HEADs, 7 bounded README TIFF samples with `DUPLICATE_STOP`, and 2 `NOT_DISCOVERED` rows; GEMSDOE24 and GEMSDOE30 have local strict-format failures from exterior NaNs only. This is not a current-winner search or a site score check. A separate OFFICIAL-PUBLIC leaderboard capture records #1 `0.4544` and rank 50 `0.3195`, not focus-site results or an organizer receipt. See [three-pass review](research/session-1cea5a72-review.md), [negative run card](registry/session_1cea5a72_run_card.json), [automated Chromium receipt](evidence/session_1cea5a72_browser_check.json), [latest dated sample](docs/data/focus_current_samples_20261030_1cea5a72_r2.json), [latest HEAD snapshot](docs/data/focus_freshness_20261030_1cea5a72_r2.json), [pinned nine-site byte inventory](evidence/site_blob_duplicates_20261031_1cea5a72_r3.json), and [public leaderboard capture](evidence/leaderboard_live_capture_6236446d_20261030.json). H33 `0.2778` remains a user-reported claim. No new score estimate or organizer receipt exists. **The urgent unique-TIFF requirement remains unmet; do not bypass the literal gate.**
+
+Start every session by rereading `README.md` (including its complete embedded user request), this operational handoff, and `AGENTS.md`. **Maximize P(Win) · Own the Outcome.**
+
+---
+
+## Previous session handoff — 2026-10-29, session `5aeeb70b`
 
 **NO NEW TIFF — SUBMIT: NO.** The shared pre-placement guard returned `DUPLICATE_STOP` before features; the SHA-pinned dense witness covers all 5,106,385 allowed cells. No experiment, holdout, canary, score estimate, or weekly slot was used. The complete 14:34 UTC bounded GitHub snapshot is historical: 9/9 then-observed README TIFFs duplicated at 1.0000 (seven local strict-format passes; two exterior-NaN failures). The later 14:56 API refresh returned HTTP 403 for all nine sites; the active feed is `PARTIAL`, with 9 UNKNOWN rows and no current TIFF bytes sampled. A newer GEMSDOE32 HEAD was separately observed but not raster-audited. This is not a winner search, receipt, organizer format ruling, or portal-error diagnosis. H33 `0.2778` and the other supplied values remain USER-REPORTED, not organizer-confirmed. **The urgent unique-TIFF requirement remains unmet; do not evade the stop.**
 
