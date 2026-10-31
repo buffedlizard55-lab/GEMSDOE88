@@ -1,0 +1,89 @@
+{
+  "schema": "gems88.focus-sites-git-head-readme-snapshot.v1",
+  "checked_at_utc": "2026-10-30T23:21:18Z",
+  "retrieval_method": "git ls-remote HEAD followed by shallow GitHub repository clones; read README.md at the exact pinned commit. No DrivenData requests.",
+  "scope": "Nine pinned main-branch README snapshots only. This is not a TIFF census, score/leaderboard verification, authenticated organizer data, or submission clearance.",
+  "sites": [
+    {
+      "site": "GEMSDOE24",
+      "head": "52fdca93084f6f6e4623bfa904cd6fc41a3abfbe",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/52fdca93084f6f6e4623bfa904cd6fc41a3abfbe/README.md",
+      "readme_status": "2026-10-30 review: no new TIFF, experiment, or score estimate; no submission authorized. Reports GEMSDOE32 B2 0.2778 as owner-reported and says the historical focus files are not unique.",
+      "historical_focus_claim": "GEMSDOE24 H25-1 D1.5; 0.2477 user-reported in the supplied prompt and pinned historical audit.",
+      "site_readme_score_verified": false
+    },
+    {
+      "site": "GEMSDOE25",
+      "head": "8cb3573d8adc747b519dd0d96ffdc4eccad6d8ec",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/8cb3573d8adc747b519dd0d96ffdc4eccad6d8ec/README.md",
+      "readme_status": "2026-10-30 brief: no file cleared, no organizer score estimate; one candidate removed after 99.87% overlap with r13, a second was at random-floor holdout. README identifies prior historical bests as already submitted.",
+      "historical_focus_claim": "GEMSDOE25 D2.8; 0.2600 user-reported in the supplied prompt and pinned historical audit.",
+      "site_readme_score_verified": false
+    },
+    {
+      "site": "GEMSDOE27",
+      "head": "60da5e4128339244efc61274abf95d22702ff801",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/60da5e4128339244efc61274abf95d22702ff801/README.md",
+      "readme_status": "2026-10-30 review: no new TIFF is OK to submit; README reports owner-mirror validation and states its official-leaderboard observation, but this sandbox did not fetch DrivenData.",
+      "historical_focus_claim": "GEMSDOE27 topo-gap-closure T-v2; 0.2449 user-reported in the supplied prompt and pinned historical audit.",
+      "site_readme_score_verified": false
+    },
+    {
+      "site": "GEMSDOE28",
+      "head": "fe2b95e2377d8878f0d77445c0079ec1c801f50a",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/fe2b95e2377d8878f0d77445c0079ec1c801f50a/README.md",
+      "readme_status": "2026-10-30 S30 audit: no submission and no slot; claims all 36 pairwise focus-site comparisons exceed the 70%/3-px gate (reported range 0.87–1.00) and says no score estimate is calibrated.",
+      "historical_focus_claim": "GEMSDOE28 h36-1-rung30-blind-r1; 0.2710 user-reported in the supplied prompt and pinned historical audit.",
+      "site_readme_score_verified": false
+    },
+    {
+      "site": "GEMSDOE30",
+      "head": "3dac4b16bc8db5f5a54ffb6677f52bcdcc95fc8a",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/3dac4b16bc8db5f5a54ffb6677f52bcdcc95fc8a/README.md",
+      "readme_status": "2026-10-30 review: no approved TIFF; no download; no score estimate. README reports GEMSDOE25/30 identical inside footprint and H33-B2 contained in several family files. Its leaderboard figures are claims from sibling evidence, not independently fetched here.",
+      "historical_focus_claim": "GEMSDOE30 d28-Poisson; 0.2600 user-reported in the supplied prompt and pinned historical audit.",
+      "site_readme_score_verified": false,
+      "ref_drift_during_check": "An initial same-session ls-remote observed e579912056281cabf46dfcf7f86c7e8d3a0c221c; a subsequent clone observed e72c88956ef643247fa341070004e1c889066f3f; a later ls-remote observed 3dac4b16bc8db5f5a54ffb6677f52bcdcc95fc8a, which was fetched and read. This is evidence of active repository movement; the later pinned README is used here."
+    },
+    {
+      "site": "GEMSDOE31",
+      "head": "f9248200f20def2654af596c1cc13ab2f9d96687",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/f9248200f20def2654af596c1cc13ab2f9d96687/README.md",
+      "readme_status": "README says DO NOT SUBMIT, no assigned method paragraph, and reports archived H-STEO duplicate/invalid artifacts without a leaderboard estimate.",
+      "historical_focus_claim": "GEMSDOE31 H27-4 SOLO-D2.8; 0.2708 user-reported in the supplied prompt and pinned historical audit.",
+      "site_readme_score_verified": false
+    },
+    {
+      "site": "GEMSDOE32",
+      "head": "c8e560f1aae650b120dc31c9e7495ced6a587701",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/c8e560f1aae650b120dc31c9e7495ced6a587701/README.md",
+      "readme_status": "README's start section is dated 2026-10-29, says DO NOT SUBMIT, labels B2 0.2778 owner-reported and previously submitted, and contains branch-specific projections that conflict with each other and with other repositories. Treat it as stale/branch-scoped, not a current estimate.",
+      "historical_focus_claim": "GEMSDOE32 H33-2-B2; 0.2778 user-reported in the supplied prompt and pinned historical audit.",
+      "site_readme_score_verified": false
+    },
+    {
+      "site": "GEMSDOE33",
+      "head": "ee2e464b61cb0e0aa604b0525044ad9ff31c9ec7",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/ee2e464b61cb0e0aa604b0525044ad9ff31c9ec7/README.md",
+      "readme_status": "README's latest dated analysis is 2026-10-29 and says no file is OK to submit and leaderboard score is not estimable; it records negative deployment-density and holdout findings.",
+      "historical_focus_claim": "GEMSDOE33 H33D analog-tip-stepover; 0.2632 user-reported in the supplied prompt and pinned historical audit.",
+      "site_readme_score_verified": false
+    },
+    {
+      "site": "GEMSDOE36",
+      "head": "b0824c550c02792897d0ebe3aba1cb0e75583ea1",
+      "readme_url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/b0824c550c02792897d0ebe3aba1cb0e75583ea1/README.md",
+      "readme_status": "README's most recent experiment record is 2026-10-29: negative/no submit; no final map or TIFF; one holdout result did not beat its matched baseline and a literal lattice overlap gate failed.",
+      "historical_focus_claim": "GEMSDOE36 Anderson geothermal PINN; 0.2750 user-reported in the supplied prompt and pinned historical audit.",
+      "site_readme_score_verified": false
+    }
+  ],
+  "invariants": {
+    "drivendata_accessed": false,
+    "tiff_bytes_downloaded_from_current_heads": false,
+    "current_scores_verified": false,
+    "organizer_receipts_found": false,
+    "current_submission_recommended": false,
+    "weekly_slots_used": 0
+  }
+}

@@ -1,5 +1,7 @@
 # GEMSDOE88 — audited fault discovery and submission gates
 
+> Repository review, three-pass verification, and current local gate result (2026-10-30): [research/session-arena-review-20261030.md](research/session-arena-review-20261030.md). This is a negative review record, not a replacement submission approval.
+
 > ### CURRENT DECISION (`2026-10-29`, Session `5aeeb70b`): **NO NEW TIFF · SUBMIT: NO — DO NOT SUBMIT** (`DUPLICATE_STOP`, `ok_to_submit: false`, `weekly_slots_used: 0`)
 >
 > - **No candidate or TIFF was generated.** `generation_guard.py` and `preflight_mtas88.py --gate-generation` returned the expected exit `2` before feature construction. The SHA-pinned dense witness directly covers `5,106,385 / 5,106,385` allowed cells; under the literal support rule every nonempty candidate has `REGISTRY-MEASUREMENT: 3-px overlap = 1.0000 > 0.70`. No experiment, holdout, canary, estimate, or weekly slot was spent. Do not evade this stop with a zero-only raster, renamed copy, or private sparse-prior rule.
@@ -24,6 +26,12 @@
 - **Run card:** [registry/session_8abdbff4_run_card.json](registry/session_8abdbff4_run_card.json) (mirror `docs/data/session_8abdbff4_run_card.json`).
 - **Reproduce:** `.venv/bin/python scripts/audit_focus_nine_sites.py` (about 4 min, network) · `.venv/bin/python scripts/render_focus9_submission_guide.py --check`.
 - **Owner decision needed:** authorize or refuse a stop-policy revision. Without it, no candidate can pass the gate. Also: the uploaded file's name and SHA-256 (or the portal log) so the `[0,1]` error can be traced.
+### SESSION `6236446d` (`2026-10-30`): NO NEW TIFF · DO NOT SUBMIT · one policy decision needed
+
+> - **Answer for the user:** no file is cleared to download or submit. The guard reproduces `DUPLICATE_STOP` (exit `2`) on restored inputs. No candidate, holdout, canary, score estimate, or slot was produced.
+> - **Leaderboard correction (OFFICIAL-PUBLIC, captured 2026-10-30):** the top public score is **0.4544** (#1 xiaofanhu), not 0.4413. The value 0.3195 is the **rank-50** cutoff, not the highest score. Evidence: [`evidence/leaderboard_live_capture_6236446d_20261030.json`](evidence/leaderboard_live_capture_6236446d_20261030.json).
+> - **Cross-site duplicates (GITHUB-API-LISTING):** of 504 TIFFs in the nine named sites, 478 distinct blobs and 20 duplicate groups. GEMSDOE32 hosts byte copies of files from 8 other sites. Evidence: [`evidence/site_blob_duplicates_20261030.json`](evidence/site_blob_duplicates_20261030.json) (script `scripts/audit_site_blob_duplicates.py`).
+> - Full review and executive table: [`research/session-6236446d-review.md`](research/session-6236446d-review.md) · [run card](registry/session_6236446d_run_card.json) · [preflight receipt](evidence/session_6236446d_generation_preflight.json). Tests: `1109 passed, 23 skipped`.
 
 ### SESSION `1babc312` (`2026-10-29`): NO NEW TIFF · DO NOT SUBMIT · one policy decision needed
 
