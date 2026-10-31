@@ -33,6 +33,8 @@ def test_pages_have_local_links_assets_and_clear_status():
         "research.html",
         "sources.html",
         "con88.html",
+        # Session 8abdbff4 (2026-10-30): nine-site submission guide, generated from evidence.
+        "focus9-submission-guide.html",
     }
     for page in pages.values():
         text = page.read_text()

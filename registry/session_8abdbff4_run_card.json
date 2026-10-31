@@ -1,0 +1,110 @@
+{
+  "schema": "gems88-session-run-card-v1",
+  "session": "8abdbff4",
+  "date_utc": "2026-10-30",
+  "branch": "arena/8abdbff4-gemsdoe88",
+  "verdict": "negative",
+  "decision": "DUPLICATE_STOP",
+  "submit": "NO",
+  "ok_to_submit": false,
+  "ok_to_download_for_submission": false,
+  "new_rasters_generated": 0,
+  "weekly_slots_used": 0,
+  "experiments_run": 0,
+  "experiment_budget": {
+    "max_experiments": 3,
+    "max_hours": 2,
+    "used_experiments": 0,
+    "used_hours": "not measured (no experiment executed)"
+  },
+  "holdout": {
+    "dti": null,
+    "status": "not run (no candidate passed the gate)"
+  },
+  "leakage_canary": {
+    "status": "not run (no candidate)",
+    "threshold": 0.9
+  },
+  "rank_correlation": {
+    "status": "not computed",
+    "threshold": 0.9,
+    "note": "protocol uses 3-px overlap; no candidate promoted"
+  },
+  "claim_labels": {
+    "per_claim": "USER-REPORTED CLAIM",
+    "organizer_receipts_found": 0,
+    "holdout_dti_measured": 0
+  },
+  "nine_site_audit": {
+    "claims_found": 21,
+    "byte_duplicate_groups": 17,
+    "literal_unique_claims": 2,
+    "official_spec_pass": 21,
+    "strict_local_pass": 12,
+    "blocked_by_dense_witness_all": true
+  },
+  "official_source": {
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "verified": [
+      "metric: distance-weighted Tversky, alpha 0.2, beta 0.8",
+      "triangular kernel, 300 m support (R = 3 px at 100 m)",
+      "format: float32, single layer, EPSG:32611, 100 m, same bounds, values in [0,1], null or nan outside bounds",
+      "Final round rescoring uses expanded labels after expert review"
+    ]
+  },
+  "leaderboard": {
+    "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "top_public": 0.4544,
+    "prompt_0_3195": "present at rank #50 (kpomazi)",
+    "prompt_0_4413": "absent from ranks 1-50 (fully read)"
+  },
+  "irregularities": [
+    "IRR-8abdbff4-01: mirror data/bridge/sample_submission.tif has 60,988 ones equal to the catalogue, but the official page describes the sample as predicting total absence (organizer file login-only).",
+    "IRR-8abdbff4-02: repo strict validator rejects the organizer sample (range_0_1 and no_mass_outside fail on NaN outside footprint), while the official spec allows null or nan outside bounds.",
+    "IRR-8abdbff4-03: the [0,1] portal error is unexplained; no claimed file has a finite value outside [0,1].",
+    "IRR-8abdbff4-04: GEMSDOE30 pin e72c889 is stale; the audit ran on HEAD 84441266.",
+    "IRR-8abdbff4-05: GEMSDOE24, GEMSDOE28, GEMSDOE30 moved after the audit; all 21 claimed files remain byte-identical on remote main.",
+    "IRR-8abdbff4-06: 0.2600 and 0.2708 each cited for more than one file; GEMSDOE32 hosts byte-identical copies of sibling files.",
+    "IRR-8abdbff4-07: the prompt's 0.4413 leaderboard value is absent from the public board snapshot."
+  ],
+  "review_passes": [
+    {
+      "pass": 1,
+      "name": "numbers vs evidence",
+      "result": "PASS",
+      "detail": "page generated from evidence JSON; --check reports OK"
+    },
+    {
+      "pass": 2,
+      "name": "official-source line-by-line",
+      "result": "PASS",
+      "detail": "page 967 chunks 0 and 1 read; leaderboard pages 1-3 read"
+    },
+    {
+      "pass": 3,
+      "name": "site and test gates",
+      "result": "PASS",
+      "detail": "pytest: 1124 passed, 23 skipped (full suite, 2026-10-30); scripts/check_site.py PASS; scripts/render_decision.py --check PASS; scripts/audit_downloads.py PASS (protocol_eligible_count 0); scripts/generation_guard.py exit 2 DUPLICATE_STOP (expected). Pre-existing test pinned the docs/*.html set; the new subpage was added to that allow-list in tests/test_site_links.py."
+    }
+  ],
+  "evidence_sha256": {
+    "evidence/focus9_nine_site_audit_20261030.json": "3e301574639cb55be762bcfc42d11cd70ec254bdf27067d505bf5db777fc1dc9",
+    "evidence/focus9_remote_blob_check_20261030.json": "34e87bda428f0c83169d73e088a9b2b85931221a9b48fd83d7bfda67f3ba004b",
+    "evidence/drivendata_leaderboard_snapshot_20261030.json": "58c59e09bb37a840f9308c1fdcb168eb71ca33afb0c0a6b186b76beb1041d431",
+    "docs/focus9-submission-guide.html": "090f50767d561052e359973174ee5720902ad0ee36127c9f6413dc6f768c31f7",
+    "scripts/audit_focus_nine_sites.py": "dd7abde291099404c63cf860636c43a52c69afe7d19dd4b6bf2ed49f2b7a38dd",
+    "scripts/render_focus9_submission_guide.py": "6fb8d64c49d3b98957588549a87e77b9787aa0aee64eb47ec530e949783f9606"
+  },
+  "limitations": [
+    "no organizer receipt for any claim",
+    "no HOLDOUT-DTI for any listed file",
+    "rank correlation not computed",
+    "page 2 leaderboard ranks 76-100 not visible",
+    "organizer sample file login-only"
+  ],
+  "access_needed": [
+    "organizer sample_submission.tif and portal upload log or the uploaded file's name and SHA-256 (for the [0,1] error)",
+    "DrivenData submission receipts for each claimed file, if any exist"
+  ],
+  "submission_note": "NO SUBMISSION. DUPLICATE_STOP reproduced; no file cleared; user policy decision required."
+}

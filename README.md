@@ -14,6 +14,18 @@
 >
 > - **Start every session by rereading this README:** include the complete “User request recorded for future sessions” section embedded below, [`PROMPT.md`](PROMPT.md), and [`AGENTS.md`](AGENTS.md). The request, lane/safety protocol, evidence classes, 3-experiment/2-hour cap, three-pass review and separate slot selector remain binding. **Maximize P(Win) · Own the Outcome.** Session `5aeeb70b` did not meet the unique-TIFF requirement; that remains an explicit blocker.
 
+### SESSION `8abdbff4` (`2026-10-30`): NO NEW TIFF · SUBMIT: NO · nine-site guide and official-spec review
+
+- **Decision unchanged:** `DUPLICATE_STOP` reproduced (exit 2; `ok_to_submit: false`; `weekly_slots_used: 0`; `experiments_run: 0`). No file is cleared.
+- **Executive page:** [Nine-site submission guide](https://buffedlizard55-lab.github.io/GEMSDOE88/docs/focus9-submission-guide.html) — per-site table (file, claimed score, estimated score = none, unique vs the other listed sites), H33 explanation, leaderboard reconciliation, and portal-error analysis. Generated from evidence by `scripts/render_focus9_submission_guide.py`.
+- **Official metric verified (DrivenData page 967, read line by line):** distance-weighted Tversky with `alpha = 0.2`, `beta = 0.8`, and a 300 m triangular kernel (`R = 3` px at 100 m). The format rule allows `null or nan` outside the bounds, so the repo's stricter all-finite rule is flagged as an irregularity, not silently changed.
+- **Leaderboard:** the prompt's `0.3195` is public rank #50 (kpomazi). The prompt's `0.4413` is absent from ranks 1–50 of the 2026-10-30 public snapshot. Source unknown.
+- **Claims:** 21 listed files, all `USER-REPORTED CLAIM`. Organizer receipts found: 0. HOLDOUT-DTI measured: 0. Literal-unique files: 2, both low-scoring (0.0963, 0.0217) and both blocked by the dense witness. All top-claim files overlap at 1.0 with a sibling file.
+- **Audit:** `scripts/audit_focus_nine_sites.py` (run 4, 2026-10-30, `evidence/focus9_nine_site_audit_20261030.json`). Remote-blob check: all 21 claimed files still byte-identical on remote `main`, including the three repos that moved after the audit.
+- **Irregularities (IRR-8abdbff4-01…07):** the mirror `sample_submission.tif` has 60,988 positive cells equal to the catalogue, but the official page says it predicts absence; the repo's strict validator rejects the organizer's own sample; the `[0,1]` portal error remains unexplained; the GEMSDOE30 pin is stale; duplicate score citations. Full list in the run card.
+- **Run card:** [registry/session_8abdbff4_run_card.json](registry/session_8abdbff4_run_card.json) (mirror `docs/data/session_8abdbff4_run_card.json`).
+- **Reproduce:** `.venv/bin/python scripts/audit_focus_nine_sites.py` (about 4 min, network) · `.venv/bin/python scripts/render_focus9_submission_guide.py --check`.
+- **Owner decision needed:** authorize or refuse a stop-policy revision. Without it, no candidate can pass the gate. Also: the uploaded file's name and SHA-256 (or the portal log) so the `[0,1]` error can be traced.
 ### SESSION `6236446d` (`2026-10-30`): NO NEW TIFF · DO NOT SUBMIT · one policy decision needed
 
 > - **Answer for the user:** no file is cleared to download or submit. The guard reproduces `DUPLICATE_STOP` (exit `2`) on restored inputs. No candidate, holdout, canary, score estimate, or slot was produced.
