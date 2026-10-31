@@ -396,6 +396,10 @@ function startEphemeralDocsServer() {
       'docs/assets/focus-freshness.js', 'docs/data/focus-freshness.json',
       'docs/assets/focus-current-samples.js', 'docs/data/focus-current-samples.json',
       'docs/data/focus_sample_2b5a8383.json', 'docs/data/focus_sites_20261026.json',
+      'docs/data/focus_current_samples_20261030_1cea5a72_r2.json',
+      'docs/data/focus_freshness_20261030_1cea5a72_r2.json',
+      'docs/data/leaderboard_live_capture_6236446d_20261030.json',
+      'docs/data/site_blob_duplicates_20261031_1cea5a72_r3.json',
       'docs/mdc88/index.html', 'docs/mdc88/executive-summary.html', 'docs/mdc88/status.json']) {
       report.source_sha256[relative] = crypto.createHash('sha256').update(fs.readFileSync(path.join(ROOT, relative))).digest('hex');
     }

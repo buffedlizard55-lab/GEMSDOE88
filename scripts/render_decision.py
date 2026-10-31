@@ -418,6 +418,21 @@ def render_current_review_hero(root: Path) -> str:
     if browser.get("browser_evidence") and browser.get("status") == "PASS":
         browser_href = (' · <a href="data/' + escape(Path(browser["browser_evidence"]).name, quote=True)
                         + '">Automated Chromium receipt</a>')
+    leaderboard = review.get("leaderboard_reference", {})
+    leaderboard_summary = ""
+    public_mirror = leaderboard.get("public_mirror")
+    if leaderboard.get("rank_1_value") is not None and leaderboard.get("rank_50_value") is not None:
+        capture_href = Path(public_mirror).relative_to("docs").as_posix() if public_mirror else ""
+        capture_link = (f' <a href="{escape(capture_href, quote=True)}">capture</a>' if capture_href else "")
+        source_url = leaderboard.get("source_url")
+        live_link = (f' · <a href="{escape(source_url, quote=True)}">public leaderboard</a>' if source_url else "")
+        leaderboard_summary = (
+            ' Separate <strong>OFFICIAL-PUBLIC</strong> capture (2026-10-30): #1 '
+            f'<code>{float(leaderboard["rank_1_value"]):.4f}</code>; rank 50 '
+            f'<code>{float(leaderboard["rank_50_value"]):.4f}</code>—public split only, '
+            'not a focus-site identity match, private score, or organizer receipt.'
+            + capture_link + live_link + '. '
+        )
     focus_summary = (
         f"{changed} of 9 repositories changed since the audited snapshot; "
         f"{stopped} bounded README-cited TIFF samples returned DUPLICATE_STOP, "
@@ -439,8 +454,10 @@ def render_current_review_hero(root: Path) -> str:
         + escape(focus_summary)
         + 'This bounded README-path sample is not a winner search, complete inventory, score check, '
         'or organizer receipt. H33 <code>0.2778</code> and all supplied site values remain '
-        '<strong>USER-REPORTED CLAIMS</strong>. No file is cleared to submit. '
-        f'<a href="{escape(report_href, quote=True)}">Three-pass review and per-site executive table</a> · '
+        '<strong>USER-REPORTED CLAIMS</strong>. '
+        + leaderboard_summary
+        + 'No file is cleared to submit. '
+        + f'<a href="{escape(report_href, quote=True)}">Three-pass review and per-site executive table</a> · '
         f'<a href="{escape(review_ref.as_posix(), quote=True)}">Negative run card</a> · '
         f'<a href="{escape(sample_href, quote=True)}">Dated current sample</a> · '
         f'<a href="{escape(freshness_href, quote=True)}">Dated HEAD snapshot</a>'

@@ -78,8 +78,8 @@ def test_active_negative_card_and_session_feed_are_hash_pinned_and_mirrored():
     # The 5ae card is immutable historical evidence. The mutable defaults now
     # point to the separately pinned 2026-10-30 refresh and must not be
     # retroactively substituted into this older card.
-    current_sample_path = ROOT / "docs/data/focus_current_samples_20261030_1cea5a72.json"
-    current_freshness_path = ROOT / "docs/data/focus_freshness_20261030_1cea5a72.json"
+    current_sample_path = ROOT / "docs/data/focus_current_samples_20261030_1cea5a72_r2.json"
+    current_freshness_path = ROOT / "docs/data/focus_freshness_20261030_1cea5a72_r2.json"
     assert (ROOT / "docs/data/focus-current-samples.json").read_bytes() == current_sample_path.read_bytes()
     assert (ROOT / "docs/data/focus-freshness.json").read_bytes() == current_freshness_path.read_bytes()
     assert sample_path.read_bytes() != current_sample_path.read_bytes()
@@ -193,7 +193,7 @@ def test_current_renderer_and_browser_receipt_bind_the_new_review():
     assert receipt["focus_comparison"]["pass"] is True
     assert receipt["research_download"]["click_matches_canonical_bytes"] is True
     assert receipt["focus_current_samples"]["row_count"] == 9
-    assert receipt["focus_current_samples"]["diagnostic_site"] == "GEMSDOE30"
+    assert receipt["focus_current_samples"]["diagnostic_site"] == "GEMSDOE24"
     assert receipt["focus_current_samples"]["diagnostic_dom_pass"] is True
     assert receipt["focus_current_samples"]["tampered_diagnostic_fails_closed"] is True
     assert receipt["focus_current_samples"]["fresh_snapshot_pass"] is True

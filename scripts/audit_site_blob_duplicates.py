@@ -26,32 +26,59 @@ SITES = ["GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
          "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"]
 
 
-def list_tifs(repo: str) -> list[dict]:
-    """Return tif entries of the HEAD tree. Raises RuntimeError on API failure."""
+class SiteListing(list):
+    """TIF entries tied to an immutable GitHub commit and root tree."""
+
+    def __init__(self, entries: list[dict], head_commit_sha: str, tree_sha: str):
+        super().__init__(entries)
+        self.head_commit_sha = head_commit_sha
+        self.tree_sha = tree_sha
+
+
+def _gh_json(endpoint: str, site: str) -> dict:
     proc = subprocess.run(
-        ["gh", "api", f"repos/{OWNER}/{repo}/git/trees/HEAD?recursive=1"],
-        capture_output=True, text=True, timeout=120,
+        ["gh", "api", endpoint], capture_output=True, text=True, timeout=120,
     )
     if proc.returncode != 0:
-        raise RuntimeError(f"{repo}: gh api exit {proc.returncode}: {proc.stderr.strip()[:300]}")
-    tree = json.loads(proc.stdout)
+        raise RuntimeError(f"{site}: gh api exit {proc.returncode}: {proc.stderr.strip()[:300]}")
+    return json.loads(proc.stdout)
+
+
+def list_tifs(repo: str) -> SiteListing:
+    """List *.tif at an immutable current default-branch commit and pin its tree."""
+    commit = _gh_json(f"repos/{OWNER}/{repo}/commits/HEAD", repo)
+    commit_sha = commit.get("sha")
+    expected_tree_sha = commit.get("commit", {}).get("tree", {}).get("sha")
+    if not commit_sha or not expected_tree_sha:
+        raise RuntimeError(f"{repo}: commit response has no SHA/tree pin")
+    tree = _gh_json(f"repos/{OWNER}/{repo}/git/trees/{expected_tree_sha}?recursive=1", repo)
     if tree.get("truncated"):
         raise RuntimeError(f"{repo}: git tree truncated; listing incomplete")
-    return [
+    if tree.get("sha") != expected_tree_sha:
+        raise RuntimeError(f"{repo}: pinned tree SHA differs from commit response")
+    entries = [
         {"path": e["path"], "blob_sha": e["sha"], "size_bytes": e.get("size")}
         for e in tree.get("tree", [])
         if e.get("type") == "blob" and e["path"].lower().endswith(".tif")
     ]
+    return SiteListing(entries, commit_sha, tree["sha"])
 
 
 def build(sites: list[str]) -> dict:
-    files, errors = [], []
+    files, errors, snapshots = [], [], []
     for repo in sites:
         try:
-            for e in list_tifs(repo):
-                files.append({"site": repo, **e})
+            listing = list_tifs(repo)
+            snapshots.append({
+                "site": repo,
+                "head_commit_sha": getattr(listing, "head_commit_sha", None),
+                "tree_sha": getattr(listing, "tree_sha", None),
+                "tif_files": len(listing),
+            })
+            files.extend({"site": repo, **e} for e in listing)
         except Exception as exc:  # fail-closed: record, keep going, exit nonzero
             errors.append({"site": repo, "error": f"{type(exc).__name__}: {exc}"})
+    files.sort(key=lambda f: (f["site"], f["path"]))
     groups = defaultdict(list)
     for f in files:
         groups[f["blob_sha"]].append(f"{f['site']}:{f['path']}")
@@ -64,11 +91,13 @@ def build(sites: list[str]) -> dict:
         "schema": "gems88.site-blob-duplicates.v1",
         "generated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "evidence_class": "GITHUB-API-LISTING (git blob SHA-1 identity; not a score)",
-        "scope": "HEAD tree of each user-listed site repo, *.tif only",
+        "scope": "Immutable default-branch commit/tree pins for each user-listed site repo; *.tif files only",
         "sites": sites,
+        "site_snapshots": snapshots,
         "tif_files_listed": len(files),
         "distinct_blobs": len(groups),
         "duplicate_blob_groups": len(dup_groups),
+        "files": files,
         "duplicate_groups": dup_groups,
         "errors": errors,
         "limitations": [

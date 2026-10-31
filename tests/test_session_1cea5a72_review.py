@@ -14,8 +14,8 @@ from scripts import render_decision  # noqa: E402
 
 CARD_NAME = "session_1cea5a72_run_card.json"
 BROWSER_NAME = "session_1cea5a72_browser_check.json"
-SAMPLE_NAME = "focus_current_samples_20261030_1cea5a72.json"
-FRESHNESS_NAME = "focus_freshness_20261030_1cea5a72.json"
+SAMPLE_NAME = "focus_current_samples_20261030_1cea5a72_r2.json"
+FRESHNESS_NAME = "focus_freshness_20261030_1cea5a72_r2.json"
 
 
 def read(relative: str):
@@ -83,6 +83,13 @@ def test_fresh_focus_feed_is_dated_mirrored_and_scoped_as_a_sample():
     assert len(sample["rows"]) == 9
     assert all(row["overlap_3px"] == 1.0 for row in sample["rows"] if row["decision"] == "DUPLICATE_STOP")
     assert {row["site"] for row in sample["rows"] if row["decision"] == "NOT_DISCOVERED"} == {"GEMSDOE25", "GEMSDOE28"}
+    assert {row["site"] for row in sample["rows"] if row["format_pass"] is False} == {"GEMSDOE24", "GEMSDOE30"}
+    for row in sample["rows"]:
+        if row["format_pass"] is False:
+            assert row["format_pixel_counts"]["outside_nonfinite"] == 7_111_787
+            assert row["format_pixel_counts"]["inside_nonfinite"] == 0
+            assert row["format_pixel_counts"]["inside_finite_out_of_range"] == 0
+            assert row["format_pixel_counts"]["outside_finite_out_of_range"] == 0
     assert sample["score_status"].startswith("NOT MEASURED")
     assert sample["scope"].startswith("First bare")
 
@@ -91,6 +98,36 @@ def test_fresh_focus_feed_is_dated_mirrored_and_scoped_as_a_sample():
     assert hashlib.sha256(freshness_path.read_bytes()).hexdigest() == card["focus_feed"]["freshness_sha256"]
     assert card["focus_feed"]["current_winner_search"] is False
     assert card["focus_feed"]["ok_to_submit"] is False
+    assert card["leaderboard_reference"]["rank_1_value"] == 0.4544
+    assert card["leaderboard_reference"]["rank_50_value"] == 0.3195
+    assert card["leaderboard_reference"]["focus_site_name_match"] is False
+    assert card["leaderboard_reference"]["organizer_receipt"] is None
+
+
+def test_pinned_cross_site_byte_inventory_is_complete_and_not_protocol_clearance():
+    card = read("registry/" + CARD_NAME)
+    audit_card = card["cross_site_blob_duplicate_audit"]
+    evidence_path = ROOT / audit_card["source_record"]
+    mirror_path = ROOT / audit_card["public_mirror"]
+    raw = evidence_path.read_bytes()
+    assert raw == mirror_path.read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == audit_card["sha256"]
+    audit = json.loads(raw)
+    assert audit["tif_files_listed"] == 507
+    assert audit["distinct_blobs"] == 481
+    assert audit["duplicate_blob_groups"] == 20
+    assert audit["errors"] == []
+    assert len(audit["files"]) == 507
+    assert len(audit["site_snapshots"]) == 9
+    freshness = read("evidence/" + FRESHNESS_NAME)
+    heads = {row["site"]: row["current_head"] for row in freshness["sites"]}
+    assert {row["site"]: row["head_commit_sha"] for row in audit["site_snapshots"]} == heads
+    champions = audit_card["historical_champion_inventory"]
+    assert len(champions) == 9 and all(row["present_at_pinned_head"] for row in champions.values())
+    assert sum(not row["byte_unique_among_nine"] for row in champions.values()) == 8
+    assert champions["GEMSDOE32"]["byte_unique_among_nine"] is True
+    assert audit_card["h33_historical_file_byte_unique_among_nine"] is True
+    assert audit_card["submission_clearance"] is False
 
 
 def test_automated_chromium_receipt_binds_current_public_bytes_and_stays_negative():
@@ -110,7 +147,7 @@ def test_automated_chromium_receipt_binds_current_public_bytes_and_stays_negativ
     assert receipt["focus_freshness"]["partial_feed_fail_closed"] is True
     assert receipt["focus_freshness"]["expired_feed_fail_closed"] is True
     assert receipt["focus_current_samples"]["row_count"] == 9
-    assert receipt["focus_current_samples"]["diagnostic_site"] == "GEMSDOE30"
+    assert receipt["focus_current_samples"]["diagnostic_site"] == "GEMSDOE24"
     assert receipt["focus_current_samples"]["diagnostic_dom_pass"] is True
     assert receipt["focus_current_samples"]["tampered_diagnostic_fails_closed"] is True
     assert receipt["no_javascript_stays_negative"] is True
@@ -127,6 +164,8 @@ def test_canonical_renderer_and_site_guards_bind_the_current_review():
     assert "Current review · 1cea5a72 · 2026-10-30" in research
     assert "7 bounded README-cited TIFF samples returned DUPLICATE_STOP" in research
     assert "2 were not discovered" in research
+    assert "OFFICIAL-PUBLIC</strong> capture (2026-10-30): #1 <code>0.4544</code>; rank 50 <code>0.3195</code>" in research
+    assert "data/leaderboard_live_capture_6236446d_20261030.json" in research
     assert "research/session-1cea5a72-review.md" in research
     assert "data/session_1cea5a72_browser_check.json" in research
     assert "Current H33 analysis and nine-site table" in research
@@ -139,7 +178,8 @@ def test_canonical_renderer_and_site_guards_bind_the_current_review():
         ("../docs/downloads/", "../downloads/"),
         ("../docs/data/", "../data/"),
         ("../evidence/session_1cea5a72_browser_check.json", "../data/session_1cea5a72_browser_check.json"),
-        ("../evidence/focus_current_samples_20261030_1cea5a72.json", "../data/focus_current_samples_20261030_1cea5a72.json"),
+        ("../evidence/focus_current_samples_20261030_1cea5a72_r2.json", "../data/focus_current_samples_20261030_1cea5a72_r2.json"),
+        ("../evidence/site_blob_duplicates_20261031_1cea5a72_r3.json", "../data/site_blob_duplicates_20261031_1cea5a72_r3.json"),
         ("../registry/session_1cea5a72_run_card.json", "../data/session_1cea5a72_run_card.json"),
     ):
         source = source.replace(old, new)

@@ -1,6 +1,6 @@
 {
   "schema": "gems88.browser-review.v1",
-  "checked_at_utc": "2026-10-30T23:39:10.696Z",
+  "checked_at_utc": "2026-10-31T00:08:19.876Z",
   "browser": "153.0.8010.0",
   "pages": [
     {
@@ -98,7 +98,7 @@
   "source_sha256": {
     "docs/index.html": "50eeed427614388a3eab025be50121919e1e45e628e21aaf7fe28d55752ad84a",
     "docs/executive-summary.html": "d8260d21d9c7c56604af0e89c514aa18e71f167e1e0fbc988755819e3d40afe7",
-    "docs/research.html": "fdea8714f2581af0f7e994de495c09081503d75d6be6421bb28b7ab65a5e3fc4",
+    "docs/research.html": "e9a656ed9435aac3a98866b3bee36ad5d655c597371af20505e18828f9438bd4",
     "docs/sources.html": "63ac876dc01ad686a0a43d7f1f96029af15dff111bc24aa8e3cbcb2e69942baa",
     "docs/assets/site.css": "a7f120fabf36b9e6810a625ff2ddc82658ff37ba6c9937b378b73ee4b73cf067",
     "docs/assets/site.js": "07aac1f626ad9e063925692cf9d94cbaa82d5edebf536680abf5fc3089eab272",
@@ -108,11 +108,15 @@
     "docs/data/hypothesis_queue.json": "2dee0f50e716ec727ca0a44727f7a4f3ccb030840cdad4abaac600573514d821",
     "docs/status.json": "ed2f246e01c11b41ff6f019dfe313185f31c6f581c3d806bd72307e05eca0653",
     "docs/assets/focus-freshness.js": "e05f5229fcd42838bf378292ee487a1672dfefdbe5d11712027ab65311b2816a",
-    "docs/data/focus-freshness.json": "4ac17696df8cbb1fae7f9874e02117cec42101b0ffac1ab90d2742633a9d58f1",
+    "docs/data/focus-freshness.json": "769181ca13d4e3cd01d382ebe697962a6c700db451a9d64bb12f8c786e03345a",
     "docs/assets/focus-current-samples.js": "930be32a53d68441c83c78427aaeaae9fde9de46fdccbeef7ff7e4c0b953f201",
-    "docs/data/focus-current-samples.json": "bbec98b517e10ff11a0982a995ca2ae606f5d1a8c12b1e5ddcffa334cf354119",
+    "docs/data/focus-current-samples.json": "6b286fd9b87e873b54f1db3fd401fb5f1b0227d139b411a779a86196329f4797",
     "docs/data/focus_sample_2b5a8383.json": "8a40742fabd3ff037f14b095bdbe75bf9baf6634bb46da00c6edd2204ff1674d",
     "docs/data/focus_sites_20261026.json": "5afe2d385a491cf482a2788b61f2e85b637090299458e0800df32631cc9a89f2",
+    "docs/data/focus_current_samples_20261030_1cea5a72_r2.json": "6b286fd9b87e873b54f1db3fd401fb5f1b0227d139b411a779a86196329f4797",
+    "docs/data/focus_freshness_20261030_1cea5a72_r2.json": "769181ca13d4e3cd01d382ebe697962a6c700db451a9d64bb12f8c786e03345a",
+    "docs/data/leaderboard_live_capture_6236446d_20261030.json": "5d0b3512ea16181d3dfca9eea7d9080d7724827c1ec9cef86d3b2ce5c1868f37",
+    "docs/data/site_blob_duplicates_20261031_1cea5a72_r3.json": "32185fcbd5e91db914df9d7b36edb18d059b9a68fa2fb678a29b64b564a972d8",
     "docs/mdc88/index.html": "7968611af89256740904e40003e26bf49635d626a2f04b1e1943a1050d88ef1d",
     "docs/mdc88/executive-summary.html": "a224490fc994b54619d24275500ea6eba6670685be70bcda8f241ee4b25a8ae3",
     "docs/mdc88/status.json": "7d0223ff4f7b513ba5d3d68fd81ddc9b86f58955c9e3ffdf2e0131eff73033f9"
@@ -154,12 +158,12 @@
     "missing_feed_fail_closed": true,
     "partial_feed_fail_closed": true,
     "expired_feed_fail_closed": true,
-    "checked_snapshot": "2026-10-30T23:14:40Z",
+    "checked_snapshot": "2026-10-30T23:55:06Z",
     "fresh_fixture_used_simulated_heads": false,
-    "fresh_text": "Checked 2026-10-30T23:14:40Z: 9 of 9 repositories changed since the audited snapshot. This is not a score or approval.",
+    "fresh_text": "Checked 2026-10-30T23:55:06Z: 9 of 9 repositories changed since the audited snapshot. This is not a score or approval.",
     "missing_text": "Revision check unavailable or inconsistent. The table is historical; DO NOT SUBMIT.",
-    "partial_text": "Incomplete revision check at 2026-10-30T23:14:40Z: 8 changed, 1 unavailable. No submission approved.",
-    "expired_text": "Revision snapshot expired (last checked 2026-10-30T23:14:40Z); current state unknown. DO NOT SUBMIT."
+    "partial_text": "Incomplete revision check at 2026-10-30T23:55:06Z: 8 changed, 1 unavailable. No submission approved.",
+    "expired_text": "Revision snapshot expired (last checked 2026-10-30T23:55:06Z); current state unknown. DO NOT SUBMIT."
   },
   "focus_current_samples": {
     "fresh_snapshot_pass": true,
@@ -167,14 +171,14 @@
     "missing_feed_fail_closed": true,
     "head_mismatch_fail_closed": true,
     "expired_feed_fail_closed": true,
-    "checked_snapshot": "2026-10-30T23:14:42Z",
-    "diagnostic_site": "GEMSDOE30",
+    "checked_snapshot": "2026-10-30T23:55:08Z",
+    "diagnostic_site": "GEMSDOE24",
     "diagnostic_dom_pass": true,
     "tampered_diagnostic_fails_closed": true,
-    "fresh_text": "Checked 2026-10-30T23:14:42Z: 7 sampled files fail the literal witness; 2 are unavailable or unmeasured. DO NOT SUBMIT.",
+    "fresh_text": "Checked 2026-10-30T23:55:08Z: 7 sampled files fail the literal witness; 2 are unavailable or unmeasured. DO NOT SUBMIT.",
     "missing_text": "Sample audit unavailable or inconsistent. DO NOT SUBMIT.",
     "mismatch_text": "Sample audit unavailable or inconsistent. DO NOT SUBMIT.",
-    "expired_text": "Sample snapshot expired (last checked 2026-10-30T23:14:42Z); current state unknown. DO NOT SUBMIT."
+    "expired_text": "Sample snapshot expired (last checked 2026-10-30T23:55:08Z); current state unknown. DO NOT SUBMIT."
   },
   "no_javascript_banner": "NO NEW TIFF · RESEARCH DOWNLOAD ONLY · DO NOT SUBMIT",
   "no_javascript_stays_negative": true,
